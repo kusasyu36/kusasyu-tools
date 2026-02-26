@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ショート動画台本フレームワーク自動生成ツール</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pri:#6C5CE7;--bg:#f8f9fa;--card:#fff;--txt:#2d3436;--sub:#636e72;--ok:#00b894;--border:#dfe6e9;--r:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;padding:12px}
+h1{font-size:1.3em;text-align:center;padding:18px 0 4px;color:var(--pri)}
+.sub{text-align:center;color:var(--sub);font-size:.82em;margin-bottom:18px}
+.card{background:var(--card);border-radius:var(--r);padding:18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+label{display:block;font-weight:600;font-size:.85em;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:9px 11px;border:1.5px solid var(--border);border-radius:7px;font-size:.92em;font-family:inherit}
+textarea{resize:vertical;height:70px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:140px}
+button{cursor:pointer;border:none;border-radius:7px;padding:10px 18px;font-size:.9em;font-weight:600;font-family:inherit;transition:.2s}
+.btn-main{background:var(--pri);color:#fff;width:100%;padding:13px;font-size:1em;margin-top:14px}
+.btn-main:hover{background:#5a4bd1}
+.btn-pre{background:#dfe6e9;color:var(--txt);font-size:.8em;padding:7px 13px}
+.btn-srt{background:var(--ok);color:#fff;font-size:.8em;padding:7px 14px;margin-top:8px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}
+.tab{padding:8px 13px;border-radius:7px 7px 0 0;background:#dfe6e9;font-size:.82em;font-weight:600;cursor:pointer}
+.tab.active{background:var(--pri);color:#fff}
+.panel{display:none}
+.panel.active{display:block}
+.script-block{background:#f1f0ff;border-left:4px solid var(--pri);padding:13px;border-radius:0 7px 7px 0;margin:8px 0;font-size:.88em;white-space:pre-wrap}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;font-size:.82em}
+.meta span{background:#e8e6ff;padding:4px 10px;border-radius:5px}
+.section-title{font-weight:700;color:var(--pri);margin:12px 0 4px;font-size:.95em}
+#output{display:none}
+@media(max-width:600px){.row{flex-direction:column}.tabs{gap:2px}.tab{font-size:.75em;padding:6px 9px}}
+</style>
+</head>
+<body>
+<h1>ショート動画台本フレームワーク自動生成</h1>
+<p class="sub">5つの勝ちパターンで構造化台本・ナレーション・SRT字幕を一括生成</p>
+
+<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+<span style="font-weight:700;font-size:.95em">入力情報</span>
+<button class="btn-pre" onclick="preset()">EC化粧品サンプルを読み込む</button>
+</div>
+<label>商品・サービス名</label>
+<input id="pName" placeholder="例: ビタミンC美容液 VitaGlow">
+<label>商品説明・特徴（簡潔に）</label>
+<textarea id="pDesc" placeholder="例: 高濃度ビタミンC20%配合。毛穴・くすみに14日で実感。"></textarea>
+<div class="row">
+<div><label>ターゲット層</label><input id="pTarget" placeholder="例: 25〜35歳女性・美容意識高め"></div>
+<div><label>業種</label>
+<select id="pIndustry"><option>EC・通販</option><option>美容・サロン</option><option>食品・飲料</option><option>人材・HR</option><option>その他</option></select></div>
+</div>
+<div class="row">
+<div><label>配信プラットフォーム</label>
+<select id="pPlatform"><option>TikTok</option><option>Instagram Reels</option><option>YouTube Shorts</option></select></div>
+<div><label>動画尺</label>
+<select id="pDuration"><option value="15">15秒</option><option value="30" selected>30秒</option><option value="60">60秒</option></select></div>
+</div>
+<label>CTA（行動喚起）</label>
+<input id="pCTA" placeholder="例: プロフィールのリンクから購入で初回30%OFF">
+<button class="btn-main" onclick="generate()">5つのフレームワークで台本を一括生成</button>
+</div>
+
+<div id="output">
+<div class="card">
+<div class="tabs" id="tabs"></div>
+<div id="panels"></div>
+</div>
+</div>
+
+<script>
+function preset(){
+document.getElementById('pName').value='ビタミンC美容液 VitaGlow';
+document.getElementById('pDesc').value='高濃度ビタミンC20%配合の美容液。毛穴の開き・くすみに14日間で効果を実感。皮膚科医監修・無添加処方。通常価格4,980円が初回限定1,980円。';
+document.getElementById('pTarget').value='25〜35歳 美容意識の高い女性';
+document.getElementById('pIndustry').value='EC・通販';
+document.getElementById('pPlatform').value='TikTok';
+document.getElementById('pDuration').value='30';
+document.getElementById('pCTA').value='プロフィールのリンクから購入で初回60%OFF 1,980円';
+}
+
+const FW=[
+{id:'hook',icon:'1',name:'冒頭フック→問題提起→解決→CTA',
+build:(d,s)=>[
+{label:'冒頭フック（0〜'+s[0]+'秒）',text:'【テロップ: 画面中央・大文字】\n「'+d.target+'のあなた、まだ'+getProb(d)+'で悩んでる？」\n※最初の1秒で指を止めるインパクト重視',sec:s[0]},
+{label:'問題提起（'+s[0]+'〜'+s[1]+'秒）',text:'【テロップ: 下部3行】\n「実は'+getProb(d)+'の原因は○○だった…」\n→共感・うなずきを引き出す。データや数字があれば提示',sec:s[1]-s[0]},
+{label:'解決策提示（'+s[1]+'〜'+s[2]+'秒）',text:'【テロップ: 商品名を強調表示】\n「そこで'+d.name+'」\n→'+d.desc.slice(0,40)+'…\n→使い方を3秒で見せる映像カット',sec:s[2]-s[1]},
+{label:'CTA（'+s[2]+'〜'+s[3]+'秒）',text:'【テロップ: 画面下部固定】\n「'+d.cta+'」\n→URLタップを促すジェスチャー映像',sec:s[3]-s[2]}
+]},
+{id:'ba',icon:'2',name:'Before/After比較',
+build:(d,s)=>[
+{label:'Before提示（0〜'+s[0]+'秒）',text:'【画面左半分 or 上半分】\n「'+getProb(d)+'に悩んでいた頃…」\nテロップ: Before — 暗めフィルター使用',sec:s[0]},
+{label:'転換ポイント（'+s[0]+'〜'+s[1]+'秒）',text:'【画面切替エフェクト】\n「'+d.name+'を使い始めて14日後…」\nテロップ: 画面中央に大きく「14日後」',sec:s[1]-s[0]},
+{label:'After提示（'+s[1]+'〜'+s[2]+'秒）',text:'【画面右半分 or 下半分】\n「こんなに変わりました」\nテロップ: After — 明るめフィルター\n→比較を強調する並列レイアウト',sec:s[2]-s[1]},
+{label:'CTA（'+s[2]+'〜'+s[3]+'秒）',text:'【テロップ: 画面下部】\n「'+d.cta+'」',sec:s[3]-s[2]}
+]},
+{id:'rank',icon:'3',name:'ランキング型',
+build:(d,s)=>[
+{label:'ランキング導入（0〜'+s[0]+'秒）',text:'【テロップ: 画面上部】\n「'+d.target+'が選ぶ○○ランキングTOP3！」\n→カウントダウン形式で期待感を演出',sec:s[0]},
+{label:'3位・2位（'+s[0]+'〜'+s[1]+'秒）',text:'【テロップ: 順位を大きく表示】\n3位: 一般的な競合ジャンル商品\n2位: やや上位の選択肢\n→テンポよく切り替え（各3〜5秒）',sec:s[1]-s[0]},
+{label:'1位＝自社商品（'+s[1]+'〜'+s[2]+'秒）',text:'【テロップ: 金色エフェクト+商品名】\n1位: '+d.name+'\n→'+d.desc.slice(0,50)+'…\n→最も尺を長く取り、特徴を強調',sec:s[2]-s[1]},
+{label:'CTA（'+s[2]+'〜'+s[3]+'秒）',text:'【テロップ: 画面下部固定】\n「'+d.cta+'」',sec:s[3]-s[2]}
+]},
+{id:'how',icon:'4',name:'ステップHow-to',
+build:(d,s)=>[
+{label:'導入（0〜'+s[0]+'秒）',text:'【テロップ: 画面中央】\n「'+d.name+'の正しい使い方 3ステップ」\n→「知らないと損」感を出す',sec:s[0]},
+{label:'Step1（'+s[0]+'〜'+s[1]+'秒）',text:'【テロップ: STEP 1 を画面左上に固定】\n→基本の使い方を実演映像で見せる\n→シンプルに1アクション',sec:s[1]-s[0]},
+{label:'Step2-3（'+s[1]+'〜'+s[2]+'秒）',text:'【テロップ: STEP 2→3と切替】\n→応用・コツ・裏技を紹介\n→「プロはこうやる」的な演出',sec:s[2]-s[1]},
+{label:'結果+CTA（'+s[2]+'〜'+s[3]+'秒）',text:'【テロップ: ビフォーアフター+CTA】\n「この3ステップで変わる！」\n「'+d.cta+'」',sec:s[3]-s[2]}
+]},
+{id:'story',icon:'5',name:'ミニストーリー',
+build:(d,s)=>[
+{label:'主人公の日常（0〜'+s[0]+'秒）',text:'【テロップ: 字幕スタイル】\n「私、'+d.target+'の一人なんだけど…」\n→悩みを抱える日常シーンを再現\n→共感重視・顔出し推奨',sec:s[0]},
+{label:'出会い（'+s[0]+'〜'+s[1]+'秒）',text:'【テロップ: 商品パッケージ映像】\n「友達に勧められて'+d.name+'を試してみた」\n→偶然の出会い風に自然な導入',sec:s[1]-s[0]},
+{label:'変化の実感（'+s[1]+'〜'+s[2]+'秒）',text:'【テロップ: 感情を表現】\n「使い始めて○日…マジで変わった」\n→感情の変化を表情・声で演出',sec:s[2]-s[1]},
+{label:'結末+CTA（'+s[2]+'〜'+s[3]+'秒）',text:'【テロップ: 画面下部】\n「気になる人はここから」\n「'+d.cta+'」',sec:s[3]-s[2]}
+]}
+];
+
+function getProb(d){
+const m={'EC・通販':'お肌の悩み','美容・サロン':'見た目の悩み','食品・飲料':'健康の悩み','人材・HR':'キャリアの悩み'};
+return m[d.industry]||'その悩み';
+}
+
+function getTimeSplits(dur){
+const d=parseInt(dur);
+if(d<=15)return[3,7,12,15];
+if(d<=30)return[5,13,24,30];
+return[8,22,48,60];
+}
+
+function getBGM(fw,dur){
+const d=parseInt(dur);
+const bpm=d<=15?'130-150BPM 高速':d<=30?'110-130BPM 中速':'90-120BPM ゆったり';
+const moods={hook:'EDM/トラップ系 — 緊張感→解放',ba:'ピアノ+ビート — 感動系',rank:'カウントダウンSE+アップテンポPOP',how:'Lo-Fi/チル系 — 解説向き',story:'アコースティック — 感情訴求'};
+return bpm+' | '+moods[fw];
+}
+
+function makeSRT(blocks,fname){
+let srt='',ct=0;
+blocks.forEach((b,i)=>{
+const st=ct;ct+=b.sec;
+const f=t=>{const m=Math.floor(t/60),s=t%60;return'00:'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')+',000';};
+const txt=b.text.replace(/【.*?】\n?/g,'').replace(/→.*\n?/g,'').replace(/※.*\n?/g,'').split('\n').filter(l=>l.trim()).map(l=>l.replace(/^「|」$/g,'')).join('\n');
+srt+=(i+1)+'\n'+f(st)+' --> '+f(ct)+'\n'+txt+'\n\n';
+});
+const blob=new Blob([srt],{type:'text/plain;charset=utf-8'});
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download=fname+'.srt';
+a.click();URL.revokeObjectURL(a.href);
+}
+
+function generate(){
+const d={
+name:document.getElementById('pName').value||'',
+desc:document.getElementById('pDesc').value||'',
+target:document.getElementById('pTarget').value||'ターゲット未設定',
+industry:document.getElementById('pIndustry').value,
+platform:document.getElementById('pPlatform').value,
+duration:document.getElementById('pDuration').value,
+cta:document.getElementById('pCTA').value||'詳細はプロフィールのリンクから'
+};
+if(!d.name){alert('商品・サービス名を入力してください');return;}
+const splits=getTimeSplits(d.duration);
+const tabsEl=document.getElementById('tabs');
+const panelsEl=document.getElementById('panels');
+tabsEl.innerHTML='';panelsEl.innerHTML='';
+FW.forEach((fw,i)=>{
+const blocks=fw.build(d,splits);
+const tab=document.createElement('div');
+tab.className='tab'+(i===0?' active':'');
+tab.textContent=fw.icon+'. '+fw.name;
+tab.onclick=()=>{
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+tab.classList.add('active');
+document.getElementById('p-'+fw.id).classList.add('active');
+};
+tabsEl.appendChild(tab);
+const panel=document.createElement('div');
+panel.className='panel'+(i===0?' active':'');
+panel.id='p-'+fw.id;
+let h='<div class="section-title">'+fw.icon+'. '+fw.name+'（'+d.duration+'秒版）</div>';
+h+='<div class="meta"><span>'+d.platform+'</span><span>'+d.duration+'秒</span><span>BGM: '+getBGM(fw.id,d.duration)+'</span></div>';
+blocks.forEach(b=>{
+h+='<div class="section-title">▸ '+b.label+'（'+b.sec+'秒間）</div>';
+h+='<div class="script-block">'+b.text+'</div>';
+});
+h+='<div style="margin-top:12px"><button class="btn-srt" onclick="dlSRT(\''+fw.id+'\')">SRT字幕をダウンロード</button></div>';
+panel.innerHTML=h;
+panelsEl.appendChild(panel);
+});
+window._lastData=d;window._lastSplits=splits;
+document.getElementById('output').style.display='block';
+document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+
+function dlSRT(fwId){
+const d=window._lastData,s=window._lastSplits;
+const fw=FW.find(f=>f.id===fwId);
+makeSRT(fw.build(d,s),d.name+'_'+fw.id+'_'+d.duration+'s');
+}
+</script>
+</body>
+</html>

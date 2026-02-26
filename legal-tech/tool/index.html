@@ -2,365 +2,167 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>連載ブログ全3回『法務ナレッジ属人化を解消する技術』 - kusasyu tools</title>
-<meta name="description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
-<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,連載ブログ全3回『法務ナレッジ属人化を解消する技術』">
-<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool/">
-<meta property="og:title" content="連載ブログ全3回『法務ナレッジ属人化を解消する技術』 - kusasyu tools">
-<meta property="og:description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
-<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="kusasyu tools">
-<meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="連載ブログ全3回『法務ナレッジ属人化を解消する技術』 - kusasyu tools">
-<meta name="twitter:description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "連載ブログ全3回『法務ナレッジ属人化を解消する技術』",
-  "description": "中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ",
-  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool/",
-  "author": {
-    "@type": "Organization",
-    "name": "kusasyu Legal Tech"
-  },
-  "datePublished": "2026-02-22"
-}
-</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FieldLex 契約リスクスキャナー</title>
 <style>
-:root {
-  --bg: #0f172a;
-  --card-bg: #1e293b;
-  --card-hover: #334155;
-  --text: #e2e8f0;
-  --text2: #94a3b8;
-  --accent: #38bdf8;
-  --green: #10b981;
-  --blue: #3b82f6;
-  --border: #334155;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-}
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.breadcrumb {
-  padding: 12px 20px;
-  font-size: 13px;
-  color: var(--text2);
-  max-width: 900px;
-  margin: 0 auto;
-}
-.breadcrumb a { color: var(--accent); }
-article {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 20px 60px;
-}
-.meta {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-.badge {
-  padding: 2px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: white;
-  background: #6366f1;
-}
-.score-badge {
-  padding: 2px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: white;
-  background: #3b82f6;
-}
-.company { font-size: 13px; color: var(--text2); }
-article h1 {
-  font-size: 26px;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-.project-name {
-  font-size: 14px;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-.content h1, .content h2, .content h3 {
-  margin-top: 32px;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-.content h3 { font-size: 18px; }
-.content p { margin-bottom: 16px; }
-.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
-.content li { margin-bottom: 4px; }
-.content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-.content th, .content td {
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  text-align: left;
-}
-.content th { background: var(--card-bg); font-weight: 600; }
-.content code {
-  background: var(--card-bg);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 14px;
-}
-.content pre {
-  background: var(--card-bg);
-  padding: 16px;
-  border-radius: 8px;
-  overflow-x: auto;
-  margin-bottom: 16px;
-}
-.content pre code { background: none; padding: 0; }
-.content blockquote {
-  border-left: 3px solid var(--accent);
-  padding-left: 16px;
-  color: var(--text2);
-  margin-bottom: 16px;
-}
-footer {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 24px 20px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--text2);
-}
-footer a { color: var(--accent); }
-@media (max-width: 640px) {
-  article h1 { font-size: 20px; }
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px 20px;text-align:center}
+.header h1{font-size:1.3em;margin-bottom:4px}
+.header p{font-size:.78em;opacity:.85}
+.badge{display:inline-block;background:#e94560;color:#fff;font-size:.65em;padding:2px 8px;border-radius:10px;margin-top:4px}
+.container{max-width:900px;margin:0 auto;padding:12px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:8px;color:#16213e;border-left:4px solid #e94560;padding-left:8px}
+label{font-weight:600;font-size:.85em;display:block;margin-bottom:4px}
+select,textarea{width:100%;padding:10px;border:2px solid #ddd;border-radius:8px;font-size:.9em;font-family:inherit}
+textarea{height:200px;resize:vertical}
+select:focus,textarea:focus{border-color:#e94560;outline:none}
+.row{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:200px}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,#e94560,#c23152);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{opacity:.9}
+.btn:active{transform:scale(.98)}
+#result{display:none}
+.level-box{text-align:center;padding:20px;border-radius:10px;margin-bottom:12px;color:#fff;font-size:1.1em;font-weight:700}
+.lv-low{background:#27ae60}.lv-mid{background:#f39c12}.lv-high{background:#e74c3c}.lv-expert{background:#8e44ad}
+.stats{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.stat{flex:1;min-width:70px;text-align:center;padding:10px;border-radius:8px;font-size:.8em}
+.stat b{display:block;font-size:1.4em}
+.sr{background:#fde8ec;color:#c0392b}.sy{background:#fef9e7;color:#b7950b}.sb{background:#ebf5fb;color:#2980b9}
+.hit{margin-bottom:10px;padding:10px;border-radius:8px;border-left:4px solid #ccc;font-size:.85em}
+.hit.r{border-color:#e74c3c;background:#fef2f2}.hit.y{border-color:#f1c40f;background:#fffef2}.hit.b{border-color:#3498db;background:#f2f8ff}
+.hit .tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:.7em;color:#fff;margin-right:6px}
+.hit .tag.r{background:#e74c3c}.hit .tag.y{background:#f1c40f;color:#333}.hit .tag.b{background:#3498db}
+.hit .phrase{font-weight:700}
+.hit .warn{margin-top:4px;color:#555}
+.preview{background:#fafafa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;font-size:.85em;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow-y:auto;line-height:1.8}
+.hl-r{background:#ffcccc;border-bottom:2px solid #e74c3c;padding:1px 2px;border-radius:2px}
+.hl-y{background:#fff9cc;border-bottom:2px solid #f1c40f;padding:1px 2px;border-radius:2px}
+.hl-b{background:#cce5ff;border-bottom:2px solid #3498db;padding:1px 2px;border-radius:2px}
+.safe{text-align:center;padding:30px;color:#27ae60;font-size:1.1em}
+.footer{text-align:center;font-size:.7em;color:#999;padding:16px}
 </style>
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-MDQEPV7SFL');
-</script>
-<!-- GoatCounter -->
-<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
 </head>
 <body>
-<nav class="breadcrumb">
-  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
-  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
-  <span>連載ブログ全3回『法務ナレッジ属人化を解消する技術』</span>
-</nav>
-<article>
-  <div class="meta">
-    <span class="badge">記事・ガイド</span>
-    <span class="score-badge">7/10</span>
-    <span class="company">⚖️ kusasyu Legal Tech</span>
-  </div>
-  <h1>連載ブログ全3回『法務ナレッジ属人化を解消する技術』</h1>
-  <p class="project-name">法務ナレッジ属人化解消 実践コンテンツシリーズ</p>
-  <div class="content">
-<h1>連載ブログ『法務ナレッジ属人化を解消する技術』</h1>
-<hr />
-<h2>第1回：属人化の正体 ― なぜベテラン法務の退職で部門が崩壊するのか</h2>
-<p><strong>SynLab Legal Tech ナレッジマネジメントチーム</strong></p>
-<hr />
-<h3>はじめに</h3>
-<p>「あの案件、田中さんしか経緯を知らない」「前任者が辞めてから、同じ取引先との契約更新に3倍の時間がかかるようになった」——法務部門でこうした声を聞いたことはないでしょうか。</p>
-<p>法務担当者3〜15名規模の中堅企業では、一人のベテランが抱える知識量が部門全体のパフォーマンスを左右します。本連載では、属人化の構造を明らかにし、明日から始められる解消ステップを全3回でお届けします。</p>
-<h3>属人化が起きる3つの構造的原因</h3>
-<p><strong>1. 暗黙知の比率が高い</strong></p>
-<p>法務の仕事は「条文の解釈」だけではありません。取引先との交渉経緯、社内関係者の意向、過去のトラブル対応など、文書化されていない判断コンテキストが業務の核です。あるクライアント企業の調査では、法務判断の根拠のうち約70%がドキュメントに残っていませんでした。</p>
-<p><strong>2. 「聞けば分かる」文化</strong></p>
-<p>属人化は「問題」として認識されにくい特徴があります。ベテランが在籍している間は、聞けば答えが返ってくるからです。問題が顕在化するのは、その人が退職届を出した後。つまり、手遅れになってから気づく構造です。</p>
-<p><strong>3. ナレッジ整理の優先度が上がらない</strong></p>
-<p>法務部門は常に目の前の案件対応に追われています。「ナレッジを整理しよう」という掛け声はあっても、緊急度の高い契約レビューが優先され、整理作業は永遠に後回しになります。</p>
-<h3>属人化コストを「見える化」する方法</h3>
-<p>属人化解消の第一歩は、経営層にコストを示すことです。以下の簡易計算式を使ってみてください。</p>
-<pre><code>属人化コスト（年間）＝
-  ①再調査コスト：過去案件の再調査にかかる時間 × 時間単価 × 年間発生件数
-＋②外部委託コスト：本来社内で対応できた案件の外注費
-＋③遅延コスト：判断遅延による事業機会損失（概算）
-</code></pre>
-<p>ある年商300億円の製造業では、この計算で年間約1,200万円の属人化コストが可視化されました。この数字が、経営層の承認を得る武器になります。</p>
-<h3>第1回のまとめ</h3>
-<p>属人化は個人の問題ではなく、組織構造の問題です。まずは「コストの可視化」から始めてください。次回は、具体的にどうナレッジを構造化するか、分類・タグ付けの実践手順を解説します。</p>
-<hr />
-<h2>第2回：ナレッジ構造化の実践 ― 契約交渉経緯・判断基準・Q&amp;A履歴を整理する具体的手順</h2>
-<p><strong>SynLab Legal Tech ナレッジマネジメントチーム</strong></p>
-<hr />
-<h3>はじめに</h3>
-<p>前回は属人化の構造とコストの可視化方法を解説しました。今回は、法務ナレッジを「分類し、タグ付けし、誰でも探せる状態にする」ための具体的な手順をお伝えします。完璧なシステムを作ろうとせず、まず80点の仕組みを2週間で立ち上げることを目標にしてください。</p>
-<h3>ステップ1：ナレッジを3カテゴリに分類する</h3>
-<p>法務部門のナレッジは、大きく以下の3つに分けられます。</p>
-<table>
-<thead>
-<tr>
-<th>カテゴリ</th>
-<th>内容例</th>
-<th>特徴</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>A. 判断履歴</strong></td>
-<td>契約条件の修正可否判断、リスク評価の結論とその理由</td>
-<td>最も属人化しやすい</td>
-</tr>
-<tr>
-<td><strong>B. 交渉経緯</strong></td>
-<td>取引先との条件交渉の流れ、譲歩ポイント、合意に至った背景</td>
-<td>再現性が求められる</td>
-</tr>
-<tr>
-<td><strong>C. Q&amp;A蓄積</strong></td>
-<td>事業部門からの法務相談とその回答</td>
-<td>量が多く再利用価値が高い</td>
-</tr>
-</tbody>
-</table>
-<p>最初から全てに着手する必要はありません。<strong>まずはカテゴリCのQ&amp;A蓄積から始める</strong>ことを推奨します。理由は、量が多い分効果が見えやすく、記録のハードルも低いからです。</p>
-<h3>ステップ2：5つのタグ軸で構造化する</h3>
-<p>分類したナレッジに、以下の5軸でタグを付けます。</p>
-<ol>
-<li><strong>契約類型</strong>：NDA／業務委託／ライセンス／売買基本契約 等</li>
-<li><strong>相手方属性</strong>：大企業／中堅／スタートアップ／海外 等</li>
-<li><strong>論点</strong>：損害賠償上限／知的財産帰属／解除条件／秘密保持範囲 等</li>
-<li><strong>判断方向</strong>：承認／条件付承認／拒否／エスカレーション</li>
-<li><strong>重要度</strong>：高（判例・法改正に関連）／中／低</li>
-</ol>
-<p>運用のポイントは、タグの選択肢をあらかじめ20〜30個に絞り込んでおくことです。自由記述にすると表記ゆれが起き、後から検索できなくなります。</p>
-<h3>ステップ3：記録テンプレートを1枚決める</h3>
-<p>以下のテンプレートをそのまま使ってください。ExcelでもNotionでもSharePointでも、ツールは問いません。</p>
-<pre><code>【日付】2026/XX/XX
-【起票者】○○
-【カテゴリ】A:判断 / B:交渉 / C:Q&amp;A
-【契約類型】（タグから選択）
-【相手方属性】（タグから選択）
-【論点】（タグから選択）
-【質問・状況】（簡潔に記載）
-【結論・回答】（簡潔に記載）
-【判断理由・背景】（なぜその結論に至ったか）
-【参照資料】（関連する契約書・法令・過去事例へのリンク）
-</code></pre>
-<p>重要なのは<strong>「判断理由・背景」欄を必ず埋める</strong>というルールです。結論だけでは、状況が変わったときに応用できません。</p>
-<h3>ステップ4：週次15分の棚卸しを習慣化する</h3>
-<p>記録の仕組みを作っても、入力が続かなければ意味がありません。毎週金曜日に15分、その週の主要な対応を振り返って記録する「ナレッジ棚卸し」をチームの定例に組み込んでください。1人あたり週2〜3件の記録で十分です。3ヶ月続ければ、チーム全体で150〜300件のナレッジが蓄積されます。</p>
-<h3>第2回のまとめ</h3>
-<p>構造化のポイントは「3分類・5タグ・1テンプレート・週15分」。完璧を求めず、まず型を決めて回し始めることが最重要です。次回は、蓄積したナレッジをAIで検索可能にする方法を解説します。</p>
-<hr />
-<h2>第3回：AI活用で検索可能にする ― 構造化ナレッジを自然言語で引き出す方法</h2>
-<p><strong>SynLab Legal Tech ナレッジマネジメントチーム</strong></p>
-<hr />
-<h3>はじめに</h3>
-<p>第1回で属人化の構造を理解し、第2回でナレッジの分類・タグ付け手順を整えました。最終回では、蓄積したナレッジを「自然言語で検索できる状態」にするためのAI活用法と、実際の導入事例を紹介します。</p>
-<h3>なぜキーワード検索では不十分なのか</h3>
-<p>法務ナレッジの検索で最も多い失敗は、「どんなキーワードで探せばいいか分からない」問題です。たとえば、「海外SaaS企業とのデータ処理契約で、準拠法を日本法にできなかったケース」を探したいとき、キーワード検索では「準拠法」「SaaS」「海外」などを組み合わせる必要があり、表記ゆれや記載漏れがあればヒットしません。</p>
-<p>ここでRAG（Retrieval-Augmented Generation）が力を発揮します。RAGとは、社内ドキュメントをAIが読み込み、自然な質問文で関連情報を探し出す技術です。「海外のクラウドサービス会社との契約で準拠法が問題になった事例はある？」と聞けば、意味的に近い過去のナレッジを返してくれます。</p>
-<h3>導入の3ステップ</h3>
-<p><strong>ステップ1：ナレッジをテキストデータとして整備する</strong></p>
-<p>第2回で作成した記録テンプレートのデータを、1件1ファイル（またはCSVの1行）としてエクスポートします。フォーマットはMarkdownまたはプレーンテキストが最も扱いやすいです。この時点で150件以上あれば、RAGの効果を実感できます。</p>
-<p><strong>ステップ2：RAG基盤を選定・構築する</strong></p>
-<p>中堅企業の法務部門には、以下の選択肢があります。</p>
-<table>
-<thead>
-<tr>
-<th>選択肢</th>
-<th>初期コスト</th>
-<th>特徴</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Microsoft Copilot + SharePoint</strong></td>
-<td>低〜中</td>
-<td>Microsoft 365導入済みなら最短で立ち上がる</td>
-</tr>
-<tr>
-<td><strong>社内RAGツール（専用SaaS）</strong></td>
-<td>中</td>
-<td>法務特化の製品も登場。セキュリティ要件を満たしやすい</td>
-</tr>
-<tr>
-<td><strong>自社構築（Azure OpenAI等）</strong></td>
-<td>高</td>
-<td>柔軟だがエンジニアリソースが必要</td>
-</tr>
-</tbody>
-</table>
-<p>法務データは機密性が高いため、<strong>データがどこに保存・処理されるか</strong>を必ず確認してください。国内リージョンでの処理が可能か、学習データに使われないかは、導入前にベンダーへ書面で確認すべき事項です。</p>
-<p><strong>ステップ3：検索精度をタグで底上げする</strong></p>
-<p>RAGだけに頼ると、検索精度は70〜80%程度にとどまることがあります。ここで第2回で付与した5軸のタグが活きます。自然言語検索とタグによる絞り込みを組み合わせることで、精度を90%以上に引き上げられます。</p>
-<p>例：「損害賠償上限に関する過去の判断」と質問 → タグ「論点：損害賠償上限」で自動フィルタリング → 関連度の高い順に結果を表示</p>
-<h3>導入事例：年商500億円・化学メーカーA社</h3>
-<p>A社の法務部門（8名体制）では、ベテラン2名の定年退職を1年後に控え、ナレッジ構造化プロジェクトを開始しました。</p>
-<ul>
-<li><strong>1〜2ヶ月目</strong>：第2回の手順でQ&amp;A履歴と判断履歴を記録（約200件蓄積）</li>
-<li><strong>3ヶ月目</strong>：Microsoft Copilot + SharePointでRAG検索環境を構築</li>
-<li><strong>4ヶ月目以降</strong>：運用開始。新任担当者が「過去にこの取引先とどんな交渉をしたか」を自然言語で検索</li>
-</ul>
-<p>導入6ヶ月後の成果は以下の通りです。</p>
-<ul>
-<li>過去案件の再調査時間：<strong>平均2.5時間 → 20分</strong>（87%削減）</li>
-<li>外部弁護士への確認依頼：<strong>月12件 → 月4件</strong>（年間約600万円のコスト削減）</li>
-<li>新任担当者の独り立ちまでの期間：<strong>6ヶ月 → 3ヶ月</strong></li>
-</ul>
-<h3>連載全体のまとめ</h3>
-<table>
-<thead>
-<tr>
-<th>回</th>
-<th>テーマ</th>
-<th>アクション</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>第1回</td>
-<td>属人化の正体</td>
-<td>コストを可視化して経営層の承認を得る</td>
-</tr>
-<tr>
-<td>第2回</td>
-<td>構造化の実践</td>
-<td>3分類・5タグ・1テンプレートで記録を始める</td>
-</tr>
-<tr>
-<td>第3回</td>
-<td>AI活用</td>
-<td>RAG＋タグで自然言語検索を実現する</td>
-</tr>
-</tbody>
-</table>
-<p>属人化の解消は、一朝一夕では実現しません。しかし、週15分の記録習慣を3ヶ月続け、AI検索の仕組みを載せれば、「あの人しか知らない」状態から確実に脱却できます。まずは今週金曜日、1件目のナレッジカードを書くところから始めてみてください。</p>
-<hr />
-<p><em>本連載に関するご質問・導入のご相談は、SynLab Legal Techまでお気軽にお問い合わせください。</em></p>
-  </div>
-</article>
-<footer>
-  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
-</footer>
+<div class="header">
+<h1>FieldLex 契約リスクスキャナー</h1>
+<p>契約書を貼り付けるだけ — 50の危険パターンを即座に検出</p>
+<div class="badge">完全オフライン動作・テキスト外部送信なし</div>
+</div>
+<div class="container">
+<div class="card">
+<h2>契約書テキストを貼り付け</h2>
+<div class="row">
+<div><label>業種を選択</label>
+<select id="ind"><option value="mfg">製造業</option><option value="con">建設業</option><option value="log">物流業</option></select></div>
+<div><label>契約タイプ</label>
+<select id="ctype"><option value="all">すべて</option><option value="order">発注書・注文書</option><option value="nda">NDA・秘密保持</option><option value="outsource">業務委託</option></select></div>
+</div>
+<label>契約書本文</label>
+<textarea id="txt" placeholder="ここに契約書のテキストをコピー＆ペーストしてください（社外に一切送信されません）"></textarea>
+<button class="btn" onclick="scan()">リスクスキャン実行</button>
+</div>
+<div id="result"></div>
+</div>
+<div class="footer">FieldLex v1.0 — SynLab Legal Tech｜本ツールは法的助言ではありません。重要な契約は必ず弁護士にご相談ください。</div>
+<script>
+const P=[
+{p:"無催告[でにて]*解除",l:"r",c:"all",w:"相手がいきなり契約を打ち切れます。通常は催告してから解除するのがルール。一方的に切られ代金回収不能の恐れ。"},
+{p:"全額負担",l:"r",c:"all",w:"損害や費用の全額をこちらが被る条文。金額上限がないと想定外の大損害が経営に直結します。"},
+{p:"一切の責任を負わない",l:"r",c:"all",w:"相手が何をしても責任ゼロ。不良品・納期遅延でも泣き寝入りになりかねません。"},
+{p:"損害賠償.{0,10}(上限.*なし|無制限|制限.{0,5}ない)",l:"r",c:"all",w:"賠償額の天井なし。小さなミスでも青天井の請求リスクがあります。"},
+{p:"中途解約.{0,20}(できない|認めない|不可)",l:"r",c:"all",w:"途中でやめられない契約。赤字の取引を続ける羽目になります。"},
+{p:"知的財産権.{0,20}(譲渡|帰属.{0,5}甲)",l:"r",c:"all",w:"自社ノウハウ・図面の権利が相手に移ります。自社技術が使えなくなる危険。"},
+{p:"契約不適合.{0,15}免責",l:"r",c:"all",w:"納品物に問題があっても相手は直さなくてよい条文。不良品でも文句が言えません。"},
+{p:"連帯保証",l:"r",c:"all",w:"代表者個人が会社の債務を背負います。会社倒産時も個人資産で弁済義務。"},
+{p:"(一方的|相手方の判断).{0,10}変更",l:"r",c:"all",w:"同意なく契約条件を変えられます。単価の一方的引下げなどに利用されます。"},
+{p:"通知.{0,10}(なく|なし|せず).{0,10}変更",l:"r",c:"all",w:"知らないうちに条件が変わる恐れ。変更通知義務がないのは非常に危険。"},
+{p:"自動更新",l:"y",c:"all",w:"解約し忘れると延長されます。更新拒否の期限をカレンダーに入れてください。"},
+{p:"秘密保持.{0,30}(無期限|期間の定めなし)",l:"y",c:"all",w:"秘密保持義務が永久に続きます。通常3〜5年が相場です。"},
+{p:"競業避止",l:"y",c:"all",w:"同業の仕事ができなくなる条文。期間・地域・範囲を確認。"},
+{p:"遅延損害金.{0,10}年.{0,5}14\\.6",l:"y",c:"all",w:"年14.6%の高利率。法定上限ですが高い水準です。"},
+{p:"相殺.{0,10}禁止",l:"y",c:"all",w:"売掛金の差し引き不可。相手倒産時に回収困難になります。"},
+{p:"即時解除",l:"y",c:"all",w:"猶予なく即解除の可能性。通常は30日前通知が標準です。"},
+{p:"第三者.{0,10}(譲渡|委託).{0,5}(自由|できる)",l:"y",c:"all",w:"知らない会社に契約が移る可能性。取引先が急に変わるリスク。"},
+{p:"(専属的)?合意管轄.{0,10}裁判所",l:"b",c:"all",w:"裁判の場所の取り決め。遠方だと出廷の負担が大きくなります。"},
+{p:"反社会的勢力",l:"b",c:"all",w:"反社条項。標準的ですが即時解除条件を確認しましょう。"},
+{p:"不可抗力.{0,15}免責",l:"b",c:"all",w:"災害時の免責規定。範囲が広すぎないか確認。通常は問題ありません。"},
+{p:"検収完了後.{0,20}(瑕疵|不良|欠陥).{0,10}免責",l:"r",c:"mfg",w:"検収後の不良に対応不可。全数検査が難しい部品では大きなリスク。"},
+{p:"品質保証.{0,10}一切",l:"r",c:"mfg",w:"品質保証が一切なし。不良品の交換・修理を要求できません。"},
+{p:"納期遅延.{0,15}全額",l:"r",c:"mfg",w:"納期遅れで全額ペナルティ。1日の遅れでも全額返金は過酷。"},
+{p:"製造物責任.{0,10}免責",l:"r",c:"mfg",w:"PL法の責任免除。最終製品に組込み時、御社に責任が集中します。"},
+{p:"仕様変更.{0,15}費用.{0,10}(受注|乙)",l:"r",c:"mfg",w:"相手都合の仕様変更でもこちらが費用負担。利益を食いつぶします。"},
+{p:"金型.{0,15}所有権",l:"y",c:"mfg",w:"自社負担の金型が相手のものになる場合があります。"},
+{p:"(図面|技術資料).{0,10}返却",l:"y",c:"mfg",w:"契約終了時の図面返却義務。コピー保持の可否も確認を。"},
+{p:"不良品.{0,10}全数(交換|回収)",l:"y",c:"mfg",w:"不良時に全数対応必須。選別・修理の選択肢がないと費用膨大。"},
+{p:"原材料.{0,15}価格変動.{0,10}負担",l:"y",c:"mfg",w:"材料費値上がりをこちらが負担。長期契約では大損失に。"},
+{p:"下請法",l:"b",c:"mfg",w:"下請法の条文。親事業者なら支払遅延60日ルール等の保護あり。"},
+{p:"追加工事.{0,15}費用.{0,5}含",l:"r",c:"con",w:"追加工事が出ても別途請求不可。現場では必ず追加が出るため非常に危険。"},
+{p:"天候.{0,10}不可抗力.{0,10}含まない",l:"r",c:"con",w:"悪天候が不可抗力に含まれず。雨天遅延がすべてペナルティ対象に。"},
+{p:"安全管理.{0,10}一切.{0,10}責任",l:"r",c:"con",w:"安全管理責任がすべてこちらに。元請の責任免除は不公平。"},
+{p:"設計変更.{0,15}費用.{0,10}(請負|乙)",l:"r",c:"con",w:"設計変更費を下請けが負担。建設業法違反の可能性あり。"},
+{p:"工期遅延.{0,10}違約金",l:"y",c:"con",w:"違約金率を確認。日額で請負金額の1/1000が目安。それ以上は過大。"},
+{p:"(下請|支払).{0,15}60日",l:"y",c:"con",w:"支払期日60日は建設業法の上限ギリギリ。30日を交渉しましょう。"},
+{p:"瑕疵担保.{0,10}10年",l:"y",c:"con",w:"10年の瑕疵担保は住宅以外では長すぎ。通常の建築は2年が目安。"},
+{p:"近隣.{0,10}苦情.{0,10}(全て|一切).{0,5}負担",l:"y",c:"con",w:"近隣トラブル費用がすべてこちら持ち。元請と分担すべき項目。"},
+{p:"元請.{0,10}指示.{0,10}従う",l:"y",c:"con",w:"元請の指示に無条件服従。安全上問題のある指示も拒否不可に。"},
+{p:"建設業法",l:"b",c:"con",w:"建設業法への言及。不利な条件の根拠にされていないか確認を。"},
+{p:"運送中.{0,15}損害.{0,10}全額.{0,5}負担",l:"r",c:"log",w:"輸送事故の全額負担。高額貨物なら1回の事故で経営危機に。"},
+{p:"荷物.{0,10}(紛失|破損).{0,15}責任.{0,5}負わない",l:"r",c:"log",w:"荷主が紛失・破損の責任を取らない条文。梱包不備でも請求不可。"},
+{p:"倉庫.{0,10}管理.{0,10}責任.{0,5}一切",l:"r",c:"log",w:"保管中のすべての損害が御社負担。自然災害も含まれる可能性。"},
+{p:"配送遅延.{0,10}損害賠償",l:"y",c:"log",w:"遅延時の賠償規定。渋滞や天候など不可抗力の除外があるか確認を。"},
+{p:"保険.{0,10}加入.{0,5}義務",l:"y",c:"log",w:"運送保険の加入義務。保険料の負担者と補償範囲を確認。"},
+{p:"再委託.{0,10}(自由|制限なし)",l:"y",c:"log",w:"知らない業者への再委託の可能性。品質管理に影響します。"},
+{p:"車両.{0,10}費用.{0,5}負担",l:"y",c:"log",w:"車両維持費がこちら持ち。リース契約との二重負担に注意。"},
+{p:"燃料費.{0,10}変動.{0,10}負担",l:"y",c:"log",w:"燃料費高騰をこちらが吸収。サーチャージ条項がないと利益消失。"},
+{p:"24時間.{0,10}対応",l:"y",c:"log",w:"24時間対応義務。人件費とドライバーの労務管理に直結。"},
+{p:"繁忙期.{0,10}(拒否|断).{0,5}できない",l:"y",c:"log",w:"繁忙期でも断れない条文。キャパオーバーで事故リスク増大。"}
+];
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function scan(){
+const txt=document.getElementById("txt").value.trim();
+if(!txt){alert("契約書テキストを貼り付けてください");return}
+const ind=document.getElementById("ind").value;
+const hits=[],ranges=[];
+P.forEach(rule=>{
+if(rule.c!=="all"&&rule.c!==ind)return;
+try{const re=new RegExp(rule.p,"g");let m;
+while((m=re.exec(txt))!==null){hits.push({...rule,matched:m[0],idx:m.index,len:m[0].length});ranges.push({idx:m.index,len:m[0].length,l:rule.l});}
+}catch(e){}});
+const rc=hits.filter(h=>h.l==="r").length,yc=hits.filter(h=>h.l==="y").length,bc=hits.filter(h=>h.l==="b").length;
+let lv,lvc,lvt;
+if(rc>=3){lv="要専門家";lvc="lv-expert";lvt="高リスクパターンが多数。必ず弁護士に相談してからサインしてください。";}
+else if(rc>=1){lv="高";lvc="lv-high";lvt="危険な条文が含まれています。上司に報告し専門家に確認を。";}
+else if(yc>=3){lv="中";lvc="lv-mid";lvt="注意すべき条文があります。交渉で修正を検討してください。";}
+else if(yc>=1||bc>=1){lv="低";lvc="lv-low";lvt="大きなリスクは未検出。検出項目は念のため確認を。";}
+else{lv="検出なし";lvc="lv-low";lvt="";}
+ranges.sort((a,b)=>b.idx-a.idx);
+let et=esc(txt);
+const map=[];let ei=0;
+for(let i=0;i<txt.length;i++){const c=txt[i];map[i]=ei;if(c==="&")ei+=5;else if(c==="<"||c===">")ei+=4;else ei++;}
+map[txt.length]=ei;
+const used=[];
+ranges.forEach(r=>{
+for(const u of used){if(r.idx<u.idx+u.len&&r.idx+r.len>u.idx)return;}
+used.push(r);
+const si=map[r.idx],se=map[r.idx+r.len];
+const cls=r.l==="r"?"hl-r":r.l==="y"?"hl-y":"hl-b";
+et=et.slice(0,si)+'<span class="'+cls+'">'+et.slice(si,se)+'</span>'+et.slice(se);
+});
+let html='<div class="card"><h2>スキャン結果</h2><div class="level-box '+lvc+'">総合危険度：'+lv+'</div>';
+if(lvt)html+='<p style="text-align:center;margin-bottom:12px;font-size:.9em">'+lvt+'</p>';
+html+='<div class="stats"><div class="stat sr"><b>'+rc+'</b>高リスク</div><div class="stat sy"><b>'+yc+'</b>注意</div><div class="stat sb"><b>'+bc+'</b>確認</div></div></div>';
+if(hits.length>0){
+html+='<div class="card"><h2>検出パターン（'+hits.length+'件）</h2>';
+hits.sort((a,b)=>{const o={r:0,y:1,b:2};return o[a.l]-o[b.l];});
+hits.forEach(h=>{
+const cn=h.l,ln=h.l==="r"?"高リスク":h.l==="y"?"注意":"確認";
+html+='<div class="hit '+cn+'"><span class="tag '+cn+'">'+ln+'</span><span class="phrase">「'+esc(h.matched)+'」</span><div class="warn">→ '+h.w+'</div></div>';});
+html+='</div><div class="card"><h2>ハイライト表示</h2><div class="preview">'+et+'</div></div>';
+}else{html+='<div class="card"><div class="safe">登録済み50パターンに該当する危険フレーズは検出されませんでした。<br>ただし本ツールで検出できないリスクも存在します。</div></div>';}
+document.getElementById("result").innerHTML=html;document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});}
+</script>
 </body>
 </html>

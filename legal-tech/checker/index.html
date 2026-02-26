@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FieldLex 契約チェック判断フローチャート</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6;font-size:15px}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px 20px;text-align:center}
+.header h1{font-size:1.25em;margin-bottom:4px}
+.header p{font-size:.75em;opacity:.85}
+.badge{display:inline-block;background:#e94560;color:#fff;font-size:.65em;padding:2px 8px;border-radius:10px;margin-top:4px}
+.container{max-width:820px;margin:0 auto;padding:12px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:.95em;margin-bottom:10px;color:#16213e;border-left:4px solid #e94560;padding-left:8px}
+.step{display:none}.step.active{display:block}
+.opt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{padding:12px;border:2px solid #ddd;border-radius:8px;cursor:pointer;text-align:center;font-size:.88em;font-weight:600;transition:.2s}
+.opt:hover{border-color:#e94560;background:#fef0f3}
+.opt.sel{border-color:#e94560;background:#fde8ec;color:#c23152}
+.progress{display:flex;gap:4px;margin-bottom:14px}
+.progress span{flex:1;height:6px;border-radius:3px;background:#ddd}
+.progress span.done{background:#e94560}
+.progress span.now{background:#f39c12}
+.btn{display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#e94560,#c23152);color:#fff;border:none;border-radius:8px;font-size:.95em;font-weight:700;cursor:pointer;margin-top:10px}
+.btn:hover{opacity:.9}
+.btn.sec{background:#6c757d}
+.btn.sm{padding:8px 16px;font-size:.8em;margin:4px}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.result-box{text-align:center;padding:24px 16px;border-radius:10px;color:#fff;font-weight:700;margin-bottom:14px}
+.r-green{background:#27ae60}.r-yellow{background:#f39c12}.r-red{background:#e74c3c}
+.result-box .icon{font-size:2.2em;display:block;margin-bottom:6px}
+.result-box .label{font-size:1.2em}
+.result-box .sub{font-size:.82em;font-weight:400;opacity:.9;margin-top:4px}
+.reason{background:#f8f9fa;border-left:4px solid #e94560;padding:12px;border-radius:6px;margin-bottom:10px;font-size:.88em}
+.next-list{list-style:none;padding:0}.next-list li{padding:8px 10px;border-bottom:1px solid #eee;font-size:.88em}.next-list li::before{content:"▶ ";color:#e94560;font-weight:700}
+.tab-bar{display:flex;border-bottom:2px solid #ddd;margin-bottom:12px}
+.tab{padding:8px 16px;cursor:pointer;font-size:.85em;font-weight:600;border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab.active{border-color:#e94560;color:#e94560}
+.tbl{width:100%;border-collapse:collapse;font-size:.78em;margin-top:8px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:6px 8px;text-align:left}
+.tbl th{background:#16213e;color:#fff}
+.tbl tr:nth-child(even){background:#f8f9fa}
+input[type=file]{font-size:.82em;margin-top:6px}
+.score-input{width:80px;padding:8px;border:2px solid #ddd;border-radius:8px;font-size:1em;text-align:center}
+.score-input:focus{border-color:#e94560;outline:none}
+.note{font-size:.78em;color:#888;margin-top:4px}
+@media print{.no-print{display:none!important}.header{padding:10px}.container{padding:0}}
+@media(max-width:600px){.opt-grid{grid-template-columns:1fr}.header h1{font-size:1.05em}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>FieldLex 契約チェック判断フローチャート</h1>
+<p>法務相談トリアージツール — 4つの質問で判定</p>
+<span class="badge">SynLab Legal Tech</span>
+</div>
+<div class="container" id="app">
+<div class="card" id="wizard">
+<div class="progress" id="prog"><span></span><span></span><span></span><span></span></div>
+<div class="step active" id="s1">
+<h2>Q1. 契約の種類を選んでください</h2>
+<div class="opt-grid" id="g1">
+<div class="opt" data-v="order" onclick="pick(1,this)">発注書・注文書</div>
+<div class="opt" data-v="nda" onclick="pick(1,this)">NDA（秘密保持）</div>
+<div class="opt" data-v="outsource" onclick="pick(1,this)">業務委託契約</div>
+<div class="opt" data-v="sales" onclick="pick(1,this)">売買基本契約</div>
+</div>
+</div>
+<div class="step" id="s2">
+<h2>Q2. 取引金額の規模は？</h2>
+<div class="opt-grid" id="g2">
+<div class="opt" data-v="small" onclick="pick(2,this)">100万円未満</div>
+<div class="opt" data-v="mid" onclick="pick(2,this)">100〜500万円</div>
+<div class="opt" data-v="large" onclick="pick(2,this)">500〜1,000万円</div>
+<div class="opt" data-v="huge" onclick="pick(2,this)">1,000万円以上</div>
+</div>
+</div>
+<div class="step" id="s3">
+<h2>Q3. 取引先との関係性は？</h2>
+<div class="opt-grid" id="g3">
+<div class="opt" data-v="existing" onclick="pick(3,this)">既存取引先（1年以上）</div>
+<div class="opt" data-v="new" onclick="pick(3,this)">新規取引先</div>
+<div class="opt" data-v="overseas" onclick="pick(3,this)">海外取引先</div>
+<div class="opt" data-v="group" onclick="pick(3,this)">グループ会社</div>
+</div>
+</div>
+<div class="step" id="s4">
+<h2>Q4. リスクスキャナーで検出されたフラグ数</h2>
+<p class="note">FieldLex 契約リスクスキャナーで表示された警告フラグの合計数を入力してください。未使用の場合は0のまま進めてください。</p>
+<div style="text-align:center;margin:16px 0">
+<input type="number" class="score-input" id="flags" value="0" min="0" max="99">
+<span style="font-size:.85em;margin-left:6px">件</span>
+</div>
+<div class="btns" style="justify-content:center"><button class="btn" onclick="judge()">判定する</button></div>
+</div>
+</div>
+<div id="result" style="display:none">
+<div class="card no-print"><div class="btns"><button class="btn sec sm" onclick="reset()">最初からやり直す</button><button class="btn sm" onclick="printPDF()">PDF出力（稟議添付用）</button></div></div>
+<div class="card" id="resultCard">
+<h2>判定結果</h2>
+<div id="rBox" class="result-box r-green"></div>
+<div id="rReason" class="reason"></div>
+<h2 style="margin-top:14px">次にやるべきこと</h2>
+<ul id="rNext" class="next-list"></ul>
+<p class="note" style="margin-top:10px" id="rMeta"></p>
+</div>
+</div>
+<div class="card">
+<div class="tab-bar"><span class="tab active" onclick="switchTab(0,this)">危険パターン辞書</span><span class="tab" onclick="switchTab(1,this)">カスタマイズ</span></div>
+<div id="tab0">
+<p style="font-size:.85em;margin-bottom:8px">製造業・建設業・物流業でよくある契約リスクパターン50件。CSVダウンロードしてスキャナーに読み込ませることができます。</p>
+<button class="btn sm" onclick="dlCSV()">CSV辞書ダウンロード</button>
+<div style="overflow-x:auto;margin-top:10px"><table class="tbl" id="dictTbl"><thead><tr><th>No</th><th>業種</th><th>条項カテゴリ</th><th>危険パターン</th><th>リスク</th></tr></thead><tbody id="dictBody"></tbody></table></div>
+</div>
+<div id="tab1" style="display:none">
+<p style="font-size:.85em;margin-bottom:8px">自社の過去トラブルパターンをCSVで追加できます。列: 業種,条項カテゴリ,危険パターン,リスク(1-5)</p>
+<input type="file" accept=".csv" id="csvUp" onchange="loadCSV(this)">
+<div id="customList" style="margin-top:10px"></div>
+</div>
+</div>
+</div>
+<script>
+var ans={},DICT=[
+["製造業","納期","一方的な納期短縮権を相手に与える条項",5],
+["製造業","納期","納期遅延の違約金が売上の20%を超える",5],
+["製造業","品質","無期限の品質保証期間",4],
+["製造業","品質","不良品全量交換＋損害賠償の二重負担",5],
+["製造業","品質","検査基準が相手側の主観に委ねられている",4],
+["製造業","知的財産","製造ノウハウの無償ライセンス供与",5],
+["製造業","知的財産","共同開発成果の権利が全て相手側に帰属",5],
+["製造業","知的財産","図面・金型の所有権が不明確",4],
+["製造業","代金","支払サイトが120日以上",4],
+["製造業","代金","一方的な単価引下げ条項",5],
+["製造業","代金","為替変動リスクが自社のみに帰属",3],
+["製造業","責任","製造物責任の全額求償条項",5],
+["製造業","責任","間接損害・逸失利益の賠償上限なし",5],
+["製造業","責任","瑕疵担保が引渡後5年以上",4],
+["製造業","契約期間","自動更新で解約通知が6ヶ月前",3],
+["製造業","契約期間","中途解約時の違約金が年額相当",4],
+["製造業","解除","軽微な違反でも即時解除可能",4],
+["製造業","解除","解除後の仕掛品・原材料の費用負担が不明",3],
+["製造業","秘密保持","秘密保持期間が無期限",3],
+["製造業","秘密保持","秘密情報の定義が曖昧（全情報が対象）",4],
+["製造業","下請法","下請法の書面交付義務を満たさない発注書",5],
+["製造業","下請法","受領拒否・返品を許容する条項",5],
+["製造業","下請法","買いたたきに該当し得る単価設定",5],
+["製造業","競業","同業他社との取引を全面禁止",4],
+["製造業","競業","退職後の競業避止が3年以上",3],
+["建設業","工期","天候不順でも工期延長を認めない条項",4],
+["建設業","工期","追加工事の費用負担条項がない",4],
+["建設業","安全","安全管理責任が全て下請に転嫁",5],
+["建設業","代金","出来高払いの基準が不明確",3],
+["建設業","保証","瑕疵担保がJIS基準を超えて10年以上",4],
+["建設業","保険","賠償保険の付保義務が下請のみ",3],
+["建設業","契約","建設業法24条の書面要件不備",5],
+["建設業","下請","一括下請禁止規定の不記載",4],
+["建設業","知的財産","設計図面の著作権帰属が不明確",3],
+["建設業","解除","工事中途解除時の出来形精算なし",4],
+["物流業","責任","運送中の全損害を運送業者が負担",5],
+["物流業","責任","荷主の梱包不備による損害も運送側負担",4],
+["物流業","代金","燃料サーチャージ拒否条項",4],
+["物流業","納期","遅配の違約金が運賃の100%超",4],
+["物流業","保険","貨物保険の付保義務が曖昧",3],
+["物流業","下請","下請法の適用を回避する契約形態",5],
+["物流業","個人情報","配送先データの目的外利用を許容",4],
+["物流業","契約期間","長期専属契約で他社配送を禁止",3],
+["物流業","解除","荷量減少時の補償条項がない",3],
+["物流業","倉庫","寄託契約の免責範囲が過大",4],
+["製造業","環境","有害物質規制の遡及適用リスク",3],
+["製造業","輸出","輸出管理規制の遵守義務が自社のみ",4],
+["製造業","保険","PL保険の付保額が過少",3],
+["製造業","管轄","紛争解決地が海外の裁判所のみ",5],
+["製造業","準拠法","準拠法が外国法のみで合意",4]
+],customPat=[];
+function renderDict(){var b=document.getElementById("dictBody");b.innerHTML="";DICT.concat(customPat).forEach(function(r,i){var lv=r[3],cl=lv>=5?"#e74c3c":lv>=4?"#f39c12":"#3498db";b.innerHTML+="<tr><td>"+(i+1)+"</td><td>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td><td style='color:"+cl+";font-weight:700'>"+lv+"</td></tr>"})}
+renderDict();
+function pick(step,el){document.getElementById("g"+step).querySelectorAll(".opt").forEach(function(o){o.classList.remove("sel")});el.classList.add("sel");ans[step]=el.getAttribute("data-v");if(step<4)setTimeout(function(){for(var i=1;i<=4;i++)document.getElementById("s"+i).classList.remove("active");document.getElementById("s"+(step+1)).classList.add("active");updateProg(step+1)},250)}
+function updateProg(c){document.querySelectorAll("#prog span").forEach(function(s,i){s.className=i<c-1?"done":i===c-1?"now":""})}
+updateProg(1);
+function judge(){var f=parseInt(document.getElementById("flags").value)||0;
+var sc=({order:1,nda:2,outsource:3,sales:3}[ans[1]]||2)+({small:1,mid:2,large:3,huge:4}[ans[2]]||2)+({existing:0,group:0,new:2,overseas:3}[ans[3]]||1)+(f>=6?4:f>=3?3:f>=1?2:0);
+var tN={order:"発注書・注文書",nda:"NDA（秘密保持）",outsource:"業務委託契約",sales:"売買基本契約"},aN={small:"100万円未満",mid:"100〜500万円",large:"500〜1,000万円",huge:"1,000万円以上"},rN={existing:"既存取引先",new:"新規取引先",overseas:"海外取引先",group:"グループ会社"};
+var base="契約種別: "+tN[ans[1]]+"、金額: "+aN[ans[2]]+"、取引先: "+rN[ans[3]]+"、フラグ: "+f+"件。";
+var lv,cls,lbl,sub,reason,nexts;
+if(sc<=4){lv="green";cls="r-green";lbl="自分で対応可能";sub="通常のフローで処理して問題ありません";reason=base+"いずれもリスクが低い範囲内です。社内の通常承認ルートで処理できます。";nexts=["契約書に自社名・日付・金額の誤りがないか目視確認する","リスクスキャナーで検出された項目があれば内容を理解しておく","通常の社内稟議ルートで決裁を進める","署名・押印前に契約書のコピーを保管する"]}
+else if(sc<=8){lv="yellow";cls="r-yellow";lbl="上長確認を推奨";sub="課長・部長に報告してから進めてください";reason=base+"中程度のリスクが検出されました。単独判断ではなく、上長の確認を経てから進めることを推奨します。";nexts=["リスクスキャナーの結果を印刷して上長に提出する","取引先に修正を依頼したい条項をリストアップする","過去の類似契約があれば比較して相違点を確認する","上長の判断で必要なら顧問弁護士へ相談を依頼する"]}
+else{lv="red";cls="r-red";lbl="専門家相談が必須";sub="弁護士・外部法務に必ず相談してください";reason=base+"高リスクです。このまま署名すると自社に不利な条件を受け入れる可能性があります。必ず専門家の確認を受けてください。";nexts=["絶対に署名・押印せず、契約書原本を保全する","リスクスキャナーの結果と本判定PDFを添えて法務担当または顧問弁護士に送付する","取引先に「社内確認中」と伝え、回答期限の延長を依頼する","修正交渉のポイントを専門家と事前に整理する"]}
+var icons={green:"✅",yellow:"⚠️",red:"🚨"};
+document.getElementById("rBox").className="result-box "+cls;
+document.getElementById("rBox").innerHTML='<span class="icon">'+icons[lv]+'</span><span class="label">'+lbl+'</span><div class="sub">'+sub+'</div>';
+document.getElementById("rReason").textContent=reason;
+var nl=document.getElementById("rNext");nl.innerHTML="";nexts.forEach(function(n){nl.innerHTML+="<li>"+n+"</li>"});
+document.getElementById("rMeta").textContent="判定日: "+new Date().toLocaleDateString("ja-JP")+" ／ 総合スコア: "+sc+"点 ／ FieldLex 契約チェック判断フローチャート v1.0";
+document.getElementById("wizard").style.display="none";document.getElementById("result").style.display="block"}
+function reset(){document.getElementById("wizard").style.display="block";document.getElementById("result").style.display="none";for(var i=1;i<=4;i++){document.getElementById("s"+i).classList.remove("active");var g=document.getElementById("g"+i);if(g)g.querySelectorAll(".opt").forEach(function(o){o.classList.remove("sel")})}document.getElementById("s1").classList.add("active");document.getElementById("flags").value="0";ans={};updateProg(1)}
+function printPDF(){window.print()}
+function dlCSV(){var r="No,業種,条項カテゴリ,危険パターン,リスク\n";DICT.concat(customPat).forEach(function(d,i){r+=(i+1)+',"'+d[0]+'","'+d[1]+'","'+d[2]+'",'+d[3]+"\n"});var a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\uFEFF"+r],{type:"text/csv"}));a.download="fieldlex_risk_dictionary.csv";a.click()}
+function loadCSV(input){var f=input.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(e){var lines=e.target.result.split("\n"),added=0;lines.forEach(function(l,i){if(i===0)return;var c=l.replace(/"/g,"").split(",");if(c.length>=4){customPat.push([c[0].trim(),c[1].trim(),c[2].trim(),parseInt(c[3])||3]);added++}});renderDict();document.getElementById("customList").innerHTML='<p style="color:#27ae60;font-weight:600">'+added+'件のカスタムパターンを追加しました。</p>'};rd.readAsText(f)}
+function switchTab(n,el){document.getElementById("tab0").style.display=n===0?"block":"none";document.getElementById("tab1").style.display=n===1?"block":"none";el.parentNode.querySelectorAll(".tab").forEach(function(t){t.classList.remove("active")});el.classList.add("active")}
+</script>
+</body>
+</html>

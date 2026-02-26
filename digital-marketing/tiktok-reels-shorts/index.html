@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ショート動画 入稿プリフライトチェッカー</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pri:#6C5CE7;--bg:#f8f9fa;--card:#fff;--txt:#2d3436;--sub:#636e72;--ok:#00b894;--ng:#d63031;--warn:#fdcb6e;--border:#dfe6e9;--r:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;padding:12px;max-width:860px;margin:0 auto}
+h1{font-size:1.3em;text-align:center;padding:18px 0 4px;color:var(--pri)}
+.sub{text-align:center;color:var(--sub);font-size:.78em;margin-bottom:16px}
+.card{background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card h2{font-size:.95em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+label{display:block;font-weight:600;font-size:.82em;margin:8px 0 3px;color:var(--sub)}
+input,select{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:.9em;font-family:inherit}
+input:focus,select:focus{outline:none;border-color:var(--pri)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:120px}
+.btn-main{cursor:pointer;background:var(--pri);color:#fff;border:none;border-radius:7px;padding:13px;font-size:1em;font-weight:700;width:100%;margin-top:12px;font-family:inherit;transition:.2s}
+.btn-main:hover{background:#5a4bd1}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.75em;font-weight:700;color:#fff}
+.badge-ok{background:var(--ok)}.badge-ng{background:var(--ng)}.badge-warn{background:#f39c12}
+.pf-card{border-radius:var(--r);padding:14px;margin-bottom:10px;border:2px solid var(--border)}
+.pf-card.pass{border-color:var(--ok);background:#f0fff4}.pf-card.fail{border-color:var(--ng);background:#fff5f5}.pf-card.warn{border-color:#f39c12;background:#fffbf0}
+.pf-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700;font-size:.95em}
+.pf-item{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:.84em}
+.pf-item:last-child{border:none}
+.fix{color:var(--ng);font-size:.78em;margin-top:2px}
+.ok-txt{color:var(--ok);font-weight:600;font-size:.82em}
+.ng-txt{color:var(--ng);font-weight:600;font-size:.82em}
+.summary{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.sum-box{flex:1;min-width:100px;text-align:center;padding:12px;border-radius:var(--r);background:#f1f0ff;font-size:.82em}
+.sum-box b{display:block;font-size:1.6em;color:var(--pri)}
+.preview-wrap{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:12px}
+.phone{width:135px;height:240px;border-radius:14px;border:2px solid #636e72;position:relative;overflow:hidden;background:#000;flex-shrink:0}
+.phone-label{text-align:center;font-size:.72em;color:var(--sub);margin-top:4px;font-weight:600}
+.safe-top{position:absolute;top:0;left:0;right:0;background:rgba(255,0,0,.25);border-bottom:1.5px dashed #d63031;display:flex;align-items:flex-end;justify-content:center;font-size:.55em;color:#fff;padding-bottom:2px}
+.safe-bottom{position:absolute;bottom:0;left:0;right:0;background:rgba(255,0,0,.25);border-top:1.5px dashed #d63031;display:flex;align-items:flex-start;justify-content:center;font-size:.55em;color:#fff;padding-top:2px}
+.safe-center{position:absolute;left:0;right:0;display:flex;align-items:center;justify-content:center;color:#0f0;font-size:.6em;font-weight:700;text-shadow:0 0 4px #000}
+.note{font-size:.72em;color:var(--sub);margin-top:10px;padding:10px;background:#f1f2f6;border-radius:7px;line-height:1.5}
+#results{display:none}
+@media(max-width:500px){.row>*{min-width:100%}.phone{width:110px;height:196px}}
+</style>
+</head>
+<body>
+<h1>📋 ショート動画 入稿プリフライトチェッカー</h1>
+<p class="sub">TikTok / Instagram Reels / YouTube Shorts — 3プラットフォーム一括判定<br>ショート動画台本フレームワーク自動生成ツール 連携モジュール</p>
+
+<div class="card">
+<h2>🎬 動画スペック入力</h2>
+<div class="row">
+<div><label>動画の尺（秒）</label><input type="number" id="dur" min="1" max="7200" value="30" step="1"></div>
+<div><label>ファイルサイズ（MB）</label><input type="number" id="fsize" min="0.1" max="10000" value="45" step="0.1"></div>
+<div><label>ファイル形式</label><select id="fmt"><option value="mp4">MP4</option><option value="mov">MOV</option><option value="webm">WebM</option><option value="avi">AVI</option><option value="other">その他</option></select></div>
+</div>
+<div class="row">
+<div><label>横解像度（px）</label><input type="number" id="rw" min="1" max="7680" value="1080"></div>
+<div><label>縦解像度（px）</label><input type="number" id="rh" min="1" max="7680" value="1920"></div>
+<div><label>フレームレート（fps）</label><select id="fps"><option value="24">24</option><option value="25">25</option><option value="30" selected>30</option><option value="60">60</option></select></div>
+</div>
+</div>
+
+<div class="card">
+<h2>📝 テキスト・メタデータ</h2>
+<div class="row">
+<div><label>キャプション文字数</label><input type="number" id="cap" min="0" max="10000" value="120"></div>
+<div><label>ハッシュタグ数</label><input type="number" id="hash" min="0" max="100" value="5"></div>
+</div>
+<div class="row">
+<div><label>動画内テキスト行数（字幕等）</label><input type="number" id="txtlines" min="0" max="50" value="2"></div>
+<div><label>最長テキスト1行の文字数</label><input type="number" id="txtlen" min="0" max="200" value="18"></div>
+</div>
+</div>
+
+<button class="btn-main" onclick="runCheck()">🔍 3プラットフォーム一括チェック</button>
+
+<div id="results">
+<div class="card" style="margin-top:14px">
+<h2>📊 判定サマリー</h2>
+<div class="summary" id="sumArea"></div>
+</div>
+<div id="pfCards"></div>
+<div class="card">
+<h2>📱 テキストセーフゾーン プレビュー</h2>
+<p style="font-size:.8em;color:var(--sub);margin-bottom:10px">赤色エリアはプラットフォームUIで隠れる領域です。字幕・重要テキストは緑の安全領域に配置してください。</p>
+<div class="preview-wrap" id="previewArea"></div>
+</div>
+<p class="note">⚠️ 本チェック結果は2026年2月時点の各プラットフォーム公式ヘルプに基づく参考情報です。最新仕様は必ず<b>TikTok クリエイターポータル</b>・<b>Instagram ヘルプセンター</b>・<b>YouTube ヘルプ</b>で確認してください。外注単価3〜15万円/本のコストを内製化で削減するには、入稿差し戻しゼロが重要です。</p>
+</div>
+
+<script>
+var SPECS={
+tiktok:{name:"TikTok",icon:"🎵",dur:{min:1,max:600,recMax:180},w:1080,h:1920,ratio:"9:16",fsize:287,fmt:["mp4","mov","webm"],cap:2200,hash:100,hashRec:5,safeTop:.15,safeBot:.20,fps:[24,25,30,60]},
+reels:{name:"Instagram Reels",icon:"📸",dur:{min:3,max:90,recMax:60},w:1080,h:1920,ratio:"9:16",fsize:250,fmt:["mp4","mov"],cap:2200,hash:30,hashRec:5,safeTop:.14,safeBot:.18,fps:[24,25,30]},
+shorts:{name:"YouTube Shorts",icon:"▶️",dur:{min:1,max:180,recMax:60},w:1080,h:1920,ratio:"9:16",fsize:256,fmt:["mp4","mov","webm"],cap:100,capField:"タイトル",hash:15,hashRec:3,safeTop:.10,safeBot:.22,fps:[24,25,30,60]}
+};
+
+function runCheck(){
+var d={dur:+document.getElementById("dur").value,fsize:+document.getElementById("fsize").value,fmt:document.getElementById("fmt").value,rw:+document.getElementById("rw").value,rh:+document.getElementById("rh").value,fps:+document.getElementById("fps").value,cap:+document.getElementById("cap").value,hash:+document.getElementById("hash").value,txtlines:+document.getElementById("txtlines").value,txtlen:+document.getElementById("txtlen").value};
+var results={};var html="";
+for(var k in SPECS){if(!SPECS.hasOwnProperty(k))continue;
+var sp=SPECS[k];var items=[];var pass=0,fail=0,warn=0;
+if(d.dur<sp.dur.min)items.push({label:"動画の尺",st:"ng",val:d.dur+"秒",fix:"最低"+sp.dur.min+"秒以上必要です"});
+else if(d.dur>sp.dur.max)items.push({label:"動画の尺",st:"ng",val:d.dur+"秒",fix:"上限"+sp.dur.max+"秒を超えています。"+sp.dur.max+"秒以内にカットしてください"});
+else if(d.dur>sp.dur.recMax)items.push({label:"動画の尺",st:"warn",val:d.dur+"秒",fix:"推奨は"+sp.dur.recMax+"秒以内。短い方がリーチ率が高い傾向"});
+else items.push({label:"動画の尺",st:"ok",val:d.dur+"秒"});
+if(d.rw===sp.w&&d.rh===sp.h)items.push({label:"解像度",st:"ok",val:d.rw+"×"+d.rh});
+else if(d.rw>=720&&d.rh>=1280)items.push({label:"解像度",st:"warn",val:d.rw+"×"+d.rh,fix:"推奨は"+sp.w+"×"+sp.h+"。現在値でも投稿可能"});
+else items.push({label:"解像度",st:"ng",val:d.rw+"×"+d.rh,fix:"最低720×1280以上推奨。"+sp.w+"×"+sp.h+"に変更を"});
+function gcd(a,b){return b?gcd(b,a%b):a;}var g=gcd(d.rw,d.rh);var ar=d.rw/g+":"+d.rh/g;
+var arVal=d.rw/d.rh;
+if(Math.abs(arVal-9/16)<0.02)items.push({label:"アスペクト比",st:"ok",val:ar+" (≈9:16)"});
+else if(Math.abs(arVal-1)<0.02)items.push({label:"アスペクト比",st:"warn",val:ar,fix:"9:16推奨。1:1は投稿可能だがリーチ低下の可能性"});
+else items.push({label:"アスペクト比",st:"ng",val:ar,fix:"9:16（縦型）に変更してください"});
+if(d.fsize<=sp.fsize)items.push({label:"ファイルサイズ",st:"ok",val:d.fsize+"MB"});
+else items.push({label:"ファイルサイズ",st:"ng",val:d.fsize+"MB",fix:"上限"+sp.fsize+"MBです。ビットレートを下げるかH.265で圧縮"});
+if(sp.fmt.indexOf(d.fmt)>=0)items.push({label:"ファイル形式",st:"ok",val:d.fmt.toUpperCase()});
+else items.push({label:"ファイル形式",st:"ng",val:d.fmt.toUpperCase(),fix:"対応形式: "+sp.fmt.map(function(f){return f.toUpperCase();}).join(", ")});
+if(sp.fps.indexOf(d.fps)>=0)items.push({label:"フレームレート",st:"ok",val:d.fps+"fps"});
+else items.push({label:"フレームレート",st:"warn",val:d.fps+"fps",fix:"推奨: "+sp.fps.join("/")+"fps"});
+var capLabel=sp.capField||"キャプション";
+if(d.cap<=sp.cap)items.push({label:capLabel+"文字数",st:"ok",val:d.cap+"文字"});
+else items.push({label:capLabel+"文字数",st:"ng",val:d.cap+"文字",fix:"上限"+sp.cap+"文字。"+(d.cap-sp.cap)+"文字削減が必要"});
+if(d.hash<=sp.hash&&d.hash<=sp.hashRec)items.push({label:"ハッシュタグ数",st:"ok",val:d.hash+"個"});
+else if(d.hash<=sp.hash)items.push({label:"ハッシュタグ数",st:"warn",val:d.hash+"個",fix:"推奨は"+sp.hashRec+"個以内。多すぎるとスパム判定リスク"});
+else items.push({label:"ハッシュタグ数",st:"ng",val:d.hash+"個",fix:"上限"+sp.hash+"個を超過"});
+var safePct=1-sp.safeTop-sp.safeBot;var maxLines=Math.floor(safePct*d.rh/80);
+if(d.txtlines<=maxLines&&d.txtlen<=20)items.push({label:"テキスト安全領域",st:"ok",val:d.txtlines+"行/"+d.txtlen+"文字"});
+else if(d.txtlen>22)items.push({label:"テキスト安全領域",st:"ng",val:"1行"+d.txtlen+"文字",fix:"1行20文字以内推奨。長文は画面端で切れます"});
+else items.push({label:"テキスト安全領域",st:"warn",val:d.txtlines+"行",fix:"安全領域は画面の"+Math.round(safePct*100)+"%。行数を減らすか文字を小さく"});
+for(var i=0;i<items.length;i++){if(items[i].st==="ok")pass++;else if(items[i].st==="ng")fail++;else warn++;}
+var overall=fail>0?"fail":warn>0?"warn":"pass";
+results[k]={items:items,pass:pass,fail:fail,warn:warn,overall:overall,sp:sp};
+html+='<div class="pf-card '+overall+'"><div class="pf-head"><span>'+sp.icon+" "+sp.name+'</span><span class="badge badge-'+(overall==="pass"?"ok":overall==="fail"?"ng":"warn")+'">'+(overall==="pass"?"✓ ALL PASS":overall==="fail"?fail+"件 NG":warn+"件 注意")+"</span></div>";
+for(var j=0;j<items.length;j++){
+html+='<div class="pf-item"><span>'+items[j].label+": "+items[j].val+'</span><span class="'+(items[j].st==="ok"?"ok-txt":"ng-txt")+'">'+(items[j].st==="ok"?"✓":items[j].st==="ng"?"✗":"⚠")+"</span></div>";
+if(items[j].fix)html+='<div class="fix">→ '+items[j].fix+"</div>";
+}
+html+="</div>";
+}
+document.getElementById("pfCards").innerHTML=html;
+var tp=0,tf=0,tw=0;
+for(var r in results){if(!results.hasOwnProperty(r))continue;tp+=results[r].pass;tf+=results[r].fail;tw+=results[r].warn;}
+document.getElementById("sumArea").innerHTML='<div class="sum-box"><b style="color:var(--ok)">'+tp+'</b>合格</div><div class="sum-box"><b style="color:var(--ng)">'+tf+'</b>要修正</div><div class="sum-box"><b style="color:#f39c12">'+tw+'</b>注意</div><div class="sum-box"><b>'+(tf===0?"✓":"✗")+"</b>"+(tf===0?"入稿OK":"修正必要")+"</div>";
+var pHtml="";
+for(var p in SPECS){if(!SPECS.hasOwnProperty(p))continue;var s=SPECS[p];
+var topH=Math.round(s.safeTop*240);var botH=Math.round(s.safeBot*240);var midH=240-topH-botH;
+pHtml+='<div><div class="phone"><div class="safe-top" style="height:'+topH+'px">UI領域 '+Math.round(s.safeTop*100)+'%</div><div class="safe-center" style="top:'+topH+"px;height:"+midH+'px">安全領域<br>'+Math.round((1-s.safeTop-s.safeBot)*100)+'%</div><div class="safe-bottom" style="height:'+botH+'px">UI領域 '+Math.round(s.safeBot*100)+'%</div></div><div class="phone-label">'+s.icon+" "+s.name+"</div></div>";
+}
+document.getElementById("previewArea").innerHTML=pHtml;
+document.getElementById("results").style.display="block";
+document.getElementById("results").scrollIntoView({behavior:"smooth",block:"start"});
+}
+</script>
+</body>
+</html>
