@@ -2,152 +2,251 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LegalBrain — 属人化リスク診断ダッシュボード</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法務ナレッジ・キャプチャーツール - kusasyu tools</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
-.hd{background:linear-gradient(135deg,#1a365d,#2d4a7a);color:#fff;padding:24px 16px;text-align:center}
-.hd h1{font-size:1.25rem;letter-spacing:.04em}.hd p{font-size:.8rem;opacity:.8;margin-top:4px}
-.wrap{max-width:780px;margin:20px auto;padding:0 16px}
-.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
-.card h2{font-size:1rem;color:#1a365d;margin-bottom:14px;border-left:4px solid #1a365d;padding-left:10px}
-textarea{width:100%;height:120px;font-family:'Consolas','Menlo',monospace;font-size:13px;border:2px solid #d1d5db;border-radius:8px;padding:10px;resize:vertical}
-textarea:focus{outline:none;border-color:#3b82f6}
-.btns{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
-.btn{background:#1a365d;color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:.95rem;cursor:pointer}
-.btn:hover{background:#2d4a7a}
-.btn-s{background:none;border:1px solid #93a3b8;color:#555;padding:8px 16px;border-radius:8px;font-size:.82rem;cursor:pointer}
-.btn-s:hover{background:#f3f4f6}
-.hint{font-size:.78rem;color:#888;margin-top:8px}
-.hint code{background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:.76rem}
-.sa{text-align:center;padding:16px 0}
-.sn{font-size:4.5rem;font-weight:900;line-height:1}
-.sl{font-size:1.1rem;margin-top:6px;font-weight:700}
-.sd{font-size:.82rem;color:#666;margin-top:4px}
-.gc{color:#16a34a}.yc{color:#ca8a04}.rc{color:#dc2626}
-.sig{display:inline-flex;gap:8px;margin-top:12px}
-.sig span{width:22px;height:22px;border-radius:50%;background:#e5e7eb;border:2px solid #ccc}
-.sig .og{background:#16a34a;border-color:#15803d;box-shadow:0 0 8px rgba(22,163,74,.4)}
-.sig .oy{background:#ca8a04;border-color:#a16207;box-shadow:0 0 8px rgba(202,138,4,.4)}
-.sig .or{background:#dc2626;border-color:#b91c1c;box-shadow:0 0 8px rgba(220,38,38,.4)}
-.sts{display:flex;justify-content:center;gap:28px;margin-top:16px;font-size:.82rem;color:#555}
-.sts div{text-align:center}.sts strong{display:block;font-size:1.3rem;color:#1a365d}
-.br{display:flex;align-items:center;margin-bottom:8px}
-.bn{width:76px;font-size:.82rem;text-align:right;padding-right:10px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bt{flex:1;background:#eef0f4;border-radius:5px;height:28px}
-.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;font-size:.78rem;color:#fff;font-weight:700;min-width:32px;transition:width .4s ease}
-.gd{text-align:center;padding:32px 16px;color:#666}
-.gd b{color:#1a365d}
-.hid{display:none}
-.ref{font-size:.72rem;color:#aaa;text-align:center;padding:4px 12px 20px;line-height:1.7}
-.tbl{border-collapse:collapse;width:100%;font-size:.8rem;margin-top:10px}
-.tbl th{background:#f3f4f6;padding:6px 8px;text-align:left;border-bottom:2px solid #d1d5db;color:#1a365d;font-weight:600}
-.tbl td{padding:5px 8px;border-bottom:1px solid #eee}
-@media(max-width:600px){.sn{font-size:3.2rem}.bn{width:56px;font-size:.72rem}.sts{gap:16px;font-size:.75rem}}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px 20px;text-align:center}
+.header h1{font-size:1.3em;letter-spacing:.05em}
+.header p{font-size:.75em;opacity:.7;margin-top:4px}
+.container{max-width:720px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1em;color:#16213e;border-left:4px solid #e94560;padding-left:10px;margin-bottom:14px}
+label{display:block;font-size:.82em;font-weight:600;margin:10px 0 4px;color:#333}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid #ccc;border-radius:6px;font-size:.88em;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+select{background:#fff}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#e94560;box-shadow:0 0 0 2px rgba(233,69,96,.15)}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+.risk-group{display:flex;gap:8px;margin-top:4px}
+.risk-btn{flex:1;padding:8px;border:2px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;text-align:center;font-size:.82em;font-weight:600;transition:.2s}
+.risk-btn.active-low{border-color:#27ae60;background:#e8f8f0;color:#27ae60}
+.risk-btn.active-mid{border-color:#f39c12;background:#fef5e7;color:#e67e22}
+.risk-btn.active-high{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.risk-btn.active-critical{border-color:#8e44ad;background:#f4ecf7;color:#8e44ad}
+.actions{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.btn{padding:12px 20px;border:none;border-radius:8px;font-size:.88em;font-weight:700;cursor:pointer;transition:.2s;flex:1;min-width:140px}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
+.btn-primary{background:#e94560;color:#fff}
+.btn-secondary{background:#16213e;color:#fff}
+.btn-outline{background:#fff;color:#16213e;border:2px solid #16213e}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#27ae60;color:#fff;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.88em;display:none;z-index:99;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.result-card{display:none;background:#fff;border:2px solid #e94560;border-radius:10px;padding:20px;margin-top:14px}
+.result-card h3{text-align:center;color:#e94560;margin-bottom:12px}
+.result-card table{width:100%;border-collapse:collapse;font-size:.82em}
+.result-card td{padding:6px 8px;border-bottom:1px solid #eee;vertical-align:top}
+.result-card td:first-child{font-weight:700;width:110px;color:#555;white-space:nowrap}
+.risk-badge{display:inline-block;padding:2px 12px;border-radius:12px;font-size:.8em;font-weight:700;color:#fff}
+.risk-low{background:#27ae60}.risk-mid{background:#f39c12}.risk-high{background:#e74c3c}.risk-critical{background:#8e44ad}
+.meta{font-size:.72em;color:#999;text-align:center;margin-top:10px}
+@media(max-width:600px){.row{flex-direction:column;gap:0}.actions{flex-direction:column}.container{padding:10px}}
+@media print{.header,.actions,.card h2,.no-print{display:none!important}.result-card{border:1px solid #333;display:block!important;box-shadow:none}}
 </style>
+<meta name="description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務ナレッジ・キャプチャーツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis/">
+<meta property="og:title" content="法務ナレッジ・キャプチャーツール - kusasyu tools">
+<meta property="og:description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務ナレッジ・キャプチャーツール - kusasyu tools">
+<meta name="twitter:description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務ナレッジ・キャプチャーツール",
+  "description": "法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
 </head>
 <body>
-<div class="hd">
-<h1>LegalBrain &mdash; 属人化リスク診断ダッシュボード</h1>
-<p>台帳サマリーCSVを貼り付けるだけで属人化リスクを即時可視化</p>
+<div class="header">
+<h1>LegalBrain ナレッジ・キャプチャー</h1>
+<p>法務判断を構造化して組織の資産に変える</p>
 </div>
-<div class="wrap">
+<div class="container">
 
 <div class="card">
-<h2>CSVデータ貼り付け</h2>
-<textarea id="csv" placeholder="担当者名,件数&#10;田中,45&#10;佐藤,12&#10;鈴木,8"></textarea>
-<div class="btns">
-<button class="btn" onclick="run()">診断する</button>
-<button class="btn-s" onclick="demo()">サンプルデータで試す</button>
+<h2>基本情報</h2>
+<div class="row">
+<div><label>案件ID</label><input id="caseId" value="" placeholder="自動採番"></div>
+<div><label>記録日</label><input id="recDate" type="date"></div>
 </div>
-<p class="hint">形式: <code>担当者名,件数</code>（ヘッダー行あり/なし両対応・カンマまたはタブ区切り）</p>
+<div class="row">
+<div><label>契約類型</label>
+<select id="contractType">
+<option value="">選択してください</option>
+<option>秘密保持契約（NDA）</option>
+<option>業務委託契約</option>
+<option>売買基本契約</option>
+<option>ライセンス契約</option>
+<option>共同開発契約</option>
+<option>取引基本契約</option>
+<option>製造委託契約</option>
+<option>品質保証契約</option>
+<option>その他</option>
+</select></div>
+<div><label>判断者</label><input id="judge" placeholder="氏名・役職"></div>
 </div>
-
-<div id="gd" class="card gd hid"></div>
-
-<div id="sc" class="card hid">
-<h2>属人化危険度スコア</h2>
-<div class="sa">
-<div id="sn" class="sn">--</div>
-<div id="sl" class="sl"></div>
-<div id="sd" class="sd"></div>
-<div class="sig"><span id="s1"></span><span id="s2"></span><span id="s3"></span></div>
-<div id="st" class="sts"></div>
-</div>
-<table class="tbl"><tr><th>スコア</th><th>状態</th><th>推奨アクション</th></tr>
-<tr><td>0 &ndash; 39</td><td style="color:#16a34a">安全</td><td>現状維持。定期的な記録継続を推奨</td></tr>
-<tr><td>40 &ndash; 69</td><td style="color:#ca8a04">注意</td><td>計画的な引継ぎ・ペア担当制の検討</td></tr>
-<tr><td>70 &ndash; 100</td><td style="color:#dc2626">危険</td><td>早急にナレッジ移転計画を策定</td></tr></table>
 </div>
 
-<div id="cc" class="card hid">
-<h2>担当者別 ナレッジ件数</h2>
-<div id="ch"></div>
+<div class="card">
+<h2>相手方・案件概要</h2>
+<div class="row">
+<div><label>相手方企業名</label><input id="party" placeholder="株式会社○○"></div>
+<div><label>相手方属性</label>
+<select id="partyType">
+<option>顧客</option><option>仕入先</option><option>外注先</option><option>提携先</option><option>その他</option>
+</select></div>
+</div>
+<label>案件概要</label>
+<textarea id="summary" placeholder="契約の背景・目的を簡潔に"></textarea>
 </div>
 
-<p class="ref">全類型数 = 12（秘密保持契約(NDA)・製造委託契約・売買基本契約・業務委託契約・ライセンス契約・共同開発契約・品質保証契約・代理店契約・保守契約・賃貸借契約・雇用契約・その他）</p>
+<div class="card">
+<h2>争点・判断内容</h2>
+<label>主要争点</label>
+<textarea id="issue" placeholder="例：損害賠償上限条項の設定、準拠法の選択"></textarea>
+<label>判断内容・結論</label>
+<textarea id="decision" placeholder="例：賠償上限を契約金額の2倍に設定。相手方の要求（上限なし）を拒否"></textarea>
+<label>判断根拠・ロジック</label>
+<textarea id="rationale" placeholder="例：過去の類似案件（2024年A社）で上限なし条件により500万円の損失。社内規程第12条に基づき上限設定を必須と判断"></textarea>
 </div>
+
+<div class="card">
+<h2>リスク評価・法令</h2>
+<label>リスクレベル</label>
+<div class="risk-group">
+<button class="risk-btn" onclick="setRisk(this,'低','active-low')">低</button>
+<button class="risk-btn" onclick="setRisk(this,'中','active-mid')">中</button>
+<button class="risk-btn" onclick="setRisk(this,'高','active-high')">高</button>
+<button class="risk-btn" onclick="setRisk(this,'重大','active-critical')">重大</button>
+</div>
+<label>参照法令・規程</label>
+<input id="laws" placeholder="例：民法第415条、下請法第4条、社内契約管理規程第12条">
+<label>交渉上の戦術・工夫</label>
+<textarea id="tactics" placeholder="例：先に自社雛形を提示し、修正箇所を限定させた"></textarea>
+</div>
+
+<div class="card">
+<h2>結果・教訓</h2>
+<div class="row">
+<div><label>結果</label>
+<select id="result">
+<option>合意・締結</option><option>条件修正のうえ合意</option><option>交渉継続中</option><option>不合意・見送り</option>
+</select></div>
+<div><label>所要期間</label><input id="duration" placeholder="例：2週間"></div>
+</div>
+<label>教訓・次回への申し送り</label>
+<textarea id="lesson" placeholder="例：この相手方は法務部が強硬。次回は早期に妥協ラインを提示すべき"></textarea>
+</div>
+
+<div class="card no-print">
+<h2>出力</h2>
+<div class="actions">
+<button class="btn btn-primary" onclick="genCard()">ナレッジカード生成</button>
+<button class="btn btn-secondary" onclick="copyCSV()">CSV行をコピー</button>
+<button class="btn btn-outline" onclick="resetForm()">クリア</button>
+</div>
+</div>
+
+<div class="result-card" id="resultCard"></div>
+</div>
+<div class="toast" id="toast"></div>
 
 <script>
-function run(){
-  var raw=document.getElementById('csv').value.trim();
-  if(!raw)return;
-  var lines=raw.split(/\r?\n/).filter(function(l){return l.trim()!=='';});
-  var d=[];
-  for(var i=0;i<lines.length;i++){
-    var c=lines[i].split(/[,\t]/);
-    if(c.length<2)continue;
-    var nm=c[0].trim(),ct=parseInt(c[1].trim(),10);
-    if(!nm||isNaN(ct))continue;
-    if(/^(担当者名?|名前|氏名|name)$/i.test(nm))continue;
-    d.push({n:nm,c:ct});
-  }
-  var tot=0,mx=0;
-  for(var j=0;j<d.length;j++){tot+=d[j].c;if(d[j].c>mx)mx=d[j].c;}
-  var gd=document.getElementById('gd'),sc=document.getElementById('sc'),cc=document.getElementById('cc');
-  if(d.length===0){
-    gd.innerHTML='<div style="font-size:1.8rem;margin-bottom:8px">&#9888;&#65039;</div>データを読み取れませんでした。<br><code style="background:#f3f4f6;padding:2px 6px;border-radius:3px;font-size:.82rem">担当者名,件数</code> の形式で入力してください。';
-    gd.classList.remove('hid');sc.classList.add('hid');cc.classList.add('hid');return;
-  }
-  if(tot<10){
-    gd.innerHTML='<div style="font-size:1.8rem;margin-bottom:8px">&#128203;</div>まだデータが少ない状態です。<br><b>10件入力後に診断が有効になります。</b><br><span style="font-size:.82rem;color:#888;display:inline-block;margin-top:6px">台帳に法務判断を記録してナレッジ件数を増やし、<br>サマリーCSVを貼り付けて再診断してください。</span>';
-    gd.classList.remove('hid');sc.classList.add('hid');cc.classList.add('hid');return;
-  }
-  gd.classList.add('hid');
-  var score=Math.round(mx/tot*100);
-  var sn=document.getElementById('sn'),sl=document.getElementById('sl'),sd=document.getElementById('sd');
-  sn.textContent=score;sn.className='sn';
-  var s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3');
-  s1.className='';s2.className='';s3.className='';
-  if(score<=39){
-    sn.classList.add('gc');sl.textContent='安全';sl.className='sl gc';
-    sd.textContent='判断が適度に分散しています';s1.className='og';
-  }else if(score<=69){
-    sn.classList.add('yc');sl.textContent='注意';sl.className='sl yc';
-    sd.textContent='やや集中傾向 \u2014 計画的な引継ぎを推奨';s2.className='oy';
-  }else{
-    sn.classList.add('rc');sl.textContent='危険';sl.className='sl rc';
-    sd.textContent='特定個人に強く依存 \u2014 早急な対策が必要';s3.className='or';
-  }
-  document.getElementById('st').innerHTML='<div><strong>'+d.length+'</strong>名の担当者</div><div><strong>'+tot+'</strong>件のナレッジ</div><div><strong>'+mx+'</strong>件<span style="display:block;font-size:.72rem">(最多担当者)</span></div>';
-  sc.classList.remove('hid');
-  d.sort(function(a,b){return b.c-a.c;});
-  var ch=document.getElementById('ch');ch.innerHTML='';
-  var cl=['#1a365d','#2563eb','#3b82f6','#60a5fa','#93c5fd','#6366f1','#818cf8','#a78bfa','#c4b5fd','#bfdbfe'];
-  for(var m=0;m<d.length;m++){
-    var p=Math.max(Math.round(d[m].c/mx*100),10);
-    var r=document.createElement('div');r.className='br';
-    r.innerHTML='<div class="bn" title="'+esc(d[m].n)+'">'+esc(d[m].n)+'</div><div class="bt"><div class="bf" style="width:'+p+'%;background:'+cl[m%cl.length]+'">'+d[m].c+'</div></div>';
-    ch.appendChild(r);
-  }
-  cc.classList.remove('hid');
+let riskVal='';
+function setRisk(el,v,cls){
+  riskVal=v;
+  el.parentElement.querySelectorAll('.risk-btn').forEach(b=>{b.className='risk-btn'});
+  el.classList.add(cls);
 }
-function demo(){
-  document.getElementById('csv').value='担当者名,件数\n田中,42\n佐藤,15\n鈴木,8\n山田,3';
-  run();
+function init(){
+  const d=new Date(),pad=n=>String(n).padStart(2,'0');
+  document.getElementById('recDate').value=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  document.getElementById('caseId').value=`LB-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
 }
-function esc(s){var e=document.createElement('span');e.textContent=s;return e.innerHTML;}
+function v(id){return document.getElementById(id).value.trim()}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2500)}
+function validate(){
+  const req=[['contractType','契約類型'],['party','相手方'],['issue','争点'],['decision','判断内容'],['judge','判断者']];
+  for(const[id,nm]of req){if(!v(id)){showToast('⚠ '+nm+'を入力してください');return false}}
+  if(!riskVal){showToast('⚠ リスクレベルを選択してください');return false}
+  return true;
+}
+function riskClass(){return{低:'risk-low',中:'risk-mid',高:'risk-high',重大:'risk-critical'}[riskVal]||''}
+function genCard(){
+  if(!validate())return;
+  const rc=document.getElementById('resultCard');
+  rc.innerHTML=`<h3>法務ナレッジカード</h3>
+<table>
+<tr><td>案件ID</td><td>${v('caseId')}</td></tr>
+<tr><td>記録日</td><td>${v('recDate')}</td></tr>
+<tr><td>契約類型</td><td>${v('contractType')}</td></tr>
+<tr><td>相手方</td><td>${v('party')}（${v('partyType')}）</td></tr>
+<tr><td>案件概要</td><td>${v('summary')||'—'}</td></tr>
+<tr><td>主要争点</td><td>${v('issue')}</td></tr>
+<tr><td>判断内容</td><td>${v('decision')}</td></tr>
+<tr><td>判断根拠</td><td>${v('rationale')||'—'}</td></tr>
+<tr><td>リスク</td><td><span class="risk-badge ${riskClass()}">${riskVal}</span></td></tr>
+<tr><td>参照法令</td><td>${v('laws')||'—'}</td></tr>
+<tr><td>交渉戦術</td><td>${v('tactics')||'—'}</td></tr>
+<tr><td>結果</td><td>${v('result')}</td></tr>
+<tr><td>所要期間</td><td>${v('duration')||'—'}</td></tr>
+<tr><td>教訓</td><td>${v('lesson')||'—'}</td></tr>
+<tr><td>判断者</td><td>${v('judge')}</td></tr>
+</table>
+<div class="meta">LegalBrain ナレッジ・キャプチャーツール｜SynLab Legal Tech</div>
+<div class="actions no-print" style="margin-top:12px"><button class="btn btn-outline" onclick="window.print()">このカードを印刷</button></div>`;
+  rc.style.display='block';
+  rc.scrollIntoView({behavior:'smooth'});
+}
+function esc(s){return'"'+s.replace(/"/g,'""')+'"'}
+function copyCSV(){
+  if(!validate())return;
+  const cols=[v('caseId'),v('recDate'),v('contractType'),v('party'),v('issue'),v('decision'),v('judge'),v('laws'),riskVal,v('result'),v('lesson')];
+  const row=cols.map(esc).join(',');
+  navigator.clipboard.writeText(row).then(()=>showToast('✓ CSV行をクリップボードにコピーしました')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=row;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast('✓ CSV行をコピーしました');
+  });
+}
+function resetForm(){
+  document.querySelectorAll('input,textarea').forEach(el=>{if(el.type!=='date')el.value=''});
+  document.querySelectorAll('select').forEach(el=>el.selectedIndex=0);
+  document.querySelectorAll('.risk-btn').forEach(b=>b.className='risk-btn');
+  riskVal='';document.getElementById('resultCard').style.display='none';init();
+}
+init();
 </script>
 </body>
 </html>

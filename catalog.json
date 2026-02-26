@@ -1,5 +1,83 @@
 [
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "btob-3",
+    "url": "digital-marketing/btob-3/",
+    "title": "MAメール成約率3倍化キット — セグメント別パーソナライズ文面生成＆A/Bテスト自動判定ツール",
+    "tool_name": "BtoBパーソナライズメール文面ジェネレーター（変数差し込み型）",
+    "description": "MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存MAツール上で即実践できる形に落とし込む。MAツールの乗り換え不要・上乗せ型で導入障壁を最",
+    "quality_score": 10,
+    "completed_at": "2026-02-26T10:03:31.596831+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-2",
+    "url": "digital-marketing/management-2/",
+    "title": "MAメール成約率3倍化キット — セグメント別パーソナライズ文面生成＆A/Bテスト自動判定ツール",
+    "tool_name": "メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール",
+    "description": "MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存MAツール上で即実践できる形に落とし込む。MAツールの乗り換え不要・上乗せ型で導入障壁を最",
+    "quality_score": 10,
+    "completed_at": "2026-02-26T10:03:31.596831+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ma-roi",
+    "url": "digital-marketing/ma-roi/",
+    "title": "MAメール成約率3倍化キット — セグメント別パーソナライズ文面生成＆A/Bテスト自動判定ツール",
+    "tool_name": "MAメール効果測定＆セグメント別ROI集計シート",
+    "description": "MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存MAツール上で即実践できる形に落とし込む。MAツールの乗り換え不要・上乗せ型で導入障壁を最",
+    "quality_score": 10,
+    "completed_at": "2026-02-26T10:03:31.596831+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis",
+    "url": "legal-tech/diagnosis/",
+    "title": "LegalBrain — 製造業中小企業向け 法務ナレッジ構造化＆属人化リスク診断ツールキット",
+    "tool_name": "法務ナレッジ・キャプチャーツール",
+    "description": "法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボードの3点セット。海外のHarvey・Luminanceが実現している『法務ナレッジの組織",
+    "quality_score": 10,
+    "completed_at": "2026-02-26T10:31:37.837126+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-2",
+    "url": "legal-tech/diagnosis-2/",
+    "title": "LegalBrain — 製造業中小企業向け 法務ナレッジ構造化＆属人化リスク診断ツールキット",
+    "tool_name": "法務判断トレーサビリティ台帳",
+    "description": "法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボードの3点セット。海外のHarvey・Luminanceが実現している『法務ナレッジの組織",
+    "quality_score": 10,
+    "completed_at": "2026-02-26T10:31:37.837126+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-3",
+    "url": "legal-tech/diagnosis-3/",
+    "title": "LegalBrain — 製造業中小企業向け 法務ナレッジ構造化＆属人化リスク診断ツールキット",
+    "tool_name": "属人化リスク診断ダッシュボード",
+    "description": "法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボードの3点セット。海外のHarvey・Luminanceが実現している『法務ナレッジの組織",
+    "quality_score": 10,
+    "completed_at": "2026-02-26T10:31:37.837126+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -1274,6 +1352,19 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "propyield",
+    "url": "proptech/propyield/",
+    "title": "不動産投資収益シミュレーター「PropYield」",
+    "tool_name": "不動産投資収益シミュレーター_PropYield",
+    "description": "海外のPropertizer（Product Huntリリース済み）の日本市場特化版。物件情報を入力すると、表面利回り・実質利回り・10年キャッシュフロー推移・出口戦略比較を自動算出し、投資判断スコアと注意点レポートを生成するブラウザ完結型ツール。競合のAI SCOPEやVALUE AIが法人向け・汎用型であるのに対し、個人投資家が『先輩大家がいなくても一人で判断できる』ことに特化した設計。空室率",
+    "quality_score": 7,
+    "completed_at": "2026-02-26T13:01:57.202773+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -1973,6 +2064,45 @@
     "description": "賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。",
     "quality_score": 6,
     "completed_at": "2026-02-22T04:26:16.995406+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "proprestore",
+    "url": "proptech/proprestore/",
+    "title": "原状回復費用ガイドライン準拠シミュレーター＆交渉支援キット「PropRestore」",
+    "tool_name": "原状回復費用ガイドライン準拠シミュレーター",
+    "description": "賃貸退去時の原状回復費用トラブルを防ぐため、国土交通省ガイドラインに完全準拠した費用シミュレーターと交渉文書テンプレートを提供する。管理会社向けAI退去立会ツール（REMODELA）が管理会社側の業務効率化に特化しているのに対し、PropRestoreは貸主・借主双方が使える透明な費用算定ツール＋交渉が発生した場合の文書テンプレートをセットで提供する。シミュレーターは部屋の広さ・入居年数・損傷箇所",
+    "quality_score": 6,
+    "completed_at": "2026-02-26T10:05:02.527923+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "proprestore-2",
+    "url": "proptech/proprestore-2/",
+    "title": "原状回復費用ガイドライン準拠シミュレーター＆交渉支援キット「PropRestore」",
+    "tool_name": "退去立会チェック＆費用記録シート",
+    "description": "賃貸退去時の原状回復費用トラブルを防ぐため、国土交通省ガイドラインに完全準拠した費用シミュレーターと交渉文書テンプレートを提供する。管理会社向けAI退去立会ツール（REMODELA）が管理会社側の業務効率化に特化しているのに対し、PropRestoreは貸主・借主双方が使える透明な費用算定ツール＋交渉が発生した場合の文書テンプレートをセットで提供する。シミュレーターは部屋の広さ・入居年数・損傷箇所",
+    "quality_score": 6,
+    "completed_at": "2026-02-26T10:05:02.527923+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "proprestore-3",
+    "url": "proptech/proprestore-3/",
+    "title": "原状回復費用ガイドライン準拠シミュレーター＆交渉支援キット「PropRestore」",
+    "tool_name": "原状回復費用交渉文書テンプレート集",
+    "description": "賃貸退去時の原状回復費用トラブルを防ぐため、国土交通省ガイドラインに完全準拠した費用シミュレーターと交渉文書テンプレートを提供する。管理会社向けAI退去立会ツール（REMODELA）が管理会社側の業務効率化に特化しているのに対し、PropRestoreは貸主・借主双方が使える透明な費用算定ツール＋交渉が発生した場合の文書テンプレートをセットで提供する。シミュレーターは部屋の広さ・入居年数・損傷箇所",
+    "quality_score": 6,
+    "completed_at": "2026-02-26T10:05:02.527923+00:00",
     "content_type": "article"
   }
 ]

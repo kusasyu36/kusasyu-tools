@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法務判断トレーサビリティ台帳 - kusasyu tools</title>
+<meta name="description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務判断トレーサビリティ台帳">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-2/">
+<meta property="og:title" content="法務判断トレーサビリティ台帳 - kusasyu tools">
+<meta property="og:description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務判断トレーサビリティ台帳 - kusasyu tools">
+<meta name="twitter:description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "法務判断トレーサビリティ台帳",
+  "description": "法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-26"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>法務判断トレーサビリティ台帳</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>法務判断トレーサビリティ台帳</h1>
+  <p class="project-name">LegalBrain — 製造業中小企業向け 法務ナレッジ構造化＆属人化リスク診断ツールキット</p>
+  <div class="content">
+<h1>法務判断トレーサビリティ台帳 — Excel テンプレート構築ガイド</h1>
+<h2>1. 台帳の目的</h2>
+<p>法務判断の属人化を可視化し、過去の判断をナレッジとして再利用可能にするための管理台帳。マクロ不要の <code>.xlsx</code> 形式で運用でき、キャプチャツールの出力をそのまま蓄積する。</p>
+<hr />
+<h2>2. シート構成</h2>
+<table>
+<thead>
+<tr>
+<th>シート名</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>データ入力</strong></td>
+<td>判断記録の蓄積（1行＝1判断）</td>
+</tr>
+<tr>
+<td><strong>マスタ</strong></td>
+<td>ドロップダウン用の選択肢リスト</td>
+</tr>
+<tr>
+<td><strong>サマリー</strong></td>
+<td>集計表（ダッシュボード CSV 貼付元）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. データ入力シート</h2>
+<h3>3-1. 列構成（A〜K列）</h3>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>ヘッダー</th>
+<th>入力方法</th>
+<th>書式例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>案件ID</td>
+<td>手入力</td>
+<td><code>LJ-2026-0001</code></td>
+</tr>
+<tr>
+<td>B</td>
+<td>日付</td>
+<td>日付入力</td>
+<td><code>2026-02-26</code></td>
+</tr>
+<tr>
+<td>C</td>
+<td>契約類型</td>
+<td><strong>ドロップダウン</strong></td>
+<td>NDA／業務委託／売買…</td>
+</tr>
+<tr>
+<td>D</td>
+<td>相手方</td>
+<td>手入力</td>
+<td>社名</td>
+</tr>
+<tr>
+<td>E</td>
+<td>争点</td>
+<td>手入力</td>
+<td>損害賠償上限の妥当性</td>
+</tr>
+<tr>
+<td>F</td>
+<td>判断内容</td>
+<td>手入力</td>
+<td>上限を契約金額の2倍に設定</td>
+</tr>
+<tr>
+<td>G</td>
+<td>判断者</td>
+<td><strong>ドロップダウン</strong></td>
+<td>田中／鈴木／外部弁護士…</td>
+</tr>
+<tr>
+<td>H</td>
+<td>根拠法令</td>
+<td>手入力</td>
+<td>民法415条</td>
+</tr>
+<tr>
+<td>I</td>
+<td>リスクレベル</td>
+<td>ドロップダウン</td>
+<td>高／中／低</td>
+</tr>
+<tr>
+<td>J</td>
+<td>結果</td>
+<td>ドロップダウン</td>
+<td>承認／差戻／保留</td>
+</tr>
+<tr>
+<td>K</td>
+<td>教訓</td>
+<td>手入力</td>
+<td>次回は早期に法務相談すべき</td>
+</tr>
+</tbody>
+</table>
+<h3>3-2. ドロップダウン設定手順</h3>
+<ol>
+<li><strong>マスタシート</strong>に選択肢を縦に列挙する（A列：契約類型、B列：判断者、C列：リスクレベル、D列：結果）</li>
+<li>データ入力シートの対象列を選択</li>
+<li><code>データ</code> → <code>データの入力規則</code> → <code>リスト</code> → ソースにマスタシートの範囲を指定</li>
+</ol>
+<pre><code>例：契約類型（C列）のソース
+=マスタ!$A$2:$A$20
+</code></pre>
+<h3>3-3. マスタシートの初期値</h3>
+<p><strong>A列：契約類型</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>NDA（秘密保持）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>業務委託</td>
+</tr>
+<tr>
+<td>3</td>
+<td>売買基本</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ライセンス</td>
+</tr>
+<tr>
+<td>5</td>
+<td>賃貸借</td>
+</tr>
+<tr>
+<td>6</td>
+<td>雇用・労働</td>
+</tr>
+<tr>
+<td>7</td>
+<td>代理店</td>
+</tr>
+<tr>
+<td>8</td>
+<td>SaaS利用規約</td>
+</tr>
+<tr>
+<td>9</td>
+<td>合弁・JV</td>
+</tr>
+<tr>
+<td>10</td>
+<td>M&amp;A関連</td>
+</tr>
+</tbody>
+</table>
+<p><strong>B列：判断者</strong> — 社内メンバー名を列挙（運用開始時に設定）</p>
+<hr />
+<h2>4. 自動算出数式（L〜N列）</h2>
+<p>データ入力シートの <strong>L・M・N列</strong> に以下の数式を設定する。</p>
+<h3>① 属人化スコア（L列）</h3>
+<p>特定の判断者に判断が集中している度合いを 0〜100 でスコア化する。</p>
+<pre><code>=IF(COUNTA($G$2:$G$1000)=0, 0,
+  ROUND(COUNTIF($G$2:$G$1000, G2) / COUNTA($G$2:$G$1000) * 100, 1))
+</code></pre>
+<p><strong>解釈</strong>：ある判断者の件数 ÷ 全件数 × 100。値が高いほど、その人に判断が偏っている。</p>
+<table>
+<thead>
+<tr>
+<th>スコア</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>70超</td>
+<td>危険：1人に集中しすぎ</td>
+</tr>
+<tr>
+<td>40〜70</td>
+<td>注意：偏りあり</td>
+</tr>
+<tr>
+<td>40未満</td>
+<td>適正分散</td>
+</tr>
+</tbody>
+</table>
+<h3>② ナレッジ鮮度（M列）</h3>
+<p>台帳に最後に記録された日からの経過日数。<strong>M2セルに1つだけ配置</strong>（全体指標）。</p>
+<pre><code>=IF(COUNTA($B$2:$B$1000)=0, &quot;データなし&quot;,
+  TODAY() - MAX($B$2:$B$1000))
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>日数</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0〜30</td>
+<td>鮮度良好</td>
+</tr>
+<tr>
+<td>31〜90</td>
+<td>やや古い</td>
+</tr>
+<tr>
+<td>91以上</td>
+<td>更新停滞</td>
+</tr>
+</tbody>
+</table>
+<h3>③ カバレッジ率（N列）</h3>
+<p>登録済みの契約類型がマスタ全体のどれだけをカバーしているか。<strong>N2セルに1つだけ配置</strong>。</p>
+<pre><code>=ROUND(SUMPRODUCT((COUNTIF($C$2:$C$1000, マスタ!$A$2:$A$20)&gt;0)*1)
+  / COUNTA(マスタ!$A$2:$A$20) * 100, 1)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>率</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80%以上</td>
+<td>網羅的</td>
+</tr>
+<tr>
+<td>50〜79%</td>
+<td>一部未登録</td>
+</tr>
+<tr>
+<td>50%未満</td>
+<td>記録不足</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 条件付き書式（L列：属人化スコア）</h2>
+<p>データ入力シートの L2:L1000 に以下2ルールを設定する。</p>
+<table>
+<thead>
+<tr>
+<th>優先度</th>
+<th>条件</th>
+<th>書式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>=L2&gt;70</code></td>
+<td>背景：赤（<code>#FF4444</code>）、文字：白</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>=AND(L2&gt;=40, L2&lt;=70)</code></td>
+<td>背景：黄（<code>#FFD700</code>）、文字：黒</td>
+</tr>
+</tbody>
+</table>
+<p><strong>設定手順</strong>：<code>ホーム</code> → <code>条件付き書式</code> → <code>新しいルール</code> → <code>数式を使用して…</code></p>
+<hr />
+<h2>6. サマリーシート</h2>
+<p>ダッシュボードへの CSV 貼り付け元として、以下2つの集計表を配置する。</p>
+<h3>6-1. 担当者別件数（A1起点）</h3>
+<table>
+<thead>
+<tr>
+<th>A列</th>
+<th>B列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>判断者</strong></td>
+<td><strong>件数</strong></td>
+</tr>
+<tr>
+<td>田中</td>
+<td><code>=COUNTIF(データ入力!$G:$G, A2)</code></td>
+</tr>
+<tr>
+<td>鈴木</td>
+<td><code>=COUNTIF(データ入力!$G:$G, A3)</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>判断者名はマスタシートのB列からコピーする。</p>
+<h3>6-2. 契約類型別件数（D1起点）</h3>
+<table>
+<thead>
+<tr>
+<th>D列</th>
+<th>E列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>契約類型</strong></td>
+<td><strong>件数</strong></td>
+</tr>
+<tr>
+<td>NDA（秘密保持）</td>
+<td><code>=COUNTIF(データ入力!$C:$C, D2)</code></td>
+</tr>
+<tr>
+<td>業務委託</td>
+<td><code>=COUNTIF(データ入力!$C:$C, D3)</code></td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>契約類型名はマスタシートのA列からコピーする。</p>
+<h3>6-3. CSV エクスポート手順</h3>
+<ol>
+<li>サマリーシートの集計表範囲を選択</li>
+<li><code>ファイル</code> → <code>名前を付けて保存</code> → 形式を <code>CSV UTF-8</code> に指定</li>
+<li>ダッシュボードツールにインポート</li>
+</ol>
+<hr />
+<h2>7. 運用ルール</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ルール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>記録タイミング</td>
+<td>判断確定後 <strong>当日中</strong> に入力</td>
+</tr>
+<tr>
+<td>案件ID採番</td>
+<td><code>LJ-YYYY-連番4桁</code>（例：LJ-2026-0042）</td>
+</tr>
+<tr>
+<td>教訓欄</td>
+<td>空欄禁止。「特になし」でも記載する</td>
+</tr>
+<tr>
+<td>月次レビュー</td>
+<td>属人化スコア70超の赤セルを確認し、担当再配分を検討</td>
+</tr>
+<tr>
+<td>四半期棚卸</td>
+<td>カバレッジ率50%未満の契約類型を洗い出し、記録漏れを補完</td>
+</tr>
+<tr>
+<td>マスタ更新</td>
+<td>新しい契約類型・判断者の追加はマスタシートで行う</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. テンプレート作成チェックリスト</h2>
+<ul>
+<li>[ ] データ入力シート：A〜K列のヘッダー設定</li>
+<li>[ ] マスタシート：契約類型10種＋判断者リスト入力</li>
+<li>[ ] ドロップダウン：C列（契約類型）、G列（判断者）、I列（リスクレベル）、J列（結果）</li>
+<li>[ ] L列：属人化スコア数式を L2 に入力し1000行までコピー</li>
+<li>[ ] M2：ナレッジ鮮度の数式を入力</li>
+<li>[ ] N2：カバレッジ率の数式を入力</li>
+<li>[ ] 条件付き書式：L列に赤（&gt;70）・黄（40〜70）を設定</li>
+<li>[ ] サマリーシート：担当者別・契約類型別の COUNTIF 集計表を作成</li>
+<li>[ ] テストデータ5件を入力し、数式・書式の動作を確認</li>
+</ul>
+<hr />
+<p><em>SynLab Legal Tech — 法務判断の属人化リスクを数値で捉え、組織のナレッジに変える。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

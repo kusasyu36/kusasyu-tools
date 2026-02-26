@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BtoBパーソナライズメール文面ジェネレーター（変数差し込み型） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7}
+.w{max-width:740px;margin:0 auto;padding:16px}
+h1{font-size:1.25rem;text-align:center;padding:18px 0 6px;color:#2b6cb0}
+.sub{text-align:center;font-size:.8rem;color:#718096;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.f{flex:1;min-width:140px}
+label{display:block;font-size:.82rem;font-weight:600;margin-bottom:4px;color:#4a5568}
+select{width:100%;padding:10px;border:1.5px solid #cbd5e0;border-radius:8px;font-size:.92rem;background:#fff;appearance:auto}
+select:focus{outline:none;border-color:#4299e1}
+.btn{width:100%;padding:13px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.05em}
+.btn:hover{opacity:.88}
+.out{display:none}
+.out h2{font-size:1rem;color:#2b6cb0;margin:16px 0 10px;border-bottom:2px solid #ebf4ff;padding-bottom:6px}
+.sj{background:#ebf4ff;border-radius:8px;padding:10px 14px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.sj span{font-weight:600;font-size:.88rem;word-break:break-all}
+.bd{background:#f7fafc;border-radius:8px;padding:16px;white-space:pre-wrap;font-size:.88rem;line-height:1.85}
+.cp{padding:5px 12px;background:#4299e1;color:#fff;border:none;border-radius:6px;font-size:.78rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.cp:hover{background:#2b6cb0}
+.ok{background:#48bb78!important}
+.tg{display:inline-block;background:#ebf4ff;color:#2b6cb0;padding:2px 10px;border-radius:4px;font-size:.75rem;margin-right:4px}
+.ft{text-align:center;font-size:.72rem;color:#a0aec0;margin-top:14px;line-height:1.6}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+</style>
+<meta name="description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoBパーソナライズメール文面ジェネレーター（変数差し込み型）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-3/">
+<meta property="og:title" content="BtoBパーソナライズメール文面ジェネレーター（変数差し込み型） - kusasyu tools">
+<meta property="og:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoBパーソナライズメール文面ジェネレーター（変数差し込み型） - kusasyu tools">
+<meta name="twitter:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoBパーソナライズメール文面ジェネレーター（変数差し込み型）",
+  "description": "MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="w">
+<h1>BtoBパーソナライズメール文面ジェネレーター</h1>
+<p class="sub">業種×役職×購買ステージで最適なメール文面を即生成（全60パターン対応）</p>
+<div class="card">
+<div class="row">
+<div class="f"><label>業種</label><select id="si">
+<option value="IT">IT・ソフトウェア</option>
+<option value="MF">製造業</option>
+<option value="FN">金融・保険</option>
+<option value="RT">小売・EC</option>
+<option value="SV">サービス業</option></select></div>
+<div class="f"><label>役職レイヤー</label><select id="sr">
+<option value="CX">経営層（CxO・役員）</option>
+<option value="DR">部長・マネージャー</option>
+<option value="ST">担当者・リーダー</option></select></div>
+<div class="f"><label>購買ステージ</label><select id="ss">
+<option value="AW">認知（課題に気づいた段階）</option>
+<option value="CN">検討（情報収集中）</option>
+<option value="CM">比較（候補を絞り込み中）</option>
+<option value="DC">決定（導入直前）</option></select></div>
+</div>
+<button class="btn" onclick="gen()">メール文面を生成する</button>
+</div>
+<div class="out" id="out">
+<div id="tags"></div>
+<h2>件名候補（3案）</h2>
+<div id="sjs"></div>
+<div class="hd"><h2 style="margin:16px 0 6px">メール本文</h2><button class="cp" id="cb" onclick="cpB()">本文をコピー</button></div>
+<div class="bd" id="bd"></div>
+</div>
+<p class="ft">TSB銀行型パーソナライズ原則（行動トリガー／課題共感／ベネフィット具体化）組込済<br>HubSpot・Marketo・Kairos3・SATORI等にコピー＆ペーストで即配信可能</p>
+</div>
+<script>
+var SB=[];
+var D={
+IT:{n:"IT・ソフトウェア",CX:{c:"DX投資のROI可視化が経営課題に",b:"導入6ヶ月でIT投資対効果を平均32%改善",p:"貴社のDX戦略推進"},DR:{c:"チーム横断でのツール乱立と属人化",b:"部門間の業務プロセスを統合し工数を40%削減",p:"部門の業務効率化"},ST:{c:"運用負荷が高く改善施策に手が回らない",b:"定型業務を自動化し月20時間の工数を創出",p:"日々のマーケティング運用改善"}},
+MF:{n:"製造業",CX:{c:"製造原価の上昇と価格競争力の維持",b:"生産計画の最適化で原価率を平均5.2%改善",p:"貴社の収益構造改革"},DR:{c:"生産現場とバックオフィスの情報断絶",b:"リアルタイムデータ連携で納期遵守率98%を実現",p:"製造部門のDX推進"},ST:{c:"Excelベースの管理業務に限界を感じている",b:"データ一元管理で月次レポート作成を3日→2時間に短縮",p:"現場の業務改善"}},
+FN:{n:"金融・保険",CX:{c:"規制強化への対応コスト増大",b:"コンプライアンス対応工数を60%削減し監査品質を向上",p:"リスク管理体制の強化"},DR:{c:"顧客接点のデジタル化で競合に後れ",b:"オンラインチャネルの顧客満足度を27%向上",p:"顧客体験のデジタル化"},ST:{c:"紙ベースの申請・承認フローで処理が滞る",b:"ペーパーレス化で申請処理速度を4倍に向上",p:"業務フローの効率化"}},
+RT:{n:"小売・EC",CX:{c:"EC化率向上と実店舗の両立戦略",b:"OMO施策でLTV（顧客生涯価値）を平均1.8倍に向上",p:"オムニチャネル戦略推進"},DR:{c:"顧客データの分散で統合分析ができない",b:"CDP構築で顧客セグメント精度を3倍に向上",p:"マーケティングデータ活用"},ST:{c:"キャンペーンの効果測定に時間がかかる",b:"リアルタイムダッシュボードで施策PDCAを週次化",p:"販促施策の効果改善"}},
+SV:{n:"サービス業",CX:{c:"人手不足と採用コストの高騰",b:"業務自動化で人件費比率を12%削減しサービス品質を維持",p:"人材戦略・業務改革"},DR:{c:"顧客対応品質のバラつきが解約率に直結",b:"対応プロセス標準化で顧客満足度を35%向上",p:"サービス品質の均一化"},ST:{c:"問い合わせ対応に追われ提案型業務ができない",b:"一次対応を自動化し提案活動時間を2倍確保",p:"お客様対応業務の効率化"}}
+};
+var RN={CX:"経営層",DR:"部長・マネージャー",ST:"担当者"};
+
+function mk(s,v,r,nm){
+var sj={
+AW:["【"+nm+"の"+r+"様へ】"+v.c+"、解決の糸口をご存知ですか？","なぜ今、"+nm+"企業の73%が「"+v.c+"」に注目するのか",nm+"の"+r+"が押さえるべき最新トレンドレポート"],
+CN:["【事例あり】"+v.c+"を解決した"+nm+"企業の共通点とは","【無料資料】"+v.c+"を解決する3つのアプローチ比較",nm+"の"+r+"様向け｜"+v.b.slice(0,18)+"を実現した方法"],
+CM:["【比較表付き】"+nm+"向けソリューション選定で失敗しない5つの基準",r+"様が最終選定で見落としがちな「"+v.c.slice(0,10)+"」対策の盲点","【導入企業の声】"+v.b.slice(0,18)+"を達成した決め手とは"],
+DC:["【"+r+"様限定】今月末まで初期費用50%OFFでご導入いただけます","【最終案内】"+v.b.slice(0,18)+"を最短2週間で実現する導入プラン",nm+"の先行導入企業に続く｜残り3枠の優先導入枠のご案内"]
+};
+var bd={
+AW:"{{会社名}}\n{{氏名}}様\n\nいつもお世話になっております。\n株式会社○○○○の△△です。\n\n"+v.p+"に関してお役に立てればと思い、ご連絡いたしました。\n\n近年、"+nm+"業界では「"+v.c+"」という課題を抱える企業が増加しています。弊社が"+nm+"企業127社を対象に行った調査では、この課題を放置した場合、年間で平均18%のコスト増につながることが分かっています。\n\n一方で、早期に対策を講じた企業では\n「"+v.b+"」\nという成果が報告されています。\n\n本メールでは、"+nm+"業界に特化した課題解決のヒントをまとめたホワイトペーパーをご案内します。\n\n▼ 3分でわかる！"+nm+"企業のための課題解決ガイド（無料）\n{{ダウンロードURL}}\n\nご多忙のところ恐れ入りますが、ぜひご一読くださいませ。",
+
+CN:"{{会社名}}\n{{氏名}}様\n\nいつもお世話になっております。\n株式会社○○○○の△△です。\n\n"+v.p+"について情報収集をされているとのこと、お役に立てる情報がございます。\n\n「"+v.c+"」を解決するアプローチは複数ありますが、"+nm+"業界で特に成果が出ているのは以下の3つです。\n\n① 業務プロセスの可視化と再設計\n② データ活用基盤の段階的構築\n③ 現場主導型の改善サイクルの確立\n\n同業の企業様では上記アプローチにより「"+v.b+"」を実現されています。\n\n具体的な進め方を30分のオンライン相談会でご案内しております。貴社の状況に合わせた最適なアプローチをご提案いたします。\n\n▼ オンライン相談会のご予約（無料・30分）\n{{予約URL}}\n\nご都合の良い日時をお選びください。",
+
+CM:"{{会社名}}\n{{氏名}}様\n\nいつもお世話になっております。\n株式会社○○○○の△△です。\n\n"+v.p+"にあたり、複数のソリューションを比較検討されている段階かと存じます。\n\n選定にあたり、"+nm+"業界の"+r+"様が重視すべきポイントは以下の5つです。\n\n① "+nm+"業界での導入実績数\n② "+v.c+"への対応力\n③ 既存システムとの連携性\n④ 導入から効果実感までのスピード\n⑤ サポート体制と定着支援の充実度\n\n弊社は上記すべてで高い評価をいただいており、導入企業の92%が「"+v.b.slice(0,18)+"」を6ヶ月以内に達成しています。\n\n▼ 他社製品との機能比較表（PDF）\n{{ダウンロードURL}}\n\n▼ "+nm+"業界の導入事例集（3社分）\n{{事例URL}}\n\nご不明点がございましたら、お気軽にご返信ください。",
+
+DC:"{{会社名}}\n{{氏名}}様\n\nいつもお世話になっております。\n株式会社○○○○の△△です。\n\n"+v.p+"のご検討をいただき、誠にありがとうございます。\n\n最終的なご判断に向けて、以下の特別オファーをご用意いたしました。\n\n【今月末までの限定オファー】\n✅ 初期費用50%OFF\n✅ 導入支援コンサルティング無料（通常30万円）\n✅ 3ヶ月間の効果保証プログラム付き\n\n導入後の成果イメージ：\n「"+v.b+"」\n\nさらに、導入企業の"+r+"様からは「想定以上に早く効果が出た」との声を多数いただいております。\n\n▼ お見積り・導入スケジュールのご相談\n{{商談予約URL}}\n\nご検討のほど、何卒よろしくお願いいたします。"
+};
+var sg="\n\n──────────────────────────\n"+nm+"企業様のビジネス成長を支援する\n株式会社○○○○\n△△ △△（担当者名）\nTEL: 03-XXXX-XXXX\nEmail: xxx@example.com\n──────────────────────────";
+return{sj:sj[s],bd:bd[s]+sg};
+}
+
+function gen(){
+var i=document.getElementById("si").value;
+var r=document.getElementById("sr").value;
+var s=document.getElementById("ss").value;
+var v=D[i][r],rn=RN[r],nm=D[i].n;
+var res=mk(s,v,rn,nm);
+SB=res.sj;
+var sn={AW:"認知",CN:"検討",CM:"比較",DC:"決定"};
+document.getElementById("tags").innerHTML='<span class="tg">'+nm+'</span><span class="tg">'+rn+'</span><span class="tg">'+sn[s]+'ステージ</span>';
+var h="";
+for(var j=0;j<3;j++) h+='<div class="sj"><span>【案'+(j+1)+'】'+SB[j]+'</span><button class="cp" onclick="cpS('+j+',this)">コピー</button></div>';
+document.getElementById("sjs").innerHTML=h;
+document.getElementById("bd").textContent=res.bd;
+var o=document.getElementById("out");
+o.style.display="block";
+o.scrollIntoView({behavior:"smooth"});
+}
+function cpS(i,el){
+navigator.clipboard.writeText(SB[i]);
+el.textContent="\u2713";el.classList.add("ok");
+setTimeout(function(){el.textContent="\u30B3\u30D4\u30FC";el.classList.remove("ok")},1200);
+}
+function cpB(){
+var t=document.getElementById("bd").textContent;
+navigator.clipboard.writeText(t);
+var b=document.getElementById("cb");
+b.textContent="\u2713 \u30B3\u30D4\u30FC\u5B8C\u4E86";b.classList.add("ok");
+setTimeout(function(){b.textContent="\u672C\u6587\u3092\u30B3\u30D4\u30FC";b.classList.remove("ok")},1200);
+}
+</script>
+</body>
+</html>

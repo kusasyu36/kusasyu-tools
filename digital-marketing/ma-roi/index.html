@@ -1,4 +1,201 @@
-"MAメール効果測定＆セグメント別ROI集計シート",,,,,,,,,,,,,,
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAメール効果測定＆セグメント別ROI集計シート - kusasyu tools</title>
+<meta name="description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,MAメール効果測定＆セグメント別ROI集計シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ma-roi/">
+<meta property="og:title" content="MAメール効果測定＆セグメント別ROI集計シート - kusasyu tools">
+<meta property="og:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ma-roi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MAメール効果測定＆セグメント別ROI集計シート - kusasyu tools">
+<meta name="twitter:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "MAメール効果測定＆セグメント別ROI集計シート",
+  "description": "MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ma-roi/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-26"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>MAメール効果測定＆セグメント別ROI集計シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>MAメール効果測定＆セグメント別ROI集計シート</h1>
+  <p class="project-name">MAメール成約率3倍化キット — セグメント別パーソナライズ文面生成＆A/Bテスト自動判定ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>MAメール効果測定＆セグメント別ROI集計シート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>ツール連携: メールA/Bテスト統計的勝者判定＆改善サイクル管理ツール</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>最終更新日</td><td>=TODAY()</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>※MAツール非依存・全社横断データ一元管理</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【記入方法】MAツール（HubSpot・Marketo・Kairos3・SATORI等）のエクスポートデータを下表に貼り付けてください</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>=== 配信データ入力エリア ===</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>No</td><td>配信日</td><td>キャンペーン名</td><td>メールタイトル</td><td>バリアント</td><td>業種</td><td>役職レベル</td><td>購買ステージ</td><td>配信数</td><td>開封数</td><td>開封率</td><td>クリック数</td><td>クリック率</td><td>CV数</td><td>CV率</td></tr><tr><td>1</td><td>2026-01-10</td><td>製造業DX事例ウェビナー集客</td><td>【製造業の方へ】DX成功事例3選｜無料ウェビナー</td><td>A（件名パーソナライズ）</td><td>製造</td><td>部長・課長</td><td>比較検討</td><td>1250</td><td>388</td><td>=J9/I9</td><td>89</td><td>=L9/I9</td><td>12</td><td>=N9/I9</td></tr><tr><td>2</td><td>2026-01-10</td><td>製造業DX事例ウェビナー集客</td><td>DX推進ウェビナーのご案内</td><td>B（汎用件名）</td><td>製造</td><td>部長・課長</td><td>比較検討</td><td>1250</td><td>263</td><td>=J10/I10</td><td>52</td><td>=L10/I10</td><td>5</td><td>=N10/I10</td></tr><tr><td>3</td><td>2026-01-17</td><td>IT業界セキュリティWP</td><td>【情シス責任者限定】2026年サイバー脅威レポート</td><td>A（役職パーソナライズ）</td><td>IT</td><td>部長・課長</td><td>情報収集</td><td>2100</td><td>672</td><td>=J11/I11</td><td>201</td><td>=L11/I11</td><td>18</td><td>=N11/I11</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"MAメール効果測定＆セグメント別ROI集計シート",,,,,,,,,,,,,,
 "ツール連携: メールA/Bテスト統計的勝者判定＆改善サイクル管理ツール",,,,,,,,,,,,,,
 "最終更新日","=TODAY()",,,,,,,,,,,,,"※MAツール非依存・全社横断データ一元管理"
 ,,,,,,,,,,,,,,
@@ -61,4 +258,21 @@
 "3. 業種・役職レベル・購買ステージ列は統一表記で入力（集計数式が自動反映）",,,,,,,,,,,,,,
 "4. ROI算出エリアのコスト・受注単価を自社数値に変更",,,,,,,,,,,,,,
 "5. 各集計エリアの数式が自動計算され、セグメント別のCV率・改善倍率を即座に確認可能",,,,,,,,,,,,,,
-"6. A/Bテストの統計的勝敗判定は「メールA/Bテスト統計的勝者判定＆改善サイクル管理ツール」を併用",,,,,,,,,,,,,,
+"6. A/Bテストの統計的勝敗判定は「メールA/Bテスト統計的勝者判定＆改善サイクル管理ツール」を併用",,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_MAメール効果測定＆セグメント別ROI集計シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

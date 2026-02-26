@@ -2,218 +2,348 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>メールA/Bテスト統計的勝者判定＆改善サイクル管理ツール</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI生成＋人間校正済みブログ記事 - kusasyu tools</title>
+<meta name="description" content="中小企業のオウンドメディア記事をAIで月20〜50本制作するワンストップサービス。キーワード戦略設計→AI記事生成→人間による品質校正→CMS投稿代行までを一括提供する。月額5〜15万円の価格帯で、従来の1/5〜1/10のコストを実現しつつ、人間の最終チェックにより品質を担保する。初期クライアントとしてニッチ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI生成＋人間校正済みブログ記事">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool/">
+<meta property="og:title" content="AI生成＋人間校正済みブログ記事 - kusasyu tools">
+<meta property="og:description" content="中小企業のオウンドメディア記事をAIで月20〜50本制作するワンストップサービス。キーワード戦略設計→AI記事生成→人間による品質校正→CMS投稿代行までを一括提供する。月額5〜15万円の価格帯で、従来の1/5〜1/10のコストを実現しつつ、人間の最終チェックにより品質を担保する。初期クライアントとしてニッチ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI生成＋人間校正済みブログ記事 - kusasyu tools">
+<meta name="twitter:description" content="中小企業のオウンドメディア記事をAIで月20〜50本制作するワンストップサービス。キーワード戦略設計→AI記事生成→人間による品質校正→CMS投稿代行までを一括提供する。月額5〜15万円の価格帯で、従来の1/5〜1/10のコストを実現しつつ、人間の最終チェックにより品質を担保する。初期クライアントとしてニッチ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI生成＋人間校正済みブログ記事",
+  "description": "中小企業のオウンドメディア記事をAIで月20〜50本制作するワンストップサービス。キーワード戦略設計→AI記事生成→人間による品質校正→CMS投稿代行までを一括提供する。月額5〜15万円の価格帯で、従来の1/5〜1/10のコストを実現しつつ、人間の最終チェックにより品質を担保する。初期クライアントとしてニッチ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-19"
+}
+</script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7;padding-bottom:40px}
-.w{max-width:760px;margin:0 auto;padding:12px}
-h1{font-size:1.15rem;text-align:center;padding:14px 0 4px;color:#2b6cb0}
-.sub{text-align:center;font-size:.75rem;color:#718096;margin-bottom:14px}
-.card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:12px}
-.card h2{font-size:.95rem;color:#2b6cb0;margin-bottom:10px;border-bottom:2px solid #ebf4ff;padding-bottom:5px}
-.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.f{flex:1;min-width:100px}
-label{display:block;font-size:.78rem;font-weight:600;margin-bottom:3px;color:#4a5568}
-input,select{width:100%;padding:8px;border:1.5px solid #cbd5e0;border-radius:6px;font-size:.88rem;background:#fff}
-input:focus,select:focus{outline:none;border-color:#4299e1}
-.btn{width:100%;padding:11px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer}
-.btn:hover{opacity:.88}
-.btn-s{padding:7px 14px;font-size:.8rem;width:auto;border-radius:6px}
-.btn-r{background:linear-gradient(135deg,#e53e3e,#fc8181)}
-.btn-g{background:linear-gradient(135deg,#38a169,#68d391)}
-.hide{display:none}
-.res{margin-top:12px}
-.winner{text-align:center;padding:14px;border-radius:8px;font-weight:700;font-size:1rem;margin-bottom:10px}
-.win-a{background:#ebf4ff;color:#2b6cb0}
-.win-b{background:#f0fff4;color:#276749}
-.win-d{background:#fffaf0;color:#c05621}
-.tbl{width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:10px}
-.tbl th,.tbl td{padding:6px 8px;border:1px solid #e2e8f0;text-align:center}
-.tbl th{background:#ebf4ff;color:#2b6cb0;font-weight:600}
-.bar-w{background:#e2e8f0;border-radius:4px;height:18px;position:relative;margin-top:3px}
-.bar-f{height:100%;border-radius:4px;transition:width .4s}
-.bar-a{background:linear-gradient(90deg,#2b6cb0,#4299e1)}
-.bar-b{background:linear-gradient(90deg,#38a169,#68d391)}
-.tag{display:inline-block;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:4px;font-size:.7rem;margin:2px}
-.hist-item{background:#f7fafc;border-radius:6px;padding:10px;margin-bottom:8px;font-size:.8rem;border-left:3px solid #4299e1}
-.hist-item:hover{background:#ebf4ff}
-.ss{font-size:.82rem;background:#fffaf0;padding:10px;border-radius:6px;margin-top:8px}
-.mt8{margin-top:8px}.mb8{margin-bottom:8px}
-.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-@media(max-width:500px){.g{grid-template-columns:1fr}.row{flex-direction:column}}
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
 </style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
 </head>
 <body>
-<div class="w">
-<h1>メールA/Bテスト 統計的勝者判定ツール</h1>
-<p class="sub">BtoBパーソナライズメール文面ジェネレーター 連携 — χ²検定で感覚に頼らない改善サイクルを実現<br>TSB銀行事例：パーソナライズで成約率24%→75%（約3倍）を達成</p>
-
-<div class="card">
-<h2>テスト情報</h2>
-<div class="row">
-<div class="f"><label>テスト名</label><input id="tName" placeholder="例：製造業向け件名テスト"></div>
-<div class="f"><label>セグメント</label>
-<select id="tSeg"><option>IT・情報通信</option><option>製造業</option><option>金融・保険</option><option>商社・卸売</option><option>その他</option></select></div>
-<div class="f"><label>評価指標</label>
-<select id="tKpi"><option value="open">開封率</option><option value="click">クリック率</option><option value="cv" selected>CV率（成約率）</option></select></div>
-</div>
-</div>
-
-<div class="g">
-<div class="card">
-<h2>バリアントA（現行）</h2>
-<label>配信数</label><input type="number" id="aS" min="0" value="500">
-<label class="mt8">開封数</label><input type="number" id="aO" min="0" value="110">
-<label class="mt8">クリック数</label><input type="number" id="aC" min="0" value="30">
-<label class="mt8">CV数（成約）</label><input type="number" id="aV" min="0" value="5">
-</div>
-<div class="card">
-<h2>バリアントB（テスト）</h2>
-<label>配信数</label><input type="number" id="bS" min="0" value="500">
-<label class="mt8">開封数</label><input type="number" id="bO" min="0" value="140">
-<label class="mt8">クリック数</label><input type="number" id="bC" min="0" value="45">
-<label class="mt8">CV数（成約）</label><input type="number" id="bV" min="0" value="12">
-</div>
-</div>
-
-<button class="btn mt8" onclick="judge()">χ²検定で勝者を判定する</button>
-
-<div id="result" class="res hide">
-<div class="card">
-<div id="winBanner" class="winner"></div>
-<table class="tbl"><thead><tr><th>指標</th><th>A（現行）</th><th>B（テスト）</th><th>差分</th></tr></thead><tbody id="tbody"></tbody></table>
-<div id="bars"></div>
-<div id="chi2"></div>
-<div id="ssCalc" class="ss hide"></div>
-</div>
-</div>
-
-<div class="card">
-<h2>必要サンプルサイズ計算</h2>
-<p style="font-size:.78rem;color:#718096;margin-bottom:8px">あと何通配信すれば統計的に結論が出るか試算します</p>
-<div class="row">
-<div class="f"><label>現在のCV率（%）</label><input type="number" id="crBase" value="1.0" step="0.1"></div>
-<div class="f"><label>検出したいリフト（%）</label><input type="number" id="crLift" value="50" step="5"></div>
-</div>
-<button class="btn btn-s btn-g" onclick="calcSS()">必要数を計算</button>
-<div id="ssResult" class="ss hide mt8"></div>
-</div>
-
-<div class="card">
-<h2>テスト履歴（ローカル保存）</h2>
-<div id="hist"></div>
-<button class="btn btn-s btn-r mt8" onclick="clearHist()">履歴をクリア</button>
-</div>
-
-<div class="card">
-<h2>セグメント別 勝ちパターン集計</h2>
-<div id="segSummary" style="font-size:.82rem;color:#718096">履歴データが蓄積されると、セグメントごとの最適パターンが表示されます。</div>
-</div>
-</div>
-
-<script>
-function v(id){return parseInt(document.getElementById(id).value)||0}
-function pct(n,d){return d?((n/d)*100).toFixed(2):'0.00'}
-function chi2test(a1,a2,b1,b2){
-var n=a1+a2+b1+b2;if(n===0)return{chi:0,p:1};
-var r1=a1+a2,r2=b1+b2,c1=a1+b1,c2=a2+b2;
-var e=[[r1*c1/n,r1*c2/n],[r2*c1/n,r2*c2/n]];
-var o=[[a1,a2],[b1,b2]],s=0;
-for(var i=0;i<2;i++)for(var j=0;j<2;j++){if(e[i][j]===0)continue;s+=Math.pow(o[i][j]-e[i][j],2)/e[i][j];}
-return{chi:s,p:1-chi2cdf(s)};
-}
-function chi2cdf(x){
-if(x<=0)return 0;
-var a=0.5,s=0,t=1/a,xx=x/2;
-for(var n=0;n<200;n++){s+=t;t*=xx/(a+n+1);}
-return s*Math.exp(-xx+a*Math.log(xx)-gammaln(a));
-}
-function gammaln(x){
-var c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.001208650973866179,-0.000005395239384953];
-var y=x,t=x+5.5;t-=(x+0.5)*Math.log(t);
-var s=1.0000000000000190015;for(var j=0;j<6;j++)s+=c[j]/++y;
-return -t+Math.log(2.5066282746310005*s/x);
-}
-function judge(){
-var aS=v('aS'),aO=v('aO'),aC=v('aC'),aV=v('aV');
-var bS=v('bS'),bO=v('bO'),bC=v('bC'),bV=v('bV');
-if(aS<1||bS<1){alert('配信数を1以上で入力してください');return;}
-var kpi=document.getElementById('tKpi').value;
-var an,ad,bn,bd,lbl;
-if(kpi==='open'){an=aO;ad=aS;bn=bO;bd=bS;lbl='開封率';}
-else if(kpi==='click'){an=aC;ad=aS;bn=bC;bd=bS;lbl='クリック率';}
-else{an=aV;ad=aS;bn=bV;bd=bS;lbl='CV率';}
-var rA=ad?an/ad:0,rB=bd?bn/bd:0;
-var t=chi2test(an,ad-an,bn,bd-bn);
-var sig=t.p<0.05;
-var win=sig?(rB>rA?'B':'A'):'引き分け';
-var wb=document.getElementById('winBanner');
-if(win==='B'){wb.className='winner win-b';wb.textContent='バリアントBが統計的に有意に優勝（p='+t.p.toFixed(4)+'）';}
-else if(win==='A'){wb.className='winner win-a';wb.textContent='バリアントAが統計的に有意に優勝（p='+t.p.toFixed(4)+'）';}
-else{wb.className='winner win-d';wb.textContent='有意差なし — サンプル追加が必要（p='+t.p.toFixed(4)+'）';}
-var tb=document.getElementById('tbody');
-var d=function(a,b){var df=b-a;return (df>=0?'+':'')+df.toFixed(2)+'%pt';};
-tb.innerHTML='<tr><td>配信数</td><td>'+aS+'</td><td>'+bS+'</td><td>-</td></tr>'
-+'<tr><td>開封率</td><td>'+pct(aO,aS)+'%</td><td>'+pct(bO,bS)+'%</td><td>'+d(aO/aS*100,bO/bS*100)+'</td></tr>'
-+'<tr><td>クリック率</td><td>'+pct(aC,aS)+'%</td><td>'+pct(bC,bS)+'%</td><td>'+d(aC/aS*100,bC/bS*100)+'</td></tr>'
-+'<tr><td>CV率</td><td>'+pct(aV,aS)+'%</td><td>'+pct(bV,bS)+'%</td><td>'+d(aV/aS*100,bV/bS*100)+'</td></tr>';
-var bars=document.getElementById('bars');
-var mxO=Math.max(aO/aS,bO/bS)||1,mxV=Math.max(aV/aS,bV/bS)||1;
-bars.innerHTML='<p style="font-size:.78rem;font-weight:600;margin:6px 0 2px">開封率比較</p>'
-+'<div class="bar-w"><div class="bar-f bar-a" style="width:'+((aO/aS/mxO)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">A: '+pct(aO,aS)+'%</div>'
-+'<div class="bar-w"><div class="bar-f bar-b" style="width:'+((bO/bS/mxO)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">B: '+pct(bO,bS)+'%</div>'
-+'<p style="font-size:.78rem;font-weight:600;margin:6px 0 2px">CV率比較</p>'
-+'<div class="bar-w"><div class="bar-f bar-a" style="width:'+((aV/aS/mxV)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">A: '+pct(aV,aS)+'%</div>'
-+'<div class="bar-w"><div class="bar-f bar-b" style="width:'+((bV/bS/mxV)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">B: '+pct(bV,bS)+'%</div>';
-document.getElementById('chi2').innerHTML='<p style="font-size:.78rem;margin-top:8px"><b>χ²統計量:</b> '+t.chi.toFixed(4)+' / <b>p値:</b> '+t.p.toFixed(4)+' / <b>有意水準:</b> p&lt;0.05 '+(sig?'有意':'非有意')+'</p>';
-if(!sig){
-var need=calcNeeded(rA,rB);
-var sc=document.getElementById('ssCalc');sc.className='ss';
-sc.innerHTML='有意差を得るにはバリアントあたり約<b>'+need+'通</b>の配信が必要です（検出力80%）。現在A='+aS+'通・B='+bS+'通なので、あと約<b>'+Math.max(0,need-Math.min(aS,bS))+'通</b>ずつ追加配信してください。';
-}else{document.getElementById('ssCalc').className='ss hide';}
-document.getElementById('result').className='res';
-saveHist({name:document.getElementById('tName').value||'無題',seg:document.getElementById('tSeg').value,kpi:lbl,rA:(rA*100).toFixed(2),rB:(rB*100).toFixed(2),win:win,p:t.p.toFixed(4),date:new Date().toLocaleDateString('ja-JP')});
-renderHist();
-}
-function calcNeeded(p1,p2){
-if(p1===p2||Math.abs(p1-p2)<0.0001)return 99999;
-var za=1.96,zb=0.84,p=(p1+p2)/2;
-var n=Math.ceil(Math.pow(za*Math.sqrt(2*p*(1-p))+zb*Math.sqrt(p1*(1-p1)+p2*(1-p2)),2)/Math.pow(p1-p2,2));
-return Math.max(n,100);
-}
-function calcSS(){
-var base=parseFloat(document.getElementById('crBase').value)/100;
-var lift=parseFloat(document.getElementById('crLift').value)/100;
-if(base<=0||lift<=0){alert('正の値を入力してください');return;}
-var p2=base*(1+lift),n=calcNeeded(base,p2);
-var r=document.getElementById('ssResult');r.className='ss mt8';
-r.innerHTML='現行CV率 <b>'+(base*100).toFixed(1)+'%</b> に対し <b>'+(lift*100).toFixed(0)+'%</b> のリフトを検出するには、各バリアントに<b>'+n+'通</b>（合計<b>'+(n*2)+'通</b>）の配信が必要です。<br>月4回配信・リスト3,000件の場合、約<b>'+Math.ceil(n*2/3000)+'回</b>の配信で結論が出ます。';
-}
-function getHist(){try{return JSON.parse(localStorage.getItem('abHist'))||[];}catch(e){return[];}}
-function saveHist(d){var h=getHist();h.unshift(d);if(h.length>50)h=h.slice(0,50);localStorage.setItem('abHist',JSON.stringify(h));}
-function clearHist(){if(confirm('履歴をすべて削除しますか？')){localStorage.removeItem('abHist');renderHist();}}
-function renderHist(){
-var h=getHist(),el=document.getElementById('hist');
-if(!h.length){el.innerHTML='<p style="font-size:.8rem;color:#a0aec0">まだ履歴がありません。テストを実行すると自動保存されます。</p>';renderSeg([]);return;}
-el.innerHTML=h.map(function(d){
-var wc=d.win==='B'?'color:#276749':d.win==='A'?'color:#2b6cb0':'color:#c05621';
-return '<div class="hist-item"><b>'+d.date+'</b>　'+d.name+'<br><span class="tag">'+d.seg+'</span><span class="tag">'+d.kpi+'</span> A:'+d.rA+'% vs B:'+d.rB+'% → <span style="'+wc+';font-weight:700">'+(d.win==='引き分け'?'有意差なし':'バリアント'+d.win+'勝利')+'</span> (p='+d.p+')</div>';
-}).join('');
-renderSeg(h);
-}
-function renderSeg(h){
-var el=document.getElementById('segSummary');
-if(!h.length){el.innerHTML='<p style="color:#a0aec0">履歴データが蓄積されると表示されます。</p>';return;}
-var m={};
-h.forEach(function(d){if(d.win==='引き分け')return;if(!m[d.seg])m[d.seg]={A:0,B:0,tests:0};m[d.seg][d.win]++;m[d.seg].tests++;});
-var keys=Object.keys(m);
-if(!keys.length){el.innerHTML='<p style="color:#a0aec0">有意差のあるテスト結果がまだありません。</p>';return;}
-el.innerHTML='<table class="tbl"><thead><tr><th>セグメント</th><th>テスト数</th><th>A勝利</th><th>B勝利</th><th>傾向</th></tr></thead><tbody>'
-+keys.map(function(k){var d=m[k];var trend=d.B>d.A?'新パターン優勢':'現行パターン優勢';return '<tr><td>'+k+'</td><td>'+d.tests+'</td><td>'+d.A+'</td><td>'+d.B+'</td><td style="font-size:.75rem">'+trend+'</td></tr>';}).join('')
-+'</tbody></table>';
-}
-renderHist();
-</script>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AI生成＋人間校正済みブログ記事</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AI生成＋人間校正済みブログ記事</h1>
+  <p class="project-name">中小企業向けAIコンテンツ量産パッケージ</p>
+  <div class="content">
+<hr />
+<p>title: "個人事業主の経費一覧｜落とせるもの・落とせないものを税理士が徹底解説【2026年最新】"
+description: "個人事業主が経費にできるものを勘定科目別に一覧で解説。家賃・通信費・交際費など、判断に迷いやすい項目も具体例つきで紹介します。節税の基本を押さえたい方は必見です。"
+keywords: "個人事業主 経費 一覧, 経費にできるもの, フリーランス 経費, 確定申告 経費"
+author: "○○税理士事務所"
+date: 2026-02-19
+category: "確定申告・税務"</p>
+<hr />
+<h1>個人事業主の経費一覧｜落とせるもの・落とせないものを税理士が徹底解説</h1>
+<p>「これは経費にしていいのだろうか？」——個人事業主やフリーランスとして働く方なら、一度は悩んだことがあるはずです。</p>
+<p>経費を正しく計上すれば、所得税・住民税・国民健康保険料の負担を適正に抑えられます。しかし、判断を誤ると税務調査で否認されるリスクもあります。</p>
+<p>この記事では、<strong>個人事業主が経費にできるもの・できないもの</strong>を勘定科目別にわかりやすく整理しました。判断に迷いやすい項目は具体例を交えて解説していますので、確定申告の準備にお役立てください。</p>
+<hr />
+<h2>そもそも「経費」とは？判断基準を押さえよう</h2>
+<p>経費（必要経費）とは、<strong>事業の売上を得るために直接必要な支出</strong>のことです。所得税法第37条では「総収入金額を得るため直接に要した費用」と定められています。</p>
+<p>経費として認められるかどうかは、次の<strong>2つの条件</strong>で判断します。</p>
+<ol>
+<li><strong>事業との関連性</strong>があること（プライベートの支出ではないこと）</li>
+<li><strong>支出の事実を証明</strong>できること（領収書・レシート等の保存があること）</li>
+</ol>
+<p>つまり、「仕事のために使った」と合理的に説明でき、証拠書類がある支出が経費になります。</p>
+<blockquote>
+<p><strong>ポイント</strong>: 税務署が見るのは「名目」ではなく「実態」です。カフェでの飲食代も、一人で休憩しただけなら経費にはなりませんが、取引先との打ち合わせであれば会議費として認められます。</p>
+</blockquote>
+<hr />
+<h2>【勘定科目別】経費にできるものの一覧</h2>
+<h3>地代家賃</h3>
+<table>
+<thead>
+<tr>
+<th>経費にできる</th>
+<th>条件・注意点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事務所・店舗の家賃</td>
+<td>賃貸契約書を保存</td>
+</tr>
+<tr>
+<td>自宅兼事務所の家賃</td>
+<td>事業使用割合に応じた按分が必要</td>
+</tr>
+<tr>
+<td>月極駐車場代</td>
+<td>事業用車両の駐車場に限る</td>
+</tr>
+</tbody>
+</table>
+<p>自宅の一部を仕事場にしている方は、<strong>家事按分（かじあんぶん）</strong>がポイントです。たとえば自宅の面積の30%を仕事部屋として使っていれば、家賃の30%を経費にできます。</p>
+<h3>通信費</h3>
+<ul>
+<li>事業用のインターネット回線・プロバイダ料金</li>
+<li>事業用携帯電話の利用料金</li>
+<li>サーバー・ドメイン代</li>
+</ul>
+<p>個人の携帯電話を仕事でも使う場合は、通話履歴などをもとに事業使用割合を算出して按分します。<strong>50〜70%程度</strong>で計上しているケースが一般的です。</p>
+<h3>旅費交通費</h3>
+<ul>
+<li>電車・バス・タクシー代（取引先訪問、営業活動）</li>
+<li>出張時の宿泊費・日当</li>
+<li>高速道路料金、コインパーキング代</li>
+</ul>
+<p>電車・バスなど領収書が出ない交通費は、<strong>出金伝票</strong>に日付・行き先・金額・目的を記録しておきましょう。ICカードの利用履歴を印刷して保管する方法も有効です。</p>
+<h3>接待交際費</h3>
+<ul>
+<li>取引先との会食・飲食代</li>
+<li>お中元・お歳暮・手土産代</li>
+<li>慶弔見舞金</li>
+</ul>
+<p>個人事業主の交際費には法人のような上限額はありません。ただし、<strong>金額が大きい場合や頻度が高い場合</strong>は税務調査で指摘を受けやすくなります。領収書の裏に「誰と・何の目的で」をメモしておくことをおすすめします。</p>
+<h3>消耗品費</h3>
+<ul>
+<li>文房具、コピー用紙、インク</li>
+<li><strong>10万円未満</strong>のパソコン・周辺機器</li>
+<li>ソフトウェア（買い切り型で10万円未満のもの）</li>
+</ul>
+<p>10万円以上のパソコンやカメラなどは「消耗品」ではなく<strong>固定資産</strong>として扱い、減価償却で数年に分けて経費にします。ただし、青色申告の方は<strong>少額減価償却資産の特例</strong>で30万円未満なら一括経費にできます（年間合計300万円まで）。</p>
+<h3>広告宣伝費</h3>
+<ul>
+<li>ホームページ制作・運用費</li>
+<li>リスティング広告・SNS広告の出稿費</li>
+<li>チラシ・名刺・パンフレットの印刷費</li>
+</ul>
+<h3>外注費</h3>
+<ul>
+<li>業務委託先への支払い（デザイン、ライティング、プログラミングなど）</li>
+<li>税理士・弁護士・社労士への顧問料</li>
+</ul>
+<p>外注費と給与の区分は税務調査で頻出の論点です。<strong>指揮命令の有無</strong>や<strong>時間的拘束の程度</strong>などで判断されるため、業務委託契約書を必ず交わしておきましょう。</p>
+<h3>水道光熱費</h3>
+<p>自宅兼事務所の場合、電気代は<strong>事業使用割合で按分</strong>します。使用時間をもとに按分するのが合理的です。たとえば1日のうち8時間を仕事に使っていれば、8÷24＝約33%が目安になります。</p>
+<h3>損害保険料</h3>
+<ul>
+<li>事務所・店舗の火災保険料</li>
+<li>事業用自動車の自動車保険料</li>
+<li>賠償責任保険料（業務上のリスクに備えるもの）</li>
+</ul>
+<hr />
+<h2>経費にできないもの・注意が必要なもの</h2>
+<p>以下は、経費にできない、あるいは全額は認められない代表例です。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所得税・住民税</td>
+<td>税金の支払いは経費にならない</td>
+</tr>
+<tr>
+<td>国民健康保険料・国民年金</td>
+<td>経費ではなく「社会保険料控除」で処理</td>
+</tr>
+<tr>
+<td>事業主本人の給与・福利厚生</td>
+<td>個人事業主自身は「従業員」ではない</td>
+</tr>
+<tr>
+<td>私的な飲食・旅行</td>
+<td>事業との関連性がない</td>
+</tr>
+<tr>
+<td>罰金・反則金</td>
+<td>交通違反等の罰金は経費にならない</td>
+</tr>
+<tr>
+<td>スーツ・ビジネス鞋</td>
+<td>プライベートでも着用可能なため原則不可</td>
+</tr>
+</tbody>
+</table>
+<p><strong>スーツは経費になるか？</strong> という質問は非常に多いですが、原則として認められません。ただし、作業着やユニフォームなど<strong>事業専用であることが明らかな衣服</strong>は経費にできます。</p>
+<hr />
+<h2>経費計上で失敗しないための3つの実務ポイント</h2>
+<h3>1. 領収書は「5年間」保存する</h3>
+<p>白色申告の場合は5年、青色申告の場合は7年の保存義務があります。紙の保存が大変な場合は、<strong>電子帳簿保存法に対応したクラウド会計ソフト</strong>でスキャン保存する方法が便利です。</p>
+<h3>2. 家事按分は「根拠」を明確にする</h3>
+<p>面積比、使用時間比など、按分の計算根拠を書面で残しておきましょう。税務調査では「なぜこの割合なのか？」と聞かれることがあります。根拠があいまいだと否認されるリスクが高まります。</p>
+<h3>3. 判断に迷ったら税理士に相談する</h3>
+<p>「経費になるかどうか微妙なもの」は、自己判断で計上するよりも<strong>事前に専門家へ確認する方が安全</strong>です。年に一度の確定申告だけでなく、日頃から相談できる税理士がいると安心です。</p>
+<hr />
+<h2>まとめ</h2>
+<p>個人事業主の経費は「事業に関連する支出であること」「証拠書類があること」の2点が基本原則です。</p>
+<ul>
+<li>家賃や通信費は<strong>家事按分</strong>で事業使用分を計上できる</li>
+<li>10万円未満の備品は<strong>消耗品費</strong>で一括経費にできる</li>
+<li>領収書の保存と按分根拠の記録を忘れずに</li>
+<li>判断に迷ったら<strong>税理士への早めの相談</strong>がベスト</li>
+</ul>
+<p>正しい経費計上は、最も基本的で効果の大きい節税対策です。「もっと早く知りたかった」とならないよう、今年の確定申告から見直してみてください。</p>
+<hr />
+<p><strong>この記事の内容は2026年2月時点の税制に基づいています。税制改正により取り扱いが変更される場合がありますので、最新情報は国税庁のウェブサイトまたは顧問税理士にご確認ください。</strong></p>
+<hr />
+<p><em>○○税理士事務所では、個人事業主・フリーランスの方の確定申告サポートを承っております。「経費の判断に自信がない」「記帳が追いつかない」といったお悩みがあれば、お気軽にご相談ください。初回相談は無料です。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
 </body>
 </html>

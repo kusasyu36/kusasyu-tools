@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>属人化リスク診断ダッシュボード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.hd{background:linear-gradient(135deg,#1a365d,#2d4a7a);color:#fff;padding:24px 16px;text-align:center}
+.hd h1{font-size:1.25rem;letter-spacing:.04em}.hd p{font-size:.8rem;opacity:.8;margin-top:4px}
+.wrap{max-width:780px;margin:20px auto;padding:0 16px}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1rem;color:#1a365d;margin-bottom:14px;border-left:4px solid #1a365d;padding-left:10px}
+textarea{width:100%;height:120px;font-family:'Consolas','Menlo',monospace;font-size:13px;border:2px solid #d1d5db;border-radius:8px;padding:10px;resize:vertical}
+textarea:focus{outline:none;border-color:#3b82f6}
+.btns{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.btn{background:#1a365d;color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:.95rem;cursor:pointer}
+.btn:hover{background:#2d4a7a}
+.btn-s{background:none;border:1px solid #93a3b8;color:#555;padding:8px 16px;border-radius:8px;font-size:.82rem;cursor:pointer}
+.btn-s:hover{background:#f3f4f6}
+.hint{font-size:.78rem;color:#888;margin-top:8px}
+.hint code{background:#f3f4f6;padding:1px 5px;border-radius:3px;font-size:.76rem}
+.sa{text-align:center;padding:16px 0}
+.sn{font-size:4.5rem;font-weight:900;line-height:1}
+.sl{font-size:1.1rem;margin-top:6px;font-weight:700}
+.sd{font-size:.82rem;color:#666;margin-top:4px}
+.gc{color:#16a34a}.yc{color:#ca8a04}.rc{color:#dc2626}
+.sig{display:inline-flex;gap:8px;margin-top:12px}
+.sig span{width:22px;height:22px;border-radius:50%;background:#e5e7eb;border:2px solid #ccc}
+.sig .og{background:#16a34a;border-color:#15803d;box-shadow:0 0 8px rgba(22,163,74,.4)}
+.sig .oy{background:#ca8a04;border-color:#a16207;box-shadow:0 0 8px rgba(202,138,4,.4)}
+.sig .or{background:#dc2626;border-color:#b91c1c;box-shadow:0 0 8px rgba(220,38,38,.4)}
+.sts{display:flex;justify-content:center;gap:28px;margin-top:16px;font-size:.82rem;color:#555}
+.sts div{text-align:center}.sts strong{display:block;font-size:1.3rem;color:#1a365d}
+.br{display:flex;align-items:center;margin-bottom:8px}
+.bn{width:76px;font-size:.82rem;text-align:right;padding-right:10px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bt{flex:1;background:#eef0f4;border-radius:5px;height:28px}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;font-size:.78rem;color:#fff;font-weight:700;min-width:32px;transition:width .4s ease}
+.gd{text-align:center;padding:32px 16px;color:#666}
+.gd b{color:#1a365d}
+.hid{display:none}
+.ref{font-size:.72rem;color:#aaa;text-align:center;padding:4px 12px 20px;line-height:1.7}
+.tbl{border-collapse:collapse;width:100%;font-size:.8rem;margin-top:10px}
+.tbl th{background:#f3f4f6;padding:6px 8px;text-align:left;border-bottom:2px solid #d1d5db;color:#1a365d;font-weight:600}
+.tbl td{padding:5px 8px;border-bottom:1px solid #eee}
+@media(max-width:600px){.sn{font-size:3.2rem}.bn{width:56px;font-size:.72rem}.sts{gap:16px;font-size:.75rem}}
+</style>
+<meta name="description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,属人化リスク診断ダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-3/">
+<meta property="og:title" content="属人化リスク診断ダッシュボード - kusasyu tools">
+<meta property="og:description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="属人化リスク診断ダッシュボード - kusasyu tools">
+<meta name="twitter:description" content="法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "属人化リスク診断ダッシュボード",
+  "description": "法務担当者の暗黙知（契約交渉の判断根拠・リスク評価ロジック・過去トラブル対応の経緯）を構造化データとしてキャプチャし、属人化リスクを定量診断するツールキット。①ブラウザ上で法務判断を構造化入力できるキャプチャツール、②判断履歴を蓄積・リスク自動算出するExcel台帳、③属人化の危険度を可視化する診断ダッシュボ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="hd">
+<h1>LegalBrain &mdash; 属人化リスク診断ダッシュボード</h1>
+<p>台帳サマリーCSVを貼り付けるだけで属人化リスクを即時可視化</p>
+</div>
+<div class="wrap">
+
+<div class="card">
+<h2>CSVデータ貼り付け</h2>
+<textarea id="csv" placeholder="担当者名,件数&#10;田中,45&#10;佐藤,12&#10;鈴木,8"></textarea>
+<div class="btns">
+<button class="btn" onclick="run()">診断する</button>
+<button class="btn-s" onclick="demo()">サンプルデータで試す</button>
+</div>
+<p class="hint">形式: <code>担当者名,件数</code>（ヘッダー行あり/なし両対応・カンマまたはタブ区切り）</p>
+</div>
+
+<div id="gd" class="card gd hid"></div>
+
+<div id="sc" class="card hid">
+<h2>属人化危険度スコア</h2>
+<div class="sa">
+<div id="sn" class="sn">--</div>
+<div id="sl" class="sl"></div>
+<div id="sd" class="sd"></div>
+<div class="sig"><span id="s1"></span><span id="s2"></span><span id="s3"></span></div>
+<div id="st" class="sts"></div>
+</div>
+<table class="tbl"><tr><th>スコア</th><th>状態</th><th>推奨アクション</th></tr>
+<tr><td>0 &ndash; 39</td><td style="color:#16a34a">安全</td><td>現状維持。定期的な記録継続を推奨</td></tr>
+<tr><td>40 &ndash; 69</td><td style="color:#ca8a04">注意</td><td>計画的な引継ぎ・ペア担当制の検討</td></tr>
+<tr><td>70 &ndash; 100</td><td style="color:#dc2626">危険</td><td>早急にナレッジ移転計画を策定</td></tr></table>
+</div>
+
+<div id="cc" class="card hid">
+<h2>担当者別 ナレッジ件数</h2>
+<div id="ch"></div>
+</div>
+
+<p class="ref">全類型数 = 12（秘密保持契約(NDA)・製造委託契約・売買基本契約・業務委託契約・ライセンス契約・共同開発契約・品質保証契約・代理店契約・保守契約・賃貸借契約・雇用契約・その他）</p>
+</div>
+
+<script>
+function run(){
+  var raw=document.getElementById('csv').value.trim();
+  if(!raw)return;
+  var lines=raw.split(/\r?\n/).filter(function(l){return l.trim()!=='';});
+  var d=[];
+  for(var i=0;i<lines.length;i++){
+    var c=lines[i].split(/[,\t]/);
+    if(c.length<2)continue;
+    var nm=c[0].trim(),ct=parseInt(c[1].trim(),10);
+    if(!nm||isNaN(ct))continue;
+    if(/^(担当者名?|名前|氏名|name)$/i.test(nm))continue;
+    d.push({n:nm,c:ct});
+  }
+  var tot=0,mx=0;
+  for(var j=0;j<d.length;j++){tot+=d[j].c;if(d[j].c>mx)mx=d[j].c;}
+  var gd=document.getElementById('gd'),sc=document.getElementById('sc'),cc=document.getElementById('cc');
+  if(d.length===0){
+    gd.innerHTML='<div style="font-size:1.8rem;margin-bottom:8px">&#9888;&#65039;</div>データを読み取れませんでした。<br><code style="background:#f3f4f6;padding:2px 6px;border-radius:3px;font-size:.82rem">担当者名,件数</code> の形式で入力してください。';
+    gd.classList.remove('hid');sc.classList.add('hid');cc.classList.add('hid');return;
+  }
+  if(tot<10){
+    gd.innerHTML='<div style="font-size:1.8rem;margin-bottom:8px">&#128203;</div>まだデータが少ない状態です。<br><b>10件入力後に診断が有効になります。</b><br><span style="font-size:.82rem;color:#888;display:inline-block;margin-top:6px">台帳に法務判断を記録してナレッジ件数を増やし、<br>サマリーCSVを貼り付けて再診断してください。</span>';
+    gd.classList.remove('hid');sc.classList.add('hid');cc.classList.add('hid');return;
+  }
+  gd.classList.add('hid');
+  var score=Math.round(mx/tot*100);
+  var sn=document.getElementById('sn'),sl=document.getElementById('sl'),sd=document.getElementById('sd');
+  sn.textContent=score;sn.className='sn';
+  var s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3');
+  s1.className='';s2.className='';s3.className='';
+  if(score<=39){
+    sn.classList.add('gc');sl.textContent='安全';sl.className='sl gc';
+    sd.textContent='判断が適度に分散しています';s1.className='og';
+  }else if(score<=69){
+    sn.classList.add('yc');sl.textContent='注意';sl.className='sl yc';
+    sd.textContent='やや集中傾向 \u2014 計画的な引継ぎを推奨';s2.className='oy';
+  }else{
+    sn.classList.add('rc');sl.textContent='危険';sl.className='sl rc';
+    sd.textContent='特定個人に強く依存 \u2014 早急な対策が必要';s3.className='or';
+  }
+  document.getElementById('st').innerHTML='<div><strong>'+d.length+'</strong>名の担当者</div><div><strong>'+tot+'</strong>件のナレッジ</div><div><strong>'+mx+'</strong>件<span style="display:block;font-size:.72rem">(最多担当者)</span></div>';
+  sc.classList.remove('hid');
+  d.sort(function(a,b){return b.c-a.c;});
+  var ch=document.getElementById('ch');ch.innerHTML='';
+  var cl=['#1a365d','#2563eb','#3b82f6','#60a5fa','#93c5fd','#6366f1','#818cf8','#a78bfa','#c4b5fd','#bfdbfe'];
+  for(var m=0;m<d.length;m++){
+    var p=Math.max(Math.round(d[m].c/mx*100),10);
+    var r=document.createElement('div');r.className='br';
+    r.innerHTML='<div class="bn" title="'+esc(d[m].n)+'">'+esc(d[m].n)+'</div><div class="bt"><div class="bf" style="width:'+p+'%;background:'+cl[m%cl.length]+'">'+d[m].c+'</div></div>';
+    ch.appendChild(r);
+  }
+  cc.classList.remove('hid');
+}
+function demo(){
+  document.getElementById('csv').value='担当者名,件数\n田中,42\n佐藤,15\n鈴木,8\n山田,3';
+  run();
+}
+function esc(s){var e=document.createElement('span');e.textContent=s;return e.innerHTML;}
+</script>
+</body>
+</html>

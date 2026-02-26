@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7;padding-bottom:40px}
+.w{max-width:760px;margin:0 auto;padding:12px}
+h1{font-size:1.15rem;text-align:center;padding:14px 0 4px;color:#2b6cb0}
+.sub{text-align:center;font-size:.75rem;color:#718096;margin-bottom:14px}
+.card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:12px}
+.card h2{font-size:.95rem;color:#2b6cb0;margin-bottom:10px;border-bottom:2px solid #ebf4ff;padding-bottom:5px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.f{flex:1;min-width:100px}
+label{display:block;font-size:.78rem;font-weight:600;margin-bottom:3px;color:#4a5568}
+input,select{width:100%;padding:8px;border:1.5px solid #cbd5e0;border-radius:6px;font-size:.88rem;background:#fff}
+input:focus,select:focus{outline:none;border-color:#4299e1}
+.btn{width:100%;padding:11px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer}
+.btn:hover{opacity:.88}
+.btn-s{padding:7px 14px;font-size:.8rem;width:auto;border-radius:6px}
+.btn-r{background:linear-gradient(135deg,#e53e3e,#fc8181)}
+.btn-g{background:linear-gradient(135deg,#38a169,#68d391)}
+.hide{display:none}
+.res{margin-top:12px}
+.winner{text-align:center;padding:14px;border-radius:8px;font-weight:700;font-size:1rem;margin-bottom:10px}
+.win-a{background:#ebf4ff;color:#2b6cb0}
+.win-b{background:#f0fff4;color:#276749}
+.win-d{background:#fffaf0;color:#c05621}
+.tbl{width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:10px}
+.tbl th,.tbl td{padding:6px 8px;border:1px solid #e2e8f0;text-align:center}
+.tbl th{background:#ebf4ff;color:#2b6cb0;font-weight:600}
+.bar-w{background:#e2e8f0;border-radius:4px;height:18px;position:relative;margin-top:3px}
+.bar-f{height:100%;border-radius:4px;transition:width .4s}
+.bar-a{background:linear-gradient(90deg,#2b6cb0,#4299e1)}
+.bar-b{background:linear-gradient(90deg,#38a169,#68d391)}
+.tag{display:inline-block;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:4px;font-size:.7rem;margin:2px}
+.hist-item{background:#f7fafc;border-radius:6px;padding:10px;margin-bottom:8px;font-size:.8rem;border-left:3px solid #4299e1}
+.hist-item:hover{background:#ebf4ff}
+.ss{font-size:.82rem;background:#fffaf0;padding:10px;border-radius:6px;margin-top:8px}
+.mt8{margin-top:8px}.mb8{margin-bottom:8px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:500px){.g{grid-template-columns:1fr}.row{flex-direction:column}}
+</style>
+<meta name="description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-2/">
+<meta property="og:title" content="メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール - kusasyu tools">
+<meta property="og:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール - kusasyu tools">
+<meta name="twitter:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール",
+  "description": "MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="w">
+<h1>メールA/Bテスト 統計的勝者判定ツール</h1>
+<p class="sub">BtoBパーソナライズメール文面ジェネレーター 連携 — χ²検定で感覚に頼らない改善サイクルを実現<br>TSB銀行事例：パーソナライズで成約率24%→75%（約3倍）を達成</p>
+
+<div class="card">
+<h2>テスト情報</h2>
+<div class="row">
+<div class="f"><label>テスト名</label><input id="tName" placeholder="例：製造業向け件名テスト"></div>
+<div class="f"><label>セグメント</label>
+<select id="tSeg"><option>IT・情報通信</option><option>製造業</option><option>金融・保険</option><option>商社・卸売</option><option>その他</option></select></div>
+<div class="f"><label>評価指標</label>
+<select id="tKpi"><option value="open">開封率</option><option value="click">クリック率</option><option value="cv" selected>CV率（成約率）</option></select></div>
+</div>
+</div>
+
+<div class="g">
+<div class="card">
+<h2>バリアントA（現行）</h2>
+<label>配信数</label><input type="number" id="aS" min="0" value="500">
+<label class="mt8">開封数</label><input type="number" id="aO" min="0" value="110">
+<label class="mt8">クリック数</label><input type="number" id="aC" min="0" value="30">
+<label class="mt8">CV数（成約）</label><input type="number" id="aV" min="0" value="5">
+</div>
+<div class="card">
+<h2>バリアントB（テスト）</h2>
+<label>配信数</label><input type="number" id="bS" min="0" value="500">
+<label class="mt8">開封数</label><input type="number" id="bO" min="0" value="140">
+<label class="mt8">クリック数</label><input type="number" id="bC" min="0" value="45">
+<label class="mt8">CV数（成約）</label><input type="number" id="bV" min="0" value="12">
+</div>
+</div>
+
+<button class="btn mt8" onclick="judge()">χ²検定で勝者を判定する</button>
+
+<div id="result" class="res hide">
+<div class="card">
+<div id="winBanner" class="winner"></div>
+<table class="tbl"><thead><tr><th>指標</th><th>A（現行）</th><th>B（テスト）</th><th>差分</th></tr></thead><tbody id="tbody"></tbody></table>
+<div id="bars"></div>
+<div id="chi2"></div>
+<div id="ssCalc" class="ss hide"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>必要サンプルサイズ計算</h2>
+<p style="font-size:.78rem;color:#718096;margin-bottom:8px">あと何通配信すれば統計的に結論が出るか試算します</p>
+<div class="row">
+<div class="f"><label>現在のCV率（%）</label><input type="number" id="crBase" value="1.0" step="0.1"></div>
+<div class="f"><label>検出したいリフト（%）</label><input type="number" id="crLift" value="50" step="5"></div>
+</div>
+<button class="btn btn-s btn-g" onclick="calcSS()">必要数を計算</button>
+<div id="ssResult" class="ss hide mt8"></div>
+</div>
+
+<div class="card">
+<h2>テスト履歴（ローカル保存）</h2>
+<div id="hist"></div>
+<button class="btn btn-s btn-r mt8" onclick="clearHist()">履歴をクリア</button>
+</div>
+
+<div class="card">
+<h2>セグメント別 勝ちパターン集計</h2>
+<div id="segSummary" style="font-size:.82rem;color:#718096">履歴データが蓄積されると、セグメントごとの最適パターンが表示されます。</div>
+</div>
+</div>
+
+<script>
+function v(id){return parseInt(document.getElementById(id).value)||0}
+function pct(n,d){return d?((n/d)*100).toFixed(2):'0.00'}
+function chi2test(a1,a2,b1,b2){
+var n=a1+a2+b1+b2;if(n===0)return{chi:0,p:1};
+var r1=a1+a2,r2=b1+b2,c1=a1+b1,c2=a2+b2;
+var e=[[r1*c1/n,r1*c2/n],[r2*c1/n,r2*c2/n]];
+var o=[[a1,a2],[b1,b2]],s=0;
+for(var i=0;i<2;i++)for(var j=0;j<2;j++){if(e[i][j]===0)continue;s+=Math.pow(o[i][j]-e[i][j],2)/e[i][j];}
+return{chi:s,p:1-chi2cdf(s)};
+}
+function chi2cdf(x){
+if(x<=0)return 0;
+var a=0.5,s=0,t=1/a,xx=x/2;
+for(var n=0;n<200;n++){s+=t;t*=xx/(a+n+1);}
+return s*Math.exp(-xx+a*Math.log(xx)-gammaln(a));
+}
+function gammaln(x){
+var c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.001208650973866179,-0.000005395239384953];
+var y=x,t=x+5.5;t-=(x+0.5)*Math.log(t);
+var s=1.0000000000000190015;for(var j=0;j<6;j++)s+=c[j]/++y;
+return -t+Math.log(2.5066282746310005*s/x);
+}
+function judge(){
+var aS=v('aS'),aO=v('aO'),aC=v('aC'),aV=v('aV');
+var bS=v('bS'),bO=v('bO'),bC=v('bC'),bV=v('bV');
+if(aS<1||bS<1){alert('配信数を1以上で入力してください');return;}
+var kpi=document.getElementById('tKpi').value;
+var an,ad,bn,bd,lbl;
+if(kpi==='open'){an=aO;ad=aS;bn=bO;bd=bS;lbl='開封率';}
+else if(kpi==='click'){an=aC;ad=aS;bn=bC;bd=bS;lbl='クリック率';}
+else{an=aV;ad=aS;bn=bV;bd=bS;lbl='CV率';}
+var rA=ad?an/ad:0,rB=bd?bn/bd:0;
+var t=chi2test(an,ad-an,bn,bd-bn);
+var sig=t.p<0.05;
+var win=sig?(rB>rA?'B':'A'):'引き分け';
+var wb=document.getElementById('winBanner');
+if(win==='B'){wb.className='winner win-b';wb.textContent='バリアントBが統計的に有意に優勝（p='+t.p.toFixed(4)+'）';}
+else if(win==='A'){wb.className='winner win-a';wb.textContent='バリアントAが統計的に有意に優勝（p='+t.p.toFixed(4)+'）';}
+else{wb.className='winner win-d';wb.textContent='有意差なし — サンプル追加が必要（p='+t.p.toFixed(4)+'）';}
+var tb=document.getElementById('tbody');
+var d=function(a,b){var df=b-a;return (df>=0?'+':'')+df.toFixed(2)+'%pt';};
+tb.innerHTML='<tr><td>配信数</td><td>'+aS+'</td><td>'+bS+'</td><td>-</td></tr>'
++'<tr><td>開封率</td><td>'+pct(aO,aS)+'%</td><td>'+pct(bO,bS)+'%</td><td>'+d(aO/aS*100,bO/bS*100)+'</td></tr>'
++'<tr><td>クリック率</td><td>'+pct(aC,aS)+'%</td><td>'+pct(bC,bS)+'%</td><td>'+d(aC/aS*100,bC/bS*100)+'</td></tr>'
++'<tr><td>CV率</td><td>'+pct(aV,aS)+'%</td><td>'+pct(bV,bS)+'%</td><td>'+d(aV/aS*100,bV/bS*100)+'</td></tr>';
+var bars=document.getElementById('bars');
+var mxO=Math.max(aO/aS,bO/bS)||1,mxV=Math.max(aV/aS,bV/bS)||1;
+bars.innerHTML='<p style="font-size:.78rem;font-weight:600;margin:6px 0 2px">開封率比較</p>'
++'<div class="bar-w"><div class="bar-f bar-a" style="width:'+((aO/aS/mxO)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">A: '+pct(aO,aS)+'%</div>'
++'<div class="bar-w"><div class="bar-f bar-b" style="width:'+((bO/bS/mxO)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">B: '+pct(bO,bS)+'%</div>'
++'<p style="font-size:.78rem;font-weight:600;margin:6px 0 2px">CV率比較</p>'
++'<div class="bar-w"><div class="bar-f bar-a" style="width:'+((aV/aS/mxV)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">A: '+pct(aV,aS)+'%</div>'
++'<div class="bar-w"><div class="bar-f bar-b" style="width:'+((bV/bS/mxV)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">B: '+pct(bV,bS)+'%</div>';
+document.getElementById('chi2').innerHTML='<p style="font-size:.78rem;margin-top:8px"><b>χ²統計量:</b> '+t.chi.toFixed(4)+' / <b>p値:</b> '+t.p.toFixed(4)+' / <b>有意水準:</b> p&lt;0.05 '+(sig?'有意':'非有意')+'</p>';
+if(!sig){
+var need=calcNeeded(rA,rB);
+var sc=document.getElementById('ssCalc');sc.className='ss';
+sc.innerHTML='有意差を得るにはバリアントあたり約<b>'+need+'通</b>の配信が必要です（検出力80%）。現在A='+aS+'通・B='+bS+'通なので、あと約<b>'+Math.max(0,need-Math.min(aS,bS))+'通</b>ずつ追加配信してください。';
+}else{document.getElementById('ssCalc').className='ss hide';}
+document.getElementById('result').className='res';
+saveHist({name:document.getElementById('tName').value||'無題',seg:document.getElementById('tSeg').value,kpi:lbl,rA:(rA*100).toFixed(2),rB:(rB*100).toFixed(2),win:win,p:t.p.toFixed(4),date:new Date().toLocaleDateString('ja-JP')});
+renderHist();
+}
+function calcNeeded(p1,p2){
+if(p1===p2||Math.abs(p1-p2)<0.0001)return 99999;
+var za=1.96,zb=0.84,p=(p1+p2)/2;
+var n=Math.ceil(Math.pow(za*Math.sqrt(2*p*(1-p))+zb*Math.sqrt(p1*(1-p1)+p2*(1-p2)),2)/Math.pow(p1-p2,2));
+return Math.max(n,100);
+}
+function calcSS(){
+var base=parseFloat(document.getElementById('crBase').value)/100;
+var lift=parseFloat(document.getElementById('crLift').value)/100;
+if(base<=0||lift<=0){alert('正の値を入力してください');return;}
+var p2=base*(1+lift),n=calcNeeded(base,p2);
+var r=document.getElementById('ssResult');r.className='ss mt8';
+r.innerHTML='現行CV率 <b>'+(base*100).toFixed(1)+'%</b> に対し <b>'+(lift*100).toFixed(0)+'%</b> のリフトを検出するには、各バリアントに<b>'+n+'通</b>（合計<b>'+(n*2)+'通</b>）の配信が必要です。<br>月4回配信・リスト3,000件の場合、約<b>'+Math.ceil(n*2/3000)+'回</b>の配信で結論が出ます。';
+}
+function getHist(){try{return JSON.parse(localStorage.getItem('abHist'))||[];}catch(e){return[];}}
+function saveHist(d){var h=getHist();h.unshift(d);if(h.length>50)h=h.slice(0,50);localStorage.setItem('abHist',JSON.stringify(h));}
+function clearHist(){if(confirm('履歴をすべて削除しますか？')){localStorage.removeItem('abHist');renderHist();}}
+function renderHist(){
+var h=getHist(),el=document.getElementById('hist');
+if(!h.length){el.innerHTML='<p style="font-size:.8rem;color:#a0aec0">まだ履歴がありません。テストを実行すると自動保存されます。</p>';renderSeg([]);return;}
+el.innerHTML=h.map(function(d){
+var wc=d.win==='B'?'color:#276749':d.win==='A'?'color:#2b6cb0':'color:#c05621';
+return '<div class="hist-item"><b>'+d.date+'</b>　'+d.name+'<br><span class="tag">'+d.seg+'</span><span class="tag">'+d.kpi+'</span> A:'+d.rA+'% vs B:'+d.rB+'% → <span style="'+wc+';font-weight:700">'+(d.win==='引き分け'?'有意差なし':'バリアント'+d.win+'勝利')+'</span> (p='+d.p+')</div>';
+}).join('');
+renderSeg(h);
+}
+function renderSeg(h){
+var el=document.getElementById('segSummary');
+if(!h.length){el.innerHTML='<p style="color:#a0aec0">履歴データが蓄積されると表示されます。</p>';return;}
+var m={};
+h.forEach(function(d){if(d.win==='引き分け')return;if(!m[d.seg])m[d.seg]={A:0,B:0,tests:0};m[d.seg][d.win]++;m[d.seg].tests++;});
+var keys=Object.keys(m);
+if(!keys.length){el.innerHTML='<p style="color:#a0aec0">有意差のあるテスト結果がまだありません。</p>';return;}
+el.innerHTML='<table class="tbl"><thead><tr><th>セグメント</th><th>テスト数</th><th>A勝利</th><th>B勝利</th><th>傾向</th></tr></thead><tbody>'
++keys.map(function(k){var d=m[k];var trend=d.B>d.A?'新パターン優勢':'現行パターン優勢';return '<tr><td>'+k+'</td><td>'+d.tests+'</td><td>'+d.A+'</td><td>'+d.B+'</td><td style="font-size:.75rem">'+trend+'</td></tr>';}).join('')
++'</tbody></table>';
+}
+renderHist();
+</script>
+</body>
+</html>
