@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スタートアップ知財管理台帳 | 弁理士に相談する前の「知財セルフチェック」を可能にするツールキット - kusasyu tools</title>
+<meta name="description" content="弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,スタートアップ知財管理台帳">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-3/">
+<meta property="og:title" content="スタートアップ知財管理台帳 | 弁理士に相談する前の「知財セルフチェック」を可能にするツールキット - kusasyu tools">
+<meta property="og:description" content="弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="スタートアップ知財管理台帳 | 弁理士に相談する前の「知財セルフチェック」を可能にするツールキット - kusasyu tools">
+<meta name="twitter:description" content="弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "スタートアップ知財管理台帳",
+  "description": "弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-26"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>スタートアップ知財管理台帳</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>スタートアップ知財管理台帳</h1>
+  <p class="project-name">PatentScout — スタートアップ知財セルフ診断＆AI調査ツールキット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>```csv</th></tr></thead><tbody><tr><td># ============================================================</td></tr><tr><td># スタートアップ知財管理台帳 - SynLab Legal Tech</td></tr><tr><td># ============================================================</td></tr><tr><td># 【記入ガイド】</td></tr><tr><td># 出願番号: 特願YYYY-NNNNNN形式。出願前は「未出願」と記入。PCT出願はPCT/JP20XX/NNNNNN形式。</td></tr><tr><td># 発明名称: 特許出願書類の【発明の名称】と一致させる。未出願時は社内仮称（例：プロジェクト名+連番）。</td></tr><tr><td># 技術分類: IPC分類（例：G06F）を記入。不明時は社内分類（AI/IoT/SaaS/バイオ/機械等）で仮記入。</td></tr><tr><td># 出願日: YYYY/MM/DD形式。未出願は空欄。</td></tr><tr><td># 審査請求期限: 出願日から3年後の日付。未出願は空欄。期限30日前にアラート運用を推奨。</td></tr><tr><td># 担当弁理士: 弁理士名+事務所名。社内出願は「社内（担当者名）」。</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `\`\`\`csv
+# ============================================================
+# スタートアップ知財管理台帳 - SynLab Legal Tech
+# ============================================================
+# 【記入ガイド】
+# 出願番号: 特願YYYY-NNNNNN形式。出願前は「未出願」と記入。PCT出願はPCT/JP20XX/NNNNNN形式。
+# 発明名称: 特許出願書類の【発明の名称】と一致させる。未出願時は社内仮称（例：プロジェクト名+連番）。
+# 技術分類: IPC分類（例：G06F）を記入。不明時は社内分類（AI/IoT/SaaS/バイオ/機械等）で仮記入。
+# 出願日: YYYY/MM/DD形式。未出願は空欄。
+# 審査請求期限: 出願日から3年後の日付。未出願は空欄。期限30日前にアラート運用を推奨。
+# 担当弁理士: 弁理士名+事務所名。社内出願は「社内（担当者名）」。
+# ステータス: 以下から選択 → 発明開示/先行調査中/明細書作成中/出願済/審査請求済/拒絶対応中/登録済/放棄/PCT移行済
+# 競合特許番号: 先行調査で発見した類似特許番号。複数ある場合は「;」区切り。なければ「なし」。
+# リスク評価: 高/中/低 の3段階。高=抵触リスクあり 中=一部重複の可能性 低=問題なし。
+# 次回アクション: 直近で必要な作業を1つ記入。期日がある場合は末尾に(期限:YYYY/MM/DD)を付記。
+# 備考: 共同出願先・ライセンス情報・社内プロジェクト紐付け等の補足情報。
+# ============================================================
+出願番号,発明名称,技術分類,出願日,審査請求期限,担当弁理士,ステータス,競合特許番号,リスク評価,次回アクション,備考
+特願2025-123456,AIベース契約リスク自動判定システム,G06F 40/30,2025/06/15,2028/06/15,山田太郎（IP総合特許事務所）,審査請求済,特開2023-987654;US2024/0012345,中,拒絶理由通知への応答書作成(期限:2026/04/10),科研費助成プロジェクトA関連
+特願2025-234567,自然言語処理による条項分類方法,G06N 3/08,2025/09/01,2028/09/01,佐藤花子（テック特許法律事務所）,出願済,なし,低,審査請求要否の検討(期限:2026/03/31),共同出願（東京大学）
+未出願,ブロックチェーン電子署名認証プロトコル,H04L 9/32,,,,発明開示,特開2024-111222,高,先行技術調査の実施(期限:2026/03/15),社内PJ「SecureSign」
+PCT/JP2025/030001,マルチモーダル文書解析エンジン,G06V 30/40,2025/11/20,2028/11/20,山田太郎（IP総合特許事務所）,PCT移行済,US2023/0055667;EP4012345,中,各国移行先の選定（米国・欧州・中国）(期限:2026/07/20),シリーズA資金で権利化推進
+特願2026-045678,リーガルナレッジグラフ構築方法,G06F 16/36,2026/01/10,2029/01/10,佐藤花子（テック特許法律事務所）,明細書作成中,特開2025-333444,低,明細書ドラフトレビュー(期限:2026/03/05),CTO発明・職務発明届出済
+\`\`\``;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_スタートアップ知財管理台帳.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

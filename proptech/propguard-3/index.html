@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説の「ここだけは見て」危険条項トップ10ガイド - kusasyu tools</title>
+<meta name="description" content="不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説の「ここだけは見て」危険条項トップ10ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-3/">
+<meta property="og:title" content="重説の「ここだけは見て」危険条項トップ10ガイド - kusasyu tools">
+<meta property="og:description" content="不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説の「ここだけは見て」危険条項トップ10ガイド - kusasyu tools">
+<meta name="twitter:description" content="不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説の「ここだけは見て」危険条項トップ10ガイド",
+  "description": "不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説の「ここだけは見て」危険条項トップ10ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説の「ここだけは見て」危険条項トップ10ガイド</h1>
+  <p class="project-name">重説リスク見える化ツールキット「PropGuard」</p>
+  <div class="content">
+<h1>重説の「ここだけは見て」危険条項トップ10ガイド</h1>
+<p><strong>PropGuard 重説リスクスキャナー 公式ガイド</strong></p>
+<hr />
+<p>不動産取引の重要事項説明書（重説）は、売買で30〜50ページ、賃貸でも10〜20ページに及ぶ。説明時間は平均30〜60分。その場で全てを理解するのは不可能に近い。</p>
+<p>年間約850万件（売買約150万件＋賃貸約700万件）の取引で、重説の見落としによるトラブルは後を絶たない。本ガイドでは、<strong>金銭的ダメージが特に大きい危険条項トップ10</strong>を、実際の条文例と平易な解説で紹介する。</p>
+<blockquote>
+<p><strong>PropGuard 重説リスクスキャナー</strong>でリスク判定「黄」「赤」が出た項目は、本ガイドと「不動産屋への確認質問テンプレート」を併用して必ず確認してください。</p>
+</blockquote>
+<hr />
+<h2>危険条項ランキング 一覧</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">順位</th>
+<th>条項</th>
+<th style="text-align: center;">危険度</th>
+<th>最大損害額の目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>契約不適合責任の免責・短縮</td>
+<td style="text-align: center;">★★★★★</td>
+<td>数百万〜数千万円</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>接道義務の不備（再建築不可）</td>
+<td style="text-align: center;">★★★★★</td>
+<td>物件価値の50〜70%減</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>用途地域の将来リスク</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>環境悪化＋資産価値下落</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>ハザードマップの浸水想定</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>修繕費数百万＋保険料増</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>私道の権利関係</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>建替え不可リスク</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>特約条項（違約金・解除条件）</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>売買価格の10〜20%</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td>建ぺい率・容積率オーバー</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>増改築不可＋融資困難</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td>設備の契約不適合免責（賃貸）</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>修理費数万〜数十万円</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td>原状回復の範囲（賃貸）</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>敷金全額没収＋追加請求</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td>手付金の保全措置なし</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>手付金全額（数百万円）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第1位：契約不適合責任の免責・短縮</h2>
+<p><strong>危険度：★★★★★｜売買</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「売主は、引渡し後の建物の契約不適合について一切の責任を負わないものとする」
+「契約不適合責任の期間は引渡しから3ヶ月とする」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>購入後に雨漏り・シロアリ・基礎のひび割れが見つかっても、売主に修繕を求められないという条項。個人間売買では「免責」、不動産業者が売主の場合でも期間を最低限の2年に短縮するケースが多い。</p>
+<h3>想定される最悪のケース</h3>
+<p>築20年の中古戸建てを購入。引渡し4ヶ月後に雨漏りが発覚。修繕見積もりは280万円。しかし重説の「3ヶ月免責」を見落としていたため、全額自己負担になった。</p>
+<h3>対処法</h3>
+<ul>
+<li><strong>PropGuard 重説リスクスキャナー</strong>の確認質問テンプレート「カテゴリ4：瑕疵担保・契約不適合責任」のQ4-1〜Q4-3を全て確認</li>
+<li>免責の場合はインスペクション（建物状況調査）を契約前に必ず実施</li>
+<li>期間が短い場合は、延長交渉または価格交渉の材料にする</li>
+</ul>
+<hr />
+<h2>第2位：接道義務の不備（再建築不可）</h2>
+<p><strong>危険度：★★★★★｜売買</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「前面道路：私道（建築基準法第42条第2項道路）、幅員約2.7m」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>建築基準法では、幅4m以上の道路に2m以上接していないと建替えができない。「2項道路」はセットバック（敷地後退）が必要で、実質的な使用面積が減る。最悪の場合、道路に接していないと判定され「再建築不可」となる。</p>
+<h3>想定される最悪のケース</h3>
+<p>相場より500万円安い物件に飛びついて購入。将来建替えようとしたところ「再建築不可」と判明。売却しようにも買い手がつかず、物件価値は購入時の30%まで下落した。</p>
+<h3>対処法</h3>
+<ul>
+<li>確認質問テンプレートQ2-1で接道義務の充足を書面で確認</li>
+<li>セットバック面積と費用を事前に確認</li>
+<li>「再建築不可」物件は住宅ローン審査も通りにくい点を認識する</li>
+</ul>
+<hr />
+<h2>第3位：用途地域の将来リスク</h2>
+<p><strong>危険度：★★★★☆｜売買</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「用途地域：準工業地域」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>「準工業地域」は住宅も建てられるが、工場・倉庫・遊戯施設も建築可能。隣にパチンコ店や工場ができても文句を言えない。「第一種低層住居専用地域」なら安心だが、「準住居」「近隣商業」「準工業」は要注意。</p>
+<h3>想定される最悪のケース</h3>
+<p>閑静な住宅街だと思って購入したが、用途地域は「近隣商業地域」。2年後、隣地に深夜営業の飲食店ビルが建ち、騒音・臭い・客のマナー問題に悩まされることになった。</p>
+<h3>対処法</h3>
+<ul>
+<li>確認質問テンプレートQ1-1で建築可能な施設の一覧を確認</li>
+<li>周辺の空き地・駐車場の用途地域も調べる（将来何が建つかの予測材料）</li>
+</ul>
+<hr />
+<h2>第4位：ハザードマップの浸水想定</h2>
+<p><strong>危険度：★★★★☆｜売買・賃貸</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「水防法に基づく浸水想定区域：該当あり（想定浸水深0.5〜3.0m）」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>2020年の法改正で重説への記載が義務化されたが、「該当あり」の一言で済まされることも多い。浸水深3.0mは1階が完全に水没するレベル。</p>
+<h3>想定される最悪のケース</h3>
+<p>重説に「浸水想定区域：該当あり」とだけ記載。具体的な深さを確認しないまま購入。豪雨で床上1.5m浸水し、1階の内装・家財が全損。火災保険の水災補償を外していたため、復旧費用450万円が全額自己負担になった。</p>
+<h3>対処法</h3>
+<ul>
+<li>確認質問テンプレートQ3-1で具体的な浸水深と過去の浸水履歴を確認</li>
+<li>Q3-3で火災保険の水災補償の要否を必ず検討</li>
+</ul>
+<hr />
+<h2>第5位：私道の権利関係</h2>
+<p><strong>危険度：★★★★☆｜売買</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「前面道路：私道（持分なし）。通行については現所有者の黙認による」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>私道の持分がない場合、道路所有者から通行料を請求されたり、建替え時の掘削（水道・ガス管工事）を拒否されるリスクがある。「黙認」は法的保護がなく、所有者が変わればいつでも撤回される。</p>
+<h3>想定される最悪のケース</h3>
+<p>私道持分なしの物件を購入。数年後、私道所有者が代替わりし「掘削承諾料300万円」を要求された。建替えの水道管工事ができず、計画が頓挫した。</p>
+<h3>対処法</h3>
+<ul>
+<li>確認質問テンプレートQ2-2で持分・通行掘削承諾書の有無を確認</li>
+<li>承諾書がない場合、売主に取得を契約条件として交渉</li>
+</ul>
+<hr />
+<h2>第6位：特約条項（違約金・解除条件）</h2>
+<p><strong>危険度：★★★★☆｜売買・賃貸</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「買主の都合による解除の場合、売買代金の20%を違約金として支払うものとする」
+「ローン特約：本契約締結後14日以内に融資承認が得られない場合に限り白紙解除とする」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>特約条項は重説の末尾に小さく書かれていることが多い。ローン特約の期限切れ後にローンが否認された場合、違約金を支払って解除するか、現金で購入するかの二択を迫られる。</p>
+<h3>想定される最悪のケース</h3>
+<p>4,000万円の物件でローン特約14日間。1行目の銀行で否認されたが期限内に気づかず、違約金800万円（20%）を請求された。</p>
+<h3>対処法</h3>
+<ul>
+<li>特約条項は必ず全文を読み、期限・金額・条件を書き出す</li>
+<li>ローン特約は最低30日を確保するよう交渉</li>
+</ul>
+<hr />
+<h2>第7位：建ぺい率・容積率オーバー</h2>
+<p><strong>危険度：★★★☆☆｜売買</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「建ぺい率：60%（現況：約68%）」「※本建物は既存不適格です」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>現在の法令基準を超えている「既存不適格」物件は、増改築やカーポート設置で制限を受ける。住宅ローンの審査が通りにくく、将来の売却も困難。</p>
+<h3>想定される最悪のケース</h3>
+<p>建ぺい率オーバーの物件を購入。住宅ローンを3行に断られ、金利の高いノンバンクで借入。利息負担が当初想定より総額400万円増加した。</p>
+<h3>対処法</h3>
+<ul>
+<li>確認質問テンプレートQ1-2で現況と法定上限の差を確認</li>
+<li>既存不適格の場合、融資可能な金融機関を事前に確認</li>
+</ul>
+<hr />
+<h2>第8位：設備の契約不適合免責（賃貸）</h2>
+<p><strong>危険度：★★★☆☆｜賃貸</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「残置物（エアコン・照明・温水洗浄便座）については貸主は修繕義務を負わない」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>「設備」と「残置物」では貸主の修繕義務が異なる。エアコンが「残置物」扱いだと、故障しても自費で修理か撤去が必要。入居前に設備一覧を必ず確認すべき。</p>
+<h3>想定される最悪のケース</h3>
+<p>エアコン付きと思って入居したが、重説では「残置物」扱い。真夏に故障し、交換費用12万円が全額自己負担になった。</p>
+<h3>対処法</h3>
+<ul>
+<li>設備一覧表で「設備」と「残置物」の区分を1点ずつ確認</li>
+<li>残置物は入居前に動作確認し、不具合があれば撤去を依頼</li>
+</ul>
+<hr />
+<h2>第9位：原状回復の範囲（賃貸）</h2>
+<p><strong>危険度：★★★☆☆｜賃貸</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「退去時、借主は室内クリーニング費用（一律55,000円）を負担するものとする」
+「壁紙の張替え費用は借主負担とする」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>国土交通省の「原状回復をめぐるトラブルとガイドライン」では、通常使用による損耗は貸主負担が原則。しかし特約で借主負担と定められている場合、有効と認められるケースが多い。</p>
+<h3>想定される最悪のケース</h3>
+<p>退去時に「壁紙全面張替え18万円＋クリーニング5.5万円＋エアコン洗浄3万円」計26.5万円を請求された。敷金10万円では足りず、16.5万円を追加で支払う羽目に。</p>
+<h3>対処法</h3>
+<ul>
+<li>重説・賃貸借契約書の原状回復条項を入居前に全文確認</li>
+<li>「一律クリーニング費」「壁紙張替え」等の特約の金額を事前に把握</li>
+<li>入居時に室内の傷・汚れを写真撮影し、日付入りで保存</li>
+</ul>
+<hr />
+<h2>第10位：手付金の保全措置なし</h2>
+<p><strong>危険度：★★★☆☆｜売買</strong></p>
+<h3>よくある条文例</h3>
+<blockquote>
+<p>「手付金等の保全措置：講じない（売買代金の10%以下かつ1,000万円以下のため）」</p>
+</blockquote>
+<h3>平易な解説</h3>
+<p>宅建業法では、未完成物件で代金の5%超、完成物件で10%超の手付金には保全措置（銀行保証等）が義務付けられている。逆に言えば、基準以下なら保全なし。売主が倒産すれば手付金は戻らない。</p>
+<h3>想定される最悪のケース</h3>
+<p>新築マンション購入で手付金300万円を支払い。引渡し前に売主のデベロッパーが倒産。保全措置がなく手付金300万円が全額回収不能に。</p>
+<h3>対処法</h3>
+<ul>
+<li>保全措置の有無を必ず確認。「講じない」場合は理由を確認</li>
+<li>売主の信用力（会社規模・業歴・財務状況）を調査</li>
+<li>可能な限り手付金は最小限にするか、保全措置を求める</li>
+</ul>
+<hr />
+<h2>まとめ：PropGuardで「見落としゼロ」を実現する</h2>
+<p>重説は「説明を聞いた」ことへの署名であり、「理解した」ことの証明ではない。しかし署名した以上、「聞いていなかった」は通用しない。</p>
+<p><strong>3つのステップで自分を守る：</strong></p>
+<ol>
+<li><strong>PropGuard 重説リスクスキャナー</strong>で重説をチェックし、リスク判定「黄」「赤」の項目を特定する</li>
+<li>本ガイドで該当する危険条項の内容と対処法を理解する</li>
+<li><strong>確認質問テンプレート</strong>（売買15問・賃貸版あり）を使って、不動産屋に的確な質問をする</li>
+</ol>
+<p>重説を「読まされる書類」から「自分を守る武器」に変える。それがPropGuardの役割です。</p>
+<hr />
+<p><em>本ガイドは一般的な情報提供を目的としており、個別の法律相談に代わるものではありません。具体的なトラブルについては、宅建協会の無料相談窓口や弁護士にご相談ください。</em></p>
+<p><strong>© SynLab PropTech — PropGuard 重説リスクスキャナー</strong></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

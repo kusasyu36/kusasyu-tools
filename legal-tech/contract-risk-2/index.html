@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訴訟リスクアセスメント報告書テンプレート | 契約書レビューの「次の段階」を提供する - kusasyu tools</title>
+<meta name="description" content="契約書レビューの「次の段階」を提供する。条項ごとの訴訟リスクを日本の判例傾向に基づいて5段階スコアリングし、推定紛争コストレンジを数字で示すツールキット。既存のLegalOn・LeCHECKが「この条項に問題あり→修正案」で止まるのに対し、「この条項で実際に揉めたら、いくらかかるか」を定量提示する。ブラウザ単">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,訴訟リスクアセスメント報告書テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-risk-2/">
+<meta property="og:title" content="訴訟リスクアセスメント報告書テンプレート | 契約書レビューの「次の段階」を提供する - kusasyu tools">
+<meta property="og:description" content="契約書レビューの「次の段階」を提供する。条項ごとの訴訟リスクを日本の判例傾向に基づいて5段階スコアリングし、推定紛争コストレンジを数字で示すツールキット。既存のLegalOn・LeCHECKが「この条項に問題あり→修正案」で止まるのに対し、「この条項で実際に揉めたら、いくらかかるか」を定量提示する。ブラウザ単">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-risk-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="訴訟リスクアセスメント報告書テンプレート | 契約書レビューの「次の段階」を提供する - kusasyu tools">
+<meta name="twitter:description" content="契約書レビューの「次の段階」を提供する。条項ごとの訴訟リスクを日本の判例傾向に基づいて5段階スコアリングし、推定紛争コストレンジを数字で示すツールキット。既存のLegalOn・LeCHECKが「この条項に問題あり→修正案」で止まるのに対し、「この条項で実際に揉めたら、いくらかかるか」を定量提示する。ブラウザ単">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "訴訟リスクアセスメント報告書テンプレート",
+  "description": "契約書レビューの「次の段階」を提供する。条項ごとの訴訟リスクを日本の判例傾向に基づいて5段階スコアリングし、推定紛争コストレンジを数字で示すツールキット。既存のLegalOn・LeCHECKが「この条項に問題あり→修正案」で止まるのに対し、「この条項で実際に揉めたら、いくらかかるか」を定量提示する。ブラウザ単",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-risk-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>訴訟リスクアセスメント報告書テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>訴訟リスクアセスメント報告書テンプレート</h1>
+  <p class="project-name">LitiScan — 契約条項 訴訟リスク定量診断ツールキット</p>
+  <div class="content">
+<h1>訴訟リスクアセスメント報告書</h1>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li>スコアラーツールで契約書を診断する</li>
+<li>本テンプレートの各フィールドにスコアラー出力をそのまま転記する（フィールド名はツール出力と一致済み）</li>
+<li>「推奨対応」と「コストインパクト」を法務担当者が記入する</li>
+<li>経営層へ提出する</li>
+</ol>
+<hr />
+<h2>1. 基本情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>report_id</strong></td>
+<td>[記入例: LRA-2026-0042]</td>
+</tr>
+<tr>
+<td><strong>report_date</strong></td>
+<td>[記入例: 2026-02-24]</td>
+</tr>
+<tr>
+<td><strong>contract_title</strong></td>
+<td>[記入例: クラウドサービス利用契約]</td>
+</tr>
+<tr>
+<td><strong>counterparty</strong></td>
+<td>[記入例: 株式会社〇〇テクノロジーズ]</td>
+</tr>
+<tr>
+<td><strong>contract_value</strong></td>
+<td>[記入例: 年額12,000,000円]</td>
+</tr>
+<tr>
+<td><strong>contract_period</strong></td>
+<td>[記入例: 2026-04-01 〜 2029-03-31]</td>
+</tr>
+<tr>
+<td><strong>assessor</strong></td>
+<td>[記入例: 法務部 山田太郎]</td>
+</tr>
+<tr>
+<td><strong>overall_risk_score</strong></td>
+<td>[記入例: 72 / 100（高リスク）]</td>
+</tr>
+<tr>
+<td><strong>overall_risk_level</strong></td>
+<td>☐ 低（0-39） ☐ 中（40-69） ☐ <strong>高（70-100）</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 条項別リスクスコア一覧</h2>
+<blockquote>
+<p>スコアラー出力の <code>clause_scores</code> 配列をそのまま転記する。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>clause_id</th>
+<th>clause_name</th>
+<th>risk_score</th>
+<th>risk_level</th>
+<th>key_issue</th>
+<th>recommended_action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[記入例: CL-001]</td>
+<td>[記入例: 損害賠償条項]</td>
+<td>[記入例: 85]</td>
+<td>[記入例: 高]</td>
+<td>[記入例: 賠償上限の定めなし]</td>
+<td>☐受容 ☐<strong>修正</strong> ☐拒否</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[記入例: CL-002]</td>
+<td>[記入例: 契約解除条項]</td>
+<td>[記入例: 60]</td>
+<td>[記入例: 中]</td>
+<td>[記入例: 催告期間が7日と短い]</td>
+<td>☐受容 ☐<strong>修正</strong> ☐拒否</td>
+</tr>
+<tr>
+<td>3</td>
+<td>[記入例: CL-003]</td>
+<td>[記入例: 知的財産帰属]</td>
+<td>[記入例: 90]</td>
+<td>[記入例: 高]</td>
+<td>[記入例: 成果物の権利が全て相手方に帰属]</td>
+<td>☐受容 ☐修正 ☐<strong>拒否</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>[CL-___]</td>
+<td>[条項名]</td>
+<td>[__]</td>
+<td>[低/中/高]</td>
+<td>[問題の要旨]</td>
+<td>☐受容 ☐修正 ☐拒否</td>
+</tr>
+<tr>
+<td>5</td>
+<td>[CL-___]</td>
+<td>[条項名]</td>
+<td>[__]</td>
+<td>[低/中/高]</td>
+<td>[問題の要旨]</td>
+<td>☐受容 ☐修正 ☐拒否</td>
+</tr>
+</tbody>
+</table>
+<p>※ 行は必要に応じて追加。スコアラー出力の条項数と一致させること。</p>
+<hr />
+<h2>3. 判例根拠の要約</h2>
+<blockquote>
+<p>スコアラー出力の <code>case_references</code> をそのまま転記する。</p>
+</blockquote>
+<h3>条項 CL-001: 損害賠償条項</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>case_id</strong></td>
+<td>[記入例: CASE-REF-001]</td>
+</tr>
+<tr>
+<td><strong>case_name</strong></td>
+<td>[記入例: 東京地判令和5年3月15日・判タ1512号180頁]</td>
+</tr>
+<tr>
+<td><strong>relevance</strong></td>
+<td>[記入例: 賠償上限なき契約で予見不能な損害まで認容された事例]</td>
+</tr>
+<tr>
+<td><strong>risk_implication</strong></td>
+<td>[記入例: 契約金額の5〜10倍の賠償命令リスクあり]</td>
+</tr>
+</tbody>
+</table>
+<h3>条項 CL-003: 知的財産帰属</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>case_id</strong></td>
+<td>[記入例: CASE-REF-002]</td>
+</tr>
+<tr>
+<td><strong>case_name</strong></td>
+<td>[記入例: 知財高判令和4年11月8日・判時2550号65頁]</td>
+</tr>
+<tr>
+<td><strong>relevance</strong></td>
+<td>[記入例: 共同開発物の権利帰属が争われ開発側が全権利を喪失した事例]</td>
+</tr>
+<tr>
+<td><strong>risk_implication</strong></td>
+<td>[記入例: 自社ノウハウの流出・競合製品への転用リスク]</td>
+</tr>
+</tbody>
+</table>
+<p>※ 高リスク条項（score 70以上）について各1件以上記載。</p>
+<hr />
+<h2>4. 想定コストインパクト</h2>
+<table>
+<thead>
+<tr>
+<th>impact_category</th>
+<th>best_case</th>
+<th>worst_case</th>
+<th>probability</th>
+<th>expected_loss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>訴訟費用</strong>（弁護士費用等）</td>
+<td>[記入例: 500万円]</td>
+<td>[記入例: 2,000万円]</td>
+<td>[記入例: 30%]</td>
+<td>[記入例: 600万円]</td>
+</tr>
+<tr>
+<td><strong>損害賠償金</strong></td>
+<td>[記入例: 0円]</td>
+<td>[記入例: 1.2億円]</td>
+<td>[記入例: 15%]</td>
+<td>[記入例: 1,800万円]</td>
+</tr>
+<tr>
+<td><strong>事業機会損失</strong></td>
+<td>[記入例: 0円]</td>
+<td>[記入例: 5,000万円]</td>
+<td>[記入例: 20%]</td>
+<td>[記入例: 1,000万円]</td>
+</tr>
+<tr>
+<td><strong>レピュテーション損害</strong></td>
+<td>[記入例: 定量困難]</td>
+<td>[記入例: 定量困難]</td>
+<td>[記入例: 10%]</td>
+<td>[記入例: 定量困難]</td>
+</tr>
+<tr>
+<td><strong>合計 expected_loss</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>[記入例: 3,400万円]</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 総合所見と推奨対応</h2>
+<h3>推奨対応方針</h3>
+<p>☐ <strong>受容</strong> — リスクを許容し現状のまま締結する
+☐ <strong>修正</strong> — 下記の修正条件を交渉のうえ締結する
+☐ <strong>拒否</strong> — 本契約の締結を見送る</p>
+<h3>修正要求事項（推奨対応が「修正」の場合）</h3>
+<table>
+<thead>
+<tr>
+<th>優先度</th>
+<th>clause_id</th>
+<th>修正要求内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>必須</td>
+<td>[記入例: CL-001]</td>
+<td>[記入例: 損害賠償上限を契約金額の1倍に設定]</td>
+</tr>
+<tr>
+<td>必須</td>
+<td>[記入例: CL-003]</td>
+<td>[記入例: 自社開発部分の知財権を自社に留保]</td>
+</tr>
+<tr>
+<td>推奨</td>
+<td>[記入例: CL-002]</td>
+<td>[記入例: 催告期間を30日に延長]</td>
+</tr>
+</tbody>
+</table>
+<h3>経営判断期限</h3>
+<p><strong>[記入例: 2026-03-10]</strong> — この日までに方針決定がない場合、相手方の提示条件が失効する。</p>
+<hr />
+<h2>6. 免責文言</h2>
+<blockquote>
+<p>本報告書は、SynLab Legal Techの訴訟リスクスコアラーによる機械的分析結果および法務担当者の評価に基づき作成されたものであり、法的助言を構成するものではありません。本報告書に記載されたリスクスコア、想定コスト、判例情報は、評価時点における情報に基づく推定値であり、実際の訴訟結果を保証するものではありません。最終的な契約締結の判断は、必要に応じて外部弁護士の助言を得たうえで、経営層の責任において行ってください。本報告書の利用によって生じた損害について、作成者および当社は一切の責任を負いません。</p>
+</blockquote>
+<hr />
+<p><strong>承認欄</strong></p>
+<table>
+<thead>
+<tr>
+<th>役割</th>
+<th>氏名</th>
+<th>日付</th>
+<th>署名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作成者（法務担当）</td>
+<td><strong><em>_</em></strong>___</td>
+<td><strong><em>_/</em></strong>_/____</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+<tr>
+<td>確認者（法務責任者）</td>
+<td><strong><em>_</em></strong>___</td>
+<td><strong><em>_/</em></strong>_/____</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+<tr>
+<td>承認者（経営層）</td>
+<td><strong><em>_</em></strong>___</td>
+<td><strong><em>_/</em></strong>_/____</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Template Version: 1.0 | SynLab Legal Tech</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

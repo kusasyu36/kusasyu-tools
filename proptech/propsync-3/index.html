@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件データ標準化フォーマット定義テンプレート - kusasyu tools</title>
+<meta name="description" content="国土交通省・不動産テック協会が推進する「不動産オープンID」規格に準拠した物件データ準拠度診断＆変換ツール。CSVやJSONで自社物件データをアップロードすると、オープンID仕様との差分を自動検出し、準拠度スコア（0〜100）と具体的な修正箇所を表示。住所表記ゆれ（「１丁目」「1丁目」「一丁目」）・築年数計算">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件データ標準化フォーマット定義テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propsync-3/">
+<meta property="og:title" content="物件データ標準化フォーマット定義テンプレート - kusasyu tools">
+<meta property="og:description" content="国土交通省・不動産テック協会が推進する「不動産オープンID」規格に準拠した物件データ準拠度診断＆変換ツール。CSVやJSONで自社物件データをアップロードすると、オープンID仕様との差分を自動検出し、準拠度スコア（0〜100）と具体的な修正箇所を表示。住所表記ゆれ（「１丁目」「1丁目」「一丁目」）・築年数計算">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propsync-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件データ標準化フォーマット定義テンプレート - kusasyu tools">
+<meta name="twitter:description" content="国土交通省・不動産テック協会が推進する「不動産オープンID」規格に準拠した物件データ準拠度診断＆変換ツール。CSVやJSONで自社物件データをアップロードすると、オープンID仕様との差分を自動検出し、準拠度スコア（0〜100）と具体的な修正箇所を表示。住所表記ゆれ（「１丁目」「1丁目」「一丁目」）・築年数計算">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "物件データ標準化フォーマット定義テンプレート",
+  "description": "国土交通省・不動産テック協会が推進する「不動産オープンID」規格に準拠した物件データ準拠度診断＆変換ツール。CSVやJSONで自社物件データをアップロードすると、オープンID仕様との差分を自動検出し、準拠度スコア（0〜100）と具体的な修正箇所を表示。住所表記ゆれ（「１丁目」「1丁目」「一丁目」）・築年数計算",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propsync-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>物件データ標準化フォーマット定義テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>物件データ標準化フォーマット定義テンプレート</h1>
+  <p class="project-name">不動産オープンID準拠データ変換ツールキット「PropSync」</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>行種別</th><th>物件ID</th><th>住所_都道府県</th><th>住所_市区町村</th><th>住所_町域</th><th>住所_番地</th><th>建物名</th><th>築年月</th><th>構造</th><th>間取り</th><th>専有面積</th><th>賃料</th><th>管理費</th></tr></thead><tbody><tr><td>入力規則</td><td>半角英数+ハイフン。PropSync準拠の一意識別子（例：PROP-00001）</td><td>正式都道府県名を全角で記入（例：東京都）</td><td>正式市区町村名を全角で記入（例：千代田区）</td><td>町域名+半角数字+「丁目」（例：神田錦町1丁目）。不動産オープンID識別規格に準拠</td><td>半角数字+ハイフン（例：3-2）。「3番2号」「3の2の1」形式は不可</td><td>英数→半角/カナ→全角で統一（例：ABCマンション）。「ＡＢＣﾏﾝｼｮﾝ」等は不可</td><td>YYYY-MM形式（例：2005-03）。「2005年3月」形式は不可。築年数は本値から自動算出</td><td>RC/SRC/S/W/LGSのいずれかを半角で記入</td><td>半角英数で「nLDK」形式。納戸等は「+S」で付記（例：2LDK+S）。「2SLDK」「２ＬＤＫ」は不可</td><td>半角数字で㎡単位。小数第2位まで（例：65.40）。「坪」単位は不可</td><td>半角数字で円単位・月額（例：185000）</td><td>半角数字で円単位・月額（例：12000）</td></tr><tr><td>正しい例1</td><td>PROP-00001</td><td>東京都</td><td>千代田区</td><td>神田錦町1丁目</td><td>3-2</td><td>パークタワー錦町</td><td>2018-06</td><td>RC</td><td>2LDK</td><td>65.40</td><td>185000</td><td>12000</td></tr><tr><td>正しい例2</td><td>PROP-00002</td><td>大阪府</td><td>大阪市北区</td><td>梅田2丁目</td><td>5-1</td><td>グランフロント梅田レジデンス</td><td>2013-04</td><td>SRC</td><td>3LDK+S</td><td>82.15</td><td>245000</td><td>18000</td></tr><tr><td>正しい例3</td><td>PROP-00003</td><td>神奈川県</td><td>横浜市西区</td><td>みなとみらい3丁目</td><td>7-3</td><td>MMタワーズ</td><td>2003-02</td><td>SRC</td><td>1LDK</td><td>45.80</td><td>135000</td><td>9000</td></tr><tr><td>誤り例1（丁目の全角数字＋建物名の全角英数）</td><td>PROP-00004</td><td>東京都</td><td>渋谷区</td><td>神宮前２丁目</td><td>３−５</td><td>ＡＢＣマンション</td><td>2015-09</td><td>RC</td><td>2LDK</td><td>55.20</td><td>160000</td><td>10000</td></tr><tr><td>誤り例2（築年月の和暦形式＋間取りの全角表記）</td><td>PROP-00005</td><td>愛知県</td><td>名古屋市中区</td><td>栄3丁目</td><td>12-8</td><td>サンライズ栄</td><td>2005年3月</td><td>RC</td><td>２ＬＤＫ＋納戸</td><td>70.00</td><td>120000</td><td>8000</td></tr><tr><td>誤り例3（丁目の漢数字＋番地の「番号」形式＋面積の坪単位）</td><td>PROP-00006</td><td>福岡県</td><td>福岡市中央区</td><td>天神一丁目</td><td>3番2号</td><td>天神パレス</td><td>2010-11</td><td>RC</td><td>2SLDK</td><td>60.5坪</td><td>98000</td><td>7000</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `行種別,物件ID,住所_都道府県,住所_市区町村,住所_町域,住所_番地,建物名,築年月,構造,間取り,専有面積,賃料,管理費
+入力規則,半角英数+ハイフン。PropSync準拠の一意識別子（例：PROP-00001）,正式都道府県名を全角で記入（例：東京都）,正式市区町村名を全角で記入（例：千代田区）,町域名+半角数字+「丁目」（例：神田錦町1丁目）。不動産オープンID識別規格に準拠,半角数字+ハイフン（例：3-2）。「3番2号」「3の2の1」形式は不可,英数→半角/カナ→全角で統一（例：ABCマンション）。「ＡＢＣﾏﾝｼｮﾝ」等は不可,YYYY-MM形式（例：2005-03）。「2005年3月」形式は不可。築年数は本値から自動算出,RC/SRC/S/W/LGSのいずれかを半角で記入,半角英数で「nLDK」形式。納戸等は「+S」で付記（例：2LDK+S）。「2SLDK」「２ＬＤＫ」は不可,半角数字で㎡単位。小数第2位まで（例：65.40）。「坪」単位は不可,半角数字で円単位・月額（例：185000）,半角数字で円単位・月額（例：12000）
+正しい例1,PROP-00001,東京都,千代田区,神田錦町1丁目,3-2,パークタワー錦町,2018-06,RC,2LDK,65.40,185000,12000
+正しい例2,PROP-00002,大阪府,大阪市北区,梅田2丁目,5-1,グランフロント梅田レジデンス,2013-04,SRC,3LDK+S,82.15,245000,18000
+正しい例3,PROP-00003,神奈川県,横浜市西区,みなとみらい3丁目,7-3,MMタワーズ,2003-02,SRC,1LDK,45.80,135000,9000
+誤り例1（丁目の全角数字＋建物名の全角英数）,PROP-00004,東京都,渋谷区,神宮前２丁目,３−５,ＡＢＣマンション,2015-09,RC,2LDK,55.20,160000,10000
+誤り例2（築年月の和暦形式＋間取りの全角表記）,PROP-00005,愛知県,名古屋市中区,栄3丁目,12-8,サンライズ栄,2005年3月,RC,２ＬＤＫ＋納戸,70.00,120000,8000
+誤り例3（丁目の漢数字＋番地の「番号」形式＋面積の坪単位）,PROP-00006,福岡県,福岡市中央区,天神一丁目,3番2号,天神パレス,2010-11,RC,2SLDK,60.5坪,98000,7000`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_物件データ標準化フォーマット定義テンプレート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

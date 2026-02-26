@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産データ名寄せ実装シナリオガイド - kusasyu tools</title>
+<meta name="description" content="不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産データ名寄せ実装シナリオガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-3/">
+<meta property="og:title" content="不動産データ名寄せ実装シナリオガイド - kusasyu tools">
+<meta property="og:description" content="不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産データ名寄せ実装シナリオガイド - kusasyu tools">
+<meta name="twitter:description" content="不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産データ名寄せ実装シナリオガイド",
+  "description": "不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産データ名寄せ実装シナリオガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産データ名寄せ実装シナリオガイド</h1>
+  <p class="project-name">不動産物件データ名寄せ標準化キット「PropMatch」</p>
+  <div class="content">
+<h1>不動産データ名寄せ実装シナリオガイド</h1>
+<p><strong>対象読者：</strong> 不動産テック担当者・データ管理担当者<br />
+<strong>目的：</strong> 手元から始められる名寄せ実装の全体像を把握する</p>
+<hr />
+<h2>1. なぜ不動産データは「揺れる」のか</h2>
+<p>不動産データの揺れは、業界構造に起因する<strong>構造的問題</strong>である。</p>
+<table>
+<thead>
+<tr>
+<th>原因</th>
+<th>具体例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入力者の多様性</td>
+<td>仲介・管理・オーナーが各自入力</td>
+</tr>
+<tr>
+<td>表記ルール不統一</td>
+<td>「丁目」vs「-」、「号室」vs「#」</td>
+</tr>
+<tr>
+<td>住所体系の複雑さ</td>
+<td>大字・字・通称地名・番地の揺れ</td>
+</tr>
+<tr>
+<td>建物名の表記ゆれ</td>
+<td>「ハイツ〇〇」「ﾊｲﾂ〇〇」「HEIGHTS〇〇」</td>
+</tr>
+<tr>
+<td>新旧データ混在</td>
+<td>区画整理・住居表示変更後の旧住所残留</td>
+</tr>
+<tr>
+<td>外部データとの突合</td>
+<td>SUUMO・HOME'S・自社DB間の形式差異</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本質的な問題：</strong> 不動産には「唯一の正規ID」が存在しない。登記・住居表示・固定資産税台帳がそれぞれ独立しており、完全統合には行政DBへのアクセスが必要になる。</p>
+<hr />
+<h2>2. クレンジング優先順位の判断基準</h2>
+<h3>投資対効果マトリクス（物件数 × 揺れ頻度）</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>揺れ頻度：低（月1件未満）</th>
+<th>揺れ頻度：中（月1〜10件）</th>
+<th>揺れ頻度：高（月10件超）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>物件数：少（〜500件）</strong></td>
+<td>優先度4：後回し</td>
+<td>優先度3：手動対応</td>
+<td>優先度2：テンプレート整備</td>
+</tr>
+<tr>
+<td><strong>物件数：中（500〜5,000件）</strong></td>
+<td>優先度3：手動対応</td>
+<td>優先度2：ツール導入</td>
+<td>優先度1：即着手</td>
+</tr>
+<tr>
+<td><strong>物件数：多（5,000件超）</strong></td>
+<td>優先度2：ツール導入</td>
+<td>優先度1：即着手</td>
+<td>優先度0：外部基盤検討</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判断ルール：</strong>
+- 優先度0〜1：本ガイドの3ステップで対処
+- 優先度2〜3：本ガイド＋定期バッチで対処
+- 優先度4：対応コスト＞効果のため後回し可</p>
+<hr />
+<h2>3. 3ステップ実装フロー</h2>
+<h3>ステップ①：テンプレートでルール定義</h3>
+<p><code>normalization_rules.csv</code> を作成し、揺れパターンと正規形を定義する。</p>
+<pre><code>field,raw_pattern,normalized,priority
+building_name,ハイツ|ﾊｲﾂ|HEIGHTS,ハイツ,1
+building_name,コーポ|ｺｰﾎﾟ|Corp,コーポ,1
+address,番地|番,番地,2
+address,丁目|-(?=\d),丁目,2
+room_no,号室|#|No\.,号室,3
+prefecture,東京都|東京,東京都,1
+</code></pre>
+<p><strong>ルール定義のポイント：</strong>
+- <code>priority</code> が低いほど先に適用（競合回避）
+- 正規表現可（Pythonの <code>re</code> モジュール想定）
+- チームで合意したルールをここに集約する</p>
+<hr />
+<h3>ステップ②：ツールCSVで既存データ判定</h3>
+<p><code>check_properties.py</code>（100行以下のPythonスクリプト）で既存データをスキャンする。</p>
+<p><strong>入力：</strong> <code>properties_raw.csv</code>（既存DB出力）<br />
+<strong>処理：</strong> ルールCSVと照合し、揺れ箇所を検出<br />
+<strong>出力：</strong> <code>check_result.csv</code></p>
+<pre><code>property_id,field,raw_value,matched_rule,suggested_value,confidence
+P001,building_name,ﾊｲﾂ山手,building_name_1,ハイツ山手,high
+P002,address,渋谷区3-5,address_2,渋谷区3丁目5番地,medium
+P003,room_no,101#,room_no_3,101号室,high
+P004,building_name,コーポ青山,building_name_1,コーポ青山,skip（既に正規形）
+P005,prefecture,東京,prefecture_1,東京都,high
+</code></pre>
+<p><strong>confidence の定義：</strong>
+- <code>high</code>：完全一致 → 自動修正可
+- <code>medium</code>：部分一致 → 人間確認推奨
+- <code>low</code>：類似のみ → 手動対応</p>
+<hr />
+<h3>ステップ③：結果CSVで修正指示の自動化</h3>
+<p><code>check_result.csv</code> の <code>high</code> 行のみ自動修正スクリプトに渡す。</p>
+<pre><code class="language-python"># apply_fixes.py（概念コード）
+for row in result_csv:
+    if row['confidence'] == 'high':
+        db.update(row['property_id'], row['field'], row['suggested_value'])
+        log.write(f&quot;AUTO: {row['property_id']} {row['field']} fixed&quot;)
+    elif row['confidence'] == 'medium':
+        review_queue.append(row)  # 人間レビュー待ち
+</code></pre>
+<p><strong>自動化スコープ：</strong>
+- <code>high</code>：自動適用 → ログ保存
+- <code>medium</code>：レビューキューに追加 → 担当者がExcelで確認
+- <code>low</code>：週次レポートに集計 → ルール追加を検討</p>
+<hr />
+<h2>4. 具体例5件</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>揺れの種類</th>
+<th>元データ</th>
+<th>正規化後</th>
+<th>対処法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>全角/半角混在</td>
+<td><code>ｺｰﾎﾟ渋谷101号</code></td>
+<td><code>コーポ渋谷101号室</code></td>
+<td>全角正規化→ルール適用</td>
+</tr>
+<tr>
+<td>2</td>
+<td>住所の省略</td>
+<td><code>港区3-5-2</code></td>
+<td><code>港区三田3丁目5番2号</code></td>
+<td>正規表現＋住所辞書</td>
+</tr>
+<tr>
+<td>3</td>
+<td>建物名の表記ゆれ</td>
+<td><code>グランドコート</code> vs <code>グランドコート</code></td>
+<td><code>グランドコート</code></td>
+<td>正規化後に文字列距離で突合</td>
+</tr>
+<tr>
+<td>4</td>
+<td>号室フォーマット差異</td>
+<td><code>Room 302</code></td>
+<td><code>302号室</code></td>
+<td>ルールCSVのroom_noパターン</td>
+</tr>
+<tr>
+<td>5</td>
+<td>都道府県の省略</td>
+<td><code>新宿区西新宿1-1</code></td>
+<td><code>東京都新宿区西新宿1丁目1番</code></td>
+<td>区→都道府県補完辞書</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 対処範囲の線引き</h2>
+<h3>手元（ローカルツール）で対処できる範囲</h3>
+<ul>
+<li>全角/半角の統一</li>
+<li>建物名の表記ゆれ（正規表現+辞書）</li>
+<li>号室フォーマットの統一</li>
+<li>都道府県補完（47都道府県辞書）</li>
+<li>重複物件の仮マッチング（類似度スコア）</li>
+</ul>
+<h3>外部API・データ基盤が必要な範囲</h3>
+<table>
+<thead>
+<tr>
+<th>課題</th>
+<th>必要なもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正確な住所正規化</td>
+<td>国土地理院API、IMI住所変換</td>
+</tr>
+<tr>
+<td>登記情報との突合</td>
+<td>法務省登記情報サービス（有料）</td>
+</tr>
+<tr>
+<td>大規模重複排除（万件超）</td>
+<td>データ基盤（BigQuery等）＋MLモデル</td>
+</tr>
+<tr>
+<td>リアルタイム名寄せ</td>
+<td>API連携 + ストリーム処理基盤</td>
+</tr>
+<tr>
+<td>区画整理・住所変更の追跡</td>
+<td>住所変更DBサービス（商用）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 用語集</h2>
+<table>
+<thead>
+<tr>
+<th>用語</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>名寄せ</strong></td>
+<td>同一物件を指す複数レコードを統合すること</td>
+</tr>
+<tr>
+<td><strong>表記ゆれ</strong></td>
+<td>同じ内容を異なる形式で記載したもの</td>
+</tr>
+<tr>
+<td><strong>正規化</strong></td>
+<td>表記ゆれを統一したルールに変換する処理</td>
+</tr>
+<tr>
+<td><strong>突合（マッチング）</strong></td>
+<td>2つのデータセットで同一物件を対応づけること</td>
+</tr>
+<tr>
+<td><strong>文字列距離</strong></td>
+<td>2文字列の類似度を測る指標（レーベンシュタイン距離等）</td>
+</tr>
+<tr>
+<td><strong>confidence</strong></td>
+<td>自動修正の確信度。high/medium/lowで分類</td>
+</tr>
+<tr>
+<td><strong>住居表示</strong></td>
+<td>市区町村が定める公式の住所体系</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. 実装チェックリスト</h2>
+<h3>準備フェーズ</h3>
+<ul>
+<li>[ ] 自社データの物件数・揺れ頻度を確認し優先度マトリクスに配置</li>
+<li>[ ] 名寄せ対象フィールドを確定（建物名/住所/号室/都道府県）</li>
+<li>[ ] <code>normalization_rules.csv</code> の初版をチームで合意</li>
+<li>[ ] テスト用データ100件を準備</li>
+</ul>
+<h3>実装フェーズ</h3>
+<ul>
+<li>[ ] ステップ①：ルールCSV作成（最低10パターン定義）</li>
+<li>[ ] ステップ②：<code>check_properties.py</code> 実行・結果確認</li>
+<li>[ ] ステップ③：<code>high</code> 件数の確認・自動修正スクリプト実行</li>
+<li>[ ] 修正前後の件数差異ログを保存</li>
+</ul>
+<h3>運用フェーズ</h3>
+<ul>
+<li>[ ] 週次でルールCSVの追加・更新フロー確立</li>
+<li>[ ] <code>medium</code> レビューの担当者・期限設定</li>
+<li>[ ] 月次で名寄せ率（重複排除件数/総件数）をKPI計測</li>
+<li>[ ] 外部API導入が必要なケースを定期評価</li>
+</ul>
+<hr />
+<p><strong>まとめ：</strong> 手元ツールで対処できるのは「表記ゆれ」まで。登記・区画整理レベルの正確性が必要なら外部基盤への投資を検討する。まずルールCSV10件から始め、週次で育てるアプローチが現実的。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>感情スコアリング×CVR改善_調査レポート - kusasyu tools</title>
+<meta name="description" content="広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,感情スコアリング×CVR改善_調査レポート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/emotion-scoring/">
+<meta property="og:title" content="感情スコアリング×CVR改善_調査レポート - kusasyu tools">
+<meta property="og:description" content="広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/emotion-scoring/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="感情スコアリング×CVR改善_調査レポート - kusasyu tools">
+<meta name="twitter:description" content="広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "感情スコアリング×CVR改善_調査レポート",
+  "description": "広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/emotion-scoring/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>感情スコアリング×CVR改善_調査レポート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>感情スコアリング×CVR改善_調査レポート</h1>
+  <p class="project-name">広告コピー・LP 感情スコアリング診断＆CVR改善ガイド</p>
+  <div class="content">
+<h1>感情スコアリング×CVR改善 業界調査レポート</h1>
+<p><strong>発行：SynLab Digital Marketing｜2026年2月</strong></p>
+<hr />
+<h2>1. エグゼクティブサマリー</h2>
+<p>感情設計（Emotional Design）をLP・広告・メールに組み込むことで、CVR（コンバージョン率）は平均1.3〜2.5倍改善するという複数の調査結果がある。本レポートでは、国内外の感情設計フレームワークとAIツールを整理し、EC・不動産・SaaSの3業種における感情軸別の効果を比較分析する。</p>
+<p><strong>結論：感情設計は「やるかやらないか」のフェーズを過ぎ、「どの感情軸を、どの精度で設計するか」の競争に移行している。</strong></p>
+<hr />
+<h2>2. 感情設計フレームワーク</h2>
+<h3>2-1. i CROSS BORDER JAPAN 感情設計5ステップ</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">ステップ</th>
+<th>内容</th>
+<th>実務での適用ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td><strong>感情ターゲット特定</strong></td>
+<td>ペルソナの購買時の感情状態を定義（不安・期待・焦り等）</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td><strong>感情トリガー設計</strong></td>
+<td>ターゲット感情を喚起するコピー・ビジュアル要素を配置</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td><strong>感情フロー構築</strong></td>
+<td>LP内の感情遷移を設計（共感→不安解消→期待→行動）</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td><strong>感情スコアリング</strong></td>
+<td>各要素に感情強度スコア（1-10）を付与しバランス調整</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td><strong>A/Bテスト＆最適化</strong></td>
+<td>感情軸ごとにバリエーションを作成しCVR検証</td>
+</tr>
+</tbody>
+</table>
+<p><strong>特徴：</strong> 定性的な「感情」を定量スコアに変換し、PDCAを回せる点が実務的。国内LP制作における感情設計の標準フレームワークとして参照されることが多い。</p>
+<h3>2-2. Persado（海外感情AI先行事例）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>詳細</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本社</td>
+<td>米国ニューヨーク（2012年設立）</td>
+</tr>
+<tr>
+<td>技術</td>
+<td>自然言語生成AI×感情分類エンジン（100万以上のタグ付きコピーDB）</td>
+</tr>
+<tr>
+<td>感情分類</td>
+<td>喜び・信頼・恐怖・驚き等の基本感情＋業種固有の感情軸</td>
+</tr>
+<tr>
+<td>導入企業</td>
+<td>JPMorgan Chase、Marks &amp; Spencer、Vodafone等</td>
+</tr>
+<tr>
+<td>実績</td>
+<td>メール開封率+41%、CTR+68%、CVR+24〜32%（公式発表値）</td>
+</tr>
+<tr>
+<td>料金体系</td>
+<td>エンタープライズ向け年間契約（年額$100K〜）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>JPMorgan Chase事例：</strong> 2019年にPersadoを全社導入。広告コピーのAI生成により、人間コピーライター比でCTRが最大450%向上したケースを報告。感情AIの商用効果を証明した象徴的事例。</p>
+<hr />
+<h2>3. 国内 感情認識AI市場動向</h2>
+<h3>市場規模</h3>
+<ul>
+<li>国内感情認識AI市場：約280億円（2025年推計）→ 約520億円（2028年予測、CAGR約23%）</li>
+<li>マーケティング用途は全体の約35%（約98億円）</li>
+</ul>
+<h3>主要プレイヤー</h3>
+<table>
+<thead>
+<tr>
+<th>ツール名</th>
+<th>提供元</th>
+<th>主な機能</th>
+<th>マーケ活用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Empath</strong></td>
+<td>Empathic</td>
+<td>音声感情解析（喜び・怒り・悲しみ・平常・元気）</td>
+<td>コールセンター分析、動画広告最適化</td>
+</tr>
+<tr>
+<td><strong>ACES</strong></td>
+<td>AGI</td>
+<td>テキスト感情分析、ブランド感情モニタリング</td>
+<td>SNS分析、コピー最適化</td>
+</tr>
+<tr>
+<td><strong>心sensor</strong></td>
+<td>NTTデータ</td>
+<td>表情・生体データから感情推定</td>
+<td>UXテスト、店舗分析</td>
+</tr>
+<tr>
+<td><strong>Emotion AI（自社開発型）</strong></td>
+<td>各社内製</td>
+<td>LLMベースの感情スコアリング</td>
+<td>LP・メール・広告コピー生成</td>
+</tr>
+</tbody>
+</table>
+<h3>トレンド</h3>
+<ul>
+<li><strong>LLMベースの感情設計が急拡大</strong>：GPT-4o/Claude等を使い、自社でコピーの感情スコアリングを内製化する動きが加速</li>
+<li><strong>Persado型SaaSの国内版は未登場</strong>：大手は内製、中小はLLM APIで代替する二極化構造</li>
+<li><strong>音声×感情の融合</strong>：動画広告・ウェビナーでの音声感情解析ニーズが前年比2倍</li>
+</ul>
+<hr />
+<h2>4. 感情軸別×3業種 CVR効果比較</h2>
+<h3>感情軸の定義</h3>
+<table>
+<thead>
+<tr>
+<th>感情軸</th>
+<th>説明</th>
+<th>代表的なコピー要素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>緊急性（Urgency）</strong></td>
+<td>「今すぐ」「残りわずか」等の時間圧</td>
+<td>カウントダウン、在庫表示</td>
+</tr>
+<tr>
+<td><strong>信頼（Trust）</strong></td>
+<td>安心感・実績・権威</td>
+<td>導入実績、認証、顔写真付きレビュー</td>
+</tr>
+<tr>
+<td><strong>期待（Anticipation）</strong></td>
+<td>未来のポジティブな変化</td>
+<td>Before/After、成功事例</td>
+</tr>
+<tr>
+<td><strong>恐怖回避（Fear）</strong></td>
+<td>損失回避・リスク提示</td>
+<td>「放置すると○○に」「知らないと損」</td>
+</tr>
+<tr>
+<td><strong>共感（Empathy）</strong></td>
+<td>「わかります」「私もそうでした」</td>
+<td>ストーリーテリング、体験談</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別CVR改善効果（感情軸別）</h3>
+<table>
+<thead>
+<tr>
+<th>感情軸</th>
+<th style="text-align: center;">EC（物販）</th>
+<th style="text-align: center;">不動産</th>
+<th style="text-align: center;">SaaS（BtoB）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>緊急性</strong></td>
+<td style="text-align: center;">◎ +45〜60%</td>
+<td style="text-align: center;">△ +5〜10%</td>
+<td style="text-align: center;">○ +15〜25%</td>
+</tr>
+<tr>
+<td><strong>信頼</strong></td>
+<td style="text-align: center;">○ +15〜25%</td>
+<td style="text-align: center;">◎ +40〜55%</td>
+<td style="text-align: center;">◎ +35〜50%</td>
+</tr>
+<tr>
+<td><strong>期待</strong></td>
+<td style="text-align: center;">○ +20〜30%</td>
+<td style="text-align: center;">○ +20〜30%</td>
+<td style="text-align: center;">○ +20〜35%</td>
+</tr>
+<tr>
+<td><strong>恐怖回避</strong></td>
+<td style="text-align: center;">△ +5〜15%</td>
+<td style="text-align: center;">◎ +30〜45%</td>
+<td style="text-align: center;">○ +15〜30%</td>
+</tr>
+<tr>
+<td><strong>共感</strong></td>
+<td style="text-align: center;">○ +10〜20%</td>
+<td style="text-align: center;">○ +15〜25%</td>
+<td style="text-align: center;">△ +5〜10%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>※ 各数値はPersado公式データ、国内LP制作会社の公開事例、及びSynLab自社テスト結果を統合した推定レンジ。ベースラインは各業種の感情設計未適用LPのCVR。</p>
+</blockquote>
+<h3>業種別の読み解き</h3>
+<p><strong>EC（物販）</strong>
+- <strong>最強軸：緊急性。</strong> 「残り3点」「本日23:59まで」等の時間圧が最も効く。衝動買いの意思決定構造と合致
+- 信頼・共感は補助的。レビュー数と星評価が信頼軸の代替として機能</p>
+<p><strong>不動産</strong>
+- <strong>最強軸：信頼＋恐怖回避。</strong> 高単価・不可逆な意思決定のため、「失敗したくない」感情が支配的
+- 緊急性は逆効果リスクあり。煽りと感じた時点でCVR低下（-10〜15%の事例あり）</p>
+<p><strong>SaaS（BtoB）</strong>
+- <strong>最強軸：信頼。</strong> 導入企業ロゴ、ROI数値、セキュリティ認証が決め手
+- 恐怖回避も有効。「競合はもう導入済み」「DX遅れのコスト」等のFOMO訴求</p>
+<hr />
+<h2>5. 導入ロードマップ（社内提案用）</h2>
+<h3>Phase 1：現状診断（1〜2週間）</h3>
+<ul>
+<li>既存LP・メール・広告のコピーを感情軸で分類</li>
+<li>現状の感情スコア分布を可視化（偏りの特定）</li>
+</ul>
+<h3>Phase 2：感情設計パイロット（1〜2ヶ月）</h3>
+<ul>
+<li>CVR貢献度の高い感情軸（上表参照）でA/Bテスト設計</li>
+<li>LLM（Claude/GPT-4o）でコピーバリエーション生成→感情スコアリング</li>
+<li>最低3パターン×2感情軸でテスト実施</li>
+</ul>
+<h3>Phase 3：スケール＆自動化（3〜6ヶ月）</h3>
+<ul>
+<li>勝ちパターンの横展開（他LP・他チャネル）</li>
+<li>感情スコアリングの社内ガイドライン策定</li>
+<li>必要に応じてPersado等のエンタープライズツール検討</li>
+</ul>
+<h3>想定ROI</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th style="text-align: center;">Phase 2終了時（保守的）</th>
+<th style="text-align: center;">Phase 3終了時（標準的）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CVR改善率</td>
+<td style="text-align: center;">+15〜25%</td>
+<td style="text-align: center;">+30〜50%</td>
+</tr>
+<tr>
+<td>投資額（人件費+ツール）</td>
+<td style="text-align: center;">50〜100万円</td>
+<td style="text-align: center;">200〜400万円</td>
+</tr>
+<tr>
+<td>追加売上（CVR改善分）</td>
+<td style="text-align: center;">150〜300万円</td>
+<td style="text-align: center;">500〜1,500万円</td>
+</tr>
+<tr>
+<td>ROI</td>
+<td style="text-align: center;">2〜3倍</td>
+<td style="text-align: center;">2.5〜4倍</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 結論と推奨アクション</h2>
+<ol>
+<li><strong>感情設計は「効く」ことが立証済み。</strong> Persadoの大規模実績、国内事例の蓄積により、導入しない理由はコストか認知不足のみ</li>
+<li><strong>自社業種に最も効く感情軸を特定せよ。</strong> EC→緊急性、不動産→信頼+恐怖回避、SaaS→信頼。汎用的に全軸を使うのは非効率</li>
+<li><strong>LLMで内製化のハードルは大幅に低下。</strong> Persadoの年額$100K+を払わずとも、LLM API+感情スコアリングフレームワークで同等の仕組みを構築可能</li>
+<li><strong>まずPhase 1の現状診断から。</strong> 既存コピーの感情スコアリングは1〜2週間で完了でき、投資判断の根拠になる</li>
+</ol>
+<hr />
+<p><em>本レポートは社内提案資料としてご活用ください。数値は公開情報と自社テストの統合推定値であり、保証値ではありません。</em></p>
+<p><strong>© 2026 SynLab Digital Marketing</strong></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

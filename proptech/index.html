@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kusasyu PropTech | 不動産業務を加速するAIツール</title>
+<meta name="description" content="不動産会社・宅建士・不動産投資家向けの無料AIツール・記事・テンプレート集。不動産業務を加速するAIツール。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/">
+<meta property="og:title" content="kusasyu PropTech | 不動産業務を加速するAIツール">
+<meta property="og:description" content="不動産会社・宅建士・不動産投資家向けの無料AIツール・記事・テンプレート集。不動産業務を加速するAIツール。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kusasyu PropTech | 不動産業務を加速するAIツール">
+<meta name="twitter:description" content="不動産会社・宅建士・不動産投資家向けの無料AIツール・記事・テンプレート集。不動産業務を加速するAIツール。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "kusasyu PropTech | 不動産業務を加速するAIツール",
+  "description": "不動産会社・宅建士・不動産投資家向けの無料AIツール・記事・テンプレート集。不動産業務を加速するAIツール。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.header {
+  text-align: center;
+  padding: 48px 20px 32px;
+  background: linear-gradient(180deg, #1e293b 0%, var(--bg) 100%);
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.header .tagline {
+  color: var(--text2);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.header .audience {
+  color: var(--accent);
+  font-size: 14px;
+}
+.breadcrumb {
+  text-align: center;
+  padding: 8px 20px 0;
+  font-size: 13px;
+  color: var(--text2);
+}
+.breadcrumb a { color: var(--accent); }
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val { font-size: 24px; font-weight: 800; color: var(--accent); }
+.stat .label { font-size: 12px; color: var(--text2); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+.section { margin-top: 40px; }
+.section h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.count {
+  font-size: 13px;
+  background: var(--border);
+  padding: 2px 10px;
+  border-radius: 12px;
+  color: var(--text2);
+  font-weight: 400;
+  margin-left: 8px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+  display: block;
+}
+.card:hover {
+  background: var(--card-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.score {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+}
+.type-badge {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+}
+.type-tool { background: #6366f1; }
+.type-article { background: #8b5cf6; }
+.type-csv { background: #f59e0b; }
+.card h3 { font-size: 16px; margin-bottom: 4px; line-height: 1.4; }
+.project-name { font-size: 12px; color: var(--accent); margin-bottom: 8px; }
+.desc { font-size: 13px; color: var(--text2); margin-bottom: 12px; line-height: 1.5; }
+.cta { font-size: 13px; color: var(--accent); font-weight: 600; }
+.footer {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--text2);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+.footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  .header h1 { font-size: 22px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt; <span>kusasyu PropTech</span>
+</nav>
+<div class="header">
+  <h1>🏠 kusasyu PropTech</h1>
+  <p class="tagline">不動産業務を加速するAIツール</p>
+  <p class="audience">不動産会社・宅建士・不動産投資家のための無料AIツール集</p>
+  <div class="stats">
+    <div class="stat">
+      <div class="val">30</div>
+      <div class="label">公開コンテンツ</div>
+    </div>
+    <div class="stat">
+      <div class="val">6</div>
+      <div class="label">ツール</div>
+    </div>
+    <div class="stat">
+      <div class="val">21</div>
+      <div class="label">記事</div>
+    </div>
+    <div class="stat">
+      <div class="val">0円</div>
+      <div class="label">利用料金</div>
+    </div>
+  </div>
+</div>
+<div class="container">
+
+    <section class="section">
+      <h2>🛠️ ツール<span class="count">6本</span></h2>
+      <div class="grid">
+      <a href="proptech/propclause/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>不動産契約書_隠れコスト試算ツール</h3>
+        <p class="project-name">不動産契約書コスト試算チェッカー「PropClause」</p>
+        <p class="desc">中小不動産会社の担当者が、売買契約書・賃貸借契約書・管理委託契約書の主要条項をチェックリスト形式で入力すると、各条項の「最悪ケースでの金銭的損失額」を自動試算するツールキット。既存のAI契約書レビューSaaS（LeCHECK、AI-CON等</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="proptech/propsync/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>不動産オープンID準拠度診断＆変換ツール</h3>
+        <p class="project-name">不動産オープンID準拠データ変換ツールキット「PropSync」</p>
+        <p class="desc">国土交通省・不動産テック協会が推進する「不動産オープンID」規格に準拠した物件データ準拠度診断＆変換ツール。CSVやJSONで自社物件データをアップロードすると、オープンID仕様との差分を自動検出し、準拠度スコア（0〜100）と具体的な修正</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="proptech/propdirect/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>個人売買コスト比較シミュレーター</h3>
+        <p class="project-name">個人間不動産売買スターターキット「PropDirect」</p>
+        <p class="desc">仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="proptech/propsite/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>建設現場日報ジェネレーター</h3>
+        <p class="project-name">建設現場AI進捗モニタリング＆報告書自動生成 ツールキット「PropSite」</p>
+        <p class="desc">建設現場の監督者が毎日の報告書作成に費やす残業時間を削減するための実用ツールキット。フォーム入力だけで日報・週報を即座に生成するブラウザツール、工程進捗と遅延リスクを自動計算するExcelシート、安全巡回チェックリストの3点セット。将来のA</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="proptech/propguard/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>重説リスクスキャナー</h3>
+        <p class="project-name">重説リスク見える化ツールキット「PropGuard」</p>
+        <p class="desc">不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リス</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="proptech/propmatch/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>物件名寄せ一致度判定ツール（バッチ処理版）</h3>
+        <p class="project-name">不動産物件データ名寄せ標準化キット「PropMatch」</p>
+        <p class="desc">不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存デ</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      </div>
+    </section>
+    <section class="section">
+      <h2>📝 記事・ガイド<span class="count">21本</span></h2>
+      <div class="grid">
+      <a href="proptech/contract/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">10/10</span>
+        </div>
+        <h3>AI査定の『根拠説明』で媒介契約を勝ち取る3つのテクニック</h3>
+        <p class="project-name">不動産AI査定『根拠説明』実践ガイド</p>
+        <p class="desc">AI査定ツールが出した価格を売主に『なぜこの金額なのか』納得してもらうための実践テクニックをまとめる。査定額そのものではなく、説明の仕方・根拠の見せ方に特化したコンテンツセット。媒介契約獲得率の向上に直結する武器として、中小仲介会社の売却担</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/ai-assessment/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">10/10</span>
+        </div>
+        <h3>AI査定_根拠説明チェックリスト（売主面談用・全15項目）</h3>
+        <p class="project-name">不動産AI査定『根拠説明』実践ガイド</p>
+        <p class="desc">AI査定ツールが出した価格を売主に『なぜこの金額なのか』納得してもらうための実践テクニックをまとめる。査定額そのものではなく、説明の仕方・根拠の見せ方に特化したコンテンツセット。媒介契約獲得率の向上に直結する武器として、中小仲介会社の売却担</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/ai-assessment-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">10/10</span>
+        </div>
+        <h3>主要AI査定ツール_『説明機能』比較表</h3>
+        <p class="project-name">不動産AI査定『根拠説明』実践ガイド</p>
+        <p class="desc">AI査定ツールが出した価格を売主に『なぜこの金額なのか』納得してもらうための実践テクニックをまとめる。査定額そのものではなく、説明の仕方・根拠の見せ方に特化したコンテンツセット。媒介契約獲得率の向上に直結する武器として、中小仲介会社の売却担</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propclause-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>不動産契約書_複数案件コスト比較台帳</h3>
+        <p class="project-name">不動産契約書コスト試算チェッカー「PropClause」</p>
+        <p class="desc">中小不動産会社の担当者が、売買契約書・賃貸借契約書・管理委託契約書の主要条項をチェックリスト形式で入力すると、各条項の「最悪ケースでの金銭的損失額」を自動試算するツールキット。既存のAI契約書レビューSaaS（LeCHECK、AI-CON等</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propclause-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>不動産契約で「知らないと損する」コスト条項5選ガイド</h3>
+        <p class="project-name">不動産契約書コスト試算チェッカー「PropClause」</p>
+        <p class="desc">中小不動産会社の担当者が、売買契約書・賃貸借契約書・管理委託契約書の主要条項をチェックリスト形式で入力すると、各条項の「最悪ケースでの金銭的損失額」を自動試算するツールキット。既存のAI契約書レビューSaaS（LeCHECK、AI-CON等</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propsync-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>不動産オープンID対応ロードマップガイド</h3>
+        <p class="project-name">不動産オープンID準拠データ変換ツールキット「PropSync」</p>
+        <p class="desc">国土交通省・不動産テック協会が推進する「不動産オープンID」規格に準拠した物件データ準拠度診断＆変換ツール。CSVやJSONで自社物件データをアップロードすると、オープンID仕様との差分を自動検出し、準拠度スコア（0〜100）と具体的な修正</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/ai-response/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>反響対応AI活用ガイド記事</h3>
+        <p class="project-name">不動産仲介向けAI反響対応・追客 実践導入ガイド</p>
+        <p class="desc">中小不動産仲介会社（従業員10名以下）が、ポータルサイトからの問い合わせ対応にAIエージェントを導入するための実践ガイド一式を作成する。反響対応の遅れによる機会損失という深刻な課題に対し、テンプレート型自動返信とAIエージェント型対話の違い</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/ai-response-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>AI追客ツール導入判断チェックリスト</h3>
+        <p class="project-name">不動産仲介向けAI反響対応・追客 実践導入ガイド</p>
+        <p class="desc">中小不動産仲介会社（従業員10名以下）が、ポータルサイトからの問い合わせ対応にAIエージェントを導入するための実践ガイド一式を作成する。反響対応の遅れによる機会損失という深刻な課題に対し、テンプレート型自動返信とAIエージェント型対話の違い</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/ai-response-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>不動産仲介向けAI反響対応ツール比較表</h3>
+        <p class="project-name">不動産仲介向けAI反響対応・追客 実践導入ガイド</p>
+        <p class="desc">中小不動産仲介会社（従業員10名以下）が、ポータルサイトからの問い合わせ対応にAIエージェントを導入するための実践ガイド一式を作成する。反響対応の遅れによる機会損失という深刻な課題に対し、テンプレート型自動返信とAIエージェント型対話の違い</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propinspect/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>全3回連載ブログ記事</h3>
+        <p class="project-name">AI建物状況調査スクリーニング 実践連載「PropInspect」</p>
+        <p class="desc">2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propinspect-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>AI建物スクリーニング実施チェックリスト</h3>
+        <p class="project-name">AI建物状況調査スクリーニング 実践連載「PropInspect」</p>
+        <p class="desc">2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propinspect-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>インスペクション説明トークスクリプト集</h3>
+        <p class="project-name">AI建物状況調査スクリーニング 実践連載「PropInspect」</p>
+        <p class="desc">2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propdirect-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>物件紹介文セルフ作成テンプレート</h3>
+        <p class="project-name">個人間不動産売買スターターキット「PropDirect」</p>
+        <p class="desc">仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propsite-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>安全巡回KYチェックリスト＆是正管理テンプレート</h3>
+        <p class="project-name">建設現場AI進捗モニタリング＆報告書自動生成 ツールキット「PropSite」</p>
+        <p class="desc">建設現場の監督者が毎日の報告書作成に費やす残業時間を削減するための実用ツールキット。フォーム入力だけで日報・週報を即座に生成するブラウザツール、工程進捗と遅延リスクを自動計算するExcelシート、安全巡回チェックリストの3点セット。将来のA</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propguard-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>不動産屋への確認質問テンプレート（売買・賃貸別）</h3>
+        <p class="project-name">重説リスク見える化ツールキット「PropGuard」</p>
+        <p class="desc">不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リス</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propguard-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>重説の「ここだけは見て」危険条項トップ10ガイド</h3>
+        <p class="project-name">重説リスク見える化ツールキット「PropGuard」</p>
+        <p class="desc">不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リス</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propmatch-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>不動産物件データ命名規約テンプレート_+_実装ガイド統合版</h3>
+        <p class="project-name">不動産物件データ名寄せ標準化キット「PropMatch」</p>
+        <p class="desc">不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存デ</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/propmatch-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>不動産データ名寄せ実装シナリオガイド</h3>
+        <p class="project-name">不動産物件データ名寄せ標準化キット「PropMatch」</p>
+        <p class="desc">不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存デ</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/virtual-staging/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>AIバーチャルステージング導入・実践ガイド記事</h3>
+        <p class="project-name">賃貸空室対策AIバーチャルステージング活用ガイド</p>
+        <p class="desc">賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/virtual-staging-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>空室物件の写真撮影＆掲載クオリティ改善チェックリスト</h3>
+        <p class="project-name">賃貸空室対策AIバーチャルステージング活用ガイド</p>
+        <p class="desc">賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="proptech/virtual-staging-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>バーチャルステージングツール比較表（2026年版）</h3>
+        <p class="project-name">賃貸空室対策AIバーチャルステージング活用ガイド</p>
+        <p class="desc">賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。</p>
+        <span class="cta">読む →</span>
+      </a>
+      </div>
+    </section>
+    <section class="section">
+      <h2>📋 テンプレート<span class="count">3本</span></h2>
+      <div class="grid">
+      <a href="proptech/propsync-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-csv">テンプレート</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>物件データ標準化フォーマット定義テンプレート</h3>
+        <p class="project-name">不動産オープンID準拠データ変換ツールキット「PropSync」</p>
+        <p class="desc">国土交通省・不動産テック協会が推進する「不動産オープンID」規格に準拠した物件データ準拠度診断＆変換ツール。CSVやJSONで自社物件データをアップロードすると、オープンID仕様との差分を自動検出し、準拠度スコア（0〜100）と具体的な修正</p>
+        <span class="cta">ダウンロード →</span>
+      </a>
+      <a href="proptech/propdirect-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-csv">テンプレート</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>個人売買プロセス管理チェックシート</h3>
+        <p class="project-name">個人間不動産売買スターターキット「PropDirect」</p>
+        <p class="desc">仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。</p>
+        <span class="cta">ダウンロード →</span>
+      </a>
+      <a href="proptech/propsite-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-csv">テンプレート</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>工程進捗・遅延リスク管理シート</h3>
+        <p class="project-name">建設現場AI進捗モニタリング＆報告書自動生成 ツールキット「PropSite」</p>
+        <p class="desc">建設現場の監督者が毎日の報告書作成に費やす残業時間を削減するための実用ツールキット。フォーム入力だけで日報・週報を即座に生成するブラウザツール、工程進捗と遅延リスクを自動計算するExcelシート、安全巡回チェックリストの3点セット。将来のA</p>
+        <span class="cta">ダウンロード →</span>
+      </a>
+      </div>
+    </section>
+</div>
+<div class="footer">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">&larr; kusasyu tools トップに戻る</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5日間メール講座『法務ナレッジ棚卸し5ステップ』 - kusasyu tools</title>
+<meta name="description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,5日間メール講座『法務ナレッジ棚卸し5ステップ』">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-2/">
+<meta property="og:title" content="5日間メール講座『法務ナレッジ棚卸し5ステップ』 - kusasyu tools">
+<meta property="og:description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5日間メール講座『法務ナレッジ棚卸し5ステップ』 - kusasyu tools">
+<meta name="twitter:description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "5日間メール講座『法務ナレッジ棚卸し5ステップ』",
+  "description": "中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>5日間メール講座『法務ナレッジ棚卸し5ステップ』</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>5日間メール講座『法務ナレッジ棚卸し5ステップ』</h1>
+  <p class="project-name">法務ナレッジ属人化解消 実践コンテンツシリーズ</p>
+  <div class="content">
+<h1>5日間メール講座『法務ナレッジ棚卸し5ステップ』</h1>
+<p><strong>SynLab Legal Tech ナレッジマネジメントチーム</strong></p>
+<blockquote>
+<p>本講座は、連載ブログ『法務ナレッジ属人化を解消する技術』の実践編です。1日1ステップ、5日間で法務ナレッジの棚卸しを完了させます。</p>
+</blockquote>
+<hr />
+<h2>【Day 1／5】属人化セルフ診断 ― まず現状を10項目でスコアリングする</h2>
+<p>お忙しいところ、ご登録ありがとうございます。SynLab Legal Tech ナレッジマネジメントチームです。</p>
+<p>法務ナレッジの棚卸しは「現状把握」から始まります。初日は、あなたの法務部門の属人化レベルを10項目で診断してください。各項目に「はい＝1点／いいえ＝0点」で回答し、合計点を出します。</p>
+<h3>属人化セルフ診断チェックリスト（10項目）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>特定の担当者が不在だと、契約レビューの回答が1日以上遅れる</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>過去の契約交渉で「なぜこの条件で合意したか」を説明できる人が1人しかいない</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>事業部門からの法務相談への回答履歴が、個人のメールボックスにしか残っていない</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>取引先ごとの契約条件の「落としどころ」が文書化されていない</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>法改正があったとき、影響範囲を即座に洗い出せる仕組みがない</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>新任の法務担当者が独り立ちするまでに6か月以上かかる</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>「前回どうしたか」を確認するために、毎回ベテランに口頭で聞いている</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>過去1年以内に、担当者の退職・異動で案件の引継ぎに苦労した経験がある</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>契約書のひな形がローカルPCや個人フォルダに散在している</td>
+<td>／1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>ナレッジ共有の取り組みを始めたが、3か月以内に形骸化した経験がある</td>
+<td>／1</td>
+</tr>
+</tbody>
+</table>
+<h3>スコアの読み方</h3>
+<ul>
+<li><strong>0〜3点</strong>：属人化リスクは低め。仕組み化で盤石にできます。</li>
+<li><strong>4〜6点</strong>：中程度。特定領域に偏った属人化が潜んでいます。</li>
+<li><strong>7〜10点</strong>：高リスク。連載ブログ第1回で紹介した属人化コスト計算式で、年間コストを可視化することを強く推奨します。ある年商300億円の製造業では年間約1,200万円の属人化コストが算出されました。</li>
+</ul>
+<p><strong>明日のDay 2では、このスコアを踏まえて「どのナレッジから整理するか」を決める分類マトリクスを作成します。</strong></p>
+<hr />
+<h2>【Day 2／5】ナレッジ分類マトリクス作成 ― 契約類型×判断基準の2軸で整理する</h2>
+<p>Day 1の診断スコアはいかがでしたか。本日は、法務ナレッジを「契約類型」と「判断基準」の2軸で整理するマトリクスを作成します。</p>
+<h3>なぜ2軸で整理するのか</h3>
+<p>連載ブログ第2回で紹介した3カテゴリ（A. 判断履歴、B. 交渉経緯、C. Q&amp;A蓄積）は「ナレッジの種類」による分類でした。今回のマトリクスは、それらを<strong>実務で引き出せる形に並べ替える</strong>ためのものです。</p>
+<h3>マトリクスの作り方</h3>
+<p><strong>横軸：契約類型</strong>（自社でよく扱う類型を5〜8個選定）</p>
+<p>例：NDA ／ 業務委託 ／ ライセンス ／ 売買基本契約 ／ 共同開発 ／ 代理店契約</p>
+<p><strong>縦軸：判断基準（論点）</strong>（頻出する論点を5〜8個選定）</p>
+<p>例：損害賠償上限 ／ 知的財産帰属 ／ 解除条件 ／ 秘密保持範囲 ／ 競業避止 ／ 準拠法</p>
+<h3>マトリクス記入例</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>NDA</th>
+<th>業務委託</th>
+<th>ライセンス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>損害賠償上限</strong></td>
+<td>原則なし</td>
+<td>委託料の12か月分</td>
+<td>個別交渉</td>
+</tr>
+<tr>
+<td><strong>知財帰属</strong></td>
+<td>対象外</td>
+<td>委託者帰属が原則</td>
+<td>ライセンサー保持</td>
+</tr>
+<tr>
+<td><strong>解除条件</strong></td>
+<td>重大違反＋30日催告</td>
+<td>同左＋再委託違反</td>
+<td>ロイヤリティ未払い</td>
+</tr>
+</tbody>
+</table>
+<h3>今日のアクション</h3>
+<ol>
+<li>自社の契約類型を洗い出し、頻度上位5〜8個を横軸に設定する</li>
+<li>過去1年で論点になった事項を洗い出し、頻度上位5〜8個を縦軸に設定する</li>
+<li>各セルに「自社の標準的な判断基準」を1〜2行で記入する</li>
+</ol>
+<p>全セルを埋める必要はありません。<strong>空欄のセル＝暗黙知が眠っている場所</strong>です。Day 3で、この空欄を埋める方法をお伝えします。</p>
+<hr />
+<h2>【Day 3／5】暗黙知の言語化テクニック ― ベテランへのヒアリング質問テンプレート5問</h2>
+<p>Day 2で作成したマトリクスの「空欄セル」は、ベテラン法務担当者の頭の中にだけ存在する暗黙知です。連載ブログ第1回で触れたとおり、法務判断の根拠のうち約70%がドキュメントに残っていません。今日は、その暗黙知を効率よく引き出す5つの質問テンプレートをお伝えします。</p>
+<h3>ヒアリング質問テンプレート（5問）</h3>
+<p><strong>質問1：判断基準の言語化</strong></p>
+<blockquote>
+<p>「この類型の契約で〔論点〕が争点になったとき、最終的にどう判断しましたか？ その判断の一番の決め手は何でしたか？」</p>
+</blockquote>
+<p>→ マトリクスの空欄セルを直接埋めるための質問です。</p>
+<p><strong>質問2：例外パターンの抽出</strong></p>
+<blockquote>
+<p>「原則はそうだとして、例外的に違う判断をしたケースはありますか？ どんな条件が揃うと例外になりますか？」</p>
+</blockquote>
+<p>→ 標準ルールだけでは対応できない「条件分岐」を可視化します。</p>
+<p><strong>質問3：失敗経験からの学び</strong></p>
+<blockquote>
+<p>「過去に『こうしておけばよかった』と後悔した案件はありますか？ 今ならどう対応しますか？」</p>
+</blockquote>
+<p>→ 失敗知はナレッジとして最も再利用価値が高い情報です。</p>
+<p><strong>質問4：交渉の勘所</strong></p>
+<blockquote>
+<p>「この取引先（または業界）との交渉で、相手が特にこだわるポイントはどこですか？ こちらの譲歩ラインはどのあたりですか？」</p>
+</blockquote>
+<p>→ 交渉経緯（カテゴリB）の中核を引き出します。</p>
+<p><strong>質問5：引継ぎ時の最重要事項</strong></p>
+<blockquote>
+<p>「もし明日から別の人がこの業務を担当するとしたら、『これだけは絶対に伝えておきたい』ことは何ですか？」</p>
+</blockquote>
+<p>→ ベテラン自身が優先度を付けてくれるため、情報の絞り込みに有効です。</p>
+<h3>ヒアリングのコツ</h3>
+<ul>
+<li>1回30分以内に区切る。長時間は双方の負担になります。</li>
+<li>マトリクスの空欄セルを見せながら聞くと、具体的な回答が得やすくなります。</li>
+<li>録音（許可を得た上で）＋要約メモの二段構えが確実です。</li>
+</ul>
+<p><strong>明日のDay 4では、こうして集めたナレッジを格納するDBの最小構成を設計します。</strong></p>
+<hr />
+<h2>【Day 4／5】ナレッジDBの最小構成設計 ― Notion／SharePointで始める具体例</h2>
+<p>Day 3までに集めたナレッジを「検索できる状態」にするDBを構築します。完璧なシステムは不要です。連載ブログ第2回で推奨したとおり、<strong>まず80点の仕組みを2週間で立ち上げる</strong>ことを目標にします。</p>
+<h3>Notionで構築する場合</h3>
+<p><strong>データベース構成（テーブル1つで開始）</strong></p>
+<table>
+<thead>
+<tr>
+<th>プロパティ名</th>
+<th>型</th>
+<th>選択肢例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>タイトル</td>
+<td>タイトル</td>
+<td>（自由記述：案件や質問の要約）</td>
+</tr>
+<tr>
+<td>契約類型</td>
+<td>セレクト</td>
+<td>NDA／業務委託／ライセンス／売買基本契約 等</td>
+</tr>
+<tr>
+<td>相手方属性</td>
+<td>セレクト</td>
+<td>大企業／中堅／スタートアップ／海外</td>
+</tr>
+<tr>
+<td>論点</td>
+<td>マルチセレクト</td>
+<td>損害賠償上限／知的財産帰属／解除条件／秘密保持範囲 等</td>
+</tr>
+<tr>
+<td>判断方向</td>
+<td>セレクト</td>
+<td>承認／条件付承認／拒否／エスカレーション</td>
+</tr>
+<tr>
+<td>重要度</td>
+<td>セレクト</td>
+<td>高／中／低</td>
+</tr>
+<tr>
+<td>登録日</td>
+<td>日付</td>
+<td>—</td>
+</tr>
+<tr>
+<td>登録者</td>
+<td>ユーザー</td>
+<td>—</td>
+</tr>
+<tr>
+<td>本文</td>
+<td>テキスト</td>
+<td>（判断理由・経緯を記述）</td>
+</tr>
+</tbody>
+</table>
+<p>連載ブログ第2回の5つのタグ軸（契約類型・相手方属性・論点・判断方向・重要度）をそのままプロパティに対応させています。タグの選択肢は20〜30個に絞り込んでください。</p>
+<h3>SharePointで構築する場合</h3>
+<p>SharePointリスト（カスタムリスト）で同等の構成が実現できます。</p>
+<ul>
+<li>各プロパティを「列」として追加（選択肢列・複数選択列を活用）</li>
+<li>ビュー機能で「契約類型別」「重要度＝高のみ」などのフィルタを保存</li>
+<li>Microsoft 365環境であればTeamsチャネルにタブとして埋め込むと、日常的にアクセスしやすくなります</li>
+</ul>
+<h3>どちらを選ぶべきか</h3>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>Notion</th>
+<th>SharePoint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>導入しやすさ</td>
+<td>◎（即日開始可能）</td>
+<td>○（M365契約があれば追加費用なし）</td>
+</tr>
+<tr>
+<td>社内IT統制</td>
+<td>△（外部SaaS審査が必要な場合あり）</td>
+<td>◎（既存インフラ内）</td>
+</tr>
+<tr>
+<td>柔軟なビュー</td>
+<td>◎</td>
+<td>○</td>
+</tr>
+</tbody>
+</table>
+<p><strong>明日の最終日Day 5では、このDBを「作って終わり」にしないための運用ルールと定着の仕組みを策定します。</strong></p>
+<hr />
+<h2>【Day 5／5】運用ルール策定と定着の仕組み ― ナレッジ共有を「日常業務」に組み込む</h2>
+<p>最終日です。Day 1〜4で「診断→分類→言語化→DB構築」を完了しました。しかし、最も重要なのはここからです。連載ブログ第1回で触れたとおり、ナレッジ整理は緊急度の高い案件対応に押されて後回しになりがちです。仕組みで定着させましょう。</p>
+<h3>運用ルール：3つの「いつ記録するか」</h3>
+<p>属人化が再発しない最大のポイントは、<strong>記録タイミングを業務フローに埋め込む</strong>ことです。</p>
+<p><strong>ルール1：案件クローズ時に必ず1件登録</strong>
+契約締結・相談回答の完了時に、DB（Day 4で構築）へ1件登録することをルール化します。所要時間は5〜10分です。</p>
+<p><strong>ルール2：週次の法務ミーティングで「今週の学び」を1件共有</strong>
+既存の定例会議に5分間の共有枠を追加するだけで、記録の動機づけになります。</p>
+<p><strong>ルール3：四半期に1回、マトリクスの棚卸し</strong>
+Day 2で作成した契約類型×判断基準マトリクスを見直し、空欄を更新します。法改正や新規取引類型の反映もこのタイミングで行います。</p>
+<h3>定着させる3つの仕掛け</h3>
+<p><strong>仕掛け1：記録テンプレートをワンクリック呼び出し</strong>
+NotionならテンプレートボタンSharePointならリストの「新しいアイテム」にデフォルト値を設定し、入力の手間を最小化します。</p>
+<p><strong>仕掛け2：登録件数の可視化</strong>
+月間の登録件数をチームで共有します。目標は「法務担当者1人あたり月4件以上」。数値目標があると継続率が大幅に上がります。</p>
+<p><strong>仕掛け3：新メンバーのオンボーディングに組み込む</strong>
+新任者が最初の1週間でDBを検索して過去事例を調べる課題を設定します。「使う体験」を早期に持たせることで、自然と「記録する側」にも回るようになります。</p>
+<h3>5日間のまとめ</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>やったこと</th>
+<th>成果物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>属人化セルフ診断</td>
+<td>10項目スコア</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ナレッジ分類マトリクス</td>
+<td>契約類型×判断基準の一覧表</td>
+</tr>
+<tr>
+<td>3</td>
+<td>暗黙知の言語化</td>
+<td>ベテランヒアリング記録</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ナレッジDB構築</td>
+<td>Notion／SharePointのDB</td>
+</tr>
+<tr>
+<td>5</td>
+<td>運用ルール策定</td>
+<td>3つの記録ルール＋3つの定着施策</td>
+</tr>
+</tbody>
+</table>
+<p>5日間お疲れさまでした。ここまでの成果物が揃えば、ベテラン法務担当者が退職・異動しても知見が失われない基盤が整っています。</p>
+<p>さらに詳しい解説は、連載ブログ『法務ナレッジ属人化を解消する技術』をご覧ください。ナレッジ構造化の導入支援についてのご相談は、SynLab Legal Tech までお気軽にお問い合わせください。</p>
+<hr />
+<p><em>本メール講座は SynLab Legal Tech が提供しています。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

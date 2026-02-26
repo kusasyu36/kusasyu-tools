@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産物件データ命名規約テンプレート_+_実装ガイド統合版 - kusasyu tools</title>
+<meta name="description" content="不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産物件データ命名規約テンプレート_+_実装ガイド統合版">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-2/">
+<meta property="og:title" content="不動産物件データ命名規約テンプレート_+_実装ガイド統合版 - kusasyu tools">
+<meta property="og:description" content="不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産物件データ命名規約テンプレート_+_実装ガイド統合版 - kusasyu tools">
+<meta name="twitter:description" content="不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産物件データ命名規約テンプレート_+_実装ガイド統合版",
+  "description": "不動産テック企業・管理会社が抱える「同一物件の表記揺れ・名寄せ不能」問題を解決する実践ツールキット。ブラウザ上で動く一致度判定ツール（HTML/JS）、物件命名規約テンプレート、実践ガイドの3点セット。エンジニア不在でも即日導入でき、既存データのクレンジングを自走できる状態にする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産物件データ命名規約テンプレート_+_実装ガイド統合版</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産物件データ命名規約テンプレート_+_実装ガイド統合版</h1>
+  <p class="project-name">不動産物件データ名寄せ標準化キット「PropMatch」</p>
+  <div class="content">
+<h1>不動産物件データ命名規約テンプレート + 実装ガイド統合版</h1>
+<p><strong>バージョン</strong>: 1.0 ｜ <strong>発行</strong>: SynLab PropTech ｜ <strong>対象</strong>: 全事業部</p>
+<hr />
+<h2>1. 住所表記ルール</h2>
+<h3>1-1. 基本フォーマット</h3>
+<pre><code>{都道府県}{市区町村}{町名}{丁目}-{番地}-{号} [{建物名} {部屋番号}]
+</code></pre>
+<p><strong>例</strong>: <code>東京都渋谷区恵比寿1-5-12 恵比寿ガーデンプレイス301</code></p>
+<h3>1-2. 区切り文字・表記ルール</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ルール</th>
+<th>OK例</th>
+<th>NG例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>丁目〜番地〜号</td>
+<td>ハイフン <code>-</code> 統一（全角・漢字禁止）</td>
+<td><code>1-5-12</code></td>
+<td><code>1丁目5番12号</code> / <code>１−５−１２</code></td>
+</tr>
+<tr>
+<td>都道府県</td>
+<td><strong>省略不可</strong>（DB登録時は必須）</td>
+<td><code>東京都</code></td>
+<td><code>東京</code></td>
+</tr>
+<tr>
+<td>市区町村</td>
+<td>正式名称。略称・通称禁止</td>
+<td><code>渋谷区</code></td>
+<td><code>渋谷</code></td>
+</tr>
+<tr>
+<td>建物名</td>
+<td>スペース1つで区切り</td>
+<td><code>恵比寿G 301</code></td>
+<td><code>恵比寿G-301</code></td>
+</tr>
+<tr>
+<td>部屋番号</td>
+<td>半角数字。階層は <code>F</code> で表記</td>
+<td><code>203</code> / <code>3F-A</code></td>
+<td><code>２０３</code></td>
+</tr>
+<tr>
+<td>番地のみ（号なし）</td>
+<td>番地のみ記載</td>
+<td><code>1-5</code></td>
+<td><code>1-5-</code></td>
+</tr>
+</tbody>
+</table>
+<h3>1-3. 都道府県省略ルール</h3>
+<ul>
+<li><strong>DB・システム登録</strong>: 省略不可（バリデーション必須）</li>
+<li><strong>帳票・チラシ出力</strong>: 同都道府県内のみ省略可（設定で制御）</li>
+<li><strong>外部連携・API送信</strong>: 常に省略不可</li>
+</ul>
+<hr />
+<h2>2. 物件ID付番規則</h2>
+<h3>2-1. ID体系</h3>
+<pre><code>[エリアコード2桁]-[種別コード1桁]-[西暦下2桁][連番5桁]-[枝番2桁]
+</code></pre>
+<p><strong>例</strong>: <code>13-R-2412345-01</code></p>
+<h3>2-2. 各フィールド定義</h3>
+<table>
+<thead>
+<tr>
+<th>フィールド</th>
+<th>桁数</th>
+<th>内容</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>エリアコード</td>
+<td>2桁</td>
+<td>都道府県コード（JIS X 0401）</td>
+<td><code>13</code>=東京、<code>27</code>=大阪</td>
+</tr>
+<tr>
+<td>種別コード</td>
+<td>1桁</td>
+<td>R=賃貸, S=売買, C=商業, L=土地</td>
+<td><code>R</code></td>
+</tr>
+<tr>
+<td>西暦下2桁</td>
+<td>2桁</td>
+<td>登録年</td>
+<td><code>24</code>=2024年</td>
+</tr>
+<tr>
+<td>連番</td>
+<td>5桁</td>
+<td>000001〜99999（ゼロパディング）</td>
+<td><code>00345</code></td>
+</tr>
+<tr>
+<td>枝番</td>
+<td>2桁</td>
+<td>部屋・区画の枝番（親物件は<code>01</code>）</td>
+<td><code>01</code></td>
+</tr>
+</tbody>
+</table>
+<h3>2-3. 枝番ルール</h3>
+<ul>
+<li><strong>マンション1棟</strong>: 親ID（枝番<code>01</code>）＋各部屋（枝番<code>02</code>〜）</li>
+<li><strong>戸建て</strong>: 枝番<code>01</code>固定</li>
+<li><strong>区画分譲</strong>: 区画ごとに枝番付与（最大<code>99</code>）</li>
+<li><strong>再登録禁止</strong>: 廃番IDは欠番処理。再利用不可</li>
+</ul>
+<hr />
+<h2>3. データ入力チェックリスト（10項目）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>確認方法</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>住所の都道府県が省略されていない</td>
+<td>目視 / バリデーション</td>
+<td>必須入力</td>
+</tr>
+<tr>
+<td>2</td>
+<td>丁目・番地・号がハイフン区切りか</td>
+<td>正規表現 <code>^\d+-\d+(-\d+)?$</code></td>
+<td>全角・漢字NG</td>
+</tr>
+<tr>
+<td>3</td>
+<td>物件IDフォーマットが規約通りか</td>
+<td>正規表現 <code>^\d{2}-[RSCL]-\d{7}-\d{2}$</code></td>
+<td>完全一致</td>
+</tr>
+<tr>
+<td>4</td>
+<td>枝番の重複がないか</td>
+<td>DB重複チェック</td>
+<td>ユニーク制約</td>
+</tr>
+<tr>
+<td>5</td>
+<td>建物名の全角・半角が統一されているか</td>
+<td>文字種チェック</td>
+<td>半角英数字統一</td>
+</tr>
+<tr>
+<td>6</td>
+<td>面積の単位がm²で入力されているか</td>
+<td>単位フィールド確認</td>
+<td><code>m²</code> 固定</td>
+</tr>
+<tr>
+<td>7</td>
+<td>賃料・価格が半角数字のみか</td>
+<td>数値バリデーション</td>
+<td>カンマ・円記号NG</td>
+</tr>
+<tr>
+<td>8</td>
+<td>築年月が西暦YYYY-MM形式か</td>
+<td>日付フォーマット</td>
+<td><code>2005-03</code> 形式</td>
+</tr>
+<tr>
+<td>9</td>
+<td>最寄駅〜徒歩分が数字のみか</td>
+<td>数値チェック</td>
+<td>「約」等の文字NG</td>
+</tr>
+<tr>
+<td>10</td>
+<td>重複物件IDが存在しないか</td>
+<td>登録前DB照合</td>
+<td>ゼロトレランス</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 揺れパターン対照表（15例）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>修正前（NG）</th>
+<th>修正後（OK）</th>
+<th>揺れ分類</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>東京都渋谷区1-5-12</code></td>
+<td><code>東京都渋谷区恵比寿1-5-12</code></td>
+<td>町名欠落</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>渋谷区恵比寿1-5-12</code></td>
+<td><code>東京都渋谷区恵比寿1-5-12</code></td>
+<td>都道府県欠落</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>恵比寿１−５−１２</code></td>
+<td><code>恵比寿1-5-12</code></td>
+<td>全角数字・全角ハイフン</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>恵比寿1丁目5番12号</code></td>
+<td><code>恵比寿1-5-12</code></td>
+<td>漢字区切り</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>恵比寿1-5-12号</code></td>
+<td><code>恵比寿1-5-12</code></td>
+<td>末尾「号」残留</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>13R2412345</code></td>
+<td><code>13-R-2412345-01</code></td>
+<td>ID区切り文字欠落</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>13-R-24-12345-1</code></td>
+<td><code>13-R-2412345-01</code></td>
+<td>桁数・区切り誤り</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>恵比寿ガーデンプレイス-301</code></td>
+<td><code>恵比寿ガーデンプレイス 301</code></td>
+<td>建物名区切りNG</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>３０１</code></td>
+<td><code>301</code></td>
+<td>部屋番号全角</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>面積：65.5坪</code></td>
+<td><code>面積：216.53m²</code></td>
+<td>単位誤り（坪→m²）</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>賃料：￥150,000</code></td>
+<td><code>賃料：150000</code></td>
+<td>通貨記号・カンマ</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>築年：平成17年3月</code></td>
+<td><code>築年：2005-03</code></td>
+<td>元号表記</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>徒歩約8分</code></td>
+<td><code>徒歩：8</code></td>
+<td>「約」・「分」混入</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>大阪府大阪市大阪区</code></td>
+<td><code>大阪府大阪市中央区</code></td>
+<td>実在しない区名</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>恵比寿　1-5-12</code></td>
+<td><code>恵比寿1-5-12</code></td>
+<td>全角スペース混入</td>
+</tr>
+</tbody>
+</table>
+<h3>HTMLツール判定ロジックとの紐づけ</h3>
+<p>本対照表は住所名寄せHTMLツールと以下のパラメータで連動します：</p>
+<pre><code>距離閾値（編集距離）: ≤2 → 自動補正候補として提示
+距離閾値: 3〜5 → 要確認フラグ（黄）
+距離閾値: ≥6 → 手動修正必要（赤）
+
+パターン判定優先順位:
+  1. 正規表現マッチ（全角/漢字区切り）→ 即時変換
+  2. 編集距離計算 → 閾値判定
+  3. 住所マスタDB照合 → 実在確認
+</code></pre>
+<hr />
+<h2>5. システム実装ガイド</h2>
+<h3>5-1. Google Sheets（推奨スタート環境）</h3>
+<p><strong>セットアップ手順:</strong></p>
+<ol>
+<li>スプレッドシート新規作成 → シート名を <code>物件マスタ</code> に変更</li>
+<li>A1〜J1行にヘッダー設定（物件ID、都道府県、市区町村、町名、番地、建物名、部屋番号、賃料、面積、築年月）</li>
+<li>データ検証を設定:</li>
+<li>物件ID列: <code>=REGEXMATCH(A2,"^\d{2}-[RSCL]-\d{7}-\d{2}$")</code></li>
+<li>番地列: <code>=REGEXMATCH(E2,"^\d+-\d+(-\d+)?$")</code></li>
+<li>条件付き書式で違反セルを赤ハイライト</li>
+<li>Apps Scriptで重複IDチェック関数を追加</li>
+</ol>
+<pre><code class="language-javascript">// Apps Script: 重複ID検出
+function checkDuplicateID() {
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const ids = sheet.getRange('A2:A').getValues().flat().filter(v =&gt; v);
+  const dupes = ids.filter((id, i) =&gt; ids.indexOf(id) !== i);
+  if (dupes.length &gt; 0) {
+    SpreadsheetApp.getUi().alert('重複ID: ' + dupes.join(', '));
+  }
+}
+</code></pre>
+<hr />
+<h3>5-2. Redmine（プロジェクト管理連携）</h3>
+<p><strong>カスタムフィールド設定:</strong></p>
+<ol>
+<li>管理 → カスタムフィールド → 「チケット」で新規作成</li>
+<li>以下フィールドを追加:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>フィールド名</th>
+<th>形式</th>
+<th>正規表現</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件ID</td>
+<td>テキスト</td>
+<td><code>^\d{2}-[RSCL]-\d{7}-\d{2}$</code></td>
+</tr>
+<tr>
+<td>住所（正規化済）</td>
+<td>テキスト</td>
+<td>必須・都道府県含む</td>
+</tr>
+<tr>
+<td>チェックリスト完了</td>
+<td>チェックボックス10個</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>ワークフロー設定: チェックリスト未完了時は「登録完了」ステータスへ遷移不可</li>
+<li>Webhook設定でHTMLツールと連携（住所バリデーションAPI呼び出し）</li>
+</ol>
+<hr />
+<h3>5-3. Oracle Database（本番DB環境）</h3>
+<p><strong>テーブル定義 + 制約:</strong></p>
+<pre><code class="language-sql">CREATE TABLE BUKKEN_MASTER (
+  BUKKEN_ID    VARCHAR2(15)  NOT NULL,
+  PREF         VARCHAR2(10)  NOT NULL,
+  CITY         VARCHAR2(20)  NOT NULL,
+  TOWN         VARCHAR2(30)  NOT NULL,
+  BANCHI       VARCHAR2(15)  NOT NULL,
+  BLDG_NAME    VARCHAR2(50),
+  ROOM_NO      VARCHAR2(10),
+  RENT         NUMBER(10),
+  AREA_M2      NUMBER(7,2),
+  BUILT_YM     CHAR(7),
+  CONSTRAINT PK_BUKKEN PRIMARY KEY (BUKKEN_ID),
+  CONSTRAINT CK_BUKKEN_ID CHECK (
+    REGEXP_LIKE(BUKKEN_ID, '^\d{2}-[RSCL]-\d{7}-\d{2}$')
+  ),
+  CONSTRAINT CK_BANCHI CHECK (
+    REGEXP_LIKE(BANCHI, '^\d+-\d+(-\d+)?$')
+  ),
+  CONSTRAINT CK_BUILT_YM CHECK (
+    REGEXP_LIKE(BUILT_YM, '^\d{4}-\d{2}$')
+  )
+);
+</code></pre>
+<p><strong>バリデーションプロシージャ:</strong></p>
+<pre><code class="language-sql">-- 住所の全角チェック（揺れ検出）
+CREATE OR REPLACE PROCEDURE validate_address(p_id IN VARCHAR2) AS
+  v_banchi VARCHAR2(15);
+BEGIN
+  SELECT BANCHI INTO v_banchi FROM BUKKEN_MASTER WHERE BUKKEN_ID = p_id;
+  IF REGEXP_LIKE(v_banchi, '[０-９－]') THEN
+    RAISE_APPLICATION_ERROR(-20001, '全角文字検出: ' || p_id);
+  END IF;
+END;
+</code></pre>
+<hr />
+<h3>5-4. SAP（大規模不動産管理ERP）</h3>
+<p><strong>マスタデータ設定手順:</strong></p>
+<ol>
+<li>トランザクション <code>MM01</code> → 「不動産マスタ」設定</li>
+<li>命名規約をカスタムフィールド <code>ZZPROPID</code> に登録</li>
+<li>フィールド長: 15桁</li>
+<li>チェックルーティン: <code>Z_CHECK_PROP_ID</code>（ABAPで実装）</li>
+<li>ABAPバリデーション関数:</li>
+</ol>
+<pre><code class="language-abap">FUNCTION Z_CHECK_PROP_ID.
+  DATA: lv_regex TYPE string VALUE '^\d{2}-[RSCL]-\d{7}-\d{2}$'.
+  IF NOT im_propid CP lv_regex.
+    MESSAGE 'ID形式エラー' TYPE 'E'.
+  ENDIF.
+ENDFUNCTION.
+</code></pre>
+<ol>
+<li>IDOCインターフェース設定: 外部連携時も同規約を強制（セグメント <code>E1PROPID</code> に制約追加）</li>
+</ol>
+<hr />
+<h2>Excel版チェックシートの使い方</h2>
+<table>
+<thead>
+<tr>
+<th>シート名</th>
+<th>用途</th>
+<th>主要数式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>物件マスタ</code></td>
+<td>一覧入力・管理</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>チェックリスト</code></td>
+<td>10項目確認シート</td>
+<td><code>=IF(AND(B2:B11=TRUE),"OK","未完了")</code></td>
+</tr>
+<tr>
+<td><code>揺れ対照</code></td>
+<td>15例参照・手動修正</td>
+<td><code>=IFERROR(VLOOKUP(A2,揺れ対照!A:B,2,0),A2)</code></td>
+</tr>
+<tr>
+<td><code>ID管理</code></td>
+<td>連番採番・重複確認</td>
+<td><code>=COUNTIF(A:A,A2)&gt;1</code> で重複検出</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>配布方法</strong>: 本Markdownをドキュメントとして共有 → Excelテンプレートは別添<code>naming_convention_v1.xlsx</code>（IT部門管理）</p>
+</blockquote>
+<hr />
+<p><em>SynLab PropTech ｜ データ標準化チーム ｜ 改訂時は本文書のバージョンを更新すること</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

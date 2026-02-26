@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>インスペクション説明トークスクリプト集 - kusasyu tools</title>
+<meta name="description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,インスペクション説明トークスクリプト集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-3/">
+<meta property="og:title" content="インスペクション説明トークスクリプト集 - kusasyu tools">
+<meta property="og:description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="インスペクション説明トークスクリプト集 - kusasyu tools">
+<meta name="twitter:description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "インスペクション説明トークスクリプト集",
+  "description": "2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>インスペクション説明トークスクリプト集</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>インスペクション説明トークスクリプト集</h1>
+  <p class="project-name">AI建物状況調査スクリーニング 実践連載「PropInspect」</p>
+  <div class="content">
+<h1>インスペクション説明トークスクリプト集</h1>
+<p><strong>SynLab PropTech｜営業担当者用</strong></p>
+<hr />
+<h2>1. 売主向け：調査提案時トークスクリプト</h2>
+<h3>場面設定</h3>
+<p>媒介契約締結時または販売活動開始前。売主に建物状況調査（インスペクション）の実施を提案する。</p>
+<hr />
+<h3>トークフロー</h3>
+<p><strong>【導入】</strong></p>
+<blockquote>
+<p>「○○様、本日は媒介契約についてご説明させていただきますが、その中で<strong>建物状況調査</strong>、いわゆるインスペクションについてもご案内がございます。」</p>
+</blockquote>
+<p><strong>【法的説明】</strong></p>
+<blockquote>
+<p>「平成30年の宅建業法改正により、私ども仲介会社には<strong>インスペクションのご案内が義務</strong>となっております。実施するかどうかはあくまで○○様のご判断ですが、まずは内容をご説明させてください。」</p>
+</blockquote>
+<p><strong>【AIスクリーニング結果の提示】</strong></p>
+<blockquote>
+<p>「今回、ご売却予定の物件について、弊社のAIスクリーニングで<strong>事前診断</strong>を行いました。こちらの画面をご覧ください。」</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>提示項目</th>
+<th>説明トーク例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>築年数リスク</td>
+<td>「築○年ですので、<strong>給排水管や防水層</strong>に経年劣化の可能性があります」</td>
+</tr>
+<tr>
+<td>構造リスク</td>
+<td>「木造○階建てで、AI判定では<strong>耐震性能の確認推奨</strong>となっています」</td>
+</tr>
+<tr>
+<td>過去履歴</td>
+<td>「エリアの災害履歴から、<strong>基礎・地盤</strong>のチェックが有効です」</td>
+</tr>
+<tr>
+<td>総合スコア</td>
+<td>「総合スコアは<strong>B判定</strong>（要確認）です。調査で安心材料を揃えることをお勧めします」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【メリット提示】</strong></p>
+<blockquote>
+<p>「インスペクション済み物件は、買主様に安心感を与え、<strong>成約率が約18%向上</strong>するというデータがございます。また、<strong>売却後のトラブル防止</strong>にもつながります。」</p>
+</blockquote>
+<p><strong>【クロージング】</strong></p>
+<blockquote>
+<p>「費用は○万円前後で、調査期間は約1週間です。ご希望でしたら、弊社提携の既存住宅状況調査技術者をご紹介いたします。いかがなさいますか？」</p>
+</blockquote>
+<hr />
+<h3>宅建業法35条 説明義務充足チェック</h3>
+<table>
+<thead>
+<tr>
+<th>チェック項目</th>
+<th>充足方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>媒介契約時のあっせん可否の説明（法34条の2）</td>
+<td>「調査の内容・費用・紹介可否」を口頭+書面で説明</td>
+</tr>
+<tr>
+<td>調査実施の有無の記載</td>
+<td>媒介契約書に「実施する／しない」を明記、売主署名取得</td>
+</tr>
+<tr>
+<td>あっせんの可否</td>
+<td>あっせん可能な調査者の情報を書面で提示</td>
+</tr>
+<tr>
+<td>AIスクリーニングの位置づけ</td>
+<td><strong>法定調査ではない旨</strong>を必ず伝達（「参考情報です」と明言）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 買主向け：調査結果説明時トークスクリプト</h2>
+<h3>場面設定</h3>
+<p>重要事項説明時。インスペクション結果を買主に説明する。</p>
+<hr />
+<h3>トークフロー</h3>
+<p><strong>【導入】</strong></p>
+<blockquote>
+<p>「続きまして、本物件の<strong>建物状況調査の結果</strong>についてご説明いたします。こちらは国交省の定める講習を修了した<strong>既存住宅状況調査技術者</strong>が実施したものです。」</p>
+</blockquote>
+<p><strong>【結果概要の説明】</strong></p>
+<blockquote>
+<p>「調査結果をまとめた書面がこちらです。結論から申しますと——」</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>結果パターン</th>
+<th>トーク例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>問題なし</strong></td>
+<td>「調査範囲において<strong>劣化事象は確認されませんでした</strong>。安心してご購入いただける状態です」</td>
+</tr>
+<tr>
+<td><strong>軽微な指摘あり</strong></td>
+<td>「○○に軽微な劣化が確認されましたが、<strong>補修費用は約○万円</strong>程度と見込まれます。売主様との協議も可能です」</td>
+</tr>
+<tr>
+<td><strong>要注意事項あり</strong></td>
+<td>「○○に劣化事象が確認されました。<strong>購入判断に影響する可能性</strong>がありますので、詳しくご説明します」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【AIスクリーニング結果との照合】</strong></p>
+<blockquote>
+<p>「こちらが事前にAIで予測したリスク箇所、そしてこちらが実際の調査結果です。」</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>AI予測</th>
+<th>実際の結果</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>給排水管リスク：中</td>
+<td>異常なし</td>
+<td>「予測よりも良好な状態でした」</td>
+</tr>
+<tr>
+<td>外壁リスク：高</td>
+<td>クラック2箇所</td>
+<td>「予測通り指摘がありました。補修についてご説明します」</td>
+</tr>
+<tr>
+<td>基礎リスク：低</td>
+<td>異常なし</td>
+<td>「予測通り問題ありませんでした」</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>「このように、AIの事前診断と実地調査を組み合わせることで、<strong>見落としの少ない確認</strong>ができております。」</p>
+</blockquote>
+<p><strong>【注意事項の説明】</strong></p>
+<blockquote>
+<p>「なお、インスペクションは<strong>目視等を中心とした非破壊検査</strong>です。壁の内部や床下の奥など、調査できない範囲がございます。その点はご了承ください。」</p>
+</blockquote>
+<p><strong>【クロージング】</strong></p>
+<blockquote>
+<p>「調査結果についてご不明な点はございますか？ この結果を踏まえたうえで、ご購入の意思をご確認させてください。」</p>
+</blockquote>
+<hr />
+<h3>宅建業法35条 説明義務充足チェック</h3>
+<table>
+<thead>
+<tr>
+<th>チェック項目</th>
+<th>充足方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>調査結果の概要説明（法35条1項6号の2）</td>
+<td>調査結果書面を交付し、重要事項説明書に添付</td>
+</tr>
+<tr>
+<td>調査実施者の明示</td>
+<td>技術者の氏名・登録番号を書面に記載</td>
+</tr>
+<tr>
+<td>調査対象部位と範囲の明示</td>
+<td>「構造耐力上主要な部分」「雨水の浸入を防止する部分」を明記</td>
+</tr>
+<tr>
+<td>調査時点の明示</td>
+<td>調査日を記載（<strong>1年以内</strong>のものに限る）</td>
+</tr>
+<tr>
+<td>調査の限界の説明</td>
+<td>非破壊・目視中心である旨を口頭+書面で説明</td>
+</tr>
+<tr>
+<td>AI結果の位置づけ</td>
+<td><strong>法定調査結果とは別の参考情報</strong>であることを明記</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 調査不要判断時トークスクリプト</h2>
+<h3>場面設定</h3>
+<p>新築・築浅物件、またはAIスクリーニングで低リスクと判定された場合に、調査を実施しない判断を説明する。</p>
+<hr />
+<h3>トークフロー</h3>
+<p><strong>【導入】</strong></p>
+<blockquote>
+<p>「本物件につきまして、建物状況調査のご案内をさせていただきます。」</p>
+</blockquote>
+<p><strong>【AIスクリーニング結果の提示】</strong></p>
+<blockquote>
+<p>「弊社AIスクリーニングの結果をご覧ください。」</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>築年数</td>
+<td>築○年（新築時の住宅瑕疵担保責任保険の期間内）</td>
+</tr>
+<tr>
+<td>構造リスク</td>
+<td>A判定（低リスク）</td>
+</tr>
+<tr>
+<td>設備リスク</td>
+<td>A判定（低リスク）</td>
+</tr>
+<tr>
+<td>総合スコア</td>
+<td><strong>A判定（調査優先度：低）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>【不要判断の根拠説明】</strong></p>
+<blockquote>
+<p>「本物件は築○年で、以下の理由からインスペクションの<strong>優先度は低い</strong>と判断しております。」</p>
+</blockquote>
+<ul>
+<li>新築時の<strong>10年瑕疵担保責任保険</strong>の期間内である</li>
+<li>売主が<strong>住宅履歴情報（いえかるて）</strong>を保有しており、定期点検記録がある</li>
+<li>AIスクリーニングで全項目がA判定（低リスク）</li>
+</ul>
+<p><strong>【重要な留意事項】</strong></p>
+<blockquote>
+<p>「ただし、これはあくまで<strong>弊社の判断としてお伝えするもの</strong>です。お客様が調査をご希望される場合は、もちろんお手配いたします。ご意向はいかがでしょうか？」</p>
+</blockquote>
+<p><strong>【記録】</strong></p>
+<blockquote>
+<p>「ありがとうございます。それでは<strong>調査を実施しない旨</strong>を書面に記載させていただきます。こちらにご署名をお願いいたします。」</p>
+</blockquote>
+<hr />
+<h3>宅建業法35条 説明義務充足チェック</h3>
+<table>
+<thead>
+<tr>
+<th>チェック項目</th>
+<th>充足方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>あっせんの有無の説明</td>
+<td>「あっせん可能だが不要と判断」を書面記載</td>
+</tr>
+<tr>
+<td>顧客の意思確認</td>
+<td>調査を希望するか口頭確認し、<strong>希望しない旨の署名</strong>を取得</td>
+</tr>
+<tr>
+<td>調査未実施の記載</td>
+<td>重要事項説明書に「調査なし」を明記</td>
+</tr>
+<tr>
+<td>AI結果の法的位置づけ</td>
+<td>「AIスクリーニングは法定調査の代替ではない」旨を説明・記録</td>
+</tr>
+<tr>
+<td>不要判断の根拠記録</td>
+<td>築年数・保険・点検記録等の根拠を社内書面に保存</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>共通注意事項</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AIスクリーニングの免責</td>
+<td>全スクリプトで「<strong>法定調査ではなく参考情報</strong>」と明言する</td>
+</tr>
+<tr>
+<td>書面の保存</td>
+<td>説明内容・顧客の意思決定は必ず<strong>書面化し5年間保存</strong></td>
+</tr>
+<tr>
+<td>調査者の要件</td>
+<td>既存住宅状況調査技術者（建築士+国交省講習修了者）に限定</td>
+</tr>
+<tr>
+<td>調査結果の有効期限</td>
+<td>重説添付は<strong>調査後1年以内</strong>のもののみ有効</td>
+</tr>
+<tr>
+<td>録音・記録</td>
+<td>顧客同意のうえ説明時の<strong>録音を推奨</strong>（紛争予防）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>SynLab PropTech — AI × 不動産で、透明な取引を。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

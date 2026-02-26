@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI建物スクリーニング実施チェックリスト - kusasyu tools</title>
+<meta name="description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,AI建物スクリーニング実施チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-2/">
+<meta property="og:title" content="AI建物スクリーニング実施チェックリスト - kusasyu tools">
+<meta property="og:description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI建物スクリーニング実施チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI建物スクリーニング実施チェックリスト",
+  "description": "2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>AI建物スクリーニング実施チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>AI建物スクリーニング実施チェックリスト</h1>
+  <p class="project-name">AI建物状況調査スクリーニング 実践連載「PropInspect」</p>
+  <div class="content">
+<h1>PropInspect — AI建物状況調査 一次スクリーニング 実施チェックリスト</h1>
+<p><strong>現場携行用 ｜ 1物件20枚・所要15分 ｜ 月額コスト約3,000円</strong></p>
+<hr />
+<h2>■ A. 必須撮影8箇所と撮影指示</h2>
+<p>各箇所で「①全景（1〜2m離れて全体）」＋「②接写（30cm以内で劣化部を拡大）」の2パターンを撮影する。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>箇所</th>
+<th>枚数</th>
+<th>撮影角度・ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>外壁（東西南北）</strong></td>
+<td>4枚</td>
+<td>各面を正面から。日光が当たる面は影が少ない時間帯に。ひび割れ・塗膜剥離・チョーキング（白い粉）を狙う</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>基礎部分</strong></td>
+<td>2枚</td>
+<td>地面との接合部を水平に撮影。横方向のひび割れ・白い析出物（エフロレッセンス）・蟻道を確認</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>屋根・軒裏</strong></td>
+<td>2枚</td>
+<td>屋根は道路側から望遠で。軒裏は真下から見上げて撮影。瓦のズレ・雨染み・破風の剥がれを狙う</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>バルコニー</strong></td>
+<td>1枚</td>
+<td>床面の防水層の浮き・ひび割れ、手すりのぐらつき・錆を撮影</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>天井（各居室）</strong></td>
+<td>3枚</td>
+<td>真下から見上げて撮影。シミ・変色・膨らみは雨漏りの兆候</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>壁・窓周辺</strong></td>
+<td>2枚</td>
+<td>窓枠の四隅を中心に斜め45度から。開口部周辺のひび割れは構造的問題の兆候</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>水回り</strong></td>
+<td>2枚</td>
+<td>キッチンシンク下・浴室コーキングを接写。変色・カビ・剥離を撮影</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>床下・小屋裏点検口</strong></td>
+<td>各1枚</td>
+<td>フラッシュ点灯で内部を撮影。木部の変色・蟻道・結露痕を確認。<strong>点検口がない場合はその旨記録</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>合計20枚</strong>（外部10枚＋内部10枚）。スマホ標準カメラで可。</p>
+</blockquote>
+<hr />
+<h2>■ B. AIツール入力プロンプト例（3パターン）</h2>
+<p>使用ツール：<strong>GPT-4o（ChatGPT Plus／月額20ドル＝約3,000円）</strong>
+※Google Cloud Vision APIで画像検出後、GPT-4oに結果画像を添付して以下を入力する。</p>
+<h3>パターン1：外壁・基礎の劣化判定</h3>
+<pre><code>この写真は中古住宅の【外壁 or 基礎】です。以下の観点で劣化状態を判定してください。
+（1）ひび割れの有無と幅の推定（0.3mm以上は要注意）
+（2）塗膜の剥離・チョーキングの程度
+（3）エフロレッセンス（白い析出物）の有無
+（4）蟻道の有無（基礎の場合）
+判定結果を「A：異常なし」「B：経過観察」「C：要インスペクション」の3段階で出力してください。
+判定理由も1〜2文で添えてください。
+</code></pre>
+<h3>パターン2：雨漏り兆候の判定（天井・軒裏）</h3>
+<pre><code>この写真は中古住宅の【天井 or 軒裏】です。雨漏りの兆候を判定してください。
+（1）シミ・変色の有無と範囲
+（2）膨らみ・剥がれの有無
+（3）カビの発生有無
+判定結果を「A：異常なし」「B：経過観察」「C：要インスペクション」の3段階で出力し、
+判定理由を1〜2文で添えてください。
+</code></pre>
+<h3>パターン3：水回り劣化の総合判定</h3>
+<pre><code>この写真は中古住宅の【キッチン or 浴室 or 洗面所】です。水回りの劣化を判定してください。
+（1）コーキングの剥離・痩せ・カビの程度
+（2）タイル目地のひび割れ・欠損
+（3）配管周辺の水染み・腐食の兆候
+判定結果を「A：異常なし」「B：経過観察」「C：要インスペクション」の3段階で出力し、
+判定理由を1〜2文で添えてください。
+</code></pre>
+<hr />
+<h2>■ C. 判定結果の読み方ガイド</h2>
+<table>
+<thead>
+<tr>
+<th>判定</th>
+<th>意味</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A：異常なし</strong></td>
+<td>目視レベルで明確な劣化が認められない</td>
+<td>そのまま取引を進行。判定記録を保存</td>
+</tr>
+<tr>
+<td><strong>B：経過観察</strong></td>
+<td>軽微な劣化の兆候あり。ただし直ちに構造的問題には至らない可能性が高い</td>
+<td>売主に状況を共有。買主への重説時に情報提供。必要に応じインスペクション推奨</td>
+</tr>
+<tr>
+<td><strong>C：要インスペクション</strong></td>
+<td>構造的問題・雨漏り・シロアリ等の重大な劣化が疑われる</td>
+<td><strong>有資格インスペクターの手配を強く推奨</strong>（→セクションD参照）</td>
+</tr>
+</tbody>
+</table>
+<h3>読み方の注意点</h3>
+<ul>
+<li><strong>AIは確定診断ではない</strong>。あくまで一次スクリーニング（ふるい分け）であり、有資格インスペクターの代替ではない</li>
+<li>8箇所中<strong>1箇所でもC判定</strong>が出たら、物件全体としてインスペクション推奨と判断する</li>
+<li>B判定が<strong>3箇所以上</strong>ある場合も、総合的にインスペクション推奨とする</li>
+<li>築20年以上の木造は劣化リスクが高いため、A判定でも顧客への説明時にインスペクションの選択肢を提示する</li>
+</ul>
+<hr />
+<h2>■ D. 有資格インスペクター手配基準</h2>
+<p>以下のいずれかに該当する場合、<strong>有資格インスペクター（費用：5〜10万円/件、期間：1〜2週間）への手配を推奨</strong>する。</p>
+<h3>即時手配（最優先）</h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C判定が<strong>1箇所以上</strong></td>
+<td>構造的問題・雨漏り・シロアリ等の重大リスク</td>
+</tr>
+<tr>
+<td>基礎に<strong>幅0.3mm以上のひび割れ</strong></td>
+<td>構造耐力に影響する可能性</td>
+</tr>
+<tr>
+<td>天井・壁に<strong>明確な水染み</strong>が拡がっている</td>
+<td>雨漏りが進行中の可能性</td>
+</tr>
+<tr>
+<td>床下・小屋裏に<strong>蟻道・木部の著しい変色</strong></td>
+<td>シロアリ被害の可能性</td>
+</tr>
+</tbody>
+</table>
+<h3>推奨手配（標準）</h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B判定が<strong>3箇所以上</strong></td>
+<td>複数の軽微な劣化が重なると全体リスクが上がる</td>
+</tr>
+<tr>
+<td><strong>築25年以上</strong>の木造住宅</td>
+<td>経年劣化が進行している確率が高い</td>
+</tr>
+<tr>
+<td>買主が<strong>住宅ローン減税・瑕疵保険</strong>の利用を希望</td>
+<td>インスペクション実施が適合証明の要件となる</td>
+</tr>
+</tbody>
+</table>
+<h3>説明のみ（手配は任意）</h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全箇所A判定かつ築20年未満</td>
+<td>買主にインスペクションの選択肢を説明し、希望があれば手配</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>■ E. 現場フロー早見表</h2>
+<pre><code>物件訪問
+  ↓
+撮影（8箇所・20枚・15分）
+  ↓
+Google Cloud Vision APIで画像解析（無料枠：月1,000回）
+  ↓
+GPT-4oにプロンプト＋画像を入力（月額約3,000円）
+  ↓
+A/B/C判定を取得
+  ↓
+┌──────────────────────────────┐
+│ C判定1箇所以上 or B判定3箇所以上 │→ インスペクター手配（5〜10万円/件）
+│          ↓ NO                   │
+│ 記録をGoogleスプレッドシートに保存  │→ 重説時に結果を説明
+└──────────────────────────────┘
+</code></pre>
+<hr />
+<p><strong>PropInspect 実践連載｜SynLab PropTech</strong>
+本チェックリストはAI一次スクリーニング用であり、宅建業法上のインスペクション（建物状況調査）の代替にはなりません。正式な調査は必ず既存住宅状況調査技術者にご依頼ください。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

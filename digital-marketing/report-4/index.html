@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月次レポートテンプレート - kusasyu tools</title>
+<meta name="description" content="中小企業（建設・医療・士業・飲食等）向けに、AIと人間ディレクターのハイブリッド型で月次コンテンツ（ブログ記事・SNS投稿・メルマガ）を制作するサブスクリプションサービスを設計する。過去5プロジェクトの最大課題である『成果物の途中切断・欠落』を根絶するため、成果物を小分割・個別ファイル化し、各ファイルに完了チ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,月次レポートテンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-4/">
+<meta property="og:title" content="月次レポートテンプレート - kusasyu tools">
+<meta property="og:description" content="中小企業（建設・医療・士業・飲食等）向けに、AIと人間ディレクターのハイブリッド型で月次コンテンツ（ブログ記事・SNS投稿・メルマガ）を制作するサブスクリプションサービスを設計する。過去5プロジェクトの最大課題である『成果物の途中切断・欠落』を根絶するため、成果物を小分割・個別ファイル化し、各ファイルに完了チ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="月次レポートテンプレート - kusasyu tools">
+<meta name="twitter:description" content="中小企業（建設・医療・士業・飲食等）向けに、AIと人間ディレクターのハイブリッド型で月次コンテンツ（ブログ記事・SNS投稿・メルマガ）を制作するサブスクリプションサービスを設計する。過去5プロジェクトの最大課題である『成果物の途中切断・欠落』を根絶するため、成果物を小分割・個別ファイル化し、各ファイルに完了チ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "月次レポートテンプレート",
+  "description": "中小企業（建設・医療・士業・飲食等）向けに、AIと人間ディレクターのハイブリッド型で月次コンテンツ（ブログ記事・SNS投稿・メルマガ）を制作するサブスクリプションサービスを設計する。過去5プロジェクトの最大課題である『成果物の途中切断・欠落』を根絶するため、成果物を小分割・個別ファイル化し、各ファイルに完了チ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-4/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>月次レポートテンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>月次レポートテンプレート</h1>
+  <p class="project-name">中小企業向けAIコンテンツ制作パッケージ</p>
+  <div class="content">
+<p>ファイル書き込みの許可待ちの間に、成果物をこちらに出力します。</p>
+<hr />
+<h1>月次コンテンツマーケティングレポート</h1>
+<p><strong>クライアント名:</strong> {{client_name}}
+<strong>対象期間:</strong> {{year}}年{{month}}月1日〜{{month}}月{{last_day}}日
+<strong>レポート作成日:</strong> {{report_date}}
+<strong>担当ディレクター:</strong> {{director_name}}
+<strong>レポートNo.:</strong> {{report_number}}</p>
+<hr />
+<h2>エグゼクティブサマリー</h2>
+<p>{{executive_summary}}</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>先月実績</th>
+<th>今月実績</th>
+<th>増減</th>
+<th>評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webサイト訪問数</td>
+<td>{{prev_sessions}}</td>
+<td>{{curr_sessions}}</td>
+<td>{{sessions_diff}}</td>
+<td>{{sessions_eval}}</td>
+</tr>
+<tr>
+<td>お問い合わせ件数</td>
+<td>{{prev_cv}}</td>
+<td>{{curr_cv}}</td>
+<td>{{cv_diff}}</td>
+<td>{{cv_eval}}</td>
+</tr>
+<tr>
+<td>コンバージョン率</td>
+<td>{{prev_cvr}}%</td>
+<td>{{curr_cvr}}%</td>
+<td>{{cvr_diff}}</td>
+<td>{{cvr_eval}}</td>
+</tr>
+<tr>
+<td>公開記事数</td>
+<td>{{prev_articles}}</td>
+<td>{{curr_articles}}</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SNSフォロワー数</td>
+<td>{{prev_followers}}</td>
+<td>{{curr_followers}}</td>
+<td>{{followers_diff}}</td>
+<td>{{followers_eval}}</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>今月のハイライト:</strong> {{highlight}}</p>
+</blockquote>
+<hr />
+<h2>1. アクセス解析</h2>
+<h3>1-1. サイト全体の推移</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>今月</th>
+<th>先月</th>
+<th>前年同月</th>
+<th>前月比</th>
+<th>前年比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>セッション数</td>
+<td>{{curr_sessions}}</td>
+<td>{{prev_sessions}}</td>
+<td>{{yoy_sessions}}</td>
+<td>{{mom_sessions}}%</td>
+<td>{{yoy_sessions_rate}}%</td>
+</tr>
+<tr>
+<td>ユーザー数</td>
+<td>{{curr_users}}</td>
+<td>{{prev_users}}</td>
+<td>{{yoy_users}}</td>
+<td>{{mom_users}}%</td>
+<td>{{yoy_users_rate}}%</td>
+</tr>
+<tr>
+<td>ページビュー数</td>
+<td>{{curr_pv}}</td>
+<td>{{prev_pv}}</td>
+<td>{{yoy_pv}}</td>
+<td>{{mom_pv}}%</td>
+<td>{{yoy_pv_rate}}%</td>
+</tr>
+<tr>
+<td>平均セッション時間</td>
+<td>{{curr_duration}}</td>
+<td>{{prev_duration}}</td>
+<td>{{yoy_duration}}</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>直帰率</td>
+<td>{{curr_bounce}}%</td>
+<td>{{prev_bounce}}%</td>
+<td>{{yoy_bounce}}%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分析コメント:</strong>
+{{traffic_analysis_comment}}</p>
+<h3>1-2. 流入チャネル別内訳</h3>
+<table>
+<thead>
+<tr>
+<th>チャネル</th>
+<th>セッション数</th>
+<th>構成比</th>
+<th>前月比</th>
+<th>主な流入元</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>オーガニック検索</td>
+<td>{{organic_sessions}}</td>
+<td>{{organic_ratio}}%</td>
+<td>{{organic_mom}}%</td>
+<td>{{organic_source}}</td>
+</tr>
+<tr>
+<td>ダイレクト</td>
+<td>{{direct_sessions}}</td>
+<td>{{direct_ratio}}%</td>
+<td>{{direct_mom}}%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>SNS</td>
+<td>{{social_sessions}}</td>
+<td>{{social_ratio}}%</td>
+<td>{{social_mom}}%</td>
+<td>{{social_source}}</td>
+</tr>
+<tr>
+<td>リファラル</td>
+<td>{{referral_sessions}}</td>
+<td>{{referral_ratio}}%</td>
+<td>{{referral_mom}}%</td>
+<td>{{referral_source}}</td>
+</tr>
+<tr>
+<td>その他（広告等）</td>
+<td>{{other_sessions}}</td>
+<td>{{other_ratio}}%</td>
+<td>{{other_mom}}%</td>
+<td>{{other_source}}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>分析コメント:</strong>
+{{channel_analysis_comment}}</p>
+<h3>1-3. 検索キーワード分析（上位10件）</h3>
+<table>
+<thead>
+<tr>
+<th>順位</th>
+<th>キーワード</th>
+<th>表示回数</th>
+<th>クリック数</th>
+<th>CTR</th>
+<th>平均順位</th>
+<th>前月順位</th>
+<th>変動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>{{kw1}}</td>
+<td>{{kw1_imp}}</td>
+<td>{{kw1_click}}</td>
+<td>{{kw1_ctr}}%</td>
+<td>{{kw1_pos}}</td>
+<td>{{kw1_prev_pos}}</td>
+<td>{{kw1_change}}</td>
+</tr>
+<tr>
+<td>2</td>
+<td>{{kw2}}</td>
+<td>{{kw2_imp}}</td>
+<td>{{kw2_click}}</td>
+<td>{{kw2_ctr}}%</td>
+<td>{{kw2_pos}}</td>
+<td>{{kw2_prev_pos}}</td>
+<td>{{kw2_change}}</td>
+</tr>
+<tr>
+<td>3</td>
+<td>{{kw3}}</td>
+<td>{{kw3_imp}}</td>
+<td>{{kw3_click}}</td>
+<td>{{kw3_ctr}}%</td>
+<td>{{kw3_pos}}</td>
+<td>{{kw3_prev_pos}}</td>
+<td>{{kw3_change}}</td>
+</tr>
+<tr>
+<td>4</td>
+<td>{{kw4}}</td>
+<td>{{kw4_imp}}</td>
+<td>{{kw4_click}}</td>
+<td>{{kw4_ctr}}%</td>
+<td>{{kw4_pos}}</td>
+<td>{{kw4_prev_pos}}</td>
+<td>{{kw4_change}}</td>
+</tr>
+<tr>
+<td>5</td>
+<td>{{kw5}}</td>
+<td>{{kw5_imp}}</td>
+<td>{{kw5_click}}</td>
+<td>{{kw5_ctr}}%</td>
+<td>{{kw5_pos}}</td>
+<td>{{kw5_prev_pos}}</td>
+<td>{{kw5_change}}</td>
+</tr>
+<tr>
+<td>6</td>
+<td>{{kw6}}</td>
+<td>{{kw6_imp}}</td>
+<td>{{kw6_click}}</td>
+<td>{{kw6_ctr}}%</td>
+<td>{{kw6_pos}}</td>
+<td>{{kw6_prev_pos}}</td>
+<td>{{kw6_change}}</td>
+</tr>
+<tr>
+<td>7</td>
+<td>{{kw7}}</td>
+<td>{{kw7_imp}}</td>
+<td>{{kw7_click}}</td>
+<td>{{kw7_ctr}}%</td>
+<td>{{kw7_pos}}</td>
+<td>{{kw7_prev_pos}}</td>
+<td>{{kw7_change}}</td>
+</tr>
+<tr>
+<td>8</td>
+<td>{{kw8}}</td>
+<td>{{kw8_imp}}</td>
+<td>{{kw8_click}}</td>
+<td>{{kw8_ctr}}%</td>
+<td>{{kw8_pos}}</td>
+<td>{{kw8_prev_pos}}</td>
+<td>{{kw8_change}}</td>
+</tr>
+<tr>
+<td>9</td>
+<td>{{kw9}}</td>
+<td>{{kw9_imp}}</td>
+<td>{{kw9_click}}</td>
+<td>{{kw9_ctr}}%</td>
+<td>{{kw9_pos}}</td>
+<td>{{kw9_prev_pos}}</td>
+<td>{{kw9_change}}</td>
+</tr>
+<tr>
+<td>10</td>
+<td>{{kw10}}</td>
+<td>{{kw10_imp}}</td>
+<td>{{kw10_click}}</td>
+<td>{{kw10_ctr}}%</td>
+<td>{{kw10_pos}}</td>
+<td>{{kw10_prev_pos}}</td>
+<td>{{kw10_change}}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注目キーワード:</strong>
+{{keyword_comment}}</p>
+<h3>1-4. 人気ページランキング（上位5件）</h3>
+<table>
+<thead>
+<tr>
+<th>順位</th>
+<th>ページタイトル</th>
+<th>PV数</th>
+<th>前月比</th>
+<th>平均滞在時間</th>
+<th>直帰率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>{{page1_title}}</td>
+<td>{{page1_pv}}</td>
+<td>{{page1_mom}}%</td>
+<td>{{page1_duration}}</td>
+<td>{{page1_bounce}}%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>{{page2_title}}</td>
+<td>{{page2_pv}}</td>
+<td>{{page2_mom}}%</td>
+<td>{{page2_duration}}</td>
+<td>{{page2_bounce}}%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>{{page3_title}}</td>
+<td>{{page3_pv}}</td>
+<td>{{page3_mom}}%</td>
+<td>{{page3_duration}}</td>
+<td>{{page3_bounce}}%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>{{page4_title}}</td>
+<td>{{page4_pv}}</td>
+<td>{{page4_mom}}%</td>
+<td>{{page4_duration}}</td>
+<td>{{page4_bounce}}%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>{{page5_title}}</td>
+<td>{{page5_pv}}</td>
+<td>{{page5_mom}}%</td>
+<td>{{page5_duration}}</td>
+<td>{{page5_bounce}}%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. コンバージョン分析</h2>
+<h3>2-1. お問い合わせ・成果の推移</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>今月</th>
+<th>先月</th>
+<th>前月比</th>
+<th>累計（契約開始〜）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>お問い合わせフォーム送信</td>
+<td>{{cv_form}}</td>
+<td>{{prev_cv_form}}</td>
+<td>{{cv_form_mom}}%</td>
+<td>{{cv_form_total}}</td>
+</tr>
+<tr>
+<td>電話お問い合わせ</td>
+<td>{{cv_tel}}</td>
+<td>{{prev_cv_tel}}</td>
+<td>{{cv_tel_mom}}%</td>
+<td>{{cv_tel_total}}</td>
+</tr>
+<tr>
+<td>LINE友だち追加</td>
+<td>{{cv_line}}</td>
+<td>{{prev_cv_line}}</td>
+<td>{{cv_line_mom}}%</td>
+<td>{{cv_line_total}}</td>
+</tr>
+<tr>
+<td>資料ダウンロード</td>
+<td>{{cv_dl}}</td>
+<td>{{prev_cv_dl}}</td>
+<td>{{cv_dl_mom}}%</td>
+<td>{{cv_dl_total}}</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td><strong>{{cv_total}}</strong></td>
+<td><strong>{{prev_cv_total}}</strong></td>
+<td><strong>{{cv_total_mom}}%</strong></td>
+<td><strong>{{cv_grand_total}}</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>2-2. コンバージョン経路分析</h3>
+<p><strong>今月のお問い合わせ上位流入経路:</strong></p>
+<ol>
+<li>{{cv_path1}}（{{cv_path1_count}}件）</li>
+<li>{{cv_path2}}（{{cv_path2_count}}件）</li>
+<li>{{cv_path3}}（{{cv_path3_count}}件）</li>
+</ol>
+<p><strong>分析コメント:</strong>
+{{cv_analysis_comment}}</p>
+<hr />
+<h2>3. 今月のコンテンツ実績</h2>
+<h3>3-1. ブログ記事</h3>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>公開日</th>
+<th>記事タイトル</th>
+<th>PV数</th>
+<th>検索流入</th>
+<th>CV貢献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>{{art1_date}}</td>
+<td>{{art1_title}}</td>
+<td>{{art1_pv}}</td>
+<td>{{art1_organic}}</td>
+<td>{{art1_cv}}</td>
+</tr>
+<tr>
+<td>2</td>
+<td>{{art2_date}}</td>
+<td>{{art2_title}}</td>
+<td>{{art2_pv}}</td>
+<td>{{art2_organic}}</td>
+<td>{{art2_cv}}</td>
+</tr>
+<tr>
+<td>3</td>
+<td>{{art3_date}}</td>
+<td>{{art3_title}}</td>
+<td>{{art3_pv}}</td>
+<td>{{art3_organic}}</td>
+<td>{{art3_cv}}</td>
+</tr>
+<tr>
+<td>4</td>
+<td>{{art4_date}}</td>
+<td>{{art4_title}}</td>
+<td>{{art4_pv}}</td>
+<td>{{art4_organic}}</td>
+<td>{{art4_cv}}</td>
+</tr>
+</tbody>
+</table>
+<h3>3-2. SNS投稿実績</h3>
+<table>
+<thead>
+<tr>
+<th>プラットフォーム</th>
+<th>投稿数</th>
+<th>インプレッション</th>
+<th>エンゲージメント</th>
+<th>エンゲージメント率</th>
+<th>フォロワー増減</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instagram</td>
+<td>{{ig_posts}}</td>
+<td>{{ig_imp}}</td>
+<td>{{ig_eng}}</td>
+<td>{{ig_eng_rate}}%</td>
+<td>{{ig_follower_diff}}</td>
+</tr>
+<tr>
+<td>X（Twitter）</td>
+<td>{{x_posts}}</td>
+<td>{{x_imp}}</td>
+<td>{{x_eng}}</td>
+<td>{{x_eng_rate}}%</td>
+<td>{{x_follower_diff}}</td>
+</tr>
+<tr>
+<td>LINE公式</td>
+<td>{{line_posts}}</td>
+<td>{{line_delivered}}</td>
+<td>{{line_open}}</td>
+<td>{{line_open_rate}}%</td>
+<td>{{line_friend_diff}}</td>
+</tr>
+<tr>
+<td>Googleビジネス</td>
+<td>{{gmb_posts}}</td>
+<td>{{gmb_views}}</td>
+<td>{{gmb_actions}}</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SNSハイライト（反応の良かった投稿）:</strong>
+{{sns_highlight}}</p>
+<h3>3-3. メールマガジン</h3>
+<table>
+<thead>
+<tr>
+<th>配信日</th>
+<th>件名</th>
+<th>配信数</th>
+<th>開封率</th>
+<th>クリック率</th>
+<th>配信停止数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{mail1_date}}</td>
+<td>{{mail1_subject}}</td>
+<td>{{mail1_sent}}</td>
+<td>{{mail1_open}}%</td>
+<td>{{mail1_click}}%</td>
+<td>{{mail1_unsub}}</td>
+</tr>
+<tr>
+<td>{{mail2_date}}</td>
+<td>{{mail2_subject}}</td>
+<td>{{mail2_sent}}</td>
+<td>{{mail2_open}}%</td>
+<td>{{mail2_click}}%</td>
+<td>{{mail2_unsub}}</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 競合・市場動向</h2>
+<h3>4-1. 競合サイト動向</h3>
+<table>
+<thead>
+<tr>
+<th>競合名</th>
+<th>今月の動き</th>
+<th>当社への示唆</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{comp1_name}}</td>
+<td>{{comp1_activity}}</td>
+<td>{{comp1_implication}}</td>
+</tr>
+<tr>
+<td>{{comp2_name}}</td>
+<td>{{comp2_activity}}</td>
+<td>{{comp2_implication}}</td>
+</tr>
+<tr>
+<td>{{comp3_name}}</td>
+<td>{{comp3_activity}}</td>
+<td>{{comp3_implication}}</td>
+</tr>
+</tbody>
+</table>
+<h3>4-2. 業界トレンド・季節要因</h3>
+<p>{{industry_trend}}</p>
+<hr />
+<h2>5. 改善提案</h2>
+<h3>5-1. 今月の重点改善ポイント</h3>
+<h4>提案1: {{proposal1_title}}</h4>
+<ul>
+<li><strong>課題:</strong> {{proposal1_problem}}</li>
+<li><strong>施策内容:</strong> {{proposal1_action}}</li>
+<li><strong>期待効果:</strong> {{proposal1_effect}}</li>
+<li><strong>優先度:</strong> {{proposal1_priority}}</li>
+<li><strong>実施目安:</strong> {{proposal1_timeline}}</li>
+</ul>
+<h4>提案2: {{proposal2_title}}</h4>
+<ul>
+<li><strong>課題:</strong> {{proposal2_problem}}</li>
+<li><strong>施策内容:</strong> {{proposal2_action}}</li>
+<li><strong>期待効果:</strong> {{proposal2_effect}}</li>
+<li><strong>優先度:</strong> {{proposal2_priority}}</li>
+<li><strong>実施目安:</strong> {{proposal2_timeline}}</li>
+</ul>
+<h4>提案3: {{proposal3_title}}</h4>
+<ul>
+<li><strong>課題:</strong> {{proposal3_problem}}</li>
+<li><strong>施策内容:</strong> {{proposal3_action}}</li>
+<li><strong>期待効果:</strong> {{proposal3_effect}}</li>
+<li><strong>優先度:</strong> {{proposal3_priority}}</li>
+<li><strong>実施目安:</strong> {{proposal3_timeline}}</li>
+</ul>
+<h3>5-2. 前月の改善提案 進捗状況</h3>
+<table>
+<thead>
+<tr>
+<th>提案内容</th>
+<th>ステータス</th>
+<th>実施結果・備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{prev_proposal1}}</td>
+<td>{{prev_proposal1_status}}</td>
+<td>{{prev_proposal1_result}}</td>
+</tr>
+<tr>
+<td>{{prev_proposal2}}</td>
+<td>{{prev_proposal2_status}}</td>
+<td>{{prev_proposal2_result}}</td>
+</tr>
+<tr>
+<td>{{prev_proposal3}}</td>
+<td>{{prev_proposal3_status}}</td>
+<td>{{prev_proposal3_result}}</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>ステータス凡例: 完了 / 進行中 / 未着手 / 保留</p>
+</blockquote>
+<hr />
+<h2>6. 来月のコンテンツ計画</h2>
+<h3>6-1. ブログ記事（予定）</h3>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>公開予定日</th>
+<th>記事タイトル（仮）</th>
+<th>対策キーワード</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>{{next_art1_date}}</td>
+<td>{{next_art1_title}}</td>
+<td>{{next_art1_kw}}</td>
+<td>{{next_art1_purpose}}</td>
+</tr>
+<tr>
+<td>2</td>
+<td>{{next_art2_date}}</td>
+<td>{{next_art2_title}}</td>
+<td>{{next_art2_kw}}</td>
+<td>{{next_art2_purpose}}</td>
+</tr>
+<tr>
+<td>3</td>
+<td>{{next_art3_date}}</td>
+<td>{{next_art3_title}}</td>
+<td>{{next_art3_kw}}</td>
+<td>{{next_art3_purpose}}</td>
+</tr>
+<tr>
+<td>4</td>
+<td>{{next_art4_date}}</td>
+<td>{{next_art4_title}}</td>
+<td>{{next_art4_kw}}</td>
+<td>{{next_art4_purpose}}</td>
+</tr>
+</tbody>
+</table>
+<h3>6-2. SNS投稿計画</h3>
+<table>
+<thead>
+<tr>
+<th>週</th>
+<th>Instagram</th>
+<th>X（Twitter）</th>
+<th>LINE公式</th>
+<th>Googleビジネス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1週</td>
+<td>{{next_ig_w1}}</td>
+<td>{{next_x_w1}}</td>
+<td>—</td>
+<td>{{next_gmb_w1}}</td>
+</tr>
+<tr>
+<td>第2週</td>
+<td>{{next_ig_w2}}</td>
+<td>{{next_x_w2}}</td>
+<td>{{next_line_w2}}</td>
+<td>—</td>
+</tr>
+<tr>
+<td>第3週</td>
+<td>{{next_ig_w3}}</td>
+<td>{{next_x_w3}}</td>
+<td>—</td>
+<td>{{next_gmb_w3}}</td>
+</tr>
+<tr>
+<td>第4週</td>
+<td>{{next_ig_w4}}</td>
+<td>{{next_x_w4}}</td>
+<td>{{next_line_w4}}</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3>6-3. その他施策</h3>
+<p>{{next_other_actions}}</p>
+<hr />
+<h2>7. KPI達成状況（契約目標に対する進捗）</h2>
+<table>
+<thead>
+<tr>
+<th>KPI項目</th>
+<th>契約時目標（{{target_period}}）</th>
+<th>現在の実績</th>
+<th>達成率</th>
+<th>見通し</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月間セッション数</td>
+<td>{{target_sessions}}</td>
+<td>{{actual_sessions}}</td>
+<td>{{achieve_sessions}}%</td>
+<td>{{forecast_sessions}}</td>
+</tr>
+<tr>
+<td>月間お問い合わせ数</td>
+<td>{{target_cv}}</td>
+<td>{{actual_cv}}</td>
+<td>{{achieve_cv}}%</td>
+<td>{{forecast_cv}}</td>
+</tr>
+<tr>
+<td>検索順位（主要KW）</td>
+<td>{{target_rank}}</td>
+<td>{{actual_rank}}</td>
+<td>—</td>
+<td>{{forecast_rank}}</td>
+</tr>
+<tr>
+<td>SNSフォロワー数</td>
+<td>{{target_followers}}</td>
+<td>{{actual_followers}}</td>
+<td>{{achieve_followers}}%</td>
+<td>{{forecast_followers}}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ディレクター所見:</strong>
+{{director_comment}}</p>
+<hr />
+<h2>8. ご確認・ご相談事項</h2>
+<p>{{confirmation_items}}</p>
+<hr />
+<h2>付録: 用語解説</h2>
+<table>
+<thead>
+<tr>
+<th>用語</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>セッション</td>
+<td>サイトへの訪問回数。1人が2回来れば2セッション</td>
+</tr>
+<tr>
+<td>PV（ページビュー）</td>
+<td>見られたページの合計数</td>
+</tr>
+<tr>
+<td>直帰率</td>
+<td>1ページだけ見て離脱した割合。低いほど良い</td>
+</tr>
+<tr>
+<td>CVR（コンバージョン率）</td>
+<td>訪問者のうち、お問い合わせなどの成果に至った割合</td>
+</tr>
+<tr>
+<td>オーガニック検索</td>
+<td>広告ではなく、GoogleやYahoo!の自然な検索からの流入</td>
+</tr>
+<tr>
+<td>CTR（クリック率）</td>
+<td>検索結果に表示された回数のうち、クリックされた割合</td>
+</tr>
+<tr>
+<td>インプレッション</td>
+<td>SNS投稿が画面に表示された回数</td>
+</tr>
+<tr>
+<td>エンゲージメント</td>
+<td>いいね・コメント・シェア・保存などの反応の合計</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>本レポートに関するご質問・ご不明点がございましたら、担当ディレクターまでお気軽にお問い合わせください。</strong></p>
+<p>{{company_name}} | {{director_name}} | {{director_email}} | {{director_tel}}</p>
+<hr />
+<!-- COMPLETION_CHECK: monthly_report_template = COMPLETE -->
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

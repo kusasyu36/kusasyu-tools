@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産契約書_複数案件コスト比較台帳 - kusasyu tools</title>
+<meta name="description" content="中小不動産会社の担当者が、売買契約書・賃貸借契約書・管理委託契約書の主要条項をチェックリスト形式で入力すると、各条項の「最悪ケースでの金銭的損失額」を自動試算するツールキット。既存のAI契約書レビューSaaS（LeCHECK、AI-CON等）が汎用型・月額課金なのに対し、不動産業3契約に完全特化した無料スタン">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産契約書_複数案件コスト比較台帳">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propclause-2/">
+<meta property="og:title" content="不動産契約書_複数案件コスト比較台帳 - kusasyu tools">
+<meta property="og:description" content="中小不動産会社の担当者が、売買契約書・賃貸借契約書・管理委託契約書の主要条項をチェックリスト形式で入力すると、各条項の「最悪ケースでの金銭的損失額」を自動試算するツールキット。既存のAI契約書レビューSaaS（LeCHECK、AI-CON等）が汎用型・月額課金なのに対し、不動産業3契約に完全特化した無料スタン">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propclause-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産契約書_複数案件コスト比較台帳 - kusasyu tools">
+<meta name="twitter:description" content="中小不動産会社の担当者が、売買契約書・賃貸借契約書・管理委託契約書の主要条項をチェックリスト形式で入力すると、各条項の「最悪ケースでの金銭的損失額」を自動試算するツールキット。既存のAI契約書レビューSaaS（LeCHECK、AI-CON等）が汎用型・月額課金なのに対し、不動産業3契約に完全特化した無料スタン">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産契約書_複数案件コスト比較台帳",
+  "description": "中小不動産会社の担当者が、売買契約書・賃貸借契約書・管理委託契約書の主要条項をチェックリスト形式で入力すると、各条項の「最悪ケースでの金銭的損失額」を自動試算するツールキット。既存のAI契約書レビューSaaS（LeCHECK、AI-CON等）が汎用型・月額課金なのに対し、不動産業3契約に完全特化した無料スタン",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propclause-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産契約書_複数案件コスト比較台帳</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産契約書_複数案件コスト比較台帳</h1>
+  <p class="project-name">不動産契約書コスト試算チェッカー「PropClause」</p>
+  <div class="content">
+<h1>PropClause 複数案件コスト比較台帳 ― XLSX テンプレート運用ガイド</h1>
+<h2>このテンプレートの位置づけ</h2>
+<p><strong>PropClause</strong>（不動産契約書 隠れコスト試算ツール）で試算した結果を、案件ごとに記録・横比較するためのExcel台帳です。</p>
+<table>
+<thead>
+<tr>
+<th>役割</th>
+<th>ツール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1件ずつの試算</td>
+<td>PropClause HTMLツール</td>
+</tr>
+<tr>
+<td>複数案件の記録・比較</td>
+<td><strong>本XLSX台帳</strong></td>
+</tr>
+</tbody>
+</table>
+<p>HTMLツールが「電卓」なら、本台帳は「帳簿」。機能重複なく併用できます。</p>
+<hr />
+<h2>ファイル構成（3シート）</h2>
+<table>
+<thead>
+<tr>
+<th>シート名</th>
+<th>対象契約</th>
+<th>想定利用者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>売買</strong></td>
+<td>不動産売買契約書</td>
+<td>仲介営業担当者・店長</td>
+</tr>
+<tr>
+<td><strong>賃貸</strong></td>
+<td>賃貸借契約書</td>
+<td>仲介営業担当者・管理担当者</td>
+</tr>
+<tr>
+<td><strong>管理委託</strong></td>
+<td>管理委託契約書</td>
+<td>管理会社の契約実務担当者</td>
+</tr>
+</tbody>
+</table>
+<p>個人不動産投資家がセルフチェック用途で使う場合は、売買シートと管理委託シートを中心に運用してください。</p>
+<hr />
+<h2>共通カラム定義</h2>
+<p>全シート共通で、以下の7列（A〜G列）を配置します。</p>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>ヘッダー名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>案件名</td>
+<td>物件名や契約番号を自由入力</td>
+</tr>
+<tr>
+<td>B</td>
+<td>チェック項目</td>
+<td>契約条項名（シートごとに既定値あり）</td>
+</tr>
+<tr>
+<td>C</td>
+<td>業界標準値</td>
+<td>一般的な相場・推奨値（あらかじめ記入済み）</td>
+</tr>
+<tr>
+<td>D</td>
+<td>危険ライン</td>
+<td>この値を超えると高リスクとなる閾値</td>
+</tr>
+<tr>
+<td>E</td>
+<td>入力値</td>
+<td>PropClauseで試算した実際の契約条件値</td>
+</tr>
+<tr>
+<td>F</td>
+<td>コスト影響額</td>
+<td>Excel数式で自動算出（最悪ケース損失額）</td>
+</tr>
+<tr>
+<td>G</td>
+<td>標準値との差異</td>
+<td><code>=E-C</code> を基に条件付き書式で自動色分け</td>
+</tr>
+</tbody>
+</table>
+<h3>条件付き書式ルール（G列）</h3>
+<table>
+<thead>
+<tr>
+<th>色</th>
+<th>条件</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 緑</td>
+<td>差異がゼロまたは有利方向</td>
+<td>標準以上。問題なし</td>
+</tr>
+<tr>
+<td>🟡 黄</td>
+<td>差異が不利方向かつ危険ライン未満</td>
+<td>要注意。交渉余地を検討</td>
+</tr>
+<tr>
+<td>🔴 赤</td>
+<td>入力値が危険ラインを超過</td>
+<td>高リスク。契約前に必ず条件変更を交渉</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>シート別チェック項目と数式</h2>
+<h3>シート1：売買契約</h3>
+<p>物件価格を <strong>3,000万円</strong> と仮定した場合の設定例です。</p>
+<table>
+<thead>
+<tr>
+<th>行</th>
+<th>チェック項目</th>
+<th>業界標準値</th>
+<th>危険ライン</th>
+<th>数式（F列）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>手付金率(%)</td>
+<td>10</td>
+<td>5未満</td>
+<td><code>=E×物件価格÷100</code>（放棄リスク額）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>違約金率(%)</td>
+<td>20</td>
+<td>30超</td>
+<td><code>=E×物件価格÷100</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>契約不適合責任期間(月)</td>
+<td>3</td>
+<td>0（免責）</td>
+<td><code>=IF(E=0, 物件価格×0.15, 0)</code>（修繕負担上限概算）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ローン特約期限(日)</td>
+<td>30</td>
+<td>14未満</td>
+<td><code>=IF(E&lt;14, 手付金額, 0)</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>引渡し遅延違約金(/日・%)</td>
+<td>0.05</td>
+<td>未記載</td>
+<td><code>=IF(E=0, 物件価格×0.1, 0)</code>（遅延90日想定）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>固定資産税精算基準日</td>
+<td>1/1 or 4/1</td>
+<td>未記載</td>
+<td><code>=物件価格×0.014×未精算月数÷12</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>F列の合計行</strong>に <code>=SUM(F1:F6)</code> を配置し、1案件あたりの<strong>最悪ケース合計損失額</strong>を自動表示します。</p>
+<h3>シート2：賃貸借契約</h3>
+<p>月額賃料を <strong>15万円</strong> と仮定した場合の設定例です。</p>
+<table>
+<thead>
+<tr>
+<th>行</th>
+<th>チェック項目</th>
+<th>業界標準値</th>
+<th>危険ライン</th>
+<th>数式（F列）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>原状回復費上限(万円)</td>
+<td>賃料2ヶ月分</td>
+<td>上限なし</td>
+<td><code>=IF(E=0, 賃料×6, E)</code>（上限未設定→6ヶ月想定）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>中途解約予告期間(月)</td>
+<td>1</td>
+<td>3超</td>
+<td><code>=E×月額賃料</code>（即解約不可による空家賃負担）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>更新料(ヶ月分)</td>
+<td>1</td>
+<td>2超</td>
+<td><code>=E×月額賃料</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>賃料増額条項</td>
+<td>CPI連動</td>
+<td>無制限改定可</td>
+<td><code>=IF(E="無制限", 月額賃料×12×0.1, 0)</code>（年10%増リスク）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>敷金返還時期(月)</td>
+<td>1</td>
+<td>6超</td>
+<td><code>=敷金額×0.03×E÷12</code>（資金拘束コスト）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>禁止事項違反時の違約金(ヶ月)</td>
+<td>1</td>
+<td>3超</td>
+<td><code>=E×月額賃料</code></td>
+</tr>
+</tbody>
+</table>
+<h3>シート3：管理委託契約</h3>
+<p>管理戸数 <strong>50戸</strong>、戸あたり管理料 <strong>3,000円/月</strong> を仮定した場合の設定例です。</p>
+<table>
+<thead>
+<tr>
+<th>行</th>
+<th>チェック項目</th>
+<th>業界標準値</th>
+<th>危険ライン</th>
+<th>数式（F列）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>管理委託料率(%)</td>
+<td>5</td>
+<td>8超</td>
+<td><code>=(E-5)×賃料総額÷100</code>（超過コスト）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>契約解除予告期間(月)</td>
+<td>3</td>
+<td>6超</td>
+<td><code>=E×管理料月額</code>（解約不可期間のコスト）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>修繕発注の承認上限(万円)</td>
+<td>10</td>
+<td>30超</td>
+<td><code>=MAX(E-10, 0)×年間発生件数</code>（承認なし発注リスク）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>空室時の管理料</td>
+<td>免除</td>
+<td>満額請求</td>
+<td><code>=IF(E="満額", 空室想定戸数×管理料×12, 0)</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>滞納督促費用の負担</td>
+<td>管理会社負担</td>
+<td>オーナー負担</td>
+<td><code>=IF(E="オーナー", 滞納想定件数×督促単価, 0)</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td>免責・賠償上限</td>
+<td>委託料年額</td>
+<td>委託料1ヶ月分</td>
+<td><code>=想定損害額-賠償上限額</code>（回収不能額）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>運用手順（4ステップ）</h2>
+<p><strong>ステップ1：PropClauseで試算</strong>
+HTMLツールの売買・賃貸・管理委託タブで、契約条件を入力して「隠れコスト試算」ボタンをクリック。最悪ケース合計損失額を確認します。</p>
+<p><strong>ステップ2：台帳に転記</strong>
+該当シートの新しい行に案件名を記入し、E列（入力値）にPropClauseで入力した数値をそのまま転記。F列・G列は数式で自動算出されます。</p>
+<p><strong>ステップ3：色分けで即時判断</strong>
+G列の色を確認。🔴赤が1つでもあれば、該当条項の交渉を最優先で行います。</p>
+<p><strong>ステップ4：案件間比較</strong>
+同一シート内に複数案件を並べ、合計損失額（F列合計行）の大小を横比較。最もリスクの低い条件を選定するか、交渉材料として活用します。</p>
+<hr />
+<h2>案件コピー運用のコツ</h2>
+<ul>
+<li><strong>行の追加</strong>：既存案件の行範囲を選択 → 下に行を挿入 → 数式が自動コピーされる</li>
+<li><strong>案件テンプレート行</strong>：各シートの2行目に「サンプル案件」を残しておくと、コピー元として便利</li>
+<li><strong>フィルター活用</strong>：A列（案件名）にオートフィルターを設定すると、特定案件だけを表示可能</li>
+<li><strong>月次棚卸し</strong>：月末に全案件の🔴赤項目を一覧表示し、未交渉の条項がないか確認</li>
+</ul>
+<hr />
+<h2>CSV形式ではなくXLSXを採用する理由</h2>
+<table>
+<thead>
+<tr>
+<th>要件</th>
+<th>CSV</th>
+<th>XLSX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数式の自動計算</td>
+<td>✕</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>条件付き書式（色分け）</td>
+<td>✕</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>シート分割（3契約種別）</td>
+<td>✕</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>マクロ不要で動作</td>
+<td>―</td>
+<td>✅（数式のみ）</td>
+</tr>
+</tbody>
+</table>
+<p>マクロを使わないため、セキュリティ警告なしでどのPC環境でも開けます。従業員5〜30名規模の中小不動産会社でも、IT部門の承認なく即導入が可能です。</p>
+<hr />
+<h2>既存AI契約書レビューSaaSとの違い</h2>
+<p>LeCHECKやAI-CON等の汎用型サービスは「リスクあり／なし」の判定に留まります。PropClause＋本台帳の組み合わせは以下の点で差別化されます。</p>
+<table>
+<thead>
+<tr>
+<th>比較軸</th>
+<th>汎用AI SaaS</th>
+<th>PropClause＋本台帳</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>対象</td>
+<td>全業種・全契約</td>
+<td><strong>不動産業3契約に完全特化</strong></td>
+</tr>
+<tr>
+<td>リスク表示</td>
+<td>あり／なし</td>
+<td><strong>「最悪○○万円の損失」と金額換算</strong></td>
+</tr>
+<tr>
+<td>料金</td>
+<td>月額課金</td>
+<td><strong>無料スタンドアロン</strong></td>
+</tr>
+<tr>
+<td>複数案件比較</td>
+<td>別途管理</td>
+<td><strong>台帳で一元管理・横比較</strong></td>
+</tr>
+<tr>
+<td>導入</td>
+<td>アカウント開設・連携</td>
+<td><strong>ファイルを開くだけ</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>まとめ</h2>
+<p>本XLSX台帳は、PropClauseの試算結果を「貯めて・並べて・比べる」ための実務ツールです。</p>
+<ol>
+<li><strong>売買シート</strong>で手付金・違約金・契約不適合責任の損失額を案件横断で比較</li>
+<li><strong>賃貸シート</strong>で原状回復・中途解約・更新料のリスクを一覧化</li>
+<li><strong>管理委託シート</strong>で委託料率・解除予告・修繕発注上限の超過コストを可視化</li>
+</ol>
+<p>数式と条件付き書式だけで動くため、マクロ不要・無料・即日運用開始。PropClause HTMLツールで試算 → 本台帳に転記 → 色分けで即判断、のサイクルを回してください。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

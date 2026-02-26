@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス設計書（後編：技術アーキテクチャ） - kusasyu tools</title>
+<meta name="description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,サービス設計書（後編：技術アーキテクチャ）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-7/">
+<meta property="og:title" content="サービス設計書（後編：技術アーキテクチャ） - kusasyu tools">
+<meta property="og:description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サービス設計書（後編：技術アーキテクチャ） - kusasyu tools">
+<meta name="twitter:description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サービス設計書（後編：技術アーキテクチャ）",
+  "description": "中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>サービス設計書（後編：技術アーキテクチャ）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>サービス設計書（後編：技術アーキテクチャ）</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング自動化SaaS</p>
+  <div class="content">
+<h1>サービス設計書（後編）：技術アーキテクチャ</h1>
+<h2>1. システム構成図</h2>
+<pre><code>┌─────────────────────────────────────────────────┐
+│                  フロントエンド                     │
+│          Next.js（Vercel にデプロイ）               │
+└────────────────────┬────────────────────────────┘
+                     │ HTTPS / REST API
+┌────────────────────▼────────────────────────────┐
+│               APIゲートウェイ                      │
+│        AWS API Gateway + Lambda                  │
+│   （認証・レート制限・リクエストルーティング）          │
+└───┬──────────┬──────────┬───────────────────────┘
+    │          │          │
+    ▼          ▼          ▼
+┌───────┐ ┌───────┐ ┌──────────┐
+│生成API │ │分析API│ │ユーザーAPI│
+│(ECS)  │ │(ECS) │ │ (ECS)   │
+└───┬───┘ └───┬───┘ └────┬────┘
+    │         │          │
+    ▼         ▼          ▼
+┌───────────────────────────────────────┐
+│         データ層                       │
+│  PostgreSQL(RDS) / Redis / S3        │
+└───────────────────────────────────────┘
+</code></pre>
+<p><strong>技術スタック一覧</strong></p>
+<table>
+<thead>
+<tr>
+<th>レイヤー</th>
+<th>技術</th>
+<th>選定理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フロント</td>
+<td>Next.js + Tailwind CSS</td>
+<td>SSR対応・高速描画</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Node.js on AWS ECS Fargate</td>
+<td>サーバーレス・自動スケール</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>Amazon RDS (PostgreSQL)</td>
+<td>信頼性・運用実績</td>
+</tr>
+<tr>
+<td>キャッシュ</td>
+<td>Amazon ElastiCache (Redis)</td>
+<td>テンプレート高速配信</td>
+</tr>
+<tr>
+<td>ストレージ</td>
+<td>Amazon S3</td>
+<td>生成コンテンツの永続保存</td>
+</tr>
+<tr>
+<td>認証</td>
+<td>Auth0</td>
+<td>SSO対応・導入容易</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. LLM API連携フロー</h2>
+<pre><code>ユーザー入力（業種+キーワード）
+    │
+    ▼
+[1] テンプレート選択エンジン
+    業種別プロンプトテンプレートをDBから取得
+    │
+    ▼
+[2] プロンプト組立
+    キーワード＋業種コンテキスト＋SEOルールを結合
+    │
+    ▼
+[3] OpenAI API呼び出し（GPT-4o）
+    ├─ ブログ記事生成（max_tokens: 2000）
+    ├─ SNS投稿生成（max_tokens: 300 × 3本）
+    └─ メール文面生成（max_tokens: 500）
+    │
+    ▼
+[4] 後処理パイプライン
+    禁止語句フィルタ → 文字数検証 → SEOスコア算出
+    │
+    ▼
+[5] 結果保存・ユーザーへ返却
+</code></pre>
+<p><strong>APIフォールバック戦略</strong>: OpenAI障害時はAnthropic Claude APIへ自動切替。切替判定はレスポンス5秒超過またはHTTP 5xx連続3回。</p>
+<hr />
+<h2>3. データセキュリティ方針</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>対策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通信暗号化</td>
+<td>全通信TLS 1.3必須</td>
+</tr>
+<tr>
+<td>データ暗号化</td>
+<td>RDS・S3ともAES-256で保存時暗号化</td>
+</tr>
+<tr>
+<td>アクセス制御</td>
+<td>IAMロールベース＋最小権限の原則</td>
+</tr>
+<tr>
+<td>個人情報</td>
+<td>生成コンテンツに個人情報を含めない設計。入力値のPIIスキャン実施</td>
+</tr>
+<tr>
+<td>LLMデータ</td>
+<td>OpenAI API利用規約に基づきトレーニング利用をオプトアウト設定</td>
+</tr>
+<tr>
+<td>ログ</td>
+<td>CloudWatch＋S3に90日保存。アクセスログ・操作ログを分離管理</td>
+</tr>
+<tr>
+<td>認証</td>
+<td>Auth0によるOAuth 2.0 + MFA推奨</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. SLA定義</h2>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>目標値</th>
+<th>測定方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>稼働率</td>
+<td>99.5%/月</td>
+<td>UptimeRobot外形監視</td>
+</tr>
+<tr>
+<td>コンテンツ生成応答</td>
+<td>30秒以内</td>
+<td>P95レイテンシ</td>
+</tr>
+<tr>
+<td>障害復旧時間</td>
+<td>4時間以内</td>
+<td>インシデント管理記録</td>
+</tr>
+<tr>
+<td>データ復旧</td>
+<td>RPO 1時間 / RTO 4時間</td>
+<td>日次バックアップ＋PITリカバリ</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. KPI設計</h2>
+<p><strong>プロダクトKPI（月次計測）</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>目標（6ヶ月後）</th>
+<th>計測ツール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAU</td>
+<td>500社</td>
+<td>Mixpanel</td>
+</tr>
+<tr>
+<td>コンテンツ生成回数</td>
+<td>10,000回/月</td>
+<td>内部ログ集計</td>
+</tr>
+<tr>
+<td>生成→公開採用率</td>
+<td>60%以上</td>
+<td>アプリ内トラッキング</td>
+</tr>
+<tr>
+<td>NPS</td>
+<td>+30以上</td>
+<td>四半期アンケート</td>
+</tr>
+<tr>
+<td>チャーンレート</td>
+<td>5%以下/月</td>
+<td>Stripe請求データ</td>
+</tr>
+<tr>
+<td>LLM APIコスト/生成</td>
+<td>¥15以下</td>
+<td>AWS Cost Explorer</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 運用体制</h2>
+<pre><code>┌─────────────┐
+│ PdM（1名）   │  プロダクト方針・優先度判断
+└──────┬──────┘
+       │
+  ┌────┴────┐
+  ▼         ▼
+┌──────┐ ┌──────┐
+│開発2名│ │SRE1名│
+│機能開発│ │監視  │
+│API連携│ │障害  │
+└──────┘ │対応  │
+         └──────┘
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>役割</th>
+<th>人数</th>
+<th>主な責務</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PdM</td>
+<td>1名</td>
+<td>ロードマップ管理・業種テンプレート企画</td>
+</tr>
+<tr>
+<td>バックエンド</td>
+<td>1名</td>
+<td>API開発・LLM連携・プロンプト最適化</td>
+</tr>
+<tr>
+<td>フロントエンド</td>
+<td>1名</td>
+<td>UI実装・ダッシュボード構築</td>
+</tr>
+<tr>
+<td>SRE</td>
+<td>1名（兼務可）</td>
+<td>インフラ運用・監視・障害対応</td>
+</tr>
+</tbody>
+</table>
+<p><strong>監視・アラート</strong>: PagerDuty連携。エラー率1%超過・レイテンシP95 30秒超過で即時通知。</p>
+<hr />
+<p><em>文書管理: v1.0 ｜ 作成日: 2026-02-20 ｜ 前編「プロダクト設計」と対で運用すること</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

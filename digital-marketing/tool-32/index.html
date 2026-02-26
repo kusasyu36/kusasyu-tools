@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>購買ステージ別AIコンテンツ生成プロンプトキット - kusasyu tools</title>
+<meta name="description" content="MAツール導入済みだがコンテンツ不足に悩むBtoB企業向けに、ナーチャリングコンテンツをAIで効率的に生成・運用するための実践パッケージを制作する。独自調査に基づく課題分析レポート、購買ステージ別のAIプロンプトキット、メールシーケンス設計テンプレートの3点で、MA導入後のコンテンツ枯渇問題を即座に解決できる">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,購買ステージ別AIコンテンツ生成プロンプトキット">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-32/">
+<meta property="og:title" content="購買ステージ別AIコンテンツ生成プロンプトキット - kusasyu tools">
+<meta property="og:description" content="MAツール導入済みだがコンテンツ不足に悩むBtoB企業向けに、ナーチャリングコンテンツをAIで効率的に生成・運用するための実践パッケージを制作する。独自調査に基づく課題分析レポート、購買ステージ別のAIプロンプトキット、メールシーケンス設計テンプレートの3点で、MA導入後のコンテンツ枯渇問題を即座に解決できる">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-32/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="購買ステージ別AIコンテンツ生成プロンプトキット - kusasyu tools">
+<meta name="twitter:description" content="MAツール導入済みだがコンテンツ不足に悩むBtoB企業向けに、ナーチャリングコンテンツをAIで効率的に生成・運用するための実践パッケージを制作する。独自調査に基づく課題分析レポート、購買ステージ別のAIプロンプトキット、メールシーケンス設計テンプレートの3点で、MA導入後のコンテンツ枯渇問題を即座に解決できる">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "購買ステージ別AIコンテンツ生成プロンプトキット",
+  "description": "MAツール導入済みだがコンテンツ不足に悩むBtoB企業向けに、ナーチャリングコンテンツをAIで効率的に生成・運用するための実践パッケージを制作する。独自調査に基づく課題分析レポート、購買ステージ別のAIプロンプトキット、メールシーケンス設計テンプレートの3点で、MA導入後のコンテンツ枯渇問題を即座に解決できる",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-32/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>購買ステージ別AIコンテンツ生成プロンプトキット</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>購買ステージ別AIコンテンツ生成プロンプトキット</h1>
+  <p class="project-name">MA連携型AIコンテンツ自動供給サービス</p>
+  <div class="content">
+<h1>購買ステージ別AIコンテンツ生成プロンプトキット</h1>
+<p><strong>SynLab Digital Marketing｜MA連携型AIコンテンツ自動供給サービス</strong></p>
+<hr />
+<h2>本キットの使い方</h2>
+<p>「MA導入企業のコンテンツ枯渇問題 実態と解決策レポート」で示した通り、購買ステージ別にコンテンツを出し分けている企業は導入企業のわずか<strong>31%</strong>にとどまる。本キットは、TOFU・MOFU・BOFUの各ステージに最適化されたAIプロンプトを「コピペで即使える」形で提供し、この課題を解消する。</p>
+<p><strong>使い方は3ステップ：</strong></p>
+<ol>
+<li>MAツールで該当セグメントを設定する（各プロンプトに設定例を記載）</li>
+<li>プロンプトの <code>【 】</code> 内を自社情報に書き換える</li>
+<li>ChatGPT・Claude等のAIに貼り付けて生成 → 品質チェック基準で確認 → 配信</li>
+</ol>
+<hr />
+<h2>TOFU（認知ステージ）：ホワイトペーパー要約コンテンツ生成</h2>
+<h3>ターゲットリード像</h3>
+<p>まだ課題を明確に認識していない潜在層。Webサイト訪問やSNS経由で初めて接触したリード。製品名や社名の認知がない段階。</p>
+<h3>MAセグメント条件</h3>
+<table>
+<thead>
+<tr>
+<th>条件項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リードスコア</td>
+<td>0〜20点</td>
+</tr>
+<tr>
+<td>行動条件</td>
+<td>ブログ閲覧1回以上、製品ページ閲覧なし</td>
+</tr>
+<tr>
+<td>流入元</td>
+<td>オーガニック検索・SNS・広告</td>
+</tr>
+<tr>
+<td>フォーム送信</td>
+<td>未送信、またはメルマガ登録のみ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MAツール別の設定例：</strong></p>
+<ul>
+<li><strong>HubSpot</strong>：コンタクト＞リスト＞アクティブリスト作成→フィルター「HubSpotスコアが20以下」AND「ページビュー：/products/ を含まない」AND「フォーム送信：ニュースレター登録フォーム」</li>
+<li><strong>SATORI</strong>：セグメント＞新規作成→条件「スコア0〜20」AND「閲覧ページURLに/products/を含まない」AND「タグ：潜在リード」</li>
+<li><strong>Marketo</strong>：スマートリスト＞「スコアが20以下」AND「Webページ訪問：製品ページを除外」AND「プログラムメンバー：ニュースレター」</li>
+</ul>
+<h3>AIプロンプトテンプレート</h3>
+<pre><code>あなたはBtoBマーケティングの専門ライターです。
+以下の条件でホワイトペーパーの要約記事（メール配信用）を作成してください。
+
+■ 業界：【例：製造業／IT／人材】
+■ 読者の役職：【例：経営企画部の課長クラス】
+■ 読者の課題仮説：【例：業務効率化の必要性は感じているが、具体的な手段を探していない】
+■ ホワイトペーパーのタイトル：【例：製造業DX入門ガイド 2026年版】
+■ ホワイトペーパーの要点（3つ）：
+  1.【例：国内製造業の72%がDXに課題を感じている】
+  2.【例：成功企業に共通する3つのステップ】
+  3.【例：初期投資を抑える段階的導入法】
+
+■ 出力形式：
+- 件名（30文字以内、疑問形で好奇心を刺激）
+- リード文（3行以内、課題への共感から入る）
+- 要点の紹介（箇条書き3つ、各1〜2文）
+- CTA（ホワイトペーパーDLページへの誘導、1文）
+- 全体で400文字以内
+
+■ トーンの指定：
+- 売り込み感ゼロ。教育的・情報提供的なトーン
+- 「御社」「弊社」は使わず、業界全体の話として書く
+- 専門用語を使う場合は括弧内で補足する
+</code></pre>
+<h3>品質チェック基準（3項目すべてクリアで配信可）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>合格基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>売り込み度</td>
+<td>製品名・社名が本文中に登場しない</td>
+</tr>
+<tr>
+<td>2</td>
+<td>読了ハードル</td>
+<td>400文字以内に収まっている</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CTA明確性</td>
+<td>DLリンクへの導線が1つだけ明示されている</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>MOFU（検討ステージ）：事例紹介メール生成</h2>
+<h3>ターゲットリード像</h3>
+<p>課題を認識し、解決策を比較検討している層。ホワイトペーパーDL済み、複数回サイト訪問があるリード。「MA導入企業のコンテンツ枯渇問題 実態と解決策レポート」が示す通り、この層に適切なコンテンツを届けられない企業が大半であり、ここが最大の離脱ポイントとなる。</p>
+<h3>MAセグメント条件</h3>
+<table>
+<thead>
+<tr>
+<th>条件項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リードスコア</td>
+<td>21〜60点</td>
+</tr>
+<tr>
+<td>行動条件</td>
+<td>ホワイトペーパーDL1回以上、製品ページ閲覧あり</td>
+</tr>
+<tr>
+<td>訪問頻度</td>
+<td>過去30日以内に3回以上訪問</td>
+</tr>
+<tr>
+<td>フォーム送信</td>
+<td>資料DLフォーム送信済み</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MAツール別の設定例：</strong></p>
+<ul>
+<li><strong>HubSpot</strong>：アクティブリスト→「HubSpotスコア21〜60」AND「フォーム送信：資料DLフォーム」AND「ページビュー：/products/ を含む」AND「セッション数≧3（過去30日）」</li>
+<li><strong>SATORI</strong>：セグメント→「スコア21〜60」AND「コンバージョン：資料DL完了」AND「閲覧ページURLに/products/を含む」AND「訪問回数3回以上（30日間）」</li>
+<li><strong>Marketo</strong>：スマートリスト→「スコア21〜60」AND「プログラムステータス：資料DL済み」AND「Webページ訪問：製品ページを含む（過去30日で3回以上）」</li>
+</ul>
+<h3>AIプロンプトテンプレート</h3>
+<pre><code>あなたはBtoBのカスタマーサクセス担当者です。
+以下の条件で、導入事例を紹介するナーチャリングメールを作成してください。
+
+■ 自社サービス名：【例：クラウド在庫管理システム「ZaicoNavi」】
+■ 読者の業界・規模：【例：従業員100名前後の食品卸売業】
+■ 読者が抱える検討段階の悩み：【例：導入効果が本当に出るのか不安、社内稟議を通せるか心配】
+■ 紹介する事例企業の情報：
+  - 業種・規模：【例：食品卸売業・従業員80名】
+  - 導入前の課題：【例：在庫差異率が月平均5%、棚卸に毎月丸2日】
+  - 導入後の成果：【例：在庫差異率0.8%に改善、棚卸工数70%削減】
+  - 導入の決め手：【例：無料トライアルで現場スタッフが即日使えた】
+
+■ 出力形式：
+- 件名（35文字以内、事例企業の成果数値を含める）
+- 導入文（2行、読者の悩みへの共感）
+- 事例紹介（Before→After形式で5行以内）
+- 担当者の一言コメント（架空でよい、1〜2文）
+- CTA（事例詳細ページまたは無料相談への誘導）
+- 全体で500文字以内
+
+■ トーンの指定：
+- 実績ベースで信頼感を重視。誇張表現は禁止
+- 読者と同業界・同規模の事例であることを冒頭で強調
+- 数値は具体的に記載（「大幅改善」→「70%削減」）
+</code></pre>
+<h3>品質チェック基準（3項目すべてクリアで配信可）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>合格基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>数値の具体性</td>
+<td>Before/Afterに定量数値が各1つ以上含まれる</td>
+</tr>
+<tr>
+<td>2</td>
+<td>同質性</td>
+<td>事例企業の業種・規模が読者ターゲットと一致している</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CTA適切性</td>
+<td>購入ではなく「詳細を見る」「相談する」の中間CTAになっている</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>BOFU（決定ステージ）：比較資料コンテンツ生成</h2>
+<h3>ターゲットリード像</h3>
+<p>導入をほぼ決めており、最終比較・社内稟議の段階にあるリード。料金ページ閲覧、見積りページ訪問など、購買直前の行動シグナルが出ている。レポートの調査が示す外注コスト（1記事5万〜15万円、年間240万〜720万円）を踏まえ、費用対効果を定量で示すことが鍵となる。</p>
+<h3>MAセグメント条件</h3>
+<table>
+<thead>
+<tr>
+<th>条件項目</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リードスコア</td>
+<td>61点以上</td>
+</tr>
+<tr>
+<td>行動条件</td>
+<td>料金ページ・導入フロー・見積りページのいずれかを閲覧</td>
+</tr>
+<tr>
+<td>訪問頻度</td>
+<td>過去14日以内に5回以上訪問</td>
+</tr>
+<tr>
+<td>追加条件</td>
+<td>事例DL済み、またはウェビナー参加済み</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MAツール別の設定例：</strong></p>
+<ul>
+<li><strong>HubSpot</strong>：アクティブリスト→「HubSpotスコア61以上」AND「ページビュー：/pricing/ OR /flow/ OR /contact/」AND「セッション数≧5（過去14日）」AND「フォーム送信：事例DL or ウェビナー登録」</li>
+<li><strong>SATORI</strong>：セグメント→「スコア61以上」AND「閲覧ページURLに/pricing/または/plan/を含む」AND「訪問回数5回以上（14日間）」AND「タグ：ホットリード」</li>
+<li><strong>Marketo</strong>：スマートリスト→「スコア61以上」AND「Webページ訪問：料金ページ or お問い合わせページ」AND「過去14日で5回以上セッション」AND「プログラムステータス：事例DL済み or ウェビナー参加済み」</li>
+</ul>
+<h3>AIプロンプトテンプレート</h3>
+<pre><code>あなたはBtoB企業の購買担当者が社内稟議で使う比較資料の作成を支援するライターです。
+以下の条件で、自社サービスと競合を比較する資料のメール送付用サマリーを作成してください。
+
+■ 自社サービス名：【例：クラウド在庫管理システム「ZaicoNavi」】
+■ 競合サービス（2つ）：
+  - 競合A：【名称・特徴・価格帯を記載】
+  - 競合B：【名称・特徴・価格帯を記載】
+■ 自社の差別化ポイント（3つ以内）：
+  1.【例：業界特化のテンプレートで導入初日から運用可能】
+  2.【例：月額3万円〜で中小企業でも導入しやすい価格設計】
+  3.【例：専任CSが3ヶ月間伴走する定着支援プログラム】
+■ 想定読者：【例：社内稟議を通す必要がある情報システム部の担当者】
+■ 読者が稟議で求められる情報：【例：ROI試算、導入スケジュール、セキュリティ要件】
+
+■ 出力形式：
+- 件名（35文字以内、「比較」「選定」等の稟議キーワードを含む）
+- 導入文（2行、最終選定を後押しする一言）
+- 比較サマリー表（機能・価格・サポートの3軸、Markdown表形式）
+- ROI試算の要約（導入コスト vs 年間削減効果を1文で）
+- CTA（個別デモ・見積り相談への誘導）
+- 全体で600文字以内
+
+■ トーンの指定：
+- 客観的・フェアな比較を装いつつ、自社優位性が自然に伝わる構成
+- 競合を貶めない。事実ベースの差分のみ記載
+- 稟議書に転記しやすいフォーマットを意識
+</code></pre>
+<h3>品質チェック基準（3項目すべてクリアで配信可）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>合格基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>客観性</td>
+<td>競合への否定的表現がなく、事実ベースの差分のみ</td>
+</tr>
+<tr>
+<td>2</td>
+<td>稟議適合性</td>
+<td>ROI数値・導入スケジュール・比較表の3要素が含まれている</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CTA直結性</td>
+<td>「デモ予約」「見積り依頼」等の最終アクションに直結している</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>運用のポイント</h2>
+<p><strong>生成→チェック→配信の所要時間目安：1コンテンツあたり約30分</strong></p>
+<p>レポートで示した通り、外注では1記事5万〜15万円・月4本で年間240万〜720万円のコストがかかる。本キットとAIを活用すれば、社内担当者1名でも月12本以上のステージ別コンテンツを制作でき、外注コストの80%以上を削減できる。</p>
+<table>
+<thead>
+<tr>
+<th>活用サイクル</th>
+<th>推奨頻度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TOFU：ホワイトペーパー要約メール</td>
+<td>週1回配信</td>
+</tr>
+<tr>
+<td>MOFU：事例紹介メール</td>
+<td>月2回配信</td>
+</tr>
+<tr>
+<td>BOFU：比較資料メール</td>
+<td>スコア到達時に自動配信</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意事項：</strong> AI生成コンテンツは必ず人間が最終確認すること。特にBOFUの比較資料は、競合情報の正確性と自社数値の最新性を配信前にダブルチェックすること。</p>
+<hr />
+<p><em>本キットは「MA導入企業のコンテンツ枯渇問題 実態と解決策レポート」（SynLab Digital Marketing, 2026年2月版）の分析に基づき設計されています。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

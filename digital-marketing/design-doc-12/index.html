@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス設計書（前編：ビジネス設計） - kusasyu tools</title>
+<meta name="description" content="月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,サービス設計書（前編：ビジネス設計）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-12/">
+<meta property="og:title" content="サービス設計書（前編：ビジネス設計） - kusasyu tools">
+<meta property="og:description" content="月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サービス設計書（前編：ビジネス設計） - kusasyu tools">
+<meta name="twitter:description" content="月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サービス設計書（前編：ビジネス設計）",
+  "description": "月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-12/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>サービス設計書（前編：ビジネス設計）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>サービス設計書（前編：ビジネス設計）</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング自動化パッケージ</p>
+  <div class="content">
+<p>ファイル書き込み権限が必要です。許可をいただけますでしょうか？</p>
+<p>以下が成果物の全文です。</p>
+<hr />
+<h1>AIコンテンツマーケティング自動化パッケージ「ContentFlow」</h1>
+<h2>サービス設計書（前編：ビジネス設計）</h2>
+<p><strong>文書番号</strong>: CF-BD-001
+<strong>版数</strong>: 1.0
+<strong>最終更新</strong>: 2026年2月21日
+<strong>機密区分</strong>: 社内限定</p>
+<hr />
+<h2>1. サービス概要</h2>
+<h3>1-1. サービスコンセプト</h3>
+<p><strong>ContentFlow</strong>は、マーケティング専任者を持たない中小企業が、月額10万円からプロ品質のコンテンツマーケティングを実行できるSaaS型プラットフォームである。</p>
+<p>SEO記事・SNS投稿・メルマガの3チャネルを一括で生成・配信し、業種別に最適化されたテンプレートとファーストパーティデータの蓄積・活用により、使うほど自社に合ったコンテンツが自動で生成される仕組みを提供する。</p>
+<h3>1-2. 解決する課題</h3>
+<table>
+<thead>
+<tr>
+<th>課題</th>
+<th>現状の痛み</th>
+<th>ContentFlowの解決策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人材不足</td>
+<td>マーケ専任者を雇う余裕がない</td>
+<td>AIが下書きから配信まで一貫対応</td>
+</tr>
+<tr>
+<td>コスト過大</td>
+<td>外注すると月30〜80万円かかる</td>
+<td>月10万円〜で3チャネル同時運用</td>
+</tr>
+<tr>
+<td>知見不足</td>
+<td>SEOやSNS運用のノウハウがない</td>
+<td>業種別テンプレートに最適解を内蔵</td>
+</tr>
+<tr>
+<td>継続困難</td>
+<td>ブログが3ヶ月で止まる</td>
+<td>カレンダー自動生成＋リマインドで継続支援</td>
+</tr>
+<tr>
+<td>データ分散</td>
+<td>顧客の声が社内に散在</td>
+<td>UGC収集・再構成で資産化</td>
+</tr>
+</tbody>
+</table>
+<h3>1-3. 競合との差別化ポイント</h3>
+<ol>
+<li><strong>業種別テンプレートエンジン</strong>: 飲食・美容・士業・製造業など12業種の専用テンプレートを搭載。業種固有の訴求軸・季節性・法規制を反映済み</li>
+<li><strong>ファーストパーティデータ学習</strong>: 自社の過去記事・顧客レビュー・問い合わせ内容を取り込み、回を重ねるごとに自社らしい文体・訴求に最適化</li>
+<li><strong>UGC収集・再構成機能</strong>: Googleレビュー・SNS言及・お客様の声を自動収集し、記事素材・SNS投稿・事例コンテンツとして再構成</li>
+</ol>
+<hr />
+<h2>2. ターゲット定義</h2>
+<h3>2-1. プライマリターゲット</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>企業規模</td>
+<td>従業員10〜100名</td>
+</tr>
+<tr>
+<td>業種</td>
+<td>BtoC中心（飲食、美容、小売、不動産、クリニック、士業、教育）</td>
+</tr>
+<tr>
+<td>月間広告予算</td>
+<td>10〜50万円</td>
+</tr>
+<tr>
+<td>マーケ体制</td>
+<td>専任者なし。経営者または営業兼任が片手間で対応</td>
+</tr>
+<tr>
+<td>デジタル成熟度</td>
+<td>自社サイトあり。SNSアカウントはあるが更新が不定期</td>
+</tr>
+<tr>
+<td>導入動機</td>
+<td>「やらなきゃいけないのはわかっているが手が回らない」</td>
+</tr>
+</tbody>
+</table>
+<h3>2-2. ペルソナ</h3>
+<p><strong>ペルソナA：佐藤美咲（36歳）　美容サロン経営者</strong></p>
+<ul>
+<li>都内で美容サロン2店舗を経営。従業員12名</li>
+<li>Instagramは自分で更新。ブログは開設したが3記事で止まっている</li>
+<li>ホットペッパー依存から脱却し、自社集客を強化したい</li>
+<li>月の広告予算は15万円（ほぼホットペッパー掲載料）</li>
+<li>ITリテラシーは一般的。Canvaは使える</li>
+</ul>
+<p><strong>ペルソナB：田中誠一（52歳）　製造業 営業部長</strong></p>
+<ul>
+<li>埼玉県の金属加工メーカー。従業員45名</li>
+<li>新規取引先の開拓をWebに頼りたいが、何から始めればいいかわからない</li>
+<li>展示会で名刺交換した見込み客へのフォローが属人的</li>
+<li>月の広告予算は30万円（展示会費用含む）</li>
+<li>Web検索は日常的に使うが、マーケティング用語には疎い</li>
+</ul>
+<h3>2-3. 非ターゲット（除外条件）</h3>
+<ul>
+<li>月間広告予算5万円未満の個人事業主（費用対効果が出にくい）</li>
+<li>従業員500名以上の企業（既にマーケ部門が存在し、ニーズが異なる）</li>
+<li>コンテンツ承認に3階層以上の稟議が必要な組織（運用が滞る）</li>
+</ul>
+<hr />
+<h2>3. 料金プラン</h2>
+<h3>3-1. プラン体系</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>ライトプラン</strong></th>
+<th><strong>スタンダードプラン</strong></th>
+<th><strong>プロプラン</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>月額料金</strong></td>
+<td>100,000円（税別）</td>
+<td>180,000円（税別）</td>
+<td>300,000円（税別）</td>
+</tr>
+<tr>
+<td><strong>SEO記事</strong></td>
+<td>月4本（2,000字）</td>
+<td>月8本（3,000字）</td>
+<td>月12本（4,000字）</td>
+</tr>
+<tr>
+<td><strong>SNS投稿</strong></td>
+<td>月20本（1プラットフォーム）</td>
+<td>月40本（2プラットフォーム）</td>
+<td>月60本（3プラットフォーム）</td>
+</tr>
+<tr>
+<td><strong>メルマガ</strong></td>
+<td>月2通</td>
+<td>月4通</td>
+<td>月8通</td>
+</tr>
+<tr>
+<td><strong>業種テンプレート</strong></td>
+<td>1業種選択</td>
+<td>3業種まで</td>
+<td>全業種利用可</td>
+</tr>
+<tr>
+<td><strong>UGC収集</strong></td>
+<td>ー</td>
+<td>Googleレビューのみ</td>
+<td>全チャネル対応</td>
+</tr>
+<tr>
+<td><strong>ファーストパーティデータ取込</strong></td>
+<td>ー</td>
+<td>月1回バッチ</td>
+<td>リアルタイム</td>
+</tr>
+<tr>
+<td><strong>コンテンツカレンダー</strong></td>
+<td>自動生成</td>
+<td>自動生成＋提案</td>
+<td>自動生成＋提案＋最適化</td>
+</tr>
+<tr>
+<td><strong>レポート</strong></td>
+<td>月次サマリー</td>
+<td>月次＋週次速報</td>
+<td>月次＋週次＋日次ダッシュボード</td>
+</tr>
+<tr>
+<td><strong>サポート</strong></td>
+<td>メール（48h以内）</td>
+<td>メール＋チャット（24h以内）</td>
+<td>専任担当＋月1回MTG</td>
+</tr>
+</tbody>
+</table>
+<h3>3-2. 価格設定の根拠</h3>
+<table>
+<thead>
+<tr>
+<th>比較対象</th>
+<th>月額費用</th>
+<th>ContentFlowとの差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フリーランスライター（月8本）</td>
+<td>16〜32万円</td>
+<td>ContentFlowは半額以下</td>
+</tr>
+<tr>
+<td>コンテンツマーケ代行会社</td>
+<td>30〜80万円</td>
+<td>ContentFlowは1/3〜1/8</td>
+</tr>
+<tr>
+<td>マーケ担当者1名の人件費</td>
+<td>35〜50万円</td>
+<td>ContentFlowは1/3以下</td>
+</tr>
+<tr>
+<td>他社AIライティングツール単体</td>
+<td>3〜10万円</td>
+<td>ContentFlowは3チャネル統合・業種最適化で付加価値あり</td>
+</tr>
+</tbody>
+</table>
+<h3>3-3. オプション</h3>
+<table>
+<thead>
+<tr>
+<th>オプション</th>
+<th>料金（税別）</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>追加SEO記事</td>
+<td>15,000円/本</td>
+<td>上限なし</td>
+</tr>
+<tr>
+<td>プロライター監修</td>
+<td>30,000円/月</td>
+<td>人間のライターが全記事を最終チェック</td>
+</tr>
+<tr>
+<td>LP自動生成</td>
+<td>50,000円/月</td>
+<td>キャンペーン用ランディングページを月2本生成</td>
+</tr>
+<tr>
+<td>広告コピー生成</td>
+<td>20,000円/月</td>
+<td>リスティング広告・SNS広告の文面を自動生成</td>
+</tr>
+</tbody>
+</table>
+<h3>3-4. 契約条件</h3>
+<ul>
+<li>最低契約期間：3ヶ月（効果測定に最低限必要な期間として設定）</li>
+<li>支払い：月額前払い（クレジットカード・請求書払い対応）</li>
+<li>年間契約割引：月額料金の10%OFF</li>
+<li>解約：契約期間満了の30日前までに通知</li>
+</ul>
+<hr />
+<h2>4. オンボーディングフロー</h2>
+<h3>4-1. 全体スケジュール（申込〜稼働まで7営業日）</h3>
+<pre><code>Day 0     Day 1-2      Day 3-4       Day 5-6      Day 7
+申込      ヒアリング    初期設定      テスト生成    本番稼働
+ │         │            │             │            │
+ ▼         ▼            ▼             ▼            ▼
+契約締結   業種選択      自社データ     サンプル     カレンダー
+         ・ペルソナ定義  取込・連携    確認・修正    自動配信開始
+         ・KW設計       設定         フィードバック
+</code></pre>
+<h3>4-2. 各ステップの詳細</h3>
+<p><strong>Step 1：申込・契約（Day 0）</strong></p>
+<ul>
+<li>Webフォームから申込（所要時間5分）</li>
+<li>プラン選択、業種選択、決済情報登録</li>
+<li>即時アカウント発行・管理画面アクセス可能</li>
+</ul>
+<p><strong>Step 2：初回ヒアリング（Day 1〜2）</strong></p>
+<p>担当者とのオンラインMTG（45分）で以下を確定する。</p>
+<table>
+<thead>
+<tr>
+<th>ヒアリング項目</th>
+<th>目的</th>
+<th>成果物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事業概要・強み</td>
+<td>コンテンツの訴求軸を決定</td>
+<td>ブランドプロファイル</td>
+</tr>
+<tr>
+<td>ターゲット顧客像</td>
+<td>ペルソナ設定</td>
+<td>ペルソナシート（2〜3名分）</td>
+</tr>
+<tr>
+<td>競合・差別化点</td>
+<td>ポジショニング明確化</td>
+<td>競合マップ</td>
+</tr>
+<tr>
+<td>注力キーワード</td>
+<td>SEO戦略の土台</td>
+<td>キーワードリスト（30〜50語）</td>
+</tr>
+<tr>
+<td>SNS運用方針</td>
+<td>トーン＆マナー設定</td>
+<td>SNSガイドライン</td>
+</tr>
+<tr>
+<td>既存コンテンツ・素材</td>
+<td>ファーストパーティデータの初期投入</td>
+<td>データ取込計画</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3：初期設定（Day 3〜4）</strong></p>
+<ul>
+<li>業種テンプレートの適用・カスタマイズ</li>
+<li>自社サイト・SNSアカウント連携</li>
+<li>既存コンテンツ（ブログ記事・パンフレット等）のデータ取込</li>
+<li>UGC収集チャネルの接続（Googleビジネスプロフィール等）</li>
+<li>コンテンツカレンダーの初期生成（3ヶ月分）</li>
+</ul>
+<p><strong>Step 4：テスト生成・フィードバック（Day 5〜6）</strong></p>
+<ul>
+<li>各チャネル（SEO記事1本、SNS投稿5本、メルマガ1通）のサンプルを生成</li>
+<li>顧客が内容・トーンを確認し、フィードバックを入力</li>
+<li>フィードバックをもとにAIの出力パラメータを調整</li>
+<li>必要に応じてテンプレートの微調整を実施</li>
+</ul>
+<p><strong>Step 5：本番稼働（Day 7）</strong></p>
+<ul>
+<li>コンテンツカレンダーに基づく自動生成を開始</li>
+<li>初回は全コンテンツを「承認待ち」状態で生成（ユーザーが確認後に公開）</li>
+<li>2ヶ月目以降、信頼度が上がれば「自動公開」への切替を提案</li>
+</ul>
+<h3>4-3. オンボーディング成功基準</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>基準値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初回ヒアリングからの離脱率</td>
+<td>5%以下</td>
+</tr>
+<tr>
+<td>Day 7までの稼働完了率</td>
+<td>90%以上</td>
+</tr>
+<tr>
+<td>テスト生成に対するフィードバック回収率</td>
+<td>95%以上</td>
+</tr>
+<tr>
+<td>初月のコンテンツ承認率（修正なし公開）</td>
+<td>70%以上</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. KPI設計</h2>
+<h3>5-1. KPIツリー</h3>
+<pre><code>事業KPI
+├── 売上 = 契約数 × ARPU × 継続月数
+│   ├── 新規契約数（月次）
+│   ├── ARPU（プランミックスで変動）
+│   └── 月次解約率（チャーンレート）
+│
+├── 顧客成功KPI（≒解約抑止ドライバー）
+│   ├── コンテンツ公開数 / 生成数（活用率）
+│   ├── オーガニック流入の前月比成長率
+│   ├── SNSエンゲージメント率
+│   └── メルマガ開封率・クリック率
+│
+└── プロダクトKPI
+    ├── オンボーディング完了率
+    ├── 週次ログイン率（DAU/WAU）
+    └── NPS（四半期計測）
+</code></pre>
+<h3>5-2. 主要KPIの定義と目標値</h3>
+<p><strong>事業KPI</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>定義</th>
+<th>6ヶ月目標</th>
+<th>12ヶ月目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MRR（月次経常収益）</td>
+<td>全契約の月額合計</td>
+<td>500万円</td>
+<td>2,000万円</td>
+</tr>
+<tr>
+<td>新規契約数</td>
+<td>当月の新規有料契約数</td>
+<td>月15件</td>
+<td>月30件</td>
+</tr>
+<tr>
+<td>月次解約率</td>
+<td>当月解約数 / 前月末契約数</td>
+<td>5%以下</td>
+<td>3%以下</td>
+</tr>
+<tr>
+<td>ARPU</td>
+<td>MRR / 契約数</td>
+<td>15万円</td>
+<td>16万円</td>
+</tr>
+<tr>
+<td>LTV</td>
+<td>ARPU / 月次解約率</td>
+<td>300万円</td>
+<td>533万円</td>
+</tr>
+<tr>
+<td>CAC</td>
+<td>月間マーケ費用 / 新規契約数</td>
+<td>20万円以下</td>
+<td>15万円以下</td>
+</tr>
+<tr>
+<td>LTV/CAC比率</td>
+<td>LTV / CAC</td>
+<td>15以上</td>
+<td>35以上</td>
+</tr>
+</tbody>
+</table>
+<p><strong>顧客成功KPI</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>定義</th>
+<th>目標値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>コンテンツ活用率</td>
+<td>公開数 / 生成数</td>
+<td>80%以上</td>
+</tr>
+<tr>
+<td>オーガニック流入成長率</td>
+<td>前月比の検索流入増加率</td>
+<td>月+10%以上（導入6ヶ月以内）</td>
+</tr>
+<tr>
+<td>SNSエンゲージメント率</td>
+<td>(いいね+コメント+シェア) / インプレッション</td>
+<td>3%以上</td>
+</tr>
+<tr>
+<td>メルマガ開封率</td>
+<td>開封数 / 配信数</td>
+<td>25%以上</td>
+</tr>
+<tr>
+<td>メルマガクリック率</td>
+<td>クリック数 / 開封数</td>
+<td>5%以上</td>
+</tr>
+</tbody>
+</table>
+<p><strong>プロダクトKPI</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>定義</th>
+<th>目標値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>オンボーディング完了率</td>
+<td>Day 7までに稼働した率</td>
+<td>90%以上</td>
+</tr>
+<tr>
+<td>週次ログイン率</td>
+<td>週1回以上ログインした率</td>
+<td>70%以上</td>
+</tr>
+<tr>
+<td>フィードバック入力率</td>
+<td>修正指示を入力した率</td>
+<td>月3回以上が60%</td>
+</tr>
+<tr>
+<td>NPS</td>
+<td>推奨度スコア</td>
+<td>+30以上</td>
+</tr>
+</tbody>
+</table>
+<h3>5-3. KPIモニタリング体制</h3>
+<table>
+<thead>
+<tr>
+<th>頻度</th>
+<th>対象</th>
+<th>確認者</th>
+<th>アクション基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日次</td>
+<td>コンテンツ生成数・公開数</td>
+<td>CS担当</td>
+<td>生成後48h未承認 → リマインド通知</td>
+</tr>
+<tr>
+<td>週次</td>
+<td>新規契約数・解約予兆</td>
+<td>営業MGR</td>
+<td>2週連続ログインなし → 電話フォロー</td>
+</tr>
+<tr>
+<td>月次</td>
+<td>MRR・解約率・NPS</td>
+<td>事業責任者</td>
+<td>解約率5%超 → 原因分析＋改善施策を翌週実行</td>
+</tr>
+<tr>
+<td>四半期</td>
+<td>LTV/CAC・プランミックス</td>
+<td>経営会議</td>
+<td>LTV/CAC 10未満 → 価格改定またはCAC削減策を検討</td>
+</tr>
+</tbody>
+</table>
+<h3>5-4. 解約予兆スコアリング</h3>
+<p>以下のシグナルを組み合わせ、解約リスクを3段階（低・中・高）で自動判定する。</p>
+<table>
+<thead>
+<tr>
+<th>シグナル</th>
+<th>重み</th>
+<th>閾値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直近2週間のログイン回数</td>
+<td>高</td>
+<td>0回で「高リスク」</td>
+</tr>
+<tr>
+<td>コンテンツ承認率の推移</td>
+<td>中</td>
+<td>前月比20%低下で「中リスク」</td>
+</tr>
+<tr>
+<td>フィードバック入力頻度</td>
+<td>中</td>
+<td>直近1ヶ月ゼロで「中リスク」</td>
+</tr>
+<tr>
+<td>サポート問い合わせのネガティブ度</td>
+<td>高</td>
+<td>不満表明2件以上で「高リスク」</td>
+</tr>
+<tr>
+<td>契約更新日までの残日数</td>
+<td>低</td>
+<td>30日以内で全顧客を再チェック</td>
+</tr>
+</tbody>
+</table>
+<p>リスク「高」判定時のアクション：48時間以内に専任担当者から電話。状況把握＋個別改善提案を実施する。</p>
+<hr />
+<h2>付録A：業種別テンプレート対応表（ローンチ時）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>業種</th>
+<th>SEO主要テーマ例</th>
+<th>SNS主軸</th>
+<th>季節性イベント例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>美容サロン</td>
+<td>ヘアケア・トレンド</td>
+<td>Instagram</td>
+<td>成人式、卒業式、梅雨</td>
+</tr>
+<tr>
+<td>2</td>
+<td>飲食店</td>
+<td>メニュー紹介・地域名SEO</td>
+<td>Instagram, LINE</td>
+<td>忘年会、歓送迎会、お盆</td>
+</tr>
+<tr>
+<td>3</td>
+<td>クリニック</td>
+<td>症状解説・治療法</td>
+<td>LINE</td>
+<td>花粉症、インフルエンザ</td>
+</tr>
+<tr>
+<td>4</td>
+<td>不動産</td>
+<td>エリア情報・住宅ローン</td>
+<td>Instagram</td>
+<td>引越しシーズン（1-3月）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>士業</td>
+<td>法改正解説・手続きガイド</td>
+<td>X（旧Twitter）</td>
+<td>確定申告、決算期</td>
+</tr>
+<tr>
+<td>6</td>
+<td>小売・EC</td>
+<td>商品レビュー・比較</td>
+<td>Instagram, LINE</td>
+<td>セール時期、ギフトシーズン</td>
+</tr>
+<tr>
+<td>7</td>
+<td>製造業（BtoB）</td>
+<td>技術解説・導入事例</td>
+<td>LinkedIn</td>
+<td>展示会シーズン</td>
+</tr>
+<tr>
+<td>8</td>
+<td>教育・スクール</td>
+<td>学習ノウハウ・合格体験記</td>
+<td>Instagram, X</td>
+<td>入学シーズン、夏期講習</td>
+</tr>
+<tr>
+<td>9</td>
+<td>介護・福祉</td>
+<td>制度解説・施設選びガイド</td>
+<td>LINE</td>
+<td>介護保険改定時期</td>
+</tr>
+<tr>
+<td>10</td>
+<td>建設・リフォーム</td>
+<td>施工事例・補助金情報</td>
+<td>Instagram</td>
+<td>年度末予算消化期</td>
+</tr>
+<tr>
+<td>11</td>
+<td>IT・Web制作</td>
+<td>ツール比較・DX事例</td>
+<td>X, LinkedIn</td>
+<td>年度予算策定期（10-12月）</td>
+</tr>
+<tr>
+<td>12</td>
+<td>フィットネス・ジム</td>
+<td>トレーニング解説・体験談</td>
+<td>Instagram</td>
+<td>新年、夏前（4-6月）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>付録B：用語定義</h2>
+<table>
+<thead>
+<tr>
+<th>用語</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MRR</td>
+<td>Monthly Recurring Revenue。月次経常収益</td>
+</tr>
+<tr>
+<td>ARPU</td>
+<td>Average Revenue Per User。1契約あたり月額単価</td>
+</tr>
+<tr>
+<td>LTV</td>
+<td>Life Time Value。顧客生涯価値</td>
+</tr>
+<tr>
+<td>CAC</td>
+<td>Customer Acquisition Cost。顧客獲得単価</td>
+</tr>
+<tr>
+<td>NPS</td>
+<td>Net Promoter Score。推奨度（-100〜+100）</td>
+</tr>
+<tr>
+<td>UGC</td>
+<td>User Generated Content。顧客が生成したコンテンツ（レビュー等）</td>
+</tr>
+<tr>
+<td>ファーストパーティデータ</td>
+<td>自社が直接収集した顧客データ・コンテンツ</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本文書は「サービス設計書（後編：技術設計）」と対になる。技術アーキテクチャ、AI生成パイプライン、データフロー、セキュリティ設計については後編を参照のこと。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

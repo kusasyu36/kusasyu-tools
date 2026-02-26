@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安全巡回KYチェックリスト＆是正管理テンプレート - kusasyu tools</title>
+<meta name="description" content="建設現場の監督者が毎日の報告書作成に費やす残業時間を削減するための実用ツールキット。フォーム入力だけで日報・週報を即座に生成するブラウザツール、工程進捗と遅延リスクを自動計算するExcelシート、安全巡回チェックリストの3点セット。将来のAI画像認識SaaSの前段階として、まず『手入力だが圧倒的に速い』報告書">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,安全巡回KYチェックリスト＆是正管理テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propsite-3/">
+<meta property="og:title" content="安全巡回KYチェックリスト＆是正管理テンプレート - kusasyu tools">
+<meta property="og:description" content="建設現場の監督者が毎日の報告書作成に費やす残業時間を削減するための実用ツールキット。フォーム入力だけで日報・週報を即座に生成するブラウザツール、工程進捗と遅延リスクを自動計算するExcelシート、安全巡回チェックリストの3点セット。将来のAI画像認識SaaSの前段階として、まず『手入力だが圧倒的に速い』報告書">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propsite-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安全巡回KYチェックリスト＆是正管理テンプレート - kusasyu tools">
+<meta name="twitter:description" content="建設現場の監督者が毎日の報告書作成に費やす残業時間を削減するための実用ツールキット。フォーム入力だけで日報・週報を即座に生成するブラウザツール、工程進捗と遅延リスクを自動計算するExcelシート、安全巡回チェックリストの3点セット。将来のAI画像認識SaaSの前段階として、まず『手入力だが圧倒的に速い』報告書">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "安全巡回KYチェックリスト＆是正管理テンプレート",
+  "description": "建設現場の監督者が毎日の報告書作成に費やす残業時間を削減するための実用ツールキット。フォーム入力だけで日報・週報を即座に生成するブラウザツール、工程進捗と遅延リスクを自動計算するExcelシート、安全巡回チェックリストの3点セット。将来のAI画像認識SaaSの前段階として、まず『手入力だが圧倒的に速い』報告書",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propsite-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>安全巡回KYチェックリスト＆是正管理テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>安全巡回KYチェックリスト＆是正管理テンプレート</h1>
+  <p class="project-name">建設現場AI進捗モニタリング＆報告書自動生成 ツールキット「PropSite」</p>
+  <div class="content">
+<h1>PropSite 安全巡回KYチェックリスト＆是正管理テンプレート</h1>
+<hr />
+<h2>【使い方】</h2>
+<ol>
+<li><strong>毎朝の安全巡回時</strong>に「■ 安全巡回チェックリスト（15項目）」を印刷またはタブレットで持ち出し、現場を巡回しながら各項目を確認する</li>
+<li><strong>不適合（×）があった場合</strong>、下部の「■ 是正管理台帳」に指摘内容・是正期限・担当者を記入する</li>
+<li><strong>是正完了後</strong>、担当者が是正内容を記入→所長が完了確認欄にサインして閉じる（指摘→是正→確認の3ステップ）</li>
+<li>本チェックリストは <strong>PropSite 建設現場日報ジェネレーター</strong> の安全事項欄と連携可能。チェック結果を日報フォームに転記すると、日報の安全巡回セクションが自動生成される</li>
+<li>工程の進捗状況は「<strong>PropSite 工程進捗・遅延リスク管理シート</strong>」を参照し、当日の作業内容に応じて重点確認項目を決定すること</li>
+</ol>
+<hr />
+<h2>■ 基本情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>現場名</td>
+<td>[記入例] サンプル建設工事（RC造 地上8階建オフィスビル新築）</td>
+</tr>
+<tr>
+<td>工期</td>
+<td>[記入例] 2025/10/01～2026/09/30（12ヶ月）</td>
+</tr>
+<tr>
+<td>巡回日</td>
+<td>[記入例] 2026/02/23</td>
+</tr>
+<tr>
+<td>天候</td>
+<td>[記入例] 晴れ／気温 8℃</td>
+</tr>
+<tr>
+<td>巡回者（所長）</td>
+<td>[記入例] （現場所長名を入力）</td>
+</tr>
+<tr>
+<td>同行者</td>
+<td>[記入例] 安全衛生責任者：鈴木、職長：田中</td>
+</tr>
+<tr>
+<td>当日作業概要</td>
+<td>[記入例] 躯体工事（地上）5F立上り鉄筋組立・型枠建込</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>■ 安全巡回チェックリスト（15項目）</h2>
+<p>判定欄に <strong>○（適合）／×（不適合）／―（該当なし）</strong> を記入。×の場合は「■ 是正管理台帳」に転記すること。</p>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>カテゴリ</th>
+<th>確認項目</th>
+<th>根拠法令</th>
+<th>判定</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>足場</td>
+<td>足場の作業床（幅40cm以上）・手すり（高さ85cm以上）・中さん・幅木の設置は適正か</td>
+<td>安衛則559〜563条</td>
+<td>[記入例] ○</td>
+<td>[記入例] 5F外部足場確認済</td>
+</tr>
+<tr>
+<td>2</td>
+<td>足場</td>
+<td>足場の壁つなぎ・筋かいに緩み・欠損はないか。昇降設備は適正か</td>
+<td>安衛則570・556条</td>
+<td>[記入例] ○</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>開口部</td>
+<td>床開口部・スラブ開口部に手すりまたは覆い・囲いがあるか</td>
+<td>安衛則519条</td>
+<td>[記入例] ×</td>
+<td>[記入例] 4F EPS開口の覆い未設置→是正No.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>墜落防止</td>
+<td>高さ2m以上の作業箇所で墜落防止措置（手すり・ネット・フルハーネス）はあるか</td>
+<td>安衛則518〜521条</td>
+<td>[記入例] ○</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>重機</td>
+<td>クレーン・バックホウ等の作業範囲内に立入禁止措置（バリケード・誘導員）があるか</td>
+<td>安衛則158・171条、クレーン則29条</td>
+<td>[記入例] ○</td>
+<td>[記入例] 誘導員1名配置確認</td>
+</tr>
+<tr>
+<td>6</td>
+<td>重機</td>
+<td>移動式クレーンの定格荷重表示・アウトリガー張出・地盤養生は適正か</td>
+<td>クレーン則70条の3〜5</td>
+<td>[記入例] ―</td>
+<td>[記入例] 本日クレーン使用なし</td>
+</tr>
+<tr>
+<td>7</td>
+<td>電気</td>
+<td>仮設分電盤の漏電遮断器（感度30mA）作動確認。接地・防雨カバーは適正か</td>
+<td>安衛則333〜334条</td>
+<td>[記入例] ○</td>
+<td>[記入例] テストボタン押下確認</td>
+</tr>
+<tr>
+<td>8</td>
+<td>電気</td>
+<td>電動工具・溶接機のケーブル損傷・絶縁不良はないか</td>
+<td>安衛則336〜339条</td>
+<td>[記入例] ○</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>PPE</td>
+<td>作業員全員が保護帽（墜落時保護用）を正しく着用しているか</td>
+<td>安衛則539条</td>
+<td>[記入例] ○</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td>PPE</td>
+<td>高所作業者がフルハーネス型安全帯を着用し、適切にフックを掛けているか</td>
+<td>安衛則521条・ハーネス規格告示</td>
+<td>[記入例] ×</td>
+<td>[記入例] 5F鉄筋工1名フック未掛け→是正No.2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>火気</td>
+<td>溶接・溶断作業箇所に消火器を配置し、火花養生シートを設置しているか</td>
+<td>安衛則279〜282条</td>
+<td>[記入例] ―</td>
+<td>[記入例] 本日火気作業なし</td>
+</tr>
+<tr>
+<td>12</td>
+<td>整理整頓</td>
+<td>通路・階段に資材放置や突起物がなく、安全通路が確保されているか</td>
+<td>安衛則540・542条</td>
+<td>[記入例] ○</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>酸欠・有害</td>
+<td>ピット・地下等の酸素欠乏危険場所に立入禁止措置または換気設備があるか</td>
+<td>酸欠則3〜5条</td>
+<td>[記入例] ―</td>
+<td>[記入例] 地下作業完了済</td>
+</tr>
+<tr>
+<td>14</td>
+<td>第三者災害</td>
+<td>仮囲い・防護棚・落下防止ネットに破損はないか。歩行者通路の安全誘導は適正か</td>
+<td>安衛則537条・建設業法</td>
+<td>[記入例] ○</td>
+<td>[記入例] 正面道路側の朝顔確認済</td>
+</tr>
+<tr>
+<td>15</td>
+<td>KY活動</td>
+<td>朝礼で当日のKY（危険予知）活動を実施し、リスクと対策を作業員に周知したか</td>
+<td>安衛法28条の2</td>
+<td>[記入例] ○</td>
+<td>[記入例] 高所作業・鉄筋吊り荷を重点項目に設定</td>
+</tr>
+</tbody>
+</table>
+<p><strong>巡回結果サマリ</strong>: 適合 <strong><em>件 ／ 不適合 </em></strong>件 ／ 該当なし ___件　[記入例] 適合 11件 ／ 不適合 2件 ／ 該当なし 3件（※1件は適合・該当なし重複）</p>
+<hr />
+<h2>■ 是正管理台帳</h2>
+<p>不適合（×）の項目を転記し、是正完了まで追跡する。</p>
+<table>
+<thead>
+<tr>
+<th>是正No</th>
+<th>巡回日</th>
+<th>チェックNo</th>
+<th>指摘内容</th>
+<th>危険度</th>
+<th>是正期限</th>
+<th>是正担当者</th>
+<th>是正内容（実施事項）</th>
+<th>完了日</th>
+<th>確認者（所長）</th>
+<th>ステータス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[記入例] 2026/02/23</td>
+<td>[記入例] 3</td>
+<td>[記入例] 4F EPS開口部の覆い（合板蓋）が未設置。墜落の恐れ</td>
+<td>[記入例] A（重大）</td>
+<td>[記入例] 2026/02/23 当日中</td>
+<td>[記入例] 型枠職長：佐藤</td>
+<td>[記入例] 合板蓋＋トラロープ設置完了</td>
+<td>[記入例] 2026/02/23 10:30</td>
+<td>[記入例] （所長サイン）</td>
+<td>[記入例] 完了</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[記入例] 2026/02/23</td>
+<td>[記入例] 10</td>
+<td>[記入例] 5F鉄筋工1名がフルハーネスのフックを未掛けで作業</td>
+<td>[記入例] A（重大）</td>
+<td>[記入例] 2026/02/23 即時</td>
+<td>[記入例] 鉄筋職長：田中</td>
+<td>[記入例] 本人に直接指導。全作業員に再周知（昼礼時）</td>
+<td>[記入例] 2026/02/23 08:45</td>
+<td>[記入例] （所長サイン）</td>
+<td>[記入例] 完了</td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>未着手</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>未着手</td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>未着手</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>■ 危険度の判定基準</h2>
+<table>
+<thead>
+<tr>
+<th>危険度</th>
+<th>定義</th>
+<th>是正期限の目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A（重大）</strong></td>
+<td>墜落・転落・挟まれ等の重篤災害に直結する状態</td>
+<td>即時〜当日中（作業中止も検討）</td>
+</tr>
+<tr>
+<td><strong>B（中程度）</strong></td>
+<td>放置すると災害に発展しうる状態</td>
+<td>翌日まで</td>
+</tr>
+<tr>
+<td><strong>C（軽微）</strong></td>
+<td>直ちに災害の恐れは低いが改善が必要な状態</td>
+<td>1週間以内</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>■ ステータスの定義</h2>
+<table>
+<thead>
+<tr>
+<th>ステータス</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未着手</strong></td>
+<td>指摘済み、是正作業にまだ着手していない</td>
+</tr>
+<tr>
+<td><strong>対応中</strong></td>
+<td>是正作業を進めている</td>
+</tr>
+<tr>
+<td><strong>完了</strong></td>
+<td>是正が完了し、所長が確認欄にサイン済み</td>
+</tr>
+<tr>
+<td><strong>再指摘</strong></td>
+<td>是正内容が不十分で再度の対応が必要</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>■ 週次是正サマリ（PropSite 週報連携用）</h2>
+<p>週末に集計し、PropSite 建設現場日報ジェネレーターの週報テンプレートに転記する。</p>
+<table>
+<thead>
+<tr>
+<th>集計項目</th>
+<th>今週実績</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>巡回実施日数</td>
+<td>[記入例] 5日／5日</td>
+<td>全日実施</td>
+</tr>
+<tr>
+<td>指摘件数（合計）</td>
+<td>[記入例] 7件</td>
+<td>A:2件 B:3件 C:2件</td>
+</tr>
+<tr>
+<td>是正完了件数</td>
+<td>[記入例] 6件</td>
+<td>完了率 85.7%</td>
+</tr>
+<tr>
+<td>未完了件数</td>
+<td>[記入例] 1件</td>
+<td>是正No.XX（B判定・期限内）</td>
+</tr>
+<tr>
+<td>再指摘件数</td>
+<td>[記入例] 0件</td>
+<td></td>
+</tr>
+<tr>
+<td>重点カテゴリ</td>
+<td>[記入例] 足場・PPE</td>
+<td>来週も継続監視</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>運用ルール</strong>: 是正完了率が<strong>80%未満</strong>の週は、翌週の安全工程会議で原因分析と再発防止策を協議すること。赤判定の工種（現在：躯体工事（地上）が赤（警告）／進捗率42%）では作業量増加に伴い安全リスクも上昇するため、巡回頻度を1日2回に増やすこと。</p>
+</blockquote>
+<hr />
+<p><em>本テンプレートは PropSite ツールキット（建設現場日報ジェネレーター／工程進捗・遅延リスク管理シート／安全巡回KYチェックリスト）の一部です。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

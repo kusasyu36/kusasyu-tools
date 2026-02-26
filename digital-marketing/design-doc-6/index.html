@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス設計書（前編：ビジネス設計） - kusasyu tools</title>
+<meta name="description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,サービス設計書（前編：ビジネス設計）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-6/">
+<meta property="og:title" content="サービス設計書（前編：ビジネス設計） - kusasyu tools">
+<meta property="og:description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サービス設計書（前編：ビジネス設計） - kusasyu tools">
+<meta name="twitter:description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サービス設計書（前編：ビジネス設計）",
+  "description": "中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>サービス設計書（前編：ビジネス設計）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>サービス設計書（前編：ビジネス設計）</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング自動化SaaS</p>
+  <div class="content">
+<h1>サービス設計書（前編：ビジネス設計）</h1>
+<p><strong>プロジェクト名：</strong> ContentBridge AI — 中小企業向けAIコンテンツマーケティング自動化SaaS
+<strong>バージョン：</strong> 1.0　｜　<strong>作成日：</strong> 2026-02-20</p>
+<hr />
+<h2>1. サービスコンセプト</h2>
+<p><strong>ワンフレーズ：</strong> キーワードと業種を選ぶだけで、SEO記事・SNS投稿・メルマガを一括生成。</p>
+<p>ContentBridge AIは、マーケティング専任者がいない中小企業でも「プロ品質のコンテンツ発信を週30分で実現する」SaaSである。業種別に最適化されたテンプレートとAI生成エンジンにより、コンテンツ企画・作成・効果測定の全工程を1つのダッシュボードに集約する。</p>
+<p><strong>解決する課題：</strong></p>
+<table>
+<thead>
+<tr>
+<th>課題</th>
+<th>現状</th>
+<th>ContentBridge AIでの解決</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>専門人材の不在</td>
+<td>外注費月15〜50万円、品質のばらつき</td>
+<td>業種特化テンプレートで社内完結</td>
+</tr>
+<tr>
+<td>コンテンツの継続困難</td>
+<td>3ヶ月以内に更新が止まる企業が7割</td>
+<td>週1クリックで3媒体分を一括生成</td>
+</tr>
+<tr>
+<td>効果が見えない</td>
+<td>PV・CVの計測環境がない</td>
+<td>組込みダッシュボードで自動可視化</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. ターゲット顧客像</h2>
+<p><strong>プライマリペルソナ：</strong></p>
+<ul>
+<li><strong>属性：</strong> 従業員10〜100名、年商1〜10億円の中小企業</li>
+<li><strong>役職：</strong> 経営者、または兼任マーケティング担当者（1名体制）</li>
+<li><strong>ITリテラシー：</strong> SNSは日常的に利用。WordPressやCMSの基本操作は可能</li>
+<li><strong>予算感：</strong> マーケティング外注費を月額5万円以内に抑えたい</li>
+<li><strong>行動特性：</strong> 「やるべき」と理解しているが着手できていない。成功事例に強く反応する</li>
+</ul>
+<p><strong>初期ターゲット3業種：</strong></p>
+<table>
+<thead>
+<tr>
+<th>業種</th>
+<th>選定理由</th>
+<th>モデルケース</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>建設（外壁塗装）</strong></td>
+<td>SEO効果の実証データあり。地域密着型で成果が出やすい</td>
+<td>外壁塗装業の成功事例を起点に展開</td>
+</tr>
+<tr>
+<td><strong>飲食</strong></td>
+<td>SNS投稿の需要が高く、ビジュアル訴求と相性が良い</td>
+<td>個人経営〜小規模チェーン</td>
+</tr>
+<tr>
+<td><strong>士業</strong></td>
+<td>専門性が高く記事外注コストが最も高い。AI生成の費用対効果が明確</td>
+<td>税理士・社労士・行政書士</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 料金プラン</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>スターター</strong></th>
+<th><strong>スタンダード</strong></th>
+<th><strong>プロ</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>月額（税別）</strong></td>
+<td>9,800円</td>
+<td>29,800円</td>
+<td>49,800円</td>
+</tr>
+<tr>
+<td><strong>想定顧客</strong></td>
+<td>まず試したい企業</td>
+<td>本格運用する企業</td>
+<td>複数拠点・多業種展開</td>
+</tr>
+<tr>
+<td>記事生成数/月</td>
+<td>4本</td>
+<td>15本</td>
+<td>無制限</td>
+</tr>
+<tr>
+<td>SNS投稿生成</td>
+<td>12投稿</td>
+<td>60投稿</td>
+<td>無制限</td>
+</tr>
+<tr>
+<td>メルマガ生成</td>
+<td>2通</td>
+<td>8通</td>
+<td>無制限</td>
+</tr>
+<tr>
+<td>業種テンプレート</td>
+<td>1業種</td>
+<td>3業種</td>
+<td>全業種+カスタム</td>
+</tr>
+<tr>
+<td>効果測定</td>
+<td>PVのみ</td>
+<td>PV+CV計測</td>
+<td>全指標+ROIレポート</td>
+</tr>
+<tr>
+<td>サポート</td>
+<td>メール</td>
+<td>メール+チャット</td>
+<td>専任CS+月次MTG</td>
+</tr>
+</tbody>
+</table>
+<p><strong>価格設計の根拠：</strong> 外注ライターへの発注相場（1記事1〜3万円）と比較し、スタンダードプランで月15本生成＝外注比で80%以上のコスト削減を訴求。</p>
+<hr />
+<h2>4. 競合との差別化</h2>
+<pre><code>                高機能
+                  ↑
+    HubSpot ●     |     ● ContentBridge AI
+   （高価格・多機能）|    （中価格・業種特化）
+                  |
+  ←────────────────────────────→ 業種特化
+    汎用的        |
+                  |
+    ChatGPT直接利用 ●   ● ラクリン等
+   （低価格・自助努力）  （低価格・記事のみ）
+                  ↓
+                低機能
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>差別化軸</th>
+<th>ContentBridge AI</th>
+<th>汎用AIツール</th>
+<th>マーケ統合ツール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業種別テンプレート</td>
+<td><strong>専用設計</strong></td>
+<td>なし</td>
+<td>一部のみ</td>
+</tr>
+<tr>
+<td>3媒体一括生成</td>
+<td><strong>対応</strong></td>
+<td>個別に指示が必要</td>
+<td>対応</td>
+</tr>
+<tr>
+<td>導入の手軽さ</td>
+<td><strong>即日開始</strong></td>
+<td>プロンプト設計が必要</td>
+<td>数週間の初期設定</td>
+</tr>
+<tr>
+<td>月額コスト</td>
+<td>1〜5万円</td>
+<td>2千〜2万円</td>
+<td>10〜30万円</td>
+</tr>
+<tr>
+<td>効果測定一体型</td>
+<td><strong>標準搭載</strong></td>
+<td>なし</td>
+<td>標準搭載</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一言で言う差別化：</strong>「HubSpotの機能を、ChatGPTの手軽さと価格帯で、業種に特化して提供する」</p>
+<hr />
+<h2>5. ビジネスモデルキャンバス</h2>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>顧客セグメント</strong></td>
+<td>専任マーケ不在の中小企業（建設・飲食・士業から展開）</td>
+</tr>
+<tr>
+<td><strong>価値提案</strong></td>
+<td>業種を選んでキーワードを入れるだけで、3媒体のコンテンツが完成する</td>
+</tr>
+<tr>
+<td><strong>チャネル</strong></td>
+<td>SEO記事（自社実践）、業種別展示会、商工会議所セミナー、代理店</td>
+</tr>
+<tr>
+<td><strong>顧客との関係</strong></td>
+<td>セルフサーブ＋成功事例共有コミュニティ。プロプランは専任CS</td>
+</tr>
+<tr>
+<td><strong>収益の流れ</strong></td>
+<td>月額サブスクリプション（3プラン）。年契約で15%割引</td>
+</tr>
+<tr>
+<td><strong>主要リソース</strong></td>
+<td>AI生成エンジン、業種別テンプレートDB、効果測定基盤</td>
+</tr>
+<tr>
+<td><strong>主要活動</strong></td>
+<td>テンプレート開発・品質管理、AI精度改善、カスタマーサクセス</td>
+</tr>
+<tr>
+<td><strong>主要パートナー</strong></td>
+<td>LLM APIプロバイダ、業種別監修者（現場知見）、Web制作会社（代理店）</td>
+</tr>
+<tr>
+<td><strong>コスト構造</strong></td>
+<td>API利用料（変動費）、開発人件費、CS人件費、マーケティング費</td>
+</tr>
+</tbody>
+</table>
+<p><strong>KPI目標（ローンチ後12ヶ月）：</strong></p>
+<ul>
+<li>有料契約: 200社</li>
+<li>MRR: 400万円（平均客単価2万円）</li>
+<li>月次解約率: 5%以下</li>
+<li>NPS: 40以上</li>
+</ul>
+<hr />
+<p><em>本書は「前編：ビジネス設計」である。技術アーキテクチャ、AI生成パイプライン、テンプレートエンジン仕様は「後編：技術設計」にて定義する。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

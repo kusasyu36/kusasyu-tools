@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kusasyu Legal Tech | 中小企業の法務を支援するAIツール</title>
+<meta name="description" content="企業法務・弁護士・法務担当者向けの無料AIツール・記事・テンプレート集。中小企業の法務を支援するAIツール。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">
+<meta property="og:title" content="kusasyu Legal Tech | 中小企業の法務を支援するAIツール">
+<meta property="og:description" content="企業法務・弁護士・法務担当者向けの無料AIツール・記事・テンプレート集。中小企業の法務を支援するAIツール。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kusasyu Legal Tech | 中小企業の法務を支援するAIツール">
+<meta name="twitter:description" content="企業法務・弁護士・法務担当者向けの無料AIツール・記事・テンプレート集。中小企業の法務を支援するAIツール。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "kusasyu Legal Tech | 中小企業の法務を支援するAIツール",
+  "description": "企業法務・弁護士・法務担当者向けの無料AIツール・記事・テンプレート集。中小企業の法務を支援するAIツール。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.header {
+  text-align: center;
+  padding: 48px 20px 32px;
+  background: linear-gradient(180deg, #1e293b 0%, var(--bg) 100%);
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.header .tagline {
+  color: var(--text2);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.header .audience {
+  color: var(--accent);
+  font-size: 14px;
+}
+.breadcrumb {
+  text-align: center;
+  padding: 8px 20px 0;
+  font-size: 13px;
+  color: var(--text2);
+}
+.breadcrumb a { color: var(--accent); }
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat .val { font-size: 24px; font-weight: 800; color: var(--accent); }
+.stat .label { font-size: 12px; color: var(--text2); }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+.section { margin-top: 40px; }
+.section h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.count {
+  font-size: 13px;
+  background: var(--border);
+  padding: 2px 10px;
+  border-radius: 12px;
+  color: var(--text2);
+  font-weight: 400;
+  margin-left: 8px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+  display: block;
+}
+.card:hover {
+  background: var(--card-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.score {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+}
+.type-badge {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+}
+.type-tool { background: #6366f1; }
+.type-article { background: #8b5cf6; }
+.type-csv { background: #f59e0b; }
+.card h3 { font-size: 16px; margin-bottom: 4px; line-height: 1.4; }
+.project-name { font-size: 12px; color: var(--accent); margin-bottom: 8px; }
+.desc { font-size: 13px; color: var(--text2); margin-bottom: 12px; line-height: 1.5; }
+.cta { font-size: 13px; color: var(--accent); font-weight: 600; }
+.footer {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--text2);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+.footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  .header h1 { font-size: 22px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt; <span>kusasyu Legal Tech</span>
+</nav>
+<div class="header">
+  <h1>⚖️ kusasyu Legal Tech</h1>
+  <p class="tagline">中小企業の法務を支援するAIツール</p>
+  <p class="audience">企業法務・弁護士・法務担当者のための無料AIツール集</p>
+  <div class="stats">
+    <div class="stat">
+      <div class="val">29</div>
+      <div class="label">公開コンテンツ</div>
+    </div>
+    <div class="stat">
+      <div class="val">7</div>
+      <div class="label">ツール</div>
+    </div>
+    <div class="stat">
+      <div class="val">19</div>
+      <div class="label">記事</div>
+    </div>
+    <div class="stat">
+      <div class="val">0円</div>
+      <div class="label">利用料金</div>
+    </div>
+  </div>
+</div>
+<div class="container">
+
+    <section class="section">
+      <h2>🛠️ ツール<span class="count">7本</span></h2>
+      <div class="grid">
+      <a href="legal-tech/patent-scout/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>知財リスク・優先度スコアラー</h3>
+        <p class="project-name">PatentScout — スタートアップ知財セルフ診断＆AI調査ツールキット</p>
+        <p class="desc">弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="legal-tech/contract-risk/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>契約条項_訴訟リスクスコアラー</h3>
+        <p class="project-name">LitiScan — 契約条項 訴訟リスク定量診断ツールキット</p>
+        <p class="desc">契約書レビューの「次の段階」を提供する。条項ごとの訴訟リスクを日本の判例傾向に基づいて5段階スコアリングし、推定紛争コストレンジを数字で示すツールキット。既存のLegalOn・LeCHECKが「この条項に問題あり→修正案」で止まるのに対し、</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="legal-tech/regulation-impact/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>業種別・規制インパクト診断ツール</h3>
+        <p class="project-name">RegWatch Japan — 業種特化型 規制変更モニタリングツールキット</p>
+        <p class="desc">金融・製薬・化粧品等の業種別に、日本の官公庁（金融庁・厚労省・経産省・e-Gov）の規制変更情報を自動収集し、自社への影響度を診断し、対応アクションを管理するまでの3ステップを、すぐ使えるツールとして提供する。海外ではCUBE Global</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="legal-tech/regulation-action/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>規制対応アクション管理ボード</h3>
+        <p class="project-name">RegWatch Japan — 業種特化型 規制変更モニタリングツールキット</p>
+        <p class="desc">金融・製薬・化粧品等の業種別に、日本の官公庁（金融庁・厚労省・経産省・e-Gov）の規制変更情報を自動収集し、自社への影響度を診断し、対応アクションを管理するまでの3ステップを、すぐ使えるツールとして提供する。海外ではCUBE Global</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="legal-tech/knowledge-base-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>法務判断ナレッジベース（ブラウザ版）</h3>
+        <p class="project-name">法務判断ナレッジベース構築ツールキット — 脱・属人化 実践シリーズ</p>
+        <p class="desc">社内の法務相談・判断履歴を構造化して蓄積・検索可能にするツールキット。法務担当者が過去の類似案件を即座に見つけ、判断根拠を参照できる仕組みを、ブラウザツール＋記録テンプレート＋運用ガイドの3点セットで提供する。既存のLegalOn・OLGA</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="legal-tech/litigation-cost-simulator/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>訴訟コスト・期間シミュレーター</h3>
+        <p class="project-name">訴訟データ分析・判決予測AI（日本版Lex Machina）実践ツールシリーズ</p>
+        <p class="desc">日本の法律事務所・企業法務部門が訴訟の戦略的意思決定に使える実用ツールを提供する。訴訟コスト・期間のシミュレーション、和解vs訴訟継続の比較分析、案件ポートフォリオの一元管理を可能にする3つのツールで、現状のExcel＋勘に頼る訴訟判断をデ</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      <a href="legal-tech/settlement-vs-litigation/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-tool">ツール</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>和解vs訴訟継続_意思決定シミュレーター</h3>
+        <p class="project-name">訴訟データ分析・判決予測AI（日本版Lex Machina）実践ツールシリーズ</p>
+        <p class="desc">日本の法律事務所・企業法務部門が訴訟の戦略的意思決定に使える実用ツールを提供する。訴訟コスト・期間のシミュレーション、和解vs訴訟継続の比較分析、案件ポートフォリオの一元管理を可能にする3つのツールで、現状のExcel＋勘に頼る訴訟判断をデ</p>
+        <span class="cta">使ってみる →</span>
+      </a>
+      </div>
+    </section>
+    <section class="section">
+      <h2>📝 記事・ガイド<span class="count">19本</span></h2>
+      <div class="grid">
+      <a href="legal-tech/settlement/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>訴訟_vs_和解_判断チェックリスト20</h3>
+        <p class="project-name">訴訟リスク定量化 実務ツールセット</p>
+        <p class="desc">企業法務部門が訴訟の『やるべきか・やめるべきか』を定量的に判断するための実務ツール3点セットを作成する。過去プロジェクト（契約書レビュー・規制変更・AI規制対応）とは異なる『訴訟・紛争解決』という新領域に挑戦。検証スコア8/10（go）の訴</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/risk/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>紛争解決手段_比較ガイド（訴訟・調停・仲裁・交渉）</h3>
+        <p class="project-name">訴訟リスク定量化 実務ツールセット</p>
+        <p class="desc">企業法務部門が訴訟の『やるべきか・やめるべきか』を定量的に判断するための実務ツール3点セットを作成する。過去プロジェクト（契約書レビュー・規制変更・AI規制対応）とは異なる『訴訟・紛争解決』という新領域に挑戦。検証スコア8/10（go）の訴</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/risk-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>判例分析ワークシート（記入例3件付き）</h3>
+        <p class="project-name">訴訟リスク定量化 実務ツールセット</p>
+        <p class="desc">企業法務部門が訴訟の『やるべきか・やめるべきか』を定量的に判断するための実務ツール3点セットを作成する。過去プロジェクト（契約書レビュー・規制変更・AI規制対応）とは異なる『訴訟・紛争解決』という新領域に挑戦。検証スコア8/10（go）の訴</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/patent-scout-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>AI特許調査プロンプトテンプレート集</h3>
+        <p class="project-name">PatentScout — スタートアップ知財セルフ診断＆AI調査ツールキット</p>
+        <p class="desc">弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/m-a-dd/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>M&amp;A法務DD_文書レビューチェックリスト25</h3>
+        <p class="project-name">M&amp;A法務デューデリジェンス AI活用 実務ツールセット</p>
+        <p class="desc">M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/due-diligence/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>DD_リスク評価ワークシート（記入例3件付き）</h3>
+        <p class="project-name">M&amp;A法務デューデリジェンス AI活用 実務ツールセット</p>
+        <p class="desc">M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/m-a-dd-ai/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>M&amp;A法務DDにAIを活用する実践ガイド（2026年版）</h3>
+        <p class="project-name">M&amp;A法務デューデリジェンス AI活用 実務ツールセット</p>
+        <p class="desc">M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/top3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>中堅企業の契約紛争パターンTOP3_—_判例ベース実務ガイド（データ基盤ドキュメント）</h3>
+        <p class="project-name">LitiScan — 契約条項 訴訟リスク定量診断ツールキット</p>
+        <p class="desc">契約書レビューの「次の段階」を提供する。条項ごとの訴訟リスクを日本の判例傾向に基づいて5段階スコアリングし、推定紛争コストレンジを数字で示すツールキット。既存のLegalOn・LeCHECKが「この条項に問題あり→修正案」で止まるのに対し、</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/contract-risk-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#10b981">8/10</span>
+        </div>
+        <h3>訴訟リスクアセスメント報告書テンプレート</h3>
+        <p class="project-name">LitiScan — 契約条項 訴訟リスク定量診断ツールキット</p>
+        <p class="desc">契約書レビューの「次の段階」を提供する。条項ごとの訴訟リスクを日本の判例傾向に基づいて5段階スコアリングし、推定紛争コストレンジを数字で示すツールキット。既存のLegalOn・LeCHECKが「この条項に問題あり→修正案」で止まるのに対し、</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/regulation/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>ブログ記事「うちの会社、AI規制は大丈夫？中小企業が今すぐ確認すべき5つのポイント」</h3>
+        <p class="project-name">中小企業向け AI規制対応コンテンツパック</p>
+        <p class="desc">AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（Contr</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/regulation-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>AI利用リスク_セルフチェックリスト（20項目・判断基準つき）</h3>
+        <p class="project-name">中小企業向け AI規制対応コンテンツパック</p>
+        <p class="desc">AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（Contr</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/eu-ai/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>日本・EU・米国_AI規制_比較早見表</h3>
+        <p class="project-name">中小企業向け AI規制対応コンテンツパック</p>
+        <p class="desc">AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（Contr</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/tool/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>連載ブログ全3回『法務ナレッジ属人化を解消する技術』</h3>
+        <p class="project-name">法務ナレッジ属人化解消 実践コンテンツシリーズ</p>
+        <p class="desc">中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといっ</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/tool-2/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>5日間メール講座『法務ナレッジ棚卸し5ステップ』</h3>
+        <p class="project-name">法務ナレッジ属人化解消 実践コンテンツシリーズ</p>
+        <p class="desc">中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといっ</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/knowledge-base/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』</h3>
+        <p class="project-name">法務ナレッジ属人化解消 実践コンテンツシリーズ</p>
+        <p class="desc">中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといっ</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/knowledge-base-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>法務ナレッジベース運用マニュアル</h3>
+        <p class="project-name">法務判断ナレッジベース構築ツールキット — 脱・属人化 実践シリーズ</p>
+        <p class="desc">社内の法務相談・判断履歴を構造化して蓄積・検索可能にするツールキット。法務担当者が過去の類似案件を即座に見つけ、判断根拠を参照できる仕組みを、ブラウザツール＋記録テンプレート＋運用ガイドの3点セットで提供する。既存のLegalOn・OLGA</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/regtech/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」</h3>
+        <p class="project-name">RegTech規制モニタリング導入 実践シリーズ</p>
+        <p class="desc">金融・製薬・製造業のコンプライアンス部門向けに、AIを活用した規制変更の自動検知・影響度評価・対応管理の仕組みを構築するための実践コンテンツ。過去の『法改正キャッチアップ自動化』が一般的な法改正情報の収集手法だったのに対し、本プロジェクトは</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/regulation-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>5日間メール講座「規制変更を見逃さない仕組みの作り方」</h3>
+        <p class="project-name">RegTech規制モニタリング導入 実践シリーズ</p>
+        <p class="desc">金融・製薬・製造業のコンプライアンス部門向けに、AIを活用した規制変更の自動検知・影響度評価・対応管理の仕組みを構築するための実践コンテンツ。過去の『法改正キャッチアップ自動化』が一般的な法改正情報の収集手法だったのに対し、本プロジェクトは</p>
+        <span class="cta">読む →</span>
+      </a>
+      <a href="legal-tech/regulation-4/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-article">記事</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>ステップバイステップ実装ガイド「AI規制モニタリング_3ステップ導入」</h3>
+        <p class="project-name">RegTech規制モニタリング導入 実践シリーズ</p>
+        <p class="desc">金融・製薬・製造業のコンプライアンス部門向けに、AIを活用した規制変更の自動検知・影響度評価・対応管理の仕組みを構築するための実践コンテンツ。過去の『法改正キャッチアップ自動化』が一般的な法改正情報の収集手法だったのに対し、本プロジェクトは</p>
+        <span class="cta">読む →</span>
+      </a>
+      </div>
+    </section>
+    <section class="section">
+      <h2>📋 テンプレート<span class="count">3本</span></h2>
+      <div class="grid">
+      <a href="legal-tech/patent-scout-3/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-csv">テンプレート</span>
+          <span class="score" style="background:#10b981">9/10</span>
+        </div>
+        <h3>スタートアップ知財管理台帳</h3>
+        <p class="project-name">PatentScout — スタートアップ知財セルフ診断＆AI調査ツールキット</p>
+        <p class="desc">弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効</p>
+        <span class="cta">ダウンロード →</span>
+      </a>
+      <a href="legal-tech/excel-csv/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-csv">テンプレート</span>
+          <span class="score" style="background:#3b82f6">7/10</span>
+        </div>
+        <h3>法務相談記録テンプレート（Excel対応CSV）</h3>
+        <p class="project-name">法務判断ナレッジベース構築ツールキット — 脱・属人化 実践シリーズ</p>
+        <p class="desc">社内の法務相談・判断履歴を構造化して蓄積・検索可能にするツールキット。法務担当者が過去の類似案件を即座に見つけ、判断根拠を参照できる仕組みを、ブラウザツール＋記録テンプレート＋運用ガイドの3点セットで提供する。既存のLegalOn・OLGA</p>
+        <span class="cta">ダウンロード →</span>
+      </a>
+      <a href="legal-tech/management/" class="card">
+        <div class="card-header">
+          <span class="type-badge type-csv">テンプレート</span>
+          <span class="score" style="background:#3b82f6">6/10</span>
+        </div>
+        <h3>訴訟案件ポートフォリオ管理テンプレート</h3>
+        <p class="project-name">訴訟データ分析・判決予測AI（日本版Lex Machina）実践ツールシリーズ</p>
+        <p class="desc">日本の法律事務所・企業法務部門が訴訟の戦略的意思決定に使える実用ツールを提供する。訴訟コスト・期間のシミュレーション、和解vs訴訟継続の比較分析、案件ポートフォリオの一元管理を可能にする3つのツールで、現状のExcel＋勘に頼る訴訟判断をデ</p>
+        <span class="cta">ダウンロード →</span>
+      </a>
+      </div>
+    </section>
+</div>
+<div class="footer">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">&larr; kusasyu tools トップに戻る</a>
+</div>
+</body>
+</html>

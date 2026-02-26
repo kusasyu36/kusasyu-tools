@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM引用率診断レポート（サンプル） - kusasyu tools</title>
+<meta name="description" content="ChatGPT・Perplexity・Gemini等のAI検索に自社情報が正しく引用されるよう、既存Webコンテンツを最適化するサービス。LLM引用率の診断→構造化データ実装→コンテンツリライト→モニタリングまでを一気通貫で提供する。従来SEOとLLMO（Large Language Model Optimi">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,LLM引用率診断レポート（サンプル）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis/">
+<meta property="og:title" content="LLM引用率診断レポート（サンプル） - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Perplexity・Gemini等のAI検索に自社情報が正しく引用されるよう、既存Webコンテンツを最適化するサービス。LLM引用率の診断→構造化データ実装→コンテンツリライト→モニタリングまでを一気通貫で提供する。従来SEOとLLMO（Large Language Model Optimi">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LLM引用率診断レポート（サンプル） - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Perplexity・Gemini等のAI検索に自社情報が正しく引用されるよう、既存Webコンテンツを最適化するサービス。LLM引用率の診断→構造化データ実装→コンテンツリライト→モニタリングまでを一気通貫で提供する。従来SEOとLLMO（Large Language Model Optimi">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LLM引用率診断レポート（サンプル）",
+  "description": "ChatGPT・Perplexity・Gemini等のAI検索に自社情報が正しく引用されるよう、既存Webコンテンツを最適化するサービス。LLM引用率の診断→構造化データ実装→コンテンツリライト→モニタリングまでを一気通貫で提供する。従来SEOとLLMO（Large Language Model Optimi",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>LLM引用率診断レポート（サンプル）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>LLM引用率診断レポート（サンプル）</h1>
+  <p class="project-name">LLMO対応コンテンツ最適化サービス</p>
+  <div class="content">
+<p>成果物を以下に出力します。</p>
+<hr />
+<h1>LLM引用率診断レポート</h1>
+<p><strong>対象企業</strong>: 株式会社クラウドフォース（架空）
+<strong>業種</strong>: BtoB SaaS（クラウド型プロジェクト管理ツール「TaskFlow」）
+<strong>診断実施日</strong>: 2026年2月18日
+<strong>レポート作成</strong>: SynLab Digital Marketing LLMO診断チーム
+<strong>レポートID</strong>: LLMO-2026-0218-CF</p>
+<hr />
+<h2>エグゼクティブサマリー</h2>
+<p>貴社「TaskFlow」に関するLLM引用率を、主要AI検索エンジン3種（ChatGPT / Perplexity / Gemini）で計測しました。<strong>総合引用スコアは100点満点中 31点</strong>であり、競合4社の平均（52点）を大幅に下回っています。</p>
+<p>特に深刻なのは、<strong>製品カテゴリに関する質問で競合他社が優先的に引用され、貴社が言及すらされないケース</strong>が全体の58%に達している点です。AI検索経由の情報収集が購買プロセスの初期段階で急速に普及する中、この状態を放置すれば、<strong>年間推定1,200〜1,800件のリード機会損失</strong>につながると試算されます。</p>
+<p>本レポートでは、現状の詳細分析、競合比較、改善施策の優先度を提示します。</p>
+<hr />
+<h2>1. 診断スコア概要</h2>
+<h3>1-1. 総合スコア</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指標</th>
+<th style="text-align: center;">スコア</th>
+<th style="text-align: center;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>総合LLM引用スコア</strong></td>
+<td style="text-align: center;"><strong>31 / 100</strong></td>
+<td style="text-align: center;">🔴 危険</td>
+</tr>
+<tr>
+<td style="text-align: left;">ChatGPT引用スコア</td>
+<td style="text-align: center;">28 / 100</td>
+<td style="text-align: center;">🔴 危険</td>
+</tr>
+<tr>
+<td style="text-align: left;">Perplexity引用スコア</td>
+<td style="text-align: center;">39 / 100</td>
+<td style="text-align: center;">🟡 要改善</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini引用スコア</td>
+<td style="text-align: center;">26 / 100</td>
+<td style="text-align: center;">🔴 危険</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>スコア基準</strong>: 60以上＝良好（🟢） / 40〜59＝要改善（🟡） / 39以下＝危険（🔴）</p>
+</blockquote>
+<h3>1-2. スコア内訳（評価5軸）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">評価軸</th>
+<th style="text-align: center;">配点</th>
+<th style="text-align: center;">貴社スコア</th>
+<th style="text-align: left;">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">① 言及率（Mention Rate）</td>
+<td style="text-align: center;">25点</td>
+<td style="text-align: center;">8点</td>
+<td style="text-align: left;">関連クエリで貴社名・製品名が言及される割合</td>
+</tr>
+<tr>
+<td style="text-align: left;">② 正確性（Accuracy）</td>
+<td style="text-align: center;">25点</td>
+<td style="text-align: center;">11点</td>
+<td style="text-align: left;">言及された情報の事実正確性</td>
+</tr>
+<tr>
+<td style="text-align: left;">③ 推薦順位（Recommendation Rank）</td>
+<td style="text-align: center;">20点</td>
+<td style="text-align: center;">4点</td>
+<td style="text-align: left;">「おすすめ」系クエリでの掲載順位</td>
+</tr>
+<tr>
+<td style="text-align: left;">④ 情報鮮度（Freshness）</td>
+<td style="text-align: center;">15点</td>
+<td style="text-align: center;">5点</td>
+<td style="text-align: left;">最新の料金・機能が反映されているか</td>
+</tr>
+<tr>
+<td style="text-align: left;">⑤ ソース帰属（Attribution）</td>
+<td style="text-align: center;">15点</td>
+<td style="text-align: center;">3点</td>
+<td style="text-align: left;">公式サイトが出典として引用されるか</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合計</strong></td>
+<td style="text-align: center;"><strong>100点</strong></td>
+<td style="text-align: center;"><strong>31点</strong></td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. AI検索エンジン別 詳細分析</h2>
+<h3>2-1. 調査方法</h3>
+<p>以下の条件で診断を実施しました。</p>
+<ul>
+<li><strong>調査クエリ数</strong>: 60クエリ（製品カテゴリ系20 / 比較検討系20 / 課題解決系20）</li>
+<li><strong>調査回数</strong>: 各クエリ×3回（AI出力の揺れを考慮し平均値を採用）</li>
+<li><strong>使用モデル</strong>: ChatGPT（GPT-4o） / Perplexity（Pro Search） / Gemini（2.0 Flash）</li>
+<li><strong>調査言語</strong>: 日本語</li>
+<li><strong>地域設定</strong>: 日本</li>
+</ul>
+<h3>2-2. ChatGPT（スコア: 28/100）</h3>
+<p><strong>代表的なクエリと引用結果:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">クエリ</th>
+<th style="text-align: center;">貴社の引用</th>
+<th style="text-align: center;">引用内容の正確性</th>
+<th style="text-align: center;">競合の引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">「プロジェクト管理ツール おすすめ BtoB」</td>
+<td style="text-align: center;">❌ 言及なし</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Backlog, Asana, Monday</td>
+</tr>
+<tr>
+<td style="text-align: left;">「TaskFlow プロジェクト管理」</td>
+<td style="text-align: center;">✅ 言及あり</td>
+<td style="text-align: center;">⚠️ 旧料金プランを記載</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">「ガントチャート クラウド 比較」</td>
+<td style="text-align: center;">❌ 言及なし</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Backlog, Jooto, Wrike</td>
+</tr>
+<tr>
+<td style="text-align: left;">「SaaS プロジェクト管理 中小企業」</td>
+<td style="text-align: center;">❌ 言及なし</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Backlog, Redmine, Notion</td>
+</tr>
+<tr>
+<td style="text-align: left;">「タスク管理 チーム 効率化」</td>
+<td style="text-align: center;">⚠️ リスト6番目</td>
+<td style="text-align: center;">✅ 概ね正確</td>
+<td style="text-align: center;">Asana, Trello, Notion</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主要な問題点:</strong>
+- 指名検索（「TaskFlow」）では言及されるが、<strong>料金情報が2024年改定前の旧プラン</strong>を参照
+- カテゴリ検索では60%のクエリで<strong>完全に言及されない</strong>
+- 言及された場合も、競合の後方に配置される傾向</p>
+<h3>2-3. Perplexity（スコア: 39/100）</h3>
+<p><strong>代表的なクエリと引用結果:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">クエリ</th>
+<th style="text-align: center;">貴社の引用</th>
+<th style="text-align: center;">ソース帰属</th>
+<th style="text-align: center;">競合の引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">「プロジェクト管理ツール 比較 2026」</td>
+<td style="text-align: center;">⚠️ リスト5番目</td>
+<td style="text-align: center;">❌ 第三者レビュー記事</td>
+<td style="text-align: center;">Backlog, Asana, Monday</td>
+</tr>
+<tr>
+<td style="text-align: left;">「TaskFlow 評判 口コミ」</td>
+<td style="text-align: center;">✅ 言及あり</td>
+<td style="text-align: center;">❌ 個人ブログが出典</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">「ウォーターフォール アジャイル 両対応 ツール」</td>
+<td style="text-align: center;">✅ 言及あり</td>
+<td style="text-align: center;">⚠️ 公式+記事混在</td>
+<td style="text-align: center;">Backlog, Jira</td>
+</tr>
+<tr>
+<td style="text-align: left;">「製造業 プロジェクト管理 DX」</td>
+<td style="text-align: center;">❌ 言及なし</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Backlog, kintone</td>
+</tr>
+<tr>
+<td style="text-align: left;">「TaskFlow vs Backlog」</td>
+<td style="text-align: center;">✅ 言及あり</td>
+<td style="text-align: center;">❌ 2023年の比較記事</td>
+<td style="text-align: center;">Backlog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主要な問題点:</strong>
+- Perplexityはソース明示型のため、<strong>公式サイトが出典として選ばれないことが致命的</strong>
+- 引用ソースの72%が第三者メディアまたは個人ブログ → 情報の正確性を貴社がコントロールできていない
+- 「TaskFlow vs 競合」の比較クエリでは古い情報が参照される</p>
+<h3>2-4. Gemini（スコア: 26/100）</h3>
+<p><strong>代表的なクエリと引用結果:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">クエリ</th>
+<th style="text-align: center;">貴社の引用</th>
+<th style="text-align: center;">引用内容の正確性</th>
+<th style="text-align: center;">競合の引用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">「プロジェクト管理ツール おすすめ」</td>
+<td style="text-align: center;">❌ 言及なし</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Backlog, Asana, Monday, Notion</td>
+</tr>
+<tr>
+<td style="text-align: left;">「TaskFlow とは」</td>
+<td style="text-align: center;">✅ 言及あり</td>
+<td style="text-align: center;">❌ 誤った機能説明あり</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">「BtoB SaaS タスク管理 比較」</td>
+<td style="text-align: center;">❌ 言及なし</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Backlog, Jooto, Asana</td>
+</tr>
+<tr>
+<td style="text-align: left;">「プロジェクト管理 API連携」</td>
+<td style="text-align: center;">❌ 言及なし</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">Jira, Asana, Monday</td>
+</tr>
+<tr>
+<td style="text-align: left;">「工数管理 SaaS 日本語対応」</td>
+<td style="text-align: center;">⚠️ リスト4番目</td>
+<td style="text-align: center;">⚠️ 部分的に正確</td>
+<td style="text-align: center;">TimeCrowd, Backlog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主要な問題点:</strong>
+- Geminiでの引用率が最も低く、カテゴリクエリでの<strong>言及率はわずか15%</strong>
+- 指名検索で「TaskFlowはフリーランス向けのタスク管理アプリ」と<strong>誤った説明を生成</strong>（ハルシネーション）
+- Google検索との連動を考えると、Gemini対策は検索流入全体への影響が大きい</p>
+<hr />
+<h2>3. 競合比較分析</h2>
+<h3>3-1. 競合LLM引用スコア比較</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">企業・製品</th>
+<th style="text-align: center;">総合スコア</th>
+<th style="text-align: center;">ChatGPT</th>
+<th style="text-align: center;">Perplexity</th>
+<th style="text-align: center;">Gemini</th>
+<th style="text-align: center;">評価</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Backlog（ヌーラボ）</strong></td>
+<td style="text-align: center;"><strong>72</strong></td>
+<td style="text-align: center;">74</td>
+<td style="text-align: center;">71</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">🟢 良好</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Asana</strong></td>
+<td style="text-align: center;"><strong>65</strong></td>
+<td style="text-align: center;">68</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">🟢 良好</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Monday.com</strong></td>
+<td style="text-align: center;"><strong>52</strong></td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">🟡 要改善</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Jooto</strong></td>
+<td style="text-align: center;"><strong>39</strong></td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">🟡 要改善</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TaskFlow（貴社）</strong></td>
+<td style="text-align: center;"><strong>31</strong></td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">🔴 危険</td>
+</tr>
+</tbody>
+</table>
+<h3>3-2. 競合との差分要因分析</h3>
+<p><strong>Backlogが高スコアを獲得している要因:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">要因</th>
+<th style="text-align: left;">Backlogの施策</th>
+<th style="text-align: left;">貴社の現状</th>
+<th style="text-align: left;">Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">構造化データ</td>
+<td style="text-align: left;">FAQ・HowTo・Product全実装</td>
+<td style="text-align: left;">Productのみ部分的</td>
+<td style="text-align: left;">大</td>
+</tr>
+<tr>
+<td style="text-align: left;">ナレッジベース</td>
+<td style="text-align: left;">450記事超のヘルプセンター</td>
+<td style="text-align: left;">80記事、更新頻度低</td>
+<td style="text-align: left;">大</td>
+</tr>
+<tr>
+<td style="text-align: left;">比較コンテンツ</td>
+<td style="text-align: left;">公式「Backlog vs ○○」ページ群</td>
+<td style="text-align: left;">なし</td>
+<td style="text-align: left;">大</td>
+</tr>
+<tr>
+<td style="text-align: left;">最新情報の反映速度</td>
+<td style="text-align: left;">リリースノートが月2回更新</td>
+<td style="text-align: left;">四半期に1回</td>
+<td style="text-align: left;">中</td>
+</tr>
+<tr>
+<td style="text-align: left;">外部メディア露出</td>
+<td style="text-align: left;">ITレビューサイト8媒体に公式情報提供</td>
+<td style="text-align: left;">2媒体のみ</td>
+<td style="text-align: left;">大</td>
+</tr>
+<tr>
+<td style="text-align: left;">英語コンテンツ</td>
+<td style="text-align: left;">主要ページ英語対応済み</td>
+<td style="text-align: left;">日本語のみ</td>
+<td style="text-align: left;">中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 問題の根本原因</h2>
+<p>診断の結果、貴社のLLM引用スコアが低い根本原因は以下の5つに集約されます。</p>
+<h3>原因①：構造化データの未整備（影響度: 極大）</h3>
+<p>貴社サイトのSchema.orgマークアップ実装率は<strong>12%</strong>（競合平均: 68%）。LLMが情報を正確に抽出するための「機械可読な構造」がほぼ存在しません。</p>
+<ul>
+<li><strong>未実装</strong>: FAQPage、HowTo、SoftwareApplication、Review、BreadcrumbList</li>
+<li><strong>部分実装</strong>: Organization、Product（価格情報が欠落）</li>
+</ul>
+<h3>原因②：E-E-A-T信号の不足（影響度: 大）</h3>
+<p>LLMは情報の信頼性を評価する際、E-E-A-T（経験・専門性・権威性・信頼性）シグナルを重視します。</p>
+<ul>
+<li>著者情報（Author Schema）が未設定 → 「誰が書いた情報か」が不明</li>
+<li>導入事例ページに企業名・具体数値が不足 → 信頼性の裏付けが弱い</li>
+<li>外部からの被引用（サイテーション）が競合の1/4以下</li>
+</ul>
+<h3>原因③：コンテンツの「LLM非親和性」（影響度: 大）</h3>
+<p>貴社の既存コンテンツは人間の閲覧には問題ありませんが、LLMが情報を抽出・要約しにくい構造です。</p>
+<ul>
+<li>質問→回答形式のコンテンツが少ない（FAQ: 8件 vs 競合平均: 85件）</li>
+<li>機能説明が画像中心でテキスト情報が少ない</li>
+<li>比較・一覧系の表組みコンテンツがない</li>
+<li>定義・説明文の冒頭に結論がない（LLMは冒頭を重視する傾向）</li>
+</ul>
+<h3>原因④：情報鮮度の低さ（影響度: 中）</h3>
+<ul>
+<li>料金ページの最終更新: 2024年8月（改定後の情報が未反映）</li>
+<li>機能一覧の最終更新: 2025年3月（直近11ヶ月分の新機能が未掲載）</li>
+<li>ブログの更新頻度: 月1回以下（競合平均: 月4回）</li>
+</ul>
+<h3>原因⑤：指名検索時のハルシネーション放置（影響度: 中）</h3>
+<p>「TaskFlow」で検索した際にLLMが誤情報を生成しているにもかかわらず、それを訂正するための公式情報が十分に整備されていません。</p>
+<hr />
+<h2>5. 改善優先度マトリクス</h2>
+<p>以下のマトリクスに基づき、<strong>効果の大きさ</strong>と<strong>実装の容易さ</strong>の2軸で施策を優先度付けしました。</p>
+<pre><code>                        効果：大
+                          ↑
+                          |
+          ★ A1           |          ★ A2
+     構造化データ実装     |    比較コンテンツ制作
+                          |
+          ★ A3           |          ★ B1
+     FAQ大幅拡充          |    導入事例リライト
+                          |
+  ─────────────────────────┼──────────────────────
+                          |
+          ★ B2           |          ★ C1
+     料金・機能ページ刷新  |    ブログ更新頻度UP
+                          |
+          ★ B3           |          ★ C2
+     Author Schema導入    |    外部メディア連携
+                          |
+                          ↓
+                        効果：小
+       実装：容易 ←───────────────────→ 実装：大変
+</code></pre>
+<h3>優先度A（即時着手 — 1〜2ヶ月目）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">施策</th>
+<th style="text-align: left;">期待効果</th>
+<th style="text-align: left;">想定工数</th>
+<th style="text-align: left;">KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">A1</td>
+<td style="text-align: left;"><strong>構造化データ（Schema.org）フル実装</strong></td>
+<td style="text-align: left;">LLMの情報抽出精度が向上し、正確な引用が増加</td>
+<td style="text-align: left;">2〜3週間</td>
+<td style="text-align: left;">構造化データ実装率 12%→85%</td>
+</tr>
+<tr>
+<td style="text-align: center;">A2</td>
+<td style="text-align: left;"><strong>「TaskFlow vs 競合」比較ページ制作（5本）</strong></td>
+<td style="text-align: left;">比較検討クエリでの引用獲得</td>
+<td style="text-align: left;">3〜4週間</td>
+<td style="text-align: left;">比較クエリ引用率 0%→40%</td>
+</tr>
+<tr>
+<td style="text-align: center;">A3</td>
+<td style="text-align: left;"><strong>FAQページ大幅拡充（80件追加）</strong></td>
+<td style="text-align: left;">Q&amp;A形式クエリでの直接引用を獲得</td>
+<td style="text-align: left;">2〜3週間</td>
+<td style="text-align: left;">FAQ関連引用率 5%→35%</td>
+</tr>
+</tbody>
+</table>
+<h3>優先度B（短期改善 — 2〜3ヶ月目）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">施策</th>
+<th style="text-align: left;">期待効果</th>
+<th style="text-align: left;">想定工数</th>
+<th style="text-align: left;">KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">B1</td>
+<td style="text-align: left;"><strong>導入事例のリライト（定量データ追加）</strong></td>
+<td style="text-align: left;">信頼性シグナル強化、推薦文脈での引用増</td>
+<td style="text-align: left;">3〜4週間</td>
+<td style="text-align: left;">事例ページの被引用数 2倍</td>
+</tr>
+<tr>
+<td style="text-align: center;">B2</td>
+<td style="text-align: left;"><strong>料金・機能ページの全面刷新</strong></td>
+<td style="text-align: left;">情報鮮度スコア改善、ハルシネーション抑制</td>
+<td style="text-align: left;">2週間</td>
+<td style="text-align: left;">情報鮮度スコア 5→12点</td>
+</tr>
+<tr>
+<td style="text-align: center;">B3</td>
+<td style="text-align: left;"><strong>Author Schema・著者プロフィール導入</strong></td>
+<td style="text-align: left;">E-E-A-T信号強化</td>
+<td style="text-align: left;">1週間</td>
+<td style="text-align: left;">全記事に著者情報付与</td>
+</tr>
+</tbody>
+</table>
+<h3>優先度C（中期施策 — 4〜6ヶ月目）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">施策</th>
+<th style="text-align: left;">期待効果</th>
+<th style="text-align: left;">想定工数</th>
+<th style="text-align: left;">KPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">C1</td>
+<td style="text-align: left;"><strong>ブログ更新頻度の向上（月4本以上）</strong></td>
+<td style="text-align: left;">情報鮮度維持、ロングテール引用増</td>
+<td style="text-align: left;">継続運用</td>
+<td style="text-align: left;">月間公開記事数 4本以上</td>
+</tr>
+<tr>
+<td style="text-align: center;">C2</td>
+<td style="text-align: left;"><strong>ITレビューサイト・外部メディア連携拡大</strong></td>
+<td style="text-align: left;">外部サイテーション増、権威性向上</td>
+<td style="text-align: left;">2〜3ヶ月</td>
+<td style="text-align: left;">掲載メディア 2→8媒体</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 改善後の期待スコア</h2>
+<p>全施策を実行した場合の6ヶ月後の予測スコアです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指標</th>
+<th style="text-align: center;">現在</th>
+<th style="text-align: center;">3ヶ月後（予測）</th>
+<th style="text-align: center;">6ヶ月後（予測）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">総合LLM引用スコア</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">48（+17）</td>
+<td style="text-align: center;">64（+33）</td>
+</tr>
+<tr>
+<td style="text-align: left;">ChatGPT引用スコア</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">62</td>
+</tr>
+<tr>
+<td style="text-align: left;">Perplexity引用スコア</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini引用スコア</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">58</td>
+</tr>
+<tr>
+<td style="text-align: left;">カテゴリクエリ言及率</td>
+<td style="text-align: center;">15%</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">55%</td>
+</tr>
+<tr>
+<td style="text-align: left;">指名検索の正確性</td>
+<td style="text-align: center;">40%</td>
+<td style="text-align: center;">75%</td>
+<td style="text-align: center;">90%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>※ 予測値はSynLab社の過去支援実績（同規模BtoB SaaS 12社平均）に基づく推計です。LLMのアルゴリズム変更等により変動する可能性があります。</p>
+</blockquote>
+<hr />
+<h2>7. リスクシナリオ：対策しない場合の影響</h2>
+<p>AI検索の利用率は2025年→2026年で約2.4倍に拡大しています（Gartner調べ）。現状を放置した場合の影響を試算します。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指標</th>
+<th style="text-align: center;">2026年Q2（現状維持）</th>
+<th style="text-align: center;">2026年Q4（現状維持）</th>
+<th style="text-align: center;">2026年Q4（対策実施）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">月間オーガニック流入</td>
+<td style="text-align: center;">18,000</td>
+<td style="text-align: center;">14,500（▲19%）</td>
+<td style="text-align: center;">22,000（+22%）</td>
+</tr>
+<tr>
+<td style="text-align: left;">AI検索経由の認知機会</td>
+<td style="text-align: center;">800</td>
+<td style="text-align: center;">600（▲25%）</td>
+<td style="text-align: center;">3,200（+300%）</td>
+</tr>
+<tr>
+<td style="text-align: left;">推定リード損失（累計）</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">1,500件</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">推定売上機会損失（累計）</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">4,500万円</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>※ リード単価30,000円、AI検索のBtoB購買影響率の業界推計値を使用</p>
+</blockquote>
+<hr />
+<h2>8. 次のステップ</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Step</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">本レポートに関するご質問・ディスカッション</td>
+<td style="text-align: left;">1週間以内</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">改善施策の優先度・スコープの合意</td>
+<td style="text-align: left;">2週間以内</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">構造化データ実装の技術要件定義</td>
+<td style="text-align: left;">合意後1週間</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">コンテンツ制作のキーワード設計・構成案提出</td>
+<td style="text-align: left;">合意後2週間</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Phase 1（優先度A施策）の実装開始</td>
+<td style="text-align: left;">合意後3週間</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>付録</h2>
+<h3>付録A：調査クエリ一覧（全60件）</h3>
+<details>
+<summary>クリックして展開</summary>
+
+**製品カテゴリ系（20件）**
+
+| # | クエリ |
+|:-:|:-------|
+| 1 | プロジェクト管理ツール おすすめ |
+| 2 | プロジェクト管理ツール おすすめ BtoB |
+| 3 | プロジェクト管理ツール 比較 2026 |
+| 4 | タスク管理ツール クラウド |
+| 5 | ガントチャート クラウド 比較 |
+| 6 | SaaS プロジェクト管理 中小企業 |
+| 7 | タスク管理 チーム 効率化 |
+| 8 | BtoB SaaS タスク管理 比較 |
+| 9 | プロジェクト管理 API連携 |
+| 10 | 工数管理 SaaS 日本語対応 |
+| 11 | アジャイル プロジェクト管理 ツール |
+| 12 | プロジェクト管理 無料 有料 比較 |
+| 13 | チームコラボレーション ツール ランキング |
+| 14 | プロジェクト管理 ツール 製造業 |
+| 15 | プロジェクト管理 DX 推進 |
+| 16 | タスク管理 進捗管理 一元化 |
+| 17 | プロジェクト管理 ツール セキュリティ |
+| 18 | プロジェクト管理 リモートワーク |
+| 19 | カンバン ガントチャート 両対応 |
+| 20 | プロジェクト管理 ツール 導入事例 |
+
+**比較検討系（20件）**
+
+| # | クエリ |
+|:-:|:-------|
+| 21 | TaskFlow とは |
+| 22 | TaskFlow 評判 口コミ |
+| 23 | TaskFlow 料金 |
+| 24 | TaskFlow vs Backlog |
+| 25 | TaskFlow vs Asana |
+| 26 | TaskFlow vs Monday |
+| 27 | TaskFlow vs Jooto |
+| 28 | TaskFlow 導入事例 |
+| 29 | TaskFlow セキュリティ |
+| 30 | TaskFlow API |
+| 31 | TaskFlow メリット デメリット |
+| 32 | TaskFlow 使い方 |
+| 33 | TaskFlow 無料プラン |
+| 34 | Backlog 代替 |
+| 35 | Asana 日本語 代替 |
+| 36 | プロジェクト管理 乗り換え |
+| 37 | TaskFlow Backlog どっち |
+| 38 | TaskFlow 大企業 向き |
+| 39 | TaskFlow カスタマイズ |
+| 40 | TaskFlow インテグレーション |
+
+**課題解決系（20件）**
+
+| # | クエリ |
+|:-:|:-------|
+| 41 | プロジェクト 遅延 防ぐ方法 |
+| 42 | チーム タスク 可視化 |
+| 43 | ウォーターフォール アジャイル 両対応 ツール |
+| 44 | 製造業 プロジェクト管理 DX |
+| 45 | 複数プロジェクト 管理 コツ |
+| 46 | リソース管理 最適化 ツール |
+| 47 | 工数 見える化 方法 |
+| 48 | プロジェクト 進捗報告 自動化 |
+| 49 | タスク 属人化 解消 |
+| 50 | プロジェクト管理 Excel 脱却 |
+| 51 | 部門間 コラボレーション 改善 |
+| 52 | 開発 営業 連携 ツール |
+| 53 | プロジェクト 予算管理 SaaS |
+| 54 | ナレッジ管理 プロジェクト 統合 |
+| 55 | テレワーク 進捗管理 課題 |
+| 56 | SaaS導入 稟議 書き方 |
+| 57 | プロジェクト管理 KPI 設定 |
+| 58 | チーム生産性 向上 ツール |
+| 59 | プロジェクト 失敗 原因 |
+| 60 | 業務効率化 SaaS 選び方 |
+
+</details>
+
+<h3>付録B：スコア算出方法</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">評価軸</th>
+<th style="text-align: left;">算出方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">言及率</td>
+<td style="text-align: left;">(貴社が言及されたクエリ数 ÷ 総クエリ数) × 25</td>
+</tr>
+<tr>
+<td style="text-align: left;">正確性</td>
+<td style="text-align: left;">言及された情報の事実確認を5段階評価し、平均値を25点満点に換算</td>
+</tr>
+<tr>
+<td style="text-align: left;">推薦順位</td>
+<td style="text-align: left;">推薦リスト内の掲載順位を逆数スコア化（1位=20点、2位=15点、3位=10点、4位以下=5点、不掲載=0点）</td>
+</tr>
+<tr>
+<td style="text-align: left;">情報鮮度</td>
+<td style="text-align: left;">引用情報の最終更新日と現在日の差分を15点満点にマッピング（30日以内=15点、90日以内=10点、1年以内=5点、1年超=0点）</td>
+</tr>
+<tr>
+<td style="text-align: left;">ソース帰属</td>
+<td style="text-align: left;">(公式サイトが出典として明示されたクエリ数 ÷ 言及クエリ数) × 15</td>
+</tr>
+</tbody>
+</table>
+<h3>付録C：用語集</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">用語</th>
+<th style="text-align: left;">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">LLM</td>
+<td style="text-align: left;">Large Language Model（大規模言語モデル）。ChatGPT等のAIの基盤技術</td>
+</tr>
+<tr>
+<td style="text-align: left;">LLMO</td>
+<td style="text-align: left;">Large Language Model Optimization。AI検索での自社情報の引用を最適化する取り組み</td>
+</tr>
+<tr>
+<td style="text-align: left;">構造化データ</td>
+<td style="text-align: left;">Webページの情報を検索エンジンやAIが理解しやすい形式で記述するマークアップ</td>
+</tr>
+<tr>
+<td style="text-align: left;">E-E-A-T</td>
+<td style="text-align: left;">Experience, Expertise, Authoritativeness, Trustworthiness。Googleが重視する品質評価基準</td>
+</tr>
+<tr>
+<td style="text-align: left;">ハルシネーション</td>
+<td style="text-align: left;">AIが事実と異なる情報をもっともらしく生成してしまう現象</td>
+</tr>
+<tr>
+<td style="text-align: left;">サイテーション</td>
+<td style="text-align: left;">他サイトから自社の情報が参照・言及されること</td>
+</tr>
+<tr>
+<td style="text-align: left;">Schema.org</td>
+<td style="text-align: left;">構造化データの標準仕様を定めた共同プロジェクト。Google・Microsoft等が推進</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>本レポートに関するお問い合わせ</strong>
+SynLab Digital Marketing LLMO診断チーム
+担当: 本レポートの詳細説明・改善施策のご提案はお気軽にご連絡ください。</p>
+<hr />
+<p><em>© 2026 SynLab Digital Marketing. All rights reserved.</em>
+<em>本レポートは株式会社クラウドフォース様向けに作成されたものであり、無断転載・二次利用を禁じます。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

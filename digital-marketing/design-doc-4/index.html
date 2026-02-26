@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス設計書（完全版） | 前回品質7点を獲得した同タイプのプロジェクトを改良・深化させる - kusasyu tools</title>
+<meta name="description" content="前回品質7点を獲得した同タイプのプロジェクトを改良・深化させる。前回の最大課題であった『成果物の途中切断』を根絶するため、各成果物のボリュームを適切に管理し、完成度100%を最優先とする。業種別（製造業・IT・士業）のSEO記事サンプル、SNS投稿セット、サービス設計書を、すべて完結した状態で納品する。前回欠">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,サービス設計書（完全版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-4/">
+<meta property="og:title" content="サービス設計書（完全版） | 前回品質7点を獲得した同タイプのプロジェクトを改良・深化させる - kusasyu tools">
+<meta property="og:description" content="前回品質7点を獲得した同タイプのプロジェクトを改良・深化させる。前回の最大課題であった『成果物の途中切断』を根絶するため、各成果物のボリュームを適切に管理し、完成度100%を最優先とする。業種別（製造業・IT・士業）のSEO記事サンプル、SNS投稿セット、サービス設計書を、すべて完結した状態で納品する。前回欠">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サービス設計書（完全版） | 前回品質7点を獲得した同タイプのプロジェクトを改良・深化させる - kusasyu tools">
+<meta name="twitter:description" content="前回品質7点を獲得した同タイプのプロジェクトを改良・深化させる。前回の最大課題であった『成果物の途中切断』を根絶するため、各成果物のボリュームを適切に管理し、完成度100%を最優先とする。業種別（製造業・IT・士業）のSEO記事サンプル、SNS投稿セット、サービス設計書を、すべて完結した状態で納品する。前回欠">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サービス設計書（完全版）",
+  "description": "前回品質7点を獲得した同タイプのプロジェクトを改良・深化させる。前回の最大課題であった『成果物の途中切断』を根絶するため、各成果物のボリュームを適切に管理し、完成度100%を最優先とする。業種別（製造業・IT・士業）のSEO記事サンプル、SNS投稿セット、サービス設計書を、すべて完結した状態で納品する。前回欠",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-4/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>サービス設計書（完全版）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>サービス設計書（完全版）</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング代行サービス v2</p>
+  <div class="content">
+<h1>SynLab AI コンテンツマーケティング代行サービス 設計書</h1>
+<p><strong>文書番号</strong>: SLD-2026-003<br />
+<strong>版数</strong>: v2.0<br />
+<strong>作成日</strong>: 2026年2月20日<br />
+<strong>対象顧客</strong>: 年商1〜10億円 BtoB中小企業（製造業・IT・士業）</p>
+<hr />
+<h2>1. サービス概要</h2>
+<h3>1.1 サービスコンセプト</h3>
+<p><strong>「専任マーケターがいなくても、毎月安定して見込み客が集まる仕組みを」</strong></p>
+<p>SynLab AI コンテンツマーケティング代行は、AI技術と専門編集者のハイブリッド体制により、BtoB中小企業のコンテンツマーケティングを月額定額で代行するサービスです。</p>
+<h3>1.2 解決する課題</h3>
+<table>
+<thead>
+<tr>
+<th>課題</th>
+<th>現状</th>
+<th>SynLabによる解決</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人材不足</td>
+<td>マーケ専任者がいない／1名で手一杯</td>
+<td>記事企画〜公開まで丸投げ可能</td>
+</tr>
+<tr>
+<td>ノウハウ不足</td>
+<td>SEOやSNSの知見がない</td>
+<td>業種特化の戦略設計を提供</td>
+</tr>
+<tr>
+<td>継続できない</td>
+<td>ブログが3ヶ月で止まる</td>
+<td>月次納品＋進捗レポートで継続を担保</td>
+</tr>
+<tr>
+<td>費用対効果が不明</td>
+<td>外注しても成果が見えない</td>
+<td>KPIダッシュボードで成果を可視化</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 対象業種と想定ペルソナ</h3>
+<table>
+<thead>
+<tr>
+<th>業種</th>
+<th>想定企業規模</th>
+<th>主な担当者</th>
+<th>主要課題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>製造業</strong></td>
+<td>従業員50〜300名</td>
+<td>営業部長 or 経営企画</td>
+<td>技術力はあるが発信できていない</td>
+</tr>
+<tr>
+<td><strong>IT・SaaS</strong></td>
+<td>従業員10〜100名</td>
+<td>マーケ担当（兼務）</td>
+<td>リード獲得が属人的・不安定</td>
+</tr>
+<tr>
+<td><strong>士業</strong></td>
+<td>所員5〜30名</td>
+<td>代表 or 事務長</td>
+<td>紹介依存から脱却したい</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. プラン一覧・価格表</h2>
+<h3>2.1 プラン比較表</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th style="text-align: center;">ライトプラン</th>
+<th style="text-align: center;">スタンダードプラン</th>
+<th style="text-align: center;">プレミアムプラン</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>月額料金（税別）</strong></td>
+<td style="text-align: center;"><strong>¥150,000</strong></td>
+<td style="text-align: center;"><strong>¥300,000</strong></td>
+<td style="text-align: center;"><strong>¥500,000</strong></td>
+</tr>
+<tr>
+<td><strong>契約期間</strong></td>
+<td style="text-align: center;">6ヶ月〜</td>
+<td style="text-align: center;">6ヶ月〜</td>
+<td style="text-align: center;">12ヶ月〜</td>
+</tr>
+<tr>
+<td><strong>初期費用（税別）</strong></td>
+<td style="text-align: center;">¥100,000</td>
+<td style="text-align: center;">¥150,000</td>
+<td style="text-align: center;">¥200,000</td>
+</tr>
+<tr>
+<td>SEO記事</td>
+<td style="text-align: center;">4本/月</td>
+<td style="text-align: center;">8本/月</td>
+<td style="text-align: center;">12本/月</td>
+</tr>
+<tr>
+<td>記事文字数</td>
+<td style="text-align: center;">3,000〜4,000字</td>
+<td style="text-align: center;">4,000〜6,000字</td>
+<td style="text-align: center;">5,000〜8,000字</td>
+</tr>
+<tr>
+<td>SNS投稿作成</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">12投稿/月</td>
+<td style="text-align: center;">20投稿/月</td>
+</tr>
+<tr>
+<td>メルマガ作成</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">2通/月</td>
+<td style="text-align: center;">4通/月</td>
+</tr>
+<tr>
+<td>ホワイトペーパー</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">1本/四半期</td>
+</tr>
+<tr>
+<td>キーワード戦略設計</td>
+<td style="text-align: center;">初回のみ</td>
+<td style="text-align: center;">四半期更新</td>
+<td style="text-align: center;">毎月更新</td>
+</tr>
+<tr>
+<td>競合分析レポート</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">四半期1回</td>
+<td style="text-align: center;">毎月1回</td>
+</tr>
+<tr>
+<td>専任ディレクター</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+</tr>
+<tr>
+<td>月次レポート</td>
+<td style="text-align: center;">簡易版</td>
+<td style="text-align: center;">詳細版</td>
+<td style="text-align: center;">詳細版＋改善提案</td>
+</tr>
+<tr>
+<td>定例ミーティング</td>
+<td style="text-align: center;">メールのみ</td>
+<td style="text-align: center;">月1回（30分）</td>
+<td style="text-align: center;">月2回（各60分）</td>
+</tr>
+<tr>
+<td>CMS入稿代行</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+</tr>
+<tr>
+<td>GA4/GSC初期設定</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 各プラン詳細</h3>
+<h4>ライトプラン — 月額 ¥150,000（税別）</h4>
+<p><strong>こんな企業に最適</strong>：まずはコンテンツマーケティングを始めてみたい。社内に最低限のWeb担当がいる。</p>
+<table>
+<thead>
+<tr>
+<th>提供内容</th>
+<th>詳細</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEO記事制作</td>
+<td>月4本（3,000〜4,000字/本）。構成案作成→お客様確認→執筆→納品</td>
+</tr>
+<tr>
+<td>キーワード戦略</td>
+<td>契約開始時に業種×サービス軸で50キーワードを選定。ターゲットKW一覧を納品</td>
+</tr>
+<tr>
+<td>品質管理</td>
+<td>AI生成→専門編集者が校正・ファクトチェック→コピペ率10%以下を保証</td>
+</tr>
+<tr>
+<td>月次レポート</td>
+<td>PV・検索順位・インデックス状況の簡易レポート（PDF/1〜2ページ）</td>
+</tr>
+<tr>
+<td>コミュニケーション</td>
+<td>メール（営業日24時間以内に返信）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>納品物一覧</strong>:
+- SEO記事 本文（Googleドキュメント or Markdown）× 4本
+- アイキャッチ画像案 × 4点
+- キーワードマップ（初回のみ）
+- 月次簡易レポート × 1通</p>
+<hr />
+<h4>スタンダードプラン — 月額 ¥300,000（税別）</h4>
+<p><strong>こんな企業に最適</strong>：本格的にリード獲得を強化したい。SEOだけでなくSNS・メルマガも含めた統合的な施策を求めている。</p>
+<table>
+<thead>
+<tr>
+<th>提供内容</th>
+<th>詳細</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEO記事制作</td>
+<td>月8本（4,000〜6,000字/本）。専門性の高いロングテール記事を含む</td>
+</tr>
+<tr>
+<td>SNS投稿作成</td>
+<td>月12投稿（X/LinkedIn対応）。投稿文＋画像セットで納品</td>
+</tr>
+<tr>
+<td>メルマガ作成</td>
+<td>月2通。件名A/Bテスト案付き</td>
+</tr>
+<tr>
+<td>キーワード戦略</td>
+<td>四半期ごとに見直し。検索トレンドと競合動向を反映</td>
+</tr>
+<tr>
+<td>競合分析</td>
+<td>四半期1回、競合3社のコンテンツ施策を分析しレポート化</td>
+</tr>
+<tr>
+<td>専任ディレクター</td>
+<td>1名をアサイン。業種知識のあるディレクターが戦略設計〜品質管理を一貫対応</td>
+</tr>
+<tr>
+<td>CMS入稿代行</td>
+<td>WordPress / note / HubSpot等への入稿を代行</td>
+</tr>
+<tr>
+<td>GA4/GSC設定</td>
+<td>初回にGoogle Analytics 4およびSearch Consoleの基本設定を代行</td>
+</tr>
+<tr>
+<td>月次レポート</td>
+<td>PV・順位・CTR・コンバージョン推移を含む詳細レポート（PDF/5〜8ページ）</td>
+</tr>
+<tr>
+<td>定例ミーティング</td>
+<td>月1回・30分（Google Meet / Zoom）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>納品物一覧</strong>:
+- SEO記事 本文 × 8本
+- アイキャッチ画像 × 8点
+- SNS投稿セット（テキスト＋画像）× 12件
+- メルマガ原稿 × 2通
+- キーワード戦略更新シート（四半期）
+- 競合分析レポート（四半期）
+- 月次詳細レポート × 1通</p>
+<hr />
+<h4>プレミアムプラン — 月額 ¥500,000（税別）</h4>
+<p><strong>こんな企業に最適</strong>：コンテンツマーケティングを事業成長の柱に位置づけている。社外CMO的な役割を求めている。</p>
+<table>
+<thead>
+<tr>
+<th>提供内容</th>
+<th>詳細</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEO記事制作</td>
+<td>月12本（5,000〜8,000字/本）。ピラーページ＋クラスター戦略を設計・実行</td>
+</tr>
+<tr>
+<td>SNS投稿作成</td>
+<td>月20投稿（X/LinkedIn/Facebook対応）。投稿スケジュール込み</td>
+</tr>
+<tr>
+<td>メルマガ作成</td>
+<td>月4通。セグメント別配信シナリオ設計を含む</td>
+</tr>
+<tr>
+<td>ホワイトペーパー</td>
+<td>四半期1本（8〜15ページ）。リードマグネットとして活用可能な品質</td>
+</tr>
+<tr>
+<td>キーワード戦略</td>
+<td>毎月更新。検索意図分析＋コンテンツギャップ分析を含む</td>
+</tr>
+<tr>
+<td>競合分析</td>
+<td>毎月1回、競合5社を対象とした詳細分析</td>
+</tr>
+<tr>
+<td>専任ディレクター</td>
+<td>1名をアサイン（上位ディレクターが担当）</td>
+</tr>
+<tr>
+<td>CMS入稿代行</td>
+<td>全コンテンツの入稿を代行</td>
+</tr>
+<tr>
+<td>GA4/GSC設定</td>
+<td>初回設定＋カスタムダッシュボード構築</td>
+</tr>
+<tr>
+<td>月次レポート</td>
+<td>詳細レポート＋次月施策の改善提案書（PDF/10〜15ページ）</td>
+</tr>
+<tr>
+<td>定例ミーティング</td>
+<td>月2回・各60分。戦略レビュー＋施策調整</td>
+</tr>
+<tr>
+<td>コンテンツ監査</td>
+<td>半期1回、既存コンテンツの棚卸しとリライト優先度を提示</td>
+</tr>
+</tbody>
+</table>
+<p><strong>納品物一覧</strong>:
+- SEO記事 本文 × 12本
+- アイキャッチ画像 × 12点
+- SNS投稿セット（テキスト＋画像）× 20件
+- メルマガ原稿 × 4通
+- ホワイトペーパー × 1本（四半期）
+- キーワード戦略更新シート（毎月）
+- 競合分析レポート（毎月）
+- 月次詳細レポート＋改善提案書 × 1通
+- コンテンツ監査レポート（半期）</p>
+<hr />
+<h3>2.3 オプションサービス</h3>
+<table>
+<thead>
+<tr>
+<th>オプション</th>
+<th style="text-align: center;">料金（税別）</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>追加SEO記事</td>
+<td style="text-align: center;">¥30,000/本</td>
+<td>契約プランと同等品質。月途中でも追加可能</td>
+</tr>
+<tr>
+<td>追加SNS投稿</td>
+<td style="text-align: center;">¥8,000/件</td>
+<td>テキスト＋画像セット</td>
+</tr>
+<tr>
+<td>ホワイトペーパー制作</td>
+<td style="text-align: center;">¥200,000/本</td>
+<td>8〜15ページ。ライト・スタンダード向け</td>
+</tr>
+<tr>
+<td>LP（ランディングページ）コピー</td>
+<td style="text-align: center;">¥150,000/本</td>
+<td>ワイヤーフレーム＋コピー一式</td>
+</tr>
+<tr>
+<td>動画スクリプト作成</td>
+<td style="text-align: center;">¥50,000/本</td>
+<td>3〜5分のYouTube / セミナー動画用</td>
+</tr>
+<tr>
+<td>プレスリリース</td>
+<td style="text-align: center;">¥80,000/本</td>
+<td>配信先リスト付き</td>
+</tr>
+<tr>
+<td>既存記事リライト</td>
+<td style="text-align: center;">¥20,000/本</td>
+<td>SEO改善を目的とした既存コンテンツの改修</td>
+</tr>
+</tbody>
+</table>
+<h3>2.4 年間契約割引</h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th style="text-align: center;">割引率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12ヶ月一括払い</td>
+<td style="text-align: center;"><strong>10%OFF</strong></td>
+</tr>
+<tr>
+<td>2サービス同時契約（例：コンテンツ＋広告運用）</td>
+<td style="text-align: center;"><strong>5%OFF</strong></td>
+</tr>
+<tr>
+<td>紹介割引（既存顧客からの紹介）</td>
+<td style="text-align: center;"><strong>初月50%OFF</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. サービスレベルアグリーメント（SLA）</h2>
+<h3>3.1 品質基準</h3>
+<table>
+<thead>
+<tr>
+<th>品質項目</th>
+<th style="text-align: center;">基準値</th>
+<th>測定方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>コピペ率</td>
+<td style="text-align: center;"><strong>10%以下</strong></td>
+<td>CopyContentDetectorで全記事チェック</td>
+</tr>
+<tr>
+<td>誤字脱字</td>
+<td style="text-align: center;"><strong>0件</strong></td>
+<td>編集者ダブルチェック＋校正ツール併用</td>
+</tr>
+<tr>
+<td>ファクトチェック</td>
+<td style="text-align: center;"><strong>全記事実施</strong></td>
+<td>専門編集者による出典確認</td>
+</tr>
+<tr>
+<td>SEO基本要件充足</td>
+<td style="text-align: center;"><strong>100%</strong></td>
+<td>タイトル・見出し・メタディスクリプション・内部リンクの最適化</td>
+</tr>
+<tr>
+<td>AI生成の明示</td>
+<td style="text-align: center;"><strong>ポリシー準拠</strong></td>
+<td>Google Search Essentials準拠。AI活用＋人間編集のハイブリッドである旨をお客様と合意</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 納品スケジュール</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th style="text-align: center;">ライト</th>
+<th style="text-align: center;">スタンダード</th>
+<th style="text-align: center;">プレミアム</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>構成案提出</td>
+<td style="text-align: center;">毎月5営業日目</td>
+<td style="text-align: center;">毎月5営業日目</td>
+<td style="text-align: center;">毎月3営業日目</td>
+</tr>
+<tr>
+<td>お客様確認期間</td>
+<td style="text-align: center;">3営業日</td>
+<td style="text-align: center;">3営業日</td>
+<td style="text-align: center;">3営業日</td>
+</tr>
+<tr>
+<td>初稿納品</td>
+<td style="text-align: center;">毎月15営業日目</td>
+<td style="text-align: center;">毎月15営業日目</td>
+<td style="text-align: center;">毎月12営業日目</td>
+</tr>
+<tr>
+<td>修正対応</td>
+<td style="text-align: center;">1回まで（3営業日）</td>
+<td style="text-align: center;">2回まで（各2営業日）</td>
+<td style="text-align: center;">3回まで（各2営業日）</td>
+</tr>
+<tr>
+<td>最終納品</td>
+<td style="text-align: center;">毎月末</td>
+<td style="text-align: center;">毎月末</td>
+<td style="text-align: center;">毎月25営業日目</td>
+</tr>
+<tr>
+<td>月次レポート</td>
+<td style="text-align: center;">翌月5営業日</td>
+<td style="text-align: center;">翌月5営業日</td>
+<td style="text-align: center;">翌月3営業日</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 対応時間・連絡体制</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>営業時間</td>
+<td>平日 9:00〜18:00（土日祝・年末年始を除く）</td>
+</tr>
+<tr>
+<td>メール返信</td>
+<td>営業時間内 <strong>24時間以内</strong></td>
+</tr>
+<tr>
+<td>緊急連絡（スタンダード以上）</td>
+<td>Chatwork / Slack 当日中に一次回答</td>
+</tr>
+<tr>
+<td>定例外の臨時MTG</td>
+<td>スタンダード：月1回まで追加可 / プレミアム：随時</td>
+</tr>
+</tbody>
+</table>
+<h3>3.4 SLA違反時の対応</h3>
+<table>
+<thead>
+<tr>
+<th>違反内容</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>納品遅延（5営業日超過）</td>
+<td>当該月の遅延分記事料金を <strong>全額返金</strong></td>
+</tr>
+<tr>
+<td>品質基準未達（コピペ率超過等）</td>
+<td>無償リライト＋再発防止策を報告</td>
+</tr>
+<tr>
+<td>連絡応答遅延（48時間超過）</td>
+<td>翌月のレポートに原因分析と改善策を記載</td>
+</tr>
+<tr>
+<td>重大なファクトエラー</td>
+<td>即時修正＋関連記事の緊急チェック＋再発防止策を書面報告</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 制作プロセス・品質管理体制</h2>
+<h3>4.1 コンテンツ制作フロー</h3>
+<pre><code>[STEP 1] 戦略設計（初月）
+   │  キーワード調査 → ペルソナ定義 → コンテンツマップ作成
+   ▼
+[STEP 2] 企画・構成（毎月）
+   │  記事テーマ選定 → 構成案作成 → お客様承認
+   ▼
+[STEP 3] 執筆（毎月）
+   │  AI初稿生成 → 専門編集者が加筆修正 → ファクトチェック
+   ▼
+[STEP 4] 品質チェック（毎月）
+   │  コピペ率チェック → SEO要件チェック → 校正 → ディレクター最終確認
+   ▼
+[STEP 5] 納品・公開（毎月）
+   │  お客様確認 → 修正対応 → CMS入稿（対象プラン）→ 公開
+   ▼
+[STEP 6] 効果測定（毎月）
+      月次レポート作成 → 改善提案 → 翌月戦略へ反映
+</code></pre>
+<h3>4.2 品質管理チェックリスト</h3>
+<p>各記事は以下の全項目をクリアした上で納品します。</p>
+<p><strong>構成面</strong>
+- [ ] 検索意図に合致したタイトル（32文字以内）
+- [ ] H2/H3の階層構造が論理的に整理されている
+- [ ] 導入文で読者の課題を明示し、記事を読むメリットを提示
+- [ ] CTAが記事の目的に合わせて適切に設置されている</p>
+<p><strong>SEO面</strong>
+- [ ] ターゲットキーワードがタイトル・H2・本文冒頭に自然に含まれている
+- [ ] メタディスクリプション（120文字以内）が作成されている
+- [ ] 内部リンク候補が2本以上提案されている
+- [ ] 画像altテキストが設定されている</p>
+<p><strong>品質面</strong>
+- [ ] コピペ率10%以下（ツールチェック済み）
+- [ ] 誤字脱字ゼロ（ダブルチェック済み）
+- [ ] 専門用語に適切な補足説明がある
+- [ ] 数値データの出典が明記されている
+- [ ] 業種特有の表現・用語が正確に使用されている</p>
+<hr />
+<h2>5. 導入フロー</h2>
+<h3>5.1 契約までの流れ</h3>
+<pre><code>[1] お問い合わせ        ── Webフォーム / 電話 / 紹介
+        │                   （当日〜翌営業日にご連絡）
+        ▼
+[2] 無料ヒアリング      ── オンライン30分
+        │                   事業内容・課題・目標をお伺い
+        ▼
+[3] ご提案・お見積り    ── ヒアリングから5営業日以内
+        │                   プラン推奨・カスタマイズ案を提示
+        ▼
+[4] ご契約              ── 電子契約（クラウドサイン）
+        │                   最短で即日対応可能
+        ▼
+[5] キックオフMTG       ── 契約後5営業日以内
+        │                   担当者紹介・スケジュール確定・素材共有
+        ▼
+[6] 戦略設計            ── キックオフから10営業日
+        │                   KW調査・コンテンツマップ・年間計画の策定
+        ▼
+[7] 初回納品            ── 戦略設計承認後15営業日
+                            初月分コンテンツの納品・公開
+</code></pre>
+<h3>5.2 お客様にご準備いただくもの</h3>
+<table>
+<thead>
+<tr>
+<th>タイミング</th>
+<th>準備物</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ヒアリング前</td>
+<td>会社案内・サービス資料</td>
+<td>事業理解のため</td>
+</tr>
+<tr>
+<td>キックオフ時</td>
+<td>CMS管理画面のアクセス情報</td>
+<td>入稿代行のため（スタンダード以上）</td>
+</tr>
+<tr>
+<td>キックオフ時</td>
+<td>GA4 / GSCの閲覧権限</td>
+<td>現状分析と効果測定のため</td>
+</tr>
+<tr>
+<td>キックオフ時</td>
+<td>過去のマーケティング施策資料</td>
+<td>戦略設計の参考として</td>
+</tr>
+<tr>
+<td>随時</td>
+<td>社内の専門知識（技術情報等）</td>
+<td>記事の専門性担保のため</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3 初月スケジュール（モデルケース）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">営業日</th>
+<th>タスク</th>
+<th style="text-align: center;">担当</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1日目</td>
+<td>キックオフMTG</td>
+<td style="text-align: center;">双方</td>
+</tr>
+<tr>
+<td style="text-align: center;">2〜5日目</td>
+<td>現状分析・キーワード調査</td>
+<td style="text-align: center;">SynLab</td>
+</tr>
+<tr>
+<td style="text-align: center;">6〜8日目</td>
+<td>コンテンツ戦略案 作成・提出</td>
+<td style="text-align: center;">SynLab</td>
+</tr>
+<tr>
+<td style="text-align: center;">9〜10日目</td>
+<td>戦略案のご確認・フィードバック</td>
+<td style="text-align: center;">お客様</td>
+</tr>
+<tr>
+<td style="text-align: center;">11日目</td>
+<td>構成案 作成・提出</td>
+<td style="text-align: center;">SynLab</td>
+</tr>
+<tr>
+<td style="text-align: center;">12〜13日目</td>
+<td>構成案のご確認</td>
+<td style="text-align: center;">お客様</td>
+</tr>
+<tr>
+<td style="text-align: center;">14〜18日目</td>
+<td>記事執筆・編集・品質チェック</td>
+<td style="text-align: center;">SynLab</td>
+</tr>
+<tr>
+<td style="text-align: center;">19日目</td>
+<td>初稿納品</td>
+<td style="text-align: center;">SynLab</td>
+</tr>
+<tr>
+<td style="text-align: center;">20日目</td>
+<td>ご確認・修正指示</td>
+<td style="text-align: center;">お客様</td>
+</tr>
+<tr>
+<td style="text-align: center;">21〜22日目</td>
+<td>修正対応・最終版納品</td>
+<td style="text-align: center;">SynLab</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. KPI・効果測定</h2>
+<h3>6.1 標準KPI設定</h3>
+<table>
+<thead>
+<tr>
+<th>期間</th>
+<th>KPI</th>
+<th>目標目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1〜3ヶ月目</strong></td>
+<td>コンテンツ公開数の安定化</td>
+<td>計画通りの本数を毎月納品</td>
+</tr>
+<tr>
+<td></td>
+<td>インデックス率</td>
+<td>公開記事の90%以上がインデックス</td>
+</tr>
+<tr>
+<td><strong>4〜6ヶ月目</strong></td>
+<td>オーガニック流入の増加</td>
+<td>開始時比 +50〜100%</td>
+</tr>
+<tr>
+<td></td>
+<td>検索順位</td>
+<td>ターゲットKWの30%が20位以内</td>
+</tr>
+<tr>
+<td><strong>7〜12ヶ月目</strong></td>
+<td>リード獲得</td>
+<td>月間問い合わせ数 +30%以上</td>
+</tr>
+<tr>
+<td></td>
+<td>ドメイン評価</td>
+<td>DR（Domain Rating）の向上</td>
+</tr>
+</tbody>
+</table>
+<h3>6.2 月次レポート項目</h3>
+<p><strong>ライトプラン（簡易版）</strong>
+- 公開記事一覧と検索順位
+- 月間PV推移
+- 次月の記事テーマ予告</p>
+<p><strong>スタンダードプラン（詳細版）</strong>
+- 上記に加え:
+- 流入キーワード分析
+- CTR・直帰率の推移
+- 競合順位との比較
+- SNSエンゲージメント数値
+- 改善アクション一覧</p>
+<p><strong>プレミアムプラン（詳細版＋改善提案）</strong>
+- 上記に加え:
+- コンバージョン経路分析
+- コンテンツROI試算
+- 次月施策の具体的な提案書（優先度付き）
+- 中長期戦略の見直し提案（四半期）</p>
+<hr />
+<h2>7. 契約条件</h2>
+<h3>7.1 基本条件</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最低契約期間</td>
+<td>ライト・スタンダード：6ヶ月 / プレミアム：12ヶ月</td>
+</tr>
+<tr>
+<td>支払サイト</td>
+<td>月末締め翌月末払い</td>
+</tr>
+<tr>
+<td>支払方法</td>
+<td>銀行振込 / クレジットカード（Stripe）</td>
+</tr>
+<tr>
+<td>契約更新</td>
+<td>自動更新（解約は更新月の30日前までに書面通知）</td>
+</tr>
+<tr>
+<td>中途解約</td>
+<td>残存期間の50%を違約金として請求</td>
+</tr>
+<tr>
+<td>プラン変更</td>
+<td>月単位で変更可（変更月の15日前までに申請）</td>
+</tr>
+</tbody>
+</table>
+<h3>7.2 権利関係</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>著作権</td>
+<td>納品物の著作権は <strong>納品完了時にお客様へ譲渡</strong></td>
+</tr>
+<tr>
+<td>二次利用</td>
+<td>お客様は自由に二次利用可（改変・再配布含む）</td>
+</tr>
+<tr>
+<td>ポートフォリオ掲載</td>
+<td>SynLabの実績紹介への匿名掲載を許諾いただく（拒否可）</td>
+</tr>
+<tr>
+<td>秘密保持</td>
+<td>NDA（秘密保持契約）を契約時に締結</td>
+</tr>
+</tbody>
+</table>
+<h3>7.3 免責事項</h3>
+<ul>
+<li>検索順位・流入数の特定数値は保証対象外です（SEOの性質上、確約できないため）</li>
+<li>Googleアルゴリズム変動による順位変動は免責とします</li>
+<li>お客様都合による確認遅延に起因する納品遅延は、SLAの対象外とします</li>
+<li>お客様が提供した情報に基づく記事内容の正確性について、最終責任はお客様に帰属します</li>
+</ul>
+<hr />
+<h2>8. よくあるご質問（FAQ）</h2>
+<p><strong>Q1. AI生成コンテンツはGoogleに評価されますか？</strong><br />
+A. Googleは「誰が書いたか」ではなく「読者にとって有用か」を評価基準としています（Google Search Essentials準拠）。当社では、AI生成後に業種知識を持つ編集者が加筆・修正・ファクトチェックを行い、独自の価値を付加しています。</p>
+<p><strong>Q2. 自社の専門領域（製造技術・法務等）の記事を正確に書けますか？</strong><br />
+A. キックオフ時に貴社の技術資料・過去コンテンツを共有いただき、業種知識ベースを構築します。専門的な内容は月次ヒアリングで補完し、公開前に貴社にご確認いただくフローを標準としています。</p>
+<p><strong>Q3. 途中でプラン変更はできますか？</strong><br />
+A. 可能です。変更希望月の15日前までにお申し出ください。月単位でアップグレード・ダウングレードに対応します。</p>
+<p><strong>Q4. 成果が出なかった場合はどうなりますか？</strong><br />
+A. 契約期間内に一定の改善が見られない場合、無償での戦略見直し・記事リライトを実施します。プレミアムプランでは四半期ごとの戦略レビューで早期に軌道修正を行います。</p>
+<p><strong>Q5. 既存のブログ記事のリライトだけでも依頼できますか？</strong><br />
+A. オプションサービスとして1本 ¥20,000（税別）で承ります。大量リライトの場合は個別にお見積りします。</p>
+<p><strong>Q6. 競合他社への同時サービス提供はありますか？</strong><br />
+A. 同一商圏・同一業種で直接競合する企業への同時提供は行いません。契約時に競合除外条件を取り決めます。</p>
+<hr />
+<h2>9. お問い合わせ</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>詳細</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web</td>
+<td>https://synlab-dm.example.com/contact</td>
+</tr>
+<tr>
+<td>メール</td>
+<td>contact@synlab-dm.example.com</td>
+</tr>
+<tr>
+<td>電話</td>
+<td>03-XXXX-XXXX（平日 9:00〜18:00）</td>
+</tr>
+<tr>
+<td>初回相談</td>
+<td><strong>無料</strong>（オンライン30分）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>SynLab Digital Marketing Inc.</strong><br />
+本文書に関するご不明点は、担当営業までお気軽にお問い合わせください。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

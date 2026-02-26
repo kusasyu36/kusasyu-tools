@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M&amp;A法務DD_文書レビューチェックリスト25 - kusasyu tools</title>
+<meta name="description" content="M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&amp;A担当者でも、抜">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,M&amp;A法務DD_文書レビューチェックリスト25">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd/">
+<meta property="og:title" content="M&amp;A法務DD_文書レビューチェックリスト25 - kusasyu tools">
+<meta property="og:description" content="M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&amp;A担当者でも、抜">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="M&amp;A法務DD_文書レビューチェックリスト25 - kusasyu tools">
+<meta name="twitter:description" content="M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&amp;A担当者でも、抜">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "M&A法務DD_文書レビューチェックリスト25",
+  "description": "M&Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&A担当者でも、抜",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>M&amp;A法務DD_文書レビューチェックリスト25</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>M&amp;A法務DD_文書レビューチェックリスト25</h1>
+  <p class="project-name">M&amp;A法務デューデリジェンス AI活用 実務ツールセット</p>
+  <div class="content">
+<h1>M&amp;A法務DD 文書レビューチェックリスト25</h1>
+<p><strong>SynLab Legal Tech｜実務ツールセット</strong></p>
+<hr />
+<blockquote>
+<p><strong>使い方</strong>: 本チェックリストはDD対象会社から受領した文書を体系的にレビューするためのツールです。各項目の「判定」欄に ✅Green / ⚠️Yellow / 🔴Red を記入し、Yellow以上はDD報告書の「検出事項」に転記してください。</p>
+</blockquote>
+<hr />
+<h2>カテゴリ1｜契約書</h2>
+<h3>1-1. 主要取引先との基本契約</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>売上上位10社・仕入上位10社との基本契約の有無、契約期間、自動更新条項、解除条件を確認</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>売上の30%超を占める取引先との契約が口頭合意のみ。COC条項（支配権変更条項）により、M&amp;A実行時に相手方が即時解除可能</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 全主要取引先と書面契約あり、COC条項なし／⚠️ 一部口頭契約あり、またはCOC条項が存在するが交渉余地あり／🔴 売上20%超の取引先にCOC条項あり、または書面契約なし</td>
+</tr>
+</tbody>
+</table>
+<h3>1-2. チェンジ・オブ・コントロール（COC）条項</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>全契約書を横断的に検索し、株主変更・支配権移転時に解除権・同意権が発生する条項を洗い出す</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>不動産賃貸借契約やリース契約など、見落としやすい契約にCOC条項が潜んでいる</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 COC条項なし、または事前通知のみで足りる／⚠️ 相手方の同意が必要だが取得見込みあり／🔴 主要契約で相手方同意が必要かつ取得困難</td>
+</tr>
+</tbody>
+</table>
+<h3>1-3. 競業避止・排他条項</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>対象会社が負っている競業避止義務、独占供給義務、排他的取引義務の範囲と期間</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>買収後に予定している事業展開が、既存契約の競業避止条項に抵触し新規事業が制限される</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 競業避止なし、または買収後の事業計画と矛盾なし／⚠️ 一部制限があるが期間限定（残存2年以内）／🔴 買収後の事業計画と直接抵触する制限あり</td>
+</tr>
+</tbody>
+</table>
+<h3>1-4. 保証・補償条項</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>対象会社が顧客・取引先に提供している保証の内容、補償上限額、免責条項の有無</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>無制限の損害賠償責任を負う契約が存在し、簿外債務の原因となる</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 補償上限が契約金額以内、合理的な免責条項あり／⚠️ 一部契約で上限なし、ただし発動リスク低い／🔴 主要契約で補償上限なし、過去にクレーム実績あり</td>
+</tr>
+</tbody>
+</table>
+<h3>1-5. 契約書の管理状態</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>契約書原本の保管状況、契約台帳の整備状況、期限管理の仕組み</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>原本が散逸しており、有効な契約と失効した契約の区別がつかない。自動更新の停止期限を管理していない</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 契約台帳が整備され、原本保管・期限管理が適切／⚠️ 台帳はあるが一部未登録、原本の所在不明が数件／🔴 契約台帳なし、原本の所在が大幅に不明</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>カテゴリ2｜登記・許認可</h2>
+<h3>2-1. 商業登記事項</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>登記簿謄本と定款の整合性、役員構成、株式数・種類、本店所在地の一致確認</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>定款変更の登記漏れ（増資・本店移転が未登記）、退任済み役員が登記上残存</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 登記と定款が完全一致、直近の変更も反映済み／⚠️ 軽微な登記漏れあり（是正容易）／🔴 株式数の不一致や未登記の組織変更あり</td>
+</tr>
+</tbody>
+</table>
+<h3>2-2. 株主名簿・株式の状況</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>株主名簿の正確性、種類株式の有無、株式譲渡制限の内容、新株予約権・潜在株式の存在</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>名義株（実質株主と名簿上の株主が異なる）の存在、未行使のストックオプションによる希薄化</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 株主名簿が正確で名義株なし、潜在株式も把握済み／⚠️ 名義株の疑いあるが解消見込み／🔴 名義株の存在が確実、または株式の帰属に争いあり</td>
+</tr>
+</tbody>
+</table>
+<h3>2-3. 事業に必要な許認可・届出</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>事業運営に必要な許認可・届出の一覧、有効期限、更新状況、許認可の承継可否</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>建設業許可や人材派遣許可が経営者個人に紐づいており、M&amp;A後に再取得が必要。期限切れの許認可で無許可営業状態</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 全許認可が有効、M&amp;A後も承継可能／⚠️ 一部の許認可で再申請が必要だが取得見込みあり／🔴 主要事業の許認可が承継不可、または期限切れ</td>
+</tr>
+</tbody>
+</table>
+<h3>2-4. 不動産登記・担保設定</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>保有不動産の登記状況、抵当権・根抵当権の設定状況、担保提供先と被担保債務の確認</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>代表者個人の債務に会社不動産が担保提供されている。根抵当権の極度額が実態と乖離</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 不動産登記が正確、担保設定は事業借入に対応／⚠️ 第三者の債務に対する担保提供が一部あり／🔴 簿外の担保設定あり、または担保権者との紛争リスク</td>
+</tr>
+</tbody>
+</table>
+<h3>2-5. 関連会社・子会社の登記</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>グループ会社の一覧と出資関係、各社の登記事項の正確性、休眠会社の有無</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>開示されていない関連会社が存在し、簿外取引や利益相反の温床になっている</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 グループ構成が明確、全社の登記が正確／⚠️ 休眠会社あるが債務なし／🔴 未開示の関連会社あり、またはグループ間で不明瞭な資金移動</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>カテゴリ3｜労務</h2>
+<h3>3-1. 雇用契約・就業規則</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>就業規則の届出状況、雇用契約書の整備率、正社員・契約社員・パートの区分管理</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>従業員10名以上なのに就業規則が未届出（労基法違反）。雇用契約書なしの従業員が多数</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 就業規則届出済み、全従業員と書面契約あり／⚠️ 一部パート・アルバイトの契約書未整備／🔴 就業規則未届出、または正社員の契約書が大量に未整備</td>
+</tr>
+</tbody>
+</table>
+<h3>3-2. 未払残業代・労働時間管理</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>労働時間の記録方法、残業代の計算方法、固定残業代制度の適法性、管理監督者の該当性</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>固定残業代の設計が違法（基本給との区分不明確）、名ばかり管理職への残業代不支給。直近3年分の未払い残業代が数千万円規模に達するケース</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 労働時間を客観的に記録、残業代を適正に支給／⚠️ 固定残業代制度に軽微な不備あり／🔴 未払残業代の潜在リスクが年間売上の5%超、または労基署の調査歴あり</td>
+</tr>
+</tbody>
+</table>
+<h3>3-3. キーパーソンの処遇・退職リスク</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>経営幹部・技術責任者の雇用条件、競業避止義務、M&amp;A後の継続意思、インセンティブ設計</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>売上の大半を特定の営業部長が担っており、M&amp;A後に退職して競合を設立するリスク</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 キーパーソンの継続意思確認済み、適切なリテンション施策あり／⚠️ 一部未確認だが代替要員あり／🔴 事業の核となるキーパーソンが離職意向、競業避止なし</td>
+</tr>
+</tbody>
+</table>
+<h3>3-4. ハラスメント・労務トラブル</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>過去3年間の労務トラブル（パワハラ・セクハラ申告、労災、不当解雇訴訟）の有無と対応状況</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>係争中のハラスメント案件が開示されず、クロージング後に損害賠償請求が顕在化</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 トラブル歴なし、または解決済み／⚠️ 軽微な案件が1〜2件係属中／🔴 複数の未解決案件あり、または組織的なハラスメント体質の兆候</td>
+</tr>
+</tbody>
+</table>
+<h3>3-5. 社会保険・退職金制度</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>社会保険の加入状況、退職金規程と積立状況、確定給付型年金の積立不足</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>パート・アルバイトの社会保険未加入（遡及加入で数百万〜数千万円の追加負担）。退職給付債務の積立不足が簿外債務化</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 全対象者が社会保険加入済み、退職金積立が計画通り／⚠️ 一部未加入者あるが少数／🔴 大量の未加入者、または退職給付債務の積立不足が純資産の10%超</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>カテゴリ4｜知的財産</h2>
+<h3>4-1. 特許・実用新案</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>出願・登録一覧、権利の帰属（会社 or 個人）、年金納付状況、共有特許の有無</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>コア技術の特許が創業者個人名義のまま。年金未納で権利消滅しているのに気づいていない</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 全特許が会社帰属、年金納付済み、権利有効／⚠️ 個人帰属が一部あるが譲渡交渉中／🔴 コア技術の特許が個人帰属かつ譲渡拒否、または権利消滅</td>
+</tr>
+</tbody>
+</table>
+<h3>4-2. 商標・ブランド</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>主要ブランド・商品名の商標登録状況、指定商品/役務の範囲、海外登録の有無</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>主力商品の商標が未登録で第三者に先願されている。ライセンス元の商標を自社のものと誤認</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 主要商標が全区分で登録済み、異議なし／⚠️ 一部区分で未登録だが出願中／🔴 主力ブランドの商標が未登録、または第三者と係争中</td>
+</tr>
+</tbody>
+</table>
+<h3>4-3. ソフトウェア・著作権</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>自社開発ソフトの著作権帰属、外注先との権利関係、OSSライセンスの遵守状況</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>外注開発のソースコードの著作権が委託先に帰属したまま。GPLライセンスのOSSを商用製品に組み込み、ソースコード開示義務が発生</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 全ソフトウェアの権利帰属が明確、OSSライセンス遵守／⚠️ 一部外注分の権利帰属が不明確だが交渉可能／🔴 コア製品の著作権が外注先に帰属、またはGPL汚染リスク</td>
+</tr>
+</tbody>
+</table>
+<h3>4-4. 営業秘密・ノウハウ管理</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>秘密管理規程の有無、従業員の秘密保持誓約書、退職者への秘密保持義務の実効性</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>技術ノウハウが特定の従業員の頭の中にだけ存在し、文書化・秘密管理措置なし。不正競争防止法上の「営業秘密」の3要件を満たさない</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 秘密管理規程整備、アクセス制限・誓約書あり／⚠️ 規程はあるが運用が形骸化／🔴 秘密管理措置なし、コアノウハウが法的保護を受けられない状態</td>
+</tr>
+</tbody>
+</table>
+<h3>4-5. 第三者の知財侵害リスク</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>第三者から知財侵害の警告・訴訟を受けた履歴、自社製品が他社知財を侵害するリスクの調査状況</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>特許侵害の警告書を受領しているが放置。クリアランス調査未実施のまま製品を販売</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 侵害警告なし、主要製品のクリアランス調査済み／⚠️ 過去に警告を受けたが和解済み／🔴 係争中の侵害訴訟あり、またはクリアランス未実施で侵害リスク高</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>カテゴリ5｜訴訟・紛争</h2>
+<h3>5-1. 係属中の訴訟・仲裁</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>原告・被告いずれの立場かを問わず、全ての係属中訴訟・仲裁・調停の一覧と請求額</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>少額の訴訟が多数係属し合計額が多額。関連会社が当事者の訴訟が開示漏れ</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 係属中訴訟なし、または請求額合計が純資産の1%未満／⚠️ 係属中だが勝訴見込み、または請求額が純資産の1〜5%／🔴 敗訴リスクの高い訴訟あり、請求額が純資産の5%超</td>
+</tr>
+</tbody>
+</table>
+<h3>5-2. 潜在的な紛争・クレーム</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>訴訟には至っていないが、弁護士を介した交渉中の案件、内容証明の送受歴、重大クレーム</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>製品リコールの可能性があるクレームを「対応中」として開示せず、買収後に顕在化</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 潜在紛争なし／⚠️ 交渉中の案件が1〜2件あるが金額軽微／🔴 訴訟に発展する蓋然性の高い案件あり、または製品リコールリスク</td>
+</tr>
+</tbody>
+</table>
+<h3>5-3. 行政処分・規制当局対応</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>過去5年間の行政処分歴（業務停止・課徴金・改善命令等）、現在進行中の行政調査</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>独占禁止法違反の調査が進行中で、課徴金が確定すれば数億円規模の負担。業務改善命令を受けたが改善未完了</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 行政処分歴なし、調査なし／⚠️ 過去に軽微な指導歴あり、是正済み／🔴 進行中の行政調査あり、または未是正の処分が存在</td>
+</tr>
+</tbody>
+</table>
+<h3>5-4. コンプライアンス体制</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>コンプライアンス規程・内部通報制度の有無、反社チェック体制、贈収賄防止方針</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>内部通報制度が形骸化し、不正が長期間放置。反社会的勢力との取引が発覚しクロージング後に銀行取引停止</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 規程整備・通報制度運用・反社チェック実施／⚠️ 規程はあるが一部運用不十分／🔴 コンプライアンス体制が未整備、または反社との関係が疑われる</td>
+</tr>
+</tbody>
+</table>
+<h3>5-5. 環境・製造物責任（PL）リスク</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認観点</strong></td>
+<td>環境規制の遵守状況（土壌汚染・排水・廃棄物）、PL保険の加入状況、過去のPL事故歴</td>
+</tr>
+<tr>
+<td><strong>よくある地雷</strong></td>
+<td>工場跡地の土壌汚染が未調査のまま簿価で計上。製品事故の隠蔽が買収後に発覚</td>
+</tr>
+<tr>
+<td><strong>判定基準</strong></td>
+<td>🟢 環境調査実施済み、PL保険加入、事故歴なし／⚠️ 一部未調査だがリスク低い業種／🔴 土壌汚染の疑いあり、またはPL事故が未解決</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>判定サマリーシート</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>カテゴリ</th>
+<th>項目</th>
+<th>判定</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-1</td>
+<td>契約書</td>
+<td>主要取引先との基本契約</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>契約書</td>
+<td>COC条項</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>1-3</td>
+<td>契約書</td>
+<td>競業避止・排他条項</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>1-4</td>
+<td>契約書</td>
+<td>保証・補償条項</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>1-5</td>
+<td>契約書</td>
+<td>契約書の管理状態</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>2-1</td>
+<td>登記/許認可</td>
+<td>商業登記事項</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>2-2</td>
+<td>登記/許認可</td>
+<td>株主名簿・株式の状況</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>登記/許認可</td>
+<td>許認可・届出</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>2-4</td>
+<td>登記/許認可</td>
+<td>不動産登記・担保設定</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>2-5</td>
+<td>登記/許認可</td>
+<td>関連会社・子会社の登記</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>3-1</td>
+<td>労務</td>
+<td>雇用契約・就業規則</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>3-2</td>
+<td>労務</td>
+<td>未払残業代・労働時間管理</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>3-3</td>
+<td>労務</td>
+<td>キーパーソンの処遇</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>3-4</td>
+<td>労務</td>
+<td>ハラスメント・労務トラブル</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>3-5</td>
+<td>労務</td>
+<td>社会保険・退職金制度</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>4-1</td>
+<td>知財</td>
+<td>特許・実用新案</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>4-2</td>
+<td>知財</td>
+<td>商標・ブランド</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>4-3</td>
+<td>知財</td>
+<td>ソフトウェア・著作権</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>4-4</td>
+<td>知財</td>
+<td>営業秘密・ノウハウ管理</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>4-5</td>
+<td>知財</td>
+<td>第三者の知財侵害リスク</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>5-1</td>
+<td>訴訟/紛争</td>
+<td>係属中の訴訟・仲裁</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>5-2</td>
+<td>訴訟/紛争</td>
+<td>潜在的な紛争・クレーム</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>5-3</td>
+<td>訴訟/紛争</td>
+<td>行政処分・規制当局対応</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>5-4</td>
+<td>訴訟/紛争</td>
+<td>コンプライアンス体制</td>
+<td>／</td>
+<td></td>
+</tr>
+<tr>
+<td>5-5</td>
+<td>訴訟/紛争</td>
+<td>環境・PL責任リスク</td>
+<td>／</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Red合計：＿件 ／ Yellow合計：＿件 ／ Green合計：＿件</strong></p>
+<hr />
+<h2>使用上の注意</h2>
+<ol>
+<li><strong>本チェックリストは社内スクリーニング用です。</strong> Red判定の項目は必ず外部弁護士に相談してください。</li>
+<li><strong>業種特有の規制</strong>（金融業の免許、医療の開設許可等）は本リストに含まれません。対象会社の業種に応じて項目を追加してください。</li>
+<li><strong>DD報告書への転記</strong>: Yellow/Redの項目は、SPA（株式譲渡契約）の表明保証条項・補償条項に反映することを検討してください。</li>
+<li><strong>作成日・担当者を必ず記録</strong>し、レビューの証跡として保管してください。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>対象会社名</td>
+<td></td>
+</tr>
+<tr>
+<td>DD実施期間</td>
+<td>年　月　日 〜　年　月　日</td>
+</tr>
+<tr>
+<td>担当者名</td>
+<td></td>
+</tr>
+<tr>
+<td>レビュー完了日</td>
+<td>年　月　日</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>© SynLab Legal Tech — M&amp;A法務DD実務ツールセット</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

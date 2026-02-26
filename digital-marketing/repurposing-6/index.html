@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>チャネル別変換ルール＆AIプロンプト集 - kusasyu tools</title>
+<meta name="description" content="1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,チャネル別変換ルール＆AIプロンプト集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/repurposing-6/">
+<meta property="og:title" content="チャネル別変換ルール＆AIプロンプト集 - kusasyu tools">
+<meta property="og:description" content="1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/repurposing-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="チャネル別変換ルール＆AIプロンプト集 - kusasyu tools">
+<meta name="twitter:description" content="1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "チャネル別変換ルール＆AIプロンプト集",
+  "description": "1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/repurposing-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>チャネル別変換ルール＆AIプロンプト集</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>チャネル別変換ルール＆AIプロンプト集</h1>
+  <p class="project-name">コンテンツ・リパーパシング 自動変換ツール＆展開管理キット</p>
+  <div class="content">
+<h1>チャネル別変換ルール＆AIプロンプト集</h1>
+<h2>使い方</h2>
+<ol>
+<li>元コンテンツ（ブログ記事・ウェビナー要約等）を用意する</li>
+<li>変換したいチャネルのセクションを開く</li>
+<li>「変換ルール」を確認し、元コンテンツから要点を抽出する</li>
+<li>「コピペ用プロンプト」の <code>【ここに元コンテンツを貼り付け】</code> 部分に本文を貼り、ChatGPTまたはClaudeに投げる</li>
+<li>出力を変換ルールに照らしてチェック・微修正し、展開管理シートに記録して配信する</li>
+</ol>
+<blockquote>
+<p><strong>補足</strong>: 本テンプレートは5チャネル変換ツールを使わず手動で変換作業を行うための保険資料です。展開管理シート（元コンテンツID: C-001 等）と併用してください。</p>
+</blockquote>
+<hr />
+<h2>1. X（ポスト）</h2>
+<h3>変換ルール</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ルール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字数</td>
+<td>1投稿あたり <strong>140字以内</strong>（日本語）。スレッド展開時は最大5投稿</td>
+</tr>
+<tr>
+<td>トーン</td>
+<td>断言調・数字で惹きつける。「〜かもしれません」ではなく「〜です」</td>
+</tr>
+<tr>
+<td>CTA配置</td>
+<td>投稿末尾にリンクまたは行動喚起を1つだけ置く</td>
+</tr>
+<tr>
+<td>ハッシュタグ</td>
+<td>2個以内。業界キーワード＋キャンペーン固有タグ</td>
+</tr>
+<tr>
+<td>禁止事項</td>
+<td>外部リンク2つ以上の同時掲載／絵文字3個以上の連続使用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[記入例]</strong> — 元コンテンツ「BtoBリード獲得についての完全ガイド」（C-001, 2026-02-24公開）の場合：</p>
+<blockquote>
+<p>BtoBリード獲得で成果が出ない原因は「量より質」の視点不足。今日から変えられる5ステップを解説しました👇
+https://example.com/c-001</p>
+<h1>BtoBマーケ #リード獲得</h1>
+</blockquote>
+<p>担当: 田中 ／ 配信予定日: 2026-02-25 ／ 実績参考: インプレッション4,520・エンゲージメント率4.1%・リンククリック62件・CV3件</p>
+<h3>コピペ用プロンプト（ChatGPT / Claude共通）</h3>
+<pre><code>あなたはBtoBマーケティング専門のSNSライターです。
+以下のブログ記事をX（旧Twitter）向けの投稿に変換してください。
+
+【条件】
+- 140字以内の単独ポスト1本と、スレッド展開用3投稿の2パターンを出力
+- 断言調で書き、具体的な数字を冒頭に入れる
+- 末尾にCTAリンクのプレースホルダ「{{URL}}」を置く
+- ハッシュタグは2個以内
+- ターゲット読者：従業員50〜300名企業のマーケ担当者（1〜3名体制で人手不足）
+
+【元コンテンツ】
+【ここに元コンテンツを貼り付け】
+</code></pre>
+<hr />
+<h2>2. Instagram（キャプション）</h2>
+<h3>変換ルール</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ルール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字数</td>
+<td>キャプション <strong>300〜500字</strong>。1行目（プレビュー表示）は40字以内で完結</td>
+</tr>
+<tr>
+<td>トーン</td>
+<td>ですます調＋親しみやすさ。箇条書き・改行を多用し読みやすく</td>
+</tr>
+<tr>
+<td>CTA配置</td>
+<td>キャプション末尾に「プロフィールリンクから詳細へ」等の誘導</td>
+</tr>
+<tr>
+<td>ハッシュタグ</td>
+<td>10〜15個。コメント欄に分離して投稿してもよい</td>
+</tr>
+<tr>
+<td>画像指示</td>
+<td>カルーセル4〜6枚推奨。1枚目にタイトル、最終枚にCTA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[記入例]</strong> — C-001「BtoBリード獲得についての完全ガイド」の場合：</p>
+<blockquote>
+<p>【保存推奨】リード獲得の成果を3倍にした5つのステップをまとめました📌</p>
+<p>❶ ターゲット企業リストの絞り込み
+❷ コンテンツで「課題の言語化」を代行
+❸ CVポイントの段階設計
+❹ ナーチャリングの自動化
+❺ 営業連携のスコアリング</p>
+<p>詳しい解説はプロフィールのリンクからどうぞ👆</p>
+</blockquote>
+<p>担当: 鈴木 ／ 配信予定日: 2026-02-26 ／ カルーセル画像4枚をCanvaで作成中</p>
+<h3>コピペ用プロンプト</h3>
+<pre><code>あなたはBtoB企業のInstagram運用担当です。
+以下のブログ記事をInstagramキャプションに変換してください。
+
+【条件】
+- 1行目は40字以内でプレビュー表示に耐えるフック文
+- 本文は300〜500字、箇条書きと改行で読みやすく
+- ですます調＋親しみやすいトーン
+- 末尾にプロフィールリンクへの誘導CTA
+- ハッシュタグ10〜15個を本文とは別に出力
+- カルーセル画像の各スライド案（4〜6枚）もテキストで提案
+- ターゲット読者：従業員50〜300名企業のマーケ担当者
+
+【元コンテンツ】
+【ここに元コンテンツを貼り付け】
+</code></pre>
+<hr />
+<h2>3. メルマガ</h2>
+<h3>変換ルール</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ルール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>件名</td>
+<td><strong>30字以内</strong>。数字or疑問形で開封率を上げる</td>
+</tr>
+<tr>
+<td>本文</td>
+<td><strong>800〜1,200字</strong>。導入→要点3つ→CTA→追伸の4パート構成</td>
+</tr>
+<tr>
+<td>トーン</td>
+<td>ビジネス敬語。1文を60字以内に抑え、簡潔さ優先</td>
+</tr>
+<tr>
+<td>CTA配置</td>
+<td>本文中盤に1つ＋末尾に1つの計2箇所。ボタンテキストは動詞で始める</td>
+</tr>
+<tr>
+<td>パーソナライズ</td>
+<td>件名or冒頭に <code>{{会社名}}</code> <code>{{氏名}}</code> のマージタグを使用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[記入例]</strong> — C-001「BtoBリード獲得についての完全ガイド」配信リスト: 既存顧客セグメントA（820名）の場合：</p>
+<blockquote>
+<p><strong>件名</strong>: {{氏名}}さん、リード獲得を仕組み化する3つの方法</p>
+<p>今月のマーケティングTips：リード獲得を仕組み化する方法をお届けします。
+先日公開したガイド記事から、すぐ実践できる3つのポイントを抜粋しました。
+……（中略）……
+▼ 完全版ガイドを読む → {{URL}}</p>
+</blockquote>
+<p>担当: 田中 ／ 配信予定日: 2026-02-27 ／ ステータス: 下書き中</p>
+<h3>コピペ用プロンプト</h3>
+<pre><code>あなたはBtoBメールマーケティングの専門家です。
+以下のブログ記事をメルマガ本文に変換してください。
+
+【条件】
+- 件名を3案（各30字以内、数字or疑問形を含む）
+- 本文は800〜1,200字、構成: 導入→要点3つ→CTA→追伸
+- ビジネス敬語、1文60字以内
+- CTAは本文中盤と末尾の2箇所、ボタンテキストは動詞始まり
+- マージタグ {{会社名}} {{氏名}} {{URL}} をそのまま埋め込む
+- ターゲット: 既存顧客セグメント（BtoB企業のマーケ担当者）
+
+【元コンテンツ】
+【ここに元コンテンツを貼り付け】
+</code></pre>
+<hr />
+<h2>4. LinkedIn（記事）</h2>
+<h3>変換ルール</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ルール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字数</td>
+<td><strong>1,500〜2,500字</strong>の長文記事</td>
+</tr>
+<tr>
+<td>トーン</td>
+<td>専門家視点・実体験ベース。「私たちは〜」ではなく「私は〜」の一人称</td>
+</tr>
+<tr>
+<td>構成</td>
+<td>フック（3行以内）→ 課題提起 → 自社事例・データ → 実践ステップ → CTA</td>
+</tr>
+<tr>
+<td>CTA配置</td>
+<td>記事末尾。「コメントで教えてください」等のエンゲージメント誘導が有効</td>
+</tr>
+<tr>
+<td>画像</td>
+<td>アイキャッチ1枚。図解があればエンゲージメント率が約1.5倍</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[記入例]</strong> — C-001「BtoBリード獲得についての完全ガイド」の場合：</p>
+<blockquote>
+<p>リード獲得施策を10個試して、成果が出たのは3つだけでした。</p>
+<p>50〜300名規模の企業でマーケ担当1〜3名──この体制で全チャネルを回すのは物理的に厳しい。私自身がそうでした。
+……（本文：課題→事例データ→5ステップ解説）……</p>
+<p>あなたのチームではリード獲得で一番効果があった施策は何ですか？コメントで教えてください。</p>
+</blockquote>
+<p>担当: 鈴木 ／ 配信予定日: 2026-02-28 ／ ステータス: 未着手。事例データを追加する</p>
+<h3>コピペ用プロンプト</h3>
+<pre><code>あなたはBtoBマーケティングの実務家兼ライターです。
+以下のブログ記事をLinkedIn記事に変換してください。
+
+【条件】
+- 1,500〜2,500字
+- 一人称「私」で実体験ベースの語り口
+- 構成: 冒頭フック3行以内→課題提起→事例データ→実践ステップ→CTA
+- 冒頭フックは改行で「もっと見る」クリックを誘う
+- 末尾CTAは「コメントで教えてください」型のエンゲージメント誘導
+- 必要なら元記事にない体験談・考察を補足してよいが、数値は元記事に忠実に
+- ターゲット: BtoB企業の経営層・マーケ責任者
+
+【元コンテンツ】
+【ここに元コンテンツを貼り付け】
+</code></pre>
+<hr />
+<h2>5. ショート動画台本（Reels / TikTok / YouTube Shorts）</h2>
+<h3>変換ルール</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ルール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>尺</td>
+<td><strong>30〜60秒</strong>（台本で <strong>150〜300字</strong>）</td>
+</tr>
+<tr>
+<td>構成</td>
+<td>フック（3秒）→ 問題提起（5秒）→ 解決策3つ（各5〜8秒）→ CTA（3秒）</td>
+</tr>
+<tr>
+<td>トーン</td>
+<td>話し言葉・テンポ重視。「〜なんですよ」「〜ですよね？」OK</td>
+</tr>
+<tr>
+<td>CTA配置</td>
+<td>ラスト3秒。「詳しくはプロフィールのリンクから」or「フォローして次回も見てね」</td>
+</tr>
+<tr>
+<td>テロップ指示</td>
+<td>各セクションのキーワードをテロップ表示する想定で [ ] 内に記載</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[記入例]</strong> — C-001「BtoBリード獲得についての完全ガイド」の場合：</p>
+<blockquote>
+<p>🎬 <strong>フック（0:00〜0:03）</strong>
+「リード獲得、数だけ追ってませんか？」 [テロップ: 量より質]</p>
+<p>📌 <strong>問題提起（0:03〜0:08）</strong>
+「マーケ担当1〜3人の会社で全チャネル運用、正直キツいですよね」 [テロップ: 人手不足あるある]</p>
+<p>✅ <strong>解決策（0:08〜0:30）</strong>
+① 「まずターゲット企業を絞る。全員に届けようとしない」 [テロップ: STEP1 絞る]
+② 「次にコンテンツでお客さんの課題を言語化してあげる」 [テロップ: STEP2 言語化]
+③ 「最後にCVポイントを段階的に設計する」 [テロップ: STEP3 段階CV]</p>
+<p>📣 <strong>CTA（0:30〜0:33）</strong>
+「完全版ガイドはプロフィールのリンクから。フォローもお願いします！」</p>
+</blockquote>
+<p>担当: 田中 or 鈴木 ／ 展開管理シート上は note（2026-03-03予定）枠を流用可</p>
+<h3>コピペ用プロンプト</h3>
+<p>```
+あなたはショート動画の台本ライターです。
+以下のブログ記事を30〜60秒のショート動画台本に変換してください。</p>
+<p>【条件】
+- 台本は150〜300字
+- 構成: フック3秒→問題提起5秒→解決策3つ（各5〜8秒）→CTA3秒
+- 話し言葉・テンポ重視。語尾は「〜なんですよ」「〜ですよね？」OK
+- 各セクションにテロップ指示を [テロップ: ○○] で併記
+- CTAはプロフィールリンク誘導 or フォー誘導
+- ターゲット: BtoB企業マーケ担当者（30〜40代、忙しい）</p>
+<p>【元コンテンツ】
+【ここに元コンテンツを貼り付け】</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

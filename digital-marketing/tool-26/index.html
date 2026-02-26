@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNS投稿・メルマガサンプル集 - kusasyu tools</title>
+<meta name="description" content="月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,SNS投稿・メルマガサンプル集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-26/">
+<meta property="og:title" content="SNS投稿・メルマガサンプル集 - kusasyu tools">
+<meta property="og:description" content="月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-26/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SNS投稿・メルマガサンプル集 - kusasyu tools">
+<meta name="twitter:description" content="月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SNS投稿・メルマガサンプル集",
+  "description": "月10万円〜の予算帯の中小企業向けに、SEO記事・SNS投稿・メルマガを一括生成するSaaSの設計書・コンテンツサンプル・営業資料を制作する。過去最高品質（7点）を記録した同系統プロジェクトの発展版として、業種別テンプレート×ファーストパーティデータの仕組みと、UGC収集・再構成機能を加えた差別化設計とする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-26/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>SNS投稿・メルマガサンプル集</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>SNS投稿・メルマガサンプル集</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング自動化パッケージ</p>
+  <div class="content">
+<p>成果物を作成しました。以下が「SNS投稿・メルマガサンプル集」の全文です。</p>
+<hr />
+<h1>SNS投稿・メルマガサンプル集</h1>
+<p><strong>プロジェクト</strong>: 中小企業向けAIコンテンツマーケティング自動化パッケージ
+<strong>業種設定</strong>: 地域密着型パーソナルジム（従業員12名・月間広告予算20万円）
+<strong>ブランド名（仮）</strong>: FitLocal（フィットローカル）
+<strong>トーン</strong>: 親しみやすく専門性を感じさせる。絵文字は控えめに使用。</p>
+<hr />
+<h2>Part 1: Instagram投稿サンプル（5日分）</h2>
+<hr />
+<h3>Day 1（月曜日）── モチベーション系</h3>
+<p><strong>画像指示</strong>: トレーナーが笑顔でクライアントにハイタッチしている写真。明るい自然光。</p>
+<p><strong>キャプション</strong>:</p>
+<blockquote>
+<p>「続かない」のは意志の問題じゃない。
+仕組みの問題です。</p>
+<p>週1回・30分から始められるパーソナルトレーニング。
+あなたの生活リズムに合わせたプランを、初回カウンセリングで一緒に作ります。</p>
+<p>まずは「できそう」から始めませんか？</p>
+<p>——————————
+📍 FitLocal 渋谷店
+🔗 無料カウンセリング予約はプロフィールのリンクから
+——————————</p>
+<h1>パーソナルジム #渋谷ジム #運動習慣 #初心者歓迎</h1>
+<h1>ダイエット #ボディメイク #健康経営 #FitLocal</h1>
+</blockquote>
+<p><strong>投稿時間</strong>: 7:00（通勤前のモチベーション喚起）
+<strong>フォーマット</strong>: 正方形（1:1）単画像</p>
+<hr />
+<h3>Day 2（火曜日）── ビフォーアフター／実績紹介</h3>
+<p><strong>画像指示</strong>: 数値グラフのインフォグラフィック（体重・体脂肪率の推移を折れ線グラフで表示）。顔出し不要。ブランドカラーで統一。</p>
+<p><strong>キャプション</strong>:</p>
+<blockquote>
+<p>【3ヶ月の変化を数字で公開】</p>
+<p>40代・デスクワーク中心のAさん（男性）
+週2回×40分のトレーニングを3ヶ月継続した結果👇</p>
+<p>✅ 体重：78.2kg → 71.5kg（−6.7kg）
+✅ 体脂肪率：28.3% → 22.1%（−6.2%）
+✅ ウエスト：89cm → 81cm（−8cm）</p>
+<p>「食事制限がきつくなかった」とAさん。
+極端な制限ではなく、"置き換え"の提案を中心にしたのがポイントでした。</p>
+<p>結果が出る仕組みを知りたい方は、
+まず無料カウンセリングへ。</p>
+<h1>ビフォーアフター #ダイエット記録 #3ヶ月チャレンジ</h1>
+<h1>40代ダイエット #体脂肪率 #パーソナルトレーニング #FitLocal</h1>
+</blockquote>
+<p><strong>投稿時間</strong>: 12:00（昼休みの閲覧ピーク）
+<strong>フォーマット</strong>: カルーセル投稿（1枚目: サマリー、2枚目: 月別推移グラフ、3枚目: 食事の工夫例）</p>
+<hr />
+<h3>Day 3（水曜日）── 知識・ノウハウ系（保存されやすいコンテンツ）</h3>
+<p><strong>画像指示</strong>: 「デスクワーカーの腰痛を防ぐ3つのストレッチ」のステップ図解。イラスト調。各ステップに番号付き。</p>
+<p><strong>キャプション</strong>:</p>
+<blockquote>
+<p>【保存推奨】座りっぱなしの腰、悲鳴を上げていませんか？</p>
+<p>デスクワークで固まった腰まわりをリセットする
+3つのストレッチを紹介します。</p>
+<p>❶ キャットカウ（30秒）
+→ 背骨全体をゆっくり丸める⇔反らす</p>
+<p>❷ 90/90ヒップストレッチ（左右各20秒）
+→ 股関節の詰まりを一気に解放</p>
+<p>❸ チャイルドポーズ（30秒）
+→ 腰と背中を伸ばして深呼吸でリセット</p>
+<p>合計たった80秒。会議の合間にできます。</p>
+<p>💡 正しいフォームを動画で見たい方は
+ストーリーズのハイライト「ストレッチ集」をチェック</p>
+<h1>腰痛改善 #ストレッチ #デスクワーク #在宅勤務</h1>
+<h1>セルフケア #姿勢改善 #FitLocal</h1>
+</blockquote>
+<p><strong>投稿時間</strong>: 15:00（午後の疲れが出る時間帯）
+<strong>フォーマット</strong>: カルーセル投稿（3枚構成＋まとめ1枚）</p>
+<hr />
+<h3>Day 4（木曜日）── スタッフ紹介／裏側公開</h3>
+<p><strong>画像指示</strong>: トレーナーが自分のトレーニングをしている自然な写真。リールまたは縦型動画（15秒）も用意。</p>
+<p><strong>キャプション</strong>:</p>
+<blockquote>
+<p>【トレーナー紹介 vol.3】中村 翔太</p>
+<p>「お客様に"キツい"と言わせない」がモットー。</p>
+<p>——プロフィール——
+・NSCA-CPT（全米認定パーソナルトレーナー）
+・指導歴8年・累計担当200名以上
+・元・運動嫌い（高校まで文化部）</p>
+<p>——得意な指導——
+・運動初心者のフォーム指導
+・腰痛・肩こり改善プログラム
+・40〜50代のリバウンド防止プラン</p>
+<p>自分が運動嫌いだったからこそ、
+「できない気持ち」がわかります。</p>
+<p>中村のカウンセリング枠は
+プロフィールリンクから予約できます。</p>
+<h1>トレーナー紹介 #パーソナルトレーナー #NSCA</h1>
+<h1>運動初心者 #渋谷 #FitLocal</h1>
+</blockquote>
+<p><strong>投稿時間</strong>: 18:00（仕事終わりの検討タイム）
+<strong>フォーマット</strong>: リール動画（15秒）＋フィード投稿</p>
+<hr />
+<h3>Day 5（金曜日）── キャンペーン・CTA</h3>
+<p><strong>画像指示</strong>: 「初月0円キャンペーン」のバナー画像。期限を明記。ブランドカラー基調で視認性重視。</p>
+<p><strong>キャプション</strong>:</p>
+<blockquote>
+<p>📣 2月限定｜初月0円キャンペーン</p>
+<p>「気になってたけど、きっかけがなかった」
+そんな方への、最初の一歩を応援する特別プランです。</p>
+<p>——キャンペーン内容——
+✅ 入会金 33,000円 → 0円
+✅ 初月会費 → 0円
+✅ 体組成測定＋カウンセリング付き</p>
+<p>——対象——
+・新規入会の方
+・2月28日（土）までにカウンセリング予約完了の方
+・先着20名様</p>
+<p>⚠️ 残り枠わずかです。
+「とりあえず話だけ聞きたい」もOK。</p>
+<p>予約はプロフィールのリンクから、
+30秒で完了します。</p>
+<h1>初月無料 #キャンペーン #パーソナルジム #渋谷</h1>
+<h1>期間限定 #入会金無料 #FitLocal</h1>
+</blockquote>
+<p><strong>投稿時間</strong>: 11:00（週末の予定を考え始めるタイミング）
+<strong>フォーマット</strong>: 正方形単画像（バナー）</p>
+<hr />
+<h2>Part 2: X（旧Twitter）投稿サンプル（5日分）</h2>
+<hr />
+<h3>Day 1（月曜日）── 気づき・共感ツイート</h3>
+<blockquote>
+<p>「ジムに通えない」んじゃなくて「ジムの仕組みが生活に合ってない」だけ。</p>
+<p>24時間ジム契約したのに月2回しか行けてない人、それ意志が弱いんじゃなくて"設計ミス"です。</p>
+<p>週1回・30分・予約制。
+行くしかない仕組みにすれば、続く。</p>
+</blockquote>
+<p><strong>文字数</strong>: 139字
+<strong>投稿時間</strong>: 7:30
+<strong>意図</strong>: 共感→リプライ・引用で拡散を狙う</p>
+<hr />
+<h3>Day 2（火曜日）── 数字で語る実績ツイート</h3>
+<blockquote>
+<p>当ジム会員の「3ヶ月継続率」は91.2%。</p>
+<p>一般的なフィットネスジムの継続率が約30%と言われる中で、なぜこの数字が出るのか。</p>
+<p>理由は3つ：
+①完全予約制（サボれない）
+②担当トレーナー固定（見てくれてる感）
+③LINEで食事フィードバック（孤独じゃない）</p>
+<p>仕組みで人は変わります。</p>
+</blockquote>
+<p><strong>文字数</strong>: 176字
+<strong>投稿時間</strong>: 12:15
+<strong>意図</strong>: 具体的数値で信頼性を訴求。保存・ブックマーク狙い</p>
+<hr />
+<h3>Day 3（水曜日）── ノウハウ・Tips</h3>
+<blockquote>
+<p>筋トレ初心者がやりがちな3つのミス：</p>
+<p>❶ 毎日やる→回復が追いつかず逆効果
+❷ 重さにこだわる→フォーム崩壊でケガ
+❸ 有酸素だけ→筋肉減って代謝が落ちる</p>
+<p>正解は「週2〜3回・正しいフォーム・筋トレ→有酸素の順番」。</p>
+<p>地味だけど、これだけで体は変わります。</p>
+</blockquote>
+<p><strong>文字数</strong>: 153字
+<strong>投稿時間</strong>: 8:00
+<strong>意図</strong>: 保存・リポスト狙いの教育コンテンツ</p>
+<hr />
+<h3>Day 4（木曜日）── ストーリー・人間味</h3>
+<blockquote>
+<p>先日、入会半年のお客様から「健康診断でオールAになった」と報告をいただいた。</p>
+<p>入会時は「階段で息切れする」が悩みだった50代の方。</p>
+<p>体重の変化よりも「健康診断が楽しみになった」という言葉が、トレーナー冥利に尽きる。</p>
+<p>こういう瞬間のためにこの仕事をしている。</p>
+</blockquote>
+<p><strong>文字数</strong>: 143字
+<strong>投稿時間</strong>: 20:00
+<strong>意図</strong>: 感情に訴えるストーリーで「いいね」獲得。ブランドの人間味を伝える</p>
+<hr />
+<h3>Day 5（金曜日）── CTA・キャンペーン告知</h3>
+<blockquote>
+<p>【2月限定】初月0円キャンペーン実施中</p>
+<p>・入会金33,000円→0円
+・初月会費→0円
+・体組成測定＋カウンセリング付き
+・先着20名（残り枠わずか）</p>
+<p>「まず話だけ聞きたい」でもOKです。
+30秒で予約完了→プロフのリンクから。</p>
+<p>2/28締切。迷ってる時間が一番もったいない。</p>
+</blockquote>
+<p><strong>文字数</strong>: 152字
+<strong>投稿時間</strong>: 11:30
+<strong>意図</strong>: 週末の行動喚起。InstagramのDay5と連動したクロスプラットフォーム施策</p>
+<hr />
+<h2>Part 3: メールマガジン サンプル（1通）</h2>
+<p><strong>件名</strong>: 【FitLocal通信 vol.12】「食べてないのに痩せない」の正体、お伝えします</p>
+<p><strong>プリヘッダー</strong>: 管理栄養士が教える"食べて痩せる"3つのルール ＋ 2月限定キャンペーン情報</p>
+<p><strong>送信タイミング</strong>: 火曜日 11:00（開封率が最も高い曜日・時間帯）</p>
+<hr />
+<h3>メルマガ本文</h3>
+<pre><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FitLocal通信 vol.12
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+こんにちは、FitLocal 管理栄養士の鈴木です。
+
+今月のテーマは
+「食べてないのに痩せない」の正体です。
+
+カウンセリングで最も多い相談がこれです。
+実は&quot;食べてない&quot;こと自体が原因になっている
+ケースが、全体の7割以上を占めています。
+
+
+▼ なぜ「食べない」と痩せないのか
+─────────────────────────
+
+体は摂取カロリーが極端に減ると
+「飢餓モード」に入ります。
+
+・基礎代謝が下がる（省エネモード）
+・筋肉を分解してエネルギーにする
+・少し食べただけで脂肪として蓄える
+
+つまり「食べない→体が守りに入る→痩せない」
+という悪循環が起きています。
+
+
+▼ 管理栄養士が教える&quot;食べて痩せる&quot;3つのルール
+─────────────────────────
+
+【ルール①】朝食にタンパク質を20g以上とる
+
+卵2個＋ヨーグルトで達成できます。
+朝のタンパク質は1日の代謝スイッチを入れる
+最も簡単な方法です。
+
+
+【ルール②】食事間隔を5時間以上空けない
+
+空腹時間が長いほど、次の食事で血糖値が
+急上昇→脂肪蓄積のサイクルに入ります。
+間食にナッツやチーズを取り入れましょう。
+
+
+【ルール③】夕食の炭水化物は&quot;半分&quot;にする
+
+ゼロにする必要はありません。
+お茶碗半分のご飯（約80g）を残すだけで
+十分な効果があります。
+
+
+▼ 当ジム会員Bさん（30代女性）の実例
+─────────────────────────
+
+Bさんは「1日1食ダイエット」を1年続けて
+体重が全く変わらなかった方です。
+
+上記3つのルールに切り替えた結果：
+
+・1ヶ月目：体重 −1.2kg / 体脂肪率 −0.8%
+・2ヶ月目：体重 −2.5kg / 体脂肪率 −2.1%
+・3ヶ月目：体重 −3.8kg / 体脂肪率 −3.5%
+
+「食べていいんだと思ったら、
+ ストレスがなくなった」とBさん。
+
+ダイエットは我慢大会ではありません。
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📣 2月限定キャンペーンのお知らせ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+初月0円キャンペーン実施中です。
+
+  ✅ 入会金 33,000円 → 0円
+  ✅ 初月会費 → 0円
+  ✅ 体組成測定＋カウンセリング付き
+
+対象：新規入会・先着20名様
+期限：2月28日（土）まで
+
+▶ 無料カウンセリングを予約する
+  https://fitlocal.example.com/counseling
+
+「まず話だけ聞きたい」でも大歓迎です。
+所要時間は約30分。無理な勧誘は一切しません。
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 編集後記
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+最近、会員の皆さんから
+「このメルマガのレシピを実際に作ってみた」
+という声をいただくことが増えました。
+
+来月は「コンビニで買える高タンパク食」を
+特集する予定です。お楽しみに。
+
+鈴木
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FitLocal（フィットローカル）
+〒150-0002 東京都渋谷区渋谷1-2-3 ○○ビル3F
+TEL: 03-XXXX-XXXX
+営業時間: 7:00〜22:00（年中無休）
+Web: https://fitlocal.example.com
+
+■ 配信停止はこちら
+  https://fitlocal.example.com/unsubscribe
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+</code></pre>
+<hr />
+<h2>運用ガイド：このサンプルの使い方</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>推奨設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instagram投稿頻度</td>
+<td>週5回（平日毎日）</td>
+</tr>
+<tr>
+<td>X投稿頻度</td>
+<td>週5回（平日毎日）＋ リプライ対応</td>
+</tr>
+<tr>
+<td>メルマガ配信頻度</td>
+<td>月2回（第1・第3火曜日）</td>
+</tr>
+<tr>
+<td>コンテンツ配分</td>
+<td>教育40% : 実績30% : CTA20% : 人間味10%</td>
+</tr>
+<tr>
+<td>ハッシュタグ数（Instagram）</td>
+<td>8〜12個（ブランド名＋業種＋地域）</td>
+</tr>
+<tr>
+<td>X文字数目安</td>
+<td>140〜200字（読み切りやすい長さ）</td>
+</tr>
+<tr>
+<td>メルマガ開封率目標</td>
+<td>25%以上（業界平均18%）</td>
+</tr>
+<tr>
+<td>メルマガクリック率目標</td>
+<td>3.5%以上（業界平均2.1%）</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別カスタマイズのポイント</h3>
+<p>本サンプルは「パーソナルジム」を題材としていますが、AI自動生成時には以下の要素を業種に応じて差し替えます。</p>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>パーソナルジムの例</th>
+<th>美容サロンの場合</th>
+<th>税理士事務所の場合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>成果指標</td>
+<td>体重・体脂肪率</td>
+<td>肌年齢・リピート率</td>
+<td>節税額・申告完了率</td>
+</tr>
+<tr>
+<td>専門資格</td>
+<td>NSCA-CPT</td>
+<td>美容師免許・管理美容師</td>
+<td>税理士・FP</td>
+</tr>
+<tr>
+<td>季節テーマ</td>
+<td>夏までにボディメイク</td>
+<td>春の紫外線対策</td>
+<td>確定申告シーズン</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>無料カウンセリング</td>
+<td>初回トライアル</td>
+<td>無料相談30分</td>
+</tr>
+<tr>
+<td>ハッシュタグ</td>
+<td>#パーソナルジム</td>
+<td>#美容サロン</td>
+<td>#税理士 #確定申告</td>
+</tr>
+</tbody>
+</table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

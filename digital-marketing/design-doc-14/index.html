@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス設計書 - kusasyu tools</title>
+<meta name="description" content="GoogleのAI検索時代に対応し、AIに引用・参照されるコンテンツを設計・制作するサービスの立ち上げ。従来SEOではなく、構造化データ・E-E-A-T強化・引用されやすい文章構造への最適化を行う。既存コンテンツの改修と新規制作の両方に対応。料金体系は全文書共通で「単発監査プラン15万円（税別）」「月額運用プ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,サービス設計書">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-14/">
+<meta property="og:title" content="サービス設計書 - kusasyu tools">
+<meta property="og:description" content="GoogleのAI検索時代に対応し、AIに引用・参照されるコンテンツを設計・制作するサービスの立ち上げ。従来SEOではなく、構造化データ・E-E-A-T強化・引用されやすい文章構造への最適化を行う。既存コンテンツの改修と新規制作の両方に対応。料金体系は全文書共通で「単発監査プラン15万円（税別）」「月額運用プ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サービス設計書 - kusasyu tools">
+<meta name="twitter:description" content="GoogleのAI検索時代に対応し、AIに引用・参照されるコンテンツを設計・制作するサービスの立ち上げ。従来SEOではなく、構造化データ・E-E-A-T強化・引用されやすい文章構造への最適化を行う。既存コンテンツの改修と新規制作の両方に対応。料金体系は全文書共通で「単発監査プラン15万円（税別）」「月額運用プ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サービス設計書",
+  "description": "GoogleのAI検索時代に対応し、AIに引用・参照されるコンテンツを設計・制作するサービスの立ち上げ。従来SEOではなく、構造化データ・E-E-A-T強化・引用されやすい文章構造への最適化を行う。既存コンテンツの改修と新規制作の両方に対応。料金体系は全文書共通で「単発監査プラン15万円（税別）」「月額運用プ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-21"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>サービス設計書</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>サービス設計書</h1>
+  <p class="project-name">AI検索（SGE/AIオーバービュー）対応コンテンツ最適化サービス</p>
+  <div class="content">
+<h1>AI検索対応コンテンツ最適化サービス 設計書</h1>
+<p><strong>SynLab Digital Marketing｜ver.1.0｜2026年2月</strong></p>
+<hr />
+<h2>1. サービス概要とミッション</h2>
+<h3>サービス名</h3>
+<p><strong>AIO Content Optimizer</strong>（AI Overview コンテンツ最適化サービス）</p>
+<h3>ミッション</h3>
+<p>AI検索時代において、クライアントのWebコンテンツが<strong>AIによる回答の情報源として選ばれる状態</strong>を構築する。</p>
+<h3>提供価値</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>対象顧客</td>
+<td>BtoB企業のマーケティング部門・オウンドメディア運営者</td>
+</tr>
+<tr>
+<td>解決する課題</td>
+<td>AI検索結果に自社コンテンツが引用されない／CTRが低下している</td>
+</tr>
+<tr>
+<td>ゴール</td>
+<td>AIオーバービュー引用率の向上とオーガニック流入の維持・回復</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. AI検索の仕組みと従来SEOとの違い</h2>
+<h3>AI検索（SGE／AIオーバービュー）の仕組み</h3>
+<ol>
+<li>ユーザーが検索クエリを入力</li>
+<li>LLMが複数のWebページを取得・要約し、<strong>統合回答を生成</strong></li>
+<li>情報源として引用したページへのリンクを表示</li>
+</ol>
+<h3>従来SEOとの主な違い</h3>
+<table>
+<thead>
+<tr>
+<th>比較軸</th>
+<th>従来SEO</th>
+<th>AI検索最適化（AIO）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目標</td>
+<td>検索順位1位</td>
+<td>AI回答の引用元に選出</td>
+</tr>
+<tr>
+<td>評価単位</td>
+<td>ページ全体</td>
+<td>段落・文単位の情報ブロック</td>
+</tr>
+<tr>
+<td>重要要素</td>
+<td>キーワード密度・被リンク</td>
+<td>事実の正確性・構造化データ・E-E-A-T</td>
+</tr>
+<tr>
+<td>CTR</td>
+<td>順位に比例</td>
+<td>AI回答内での引用位置に依存</td>
+</tr>
+<tr>
+<td>コンテンツ形式</td>
+<td>長文網羅型が有利</td>
+<td>簡潔で明確な回答型が有利</td>
+</tr>
+</tbody>
+</table>
+<h3>AI引用に選ばれる3条件</h3>
+<ol>
+<li><strong>構造化データ</strong>：FAQ・HowTo・Article等のSchema.orgマークアップ</li>
+<li><strong>権威性</strong>：専門家の監修・著者情報の明示（E-E-A-T）</li>
+<li><strong>回答適合性</strong>：質問に対する直接的・簡潔な回答ブロックの存在</li>
+</ol>
+<hr />
+<h2>3. 制作パイプライン（5工程）</h2>
+<pre><code>[1]監査 → [2]構造化データ付与 → [3]リライト → [4]専門家監修 → [5]モニタリング
+</code></pre>
+<h3>工程詳細</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>工程</th>
+<th>作業内容</th>
+<th>成果物</th>
+<th>所要日数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>監査</strong></td>
+<td>既存コンテンツのAI検索対応度スコアリング。引用状況・構造化データ・E-E-A-T評価</td>
+<td>監査レポート（スコア＋改善優先度リスト）</td>
+<td>5営業日</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>構造化データ付与</strong></td>
+<td>Schema.orgマークアップ（FAQ, HowTo, Article等）の設計・実装</td>
+<td>JSON-LDコード＋実装ガイド</td>
+<td>3営業日/10ページ</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>リライト</strong></td>
+<td>AI引用に最適化した文章構造へ改稿。回答ブロックの挿入、見出し最適化</td>
+<td>リライト済み原稿</td>
+<td>5営業日/5本</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>専門家監修</strong></td>
+<td>業界専門家による事実確認＋著者情報・監修者情報の付与</td>
+<td>監修済み原稿＋著者プロフィール</td>
+<td>3営業日</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>モニタリング</strong></td>
+<td>AI検索での引用状況・表示頻度を計測し、改善提案を作成</td>
+<td>月次レポート＋改善提案書</td>
+<td>月1回</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 料金プラン</h2>
+<h3>プラン一覧</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>単発監査プラン</th>
+<th>月額運用プラン</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>料金</strong></td>
+<td><strong>15万円（税別）</strong></td>
+<td><strong>25万円（税別）/月</strong></td>
+</tr>
+<tr>
+<td>契約期間</td>
+<td>スポット</td>
+<td>6ヶ月〜</td>
+</tr>
+<tr>
+<td>監査</td>
+<td>1回（対象50ページまで）</td>
+<td>初月1回＋四半期更新</td>
+</tr>
+<tr>
+<td>リライト</td>
+<td>ー</td>
+<td><strong>月5本</strong></td>
+</tr>
+<tr>
+<td>構造化データ実装</td>
+<td>ー</td>
+<td><strong>月10ページ</strong></td>
+</tr>
+<tr>
+<td>月次モニタリング</td>
+<td>ー</td>
+<td><strong>月1回</strong></td>
+</tr>
+<tr>
+<td>専門家監修</td>
+<td>ー</td>
+<td>リライト分に含む</td>
+</tr>
+<tr>
+<td>レポート</td>
+<td>監査レポート1通</td>
+<td>月次レポート＋改善提案</td>
+</tr>
+</tbody>
+</table>
+<h3>オプション</h3>
+<table>
+<thead>
+<tr>
+<th>オプション</th>
+<th>料金（税別）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リライト追加（1本）</td>
+<td>3万円</td>
+</tr>
+<tr>
+<td>構造化データ追加（1ページ）</td>
+<td>1万円</td>
+</tr>
+<tr>
+<td>専門家監修追加（1本）</td>
+<td>2万円</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 品質管理フロー（AI生成→人間チェック分業モデル）</h2>
+<h3>基本方針</h3>
+<p><strong>AI生成で効率化し、人間チェックで品質を担保する。</strong></p>
+<h3>分業モデル</h3>
+<pre><code>AI担当（効率化）          人間担当（品質保証）
+─────────────────    ─────────────────────
+・監査スコアリング        ・スコア解釈と優先度判断
+・構造化データ雛形生成     ・マークアップの正確性検証
+・リライト初稿生成        ・文意・正確性・トーンの最終確認
+・モニタリングデータ収集   ・レポート考察と戦略提案
+</code></pre>
+<h3>チェックゲート</h3>
+<table>
+<thead>
+<tr>
+<th>ゲート</th>
+<th>チェック者</th>
+<th>判定基準</th>
+<th>NG時の対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1：AI出力後</td>
+<td>編集担当</td>
+<td>事実誤認ゼロ・文体適合</td>
+<td>AI再生成＋手動修正</td>
+</tr>
+<tr>
+<td>G2：リライト後</td>
+<td>ディレクター</td>
+<td>クライアント要件充足・AIOスコア基準値以上</td>
+<td>差し戻し・再編集</td>
+</tr>
+<tr>
+<td>G3：監修後</td>
+<td>専門家</td>
+<td>専門的正確性・E-E-A-T要件</td>
+<td>指摘箇所を修正し再監修</td>
+</tr>
+<tr>
+<td>G4：納品前</td>
+<td>PM</td>
+<td>全ゲート通過＋フォーマット確認</td>
+<td>該当ゲートへ差し戻し</td>
+</tr>
+</tbody>
+</table>
+<h3>品質KPI</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>目標値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事実誤認発生率</td>
+<td>0件/月</td>
+</tr>
+<tr>
+<td>納品物の初回承認率</td>
+<td>90%以上</td>
+</tr>
+<tr>
+<td>AI検索引用率（運用3ヶ月後）</td>
+<td>対象キーワードの20%以上</td>
+</tr>
+<tr>
+<td>クライアント満足度</td>
+<td>4.5/5.0以上</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>付録：用語定義</h2>
+<table>
+<thead>
+<tr>
+<th>用語</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AIO</td>
+<td>AI Overview。Google検索のAI生成回答欄</td>
+</tr>
+<tr>
+<td>SGE</td>
+<td>Search Generative Experience。AIOの旧称</td>
+</tr>
+<tr>
+<td>E-E-A-T</td>
+<td>Experience, Expertise, Authoritativeness, Trustworthiness</td>
+</tr>
+<tr>
+<td>構造化データ</td>
+<td>Schema.orgに準拠したJSON-LDマークアップ</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>文書管理：SynLab Digital Marketing｜初版 2026-02-22｜次回改訂予定 2026-05-22</strong></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

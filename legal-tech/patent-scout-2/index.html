@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI特許調査プロンプトテンプレート集 | 弁理士に相談する前の「知財セルフチェック」を可能にするツールキット - kusasyu tools</title>
+<meta name="description" content="弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,AI特許調査プロンプトテンプレート集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-2/">
+<meta property="og:title" content="AI特許調査プロンプトテンプレート集 | 弁理士に相談する前の「知財セルフチェック」を可能にするツールキット - kusasyu tools">
+<meta property="og:description" content="弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI特許調査プロンプトテンプレート集 | 弁理士に相談する前の「知財セルフチェック」を可能にするツールキット - kusasyu tools">
+<meta name="twitter:description" content="弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI特許調査プロンプトテンプレート集",
+  "description": "弁理士に相談する前の「知財セルフチェック」を可能にするツールキット。自社技術の特許リスクをブラウザ上で自己診断し、フェーズ別（シード/プレA/シリーズA）の知財アクション優先度を可視化。さらにJ-PlatPatやChatGPTで競合特許を効率的に調査するためのAIプロンプトテンプレートと、調査結果を一元管理す",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-26"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>AI特許調査プロンプトテンプレート集</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>AI特許調査プロンプトテンプレート集</h1>
+  <p class="project-name">PatentScout — スタートアップ知財セルフ診断＆AI調査ツールキット</p>
+  <div class="content">
+<h1>AI特許調査プロンプトテンプレート集</h1>
+<p><strong>SynLab Legal Tech｜v1.0</strong></p>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li>各プロンプトの <code>[ ]</code> 内を自社の情報に置き換える</li>
+<li>そのままChatGPT/Claudeにコピペ、またはJ-PlatPat・Google Patentsの検索窓に投入</li>
+<li>5本を①→⑤の順に実行すれば、弁理士相談前に調査の8割が完了する</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>用途</th>
+<th>使用ツール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>先行技術サーチ</td>
+<td>J-PlatPat / Google Patents / AI</td>
+</tr>
+<tr>
+<td>②</td>
+<td>クレーム比較分析</td>
+<td>ChatGPT / Claude</td>
+</tr>
+<tr>
+<td>③</td>
+<td>特許ランドスケープ要約</td>
+<td>ChatGPT / Claude</td>
+</tr>
+<tr>
+<td>④</td>
+<td>自社技術の新規性チェック</td>
+<td>ChatGPT / Claude</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>出願明細書ドラフト壁打ち</td>
+<td>ChatGPT / Claude</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>① 先行技術サーチ用プロンプト</h2>
+<h3>J-PlatPat / Google Patents 検索クエリ生成用</h3>
+<pre><code>以下の技術について、特許の先行技術調査を行いたい。
+検索に最適なクエリを5パターン生成してください。
+
+■ 技術の概要: [自社技術の説明を2〜3文で記載]
+■ 技術分野: [IPC分類がわかれば記載。不明なら「不明」]
+■ キーワード候補: [思いつく関連語を3〜5個]
+■ 調査対象: [日本特許 / 米国特許 / 両方]
+■ 調査期間: [例: 過去10年]
+
+出力形式:
+1. J-PlatPat用の日本語検索クエリ（論理演算子付き）×3
+2. Google Patents用の英語検索クエリ×2
+3. 推奨IPC分類コード（上位3つ）
+4. 見落としやすい周辺技術キーワード5つ
+</code></pre>
+<p><strong>入力例:</strong>
+- 技術の概要: 「契約書PDFをOCRで読み取り、AIがリスク条項を自動検出・ハイライトするシステム」
+- 技術分野: 「G06F 40/00（不確実）」
+- キーワード候補: 「契約書, AI, リスク検出, NLP, OCR」</p>
+<p><strong>期待出力例:</strong>
+- J-PlatPat: <code>(契約書 OR 契約文書) AND (リスク AND (検出 OR 抽出)) AND (人工知能 OR 機械学習 OR 自然言語処理)</code>
+- Google Patents: <code>(contract document) AND (risk detection OR risk extraction) AND (natural language processing OR machine learning)</code>
+- 推奨IPC: G06F 40/30, G06Q 50/18, G06N 20/00</p>
+<hr />
+<h2>② クレーム比較分析用プロンプト</h2>
+<pre><code>以下の2つの特許クレームを比較分析してください。
+
+■ 自社技術のクレーム案（または技術説明）:
+[自社のクレーム文または技術説明を貼り付け]
+
+■ 先行特許のクレーム:
+[先行特許の請求項1〜3を貼り付け]
+[特許番号: ]
+
+以下を表形式で出力してください:
+1. 構成要素の対比表（自社 vs 先行特許）
+2. 一致する要素・相違する要素の明示
+3. 先行特許を回避するための設計変更案（3つ）
+4. 侵害リスク評価（高/中/低）と根拠
+</code></pre>
+<p><strong>入力例:</strong>
+- 自社: 「OCR処理した契約書テキストに対し、Transformerモデルでリスク条項をスコアリングし、閾値超過部分をハイライト表示する方法」
+- 先行: 特開2024-XXXXXX 請求項1「文書画像を…（以下省略）」</p>
+<p><strong>期待出力例:</strong></p>
+<table>
+<thead>
+<tr>
+<th>構成要素</th>
+<th>自社技術</th>
+<th>先行特許</th>
+<th>一致/相違</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入力処理</td>
+<td>OCR→テキスト</td>
+<td>画像認識→テキスト</td>
+<td>類似</td>
+</tr>
+<tr>
+<td>分析手法</td>
+<td>Transformer</td>
+<td>ルールベース+ML</td>
+<td><strong>相違</strong></td>
+</tr>
+<tr>
+<td>出力形式</td>
+<td>スコア+ハイライト</td>
+<td>フラグのみ</td>
+<td><strong>相違</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>③ 特許ランドスケープ要約用プロンプト</h2>
+<pre><code>以下の技術分野の特許ランドスケープを作成してください。
+
+■ 技術分野: [例: リーガルテックにおけるAI契約審査]
+■ 主要プレイヤー（既知）: [例: 企業A, 企業B, 大学C]
+■ 調査で見つけた特許リスト:
+  - [特許番号1]: [タイトル]（出願人: XX、出願日: YYYY-MM-DD）
+  - [特許番号2]: [タイトル]（出願人: XX、出願日: YYYY-MM-DD）
+  - （5〜20件を列挙）
+
+出力形式:
+1. 技術トレンドの時系列整理（年別の出願傾向）
+2. 主要出願人ランキング（上位5社）と各社の注力領域
+3. 技術クラスタ分類（3〜5グループに分類）
+4. ホワイトスペース（未出願領域）の指摘（3つ以上）
+5. 自社が参入すべき推奨ポジション
+</code></pre>
+<p><strong>入力例:</strong>
+- 技術分野: 「AI契約書レビュー」
+- 主要プレイヤー: 「LegalForce, AI inside, 富士通」
+- 特許リスト: 5〜20件分を列挙</p>
+<p><strong>期待出力例:</strong>
+- トレンド: 「2021年以降急増、2024年にNLP関連が倍増」
+- ホワイトスペース: 「多言語対応の契約審査」「業界特化型リスク辞書」「リアルタイム交渉支援」</p>
+<hr />
+<h2>④ 自社技術の新規性チェック用プロンプト</h2>
+<pre><code>以下の自社技術について、特許出願の新規性・進歩性を評価してください。
+
+■ 自社技術の詳細:
+[技術内容を5〜10行で具体的に記述]
+
+■ 発見した先行技術（最大5件）:
+1. [特許番号]: [概要1行]
+2. [特許番号]: [概要1行]
+（以下同様）
+
+■ 自社技術の特徴的な点（差別化ポイント）:
+- [ポイント1]
+- [ポイント2]
+- [ポイント3]
+
+以下を評価してください:
+1. 新規性判断: ○/△/× と根拠（各先行技術との対比）
+2. 進歩性判断: ○/△/× と根拠（組み合わせの容易性）
+3. クレームドラフトの方向性（権利範囲を最大化する書き方の提案）
+4. 出願前に追加調査すべき技術領域
+5. 総合判定: 出願推奨度（A:即出願 / B:補強後出願 / C:再検討）
+</code></pre>
+<p><strong>入力例:</strong>
+- 自社技術: 「契約書の修正履歴をAIが学習し、企業固有の審査基準を自動生成する仕組み」
+- 差別化: 「修正履歴からの自動学習」「企業固有基準の自動構築」「追加学習による精度向上」</p>
+<p><strong>期待出力例:</strong>
+- 新規性: ○「修正履歴を教師データとする手法は先行技術に無し」
+- 進歩性: △「個別要素は公知だが組み合わせに工夫あり」
+- 総合判定: B（差別化ポイントを実験データで補強後に出願推奨）</p>
+<hr />
+<h2>⑤ 出願明細書ドラフト壁打ち用プロンプト</h2>
+<pre><code>以下の技術について、特許出願明細書の骨子をドラフトしてください。
+
+■ 発明の名称案: [例: 契約文書リスク自動検出システム]
+■ 技術分野: [例: 自然言語処理を用いた法務支援]
+■ 解決すべき課題: [従来技術の問題点を2〜3点]
+■ 解決手段の概要: [自社技術のアプローチを3〜5行]
+■ 主要な効果: [従来比でどう優れるか2〜3点]
+
+出力形式（各項目3〜5行で簡潔に）:
+1. 【技術分野】
+2. 【背景技術】従来技術の説明と課題
+3. 【発明が解決しようとする課題】
+4. 【課題を解決するための手段】
+5. 【発明の効果】
+6. 【請求項1】（独立項・装置クレーム）
+7. 【請求項2】（独立項・方法クレーム）
+8. 【請求項3〜5】（従属項3つ）
+9. 【図面の説明】必要な図のリスト
+
+※ これは弁理士との打合せ用の叩き台です。法的効力のある文書ではありません。
+</code></pre>
+<p><strong>入力例:</strong>
+- 名称: 「修正履歴学習型契約審査基準自動生成システム」
+- 課題: 「審査基準の属人化」「新人教育コスト」「基準の陳腐化」
+- 手段: 「過去の修正履歴をTransformerで学習し、企業固有の審査基準を自動生成・更新」</p>
+<p><strong>期待出力例（請求項1の例）:</strong></p>
+<blockquote>
+<p>契約文書データと当該契約文書に対する修正履歴データを取得する取得部と、前記修正履歴データを教師データとして機械学習モデルを訓練する学習部と、前記学習済みモデルに基づき契約審査基準を自動生成する基準生成部と、を備える契約審査基準自動生成システム。</p>
+</blockquote>
+<hr />
+<h2>調査フロー（推奨手順）</h2>
+<pre><code>①先行技術サーチ → 候補特許10〜20件をリストアップ
+       ↓
+②クレーム比較 → 類似度の高い上位3〜5件を深掘り
+       ↓
+③ランドスケープ → 業界全体の出願動向を俯瞰
+       ↓
+④新規性チェック → 出願可否の判断材料を整理
+       ↓
+⑤明細書ドラフト → 弁理士との打合せ資料を準備
+</code></pre>
+<blockquote>
+<p><strong>免責事項:</strong> 本テンプレートはAI調査の効率化を目的とした参考資料です。特許出願の最終判断は必ず弁理士にご相談ください。AI出力には誤りが含まれる可能性があります。</p>
+</blockquote>
+<hr />
+<p><em>© SynLab Legal Tech</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

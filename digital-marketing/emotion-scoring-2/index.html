@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP・広告コピー_感情スコア自己診断ワークシート - kusasyu tools</title>
+<meta name="description" content="広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,LP・広告コピー_感情スコア自己診断ワークシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/emotion-scoring-2/">
+<meta property="og:title" content="LP・広告コピー_感情スコア自己診断ワークシート - kusasyu tools">
+<meta property="og:description" content="広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/emotion-scoring-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LP・広告コピー_感情スコア自己診断ワークシート - kusasyu tools">
+<meta name="twitter:description" content="広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LP・広告コピー_感情スコア自己診断ワークシート",
+  "description": "広告コピー・LP・メルマガのテキストを7つの感情軸（期待・信頼・恐怖・驚き・悲しみ・嫌悪・怒り）で定量スコアリングし、CVR改善の具体的アクションを導く診断ツールと改善ガイドを制作する。過去の感情ジャーニー×LP設計プロジェクトが『新規LP作成テンプレート』だったのに対し、今回は『既存コンテンツの定量診断→改",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/emotion-scoring-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>LP・広告コピー_感情スコア自己診断ワークシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>LP・広告コピー_感情スコア自己診断ワークシート</h1>
+  <p class="project-name">広告コピー・LP 感情スコアリング診断＆CVR改善ガイド</p>
+  <div class="content">
+<h1>LP・広告コピー 感情スコア自己診断ワークシート</h1>
+<h2>使い方</h2>
+<p>対象のLP・広告コピーを手元に用意し、各項目を <strong>0〜3点</strong> で採点する。</p>
+<table>
+<thead>
+<tr>
+<th>点数</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>該当する表現がない</td>
+</tr>
+<tr>
+<td>1</td>
+<td>わずかに感じられる</td>
+</tr>
+<tr>
+<td>2</td>
+<td>明確に表現されている</td>
+</tr>
+<tr>
+<td>3</td>
+<td>強く訴求されている</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>診断シート（7軸×5項目＝35項目）</h2>
+<h3>1. 恐怖・危機感（Fear）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「放置すると○○になる」等のリスク提示がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>期限・数量の限定表現がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>競合・周囲との差を意識させる表現がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>現状維持の損失を具体的数値で示している</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「今すぐ」等の緊急性を促す言葉がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>小計</strong></td>
+<td><strong>/15</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>2. 信頼・安心（Trust）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>実績・受賞歴・メディア掲載の明示がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>顧客の声・レビューを掲載している</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>返金保証・サポート体制の記載がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>専門家の推薦・監修表記がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>運営者情報・資格・経歴を開示している</td>
+<td>/3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>小計</strong></td>
+<td><strong>/15</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>3. 期待・ワクワク（Excitement）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>理想の未来像（ビフォーアフター）を描写している</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「新しい」「初」「革新」等の新規性ワードがある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>感覚的・五感に訴える表現がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>成功事例のストーリーが含まれている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>ビジュアル指示が感情を高める設計になっている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>小計</strong></td>
+<td><strong>/15</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>4. 共感・帰属（Empathy）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ターゲットの悩みを代弁する文章がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「あなたも○○ではありませんか？」型の問いかけがある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>同じ立場の人物が登場するエピソードがある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>コミュニティ・仲間意識を感じさせる表現がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>読者の価値観・信念に寄り添う言葉がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>小計</strong></td>
+<td><strong>/15</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>5. 論理・納得（Logic）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>機能・スペックが具体的に記載されている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>他社比較・優位性が客観データで示されている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>価格の妥当性（コスパ・内訳）を説明している</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>仕組み・メカニズムの解説がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>FAQ等で購入前の疑問を先回りで解消している</td>
+<td>/3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>小計</strong></td>
+<td><strong>/15</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>6. 希少性・特別感（Exclusivity）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>限定品・先行販売等の希少性表現がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「選ばれた人だけ」等の特別感ワードがある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>初回特典・限定ボーナスの提示がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>カスタマイズ・パーソナライズ要素がある</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>ブランドの世界観・哲学を伝えている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>小計</strong></td>
+<td><strong>/15</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>7. 行動促進（Action Drive）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CTAボタンのコピーが具体的な動詞になっている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>行動のハードルを下げる表現がある（無料・簡単等）</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>次のステップが明確に示されている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CTAが複数箇所に適切配置されている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>行動しない場合の機会損失に触れている</td>
+<td>/3</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>小計</strong></td>
+<td><strong>/15</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>スコア算出ロジック</h2>
+<p><strong>総合スコア = 各軸の小計の合計（満点105点）</strong></p>
+<table>
+<thead>
+<tr>
+<th>ランク</th>
+<th>スコア</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>85〜105</td>
+<td>感情設計が卓越。微調整で最適化可能</td>
+</tr>
+<tr>
+<td>A</td>
+<td>65〜84</td>
+<td>高水準。弱い軸を1〜2つ強化すれば大幅改善</td>
+</tr>
+<tr>
+<td>B</td>
+<td>45〜64</td>
+<td>平均的。感情設計の見直しを推奨</td>
+</tr>
+<tr>
+<td>C</td>
+<td>25〜44</td>
+<td>情報偏重。感情訴求の追加が急務</td>
+</tr>
+<tr>
+<td>D</td>
+<td>0〜24</td>
+<td>感情要素がほぼ欠如。全面リライト推奨</td>
+</tr>
+</tbody>
+</table>
+<p><strong>バランス指標</strong>: 7軸の最高小計と最低小計の差が <strong>8点以上</strong> なら感情バランスに偏りあり。</p>
+<hr />
+<h2>3業種別ベンチマークスコア（各軸の目安/15点満点）</h2>
+<table>
+<thead>
+<tr>
+<th>感情軸</th>
+<th>EC・物販</th>
+<th>BtoB SaaS</th>
+<th>美容・健康</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恐怖・危機感</td>
+<td>6</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<tr>
+<td>信頼・安心</td>
+<td>10</td>
+<td>12</td>
+<td>11</td>
+</tr>
+<tr>
+<td>期待・ワクワク</td>
+<td>11</td>
+<td>6</td>
+<td>12</td>
+</tr>
+<tr>
+<td>共感・帰属</td>
+<td>8</td>
+<td>7</td>
+<td>12</td>
+</tr>
+<tr>
+<td>論理・納得</td>
+<td>9</td>
+<td>13</td>
+<td>8</td>
+</tr>
+<tr>
+<td>希少性・特別感</td>
+<td>10</td>
+<td>5</td>
+<td>9</td>
+</tr>
+<tr>
+<td>行動促進</td>
+<td>10</td>
+<td>9</td>
+<td>10</td>
+</tr>
+<tr>
+<td><strong>合計目安</strong></td>
+<td><strong>64</strong></td>
+<td><strong>60</strong></td>
+<td><strong>72</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>読み方</strong>: 自社スコアがベンチマークより3点以上低い軸は改善優先度「高」。</p>
+</blockquote>
+<hr />
+<h2>診断結果の読み方ガイド</h2>
+<p><strong>ステップ1：総合ランクを確認</strong>
+→ B以下なら感情設計の根本見直しが必要。</p>
+<p><strong>ステップ2：軸別スコアを業種ベンチマークと比較</strong>
+→ ベンチマーク比 −3点以下の軸をリストアップ。</p>
+<p><strong>ステップ3：バランス指標をチェック</strong>
+→ 最高−最低の差が8点以上なら、低い軸を優先的に補強。</p>
+<p><strong>ステップ4：改善アクション</strong></p>
+<table>
+<thead>
+<tr>
+<th>弱い軸</th>
+<th>即効性の高い施策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恐怖・危機感</td>
+<td>カウントダウンタイマー追加、損失額の数値化</td>
+</tr>
+<tr>
+<td>信頼・安心</td>
+<td>レビュー3件以上追加、返金保証バッジ設置</td>
+</tr>
+<tr>
+<td>期待・ワクワク</td>
+<td>ビフォーアフター画像追加、成功体験談挿入</td>
+</tr>
+<tr>
+<td>共感・帰属</td>
+<td>ファーストビューに悩み代弁コピー配置</td>
+</tr>
+<tr>
+<td>論理・納得</td>
+<td>比較表・成分表追加、FAQ充実</td>
+</tr>
+<tr>
+<td>希少性・特別感</td>
+<td>限定数の明示、初回特典の新設</td>
+</tr>
+<tr>
+<td>行動促進</td>
+<td>CTAコピーを動詞化、ステップ図解追加</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>記入例：架空EC商品LP「熟睡マットレス DEEP REST」</h2>
+<p><strong>商品</strong>: 高反発マットレス／39,800円／30日返金保証付き</p>
+<table>
+<thead>
+<tr>
+<th>感情軸</th>
+<th>項目1</th>
+<th>項目2</th>
+<th>項目3</th>
+<th>項目4</th>
+<th>項目5</th>
+<th>小計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恐怖・危機感</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td><strong>7</strong></td>
+</tr>
+<tr>
+<td>信頼・安心</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>期待・ワクワク</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td><strong>11</strong></td>
+</tr>
+<tr>
+<td>共感・帰属</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td><strong>9</strong></td>
+</tr>
+<tr>
+<td>論理・納得</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td><strong>8</strong></td>
+</tr>
+<tr>
+<td>希少性・特別感</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td>行動促進</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td><strong>10</strong></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>総合</strong></td>
+<td><strong>60</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定: ランクB</strong>（バランス差: 11−4＝7点 → ギリギリ許容範囲）</p>
+<p><strong>診断コメント</strong>:
+- 信頼・期待は高水準（EC目安を上回る）
+- <strong>希少性が4点で大幅不足</strong>（EC目安10点） → 「初回500名限定価格」「期間限定カラー」等の追加を推奨
+- 論理・納得もやや弱い → 他社マットレスとの硬さ・通気性比較表を追加すべき
+- 恐怖軸は業種目安（6点）を超えており適正</p>
+<hr />
+<p><em>© SynLab Digital Marketing — 感情設計で成果を変える</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

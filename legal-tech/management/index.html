@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>訴訟案件ポートフォリオ管理テンプレート - kusasyu tools</title>
+<meta name="description" content="日本の法律事務所・企業法務部門が訴訟の戦略的意思決定に使える実用ツールを提供する。訴訟コスト・期間のシミュレーション、和解vs訴訟継続の比較分析、案件ポートフォリオの一元管理を可能にする3つのツールで、現状のExcel＋勘に頼る訴訟判断をデータドリブンに変える。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,訴訟案件ポートフォリオ管理テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management/">
+<meta property="og:title" content="訴訟案件ポートフォリオ管理テンプレート - kusasyu tools">
+<meta property="og:description" content="日本の法律事務所・企業法務部門が訴訟の戦略的意思決定に使える実用ツールを提供する。訴訟コスト・期間のシミュレーション、和解vs訴訟継続の比較分析、案件ポートフォリオの一元管理を可能にする3つのツールで、現状のExcel＋勘に頼る訴訟判断をデータドリブンに変える。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="訴訟案件ポートフォリオ管理テンプレート - kusasyu tools">
+<meta name="twitter:description" content="日本の法律事務所・企業法務部門が訴訟の戦略的意思決定に使える実用ツールを提供する。訴訟コスト・期間のシミュレーション、和解vs訴訟継続の比較分析、案件ポートフォリオの一元管理を可能にする3つのツールで、現状のExcel＋勘に頼る訴訟判断をデータドリブンに変える。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "訴訟案件ポートフォリオ管理テンプレート",
+  "description": "日本の法律事務所・企業法務部門が訴訟の戦略的意思決定に使える実用ツールを提供する。訴訟コスト・期間のシミュレーション、和解vs訴訟継続の比較分析、案件ポートフォリオの一元管理を可能にする3つのツールで、現状のExcel＋勘に頼る訴訟判断をデータドリブンに変える。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/management/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>訴訟案件ポートフォリオ管理テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>訴訟案件ポートフォリオ管理テンプレート</h1>
+  <p class="project-name">訴訟データ分析・判決予測AI（日本版Lex Machina）実践ツールシリーズ</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管理番号</th><th>案件名</th><th>訴訟種別</th><th>当社立場</th><th>相手方</th><th>相手方代理人事務所</th><th>担当弁護士</th><th>裁判所</th><th>提訴日</th><th>現在ステータス</th><th>次回期日</th><th>請求額（万円）</th><th>和解提示額（万円）</th><th>勝訴確率（%）</th><th>リスク評価</th><th>予算上限（万円）</th><th>累計費用（万円）</th><th>予算残（万円）</th><th>想定判決額（万円）</th><th>想定追加費用（万円）</th><th>優先度</th><th>備考</th></tr></thead><tbody><tr><td>LIT-2025-001</td><td>特許権侵害差止請求事件</td><td>知的財産</td><td>原告</td><td>株式会社テクノグローバル</td><td>森・濱田松本法律事務所</td><td>田中誠一</td><td>東京地裁知財部</td><td>2025-03-15</td><td>弁論準備手続中</td><td>2026-03-12</td><td>15000</td><td>8500</td><td>65</td><td>中</td><td>3000</td><td>1820</td><td>1180</td><td>12000</td><td>480</td><td>A</td><td>和解交渉並行中。和解vs訴訟継続シミュレーター分析済</td></tr><tr><td>LIT-2025-002</td><td>製品瑕疵損害賠償請求事件</td><td>製造物責任</td><td>被告</td><td>山田太郎 外12名</td><td>ベリーベスト法律事務所</td><td>佐藤裕子</td><td>大阪地裁第21民事部</td><td>2025-06-22</td><td>証拠調べ中</td><td>2026-04-08</td><td>8500</td><td>4200</td><td>40</td><td>高</td><td>2500</td><td>1650</td><td>850</td><td>6800</td><td>620</td><td>A</td><td>集団訴訟。次回証人尋問予定</td></tr><tr><td>LIT-2025-003</td><td>業務委託契約解除無効確認事件</td><td>契約紛争</td><td>原告</td><td>エヌ・ティ・ソリューションズ株式会社</td><td>長島・大野・常松法律事務所</td><td>鈴木健太</td><td>東京地裁第8民事部</td><td>2025-09-10</td><td>第一回口頭弁論終了</td><td>2026-05-20</td><td>3200</td><td>1800</td><td>70</td><td>低</td><td>1500</td><td>480</td><td>1020</td><td>2800</td><td>350</td><td>B</td><td>相手方から反訴の可能性あり</td></tr><tr><td>LIT-2024-004</td><td>営業秘密不正取得差止請求事件</td><td>不正競争</td><td>原告</td><td>元従業員 高橋直樹</td><td>アンダーソン・毛利・友常法律事務所</td><td>中村美咲</td><td>東京地裁第46民事部</td><td>2024-11-05</td><td>控訴審係属中</td><td>2026-03-25</td><td>5000</td><td>2000</td><td>55</td><td>中</td><td>2000</td><td>1740</td><td>260</td><td>3500</td><td>580</td><td>A</td><td>一審一部認容。控訴審で増額主張中</td></tr><tr><td>LIT-2026-005</td><td>労働審判（残業代請求）</td><td>労務紛争</td><td>被告</td><td>佐々木健一</td><td>旬報法律事務所</td><td>山本大輔</td><td>横浜地裁</td><td>2026-01-20</td><td>第2回期日終了</td><td>2026-03-05</td><td>1200</td><td>900</td><td>35</td><td>中</td><td>800</td><td>320</td><td>480</td><td>1000</td><td>150</td><td>B</td><td>労働審判3回以内で終結見込。異議申立の場合は通常訴訟へ移行</td></tr><tr><td>```</td></tr><tr></tr><tr><td>**【使い方ガイド（Excel取り込み手順）】**</td></tr><tr></tr><tr><td>1. 本ファイルをUTF-8 CSV形式で保存（拡張子 `.csv`）</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管理番号,案件名,訴訟種別,当社立場,相手方,相手方代理人事務所,担当弁護士,裁判所,提訴日,現在ステータス,次回期日,請求額（万円）,和解提示額（万円）,勝訴確率（%）,リスク評価,予算上限（万円）,累計費用（万円）,予算残（万円）,想定判決額（万円）,想定追加費用（万円）,優先度,備考
+LIT-2025-001,特許権侵害差止請求事件,知的財産,原告,株式会社テクノグローバル,森・濱田松本法律事務所,田中誠一,東京地裁知財部,2025-03-15,弁論準備手続中,2026-03-12,15000,8500,65,中,3000,1820,1180,12000,480,A,和解交渉並行中。和解vs訴訟継続シミュレーター分析済
+LIT-2025-002,製品瑕疵損害賠償請求事件,製造物責任,被告,山田太郎 外12名,ベリーベスト法律事務所,佐藤裕子,大阪地裁第21民事部,2025-06-22,証拠調べ中,2026-04-08,8500,4200,40,高,2500,1650,850,6800,620,A,集団訴訟。次回証人尋問予定
+LIT-2025-003,業務委託契約解除無効確認事件,契約紛争,原告,エヌ・ティ・ソリューションズ株式会社,長島・大野・常松法律事務所,鈴木健太,東京地裁第8民事部,2025-09-10,第一回口頭弁論終了,2026-05-20,3200,1800,70,低,1500,480,1020,2800,350,B,相手方から反訴の可能性あり
+LIT-2024-004,営業秘密不正取得差止請求事件,不正競争,原告,元従業員 高橋直樹,アンダーソン・毛利・友常法律事務所,中村美咲,東京地裁第46民事部,2024-11-05,控訴審係属中,2026-03-25,5000,2000,55,中,2000,1740,260,3500,580,A,一審一部認容。控訴審で増額主張中
+LIT-2026-005,労働審判（残業代請求）,労務紛争,被告,佐々木健一,旬報法律事務所,山本大輔,横浜地裁,2026-01-20,第2回期日終了,2026-03-05,1200,900,35,中,800,320,480,1000,150,B,労働審判3回以内で終結見込。異議申立の場合は通常訴訟へ移行
+\`\`\`
+
+**【使い方ガイド（Excel取り込み手順）】**
+
+1. 本ファイルをUTF-8 CSV形式で保存（拡張子 \`.csv\`）
+2. Excelで開く際は「データ」→「テキストまたはCSVから」→「UTF-8」を選択
+3. 金額列（請求額・和解提示額・累計費用・予算残等）は万円単位で統一
+
+**【列の定義】**
+
+| 列名 | 説明 |
+|---|---|
+| 管理番号 | \`LIT-年-連番\` 形式の社内管理ID |
+| 訴訟種別 | 知的財産／製造物責任／契約紛争／不正競争／労務紛争 等 |
+| 当社立場 | 原告 or 被告 |
+| リスク評価 | 高：敗訴濃厚または損害大／中：五分五分／低：勝訴見込み高い |
+| 勝訴確率（%） | 担当弁護士の見立てに基づく数値。和解vs訴訟継続シミュレーターの入力値と連動 |
+| 予算残（万円） | \`予算上限 − 累計費用\` で自動算出（Excel数式: \`=P行-Q行\`） |
+| 想定判決額（万円） | 類似判例に基づく判決認容額の見込み |
+| 想定追加費用（万円） | 判決確定までに追加で見込まれる弁護士費用・鑑定費用等 |
+| 優先度 | A：即時対応必要／B：通常管理／C：経過観察 |
+
+**【ポートフォリオ集計用（Excelで末尾行に追加）】**
+
+\`\`\`
+集計,,,,,,,,,,,=SUM(L2:L6),=SUM(M2:M6),,,,=SUM(Q2:Q6),=SUM(R2:R6),,,,"請求額合計: 32,900万円 / 累計費用合計: 6,010万円 / 予算残合計: 3,790万円"`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_訴訟案件ポートフォリオ管理テンプレート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

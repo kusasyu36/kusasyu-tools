@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全3回連載ブログ記事 - kusasyu tools</title>
+<meta name="description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,全3回連載ブログ記事">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect/">
+<meta property="og:title" content="全3回連載ブログ記事 - kusasyu tools">
+<meta property="og:description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="全3回連載ブログ記事 - kusasyu tools">
+<meta name="twitter:description" content="2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "全3回連載ブログ記事",
+  "description": "2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>全3回連載ブログ記事</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>全3回連載ブログ記事</h1>
+  <p class="project-name">AI建物状況調査スクリーニング 実践連載「PropInspect」</p>
+  <div class="content">
+<h1>連載：中小仲介会社のための「AI×インスペクション」実践ガイド</h1>
+<hr />
+<h2>【第1回】なぜ実施率5%？インスペクション義務化の現状と中小仲介会社の課題整理</h2>
+<h3>制度のおさらい</h3>
+<p>2018年の宅建業法改正で<strong>説明義務化</strong>されたのは以下の3点のみ。</p>
+<table>
+<thead>
+<tr>
+<th>義務の内容</th>
+<th>実施そのものの義務</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重要事項説明時にインスペクションの結果を説明</td>
+<td><strong>なし</strong></td>
+</tr>
+<tr>
+<td>媒介契約時にインスペクション業者のあっせんの可否を記載</td>
+<td><strong>なし</strong></td>
+</tr>
+<tr>
+<td>売買契約時に建物状況の確認結果を添付</td>
+<td><strong>なし</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>ポイント：「説明義務」であって「実施義務」ではない。</strong> だから実施率が上がらない。</p>
+</blockquote>
+<h3>実施率5%の3大要因</h3>
+<ol>
+<li><strong>コスト負担の合意が取れない</strong> — 費用5〜10万円を売主・買主どちらが払うか決まらず見送り</li>
+<li><strong>有資格者（既存住宅状況調査技術者）の不足</strong> — 地方では予約が2〜3週間待ち</li>
+<li><strong>仲介会社にメリットが見えない</strong> — 成約スピードが落ちるリスクを嫌う</li>
+</ol>
+<h3>中小仲介会社が抱えるジレンマ</h3>
+<pre><code>やらない → 差別化できない・将来の制度強化に対応できない
+やる　　 → コスト増・工期延長・売主の離反リスク
+</code></pre>
+<h3>本連載の提案：「一次スクリーニング」という中間解</h3>
+<ul>
+<li><strong>正式なインスペクションの前段階</strong>として、スマホ＋AIで建物外観の劣化を簡易チェック</li>
+<li>費用ゼロ・所要時間15分・資格不要</li>
+<li>問題が見つかった物件だけ、有資格者による正式調査へ進める</li>
+</ul>
+<p>→ 第2回で具体的な手順を解説します。</p>
+<hr />
+<h2>【第2回】スマホ撮影＋AI画像認識で建物劣化を一次スクリーニングする具体的手順</h2>
+<h3>前提条件</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>必要機材</td>
+<td>スマートフォン（2020年以降モデル推奨）</td>
+</tr>
+<tr>
+<td>使用ツール例</td>
+<td>Google Lens／建物診断系AIアプリ（HOME Inspector AI等）</td>
+</tr>
+<tr>
+<td>所要時間</td>
+<td>撮影10分＋AI解析5分＝計15分</td>
+</tr>
+<tr>
+<td>法的位置づけ</td>
+<td><strong>正式なインスペクションではない</strong>（参考情報の提供）</td>
+</tr>
+</tbody>
+</table>
+<h3>STEP 1：撮影チェックリスト（6箇所×各2枚＝計12枚）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>撮影箇所</th>
+<th>確認したい劣化</th>
+<th>撮影のコツ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>外壁（東西南北）</strong></td>
+<td>クラック・チョーキング・苔</td>
+<td>壁面から2m離れ、正面から撮影</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>基礎（立ち上がり部分）</strong></td>
+<td>ひび割れ・鉄筋露出</td>
+<td>地面すれすれのアングルで寄り</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>屋根・軒裏</strong></td>
+<td>瓦のズレ・雨染み</td>
+<td>道路側から望遠モードで撮影</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>バルコニー・防水層</strong></td>
+<td>膨れ・剥離・排水口詰まり</td>
+<td>真上から床面全体を撮影</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>玄関・サッシ周り</strong></td>
+<td>コーキング劣化・建付け不良</td>
+<td>枠全体が入る距離で撮影</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>室内の壁・天井</strong></td>
+<td>雨漏り跡・クロス浮き</td>
+<td>フラッシュOFF、自然光で撮影</td>
+</tr>
+</tbody>
+</table>
+<h3>STEP 2：AI解析の実行</h3>
+<ol>
+<li>撮影画像をAIツールにアップロード</li>
+<li>各画像に対して劣化の有無・種類・重度度を3段階（🟢軽微／🟡要注意／🔴要調査）で判定</li>
+<li>結果を<strong>物件ごとの簡易レポート（1枚PDF）</strong>に自動出力</li>
+</ol>
+<h3>STEP 3：判定基準と次のアクション</h3>
+<table>
+<thead>
+<tr>
+<th>AI判定</th>
+<th>意味</th>
+<th>次のアクション</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 全箇所「軽微」</td>
+<td>目視レベルで大きな問題なし</td>
+<td>そのまま売買手続きへ（希望あれば正式調査も可）</td>
+</tr>
+<tr>
+<td>🟡 1箇所以上「要注意」</td>
+<td>経年劣化はあるが緊急性は低い</td>
+<td>売主・買主に情報共有し、正式調査を推奨</td>
+</tr>
+<tr>
+<td>🔴 1箇所以上「要調査」</td>
+<td>構造に影響する可能性あり</td>
+<td><strong>有資格者への引継ぎを強く推奨</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>注意事項</h3>
+<ul>
+<li><strong>「AIで問題なし＝安全」とは絶対に言わない。</strong> あくまで一次スクリーニング</li>
+<li>撮影不可箇所（小屋裏・床下）は対象外であることを必ず説明</li>
+<li>レポートには必ず免責文言を記載：「本レポートは正式なインスペクション（既存住宅状況調査）ではありません」</li>
+</ul>
+<hr />
+<h2>【第3回】スクリーニング結果を売主・買主に説明するトークスクリプトと有資格者への引継ぎフロー</h2>
+<h3>A：売主への説明トークスクリプト</h3>
+<p><strong>タイミング：</strong> 媒介契約締結時 or 物件撮影の訪問時</p>
+<pre><code>営業：「最近は買主様が建物の状態を気にされるケースが増えています。
+　　　 そこで弊社では、スマホで外観の簡易チェックを無料で行っています。
+　　　 正式な調査ではなく、あくまで参考情報としてのご提供です。」
+
+売主：「費用はかかるの？」
+
+営業：「無料です。撮影も10分程度で終わります。
+　　　 もし気になる箇所が見つかった場合は、正式な調査をご検討いただく
+　　　 きっかけになりますし、問題なければ買主様への安心材料になります。」
+
+売主：「問題が見つかったら売れなくなるのでは？」
+
+営業：「むしろ逆です。事前に状態を開示している物件は買主様の信頼を得やすく、
+　　　 契約後のトラブル防止にもなります。告知義務の観点からも安心です。」
+</code></pre>
+<h3>B：買主への説明トークスクリプト</h3>
+<p><strong>タイミング：</strong> 内見時 or 購入申込前</p>
+<pre><code>営業：「こちらの物件は事前に外観の簡易チェックを実施しています。
+　　　 結果はこちらのレポートをご覧ください。」
+
+【🟢の場合】
+営業：「目視レベルでは大きな問題は見つかっていません。
+　　　 ただし、これは正式なインスペクションではありませんので、
+　　　 ご希望であれば有資格者による詳細調査をご案内できます。」
+
+【🟡🔴の場合】
+営業：「一部、経年劣化が確認されています。詳しい状況を把握するために、
+　　　 専門の調査技術者をご紹介できます。費用は約5〜10万円、
+　　　 調査期間は1〜2週間ほどです。ご検討いかがでしょうか。」
+</code></pre>
+<h3>C：有資格者への引継ぎフロー</h3>
+<pre><code>┌──────────────────┐
+│ 簡易スクリーニング │
+│ 結果：🟡 or 🔴    │
+└────────┬─────────┘
+         ▼
+┌──────────────────┐
+│ 売主・買主に説明   │
+│ 正式調査を推奨     │
+└────────┬─────────┘
+         ▼  合意あり
+┌──────────────────────────────┐
+│ 有資格者へ引継ぎ              │
+│ 送付物：                      │
+│  ① 簡易レポート（PDF）        │
+│  ② 撮影画像（原本12枚）       │
+│  ③ 物件概要書                 │
+│  ④ 気になる箇所のメモ         │
+└────────┬─────────────────────┘
+         ▼
+┌──────────────────────────────┐
+│ 正式インスペクション実施       │
+│ ・既存住宅状況調査技術者が訪問 │
+│ ・所要時間：2〜3時間           │
+│ ・報告書作成：約1週間          │
+└────────┬─────────────────────┘
+         ▼
+┌──────────────────────────────┐
+│ 結果を重要事項説明に反映       │
+│ 売買契約へ                    │
+└──────────────────────────────┘
+</code></pre>
+<h3>引継ぎ時の連絡テンプレート（メール）</h3>
+<pre><code>件名：インスペクション依頼｜○○市△△ 築XX年 木造2階建
+
+○○先生
+
+お世話になっております。SynLab PropTech の□□です。
+下記物件について既存住宅状況調査をお願いしたくご連絡いたしました。
+
+【物件情報】
+・所在地：○○市△△1-2-3
+・構造：木造2階建・築XX年
+・延床面積：○○㎡
+
+【簡易スクリーニング結果】
+・外壁南面：クラック（幅0.3mm程度）→ 🟡要注意
+・基礎東側：表面剥離あり → 🔴要調査
+
+簡易レポートと撮影画像を添付いたします。
+ご都合のよい調査日程をご教示いただけますと幸いです。
+</code></pre>
+<h3>連載まとめ：導入3ステップ</h3>
+<table>
+<thead>
+<tr>
+<th>ステップ</th>
+<th>やること</th>
+<th>所要時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 準備</strong></td>
+<td>AIツール選定・撮影チェックリスト印刷</td>
+<td>1日</td>
+</tr>
+<tr>
+<td><strong>② 試行</strong></td>
+<td>自社管理物件2〜3件でテスト運用</td>
+<td>1週間</td>
+</tr>
+<tr>
+<td><strong>③ 本番</strong></td>
+<td>新規媒介物件から標準フローに組込み</td>
+<td>即日</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>一次スクリーニングは、正式なインスペクションを「置き換える」ものではなく、「橋渡しする」もの。</strong> 中小仲介会社が今日からゼロ円で始められる差別化策として、ぜひお試しください。</p>
+</blockquote>
+<hr />
+<p><em>SynLab PropTech ブログ編集部</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

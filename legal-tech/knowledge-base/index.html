@@ -2,114 +2,611 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>法務判断ナレッジベース | SynLab Legal Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』 - kusasyu tools</title>
+<meta name="description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/knowledge-base/">
+<meta property="og:title" content="ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』 - kusasyu tools">
+<meta property="og:description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/knowledge-base/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』 - kusasyu tools">
+<meta name="twitter:description" content="中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』",
+  "description": "中堅企業の法務部門が抱える『属人化』問題を解消するための実践的なコンテンツシリーズを制作する。法務担当者が退職・異動しても知見が失われない仕組みの作り方を、連載ブログ・メール講座・実装ガイドの3本立てで提供する。RAGやナレッジグラフといった技術トピックではなく、法務部門の現場が『明日から始められる』ナレッジ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/knowledge-base/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--primary:#1a365d;--accent:#2b6cb0;--light:#ebf4ff;--bg:#f7fafc;--border:#cbd5e0;--danger:#c53030;--success:#276749;--gray:#718096}
-body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:#1a202c;line-height:1.6}
-.header{background:var(--primary);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.header h1{font-size:16px;font-weight:700}
-.header span{font-size:11px;opacity:.8}
-.tabs{display:flex;background:#fff;border-bottom:2px solid var(--border)}
-.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;border-bottom:3px solid transparent;color:var(--gray)}
-.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.container{max-width:960px;margin:0 auto;padding:16px}
-.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
-.card h2{font-size:15px;color:var(--primary);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#4a5568}
-input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:5px;font-size:13px;margin-bottom:10px;font-family:inherit}
-textarea{resize:vertical;min-height:60px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{padding:8px 16px;border:none;border-radius:5px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
-.btn-p{background:var(--accent);color:#fff}.btn-p:hover{background:var(--primary)}
-.btn-s{background:#edf2f7;color:#4a5568}.btn-s:hover{background:#e2e8f0}
-.btn-d{background:#fff5f5;color:var(--danger)}.btn-d:hover{background:#fed7d7}
-.btn-g{background:#f0fff4;color:var(--success)}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
-.b-cat{background:var(--light);color:var(--accent)}
-.b-score{background:#fefcbf;color:#975a16}
-.result-item{border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:8px;transition:.2s}
-.result-item:hover{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
-.result-item h3{font-size:14px;margin-bottom:4px}
-.result-item p{font-size:12px;color:var(--gray);margin-bottom:4px}
-.meta{font-size:11px;color:var(--gray);display:flex;gap:10px;flex-wrap:wrap}
-.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:12px}
-.stat{text-align:center;padding:12px;background:var(--light);border-radius:6px}
-.stat .num{font-size:22px;font-weight:700;color:var(--accent)}
-.stat .lbl{font-size:11px;color:var(--gray)}
-.hidden{display:none}
-.toast{position:fixed;bottom:20px;right:20px;padding:10px 16px;border-radius:6px;color:#fff;font-size:13px;z-index:99;animation:fadeIn .3s}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:600px){.row{grid-template-columns:1fr}.header h1{font-size:14px}.container{padding:10px}}
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
 </style>
 </head>
 <body>
-<div class="header"><div><h1>法務判断ナレッジベース</h1><span>SynLab Legal Tech — 脱・属人化ツールキット</span></div><div style="font-size:11px" id="countBadge"></div></div>
-<div class="tabs" id="tabs">
-<div class="tab active" data-t="register">案件登録</div>
-<div class="tab" data-t="search">類似検索</div>
-<div class="tab" data-t="list">一覧</div>
-<div class="tab" data-t="data">データ管理</div>
-</div>
-<div class="container">
-<div id="p-register">
-<div class="card"><h2>法務相談・判断の記録</h2>
-<label>相談タイトル *</label><input id="f-title" placeholder="例: 業務委託契約の損害賠償上限条項の妥当性">
-<div class="row">
-<div><label>カテゴリ *</label><select id="f-cat"><option value="">選択してください</option><option>契約審査</option><option>労務・人事</option><option>知的財産</option><option>コンプライアンス</option><option>個人情報・プライバシー</option><option>紛争・訴訟</option><option>M&A・組織再編</option><option>規制対応</option><option>その他</option></select></div>
-<div><label>重要度</label><select id="f-imp"><option>中</option><option>高</option><option>低</option></select></div>
-</div>
-<label>相談内容 *</label><textarea id="f-detail" placeholder="相談の背景・経緯・論点を記載"></textarea>
-<label>判断結果 *</label><textarea id="f-result" placeholder="最終的な判断・結論・条件"></textarea>
-<div class="row">
-<div><label>根拠法令・参照資料</label><input id="f-law" placeholder="例: 民法第415条、下請法"></div>
-<div><label>担当者</label><input id="f-person" placeholder="例: 法務部 山田"></div>
-</div>
-<label>キーワード（カンマ区切り）</label><input id="f-tags" placeholder="例: 損害賠償,上限,SaaS">
-<div class="actions"><button class="btn btn-p" onclick="saveRecord()">登録する</button><button class="btn btn-s" onclick="clearForm()">クリア</button></div>
-</div></div>
-<div id="p-search" class="hidden">
-<div class="card"><h2>類似案件検索</h2>
-<div class="row">
-<div><label>キーワード検索</label><input id="s-kw" placeholder="キーワードを入力" oninput="doSearch()"></div>
-<div><label>カテゴリ絞り込み</label><select id="s-cat" onchange="doSearch()"><option value="">全カテゴリ</option><option>契約審査</option><option>労務・人事</option><option>知的財産</option><option>コンプライアンス</option><option>個人情報・プライバシー</option><option>紛争・訴訟</option><option>M&A・組織再編</option><option>規制対応</option><option>その他</option></select></div>
-</div></div>
-<div id="searchResults"></div></div>
-<div id="p-list" class="hidden">
-<div class="card"><h2>登録案件一覧</h2><div class="stat-row" id="stats"></div><div id="listResults"></div></div></div>
-<div id="p-data" class="hidden">
-<div class="card"><h2>データ管理</h2>
-<div class="actions" style="margin-bottom:12px">
-<button class="btn btn-p" onclick="exportCSV()">CSVエクスポート</button>
-<button class="btn btn-g" onclick="document.getElementById('csvFile').click()">CSVインポート</button>
-<input type="file" id="csvFile" accept=".csv" class="hidden" onchange="importCSV(event)">
-<button class="btn btn-d" onclick="clearAll()">全データ削除</button>
-</div>
-<p style="font-size:12px;color:var(--gray)">CSV形式: タイトル,カテゴリ,重要度,相談内容,判断結果,根拠法令,担当者,キーワード<br>エクスポートしたCSVはExcelで編集し再インポート可能です。</p>
-</div></div>
-</div>
-<script>
-const LS='synlab_legal_kb';
-function getData(){try{return JSON.parse(localStorage.getItem(LS))||[]}catch(e){return[]}}
-function setData(d){localStorage.setItem(LS,JSON.stringify(d));updCnt()}
-function updCnt(){document.getElementById('countBadge').textContent='登録: '+getData().length+'件'}
-function toast(m,c){const t=document.createElement('div');t.className='toast';t.style.background=c||'#2b6cb0';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)}
-document.getElementById('tabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');['register','search','list','data'].forEach(p=>document.getElementById('p-'+p).classList.add('hidden'));document.getElementById('p-'+t.dataset.t).classList.remove('hidden');if(t.dataset.t==='list')showList();if(t.dataset.t==='search')doSearch()});
-function saveRecord(){const ti=document.getElementById('f-title').value.trim(),ca=document.getElementById('f-cat').value,de=document.getElementById('f-detail').value.trim(),re=document.getElementById('f-result').value.trim();if(!ti||!ca||!de||!re){toast('必須項目を入力してください','#c53030');return}const d=getData();d.unshift({id:Date.now(),title:ti,cat:ca,imp:document.getElementById('f-imp').value,detail:de,result:re,law:document.getElementById('f-law').value.trim(),person:document.getElementById('f-person').value.trim(),tags:document.getElementById('f-tags').value.trim(),date:new Date().toISOString().slice(0,10)});setData(d);clearForm();toast('案件を登録しました')}
-function clearForm(){['f-title','f-detail','f-result','f-law','f-person','f-tags'].forEach(x=>document.getElementById(x).value='');document.getElementById('f-cat').selectedIndex=0;document.getElementById('f-imp').selectedIndex=0}
-function calcScore(r,kw,cat){let s=0;const ks=kw.toLowerCase().split(/[\s,、]+/).filter(Boolean);const txt=(r.title+' '+r.detail+' '+r.result+' '+r.tags+' '+r.law).toLowerCase();ks.forEach(k=>{if(r.title.toLowerCase().includes(k))s+=30;if(r.tags.toLowerCase().includes(k))s+=20;if(txt.includes(k))s+=10});if(cat&&r.cat===cat)s+=15;return Math.min(s,100)}
-function doSearch(){const kw=document.getElementById('s-kw').value.trim(),cat=document.getElementById('s-cat').value,d=getData(),el=document.getElementById('searchResults');if(!kw&&!cat){el.innerHTML='<p style="font-size:13px;color:var(--gray);padding:12px">キーワードまたはカテゴリを指定してください。</p>';return}let res=d.map(r=>({...r,score:calcScore(r,kw,cat)})).filter(r=>r.score>0).sort((a,b)=>b.score-a.score);el.innerHTML=res.length?res.map(r=>'<div class="result-item"><div style="display:flex;justify-content:space-between;align-items:start"><h3>'+esc(r.title)+'</h3><span class="badge b-score">類似度: '+r.score+'%</span></div><p>'+esc(r.detail).slice(0,120)+'...</p><p><strong>判断:</strong> '+esc(r.result).slice(0,100)+'</p><div class="meta"><span class="badge b-cat">'+esc(r.cat)+'</span><span>'+r.date+'</span><span>'+esc(r.person||'-')+'</span><span>'+esc(r.law||'-')+'</span></div></div>').join(''):'<p style="font-size:13px;color:var(--gray);padding:12px">該当する案件が見つかりません。</p>'}
-function showList(){const d=getData(),el=document.getElementById('listResults'),st=document.getElementById('stats');const cats={};d.forEach(r=>{cats[r.cat]=(cats[r.cat]||0)+1});st.innerHTML='<div class="stat"><div class="num">'+d.length+'</div><div class="lbl">総登録件数</div></div><div class="stat"><div class="num">'+Object.keys(cats).length+'</div><div class="lbl">カテゴリ数</div></div><div class="stat"><div class="num">'+d.filter(r=>r.imp==='高').length+'</div><div class="lbl">重要度:高</div></div>';el.innerHTML=d.length?d.map(r=>'<div class="result-item"><div style="display:flex;justify-content:space-between"><h3>'+esc(r.title)+'</h3><button class="btn btn-d" style="padding:2px 8px;font-size:11px" onclick="delRec('+r.id+')">削除</button></div><div class="meta"><span class="badge b-cat">'+esc(r.cat)+'</span><span>重要度: '+r.imp+'</span><span>'+r.date+'</span><span>'+esc(r.person||'-')+'</span></div></div>').join(''):'<p style="font-size:13px;color:var(--gray)">登録された案件はありません。</p>'}
-function delRec(id){if(!confirm('この案件を削除しますか？'))return;setData(getData().filter(r=>r.id!==id));showList();toast('削除しました','#c53030')}
-function exportCSV(){const d=getData();if(!d.length){toast('データがありません','#c53030');return}let c='\uFEFF"タイトル","カテゴリ","重要度","相談内容","判断結果","根拠法令","担当者","キーワード","日付"\n';d.forEach(r=>{c+=[r.title,r.cat,r.imp,r.detail,r.result,r.law,r.person,r.tags,r.date].map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')+'\n'});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv'}));a.download='legal_kb_'+new Date().toISOString().slice(0,10)+'.csv';a.click();toast('CSVをエクスポートしました')}
-function importCSV(e){const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=function(ev){const lines=ev.target.result.split('\n').filter(l=>l.trim());const d=getData();let cnt=0;for(let i=1;i<lines.length;i++){const cols=parseCSV(lines[i]);if(cols.length>=5){d.unshift({id:Date.now()+i,title:cols[0],cat:cols[1]||'その他',imp:cols[2]||'中',detail:cols[3],result:cols[4],law:cols[5]||'',person:cols[6]||'',tags:cols[7]||'',date:cols[8]||new Date().toISOString().slice(0,10)});cnt++}}setData(d);toast(cnt+'件インポートしました');e.target.value=''};reader.readAsText(f)}
-function parseCSV(line){const r=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){if(inQ&&line[i+1]==='"'){cur+='"';i++}else inQ=!inQ}else if(c===','&&!inQ){r.push(cur.trim());cur=''}else cur+=c}r.push(cur.trim());return r}
-function clearAll(){if(!confirm('全データを削除します。よろしいですか？'))return;if(!confirm('本当に削除しますか？取り消せません。'))return;localStorage.removeItem(LS);updCnt();showList();toast('全データを削除しました','#c53030')}
-function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
-updCnt();
-if(!getData().length){setData([{id:1,title:'SaaS利用規約における損害賠償上限条項の修正',cat:'契約審査',imp:'高',detail:'ベンダーA社のSaaS利用規約に「損害賠償は直近12ヶ月の利用料を上限とする」条項あり。当社の想定損害額が年間利用料の10倍以上となる可能性があり、上限引き上げを交渉すべきか検討依頼。',result:'上限を直近12ヶ月利用料の3倍に修正で合意。交渉の過程でベンダー側のサイバー保険付保も確認。',law:'民法第415条, 第420条',person:'法務部 鈴木',tags:'損害賠償,上限,SaaS,利用規約',date:'2026-02-10'},{id:2,title:'従業員の副業許可に関する就業規則改定',cat:'労務・人事',imp:'中',detail:'副業解禁の社内要望を受け、就業規則の改定を検討。競業避止義務との整合性、届出制vs許可制の選択が論点。',result:'届出制を採用。競業他社での副業は禁止、それ以外は届出のみで可とする改定案を策定。',law:'労働基準法, 副業・兼業の促進に関するガイドライン（厚労省）',person:'法務部 田中',tags:'副業,就業規則,競業避止',date:'2026-01-28'},{id:3,title:'個人情報の第三者提供における同意取得方法',cat:'個人情報・プライバシー',imp:'高',detail:'マーケティング部門から顧客データをグループ会社と共有したいとの依頼。現行のプライバシーポリシーでは第三者提供について包括的同意のみ。',result:'オプトイン方式で個別同意を取得する方針を決定。プライバシーポリシー改定とCMP導入を推奨。',law:'個人情報保護法第27条, 第28条',person:'法務部 佐藤',tags:'個人情報,第三者提供,同意,プライバシー',date:'2026-02-05'}])}
-</script>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>ステップバイステップ実装ガイド『法務ナレッジベース構築_3ステップ』</h1>
+  <p class="project-name">法務ナレッジ属人化解消 実践コンテンツシリーズ</p>
+  <div class="content">
+<h1>ステップバイステップ実装ガイド『法務ナレッジベース構築 3ステップ』</h1>
+<p><strong>SynLab Legal Tech ナレッジマネジメントチーム</strong></p>
+<blockquote>
+<p>本ガイドは、連載ブログ『法務ナレッジ属人化を解消する技術』および5日間メール講座『法務ナレッジ棚卸し5ステップ』の実装編です。メール講座で作成した成果物をそのまま入力として使い、検索可能なナレッジベースを構築します。</p>
+</blockquote>
+<hr />
+<h2>前提：このガイドの位置づけ</h2>
+<table>
+<thead>
+<tr>
+<th>リソース</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>連載ブログ『法務ナレッジ属人化を解消する技術』</td>
+<td>属人化の構造理解と解消の考え方</td>
+</tr>
+<tr>
+<td>5日間メール講座『法務ナレッジ棚卸し5ステップ』</td>
+<td>セルフ診断・マトリクス作成・暗黙知の言語化</td>
+</tr>
+<tr>
+<td><strong>本ガイド（3ステップ）</strong></td>
+<td><strong>棚卸し結果を「使えるナレッジベース」にする実装手順</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>対象読者</strong>：法務担当者3〜15名規模の中堅企業（年商100億〜1,000億円）の法務部門マネージャー・リーダー</p>
+<p><strong>所要期間</strong>：Step 1（1〜2週間）→ Step 2（1週間）→ Step 3（1〜2週間）＝計3〜5週間</p>
+<hr />
+<h2>Step 1：棚卸し ― 既存資産から判断基準を抽出する</h2>
+<h3>1-1. 抽出対象の特定</h3>
+<p>メール講座Day 1の「属人化セルフ診断チェックリスト（10項目）」で7〜10点だった企業は、まず以下の3種類の資産を優先して棚卸しします。4〜6点の企業は、スコアが「はい」だった項目に関連する資産から着手してください。</p>
+<table>
+<thead>
+<tr>
+<th>資産タイプ</th>
+<th>具体例</th>
+<th>抽出すべき情報</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>契約書（締結済み）</td>
+<td>NDA、業務委託、ライセンス等</td>
+<td>修正箇所・交渉で変更した条件・落としどころ</td>
+</tr>
+<tr>
+<td>メール・チャット</td>
+<td>事業部門との相談履歴、取引先との交渉メール</td>
+<td>判断理由・条件変更の背景・例外対応の根拠</td>
+</tr>
+<tr>
+<td>議事録・メモ</td>
+<td>法務会議、経営会議の法務関連議題</td>
+<td>意思決定のロジック・リスク評価の基準</td>
+</tr>
+</tbody>
+</table>
+<h3>1-2. 判断基準カードの作成</h3>
+<p>メール講座Day 2で作成した「ナレッジ分類マトリクス」（契約類型×判断基準の2軸）の各セルを1枚のカードとして言語化します。</p>
+<h4>テンプレート：判断基準カード</h4>
+<pre><code>─────────────────────────────────
+【判断基準カード】
+
+■ カードID：[契約類型]-[論点]-[連番]
+  例：NDA-損害賠償-001
+
+■ 契約類型：NDA ／ 業務委託 ／ ライセンス ／ 売買基本契約 ／
+            共同開発 ／ 代理店契約 ／ その他（       ）
+
+■ 論点：損害賠償上限 ／ 知的財産帰属 ／ 解除条件 ／
+        秘密保持範囲 ／ 競業避止 ／ 準拠法 ／ その他（       ）
+
+■ 自社の標準方針：
+  （例：損害賠償上限は委託料の12か月分を原則とする）
+
+■ 許容できる譲歩範囲：
+  （例：相手が大手上場企業の場合、24か月分まで譲歩可）
+
+■ 過去の判断事例：
+  （例：20XX年A社案件で上限撤廃を要求されたが、
+   年間取引額の1.5倍で合意した）
+
+■ 判断の根拠・理由：
+  （例：保険でカバー可能な範囲を基準としている）
+
+■ 出典：契約書ファイル名 ／ メール日付 ／ 議事録番号
+■ 作成者：          ■ 作成日：
+─────────────────────────────────
+</code></pre>
+<h4>記入例</h4>
+<pre><code>─────────────────────────────────
+【判断基準カード】
+
+■ カードID：業務委託-損害賠償-001
+
+■ 契約類型：業務委託
+
+■ 論点：損害賠償上限
+
+■ 自社の標準方針：
+  委託料の12か月分を上限とする
+
+■ 許容できる譲歩範囲：
+  年間取引額3,000万円超の主要取引先に限り、
+  24か月分まで引き上げ可。撤廃は法務部長決裁が必要
+
+■ 過去の判断事例：
+  2025年B社案件（年間委託料5,000万円）で上限撤廃を
+  要求されたが、24か月分＋間接損害の除外で合意
+
+■ 判断の根拠・理由：
+  D&amp;O保険の補償範囲と年間委託料のバランスで設定。
+  撤廃すると保険カバー外のリスクが発生するため原則不可
+
+■ 出典：B社業務委託契約書_v3_20250615.pdf
+■ 作成者：山田太郎  ■ 作成日：2026-02-01
+─────────────────────────────────
+</code></pre>
+<h3>1-3. ベテランヒアリングとの連動</h3>
+<p>メール講座Day 3の「ヒアリング質問テンプレート5問」を使い、マトリクスの空欄セル（＝暗黙知が眠っている場所）を重点的に埋めてください。ヒアリング結果は判断基準カードの形式でそのまま記録します。</p>
+<p><strong>Step 1の完了基準</strong>：メール講座のナレッジ分類マトリクスで定めた3カテゴリ（A. 判断履歴、B. 交渉経緯、C. Q&amp;A蓄積）について、主要な契約類型（最低5類型）の判断基準カードが各3枚以上＝計15枚以上作成されていること。</p>
+<hr />
+<h2>Step 2：構造化 ― カテゴリ・タグ・優先度で整理する</h2>
+<h3>2-1. 3層カテゴリ体系</h3>
+<p>Step 1で作成した判断基準カードを、以下の3層で整理します。</p>
+<pre><code>第1層（大分類）：ナレッジの3カテゴリ
+  ├─ A. 判断履歴
+  ├─ B. 交渉経緯
+  └─ C. Q&amp;A蓄積
+
+第2層（中分類）：契約類型
+  ├─ NDA
+  ├─ 業務委託
+  ├─ ライセンス
+  ├─ 売買基本契約
+  ├─ 共同開発
+  └─ 代理店契約
+
+第3層（小分類）：論点
+  ├─ 損害賠償上限
+  ├─ 知的財産帰属
+  ├─ 解除条件
+  ├─ 秘密保持範囲
+  ├─ 競業避止
+  └─ 準拠法
+</code></pre>
+<h3>2-2. タグ設計</h3>
+<p>カテゴリとは別に、横断検索用のタグを付与します。</p>
+<table>
+<thead>
+<tr>
+<th>タグ種別</th>
+<th>値の例</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>取引先規模</td>
+<td><code>大企業</code> <code>中堅</code> <code>スタートアップ</code></td>
+<td>相手方の規模別に方針を検索</td>
+</tr>
+<tr>
+<td>リスクレベル</td>
+<td><code>高</code> <code>中</code> <code>低</code></td>
+<td>優先対応度の判断</td>
+</tr>
+<tr>
+<td>法域</td>
+<td><code>国内</code> <code>北米</code> <code>EU</code> <code>アジア</code></td>
+<td>準拠法・規制の違いで絞り込み</td>
+</tr>
+<tr>
+<td>業種</td>
+<td><code>製造</code> <code>IT</code> <code>小売</code> <code>金融</code></td>
+<td>業種特有の条件を検索</td>
+</tr>
+<tr>
+<td>更新状態</td>
+<td><code>最新</code> <code>要レビュー</code> <code>アーカイブ</code></td>
+<td>鮮度管理</td>
+</tr>
+</tbody>
+</table>
+<h3>2-3. 優先度スコアリング</h3>
+<p>全カードに以下の基準で優先度を付け、ナレッジベースへの登録順序を決めます。</p>
+<h4>テンプレート：優先度スコアリングシート</h4>
+<table>
+<thead>
+<tr>
+<th>評価軸</th>
+<th>配点</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>発生頻度</td>
+<td>1〜3点</td>
+<td>月1回以上＝3 ／ 四半期1回＝2 ／ 年1回以下＝1</td>
+</tr>
+<tr>
+<td>属人度</td>
+<td>1〜3点</td>
+<td>回答可能者1名＝3 ／ 2〜3名＝2 ／ 4名以上＝1</td>
+</tr>
+<tr>
+<td>影響度</td>
+<td>1〜3点</td>
+<td>億円単位のリスク＝3 ／ 千万円単位＝2 ／ 百万円以下＝1</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td><strong>3〜9点</strong></td>
+<td><strong>7以上＝最優先 ／ 4〜6＝標準 ／ 3＝低優先</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>記入例</h4>
+<table>
+<thead>
+<tr>
+<th>カードID</th>
+<th>発生頻度</th>
+<th>属人度</th>
+<th>影響度</th>
+<th>合計</th>
+<th>優先度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業務委託-損害賠償-001</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>9</td>
+<td>最優先</td>
+</tr>
+<tr>
+<td>NDA-秘密保持範囲-001</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>標準</td>
+</tr>
+<tr>
+<td>ライセンス-準拠法-001</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>6</td>
+<td>標準</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2の完了基準</strong>：全カードに3層カテゴリ・タグ（最低3種類）・優先度スコアが付与されていること。</p>
+<hr />
+<h2>Step 3：検索可能化 ― Notion DB ／ SharePoint ＋ AI 検索の設定</h2>
+<h3>3-1. ツール選定の判断基準</h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>Notion DB 推奨</th>
+<th>SharePoint 推奨</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>既存環境</td>
+<td>Google Workspace中心</td>
+<td>Microsoft 365導入済み</td>
+</tr>
+<tr>
+<td>法務チーム規模</td>
+<td>3〜8名</td>
+<td>8〜15名</td>
+</tr>
+<tr>
+<td>IT部門の関与</td>
+<td>最小限で進めたい</td>
+<td>IT部門と連携できる</td>
+</tr>
+<tr>
+<td>予算感</td>
+<td>チームプラン月額$10/人〜</td>
+<td>M365ライセンスに含まれる</td>
+</tr>
+</tbody>
+</table>
+<h3>3-2A. Notion DB での構築手順</h3>
+<p><strong>① データベース作成</strong></p>
+<p>以下のプロパティでデータベースを作成します。</p>
+<table>
+<thead>
+<tr>
+<th>プロパティ名</th>
+<th>型</th>
+<th>設定値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>カードID</td>
+<td>タイトル</td>
+<td>—</td>
+</tr>
+<tr>
+<td>大分類</td>
+<td>セレクト</td>
+<td>A.判断履歴 ／ B.交渉経緯 ／ C.Q&amp;A蓄積</td>
+</tr>
+<tr>
+<td>契約類型</td>
+<td>セレクト</td>
+<td>NDA ／ 業務委託 ／ ライセンス ／ 売買基本契約 ／ 共同開発 ／ 代理店契約</td>
+</tr>
+<tr>
+<td>論点</td>
+<td>セレクト</td>
+<td>損害賠償上限 ／ 知的財産帰属 ／ 解除条件 ／ 秘密保持範囲 ／ 競業避止 ／ 準拠法</td>
+</tr>
+<tr>
+<td>取引先規模</td>
+<td>セレクト</td>
+<td>大企業 ／ 中堅 ／ スタートアップ</td>
+</tr>
+<tr>
+<td>リスクレベル</td>
+<td>セレクト</td>
+<td>高 ／ 中 ／ 低</td>
+</tr>
+<tr>
+<td>優先度スコア</td>
+<td>数値</td>
+<td>3〜9</td>
+</tr>
+<tr>
+<td>更新状態</td>
+<td>セレクト</td>
+<td>最新 ／ 要レビュー ／ アーカイブ</td>
+</tr>
+<tr>
+<td>本文</td>
+<td>テキスト（ページ内）</td>
+<td>判断基準カードの全文を記載</td>
+</tr>
+</tbody>
+</table>
+<p><strong>② ビュー設定</strong></p>
+<ul>
+<li><strong>テーブルビュー</strong>（デフォルト）：全カード一覧。優先度スコア降順でソート</li>
+<li><strong>ボードビュー</strong>：契約類型ごとにカラム分け。論点別の俯瞰に使用</li>
+<li><strong>フィルタープリセット</strong>：「最優先のみ」「要レビューのみ」を保存</li>
+</ul>
+<p><strong>③ AI検索の有効化</strong></p>
+<p>Notion AI（月額$10/メンバー追加）を有効にすると、自然言語で「業務委託の損害賠償上限で過去に譲歩した事例は？」のように検索できます。</p>
+<h3>3-2B. SharePoint での構築手順</h3>
+<p><strong>① SharePointリストの作成</strong></p>
+<p>SharePointサイトに「法務ナレッジベース」リストを作成し、Notion DBと同じカラム構成を設定します。列の型はそれぞれ「選択肢」「数値」「複数行テキスト」を使用してください。</p>
+<p><strong>② Microsoft 365 Copilotとの連携</strong></p>
+<p>M365 Copilot対応ライセンスがある場合、SharePointリストが自動的にCopilotの検索対象になります。Teamsから「法務ナレッジベースで、NDAの秘密保持範囲に関する判断基準を教えて」と質問できます。</p>
+<p>Copilotがない場合は、SharePointリストの標準フィルタ・検索機能とPower Automateによる通知（「要レビュー」ステータスのカードを月次でメール通知）で運用します。</p>
+<h3>3-3. 運用ルール設定テンプレート</h3>
+<p>ナレッジベースは作って終わりではありません。以下のルールを初日に定めてください。</p>
+<pre><code>─────────────────────────────────
+【法務ナレッジベース運用ルール】
+
+1. 更新タイミング
+   - 契約締結時：交渉で変更した条件を該当カードに追記
+   - 法改正時：影響を受けるカードに「要レビュー」タグを付与
+   - 四半期ごと：全カードの棚卸し（更新状態を確認）
+
+2. 更新担当
+   - 各案件の主担当が、締結後5営業日以内にカードを更新
+   - 四半期棚卸しは法務部門マネージャーが実施
+
+3. 品質チェック
+   - 新規カードは別の担当者が1名レビューしてから
+     「最新」ステータスに変更
+   - 作成から12か月経過したカードは自動で
+     「要レビュー」に変更（Notion:リマインダー ／
+     SharePoint:Power Automate で設定）
+
+4. 活用促進
+   - 新任担当者のオンボーディングで、優先度7以上の
+     カードを必読資料として指定
+   - 月次法務会議で「今月追加・更新したカード」を
+     3分で共有する時間を設ける
+─────────────────────────────────
+</code></pre>
+<hr />
+<h2>まとめ：3ステップ全体像</h2>
+<table>
+<thead>
+<tr>
+<th>ステップ</th>
+<th>やること</th>
+<th>成果物</th>
+<th>目安期間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Step 1 棚卸し</td>
+<td>契約書・メール・議事録から判断基準を抽出</td>
+<td>判断基準カード15枚以上</td>
+<td>1〜2週間</td>
+</tr>
+<tr>
+<td>Step 2 構造化</td>
+<td>3層カテゴリ・タグ・優先度で整理</td>
+<td>スコアリング済みカード一式</td>
+<td>1週間</td>
+</tr>
+<tr>
+<td>Step 3 検索可能化</td>
+<td>Notion DB or SharePointに登録＋運用ルール策定</td>
+<td>稼働するナレッジベース＋運用ルール</td>
+<td>1〜2週間</td>
+</tr>
+</tbody>
+</table>
+<p>メール講座Day 1の属人化セルフ診断で7〜10点だった企業（ある年商300億円の製造業では年間約1,200万円の属人化コストが算出されました）は、Step 1を今週中に開始することを強く推奨します。</p>
+<p>ナレッジベースの構築についてご質問がありましたら、SynLab Legal Tech ナレッジマネジメントチームまでお気軽にお問い合わせください。</p>
+<hr />
+<p><em>本ガイドは、連載ブログ『法務ナレッジ属人化を解消する技術』および5日間メール講座『法務ナレッジ棚卸し5ステップ』と併せてご活用ください。</em></p>
+<p><strong>© SynLab Legal Tech</strong></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
 </body>
 </html>

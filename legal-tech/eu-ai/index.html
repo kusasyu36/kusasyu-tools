@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本・EU・米国_AI規制_比較早見表 - kusasyu tools</title>
+<meta name="description" content="AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,日本・EU・米国_AI規制_比較早見表">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai/">
+<meta property="og:title" content="日本・EU・米国_AI規制_比較早見表 - kusasyu tools">
+<meta property="og:description" content="AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日本・EU・米国_AI規制_比較早見表 - kusasyu tools">
+<meta name="twitter:description" content="AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "日本・EU・米国_AI規制_比較早見表",
+  "description": "AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>日本・EU・米国_AI規制_比較早見表</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>日本・EU・米国_AI規制_比較早見表</h1>
+  <p class="project-name">中小企業向け AI規制対応コンテンツパック</p>
+  <div class="content">
+<h1>日本・EU・米国 AI規制 比較早見表</h1>
+<p><strong>SynLab Legal Tech｜2026年2月</strong></p>
+<hr />
+<h2>本資料の位置づけ</h2>
+<p>本資料は「<strong>AI利用リスク セルフチェックリスト（20項目・判断基準つき）</strong>」の補足資料です。チェックリストの項目8で確認が求められるEU AI Actの<strong>4段階リスク分類</strong>をはじめ、海外取引のある中小企業が「どの規制が自社に関係するか」を一目で判断できるよう、日本・EU・米国の3地域のAI規制を比較します。</p>
+<blockquote>
+<p><strong>想定読者：</strong> 法務部門がない中小企業（従業員50〜300名）の経営者・情シス担当者<br />
+<strong>活用法：</strong> 自社の取引先・顧客がどの地域にいるか確認し、該当列の義務を優先的に対応する</p>
+</blockquote>
+<hr />
+<h2>1. 3地域比較一覧（4軸）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">比較軸</th>
+<th style="text-align: left;">🇯🇵 日本</th>
+<th style="text-align: left;">🇪🇺 EU</th>
+<th style="text-align: left;">🇺🇸 米国</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>規制名称</strong></td>
+<td style="text-align: left;">AI事業者ガイドライン（経産省・総務省）</td>
+<td style="text-align: left;">EU AI Act（AI規則）</td>
+<td style="text-align: left;">連邦レベルの包括法なし（大統領令＋州法の組合せ）</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>法的性質</strong></td>
+<td style="text-align: left;">ソフトロー（ガイドライン＝法的拘束力なし）</td>
+<td style="text-align: left;">ハードロー（EU規則＝加盟国に直接適用）</td>
+<td style="text-align: left;">大統領令＋州法（州ごとに法的拘束力あり）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>軸① 対象範囲</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">🇯🇵 日本</th>
+<th style="text-align: left;">🇪🇺 EU</th>
+<th style="text-align: left;">🇺🇸 米国</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>対象者</strong></td>
+<td style="text-align: left;">AI開発者・提供者・利用者すべて</td>
+<td style="text-align: left;">AI提供者（Provider）・配置者（Deployer）・輸入者</td>
+<td style="text-align: left;">州法により異なる（例：コロラド州法はDeployerとDeveloperの双方）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>域外適用</strong></td>
+<td style="text-align: left;">なし（ただし取引慣行として遵守が求められる場面あり）</td>
+<td style="text-align: left;"><strong>あり</strong>。EU域内の人に影響を与えるAIシステムは、開発・提供元の所在地を問わず適用される</td>
+<td style="text-align: left;">州法は当該州内の住民に影響を与える事業者に適用</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>対象AIの範囲</strong></td>
+<td style="text-align: left;">生成AI含む広義のAI全般</td>
+<td style="text-align: left;">「AIシステム」を広く定義（機械学習、統計ベース、推論ベース等）</td>
+<td style="text-align: left;">州ごとに定義が異なる。連邦大統領令は「デュアルユース基盤モデル」等に言及</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>中小企業への影響</strong></td>
+<td style="text-align: left;">ガイドラインのためすべての企業が自主対応の対象</td>
+<td style="text-align: left;">EU顧客がいれば日本の中小企業にも適用。<strong>自社のAI用途がリスク分類のどこに該当するか確認が必須</strong></td>
+<td style="text-align: left;">米国向けサービス提供時は、対象州の法律を個別に確認する必要がある</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>軸② 主な義務</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">義務カテゴリ</th>
+<th style="text-align: left;">🇯🇵 日本</th>
+<th style="text-align: left;">🇪🇺 EU</th>
+<th style="text-align: left;">🇺🇸 米国</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>リスク管理</strong></td>
+<td style="text-align: left;">利用目的の明確化、リスク評価の実施を推奨</td>
+<td style="text-align: left;"><strong>4段階リスク分類</strong>に基づく義務（下記参照）</td>
+<td style="text-align: left;">コロラド州：高リスクAIのインパクト評価義務。ニューヨーク市：採用AI監査義務</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>透明性</strong></td>
+<td style="text-align: left;">AI利用の事実開示を推奨</td>
+<td style="text-align: left;">高リスクAI：技術文書・ログ保持・CE適合宣言。汎用AI（GPAI）：学習データの概要開示</td>
+<td style="text-align: left;">州法により開示義務（例：イリノイ州BIPA＝生体データ利用の事前通知・同意）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>人間の監督</strong></td>
+<td style="text-align: left;">人間の判断介在を推奨（Human-in-the-loop）</td>
+<td style="text-align: left;">高リスクAI：人間の監視措置を技術的に組み込むことが義務</td>
+<td style="text-align: left;">連邦レベルでは義務なし。一部州法で特定分野に要求</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>データガバナンス</strong></td>
+<td style="text-align: left;">入力データの品質管理を推奨</td>
+<td style="text-align: left;">高リスクAI：学習データの品質基準への適合が義務</td>
+<td style="text-align: left;">セクター別に既存法（HIPAA、FCRA等）で対応</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>届出・登録</strong></td>
+<td style="text-align: left;">不要</td>
+<td style="text-align: left;">高リスクAI：EU公開データベースへの登録が義務</td>
+<td style="text-align: left;">連邦レベルでは不要。一部州で届出義務の検討が進行中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>軸③ 罰則</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">🇯🇵 日本</th>
+<th style="text-align: left;">🇪🇺 EU</th>
+<th style="text-align: left;">🇺🇸 米国</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>制裁金の有無</strong></td>
+<td style="text-align: left;">なし（ガイドラインのため罰則規定がない）</td>
+<td style="text-align: left;"><strong>あり</strong>。違反内容に応じて3段階の制裁金</td>
+<td style="text-align: left;">州法違反に対する民事罰・行政処分（州ごとに異なる）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>最大額</strong></td>
+<td style="text-align: left;">―</td>
+<td style="text-align: left;"><strong>全世界年間売上の7%</strong> または <strong>3,500万ユーロ</strong>のいずれか高い方（禁止AI利用の違反時）</td>
+<td style="text-align: left;">コロラド州：1件あたり最大2万ドル。FTCによる措置は個別事案で数百万〜数億ドル規模の実績あり</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>中程度の違反</strong></td>
+<td style="text-align: left;">―</td>
+<td style="text-align: left;">全世界年間売上の3%または1,500万ユーロ</td>
+<td style="text-align: left;">州ごとに異なる</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>軽微な違反</strong></td>
+<td style="text-align: left;">―</td>
+<td style="text-align: left;">全世界年間売上の1.5%または750万ユーロ</td>
+<td style="text-align: left;">―</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>実質的リスク</strong></td>
+<td style="text-align: left;">取引先・消費者からの信用失墜、訴訟リスク</td>
+<td style="text-align: left;">制裁金＋EU市場でのサービス停止命令</td>
+<td style="text-align: left;">集団訴訟リスクが高い（米国は訴訟社会）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>軸④ 施行時期</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">マイルストーン</th>
+<th style="text-align: left;">🇯🇵 日本</th>
+<th style="text-align: left;">🇪🇺 EU</th>
+<th style="text-align: left;">🇺🇸 米国</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>策定・成立</strong></td>
+<td style="text-align: left;">2024年4月 ガイドライン公表</td>
+<td style="text-align: left;">2024年8月 AI Act発効</td>
+<td style="text-align: left;">2023年10月 大統領令14110号署名</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>第1段階</strong></td>
+<td style="text-align: left;">即日適用（法的拘束力なし）</td>
+<td style="text-align: left;"><strong>2025年2月〜</strong> 禁止されるAI行為の規制開始</td>
+<td style="text-align: left;">州法は個別スケジュール（コロラド州：2026年2月〜）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>第2段階</strong></td>
+<td style="text-align: left;">―</td>
+<td style="text-align: left;"><strong>2025年8月〜</strong> 汎用AI（GPAI）の義務適用開始</td>
+<td style="text-align: left;">―</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>第3段階</strong></td>
+<td style="text-align: left;">―</td>
+<td style="text-align: left;"><strong>2026年8月〜</strong> 高リスクAIの義務が全面適用</td>
+<td style="text-align: left;">―</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>全面施行</strong></td>
+<td style="text-align: left;">ガイドライン改訂は随時</td>
+<td style="text-align: left;"><strong>2027年8月</strong> 全規定の完全施行</td>
+<td style="text-align: left;">包括連邦法は2026年2月時点で未成立</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. EU AI Actの4段階リスク分類（早見表）</h2>
+<p>チェックリスト項目8で「自社の用途がどこに該当するか特定する」ために使用してください。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">リスク等級</th>
+<th style="text-align: left;">内容</th>
+<th style="text-align: left;">具体例</th>
+<th style="text-align: left;">義務レベル</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>禁止</strong></td>
+<td style="text-align: left;">容認できないリスク</td>
+<td style="text-align: left;">ソーシャルスコアリング、リアルタイム遠隔生体識別（例外あり）</td>
+<td style="text-align: left;">使用禁止</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>高リスク</strong></td>
+<td style="text-align: left;">人の権利・安全に重大な影響</td>
+<td style="text-align: left;">採用選考AI、信用審査AI、教育評価AI、医療診断AI</td>
+<td style="text-align: left;">適合性評価・登録・監視が義務</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>限定リスク</strong></td>
+<td style="text-align: left;">透明性確保が必要</td>
+<td style="text-align: left;">チャットボット、ディープフェイク、感情認識</td>
+<td style="text-align: left;">AI利用である旨の開示義務</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>最小リスク</strong></td>
+<td style="text-align: left;">規制なし</td>
+<td style="text-align: left;">スパムフィルター、ゲームAI、検索推薦</td>
+<td style="text-align: left;">自主的な行動規範の遵守を推奨</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>判断のポイント：</strong> 中小企業で多い生成AIの業務利用（文書作成、翻訳、コード生成等）は多くの場合「限定リスク」または「最小リスク」に分類されます。ただし、<strong>採用選考・信用審査・顧客のプロファイリング</strong>にAIを使う場合は「高リスク」に該当する可能性があるため注意してください。</p>
+</blockquote>
+<hr />
+<h2>3. 自社に関係する規制の判定フロー</h2>
+<pre><code>Q1. AI（生成AI含む）を業務で使っていますか？
+  └─ いいえ → 現時点では直接の対応不要（利用開始時に再確認）
+  └─ はい → Q2へ
+
+Q2. EU域内に顧客・ユーザーがいますか？
+  └─ はい → 🇪🇺 EU AI Act の対応が必要（項目8を最優先で確認）
+  └─ いいえ → Q3へ
+
+Q3. 米国に顧客・ユーザーがいますか？
+  └─ はい → 🇺🇸 該当州法の確認が必要（特にコロラド州・イリノイ州）
+  └─ いいえ → Q4へ
+
+Q4. 日本国内のみで事業を行っていますか？
+  └─ はい → 🇯🇵 AI事業者ガイドラインに沿った自主対応を推奨
+</code></pre>
+<hr />
+<h2>4. 中小企業がまず対応すべき3つのアクション</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先度</th>
+<th style="text-align: left;">アクション</th>
+<th style="text-align: center;">関連規制</th>
+<th style="text-align: left;">対応目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;">自社のAI利用状況を棚卸しする（チェックリスト項目1〜5を実施）</td>
+<td style="text-align: center;">日・EU・米 共通</td>
+<td style="text-align: left;">1週間以内</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;">顧客・取引先の所在地域を確認し、適用される規制を特定する</td>
+<td style="text-align: center;">EU AI Act・米州法</td>
+<td style="text-align: left;">2週間以内</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;">高リスクに該当する用途がないか、上記の4段階リスク分類で確認する</td>
+<td style="text-align: center;">EU AI Act</td>
+<td style="text-align: left;">1か月以内</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>免責事項</h2>
+<p>本資料は2026年2月時点の公開情報に基づく概要解説であり、法的助言を構成するものではありません。個別の対応については弁護士等の専門家にご相談ください。米国の規制環境は流動的であり、新たな州法・連邦法案の動向を継続的にウォッチする必要があります。</p>
+<hr />
+<p><strong>制作：SynLab Legal Tech｜AI規制対応コンテンツパック（全3点）</strong><br />
+本資料は「AI利用リスク セルフチェックリスト（20項目・判断基準つき）」と併せてご活用ください。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

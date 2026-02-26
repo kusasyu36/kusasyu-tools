@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI利用リスク_セルフチェックリスト（20項目・判断基準つき） - kusasyu tools</title>
+<meta name="description" content="AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,AI利用リスク_セルフチェックリスト（20項目・判断基準つき）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-2/">
+<meta property="og:title" content="AI利用リスク_セルフチェックリスト（20項目・判断基準つき） - kusasyu tools">
+<meta property="og:description" content="AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI利用リスク_セルフチェックリスト（20項目・判断基準つき） - kusasyu tools">
+<meta name="twitter:description" content="AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI利用リスク_セルフチェックリスト（20項目・判断基準つき）",
+  "description": "AI規制（日本のAI事業者ガイドライン・EU AI Act等）への対応が求められる中、法務担当がいない中小企業の経営者・情シス担当が自社のリスクを自己診断し、最低限の対応を把握できる実務コンテンツ3点を制作する。過去プロジェクト（ContractGuard＝契約書レビュー、RegWatch＝法改正全般）とは異",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>AI利用リスク_セルフチェックリスト（20項目・判断基準つき）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>AI利用リスク_セルフチェックリスト（20項目・判断基準つき）</h1>
+  <p class="project-name">中小企業向け AI規制対応コンテンツパック</p>
+  <div class="content">
+<h1>AI利用リスク セルフチェックリスト（20項目・判断基準つき）</h1>
+<p><strong>SynLab Legal Tech｜2026年2月</strong></p>
+<hr />
+<h2>はじめに</h2>
+<p>本チェックリストは、AIを業務利用する中小企業（従業員50〜300名）の経営者・情シス担当者が、自社のリスクを20項目で自己診断するためのツールです。日本の<strong>AI事業者ガイドライン（2024年4月〜）</strong>および<strong>EU AI Act（2024年成立・2025年〜段階適用）</strong>を踏まえて構成しています。各項目を「はい／いいえ」で回答し、末尾の判定ガイドで対応優先度を確認してください。</p>
+<blockquote>
+<p><strong>所要時間：</strong> 約15分　<strong>回答者：</strong> 経営者または情シス責任者</p>
+</blockquote>
+<hr />
+<h2>カテゴリA：利用状況の把握（5項目）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th style="text-align: center;">はい／いいえ</th>
+<th>なぜ重要か</th>
+<th>該当しない場合の対応例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>社内でAIを「誰が・何に」使っているか一覧表にまとめている</td>
+<td style="text-align: center;">☐</td>
+<td>対策の第一歩は現状把握。経営者が知らないところで社員が個人アカウントのChatGPTに顧客情報を入力しているケースは珍しくない</td>
+<td>全部署にアンケートを実施し、ツール名・用途・入力データの種類をリストアップする</td>
+</tr>
+<tr>
+<td>2</td>
+<td>会社契約のAIサービスと社員の個人利用を区別できている</td>
+<td style="text-align: center;">☐</td>
+<td>個人利用は会社のセキュリティポリシーが及ばず、情報漏えい時の責任範囲も曖昧になる</td>
+<td>会社契約ツールの一覧を作成し、個人利用は原則禁止または届出制にする</td>
+</tr>
+<tr>
+<td>3</td>
+<td>AI利用に関する社内ルール（利用ポリシー）を文書化している</td>
+<td style="text-align: center;">☐</td>
+<td>口頭ルールは形骸化する。ガイドライン遵守を問われた際に「文書化された社内規程」の有無が評価される</td>
+<td>A4で1〜2枚の簡易ポリシーでよいので、利用範囲と禁止事項を明文化する</td>
+</tr>
+<tr>
+<td>4</td>
+<td>利用中のAIサービスの利用規約（特にデータ取扱い条項）を確認済みである</td>
+<td style="text-align: center;">☐</td>
+<td>サービスによっては入力データが学習に使われる。知らずに営業秘密を学習データ化させるリスクがある</td>
+<td>各サービスの利用規約から「入力データの取扱い」「学習利用の有無」を抜き出して一覧化する</td>
+</tr>
+<tr>
+<td>5</td>
+<td>AIを使っている業務プロセスのフロー図または手順書がある</td>
+<td style="text-align: center;">☐</td>
+<td>属人化するとリスク評価も改善もできない。担当者の異動時にルールが引き継がれない原因になる</td>
+<td>主要なAI利用業務について、入力→AI処理→出力→人間確認の流れを簡易フロー図にする</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>カテゴリB：データ管理とプライバシー（5項目）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th style="text-align: center;">はい／いいえ</th>
+<th>なぜ重要か</th>
+<th>該当しない場合の対応例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6</td>
+<td>AIに入力してよいデータと入力禁止のデータの基準を定めている</td>
+<td style="text-align: center;">☐</td>
+<td>個人情報・取引先の機密情報・未公開の経営情報をAIに入力すると情報漏えいと同等のリスクが発生する</td>
+<td>最低限「①個人情報 ②取引先の機密情報 ③未公開の経営情報」を入力禁止に設定し社内周知する</td>
+</tr>
+<tr>
+<td>7</td>
+<td>顧客の個人情報をAIに入力する場合、本人への通知または同意取得を行っている</td>
+<td style="text-align: center;">☐</td>
+<td>個人情報保護法上、利用目的の通知が必要。AI処理が目的外利用にあたる場合は同意が必要になる</td>
+<td>プライバシーポリシーにAI利用の旨を追記し、既存顧客には通知する</td>
+</tr>
+<tr>
+<td>8</td>
+<td>EU域内の顧客データをAIで処理する場合、GDPR・AI Actへの対応状況を確認している</td>
+<td style="text-align: center;">☐</td>
+<td>EU AI Actは日本企業にも域外適用される。越境EC・SaaSでEU顧客がいる場合、違反すると最大で<strong>全世界売上の7%</strong>の制裁金が科される可能性がある</td>
+<td>EU顧客の有無を確認し、該当する場合はAI Actの<strong>4段階リスク分類</strong>で自社の用途がどこに該当するか特定する</td>
+</tr>
+<tr>
+<td>9</td>
+<td>AIサービスに送信するデータの匿名化・マスキング処理を実施している</td>
+<td style="text-align: center;">☐</td>
+<td>生データをそのまま送ると不要な情報漏えいリスクを負う。匿名化すればリスクを大幅に低減できる</td>
+<td>氏名→ID変換、メールアドレスのマスキング等、簡易な前処理ルールを定める</td>
+</tr>
+<tr>
+<td>10</td>
+<td>AIサービスのデータ保存期間・削除ポリシーを把握している</td>
+<td style="text-align: center;">☐</td>
+<td>サービス側にデータが残り続けると、退会後も漏えいリスクが残る</td>
+<td>各サービスのデータ保持期間を確認し、不要データの削除方法を手順化する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>カテゴリC：品質管理と人間による監視（5項目）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th style="text-align: center;">はい／いいえ</th>
+<th>なぜ重要か</th>
+<th>該当しない場合の対応例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>AIの出力を人間が確認してから外部に提供するルールが運用されている</td>
+<td style="text-align: center;">☐</td>
+<td>AIは間違える。存在しない法律の引用や差別的表現の生成は日常的に報告されている。日本のガイドラインもEU AI Actも「人間による監視」を強く求めている</td>
+<td>「AI出力は担当者が確認後に利用」を必須ルールとし、特に顧客向け回答・契約書類・採用判断は必ず人間が最終確認する</td>
+</tr>
+<tr>
+<td>12</td>
+<td>AI出力であることを社内で識別できる仕組み（ラベル付け等）がある</td>
+<td style="text-align: center;">☐</td>
+<td>人間が書いたものとAI生成物の区別がつかないと、チェック漏れや責任の所在が曖昧になる</td>
+<td>「【AI生成】」のプレフィックスを付ける、専用フォルダに保存する等の簡易ルールを導入する</td>
+</tr>
+<tr>
+<td>13</td>
+<td>AIの出力品質を定期的にサンプルチェックしている</td>
+<td style="text-align: center;">☐</td>
+<td>精度が経時劣化したり、モデル更新で出力傾向が変わることがある。気づかず使い続けると業務品質が低下する</td>
+<td>月1回、各業務から5件程度をランダム抽出して正確性を確認する運用を設ける</td>
+</tr>
+<tr>
+<td>14</td>
+<td>AIが誤った出力をした場合の報告・是正フローが定まっている</td>
+<td style="text-align: center;">☐</td>
+<td>問題を個人が抱え込むと再発防止ができない。組織としてインシデントを蓄積しないと改善が進まない</td>
+<td>「AI誤出力報告シート」（日付・内容・影響範囲・対応）を用意し、月次で振り返る</td>
+</tr>
+<tr>
+<td>15</td>
+<td>顧客や取引先に対し、AIを業務利用している旨を必要に応じて開示している</td>
+<td style="text-align: center;">☐</td>
+<td>AI事業者ガイドラインは透明性の確保を求めている。後から判明すると信頼を大きく損なう</td>
+<td>顧客向けFAQやサービス説明に「AI活用について」の項目を追加する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>カテゴリD：法規制・コンプライアンス対応（5項目）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th style="text-align: center;">はい／いいえ</th>
+<th>なぜ重要か</th>
+<th>該当しない場合の対応例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>日本のAI事業者ガイドライン（2024年4月〜）の内容を把握し、自社に関係する項目を特定している</td>
+<td style="text-align: center;">☐</td>
+<td>法的拘束力はないが、事故発生時に「ガイドラインを守っていたか」が問われる。実質的には守らないとリスクがあるルールである</td>
+<td>ガイドラインの「AI利用者」向けセクションを読み、自社に該当する項目にチェックを入れる</td>
+</tr>
+<tr>
+<td>17</td>
+<td>EU AI Actの4段階リスク分類で、自社のAI用途がどのカテゴリに該当するか確認している</td>
+<td style="text-align: center;">☐</td>
+<td>高リスクに該当する場合、厳格な義務が課される。知らずに運用すると最大で全世界売上の7%の制裁金リスクがある</td>
+<td>自社のAI用途を一覧化し、AI Actの分類（禁止・高リスク・限定リスク・最小リスク）に当てはめる</td>
+</tr>
+<tr>
+<td>18</td>
+<td>AI関連の法改正・ガイドライン更新を定期的にウォッチする体制がある</td>
+<td style="text-align: center;">☐</td>
+<td>AI規制は世界的に急速に進行中。半年で状況が大きく変わるため、一度対応して終わりにはできない</td>
+<td>四半期に1回、関連省庁のサイトまたは専門メディアを確認する担当者を決める</td>
+</tr>
+<tr>
+<td>19</td>
+<td>AI利用に関するインシデント（情報漏えい、誤出力による損害等）が発生した場合の対応手順がある</td>
+<td style="text-align: center;">☐</td>
+<td>初動の遅れが被害を拡大させる。報告義務がある場合、対応手順がないと法的リスクが増大する</td>
+<td>「発見→報告→初期対応→原因分析→再発防止」の5ステップを簡潔に文書化する</td>
+</tr>
+<tr>
+<td>20</td>
+<td>AIの利用に関するリスク評価を少なくとも年1回実施する計画がある</td>
+<td style="text-align: center;">☐</td>
+<td>ツールの追加・業務変更・法改正により、リスク状況は常に変化する。定期点検なしでは対応漏れが生じる</td>
+<td>本チェックリストを年1回（可能なら半年に1回）実施する日程をカレンダーに登録する</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>結果の読み方ガイド</h2>
+<h3>スコアの算出方法</h3>
+<p>「はい」の数を合計してください（0〜20点）。</p>
+<h3>判定基準</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">スコア</th>
+<th>判定</th>
+<th>対応の目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>16〜20</strong></td>
+<td>🟢 良好</td>
+<td>基本的な体制が整っています。年1回の定期見直しを継続してください</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>11〜15</strong></td>
+<td>🟡 要改善</td>
+<td>概ね対応できていますが、抜け漏れがあります。「いいえ」の項目を3か月以内に対応してください</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>6〜10</strong></td>
+<td>🟠 要注意</td>
+<td>重要な対策が複数不足しています。まずカテゴリA（利用状況の把握）とB（データ管理）を優先的に対応してください</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>0〜5</strong></td>
+<td>🔴 早急に対応が必要</td>
+<td>基本的な対策がほぼ未着手です。AIの業務利用を一時停止するか、最低限ポイント1（利用状況の把握）とポイント2（入力禁止データの設定）を今週中に実施してください</td>
+</tr>
+</tbody>
+</table>
+<h3>優先対応のガイド</h3>
+<p>「いいえ」が多い場合、次の順で対応すると効率的です。</p>
+<ol>
+<li><strong>最優先（今週中）：</strong> 項目1・6・11 — 「何を使っているか把握」「禁止データの設定」「人間チェックのルール化」。この3つだけでリスクの大半をカバーできます</li>
+<li><strong>次に重要（1か月以内）：</strong> 項目3・7・16 — 「社内ポリシーの文書化」「プライバシー対応」「ガイドライン確認」</li>
+<li><strong>体制強化（3か月以内）：</strong> 残りの項目を順次対応</li>
+</ol>
+<h3>注意事項</h3>
+<ul>
+<li>本チェックリストは2026年2月時点の日本のAI事業者ガイドライン（2024年4月〜）およびEU AI Act（2024年成立・2025年〜段階適用）に基づいています</li>
+<li>AI規制は急速に変化しています。最低でも半年に1回は最新情報を確認してください</li>
+<li>本チェックリストは簡易な自己診断ツールであり、法的助言に代わるものではありません。高リスク用途に該当する可能性がある場合は専門家への相談を推奨します</li>
+</ul>
+<hr />
+<p><em>作成：SynLab Legal Tech｜最終更新：2026年2月</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

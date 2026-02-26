@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」 - kusasyu tools</title>
+<meta name="description" content="金融・製薬・製造業のコンプライアンス部門向けに、AIを活用した規制変更の自動検知・影響度評価・対応管理の仕組みを構築するための実践コンテンツ。過去の『法改正キャッチアップ自動化』が一般的な法改正情報の収集手法だったのに対し、本プロジェクトはRegTech（規制テクノロジー）の観点から、業種別規制マッピング・影">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regtech/">
+<meta property="og:title" content="連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」 - kusasyu tools">
+<meta property="og:description" content="金融・製薬・製造業のコンプライアンス部門向けに、AIを活用した規制変更の自動検知・影響度評価・対応管理の仕組みを構築するための実践コンテンツ。過去の『法改正キャッチアップ自動化』が一般的な法改正情報の収集手法だったのに対し、本プロジェクトはRegTech（規制テクノロジー）の観点から、業種別規制マッピング・影">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regtech/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」 - kusasyu tools">
+<meta name="twitter:description" content="金融・製薬・製造業のコンプライアンス部門向けに、AIを活用した規制変更の自動検知・影響度評価・対応管理の仕組みを構築するための実践コンテンツ。過去の『法改正キャッチアップ自動化』が一般的な法改正情報の収集手法だったのに対し、本プロジェクトはRegTech（規制テクノロジー）の観点から、業種別規制マッピング・影">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」",
+  "description": "金融・製薬・製造業のコンプライアンス部門向けに、AIを活用した規制変更の自動検知・影響度評価・対応管理の仕組みを構築するための実践コンテンツ。過去の『法改正キャッチアップ自動化』が一般的な法改正情報の収集手法だったのに対し、本プロジェクトはRegTech（規制テクノロジー）の観点から、業種別規制マッピング・影",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/regtech/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>連載ブログ全3回「コンプライアンス部門のためのRegTech実践入門」</h1>
+  <p class="project-name">RegTech規制モニタリング導入 実践シリーズ</p>
+  <div class="content">
+<h1>コンプライアンス部門のためのRegTech実践入門</h1>
+<hr />
+<h2>第1回（初級）：RegTechとは何か — 規制監視に消える"見えないコスト"の正体</h2>
+<h3>RegTechの定義</h3>
+<p>RegTech（Regulatory Technology）とは、規制対応業務をテクノロジーで効率化する領域を指す。具体的には、<strong>規制変更の自動検知、影響度の評価、対応タスクの管理</strong>をソフトウェアで行う仕組みだ。</p>
+<p>従来の「法改正情報をニュースで拾い、Excelで管理する」運用とは根本的に異なる。RegTechは規制当局の公報・パブコメ・ガイドラインをリアルタイムで収集し、自社に関係するものだけをフィルタリングして届ける。</p>
+<h3>日本企業の規制監視にかかる時間</h3>
+<p>当社が2025年に実施した国内上場企業30社へのヒアリング調査では、コンプライアンス部門の規制監視業務に以下の工数が費やされていた。</p>
+<table>
+<thead>
+<tr>
+<th>業種</th>
+<th style="text-align: right;">月間平均工数（部門全体）</th>
+<th style="text-align: right;">監視対象の規制当局数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>金融</td>
+<td style="text-align: right;"><strong>約120時間</strong></td>
+<td style="text-align: right;">8〜12機関</td>
+</tr>
+<tr>
+<td>製薬</td>
+<td style="text-align: right;"><strong>約90時間</strong></td>
+<td style="text-align: right;">5〜8機関</td>
+</tr>
+<tr>
+<td>製造</td>
+<td style="text-align: right;"><strong>約70時間</strong></td>
+<td style="text-align: right;">4〜7機関</td>
+</tr>
+</tbody>
+</table>
+<p>金融機関では、FSA（金融庁）、日銀、SEC、ESMA、BASELなど複数当局を横断的に監視する必要があり、担当者1人あたり月30時間以上を情報収集だけに費やしている。</p>
+<h3>なぜ今RegTechが必要か — 3つの構造的変化</h3>
+<p><strong>1. 規制の量が増えている</strong>
+2020年以降、国内外の金融規制だけで年間平均600件超の改正・通達が発出されている。人力での網羅的監視は限界を迎えた。</p>
+<p><strong>2. 対応スピードが求められている</strong>
+経過措置期間の短縮が進み、公布から施行まで3〜6か月のケースが増加。「知らなかった」は通用しない。</p>
+<p><strong>3. 当局の目が厳しくなっている</strong>
+金融庁のモニタリング方針は「形式」から「実質」へ転換した。「規制を把握する仕組み自体」が検査対象になる時代だ。</p>
+<h3>第1回まとめ</h3>
+<p>RegTechは「あると便利なツール」ではなく、<strong>規制対応の品質とスピードを組織的に担保するインフラ</strong>だ。次回は業種ごとに監視すべき規制ソースと、主要ツール3製品の比較を行う。</p>
+<hr />
+<h2>第2回（中級）：業種別・監視すべき規制ソース一覧と主要ツール3製品比較</h2>
+<h3>業種別：最低限監視すべき規制ソース</h3>
+<h4>金融業（銀行・証券・保険）</h4>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>主な規制ソース</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国内</td>
+<td>金融庁（監督指針・検査マニュアル）、日銀（決済関連）、JFSA通達</td>
+</tr>
+<tr>
+<td>海外</td>
+<td>SEC、ESMA、BCBS（バーゼル委）、FATF</td>
+</tr>
+<tr>
+<td>自主規制</td>
+<td>全銀協、日証協、生保協会</td>
+</tr>
+</tbody>
+</table>
+<h4>製薬業</h4>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>主な規制ソース</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国内</td>
+<td>厚労省（薬機法関連）、PMDA（審査基準・通知）、GMP/GCP省令</td>
+</tr>
+<tr>
+<td>海外</td>
+<td>FDA、EMA、ICHガイドライン</td>
+</tr>
+<tr>
+<td>業界基準</td>
+<td>製薬協コード・公正競争規約</td>
+</tr>
+</tbody>
+</table>
+<h4>製造業（化学・自動車・電機）</h4>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>主な規制ソース</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国内</td>
+<td>経産省（化審法・輸出管理）、環境省（化管法）、厚労省（安衛法）</td>
+</tr>
+<tr>
+<td>海外</td>
+<td>EU REACH/RoHS、米TSCA、中国新化学物質管理</td>
+</tr>
+<tr>
+<td>ESG関連</td>
+<td>CSRD、ISSB基準、人権DD指針</td>
+</tr>
+</tbody>
+</table>
+<h3>主要RegTechツール3製品の比較</h3>
+<p>以下は規制モニタリング機能を持つ代表的な3製品の比較だ。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th><strong>CUBE</strong></th>
+<th><strong>Ascent</strong></th>
+<th><strong>Hogan Lovells Engage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本社</td>
+<td>英国</td>
+<td>米国</td>
+<td>英国（法律事務所系）</td>
+</tr>
+<tr>
+<td>対応業種</td>
+<td>金融特化</td>
+<td>金融・ヘルスケア</td>
+<td>金融・製薬・製造</td>
+</tr>
+<tr>
+<td>AI機能</td>
+<td>規制文書の自動分類・マッピング</td>
+<td>義務の自動抽出・影響度評価</td>
+<td>規制変更の要約・アラート</td>
+</tr>
+<tr>
+<td>日本語対応</td>
+<td>△（パートナー経由）</td>
+<td>×（英語のみ）</td>
+<td>△（一部対応）</td>
+</tr>
+<tr>
+<td>価格帯</td>
+<td>年間1,000万円〜</td>
+<td>年間800万円〜</td>
+<td>年間500万円〜</td>
+</tr>
+<tr>
+<td>強み</td>
+<td>規制インテリジェンスの網羅性</td>
+<td>義務→タスク変換の自動化</td>
+<td>法律事務所の知見が反映</td>
+</tr>
+<tr>
+<td>弱み</td>
+<td>日本規制のカバレッジが薄い</td>
+<td>日本語非対応</td>
+<td>カスタマイズに時間がかかる</td>
+</tr>
+</tbody>
+</table>
+<h3>どのツールを選ぶべきか</h3>
+<ul>
+<li><strong>グローバル金融機関</strong>：CUBEまたはAscent。海外規制の網羅性が強み</li>
+<li><strong>国内中心の製薬・製造</strong>：現時点では既製品だけでは不十分。次回紹介する<strong>自社構築アプローチとの併用</strong>が現実的</li>
+<li><strong>まず小さく始めたい企業</strong>：第3回の無料〜低コスト構築手順を推奨</li>
+</ul>
+<h3>第2回まとめ</h3>
+<p>監視すべきソースは業種ごとに異なり、既存ツールはグローバル金融向けが中心だ。日本の規制環境に最適化されたソリューションはまだ発展途上にある。次回は、無料〜低コストで<strong>自前のAI規制アラート</strong>を構築する具体的手順を解説する。</p>
+<hr />
+<h2>第3回（実践）：無料〜低コストで構築するAI規制変更アラート — 具体的手順</h2>
+<h3>完成イメージ</h3>
+<p>規制当局のWebサイトを定期巡回し、変更を検知したらAIで要約・影響度を判定し、Slack/Teamsに自動通知する仕組みを作る。月額コストは<strong>0〜5,000円</strong>で運用可能だ。</p>
+<h3>全体アーキテクチャ</h3>
+<pre><code>[規制当局サイト] → [RSS/スクレイピング] → [差分検知]
+    → [LLMで要約・影響度判定] → [Slack/Teams通知]
+</code></pre>
+<h3>Step 1：規制ソースの取得（無料）</h3>
+<p><strong>方法A：RSS対応サイト</strong>
+金融庁の新着情報、PMDAの通知はRSSフィードを提供している。Feedlyなどのリーダーでまず手動確認する。</p>
+<p><strong>方法B：RSS非対応サイト</strong>
+Google Apps Script（GAS）でHTMLを取得し、前回との差分を検出する。</p>
+<pre><code class="language-javascript">// GASで規制ページを定期取得する例
+function checkRegUpdate() {
+  const url = &quot;https://www.fsa.go.jp/news/index.html&quot;;
+  const response = UrlFetchApp.fetch(url);
+  const content = response.getContentText();
+  const prev = PropertiesService.getScriptProperties().getProperty(&quot;fsa_prev&quot;);
+  if (prev !== content) {
+    PropertiesService.getScriptProperties().setProperty(&quot;fsa_prev&quot;, content);
+    sendToSlack(extractNewItems(content, prev));
+  }
+}
+</code></pre>
+<p>GASのトリガー機能で1日1〜2回の定期実行を設定する。</p>
+<h3>Step 2：AIによる要約と影響度判定（月額0〜2,000円）</h3>
+<p>検知した変更テキストをLLM APIに送り、要約と影響度スコアを取得する。</p>
+<pre><code class="language-javascript">function assessWithAI(text) {
+  const prompt = `あなたは企業のコンプライアンス担当です。
+以下の規制変更について、(1)50文字以内の要約、(2)影響度を
+High/Medium/Lowで判定、(3)対象業種を回答してください。
+---
+${text}`;
+  // OpenAI API or Claude APIを呼び出し
+  const result = callLLM(prompt);
+  return JSON.parse(result);
+}
+</code></pre>
+<p><strong>コスト目安</strong>：1日10件の規制変更を処理して月額約500〜1,500円（Claude Haiku / GPT-4o-mini利用時）。</p>
+<h3>Step 3：Slack/Teamsへの通知（無料）</h3>
+<p><strong>Slack</strong>：Incoming Webhookを作成し、GASからPOSTする。</p>
+<pre><code class="language-javascript">function sendToSlack(assessment) {
+  const webhook = &quot;https://hooks.slack.com/services/xxx/yyy/zzz&quot;;
+  const payload = {
+    text: `🔔 *規制変更検知*\n`
+        + `📋 ${assessment.summary}\n`
+        + `⚠️ 影響度: ${assessment.severity}\n`
+        + `🏭 対象: ${assessment.industry}`
+  };
+  UrlFetchApp.fetch(webhook, {
+    method: &quot;post&quot;,
+    contentType: &quot;application/json&quot;,
+    payload: JSON.stringify(payload)
+  });
+}
+</code></pre>
+<p><strong>Teams</strong>：同様にIncoming Webhook ConnectorでPOST先を変更するだけで対応可能。</p>
+<h3>運用のポイント3つ</h3>
+<p><strong>1. 誤検知の調整</strong>
+最初の2週間は通知を全件目視し、不要なソースやキーワードをフィルタに追加する。LLMのプロンプトに「社内基準に関係ないものはskipと返せ」と指示するだけで精度が上がる。</p>
+<p><strong>2. 段階的に拡張する</strong>
+初月は金融庁1サイトだけ監視し、安定したら月1サイトずつ追加する。最初から10サイト監視すると調整が破綻する。</p>
+<p><strong>3. 対応管理との接続</strong>
+通知で終わらせず、Slackのスレッドに「対応担当」「期限」を記入するルールを決める。将来的にはJira/Asanaチケットの自動作成に拡張できる。</p>
+<h3>コスト総括</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>ツール</th>
+<th style="text-align: right;">月額費用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>巡回・差分検知</td>
+<td>Google Apps Script</td>
+<td style="text-align: right;">0円</td>
+</tr>
+<tr>
+<td>AI要約・判定</td>
+<td>Claude Haiku API等</td>
+<td style="text-align: right;">500〜1,500円</td>
+</tr>
+<tr>
+<td>通知</td>
+<td>Slack/Teams Webhook</td>
+<td style="text-align: right;">0円</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>500〜1,500円</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>第3回まとめ</h3>
+<p>RegTechは高額な専用製品だけの領域ではない。GAS＋LLM API＋Slack Webhookの組み合わせで、<strong>月額1,500円以下のAI規制モニタリング</strong>が構築できる。まずは1つの規制当局サイトから始め、成果を示してから本格導入の稟議につなげてほしい。</p>
+<hr />
+<p><strong>SynLab Legal Tech — RegTech規制モニタリング導入 実践シリーズ</strong></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

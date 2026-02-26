@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産屋への確認質問テンプレート（売買・賃貸別） - kusasyu tools</title>
+<meta name="description" content="不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産屋への確認質問テンプレート（売買・賃貸別）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-2/">
+<meta property="og:title" content="不動産屋への確認質問テンプレート（売買・賃貸別） - kusasyu tools">
+<meta property="og:description" content="不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産屋への確認質問テンプレート（売買・賃貸別） - kusasyu tools">
+<meta name="twitter:description" content="不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産屋への確認質問テンプレート（売買・賃貸別）",
+  "description": "不動産の重要事項説明書（重説）を受け取った買主・借主が、自分でリスクを発見し、不動産屋に的確な質問ができるようになるツールキット。重説の各セクション（用途地域・接道・ハザードマップ・瑕疵担保・特約条項等）をインタラクティブにチェックし、リスクレベルと平易な解説を表示するHTMLツールを核に、確認質問テンプレー",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産屋への確認質問テンプレート（売買・賃貸別）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産屋への確認質問テンプレート（売買・賃貸別）</h1>
+  <p class="project-name">重説リスク見える化ツールキット「PropGuard」</p>
+  <div class="content">
+<h1>PropGuard 重説リスクスキャナー — 不動産屋への確認質問テンプレート</h1>
+<h2>使い方</h2>
+<ol>
+<li><strong>売買</strong> or <strong>賃貸</strong>のセクションから、ご自身の取引に該当する方を選んでください</li>
+<li>各カテゴリの質問文を<strong>そのままコピー＆ペースト</strong>して、メール・LINE・対面で不動産屋に確認できます</li>
+<li><code>【　】</code> の部分だけ、ご自身の物件情報に書き換えてください</li>
+<li>回答をメモ欄に記録し、契約前の最終チェックに活用してください</li>
+</ol>
+<blockquote>
+<p><strong>PropGuard 重説リスクスキャナー</strong>でリスク判定「黄」「赤」が出た項目は、必ず該当する質問で確認してください。</p>
+</blockquote>
+<hr />
+<h1>【売買用】確認質問テンプレート（5カテゴリ×3問＝15問）</h1>
+<hr />
+<h2>カテゴリ1：用途地域・建築制限</h2>
+<h3>Q1-1. 用途地域による将来リスク</h3>
+<blockquote>
+<p>この物件の用途地域は【　】とのことですが、将来この地域に建築可能な施設（商業施設・工場・遊戯施設等）のうち、居住環境に影響しうるものを具体的に教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【第一種中高層住居専用地域】</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q1-2. 建ぺい率・容積率の余裕</h3>
+<blockquote>
+<p>建ぺい率【　】%・容積率【　】%に対して、現在の建物はどの程度余裕がありますか？将来の増改築やカーポート設置に制限が出る可能性はありますか？</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【60】%・【200】%</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q1-3. 地区計画・条例上の追加制限</h3>
+<blockquote>
+<p>この物件に地区計画や自治体条例による追加の制限（高さ制限・壁面後退・外壁の色彩規制等）はありますか？ある場合、具体的な内容を書面で提示してください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ2：接道・インフラ</h2>
+<h3>Q2-1. 接道義務の充足</h3>
+<blockquote>
+<p>重説に記載の前面道路（幅員【　】m・【　】道路）について、建築基準法第43条の接道義務を満たしていることを確認させてください。セットバックが必要な場合、対象面積と費用負担も教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【4.2】m・【公道/私道】</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q2-2. 私道の権利関係</h3>
+<blockquote>
+<p>前面道路が私道の場合、持分の有無・通行掘削の承諾書の取得状況・将来の維持費負担について、現時点で確定している内容を教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q2-3. 上下水道・ガスの引込み状況</h3>
+<blockquote>
+<p>上水道・下水道・ガスの引込み管の口径と、引込み工事が未了の場合の費用目安を教えてください。浄化槽の場合は維持管理費も知りたいです。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ3：災害リスク（ハザードマップ）</h2>
+<h3>Q3-1. 洪水・内水氾濫リスク</h3>
+<blockquote>
+<p>ハザードマップ上でこの物件の浸水想定区域は【　】mとのことですが、過去の実際の浸水履歴と、直近で実施された治水工事の有無を教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【0.5〜3.0】m</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q3-2. 土砂災害・地震リスク</h3>
+<blockquote>
+<p>土砂災害警戒区域や液状化リスクの該当有無を、行政の公開データに基づいて説明してください。該当する場合、保険や補助金で対応できる選択肢はありますか？</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q3-3. 火災保険・地震保険への影響</h3>
+<blockquote>
+<p>上記の災害リスクを踏まえて、火災保険・地震保険の加入条件や保険料に影響が出る項目はありますか？水災補償の要否についてアドバイスをお願いします。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ4：瑕疵担保・契約不適合責任</h2>
+<h3>Q4-1. 契約不適合責任の期間と範囲</h3>
+<blockquote>
+<p>売主の契約不適合責任の期間は【　】とのことですが、対象となる不適合の範囲（構造・雨漏り・シロアリ・給排水・設備等）を具体的に教えてください。免責となる項目があれば併せて教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【引渡しから3ヶ月/2年/免責】</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q4-2. 既知の不具合・修繕履歴</h3>
+<blockquote>
+<p>売主から告知されている建物の不具合や過去の修繕履歴（雨漏り修理・外壁塗装・給湯器交換等）の一覧を書面で確認させてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q4-3. インスペクション実施の可否</h3>
+<blockquote>
+<p>契約前に第三者によるインスペクション（建物状況調査）を実施したいのですが、売主の同意は得られますか？既に実施済みの場合、報告書を見せてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ5：特約条項・費用</h2>
+<h3>Q5-1. 特約条項の不利益確認</h3>
+<blockquote>
+<p>特約条項に記載されている【　】について、この条項が私（買主）にとって具体的にどのような不利益・リスクになり得るか、わかりやすく説明してください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【現状有姿引渡し特約/ローン特約なし/瑕疵担保免責】</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q5-2. 手付金・違約金の条件</h3>
+<blockquote>
+<p>手付金【　】万円の放棄・倍返し条件と、契約違反時の違約金（売買価格の【　】%）の発動条件を具体的に教えてください。住宅ローン否認時はどうなりますか？</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【200】万円、【20】%</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q5-3. 諸費用の総額</h3>
+<blockquote>
+<p>仲介手数料・登記費用・固定資産税精算金・管理費等精算金・ローン事務手数料を含めた諸費用の総額見積もりを書面で提示してください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h1>【賃貸用】確認質問テンプレート（5カテゴリ×3問＝15問）</h1>
+<hr />
+<h2>カテゴリ1：物件の法的制約・用途</h2>
+<h3>Q6-1. 用途地域と周辺環境の変化</h3>
+<blockquote>
+<p>この物件の用途地域は【　】とのことですが、隣接地や周辺で現在計画中の建築・開発案件（マンション建設・商業施設等）があれば教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【近隣商業地域】</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q6-2. 建物の耐震基準</h3>
+<blockquote>
+<p>この建物の建築確認年月日は【　】年とのことですが、新耐震基準（1981年6月以降）を満たしていますか？耐震補強工事の実施履歴があれば教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【1985】年</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q6-3. 事故物件・告知事項</h3>
+<blockquote>
+<p>この物件に告知事項（自然死・事故・事件・心理的瑕疵）はありますか？また、同一建物内の他の部屋についての告知事項はありますか？</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ2：災害リスク</h2>
+<h3>Q7-1. ハザードマップ上の位置づけ</h3>
+<blockquote>
+<p>この物件はハザードマップ上で浸水想定区域・土砂災害警戒区域・津波浸水想定区域のいずれかに該当しますか？該当する場合、過去の被害履歴を教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q7-2. 過去の浸水・雨漏り被害</h3>
+<blockquote>
+<p>この建物またはこの部屋で、過去に浸水・雨漏り・漏水の被害や修繕を行った履歴はありますか？</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q7-3. 火災保険の加入義務と内容</h3>
+<blockquote>
+<p>加入が求められている火災保険の補償内容と年間保険料の目安を教えてください。水災・地震補償は含まれていますか？</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ3：契約条件・更新</h2>
+<h3>Q8-1. 更新料・更新条件</h3>
+<blockquote>
+<p>契約更新時の更新料は【　】ヶ月分とのことですが、更新を拒否される条件はありますか？また、次回更新時に賃料改定（値上げ）の可能性はありますか？</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【1】ヶ月分</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q8-2. 中途解約のペナルティ</h3>
+<blockquote>
+<p>契約期間中に中途解約する場合、解約予告期間は【　】ヶ月前とのことですが、短期解約違約金（例：1年未満解約で賃料1ヶ月分）はありますか？</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【1】ヶ月前</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q8-3. 定期借家か普通借家か</h3>
+<blockquote>
+<p>この契約は普通借家契約と定期借家契約のどちらですか？定期借家の場合、期間満了時に再契約の可否と条件を教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ4：敷金・原状回復</h2>
+<h3>Q9-1. 原状回復のガイドライン適用</h3>
+<blockquote>
+<p>原状回復費用の負担区分について、国土交通省「原状回復をめぐるトラブルとガイドライン」に準拠していますか？特約で借主負担が加重されている項目があれば具体的に教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q9-2. 敷金返還の条件</h3>
+<blockquote>
+<p>敷金【　】ヶ月分の返還条件を教えてください。敷引き（償却）がある場合、その金額と根拠も説明してください。</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【2】ヶ月分</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q9-3. 退去時の立会い・精算プロセス</h3>
+<blockquote>
+<p>退去時の立会い検査はいつ・誰が行いますか？精算書の発行時期と、費用に納得できない場合の交渉プロセスを教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>カテゴリ5：特約条項・禁止事項</h2>
+<h3>Q10-1. 特約条項の不利益確認</h3>
+<blockquote>
+<p>特約条項に記載の【　】について、借主にとって通常の契約より不利になる点を具体的に説明してください。この特約は法的に有効ですか？</p>
+</blockquote>
+<ul>
+<li>記入例：<code>【ハウスクリーニング費用借主負担特約/ペット飼育違約金条項】</code></li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q10-2. 禁止事項と違反時のペナルティ</h3>
+<blockquote>
+<p>禁止事項（ペット・楽器・同居人追加・事務所利用等）の一覧と、違反した場合の具体的なペナルティ（違約金の額・契約解除の条件）を教えてください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<h3>Q10-3. 初期費用の内訳</h3>
+<blockquote>
+<p>敷金・礼金・仲介手数料・火災保険料・保証会社利用料・鍵交換費用・その他を含む初期費用の総額内訳を書面で提示してください。</p>
+</blockquote>
+<ul>
+<li>記入例：なし（そのまま質問可）</li>
+<li>回答メモ：＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<h2>チェック完了メモ</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>確認日</th>
+<th>回答者（担当者名）</th>
+<th>納得度（◎○△×）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>売買 カテゴリ1〜5</td>
+<td>＿/＿</td>
+<td>＿＿＿＿</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>賃貸 カテゴリ1〜5</td>
+<td>＿/＿</td>
+<td>＿＿＿＿</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>PropGuard 重説リスクスキャナー</strong>と併用し、リスク判定結果とこの質問テンプレートの回答を照合することで、契約前の最終確認が完了します。不明点が残る場合は、契約締結前に必ず再確認してください。</p>
+</blockquote>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

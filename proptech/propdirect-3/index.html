@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件紹介文セルフ作成テンプレート - kusasyu tools</title>
+<meta name="description" content="仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件紹介文セルフ作成テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propdirect-3/">
+<meta property="og:title" content="物件紹介文セルフ作成テンプレート - kusasyu tools">
+<meta property="og:description" content="仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propdirect-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件紹介文セルフ作成テンプレート - kusasyu tools">
+<meta name="twitter:description" content="仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "物件紹介文セルフ作成テンプレート",
+  "description": "仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propdirect-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>物件紹介文セルフ作成テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>物件紹介文セルフ作成テンプレート</h1>
+  <p class="project-name">個人間不動産売買スターターキット「PropDirect」</p>
+  <div class="content">
+<h1>PropDirect 物件紹介文セルフ作成テンプレート</h1>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li>各項目の質問に答える形で【　】内を記入してください</li>
+<li>[記入例] を参考に、具体的な事実を書きましょう</li>
+<li>完成したら「セクション1〜4」の本文部分をコピーし、ジモティー・家いちば・e-物件情報など個人間売買OKのポータルサイトに掲載します</li>
+<li><strong>景品表示法に注意</strong>：「最高」「格安」「日本一」等の誇大表現は禁止です</li>
+<li><strong>徒歩分数</strong>は80m＝1分で計算してください（端数切り上げ）</li>
+<li>記入前に「物件状況等報告書」（全日本不動産協会HPよりDL）の内容を手元に用意しておくとスムーズです</li>
+</ol>
+<hr />
+<h2>■ セクション1：物件概要</h2>
+<blockquote>
+<p>ポータルサイトの基本情報欄に対応します。正確に記入してください。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+<th>記入例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件種別</td>
+<td>【　】</td>
+<td>[記入例] 中古一戸建て</td>
+</tr>
+<tr>
+<td>所在地</td>
+<td>【　】</td>
+<td>[記入例] 東京都世田谷区桜丘3丁目（番地は問合せ後に開示）</td>
+</tr>
+<tr>
+<td>交通アクセス</td>
+<td>【　】</td>
+<td>[記入例] 小田急線「千歳船橋」駅 徒歩12分（960m）</td>
+</tr>
+<tr>
+<td>土地面積</td>
+<td>【　】</td>
+<td>[記入例] 105.30㎡（31.85坪）</td>
+</tr>
+<tr>
+<td>建物面積</td>
+<td>【　】</td>
+<td>[記入例] 89.42㎡（27.05坪）</td>
+</tr>
+<tr>
+<td>間取り</td>
+<td>【　】</td>
+<td>[記入例] 4LDK（LDK18帖・洋室6帖×3・和室4.5帖）</td>
+</tr>
+<tr>
+<td>構造</td>
+<td>【　】</td>
+<td>[記入例] 木造2階建て</td>
+</tr>
+<tr>
+<td>築年月</td>
+<td>【　】</td>
+<td>[記入例] 2005年3月（築21年）</td>
+</tr>
+<tr>
+<td>都市計画</td>
+<td>【　】</td>
+<td>[記入例] 第一種低層住居専用地域・建ぺい率50%・容積率100%</td>
+</tr>
+<tr>
+<td>現況</td>
+<td>【　】</td>
+<td>[記入例] 居住中（引渡し時期は相談可）</td>
+</tr>
+<tr>
+<td>駐車場</td>
+<td>【　】</td>
+<td>[記入例] あり（普通車1台・カーポート付き）</td>
+</tr>
+<tr>
+<td>売出価格</td>
+<td>【　】</td>
+<td>[記入例] 4,280万円 ※仲介手数料なし（個人売買のため）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>価格の補足文（コピーしてそのまま使えます）：</strong></p>
+<blockquote>
+<p>本物件は売主による直接売却です。仲介業者を介さないため、仲介手数料（売買価格×3%＋6万円＋税＝約【　】万円）がかかりません。PropDirectコスト比較シミュレーターで試算した結果、買主様にとっても大きなメリットがあります。</p>
+<p>[記入例] 仲介手数料（4,280万円×3%＋6万円＋税＝約148万円）がかかりません。</p>
+</blockquote>
+<hr />
+<h2>■ セクション2：アピールポイント</h2>
+<blockquote>
+<p>買主が「見てみたい」と思う決め手になります。以下の5つの質問に答えてください。</p>
+</blockquote>
+<p><strong>Q1. この物件の一番の魅力は何ですか？</strong></p>
+<p>【　】</p>
+<p>[記入例] 南向きのリビングに大きな窓があり、冬でも日中は暖房なしで過ごせるほど日当たりが良い点です。</p>
+<p><strong>Q2. リフォーム・修繕した箇所はありますか？（時期と内容）</strong></p>
+<p>【　】</p>
+<p>[記入例] 2022年に外壁塗装（シリコン塗料・約120万円）、2023年に1階トイレをTOTO製ウォシュレット一体型に交換済み。</p>
+<p><strong>Q3. 設備で自慢できるものはありますか？</strong></p>
+<p>【　】</p>
+<p>[記入例] 全室複層ガラス（ペアガラス）、床暖房（LDK）、食洗機（Panasonic製・2020年設置）、宅配ボックス。</p>
+<p><strong>Q4. 住んでいて「ここが良かった」と感じる点は？</strong></p>
+<p>【　】</p>
+<p>[記入例] 袋小路の奥に位置しているため車の通り抜けがなく、子どもが安心して遊べる静かな環境です。</p>
+<p><strong>Q5. 正直に伝えておきたい点はありますか？（告知事項）</strong></p>
+<p>【　】</p>
+<p>[記入例] 築21年のため、2階の一部に壁紙の浮きがあります。雨漏り・シロアリ被害・給排水管の故障はありません。詳細は物件状況等報告書をご確認ください。</p>
+<blockquote>
+<p><strong>注意</strong>: 雨漏り・シロアリ・給排水故障・心理的瑕疵は正直に記載してください。告知義務違反は契約不適合責任を問われます（物件状況等報告書と内容を一致させること）。</p>
+</blockquote>
+<hr />
+<h2>■ セクション3：周辺環境</h2>
+<blockquote>
+<p>物件の立地価値を伝えます。徒歩分数は80m＝1分で計算し、端数は切り上げてください。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>施設名・距離</th>
+<th>記入例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最寄り駅</td>
+<td>【　】</td>
+<td>[記入例] 小田急線「千歳船橋」駅 徒歩12分（960m）</td>
+</tr>
+<tr>
+<td>バス停</td>
+<td>【　】</td>
+<td>[記入例] 東急バス「桜丘三丁目」停 徒歩2分（160m）</td>
+</tr>
+<tr>
+<td>スーパー</td>
+<td>【　】</td>
+<td>[記入例] オオゼキ千歳船橋店 徒歩5分（400m）</td>
+</tr>
+<tr>
+<td>コンビニ</td>
+<td>【　】</td>
+<td>[記入例] セブンイレブン世田谷桜丘店 徒歩3分（240m）</td>
+</tr>
+<tr>
+<td>小学校</td>
+<td>【　】</td>
+<td>[記入例] 世田谷区立桜丘小学校 徒歩7分（560m）</td>
+</tr>
+<tr>
+<td>中学校</td>
+<td>【　】</td>
+<td>[記入例] 世田谷区立桜丘中学校 徒歩10分（800m）</td>
+</tr>
+<tr>
+<td>病院・クリニック</td>
+<td>【　】</td>
+<td>[記入例] 桜丘ファミリークリニック 徒歩4分（320m）</td>
+</tr>
+<tr>
+<td>公園</td>
+<td>【　】</td>
+<td>[記入例] 桜丘すみれば自然庭園 徒歩6分（480m）</td>
+</tr>
+<tr>
+<td>その他（図書館・役所等）</td>
+<td>【　】</td>
+<td>[記入例] 世田谷区立経堂図書館 徒歩15分（1,200m）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>周辺環境の自由記述（任意）：</strong></p>
+<p>【　】</p>
+<p>[記入例] 第一種低層住居専用地域のため、周囲に高い建物がなく、落ち着いた住宅街が広がっています。桜丘すみれば自然庭園では季節の花が楽しめ、休日の散歩コースとして最適です。商店街（経堂農大通り）も徒歩圏内にあり、日常の買い物に困ることはありません。</p>
+<hr />
+<h2>■ セクション4：取引条件</h2>
+<blockquote>
+<p>契約に関わる重要事項です。登記簿謄本（登記事項証明書）を手元に用意して記入してください。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+<th>記入例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>取引態様</td>
+<td>【　】</td>
+<td>[記入例] 売主（個人間直接売買）</td>
+</tr>
+<tr>
+<td>売出価格</td>
+<td>【　】</td>
+<td>[記入例] 4,280万円</td>
+</tr>
+<tr>
+<td>引渡し希望時期</td>
+<td>【　】</td>
+<td>[記入例] 2026年6月末（相談可）</td>
+</tr>
+<tr>
+<td>引渡し条件</td>
+<td>【　】</td>
+<td>[記入例] 現況有姿（家具・家電の残置なし）</td>
+</tr>
+<tr>
+<td>土地の権利形態</td>
+<td>【　】</td>
+<td>[記入例] 所有権（借地権なし）</td>
+</tr>
+<tr>
+<td>抵当権の有無</td>
+<td>【　】</td>
+<td>[記入例] あり（残債は決済時に一括返済し抹消予定）</td>
+</tr>
+<tr>
+<td>建物状況調査（インスペクション）</td>
+<td>【　】</td>
+<td>[記入例] 実施済み（2026年2月・費用5万円・報告書あり）</td>
+</tr>
+<tr>
+<td>固定資産税・都市計画税（年額）</td>
+<td>【　】</td>
+<td>[記入例] 約12万円/年（引渡し日で日割精算）</td>
+</tr>
+<tr>
+<td>管理費・修繕積立金（マンションのみ）</td>
+<td>【　】</td>
+<td>[記入例] 管理費12,000円/月・修繕積立金8,500円/月</td>
+</tr>
+<tr>
+<td>契約不適合責任</td>
+<td>【　】</td>
+<td>[記入例] 引渡しから3ヶ月間（物件状況等報告書に記載の事項を除く）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>取引に関する補足文（コピーしてそのまま使えます）：</strong></p>
+<blockquote>
+<p>本物件は仲介業者を介さない個人間売買です。重要事項に相当する物件情報は登記簿謄本・公図・測量図・都市計画情報をもとに整備しております（司法書士に相談済み）。ご不明点はお気軽にお問い合わせください。契約書の作成は司法書士に依頼予定です。</p>
+</blockquote>
+<hr />
+<h2>■ 掲載文の完成イメージ</h2>
+<p>上記セクション1〜4をまとめると、以下のような紹介文になります。参考にしてください。</p>
+<hr />
+<blockquote>
+<p><strong>南向き4LDK・日当たり良好な一戸建て｜仲介手数料0円の個人売買</strong></p>
+<p>世田谷区桜丘の閑静な住宅街に建つ、築21年の4LDK一戸建てです。南向きリビング18帖は冬でも暖かく、全室ペアガラス・床暖房付きで快適にお過ごしいただけます。2022年に外壁塗装済み。小田急線「千歳船橋」駅徒歩12分、スーパー徒歩5分と生活利便性も良好です。</p>
+<p>売主による直接売却のため仲介手数料（約148万円）がかかりません。インスペクション実施済み・物件状況等報告書あり。お気軽にお問い合わせください。</p>
+<p><strong>価格 4,280万円｜土地105.30㎡｜建物89.42㎡｜駐車場あり</strong></p>
+</blockquote>
+<hr />
+<h2>■ 掲載前チェックリスト</h2>
+<p>記入が終わったら、掲載前に以下を確認してください。</p>
+<ul>
+<li>[ ] 「最高」「格安」「絶対」等の誇大表現を使っていない（景品表示法）</li>
+<li>[ ] 徒歩分数は80m＝1分で計算し端数を切り上げている</li>
+<li>[ ] 売出価格がセクション1とセクション4で一致している</li>
+<li>[ ] 物件状況等報告書の告知事項とセクション2のQ5が一致している</li>
+<li>[ ] 登記簿謄本の記載内容とセクション4が一致している</li>
+<li>[ ] 写真は最低10枚用意した（自然光の日中撮影・広角レンズ推奨）</li>
+<li>[ ] 掲載先は個人間売買OKのサイト（ジモティー・家いちば・e-物件情報）を選んでいる</li>
+<li>[ ] 連絡先（電話番号またはメールアドレス）を記載した</li>
+</ul>
+<hr />
+<p><em>本テンプレートはPropDirect物件紹介文テンプレートの一部です。作成した紹介文は「PropDirect手続き管理チェックリスト」のNo.7「物件紹介文の作成」完了後、No.8の物件写真と合わせてポータルサイトに掲載してください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

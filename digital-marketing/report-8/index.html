@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週次UGCレポートサンプル - kusasyu tools</title>
+<meta name="description" content="BtoC中小企業向けに、SNS・レビューサイトから口コミやユーザー投稿を自動収集し、LP用テスティモニアル・SNS投稿素材・メルマガ素材として再利用可能な形に加工するAIエージェントサービスを設計する。サービス設計書、営業提案資料、活用事例サンプルを成果物として納品する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,週次UGCレポートサンプル">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-8/">
+<meta property="og:title" content="週次UGCレポートサンプル - kusasyu tools">
+<meta property="og:description" content="BtoC中小企業向けに、SNS・レビューサイトから口コミやユーザー投稿を自動収集し、LP用テスティモニアル・SNS投稿素材・メルマガ素材として再利用可能な形に加工するAIエージェントサービスを設計する。サービス設計書、営業提案資料、活用事例サンプルを成果物として納品する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="週次UGCレポートサンプル - kusasyu tools">
+<meta name="twitter:description" content="BtoC中小企業向けに、SNS・レビューサイトから口コミやユーザー投稿を自動収集し、LP用テスティモニアル・SNS投稿素材・メルマガ素材として再利用可能な形に加工するAIエージェントサービスを設計する。サービス設計書、営業提案資料、活用事例サンプルを成果物として納品する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "週次UGCレポートサンプル",
+  "description": "BtoC中小企業向けに、SNS・レビューサイトから口コミやユーザー投稿を自動収集し、LP用テスティモニアル・SNS投稿素材・メルマガ素材として再利用可能な形に加工するAIエージェントサービスを設計する。サービス設計書、営業提案資料、活用事例サンプルを成果物として納品する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>週次UGCレポートサンプル</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>週次UGCレポートサンプル</h1>
+  <p class="project-name">UGC（ユーザー生成コンテンツ）収集・活用AIエージェント</p>
+  <div class="content">
+<p>ファイル書き込みの許可が必要です。許可をいただければ、<code>workspace/projects/proj-1771626846/04_週次UGCレポートサンプル.md</code> に保存します。</p>
+<p>以下が成果物の内容です：</p>
+<hr />
+<h1>週次UGCレポート</h1>
+<p><strong>クライアント名:</strong> 株式会社ナチュラルビューティー様（自然派コスメEC）
+<strong>レポート期間:</strong> 2026年2月14日（月）〜 2月20日（日）
+<strong>レポート発行日:</strong> 2026年2月21日
+<strong>担当:</strong> SynLab Digital Marketing UGCチーム</p>
+<hr />
+<h2>1. 今週のサマリー</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">指標</th>
+<th style="text-align: right;">今週</th>
+<th style="text-align: right;">先週</th>
+<th style="text-align: right;">増減</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">UGC収集件数（総数）</td>
+<td style="text-align: right;">347件</td>
+<td style="text-align: right;">289件</td>
+<td style="text-align: right;"><strong>+20.1%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Instagram投稿</td>
+<td style="text-align: right;">183件</td>
+<td style="text-align: right;">152件</td>
+<td style="text-align: right;">+20.4%</td>
+</tr>
+<tr>
+<td style="text-align: left;">X（旧Twitter）投稿</td>
+<td style="text-align: right;">89件</td>
+<td style="text-align: right;">78件</td>
+<td style="text-align: right;">+14.1%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Googleレビュー</td>
+<td style="text-align: right;">42件</td>
+<td style="text-align: right;">31件</td>
+<td style="text-align: right;">+35.5%</td>
+</tr>
+<tr>
+<td style="text-align: left;">@cosme口コミ</td>
+<td style="text-align: right;">18件</td>
+<td style="text-align: right;">16件</td>
+<td style="text-align: right;">+12.5%</td>
+</tr>
+<tr>
+<td style="text-align: left;">Amazon/楽天レビュー</td>
+<td style="text-align: right;">15件</td>
+<td style="text-align: right;">12件</td>
+<td style="text-align: right;">+25.0%</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>ポイント:</strong> 先週実施したInstagramキャンペーン「#ナチュビ冬のご褒美ケア」の効果が継続し、全チャネルで収集件数が増加しました。特にGoogleレビューの伸び（+35.5%）が顕著です。</p>
+</blockquote>
+<hr />
+<h2>2. 感情分析サマリー</h2>
+<h3>全体スコア</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">感情分類</th>
+<th style="text-align: right;">件数</th>
+<th style="text-align: right;">割合</th>
+<th style="text-align: center;">先週比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">🟢 ポジティブ</td>
+<td style="text-align: right;">261件</td>
+<td style="text-align: right;">75.2%</td>
+<td style="text-align: center;">+2.1pt</td>
+</tr>
+<tr>
+<td style="text-align: left;">🟡 ニュートラル</td>
+<td style="text-align: right;">58件</td>
+<td style="text-align: right;">16.7%</td>
+<td style="text-align: center;">-0.8pt</td>
+</tr>
+<tr>
+<td style="text-align: left;">🔴 ネガティブ</td>
+<td style="text-align: right;">28件</td>
+<td style="text-align: right;">8.1%</td>
+<td style="text-align: center;">-1.3pt</td>
+</tr>
+</tbody>
+</table>
+<h3>感情スコア推移（過去4週間）</h3>
+<pre><code>ポジティブ率
+80% |                              ●
+75% |              ●───────●───────
+70% |──────●
+65% |
+     ───────────────────────────────
+     1/31週   2/7週   2/14週  2/21週
+</code></pre>
+<h3>ポジティブ要因TOP3（出現頻度順）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">順位</th>
+<th style="text-align: center;">キーワード/トピック</th>
+<th style="text-align: center;">出現回数</th>
+<th style="text-align: left;">代表的な表現</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">保湿力</td>
+<td style="text-align: center;">87回</td>
+<td style="text-align: left;">「翌朝まで潤いが続く」「乾燥が気にならなくなった」</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">香り</td>
+<td style="text-align: center;">64回</td>
+<td style="text-align: left;">「ラベンダーの香りに癒される」「きつくないのがいい」</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">成分の安心感</td>
+<td style="text-align: center;">53回</td>
+<td style="text-align: left;">「子どもにも使える」「敏感肌でもヒリヒリしない」</td>
+</tr>
+</tbody>
+</table>
+<h3>ネガティブ要因TOP3（要注意）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">順位</th>
+<th style="text-align: center;">キーワード/トピック</th>
+<th style="text-align: center;">出現回数</th>
+<th style="text-align: left;">代表的な表現</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">価格</td>
+<td style="text-align: center;">11回</td>
+<td style="text-align: left;">「もう少し安ければリピートしたい」「コスパが気になる」</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">容器の使いにくさ</td>
+<td style="text-align: center;">9回</td>
+<td style="text-align: left;">「ポンプが固い」「最後まで出しきれない」</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">配送遅延</td>
+<td style="text-align: center;">5回</td>
+<td style="text-align: left;">「注文から届くまで5日かかった」</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. ハイライト口コミ TOP5</h2>
+<p>LP素材・SNS転用・メルマガ引用に適した、訴求力の高い口コミを厳選しました。</p>
+<hr />
+<h3>🥇 第1位｜Instagram｜活用推奨度 ★★★★★</h3>
+<blockquote>
+<p><strong>「30代後半、何を使っても冬の粉吹きが治らなかったのに、ナチュビのモイストセラムに変えて2週間で肌が別人。ファンデの乗りが全然違う。もう手放せない。」</strong></p>
+</blockquote>
+<p><strong>投稿者:</strong> @skincare_mama_35（フォロワー4,200人）
+<strong>エンゲージメント:</strong> いいね 342 / コメント 28 / 保存 89
+<strong>感情スコア:</strong> 0.94（非常にポジティブ）
+<strong>活用提案:</strong>
+- LP「お客様の声」セクションのメインビジュアル候補
+- メルマガ件名「冬の粉吹き肌、2週間で"別人"に ── 愛用者の声」
+- 許諾取得 → リポスト素材として活用</p>
+<hr />
+<h3>🥈 第2位｜Googleレビュー｜活用推奨度 ★★★★★</h3>
+<blockquote>
+<p><strong>「アトピー持ちの5歳の娘に使っています。小児科の先生にも成分を見せたら"これなら大丈夫"と言ってもらえました。親子で安心して使える数少ないブランドです。」</strong></p>
+</blockquote>
+<p><strong>投稿者:</strong> M.Tさん（★★★★★ 5.0）
+<strong>感情スコア:</strong> 0.91（非常にポジティブ）
+<strong>活用提案:</strong>
+- LP「安心・安全」訴求セクションへ掲載
+- 「敏感肌・お子様向け」専用LPの主要テスティモニアル
+- Instagram広告クリエイティブのコピー素材</p>
+<hr />
+<h3>🥉 第3位｜X（旧Twitter）｜活用推奨度 ★★★★☆</h3>
+<blockquote>
+<p><strong>「ナチュビのハンドクリーム、塗った3秒後にスマホ触れるのすごくない？ベタつかないハンドクリームやっと見つけた。デスクワーク民に全力でおすすめしたい。」</strong></p>
+</blockquote>
+<p><strong>投稿者:</strong> @office_worker_28（フォロワー1,800人）
+<strong>エンゲージメント:</strong> いいね 198 / RT 45 / 引用RT 12
+<strong>感情スコア:</strong> 0.88（ポジティブ）
+<strong>活用提案:</strong>
+- 「働く人向け」訴求のSNS広告コピー素材
+- Xプロモーション用引用RT候補
+- メルマガ「スタッフおすすめ口コミ」コーナーへ掲載</p>
+<hr />
+<h3>第4位｜@cosme｜活用推奨度 ★★★★☆</h3>
+<blockquote>
+<p><strong>「オーガニック系は効果がマイルドなイメージでしたが、ナチュビは翌朝の肌のハリが実感できるレベル。"自然派なのにちゃんと効く"という新しいカテゴリだと思います。」</strong></p>
+</blockquote>
+<p><strong>投稿者:</strong> cosme_junkie_29さん（@cosmeフォロワー850人）
+<strong>評価:</strong> ★★★★★★☆（7段階中6）
+<strong>感情スコア:</strong> 0.86（ポジティブ）
+<strong>活用提案:</strong>
+- 「自然派なのに実感できる」をキャッチコピー候補として検討
+- LP「よくある誤解」セクションの打ち消し材料</p>
+<hr />
+<h3>第5位｜楽天レビュー｜活用推奨度 ★★★☆☆</h3>
+<blockquote>
+<p><strong>「3本目のリピートです。使い始めは正直よくわからなかったけど、1本使い切る頃に"あれ、肌きれいになった？"と夫に言われて確信しました。じわじわ効くタイプです。」</strong></p>
+</blockquote>
+<p><strong>投稿者:</strong> 購入者（40代女性）
+<strong>評価:</strong> ★★★★★
+<strong>感情スコア:</strong> 0.82（ポジティブ）
+<strong>活用提案:</strong>
+- 「実感までのストーリー」としてLP掲載
+- メルマガ「続けたお客様の声」特集のリード文</p>
+<hr />
+<h2>4. 改善示唆</h2>
+<p>今週のネガティブUGCおよびニュートラルUGCの分析から、以下の改善機会を特定しました。</p>
+<h3>🔴 優先度：高</h3>
+<p><strong>容器のユーザビリティ改善</strong>
+- ポンプ式容器に関する不満が先週比+3件（計9件）で増加傾向
+- 「固い」「最後まで出しきれない」の2パターンに集約
+- <strong>推奨アクション:</strong> 製品チームへフィードバック共有。次ロットでのポンプ改良、または「最後まで使い切るコツ」動画コンテンツの制作を検討</p>
+<h3>🟡 優先度：中</h3>
+<p><strong>価格に対する価値訴求の強化</strong>
+- 「高い」という声（11件）は一定数あるが、購入後の満足度は高い（ポジティブ転換率68%）
+- <strong>推奨アクション:</strong> 「1回あたり○○円」の換算訴求、定期便割引の認知向上施策をLP・SNSに追加</p>
+<h3>🟡 優先度：中</h3>
+<p><strong>配送リードタイムの期待値調整</strong>
+- 繁忙期（バレンタイン前後）の影響で一時的に増加と推定
+- <strong>推奨アクション:</strong> 注文確認メールに「現在のお届け目安：○営業日」の動的表示を追加。繁忙期の事前告知をSNSで実施</p>
+<hr />
+<h2>5. 活用コンテンツ制作ステータス</h2>
+<p>今週のUGCから制作・納品したコンテンツの状況です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">コンテンツ種別</th>
+<th style="text-align: center;">制作数</th>
+<th style="text-align: center;">ステータス</th>
+<th style="text-align: center;">納品日</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">LP用テスティモニアルカード</td>
+<td style="text-align: center;">5件</td>
+<td style="text-align: center;">✅ 納品済み</td>
+<td style="text-align: center;">2/20</td>
+</tr>
+<tr>
+<td style="text-align: left;">Instagram リポスト素材</td>
+<td style="text-align: center;">3件</td>
+<td style="text-align: center;">✅ 納品済み</td>
+<td style="text-align: center;">2/19</td>
+</tr>
+<tr>
+<td style="text-align: left;">メルマガ引用ブロック</td>
+<td style="text-align: center;">2件</td>
+<td style="text-align: center;">✅ 納品済み</td>
+<td style="text-align: center;">2/20</td>
+</tr>
+<tr>
+<td style="text-align: left;">X投稿用引用素材</td>
+<td style="text-align: center;">2件</td>
+<td style="text-align: center;">🔄 許諾待ち</td>
+<td style="text-align: center;">許諾後即日</td>
+</tr>
+<tr>
+<td style="text-align: left;">口コミまとめ画像（Stories用）</td>
+<td style="text-align: center;">4件</td>
+<td style="text-align: center;">✅ 納品済み</td>
+<td style="text-align: center;">2/20</td>
+</tr>
+</tbody>
+</table>
+<p><strong>許諾取得状況:</strong>
+- 今週新規許諾依頼: 8件
+- 許諾取得済み: 6件（取得率 75%）
+- 返信待ち: 2件（@office_worker_28 様、cosme_junkie_29 様）</p>
+<hr />
+<h2>6. 次週アクション提案</h2>
+<h3>貴社側アクション（ご確認・ご判断をお願いしたい事項）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">アクション</th>
+<th style="text-align: center;">期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">ハイライト口コミ第1位の投稿者へギフト送付のご検討（アンバサダー候補）</td>
+<td style="text-align: center;">2/25</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">ポンプ容器の改善検討を製品チームへ共有</td>
+<td style="text-align: center;">2/28</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">定期便割引の訴求強化方針のご承認</td>
+<td style="text-align: center;">2/25</td>
+</tr>
+</tbody>
+</table>
+<h3>弊社側アクション（次週実施予定）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">アクション</th>
+<th style="text-align: center;">担当</th>
+<th style="text-align: center;">完了予定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">「#ナチュビ春のスキンケア」キャンペーン用UGC収集設計</td>
+<td style="text-align: center;">UGCチーム</td>
+<td style="text-align: center;">2/27</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">LP「お客様の声」セクション更新（今週TOP5を反映）</td>
+<td style="text-align: center;">制作チーム</td>
+<td style="text-align: center;">2/25</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">「コスパ訴求」用SNSクリエイティブ3案作成</td>
+<td style="text-align: center;">制作チーム</td>
+<td style="text-align: center;">2/26</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">許諾待ち2件のフォローアップ連絡</td>
+<td style="text-align: center;">UGCチーム</td>
+<td style="text-align: center;">2/23</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">ネガティブ口コミへの返信ドラフト作成（Googleレビュー3件）</td>
+<td style="text-align: center;">UGCチーム</td>
+<td style="text-align: center;">2/24</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. KPIトラッキング（月次累計）</h2>
+<p>2026年2月度の月間目標に対する進捗です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">KPI</th>
+<th style="text-align: right;">月間目標</th>
+<th style="text-align: right;">2月累計</th>
+<th style="text-align: right;">進捗率</th>
+<th style="text-align: center;">見通し</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">UGC収集件数</td>
+<td style="text-align: right;">1,000件</td>
+<td style="text-align: right;">863件</td>
+<td style="text-align: right;">86.3%</td>
+<td style="text-align: center;">🟢 達成見込み</td>
+</tr>
+<tr>
+<td style="text-align: left;">ポジティブ率</td>
+<td style="text-align: right;">70%以上</td>
+<td style="text-align: right;">74.8%</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">🟢 目標超過</td>
+</tr>
+<tr>
+<td style="text-align: left;">LP転用コンテンツ数</td>
+<td style="text-align: right;">20件</td>
+<td style="text-align: right;">16件</td>
+<td style="text-align: right;">80.0%</td>
+<td style="text-align: center;">🟢 達成見込み</td>
+</tr>
+<tr>
+<td style="text-align: left;">許諾取得率</td>
+<td style="text-align: right;">60%以上</td>
+<td style="text-align: right;">72.5%</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">🟢 目標超過</td>
+</tr>
+<tr>
+<td style="text-align: left;">UGC経由CVR改善</td>
+<td style="text-align: right;">+0.3pt</td>
+<td style="text-align: right;">+0.22pt</td>
+<td style="text-align: right;">73.3%</td>
+<td style="text-align: center;">🟡 要注視</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>CVR改善について:</strong> 現在+0.22ptで目標の73.3%進捗です。来週のLP更新（TOP5口コミ反映）後の数値改善を見込んでいますが、月末時点で未達の場合はA/Bテストの追加実施を提案いたします。</p>
+</blockquote>
+<hr />
+<p><strong>次回レポート発行予定:</strong> 2026年2月28日（土）</p>
+<p>ご不明点・ご要望がございましたら、担当マーケター（山本）までお気軽にお申し付けください。</p>
+<hr />
+<p><em>本レポートはSynLab Digital Marketing「UGC収集・活用AIエージェント」により自動収集・分析されたデータに基づき、担当マーケターが編集・監修して作成しています。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

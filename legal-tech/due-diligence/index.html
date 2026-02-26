@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DD_リスク評価ワークシート（記入例3件付き） - kusasyu tools</title>
+<meta name="description" content="M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&amp;A担当者でも、抜">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,DD_リスク評価ワークシート（記入例3件付き）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/due-diligence/">
+<meta property="og:title" content="DD_リスク評価ワークシート（記入例3件付き） - kusasyu tools">
+<meta property="og:description" content="M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&amp;A担当者でも、抜">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/due-diligence/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DD_リスク評価ワークシート（記入例3件付き） - kusasyu tools">
+<meta name="twitter:description" content="M&amp;Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&amp;A担当者でも、抜">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DD_リスク評価ワークシート（記入例3件付き）",
+  "description": "M&Aの法務デューデリジェンス（DD）担当者が、AIツールを活用してDD業務を効率化するための実務コンテンツ3点セット。DD対象文書の優先順位付けチェックリスト、リスク項目の抽出・評価を記録するExcelワークシート、そしてAI×DD業務の活用ガイド記事を制作する。法務DD未経験の事業会社M&A担当者でも、抜",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/due-diligence/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>DD_リスク評価ワークシート（記入例3件付き）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>DD_リスク評価ワークシート（記入例3件付き）</h1>
+  <p class="project-name">M&amp;A法務デューデリジェンス AI活用 実務ツールセット</p>
+  <div class="content">
+<h1>DD リスク評価ワークシート（記入例3件付き）</h1>
+<p><strong>SynLab Legal Tech｜実務ツールセット</strong></p>
+<hr />
+<blockquote>
+<p><strong>使い方</strong>: 本ワークシートは「M&amp;A法務DD 文書レビューチェックリスト25」で ⚠️Yellow または 🔴Red と判定した項目について、リスクを定量評価し、買収価格への影響額を試算するためのツールです。各リスク項目を「影響度×発生確率」のマトリクスでスコアリングし、対応方針を決定してください。</p>
+</blockquote>
+<hr />
+<h2>1. 評価基準の定義</h2>
+<h3>影響度（Impact）</h3>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>スコア</th>
+<th>定義</th>
+<th>金額目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Critical</strong></td>
+<td>5</td>
+<td>事業継続に直結する致命的リスク。ディールブレイカーの可能性</td>
+<td>1億円超</td>
+</tr>
+<tr>
+<td><strong>High</strong></td>
+<td>4</td>
+<td>買収価格の大幅減額交渉が必要</td>
+<td>5,000万〜1億円</td>
+</tr>
+<tr>
+<td><strong>Medium</strong></td>
+<td>3</td>
+<td>表明保証・補償条項で手当すべきリスク</td>
+<td>1,000万〜5,000万円</td>
+</tr>
+<tr>
+<td><strong>Low</strong></td>
+<td>2</td>
+<td>クロージング後の是正で対応可能</td>
+<td>500万〜1,000万円</td>
+</tr>
+<tr>
+<td><strong>Minimal</strong></td>
+<td>1</td>
+<td>実務上の影響が軽微</td>
+<td>500万円未満</td>
+</tr>
+</tbody>
+</table>
+<h3>発生確率（Probability）</h3>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>スコア</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Almost Certain</strong></td>
+<td>5</td>
+<td>既に顕在化、または1年以内にほぼ確実に発生</td>
+</tr>
+<tr>
+<td><strong>Likely</strong></td>
+<td>4</td>
+<td>発生を示す具体的兆候・前例あり（70%以上）</td>
+</tr>
+<tr>
+<td><strong>Possible</strong></td>
+<td>3</td>
+<td>発生し得るが確定的でない（30〜70%）</td>
+</tr>
+<tr>
+<td><strong>Unlikely</strong></td>
+<td>2</td>
+<td>可能性は低いが排除できない（10〜30%）</td>
+</tr>
+<tr>
+<td><strong>Rare</strong></td>
+<td>1</td>
+<td>極めて例外的な状況でのみ発生（10%未満）</td>
+</tr>
+</tbody>
+</table>
+<h3>リスクスコアと対応方針</h3>
+<table>
+<thead>
+<tr>
+<th>スコア（影響度×確率）</th>
+<th>リスク区分</th>
+<th>対応方針</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>15〜25</strong></td>
+<td>🔴 最重要リスク</td>
+<td>買収価格減額 or 前提条件化。ディールブレイカー検討</td>
+</tr>
+<tr>
+<td><strong>8〜14</strong></td>
+<td>🟡 重要リスク</td>
+<td>表明保証・特別補償条項で手当。価格調整交渉</td>
+</tr>
+<tr>
+<td><strong>4〜7</strong></td>
+<td>🟢 管理可能リスク</td>
+<td>クロージング後の是正計画で対応。モニタリング</td>
+</tr>
+<tr>
+<td><strong>1〜3</strong></td>
+<td>⚪ 低リスク</td>
+<td>記録のみ。必要に応じ報告書に注記</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. リスクマトリクス（ヒートマップ）</h2>
+<p>記入したリスク項目のスコアを下図にプロットし、全体像を可視化してください。</p>
+<pre><code>             発生確率 →
+影響度↓     1:Rare   2:Unlikely  3:Possible  4:Likely   5:Certain
+─────────────────────────────────────────────────────────────────
+5:Critical │  5⚪    │ 10🟡     │ 15🔴     │ 20🔴    │ 25🔴
+4:High     │  4⚪    │  8🟡     │ 12🟡     │ 16🔴    │ 20🔴
+3:Medium   │  3⚪    │  6🟢     │  9🟡     │ 12🟡    │ 15🔴
+2:Low      │  2⚪    │  4🟢     │  6🟢     │  8🟡    │ 10🟡
+1:Minimal  │  1⚪    │  2⚪     │  3⚪     │  4🟢    │  5🟢
+</code></pre>
+<hr />
+<h2>3. リスク評価ワークシート（空欄テンプレート）</h2>
+<p>以下の表をExcelまたはスプレッドシートにコピーして使用してください。</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>チェックリスト項番</th>
+<th>リスク項目名</th>
+<th>検出事実の概要</th>
+<th>影響度(1-5)</th>
+<th>確率(1-5)</th>
+<th>スコア</th>
+<th>リスク区分</th>
+<th>想定損害額（円）</th>
+<th>価格影響額（円）</th>
+<th>対応方針</th>
+<th>担当</th>
+<th>期限</th>
+<th>ステータス</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>各列の記入ガイド</h3>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>記入内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>チェックリスト項番</strong></td>
+<td>「M&amp;A法務DD 文書レビューチェックリスト25」の項番（例: 1-2）</td>
+</tr>
+<tr>
+<td><strong>リスク項目名</strong></td>
+<td>端的なリスク名称（20字以内）</td>
+</tr>
+<tr>
+<td><strong>検出事実の概要</strong></td>
+<td>DDで発見した具体的事実を客観的に記述</td>
+</tr>
+<tr>
+<td><strong>影響度</strong></td>
+<td>上記基準に基づき1〜5で評価</td>
+</tr>
+<tr>
+<td><strong>確率</strong></td>
+<td>上記基準に基づき1〜5で評価</td>
+</tr>
+<tr>
+<td><strong>スコア</strong></td>
+<td>影響度×確率を自動計算</td>
+</tr>
+<tr>
+<td><strong>リスク区分</strong></td>
+<td>スコアに応じた区分（🔴🟡🟢⚪）</td>
+</tr>
+<tr>
+<td><strong>想定損害額</strong></td>
+<td>リスクが顕在化した場合の最大損害額</td>
+</tr>
+<tr>
+<td><strong>価格影響額</strong></td>
+<td>想定損害額×発生確率で算出した期待損害額。買収価格の減額交渉根拠</td>
+</tr>
+<tr>
+<td><strong>対応方針</strong></td>
+<td>価格減額 / 表明保証 / 特別補償 / CP（前提条件） / 是正計画 / 記録のみ</td>
+</tr>
+<tr>
+<td><strong>担当</strong></td>
+<td>社内担当者名 or 外部弁護士名</td>
+</tr>
+<tr>
+<td><strong>期限</strong></td>
+<td>対応完了の目標日</td>
+</tr>
+<tr>
+<td><strong>ステータス</strong></td>
+<td>未着手 / 対応中 / 完了 / 保留</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 記入例（3件）</h2>
+<h3>記入例①｜COC条項リスク（チェックリスト項番 1-2）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No.</strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>チェックリスト項番</strong></td>
+<td>1-2. チェンジ・オブ・コントロール（COC）条項</td>
+</tr>
+<tr>
+<td><strong>リスク項目名</strong></td>
+<td>主要取引先契約のCOC条項による解除リスク</td>
+</tr>
+<tr>
+<td><strong>検出事実の概要</strong></td>
+<td>売上高の25%（年間2億5,000万円）を占めるA社との基本取引契約に、株主変更時の即時解除権が規定されている。A社への事前打診は未実施。チェックリスト25の判定基準に照らし「🔴 売上20%超の取引先にCOC条項あり」に該当。加えて、本社オフィスの不動産賃貸借契約（年間賃料3,600万円）にもCOC条項が存在し、オーナーの事前承諾が必要</td>
+</tr>
+<tr>
+<td><strong>影響度</strong></td>
+<td><strong>5（Critical）</strong> — A社との取引喪失は事業計画の前提を崩壊させる</td>
+</tr>
+<tr>
+<td><strong>発生確率</strong></td>
+<td><strong>3（Possible）</strong> — A社が解除権を行使するかは交渉次第。競合への切替コストがA社にもあるため、行使確率は30〜50%と推定</td>
+</tr>
+<tr>
+<td><strong>スコア</strong></td>
+<td><strong>15（5×3）</strong></td>
+</tr>
+<tr>
+<td><strong>リスク区分</strong></td>
+<td>🔴 最重要リスク</td>
+</tr>
+<tr>
+<td><strong>想定損害額</strong></td>
+<td><strong>5億円</strong>（A社売上2億5,000万円×2年分の逸失利益。代替取引先の開拓コスト含む）</td>
+</tr>
+<tr>
+<td><strong>価格影響額</strong></td>
+<td><strong>2億円</strong>（想定損害額5億円×発生確率40%で試算）</td>
+</tr>
+<tr>
+<td><strong>対応方針</strong></td>
+<td>①クロージング前にA社へ事前同意（ウェイバー）を取得をCP（前提条件）とする。②取得不可の場合、買収価格を2億円減額する価格調整条項を規定。③賃貸借契約はオーナーへ早期打診し承諾取得</td>
+</tr>
+<tr>
+<td><strong>担当</strong></td>
+<td>法務部・山田 / アドバイザー弁護士・佐藤</td>
+</tr>
+<tr>
+<td><strong>期限</strong></td>
+<td>2026年4月15日（クロージング予定日の30日前）</td>
+</tr>
+<tr>
+<td><strong>ステータス</strong></td>
+<td>対応中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>記入例②｜未払残業代リスク（チェックリスト想定項番: 労務関連）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No.</strong></td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>チェックリスト項番</strong></td>
+<td>カテゴリ3（労務）に相当</td>
+</tr>
+<tr>
+<td><strong>リスク項目名</strong></td>
+<td>固定残業代制度の不備による未払残業代</td>
+</tr>
+<tr>
+<td><strong>検出事実の概要</strong></td>
+<td>対象会社の従業員180名のうち、営業職65名に月45時間分の固定残業代（月額8万円）を支給しているが、就業規則・雇用契約書に固定残業時間数と超過分の別途支給が明記されていない。直近2年間の勤怠データを分析したところ、月平均実残業時間は52時間であり、超過7時間分が未払いとなっている。労基署の調査が入った場合、過去2年分の遡及支払いリスクあり</td>
+</tr>
+<tr>
+<td><strong>影響度</strong></td>
+<td><strong>3（Medium）</strong> — 是正と遡及支払いで対応可能。事業継続への直接的影響は限定的</td>
+</tr>
+<tr>
+<td><strong>発生確率</strong></td>
+<td><strong>4（Likely）</strong> — 制度不備は客観的に存在し、従業員からの請求や労基署調査は70%以上の確率で発生</td>
+</tr>
+<tr>
+<td><strong>スコア</strong></td>
+<td><strong>12（3×4）</strong></td>
+</tr>
+<tr>
+<td><strong>リスク区分</strong></td>
+<td>🟡 重要リスク</td>
+</tr>
+<tr>
+<td><strong>想定損害額</strong></td>
+<td><strong>4,200万円</strong>（計算根拠: 超過7h×時給換算2,500円×割増1.25×65名×24ヶ月＝約3,400万円＋付加金リスク約800万円）</td>
+</tr>
+<tr>
+<td><strong>価格影響額</strong></td>
+<td><strong>3,000万円</strong>（想定損害額4,200万円×発生確率70%で試算）</td>
+</tr>
+<tr>
+<td><strong>対応方針</strong></td>
+<td>①SPA（株式譲渡契約書）の表明保証条項に「未払賃金の不存在」を規定し、違反時の特別補償条項（上限4,200万円・期間2年）を設定。②クロージング後速やかに就業規則を改定し、固定残業代制度を適法化。③買収価格から3,000万円を減額交渉</td>
+</tr>
+<tr>
+<td><strong>担当</strong></td>
+<td>人事部・田中 / 社労士・鈴木事務所</td>
+</tr>
+<tr>
+<td><strong>期限</strong></td>
+<td>2026年3月31日（SPA締結前）</td>
+</tr>
+<tr>
+<td><strong>ステータス</strong></td>
+<td>未着手</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>記入例③｜特許侵害リスク（チェックリスト想定項番: 知的財産関連）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>No.</strong></td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>チェックリスト項番</strong></td>
+<td>カテゴリ4（知的財産）に相当</td>
+</tr>
+<tr>
+<td><strong>リスク項目名</strong></td>
+<td>主力製品の特許侵害訴訟リスク</td>
+</tr>
+<tr>
+<td><strong>検出事実の概要</strong></td>
+<td>対象会社の主力製品（売上構成比40%、年間売上4億円）の製造方法について、競合B社が保有する特許（登録第6XXXXXX号、存続期間2032年まで）との抵触可能性が判明。対象会社は特許調査未実施のまま製造を継続。B社は同業他社に対して過去2件の侵害訴訟を提起した実績あり。外部特許事務所の簡易鑑定では「侵害の可能性を完全には否定できない」との見解</td>
+</tr>
+<tr>
+<td><strong>影響度</strong></td>
+<td><strong>4（High）</strong> — 差止命令が出た場合、主力製品の製造停止リスク。損害賠償額も多額</td>
+</tr>
+<tr>
+<td><strong>発生確率</strong></td>
+<td><strong>2（Unlikely）</strong> — B社が本件を認識しているか不明。簡易鑑定では設計変更による回避の余地あり。ただしB社の訴訟実績を考慮すると排除不可</td>
+</tr>
+<tr>
+<td><strong>スコア</strong></td>
+<td><strong>8（4×2）</strong></td>
+</tr>
+<tr>
+<td><strong>リスク区分</strong></td>
+<td>🟡 重要リスク</td>
+</tr>
+<tr>
+<td><strong>想定損害額</strong></td>
+<td><strong>2億4,000万円</strong>（計算根拠: ①損害賠償＝侵害期間3年×年間売上4億円×実施料率5%＝6,000万円、②設計変更費用＝3,000万円、③差止めによる逸失利益（6ヶ月間）＝1億5,000万円）</td>
+</tr>
+<tr>
+<td><strong>価格影響額</strong></td>
+<td><strong>4,800万円</strong>（想定損害額2億4,000万円×発生確率20%で試算）</td>
+</tr>
+<tr>
+<td><strong>対応方針</strong></td>
+<td>①クロージング前に外部特許事務所へ正式な侵害鑑定を委託（費用150〜300万円）。②侵害リスクが高い場合、設計変更の技術的実現可能性と費用を精査。③SPAの特別補償条項に知財侵害に関する補償（上限2億4,000万円・期間3年）を規定。④エスクロー口座に5,000万円を留保する条項を交渉</td>
+</tr>
+<tr>
+<td><strong>担当</strong></td>
+<td>知財部・中村 / 特許事務所・高橋国際特許事務所</td>
+</tr>
+<tr>
+<td><strong>期限</strong></td>
+<td>2026年4月1日（鑑定結果受領）</td>
+</tr>
+<tr>
+<td><strong>ステータス</strong></td>
+<td>未着手</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. リスク集計サマリー</h2>
+<p>記入が完了したら、以下のサマリー表を作成し、DD報告書のエグゼクティブサマリーに添付してください。</p>
+<table>
+<thead>
+<tr>
+<th>リスク区分</th>
+<th>件数</th>
+<th>価格影響額合計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 最重要リスク（15-25）</td>
+<td>1件</td>
+<td>2億円</td>
+</tr>
+<tr>
+<td>🟡 重要リスク（8-14）</td>
+<td>2件</td>
+<td>7,800万円</td>
+</tr>
+<tr>
+<td>🟢 管理可能リスク（4-7）</td>
+<td>—件</td>
+<td>—円</td>
+</tr>
+<tr>
+<td>⚪ 低リスク（1-3）</td>
+<td>—件</td>
+<td>—円</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td><strong>3件</strong></td>
+<td><strong>2億7,800万円</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>読み方</strong>: 上記の価格影響額合計 <strong>2億7,800万円</strong> は、検出リスクの期待損害額を合算したものであり、買収価格の減額交渉における出発点となります。実際の交渉では、対応方針（表明保証・エスクロー・CP等）による軽減効果を考慮し、最終的な調整額を決定してください。</p>
+</blockquote>
+<hr />
+<h2>6. ワークシート活用のポイント</h2>
+<table>
+<thead>
+<tr>
+<th>ポイント</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>チェックリスト25との連携</strong></td>
+<td>「M&amp;A法務DD 文書レビューチェックリスト25」で ⚠️Yellow / 🔴Red と判定した項目を本ワークシートに転記してください。Green判定の項目は記載不要です</td>
+</tr>
+<tr>
+<td><strong>影響度と確率は独立評価</strong></td>
+<td>影響度が大きくても発生確率が低ければスコアは下がります。感覚ではなく、根拠となる事実を「検出事実の概要」欄に明記した上で評価してください</td>
+</tr>
+<tr>
+<td><strong>想定損害額の算出根拠を残す</strong></td>
+<td>記入例のように計算式を明記してください。外部弁護士や相手方との交渉で「なぜこの金額か」を説明できることが重要です</td>
+</tr>
+<tr>
+<td><strong>AI活用のヒント</strong></td>
+<td>契約書PDFをAIツールに読み込ませ、COC条項・補償上限・競業避止の有無を自動抽出し、本ワークシートへの記入を効率化できます</td>
+</tr>
+<tr>
+<td><strong>定期更新</strong></td>
+<td>DD期間中に新たな情報が判明するたびにスコアを見直してください。クロージング直前には全項目の最終レビューを実施します</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>SynLab Legal Tech</strong> — M&amp;A法務DD 実務ツールセット（2/3）</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

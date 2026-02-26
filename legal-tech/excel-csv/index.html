@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法務相談記録テンプレート（Excel対応CSV） - kusasyu tools</title>
+<meta name="description" content="社内の法務相談・判断履歴を構造化して蓄積・検索可能にするツールキット。法務担当者が過去の類似案件を即座に見つけ、判断根拠を参照できる仕組みを、ブラウザツール＋記録テンプレート＋運用ガイドの3点セットで提供する。既存のLegalOn・OLGAが『契約書の文面』をAIでレビューするのに対し、本ツールキットは『なぜ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務相談記録テンプレート（Excel対応CSV）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/excel-csv/">
+<meta property="og:title" content="法務相談記録テンプレート（Excel対応CSV） - kusasyu tools">
+<meta property="og:description" content="社内の法務相談・判断履歴を構造化して蓄積・検索可能にするツールキット。法務担当者が過去の類似案件を即座に見つけ、判断根拠を参照できる仕組みを、ブラウザツール＋記録テンプレート＋運用ガイドの3点セットで提供する。既存のLegalOn・OLGAが『契約書の文面』をAIでレビューするのに対し、本ツールキットは『なぜ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/excel-csv/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務相談記録テンプレート（Excel対応CSV） - kusasyu tools">
+<meta name="twitter:description" content="社内の法務相談・判断履歴を構造化して蓄積・検索可能にするツールキット。法務担当者が過去の類似案件を即座に見つけ、判断根拠を参照できる仕組みを、ブラウザツール＋記録テンプレート＋運用ガイドの3点セットで提供する。既存のLegalOn・OLGAが『契約書の文面』をAIでレビューするのに対し、本ツールキットは『なぜ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "法務相談記録テンプレート（Excel対応CSV）",
+  "description": "社内の法務相談・判断履歴を構造化して蓄積・検索可能にするツールキット。法務担当者が過去の類似案件を即座に見つけ、判断根拠を参照できる仕組みを、ブラウザツール＋記録テンプレート＋運用ガイドの3点セットで提供する。既存のLegalOn・OLGAが『契約書の文面』をAIでレビューするのに対し、本ツールキットは『なぜ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/excel-csv/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>法務相談記録テンプレート（Excel対応CSV）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>法務相談記録テンプレート（Excel対応CSV）</h1>
+  <p class="project-name">法務判断ナレッジベース構築ツールキット — 脱・属人化 実践シリーズ</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>相談ID</th><th>受付日</th><th>相談部署</th><th>相談カテゴリ</th><th>相談概要</th><th>判断結果</th><th>判断根拠</th><th>参照法令・条文</th><th>参照した社内先例ID</th><th>対応担当者</th><th>対応完了日</th><th>備考</th></tr></thead><tbody><tr><td>LQ-2024-0001</td><td>2024-04-03</td><td>事業開発部</td><td>契約</td><td>新規取引先A社から提示されたNDAドラフトについて、秘密情報の定義が広範すぎる（口頭情報も無条件に含む）点、および存続期間が無期限である点の修正可否を相談。当社側の技術情報開示を伴う共同検討案件。</td><td>条件付き承認。秘密情報の定義を書面・電子データに限定し口頭は14日以内の書面確認を条件とする修正を要求。存続期間は開示日から3年に短縮。A社が修正に応じない場合は開示範囲を限定して対応。</td><td>(1) 口頭情報を無条件に含む定義は管理不能であり紛争リスクが高い。経産省NDA参考書式でも書面化要件を推奨。(2) 無期限の存続条項は当社知財戦略上過大な負担。業界慣行（IT・製造業）では3〜5年が標準的。(3) 過去の類似案件LQ-2023-0045でも同条件で合意実績あり。</td><td>不正競争防止法第2条第6項（営業秘密の定義）、民法第1条第2項（信義則）</td><td>LQ-2023-0045</td><td>田中 太郎</td><td>2024-04-08</td><td>A社は修正案を受諾。最終版を4/10に締結予定。法務判断ナレッジベースへの登録完了。</td></tr><tr><td>LQ-2024-0002</td><td>2024-04-10</td><td>情報システム部</td><td>契約</td><td>SaaS開発業務委託契約において、委託先B社が損害賠償上限を委託料総額の100%とする条項を要求。当社としては制限なしを希望するが、B社が応じない場合の落としどころを相談。</td><td>委託料総額の200%を上限とする修正案で合意方針を決定。ただし故意・重過失および秘密保持義務違反は上限の適用除外とする。</td><td>(1) 損害賠償上限なしはB社の受注判断上困難であり交渉決裂リスクが高い。(2) 業界水準では委託料の100〜300%が一般的（JISA調査参照）。(3) 200%上限+除外事由の組み合わせにより、致命的な情報漏洩リスクに対しては全額請求の余地を確保。(4) 当社法務方針書2.3条「重過失免責の排除」に合致。</td><td>民法第415条（債務不履行）、民法第416条（損害賠償の範囲）、民法第420条（賠償額の予定）</td><td></td><td>鈴木 花子</td><td>2024-04-15</td><td>B社法務部と4/12に条件合意。契約書最終版をリーガルチェック後に締結。</td></tr><tr><td>LQ-2024-0003</td><td>2024-04-18</td><td>マーケティング部</td><td>コンプライアンス</td><td>顧客データベースを利用してDM配信を行う際、提携先C社にも配信対象リストを共有したい。個人情報の第三者提供に該当するか、該当する場合の適法な対応方法を相談。</td><td>第三者提供に該当する。対応方法として(1)本人同意の取得（プライバシーポリシー改定+オプトイン取得）、または(2)C社を委託先として整理し委託契約を締結する方法の2案を提示。実態に照らし(2)を推奨。</td><td>(1) C社への顧客リスト共有は個人情報保護法第27条の第三者提供に該当。(2) ただしC社がDM配信業務を当社の指示のもと行う実態がある場合、同法第27条第5項第1号の委託に該当し本人同意は不要。(3) マーケティング部に実態を確認した結果、C社は当社指定のテンプレート・対象者リストに従い配信するのみであり委託整理が妥当。(4) 委託の場合も同法第25条の監督義務を果たす必要あり。</td><td>個人情報保護法第27条（第三者提供の制限）、同法第25条（委託先の監督）、個人情報保護委員会ガイドライン（通則編）3-6-3</td><td>LQ-2023-0112</td><td>田中 太郎</td><td>2024-04-25</td><td>C社との業務委託契約に個人情報取扱条項を追加。プライバシーポリシーの委託先一覧にC社を追記。</td></tr><tr><td>LQ-2024-0004</td><td>2024-05-07</td><td>人事部</td><td>労務</td><td>退職予定の営業部長D氏との間で締結済みの競業避止条項（退職後2年間・全国・同業他社への就職禁止）について、D氏の代理人弁護士から無効を主張する通知書を受領。当社の対応方針を相談。</td><td>競業避止条項の有効性は裁判上リスクが高いと判断。(1)期間を1年に短縮、(2)地域を関東圏に限定、(3)月額基本給3か月分の代償措置を支払う内容で和解交渉を推奨。</td><td>(1) 判例法理（東京地判H24.1.13等）では、競業避止の有効性は①企業の正当利益、②従業員の地位、③制限の範囲（期間・地域・業種）、④代償措置の4要素で判断。(2) 本件は期間2年・全国・代償措置なしであり、③④が不利。(3) D氏は顧客情報・技術情報へのアクセス権があり①②は充足するが、制限範囲の過大さにより全部無効のリスクあり。(4) 一部有効の余地を活かし、合理的範囲に縮減して和解するのが実務的。</td><td>労働契約法第3条第5項（権利濫用）、民法第90条（公序良俗）、憲法第22条第1項（職業選択の自由）</td><td>LQ-2022-0078</td><td>鈴木 花子</td><td>2024-05-20</td><td>D氏側と5/15に和解成立。期間1年・関東圏・代償金90万円で合意。外部弁護士（山本法律事務所）と連携対応。</td></tr><tr><td>LQ-2024-0005</td><td>2024-05-12</td><td>購買部</td><td>コンプライアンス</td><td>資本金800万円の個人事業に近い小規模企業E社へ月額50万円の継続的業務（販促物デザイン制作）を発注予定。下請法の適用対象となるか、適用される場合の義務を相談。</td><td>下請法の適用対象に該当する。当社は資本金3億円超の親事業者であり、E社（資本金800万円）への情報成果物作成委託に該当。3条書面の交付、5条書類の保存、支払期日（60日以内）の遵守等の義務が発生。</td><td>(1) 当社資本金5億円、E社資本金800万円であり、下請法第2条第7項第1号の資本金区分（親3億円超・下3億円以下）に該当。(2) 販促物デザイン制作は同法第2条第3項の情報成果物作成委託に該当。(3) 同法第3条（書面交付義務）、第5条（書類保存義務）、第2条の2（支払期日60日以内）の遵守が必要。(4) 違反した場合は公正取引委員会による勧告・公表のリスクあり。購買部に発注書テンプレートの利用を指示。</td><td>下請代金支払遅延等防止法第2条（定義）、同法第3条（書面交付義務）、同法第5条（書類保存義務）、同法第2条の2（支払期日）</td><td>LQ-2023-0089</td><td>田中 太郎</td><td>2024-05-15</td><td>下請法対応チェックリストを購買部に配布。E社向け3条書面のテンプレートを作成済み。法務判断ナレッジベースへの登録完了。</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"相談ID","受付日","相談部署","相談カテゴリ","相談概要","判断結果","判断根拠","参照法令・条文","参照した社内先例ID","対応担当者","対応完了日","備考"
+"LQ-2024-0001","2024-04-03","事業開発部","契約","新規取引先A社から提示されたNDAドラフトについて、秘密情報の定義が広範すぎる（口頭情報も無条件に含む）点、および存続期間が無期限である点の修正可否を相談。当社側の技術情報開示を伴う共同検討案件。","条件付き承認。秘密情報の定義を書面・電子データに限定し口頭は14日以内の書面確認を条件とする修正を要求。存続期間は開示日から3年に短縮。A社が修正に応じない場合は開示範囲を限定して対応。","(1) 口頭情報を無条件に含む定義は管理不能であり紛争リスクが高い。経産省NDA参考書式でも書面化要件を推奨。(2) 無期限の存続条項は当社知財戦略上過大な負担。業界慣行（IT・製造業）では3〜5年が標準的。(3) 過去の類似案件LQ-2023-0045でも同条件で合意実績あり。","不正競争防止法第2条第6項（営業秘密の定義）、民法第1条第2項（信義則）","LQ-2023-0045","田中 太郎","2024-04-08","A社は修正案を受諾。最終版を4/10に締結予定。法務判断ナレッジベースへの登録完了。"
+"LQ-2024-0002","2024-04-10","情報システム部","契約","SaaS開発業務委託契約において、委託先B社が損害賠償上限を委託料総額の100%とする条項を要求。当社としては制限なしを希望するが、B社が応じない場合の落としどころを相談。","委託料総額の200%を上限とする修正案で合意方針を決定。ただし故意・重過失および秘密保持義務違反は上限の適用除外とする。","(1) 損害賠償上限なしはB社の受注判断上困難であり交渉決裂リスクが高い。(2) 業界水準では委託料の100〜300%が一般的（JISA調査参照）。(3) 200%上限+除外事由の組み合わせにより、致命的な情報漏洩リスクに対しては全額請求の余地を確保。(4) 当社法務方針書2.3条「重過失免責の排除」に合致。","民法第415条（債務不履行）、民法第416条（損害賠償の範囲）、民法第420条（賠償額の予定）","","鈴木 花子","2024-04-15","B社法務部と4/12に条件合意。契約書最終版をリーガルチェック後に締結。"
+"LQ-2024-0003","2024-04-18","マーケティング部","コンプライアンス","顧客データベースを利用してDM配信を行う際、提携先C社にも配信対象リストを共有したい。個人情報の第三者提供に該当するか、該当する場合の適法な対応方法を相談。","第三者提供に該当する。対応方法として(1)本人同意の取得（プライバシーポリシー改定+オプトイン取得）、または(2)C社を委託先として整理し委託契約を締結する方法の2案を提示。実態に照らし(2)を推奨。","(1) C社への顧客リスト共有は個人情報保護法第27条の第三者提供に該当。(2) ただしC社がDM配信業務を当社の指示のもと行う実態がある場合、同法第27条第5項第1号の委託に該当し本人同意は不要。(3) マーケティング部に実態を確認した結果、C社は当社指定のテンプレート・対象者リストに従い配信するのみであり委託整理が妥当。(4) 委託の場合も同法第25条の監督義務を果たす必要あり。","個人情報保護法第27条（第三者提供の制限）、同法第25条（委託先の監督）、個人情報保護委員会ガイドライン（通則編）3-6-3","LQ-2023-0112","田中 太郎","2024-04-25","C社との業務委託契約に個人情報取扱条項を追加。プライバシーポリシーの委託先一覧にC社を追記。"
+"LQ-2024-0004","2024-05-07","人事部","労務","退職予定の営業部長D氏との間で締結済みの競業避止条項（退職後2年間・全国・同業他社への就職禁止）について、D氏の代理人弁護士から無効を主張する通知書を受領。当社の対応方針を相談。","競業避止条項の有効性は裁判上リスクが高いと判断。(1)期間を1年に短縮、(2)地域を関東圏に限定、(3)月額基本給3か月分の代償措置を支払う内容で和解交渉を推奨。","(1) 判例法理（東京地判H24.1.13等）では、競業避止の有効性は①企業の正当利益、②従業員の地位、③制限の範囲（期間・地域・業種）、④代償措置の4要素で判断。(2) 本件は期間2年・全国・代償措置なしであり、③④が不利。(3) D氏は顧客情報・技術情報へのアクセス権があり①②は充足するが、制限範囲の過大さにより全部無効のリスクあり。(4) 一部有効の余地を活かし、合理的範囲に縮減して和解するのが実務的。","労働契約法第3条第5項（権利濫用）、民法第90条（公序良俗）、憲法第22条第1項（職業選択の自由）","LQ-2022-0078","鈴木 花子","2024-05-20","D氏側と5/15に和解成立。期間1年・関東圏・代償金90万円で合意。外部弁護士（山本法律事務所）と連携対応。"
+"LQ-2024-0005","2024-05-12","購買部","コンプライアンス","資本金800万円の個人事業に近い小規模企業E社へ月額50万円の継続的業務（販促物デザイン制作）を発注予定。下請法の適用対象となるか、適用される場合の義務を相談。","下請法の適用対象に該当する。当社は資本金3億円超の親事業者であり、E社（資本金800万円）への情報成果物作成委託に該当。3条書面の交付、5条書類の保存、支払期日（60日以内）の遵守等の義務が発生。","(1) 当社資本金5億円、E社資本金800万円であり、下請法第2条第7項第1号の資本金区分（親3億円超・下3億円以下）に該当。(2) 販促物デザイン制作は同法第2条第3項の情報成果物作成委託に該当。(3) 同法第3条（書面交付義務）、第5条（書類保存義務）、第2条の2（支払期日60日以内）の遵守が必要。(4) 違反した場合は公正取引委員会による勧告・公表のリスクあり。購買部に発注書テンプレートの利用を指示。","下請代金支払遅延等防止法第2条（定義）、同法第3条（書面交付義務）、同法第5条（書類保存義務）、同法第2条の2（支払期日）","LQ-2023-0089","田中 太郎","2024-05-15","下請法対応チェックリストを購買部に配布。E社向け3条書面のテンプレートを作成済み。法務判断ナレッジベースへの登録完了。"`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_法務相談記録テンプレート（Excel対応CSV）.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人売買プロセス管理チェックシート - kusasyu tools</title>
+<meta name="description" content="仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,個人売買プロセス管理チェックシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propdirect-2/">
+<meta property="og:title" content="個人売買プロセス管理チェックシート - kusasyu tools">
+<meta property="og:description" content="仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propdirect-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="個人売買プロセス管理チェックシート - kusasyu tools">
+<meta name="twitter:description" content="仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "個人売買プロセス管理チェックシート",
+  "description": "仲介業者を介さず個人で不動産を売却したい売主向けに、コスト比較・手続き管理・物件紹介文作成を支援する実用ツールキットを作成する。仲介手数料（3%+6万円）の節約メリットを可視化し、個人売買の手続きを迷わず進められるようにする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propdirect-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>個人売買プロセス管理チェックシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>個人売買プロセス管理チェックシート</h1>
+  <p class="project-name">個人間不動産売買スターターキット「PropDirect」</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No</th><th>フェーズ</th><th>作業項目</th><th>必要書類</th><th>取得先</th><th>費用目安（円）</th><th>目安時期（売出開始起算）</th><th>担当</th><th>進捗ステータス</th><th>完了日</th><th>注意点・備考</th></tr></thead><tbody><tr><td>1</td><td>①価格設定（売出準備）</td><td>相場調査（周辺取引事例の収集）</td><td>なし</td><td>REINS Market Information・土地総合情報システム</td><td>0</td><td>開始前〜1週目</td><td>売主</td><td>未着手</td><td></td><td>「PropDirectコスト比較シミュレーター」で仲介時の手数料（売買価格×3%＋6万円＋税）と個人売買コストを比較し売出価格の参考にする</td></tr><tr><td>2</td><td>①価格設定（売出準備）</td><td>登記簿謄本（登記事項証明書）の取得</td><td>登記事項証明書交付申請書</td><td>法務局窓口またはオンライン（登記・供託オンライン申請），600</td><td>開始前〜1週目</td><td>売主</td><td>未着手</td><td></td><td>オンライン請求は480円。抵当権の有無を必ず確認すること</td></tr><tr><td>3</td><td>①価格設定（売出準備）</td><td>固定資産税評価証明書の取得</td><td>本人確認書類</td><td>市区町村役場（税務課）</td><td>300</td><td>開始前〜1週目</td><td>売主</td><td>未着手</td><td></td><td>毎年4月に更新。最新年度のものを取得すること</td></tr><tr><td>4</td><td>①価格設定（売出準備）</td><td>物件情報の整理（面積・築年数・設備一覧）</td><td>建築確認済証・検査済証・設計図面</td><td>手元保管（なければ市区町村の建築指導課）</td><td>0</td><td>1週目</td><td>売主</td><td>未着手</td><td></td><td>紛失の場合は「台帳記載事項証明書」で代替可能（費用300〜400円）</td></tr><tr><td>5</td><td>①価格設定（売出準備）</td><td>物件状況等報告書の作成</td><td>物件状況等報告書（様式）</td><td>全日本不動産協会HPよりDL</td><td>0</td><td>1週目</td><td>売主</td><td>未着手</td><td></td><td>雨漏り・シロアリ・給排水故障・心理的瑕疵は正直に記載。告知義務違反は契約不適合責任を問われる</td></tr><tr><td>6</td><td>①価格設定（売出準備）</td><td>売出価格の決定</td><td>なし</td><td>—</td><td>0</td><td>1〜2週目</td><td>売主</td><td>未着手</td><td></td><td>相場の±5%以内が目安。PropDirectシミュレーターで手取額を試算し最終判断</td></tr><tr><td>7</td><td>②買主募集・広告</td><td>物件紹介文の作成</td><td>なし</td><td>PropDirect物件紹介文テンプレート</td><td>0</td><td>2週目</td><td>売主</td><td>未着手</td><td></td><td>景品表示法に注意。「最高」「格安」等の誇大表現は禁止。徒歩分数は80m＝1分で計算</td></tr><tr><td>8</td><td>②買主募集・広告</td><td>物件写真の撮影（外観・内観・周辺環境）</td><td>なし</td><td>自分で撮影またはプロカメラマン依頼</td><td>0</td><td>2週目</td><td>売主</td><td>未着手</td><td></td><td>自然光が入る日中に撮影。広角レンズ推奨。最低10枚以上。プロ依頼時は15000〜30000円</td></tr><tr><td>9</td><td>②買主募集・広告</td><td>不動産ポータルサイトへ掲載</td><td>なし</td><td>ジモティー・家いちば・e-物件情報</td><td>0</td><td>2〜3週目</td><td>売主</td><td>未着手</td><td></td><td>個人間売買OKのサイトを選ぶ。SUUMOやHOME'Sは原則業者のみ</td></tr><tr><td>10</td><td>②買主募集・広告</td><td>知人・SNS・地域掲示板での告知</td><td>なし</td><td>—</td><td>0</td><td>2〜3週目</td><td>売主</td><td>未着手</td><td></td><td>宅建業法に抵触しない範囲で実施。反復継続して売買すると「業」とみなされるリスクあり</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No,フェーズ,作業項目,必要書類,取得先,費用目安（円）,目安時期（売出開始起算）,担当,進捗ステータス,完了日,注意点・備考
+1,①価格設定（売出準備）,相場調査（周辺取引事例の収集）,なし,REINS Market Information・土地総合情報システム,0,開始前〜1週目,売主,未着手,,「PropDirectコスト比較シミュレーター」で仲介時の手数料（売買価格×3%＋6万円＋税）と個人売買コストを比較し売出価格の参考にする
+2,①価格設定（売出準備）,登記簿謄本（登記事項証明書）の取得,登記事項証明書交付申請書,法務局窓口またはオンライン（登記・供託オンライン申請），600,開始前〜1週目,売主,未着手,,オンライン請求は480円。抵当権の有無を必ず確認すること
+3,①価格設定（売出準備）,固定資産税評価証明書の取得,本人確認書類,市区町村役場（税務課）,300,開始前〜1週目,売主,未着手,,毎年4月に更新。最新年度のものを取得すること
+4,①価格設定（売出準備）,物件情報の整理（面積・築年数・設備一覧）,建築確認済証・検査済証・設計図面,手元保管（なければ市区町村の建築指導課）,0,1週目,売主,未着手,,紛失の場合は「台帳記載事項証明書」で代替可能（費用300〜400円）
+5,①価格設定（売出準備）,物件状況等報告書の作成,物件状況等報告書（様式）,全日本不動産協会HPよりDL,0,1週目,売主,未着手,,雨漏り・シロアリ・給排水故障・心理的瑕疵は正直に記載。告知義務違反は契約不適合責任を問われる
+6,①価格設定（売出準備）,売出価格の決定,なし,—,0,1〜2週目,売主,未着手,,相場の±5%以内が目安。PropDirectシミュレーターで手取額を試算し最終判断
+7,②買主募集・広告,物件紹介文の作成,なし,PropDirect物件紹介文テンプレート,0,2週目,売主,未着手,,景品表示法に注意。「最高」「格安」等の誇大表現は禁止。徒歩分数は80m＝1分で計算
+8,②買主募集・広告,物件写真の撮影（外観・内観・周辺環境）,なし,自分で撮影またはプロカメラマン依頼,0,2週目,売主,未着手,,自然光が入る日中に撮影。広角レンズ推奨。最低10枚以上。プロ依頼時は15000〜30000円
+9,②買主募集・広告,不動産ポータルサイトへ掲載,なし,ジモティー・家いちば・e-物件情報,0,2〜3週目,売主,未着手,,個人間売買OKのサイトを選ぶ。SUUMOやHOME'Sは原則業者のみ
+10,②買主募集・広告,知人・SNS・地域掲示板での告知,なし,—,0,2〜3週目,売主,未着手,,宅建業法に抵触しない範囲で実施。反復継続して売買すると「業」とみなされるリスクあり
+11,③内見対応,内見日程の調整・案内準備,なし,—,0,3〜6週目,売主,未着手,,複数候補者にはできるだけ同時期に内見を設定し比較検討してもらう
+12,③内見対応,室内清掃・整理整頓（ホームステージング）,なし,自分で対応またはクリーニング業者,30000,内見前,売主,未着手,,水回りは特に重点的に。費用は3LDK想定。プロ依頼なら3〜8万円程度
+13,③内見対応,内見当日の対応・質疑応答,物件状況等報告書・建築図面・管理規約（マンション）,手元保管,0,3〜6週目,売主,未着手,,買主の質問には誠実に回答。修繕履歴や近隣関係も聞かれやすい
+14,③内見対応,内見後のフォロー連絡,なし,—,0,内見後1〜3日以内,売主,未着手,,興味を示した方には24時間以内に連絡。検討状況を丁寧に確認
+15,④条件交渉,購入申込書（買付証明書）の受領,購入申込書,買主が作成,0,6〜8週目,売主,未着手,,法的拘束力はないが売却意思の目安になる。複数受領時は条件・確実性で判断
+16,④条件交渉,価格・引渡条件の交渉,なし,—,0,6〜8週目,売主・買主,未着手,,値引き要求には根拠（インスペクション結果等）を求める。感情的にならないこと
+17,④条件交渉,買主の住宅ローン事前審査の確認,事前審査通過通知（買主から提示）,買主の取引金融機関,0,6〜8週目,買主,未着手,,事前審査未通過の買主と契約するとローン特約で解約になるリスク大
+18,④条件交渉,インスペクション（建物状況調査）の実施,建物状況調査報告書,既存住宅状況調査技術者（建築士）,50000,交渉期間中,売主または買主,未着手,,費用は5〜7万円。買主の信頼獲得に効果的。2018年義務化の説明対象
+19,⑤売買契約,重要事項に相当する物件情報の整備,登記簿謄本・公図・測量図・都市計画情報,法務局・市区町村役場,1500,8〜10週目,売主（司法書士に相談推奨）,未着手,,個人売買で重要事項説明の法的義務はないが買主保護のために準備を強く推奨
+20,⑤売買契約,売買契約書の作成,売買契約書,司法書士または行政書士に依頼,50000,8〜10週目,売主・買主,未着手,,費用は5〜10万円。ネット雛形の流用は危険。契約不適合責任の期間を明記すること
+21,⑤売買契約,手付金の受領,領収書,売主が作成,0,契約締結日,買主→売主,未着手,,売買価格の5〜10%が相場。例：3000万円物件なら150〜300万円。手付解除期日も契約書に明記
+22,⑤売買契約,収入印紙の購入・契約書への貼付,収入印紙,郵便局・法務局,10000,契約締結日,売主・買主各自,未着手,,売買価格1000万円超〜5000万円以下の場合1万円（軽減税率適用時）。売主・買主各1通分
+23,⑤売買契約,契約締結,売買契約書・本人確認書類・実印・印鑑証明書,—,0,8〜10週目,売主・買主,未着手,,双方の本人確認を徹底。代理人の場合は委任状＋印鑑証明書が必須
+24,⑥決済・引渡し,買主の住宅ローン本審査結果の確認,融資承認通知（買主から提示）,買主の取引金融機関,0,10〜14週目,買主,未着手,,否認の場合はローン特約に基づき白紙解約。手付金は全額返還
+25,⑥決済・引渡し,残代金の受領・着金確認,振込明細・領収書,取引金融機関,0,決済日当日,買主→売主,未着手,,必ず銀行振込で。現金受渡しは避ける。着金確認後に登記手続きへ進む
+26,⑥決済・引渡し,所有権移転登記の申請,登記申請書・登記識別情報・印鑑証明書・住民票・委任状,司法書士に依頼,250000,決済日当日,司法書士,未着手,,登録免許税＋司法書士報酬で15〜35万円（物件評価額により変動）。買主負担が一般的
+27,⑥決済・引渡し,固定資産税・都市計画税の日割精算,固定資産税納税通知書,手元保管,0,決済日当日,売主・買主,未着手,,起算日は関東1/1・関西4/1が慣例。精算金は残代金と合わせて授受
+28,⑥決済・引渡し,鍵・書類一式の引渡し,鍵・建築確認済証・設備取扱説明書・管理規約等,手元保管,0,決済日当日,売主→買主,未着手,,引渡完了確認書を取り交わすこと。設備の動作確認も同時に実施
+29,⑥決済・引渡し,確定申告の準備（譲渡所得の申告）,売買契約書写し・取得費の証明書類・領収書一式,税務署・手元保管,0,翌年2/16〜3/15,売主,未着手,,3000万円特別控除（居住用）や取得費加算の特例が使える場合あり。税理士相談推奨（費用5〜10万円）
+30,—,【費用合計チェック】PropDirectシミュレーターで最終確認,—,PropDirectコスト比較シミュレーター,392400,全工程完了時,売主,未着手,,左記は本シート記載費用の合計目安。仲介利用時（例：3000万円×3%＋6万円＋税＝105.6万円）と比較し約66万円の節約効果`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_個人売買プロセス管理チェックシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

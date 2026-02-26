@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>効果測定ダッシュボード設計書 - kusasyu tools</title>
+<meta name="description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,効果測定ダッシュボード設計書">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-8/">
+<meta property="og:title" content="効果測定ダッシュボード設計書 - kusasyu tools">
+<meta property="og:description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="効果測定ダッシュボード設計書 - kusasyu tools">
+<meta name="twitter:description" content="中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "効果測定ダッシュボード設計書",
+  "description": "中小企業がブログ記事・SNS投稿・メルマガを業種別テンプレートから自動生成できるSaaSのプロトタイプを構築する。キーワードと業種を入力するだけでSEO最適化済みの記事ドラフト、SNS投稿文、メール文面を一括生成し、効果測定ダッシュボードで成果を可視化する。外壁塗装業の成功事例をモデルケースとし、まず3業種（",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>効果測定ダッシュボード設計書</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>効果測定ダッシュボード設計書</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング自動化SaaS</p>
+  <div class="content">
+<h1>効果測定ダッシュボード設計書</h1>
+<h2>1. ダッシュボード全体構成（ワイヤーフレーム）</h2>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│  Logo   [期間選択: 7日/30日/90日]  [業種フィルタ ▼]  │
+├────────────┬────────────┬────────────┬──────────────┤
+│  総PV      │  総CV数    │  CV率      │  公開記事数   │
+│  12,450    │  38件      │  0.31%     │  24本        │
+├────────────┴────────────┴────────────┴──────────────┤
+│                                                     │
+│  📈 PV・CV推移グラフ（折れ線・日別）                   │
+│  [PV: 青線]  [CV: オレンジ線]                         │
+│                                                     │
+├──────────────────────┬──────────────────────────────┤
+│ キーワード順位TOP10   │  SNSエンゲージメント          │
+│                      │                              │
+│ 1. 外壁塗装 費用  3位 │  総インプレッション: 45,200   │
+│ 2. 屋根修理 相場  5位 │  総エンゲージメント: 1,890    │
+│ 3. ...              │  エンゲージメント率: 4.18%     │
+│                      │  [FB] [Instagram] [X]        │
+├──────────────────────┴──────────────────────────────┤
+│  📊 コンテンツ別パフォーマンス一覧（テーブル）         │
+│  記事タイトル | PV | CV | 順位 | SNS反応 | 公開日    │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+<h2>2. 表示指標一覧</h2>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>指標名</th>
+<th>単位</th>
+<th>表示形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>トラフィック</strong></td>
+<td>ページビュー（PV）</td>
+<td>件</td>
+<td>数値＋推移グラフ</td>
+</tr>
+<tr>
+<td></td>
+<td>ユニークユーザー（UU）</td>
+<td>人</td>
+<td>数値</td>
+</tr>
+<tr>
+<td></td>
+<td>平均滞在時間</td>
+<td>秒</td>
+<td>数値</td>
+</tr>
+<tr>
+<td></td>
+<td>直帰率</td>
+<td>%</td>
+<td>数値</td>
+</tr>
+<tr>
+<td><strong>コンバージョン</strong></td>
+<td>CV数（問合せ・資料DL）</td>
+<td>件</td>
+<td>数値＋推移グラフ</td>
+</tr>
+<tr>
+<td></td>
+<td>CV率</td>
+<td>%</td>
+<td>数値</td>
+</tr>
+<tr>
+<td></td>
+<td>CVページ経路</td>
+<td>—</td>
+<td>ファネル図</td>
+</tr>
+<tr>
+<td><strong>SEO</strong></td>
+<td>対策キーワード順位</td>
+<td>位</td>
+<td>順位表＋変動矢印</td>
+</tr>
+<tr>
+<td></td>
+<td>インデックス数</td>
+<td>件</td>
+<td>数値</td>
+</tr>
+<tr>
+<td><strong>SNS</strong></td>
+<td>インプレッション</td>
+<td>件</td>
+<td>プラットフォーム別</td>
+</tr>
+<tr>
+<td></td>
+<td>エンゲージメント数</td>
+<td>件</td>
+<td>いいね・RT・コメント内訳</td>
+</tr>
+<tr>
+<td></td>
+<td>エンゲージメント率</td>
+<td>%</td>
+<td>数値</td>
+</tr>
+</tbody>
+</table>
+<h2>3. データ取得元と更新頻度</h2>
+<table>
+<thead>
+<tr>
+<th>データ種別</th>
+<th>取得元</th>
+<th>取得方法</th>
+<th>更新頻度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PV・UU・滞在時間・直帰率</td>
+<td>Google Analytics 4</td>
+<td>GA4 Data API</td>
+<td><strong>日次</strong>（毎朝6:00）</td>
+</tr>
+<tr>
+<td>CV数・CV率・経路</td>
+<td>Google Analytics 4</td>
+<td>GA4 Data API（イベント）</td>
+<td><strong>日次</strong>（毎朝6:00）</td>
+</tr>
+<tr>
+<td>キーワード順位</td>
+<td>Google Search Console</td>
+<td>Search Console API</td>
+<td><strong>日次</strong>（毎朝8:00）</td>
+</tr>
+<tr>
+<td>インデックス数</td>
+<td>Google Search Console</td>
+<td>Search Console API</td>
+<td><strong>週次</strong>（月曜9:00）</td>
+</tr>
+<tr>
+<td>SNS指標（X）</td>
+<td>X（旧Twitter）</td>
+<td>X API v2</td>
+<td><strong>6時間毎</strong></td>
+</tr>
+<tr>
+<td>SNS指標（Instagram）</td>
+<td>Meta</td>
+<td>Instagram Graph API</td>
+<td><strong>6時間毎</strong></td>
+</tr>
+<tr>
+<td>SNS指標（Facebook）</td>
+<td>Meta</td>
+<td>Facebook Graph API</td>
+<td><strong>6時間毎</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>4. 設計上の制約と方針</h2>
+<ul>
+<li><strong>データ保持期間</strong>: 過去12ヶ月分を表示対象とする</li>
+<li><strong>権限</strong>: Google連携はOAuth 2.0で読み取り専用スコープのみ取得</li>
+<li><strong>初期表示</strong>: ログイン後は直近30日間のサマリーを自動表示</li>
+<li><strong>レスポンス目標</strong>: ダッシュボード初期表示を3秒以内に完了（APIレスポンスはキャッシュ活用）</li>
+<li><strong>モバイル対応</strong>: カード型レイアウトで縦1列に自動リフローする設計とする</li>
+</ul>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

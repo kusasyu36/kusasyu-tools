@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス設計書（前編：ビジネス設計） - kusasyu tools</title>
+<meta name="description" content="マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,サービス設計書（前編：ビジネス設計）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-10/">
+<meta property="og:title" content="サービス設計書（前編：ビジネス設計） - kusasyu tools">
+<meta property="og:description" content="マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サービス設計書（前編：ビジネス設計） - kusasyu tools">
+<meta name="twitter:description" content="マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サービス設計書（前編：ビジネス設計）",
+  "description": "マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-10/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>サービス設計書（前編：ビジネス設計）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>サービス設計書（前編：ビジネス設計）</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング自動生成SaaS</p>
+  <div class="content">
+<h1>サービス設計書（前編：ビジネス設計）</h1>
+<p><strong>プロダクト名：ContentPilot（コンテンツパイロット）</strong>
+<strong>文書バージョン：1.0｜作成日：2026-02-21</strong></p>
+<hr />
+<h2>1. サービス概要</h2>
+<p>ContentPilotは、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成するSaaS。マーケティング専任者がいない中小企業でも、月額3万円からプロ品質のコンテンツマーケティングを継続運用できる。</p>
+<p><strong>提供価値：</strong>
+- コンテンツ制作コストを外注比で70%削減
+- E-E-A-T準拠テンプレートによるGoogle評価の担保
+- 業種特化の文体・専門用語を自動反映し、専門家が書いたような記事を生成</p>
+<hr />
+<h2>2. ターゲット定義</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>企業規模</strong></td>
+<td>従業員10〜100名</td>
+</tr>
+<tr>
+<td><strong>業種</strong></td>
+<td>BtoB製造業、士業（税理士・社労士・弁護士）、地方サービス業</td>
+</tr>
+<tr>
+<td><strong>意思決定者</strong></td>
+<td>経営者またはマーケティング兼任の総務・営業担当</td>
+</tr>
+<tr>
+<td><strong>課題</strong></td>
+<td>①外注費が高い ②社内に書ける人がいない ③SEOの知識がない</td>
+</tr>
+<tr>
+<td><strong>非ターゲット</strong></td>
+<td>大手企業のマーケ部門、個人アフィリエイター</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ペルソナ：</strong></p>
+<blockquote>
+<p>埼玉県の金属加工メーカー（従業員35名）の営業部長・鈴木さん（48歳）。展示会以外の新規獲得チャネルが欲しいが、ブログを書く時間も知識もない。月10万円以内で成果が出る施策を探している。</p>
+</blockquote>
+<hr />
+<h2>3. 料金プラン</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Starter</strong></th>
+<th><strong>Growth</strong></th>
+<th><strong>Pro</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>月額（税抜）</strong></td>
+<td>3万円</td>
+<td>6万円</td>
+<td>10万円</td>
+</tr>
+<tr>
+<td><strong>ブログ記事</strong></td>
+<td>4本/月</td>
+<td>10本/月</td>
+<td>25本/月</td>
+</tr>
+<tr>
+<td><strong>SNS投稿</strong></td>
+<td>12本/月</td>
+<td>30本/月</td>
+<td>60本/月</td>
+</tr>
+<tr>
+<td><strong>メルマガ</strong></td>
+<td>—</td>
+<td>4本/月</td>
+<td>8本/月</td>
+</tr>
+<tr>
+<td><strong>業種テンプレート</strong></td>
+<td>汎用のみ</td>
+<td>業種特化</td>
+<td>業種特化＋カスタム</td>
+</tr>
+<tr>
+<td><strong>SEOレポート</strong></td>
+<td>月次</td>
+<td>週次</td>
+<td>週次＋改善提案</td>
+</tr>
+<tr>
+<td><strong>超過単価（記事）</strong></td>
+<td>5,000円/本</td>
+<td>4,000円/本</td>
+<td>3,000円/本</td>
+</tr>
+</tbody>
+</table>
+<p><strong>課金モデル：</strong> 基本月額＋記事超過分の従量課金。年払いで15%割引。</p>
+<hr />
+<h2>4. 競合との差別化</h2>
+<table>
+<thead>
+<tr>
+<th>比較軸</th>
+<th>汎用AIライティング（例：ChatGPT直接利用）</th>
+<th>記事外注（クラウドソーシング）</th>
+<th><strong>ContentPilot</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月額コスト</td>
+<td>3千円〜</td>
+<td>15〜50万円</td>
+<td><strong>3〜10万円</strong></td>
+</tr>
+<tr>
+<td>業種専門性</td>
+<td>× 汎用的</td>
+<td>△ ライター依存</td>
+<td><strong>◎ 業種別テンプレート</strong></td>
+</tr>
+<tr>
+<td>E-E-A-T対応</td>
+<td>× 手動調整が必要</td>
+<td>△ ライター依存</td>
+<td><strong>◎ 構造的に組込済</strong></td>
+</tr>
+<tr>
+<td>運用負荷</td>
+<td>× プロンプト設計が必要</td>
+<td>△ ディレクション必要</td>
+<td><strong>◎ 入力だけで完結</strong></td>
+</tr>
+<tr>
+<td>品質の安定性</td>
+<td>× 出力がばらつく</td>
+<td>× ライターで変動</td>
+<td><strong>◎ テンプレートで均質化</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>コア競争優位：</strong> 「業種特化E-E-A-Tテンプレートエンジン」は、業種ごとの専門用語辞書・権威性の根拠パターン・体験談テンプレートを組み込んだ独自資産であり、汎用AIツールでは再現困難。</p>
+<hr />
+<h2>5. KPI設計</h2>
+<h3>事業KPI</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>6ヶ月目標</th>
+<th>12ヶ月目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有料契約数</td>
+<td>50社</td>
+<td>200社</td>
+</tr>
+<tr>
+<td>MRR（月次経常収益）</td>
+<td>250万円</td>
+<td>1,200万円</td>
+</tr>
+<tr>
+<td>チャーンレート</td>
+<td>8%以下</td>
+<td>5%以下</td>
+</tr>
+<tr>
+<td>LTV/CAC比率</td>
+<td>3倍以上</td>
+<td>5倍以上</td>
+</tr>
+</tbody>
+</table>
+<h3>プロダクトKPI</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>目標値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>記事生成→公開率（ユーザーが生成後に実際に使う割合）</td>
+<td>70%以上</td>
+</tr>
+<tr>
+<td>生成記事の検索流入（公開3ヶ月後）</td>
+<td>平均50PV/月/記事</td>
+</tr>
+<tr>
+<td>NPS（ネットプロモータースコア）</td>
+<td>+30以上</td>
+</tr>
+<tr>
+<td>初回生成までの時間（オンボーディング完了→初記事）</td>
+<td>10分以内</td>
+</tr>
+</tbody>
+</table>
+<h3>計測方針</h3>
+<ul>
+<li>MRR・チャーンはStripeダッシュボードで自動集計</li>
+<li>プロダクトKPIはMixpanel＋Google Search Consoleで週次モニタリング</li>
+<li>月次でKPIレビュー会を実施し、プラン改定・機能優先度に反映</li>
+</ul>
+<hr />
+<p><em>本文書は「前編：ビジネス設計」です。技術アーキテクチャ・E-E-A-Tテンプレート仕様・生成パイプライン設計は「後編：技術設計」に記載します。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

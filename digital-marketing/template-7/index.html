@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業種別テンプレート設計書 - kusasyu tools</title>
+<meta name="description" content="マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,業種別テンプレート設計書">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/template-7/">
+<meta property="og:title" content="業種別テンプレート設計書 - kusasyu tools">
+<meta property="og:description" content="マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/template-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別テンプレート設計書 - kusasyu tools">
+<meta name="twitter:description" content="マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "業種別テンプレート設計書",
+  "description": "マーケティング専任担当がいない中小企業（従業員10〜100名）が、業種・商材・ターゲットを入力するだけでSEO最適化されたブログ記事・SNS投稿・メルマガを自動生成できるSaaSプロダクトの設計・プロトタイプを作る。E-E-A-T準拠のテンプレートエンジンと業種別コンテンツ生成パイプラインが核。月額3〜10万",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/template-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>業種別テンプレート設計書</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>業種別テンプレート設計書</h1>
+  <p class="project-name">中小企業向けAIコンテンツマーケティング自動生成SaaS</p>
+  <div class="content">
+<h1>業種別テンプレート設計書</h1>
+<h2>ドキュメント情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>プロダクト名</td>
+<td>ContentForge（AI コンテンツマーケティング自動生成 SaaS）</td>
+</tr>
+<tr>
+<td>対象バージョン</td>
+<td>v1.0</td>
+</tr>
+<tr>
+<td>対象業種数</td>
+<td>5業種（製造業・士業・飲食・IT・小売）</td>
+</tr>
+<tr>
+<td>最終更新日</td>
+<td>2026-02-21</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. テンプレートアーキテクチャ概要</h2>
+<h3>1.1 共通構造</h3>
+<p>すべての業種テンプレートは以下の3層構造で設計する。</p>
+<pre><code>┌─────────────────────────────────┐
+│  Layer 1: 業種マスター定義       │  ← 業種固有の語彙・トーン・制約
+├─────────────────────────────────┤
+│  Layer 2: コンテンツタイプ定義    │  ← ブログ / SNS / メルマガの型
+├─────────────────────────────────┤
+│  Layer 3: バリエーション展開ルール │  ← 季節・ペルソナ・目的別の分岐
+└─────────────────────────────────┘
+</code></pre>
+<h3>1.2 共通入力項目（全業種共通）</h3>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>型</th>
+<th>必須</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>company_name</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>会社名・屋号</td>
+</tr>
+<tr>
+<td><code>industry</code></td>
+<td>enum</td>
+<td>Yes</td>
+<td>業種選択（5業種から）</td>
+</tr>
+<tr>
+<td><code>product_service</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>主力商材・サービス名（最大3つ）</td>
+</tr>
+<tr>
+<td><code>target_customer</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>想定顧客像（自由記述 or 選択式）</td>
+</tr>
+<tr>
+<td><code>tone</code></td>
+<td>enum</td>
+<td>No</td>
+<td>文体指定（デフォルト: 業種推奨値）</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td>string</td>
+<td>No</td>
+<td>商圏エリア（地域密着型の場合）</td>
+</tr>
+<tr>
+<td><code>keywords</code></td>
+<td>string[]</td>
+<td>No</td>
+<td>狙いたいSEOキーワード（最大5つ）</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 共通出力形式</h3>
+<table>
+<thead>
+<tr>
+<th>コンテンツタイプ</th>
+<th>出力フォーマット</th>
+<th>標準文字数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEOブログ記事</td>
+<td>Markdown / HTML</td>
+<td>3,000〜5,000字</td>
+</tr>
+<tr>
+<td>SNS投稿（X）</td>
+<td>プレーンテキスト</td>
+<td>〜140字</td>
+</tr>
+<tr>
+<td>SNS投稿（Instagram）</td>
+<td>テキスト＋ハッシュタグ</td>
+<td>〜300字＋タグ30個以内</td>
+</tr>
+<tr>
+<td>メルマガ</td>
+<td>HTML（MJML互換）</td>
+<td>800〜1,500字</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 製造業テンプレート</h2>
+<h3>2.1 業種マスター定義</h3>
+<table>
+<thead>
+<tr>
+<th>定義項目</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業種コード</td>
+<td><code>MFG</code></td>
+</tr>
+<tr>
+<td>推奨トーン</td>
+<td><code>professional</code>（信頼性重視・技術的正確さ）</td>
+</tr>
+<tr>
+<td>一人称</td>
+<td>「当社」「弊社」</td>
+</tr>
+<tr>
+<td>禁止表現</td>
+<td>誇大広告表現、未検証の数値、競合社名の直接言及</td>
+</tr>
+<tr>
+<td>E-E-A-T強化要素</td>
+<td>技術者の実名コメント枠、ISO認証・特許番号の挿入欄、導入事例の定量データ</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 業種固有入力項目</h3>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>型</th>
+<th>必須</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>manufacturing_type</code></td>
+<td>enum</td>
+<td>Yes</td>
+<td>加工種別（切削/プレス/射出成形/溶接/表面処理/組立/その他）</td>
+</tr>
+<tr>
+<td><code>materials</code></td>
+<td>string[]</td>
+<td>No</td>
+<td>対応素材（アルミ・ステンレス・樹脂等）</td>
+</tr>
+<tr>
+<td><code>certifications</code></td>
+<td>string[]</td>
+<td>No</td>
+<td>保有認証（ISO9001, ISO14001, IATF16949等）</td>
+</tr>
+<tr>
+<td><code>equipment_highlight</code></td>
+<td>string</td>
+<td>No</td>
+<td>設備アピール（5軸MC、クリーンルーム等）</td>
+</tr>
+<tr>
+<td><code>lot_size</code></td>
+<td>enum</td>
+<td>No</td>
+<td>対応ロット（試作1個〜/小ロット/量産）</td>
+</tr>
+</tbody>
+</table>
+<h3>2.3 コンテンツタイプ別テンプレート構造</h3>
+<h4>SEOブログ記事テンプレート</h4>
+<pre><code class="language-yaml">template_id: MFG-BLOG-001
+name: &quot;技術解説・加工事例型&quot;
+structure:
+  - section: title
+    format: &quot;【{manufacturing_type}】{課題キーワード}を解決する{加工手法}とは？&quot;
+    seo: H1、主要キーワード含む、32字以内
+  - section: meta_description
+    format: &quot;{company_name}が解説する{manufacturing_type}の{課題}解決法。{certification}取得工場の実績に基づく技術情報。&quot;
+    length: 120字以内
+  - section: lead
+    purpose: 読者の課題を言語化し共感を得る
+    length: 200〜300字
+    must_include: [&quot;課題の具体的シーン&quot;, &quot;この記事で得られる情報&quot;]
+  - section: body_1
+    heading: &quot;H2: {課題}が発生する原因&quot;
+    length: 600〜800字
+    must_include: [&quot;技術的背景の平易な説明&quot;, &quot;図解挿入指示&quot;]
+  - section: body_2
+    heading: &quot;H2: {加工手法}による解決アプローチ&quot;
+    length: 800〜1,000字
+    must_include: [&quot;手法の概要&quot;, &quot;従来手法との比較表&quot;, &quot;適用条件&quot;]
+  - section: case_study
+    heading: &quot;H2: 導入事例 — {業界}向け{部品名}の加工&quot;
+    length: 500〜700字
+    must_include: [&quot;Before/After数値&quot;, &quot;技術者コメント枠&quot;]
+  - section: equipment_spec
+    heading: &quot;H3: 使用設備・対応スペック&quot;
+    format: table
+    columns: [&quot;設備名&quot;, &quot;メーカー&quot;, &quot;加工範囲&quot;, &quot;精度&quot;]
+  - section: cta
+    heading: &quot;H2: 技術相談・試作のご依頼&quot;
+    length: 150〜200字
+    must_include: [&quot;問い合わせ導線&quot;, &quot;対応ロット明記&quot;, &quot;見積無料の明示&quot;]
+</code></pre>
+<h4>SNS投稿テンプレート（X）</h4>
+<pre><code class="language-yaml">template_id: MFG-X-001
+name: &quot;加工技術ショート解説型&quot;
+variants:
+  - id: tech_tip
+    format: &quot;【{manufacturing_type}の豆知識】\n{技術Tip 1文}\n\n{解説 2〜3文}\n\n詳しくはプロフィールのリンクから\n#{manufacturing_type} #ものづくり #製造業&quot;
+  - id: case_flash
+    format: &quot;📐 {部品名}の{manufacturing_type}事例\n\n✅ 精度: {数値}\n✅ 納期: {数値}\n✅ ロット: {数値}\n\n{一言コメント}\n#{加工種別} #試作 #精密加工&quot;
+</code></pre>
+<h4>メルマガテンプレート</h4>
+<pre><code class="language-yaml">template_id: MFG-MAIL-001
+name: &quot;技術コラム＋事例紹介型&quot;
+structure:
+  - section: subject
+    format: &quot;【{company_name}】{課題キーワード}、{加工手法}で解決した事例をご紹介&quot;
+  - section: greeting
+    length: 50〜80字
+  - section: main_article
+    heading: &quot;今月の技術コラム&quot;
+    length: 400〜600字
+    source: &quot;最新ブログ記事の要約＋リンク&quot;
+  - section: case_highlight
+    heading: &quot;加工事例ピックアップ&quot;
+    length: 200〜300字
+    format: &quot;Before→After形式&quot;
+  - section: cta
+    format: &quot;button&quot;
+    text: &quot;技術相談・お見積もりはこちら&quot;
+</code></pre>
+<h3>2.4 バリエーション展開ルール</h3>
+<table>
+<thead>
+<tr>
+<th>展開軸</th>
+<th>分岐条件</th>
+<th>テンプレート変更点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>顧客業界別</td>
+<td><code>target_customer</code>に含まれる業界名</td>
+<td>事例セクションの業界用語・課題表現を差し替え</td>
+</tr>
+<tr>
+<td>加工種別</td>
+<td><code>manufacturing_type</code></td>
+<td>技術解説セクションの専門用語セット切替</td>
+</tr>
+<tr>
+<td>認証保有</td>
+<td><code>certifications</code>が空でない場合</td>
+<td>E-E-A-Tブロック（認証バッジ・番号）を自動挿入</td>
+</tr>
+<tr>
+<td>季節展開</td>
+<td>1月/4月/10月</td>
+<td>年始挨拶/新年度/下期計画の導入文差し替え</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 士業テンプレート</h2>
+<h3>3.1 業種マスター定義</h3>
+<table>
+<thead>
+<tr>
+<th>定義項目</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業種コード</td>
+<td><code>PRO</code></td>
+</tr>
+<tr>
+<td>推奨トーン</td>
+<td><code>authoritative</code>（専門的だが平易・安心感重視）</td>
+</tr>
+<tr>
+<td>一人称</td>
+<td>「当事務所」「私たち」</td>
+</tr>
+<tr>
+<td>禁止表現</td>
+<td>断定的な法的助言（「必ず〜できます」）、報酬の最安保証、他事務所との比較優位表現</td>
+</tr>
+<tr>
+<td>E-E-A-T強化要素</td>
+<td>資格・登録番号、実務年数、対応件数実績、所属団体</td>
+</tr>
+<tr>
+<td>法的注意事項</td>
+<td>弁護士法・税理士法・行政書士法等の広告規制を遵守する旨の免責テンプレートを自動付与</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 業種固有入力項目</h3>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>型</th>
+<th>必須</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>profession_type</code></td>
+<td>enum</td>
+<td>Yes</td>
+<td>士業種別（弁護士/税理士/社労士/行政書士/司法書士）</td>
+</tr>
+<tr>
+<td><code>specialization</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>専門分野（相続/労務/会社設立/債務整理等）</td>
+</tr>
+<tr>
+<td><code>qualifications</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>保有資格・登録番号</td>
+</tr>
+<tr>
+<td><code>years_experience</code></td>
+<td>number</td>
+<td>No</td>
+<td>実務経験年数</td>
+</tr>
+<tr>
+<td><code>case_count</code></td>
+<td>string</td>
+<td>No</td>
+<td>累計相談・対応件数（例: 「年間200件超」）</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 コンテンツタイプ別テンプレート構造</h3>
+<h4>SEOブログ記事テンプレート</h4>
+<pre><code class="language-yaml">template_id: PRO-BLOG-001
+name: &quot;法務・税務Q&amp;A解説型&quot;
+structure:
+  - section: title
+    format: &quot;{specialization}の{質問キーワード}｜{profession_type}がわかりやすく解説&quot;
+    seo: H1、疑問形キーワード含む、35字以内
+  - section: meta_description
+    format: &quot;{specialization}に強い{profession_type}が「{質問}」に回答。{years_experience}年の実務経験に基づく解説。{region}対応。&quot;
+    length: 120字以内
+  - section: lead
+    purpose: 読者が抱える不安・疑問を言語化
+    length: 200〜300字
+    must_include: [&quot;想定読者の状況描写&quot;, &quot;この記事のゴール&quot;, &quot;監修者情報（資格・経験年数）&quot;]
+  - section: body_1
+    heading: &quot;H2: {質問}の結論&quot;
+    length: 300〜500字
+    must_include: [&quot;結論ファースト&quot;, &quot;根拠法令・条文の平易な引用&quot;]
+  - section: body_2
+    heading: &quot;H2: 具体的なケースで解説&quot;
+    length: 600〜800字
+    must_include: [&quot;ケース1: 一般的なパターン&quot;, &quot;ケース2: 注意が必要なパターン&quot;, &quot;図表による比較&quot;]
+  - section: body_3
+    heading: &quot;H2: 手続きの流れ・必要書類&quot;
+    length: 400〜600字
+    format: &quot;ステップ形式（Step1→2→3...）&quot;
+    must_include: [&quot;所要期間の目安&quot;, &quot;費用の目安範囲&quot;]
+  - section: faq
+    heading: &quot;H2: よくあるご質問&quot;
+    format: &quot;FAQ構造化データ（JSON-LD対応）&quot;
+    count: 3〜5問
+  - section: author_box
+    format: &quot;監修者プロフィール&quot;
+    must_include: [&quot;氏名&quot;, &quot;資格&quot;, &quot;登録番号&quot;, &quot;実務年数&quot;, &quot;専門分野&quot;, &quot;顔写真枠&quot;]
+  - section: disclaimer
+    format: &quot;auto_insert&quot;
+    text: &quot;本記事は一般的な情報提供を目的としたものであり、個別の法的助言を構成するものではありません。具体的なご相談は、資格を持つ専門家にお問い合わせください。&quot;
+  - section: cta
+    heading: &quot;H2: 無料相談のご案内&quot;
+    length: 150〜200字
+    must_include: [&quot;相談方法（対面/オンライン/電話）&quot;, &quot;初回無料の明示&quot;, &quot;予約導線&quot;]
+</code></pre>
+<h4>SNS投稿テンプレート（X）</h4>
+<pre><code class="language-yaml">template_id: PRO-X-001
+name: &quot;法律・税務ワンポイント型&quot;
+variants:
+  - id: knowledge
+    format: &quot;【{profession_type}が解説】\n{specialization}でよくある誤解👇\n\n❌ {誤解内容}\n⭕ {正しい知識}\n\n詳しくはブログで解説しています\n#{specialization} #{profession_type} #暮らしの法律&quot;
+  - id: seasonal
+    format: &quot;📅 {月}は{手続き名}の時期です\n\n期限: {日付}\n対象: {対象者}\n必要なもの: {書類}\n\nお早めのご準備を！\n#{specialization} #{season}の手続き&quot;
+</code></pre>
+<h4>メルマガテンプレート</h4>
+<pre><code class="language-yaml">template_id: PRO-MAIL-001
+name: &quot;法改正・時事解説型&quot;
+structure:
+  - section: subject
+    format: &quot;【{company_name}通信】{月}の{specialization}トピック ― {法改正・時事ネタ要約}&quot;
+  - section: greeting
+    length: 50〜80字
+    tone: &quot;丁寧かつ親しみやすい&quot;
+  - section: main_topic
+    heading: &quot;今月の重要トピック&quot;
+    length: 400〜500字
+    must_include: [&quot;法改正・制度変更の要点&quot;, &quot;実務への影響&quot;, &quot;読者が取るべきアクション&quot;]
+  - section: qa_pickup
+    heading: &quot;Q&amp;Aピックアップ&quot;
+    length: 200〜300字
+    format: &quot;Q→A形式1問&quot;
+  - section: cta
+    format: &quot;button&quot;
+    text: &quot;個別相談を予約する（初回無料）&quot;
+</code></pre>
+<h3>3.4 バリエーション展開ルール</h3>
+<table>
+<thead>
+<tr>
+<th>展開軸</th>
+<th>分岐条件</th>
+<th>テンプレート変更点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>士業種別</td>
+<td><code>profession_type</code></td>
+<td>法令引用スタイル・免責文言・広告規制チェックルールを切替</td>
+</tr>
+<tr>
+<td>専門分野</td>
+<td><code>specialization</code></td>
+<td>想定読者ペルソナ・Q&amp;Aテーマプールを切替</td>
+</tr>
+<tr>
+<td>個人/法人向け</td>
+<td><code>target_customer</code></td>
+<td>文体（やさしい語り口/ビジネス文書調）を切替</td>
+</tr>
+<tr>
+<td>法改正対応</td>
+<td>システムが法改正DBを参照</td>
+<td>該当分野の記事に「法改正アラート」ブロック自動挿入</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 飲食業テンプレート</h2>
+<h3>4.1 業種マスター定義</h3>
+<table>
+<thead>
+<tr>
+<th>定義項目</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業種コード</td>
+<td><code>FNB</code></td>
+</tr>
+<tr>
+<td>推奨トーン</td>
+<td><code>warm</code>（親しみやすい・五感に訴える表現）</td>
+</tr>
+<tr>
+<td>一人称</td>
+<td>「当店」「私たち」「店主」</td>
+</tr>
+<tr>
+<td>禁止表現</td>
+<td>景品表示法違反（「地域No.1」等の根拠なき最上級表現）、アレルギー情報の不正確な記載</td>
+</tr>
+<tr>
+<td>E-E-A-T強化要素</td>
+<td>料理人の経歴・修業先、食材の産地・仕入先、受賞歴・メディア掲載実績</td>
+</tr>
+</tbody>
+</table>
+<h3>4.2 業種固有入力項目</h3>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>型</th>
+<th>必須</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cuisine_type</code></td>
+<td>enum</td>
+<td>Yes</td>
+<td>業態（和食/洋食/中華/カフェ/居酒屋/ラーメン/パン・スイーツ/その他）</td>
+</tr>
+<tr>
+<td><code>price_range</code></td>
+<td>enum</td>
+<td>Yes</td>
+<td>客単価帯（〜1,000円/1,000〜3,000円/3,000〜5,000円/5,000円〜）</td>
+</tr>
+<tr>
+<td><code>signature_menu</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>看板メニュー（最大3品）</td>
+</tr>
+<tr>
+<td><code>ingredient_story</code></td>
+<td>string</td>
+<td>No</td>
+<td>食材のこだわり（産地直送、有機、自家製等）</td>
+</tr>
+<tr>
+<td><code>atmosphere</code></td>
+<td>enum</td>
+<td>No</td>
+<td>雰囲気（カジュアル/落ち着き/高級感/家庭的/モダン）</td>
+</tr>
+</tbody>
+</table>
+<h3>4.3 コンテンツタイプ別テンプレート構造</h3>
+<h4>SEOブログ記事テンプレート</h4>
+<pre><code class="language-yaml">template_id: FNB-BLOG-001
+name: &quot;グルメ検索・来店誘導型&quot;
+structure:
+  - section: title
+    format: &quot;{region}で{cuisine_type}なら{company_name}｜{signature_menu}が人気の理由&quot;
+    seo: H1、地域名＋業態キーワード含む、35字以内
+  - section: meta_description
+    format: &quot;{region}の{cuisine_type}店{company_name}。{signature_menu}が自慢。{ingredient_story}。{アクセス情報}。&quot;
+    length: 120字以内
+  - section: lead
+    purpose: 食欲・興味を喚起する情景描写
+    length: 200〜300字
+    must_include: [&quot;五感に訴える表現（香り・食感・彩り）&quot;, &quot;店の雰囲気を一文で&quot;]
+  - section: menu_highlight
+    heading: &quot;H2: {company_name}のおすすめメニュー&quot;
+    length: 800〜1,000字
+    format: &quot;メニュー紹介カード形式&quot;
+    per_item: [&quot;メニュー名&quot;, &quot;価格&quot;, &quot;説明文（100字）&quot;, &quot;写真挿入指示&quot;, &quot;アレルギー情報枠&quot;]
+    count: 3品
+  - section: story
+    heading: &quot;H2: おいしさの理由 — {ingredient_story}&quot;
+    length: 400〜600字
+    must_include: [&quot;食材の産地・仕入れストーリー&quot;, &quot;調理法のこだわり&quot;, &quot;料理人プロフィール枠&quot;]
+  - section: access
+    heading: &quot;H2: アクセス・営業情報&quot;
+    format: &quot;構造化データ（LocalBusiness JSON-LD対応）&quot;
+    must_include: [&quot;住所&quot;, &quot;最寄駅・徒歩分数&quot;, &quot;営業時間&quot;, &quot;定休日&quot;, &quot;電話番号&quot;, &quot;席数&quot;, &quot;駐車場有無&quot;, &quot;Google Maps埋め込み指示&quot;]
+  - section: cta
+    heading: &quot;H2: ご予約・お問い合わせ&quot;
+    length: 100〜150字
+    must_include: [&quot;予約方法（電話/Web/SNS DM）&quot;, &quot;宴会・貸切対応の有無&quot;]
+</code></pre>
+<h4>SNS投稿テンプレート（Instagram）</h4>
+<pre><code class="language-yaml">template_id: FNB-IG-001
+name: &quot;メニュー写真訴求型&quot;
+variants:
+  - id: menu_post
+    format: |
+      📍 {company_name}（{region}）
+
+      {signature_menu}
+
+      {食欲を刺激する2〜3行の説明}
+
+      ━━━━━━━━━━━━
+      🕐 {営業時間}
+      📍 {最寄駅}から徒歩{分数}分
+      ☎️ {電話番号}
+      ━━━━━━━━━━━━
+
+      {ハッシュタグ 15〜25個}
+    hashtag_rules: &quot;地域名＋業態＋メニュー名＋一般グルメタグの組合せ&quot;
+  - id: daily_special
+    format: |
+      🍽️ 本日のおすすめ
+
+      {メニュー名}
+      {一行説明}
+
+      数量限定⚡ お早めにどうぞ！
+
+      {ハッシュタグ 10〜15個}
+</code></pre>
+<h4>メルマガテンプレート</h4>
+<pre><code class="language-yaml">template_id: FNB-MAIL-001
+name: &quot;季節メニュー・イベント案内型&quot;
+structure:
+  - section: subject
+    format: &quot;🍽️【{company_name}】{季節}限定メニュー登場！{signature_menu}のご案内&quot;
+  - section: hero_image
+    format: &quot;画像挿入指示（メインビジュアル）&quot;
+  - section: main_menu
+    heading: &quot;{季節}のおすすめ&quot;
+    length: 300〜400字
+    format: &quot;写真＋説明のカード形式&quot;
+    count: 2〜3品
+  - section: event_info
+    heading: &quot;イベント・キャンペーン情報&quot;
+    length: 150〜200字
+    conditional: &quot;イベント情報がある場合のみ表示&quot;
+  - section: cta
+    format: &quot;button&quot;
+    text: &quot;ネット予約はこちら&quot;
+</code></pre>
+<h3>4.4 バリエーション展開ルール</h3>
+<table>
+<thead>
+<tr>
+<th>展開軸</th>
+<th>分岐条件</th>
+<th>テンプレート変更点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業態別</td>
+<td><code>cuisine_type</code></td>
+<td>語彙セット切替（居酒屋→カジュアル語調、高級店→洗練された表現）</td>
+</tr>
+<tr>
+<td>季節展開</td>
+<td>四半期ごと</td>
+<td>メニュー紹介の季節食材・旬ワード自動差替</td>
+</tr>
+<tr>
+<td>価格帯</td>
+<td><code>price_range</code></td>
+<td>CTA表現変更（低価格帯→「気軽にどうぞ」、高価格帯→「特別な日に」）</td>
+</tr>
+<tr>
+<td>曜日・時間帯</td>
+<td>SNS投稿時刻</td>
+<td>ランチ帯→ランチメニュー訴求、ディナー帯→コース・ドリンク訴求</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. IT業テンプレート</h2>
+<h3>5.1 業種マスター定義</h3>
+<table>
+<thead>
+<tr>
+<th>定義項目</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業種コード</td>
+<td><code>ITC</code></td>
+</tr>
+<tr>
+<td>推奨トーン</td>
+<td><code>expert_friendly</code>（専門性を保ちつつ非エンジニア意思決定者にも伝わる）</td>
+</tr>
+<tr>
+<td>一人称</td>
+<td>「当社」「私たち」</td>
+</tr>
+<tr>
+<td>禁止表現</td>
+<td>実現不可能な性能保証、セキュリティ完全性の断言、根拠のないROI数値</td>
+</tr>
+<tr>
+<td>E-E-A-T強化要素</td>
+<td>技術認定資格、開発実績件数、クライアントロゴ（許諾済み）、OSS貢献実績</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2 業種固有入力項目</h3>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>型</th>
+<th>必須</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>service_category</code></td>
+<td>enum</td>
+<td>Yes</td>
+<td>サービス種別（SaaS/受託開発/SES/インフラ構築/セキュリティ/コンサル）</td>
+</tr>
+<tr>
+<td><code>tech_stack</code></td>
+<td>string[]</td>
+<td>No</td>
+<td>主要技術スタック（言語・フレームワーク・クラウド）</td>
+</tr>
+<tr>
+<td><code>target_industry</code></td>
+<td>string[]</td>
+<td>No</td>
+<td>顧客の業界（金融/医療/小売/製造等）</td>
+</tr>
+<tr>
+<td><code>case_metrics</code></td>
+<td>object</td>
+<td>No</td>
+<td>実績数値（導入社数、稼働率、コスト削減率等）</td>
+</tr>
+<tr>
+<td><code>differentiator</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>競合優位性（自由記述、100字以内）</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3 コンテンツタイプ別テンプレート構造</h3>
+<h4>SEOブログ記事テンプレート</h4>
+<pre><code class="language-yaml">template_id: ITC-BLOG-001
+name: &quot;課題解決ソリューション型&quot;
+structure:
+  - section: title
+    format: &quot;{target_industry}の{課題キーワード}を{service_category}で解決する方法&quot;
+    seo: H1、課題キーワード＋解決含む、35字以内
+  - section: meta_description
+    format: &quot;{target_industry}向け{service_category}なら{company_name}。{differentiator}。導入実績{case_metrics}。&quot;
+    length: 120字以内
+  - section: lead
+    purpose: 意思決定者が抱えるビジネス課題を言語化
+    length: 200〜300字
+    must_include: [&quot;業界特有の課題提示&quot;, &quot;放置した場合のリスク&quot;]
+  - section: body_1
+    heading: &quot;H2: なぜ{課題}が解決できないのか&quot;
+    length: 600〜800字
+    must_include: [&quot;現状の典型的な対応策とその限界&quot;, &quot;データや調査結果の引用&quot;]
+  - section: body_2
+    heading: &quot;H2: {service_category}による解決アプローチ&quot;
+    length: 800〜1,000字
+    must_include: [&quot;ソリューション概要図（Mermaid or 画像指示）&quot;, &quot;3つの特長（機能ベネフィット変換）&quot;, &quot;競合比較表（自社 vs 一般的な選択肢）&quot;]
+  - section: case_study
+    heading: &quot;H2: 導入事例 — {client_industry}{client_規模}様&quot;
+    length: 500〜700字
+    format: &quot;課題→導入→成果の3部構成&quot;
+    must_include: [&quot;定量成果（コスト削減率/工数削減/売上向上等）&quot;, &quot;担当者コメント枠&quot;]
+  - section: implementation
+    heading: &quot;H2: 導入の流れ&quot;
+    format: &quot;ステップ形式&quot;
+    must_include: [&quot;各ステップの期間目安&quot;, &quot;必要なリソース・体制&quot;]
+  - section: cta
+    heading: &quot;H2: 無料相談・デモのご案内&quot;
+    length: 150〜200字
+    must_include: [&quot;相談方法&quot;, &quot;資料ダウンロード導線&quot;, &quot;デモ予約導線&quot;]
+</code></pre>
+<h4>SNS投稿テンプレート（X）</h4>
+<pre><code class="language-yaml">template_id: ITC-X-001
+name: &quot;課題提起＋ソリューション示唆型&quot;
+variants:
+  - id: problem_solution
+    format: &quot;「{業界の課題を一文で}」\n\nこの課題、{service_category}で解決できます。\n\n✅ {メリット1}\n✅ {メリット2}\n✅ {メリット3}\n\n詳細はこちら👇\n{URL}\n#DX #{service_category} #{target_industry}&quot;
+  - id: stat_hook
+    format: &quot;📊 {統計データ・調査結果を一文で}\n\n{データの解釈と示唆 2〜3文}\n\n当社の取り組み👇\n{URL}\n#DX #業務効率化&quot;
+</code></pre>
+<h4>メルマガテンプレート</h4>
+<pre><code class="language-yaml">template_id: ITC-MAIL-001
+name: &quot;業界トレンド＋事例紹介型&quot;
+structure:
+  - section: subject
+    format: &quot;【{company_name}】{target_industry}の{トレンドキーワード} ― 最新事例と対策&quot;
+  - section: trend_topic
+    heading: &quot;注目トレンド&quot;
+    length: 300〜400字
+    must_include: [&quot;トレンドの概要&quot;, &quot;ビジネスインパクト&quot;, &quot;関連する自社ソリューションへの橋渡し&quot;]
+  - section: case_digest
+    heading: &quot;導入事例ダイジェスト&quot;
+    length: 200〜300字
+    format: &quot;Before→After形式&quot;
+  - section: resource
+    heading: &quot;お役立ち資料&quot;
+    format: &quot;ホワイトペーパー or ウェビナーの案内1件&quot;
+  - section: cta
+    format: &quot;button&quot;
+    text: &quot;無料デモを予約する&quot;
+</code></pre>
+<h3>5.4 バリエーション展開ルール</h3>
+<table>
+<thead>
+<tr>
+<th>展開軸</th>
+<th>分岐条件</th>
+<th>テンプレート変更点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>顧客業界別</td>
+<td><code>target_industry</code></td>
+<td>課題セット・用語・事例を業界別に切替</td>
+</tr>
+<tr>
+<td>サービス種別</td>
+<td><code>service_category</code></td>
+<td>CTA変更（SaaS→無料トライアル、受託→無料相談、SES→お問い合わせ）</td>
+</tr>
+<tr>
+<td>意思決定者レベル</td>
+<td><code>target_customer</code></td>
+<td>経営層→ROI重視、情シス→技術仕様重視</td>
+</tr>
+<tr>
+<td>技術トレンド連動</td>
+<td>システムがニュースAPIを参照</td>
+<td>セキュリティインシデント等の時事に連動した記事テーマ自動提案</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 小売業テンプレート</h2>
+<h3>6.1 業種マスター定義</h3>
+<table>
+<thead>
+<tr>
+<th>定義項目</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業種コード</td>
+<td><code>RTL</code></td>
+</tr>
+<tr>
+<td>推奨トーン</td>
+<td><code>approachable</code>（親しみやすい・購買意欲を喚起）</td>
+</tr>
+<tr>
+<td>一人称</td>
+<td>「当店」「スタッフ」</td>
+</tr>
+<tr>
+<td>禁止表現</td>
+<td>景品表示法違反（二重価格の不適切表示、根拠なき「最安値」）、在庫保証表現</td>
+</tr>
+<tr>
+<td>E-E-A-T強化要素</td>
+<td>バイヤー・店主のセレクト理由、仕入れストーリー、顧客レビュー引用（許諾済み）</td>
+</tr>
+</tbody>
+</table>
+<h3>6.2 業種固有入力項目</h3>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>型</th>
+<th>必須</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>retail_type</code></td>
+<td>enum</td>
+<td>Yes</td>
+<td>小売種別（アパレル/雑貨/食品/家電/書店/ドラッグストア/専門店）</td>
+</tr>
+<tr>
+<td><code>sales_channel</code></td>
+<td>enum[]</td>
+<td>Yes</td>
+<td>販売チャネル（実店舗/EC/両方）</td>
+</tr>
+<tr>
+<td><code>price_positioning</code></td>
+<td>enum</td>
+<td>No</td>
+<td>価格帯ポジション（コスパ重視/中価格帯/プレミアム）</td>
+</tr>
+<tr>
+<td><code>brand_story</code></td>
+<td>string</td>
+<td>No</td>
+<td>ブランドストーリー・コンセプト（200字以内）</td>
+</tr>
+<tr>
+<td><code>seasonal_focus</code></td>
+<td>enum</td>
+<td>No</td>
+<td>注力シーズン（春夏/秋冬/通年）</td>
+</tr>
+</tbody>
+</table>
+<h3>6.3 コンテンツタイプ別テンプレート構造</h3>
+<h4>SEOブログ記事テンプレート</h4>
+<pre><code class="language-yaml">template_id: RTL-BLOG-001
+name: &quot;商品セレクト・選び方ガイド型&quot;
+structure:
+  - section: title
+    format: &quot;【{year}年版】{商品カテゴリ}の選び方｜{company_name}スタッフが{数}選を厳選&quot;
+    seo: H1、年度＋商品カテゴリ＋選び方、35字以内
+  - section: meta_description
+    format: &quot;{retail_type}の{company_name}スタッフが{商品カテゴリ}の選び方を解説。{price_positioning}で{target_customer}におすすめの{数}選。&quot;
+    length: 120字以内
+  - section: lead
+    purpose: 読者の「選べない」悩みに共感
+    length: 200〜300字
+    must_include: [&quot;選び方がわからない読者への共感&quot;, &quot;この記事を読むと得られるもの&quot;]
+  - section: selection_criteria
+    heading: &quot;H2: {商品カテゴリ}を選ぶ{数}つのポイント&quot;
+    length: 600〜800字
+    format: &quot;番号付きリスト&quot;
+    must_include: [&quot;各ポイントの理由&quot;, &quot;初心者が陥りがちな失敗例&quot;]
+  - section: product_list
+    heading: &quot;H2: {company_name}スタッフおすすめ{数}選&quot;
+    format: &quot;商品カード形式&quot;
+    per_item:
+      - &quot;商品名&quot;
+      - &quot;価格（税込）&quot;
+      - &quot;おすすめポイント（100字）&quot;
+      - &quot;こんな人におすすめ（50字）&quot;
+      - &quot;商品画像挿入指示&quot;
+    count: 5〜8品
+  - section: comparison
+    heading: &quot;H2: 比較表で一目でわかる&quot;
+    format: &quot;テーブル&quot;
+    columns: [&quot;商品名&quot;, &quot;価格&quot;, &quot;特長&quot;, &quot;おすすめ度&quot;]
+  - section: buyer_voice
+    heading: &quot;H2: バイヤーの一言&quot;
+    length: 200〜300字
+    must_include: [&quot;仕入れ時のエピソード&quot;, &quot;プロとしてのおすすめ理由&quot;]
+  - section: cta
+    heading: &quot;H2: ご購入・ご来店案内&quot;
+    length: 150〜200字
+    must_include: [&quot;購入導線（EC/店舗）&quot;, &quot;在庫確認方法&quot;, &quot;ギフト対応有無&quot;]
+</code></pre>
+<h4>SNS投稿テンプレート（Instagram）</h4>
+<pre><code class="language-yaml">template_id: RTL-IG-001
+name: &quot;新商品・おすすめ紹介型&quot;
+variants:
+  - id: new_arrival
+    format: |
+      ✨ 新入荷 ✨
+
+      {商品名}
+      ¥{価格}（税込）
+
+      {商品の魅力を3行で}
+
+      {brand_story に基づくセレクト理由1行}
+
+      ━━━━━━━━━━━━
+      📍 {店舗名}（{region}）
+      🛒 オンラインストア → プロフィールリンク
+      ━━━━━━━━━━━━
+
+      {ハッシュタグ 15〜25個}
+    hashtag_rules: &quot;商品カテゴリ＋ブランド名＋ライフスタイルタグの組合せ&quot;
+  - id: staff_pick
+    format: |
+      👤 スタッフのイチオシ
+
+      {スタッフ名}が選ぶ「{テーマ}」
+
+      ① {商品名} — {一言理由}
+      ② {商品名} — {一言理由}
+      ③ {商品名} — {一言理由}
+
+      気になるアイテムはDMでもお気軽に◎
+
+      {ハッシュタグ 10〜15個}
+</code></pre>
+<h4>メルマガテンプレート</h4>
+<pre><code class="language-yaml">template_id: RTL-MAIL-001
+name: &quot;新商品・セール案内型&quot;
+structure:
+  - section: subject
+    format: &quot;【{company_name}】{季節}の新作入荷🆕 ＋ {キャンペーン名}のお知らせ&quot;
+  - section: hero_image
+    format: &quot;メインビジュアル画像挿入指示&quot;
+  - section: new_arrivals
+    heading: &quot;今週の新入荷&quot;
+    format: &quot;商品カード（画像＋名前＋価格＋一言）&quot;
+    count: 3〜4品
+  - section: campaign
+    heading: &quot;開催中のキャンペーン&quot;
+    length: 150〜200字
+    conditional: &quot;キャンペーン情報がある場合のみ表示&quot;
+    must_include: [&quot;期間&quot;, &quot;対象商品/条件&quot;, &quot;特典内容&quot;]
+  - section: staff_column
+    heading: &quot;スタッフコラム&quot;
+    length: 150〜200字
+    purpose: &quot;親近感醸成・ファン化&quot;
+  - section: cta
+    format: &quot;button_dual&quot;
+    buttons:
+      - text: &quot;オンラインストアで見る&quot;
+      - text: &quot;店舗情報・アクセス&quot;
+</code></pre>
+<h3>6.4 バリエーション展開ルール</h3>
+<table>
+<thead>
+<tr>
+<th>展開軸</th>
+<th>分岐条件</th>
+<th>テンプレート変更点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小売種別</td>
+<td><code>retail_type</code></td>
+<td>商品紹介の切り口変更（アパレル→コーデ提案、食品→レシピ連携）</td>
+</tr>
+<tr>
+<td>販売チャネル</td>
+<td><code>sales_channel</code></td>
+<td>CTA先変更（EC→カートリンク、実店舗→MAP/電話）</td>
+</tr>
+<tr>
+<td>季節商戦</td>
+<td>12イベントカレンダー連動</td>
+<td>バレンタイン/母の日/クリスマス等の特別テンプレート自動切替</td>
+</tr>
+<tr>
+<td>価格帯</td>
+<td><code>price_positioning</code></td>
+<td>トーン調整（コスパ→お得感訴求、プレミアム→品質・ストーリー訴求）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. 横断ルール・制約事項</h2>
+<h3>7.1 E-E-A-T準拠チェックリスト（全テンプレート共通）</h3>
+<p>生成時に以下を自動検証する。未充足項目はユーザーに入力を促す。</p>
+<table>
+<thead>
+<tr>
+<th>E-E-A-T要素</th>
+<th>チェック項目</th>
+<th>自動/手動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Experience（経験）</strong></td>
+<td>実体験・事例の具体性があるか</td>
+<td>手動（入力促進）</td>
+</tr>
+<tr>
+<td><strong>Expertise（専門性）</strong></td>
+<td>資格・経歴・実績が明記されているか</td>
+<td>自動（入力済みデータから挿入）</td>
+</tr>
+<tr>
+<td><strong>Authoritativeness（権威性）</strong></td>
+<td>監修者情報・所属団体が記載されているか</td>
+<td>自動（プロフィール枠生成）</td>
+</tr>
+<tr>
+<td><strong>Trustworthiness（信頼性）</strong></td>
+<td>情報源の明示・免責事項があるか</td>
+<td>自動（免責テンプレート挿入）</td>
+</tr>
+</tbody>
+</table>
+<h3>7.2 SEO共通仕様</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>仕様</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>タイトルタグ</td>
+<td>30〜35字、主要キーワードを前方配置</td>
+</tr>
+<tr>
+<td>メタディスクリプション</td>
+<td>100〜120字、行動喚起を含む</td>
+</tr>
+<tr>
+<td>見出し構造</td>
+<td>H1×1 → H2×3〜5 → H3は必要時のみ</td>
+</tr>
+<tr>
+<td>内部リンク</td>
+<td>関連記事への自動リンク提案（2〜3本）</td>
+</tr>
+<tr>
+<td>構造化データ</td>
+<td>FAQ / HowTo / LocalBusiness / Product を業種・記事型に応じて自動付与</td>
+</tr>
+<tr>
+<td>画像ALT</td>
+<td>「{商品名/技術名}の{状態/用途}」形式で自動生成</td>
+</tr>
+</tbody>
+</table>
+<h3>7.3 トーン定義マスター</h3>
+<table>
+<thead>
+<tr>
+<th>トーンID</th>
+<th>説明</th>
+<th>使用業種</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>professional</code></td>
+<td>堅実・信頼感。敬体。技術用語を正確に使用。</td>
+<td>製造業</td>
+</tr>
+<tr>
+<td><code>authoritative</code></td>
+<td>専門性と安心感。丁寧語。法令用語は平易に言い換え。</td>
+<td>士業</td>
+</tr>
+<tr>
+<td><code>warm</code></td>
+<td>五感表現豊富。語りかけ調。絵文字は最小限に。</td>
+<td>飲食業</td>
+</tr>
+<tr>
+<td><code>expert_friendly</code></td>
+<td>専門性を保ちつつ非技術者にも伝わる。図表多用。</td>
+<td>IT業</td>
+</tr>
+<tr>
+<td><code>approachable</code></td>
+<td>親しみやすく購買意欲を喚起。絵文字・記号を適度に活用。</td>
+<td>小売業</td>
+</tr>
+</tbody>
+</table>
+<h3>7.4 テンプレートID命名規則</h3>
+<pre><code>{業種コード}-{コンテンツタイプ}-{連番}
+
+業種コード:   MFG / PRO / FNB / ITC / RTL
+コンテンツタイプ: BLOG / X / IG / MAIL
+連番:         001〜999
+</code></pre>
+<hr />
+<h2>8. テンプレート拡張ガイドライン</h2>
+<h3>8.1 新業種追加時の手順</h3>
+<ol>
+<li>業種コードを決定（アルファベット3文字）</li>
+<li>業種マスター定義を作成（トーン・禁止表現・E-E-A-T要素）</li>
+<li>業種固有入力項目を設計（5〜8項目が目安）</li>
+<li>4コンテンツタイプのテンプレートを作成</li>
+<li>バリエーション展開ルールを最低3軸定義</li>
+<li>E-E-A-Tチェックリストとの整合性確認</li>
+</ol>
+<h3>8.2 テンプレートバージョン管理</h3>
+<table>
+<thead>
+<tr>
+<th>ルール</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>バージョニング</td>
+<td>セマンティックバージョニング（v1.0.0）</td>
+</tr>
+<tr>
+<td>破壊的変更</td>
+<td>入力項目の削除・型変更はメジャーバージョンアップ</td>
+</tr>
+<tr>
+<td>追加・改善</td>
+<td>新セクション追加・文字数調整はマイナーバージョンアップ</td>
+</tr>
+<tr>
+<td>下位互換性</td>
+<td>旧バージョンで作成済みコンテンツの再生成に影響しないこと</td>
+</tr>
+</tbody>
+</table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

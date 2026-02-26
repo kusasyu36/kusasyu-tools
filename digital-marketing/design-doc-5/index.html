@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サービス設計書 - kusasyu tools</title>
+<meta name="description" content="中小〜中堅EC事業者・D2Cブランド向けに、AIが広告バナー・LPヒーロー画像・動画サムネイルのクリエイティブを自動生成し、LINE広告・Instagram広告・Google広告の各フォーマットに自動変換するサービスを設計する。A/Bテスト機能によりCTRを継続的に最適化し、月間広告費50万〜500万円帯の顧">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,サービス設計書">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-5/">
+<meta property="og:title" content="サービス設計書 - kusasyu tools">
+<meta property="og:description" content="中小〜中堅EC事業者・D2Cブランド向けに、AIが広告バナー・LPヒーロー画像・動画サムネイルのクリエイティブを自動生成し、LINE広告・Instagram広告・Google広告の各フォーマットに自動変換するサービスを設計する。A/Bテスト機能によりCTRを継続的に最適化し、月間広告費50万〜500万円帯の顧">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サービス設計書 - kusasyu tools">
+<meta name="twitter:description" content="中小〜中堅EC事業者・D2Cブランド向けに、AIが広告バナー・LPヒーロー画像・動画サムネイルのクリエイティブを自動生成し、LINE広告・Instagram広告・Google広告の各フォーマットに自動変換するサービスを設計する。A/Bテスト機能によりCTRを継続的に最適化し、月間広告費50万〜500万円帯の顧">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サービス設計書",
+  "description": "中小〜中堅EC事業者・D2Cブランド向けに、AIが広告バナー・LPヒーロー画像・動画サムネイルのクリエイティブを自動生成し、LINE広告・Instagram広告・Google広告の各フォーマットに自動変換するサービスを設計する。A/Bテスト機能によりCTRを継続的に最適化し、月間広告費50万〜500万円帯の顧",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/design-doc-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>サービス設計書</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>サービス設計書</h1>
+  <p class="project-name">AIパーソナライズド広告クリエイティブ制作サービス</p>
+  <div class="content">
+<p>サービス設計書の全文をここに出力します。</p>
+<hr />
+<h1>AIパーソナライズド広告クリエイティブ制作サービス — サービス設計書</h1>
+<p><strong>文書番号</strong>: SLD-2026-001<br />
+<strong>版数</strong>: 1.0<br />
+<strong>最終更新</strong>: 2026年2月20日<br />
+<strong>ステータス</strong>: 初版公開</p>
+<hr />
+<h2>1. サービス概要</h2>
+<h3>1.1 サービス名称</h3>
+<p><strong>AdCraft AI</strong>（アドクラフト エーアイ）</p>
+<h3>1.2 提供価値</h3>
+<p>AdCraft AIは、EC事業者・D2Cブランドが抱える「広告クリエイティブの量産・最適化コスト」を解消するSaaS型サービスである。従来、1本あたり3〜5万円・納期3〜5営業日を要していた広告バナー制作を、AIによる自動生成で<strong>1本あたり500円以下・最短5分</strong>に短縮する。</p>
+<h3>1.3 対象顧客</h3>
+<table>
+<thead>
+<tr>
+<th>セグメント</th>
+<th>月間広告費</th>
+<th>課題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小規模EC事業者</td>
+<td>50万〜150万円</td>
+<td>デザイナー不在。テンプレ流用で差別化できない</td>
+</tr>
+<tr>
+<td>中堅D2Cブランド</td>
+<td>150万〜500万円</td>
+<td>クリエイティブ検証の速度が運用改善のボトルネック</td>
+</tr>
+<tr>
+<td>小規模広告代理店</td>
+<td>担当案件合計300万〜1,000万円</td>
+<td>多数クライアントのバナー量産で人件費が圧迫される</td>
+</tr>
+</tbody>
+</table>
+<h3>1.4 サービス機能一覧</h3>
+<p><strong>コア機能</strong></p>
+<ul>
+<li><strong>AIクリエイティブ生成</strong>: 商品画像・ブランドガイドライン・訴求軸を入力し、広告バナー・LPヒーロー画像・動画サムネイルを自動生成</li>
+<li><strong>マルチフォーマット自動変換</strong>: 1つの原案からLINE広告（1200×628, 1080×1080）、Instagram広告（1080×1080, 1080×1920）、Google広告（300×250, 728×90, 160×600）の全サイズを一括出力</li>
+<li><strong>A/Bテスト統合</strong>: 生成した複数バリエーションを広告プラットフォームに自動入稿し、CTR・CVRデータを収集。勝ちクリエイティブを自動判定</li>
+<li><strong>ブランド一貫性エンジン</strong>: ロゴ配置ルール、カラーパレット、フォント指定、トーン&amp;マナーをプロファイルとして学習し、すべての生成物に適用</li>
+</ul>
+<p><strong>運用支援機能</strong></p>
+<ul>
+<li><strong>パフォーマンスダッシュボード</strong>: クリエイティブ別CTR・CVR・ROAS推移をリアルタイム表示</li>
+<li><strong>競合クリエイティブ分析</strong>: 同業他社の出稿傾向をAIが分析し、差別化ポイントを提示</li>
+<li><strong>シーズナルテンプレート</strong>: セール・季節イベント用のテンプレートライブラリを提供（毎月追加更新）</li>
+<li><strong>チーム承認ワークフロー</strong>: 生成→レビュー→承認→入稿の一連フローをサービス内で完結</li>
+</ul>
+<h3>1.5 競合優位性</h3>
+<ol>
+<li><strong>生成品質</strong>: Stable Diffusion XL + 独自ファインチューニングモデルにより、「AIっぽさ」を排除した広告表現を実現</li>
+<li><strong>マルチプラットフォーム一括対応</strong>: 他社はSNS特化が多い中、LINE・Instagram・Googleの3媒体を統合カバー</li>
+<li><strong>ROAS実証モデル</strong>: A/Bテスト機能とダッシュボードにより、導入効果を数値で可視化。「費用対効果が見えない」という従来のクリエイティブ制作の課題を解消</li>
+</ol>
+<hr />
+<h2>2. 料金プラン</h2>
+<h3>2.1 プラン体系</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>Starter</th>
+<th>Growth</th>
+<th>Enterprise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>月額料金（税別）</strong></td>
+<td>49,800円</td>
+<td>148,000円</td>
+<td>398,000円</td>
+</tr>
+<tr>
+<td><strong>想定広告費帯</strong></td>
+<td>50万〜150万円/月</td>
+<td>150万〜350万円/月</td>
+<td>350万〜500万円以上/月</td>
+</tr>
+<tr>
+<td><strong>月間生成枚数</strong></td>
+<td>100枚</td>
+<td>500枚</td>
+<td>無制限</td>
+</tr>
+<tr>
+<td><strong>対応フォーマット</strong></td>
+<td>LINE・Instagram</td>
+<td>LINE・Instagram・Google</td>
+<td>全媒体＋カスタム</td>
+</tr>
+<tr>
+<td><strong>A/Bテスト</strong></td>
+<td>手動（月5セット）</td>
+<td>自動（月20セット）</td>
+<td>自動（無制限）</td>
+</tr>
+<tr>
+<td><strong>ブランドプロファイル</strong></td>
+<td>1件</td>
+<td>3件</td>
+<td>10件</td>
+</tr>
+<tr>
+<td><strong>ダッシュボード</strong></td>
+<td>基本レポート</td>
+<td>詳細分析＋競合分析</td>
+<td>全機能＋API連携</td>
+</tr>
+<tr>
+<td><strong>サポート</strong></td>
+<td>メール（翌営業日）</td>
+<td>チャット（4時間以内）</td>
+<td>専任CS＋月次MTG</td>
+</tr>
+<tr>
+<td><strong>動画サムネイル</strong></td>
+<td>—</td>
+<td>月50枚</td>
+<td>無制限</td>
+</tr>
+<tr>
+<td><strong>承認ワークフロー</strong></td>
+<td>—</td>
+<td>3ユーザーまで</td>
+<td>無制限</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 従量課金オプション</h3>
+<ul>
+<li>追加生成: 1枚あたり300円（Starter/Growth）</li>
+<li>追加ブランドプロファイル: 1件あたり月額9,800円</li>
+<li>カスタムテンプレート作成: 1件あたり30,000円（初回のみ）</li>
+<li>動画クリエイティブ生成（15秒以内）: 1本あたり2,000円</li>
+</ul>
+<h3>2.3 契約条件</h3>
+<ul>
+<li><strong>最低契約期間</strong>: Starter 1ヶ月 / Growth 3ヶ月 / Enterprise 6ヶ月</li>
+<li><strong>年間契約割引</strong>: 全プラン月額料金の15%OFF</li>
+<li><strong>解約</strong>: 契約期間満了の30日前までに書面通知。期間中途解約は残存期間の50%を違約金として請求</li>
+<li><strong>無料トライアル</strong>: 全プラン14日間（生成枚数20枚まで）</li>
+</ul>
+<h3>2.4 料金改定ポリシー</h3>
+<ul>
+<li>料金改定は90日前に書面通知</li>
+<li>既存契約期間中は旧料金を適用</li>
+<li>値上げ幅は年間最大10%を上限とする</li>
+</ul>
+<hr />
+<h2>3. 導入フロー</h2>
+<h3>3.1 全体スケジュール</h3>
+<pre><code>契約締結 → オンボーディング → 運用開始 → 最適化サイクル
+  Day 0      Day 1-5         Day 6-       Day 14-
+</code></pre>
+<h3>3.2 フェーズ詳細</h3>
+<p><strong>フェーズ1: 契約・環境準備（Day 0）</strong></p>
+<table>
+<thead>
+<tr>
+<th>ステップ</th>
+<th>担当</th>
+<th>成果物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>利用申込・プラン選択</td>
+<td>顧客</td>
+<td>申込フォーム送信</td>
+</tr>
+<tr>
+<td>契約書締結</td>
+<td>双方</td>
+<td>電子契約書（クラウドサイン）</td>
+</tr>
+<tr>
+<td>アカウント発行</td>
+<td>AdCraft AI</td>
+<td>管理画面URL・初期認証情報</td>
+</tr>
+</tbody>
+</table>
+<p><strong>フェーズ2: オンボーディング（Day 1〜5）</strong></p>
+<table>
+<thead>
+<tr>
+<th>ステップ</th>
+<th>担当</th>
+<th>所要時間</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ブランドガイドライン登録</td>
+<td>顧客＋CS</td>
+<td>60分</td>
+</tr>
+<tr>
+<td>商品画像・素材アップロード</td>
+<td>顧客</td>
+<td>30分〜</td>
+</tr>
+<tr>
+<td>広告アカウント連携（API接続）</td>
+<td>顧客＋CS</td>
+<td>30分</td>
+</tr>
+<tr>
+<td>テスト生成・品質確認</td>
+<td>双方</td>
+<td>60分</td>
+</tr>
+<tr>
+<td>運用ルール策定（承認フロー・KPI目標）</td>
+<td>双方</td>
+<td>60分</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Starterプラン: セルフオンボーディング（動画マニュアル＋チャットサポート）</li>
+<li>Growth/Enterprise: 専任CSによる1on1オンボーディング（Zoom 2回）</li>
+</ul>
+<p><strong>フェーズ3: 運用開始（Day 6〜）</strong></p>
+<ul>
+<li>初回クリエイティブ一括生成（推奨: 10〜30バリエーション）</li>
+<li>A/Bテスト初回セットアップ</li>
+<li>広告プラットフォームへの入稿開始</li>
+</ul>
+<p><strong>フェーズ4: 最適化サイクル（Day 14〜、以降継続）</strong></p>
+<pre><code>データ収集 → AI分析 → 改善クリエイティブ生成 → 再テスト
+   7日間      自動       自動生成            7日間
+</code></pre>
+<ul>
+<li>2週間サイクルでクリエイティブを自動リフレッシュ</li>
+<li>月次レポートでROAS改善効果を可視化（Growth以上）</li>
+<li>四半期レビュー会議で戦略的方向性を協議（Enterprise）</li>
+</ul>
+<h3>3.3 顧客側の準備事項チェックリスト</h3>
+<ul>
+<li>[ ] ブランドガイドライン（ロゴデータ、カラーコード、フォント指定）</li>
+<li>[ ] 商品画像（白背景推奨、最低1200×1200px、5枚以上）</li>
+<li>[ ] 過去の広告クリエイティブ（任意、AIの学習精度向上に活用）</li>
+<li>[ ] 広告アカウントの管理者権限（LINE・Instagram・Google）</li>
+<li>[ ] ターゲット顧客ペルソナの共有（年齢層・関心事項）</li>
+</ul>
+<hr />
+<h2>4. 技術アーキテクチャ概要</h2>
+<h3>4.1 システム構成図</h3>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│                  フロントエンド                        │
+│  Next.js 14 (App Router) + Tailwind CSS              │
+│  ダッシュボード / エディタ / 承認ワークフロー            │
+└──────────────────────┬──────────────────────────────┘
+                       │ HTTPS / WebSocket
+┌──────────────────────▼──────────────────────────────┐
+│                  APIゲートウェイ                       │
+│  AWS API Gateway + Lambda Authorizer                 │
+│  レート制限 / 認証 / ルーティング                       │
+└───┬──────────┬──────────┬──────────┬────────────────┘
+    │          │          │          │
+    ▼          ▼          ▼          ▼
+┌───────┐ ┌───────┐ ┌───────┐ ┌──────────┐
+│生成API │ │変換API │ │分析API │ │連携API    │
+│       │ │       │ │       │ │          │
+│画像生成│ │リサイズ│ │CTR予測 │ │LINE/IG/  │
+│テキスト│ │最適化  │ │A/B判定 │ │Google    │
+│合成   │ │       │ │       │ │Ads API   │
+└───┬───┘ └───┬───┘ └───┬───┘ └────┬─────┘
+    │         │         │          │
+    ▼         ▼         ▼          ▼
+┌─────────────────────────────────────────────────────┐
+│               共通基盤                                │
+│  PostgreSQL (メタデータ) / S3 (画像・素材)             │
+│  Redis (キャッシュ・キュー) / CloudWatch (監視)        │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+<h3>4.2 主要コンポーネント</h3>
+<p><strong>画像生成エンジン</strong></p>
+<ul>
+<li>ベースモデル: Stable Diffusion XL 1.0</li>
+<li>独自ファインチューニング: 広告バナーデータセット（約50万枚）で追加学習</li>
+<li>ControlNetによるレイアウト制御: ロゴ・テキスト・商品画像の配置を精密制御</li>
+<li>推論基盤: AWS EC2 G5インスタンス（NVIDIA A10G）/ オートスケーリング対応</li>
+<li>生成時間: 1枚あたり平均8秒（バッチ処理時は1枚あたり3秒）</li>
+</ul>
+<p><strong>マルチフォーマット変換エンジン</strong></p>
+<ul>
+<li>AWS Lambda上で動作する軽量画像処理パイプライン</li>
+<li>入力1枚から全サイズ（最大8フォーマット）を並列生成</li>
+<li>スマートクロッピング: 被写体検出により自動トリミング位置を最適化</li>
+<li>テキスト再配置: サイズ比率に応じてコピーの改行・フォントサイズを自動調整</li>
+</ul>
+<p><strong>A/Bテスト・最適化エンジン</strong></p>
+<ul>
+<li>Multi-Armed Bandit（Thompson Sampling）アルゴリズムを採用</li>
+<li>最低サンプルサイズ到達後に自動で勝者判定（統計的有意水準 p &lt; 0.05）</li>
+<li>勝ちクリエイティブの要素（色彩・レイアウト・コピー）をAIが分析し、次回生成にフィードバック</li>
+</ul>
+<h3>4.3 インフラストラクチャ</h3>
+<ul>
+<li><strong>クラウド</strong>: AWS（東京リージョン ap-northeast-1）</li>
+<li><strong>コンテナ</strong>: ECS Fargate（APIサービス群）</li>
+<li><strong>GPU</strong>: EC2 G5（推論）、オンデマンド＋Spot混在でコスト最適化</li>
+<li><strong>CDN</strong>: CloudFront（生成画像配信）</li>
+<li><strong>CI/CD</strong>: GitHub Actions → ECR → ECS Blue/Greenデプロイ</li>
+<li><strong>監視</strong>: CloudWatch + Datadog（APM）+ PagerDuty（アラート）</li>
+</ul>
+<h3>4.4 外部API連携</h3>
+<table>
+<thead>
+<tr>
+<th>連携先</th>
+<th>用途</th>
+<th>接続方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LINE Ads Platform API</td>
+<td>広告入稿・レポート取得</td>
+<td>OAuth 2.0</td>
+</tr>
+<tr>
+<td>Meta Marketing API</td>
+<td>Instagram広告入稿・レポート取得</td>
+<td>OAuth 2.0</td>
+</tr>
+<tr>
+<td>Google Ads API</td>
+<td>Google広告入稿・レポート取得</td>
+<td>OAuth 2.0</td>
+</tr>
+<tr>
+<td>OpenAI API</td>
+<td>広告コピー生成補助</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td>Stripe</td>
+<td>課金・サブスクリプション管理</td>
+<td>API Key</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. SLA・KPI定義</h2>
+<h3>5.1 サービスレベル合意（SLA）</h3>
+<p><strong>稼働率保証</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>Starter</th>
+<th>Growth</th>
+<th>Enterprise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月間稼働率保証</td>
+<td>99.5%</td>
+<td>99.9%</td>
+<td>99.95%</td>
+</tr>
+<tr>
+<td>計画メンテナンス除外</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>SLA違反時の返金</td>
+<td>—</td>
+<td>該当月料金の10%</td>
+<td>該当月料金の25%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>応答時間保証</strong></p>
+<table>
+<thead>
+<tr>
+<th>処理</th>
+<th>目標値</th>
+<th>測定方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>クリエイティブ生成（1枚）</td>
+<td>30秒以内</td>
+<td>API応答時間（P95）</td>
+</tr>
+<tr>
+<td>マルチフォーマット変換</td>
+<td>60秒以内</td>
+<td>API応答時間（P95）</td>
+</tr>
+<tr>
+<td>ダッシュボード表示</td>
+<td>3秒以内</td>
+<td>ページロード完了（P95）</td>
+</tr>
+<tr>
+<td>A/Bテスト結果更新</td>
+<td>1時間以内</td>
+<td>データ反映遅延</td>
+</tr>
+</tbody>
+</table>
+<p><strong>サポート応答時間</strong></p>
+<table>
+<thead>
+<tr>
+<th>優先度</th>
+<th>Starter</th>
+<th>Growth</th>
+<th>Enterprise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>緊急（サービス停止）</td>
+<td>24時間</td>
+<td>4時間</td>
+<td>1時間</td>
+</tr>
+<tr>
+<td>高（機能障害）</td>
+<td>48時間</td>
+<td>8時間</td>
+<td>4時間</td>
+</tr>
+<tr>
+<td>通常（問い合わせ）</td>
+<td>翌営業日</td>
+<td>当日中</td>
+<td>4時間</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2 サービスKPI</h3>
+<p><strong>顧客成果KPI（導入企業に対する約束）</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>目標値</th>
+<th>測定期間</th>
+<th>根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CTR改善率</td>
+<td>導入前比+20%以上</td>
+<td>導入後3ヶ月</td>
+<td>A/Bテスト最適化による平均改善実績</td>
+</tr>
+<tr>
+<td>クリエイティブ制作コスト削減</td>
+<td>60%以上削減</td>
+<td>導入後1ヶ月</td>
+<td>外注費・人件費との比較</td>
+</tr>
+<tr>
+<td>クリエイティブ制作リードタイム</td>
+<td>従来比1/10以下</td>
+<td>即時</td>
+<td>5営業日→30分以内</td>
+</tr>
+<tr>
+<td>ROAS改善率</td>
+<td>+15%以上</td>
+<td>導入後6ヶ月</td>
+<td>CTR改善＋コスト削減の複合効果</td>
+</tr>
+</tbody>
+</table>
+<p><strong>事業運営KPI（自社管理指標）</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>目標値</th>
+<th>測定頻度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月次解約率（Churn Rate）</td>
+<td>3%以下</td>
+<td>月次</td>
+</tr>
+<tr>
+<td>NPS（顧客推奨度）</td>
+<td>40以上</td>
+<td>四半期</td>
+</tr>
+<tr>
+<td>平均オンボーディング期間</td>
+<td>5営業日以内</td>
+<td>月次</td>
+</tr>
+<tr>
+<td>生成品質スコア（社内基準）</td>
+<td>4.0/5.0以上</td>
+<td>週次</td>
+</tr>
+<tr>
+<td>GPU稼働コスト/生成枚数</td>
+<td>200円/枚以下</td>
+<td>月次</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3 SLA違反時のエスカレーションフロー</h3>
+<pre><code>検知（自動監視）
+  → Level 1: エンジニアオンコール対応（15分以内）
+    → Level 2: テックリード参加（30分以内）
+      → Level 3: CTO＋顧客通知（60分以内）
+        → Level 4: 経営判断（必要に応じて）
+</code></pre>
+<ul>
+<li>障害発生時は24時間以内にインシデントレポートを対象顧客に送付</li>
+<li>重大障害（稼働率99%未満）は翌月の月次レポートに再発防止策を記載</li>
+</ul>
+<hr />
+<h2>6. データセキュリティ方針</h2>
+<h3>6.1 基本方針</h3>
+<p>AdCraft AIは、顧客から預かる商品画像・ブランド素材・広告運用データを<strong>最重要資産</strong>として扱い、業界標準以上のセキュリティ対策を講じる。</p>
+<h3>6.2 データ分類と取扱い</h3>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>該当データ</th>
+<th>保管期間</th>
+<th>暗号化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>機密</td>
+<td>広告アカウント認証情報、API Key</td>
+<td>契約期間中</td>
+<td>AES-256（保管時）+ TLS 1.3（通信時）</td>
+</tr>
+<tr>
+<td>顧客資産</td>
+<td>商品画像、ブランドガイドライン、ロゴ</td>
+<td>契約終了後90日</td>
+<td>AES-256（S3 SSE-KMS）</td>
+</tr>
+<tr>
+<td>運用データ</td>
+<td>広告パフォーマンスデータ、A/Bテスト結果</td>
+<td>契約終了後90日</td>
+<td>AES-256（RDS暗号化）</td>
+</tr>
+<tr>
+<td>生成データ</td>
+<td>AI生成クリエイティブ</td>
+<td>契約終了後90日</td>
+<td>AES-256（S3 SSE-KMS）</td>
+</tr>
+<tr>
+<td>ログ</td>
+<td>アクセスログ、操作ログ</td>
+<td>1年間</td>
+<td>AES-256</td>
+</tr>
+</tbody>
+</table>
+<h3>6.3 アクセス制御</h3>
+<ul>
+<li><strong>認証</strong>: SSO（SAML 2.0 / OpenID Connect）対応。多要素認証（MFA）必須（Enterprise）</li>
+<li><strong>認可</strong>: RBAC（Role-Based Access Control）による最小権限原則</li>
+<li>オーナー: 全機能アクセス、課金管理、メンバー管理</li>
+<li>編集者: クリエイティブ生成・編集、A/Bテスト設定</li>
+<li>閲覧者: ダッシュボード閲覧、レポートダウンロード</li>
+<li><strong>社内アクセス</strong>: 顧客データへの社内アクセスは原則禁止。サポート対応時のみ、顧客承認の上で一時的にアクセス権を付与（操作ログを全件記録）</li>
+</ul>
+<h3>6.4 インフラセキュリティ</h3>
+<ul>
+<li><strong>ネットワーク</strong>: VPC分離、セキュリティグループによるポート制限、WAF適用</li>
+<li><strong>脆弱性管理</strong>: 週次の自動脆弱性スキャン（Trivy / Snyk）、四半期の第三者ペネトレーションテスト</li>
+<li><strong>パッチ管理</strong>: 重大脆弱性（CVSS 9.0以上）は24時間以内に対応</li>
+<li><strong>バックアップ</strong>: 日次自動バックアップ（S3 Cross-Region Replication）、RPO 24時間、RTO 4時間</li>
+</ul>
+<h3>6.5 AI学習データに関するポリシー</h3>
+<ul>
+<li><strong>顧客データの非利用宣言</strong>: 顧客がアップロードした画像・素材を、他顧客向けのAIモデル学習に使用しない</li>
+<li><strong>生成物の著作権</strong>: AI生成クリエイティブの著作権は顧客に帰属する（利用規約に明記）</li>
+<li><strong>オプトイン学習</strong>: 顧客が明示的に同意した場合のみ、匿名化した上でモデル改善に活用（同意はいつでも撤回可能）</li>
+</ul>
+<h3>6.6 コンプライアンス</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>対応状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>個人情報保護法</td>
+<td>準拠（プライバシーポリシー公開済み）</td>
+</tr>
+<tr>
+<td>ISMS（ISO 27001）</td>
+<td>サービス開始後12ヶ月以内に取得予定</td>
+</tr>
+<tr>
+<td>SOC 2 Type II</td>
+<td>サービス開始後18ヶ月以内に取得予定</td>
+</tr>
+<tr>
+<td>景品表示法</td>
+<td>AI生成コピーの誇大広告チェック機能を実装</td>
+</tr>
+<tr>
+<td>薬機法</td>
+<td>健康食品・化粧品カテゴリの表現チェック機能を実装</td>
+</tr>
+</tbody>
+</table>
+<h3>6.7 インシデント対応</h3>
+<ul>
+<li><strong>検知</strong>: CloudTrail + GuardDuty + 独自異常検知ルール</li>
+<li><strong>初動</strong>: 検知から30分以内にセキュリティチームが調査開始</li>
+<li><strong>通知</strong>: 個人データ漏洩の可能性がある場合、72時間以内に顧客へ通知</li>
+<li><strong>報告</strong>: インシデント収束後5営業日以内に原因分析・再発防止策を書面で報告</li>
+</ul>
+<h3>6.8 契約終了時のデータ処理</h3>
+<ul>
+<li>契約終了後90日間はデータを保持（顧客によるダウンロード期間）</li>
+<li>90日経過後、全データを完全削除（論理削除＋物理削除）</li>
+<li>削除完了証明書を顧客に発行（Enterpriseプランは標準、他プランはリクエストベース）</li>
+</ul>
+<hr />
+<h2>付録</h2>
+<h3>A. 用語集</h3>
+<table>
+<thead>
+<tr>
+<th>用語</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CTR</td>
+<td>Click Through Rate。広告表示に対するクリック率</td>
+</tr>
+<tr>
+<td>CVR</td>
+<td>Conversion Rate。クリックに対する購入・申込等の成約率</td>
+</tr>
+<tr>
+<td>ROAS</td>
+<td>Return On Ad Spend。広告費に対する売上の比率</td>
+</tr>
+<tr>
+<td>LPヒーロー画像</td>
+<td>ランディングページの最上部に配置されるメインビジュアル</td>
+</tr>
+<tr>
+<td>A/Bテスト</td>
+<td>2つ以上のクリエイティブを同時配信し、成果を比較する手法</td>
+</tr>
+<tr>
+<td>ControlNet</td>
+<td>画像生成AIにおいて構図・レイアウトを制御する技術</td>
+</tr>
+<tr>
+<td>RBAC</td>
+<td>Role-Based Access Control。役割に基づくアクセス制御方式</td>
+</tr>
+<tr>
+<td>RPO</td>
+<td>Recovery Point Objective。障害時に許容されるデータ損失の最大期間</td>
+</tr>
+<tr>
+<td>RTO</td>
+<td>Recovery Time Objective。障害からサービス復旧までの目標時間</td>
+</tr>
+</tbody>
+</table>
+<h3>B. 改訂履歴</h3>
+<table>
+<thead>
+<tr>
+<th>版数</th>
+<th>日付</th>
+<th>変更内容</th>
+<th>承認者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2026-02-20</td>
+<td>初版作成</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

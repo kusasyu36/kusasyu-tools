@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>空室物件の写真撮影＆掲載クオリティ改善チェックリスト - kusasyu tools</title>
+<meta name="description" content="賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,空室物件の写真撮影＆掲載クオリティ改善チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/virtual-staging-2/">
+<meta property="og:title" content="空室物件の写真撮影＆掲載クオリティ改善チェックリスト - kusasyu tools">
+<meta property="og:description" content="賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/virtual-staging-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空室物件の写真撮影＆掲載クオリティ改善チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "空室物件の写真撮影＆掲載クオリティ改善チェックリスト",
+  "description": "賃貸管理会社・オーナー向けに、AIバーチャルステージング（空室写真にAIで家具を配置する技術）を活用した空室対策の実践ガイドコンテンツを制作する。SaaSを作るのではなく、現場の管理会社担当者が『今日から使える』知識とツールを提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/virtual-staging-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>空室物件の写真撮影＆掲載クオリティ改善チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>空室物件の写真撮影＆掲載クオリティ改善チェックリスト</h1>
+  <p class="project-name">賃貸空室対策AIバーチャルステージング活用ガイド</p>
+  <div class="content">
+<h1>空室物件の写真撮影＆掲載クオリティ改善チェックリスト</h1>
+<p><strong>対象</strong>：賃貸管理会社のリーシング担当者・自主管理オーナー
+<strong>使い方</strong>：ポータルサイトへの写真掲載前に全30項目をチェック。◎＝必須水準／○＝合格水準／△＝改善が必要</p>
+<blockquote>
+<p><strong>参考</strong>：本チェックリストは「AIバーチャルステージング導入・実践ガイド — 空室写真を『住みたい部屋』に変える方法」の補助ツールです。写真の質が反響数を左右し、ステージング済み物件は<strong>成約期間が平均73%短縮</strong>（全米リアルター協会調査）されるというデータもあります。まず本チェックリストで撮影・掲載品質を底上げし、その上でAIバーチャルステージングを組み合わせることで最大の効果が得られます。</p>
+</blockquote>
+<hr />
+<h2>A. 撮影前の準備（6項目）</h2>
+<h3>1. 室内清掃の実施</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>床・壁・水回りすべてクリーニング済み。埃・汚れ・カビなし</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>目立つ汚れはないが、水回りにやや使用感が残る</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>未清掃のまま撮影しようとしている</td>
+</tr>
+</tbody>
+</table>
+<h3>2. 不要物の撤去</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>残置物・掃除用具・案内看板すべて撤去済み</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>小物が1〜2点残っているが写り込みは最小限</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>前入居者の残置物やゴミが映り込む状態</td>
+</tr>
+</tbody>
+</table>
+<h3>3. 照明の点灯確認</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>全室の照明が点灯し、電球切れなし。電球色で統一</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>一部の照明が未設置だが、自然光で補えている</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>照明なし・電球切れのまま撮影</td>
+</tr>
+</tbody>
+</table>
+<h3>4. カーテン・ブラインドの状態</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>カーテンを開放し自然光を最大限取り込んでいる</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>レースカーテンを閉じた状態だが室内は明るい</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>遮光カーテンが閉まったまま／窓が隠れている</td>
+</tr>
+</tbody>
+</table>
+<h3>5. 天候・時間帯の選定</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>晴天または薄曇りの日中（10時〜15時）に撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>曇天だが室内照明で十分な明るさを確保</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>雨天・夕方以降で室内が暗い</td>
+</tr>
+</tbody>
+</table>
+<h3>6. 撮影プランの策定</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>間取り図を見て撮影箇所・順番・カット数を事前に決定</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>撮影箇所は決めているが順番は現場判断</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>無計画に現場で適当に撮影</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>B. カメラ・機材の設定（6項目）</h2>
+<h3>7. 広角レンズの使用</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>焦点距離16〜24mm相当の広角レンズを使用（スマホなら0.5x超広角）</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>スマホの標準カメラ（26〜28mm相当）で撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>望遠寄りで撮影し部屋が実際より狭く見える</td>
+</tr>
+</tbody>
+</table>
+<h3>8. 水平・垂直の確認</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>グリッド表示をONにし、壁の縦線・床の横線が傾いていない</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>わずかな傾き（2度以内）はあるが違和感なし</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>明らかに写真が傾いている</td>
+</tr>
+</tbody>
+</table>
+<h3>9. カメラの高さ設定</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>床から100〜120cmの高さ（胸の位置）で統一</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>概ね胸の高さだがカットによりばらつきあり</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>見上げ・見下ろしアングルが混在し不自然</td>
+</tr>
+</tbody>
+</table>
+<h3>10. HDR・露出補正の活用</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>HDRモードON、または窓の白飛びを抑えた露出で撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>自動露出で撮影し大きな白飛び・黒つぶれなし</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>窓が真っ白に飛ぶ、または室内が暗く潰れている</td>
+</tr>
+</tbody>
+</table>
+<h3>11. フラッシュの不使用</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>フラッシュOFF。自然光＋室内照明のみで撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>バウンス撮影など間接的にフラッシュを補助使用</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>直射フラッシュで不自然な影・テカリが発生</td>
+</tr>
+</tbody>
+</table>
+<h3>12. 解像度の確保</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>長辺3,000px以上で撮影。ポータル掲載後もシャープ</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>長辺2,000px以上。拡大しなければ問題なし</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>長辺1,000px未満でぼやけた印象</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>C. 撮影テクニック（6項目）</h2>
+<h3>13. 部屋の角から対角線で撮影</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>部屋の角に立ち対角方向を撮影。2面の壁＋床＋天井が映る</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>壁の中央付近から撮影だが広さは伝わる</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>ドアの正面から1面の壁だけを撮影</td>
+</tr>
+</tbody>
+</table>
+<h3>14. 全居室＋水回り＋収納の撮影</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>LDK・各居室・キッチン・浴室・トイレ・洗面台・収納内部すべて撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>主要な部屋は網羅。収納内部が一部不足</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>リビングと外観のみ。水回り・収納の写真なし</td>
+</tr>
+</tbody>
+</table>
+<h3>15. 窓からの眺望・バルコニー撮影</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>室内から窓越しの眺望＋バルコニーに出ての撮影の両方あり</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>窓越しの眺望のみ撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>眺望・バルコニーの写真なし</td>
+</tr>
+</tbody>
+</table>
+<h3>16. 設備のアピールカット</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>モニター付きインターホン・浴室乾燥・宅配ボックスなど差別化設備を個別撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>主要設備は撮影しているが一部漏れあり</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>設備の個別カットなし</td>
+</tr>
+</tbody>
+</table>
+<h3>17. 共用部・外観の撮影</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>外観・エントランス・共用廊下・ゴミ置場・駐輪場を撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>外観とエントランスのみ撮影</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>共用部の写真なし</td>
+</tr>
+</tbody>
+</table>
+<h3>18. 写真枚数の確保</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>1物件あたり20枚以上撮影し、厳選して15枚以上掲載</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>10〜14枚を掲載</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>掲載枚数が9枚以下</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>D. ポータルサイト掲載の最適化（6項目）</h2>
+<h3>19. 1枚目（サムネイル）の選定</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>最も広く明るいLDKの写真を1枚目に設定。一目で住みたいと感じる</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>LDKの写真だが明るさ・構図にやや改善余地あり</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>外観や間取り図を1枚目にしている</td>
+</tr>
+</tbody>
+</table>
+<h3>20. 写真の掲載順序</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>LDK→居室→キッチン→水回り→収納→バルコニー→共用部→外観の順</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>概ね生活動線に沿った順序</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>順序がバラバラで物件の全体像が掴めない</td>
+</tr>
+</tbody>
+</table>
+<h3>21. 写真の明るさ・色味補正</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>全写真の明るさ・色温度を統一。自然で清潔感のある仕上がり</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>大きな暗さ・色かぶりはないがカットにより差がある</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>暗い写真や黄色かぶりの写真がそのまま掲載されている</td>
+</tr>
+</tbody>
+</table>
+<h3>22. 写真コメントの記載</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>全写真に「南向きLDK 12畳」等の具体的なコメントを記載</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>主要写真にはコメントあり。一部「洋室」等の簡易記載</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>コメントなし、または「写真1」「写真2」等の番号のみ</td>
+</tr>
+</tbody>
+</table>
+<h3>23. 間取り図の掲載</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>方位・帖数入りの間取り図を掲載。家具配置例の記載があればなお良い</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>間取り図はあるが帖数や方位の記載がない</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>間取り図が未掲載</td>
+</tr>
+</tbody>
+</table>
+<h3>24. 物件紹介文との整合性</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>紹介文で訴求したポイント（日当たり・収納力等）を裏付ける写真がある</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>紹介文と写真に矛盾はないが対応関係が弱い</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>紹介文で「日当たり良好」と書きながら暗い写真を掲載</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>E. AIバーチャルステージング活用の判断（6項目）</h2>
+<h3>25. ステージング対象写真の選定</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>LDK・主寝室など生活の中心となる1〜3枚を選定。残りは実写のまま</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>全居室にステージングを適用（やや過剰だがNGではない）</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>水回りや収納など家具を置かない場所にステージングを適用</td>
+</tr>
+</tbody>
+</table>
+<h3>26. ツール選択の適切さ</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>月間10枚以上なら<strong>RoomGPT / ReRoom AI</strong>（月額$29〜）や<strong>REimagineHome</strong>（月額$19〜）のサブスク型、10枚以下なら<strong>Virtual Staging AI</strong>（1枚$6〜16）の都度課金型を選択</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>コスト最適ではないが品質は問題ないツールを使用</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>ツール未選定のまま手作業でCG合成しようとしている</td>
+</tr>
+</tbody>
+</table>
+<h3>27. スタイルと物件の整合性</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>ワンルームには北欧・ナチュラル系、ファミリー向けにはモダン系、築古にはヴィンテージ系と物件特性に合わせたスタイルを指定</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>汎用的なスタイルだが大きな違和感なし</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>築古物件にハイテク系、ワンルームに大型家具など不整合</td>
+</tr>
+</tbody>
+</table>
+<h3>28. 生成画像の品質チェック</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>家具の影・パース・サイズが自然。壁・床との境界に不自然な処理なし</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>細部に若干の不自然さはあるが全体としては合格</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>家具が浮いている・壁にめり込む等の明らかな破綻あり</td>
+</tr>
+</tbody>
+</table>
+<h3>29. ステージング写真である旨の表記</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>写真コメントに「※AIバーチャルステージングによるイメージ画像です。家具・小物は付属しません」と明記</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>「イメージ画像」の旨は記載があるがやや目立たない</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>ステージング画像を実写と区別せず掲載（景品表示法リスクあり）</td>
+</tr>
+</tbody>
+</table>
+<h3>30. 反響効果の測定</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">判定</th>
+<th>基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">◎</td>
+<td>掲載前後の問い合わせ数・内見予約率を記録し比較（目標：問い合わせ<strong>1.5倍以上</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: center;">○</td>
+<td>感覚的に反響が増えたことは把握しているが数値未記録</td>
+</tr>
+<tr>
+<td style="text-align: center;">△</td>
+<td>掲載後の効果を一切測定していない</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>クイック採点表</h2>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th style="text-align: center;">◎の数</th>
+<th style="text-align: center;">○の数</th>
+<th style="text-align: center;">△の数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A. 撮影前の準備（6項目）</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+</tr>
+<tr>
+<td>B. カメラ・機材（6項目）</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+</tr>
+<tr>
+<td>C. 撮影テクニック（6項目）</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+</tr>
+<tr>
+<td>D. 掲載最適化（6項目）</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+</tr>
+<tr>
+<td>E. AI活用判断（6項目）</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+<td style="text-align: center;">/ 6</td>
+</tr>
+<tr>
+<td><strong>合計（30項目）</strong></td>
+<td style="text-align: center;"><strong>/ 30</strong></td>
+<td style="text-align: center;"><strong>/ 30</strong></td>
+<td style="text-align: center;"><strong>/ 30</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定基準</strong></p>
+<ul>
+<li><strong>◎が25個以上</strong>：掲載クオリティは高水準。ステージングとの組み合わせで問い合わせ数<strong>月2件→月7件</strong>（都心ワンルーム事例）や内見予約率<strong>1.8倍</strong>（郊外3LDK事例）といった改善が期待できます</li>
+<li><strong>◎が15〜24個</strong>：基本はできているが改善余地あり。△項目を優先的に◎へ引き上げてから再掲載を</li>
+<li><strong>◎が14個以下</strong>：写真の撮り直しを推奨。ステージングを適用しても元写真の品質が低いと効果は限定的です</li>
+</ul>
+<hr />
+<p><em>本チェックリストは「AIバーチャルステージング導入・実践ガイド」の補助ツールです。まずは無料プランのあるRoomGPT / ReRoom AIで試し、効果を実感してから本格導入をご検討ください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

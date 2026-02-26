@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1→多チャネル展開カレンダー＆進捗管理シート - kusasyu tools</title>
+<meta name="description" content="1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,1→多チャネル展開カレンダー＆進捗管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/repurposing-5/">
+<meta property="og:title" content="1→多チャネル展開カレンダー＆進捗管理シート - kusasyu tools">
+<meta property="og:description" content="1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/repurposing-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1→多チャネル展開カレンダー＆進捗管理シート - kusasyu tools">
+<meta name="twitter:description" content="1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "1→多チャネル展開カレンダー＆進捗管理シート",
+  "description": "1つのコンテンツ（ブログ記事・ウェビナー要約等）を貼り付けると、X投稿・Instagramキャプション・メルマガ・LinkedIn記事など複数チャネル向けテキストに自動変換するブラウザツールと、展開スケジュール管理シートを制作する。前回のROI診断・プレイブック（読み物中心・品質6点）とは完全に異なり、今回は",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/repurposing-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>1→多チャネル展開カレンダー＆進捗管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>1→多チャネル展開カレンダー＆進捗管理シート</h1>
+  <p class="project-name">コンテンツ・リパーパシング 自動変換ツール＆展開管理キット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>元コンテンツID</th><th>元コンテンツタイトル</th><th>公開日</th><th>展開チャネル</th><th>配信予定日</th><th>配信完了日</th><th>ステータス</th><th>担当者</th><th>投稿テキスト冒頭（50字）</th><th>投稿URL</th><th>インプレッション</th><th>エンゲージメント数</th><th>エンゲージメント率(%)</th><th>リンククリック数</th><th>CV数</th><th>メモ</th></tr></thead><tbody><tr><td>C-001</td><td>BtoBリード獲得についての完全ガイド</td><td>2026-02-24</td><td>X（ポスト）</td><td>2026-02-25</td><td>2026-02-25</td><td>配信済</td><td>田中</td><td>BtoBリード獲得で成果が出ない原因は「量より質」の視点不足。今日から…</td><td>https://x.com/example/status/001</td><td>4520</td><td>187</td><td>4.1</td><td>62</td><td>3</td><td>5チャネル変換ツールで自動生成→微修正して投稿</td></tr><tr><td>C-001</td><td>BtoBリード獲得についての完全ガイド</td><td>2026-02-24</td><td>Instagram（キャプション）</td><td>2026-02-26</td><td></td><td>作成済</td><td>鈴木</td><td>【保存推奨】リード獲得の成果を3倍にした5つのステップをまとめました…</td><td></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>カルーセル画像4枚をCanvaで作成中</td></tr><tr><td>C-001</td><td>BtoBリード獲得についての完全ガイド</td><td>2026-02-24</td><td>メルマガ</td><td>2026-02-27</td><td></td><td>下書き中</td><td>田中</td><td>今月のマーケティングTips：リード獲得を仕組み化する方法をお届けします…</td><td></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>配信リスト：既存顧客セグメントA（820名）</td></tr><tr><td>C-001</td><td>BtoBリード獲得についての完全ガイド</td><td>2026-02-24</td><td>LinkedIn（記事）</td><td>2026-02-28</td><td></td><td>未着手</td><td>鈴木</td><td></td><td></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>長文記事として展開予定。事例データを追加する</td></tr><tr><td>C-001</td><td>BtoBリード獲得についての完全ガイド</td><td>2026-02-24</td><td>note</td><td>2026-03-03</td><td></td><td>未着手</td><td>田中</td><td></td><td></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>ブログ記事を再編集しnote向けに口語体へ変換</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `元コンテンツID,元コンテンツタイトル,公開日,展開チャネル,配信予定日,配信完了日,ステータス,担当者,投稿テキスト冒頭（50字）,投稿URL,インプレッション,エンゲージメント数,エンゲージメント率(%),リンククリック数,CV数,メモ
+C-001,BtoBリード獲得についての完全ガイド,2026-02-24,X（ポスト）,2026-02-25,2026-02-25,配信済,田中,BtoBリード獲得で成果が出ない原因は「量より質」の視点不足。今日から…,https://x.com/example/status/001,4520,187,4.1,62,3,5チャネル変換ツールで自動生成→微修正して投稿
+C-001,BtoBリード獲得についての完全ガイド,2026-02-24,Instagram（キャプション）,2026-02-26,,作成済,鈴木,【保存推奨】リード獲得の成果を3倍にした5つのステップをまとめました…,,0,0,0,0,0,カルーセル画像4枚をCanvaで作成中
+C-001,BtoBリード獲得についての完全ガイド,2026-02-24,メルマガ,2026-02-27,,下書き中,田中,今月のマーケティングTips：リード獲得を仕組み化する方法をお届けします…,,0,0,0,0,0,配信リスト：既存顧客セグメントA（820名）
+C-001,BtoBリード獲得についての完全ガイド,2026-02-24,LinkedIn（記事）,2026-02-28,,未着手,鈴木,,,0,0,0,0,0,長文記事として展開予定。事例データを追加する
+C-001,BtoBリード獲得についての完全ガイド,2026-02-24,note,2026-03-03,,未着手,田中,,,0,0,0,0,0,ブログ記事を再編集しnote向けに口語体へ変換`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_1→多チャネル展開カレンダー＆進捗管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
