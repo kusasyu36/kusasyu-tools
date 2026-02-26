@@ -1,0 +1,266 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>物件名 名寄せ一致度判定ツール</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f0f4f8;color:#333;padding:16px}
+h1{font-size:1.3em;color:#1a56db;margin-bottom:4px}
+.sub{font-size:.82em;color:#666;margin-bottom:14px}
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h2{font-size:.95em;color:#1a56db;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e8f0fe}
+label{display:block;font-size:.82em;color:#555;margin-bottom:4px}
+input[type=file]{width:100%;padding:8px;border:2px dashed #93c5fd;border-radius:6px;cursor:pointer;background:#eff6ff;font-size:.82em}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.field{flex:1;min-width:130px}
+select,input[type=number]{width:100%;padding:6px;border:1px solid #d1d5db;border-radius:4px;font-size:.82em}
+input[type=range]{width:100%}
+.rv{font-size:.82em;color:#1a56db;font-weight:bold}
+.btn{display:inline-block;padding:8px 20px;background:#1a56db;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.88em;margin-right:6px;margin-top:6px}
+.btn:hover{opacity:.88}
+.btn-g{background:#059669}
+.btn-y{background:#d97706}
+.btn-r{background:#dc2626}
+.btn-gr{background:#6b7280}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.stat{flex:1;min-width:70px;text-align:center;padding:10px;border-radius:6px}
+.s-ok{background:#d1fae5;color:#065f46}
+.s-wn{background:#fef3c7;color:#92400e}
+.s-ng{background:#fee2e2;color:#991b1b}
+.s-al{background:#e0e7ff;color:#3730a3}
+.stat .n{font-size:1.7em;font-weight:bold}
+.stat .l{font-size:.7em}
+table{width:100%;border-collapse:collapse;font-size:.78em}
+th{background:#1a56db;color:#fff;padding:6px 8px;text-align:left;position:sticky;top:0;z-index:1}
+td{padding:6px 8px;border-bottom:1px solid #e5e7eb;vertical-align:top}
+tr:hover td{background:#f0f4ff}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.72em;font-weight:bold;white-space:nowrap}
+.b-ok{background:#d1fae5;color:#065f46}
+.b-wn{background:#fef3c7;color:#92400e}
+.b-ng{background:#fee2e2;color:#991b1b}
+.bar{height:5px;background:#e5e7eb;border-radius:3px;margin-top:3px}
+.fill{height:100%;border-radius:3px}
+.fmt{font-size:.75em;color:#666;margin-top:8px;background:#f8fafc;padding:8px;border-radius:4px;line-height:1.6}
+#rs{display:none}
+.tw{overflow-x:auto;max-height:380px;overflow-y:auto}
+#er{color:#dc2626;font-size:.82em;padding:6px;background:#fee2e2;border-radius:4px;display:none;margin-top:8px}
+</style>
+</head>
+<body>
+<h1>物件名 名寄せ一致度判定ツール</h1>
+<p class="sub">SynLab PropTech | バッチ処理版 — 最大500件を自動判定</p>
+
+<div class="card">
+<h2>① CSVアップロード</h2>
+<input type="file" id="cf" accept=".csv">
+<div class="fmt">
+  <b>形式：</b>列A = 物件名1（既存DB）　列B = 物件名2（照合対象）　1行目ヘッダー有無どちらも可<br>
+  例: <code>パークホームズ渋谷1丁目,パークホームズ渋谷一丁目</code>
+</div>
+<div id="er"></div>
+</div>
+
+<div class="card">
+<h2>② 判定設定</h2>
+<div class="row">
+  <div class="field">
+    <label>完全一致しきい値: <span class="rv" id="vp">95</span>%以上</label>
+    <input type="range" id="tp" min="80" max="100" value="95" oninput="document.getElementById('vp').textContent=this.value">
+  </div>
+  <div class="field">
+    <label>要確認しきい値: <span class="rv" id="vc">70</span>%以上</label>
+    <input type="range" id="tc" min="40" max="90" value="70" oninput="document.getElementById('vc').textContent=this.value">
+  </div>
+</div>
+<div class="row" style="margin-top:10px">
+  <div class="field">
+    <label>正規化モード</label>
+    <select id="nm">
+      <option value="full">全正規化（推奨）</option>
+      <option value="basic">基本のみ（全角→半角）</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>アルゴリズム</label>
+    <select id="al">
+      <option value="lev">Levenshtein距離</option>
+      <option value="tok">トークン一致率</option>
+    </select>
+  </div>
+</div>
+<div>
+  <button class="btn" onclick="run()">▶ バッチ判定を実行</button>
+  <button class="btn btn-gr" onclick="loadSample()">サンプルCSVで試す</button>
+</div>
+</div>
+
+<div class="card" id="rs">
+<h2>③ 判定結果</h2>
+<div class="stats">
+  <div class="stat s-ok"><div class="n" id="cp">0</div><div class="l">✅ 完全一致</div></div>
+  <div class="stat s-wn"><div class="n" id="cc">0</div><div class="l">⚠️ 要確認</div></div>
+  <div class="stat s-ng"><div class="n" id="cd">0</div><div class="l">❌ 別物件</div></div>
+  <div class="stat s-al"><div class="n" id="ct">0</div><div class="l">総件数</div></div>
+</div>
+<div style="margin-bottom:10px">
+  <button class="btn btn-g" onclick="dlCSV()">⬇ 結果CSV</button>
+  <button class="btn btn-gr" onclick="flt('all')">全件</button>
+  <button class="btn btn-g" onclick="flt('完全一致')">完全一致</button>
+  <button class="btn btn-y" onclick="flt('要確認')">要確認</button>
+  <button class="btn btn-r" onclick="flt('別物件')">別物件</button>
+</div>
+<div class="tw">
+  <table>
+    <thead><tr><th>#</th><th>物件名A</th><th>物件名B</th><th>スコア</th><th>判定</th><th>判定理由</th></tr></thead>
+    <tbody id="tb"></tbody>
+  </table>
+</div>
+</div>
+
+<script>
+let AR=[];
+
+const KANJI={'一':'1','二':'2','三':'3','四':'4','五':'5','六':'6','七':'7','八':'8','九':'9','十':'10'};
+
+function norm(s,m){
+  s=s.replace(/[！-～]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0));
+  s=s.replace(/　/g,' ').trim();
+  if(m==='full'){
+    s=s.replace(/[一二三四五六七八九十]丁目/g,v=>KANJI[v[0]]+'丁目');
+    s=s.replace(/(\d+)丁目/g,'$1-');
+    s=s.replace(/[棟号室\s・\-\/]/g,'');
+    s=s.toLowerCase();
+  }
+  return s;
+}
+
+function lev(a,b){
+  const m=a.length,n=b.length;
+  let prev=Array.from({length:n+1},(_,j)=>j);
+  for(let i=1;i<=m;i++){
+    const cur=[i];
+    for(let j=1;j<=n;j++)
+      cur[j]=a[i-1]===b[j-1]?prev[j-1]:1+Math.min(prev[j],cur[j-1],prev[j-1]);
+    prev=cur;
+  }
+  return prev[n];
+}
+
+function tokScore(a,b){
+  const sa=new Set(a.split(/\s+/).filter(Boolean));
+  const sb=new Set(b.split(/\s+/).filter(Boolean));
+  if(!sa.size&&!sb.size)return 100;
+  let hit=0;sa.forEach(t=>{if(sb.has(t))hit++;});
+  return Math.round(hit/Math.max(sa.size,sb.size)*100);
+}
+
+function score(na,nb,al){
+  if(al==='tok')return tokScore(na,nb);
+  const mx=Math.max(na.length,nb.length);
+  return mx===0?100:Math.round((1-lev(na,nb)/mx)*100);
+}
+
+function reasons(oa,ob,sc){
+  if(sc===100)return '—';
+  const r=[];
+  const kd=/[一二三四五六七八九十\d]+丁目/;
+  const da=oa.match(kd)?.[0],db=ob.match(kd)?.[0];
+  if(da&&db&&da!==db)r.push('丁目差異('+da+'≠'+db+')');
+  else if(da&&!db)r.push('丁目欠落('+da+')');
+  const ra=/\d+号室/.test(oa),rb=/\d+号室/.test(ob);
+  if(ra!==rb)r.push('号室'+(ra?'あり→なし':'なし→あり'));
+  const ba=oa.match(/[A-Za-z\uFF21-\uFF3A\uFF41-\uFF5A]棟/)?.[0];
+  const bb=ob.match(/[A-Za-z\uFF21-\uFF3A\uFF41-\uFF5A]棟/)?.[0];
+  if(ba&&bb&&ba.toLowerCase()!==bb.toLowerCase())r.push('棟差異('+ba+'≠'+bb+')');
+  if(!r.length)r.push('建物名表記差異');
+  return r.join(' / ');
+}
+
+function parseCSV(txt){
+  const lines=txt.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  let s=0;
+  const h=lines[0]?.split(',')[0]||'';
+  if(/[a-zA-Zぁ-ん]/.test(h)&&!/[\u4e00-\u9fff]/.test(h.slice(0,1)))s=1;
+  return lines.slice(s).map(l=>{const c=l.split(',');return[c[0]?.trim()||'',c[1]?.trim()||''];}).filter(([a,b])=>a&&b);
+}
+
+function run(){
+  const f=document.getElementById('cf').files[0];
+  const er=document.getElementById('er');
+  er.style.display='none';
+  if(!f){er.textContent='CSVファイルを選択してください';er.style.display='block';return;}
+  const rd=new FileReader();
+  rd.onload=e=>process(e.target.result);
+  rd.readAsText(f,'UTF-8');
+}
+
+function process(txt){
+  try{
+    const pairs=parseCSV(txt).slice(0,500);
+    const m=document.getElementById('nm').value;
+    const a=document.getElementById('al').value;
+    const tp=+document.getElementById('tp').value;
+    const tc=+document.getElementById('tc').value;
+    AR=pairs.map(([oa,ob])=>{
+      const na=norm(oa,m),nb=norm(ob,m);
+      const sc=score(na,nb,a);
+      const lb=sc>=tp?'完全一致':sc>=tc?'要確認':'別物件';
+      return{oa,ob,sc,lb,rs:reasons(oa,ob,sc)};
+    });
+    render(AR);
+  }catch(ex){
+    const er=document.getElementById('er');
+    er.textContent='エラー: '+ex.message;er.style.display='block';
+  }
+}
+
+function render(data){
+  const c={完全一致:0,要確認:0,別物件:0};
+  data.forEach(r=>c[r.lb]++);
+  document.getElementById('cp').textContent=c['完全一致'];
+  document.getElementById('cc').textContent=c['要確認'];
+  document.getElementById('cd').textContent=c['別物件'];
+  document.getElementById('ct').textContent=data.length;
+  const bc={完全一致:'b-ok',要確認:'b-wn',別物件:'b-ng'};
+  const fc=s=>s>=80?'#059669':s>=60?'#d97706':'#dc2626';
+  document.getElementById('tb').innerHTML=data.map((r,i)=>`<tr>
+    <td>${i+1}</td><td>${e(r.oa)}</td><td>${e(r.ob)}</td>
+    <td style="min-width:70px">${r.sc}%<div class="bar"><div class="fill" style="width:${r.sc}%;background:${fc(r.sc)}"></div></div></td>
+    <td><span class="badge ${bc[r.lb]}">${r.lb}</span></td>
+    <td style="font-size:.73em;color:#555;min-width:120px">${e(r.rs)}</td>
+  </tr>`).join('');
+  document.getElementById('rs').style.display='block';
+}
+
+function flt(f){render(f==='all'?AR:AR.filter(r=>r.lb===f));}
+
+function dlCSV(){
+  const rows=['\uFEFF物件名A,物件名B,スコア(%),判定,判定理由'];
+  AR.forEach(r=>rows.push([r.oa,r.ob,r.sc,r.lb,r.rs].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')));
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([rows.join('\r\n')],{type:'text/csv;charset=utf-8'}));
+  a.download='名寄せ結果_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+
+function loadSample(){
+  const s=[
+    'パークホームズ渋谷一丁目,パークホームズ渋谷1丁目',
+    'グランドメゾン新宿Ａ棟301号室,グランドメゾン新宿A棟',
+    'ライオンズマンション横浜２丁目,ライオンズマンション横浜三丁目',
+    'サンパレス品川,サンパレス品川駅前',
+    'コープ野村大阪,コープ野村大阪201号室',
+    'プラウド世田谷桜丘,プラウド世田谷桜丘',
+    'レジデンシア青山,レジデンス青山',
+    'ザ・パークハウス中野,ザパークハウス中野',
+  ].join('\n');
+  process('物件名A,物件名B\n'+s);
+}
+
+function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+</script>
+</body>
+</html>
+```

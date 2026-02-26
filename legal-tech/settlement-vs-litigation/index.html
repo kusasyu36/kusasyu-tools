@@ -1,0 +1,152 @@
+ファイル書き込みの許可が必要です。許可いただければ `settlement-simulator.html` を保存しますが、代わりにHTMLコードをそのまま出力します。
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>和解 vs 訴訟継続 意思決定シミュレーター</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;padding:16px;max-width:720px;margin:0 auto}
+h1{font-size:1.3em;text-align:center;padding:16px 0;color:#2d3748}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:12px;color:#4a5568;border-left:4px solid #4299e1;padding-left:8px}
+label{display:block;font-size:.85em;color:#718096;margin:8px 0 4px}
+input[type=number],input[type=range]{width:100%;padding:8px;border:1px solid #e2e8f0;border-radius:6px;font-size:1em}
+input[type=range]{padding:0;margin-top:4px}
+.range-row{display:flex;align-items:center;gap:8px}
+.range-row input[type=range]{flex:1}
+.range-val{min-width:48px;text-align:right;font-weight:700;color:#2b6cb0}
+button{width:100%;padding:12px;background:#4299e1;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:12px}
+button:hover{background:#3182ce}
+.result-box{padding:16px;border-radius:8px;margin:8px 0;text-align:center}
+.settle{background:#ebf8ff;border:2px solid #4299e1}
+.litigate{background:#f0fff4;border:2px solid #48bb78}
+.warn{background:#fffaf0;border:2px solid #ed8936}
+.big{font-size:1.6em;font-weight:700}
+.sub{font-size:.8em;color:#718096;margin-top:4px}
+.bar-row{display:flex;align-items:center;margin:4px 0;font-size:.8em}
+.bar-label{width:40px;text-align:right;margin-right:8px;color:#718096}
+.bar-bg{flex:1;background:#e2e8f0;border-radius:4px;height:22px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .3s}
+.bar-fill.l{background:#48bb78}
+.bar-fill.s{background:#4299e1}
+.bar-val{margin-left:8px;min-width:90px;font-size:.78em}
+.recommend{font-size:1.1em;font-weight:700;text-align:center;padding:12px;border-radius:8px;margin-top:12px}
+.recommend.s{background:#ebf8ff;color:#2b6cb0}
+.recommend.l{background:#f0fff4;color:#276749}
+.recommend.e{background:#fffaf0;color:#c05621}
+#results{display:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.note{font-size:.75em;color:#a0aec0;text-align:center;margin-top:16px}
+</style>
+</head>
+<body>
+<h1>⚖️ 和解 vs 訴訟継続<br>意思決定シミュレーター</h1>
+
+<div class="card">
+<h2>📋 基本情報を入力</h2>
+<div class="grid2">
+<div><label>和解提示額（万円）</label><input type="number" id="settle" value="500" min="0"></div>
+<div><label>勝訴時の想定回収額（万円）</label><input type="number" id="winAmt" value="1200" min="0"></div>
+<div><label>敗訴時の回収額（万円）</label><input type="number" id="loseAmt" value="0" min="0"></div>
+<div><label>追加弁護士費用（万円）</label><input type="number" id="cost" value="200" min="0"></div>
+</div>
+<label>勝訴確率</label>
+<div class="range-row">
+<input type="range" id="winRate" min="0" max="100" value="60">
+<span class="range-val" id="winRateVal">60%</span>
+</div>
+<label>残り訴訟期間（月）</label>
+<div class="range-row">
+<input type="range" id="months" min="1" max="60" value="12">
+<span class="range-val" id="monthsVal">12月</span>
+</div>
+<button onclick="calc()">▶ シミュレーション実行</button>
+</div>
+
+<div id="results">
+<div class="card">
+<h2>📊 期待値比較</h2>
+<div class="grid2">
+<div class="result-box settle"><div class="big" id="evSettle"></div><div class="sub">和解の確定利益</div></div>
+<div class="result-box litigate"><div class="big" id="evLit"></div><div class="sub">訴訟継続の期待値</div></div>
+</div>
+<div class="result-box warn"><div class="big" id="diff"></div></div>
+<div class="recommend" id="rec"></div>
+</div>
+
+<div class="card">
+<h2>📈 感度分析（勝訴確率別 期待値）</h2>
+<div id="chart"></div>
+<div class="sub" style="text-align:center;margin-top:8px" id="bep"></div>
+</div>
+
+<div class="card">
+<h2>🔍 詳細内訳</h2>
+<div id="detail" style="font-size:.85em;line-height:1.8"></div>
+</div>
+</div>
+
+<p class="note">※ 本ツールは経済合理性の参考指標です。法的助言ではありません。<br>© SynLab Legal Tech</p>
+
+<script>
+const $=id=>document.getElementById(id);
+$('winRate').oninput=function(){$('winRateVal').textContent=this.value+'%'};
+$('months').oninput=function(){$('monthsVal').textContent=this.value+'月'};
+
+function fmt(v){return (v>=0?'':'-')+Math.abs(v).toLocaleString()+'万円'}
+
+function calc(){
+  const S=+$('settle').value, W=+$('winAmt').value, L=+$('loseAmt').value,
+        C=+$('cost').value, P=+$('winRate').value/100, M=+$('months').value;
+  const evS=S;
+  const evL=P*(W-C)+(1-P)*(L-C);
+  const d=evL-evS;
+
+  $('evSettle').textContent=fmt(evS);
+  $('evLit').textContent=fmt(Math.round(evL));
+  $('diff').textContent=(d>=0?'訴訟が +':'和解が +')+fmt(Math.abs(Math.round(d)));
+
+  const rc=$('rec');
+  if(d>50){rc.className='recommend l';rc.textContent='💡 推奨：訴訟継続（期待値が和解を大きく上回る）'}
+  else if(d<-50){rc.className='recommend s';rc.textContent='💡 推奨：和解受諾（期待値が訴訟を大きく上回る）'}
+  else{rc.className='recommend e';rc.textContent='⚠️ 拮抗：リスク許容度・時間コストを含め総合判断を'}
+
+  let html='';
+  const maxAbs=Math.max(Math.abs(W-C),Math.abs(L-C),S)||1;
+  for(let p=0;p<=100;p+=10){
+    const pr=p/100;
+    const ev=pr*(W-C)+(1-pr)*(L-C);
+    const w=Math.max(1,Math.abs(ev)/maxAbs*100);
+    const cls=ev>=S?'l':'s';
+    html+=`<div class="bar-row"><div class="bar-label">${p}%</div>`
+      +`<div class="bar-bg"><div class="bar-fill ${cls}" style="width:${w}%"></div></div>`
+      +`<div class="bar-val">${fmt(Math.round(ev))}</div></div>`;
+  }
+  $('chart').innerHTML=html;
+
+  const denom=W-L;
+  if(denom!==0){
+    const be=(S+C-L)/denom*100;
+    if(be>=0&&be<=100) $('bep').innerHTML=`<strong>📍 損益分岐点：勝訴確率 ${be.toFixed(1)}% で和解額と均衡</strong>`;
+    else $('bep').textContent='損益分岐点は0〜100%の範囲外です';
+  }else{$('bep').textContent=''}
+
+  $('detail').innerHTML=
+    `<b>【和解】</b> 確定 ${fmt(S)}<br>`
+    +`<b>【勝訴時】</b>（確率${(P*100).toFixed(0)}%）${fmt(W)} − 費用${fmt(C)} = ${fmt(W-C)}<br>`
+    +`<b>【敗訴時】</b>（確率${((1-P)*100).toFixed(0)}%）${fmt(L)} − 費用${fmt(C)} = ${fmt(L-C)}<br>`
+    +`<b>【期待値】</b> ${(P*100).toFixed(0)}%×${fmt(W-C)} + ${((1-P)*100).toFixed(0)}%×${fmt(L-C)} = <b>${fmt(Math.round(evL))}</b><br>`
+    +`<b>【残り期間】</b> ${M}ヶ月（月あたり機会コスト考慮を推奨）`;
+
+  $('results').style.display='block';
+  $('results').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

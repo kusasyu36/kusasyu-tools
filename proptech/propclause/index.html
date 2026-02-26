@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropClause - 不動産契約書 隠れコスト試算ツール</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{text-align:center;padding:20px 0 12px;border-bottom:3px solid #2563eb}
+header h1{font-size:1.3em;color:#2563eb;letter-spacing:.05em}
+header p{font-size:.8em;color:#666;margin-top:4px}
+.tabs{display:flex;gap:4px;margin:16px 0}
+.tab{flex:1;padding:10px 4px;text-align:center;border:2px solid #cbd5e1;border-radius:8px;cursor:pointer;font-size:.85em;font-weight:700;background:#fff;transition:.2s}
+.tab.active{background:#2563eb;color:#fff;border-color:#2563eb}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h3{font-size:.95em;color:#2563eb;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e2e8f0}
+label{display:block;font-size:.82em;font-weight:600;margin:8px 0 3px;color:#334155}
+input[type=number],select{width:100%;padding:8px 10px;border:1.5px solid #cbd5e1;border-radius:6px;font-size:.9em}
+input:focus,select:focus{outline:none;border-color:#2563eb}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{width:100%;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:14px}
+.btn:hover{background:#1d4ed8}
+#result{display:none}
+.total{text-align:center;padding:16px;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;border-radius:10px;margin-bottom:12px}
+.total .amt{font-size:2em;font-weight:800}
+.risk-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f1f5f9}
+.risk-item:last-child{border:none}
+.ri-name{font-size:.85em;font-weight:600}
+.ri-law{font-size:.7em;color:#64748b;margin-top:2px}
+.ri-val{font-size:1em;font-weight:800;color:#dc2626;white-space:nowrap}
+.rank{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;background:#fbbf24;color:#fff;font-size:.75em;font-weight:700;margin-right:6px}
+.safe{color:#16a34a}
+footer{text-align:center;padding:16px 0;font-size:.7em;color:#94a3b8}
+.note{font-size:.72em;color:#94a3b8;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PropClause</h1>
+<p>不動産契約書 隠れコスト試算チェッカー</p>
+</header>
+
+<div class="tabs">
+<div class="tab active" onclick="sw(0)">売買契約</div>
+<div class="tab" onclick="sw(1)">賃貸借契約</div>
+<div class="tab" onclick="sw(2)">管理委託契約</div>
+</div>
+
+<!-- 売買 -->
+<div id="p0" class="panel">
+<div class="card"><h3>売買契約パラメータ</h3>
+<div class="row">
+<div><label>売買価格（万円）</label><input type="number" id="s_price" value="3000"></div>
+<div><label>手付金率（%）</label><input type="number" id="s_tetsuke" value="10" step="1"></div>
+</div>
+<div class="row">
+<div><label>違約金率（%）</label><input type="number" id="s_iyaku" value="20" step="1"></div>
+<div><label>瑕疵担保上限（万円）</label><input type="number" id="s_kashi" value="500"></div>
+</div>
+<div class="row">
+<div><label>仲介手数料率（%）</label><input type="number" id="s_fee" value="3" step="0.1"></div>
+<div><label>測量・登記費用（万円）</label><input type="number" id="s_misc" value="80"></div>
+</div>
+<label>ローン特約</label>
+<select id="s_loan"><option value="1">あり</option><option value="0">なし</option></select>
+</div></div>
+
+<!-- 賃貸 -->
+<div id="p1" class="panel" style="display:none">
+<div class="card"><h3>賃貸借契約パラメータ</h3>
+<div class="row">
+<div><label>月額賃料（万円）</label><input type="number" id="r_rent" value="15"></div>
+<div><label>敷金（月数）</label><input type="number" id="r_shiki" value="2"></div>
+</div>
+<div class="row">
+<div><label>解約予告期間（月）</label><input type="number" id="r_notice" value="6"></div>
+<div><label>更新料（月数）</label><input type="number" id="r_kousin" value="1"></div>
+</div>
+<div class="row">
+<div><label>原状回復上限（万円）</label><input type="number" id="r_restore" value="200"></div>
+<div><label>契約期間（年）</label><input type="number" id="r_period" value="2"></div>
+</div>
+<label>中途解約条項</label>
+<select id="r_cancel"><option value="1">あり</option><option value="0">なし（期間満了まで拘束）</option></select>
+</div></div>
+
+<!-- 管理委託 -->
+<div id="p2" class="panel" style="display:none">
+<div class="card"><h3>管理委託契約パラメータ</h3>
+<div class="row">
+<div><label>月額管理料（万円）</label><input type="number" id="m_fee" value="5"></div>
+<div><label>契約期間（年）</label><input type="number" id="m_period" value="2"></div>
+</div>
+<div class="row">
+<div><label>解約予告期間（月）</label><input type="number" id="m_notice" value="3"></div>
+<div><label>違約金（月数）</label><input type="number" id="m_penalty" value="6"></div>
+</div>
+<div class="row">
+<div><label>管理対象戸数</label><input type="number" id="m_units" value="10"></div>
+<div><label>空室保証</label><select id="m_guarantee"><option value="0">なし</option><option value="1">あり</option></select></div>
+</div>
+<label>成果報酬条項</label>
+<select id="m_bonus"><option value="0">なし</option><option value="1">あり（賃料1ヶ月分）</option></select>
+</div></div>
+
+<button class="btn" onclick="calc()">リスク試算を実行</button>
+
+<div id="result">
+<div class="total"><div>最悪ケース 合計リスク金額</div><div class="amt" id="totalAmt"></div></div>
+<div class="card"><h3>要注意条項ランキング</h3><div id="ranking"></div></div>
+<p class="note">※ 本ツールは概算シミュレーションです。実際の法的判断は宅建士・弁護士にご相談ください。</p>
+</div>
+
+<footer>© 2026 SynLab PropTech — PropClause v1.0</footer>
+</div>
+
+<script>
+let mode=0;
+function sw(n){mode=n;document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));document.querySelectorAll('.panel').forEach((p,i)=>p.style.display=i===n?'block':'none');document.getElementById('result').style.display='none'}
+function v(id){return parseFloat(document.getElementById(id).value)||0}
+function fmt(n){return n>=10000?(n/10000).toFixed(1)+'億円':n.toFixed(0)+'万円'}
+
+function calc(){
+let risks=[];
+if(mode===0){
+let pr=v('s_price'),te=v('s_tetsuke'),iy=v('s_iyaku'),ka=v('s_kashi'),fe=v('s_fee'),mi=v('s_misc'),lo=v('s_loan');
+risks.push({name:'手付解除リスク',val:pr*te/100,law:'宅建業法 第39条（手付額の制限）'});
+risks.push({name:'違約金発生リスク',val:pr*iy/100,law:'宅建業法 第38条（損害賠償額の予定等の制限）'});
+risks.push({name:'契約不適合責任（瑕疵）',val:ka,law:'民法 第562〜564条（契約不適合責任）'});
+risks.push({name:'仲介手数料（解約時も発生）',val:pr*fe/100+6,law:'宅建業法 第46条（報酬額の制限）'});
+risks.push({name:'測量・登記等の埋没費用',val:mi,law:'不動産登記法 第116条'});
+if(lo==0)risks.push({name:'ローン特約なし（全額自己負担）',val:pr*te/100,law:'宅建業法 第41条の2'});
+}else if(mode===1){
+let re=v('r_rent'),sh=v('r_shiki'),no=v('r_notice'),ko=v('r_kousin'),rs=v('r_restore'),pe=v('r_period'),ca=v('r_cancel');
+risks.push({name:'解約予告期間の賃料負担',val:re*no,law:'借地借家法 第27条（解約の申入れ）'});
+if(ca==0)risks.push({name:'中途解約不可（残存賃料）',val:re*(pe*12-1),law:'借地借家法 第28条（更新拒絶等の正当事由）'});
+risks.push({name:'敷金没収リスク',val:re*sh,law:'民法 第622条の2（敷金）'});
+risks.push({name:'原状回復費用',val:rs,law:'国交省ガイドライン / 民法 第621条'});
+risks.push({name:'更新料負担',val:re*ko*Math.floor((pe>2?pe-1:1)),law:'借地借家法 第26条（更新）'});
+risks.push({name:'賃料増額リスク（2年分差額）',val:re*0.1*24,law:'借地借家法 第32条（賃料増減請求）'});
+}else{
+let fe=v('m_fee'),pe=v('m_period'),no=v('m_notice'),pn=v('m_penalty'),un=v('m_units'),gu=v('m_guarantee'),bo=v('m_bonus');
+risks.push({name:'中途解約違約金',val:fe*pn,law:'民法 第651条（委任の解除）'});
+risks.push({name:'解約予告期間の管理料負担',val:fe*no,law:'民法 第651条第2項'});
+risks.push({name:'管理移行コスト（引継ぎ）',val:fe*2,law:'国交省 標準管理委託契約書 第18条'});
+if(gu==0)risks.push({name:'空室損失（保証なし）',val:un*5*3,law:'宅建業法 第34条の2（媒介契約）'});
+if(bo==1)risks.push({name:'成果報酬の追加支払い',val:un*fe*0.5,law:'民法 第648条（受任者の報酬）'});
+risks.push({name:'契約期間満了時の残存拘束',val:fe*pe*12*0.1,law:'民法 第656条（準委任）'});
+}
+risks.sort((a,b)=>b.val-a.val);
+let total=risks.reduce((s,r)=>s+r.val,0);
+document.getElementById('totalAmt').textContent=fmt(total);
+let html='';
+risks.forEach((r,i)=>{
+let cls=r.val>0?'':'safe';
+html+=`<div class="risk-item"><div><span class="rank">${i+1}</span><span class="ri-name">${r.name}</span><div class="ri-law">${r.law}</div></div><div class="ri-val ${cls}">${r.val>0?fmt(r.val):'—'}</div></div>`;
+});
+document.getElementById('ranking').innerHTML=html;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

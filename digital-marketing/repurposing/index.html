@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>コンテンツ・リパーパシング 5チャネル変換ツール</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pr:#2563eb;--bg:#f8fafc;--card:#fff;--tx:#1e293b;--sub:#64748b;--ok:#10b981;--border:#e2e8f0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--tx);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:18px 0 4px;color:var(--pr)}
+.sub{text-align:center;font-size:.8rem;color:var(--sub);margin-bottom:18px}
+.card{background:var(--card);border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+label{font-weight:600;font-size:.85rem;display:block;margin-bottom:6px}
+textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px;font-size:.9rem;resize:vertical;font-family:inherit}
+#src{height:160px}
+.row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+select,button{padding:8px 16px;border-radius:8px;font-size:.85rem;border:1px solid var(--border);font-family:inherit}
+.btn-main{background:var(--pr);color:#fff;border:none;cursor:pointer;font-weight:700;font-size:1rem;width:100%;padding:12px;margin-top:12px;transition:.2s}
+.btn-main:hover{opacity:.85}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px}
+.tab{padding:7px 14px;border-radius:20px;font-size:.78rem;cursor:pointer;white-space:nowrap;background:var(--bg);border:1px solid var(--border);font-weight:600;transition:.2s}
+.tab.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.ch-out{display:none}
+.ch-out.on{display:block}
+.out-box{background:#f1f5f9;border-radius:8px;padding:12px;margin-bottom:10px;white-space:pre-wrap;font-size:.88rem;line-height:1.7;min-height:60px}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:.75rem;color:var(--sub)}
+.cnt{font-weight:700}
+.cnt.over{color:#ef4444}
+.copy-btn{background:var(--ok);color:#fff;border:none;padding:5px 14px;border-radius:6px;font-size:.78rem;cursor:pointer;font-weight:600}
+.copy-btn:active{transform:scale(.95)}
+.ht{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
+.ht span{background:#dbeafe;color:var(--pr);padding:2px 10px;border-radius:12px;font-size:.75rem;cursor:pointer}
+.cta-box{background:#fef3c7;border-radius:8px;padding:10px;margin-top:8px;font-size:.82rem}
+#result{display:none}
+.sep{font-size:.78rem;color:var(--sub);margin:6px 0;font-weight:600}
+@media(max-width:600px){.wrap{padding:10px}h1{font-size:1.1rem}.row{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>コンテンツ・リパーパシング 5チャネル変換ツール</h1>
+<p class="sub">1つのコンテンツを5チャネルに自動展開。コピペですぐ使えます。</p>
+<div class="card">
+<label>元コンテンツを貼り付け（ブログ記事・ウェビナー要約など）</label>
+<textarea id="src" placeholder="ここにブログ記事やウェビナー要約を貼り付けてください…"></textarea>
+<div class="row">
+<div style="flex:1"><label>業種</label><select id="ind"><option>IT・SaaS</option><option>製造業</option><option>人材・HR</option><option>マーケティング</option><option>金融・保険</option><option>医療・ヘルスケア</option><option>教育</option><option>不動産</option></select></div>
+<div style="flex:1"><label>トーン</label><select id="tone"><option>プロフェッショナル</option><option>カジュアル・親しみ</option><option>データドリブン</option><option>ストーリー調</option></select></div>
+</div>
+<button class="btn-main" onclick="generate()">5チャネルに変換する</button>
+</div>
+<div id="result" class="card">
+<div class="tabs" id="tabs"></div>
+<div id="panels"></div>
+</div>
+</div>
+<script>
+const CH=[
+{id:"x",name:"X投稿（5パターン）",limit:140,unit:"文字"},
+{id:"ig",name:"Instagram",limit:2200,unit:"文字"},
+{id:"mail",name:"メルマガ導入文",limit:800,unit:"文字"},
+{id:"li",name:"LinkedIn記事",limit:3000,unit:"文字"},
+{id:"video",name:"ショート動画台本",limit:1500,unit:"文字"}
+];
+const CTAS={
+x:["詳細はプロフィールのリンクから→","無料で試す▶ [URL]","保存して後で読み返してください"],
+ig:["保存📌して見返してね！","プロフィールのリンクから詳細へ","フォローで最新情報をキャッチ"],
+mail:["▼ 詳しくはこちら","▼ 無料資料をダウンロード","▼ 事例を見る"],
+li:["コメントであなたの意見を聞かせてください。","詳細はコメント欄のリンクから。","この投稿が参考になったらリポストを。"],
+video:["概要欄のリンクからチェック！","フォローして次回もお見逃しなく","コメントで感想を教えてね"]
+};
+function ext(s,n){
+let r=s.replace(/\n{2,}/g,'\n').split(/[。！？\!\?\n]/).map(x=>x.trim()).filter(x=>x.length>10);
+return r.slice(0,n);
+}
+function kw(s){
+let w=s.replace(/[^\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF\w]/g,' ').split(/\s+/).filter(x=>x.length>2);
+let f={};w.forEach(x=>{f[x]=(f[x]||0)+1});
+return Object.entries(f).sort((a,b)=>b[1]-a[1]).slice(0,6).map(x=>x[0]);
+}
+function tags(words,ind){
+let base=["#"+ind.replace(/[・\/]/g,'')];
+words.slice(0,4).forEach(w=>base.push("#"+w));
+base.push("#BtoBマーケ","#コンテンツマーケティング");
+return[...new Set(base)].slice(0,7);
+}
+function trunc(s,n){return s.length>n?s.slice(0,n-1)+"…":s}
+function genX(sents,words,tone){
+let ps=[];let h=sents[0]||"";let body=sents.slice(1);
+ps.push(trunc("知ってました？\n"+h+"。",140));
+let items=body.slice(0,3).map(s=>"▸ "+trunc(s,35));
+ps.push(trunc("【まとめ】\n"+items.join("\n"),140));
+ps.push(trunc(h+"…あなたはどう思いますか？",140));
+ps.push(trunc("【事実】"+h+"。\n→ 詳細はスレッドで",140));
+ps.push(trunc("保存推奨\n"+h+"。\n明日から使える実践ポイントをまとめました。",140));
+return ps.join("\n\n---\n\n");
+}
+function genIG(sents,words,tone){
+let title=sents[0]||"";
+let pts=sents.slice(1,5).map((s,i)=>(i+1)+". "+trunc(s,80));
+return title+"。\n\n"+pts.join("\n\n")+"\n\n────────────\n保存して見返してね！\n\n"+tags(words,"マーケティング").join(" ");
+}
+function genMail(sents,words,tone){
+let title=sents[0]||"";
+let body=sents.slice(1,4).join("。\n");
+return"件名: "+trunc(title,40)+"\n\n━━━━━━━━━━━━━━━━\n\nいつもお世話になっております。\n\n本日は「"+trunc(title,30)+"」について、最新の知見をお届けします。\n\n"+body+"。\n\nこの続きは、以下のリンクからご覧いただけます。\n\n▼ 詳しくはこちら\n[CTA_URL]\n\n━━━━━━━━━━━━━━━━";
+}
+function genLI(sents,words,tone){
+let title=sents[0]||"";
+let body=sents.slice(1,6);
+let tips=body.map((s,i)=>(i+1)+". "+s+"。").join("\n");
+return"【"+trunc(title,40)+"】\n\n"+sents[0]+"。\n\n皆さんも同じ課題を感じていませんか？\n\n"+tips+"\n\n---\n\nこの投稿が参考になったらリアクション・コメントをいただけると励みになります。\n\n"+tags(words,"ビジネス").slice(0,5).join(" ");
+}
+function genVideo(sents,words){
+let title=sents[0]||"";
+let pts=sents.slice(1,4);
+let sc="ショート動画台本（60秒）\n\n";
+sc+="【フック 0-5秒】\n「"+trunc(title,40)+"…知っていますか？」\n\n";
+sc+="【本編 5-45秒】\n";
+pts.forEach((s,i)=>{sc+="ポイント"+(i+1)+"："+trunc(s,60)+"。\n"});
+sc+="\n【CTA 45-60秒】\n「詳しくはプロフィールのリンクから。フォローで最新情報をお届けします！」";
+return sc;
+}
+function generate(){
+let src=document.getElementById("src").value.trim();
+if(!src){alert("元コンテンツを貼り付けてください");return}
+let ind=document.getElementById("ind").value;
+let tone=document.getElementById("tone").value;
+let sents=ext(src,10);let words=kw(src);
+if(sents.length<2){sents.push(src.slice(0,60));sents.push(src.slice(60,120))}
+let outputs={x:genX(sents,words,tone),ig:genIG(sents,words,tone),mail:genMail(sents,words,tone),li:genLI(sents,words,tone),video:genVideo(sents,words)};
+let tabsEl=document.getElementById("tabs");
+let panelsEl=document.getElementById("panels");
+tabsEl.innerHTML="";panelsEl.innerHTML="";
+CH.forEach((ch,i)=>{
+let t=document.createElement("div");
+t.className="tab"+(i===0?" on":"");t.textContent=ch.name;
+t.onclick=()=>{
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));
+document.querySelectorAll(".ch-out").forEach(x=>x.classList.remove("on"));
+t.classList.add("on");document.getElementById("p-"+ch.id).classList.add("on");
+};
+tabsEl.appendChild(t);
+let p=document.createElement("div");p.id="p-"+ch.id;
+p.className="ch-out"+(i===0?" on":"");
+let txt=outputs[ch.id];let len=txt.replace(/\n/g,"").length;let over=len>ch.limit;
+let html='<div class="meta"><span class="cnt'+(over?' over':'')+'">'+len+' / '+ch.limit+ch.unit+'</span>';
+html+='<button class="copy-btn" data-id="'+ch.id+'">コピー</button></div>';
+html+='<div class="out-box" id="txt-'+ch.id+'">'+esc(txt)+'</div>';
+html+='<div class="sep">CTA候補</div><div class="cta-box">'+CTAS[ch.id].map(c=>"・"+c).join("<br>")+'</div>';
+html+='<div class="sep">ハッシュタグ候補</div><div class="ht">'+tags(words,ind).map(t=>'<span>'+t+'</span>').join("")+'</div>';
+p.innerHTML=html;panelsEl.appendChild(p);
+});
+document.querySelectorAll(".copy-btn").forEach(b=>{
+b.onclick=function(){
+let id=this.dataset.id;let t=document.getElementById("txt-"+id).textContent;
+navigator.clipboard.writeText(t).then(()=>{this.textContent="コピー済!";setTimeout(()=>{this.textContent="コピー"},1500)});
+}});
+document.querySelectorAll(".ht span").forEach(s=>{
+s.onclick=function(){
+navigator.clipboard.writeText(this.textContent);
+this.style.background="#a7f3d0";setTimeout(()=>{this.style.background=""},800);
+}});
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+</script>
+</body>
+</html>

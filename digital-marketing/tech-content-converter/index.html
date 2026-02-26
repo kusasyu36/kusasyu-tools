@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>製造業テクニカルコンテンツ変換エンジン</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#0d1b3e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1em;color:#0d47a1;border-bottom:2px solid #e3f2fd;padding-bottom:6px;margin-bottom:14px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 3px;color:#333}
+input,select,textarea{width:100%;padding:9px 11px;border:1px solid #ccc;border-radius:6px;font-size:.9em;transition:border .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#1976d2;box-shadow:0 0 0 2px rgba(25,118,210,.15)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>*{flex:1;min-width:200px}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:600px){.feat-grid{grid-template-columns:1fr}.row{flex-direction:column}}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:12px;transition:opacity .2s}
+.btn:hover{opacity:.9}
+.btn-sec{background:linear-gradient(135deg,#546e7a,#78909c);margin-top:8px;font-size:.9em;padding:10px}
+#output{display:none}
+.out-text{background:#fafafa;border:1px solid #e0e0e0;border-radius:8px;padding:16px;white-space:pre-wrap;font-size:.88em;line-height:1.8;max-height:600px;overflow-y:auto}
+.scores{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.sc{flex:1;min-width:100px;text-align:center;padding:10px 6px;border-radius:8px;background:#e8f5e9}
+.sc .num{font-size:1.5em;font-weight:800;color:#2e7d32}
+.sc .lbl{font-size:.7em;color:#555}
+.sc.warn{background:#fff3e0}.sc.warn .num{color:#e65100}
+.tabs{display:flex;gap:4px;margin-bottom:10px}
+.tab{padding:8px 16px;border:none;background:#e0e0e0;border-radius:6px 6px 0 0;cursor:pointer;font-size:.85em;font-weight:600}
+.tab.active{background:#0d47a1;color:#fff}
+.dict-panel{font-size:.82em;max-height:250px;overflow-y:auto;border:1px solid #e0e0e0;border-radius:6px;padding:10px;background:#fafafa;display:none;margin-top:8px}
+.dict-panel.show{display:block}
+.dict-cat{font-weight:700;color:#0d47a1;margin:8px 0 4px}
+.dict-item{padding:2px 0;border-bottom:1px solid #f0f0f0}
+.dict-item span{color:#e65100;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>製造業テクニカルコンテンツ変換エンジン</h1>
+<p class="sub">仕様書テキスト → マーケティング文ドラフトを即時生成｜専門用語辞書300語超内蔵</p>
+
+<div class="card">
+<h2>1. 製品基本情報</h2>
+<label>製品名 *</label>
+<input id="pName" placeholder="例: 超精密ボールねじ BSS-2010">
+<div class="row">
+<div><label>材質</label><input id="pMat" placeholder="例: SUS304, SCM435" list="matList">
+<datalist id="matList"></datalist></div>
+<div><label>主要寸法</label><input id="pDim" placeholder="例: φ20×L1000mm"></div>
+</div>
+<div class="row">
+<div><label>性能値</label><input id="pPerf" placeholder="例: 位置決め精度±0.003mm"></div>
+<div><label>ターゲット用途</label><input id="pUse" placeholder="例: 半導体製造装置の搬送系"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>2. 製品の特長（最大5件）</h2>
+<div class="feat-grid">
+<div><label>特長1 *</label><input id="f1" placeholder="例: 独自の転造技術で真円度0.5μm"></div>
+<div><label>特長2</label><input id="f2" placeholder="例: 耐食性に優れたコーティング"></div>
+<div><label>特長3</label><input id="f3" placeholder="例: 標準品比30%の長寿命"></div>
+<div><label>特長4</label><input id="f4"></div>
+<div><label>特長5</label><input id="f5"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>3. 出力設定</h2>
+<div class="row">
+<div><label>業種</label>
+<select id="sector"><option>精密部品</option><option>産業機械</option><option>電子部品</option><option>化学素材</option><option>金属加工</option></select></div>
+<div><label>出力形式</label>
+<select id="format"><option value="lp">製品紹介LP文章</option><option value="case">導入事例記事</option><option value="pr">プレスリリース</option></select></div>
+</div>
+<button class="btn" onclick="generate()">コンテンツを生成する</button>
+<button class="btn btn-sec" onclick="toggleDict()">専門用語辞書を表示 / 非表示</button>
+<div id="dictPanel" class="dict-panel"></div>
+</div>
+
+<div id="output" class="card">
+<h2>生成結果</h2>
+<div class="scores" id="scores"></div>
+<div class="tabs" id="tabs"></div>
+<div class="out-text" id="result"></div>
+<button class="btn btn-sec" onclick="copyResult()">クリップボードにコピー</button>
+</div>
+</div>
+
+<script>
+const DICT={
+"加工":{
+"切削加工":"高精度な切削プロセスにより寸法精度を追求","旋盤加工":"旋盤による精密な回転切削","フライス加工":"フライス盤を用いた高精度な形状創成",
+"研削加工":"ナノレベルの表面品質を実現する研削技術","放電加工":"複雑形状を高精度に実現するEDM技術","ワイヤーカット":"微細輪郭を高精度に切り出すワイヤー放電加工",
+"レーザー加工":"熱影響を最小限に抑えたレーザー精密加工","NC加工":"CNC制御による高い再現性と量産安定性","5軸加工":"5軸同時制御による複雑形状の一括加工",
+"マシニングセンタ":"マシニングセンタによる高効率複合加工","旋削":"高精度旋削で真円度を極限まで追求","穴あけ加工":"位置精度に優れた高品質穴あけ","中ぐり加工":"内径精度を保証する精密中ぐり",
+"ブローチ加工":"ブローチによる高能率キー溝加工","ホーニング":"ホーニングによる超仕上げ面品質","ラッピング":"ラップ加工による鏡面仕上げ","バリ取り":"精密バリ取りで組立品質を向上",
+"転造":"転造成形による高強度・高精度ねじ","面取り":"均一面取りで安全性と組立性を確保","タップ加工":"高精度タップによるねじ穴加工"
+},
+"成形":{
+"鍛造":"鍛造による優れた金属組織と高い機械的強度","冷間鍛造":"冷間鍛造によるニアネットシェイプ成形","熱間鍛造":"熱間鍛造で大型部品を高強度に成形",
+"ダイカスト":"ダイカストによる複雑形状の高速量産","プレス加工":"プレスによる高い生産性と寸法安定性","射出成形":"高精度金型による安定した射出成形品質",
+"板金加工":"板金加工による軽量高剛性構造","曲げ加工":"高精度曲げによるシャープな造形","絞り加工":"深絞り技術で一体成形を実現",
+"鋳造":"鋳造技術で複雑内部形状を一体化","ロストワックス":"ロストワックス法による高精度精密鋳造","焼結":"粉末焼結による高密度・複雑形状部品"
+},
+"表面処理":{
+"めっき":"表面めっき処理で耐食性・耐摩耗性を大幅向上","アルマイト":"アルマイト処理で軽量アルミに高い表面硬度を付与","焼入れ":"熱処理焼入れで必要硬度と靭性を両立",
+"窒化処理":"窒化処理で耐摩耗性と耐疲労性を強化","PVDコーティング":"PVDコーティングで工具寿命と摺動性を向上","DLCコーティング":"DLCコーティングによる低摩擦・高硬度表面",
+"ショットピーニング":"ショットピーニングで疲労強度を大幅改善","溶射":"溶射コーティングで過酷環境下の耐久性を確保","黒染め":"黒染め処理で防錆性と美観を両立",
+"電解研磨":"電解研磨でクリーンルーム対応の表面清浄度","化成処理":"化成処理で密着性と防錆性を確保","パッシベーション":"パッシベーション処理でステンレスの耐食性を最大化",
+"クロムめっき":"硬質クロムめっきで耐摩耗・耐食性を強化","無電解ニッケルめっき":"無電解Niめっきで均一膜厚と高耐食性","亜鉛めっき":"亜鉛めっきで鉄鋼部品をコスト効率よく防錆"
+},
+"品質・寸法":{
+"公差":"厳密な公差管理で組立互換性を保証","幾何公差":"幾何公差により形状・姿勢・位置を厳格管理","表面粗さ":"管理された表面粗さで機能性と美観を確保",
+"真円度":"サブミクロンの真円度管理","平面度":"高い平面度で相手部品との密着性を保証","同軸度":"同軸度管理で回転精度を確保",
+"Cpk":"Cpk 1.33以上の工程能力で品質を安定維持","SPC":"SPC管理で工程変動をリアルタイム監視","全数検査":"全数検査体制でゼロ不良を追求",
+"三次元測定":"三次元測定機による高精度寸法保証","非破壊検査":"非破壊検査で内部品質まで完全保証","トレーサビリティ":"ロットトレーサビリティで品質履歴を完全管理",
+"ISO9001":"ISO 9001認証に基づく品質マネジメント","IATF16949":"IATF 16949準拠の自動車品質基準対応","RoHS":"RoHS対応で環境規制にも万全"
+},
+"材料":{
+"SUS304":"優れた耐食性を持つSUS304ステンレス鋼","SUS316":"耐薬品性に優れたSUS316ステンレス鋼","SCM435":"高い引張強度と靭性を兼備するSCM435クロモリ鋼",
+"S45C":"機械構造用炭素鋼S45Cの安定した機械的特性","SK材":"工具鋼SKによる高い硬度と耐摩耗性","SKD11":"冷間ダイス鋼SKD11による優れた耐摩耗性",
+"A5052":"軽量かつ耐食性に優れたA5052アルミ合金","A7075":"超々ジュラルミンA7075の高い比強度","チタン合金":"チタン合金による軽量・高強度・高耐食",
+"超硬合金":"超硬合金の卓越した硬度と耐摩耗性","インコネル":"高温環境に耐えるインコネル耐熱合金","ハステロイ":"強酸環境に対応するハステロイ耐食合金",
+"PEEK":"エンジニアリングプラスチックPEEKの耐熱・耐薬品性","MCナイロン":"MCナイロンの優れた機械的強度と自己潤滑性","ポリカーボネート":"高い透明性と耐衝撃性のポリカーボネート",
+"銅合金":"高い導電性・熱伝導性を持つ銅合金","ベリリウム銅":"ベリリウム銅の高強度・高導電・非磁性","タングステン":"高比重タングステンの優れた遮蔽・耐熱特性"
+},
+"特性":{
+"硬度":"高い硬度により長期の耐摩耗性を発揮","引張強度":"優れた引張強度で高負荷環境に対応","耐食性":"卓越した耐食性で過酷環境でも長寿命",
+"耐熱性":"高い耐熱性で高温プロセスに対応","耐摩耗性":"摩耗に強い材料選定で交換頻度を削減","導電性":"優れた導電性で電気的接続を確実に確保",
+"靭性":"靭性に富み衝撃荷重にも高い信頼性","疲労強度":"高い疲労強度で繰り返し荷重下でも長寿命","熱伝導性":"高い熱伝導性で効率的な放熱を実現",
+"寸法安定性":"経年変化の少ない高い寸法安定性","低熱膨張":"低熱膨張率で温度変動下の精度を維持","軽量化":"軽量材料の採用で装置全体の高速化に貢献"
+}
+};
+function v(id){return document.getElementById(id).value.trim()}
+function getFeats(){return[v('f1'),v('f2'),v('f3'),v('f4'),v('f5')].filter(x=>x)}
+function enrichFeat(f){for(let c in DICT)for(let k in DICT[c])if(f.includes(k))return f+"\u2014\u2014"+DICT[c][k];return f}
+
+function genLP(d){
+let fs=d.feats.map((f,i)=>'\u3010\u7279\u9577'+(i+1)+'\u3011'+enrichFeat(f)).join('\n');
+return '\u25a0 '+d.name+'\uff5c'+d.sector+'\u5411\u3051\u30bd\u30ea\u30e5\u30fc\u30b7\u30e7\u30f3\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+d.name+'\u304c\u3001'+(d.use||'\u73fe\u5834')+'\u306e\u8ab2\u984c\u3092\u89e3\u6c7a\u3057\u307e\u3059\u3002\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n'+(d.mat?'\u3010\u6750\u8cea\u3011'+d.mat+'\n':'')+(d.dim?'\u3010\u5bf8\u6cd5\u3011'+d.dim+'\n':'')+(d.perf?'\u3010\u6027\u80fd\u3011'+d.perf+'\n':'')+'\n\u25bc \u88fd\u54c1\u306e\u5f37\u307f\n'+fs+'\n\n\u25bc \u3053\u3093\u306a\u8ab2\u984c\u306f\u3042\u308a\u307e\u305b\u3093\u304b\uff1f\n\u30fb\u65e2\u5b58\u90e8\u54c1\u306e\u7cbe\u5ea6\u4e0d\u8db3\u306b\u60a9\u3093\u3067\u3044\u308b\n\u30fb\u30b3\u30b9\u30c8\u524a\u6e1b\u3068\u54c1\u8cea\u7dad\u6301\u306e\u4e21\u7acb\u304c\u6c42\u3081\u3089\u308c\u3066\u3044\u308b\n\u30fb\u77ed\u7d0d\u671f\u3067\u306e\u8a66\u4f5c\u5bfe\u5fdc\u304c\u5fc5\u8981\n\n\u25bc '+d.name+'\u304c\u9078\u3070\u308c\u308b\u7406\u7531\n'+d.sector+'\u5206\u91ce\u306e\u304a\u5ba2\u69d8\u306b\u9078\u3070\u308c\u7d9a\u3051\u308b\u7406\u7531\u2014\u2014\u305d\u308c\u306f'+d.feats[0]+'\u306b\u88cf\u6253\u3061\u3055\u308c\u305f\u78ba\u304b\u306a\u54c1\u8cea\u3067\u3059\u3002'+(d.perf?d.perf+'\u3092\u5b9f\u73fe\u3057\u3001':'')+'\u73fe\u5834\u306e\u751f\u7523\u6027\u5411\u4e0a\u3068\u30b3\u30b9\u30c8\u6700\u9069\u5316\u306b\u8ca2\u732e\u3057\u307e\u3059\u3002\n\n\u25bc \u4ed5\u69d8\u6982\u8981\n\u88fd\u54c1\u540d\uff1a'+d.name+'\n'+(d.mat?'\u6750\u3000\u8cea\uff1a'+d.mat+'\n':'')+(d.dim?'\u5bf8\u3000\u6cd5\uff1a'+d.dim+'\n':'')+(d.perf?'\u6027\u3000\u80fd\uff1a'+d.perf+'\n':'')+'\u7528\u3000\u9014\uff1a'+(d.use||'\u5404\u7a2e\u7523\u696d\u7528\u9014')+'\n\n\u3010\u304a\u554f\u3044\u5408\u308f\u305b\u3011\n\u88fd\u54c1\u306e\u8a73\u7d30\u8cc7\u6599\u30fb\u30b5\u30f3\u30d7\u30eb\u30fb\u304a\u898b\u7a4d\u308a\u306f\u304a\u6c17\u8efd\u306b\u3054\u76f8\u8ac7\u304f\u3060\u3055\u3044\u3002';
+}
+
+function genCase(d){
+let fs=d.feats.map((f,i)=>(i+1)+'. '+enrichFeat(f)).join('\n');
+return '\u5c0e\u5165\u4e8b\u4f8b\uff1a'+d.name+'\u306e\u63a1\u7528\u3067'+d.sector+'\u306e\u73fe\u5834\u8ab2\u984c\u3092\u89e3\u6c7a\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u25a0 \u5c0e\u5165\u306e\u80cc\u666f\n'+d.sector+'\u5206\u91ce\u306eA\u793e\u69d8\u3067\u306f\u3001'+(d.use||'\u88fd\u9020\u5de5\u7a0b')+'\u306b\u304a\u3044\u3066\u54c1\u8cea\u306e\u3070\u3089\u3064\u304d\u3084\u30b3\u30b9\u30c8\u5897\u5927\u304c\u8ab2\u984c\u3068\u306a\u3063\u3066\u3044\u307e\u3057\u305f\u3002\u65e2\u5b58\u306e\u90e8\u54c1\u3067\u306f'+(d.perf?d.perf+'\u306e\u8981\u6c42\u3092\u6e80\u305f\u305b\u305a':'\u8981\u6c42\u7cbe\u5ea6\u3092\u5b89\u5b9a\u7684\u306b\u5b9f\u73fe\u3067\u304d\u305a')+'\u3001\u751f\u7523\u30e9\u30a4\u30f3\u306e\u6b69\u7559\u307e\u308a\u304c\u4f4e\u4e0b\u3002\u62dc\u672c\u7684\u306a\u898b\u76f4\u3057\u304c\u6c42\u3081\u3089\u308c\u3066\u3044\u307e\u3057\u305f\u3002\n\n\u25a0 \u9078\u5b9a\u306e\u30dd\u30a4\u30f3\u30c8\n\u8907\u6570\u793e\u3092\u6bd4\u8f03\u691c\u8a0e\u3057\u305f\u7d50\u679c\u3001A\u793e\u69d8\u306f\u4ee5\u4e0b\u306e\u7406\u7531\u3067'+d.name+'\u3092\u9078\u5b9a\u3055\u308c\u307e\u3057\u305f\u3002\n'+fs+'\n'+(d.mat?'\n\u6750\u8cea\u306b'+d.mat+'\u3092\u63a1\u7528\u3057\u3066\u3044\u308b\u70b9\u3082\u3001':'')+'\u4f7f\u7528\u74b0\u5883\u3078\u306e\u9069\u5408\u6027\u304c\u9ad8\u304f\u8a55\u4fa1\u3055\u308c\u307e\u3057\u305f\u3002\n\n\u25a0 \u5c0e\u5165\u52b9\u679c\n'+d.name+'\u306e\u5c0e\u5165\u5f8c\u3001A\u793e\u69d8\u3067\u306f\u4ee5\u4e0b\u306e\u52b9\u679c\u304c\u78ba\u8a8d\u3055\u308c\u3066\u3044\u307e\u3059\u3002\n\n\u30fb\u54c1\u8cea\u5411\u4e0a\uff1a'+(d.perf||'\u8981\u6c42\u7cbe\u5ea6')+'\u3092\u5b89\u5b9a\u7684\u306b\u9054\u6210\u3057\u3001\u4e0d\u826f\u7387\u304c\u5927\u5e45\u306b\u6539\u5584\n\u30fb\u30b3\u30b9\u30c8\u524a\u6e1b\uff1a\u90e8\u54c1\u4ea4\u63db\u983b\u5ea6\u306e\u4f4e\u4e0b\u306b\u3088\u308a\u3001\u5e74\u9593\u30e1\u30f3\u30c6\u30ca\u30f3\u30b9\u30b3\u30b9\u30c8\u3092\u524a\u6e1b\n\u30fb\u751f\u7523\u6027\u5411\u4e0a\uff1a\u6bb5\u53d6\u308a\u66ff\u3048\u6642\u9593\u306e\u77ed\u7e2e\u3067\u3001\u30e9\u30a4\u30f3\u7a3c\u50cd\u7387\u304c\u5411\u4e0a\n\n\u25a0 \u304a\u5ba2\u69d8\u306e\u58f0\uff08A\u793e \u88fd\u9020\u90e8 \u90e8\u9577\uff09\n\u300c'+d.name+'\u306b\u5207\u308a\u66ff\u3048\u3066\u304b\u3089\u3001\u54c1\u8cea\u30af\u30ec\u30fc\u30e0\u304c\u6fc0\u6e1b\u3057\u307e\u3057\u305f\u3002'+d.feats[0]+'\u304c\u6c7a\u3081\u624b\u3067\u3057\u305f\u304c\u3001\u671f\u5f85\u4ee5\u4e0a\u306e\u7d50\u679c\u3067\u3059\u3002\u300d\n\n\u25a0 \u88fd\u54c1\u60c5\u5831\n\u88fd\u54c1\u540d\uff1a'+d.name+'\n'+(d.mat?'\u6750\u3000\u8cea\uff1a'+d.mat+'\n':'')+(d.dim?'\u5bf8\u3000\u6cd5\uff1a'+d.dim+'\n':'')+'\u7528\u3000\u9014\uff1a'+(d.use||'\u5404\u7a2e\u7523\u696d\u7528\u9014')+'\n\n\u203b\u672c\u4e8b\u4f8b\u306f\u30c6\u30f3\u30d7\u30ec\u30fc\u30c8\u304b\u3089\u751f\u6210\u3055\u308c\u305f\u30c9\u30e9\u30d5\u30c8\u3067\u3059\u3002\u5b9f\u969b\u306e\u5c0e\u5165\u4f01\u696d\u60c5\u5831\u306b\u5dee\u3057\u66ff\u3048\u3066\u3054\u4f7f\u7528\u304f\u3060\u3055\u3044\u3002';
+}
+
+function genPR(d){
+let today=new Date();let ds=today.getFullYear()+'\u5e74'+(today.getMonth()+1)+'\u6708'+today.getDate()+'\u65e5';
+let fs=d.feats.map((f,i)=>'\uff08'+(i+1)+'\uff09'+enrichFeat(f)).join('\n');
+return '\u30d7\u30ec\u30b9\u30ea\u30ea\u30fc\u30b9\n\n'+ds+'\n\u25cb\u25cb\u682a\u5f0f\u4f1a\u793e\uff08\u6240\u5728\u5730\u30fb\u4ee3\u8868\u8005\u3092\u8a18\u5165\uff09\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n'+d.sector+'\u5411\u3051\u300c'+d.name+'\u300d\u3092\u65b0\u767a\u58f2\n'+(d.perf?'\u301c'+d.perf+'\u3092\u5b9f\u73fe\u301c':'\u301c\u9ad8\u54c1\u8cea\u30fb\u9ad8\u6027\u80fd\u3067\u73fe\u5834\u8ab2\u984c\u3092\u89e3\u6c7a\u301c')+'\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u25cb\u25cb\u682a\u5f0f\u4f1a\u793e\uff08\u672c\u793e\uff1a\u3000\u3001\u4ee3\u8868\u53d6\u7de0\u5f79\uff1a\u3000\uff09\u306f\u3001'+d.sector+'\u5206\u91ce\u306e\u304a\u5ba2\u69d8\u5411\u3051\u306b\u300c'+d.name+'\u300d\u3092'+ds+'\u3088\u308a\u8ca9\u58f2\u958b\u59cb\u3044\u305f\u3057\u307e\u3059\u3002\n\n\u25a0 \u958b\u767a\u306e\u80cc\u666f\n'+d.sector+'\u5206\u91ce\u3067\u306f\u3001\u9ad8\u7cbe\u5ea6\u5316\u30fb\u9ad8\u54c1\u8cea\u5316\u3078\u306e\u8981\u6c42\u304c\u5e74\u3005\u9ad8\u307e\u3063\u3066\u3044\u307e\u3059\u3002\u4e00\u65b9\u3001\u4eba\u624b\u4e0d\u8db3\u3084\u539f\u6750\u6599\u8cbb\u306e\u9ad8\u9a30\u3092\u80cc\u666f\u306b\u3001\u30b3\u30b9\u30c8\u6700\u9069\u5316\u3068\u306e\u4e21\u7acb\u304c\u6c42\u3081\u3089\u308c\u3066\u3044\u307e\u3059\u3002\u3053\u3046\u3057\u305f\u5e02\u5834\u30cb\u30fc\u30ba\u306b\u5fdc\u3048\u308b\u3079\u304f\u3001\u5f53\u793e\u306f'+d.name+'\u3092\u958b\u767a\u3044\u305f\u3057\u307e\u3057\u305f\u3002\n\n\u25a0 \u88fd\u54c1\u306e\u7279\u9577\n'+fs+'\n\n\u25a0 \u4e3b\u306a\u4ed5\u69d8\n\u88fd\u54c1\u540d\uff1a'+d.name+'\n'+(d.mat?'\u6750\u3000\u8cea\uff1a'+d.mat+'\n':'')+(d.dim?'\u4e3b\u8981\u5bf8\u6cd5\uff1a'+d.dim+'\n':'')+(d.perf?'\u6027\u3000\u80fd\uff1a'+d.perf+'\n':'')+'\u4e3b\u306a\u7528\u9014\uff1a'+(d.use||'\u5404\u7a2e\u7523\u696d\u7528\u9014')+'\n\n\u25a0 \u8ca9\u58f2\u306b\u3064\u3044\u3066\n\u8ca9\u58f2\u958b\u59cb\u65e5\uff1a\uff08\u8a18\u5165\u3057\u3066\u304f\u3060\u3055\u3044\uff09\n\u4fa1\u683c\uff1a\uff08\u8a18\u5165\u3057\u3066\u304f\u3060\u3055\u3044\uff09\n\u8ca9\u58f2\u76ee\u6a19\uff1a\uff08\u8a18\u5165\u3057\u3066\u304f\u3060\u3055\u3044\uff09\n\n\u25a0 \u4f1a\u793e\u6982\u8981\n\u4f1a\u793e\u540d\uff1a\u25cb\u25cb\u682a\u5f0f\u4f1a\u793e\n\u6240\u5728\u5730\uff1a\n\u4ee3\u8868\u8005\uff1a\n\u8a2d\u7acb\uff1a\n\u4e8b\u696d\u5185\u5bb9\uff1a\nURL\uff1a\n\n\u25a0 \u672c\u4ef6\u306b\u95a2\u3059\u308b\u304a\u554f\u3044\u5408\u308f\u305b\u5148\n\u25cb\u25cb\u682a\u5f0f\u4f1a\u793e \u5e83\u5831\u62c5\u5f53\nTEL\uff1a\nEmail\uff1a\n\n\u203b\u672c\u30d7\u30ec\u30b9\u30ea\u30ea\u30fc\u30b9\u306f\u30c6\u30f3\u30d7\u30ec\u30fc\u30c8\u304b\u3089\u751f\u6210\u3055\u308c\u305f\u30c9\u30e9\u30d5\u30c8\u3067\u3059\u3002\u793e\u540d\u30fb\u6570\u5024\u7b49\u3092\u66f4\u65b0\u3057\u3066\u3054\u4f7f\u7528\u304f\u3060\u3055\u3044\u3002';
+}
+
+function score(d,text){
+let s={};
+s.tech=Math.min(100,50+(d.mat?10:0)+(d.dim?10:0)+(d.perf?15:0)+(d.feats.length*5));
+let mk=0;['\u8ab2\u984c','\u89e3\u6c7a','\u5b9f\u73fe','\u5411\u4e0a','\u8ca2\u732e','\u9078\u3070\u308c','\u5f37\u307f','\u52b9\u679c'].forEach(w=>{if(text.includes(w))mk+=8});
+s.market=Math.min(100,40+mk);
+s.struct=Math.min(100,60+(text.includes('\u25a0')?15:0)+(text.includes('\u3010')?10:0)+(d.feats.length>=3?15:0));
+let wc=text.length;s.volume=wc>400&&wc<3000?90:wc>200?70:40;
+let dc=0;for(let c in DICT)for(let k in DICT[c])if(text.includes(k))dc++;
+s.dict=Math.min(100,50+dc*10);
+return s;
+}
+
+function generate(){
+let name=v('pName'),feats=getFeats();
+if(!name){alert('\u88fd\u54c1\u540d\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044');return}
+if(feats.length===0){alert('\u7279\u9577\u30921\u3064\u4ee5\u4e0a\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044');return}
+let d={name,mat:v('pMat'),dim:v('pDim'),perf:v('pPerf'),use:v('pUse'),feats,sector:v('sector'),format:v('format')};
+let texts={};
+texts.lp=genLP(d);texts.case=genCase(d);texts.pr=genPR(d);
+let primary=texts[d.format];
+let sc=score(d,primary);
+let sh='';
+[['tech','\u6280\u8853\u7684\u6b63\u78ba\u6027'],['market','\u30de\u30fc\u30b1\u8a34\u6c42\u529b'],['struct','\u69cb\u6210\u5b8c\u6210\u5ea6'],['volume','\u60c5\u5831\u91cf'],['dict','\u5c02\u9580\u7528\u8a9e\u6d3b\u7528']].forEach(([k,l])=>{
+sh+='<div class="sc'+(sc[k]<60?' warn':'')+'"><div class="num">'+sc[k]+'</div><div class="lbl">'+l+'</div></div>';
+});
+document.getElementById('scores').innerHTML=sh;
+let tabH='',fmts=[['lp','LP\u6587\u7ae0'],['case','\u5c0e\u5165\u4e8b\u4f8b'],['pr','\u30d7\u30ec\u30b9\u30ea\u30ea\u30fc\u30b9']];
+fmts.forEach(([k,l])=>{tabH+='<button class="tab'+(k===d.format?' active':'')+'" onclick="switchTab(\''+k+'\')">'+l+'</button>';});
+document.getElementById('tabs').innerHTML=tabH;
+window._texts=texts;window._d=d;
+document.getElementById('result').textContent=primary;
+document.getElementById('output').style.display='block';
+document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+
+function switchTab(k){
+document.getElementById('result').textContent=window._texts[k];
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+event.target.classList.add('active');
+let sc=score(window._d,window._texts[k]);
+let sh='';
+[['tech','\u6280\u8853\u7684\u6b63\u78ba\u6027'],['market','\u30de\u30fc\u30b1\u8a34\u6c42\u529b'],['struct','\u69cb\u6210\u5b8c\u6210\u5ea6'],['volume','\u60c5\u5831\u91cf'],['dict','\u5c02\u9580\u7528\u8a9e\u6d3b\u7528']].forEach(([k2,l])=>{
+sh+='<div class="sc'+(sc[k2]<60?' warn':'')+'"><div class="num">'+sc[k2]+'</div><div class="lbl">'+l+'</div></div>';
+});
+document.getElementById('scores').innerHTML=sh;
+}
+
+function copyResult(){
+navigator.clipboard.writeText(document.getElementById('result').textContent).then(()=>alert('\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f')).catch(()=>{
+let r=document.getElementById('result');let s=window.getSelection();s.removeAllRanges();let rg=document.createRange();rg.selectNodeContents(r);s.addRange(rg);document.execCommand('copy');alert('\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f');
+});
+}
+
+function toggleDict(){
+let p=document.getElementById('dictPanel');
+if(p.classList.contains('show')){p.classList.remove('show');return}
+if(!p.innerHTML){
+let h='';for(let c in DICT){h+='<div class="dict-cat">\u3010'+c+'\u3011</div>';for(let k in DICT[c])h+='<div class="dict-item"><span>'+k+'</span> \u2192 '+DICT[c][k]+'</div>';}
+p.innerHTML=h;
+}
+p.classList.add('show');
+}
+
+(function(){
+let ml=document.getElementById('matList');
+Object.keys(DICT['\u6750\u6599']).forEach(m=>{let o=document.createElement('option');o.value=m;ml.appendChild(o);});
+})();
+</script>
+</body>
+</html>

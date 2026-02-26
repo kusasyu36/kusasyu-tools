@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>モーションパターン・ディレクションボード</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:#0a0a0f;color:#e0e0e0;line-height:1.6}
+.wrap{max-width:1200px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;text-align:center;padding:18px 0 4px;background:linear-gradient(135deg,#6366f1,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;font-size:.75rem;color:#888;margin-bottom:18px}
+.notice{background:#1a1a2e;border-left:3px solid #a855f7;padding:10px 14px;font-size:.72rem;color:#aaa;margin-bottom:18px;border-radius:0 6px 6px 0}
+.notice strong{color:#c084fc}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+@media(max-width:600px){.form{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:.75rem;color:#aaa}
+.fg input,.fg select{padding:8px 10px;border:1px solid #333;border-radius:6px;background:#141420;color:#e0e0e0;font-size:.85rem}
+.fg input:focus,.fg select:focus{outline:none;border-color:#a855f7}
+.color-row{display:flex;gap:8px;align-items:center}
+.color-row input[type=color]{width:40px;height:34px;border:none;background:none;cursor:pointer}
+.color-row input[type=text]{flex:1}
+.speed-row{display:flex;align-items:center;gap:10px}
+.speed-row input[type=range]{flex:1;accent-color:#a855f7}
+.speed-row span{font-size:.8rem;min-width:50px;text-align:right}
+.btn{background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:.9rem;font-weight:600;width:100%;grid-column:1/-1}
+.btn:hover{opacity:.9}
+#result{display:none}
+.ab-box{background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:14px;margin-bottom:18px}
+.ab-box h3{font-size:.9rem;color:#a855f7;margin-bottom:6px}
+.ab-box p{font-size:.8rem;color:#ccc}
+.patterns{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.card{background:#12121c;border:1px solid #222;border-radius:10px;overflow:hidden;transition:.2s}
+.card:hover{border-color:#6366f1}
+.card-head{padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.card-head h4{font-size:.85rem}
+.badge{font-size:.65rem;padding:2px 8px;border-radius:10px;background:#6366f133;color:#a78bfa}
+.preview-wrap{display:flex;justify-content:center;padding:8px;background:#0a0a0f}
+.preview{position:relative;overflow:hidden;background:#1a1a2e;border-radius:6px}
+.preview .bg{position:absolute;inset:0;opacity:.15}
+.preview .copy-text{position:absolute;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);z-index:2;padding:0 10px;text-align:center;width:100%}
+.preview .product-name{position:absolute;font-size:.7rem;color:#fffc;z-index:2;padding:0 10px;text-align:center;width:100%}
+.preview .cta{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);padding:4px 16px;border-radius:20px;font-size:.65rem;font-weight:600;z-index:2;white-space:nowrap}
+.card-foot{padding:10px 14px;display:flex;gap:8px}
+.card-foot button{flex:1;padding:6px;border-radius:6px;border:1px solid #333;background:#1a1a2e;color:#ccc;font-size:.7rem;cursor:pointer}
+.card-foot button:hover{border-color:#a855f7;color:#fff}
+.copied{color:#22c55e!important;border-color:#22c55e!important}
+.desc{padding:0 14px 8px;font-size:.72rem;color:#888}
+@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+@keyframes slideUp{0%{transform:translateY(100%);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes zoomIn{0%{transform:scale(.3);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes textFirst{0%{opacity:0;transform:translateY(-20px)}30%{opacity:1;transform:translateY(0)}100%{opacity:1}}
+@keyframes imgAfter{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0 0 0 0)}}
+@keyframes slideRight{0%{transform:translateX(-100%);opacity:0}100%{transform:translateX(0);opacity:1}}
+@keyframes popIn{0%{transform:scale(0);opacity:0}50%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>モーションパターン・ディレクションボード</h1>
+<p class="sub">SNS広告アニメーション構成設計ツール｜SynLab Digital Marketing</p>
+<div class="notice"><strong>本ツールの位置づけ：</strong>動画ファイルを生成するツールではなく、<strong>「動きの設計書」を素早く作るディレクションツール</strong>です。プレビューはCSSアニメーションによるイメージ確認用です。各パターンの制作仕様書をコピーして制作チームに共有してください。</div>
+<div class="form" id="inputForm">
+<div class="fg"><label>商品名</label><input id="prodName" value="プレミアム美容液" placeholder="例: プレミアム美容液"></div>
+<div class="fg"><label>キャッチコピー</label><input id="catchCopy" value="あなたの肌に、革命を。" placeholder="例: あなたの肌に、革命を。"></div>
+<div class="fg"><label>ブランドカラー</label><div class="color-row"><input type="color" id="colorPick" value="#a855f7"><input type="text" id="brandColor" value="#a855f7" placeholder="#a855f7"></div></div>
+<div class="fg"><label>SNSプラットフォーム</label><select id="platform"><option value="instagram">Instagram（9:16 / 1:1）</option><option value="tiktok">TikTok（9:16）</option><option value="x">X / Twitter（16:9 / 1:1）</option></select></div>
+<div class="fg"><label>アニメーション速度</label><div class="speed-row"><input type="range" id="speed" min="1" max="3" step="1" value="2"><span id="speedLabel">標準 1s</span></div></div>
+<div class="fg" style="justify-content:flex-end"><button class="btn" onclick="generate()">パターンを生成</button></div>
+</div>
+<div id="result">
+<div class="ab-box"><h3>A/Bテスト推奨コンビネーション</h3><p id="abText"></p></div>
+<div class="patterns" id="cards"></div>
+</div>
+</div>
+<script>
+var SP={instagram:{w:270,h:480,label:'9:16'},tiktok:{w:270,h:480,label:'9:16'},x:{w:480,h:270,label:'16:9'}};
+var PATTERNS=[
+{id:'fade',name:'フェードイン',desc:'全要素が同時にふわっと表示。信頼感・ブランド訴求向き。',badge:'定番'},
+{id:'slide',name:'スライドイン',desc:'下から上にスライドで順次登場。ダイナミック・セール訴求向き。',badge:'動的'},
+{id:'zoom',name:'ズームイン',desc:'中心から拡大して登場。インパクト・新商品発表向き。',badge:'注目'},
+{id:'textfirst',name:'テキストファースト',desc:'コピーが先に表示→商品名が後から登場。ストーリー型訴求向き。',badge:'物語'},
+{id:'ba',name:'ビフォーアフター',desc:'左から右へワイプで画面切替。効果実感・比較訴求向き。',badge:'比較'}
+];
+var SPEEDS={1:0.5,2:1,3:2};
+var SPEED_LABELS={1:'早め 0.5s',2:'標準 1s',3:'ゆっくり 2s'};
+var AB_RULES=[
+{title:'新規出稿',combo:'フェードイン × テキストファースト',reason:'安定CTRの定番パターンと、ストーリー訴求パターンを比較。初回は王道で基準値を取得するのが鉄則です。'},
+{title:'セール・キャンペーン',combo:'スライドイン × ズームイン',reason:'動きの大きい2パターンで緊急性・注目度を最大化。CVR重視のテストに最適。'},
+{title:'ブランディング・認知',combo:'フェードイン × ビフォーアフター',reason:'上品な印象のフェードインと、効果を直感的に伝えるビフォーアフターの比較。'},
+{title:'摩耗リフレッシュ',combo:'ズームイン × テキストファースト',reason:'既存素材と異なる動きパターンで新鮮さを回復。摩耗後のCTR改善率は平均+23%。'}
+];
+document.getElementById('colorPick').addEventListener('input',function(e){document.getElementById('brandColor').value=e.target.value});
+document.getElementById('brandColor').addEventListener('input',function(e){var v=e.target.value;if(/^#[0-9a-fA-F]{6}$/.test(v))document.getElementById('colorPick').value=v});
+document.getElementById('speed').addEventListener('input',function(e){document.getElementById('speedLabel').textContent=SPEED_LABELS[e.target.value]});
+function getSubAnim(id){
+if(id==='slide')return'slideUp';if(id==='zoom')return'zoomIn';if(id==='textfirst')return'popIn';if(id==='ba')return'slideRight';return'fadeIn';
+}
+function getCtaAnim(id){
+if(id==='slide')return'slideUp';if(id==='zoom')return'popIn';return'fadeIn';
+}
+function generate(){
+var prod=document.getElementById('prodName').value||'商品名';
+var copy=document.getElementById('catchCopy').value||'キャッチコピー';
+var color=document.getElementById('brandColor').value||'#a855f7';
+var pf=document.getElementById('platform').value;
+var spd=SPEEDS[document.getElementById('speed').value];
+var dim=SP[pf];
+var ab=AB_RULES[Math.floor(Math.random()*AB_RULES.length)];
+document.getElementById('abText').innerHTML='<strong>【'+ab.title+'】'+ab.combo+'</strong><br>'+ab.reason;
+var container=document.getElementById('cards');
+container.innerHTML='';
+PATTERNS.forEach(function(p,i){
+var card=document.createElement('div');
+card.className='card';
+var pw=Math.min(dim.w,window.innerWidth-80);
+var ph=Math.round(pw*dim.h/dim.w);
+var dur=spd+'s';
+var d1=(spd*0.3).toFixed(2)+'s';
+var d2=(spd*0.6).toFixed(2)+'s';
+var d3=(spd*0.9).toFixed(2)+'s';
+var copyAnim=p.id==='textfirst'?'textFirst '+dur+' ease 0s both':'fadeIn '+dur+' ease '+d1+' both';
+if(p.id==='slide')copyAnim='slideUp '+dur+' ease '+d1+' both';
+if(p.id==='zoom')copyAnim='zoomIn '+dur+' ease '+d1+' both';
+var subAnim=getSubAnim(p.id)+' '+dur+' ease '+d2+' both';
+var ctaAnim=getCtaAnim(p.id)+' '+dur+' ease '+d3+' both';
+var fs=pw<300?'1rem':'1.3rem';
+var extra='';
+if(p.id==='ba')extra='<div style="position:absolute;inset:0;background:linear-gradient(90deg,'+color+'66,transparent);animation:imgAfter '+dur+' ease both;z-index:1"></div>';
+card.innerHTML='<div class="card-head"><h4>'+(i+1)+'. '+p.name+'</h4><span class="badge">'+p.badge+'</span></div>'
++'<p class="desc">'+p.desc+'</p>'
++'<div class="preview-wrap"><div class="preview" id="pv'+i+'" style="width:'+pw+'px;height:'+ph+'px">'
++'<div class="bg" style="background:'+color+'"></div>'
++'<div class="copy-text" style="top:30%;font-size:'+fs+';animation:'+copyAnim+'">'+copy+'</div>'
++'<div class="product-name" style="top:55%;animation:'+subAnim+'">'+prod+'</div>'
++'<div class="cta" style="background:'+color+';color:#fff;animation:'+ctaAnim+'">詳しくはこちら</div>'
++extra
++'</div></div>'
++'<div class="card-foot">'
++'<button onclick="replayAnim('+i+')">再生</button>'
++'<button onclick="copySpec(this,'+i+')">制作仕様をコピー</button>'
++'</div>';
+container.appendChild(card);
+});
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function replayAnim(idx){
+var pv=document.getElementById('pv'+idx);
+var clone=pv.cloneNode(true);
+clone.id='pv'+idx;
+pv.parentNode.replaceChild(clone,pv);
+}
+function copySpec(btn,idx){
+var p=PATTERNS[idx];
+var prod=document.getElementById('prodName').value||'商品名';
+var copy=document.getElementById('catchCopy').value||'キャッチコピー';
+var color=document.getElementById('brandColor').value;
+var pf=document.getElementById('platform').value;
+var spd=SPEEDS[document.getElementById('speed').value];
+var dim=SP[pf];
+var timings={fade:'全要素同時フェードイン（opacity: 0→1）',slide:'下→上スライド順次表示（translateY）',zoom:'中心からズーム拡大（scale: 0.3→1）',textfirst:'コピー先行表示→商品名ポップイン→CTA順次表示',ba:'左→右ワイプ切替（clip-path）'};
+var order={fade:'コピー・商品名・CTAが同時にフェードイン',slide:'(1)コピー下→上 → (2)商品名下→上 → (3)CTA下→上',zoom:'(1)コピー拡大 → (2)商品名拡大 → (3)CTAポップ',textfirst:'(1)コピー上→下フェード → (2)商品名ポップイン → (3)CTAフェード',ba:'(1)全要素表示 → (2)ワイプで画面切替（左→右）'};
+var spec='【モーションパターン制作仕様書】\n'
++'========================================\n'
++'パターン名: '+p.name+'\n'
++'生成日: '+new Date().toLocaleDateString('ja-JP')+'\n'
++'========================================\n\n'
++'■ 基本情報\n'
++'  商品名: '+prod+'\n'
++'  コピー: '+copy+'\n'
++'  ブランドカラー: '+color+'\n'
++'  プラットフォーム: '+pf.toUpperCase()+'\n'
++'  アスペクト比: '+dim.label+' ('+dim.w+'x'+dim.h+'相当)\n\n'
++'■ アニメーション構成\n'
++'  動きの種類: '+timings[p.id]+'\n'
++'  速度: '+spd+'秒/要素\n'
++'  総尺目安: '+(spd*4).toFixed(1)+'秒\n\n'
++'■ テキスト表示順とタイミング\n'
++'  '+order[p.id]+'\n'
++'  T=0.0s キャッチコピー「'+copy+'」\n'
++'  T='+(spd*0.6).toFixed(1)+'s 商品名「'+prod+'」\n'
++'  T='+(spd*0.9).toFixed(1)+'s CTAボタン「詳しくはこちら」\n\n'
++'■ デザイン指示\n'
++'  ・背景: ブランドカラー'+color+'を透過15%で使用\n'
++'  ・コピー: 白文字・太字・ドロップシャドウ推奨\n'
++'  ・CTA: ブランドカラーベタ塗り+白文字・角丸ボタン\n'
++'========================================\n'
++'※ディレクションボードで自動生成した仕様書です\n';
+navigator.clipboard.writeText(spec).then(function(){
+btn.textContent='コピー完了';btn.classList.add('copied');
+setTimeout(function(){btn.textContent='制作仕様をコピー';btn.classList.remove('copied')},2000);
+});
+}
+generate();
+</script>
+</body>
+</html>

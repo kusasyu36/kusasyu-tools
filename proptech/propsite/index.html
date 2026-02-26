@@ -1,0 +1,326 @@
+HTMLファイルの内容を直接出力します。
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropSite 建設現場日報ジェネレーター</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#1a5276;--accent:#2e86c1;--bg:#f4f6f8;--card:#fff;--border:#d5d8dc;--danger:#e74c3c;--success:#27ae60;--warn:#f39c12}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:#2c3e50;font-size:14px;line-height:1.6}
+.header{background:var(--primary);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.header h1{font-size:18px;font-weight:700}
+.header span{font-size:11px;opacity:.8}
+.tabs{display:flex;background:#fff;border-bottom:2px solid var(--border)}
+.tab{flex:1;padding:10px;text-align:center;cursor:pointer;font-weight:600;border-bottom:3px solid transparent;transition:.2s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.container{max-width:900px;margin:0 auto;padding:12px}
+.card{background:var(--card);border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h2{font-size:15px;color:var(--primary);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.field{flex:1;min-width:140px}
+.field label{display:block;font-size:12px;font-weight:600;margin-bottom:3px;color:#555}
+.field input,.field select,.field textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:5px;font-size:14px}
+.field textarea{resize:vertical;min-height:60px}
+.btn{padding:10px 20px;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-success{background:var(--success);color:#fff}
+.btn-warn{background:var(--warn);color:#fff}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.work-item{background:#f8f9fa;border:1px solid var(--border);border-radius:6px;padding:10px;margin-bottom:8px}
+.work-item .row{margin-bottom:4px}
+.remove-btn{background:none;border:none;color:var(--danger);cursor:pointer;font-size:18px;float:right}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid #bbb;padding:6px 8px;text-align:left}
+th{background:var(--primary);color:#fff;font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;color:#fff}
+.badge-sun{background:#f1c40f;color:#333}
+.badge-cloud{background:#95a5a6}
+.badge-rain{background:#3498db}
+.badge-snow{background:#85c1e9}
+#reportOutput{display:none}
+#weeklyView{display:none}
+@media print{
+  body{background:#fff;font-size:12px}
+  .header,.tabs,.actions,.no-print,.card{box-shadow:none;border:none;page-break-inside:avoid}
+  .no-print{display:none!important}
+  #reportOutput{display:block!important}
+  #formView,#weeklyView{display:none!important}
+}
+@media(max-width:600px){
+  .field{min-width:100%}
+  .header h1{font-size:15px}
+}
+.week-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px;margin:10px 0}
+.week-card{padding:8px;border-radius:6px;border:1px solid var(--border);text-align:center;cursor:pointer;font-size:12px}
+.week-card.has-data{background:#eaf4fd;border-color:var(--accent)}
+.week-card.today{border:2px solid var(--success)}
+.stat{text-align:center;padding:10px}
+.stat .num{font-size:28px;font-weight:800;color:var(--accent)}
+.stat .lbl{font-size:11px;color:#777}
+.stats-row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
+</style>
+</head>
+<body>
+<div class="header">
+<div><h1>PropSite 建設現場日報ジェネレーター</h1><span>SynLab PropTech — 施工体制台帳準拠</span></div>
+</div>
+<div class="tabs no-print">
+<div class="tab active" onclick="switchTab('form')">日報入力</div>
+<div class="tab" onclick="switchTab('weekly')">週報モード</div>
+</div>
+<div class="container">
+<div id="formView">
+<div class="card">
+<h2>基本情報</h2>
+<div class="row">
+<div class="field"><label>日付</label><input type="date" id="reportDate"></div>
+<div class="field"><label>現場名</label><input type="text" id="siteName" placeholder="〇〇新築工事"></div>
+<div class="field"><label>工期</label><input type="text" id="period" placeholder="R8.4.1〜R9.3.31"></div>
+</div>
+<div class="row">
+<div class="field"><label>記入者</label><input type="text" id="author" placeholder="氏名"></div>
+<div class="field"><label>天候（午前）</label>
+<select id="weatherAM"><option>晴</option><option>曇</option><option>雨</option><option>雪</option></select></div>
+<div class="field"><label>天候（午後）</label>
+<select id="weatherPM"><option>晴</option><option>曇</option><option>雨</option><option>雪</option></select></div>
+<div class="field"><label>気温(℃)</label><input type="number" id="temp" placeholder="22"></div>
+</div>
+</div>
+<div class="card">
+<h2>作業員数</h2>
+<div class="row">
+<div class="field"><label>自社作業員</label><input type="number" id="ownWorkers" min="0" value="0"></div>
+<div class="field"><label>協力会社作業員</label><input type="number" id="subWorkers" min="0" value="0"></div>
+<div class="field"><label>合計</label><input type="number" id="totalWorkers" readonly></div>
+</div>
+</div>
+<div class="card">
+<h2>工種別作業内容 <button class="btn btn-primary" style="font-size:12px;padding:4px 12px" onclick="addWork()">＋追加</button></h2>
+<div id="workList"></div>
+</div>
+<div class="card">
+<h2>安全管理</h2>
+<div class="row">
+<div class="field"><label>KY活動実施</label>
+<select id="kyActivity"><option>実施済</option><option>未実施</option></select></div>
+<div class="field"><label>新規入場者教育</label>
+<select id="newWorkerEdu"><option>なし</option><option>実施済（__名）</option></select></div>
+</div>
+<div class="field"><label>安全巡回所見</label>
+<textarea id="safetyNote" placeholder="指摘事項・是正措置等を記入"></textarea></div>
+<div class="field" style="margin-top:8px"><label>災害・事故</label>
+<select id="accident"><option>なし</option><option>ヒヤリハット</option><option>軽微な事故</option><option>重大事故</option></select></div>
+</div>
+<div class="card">
+<h2>連絡・特記事項</h2>
+<div class="field"><label>写真メモ / 記録事項</label>
+<textarea id="photoMemo" placeholder="撮影ポイント・特記事項"></textarea></div>
+<div class="field" style="margin-top:8px"><label>翌日の予定</label>
+<textarea id="nextPlan" placeholder="翌日の主要作業予定"></textarea></div>
+</div>
+<div class="actions no-print">
+<button class="btn btn-primary" onclick="saveData()">保存</button>
+<button class="btn btn-success" onclick="generateReport()">日報生成</button>
+<button class="btn btn-warn" onclick="loadPrevious()">前日データ読込</button>
+<button class="btn btn-danger" onclick="clearForm()">クリア</button>
+</div>
+</div>
+<div id="weeklyView">
+<div class="card">
+<h2>週報生成</h2>
+<div class="row">
+<div class="field"><label>対象週の開始日（月曜）</label><input type="date" id="weekStart"></div>
+<div class="field" style="align-self:flex-end"><button class="btn btn-primary" onclick="loadWeek()">読み込み</button></div>
+</div>
+<div class="week-grid" id="weekGrid"></div>
+</div>
+<div id="weeklySummary"></div>
+<div class="actions no-print"><button class="btn btn-success" onclick="printWeekly()">週報を印刷</button></div>
+</div>
+<div id="reportOutput"></div>
+</div>
+<script>
+var $=function(id){return document.getElementById(id);};
+var workCount=0;
+function init(){
+  var t=new Date(),ds=t.toISOString().slice(0,10);
+  $('reportDate').value=ds;
+  var mon=new Date(t);mon.setDate(t.getDate()-t.getDay()+1);
+  $('weekStart').value=mon.toISOString().slice(0,10);
+  addWork();addWork();loadMeta();
+  $('ownWorkers').addEventListener('input',calcTotal);
+  $('subWorkers').addEventListener('input',calcTotal);
+  calcTotal();
+}
+function calcTotal(){
+  $('totalWorkers').value=(+$('ownWorkers').value||0)+(+$('subWorkers').value||0);
+}
+function addWork(){
+  var d=document.createElement('div');d.className='work-item';d.id='work-'+workCount;
+  d.innerHTML='<button class="remove-btn" onclick="this.parentElement.remove()">\u00d7</button>'
++'<div class="row"><div class="field"><label>工種</label><select class="wType">'
++'<option>躯体工事</option><option>仕上工事</option><option>設備工事</option><option>電気工事</option>'
++'<option>外構工事</option><option>仮設工事</option><option>土工事</option><option>基礎工事</option><option>その他</option></select></div>'
++'<div class="field"><label>作業内容</label><input type="text" class="wDetail" placeholder="3F柱配筋"></div>'
++'<div class="field"><label>進捗(%)</label><input type="number" class="wProg" min="0" max="100" value="0"></div>'
++'<div class="field"><label>人数</label><input type="number" class="wNum" min="0" value="0"></div></div>';
+  $('workList').appendChild(d);workCount++;
+}
+function getWorks(){
+  var items=$('workList').querySelectorAll('.work-item'),result=[];
+  for(var i=0;i<items.length;i++){var el=items[i];
+    result.push({type:el.querySelector('.wType').value,detail:el.querySelector('.wDetail').value,
+      progress:el.querySelector('.wProg').value,num:el.querySelector('.wNum').value});}
+  return result;
+}
+function getData(){
+  return{date:$('reportDate').value,siteName:$('siteName').value,period:$('period').value,
+    author:$('author').value,weatherAM:$('weatherAM').value,weatherPM:$('weatherPM').value,
+    temp:$('temp').value,ownWorkers:$('ownWorkers').value,subWorkers:$('subWorkers').value,
+    works:getWorks(),kyActivity:$('kyActivity').value,newWorkerEdu:$('newWorkerEdu').value,
+    safetyNote:$('safetyNote').value,accident:$('accident').value,
+    photoMemo:$('photoMemo').value,nextPlan:$('nextPlan').value};
+}
+function saveData(){
+  var d=getData();localStorage.setItem('propsite_'+d.date,JSON.stringify(d));
+  localStorage.setItem('propsite_meta',JSON.stringify({siteName:d.siteName,period:d.period,author:d.author}));
+  alert('保存しました: '+d.date);
+}
+function loadMeta(){
+  var m=JSON.parse(localStorage.getItem('propsite_meta')||'{}');
+  if(m.siteName)$('siteName').value=m.siteName;
+  if(m.period)$('period').value=m.period;
+  if(m.author)$('author').value=m.author;
+}
+function loadDay(date){
+  var d=JSON.parse(localStorage.getItem('propsite_'+date)||'null');
+  if(!d)return null;
+  $('reportDate').value=d.date;$('siteName').value=d.siteName;$('period').value=d.period;
+  $('author').value=d.author;$('weatherAM').value=d.weatherAM;$('weatherPM').value=d.weatherPM;
+  $('temp').value=d.temp;$('ownWorkers').value=d.ownWorkers;$('subWorkers').value=d.subWorkers;
+  $('kyActivity').value=d.kyActivity;$('newWorkerEdu').value=d.newWorkerEdu;
+  $('safetyNote').value=d.safetyNote;$('accident').value=d.accident;
+  $('photoMemo').value=d.photoMemo;$('nextPlan').value=d.nextPlan;
+  $('workList').innerHTML='';
+  for(var i=0;i<d.works.length;i++){addWork();var el=$('workList').lastElementChild;
+    el.querySelector('.wType').value=d.works[i].type;el.querySelector('.wDetail').value=d.works[i].detail;
+    el.querySelector('.wProg').value=d.works[i].progress;el.querySelector('.wNum').value=d.works[i].num;}
+  calcTotal();return d;
+}
+function loadPrevious(){
+  var cur=new Date($('reportDate').value);cur.setDate(cur.getDate()-1);
+  var ps=cur.toISOString().slice(0,10);
+  if(!loadDay(ps)){alert('前日('+ps+')のデータがありません');return;}
+  $('reportDate').value=new Date().toISOString().slice(0,10);
+  alert('前日データを読み込みました。日付は今日に設定済みです。');
+}
+function clearForm(){
+  if(!confirm('入力内容をクリアしますか？'))return;
+  var ids=['siteName','period','author','temp','safetyNote','photoMemo','nextPlan'];
+  for(var i=0;i<ids.length;i++)$(ids[i]).value='';
+  $('ownWorkers').value=0;$('subWorkers').value=0;calcTotal();
+  $('workList').innerHTML='';addWork();addWork();
+}
+function esc(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function wb(w){var m={'晴':'badge-sun','曇':'badge-cloud','雨':'badge-rain','雪':'badge-snow'};
+  return '<span class="badge '+(m[w]||'')+'">'+w+'</span>';}
+function generateReport(){
+  var d=getData(),tw=(+d.ownWorkers||0)+(+d.subWorkers||0);
+  var wrows='';for(var i=0;i<d.works.length;i++){var w=d.works[i];
+    wrows+='<tr><td>'+esc(w.type)+'</td><td>'+esc(w.detail)+'</td><td style="text-align:center">'+esc(w.progress)+'%</td><td style="text-align:center">'+esc(w.num)+'</td></tr>';}
+  $('reportOutput').innerHTML='<div class="actions no-print">'
++'<button class="btn btn-primary" onclick="backToForm()">入力に戻る</button> '
++'<button class="btn btn-success" onclick="window.print()">印刷</button></div>'
++'<div class="card" style="border:2px solid var(--primary)">'
++'<div style="text-align:center;margin-bottom:10px"><h2 style="border:none;font-size:18px;color:var(--primary)">工 事 日 報</h2></div>'
++'<table><tr><th style="width:15%">現場名</th><td colspan="3">'+esc(d.siteName)+'</td></tr>'
++'<tr><th>工期</th><td>'+esc(d.period)+'</td><th style="width:15%">記入者</th><td>'+esc(d.author)+'</td></tr>'
++'<tr><th>日付</th><td>'+esc(d.date)+'</td><th>天候</th><td>午前 '+wb(d.weatherAM)+' ／ 午後 '+wb(d.weatherPM)+'　気温 '+esc(d.temp)+'℃</td></tr>'
++'<tr><th>作業員数</th><td colspan="3">自社 '+esc(d.ownWorkers)+'名 ／ 協力会社 '+esc(d.subWorkers)+'名 ／ <strong>合計 '+tw+'名</strong></td></tr></table>'
++'<h3 style="margin:12px 0 6px;font-size:14px;color:var(--primary)">工種別作業内容</h3>'
++'<table><tr><th>工種</th><th>作業内容</th><th style="width:70px">進捗</th><th style="width:50px">人数</th></tr>'+wrows+'</table>'
++'<h3 style="margin:12px 0 6px;font-size:14px;color:var(--primary)">安全管理</h3>'
++'<table><tr><th style="width:25%">KY活動</th><td>'+esc(d.kyActivity)+'</td><th style="width:25%">新規入場者教育</th><td>'+esc(d.newWorkerEdu)+'</td></tr>'
++'<tr><th>災害・事故</th><td colspan="3">'+esc(d.accident)+'</td></tr>'
++'<tr><th>安全巡回所見</th><td colspan="3">'+(esc(d.safetyNote)||'特になし')+'</td></tr></table>'
++'<h3 style="margin:12px 0 6px;font-size:14px;color:var(--primary)">連絡・特記事項</h3>'
++'<table><tr><th style="width:25%">写真メモ</th><td>'+(esc(d.photoMemo)||'特になし')+'</td></tr>'
++'<tr><th>翌日の予定</th><td>'+(esc(d.nextPlan)||'未定')+'</td></tr></table>'
++'<div style="text-align:right;margin-top:12px;font-size:11px;color:#999">PropSite — SynLab PropTech</div></div>';
+  $('reportOutput').style.display='block';$('formView').style.display='none';
+}
+function backToForm(){$('reportOutput').style.display='none';$('reportOutput').innerHTML='';$('formView').style.display='block';}
+function switchTab(t){
+  var tabs=document.querySelectorAll('.tab');
+  for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle('active',i===(t==='form'?0:1));
+  $('formView').style.display=t==='form'?'block':'none';
+  $('weeklyView').style.display=t==='weekly'?'block':'none';
+  $('reportOutput').style.display='none';
+}
+function loadWeek(){
+  var ws=new Date($('weekStart').value),grid=$('weekGrid'),days=['月','火','水','木','金','土','日'];
+  grid.innerHTML='';var today=new Date().toISOString().slice(0,10),weekData=[];
+  for(var i=0;i<7;i++){
+    var dt=new Date(ws);dt.setDate(ws.getDate()+i);var ds=dt.toISOString().slice(0,10);
+    var saved=JSON.parse(localStorage.getItem('propsite_'+ds)||'null');
+    weekData.push({date:ds,day:days[i],data:saved});
+    var c=document.createElement('div');
+    c.className='week-card'+(saved?' has-data':'')+(ds===today?' today':'');
+    c.innerHTML='<strong>'+days[i]+'</strong><br>'+ds.slice(5)+'<br>'+(saved?'入力済':'—');
+    c.setAttribute('data-date',ds);
+    c.onclick=function(){var dd=this.getAttribute('data-date');switchTab('form');
+      var s=JSON.parse(localStorage.getItem('propsite_'+dd)||'null');
+      if(s)loadDay(dd);else $('reportDate').value=dd;};
+    grid.appendChild(c);
+  }
+  genWeeklySummary(weekData);
+}
+function genWeeklySummary(wd){
+  var filled=[],sm=$('weeklySummary');
+  for(var i=0;i<wd.length;i++)if(wd[i].data)filled.push(wd[i]);
+  if(!filled.length){sm.innerHTML='<div class="card"><p>対象週のデータがありません。日報入力タブでデータを保存してください。</p></div>';return;}
+  var totalW=0,totalOwn=0,totalSub=0,workMap={},safetyIssues=[],accidents=[];
+  for(var i=0;i<filled.length;i++){var v=filled[i].data;
+    totalOwn+=+v.ownWorkers||0;totalSub+=+v.subWorkers||0;totalW+=(+v.ownWorkers||0)+(+v.subWorkers||0);
+    for(var j=0;j<v.works.length;j++){var w=v.works[j];
+      if(!workMap[w.type])workMap[w.type]={count:0,maxProg:0};
+      workMap[w.type].count++;workMap[w.type].maxProg=Math.max(workMap[w.type].maxProg,+w.progress);}
+    if(v.safetyNote)safetyIssues.push(filled[i].date.slice(5)+': '+v.safetyNote);
+    if(v.accident!=='なし')accidents.push(filled[i].date.slice(5)+': '+v.accident);
+  }
+  var wkRows='',keys=Object.keys(workMap);
+  for(var i=0;i<keys.length;i++)wkRows+='<tr><td>'+esc(keys[i])+'</td><td>'+workMap[keys[i]].count+'日</td><td>'+workMap[keys[i]].maxProg+'%</td></tr>';
+  var avg=Math.round(totalW/filled.length);
+  var safeHtml='';if(safetyIssues.length){safeHtml='<h3 style="margin:12px 0 6px;font-size:14px;color:var(--danger)">安全巡回所見</h3><ul>';
+    for(var i=0;i<safetyIssues.length;i++)safeHtml+='<li>'+esc(safetyIssues[i])+'</li>';safeHtml+='</ul>';}
+  var accHtml='';if(accidents.length){accHtml='<h3 style="margin:12px 0 6px;font-size:14px;color:var(--danger)">事故・ヒヤリハット</h3><ul>';
+    for(var i=0;i<accidents.length;i++)accHtml+='<li>'+esc(accidents[i])+'</li>';accHtml+='</ul>';}
+  else accHtml='<p style="color:var(--success);margin-top:8px">事故・ヒヤリハットなし</p>';
+  sm.innerHTML='<div class="card"><h2>週間サマリー（'+wd[0].date+' 〜 '+wd[6].date+'）</h2>'
++'<div class="stats-row">'
++'<div class="stat"><div class="num">'+filled.length+'</div><div class="lbl">稼働日数</div></div>'
++'<div class="stat"><div class="num">'+totalW+'</div><div class="lbl">延べ作業員数</div></div>'
++'<div class="stat"><div class="num">'+avg+'</div><div class="lbl">日平均人数</div></div>'
++'<div class="stat"><div class="num">'+accidents.length+'</div><div class="lbl">事故・ヒヤリ</div></div></div>'
++'<h3 style="margin:12px 0 6px;font-size:14px;color:var(--primary)">工種別集計</h3>'
++'<table><tr><th>工種</th><th>稼働日数</th><th>最大進捗</th></tr>'+wkRows+'</table>'
++'<h3 style="margin:12px 0 6px;font-size:14px;color:var(--primary)">作業員内訳</h3>'
++'<table><tr><th>区分</th><th>延べ人数</th><th>日平均</th></tr>'
++'<tr><td>自社</td><td>'+totalOwn+'名</td><td>'+(totalOwn/filled.length).toFixed(1)+'名</td></tr>'
++'<tr><td>協力会社</td><td>'+totalSub+'名</td><td>'+(totalSub/filled.length).toFixed(1)+'名</td></tr></table>'
++safeHtml+accHtml
++'<div style="text-align:right;margin-top:10px;font-size:11px;color:#999">PropSite 週報 — SynLab PropTech</div></div>';
+}
+function printWeekly(){window.print();}
+init();
+</script>
+</body>
+</html>

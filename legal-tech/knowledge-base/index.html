@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法務判断ナレッジベース | SynLab Legal Tech</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#1a365d;--accent:#2b6cb0;--light:#ebf4ff;--bg:#f7fafc;--border:#cbd5e0;--danger:#c53030;--success:#276749;--gray:#718096}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:#1a202c;line-height:1.6}
+.header{background:var(--primary);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.header h1{font-size:16px;font-weight:700}
+.header span{font-size:11px;opacity:.8}
+.tabs{display:flex;background:#fff;border-bottom:2px solid var(--border)}
+.tab{padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;border-bottom:3px solid transparent;color:var(--gray)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:15px;color:var(--primary);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:#4a5568}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:5px;font-size:13px;margin-bottom:10px;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{padding:8px 16px;border:none;border-radius:5px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.btn-p{background:var(--accent);color:#fff}.btn-p:hover{background:var(--primary)}
+.btn-s{background:#edf2f7;color:#4a5568}.btn-s:hover{background:#e2e8f0}
+.btn-d{background:#fff5f5;color:var(--danger)}.btn-d:hover{background:#fed7d7}
+.btn-g{background:#f0fff4;color:var(--success)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.b-cat{background:var(--light);color:var(--accent)}
+.b-score{background:#fefcbf;color:#975a16}
+.result-item{border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:8px;transition:.2s}
+.result-item:hover{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.result-item h3{font-size:14px;margin-bottom:4px}
+.result-item p{font-size:12px;color:var(--gray);margin-bottom:4px}
+.meta{font-size:11px;color:var(--gray);display:flex;gap:10px;flex-wrap:wrap}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:12px}
+.stat{text-align:center;padding:12px;background:var(--light);border-radius:6px}
+.stat .num{font-size:22px;font-weight:700;color:var(--accent)}
+.stat .lbl{font-size:11px;color:var(--gray)}
+.hidden{display:none}
+.toast{position:fixed;bottom:20px;right:20px;padding:10px 16px;border-radius:6px;color:#fff;font-size:13px;z-index:99;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.row{grid-template-columns:1fr}.header h1{font-size:14px}.container{padding:10px}}
+</style>
+</head>
+<body>
+<div class="header"><div><h1>法務判断ナレッジベース</h1><span>SynLab Legal Tech — 脱・属人化ツールキット</span></div><div style="font-size:11px" id="countBadge"></div></div>
+<div class="tabs" id="tabs">
+<div class="tab active" data-t="register">案件登録</div>
+<div class="tab" data-t="search">類似検索</div>
+<div class="tab" data-t="list">一覧</div>
+<div class="tab" data-t="data">データ管理</div>
+</div>
+<div class="container">
+<div id="p-register">
+<div class="card"><h2>法務相談・判断の記録</h2>
+<label>相談タイトル *</label><input id="f-title" placeholder="例: 業務委託契約の損害賠償上限条項の妥当性">
+<div class="row">
+<div><label>カテゴリ *</label><select id="f-cat"><option value="">選択してください</option><option>契約審査</option><option>労務・人事</option><option>知的財産</option><option>コンプライアンス</option><option>個人情報・プライバシー</option><option>紛争・訴訟</option><option>M&A・組織再編</option><option>規制対応</option><option>その他</option></select></div>
+<div><label>重要度</label><select id="f-imp"><option>中</option><option>高</option><option>低</option></select></div>
+</div>
+<label>相談内容 *</label><textarea id="f-detail" placeholder="相談の背景・経緯・論点を記載"></textarea>
+<label>判断結果 *</label><textarea id="f-result" placeholder="最終的な判断・結論・条件"></textarea>
+<div class="row">
+<div><label>根拠法令・参照資料</label><input id="f-law" placeholder="例: 民法第415条、下請法"></div>
+<div><label>担当者</label><input id="f-person" placeholder="例: 法務部 山田"></div>
+</div>
+<label>キーワード（カンマ区切り）</label><input id="f-tags" placeholder="例: 損害賠償,上限,SaaS">
+<div class="actions"><button class="btn btn-p" onclick="saveRecord()">登録する</button><button class="btn btn-s" onclick="clearForm()">クリア</button></div>
+</div></div>
+<div id="p-search" class="hidden">
+<div class="card"><h2>類似案件検索</h2>
+<div class="row">
+<div><label>キーワード検索</label><input id="s-kw" placeholder="キーワードを入力" oninput="doSearch()"></div>
+<div><label>カテゴリ絞り込み</label><select id="s-cat" onchange="doSearch()"><option value="">全カテゴリ</option><option>契約審査</option><option>労務・人事</option><option>知的財産</option><option>コンプライアンス</option><option>個人情報・プライバシー</option><option>紛争・訴訟</option><option>M&A・組織再編</option><option>規制対応</option><option>その他</option></select></div>
+</div></div>
+<div id="searchResults"></div></div>
+<div id="p-list" class="hidden">
+<div class="card"><h2>登録案件一覧</h2><div class="stat-row" id="stats"></div><div id="listResults"></div></div></div>
+<div id="p-data" class="hidden">
+<div class="card"><h2>データ管理</h2>
+<div class="actions" style="margin-bottom:12px">
+<button class="btn btn-p" onclick="exportCSV()">CSVエクスポート</button>
+<button class="btn btn-g" onclick="document.getElementById('csvFile').click()">CSVインポート</button>
+<input type="file" id="csvFile" accept=".csv" class="hidden" onchange="importCSV(event)">
+<button class="btn btn-d" onclick="clearAll()">全データ削除</button>
+</div>
+<p style="font-size:12px;color:var(--gray)">CSV形式: タイトル,カテゴリ,重要度,相談内容,判断結果,根拠法令,担当者,キーワード<br>エクスポートしたCSVはExcelで編集し再インポート可能です。</p>
+</div></div>
+</div>
+<script>
+const LS='synlab_legal_kb';
+function getData(){try{return JSON.parse(localStorage.getItem(LS))||[]}catch(e){return[]}}
+function setData(d){localStorage.setItem(LS,JSON.stringify(d));updCnt()}
+function updCnt(){document.getElementById('countBadge').textContent='登録: '+getData().length+'件'}
+function toast(m,c){const t=document.createElement('div');t.className='toast';t.style.background=c||'#2b6cb0';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)}
+document.getElementById('tabs').addEventListener('click',e=>{const t=e.target.closest('.tab');if(!t)return;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');['register','search','list','data'].forEach(p=>document.getElementById('p-'+p).classList.add('hidden'));document.getElementById('p-'+t.dataset.t).classList.remove('hidden');if(t.dataset.t==='list')showList();if(t.dataset.t==='search')doSearch()});
+function saveRecord(){const ti=document.getElementById('f-title').value.trim(),ca=document.getElementById('f-cat').value,de=document.getElementById('f-detail').value.trim(),re=document.getElementById('f-result').value.trim();if(!ti||!ca||!de||!re){toast('必須項目を入力してください','#c53030');return}const d=getData();d.unshift({id:Date.now(),title:ti,cat:ca,imp:document.getElementById('f-imp').value,detail:de,result:re,law:document.getElementById('f-law').value.trim(),person:document.getElementById('f-person').value.trim(),tags:document.getElementById('f-tags').value.trim(),date:new Date().toISOString().slice(0,10)});setData(d);clearForm();toast('案件を登録しました')}
+function clearForm(){['f-title','f-detail','f-result','f-law','f-person','f-tags'].forEach(x=>document.getElementById(x).value='');document.getElementById('f-cat').selectedIndex=0;document.getElementById('f-imp').selectedIndex=0}
+function calcScore(r,kw,cat){let s=0;const ks=kw.toLowerCase().split(/[\s,、]+/).filter(Boolean);const txt=(r.title+' '+r.detail+' '+r.result+' '+r.tags+' '+r.law).toLowerCase();ks.forEach(k=>{if(r.title.toLowerCase().includes(k))s+=30;if(r.tags.toLowerCase().includes(k))s+=20;if(txt.includes(k))s+=10});if(cat&&r.cat===cat)s+=15;return Math.min(s,100)}
+function doSearch(){const kw=document.getElementById('s-kw').value.trim(),cat=document.getElementById('s-cat').value,d=getData(),el=document.getElementById('searchResults');if(!kw&&!cat){el.innerHTML='<p style="font-size:13px;color:var(--gray);padding:12px">キーワードまたはカテゴリを指定してください。</p>';return}let res=d.map(r=>({...r,score:calcScore(r,kw,cat)})).filter(r=>r.score>0).sort((a,b)=>b.score-a.score);el.innerHTML=res.length?res.map(r=>'<div class="result-item"><div style="display:flex;justify-content:space-between;align-items:start"><h3>'+esc(r.title)+'</h3><span class="badge b-score">類似度: '+r.score+'%</span></div><p>'+esc(r.detail).slice(0,120)+'...</p><p><strong>判断:</strong> '+esc(r.result).slice(0,100)+'</p><div class="meta"><span class="badge b-cat">'+esc(r.cat)+'</span><span>'+r.date+'</span><span>'+esc(r.person||'-')+'</span><span>'+esc(r.law||'-')+'</span></div></div>').join(''):'<p style="font-size:13px;color:var(--gray);padding:12px">該当する案件が見つかりません。</p>'}
+function showList(){const d=getData(),el=document.getElementById('listResults'),st=document.getElementById('stats');const cats={};d.forEach(r=>{cats[r.cat]=(cats[r.cat]||0)+1});st.innerHTML='<div class="stat"><div class="num">'+d.length+'</div><div class="lbl">総登録件数</div></div><div class="stat"><div class="num">'+Object.keys(cats).length+'</div><div class="lbl">カテゴリ数</div></div><div class="stat"><div class="num">'+d.filter(r=>r.imp==='高').length+'</div><div class="lbl">重要度:高</div></div>';el.innerHTML=d.length?d.map(r=>'<div class="result-item"><div style="display:flex;justify-content:space-between"><h3>'+esc(r.title)+'</h3><button class="btn btn-d" style="padding:2px 8px;font-size:11px" onclick="delRec('+r.id+')">削除</button></div><div class="meta"><span class="badge b-cat">'+esc(r.cat)+'</span><span>重要度: '+r.imp+'</span><span>'+r.date+'</span><span>'+esc(r.person||'-')+'</span></div></div>').join(''):'<p style="font-size:13px;color:var(--gray)">登録された案件はありません。</p>'}
+function delRec(id){if(!confirm('この案件を削除しますか？'))return;setData(getData().filter(r=>r.id!==id));showList();toast('削除しました','#c53030')}
+function exportCSV(){const d=getData();if(!d.length){toast('データがありません','#c53030');return}let c='\uFEFF"タイトル","カテゴリ","重要度","相談内容","判断結果","根拠法令","担当者","キーワード","日付"\n';d.forEach(r=>{c+=[r.title,r.cat,r.imp,r.detail,r.result,r.law,r.person,r.tags,r.date].map(v=>'"'+String(v||'').replace(/"/g,'""')+'"').join(',')+'\n'});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv'}));a.download='legal_kb_'+new Date().toISOString().slice(0,10)+'.csv';a.click();toast('CSVをエクスポートしました')}
+function importCSV(e){const f=e.target.files[0];if(!f)return;const reader=new FileReader();reader.onload=function(ev){const lines=ev.target.result.split('\n').filter(l=>l.trim());const d=getData();let cnt=0;for(let i=1;i<lines.length;i++){const cols=parseCSV(lines[i]);if(cols.length>=5){d.unshift({id:Date.now()+i,title:cols[0],cat:cols[1]||'その他',imp:cols[2]||'中',detail:cols[3],result:cols[4],law:cols[5]||'',person:cols[6]||'',tags:cols[7]||'',date:cols[8]||new Date().toISOString().slice(0,10)});cnt++}}setData(d);toast(cnt+'件インポートしました');e.target.value=''};reader.readAsText(f)}
+function parseCSV(line){const r=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'){if(inQ&&line[i+1]==='"'){cur+='"';i++}else inQ=!inQ}else if(c===','&&!inQ){r.push(cur.trim());cur=''}else cur+=c}r.push(cur.trim());return r}
+function clearAll(){if(!confirm('全データを削除します。よろしいですか？'))return;if(!confirm('本当に削除しますか？取り消せません。'))return;localStorage.removeItem(LS);updCnt();showList();toast('全データを削除しました','#c53030')}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+updCnt();
+if(!getData().length){setData([{id:1,title:'SaaS利用規約における損害賠償上限条項の修正',cat:'契約審査',imp:'高',detail:'ベンダーA社のSaaS利用規約に「損害賠償は直近12ヶ月の利用料を上限とする」条項あり。当社の想定損害額が年間利用料の10倍以上となる可能性があり、上限引き上げを交渉すべきか検討依頼。',result:'上限を直近12ヶ月利用料の3倍に修正で合意。交渉の過程でベンダー側のサイバー保険付保も確認。',law:'民法第415条, 第420条',person:'法務部 鈴木',tags:'損害賠償,上限,SaaS,利用規約',date:'2026-02-10'},{id:2,title:'従業員の副業許可に関する就業規則改定',cat:'労務・人事',imp:'中',detail:'副業解禁の社内要望を受け、就業規則の改定を検討。競業避止義務との整合性、届出制vs許可制の選択が論点。',result:'届出制を採用。競業他社での副業は禁止、それ以外は届出のみで可とする改定案を策定。',law:'労働基準法, 副業・兼業の促進に関するガイドライン（厚労省）',person:'法務部 田中',tags:'副業,就業規則,競業避止',date:'2026-01-28'},{id:3,title:'個人情報の第三者提供における同意取得方法',cat:'個人情報・プライバシー',imp:'高',detail:'マーケティング部門から顧客データをグループ会社と共有したいとの依頼。現行のプライバシーポリシーでは第三者提供について包括的同意のみ。',result:'オプトイン方式で個別同意を取得する方針を決定。プライバシーポリシー改定とCMP導入を推奨。',law:'個人情報保護法第27条, 第28条',person:'法務部 佐藤',tags:'個人情報,第三者提供,同意,プライバシー',date:'2026-02-05'}])}
+</script>
+</body>
+</html>

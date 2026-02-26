@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropGuard 重説リスクスキャナー</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{text-align:center;padding:24px 0 16px;border-bottom:3px solid #2b6cb0}
+header h1{font-size:1.5em;color:#2b6cb0}
+header p{font-size:.85em;color:#718096;margin-top:4px}
+.progress{background:#e2e8f0;border-radius:8px;height:10px;margin:16px 0}
+.progress-bar{height:100%;background:linear-gradient(90deg,#2b6cb0,#4299e1);border-radius:8px;transition:width .3s}
+.step-label{font-size:.8em;color:#718096;text-align:center}
+.section{background:#fff;border-radius:12px;padding:20px;margin:16px 0;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.section h2{font-size:1.1em;color:#2b6cb0;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section h2 .icon{font-size:1.3em}
+.section .desc{font-size:.82em;color:#718096;margin-bottom:14px}
+.q{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin:8px 0}
+.q label{font-size:.9em;font-weight:600;display:block;margin-bottom:8px}
+.q .note{font-size:.78em;color:#a0aec0;margin-bottom:6px}
+.btns{display:flex;gap:8px}
+.btns button{flex:1;padding:8px;border:2px solid #cbd5e0;border-radius:8px;background:#fff;font-size:.9em;cursor:pointer;transition:all .2s}
+.btns button.sel-yes{background:#fed7d7;border-color:#fc8181;color:#c53030;font-weight:700}
+.btns button.sel-no{background:#c6f6d5;border-color:#68d391;color:#276749;font-weight:700}
+.btns button:hover{border-color:#4299e1}
+.nav{display:flex;gap:12px;justify-content:center;margin:20px 0}
+.nav button{padding:10px 28px;border:none;border-radius:8px;font-size:1em;cursor:pointer;font-weight:600}
+#prevBtn{background:#e2e8f0;color:#4a5568}
+#nextBtn{background:#2b6cb0;color:#fff}
+#nextBtn:hover{background:#2c5282}
+.report{background:#fff;border-radius:12px;padding:20px;margin:16px 0;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.report h2{text-align:center;margin-bottom:16px;color:#2b6cb0}
+.r-item{border-left:4px solid #e2e8f0;padding:10px 14px;margin:10px 0;border-radius:0 8px 8px 0}
+.r-item.rh{border-color:#e53e3e;background:#fff5f5}
+.r-item.rm{border-color:#dd6b20;background:#fffaf0}
+.r-item.rl{border-color:#38a169;background:#f0fff4}
+.r-item h3{font-size:.95em;margin-bottom:4px}
+.r-item p{font-size:.82em;color:#4a5568}
+.r-item .ask{font-size:.82em;color:#2b6cb0;margin-top:4px;font-weight:600}
+.summary-bar{display:flex;gap:12px;justify-content:center;margin:16px 0;flex-wrap:wrap}
+.summary-bar .badge{padding:8px 20px;border-radius:20px;font-weight:700;font-size:.95em}
+.badge-h{background:#fed7d7;color:#c53030}.badge-m{background:#feebc8;color:#c05621}.badge-l{background:#c6f6d5;color:#276749}
+.score-circle{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:16px auto;font-weight:700;font-size:2em;border:6px solid}
+.print-btn{display:block;margin:16px auto;padding:12px 32px;background:#2b6cb0;color:#fff;border:none;border-radius:8px;font-size:1em;cursor:pointer;font-weight:600}
+.hidden{display:none}
+@media print{.nav,.print-btn,header p{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>🛡️ PropGuard 重説リスクスキャナー</h1>
+<p>重要事項説明書のリスクを12セクションでチェック</p>
+</header>
+<div class="progress"><div class="progress-bar" id="pbar"></div></div>
+<div class="step-label" id="stepLabel"></div>
+<div id="app"></div>
+<div class="nav" id="nav">
+<button id="prevBtn" onclick="go(-1)">← 戻る</button>
+<button id="nextBtn" onclick="go(1)">次へ →</button>
+</div>
+</div>
+<script>
+var D=[
+{name:"物件概要",icon:"🏠",desc:"物件の基本情報に矛盾や不備がないか",qs:[
+{q:"登記簿上の所有者と売主（貸主）が異なると記載されていますか？",y:"high",note:"第三者売買や代理契約の可能性。権利関係を必ず確認",ask:"売主と登記名義人が異なる理由と、権利移転の確実性を説明してください"},
+{q:"物件の面積が「公簿面積」のみで実測図がありませんか？",y:"mid",note:"公簿と実測で差が出ることがある。特に土地は注意",ask:"実測面積との差異がある場合、精算条項はどうなっていますか？"}
+]},
+{name:"用途地域",icon:"🏙️",desc:"将来の周辺環境の変化リスク",qs:[
+{q:"用途地域が「商業地域」「準工業地域」「工業地域」のいずれかですか？",y:"mid",note:"騒音・日照を遮る高層建築が隣接地に建つ可能性がある",ask:"隣接地の建築計画や用途地域による建築制限を教えてください"},
+{q:"都市計画道路の予定地にかかっていますか？",y:"high",note:"将来立ち退きや建築制限を受ける重大リスク",ask:"都市計画道路の事業決定時期と補償内容を確認させてください"}
+]},
+{name:"建蔽率・容積率",icon:"📐",desc:"建物の大きさに関する法的制限",qs:[
+{q:"既存建物が現在の建蔽率・容積率を超過していますか？（既存不適格）",y:"high",note:"建替え時に同規模の建物が建てられない可能性",ask:"建替え時に現在と同じ規模の建物が建築可能か確認したいです"},
+{q:"容積率の算定根拠が不明確ですか？",y:"mid",note:"前面道路幅員による制限など、見落としやすい",ask:"前面道路幅員による容積率制限はどうなっていますか？"}
+]},
+{name:"接道義務",icon:"🛣️",desc:"建物再建築の可否に直結する重要項目",qs:[
+{q:"接道が2m未満、または私道のみですか？",y:"high",note:"再建築不可になる可能性。資産価値に重大な影響",ask:"建築基準法上の接道義務を満たしていますか？再建築は可能ですか？"},
+{q:"前面道路が「2項道路（みなし道路）」ですか？",y:"mid",note:"将来セットバックが必要になり敷地が狭くなる",ask:"セットバックの必要面積と、それによる有効敷地面積を教えてください"}
+]},
+{name:"ハザードマップ",icon:"🌊",desc:"自然災害リスクの確認",qs:[
+{q:"洪水・土砂災害・津波いずれかの警戒区域内ですか？",y:"high",note:"生命・財産に関わる重大リスク。保険料にも影響",ask:"具体的にどの災害区域に該当し、過去の被災履歴はありますか？"},
+{q:"ハザードマップの説明が「該当なし」のみで詳細がないですか？",y:"mid",note:"確認不足の可能性。自分でも自治体サイトで確認すべき",ask:"各種ハザードマップでの確認結果を具体的に説明してください"}
+]},
+{name:"給排水・インフラ",icon:"🚰",desc:"ライフラインの整備状況",qs:[
+{q:"給排水が私設管または他人の土地を経由していますか？",y:"mid",note:"将来の修繕費用負担や通行権トラブルの可能性",ask:"私設管の維持管理費用の負担ルールと使用許可の根拠を教えてください"},
+{q:"浄化槽を使用していますか？（下水道未整備）",y:"mid",note:"維持費用が発生。将来下水道整備時に接続負担金も",ask:"浄化槽の維持費用と、下水道整備計画の有無を確認したいです"}
+]},
+{name:"瑕疵担保責任",icon:"🔍",desc:"隠れた欠陥への対応（売買）",qs:[
+{q:"瑕疵担保責任が「免責」と記載されていますか？",y:"high",note:"購入後に欠陥が見つかっても売主に責任を問えない",ask:"免責とした理由と、建物状況調査（インスペクション）の実施有無を教えてください"},
+{q:"瑕疵担保期間が引渡しから3ヶ月以内ですか？",y:"mid",note:"期間が短すぎると発見が間に合わない欠陥がある",ask:"瑕疵担保期間の延長や、瑕疵保険の付保は可能ですか？"}
+]},
+{name:"契約不適合責任",icon:"⚖️",desc:"契約内容と実物の不一致への対応",qs:[
+{q:"契約不適合責任の通知期間が「引渡しから3ヶ月」以下ですか？",y:"mid",note:"一般的な個人間売買でも6ヶ月〜1年が妥当",ask:"通知期間の延長は交渉可能ですか？"},
+{q:"「現状有姿」の引渡しで修補請求権が制限されていますか？",y:"high",note:"不具合があっても修理を求められない可能性",ask:"現状有姿の具体的な範囲と、重大な不具合発見時の対応を教えてください"}
+]},
+{name:"特約条項",icon:"📝",desc:"標準契約にない特別な取り決め",qs:[
+{q:"ローン特約（融資否認時の白紙解除条項）がありませんか？",y:"high",note:"ローンが通らなかった場合に手付金を失うリスク",ask:"ローン特約の追加は可能ですか？融資否認時の対応を明確にしてください"},
+{q:"買主（借主）に不利な特約が追記されていますか？",y:"high",note:"原状回復費用の全額負担など不当な条項の可能性",ask:"この特約の法的根拠と、消費者契約法上の有効性を説明してください"}
+]},
+{name:"手付金",icon:"💰",desc:"契約時に支払う手付金の条件",qs:[
+{q:"手付金が売買価格の20%を超えていますか？",y:"high",note:"宅建業法では売主が業者の場合20%が上限",ask:"手付金の額の根拠と、手付解除の期限を教えてください"},
+{q:"手付金の保全措置がありませんか？（未完成物件の場合）",y:"high",note:"業者倒産時に手付金が返還されないリスク",ask:"手付金の保全措置（保証・保険・供託）の内容を確認させてください"}
+]},
+{name:"違約金",icon:"⚠️",desc:"契約違反時のペナルティ",qs:[
+{q:"違約金が売買価格の20%を超えていますか？",y:"high",note:"宅建業法の上限を超える不当な条項の可能性",ask:"違約金の算定根拠と、宅建業法との整合性を説明してください"},
+{q:"違約金の発生条件が曖昧に書かれていますか？",y:"mid",note:"想定外の理由で違約金を請求されるリスク",ask:"どのような場合に違約金が発生するか具体例で説明してください"}
+]},
+{name:"設備",icon:"🔧",desc:"付帯設備の状態と責任範囲",qs:[
+{q:"設備表（付帯設備一覧）が添付されていませんか？",y:"mid",note:"引渡し後の設備トラブルで責任の所在が不明に",ask:"付帯設備の一覧と各設備の動作確認結果を書面で提示してください"},
+{q:"主要設備（給湯器・エアコン等）の故障免責が記載されていますか？",y:"mid",note:"入居直後の高額修理費を自己負担することに",ask:"主要設備の使用年数と、故障時の修理費用負担について確認させてください"}
+]}
+];
+var cur=0,ans={};
+function $(id){return document.getElementById(id)}
+function render(){
+ var app=$("app");
+ if(cur<D.length){
+  var s=D[cur];
+  var h='<div class="section"><h2><span class="icon">'+s.icon+'</span>'+s.name+'</h2><div class="desc">'+s.desc+'</div>';
+  for(var i=0;i<s.qs.length;i++){
+   var k=cur+"-"+i,v=ans[k],qq=s.qs[i];
+   h+='<div class="q"><label>'+qq.q+'</label><div class="note">💡 '+qq.note+'</div><div class="btns"><button onclick="pick(\''+k+'\',\'yes\')" class="'+(v==='yes'?'sel-yes':'')+'">はい</button><button onclick="pick(\''+k+'\',\'no\')" class="'+(v==='no'?'sel-no':'')+'">いいえ／不明</button></div></div>';
+  }
+  app.innerHTML=h+"</div>";
+  $("nextBtn").textContent=cur===D.length-1?"📊 結果を見る":"次へ →";
+  $("nav").classList.remove("hidden");
+ }else{showReport()}
+ $("pbar").style.width=Math.min(100,Math.round(cur/D.length*100))+"%";
+ $("stepLabel").textContent=cur<D.length?(cur+1)+" / "+D.length+"："+D[cur].name:"診断完了";
+ $("prevBtn").style.display=cur===0?"none":"inline-block";
+}
+function pick(k,v){ans[k]=v;render()}
+function go(d){
+ if(d===1&&cur<D.length){
+  var s=D[cur],ok=true;
+  for(var i=0;i<s.qs.length;i++){if(!ans[cur+"-"+i])ok=false}
+  if(!ok){alert("すべての質問にお答えください");return}
+ }
+ cur=Math.max(0,cur+d);render();window.scrollTo(0,0);
+}
+function showReport(){
+ var hc=0,mc=0,lc=0,items="";
+ for(var si=0;si<D.length;si++){
+  var s=D[si],risk="low";
+  for(var qi=0;qi<s.qs.length;qi++){
+   if(ans[si+"-"+qi]==="yes"){if(s.qs[qi].y==="high")risk="high";else if(s.qs[qi].y==="mid"&&risk!=="high")risk="mid"}
+  }
+  var cls=risk==="high"?"rh":risk==="mid"?"rm":"rl";
+  var rlbl=risk==="high"?"🔴 高リスク":risk==="mid"?"🟡 中リスク":"🟢 低リスク";
+  if(risk==="high")hc++;else if(risk==="mid")mc++;else lc++;
+  var asks="";
+  for(var qi2=0;qi2<s.qs.length;qi2++){if(ans[si+"-"+qi2]==="yes")asks+='<div class="ask">❓ '+s.qs[qi2].ask+'</div>'}
+  items+='<div class="r-item '+cls+'"><h3>'+s.icon+' '+s.name+'：'+rlbl+'</h3>';
+  items+=asks?asks:'<p>特に大きな懸念点は見当たりませんでした。</p>';
+  items+="</div>";
+ }
+ var total=hc*3+mc,maxS=D.length*3;
+ var pct=Math.round((1-total/maxS)*100);
+ var col=pct>=80?"#38a169":pct>=50?"#dd6b20":"#e53e3e";
+ $("app").innerHTML='<div class="report"><h2>📊 リスク診断レポート</h2><div class="score-circle" style="border-color:'+col+';color:'+col+'">'+pct+'<span style="font-size:.35em;font-weight:400">/ 100点</span></div><div class="summary-bar"><span class="badge badge-h">高リスク '+hc+'件</span><span class="badge badge-m">中リスク '+mc+'件</span><span class="badge badge-l">低リスク '+lc+'件</span></div>'+(hc>0?'<p style="text-align:center;color:#e53e3e;font-weight:700;margin:8px 0">⚠️ 高リスク項目があります。契約前に必ず不動産会社に確認してください。</p>':"")+items+'<p style="font-size:.75em;color:#a0aec0;text-align:center;margin-top:16px">※本ツールは参考情報です。最終判断は宅建士・弁護士等の専門家にご相談ください。<br>PropGuard by SynLab PropTech</p></div><button class="print-btn" onclick="window.print()">🖨️ レポートを印刷・PDF保存</button>';
+ $("nav").classList.add("hidden");
+}
+render();
+</script>
+</body>
+</html>

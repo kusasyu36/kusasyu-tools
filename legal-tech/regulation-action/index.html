@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RegWatch Japan — 規制対応アクション管理ボード</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f0f2f5;--card:#fff;--primary:#1a56db;--danger:#dc2626;--warn:#f59e0b;--ok:#16a34a;--gray:#6b7280;--border:#e5e7eb;--shadow:0 1px 3px rgba(0,0,0,.12)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:#1f2937;font-size:14px}
+header{background:linear-gradient(135deg,#1e3a5f,#1a56db);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+header h1{font-size:18px;font-weight:700}
+header span{font-size:12px;opacity:.85}
+.toolbar{display:flex;gap:8px;padding:12px 16px;flex-wrap:wrap;align-items:center;background:#fff;border-bottom:1px solid var(--border)}
+.toolbar button,.toolbar label{font-size:13px;padding:7px 14px;border-radius:6px;border:1px solid var(--border);background:#fff;cursor:pointer;white-space:nowrap}
+.toolbar button:hover{background:#f3f4f6}
+.btn-primary{background:var(--primary)!important;color:#fff!important;border-color:var(--primary)!important}
+.toolbar select{padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.board{display:flex;gap:12px;padding:12px 16px;overflow-x:auto;min-height:calc(100vh - 160px)}
+.column{min-width:240px;flex:1;background:#f8f9fa;border-radius:10px;display:flex;flex-direction:column}
+.col-header{padding:10px 12px;font-weight:700;font-size:14px;border-radius:10px 10px 0 0;display:flex;justify-content:space-between;align-items:center}
+.col-header .cnt{background:rgba(255,255,255,.7);border-radius:10px;padding:2px 8px;font-size:12px}
+.col-confirm .col-header{background:#dbeafe;color:#1e40af}
+.col-assess .col-header{background:#fef3c7;color:#92400e}
+.col-notify .col-header{background:#ede9fe;color:#5b21b6}
+.col-revise .col-header{background:#ffedd5;color:#9a3412}
+.col-done .col-header{background:#dcfce7;color:#166534}
+.col-body{padding:8px;flex:1;min-height:60px}
+.card{background:var(--card);border-radius:8px;padding:10px;margin-bottom:8px;box-shadow:var(--shadow);cursor:grab;border-left:4px solid var(--gray);transition:box-shadow .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.card .title{font-weight:600;font-size:13px;margin-bottom:4px;word-break:break-all}
+.card .meta{font-size:11px;color:var(--gray);display:flex;flex-wrap:wrap;gap:4px 10px;margin-bottom:6px}
+.card .tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.tag{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600}
+.tag-finance{background:#dbeafe;color:#1e40af}
+.tag-pharma{background:#fce7f3;color:#9d174d}
+.tag-cosmetics{background:#ede9fe;color:#5b21b6}
+.tag-all{background:#e5e7eb;color:#374151}
+.impact-high{border-left-color:var(--danger)}
+.impact-mid{border-left-color:var(--warn)}
+.impact-low{border-left-color:var(--ok)}
+.deadline{font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;display:inline-block}
+.dl-over{background:#fee2e2;color:#dc2626}
+.dl-soon{background:#fef3c7;color:#b45309}
+.dl-ok{background:#dcfce7;color:#166534}
+.card-actions{display:flex;gap:4px;margin-top:6px}
+.card-actions button{font-size:11px;padding:3px 8px;border:1px solid var(--border);border-radius:4px;background:#fff;cursor:pointer}
+.card-actions button:hover{background:#f3f4f6}
+.card-actions .del{color:var(--danger)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;justify-content:center;align-items:center}
+.overlay.show{display:flex}
+.modal{background:#fff;border-radius:12px;padding:24px;width:90%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal h2{font-size:16px;margin-bottom:16px}
+.modal label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+.modal input,.modal select,.modal textarea{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.modal textarea{height:60px;resize:vertical}
+.modal .btn-row{display:flex;gap:8px;margin-top:16px;justify-content:flex-end}
+.modal .btn-row button{padding:8px 20px;border-radius:6px;border:none;cursor:pointer;font-size:13px}
+.stats{display:flex;gap:12px;padding:8px 16px;flex-wrap:wrap}
+.stat-card{background:#fff;border-radius:8px;padding:10px 16px;box-shadow:var(--shadow);text-align:center;min-width:100px}
+.stat-card .num{font-size:22px;font-weight:700}
+.stat-card .lbl{font-size:11px;color:var(--gray)}
+#csvInput{display:none}
+@media(max-width:768px){.board{flex-direction:column}.column{min-width:100%}}
+</style>
+</head>
+<body>
+<header>
+<div><h1>RegWatch Japan</h1><span>規制対応アクション管理ボード — 検知から対応完了までの一気通貫管理</span></div>
+<div style="font-size:12px">対応ソース: e-Gov / 金融庁 / 厚労省 / 経産省</div>
+</header>
+<div class="stats" id="stats"></div>
+<div class="toolbar">
+<button class="btn-primary" onclick="openModal()">+ 新規登録</button>
+<label class="btn-primary" for="csvInput" style="cursor:pointer">CSVインポート</label>
+<input type="file" id="csvInput" accept=".csv" onchange="importCSV(event)">
+<button onclick="exportCSV()">CSV出力</button>
+<span>業種:</span>
+<select id="filterInd" onchange="render()">
+<option value="">すべて</option>
+<option value="finance">金融（銀行・証券・保険）</option>
+<option value="pharma">製薬・医療機器</option>
+<option value="cosmetics">化粧品</option>
+</select>
+<button onclick="if(confirm('全データを削除しますか？'))clearAll()">リセット</button>
+</div>
+<div class="board" id="board"></div>
+<div class="overlay" id="overlay" onclick="event.target===this&&closeModal()">
+<div class="modal">
+<h2 id="modalTitle">規制変更を登録</h2>
+<input type="hidden" id="editId">
+<label>規制名称 *</label><input id="fTitle" placeholder="例: 金融商品取引法施行令改正案">
+<label>情報ソース</label>
+<select id="fSource"><option>e-Gov パブリックコメント</option><option>金融庁 報道発表</option><option>厚生労働省 法令等</option><option>経済産業省 ニュースリリース</option><option>その他</option></select>
+<label>対象業種</label>
+<select id="fInd"><option value="finance">金融（銀行・証券・保険）</option><option value="pharma">製薬・医療機器</option><option value="cosmetics">化粧品</option></select>
+<label>影響度</label>
+<select id="fImpact"><option value="high">高（重大な規程改定が必要）</option><option value="mid">中（一部対応が必要）</option><option value="low">低（情報収集のみ）</option></select>
+<label>対応期限</label><input type="date" id="fDeadline">
+<label>担当者</label><input id="fAssignee" placeholder="例: 田中太郎">
+<label>メモ</label><textarea id="fMemo" placeholder="背景情報・参照URL等"></textarea>
+<div class="btn-row">
+<button style="background:#e5e7eb" onclick="closeModal()">キャンセル</button>
+<button style="background:var(--primary);color:#fff" onclick="saveItem()">保存</button>
+</div>
+</div>
+</div>
+<script>
+const COLS=[
+{id:"confirm",label:"確認"},{id:"assess",label:"評価"},
+{id:"notify",label:"周知"},{id:"revise",label:"規程改定"},{id:"done",label:"完了"}
+];
+const COL_ICON={confirm:"📥",assess:"📊",notify:"📢",revise:"📝",done:"✅"};
+let items=JSON.parse(localStorage.getItem("rw_items")||"[]");
+let dragId=null;
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function save(){localStorage.setItem("rw_items",JSON.stringify(items))}
+function daysLeft(d){if(!d)return null;return Math.ceil((new Date(d)-new Date())/(864e5))}
+function esc(s){const d=document.createElement("div");d.textContent=s;return d.innerHTML}
+
+function render(){
+const f=document.getElementById("filterInd").value;
+const filtered=f?items.filter(i=>i.industry===f):items;
+const board=document.getElementById("board");
+board.innerHTML="";
+COLS.forEach(c=>{
+const col=document.createElement("div");
+col.className="column col-"+c.id;
+const cards=filtered.filter(i=>i.status===c.id);
+col.innerHTML='<div class="col-header"><span>'+COL_ICON[c.id]+" "+c.label+'</span><span class="cnt">'+cards.length+"</span></div>"+'<div class="col-body" data-col="'+c.id+'"></div>';
+const body=col.querySelector(".col-body");
+body.addEventListener("dragover",function(e){e.preventDefault();this.style.background="#e0e7ff"});
+body.addEventListener("dragleave",function(){this.style.background=""});
+body.addEventListener("drop",function(e){e.preventDefault();this.style.background="";if(dragId){const it=items.find(i=>i.id===dragId);if(it){it.status=c.id;if(c.id==="done")it.completedAt=new Date().toISOString();save();render()}}});
+cards.sort((a,b)=>(a.deadline||"9")<(b.deadline||"9")?-1:1).forEach(function(item){
+const dl=daysLeft(item.deadline);
+let dlClass="dl-ok",dlText="";
+if(dl!==null){if(dl<0){dlClass="dl-over";dlText=Math.abs(dl)+"日超過"}else if(dl<=7){dlClass="dl-soon";dlText="残り"+dl+"日"}else{dlText="残り"+dl+"日"}}
+const indMap={finance:["金融","tag-finance"],pharma:["製薬","tag-pharma"],cosmetics:["化粧品","tag-cosmetics"]};
+const pair=indMap[item.industry]||["その他","tag-all"];
+const card=document.createElement("div");
+card.className="card impact-"+item.impact;
+card.draggable=true;
+card.addEventListener("dragstart",function(){dragId=item.id});
+card.addEventListener("dragend",function(){dragId=null});
+card.innerHTML='<div class="title">'+esc(item.title)+"</div>"+
+'<div class="tags"><span class="tag '+pair[1]+'">'+pair[0]+'</span><span class="tag" style="background:#f3f4f6">'+esc(item.source||"")+"</span></div>"+
+'<div class="meta">'+(item.assignee?"👤 "+esc(item.assignee):"<em>未アサイン</em>")+(dlText?' &nbsp;| <span class="deadline '+dlClass+'">'+dlText+"</span>":"")+"</div>"+
+(item.memo?'<div style="font-size:11px;color:#6b7280;margin-top:2px">'+esc(item.memo).slice(0,60)+"</div>":"")+
+'<div class="card-actions">'+(c.id!=="done"?'<button onclick="advance(\''+item.id+"')\">次へ →</button>":"")+
+'<button onclick="openModal(\''+item.id+"')\">編集</button>"+
+'<button class="del" onclick="delItem(\''+item.id+"')\">削除</button></div>";
+body.appendChild(card)});
+board.appendChild(col)});
+renderStats(filtered)}
+
+function renderStats(list){
+const total=list.length,done=list.filter(i=>i.status==="done").length;
+const overdue=list.filter(i=>i.status!=="done"&&daysLeft(i.deadline)!==null&&daysLeft(i.deadline)<0).length;
+const soon=list.filter(i=>i.status!=="done"&&daysLeft(i.deadline)!==null&&daysLeft(i.deadline)>=0&&daysLeft(i.deadline)<=7).length;
+document.getElementById("stats").innerHTML=
+'<div class="stat-card"><div class="num">'+total+'</div><div class="lbl">総件数</div></div>'+
+'<div class="stat-card"><div class="num" style="color:var(--ok)">'+done+'</div><div class="lbl">完了</div></div>'+
+'<div class="stat-card"><div class="num" style="color:var(--danger)">'+overdue+'</div><div class="lbl">期限超過</div></div>'+
+'<div class="stat-card"><div class="num" style="color:var(--warn)">'+soon+'</div><div class="lbl">7日以内</div></div>'+
+'<div class="stat-card"><div class="num">'+(total?Math.round(done/total*100):0)+'%</div><div class="lbl">完了率</div></div>'}
+
+function openModal(id){
+document.getElementById("overlay").classList.add("show");
+if(id){
+const it=items.find(i=>i.id===id);if(!it)return;
+document.getElementById("modalTitle").textContent="規制変更を編集";
+document.getElementById("editId").value=id;
+document.getElementById("fTitle").value=it.title;
+document.getElementById("fSource").value=it.source||"";
+document.getElementById("fInd").value=it.industry;
+document.getElementById("fImpact").value=it.impact;
+document.getElementById("fDeadline").value=it.deadline||"";
+document.getElementById("fAssignee").value=it.assignee||"";
+document.getElementById("fMemo").value=it.memo||"";
+}else{
+document.getElementById("modalTitle").textContent="規制変更を登録";
+document.getElementById("editId").value="";
+["fTitle","fAssignee","fMemo"].forEach(function(x){document.getElementById(x).value=""});
+document.getElementById("fDeadline").value=""}}
+
+function closeModal(){document.getElementById("overlay").classList.remove("show")}
+
+function saveItem(){
+var title=document.getElementById("fTitle").value.trim();
+if(!title)return alert("規制名称を入力してください");
+var data={title:title,source:document.getElementById("fSource").value,industry:document.getElementById("fInd").value,impact:document.getElementById("fImpact").value,deadline:document.getElementById("fDeadline").value,assignee:document.getElementById("fAssignee").value.trim(),memo:document.getElementById("fMemo").value.trim()};
+var eid=document.getElementById("editId").value;
+if(eid){var it=items.find(i=>i.id===eid);if(it)Object.assign(it,data)}
+else items.push(Object.assign({id:uid(),status:"confirm",createdAt:new Date().toISOString()},data));
+save();closeModal();render()}
+
+function delItem(id){if(confirm("削除しますか？")){items=items.filter(i=>i.id!==id);save();render()}}
+function advance(id){var it=items.find(i=>i.id===id);if(!it)return;var idx=COLS.findIndex(c=>c.id===it.status);if(idx<COLS.length-1){it.status=COLS[idx+1].id;if(it.status==="done")it.completedAt=new Date().toISOString();save();render()}}
+function clearAll(){items=[];save();render()}
+
+function importCSV(e){
+var file=e.target.files[0];if(!file)return;
+var r=new FileReader();
+r.onload=function(ev){
+var lines=ev.target.result.split("\n").filter(l=>l.trim());
+if(lines.length<2)return alert("CSVにデータがありません");
+var hdr=lines[0].split(",").map(h=>h.trim().replace(/^"|"$/g,""));
+var map={};
+["title","source","industry","impact","deadline","assignee","memo","status"].forEach(function(k){
+var idx=hdr.findIndex(function(h){
+h=h.toLowerCase();
+return h===k||(h==="規制名称"&&k==="title")||(h==="情報ソース"&&k==="source")||(h==="業種"&&k==="industry")||(h==="影響度"&&k==="impact")||(h==="期限"&&k==="deadline")||(h==="担当者"&&k==="assignee")||(h==="メモ"&&k==="memo")||(h==="ステータス"&&k==="status")});
+if(idx>=0)map[k]=idx});
+if(map.title===undefined)return alert("title または 規制名称 列が必要です");
+var cnt=0;
+for(var i=1;i<lines.length;i++){
+var vals=lines[i].match(/(".*?"|[^,]*)/g)||[];
+var get=function(k){return map[k]!==undefined?(vals[map[k]]||"").trim().replace(/^"|"$/g,""):""};
+var t=get("title");if(!t)continue;
+items.push({id:uid(),title:t,source:get("source")||"その他",industry:get("industry")||"finance",impact:get("impact")||"mid",deadline:get("deadline"),assignee:get("assignee"),memo:get("memo"),status:get("status")||"confirm",createdAt:new Date().toISOString()});
+cnt++}
+save();render();alert(cnt+"件インポートしました")};
+r.readAsText(file);e.target.value=""}
+
+function exportCSV(){
+var csv="title,source,industry,impact,deadline,assignee,memo,status\n";
+items.forEach(function(i){csv+=[i.title,i.source,i.industry,i.impact,i.deadline||"",i.assignee||"",i.memo||"",i.status].map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(",")+"\n"});
+var blob=new Blob(["\uFEFF"+csv],{type:"text/csv"});
+var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+a.download="regwatch_actions_"+new Date().toISOString().slice(0,10)+".csv";a.click()}
+
+if(!localStorage.getItem("rw_items")){
+items=[
+{id:uid(),title:"金融商品取引法施行令改正案（デジタル証券関連）",source:"金融庁 報道発表",industry:"finance",impact:"high",deadline:"2026-03-15",assignee:"田中太郎",memo:"e-Govパブコメ締切3/15。社内規程への影響大",status:"assess",createdAt:"2026-02-20T09:00:00Z"},
+{id:uid(),title:"犯罪収益移転防止法 監督指針改正",source:"金融庁 報道発表",industry:"finance",impact:"mid",deadline:"2026-04-01",assignee:"鈴木花子",memo:"KYC手続き見直しの可能性",status:"confirm",createdAt:"2026-02-22T10:00:00Z"},
+{id:uid(),title:"薬機法施行規則一部改正（GMP関連）",source:"厚生労働省 法令等",industry:"pharma",impact:"high",deadline:"2026-03-31",assignee:"",memo:"製造管理基準の改定。品質保証部と連携必要",status:"confirm",createdAt:"2026-02-23T08:00:00Z"},
+{id:uid(),title:"化粧品基準 別表改正案",source:"e-Gov パブリックコメント",industry:"cosmetics",impact:"mid",deadline:"2026-04-15",assignee:"佐藤美咲",memo:"成分規制の追加。該当製品の確認が必要",status:"notify",createdAt:"2026-02-18T11:00:00Z"},
+{id:uid(),title:"資金決済法改正に伴う内閣府令案",source:"e-Gov パブリックコメント",industry:"finance",impact:"high",deadline:"2026-03-10",assignee:"田中太郎",memo:"ステーブルコイン規制。暗号資産関連部署と協議済み",status:"revise",createdAt:"2026-02-10T09:00:00Z"},
+{id:uid(),title:"経産省 電子商取引ガイドライン改訂",source:"経済産業省 ニュースリリース",industry:"finance",impact:"low",deadline:"2026-05-01",assignee:"山田次郎",memo:"情報収集段階。直接的な規程改定は不要の見込み",status:"done",createdAt:"2026-02-01T09:00:00Z",completedAt:"2026-02-20T16:00:00Z"}
+];save()}
+render();
+</script>
+</body>
+</html>

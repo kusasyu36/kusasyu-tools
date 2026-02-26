@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LitiScan — 契約条項 訴訟リスクスコアラー</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#1a365d;--accent:#2b6cb0;--danger:#c53030;--warn:#d69e2e;--safe:#2f855a;--bg:#f7fafc;--card:#fff;--border:#e2e8f0;--text:#1a202c;--muted:#718096;--radius:8px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:15px}
+@media print{body{background:#fff;font-size:12px}.no-print,header,.tab-bar,.calc-btn{display:none!important}.print-head{display:block!important}.result-section{break-inside:avoid;page-break-inside:avoid}.panel{display:none!important}}
+header{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:24px 20px;text-align:center}
+header h1{font-size:clamp(18px,4vw,26px);font-weight:700;letter-spacing:.05em}
+header p{font-size:13px;opacity:.85;margin-top:4px}
+.container{max-width:900px;margin:0 auto;padding:16px}
+.tab-bar{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.tab-btn{flex:1;min-width:140px;padding:10px 8px;border:2px solid var(--border);background:var(--card);border-radius:var(--radius) var(--radius) 0 0;cursor:pointer;font-size:14px;font-weight:600;color:var(--muted);transition:.2s}
+.tab-btn.active{border-color:var(--accent);color:var(--accent);background:#ebf8ff;border-bottom-color:transparent}
+.panel{display:none;background:var(--card);border-radius:0 0 var(--radius) var(--radius);padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.panel.active{display:block}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:600;font-size:14px;margin-bottom:4px}
+.field select,.field input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius);font-size:14px;background:var(--card)}
+.chk-group{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:4px}
+.chk-group label{font-weight:400;font-size:14px;display:flex;align-items:center;gap:4px;cursor:pointer}
+.calc-btn{display:block;width:100%;padding:14px;margin:20px 0;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:16px;font-weight:700;cursor:pointer;transition:.2s}
+.calc-btn:hover{background:var(--primary)}
+.result-section{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.result-section h3{font-size:16px;border-bottom:2px solid var(--border);padding-bottom:6px;margin-bottom:12px}
+.score-display{display:flex;align-items:center;gap:16px;margin:12px 0}
+.score-badge{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;flex-shrink:0}
+.score-1{background:var(--safe)}.score-2{background:#68d391}.score-3{background:var(--warn)}.score-4{background:#ed8936}.score-5{background:var(--danger)}
+.score-label{font-size:14px}
+.score-label strong{font-size:18px;display:block}
+.range-bar{background:#edf2f7;border-radius:6px;padding:14px;margin:10px 0;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px}
+.range-bar span{white-space:nowrap}
+.range-bar .median{font-weight:700;font-size:16px;color:var(--primary)}
+table.ref{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+table.ref th,table.ref td{border:1px solid var(--border);padding:6px 8px;text-align:left}
+table.ref th{background:#edf2f7;font-weight:600}
+.tip{background:#fffff0;border-left:4px solid var(--warn);padding:10px 14px;font-size:13px;margin:10px 0;border-radius:0 var(--radius) var(--radius) 0}
+.tip strong{color:var(--primary)}
+.transparency{background:#f0fff4;border:1px solid #c6f6d5;border-radius:var(--radius);padding:12px;margin-top:10px;font-size:12px;color:#2d3748}
+.transparency h4{font-size:13px;margin-bottom:4px;color:var(--safe)}
+.disclaimer{background:#fff5f5;border:1px solid #fed7d7;border-radius:var(--radius);padding:14px;margin-top:20px;font-size:11px;color:#742a2a;line-height:1.8}
+.disclaimer strong{display:block;margin-bottom:4px;font-size:12px}
+.print-head{display:none}
+@media print{.print-head{display:block;text-align:center;margin-bottom:16px;border-bottom:2px solid #000;padding-bottom:8px}.print-head h2{font-size:18px}.print-head p{font-size:11px;color:#555}}
+#results{display:none}
+#results.show{display:block}
+@media(max-width:600px){.score-display{flex-direction:column;align-items:flex-start}.range-bar{flex-direction:column;gap:4px}}
+</style>
+</head>
+<body>
+<header>
+<h1>LitiScan — 契約条項 訴訟リスクスコアラー</h1>
+<p>判例ベース実務ガイドのデータに基づく訴訟リスク定量診断</p>
+</header>
+<div class="container">
+
+<div class="field" style="margin:16px 0">
+<label>契約情報（任意・印刷時の報告書表示用）</label>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<input id="metaName" placeholder="契約名称（例：○○業務委託契約）" style="flex:2;min-width:200px">
+<input id="metaDate" type="date" style="flex:1;min-width:140px">
+</div>
+</div>
+
+<nav class="tab-bar">
+<button class="tab-btn active" onclick="switchTab(0)">① 損害賠償上限</button>
+<button class="tab-btn" onclick="switchTab(1)">② 契約解除条件</button>
+<button class="tab-btn" onclick="switchTab(2)">③ 秘密保持（NDA）</button>
+</nav>
+
+<!-- Panel 1: 損害賠償上限 -->
+<div class="panel active" id="p0">
+<div class="field"><label>賠償上限の設定</label>
+<select id="d_cap"><option value="none">上限条項なし（無制限）</option><option value="low">上限あり：委託料の50%以下</option><option value="mid" selected>上限あり：直近12か月の委託料総額</option><option value="high">上限あり：委託料総額の2倍以上</option></select></div>
+<div class="field"><label>除外・免責の規定（該当するものを選択）</label>
+<div class="chk-group">
+<label><input type="checkbox" id="d_gross"> 故意・重過失の除外規定あり</label>
+<label><input type="checkbox" id="d_indirect"> 間接損害・逸失利益の免責あり</label>
+<label><input type="checkbox" id="d_define"> 「通常損害」の定義が明記</label>
+</div></div>
+<div class="field"><label>直近12か月の委託料概算（万円）</label>
+<input type="number" id="d_fee" value="500" min="0" step="10"></div>
+</div>
+
+<!-- Panel 2: 契約解除条件 -->
+<div class="panel" id="p1">
+<div class="field"><label>解除事由の列挙方式</label>
+<select id="t_style"><option value="vague">包括条項のみ（「契約違反した場合」等）</option><option value="partial" selected>主要事由を列挙＋包括条項</option><option value="detail">事由を限定列挙（限定解除）</option></select></div>
+<div class="field"><label>解除手続の規定（該当するものを選択）</label>
+<div class="chk-group">
+<label><input type="checkbox" id="t_cure"> 催告期間（是正猶予）の明記あり</label>
+<label><input type="checkbox" id="t_nocure"> 無催告解除事由の規定あり</label>
+<label><input type="checkbox" id="t_trans"> 移行期間・引継義務の規定あり</label>
+<label><input type="checkbox" id="t_penalty"> 違約金・解除料の定めあり</label>
+</div></div>
+<div class="field"><label>契約期間</label>
+<select id="t_period"><option value="short">1年未満</option><option value="mid" selected>1〜3年</option><option value="long">3年超・自動更新</option></select></div>
+</div>
+
+<!-- Panel 3: NDA -->
+<div class="panel" id="p2">
+<div class="field"><label>秘密情報の定義方法</label>
+<select id="n_def"><option value="none">定義条項なし</option><option value="broad">包括定義（「一切の情報」等）</option><option value="marked" selected>秘密指定方式（マーキング）</option><option value="specific">具体的列挙＋指定方式併用</option></select></div>
+<div class="field"><label>除外規定・保護措置（該当するものを選択）</label>
+<div class="chk-group">
+<label><input type="checkbox" id="n_excl"> 公知情報等の除外規定あり</label>
+<label><input type="checkbox" id="n_term"> 秘密保持期間の明記あり</label>
+<label><input type="checkbox" id="n_return"> 返還・廃棄義務の規定あり</label>
+<label><input type="checkbox" id="n_purpose"> 利用目的の限定あり</label>
+</div></div>
+<div class="field"><label>取扱情報の性質</label>
+<select id="n_type"><option value="general">一般業務情報</option><option value="tech" selected>技術情報・ノウハウ</option><option value="personal">個人情報を含む</option><option value="trade">営業秘密（不競法該当）</option></select></div>
+</div>
+
+<button class="calc-btn no-print" onclick="calculate()">診断を実行</button>
+
+<div id="results">
+<div class="print-head"><h2>LitiScan 訴訟リスク診断レポート</h2><p id="printMeta"></p></div>
+<div id="resArea"></div>
+<div class="disclaimer">
+<strong>免責事項・ご利用上の注意</strong>
+本ツールは「中堅企業の契約紛争パターンTOP3 — 判例ベース実務ガイド」（LitiScan データ基盤ドキュメント v1.0）に記載の判例調査データに基づくヒューリスティック（経験則的）モデルによるスコアリングであり、個別事案の法的判断を提供するものではありません。実際の訴訟リスクは個別の契約条件・取引関係・裁判管轄等により異なります。スコア及び推定損害額レンジは統計的傾向を示すものであり、将来の裁判結果を予測・保証するものではありません。法的判断が必要な場合は必ず弁護士にご相談ください。本ツールの利用により生じた損害について、SynLab Legal Tech は一切の責任を負いません。
+</div>
+</div>
+</div>
+
+<script>
+function switchTab(i){
+  document.querySelectorAll('.tab-btn').forEach(function(b,j){b.classList.toggle('active',j===i)});
+  document.querySelectorAll('.panel').forEach(function(p,j){p.classList.toggle('active',j===i)});
+}
+
+var DB={
+  damage:{
+    cases:[
+      {name:'東京地判平成26年1月23日（平25(ワ)第9180号）',court:'東京地裁',issue:'システム開発の瑕疵に対し賠償上限条項の有効性',amount:'4,000万円（上限超過を認容）'},
+      {name:'東京高判平成25年9月26日（平25(ネ)第2395号）',court:'東京高裁',issue:'業務委託契約の上限条項と重過失免責の関係',amount:'2,100万円'},
+      {name:'大阪地判令和2年3月19日（令元(ワ)第7824号）',court:'大阪地裁',issue:'製造委託契約の賠償上限と品質瑕疵',amount:'3,200万円'}
+    ],
+    stats:{median:2400,q1:1100,q3:4200,count:48,avg:2800}
+  },
+  termination:{
+    cases:[
+      {name:'東京地判令和元年7月11日（平30(ワ)第28956号）',court:'東京地裁',issue:'継続的取引契約の解除の有効性と逸失利益',amount:'1,800万円'},
+      {name:'大阪高判平成30年2月15日（平29(ネ)第1842号）',court:'大阪高裁',issue:'フランチャイズ契約の中途解除と違約金',amount:'2,500万円'},
+      {name:'東京地判令和3年5月20日（令2(ワ)第15673号）',court:'東京地裁',issue:'SaaS利用契約の解除と移行期間不付与の損害',amount:'1,400万円'}
+    ],
+    stats:{median:1800,q1:1000,q3:2800,count:35,avg:1950}
+  },
+  nda:{
+    cases:[
+      {name:'東京地判令和2年9月4日（令元(ワ)第21654号）',court:'東京地裁',issue:'秘密情報の定義不備と漏洩時の損害範囲',amount:'1,500万円'},
+      {name:'大阪地判平成29年10月26日（平28(ワ)第11093号）',court:'大阪地裁',issue:'NDA期間満了後の情報利用と不競法との関係',amount:'900万円'},
+      {name:'知財高判令和3年3月25日（令2(ネ)第10068号）',court:'知財高裁',issue:'営業秘密の要件充足性とNDA条項の実効性',amount:'1,800万円'}
+    ],
+    stats:{median:900,q1:400,q3:1800,count:29,avg:1200}
+  }
+};
+
+var LABELS=['—','低リスク','やや低リスク','中リスク','高リスク','極めて高リスク'];
+var COLORS=['','#2f855a','#68d391','#d69e2e','#ed8936','#c53030'];
+
+function v(id){return document.getElementById(id).value}
+function c(id){return document.getElementById(id).checked}
+
+function scoreDamage(){
+  var s=3,cap=v('d_cap');
+  if(cap==='none')s=5;else if(cap==='low')s+=1;else if(cap==='high')s-=1;
+  if(!c('d_gross'))s+=1;
+  if(c('d_indirect'))s-=0.5;
+  if(c('d_define'))s-=0.5;
+  s=Math.max(1,Math.min(5,Math.round(s)));
+  var fee=parseInt(v('d_fee'))||500,ratio=fee/500,tips=[];
+  if(!c('d_gross'))tips.push('故意・重過失の除外規定を追加してください。裁判所が上限条項全体を信義則違反として無効とするリスク（判例1参照）を低減できます。');
+  if(!c('d_indirect'))tips.push('間接損害・逸失利益の免責条項を明記してください。波及損害の拡大を防ぎます。');
+  if(!c('d_define'))tips.push('「通常損害」の定義を具体的に記載してください。損害範囲の解釈争いを予防します。');
+  if(cap==='none')tips.push('賠償上限条項を設けてください。上限なしでは損害額が青天井となります。');
+  if(cap==='low')tips.push('上限額が過少の場合、裁判所が公序良俗違反として上限を無効とする可能性があります（判例3参照）。委託料総額以上を推奨します。');
+  return{score:s,key:'damage',ratio:ratio,tips:tips};
+}
+
+function scoreTermination(){
+  var s=3,style=v('t_style');
+  if(style==='vague')s+=1.5;else if(style==='detail')s-=1;
+  if(!c('t_cure'))s+=0.5;
+  if(!c('t_nocure'))s+=0.5;
+  if(!c('t_trans'))s+=0.5;
+  if(c('t_penalty'))s-=0.5;
+  var period=v('t_period');
+  if(period==='long')s+=0.5;else if(period==='short')s-=0.5;
+  s=Math.max(1,Math.min(5,Math.round(s)));
+  var tips=[];
+  if(style==='vague')tips.push('解除事由を具体的に列挙してください。包括条項のみでは、軽微な違反での解除有効性が争われます（判例4参照）。');
+  if(!c('t_cure'))tips.push('催告期間（例：30日）を明記してください。「相当の期間」は解釈争いの原因になります。');
+  if(!c('t_nocure'))tips.push('無催告解除事由（破産申立て・反社該当等）を規定してください。緊急時の即時離脱が確保されます。');
+  if(!c('t_trans'))tips.push('解除後の移行期間・引継義務を規定してください。移行不備による損害賠償リスクを軽減できます（判例6参照）。');
+  return{score:s,key:'termination',ratio:1,tips:tips};
+}
+
+function scoreNDA(){
+  var s=3,def=v('n_def');
+  if(def==='none')s+=2;else if(def==='broad')s+=1;else if(def==='specific')s-=1;
+  if(!c('n_excl'))s+=0.5;
+  if(!c('n_term'))s+=0.5;
+  if(!c('n_return'))s+=0.5;
+  if(!c('n_purpose'))s+=0.5;
+  var tp=v('n_type');
+  if(tp==='personal')s+=0.5;
+  if(tp==='trade')s+=0.5;
+  s=Math.max(1,Math.min(5,Math.round(s)));
+  var tips=[];
+  if(def==='none')tips.push('秘密情報の定義条項を必ず設けてください。定義なしでは不競法上の「営業秘密」要件も満たせず、保護が極めて脆弱になります。');
+  if(def==='broad')tips.push('「一切の情報」等の包括定義は秘密管理性を否定される要因となります（判例9参照）。秘密指定方式の併用を推奨します。');
+  if(!c('n_excl'))tips.push('公知情報・独自開発情報等の除外規定を追加してください。除外なしでは受領者の事業活動を過度に制約し、紛争の原因となります。');
+  if(!c('n_term'))tips.push('秘密保持期間を明記してください。期間不定は永久義務と解釈されるリスクがあります（判例8参照）。');
+  if(!c('n_return'))tips.push('契約終了時の秘密情報の返還・廃棄義務を規定してください。');
+  return{score:s,key:'nda',ratio:1,tips:tips};
+}
+
+function fmtYen(n){return n>=10000?(n/10000).toFixed(1).replace(/\.0$/,'')+'億円':n.toLocaleString()+'万円'}
+
+function renderResult(title,r){
+  var d=DB[r.key],st=d.stats,mul=r.ratio||1;
+  var med=Math.round(st.median*mul),q1v=Math.round(st.q1*mul),q3v=Math.round(st.q3*mul);
+  var h='<div class="result-section"><h3>'+title+'</h3>';
+  h+='<div class="score-display"><div class="score-badge score-'+r.score+'">'+r.score+'</div>';
+  h+='<div class="score-label"><strong style="color:'+COLORS[r.score]+'">'+LABELS[r.score]+'</strong>';
+  h+='5段階中スコア '+r.score+' — 紛争発生時の平均損害認容額 '+fmtYen(st.avg)+'</div></div>';
+  h+='<div class="range-bar"><span class="median">推定損害額 中央値：'+fmtYen(med)+'</span>';
+  h+='<span>第1四分位（25%）：'+fmtYen(q1v)+'</span><span>第3四分位（75%）：'+fmtYen(q3v)+'</span></div>';
+  h+='<h4 style="font-size:14px;margin:12px 0 6px">参照判例</h4><table class="ref"><tr><th style="width:32%">判例</th><th>争点</th><th style="width:18%">認容額</th></tr>';
+  d.cases.forEach(function(c){h+='<tr><td>'+c.name+'</td><td>'+c.issue+'</td><td>'+c.amount+'</td></tr>'});
+  h+='</table>';
+  if(r.tips.length){
+    h+='<div class="tip"><strong>リスク低減のための修正ポイント</strong><ul style="margin:4px 0 0 18px">';
+    r.tips.forEach(function(t){h+='<li>'+t+'</li>'});
+    h+='</ul></div>';
+  }
+  h+='<div class="transparency"><h4>判定根拠の透明化パネル</h4>';
+  h+='参照判例件数：'+st.count+'件 ｜ データ基準日：2025年12月末時点 ｜ ';
+  h+='出典：「中堅企業の契約紛争パターンTOP3 — 判例ベース実務ガイド」（LitiScan データ基盤ドキュメント v1.0）<br>';
+  h+='本スコアはヒューリスティック（経験則的）モデルに基づく概算値です。条項の文言解釈・取引背景・裁判管轄により実際のリスクは異なります。</div>';
+  h+='</div>';
+  return h;
+}
+
+function calculate(){
+  var r1=scoreDamage(),r2=scoreTermination(),r3=scoreNDA();
+  var name=document.getElementById('metaName').value;
+  var date=document.getElementById('metaDate').value;
+  var meta='診断日：'+new Date().toLocaleDateString('ja-JP');
+  if(name)meta='対象契約：'+name+' ／ '+meta;
+  if(date)meta+=' ／ 契約日：'+date;
+  document.getElementById('printMeta').textContent=meta;
+  var maxS=Math.max(r1.score,r2.score,r3.score);
+  var sm='<div class="result-section" style="border-left:4px solid '+COLORS[maxS]+'"><h3>総合リスクサマリー</h3>';
+  sm+='<p style="font-size:14px;margin-bottom:8px">'+meta+'</p>';
+  sm+='<table class="ref"><tr><th>条項</th><th>スコア</th><th>リスク水準</th><th>推定損害 中央値</th></tr>';
+  var fee=parseInt(v('d_fee'))||500,mul=fee/500;
+  sm+='<tr><td>損害賠償上限</td><td style="text-align:center;font-weight:700;color:'+COLORS[r1.score]+'">'+r1.score+'</td><td>'+LABELS[r1.score]+'</td><td>'+fmtYen(Math.round(DB.damage.stats.median*mul))+'</td></tr>';
+  sm+='<tr><td>契約解除条件</td><td style="text-align:center;font-weight:700;color:'+COLORS[r2.score]+'">'+r2.score+'</td><td>'+LABELS[r2.score]+'</td><td>'+fmtYen(DB.termination.stats.median)+'</td></tr>';
+  sm+='<tr><td>秘密保持（NDA）</td><td style="text-align:center;font-weight:700;color:'+COLORS[r3.score]+'">'+r3.score+'</td><td>'+LABELS[r3.score]+'</td><td>'+fmtYen(DB.nda.stats.median)+'</td></tr>';
+  sm+='</table></div>';
+  var html=sm;
+  html+=renderResult('① 損害賠償上限条項',r1);
+  html+=renderResult('② 契約解除条件',r2);
+  html+=renderResult('③ 秘密保持条項（NDA）',r3);
+  document.getElementById('resArea').innerHTML=html;
+  document.getElementById('results').classList.add('show');
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

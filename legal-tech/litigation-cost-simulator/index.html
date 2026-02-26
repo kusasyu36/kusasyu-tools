@@ -1,0 +1,173 @@
+ファイル書き込み権限が得られないため、HTMLコードを直接出力します。以下をコピーして `.html` ファイルとして保存してください。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>訴訟コスト・期間シミュレーター</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:16px 0;color:#2d3748}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1rem;color:#4a5568;margin-bottom:12px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}
+label{display:block;font-size:.85rem;font-weight:600;margin:10px 0 4px;color:#4a5568}
+select,input{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:1rem;background:#fff}
+select:focus,input:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 3px rgba(66,153,225,.2)}
+button{width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:10px;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:16px}
+button:hover{opacity:.9}
+#result{display:none}
+.row{display:flex;gap:12px;margin-bottom:8px}
+.col{flex:1;text-align:center;background:#ebf8ff;border-radius:8px;padding:12px 8px}
+.col.warn{background:#fefcbf}
+.col .num{font-size:1.4rem;font-weight:700;color:#2b6cb0}
+.col.warn .num{color:#b7791f}
+.col .lbl{font-size:.75rem;color:#718096}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid #e2e8f0}
+th{background:#f7fafc;color:#4a5568;font-weight:600}
+.bar-wrap{height:18px;background:#e2e8f0;border-radius:9px;overflow:hidden;margin:4px 0}
+.bar{height:100%;border-radius:9px;background:linear-gradient(90deg,#4299e1,#2b6cb0)}
+.note{font-size:.75rem;color:#a0aec0;margin-top:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>⚖️ 訴訟コスト・期間シミュレーター</h1>
+<div class="card">
+<h2>📝 案件情報を入力</h2>
+<label>案件種別</label>
+<select id="caseType">
+<option value="contract">契約紛争</option>
+<option value="tort">不法行為（損害賠償）</option>
+<option value="labor">労働紛争</option>
+<option value="ip">知的財産</option>
+<option value="realestate">不動産</option>
+</select>
+<label>請求額（万円）</label>
+<input type="number" id="amount" placeholder="例: 1000" min="1">
+<label>管轄裁判所</label>
+<select id="court">
+<option value="summary">簡易裁判所（140万円以下）</option>
+<option value="district">地方裁判所</option>
+<option value="high">高等裁判所（控訴）</option>
+</select>
+<label>当事者数（原告+被告の合計）</label>
+<select id="parties">
+<option value="2">2人（1対1）</option>
+<option value="3">3人</option>
+<option value="4">4〜5人</option>
+<option value="6">6人以上</option>
+</select>
+<button onclick="calc()">シミュレーション実行</button>
+</div>
+<div id="result">
+<div class="card">
+<h2>💰 費用の概算</h2>
+<div class="row">
+<div class="col"><div class="lbl">裁判手数料</div><div class="num" id="courtFee">-</div></div>
+<div class="col"><div class="lbl">弁護士着手金</div><div class="num" id="retainer">-</div></div>
+</div>
+<div class="row">
+<div class="col"><div class="lbl">弁護士報酬金</div><div class="num" id="reward">-</div></div>
+<div class="col warn"><div class="lbl">総コスト目安</div><div class="num" id="total">-</div></div>
+</div>
+<table><tr><th>項目</th><th>内訳</th></tr><tbody id="detail"></tbody></table>
+</div>
+<div class="card">
+<h2>📅 期間の目安</h2>
+<div class="row">
+<div class="col"><div class="lbl">最短</div><div class="num" id="durMin">-</div></div>
+<div class="col warn"><div class="lbl">標準</div><div class="num" id="durMid">-</div></div>
+<div class="col"><div class="lbl">最長</div><div class="num" id="durMax">-</div></div>
+</div>
+<div class="bar-wrap"><div class="bar" id="durBar"></div></div>
+<div id="durNote" style="font-size:.8rem;color:#718096;margin-top:8px"></div>
+</div>
+<div class="note">※ 本シミュレーションは概算です。実際の費用・期間は個別事情により異なります。<br>裁判手数料は民事訴訟費用等に関する法律別表第一に基づく計算です。<br>弁護士費用は旧日弁連報酬基準を参考にした目安です。</div>
+</div>
+</div>
+<script>
+function courtFee(v){
+  if(v<=0)return 0;
+  var fee=0,bands=[[1e6,1e5,1000],[5e6,2e5,1000],[1e7,5e5,2000],[1e9,1e6,3000],[5e9,5e6,10000],[Infinity,1e7,10000]],prev=0;
+  for(var i=0;i<bands.length;i++){
+    var lim=bands[i][0],step=bands[i][1],rate=bands[i][2];
+    if(v<=prev)break;
+    fee+=Math.ceil((Math.min(v,lim)-prev)/step)*rate;
+    prev=lim;if(v<=lim)break;
+  }
+  return fee;
+}
+function lawyerFee(v){
+  var r,w;
+  if(v<=3e6){r=v*.08;w=v*.16}
+  else if(v<=3e7){r=v*.05+9e4;w=v*.1+18e4}
+  else if(v<=3e8){r=v*.03+69e4;w=v*.06+138e4}
+  else{r=v*.02+369e4;w=v*.04+738e4}
+  return[Math.max(r,1e5),w];
+}
+function fmt(n){
+  if(n>=1e8)return(n/1e8).toFixed(1)+'億円';
+  if(n>=1e4)return Math.round(n/1e4).toLocaleString()+'万円';
+  return n.toLocaleString()+'円';
+}
+function calc(){
+  var type=document.getElementById('caseType').value,
+      amtM=parseFloat(document.getElementById('amount').value);
+  if(!amtM||amtM<=0){alert('請求額を入力してください');return}
+  var amt=amtM*1e4,court=document.getElementById('court').value,
+      parties=parseInt(document.getElementById('parties').value),
+      cf=courtFee(amt);
+  if(court==='high')cf=Math.round(cf*1.5);
+  var lf=lawyerFee(amt),ret=lf[0],rew=lf[1],
+      pm=parties<=2?1:parties<=3?1.1:parties<=5?1.2:1.35;
+  ret=Math.round(ret*pm);rew=Math.round(rew*pm);
+  var misc=Math.max(5e4,Math.round(amt*.005)),total=cf+ret+rew+misc;
+  document.getElementById('courtFee').textContent=fmt(cf);
+  document.getElementById('retainer').textContent=fmt(ret);
+  document.getElementById('reward').textContent=fmt(rew);
+  document.getElementById('total').textContent=fmt(total);
+  var rows=[['印紙代（手数料）',fmt(cf)],['弁護士着手金',fmt(ret)],['弁護士報酬金（成功時）',fmt(rew)],['実費・郵券等',fmt(misc)],['<b>合計</b>','<b>'+fmt(total)+'</b>']];
+  document.getElementById('detail').innerHTML=rows.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join('');
+  var dur={contract:[10,18,30],tort:[8,14,24],labor:[4,10,18],ip:[10,16,28],realestate:[10,16,26]},
+      d=dur[type]||[10,16,26],mn=d[0],md=d[1],mx=d[2];
+  if(court==='high'){mn+=4;md+=6;mx+=8}
+  if(court==='summary'){mn=Math.max(2,mn-4);md=Math.max(4,md-5);mx=Math.max(6,mx-6)}
+  var ptm=parties<=2?1:parties<=3?1.1:parties<=5?1.2:1.4;
+  mn=Math.round(mn*ptm);md=Math.round(md*ptm);mx=Math.round(mx*ptm);
+  if(amt>1e8){mn+=3;md+=4;mx+=6}
+  document.getElementById('durMin').textContent=mn+'ヶ月';
+  document.getElementById('durMid').textContent=md+'ヶ月';
+  document.getElementById('durMax').textContent=mx+'ヶ月';
+  document.getElementById('durBar').style.width=Math.min(100,md/mx*100)+'%';
+  var notes={contract:'契約紛争は争点整理に時間を要する傾向',tort:'損害額の立証が期間に影響',labor:'労働審判は短期解決が多い',ip:'技術的争点で専門委員関与の可能性',realestate:'現地検証が入ると期間が延びる傾向'};
+  document.getElementById('durNote').textContent=notes[type];
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
+```
+
+**機能概要：**
+
+| 入力項目 | 内容 |
+|---------|------|
+| 案件種別 | 契約紛争・不法行為・労働・知財・不動産の5類型 |
+| 請求額 | 万円単位で入力 |
+| 管轄裁判所 | 簡裁・地裁・高裁（控訴） |
+| 当事者数 | 2〜6人以上 |
+
+| 算出項目 | 根拠 |
+|---------|------|
+| 裁判手数料（印紙代） | 民事訴訟費用等に関する法律 別表第一の累進計算式 |
+| 弁護士着手金・報酬金 | 旧日弁連報酬基準（経済的利益額に応じた4段階） |
+| 実費 | 請求額の0.5%または5万円の大きい方 |
+| 訴訟期間 | 類型別統計データ（最短・標準・最長の3レンジ） |
+
+当事者数増加・高裁控訴・1億円超の高額案件では、費用・期間に補正係数が自動適用されます。

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropSync - 不動産オープンID準拠度診断＆変換ツール</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pri:#1a56db;--ok:#059669;--warn:#d97706;--err:#dc2626;--bg:#f1f5f9;--card:#fff;--txt:#1e293b;--sub:#64748b;--bdr:#e2e8f0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;min-height:100vh}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#1a56db);color:#fff;padding:24px 16px;text-align:center;border-radius:12px;margin-bottom:20px}
+header h1{font-size:1.4rem;margin-bottom:4px}
+header p{font-size:.85rem;opacity:.85}
+.card{background:var(--card);border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h2{font-size:1.05rem;margin-bottom:12px;color:var(--pri);border-left:3px solid var(--pri);padding-left:10px}
+.btn{display:inline-block;padding:10px 20px;border:none;border-radius:8px;font-size:.9rem;cursor:pointer;font-weight:600;transition:.2s}
+.btn-sec{background:#e2e8f0;color:var(--txt)}.btn-sec:hover{background:#cbd5e1}
+.btn-ok{background:var(--ok);color:#fff}.btn-ok:hover{opacity:.85}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+input[type=file]{display:none}
+.upload-area{border:2px dashed var(--bdr);border-radius:10px;padding:32px;text-align:center;cursor:pointer;transition:.2s}
+.upload-area:hover{border-color:var(--pri);background:#f0f4ff}
+.upload-area p{color:var(--sub);font-size:.9rem}
+.score-box{display:flex;align-items:center;gap:16px;padding:16px;background:#f8fafc;border-radius:10px;margin-bottom:12px}
+.score-circle{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;color:#fff;flex-shrink:0}
+.score-detail{flex:1}
+.score-detail h3{font-size:.95rem;margin-bottom:4px}
+.score-detail p{font-size:.8rem;color:var(--sub)}
+.bar{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;margin-top:6px}
+.bar-fill{height:100%;border-radius:4px;transition:width .5s}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:10px}
+th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--bdr)}
+th{background:#f8fafc;font-weight:600;position:sticky;top:0}
+.tbl-wrap{overflow-x:auto;max-height:400px;overflow-y:auto}
+.hidden{display:none}
+.issues li{font-size:.85rem;padding:4px 0;color:var(--sub);list-style:none}
+.fixes li{font-size:.85rem;padding:4px 0;color:var(--ok);list-style:none}
+@media(max-width:600px){.score-box{flex-direction:column;text-align:center}.btns{flex-direction:column}.btn{width:100%;text-align:center}#issueGrid{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PropSync 不動産オープンID準拠度診断＆変換ツール</h1>
+<p>CSVアップロードで準拠度を自動診断 → AI補正 → 変換済みCSVダウンロード</p>
+</header>
+<div class="card">
+<h2>データ入力</h2>
+<div class="upload-area" id="dropZone" onclick="document.getElementById('csvFile').click()">
+<p>CSVファイルをドラッグ＆ドロップ、またはクリックして選択</p>
+<p style="font-size:.78rem;margin-top:6px">列: 物件名, 住所, 築年月, 間取り, 面積(㎡), 賃料(円)</p>
+</div>
+<input type="file" id="csvFile" accept=".csv">
+<div class="btns">
+<button class="btn btn-sec" onclick="loadSample()">サンプルデータを読込（3件内蔵）</button>
+</div>
+</div>
+<div id="resultArea" class="hidden">
+<div class="card">
+<h2>総合準拠度スコア</h2>
+<div class="score-box">
+<div class="score-circle" id="totalCircle">--</div>
+<div class="score-detail"><h3>総合スコア</h3><p id="totalMsg"></p>
+<div class="bar"><div class="bar-fill" id="totalBar" style="width:0"></div></div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px" id="catScores"></div>
+</div>
+<div class="card">
+<h2>検出された問題と自動補正</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" id="issueGrid">
+<div><h3 style="font-size:.9rem;margin-bottom:8px;color:var(--warn)">検出された問題</h3><ul class="issues" id="issueList"></ul></div>
+<div><h3 style="font-size:.9rem;margin-bottom:8px;color:var(--ok)">自動補正済み</h3><ul class="fixes" id="fixList"></ul></div>
+</div>
+</div>
+<div class="card">
+<h2>変換結果プレビュー</h2>
+<div class="tbl-wrap"><table id="previewTable"></table></div>
+<div class="btns"><button class="btn btn-ok" onclick="downloadCSV()">変換済みCSVダウンロード</button></div>
+</div>
+</div>
+</div>
+<script>
+var SAMPLE=[
+["グランメゾン新宿御苑","東京都新宿区新宿１丁目３−５","2019年03月","２LDK","65.3","185000"],
+["ライオンズﾏﾝｼｮﾝ渋谷","東京都渋谷区渋谷2丁目11-8","2015年11月","1エルディーケー","42.8","132000"],
+["パークハイツ目黒","東京都目黒区目黒三丁目７ー１２","令和2年06月","3DK","58","158000"]
+];
+var converted=[];
+function z2h(s){return s.replace(/[０-９]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)})}
+function normAddr(a){var s=z2h(a);s=s.replace(/[ー−–—―]/g,"-");s=s.replace(/[\s　]+/g,"");
+var hk={"ﾏ":"マ","ﾝ":"ン","ｼ":"シ","ｮ":"ョ","ﾊ":"ハ","ｲ":"イ","ﾂ":"ツ"};
+s=s.replace(/[\uFF61-\uFF9F]/g,function(c){return hk[c]||c});
+var kn={"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9,"十":10};
+s=s.replace(/([一二三四五六七八九十]+)丁目/g,function(m,p){var n=0;for(var i=0;i<p.length;i++){if(p[i]==="十")n=n===0?10:n*10;else n+=kn[p[i]]||0}return n+"丁目"});return s}
+var LM={"1R":1,"1K":1,"1DK":1,"1LDK":1,"2K":1,"2DK":1,"2LDK":1,"3K":1,"3DK":1,"3LDK":1,"4K":1,"4DK":1,"4LDK":1,"5LDK":1};
+function normLayout(l){var s=z2h(l).toUpperCase().replace(/\s/g,"");s=s.replace(/エルディーケー/g,"LDK").replace(/ディーケー/g,"DK").replace(/ケー/g,"K").replace(/アール/g,"R");return s}
+function parseNen(s){var w=s.match(/令和(\d+)年(\d+)月/);if(w)return{y:2018+parseInt(w[1]),m:parseInt(w[2])};
+var h=s.match(/平成(\d+)年(\d+)月/);if(h)return{y:1988+parseInt(h[1]),m:parseInt(h[2])};
+var g=z2h(s).match(/(\d{4})年(\d{1,2})月/);if(g)return{y:parseInt(g[1]),m:parseInt(g[2])};return null}
+function calcAge(ym){if(!ym)return null;var now=new Date();var d=(now.getFullYear()-ym.y)*12+(now.getMonth()+1-ym.m);return Math.max(0,Math.floor(d/12))}
+function diagnose(rows){var issues=[],fixes=[];converted=[];var sc={addr:0,layout:0,year:0,area:0,rent:0};var n=rows.length;
+rows.forEach(function(r,i){var o=r.slice();var ri=i+1;
+var na=normAddr(r[1]);if(na!==z2h(r[1]).replace(/[\s　]+/g,"")){issues.push("行"+ri+": 住所表記ゆれ「"+r[1]+"」");fixes.push("行"+ri+": →「"+na+"」に補正");sc.addr+=0.5}else{sc.addr+=1}o[1]=na;
+var nl=normLayout(r[3]);if(nl!==r[3].toUpperCase()){issues.push("行"+ri+": 間取り表記ゆれ「"+r[3]+"」");fixes.push("行"+ri+": →「"+nl+"」に統一");sc.layout+=0.5}else{sc.layout+=1}if(!LM[nl]){issues.push("行"+ri+": 間取り「"+nl+"」が標準外");sc.layout-=0.3}o[3]=nl;
+var ym=parseNen(r[2]);if(ym){var std=ym.y+"年"+String(ym.m).padStart(2,"0")+"月";var age=calcAge(ym);if(std!==r[2]){issues.push("行"+ri+": 築年月「"+r[2]+"」→西暦統一");fixes.push("行"+ri+": →「"+std+"」(築"+age+"年)");sc.year+=0.5}else{sc.year+=1}o[2]=std;o.push(age+"年")}else{issues.push("行"+ri+": 築年月「"+r[2]+"」解析不可");sc.year+=0;o.push("不明")}
+var area=parseFloat(z2h(r[4]));if(isNaN(area)||area<=0){issues.push("行"+ri+": 面積値不正");sc.area+=0}else{sc.area+=1;o[4]=area.toFixed(1)}
+var rent=parseInt(z2h(r[5]).replace(/,/g,""));if(isNaN(rent)||rent<=0){issues.push("行"+ri+": 賃料値不正");sc.rent+=0}else{sc.rent+=1;o[5]=rent.toString()}
+converted.push(o)});
+function pct(k){return Math.round(Math.min(100,sc[k]/n*100))}
+return{issues:issues,fixes:fixes,scores:{addr:pct("addr"),layout:pct("layout"),year:pct("year"),area:pct("area"),rent:pct("rent")}}}
+function render(res){
+document.getElementById("resultArea").classList.remove("hidden");
+var s=res.scores;var avg=Math.round((s.addr+s.layout+s.year+s.area+s.rent)/5);
+var tc=document.getElementById("totalCircle");tc.textContent=avg;
+var col=avg>=80?"var(--ok)":avg>=50?"var(--warn)":"var(--err)";
+tc.style.background=col;
+document.getElementById("totalBar").style.width=avg+"%";
+document.getElementById("totalBar").style.background=col;
+document.getElementById("totalMsg").textContent=avg>=80?"ほぼオープンID準拠済みです":avg>=50?"一部修正が必要です。変換データを確認してください":"多数の問題を検出。変換済みデータをご確認ください";
+var cats=[["住所正規化",s.addr],["間取り統一",s.layout],["築年月整合",s.year],["面積検証",s.area],["賃料検証",s.rent]];
+document.getElementById("catScores").innerHTML=cats.map(function(c){
+var cl=c[1]>=80?"var(--ok)":c[1]>=50?"var(--warn)":"var(--err)";
+return'<div style="background:#f8fafc;padding:10px;border-radius:8px"><div style="display:flex;justify-content:space-between;font-size:.85rem;font-weight:600"><span>'+c[0]+'</span><span style="color:'+cl+'">'+c[1]+'点</span></div><div class="bar" style="margin-top:6px"><div class="bar-fill" style="width:'+c[1]+'%;background:'+cl+'"></div></div></div>'}).join("");
+document.getElementById("issueList").innerHTML=res.issues.map(function(x){return"<li>⚠ "+x+"</li>"}).join("");
+document.getElementById("fixList").innerHTML=res.fixes.map(function(x){return"<li>✓ "+x+"</li>"}).join("");
+var eh=["物件名","住所(補正後)","築年月(西暦)","間取り(統一)","面積(㎡)","賃料(円)","築年数"];
+document.getElementById("previewTable").innerHTML='<thead><tr>'+eh.map(function(h){return"<th>"+h+"</th>"}).join("")+'</tr></thead><tbody>'+converted.map(function(r){return"<tr>"+r.map(function(c){return"<td>"+c+"</td>"}).join("")+"</tr>"}).join("")+"</tbody>";
+document.getElementById("resultArea").scrollIntoView({behavior:"smooth"})}
+function parseCSV(t){var ls=t.trim().split("\n");if(ls.length<2)return[];return ls.slice(1).map(function(l){var r=[];var cur="",inQ=false;for(var i=0;i<l.length;i++){var c=l[i];if(c==='"')inQ=!inQ;else if(c===","&&!inQ){r.push(cur.trim());cur=""}else cur+=c}r.push(cur.trim());return r}).filter(function(r){return r.length>=6})}
+function loadSample(){var res=diagnose(SAMPLE);render(res)}
+document.getElementById("csvFile").addEventListener("change",function(e){
+var f=e.target.files[0];if(!f)return;var rd=new FileReader();
+rd.onload=function(ev){var rows=parseCSV(ev.target.result);if(!rows.length){alert("有効なデータがありません。ヘッダー行付きCSVを使用してください。");return}render(diagnose(rows))};rd.readAsText(f,"UTF-8")});
+var dz=document.getElementById("dropZone");
+dz.addEventListener("dragover",function(e){e.preventDefault();dz.style.borderColor="var(--pri)";dz.style.background="#f0f4ff"});
+dz.addEventListener("dragleave",function(){dz.style.borderColor="var(--bdr)";dz.style.background=""});
+dz.addEventListener("drop",function(e){e.preventDefault();dz.style.borderColor="var(--bdr)";dz.style.background="";var f=e.dataTransfer.files[0];if(f){var rd=new FileReader();rd.onload=function(ev){var rows=parseCSV(ev.target.result);if(!rows.length){alert("有効なデータがありません。");return}render(diagnose(rows))};rd.readAsText(f,"UTF-8")}});
+function downloadCSV(){if(!converted.length){alert("データがありません");return}
+var h=["物件名","住所","築年月","間取り","面積(㎡)","賃料(円)","築年数"];
+var csv="\uFEFF"+h.join(",")+"\n"+converted.map(function(r){return r.map(function(c){return'"'+c+'"'}).join(",")}).join("\n");
+var blob=new Blob([csv],{type:"text/csv;charset=utf-8"});var url=URL.createObjectURL(blob);
+var a=document.createElement("a");a.href=url;a.download="propsync_converted_"+new Date().toISOString().slice(0,10)+".csv";a.click();URL.revokeObjectURL(url)}
+</script>
+</body>
+</html>

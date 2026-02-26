@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>技術コンテンツ品質セルフチェックシート — 製造業テクニカルコンテンツ変換エンジン</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:880px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.25em;padding:16px 0 2px;color:#0d1b3e}
+.sub{text-align:center;color:#666;font-size:.82em;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:.95em;color:#fff;padding:8px 14px;border-radius:6px;margin:-18px -18px 14px;display:flex;align-items:center;gap:8px}
+.ax0 h2{background:#0d47a1}.ax1 h2{background:#2e7d32}.ax2 h2{background:#e65100}.ax3 h2{background:#6a1b9a}.ax4 h2{background:#c62828}
+.item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.item:last-child{border:none}
+.tog{flex-shrink:0;width:54px;height:28px;border-radius:14px;background:#cfd8dc;cursor:pointer;position:relative;transition:background .25s}
+.tog.on{background:#43a047}
+.tog::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tog.on::after{transform:translateX(26px)}
+.ilbl{font-size:.88em;font-weight:600;color:#222}.idesc{font-size:.78em;color:#888;margin-top:2px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;transition:opacity .2s}
+.btn:hover{opacity:.88}
+#result{display:none}
+.total{text-align:center;margin:18px 0}
+.total .big{font-size:2.8em;font-weight:800}
+.total .lbl{font-size:.85em;color:#666}
+.bar-wrap{margin-bottom:14px}
+.bar-lbl{font-size:.82em;font-weight:600;margin-bottom:3px;display:flex;justify-content:space-between}
+.bar-bg{height:22px;background:#e0e0e0;border-radius:11px;overflow:hidden}
+.bar-fg{height:100%;border-radius:11px;transition:width .6s}
+.c0{background:#0d47a1}.c1{background:#2e7d32}.c2{background:#e65100}.c3{background:#6a1b9a}.c4{background:#c62828}
+.fb{background:#fff3e0;border-left:4px solid #e65100;padding:12px 14px;margin-top:8px;border-radius:0 8px 8px 0;font-size:.82em;line-height:1.7}
+.fb b{color:#bf360c}
+.grade{display:inline-block;padding:4px 16px;border-radius:20px;color:#fff;font-weight:700;font-size:.9em}
+.gA{background:#2e7d32}.gB{background:#0d47a1}.gC{background:#e65100}.gD{background:#c62828}
+.reset{background:#78909c;margin-top:8px;padding:10px;font-size:.88em;color:#fff;border:none;border-radius:8px;width:100%;cursor:pointer;font-weight:600}
+@media(max-width:600px){.wrap{padding:10px}.card{padding:14px}.card h2{margin:-14px -14px 12px;padding:8px 12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>技術コンテンツ品質セルフチェックシート</h1>
+<p class="sub">製造業テクニカルコンテンツ変換エンジン 対応 — 5軸20項目で品質を可視化</p>
+<div id="checks"></div>
+<button class="btn" onclick="score()">チェック結果を集計する</button>
+<div id="result">
+<div class="card"><div class="total"><div class="lbl">総合スコア</div><div class="big" id="ts">0</div><div id="gr"></div></div><div id="bars"></div></div>
+<div class="card" id="fbcard" style="display:none"><h2 style="background:#bf360c">&#9888; 改善が必要な項目</h2><div id="fb"></div></div>
+</div>
+<button class="reset" onclick="resetAll()" id="rbtn" style="display:none">リセットして再チェック</button>
+</div>
+<script>
+var axes=[
+{name:"技術的正確性",icon:"\u2699",items:[
+{l:"単位記号の統一",d:"SI単位系（mm, kg, MPa等）で統一され、全角半角が混在していないか",fix:"文書内の単位表記を一覧化し、SI単位系に統一してください。\u03BCm・mm・m等の接頭辞も確認。"},
+{l:"製品名・型番の一致",d:"仕様書上の正式名称・型番と完全に一致しているか",fix:"仕様書の表紙にある正式名称を転記し、略称を使う場合は初出で正式名を併記してください。"},
+{l:"数値の有効数字保持",d:"仕様書の精度（例: 0.01mm）がマーケ文でも維持されているか",fix:"仕様書の数値を再確認し、丸め・桁落ちがないか照合してください。公差表記（\u00B1）も確認。"},
+{l:"専門用語の正確な使用",d:"切削・鍛造・表面処理等の用語が技術的に正しい文脈で使われているか",fix:"用語辞書（変換エンジン内蔵300語超）と照合し、誤用・混同がないか確認してください。"}
+]},
+{name:"SEO適合度",icon:"\uD83D\uDD0D",items:[
+{l:"タイトルにキーワード含有",d:"ターゲットキーワード（製品カテゴリ＋用途）がタイトルに含まれているか",fix:"検索ボリュームのあるキーワードをタイトル先頭30文字以内に配置してください。"},
+{l:"見出しの構造化",d:"H2/H3で論理的な階層構造が作られ、キーワードが自然に含まれているか",fix:"H2に大分類（特長・仕様・事例）、H3に詳細を配置し、各見出しにキーワードを含めてください。"},
+{l:"メタディスクリプション相当文",d:"120文字以内の要約文が冒頭にあり、検索結果での表示を想定しているか",fix:"製品名＋主要スペック＋ベネフィットを120文字以内にまとめ、冒頭に配置してください。"},
+{l:"CTA・内部リンクの設置",d:"問い合わせフォームや関連製品ページへの導線が設置されているか",fix:"文末と中間にCTAボタンを配置し、関連製品・技術資料へのリンクを3箇所以上設けてください。"}
+]},
+{name:"読みやすさ",icon:"\uD83D\uDCD6",items:[
+{l:"一文60文字以内",d:"長文が60文字を大きく超えていないか（技術説明文は80文字まで許容）",fix:"接続詞の前で文を分割してください。「〜であり、〜だが、〜のため」は3文に分けられます。"},
+{l:"専門用語に初出説明あり",d:"一般読者が初見で分からない用語に括弧書き説明があるか",fix:"初出の専門用語に「（＝平易な説明）」を付記してください。2回目以降は不要です。"},
+{l:"箇条書き・表の活用",d:"スペック比較や特長列挙に箇条書き・表が適切に使われているか",fix:"3つ以上の並列情報は箇条書きに、数値比較は表に変換してください。"},
+{l:"段落5行以内",d:"1段落が5行（150文字程度）以内に収まり、適切に改行されているか",fix:"長い段落はトピックごとに分割し、各段落の冒頭に結論を置いてください。"}
+]},
+{name:"訴求力",icon:"\uD83C\uDFAF",items:[
+{l:"顧客メリットの明示",d:"技術スペックだけでなく「顧客の課題をどう解決するか」が書かれているか",fix:"各特長に「→ これにより〇〇が△△%改善」のベネフィット文を追加してください。"},
+{l:"具体的数値の記載",d:"コスト削減率・納期短縮日数・歩留まり等の定量データがあるか",fix:"導入効果を数値化してください。社内データがなければ業界平均値を「一般的に〜」と引用。"},
+{l:"実績・事例・第三者評価",d:"導入企業名（許可済み）、業界実績数、認証取得等の信頼材料があるか",fix:"導入社数・業界・用途を記載してください。社名非公開でも「精密部品メーカーA社」で可。"},
+{l:"明確なCTA",d:"「お問い合わせ」「資料請求」等の次のアクションが明確に提示されているか",fix:"ページ最下部と中間に「無料見積り依頼」「技術資料ダウンロード」等のCTAを設置してください。"}
+]},
+{name:"業界慣習適合",icon:"\uD83C\uDFED",items:[
+{l:"規格番号の正確な記載",d:"JIS・ISO・ASTM等の規格番号が最新版で正しく記載されているか",fix:"引用した規格番号をJISC・ISO公式サイトで最新版か確認してください。廃止規格に注意。"},
+{l:"業界標準の表記ルール",d:"公差表記（\u00B1）、面粗度（Ra）、硬度（HRC）等が業界慣習に従っているか",fix:"表記をJIS Z 8317（製図通則）等に準拠させてください。社内表記ルールがあればそちら優先。"},
+{l:"比較表現のガイドライン準拠",d:"「業界最高」「世界初」等の最上級表現に根拠が付されているか",fix:"最上級表現には出典・調査期間・調査範囲を明記してください。根拠がなければ表現を修正。"},
+{l:"誇大表現の排除",d:"実現不可能な性能暗示や誤解を招く数値の見せ方がないか",fix:"「最大〇〇%削減」は条件を明記。グラフの軸操作や一部データだけの引用を避けてください。"}
+]}];
+var el=document.getElementById("checks");
+axes.forEach(function(ax,ai){
+var c=document.createElement("div");c.className="card ax"+ai;
+var h='<h2>'+ax.icon+' '+ax.name+'<span style="margin-left:auto;font-size:.8em;font-weight:400" id="cnt'+ai+'">0/'+ax.items.length+'</span></h2>';
+var body='';
+ax.items.forEach(function(it,ii){
+body+='<div class="item"><div class="tog" data-ax="'+ai+'" data-it="'+ii+'" onclick="toggle(this)"></div><div><div class="ilbl">'+it.l+'</div><div class="idesc">'+it.d+'</div></div></div>';
+});
+c.innerHTML=h+body;el.appendChild(c);
+});
+function toggle(e){e.classList.toggle("on");updateCnt(+e.dataset.ax)}
+function updateCnt(ai){
+var on=document.querySelectorAll('.tog.on[data-ax="'+ai+'"]').length;
+document.getElementById("cnt"+ai).textContent=on+"/"+axes[ai].items.length;
+}
+function score(){
+var total=0,max=0,fbhtml="",hasFb=false;
+var barsHtml="";
+axes.forEach(function(ax,ai){
+var togs=document.querySelectorAll('.tog[data-ax="'+ai+'"]');
+var on=0;togs.forEach(function(t){if(t.classList.contains("on"))on++});
+var pct=Math.round(on/ax.items.length*100);
+total+=on;max+=ax.items.length;
+barsHtml+='<div class="bar-wrap"><div class="bar-lbl"><span>'+ax.icon+' '+ax.name+'</span><span>'+pct+'%\uFF08'+on+'/'+ax.items.length+'\uFF09</span></div><div class="bar-bg"><div class="bar-fg c'+ai+'" style="width:'+pct+'%"></div></div></div>';
+ax.items.forEach(function(it,ii){
+var t=document.querySelector('.tog[data-ax="'+ai+'"][data-it="'+ii+'"]');
+if(!t.classList.contains("on")){
+hasFb=true;
+fbhtml+='<div class="fb"><b>'+ax.name+' \u25B8 '+it.l+'</b><br>'+it.fix+'</div>';
+}
+});
+});
+var pctAll=Math.round(total/max*100);
+document.getElementById("ts").textContent=pctAll+"/100";
+var gc=pctAll>=90?"gA":pctAll>=70?"gB":pctAll>=50?"gC":"gD";
+var gl=pctAll>=90?"A：公開可":pctAll>=70?"B：微修正で公開可":pctAll>=50?"C：要改善":"D：大幅改善が必要";
+document.getElementById("gr").innerHTML='<span class="grade '+gc+'">'+gl+'</span>';
+document.getElementById("bars").innerHTML=barsHtml;
+document.getElementById("fb").innerHTML=fbhtml;
+document.getElementById("fbcard").style.display=hasFb?"block":"none";
+document.getElementById("result").style.display="block";
+document.getElementById("rbtn").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function resetAll(){
+document.querySelectorAll(".tog").forEach(function(t){t.classList.remove("on")});
+axes.forEach(function(_,ai){updateCnt(ai)});
+document.getElementById("result").style.display="none";
+document.getElementById("rbtn").style.display="none";
+window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>

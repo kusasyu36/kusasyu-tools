@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropDirect｜個人売買コスト比較シミュレーター</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+header{text-align:center;padding:24px 0 16px}
+header h1{font-size:1.4em;color:#2d3748}
+header p{font-size:.85em;color:#718096;margin-top:4px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.1em;color:#2d3748;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+label{display:block;font-size:.85em;font-weight:600;color:#4a5568;margin-bottom:4px}
+input[type=number]{width:100%;padding:12px;font-size:1.1em;border:2px solid #e2e8f0;border-radius:8px;outline:none;transition:border .2s}
+input[type=number]:focus{border-color:#4299e1}
+.price-display{text-align:right;font-size:.8em;color:#718096;margin-top:4px}
+.slider-row{margin-top:12px}
+input[type=range]{width:100%;margin:8px 0;accent-color:#4299e1}
+select{width:100%;padding:10px;border:2px solid #e2e8f0;border-radius:8px;font-size:.95em}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4299e1,#3182ce);color:#fff;font-size:1.1em;font-weight:700;border:none;border-radius:10px;cursor:pointer;margin-top:16px;transition:transform .1s}
+.btn:hover{transform:scale(1.01)}
+.btn:active{transform:scale(.99)}
+.result{display:none}
+.saving-box{text-align:center;padding:20px;background:linear-gradient(135deg,#f6e05e22,#ed893622);border-radius:10px;margin-bottom:16px}
+.saving-amount{font-size:2em;font-weight:800;color:#dd6b20}
+.saving-label{font-size:.85em;color:#975a16}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.compare-grid{grid-template-columns:1fr}}
+.col{border-radius:10px;padding:16px}
+.col-broker{background:#fee2e2}
+.col-direct{background:#dcfce7}
+.col h3{font-size:.95em;margin-bottom:10px;text-align:center}
+.row{display:flex;justify-content:space-between;font-size:.82em;padding:4px 0;border-bottom:1px dashed #00000015}
+.row-label{color:#4a5568}
+.row-val{font-weight:600}
+.total-row{border-top:2px solid #00000020;border-bottom:none;margin-top:6px;padding-top:6px;font-weight:700;font-size:.95em}
+.bar-wrap{margin-top:16px}
+.bar-label{display:flex;justify-content:space-between;font-size:.8em;margin-bottom:2px}
+.bar-outer{height:28px;background:#e2e8f0;border-radius:6px;overflow:hidden;margin-bottom:8px}
+.bar-inner{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.75em;color:#fff;font-weight:700;transition:width .6s}
+.bar-b{background:#e53e3e}
+.bar-d{background:#38a169}
+table{width:100%;border-collapse:collapse;font-size:.78em}
+th,td{padding:8px 6px;text-align:right;border-bottom:1px solid #e2e8f0}
+th{background:#f7fafc;font-weight:600;color:#4a5568}
+td:first-child,th:first-child{text-align:left}
+.hl{background:#fffbeb}
+.note{font-size:.75em;color:#a0aec0;margin-top:8px}
+.steps p{margin-top:6px}
+footer{text-align:center;padding:16px;font-size:.7em;color:#a0aec0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PropDirect コスト比較シミュレーター</h1>
+<p>仲介 vs 個人売買 ─ あなたの節約額を即座に算出</p>
+</header>
+
+<div class="card">
+<h2>物件情報を入力</h2>
+<label for="price">売買価格（万円）</label>
+<input type="number" id="price" placeholder="例: 3000" min="100" max="100000" step="10">
+<div class="price-display" id="priceJP"></div>
+<div class="slider-row">
+<label>スライダーでも調整できます</label>
+<input type="range" id="slider" min="100" max="15000" step="50" value="3000">
+</div>
+<label style="margin-top:12px">抵当権の抹消</label>
+<select id="mortgage">
+<option value="1">あり（住宅ローン残あり）</option>
+<option value="0">なし</option>
+</select>
+<button class="btn" onclick="calc()">節約額をシミュレーション</button>
+</div>
+
+<div class="result" id="result">
+<div class="card">
+<div class="saving-box">
+<div class="saving-label">個人売買にすると</div>
+<div class="saving-amount" id="savingAmt"></div>
+<div class="saving-label">おトクになります</div>
+</div>
+<div class="compare-grid">
+<div class="col col-broker"><h3>仲介利用時</h3><div id="brokerRows"></div></div>
+<div class="col col-direct"><h3>個人売買時</h3><div id="directRows"></div></div>
+</div>
+<div class="bar-wrap" id="bars"></div>
+</div>
+
+<div class="card">
+<h2>売買価格帯別 仲介手数料早見表</h2>
+<table id="refTable"></table>
+<p class="note">※手数料は法定上限額（税込）。印紙税は軽減税率適用。入力価格に近い行がハイライトされます。</p>
+</div>
+
+<div class="card">
+<h2>個人売買で必要な手続き</h2>
+<div class="steps" style="font-size:.85em;color:#4a5568">
+<p><b>① 売買契約書の作成</b>：行政書士に依頼（5〜10万円）または自作</p>
+<p><b>② 重要事項の確認</b>：登記簿謄本・公図で権利関係を確認</p>
+<p><b>③ 決済・登記</b>：司法書士が所有権移転登記を代行</p>
+<p><b>④ 確定申告</b>：譲渡所得が発生した場合は翌年2〜3月に申告</p>
+</div>
+<p class="note">※個人間売買でも、買主保護のため重要事項説明書類の準備を推奨します。</p>
+</div>
+</div>
+
+<div class="card">
+<h2>価格帯別 手数料クイック早見表（税込）</h2>
+<table>
+<tr><th>売買価格</th><th>仲介手数料</th><th>手取り概算</th></tr>
+<tr><td>1,000万円</td><td>39.6万円</td><td>960万円</td></tr>
+<tr><td>2,000万円</td><td>72.6万円</td><td>1,927万円</td></tr>
+<tr><td>3,000万円</td><td>105.6万円</td><td>2,894万円</td></tr>
+<tr><td>4,000万円</td><td>138.6万円</td><td>3,861万円</td></tr>
+<tr><td>5,000万円</td><td>171.6万円</td><td>4,828万円</td></tr>
+<tr><td>8,000万円</td><td>270.6万円</td><td>7,729万円</td></tr>
+<tr><td>1億円</td><td>336.6万円</td><td>9,663万円</td></tr>
+</table>
+<p class="note">※手数料は売主側のみ。登記費用・印紙税は別途かかります。</p>
+</div>
+
+<footer>© 2026 SynLab PropTech ─ PropDirect<br>本ツールは概算シミュレーションです。正式な費用は司法書士・税理士にご確認ください。</footer>
+</div>
+
+<script>
+var pi=document.getElementById('price'),sl=document.getElementById('slider'),pj=document.getElementById('priceJP');
+sl.addEventListener('input',function(){pi.value=sl.value;showJP()});
+pi.addEventListener('input',function(){if(pi.value)sl.value=Math.min(pi.value,15000);showJP()});
+function showJP(){var v=parseInt(pi.value);if(!v){pj.textContent='';return}pj.textContent=fmtY(v)+'円'}
+function fmtY(m){if(m>=10000)return(m/10000).toFixed(m%10000?1:0)+'億';return m.toLocaleString()+'万'}
+function fmtE(n){return Math.round(n).toLocaleString()}
+
+function stamp(p){
+if(p<=100)return 200;if(p<=500)return 200;if(p<=1000)return 500;
+if(p<=5000)return 1000;if(p<=10000)return 5000;if(p<=50000)return 10000;
+if(p<=100000)return 30000;if(p<=500000)return 60000;return 320000;
+}
+
+function brokerFee(yen){
+if(yen<=2000000)return yen*0.05*1.1;
+if(yen<=4000000)return(yen*0.04+20000)*1.1;
+return(yen*0.03+60000)*1.1;
+}
+
+function calc(){
+var v=parseInt(pi.value);
+if(!v||v<100){alert('物件価格を100万円以上で入力してください');return}
+var yen=v*10000,mort=document.getElementById('mortgage').value==='1';
+var bf=brokerFee(yen);
+var st=stamp(v);
+var sj=mort?45000:0;
+var mr=mort?2000:0;
+var gyosei=70000;
+var bt=bf+st+sj+mr;
+var dt=st+sj+mr+gyosei;
+var sv=bt-dt;
+
+function makeRows(items,total){
+var h='';items.forEach(function(r){h+='<div class="row"><span class="row-label">'+r[0]+'</span><span class="row-val">'+fmtE(r[1])+'円</span></div>'});
+h+='<div class="row total-row"><span>合計</span><span>'+fmtE(total)+'円</span></div>';return h;
+}
+
+document.getElementById('brokerRows').innerHTML=makeRows([['仲介手数料（税込）',bf],['印紙税',st],['司法書士報酬',sj],['抵当権抹消登録免許税',mr]],bt);
+document.getElementById('directRows').innerHTML=makeRows([['仲介手数料',0],['印紙税',st],['司法書士報酬',sj],['抵当権抹消登録免許税',mr],['契約書作成（行政書士）',gyosei]],dt);
+document.getElementById('savingAmt').textContent='約 '+fmtE(sv)+' 円の節約';
+
+var mx=Math.max(bt,dt);
+var bH='<div class="bar-label"><span>仲介利用</span><span>'+fmtE(bt)+'円</span></div>';
+bH+='<div class="bar-outer"><div class="bar-inner bar-b" style="width:'+(bt/mx*100)+'%">'+fmtE(bt)+'</div></div>';
+bH+='<div class="bar-label"><span>個人売買</span><span>'+fmtE(dt)+'円</span></div>';
+bH+='<div class="bar-outer"><div class="bar-inner bar-d" style="width:'+(dt/mx*100)+'%">'+fmtE(dt)+'</div></div>';
+document.getElementById('bars').innerHTML=bH;
+
+var rt='<tr><th>売買価格</th><th>仲介手数料</th><th>個人売買費用</th><th>節約額</th></tr>';
+[500,1000,1500,2000,3000,4000,5000,8000,10000].forEach(function(p){
+var b2=brokerFee(p*10000),s2=stamp(p),d2=s2+(mort?47000:0)+70000,bt2=b2+s2+(mort?47000:0),sv2=bt2-d2;
+var hl=v>=p-250&&v<=p+250?' class="hl"':'';
+rt+='<tr'+hl+'><td>'+fmtY(p)+'円</td><td>'+fmtE(b2)+'円</td><td>'+fmtE(d2)+'円</td><td style="color:#dd6b20;font-weight:700">'+fmtE(sv2)+'円</td></tr>';
+});
+document.getElementById('refTable').innerHTML=rt;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+showJP();
+</script>
+</body>
+</html>

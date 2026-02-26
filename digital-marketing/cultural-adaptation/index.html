@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文化適応診断チェッカー｜市場別AI分析ツール</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:24px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.8}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+textarea{width:100%;height:120px;border:2px solid #ddd;border-radius:8px;padding:12px;font-size:15px;resize:vertical;font-family:inherit}
+textarea:focus{border-color:#4a6cf7;outline:none}
+.market-sel{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}
+.market-sel label{flex:1;min-width:100px;text-align:center;padding:12px 8px;border:2px solid #ddd;border-radius:8px;cursor:pointer;transition:.2s;font-weight:600}
+.market-sel input{display:none}
+.market-sel input:checked+span{color:#fff}
+.market-sel label:has(input:checked){border-color:transparent}
+.m-us:has(input:checked){background:#2563eb;color:#fff}
+.m-cn:has(input:checked){background:#dc2626;color:#fff}
+.m-kr:has(input:checked){background:#7c3aed;color:#fff}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4a6cf7,#6366f1);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn-pdf{background:linear-gradient(135deg,#059669,#10b981);margin-top:12px}
+#result{display:none}
+.score-bar{display:flex;align-items:center;gap:12px;padding:14px;border-radius:8px;margin-bottom:10px;background:#f8f9fa}
+.score-bar .icon{font-size:1.6em;width:36px;text-align:center}
+.score-bar .info{flex:1}
+.score-bar .info h3{font-size:.95em;margin-bottom:2px}
+.score-bar .info p{font-size:.82em;color:#555}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.78em;font-weight:700;color:#fff;white-space:nowrap}
+.badge-ok{background:#22c55e}
+.badge-warn{background:#f59e0b}
+.badge-danger{background:#ef4444}
+.total{text-align:center;padding:20px;border-radius:10px;margin-bottom:12px}
+.total .big{font-size:2.4em;font-weight:800}
+.total p{font-size:.9em;margin-top:4px}
+.t-high{background:#dcfce7;color:#166534}
+.t-mid{background:#fef3c7;color:#92400e}
+.t-low{background:#fee2e2;color:#991b1b}
+.advice{background:#eff6ff;border-left:4px solid #4a6cf7;padding:12px;border-radius:0 8px 8px 0;font-size:.85em;margin-top:6px}
+@media print{body{background:#fff}.btn,.card:first-of-type{display:none}header{background:#1a1a2e!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.badge,.total{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media(max-width:600px){.wrap{padding:10px}header h1{font-size:1.15em}textarea{height:100px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>文化適応診断チェッカー</h1>
+<p>マーケティングコピーの文化適応度を市場別にAI分析</p>
+</header>
+<div class="card">
+<h2>① コピーを入力</h2>
+<textarea id="copy" placeholder="日本語のSNS投稿・広告文・LP見出しを貼り付けてください&#10;例：【期間限定】春の新作コレクション 今だけ送料無料！お見逃しなく"></textarea>
+<h2 style="margin-top:16px">② ターゲット市場を選択</h2>
+<div class="market-sel">
+<label class="m-us"><input type="radio" name="mkt" value="us"><span>🇺🇸 米国</span></label>
+<label class="m-cn"><input type="radio" name="mkt" value="cn"><span>🇨🇳 中国</span></label>
+<label class="m-kr"><input type="radio" name="mkt" value="kr"><span>🇰🇷 韓国</span></label>
+</div>
+<button class="btn" onclick="diagnose()">診断を実行する</button>
+</div>
+<div id="result">
+<div class="card"><h2>診断結果</h2><div id="totalArea"></div><div id="items"></div></div>
+<div class="card"><h2>総合アドバイス</h2><div id="adviceArea"></div></div>
+<button class="btn btn-pdf" onclick="window.print()">PDF出力（印刷）</button>
+</div>
+</div>
+<script>
+const RULES={
+us:{
+tone:{tab:["ございます","させていただ","何卒","賜り","恐れ入り","お願い申し上げ"],msg_warn:"米国市場では敬語・謙譲語は堅すぎる印象を与えます。カジュアルで親しみやすい2人称トーンに変換してください",msg_ok:"カジュアルな表現が含まれており米国向けトーンに適合しています"},
+taboo:{tab:["原爆","戦争","神風","日本一","世界一","No.1"],msg_warn:"誇大表現や歴史的敏感ワードが含まれています。米国ではFTC規制やポリティカルコレクトネスに抵触する恐れがあります",msg_ok:"明確な文化的タブーは検出されませんでした"},
+symbol:{tab:["666","13","黒猫","白黒"],msg_warn:"米国で異なる意味を持つ数字・シンボルが含まれています。現地の文脈で再確認してください",msg_ok:"数字・色・シンボルの文化的問題は検出されませんでした"},
+cta:{tab:["お見逃しなく","見逃せない","♪","★","必見"],msg_warn:"日本式CTA表現が残っています。米国では「Shop Now」「Get Yours」等の直接的アクション動詞が効果的です",msg_ok:"CTA表現は米国市場の慣習に合致しています"},
+hash:{tab:["#拡散希望","#フォロバ","#相互フォロー","#pr","#期間限定"],msg_warn:"日本語ハッシュタグは米国市場で機能しません。英語の現地トレンドタグに置換が必要です（例: #LimitedEdition #NewDrop）",msg_ok:"現地向けハッシュタグ戦略の検討を推奨しますが大きな問題はありません"}
+},
+cn:{
+tone:{tab:["ございます","させていただ","何卒","賜り"],msg_warn:"日本式敬語は中国市場で不自然です。中国SNS（小红书・微博）では親密感のある口語体が主流です",msg_ok:"トーンは中国市場に概ね適合しています"},
+taboo:{tab:["台湾","チベット","天安門","独立","領土","中国製"],msg_warn:"中国の政治的敏感トピックに触れる可能性があるキーワードが検出されました。即時修正を強く推奨します",msg_ok:"政治的・文化的タブーは検出されませんでした"},
+symbol:{tab:["緑の帽子","時計を贈","白い花"],msg_warn:"中国で不吉とされるシンボルが含まれています（緑帽子=寝取られ、時計贈呈=葬式の意味）",msg_ok:"数字・色・シンボルの文化的問題は検出されませんでした"},
+cta:{tab:["お見逃しなく","見逃せない","♪","★"],msg_warn:"中国EC市場では「立即抢购」「限时秒杀」等の緊迫感あるCTAが標準です。日本式の婉曲表現は弱く映ります",msg_ok:"CTA表現に大きな問題はありません"},
+hash:{tab:["#拡散希望","#フォロバ","#pr"],msg_warn:"中国SNSでは#タグよりも話題（超话）やキーワード検索が主流です。小红书ではカテゴリタグ最適化が必要です",msg_ok:"ハッシュタグ運用は中国市場の慣習を考慮して設計してください"}
+},
+kr:{
+tone:{tab:["ございます","させていただ","何卒","賜り"],msg_warn:"韓国市場では丁寧だが親しみやすい「ヘヨ体」が主流です。日本式の過度な敬語は距離感を生みます",msg_ok:"トーンは韓国市場に適合しています"},
+taboo:{tab:["竹島","日本海","旭日","植民地","併合","慰安"],msg_warn:"日韓間の歴史的敏感トピックに該当するキーワードが検出されました。韓国市場では致命的な炎上リスクがあります",msg_ok:"文化的タブーは検出されませんでした"},
+symbol:{tab:["赤い文字で名前","靴を贈る"],msg_warn:"韓国で不吉とされる表現が含まれています（赤文字の名前=死者を意味）",msg_ok:"数字・色・シンボルの文化的問題は検出されませんでした"},
+cta:{tab:["お見逃しなく","♪","★","必見"],msg_warn:"韓国では「지금 바로 확인하세요」等、行動喚起は明確だが柔らかい表現が好まれます",msg_ok:"CTA表現に大きな問題はありません"},
+hash:{tab:["#拡散希望","#フォロバ","#pr"],msg_warn:"韓国ではインスタ・カカオ中心のタグ文化です。日本語タグは通用しないため韓国語トレンドタグへの完全置換が必要です",msg_ok:"韓国市場向けのハッシュタグ設計を推奨します"}
+}
+};
+const LABELS=["トーン・敬語レベル適合性","文化的タブー・センシティビティ","数字・色・シンボルの文化的意味","CTA表現の市場慣習適合","ハッシュタグ・キーワード適合"];
+const KEYS=["tone","taboo","symbol","cta","hash"];
+const ICONS=["🗣️","⚠️","🔢","📢","#️⃣"];
+function diagnose(){
+const txt=document.getElementById("copy").value.trim();
+const mktEl=document.querySelector('input[name="mkt"]:checked');
+if(!txt){alert("コピーを入力してください");return}
+if(!mktEl){alert("ターゲット市場を選択してください");return}
+const mkt=mktEl.value;const r=RULES[mkt];
+let scores=[],details=[];
+KEYS.forEach((k,i)=>{
+const rule=r[k];
+let hits=rule.tab.filter(w=>txt.includes(w));
+let level=0;
+if(k==="taboo"&&hits.length>0)level=2;
+else if(hits.length>=3)level=2;
+else if(hits.length>=1)level=1;
+else level=0;
+let badge,cls,msg;
+if(level===2){badge="危険";cls="badge-danger";msg=rule.msg_warn}
+else if(level===1){badge="要修正";cls="badge-warn";msg=rule.msg_warn}
+else{badge="OK";cls="badge-ok";msg=rule.msg_ok}
+scores.push(level);
+let hitTxt=hits.length>0?"検出ワード: "+hits.join("、"):"";
+details.push({label:LABELS[i],icon:ICONS[i],badge,cls,msg,hitTxt});
+});
+let danger=scores.filter(s=>s===2).length;
+let warn=scores.filter(s=>s===1).length;
+let ok=scores.filter(s=>s===0).length;
+let total=ok*20+warn*8;
+let tCls=total>=80?"t-high":total>=40?"t-mid":"t-low";
+let tMsg=total>=80?"文化適応度は良好です。微調整で展開可能です":total>=40?"修正が必要な項目があります。展開前に改善してください":"重大な文化的リスクがあります。大幅な改稿を推奨します";
+const mktName={us:"🇺🇸 米国市場",cn:"🇨🇳 中国市場",kr:"🇰🇷 韓国市場"}[mkt];
+document.getElementById("totalArea").innerHTML='<div class="total '+tCls+'"><div class="big">'+total+'<span style="font-size:.4em">/ 100</span></div><p>'+mktName+'への文化適応スコア</p><p style="font-size:.85em;margin-top:4px">'+tMsg+'</p></div>';
+let html="";
+details.forEach(d=>{
+html+='<div class="score-bar"><div class="icon">'+d.icon+'</div><div class="info"><h3>'+d.label+' <span class="badge '+d.cls+'">'+d.badge+'</span></h3><p>'+d.msg+'</p>'+(d.hitTxt?'<p style="color:#b91c1c;font-size:.8em;margin-top:4px">📍 '+d.hitTxt+'</p>':'')+'</div></div>';
+});
+document.getElementById("items").innerHTML=html;
+let adv='<div class="advice"><strong>【'+mktName+'向け改善の方向性】</strong><br>';
+if(danger>0)adv+='🔴 危険判定が'+danger+'件あります。該当箇所は展開前に必ず修正してください。<br>';
+if(warn>0)adv+='🟡 要修正が'+warn+'件あります。ネイティブチェックまたは現地パートナーの確認を推奨します。<br>';
+if(ok===5)adv+='🟢 全項目OKです。最終確認としてネイティブスピーカーのレビューを推奨します。<br>';
+adv+='💡 文化適応は翻訳の後工程です。原文の意図を保ちながら、現地の「当たり前」に合わせる作業を行ってください。</div>';
+document.getElementById("adviceArea").innerHTML=adv;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+</script>
+</body>
+</html>
