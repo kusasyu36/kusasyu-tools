@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropYield - 不動産投資収益シミュレーター</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.5}
+.wrap{max-width:960px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.4em;padding:16px 0 4px;color:#16213e}
+.sub{text-align:center;color:#888;font-size:.8em;margin-bottom:12px}
+.tabs{display:flex;gap:4px;margin-bottom:8px}
+.tab{flex:1;padding:8px;text-align:center;background:#ddd;border:none;border-radius:6px 6px 0 0;cursor:pointer;font-size:.9em;font-weight:600}
+.tab.act{background:#16213e;color:#fff}
+.card{background:#fff;border-radius:8px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:8px;color:#16213e;border-bottom:2px solid #e94560;padding-bottom:4px;display:inline-block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column}
+.fg label{font-size:.75em;color:#555;margin-bottom:2px}
+.fg input{padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:.95em}
+.btn{width:100%;padding:10px;background:linear-gradient(135deg,#e94560,#16213e);color:#fff;border:none;border-radius:6px;font-size:1em;cursor:pointer;margin-top:8px;font-weight:700}
+.btn:hover{opacity:.9}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0}
+.res-box{background:#f8f9fa;border-radius:6px;padding:10px;text-align:center}
+.res-box .val{font-size:1.3em;font-weight:700;color:#e94560}
+.res-box .lbl{font-size:.7em;color:#888}
+.score-badge{display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;font-size:1.5em;font-weight:900;color:#fff;text-align:center;margin:4px}
+.score-A{background:#27ae60}.score-B{background:#2980b9}.score-C{background:#f39c12}.score-D{background:#c0392b}
+canvas{width:100%;height:auto;display:block;margin:4px 0}
+table{width:100%;border-collapse:collapse;font-size:.8em;margin-top:6px}
+th,td{border:1px solid #ddd;padding:4px 6px;text-align:right}
+th{background:#16213e;color:#fff;text-align:center}
+.scen-hd{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.scen-tag{font-size:.7em;padding:2px 8px;border-radius:10px;color:#fff}
+.opt{background:#27ae60}.std{background:#2980b9}.pes{background:#c0392b}
+.disclaimer{font-size:.65em;color:#999;text-align:center;margin-top:8px;padding:8px;border:1px dashed #ccc;border-radius:4px}
+.compare-wrap{margin-top:10px}
+.hidden{display:none}
+.reason{font-size:.78em;margin:2px 0;padding:3px 6px;background:#f0f0f0;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>PropYield</h1>
+<p class="sub">不動産投資収益シミュレーター｜SynLab PropTech</p>
+<div class="tabs" id="tabs"></div>
+<div id="app"></div>
+<div class="card compare-wrap hidden" id="cmpCard">
+<h2>物件比較レーダーチャート</h2>
+<canvas id="radar" width="400" height="350"></canvas>
+</div>
+<div class="disclaimer">※本シミュレーションは概算であり、投資助言ではありません。実際の投資判断は税理士・FP等の専門家にご相談ください。税率は2026年時点の概算値を使用しています。減価償却・諸費用等は簡略化しています。</div>
+</div>
+<script>
+const P=[];let cur=0;
+function init(){for(let i=0;i<3;i++)P[i]=load(i)||def();renderTabs();renderForm()}
+function def(){return{price:3000,rent:12,mgmt:1,repair:0.8,tax:10,loanR:70,rate:1.5,years:35,age:10}}
+function save(i,d){localStorage.setItem('py_'+i,JSON.stringify(d))}
+function load(i){try{return JSON.parse(localStorage.getItem('py_'+i))}catch{return null}}
+function renderTabs(){
+ const t=document.getElementById('tabs');t.innerHTML='';
+ for(let i=0;i<3;i++){const b=document.createElement('button');b.className='tab'+(i===cur?' act':'');b.textContent='物件'+(i+1);b.onclick=()=>{cur=i;renderTabs();renderForm()};t.appendChild(b)}
+}
+function renderForm(){
+ const d=P[cur],a=document.getElementById('app');
+ a.innerHTML=`<div class="card"><h2>入力条件</h2><div class="grid">
+${fg('price','物件価格（万円）',d.price)}${fg('rent','月額想定家賃（万円）',d.rent)}
+${fg('mgmt','管理費+修繕積立金/月（万円）',d.mgmt)}${fg('repair','年間修繕予備費（万円）',d.repair)}
+${fg('tax','固定資産税/年（万円）',d.tax)}${fg('loanR','借入比率（%）',d.loanR)}
+${fg('rate','金利（%）',d.rate)}${fg('years','返済期間（年）',d.years)}
+${fg('age','築年数',d.age)}</div>
+<button class="btn" onclick="calc()">シミュレーション実行</button></div><div id="result"></div>`;
+}
+function fg(id,l,v){return `<div class="fg"><label>${l}</label><input id="${id}" type="number" step="any" value="${v}"></div>`}
+function v(id){return parseFloat(document.getElementById(id).value)||0}
+function calc(){
+ const d={price:v('price'),rent:v('rent'),mgmt:v('mgmt'),repair:v('repair'),tax:v('tax'),loanR:v('loanR'),rate:v('rate'),years:v('years'),age:v('age')};
+ P[cur]=d;save(cur,d);
+ const R=document.getElementById('result');
+ const annR=d.rent*12,gross=d.price>0?(annR/d.price*100):0;
+ const scenarios=[
+  {name:'楽観',cls:'opt',vac:5,rateD:-0.5,repM:1.0},
+  {name:'標準',cls:'std',vac:10,rateD:0,repM:1.0},
+  {name:'悲観',cls:'pes',vac:20,rateD:0.5,repM:1.5}
+ ];
+ let html=`<div class="card"><h2>利回り</h2><div class="res-grid">
+  <div class="res-box"><div class="val">${gross.toFixed(2)}%</div><div class="lbl">表面利回り</div></div>`;
+ const sData=scenarios.map(s=>{
+  const vacL=annR*(s.vac/100),exp=d.mgmt*12+d.repair*s.repM+d.tax,net=annR-vacL-exp;
+  const netY=d.price>0?(net/d.price*100):0;
+  const loan=d.price*d.loanR/100,mr=(d.rate+s.rateD)/100/12,n=d.years*12;
+  const mp=mr>0?loan*10000*mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1):(n>0?loan*10000/n:0);
+  const cf=[];let minCF=Infinity;
+  for(let y=1;y<=10;y++){
+   let rep=d.repair*s.repM;if(y===5)rep+=d.price*0.005;if(y===10)rep+=d.price*0.01;
+   const inc=annR*(1-s.vac/100),outf=d.mgmt*12+rep+d.tax+mp/10000*12;
+   const ycf=inc-outf;cf.push(ycf);if(ycf<minCF)minCF=ycf;
+  }
+  const cumCF=cf.reduce((a,b)=>a+b,0);
+  const cfStab=cf[0]>0?(minCF/cf[0]*100):0;
+  return{...s,netY,mp,cf,cumCF,cfStab};
+ });
+ sData.forEach(s=>{html+=`<div class="res-box"><div class="val">${s.netY.toFixed(2)}%</div><div class="lbl">実質利回り(${s.name})</div></div>`});
+ html+=`</div></div>`;
+ html+=`<div class="card"><h2>10年間キャッシュフロー推移</h2>
+  <div class="scen-hd"><span class="scen-tag opt">● 楽観</span><span class="scen-tag std">● 標準</span><span class="scen-tag pes">● 悲観</span></div>
+  <canvas id="cfChart" width="600" height="280"></canvas></div>`;
+ const depR=d.age<20?0.022:0.015;
+ const sp5=d.price*(1-depR*5),sp10=d.price*(1-depR*10);
+ const g5=sp5-d.price,g10=sp10-d.price;
+ const s1=sData[1],cum5=s1.cf.slice(0,5).reduce((a,b)=>a+b,0);
+ const ret5=cum5+sp5-Math.max(0,g5)*0.3963-d.price;
+ const ret10=s1.cumCF+sp10-Math.max(0,g10)*0.20315-d.price;
+ html+=`<div class="card"><h2>出口戦略比較（標準シナリオ）</h2><table>
+  <tr><th></th><th>5年後売却</th><th>10年後売却</th><th>保有継続(10年)</th></tr>
+  <tr><td style="text-align:left">想定売却額</td><td>${sp5.toFixed(0)}万円</td><td>${sp10.toFixed(0)}万円</td><td>-</td></tr>
+  <tr><td style="text-align:left">譲渡税率</td><td>39.63%(短期)</td><td>20.315%(長期)</td><td>-</td></tr>
+  <tr><td style="text-align:left">累計CF</td><td>${cum5.toFixed(0)}万円</td><td>${s1.cumCF.toFixed(0)}万円</td><td>${s1.cumCF.toFixed(0)}万円</td></tr>
+  <tr><td style="text-align:left"><b>税引後リターン</b></td><td><b>${ret5.toFixed(0)}万円</b></td><td><b>${ret10.toFixed(0)}万円</b></td><td><b>${s1.cumCF.toFixed(0)}万円</b></td></tr>
+ </table></div>`;
+ const reasons=[];let score=0;
+ if(s1.netY>=5){score+=3;reasons.push('実質利回り'+s1.netY.toFixed(1)+'%（5%以上：高収益）')}
+ else if(s1.netY>=3){score+=2;reasons.push('実質利回り'+s1.netY.toFixed(1)+'%（3〜5%：標準的）')}
+ else{score+=1;reasons.push('実質利回り'+s1.netY.toFixed(1)+'%（3%未満：低収益）')}
+ if(s1.cfStab>=70){score+=3;reasons.push('CF安定性'+s1.cfStab.toFixed(0)+'%（高い安定性）')}
+ else if(s1.cfStab>=40){score+=2;reasons.push('CF安定性'+s1.cfStab.toFixed(0)+'%（中程度）')}
+ else{score+=1;reasons.push('CF安定性'+s1.cfStab.toFixed(0)+'%（変動リスクあり）')}
+ const exR=d.price>0?s1.cumCF/d.price*100:0;
+ if(exR>=15){score+=3;reasons.push('10年累計CF率'+exR.toFixed(1)+'%（物件価格比15%以上）')}
+ else if(exR>=5){score+=2;reasons.push('10年累計CF率'+exR.toFixed(1)+'%（物件価格比5〜15%）')}
+ else{score+=1;reasons.push('10年累計CF率'+exR.toFixed(1)+'%（物件価格比5%未満）')}
+ const grade=score>=8?'A':score>=6?'B':score>=4?'C':'D';
+ P[cur]._score={yield:Math.min(s1.netY/6*100,100),cfStab:Math.min(s1.cfStab,100),exitR:Math.min(exR/20*100,100),risk:Math.max(0,100-d.age*2-d.loanR*0.3)};
+ save(cur,P[cur]);
+ html+=`<div class="card"><h2>投資判断スコア</h2>
+  <span class="score-badge score-${grade}">${grade}</span>
+  ${reasons.map(r=>`<div class="reason">・${r}</div>`).join('')}</div>`;
+ R.innerHTML=html;
+ drawCF(sData);drawRadar();
+}
+function drawCF(sData){
+ const cv=document.getElementById('cfChart');if(!cv)return;
+ const c=cv.getContext('2d'),W=cv.width,H=cv.height;
+ c.clearRect(0,0,W,H);
+ let allV=sData.flatMap(s=>s.cf),mn=Math.min(...allV,0),mx=Math.max(...allV);
+ if(mx<=mn)mx=mn+100;
+ const pad={l:55,r:15,t:15,b:30},gw=W-pad.l-pad.r,gh=H-pad.t-pad.b;
+ c.strokeStyle='#ddd';c.lineWidth=1;
+ for(let i=0;i<=4;i++){
+  const y=pad.t+gh*(1-i/4);
+  c.beginPath();c.moveTo(pad.l,y);c.lineTo(W-pad.r,y);c.stroke();
+  c.fillStyle='#888';c.font='10px sans-serif';c.textAlign='right';
+  c.fillText((mn+(mx-mn)*i/4).toFixed(0)+'万',pad.l-4,y+3);
+ }
+ if(mn<0){const zy=pad.t+gh*(1-(0-mn)/(mx-mn));c.strokeStyle='#aaa';c.setLineDash([4,4]);c.beginPath();c.moveTo(pad.l,zy);c.lineTo(W-pad.r,zy);c.stroke();c.setLineDash([])}
+ const colors=['#27ae60','#2980b9','#c0392b'];
+ sData.forEach((s,si)=>{
+  c.strokeStyle=colors[si];c.lineWidth=2;c.beginPath();
+  s.cf.forEach((v,i)=>{
+   const x=pad.l+gw*(i+0.5)/10,y=pad.t+gh*(1-(v-mn)/(mx-mn));
+   i===0?c.moveTo(x,y):c.lineTo(x,y);
+  });c.stroke();
+  s.cf.forEach((v,i)=>{
+   const x=pad.l+gw*(i+0.5)/10,y=pad.t+gh*(1-(v-mn)/(mx-mn));
+   c.fillStyle=colors[si];c.beginPath();c.arc(x,y,3,0,Math.PI*2);c.fill();
+  });
+ });
+ c.fillStyle='#888';c.font='10px sans-serif';c.textAlign='center';
+ for(let i=1;i<=10;i++)c.fillText(i+'年',pad.l+gw*(i-0.5)/10,H-8);
+}
+function drawRadar(){
+ const cc=document.getElementById('cmpCard'),cv=document.getElementById('radar');
+ const scored=P.filter(p=>p&&p._score);
+ if(scored.length<1){cc.classList.add('hidden');return}
+ cc.classList.remove('hidden');
+ const c=cv.getContext('2d'),W=cv.width,H=cv.height;
+ c.clearRect(0,0,W,H);
+ const cx=W/2,cy=H/2-10,r=120,labels=['利回り','CF安定性','出口リターン','リスク耐性'],n=4;
+ for(let lv=1;lv<=4;lv++){
+  c.strokeStyle='#ddd';c.lineWidth=1;c.beginPath();
+  for(let i=0;i<=n;i++){const a=-Math.PI/2+2*Math.PI*i/n;const x=cx+r*lv/4*Math.cos(a),y=cy+r*lv/4*Math.sin(a);i===0?c.moveTo(x,y):c.lineTo(x,y)}c.stroke();
+ }
+ for(let i=0;i<n;i++){
+  const a=-Math.PI/2+2*Math.PI*i/n;
+  c.strokeStyle='#bbb';c.beginPath();c.moveTo(cx,cy);c.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));c.stroke();
+  c.fillStyle='#333';c.font='12px sans-serif';c.textAlign='center';c.textBaseline='middle';
+  c.fillText(labels[i],cx+(r+20)*Math.cos(a),cy+(r+20)*Math.sin(a));
+ }
+ const pColors=['#e94560','#2980b9','#27ae60'];
+ P.forEach((p,pi)=>{
+  if(!p||!p._score)return;
+  const sc=[p._score.yield,p._score.cfStab,p._score.exitR,p._score.risk];
+  c.strokeStyle=pColors[pi];c.fillStyle=pColors[pi]+'30';c.lineWidth=2;c.beginPath();
+  sc.forEach((v,i)=>{const a=-Math.PI/2+2*Math.PI*i/n,x=cx+r*(Math.min(v,100)/100)*Math.cos(a),y=cy+r*(Math.min(v,100)/100)*Math.sin(a);i===0?c.moveTo(x,y):c.lineTo(x,y)});
+  c.closePath();c.fill();c.stroke();
+ });
+ let ly=H-25;
+ P.forEach((p,i)=>{if(!p||!p._score)return;c.fillStyle=pColors[i];c.fillRect(80+i*120,ly,12,12);c.fillStyle='#333';c.font='11px sans-serif';c.textAlign='left';c.fillText('物件'+(i+1),96+i*120,ly+11)});
+}
+init();
+</script>
+</body>
+</html>
