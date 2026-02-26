@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AEO記事診断ツール｜AI検索引用スコアリング</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pri:#1a56db;--pri2:#3b82f6;--bg:#f8fafc;--card:#fff;--txt:#1e293b;--sub:#64748b;--ok:#10b981;--warn:#f59e0b;--err:#ef4444;--bdr:#e2e8f0;--r:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding:20px}
+h1{font-size:1.5rem;text-align:center;padding:24px 0 4px;color:var(--pri)}
+.sub{text-align:center;color:var(--sub);font-size:.85rem;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin-bottom:16px}
+textarea{width:100%;min-height:200px;border:2px solid var(--bdr);border-radius:8px;padding:14px;font-size:.95rem;resize:vertical;font-family:inherit;line-height:1.8}
+textarea:focus{outline:none;border-color:var(--pri2)}
+.btn{display:block;width:100%;padding:14px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:12px;transition:background .2s}
+.btn:hover{background:var(--pri2)}
+#results{display:none}
+.score-top{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center}
+.total-score{text-align:center;min-width:140px}
+.total-score .num{font-size:3.5rem;font-weight:800;line-height:1}
+.total-score .lbl{font-size:.85rem;color:var(--sub);margin-top:4px}
+.radar-wrap{flex:1;min-width:260px;max-width:340px;display:flex;justify-content:center}
+.axes{width:100%;margin-top:20px}
+.axis-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.axis-row .name{width:130px;font-size:.85rem;flex-shrink:0;text-align:right}
+.axis-row .bar-bg{flex:1;height:22px;background:#e2e8f0;border-radius:11px;overflow:hidden}
+.axis-row .bar-fg{height:100%;border-radius:11px;transition:width .6s}
+.axis-row .val{width:44px;font-size:.85rem;font-weight:700;text-align:right}
+.tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:10px 16px;border:2px solid var(--bdr);border-radius:8px 8px 0 0;background:var(--bg);cursor:pointer;font-size:.85rem;font-weight:600;border-bottom:none;transition:all .2s}
+.tab.active{background:var(--card);border-color:var(--pri);color:var(--pri)}
+.tab-body{display:none}
+.tab-body.active{display:block}
+.json-out{background:#1e293b;color:#a5f3fc;padding:16px;border-radius:8px;font-family:"SF Mono",monospace;font-size:.8rem;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow-y:auto;line-height:1.5}
+.copy-btn{display:inline-block;padding:8px 18px;background:var(--ok);color:#fff;border:none;border-radius:6px;font-size:.85rem;cursor:pointer;margin-top:10px;font-weight:600}
+.copy-btn:hover{opacity:.85}
+.check-item{padding:12px 16px;border-left:4px solid var(--warn);background:#fffbeb;border-radius:0 8px 8px 0;margin-bottom:10px;font-size:.9rem}
+.check-item.ok{border-left-color:var(--ok);background:#ecfdf5}
+.tpl-block{margin-bottom:16px}
+.tpl-block h4{font-size:.9rem;margin-bottom:6px;color:var(--pri)}
+.tpl-box{background:#f1f5f9;padding:14px;border-radius:8px;font-size:.88rem;line-height:1.7;white-space:pre-wrap;position:relative;cursor:pointer;border:1px dashed var(--bdr)}
+.tpl-box:hover{background:#e2e8f0}
+.tpl-box::after{content:"クリックでコピー";position:absolute;top:6px;right:10px;font-size:.7rem;color:var(--sub)}
+.grade-s{color:var(--ok)}.grade-b{color:var(--pri2)}.grade-c{color:var(--warn)}.grade-d{color:var(--err)}
+footer{text-align:center;padding:24px;color:var(--sub);font-size:.75rem}
+@media(max-width:600px){.wrap{padding:12px}.score-top{flex-direction:column}.axis-row .name{width:100px;font-size:.78rem}h1{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>AEO記事診断ツール</h1>
+<p class="sub">AI検索エンジン（ChatGPT・Perplexity・Gemini）に引用されやすい記事構造を5軸で診断</p>
+<div class="card">
+<textarea id="input" placeholder="ここに記事テキストを貼り付けてください（Markdown形式も対応）"></textarea>
+<button class="btn" onclick="analyze()">診断する</button>
+</div>
+<div id="results">
+<div class="card">
+<div class="score-top">
+<div class="total-score"><div class="num" id="totalNum">0</div><div class="lbl">/ 100点</div><div id="grade" style="font-size:1.2rem;font-weight:800;margin-top:4px"></div></div>
+<div class="radar-wrap"><svg id="radar" viewBox="0 0 300 280" width="100%"></svg></div>
+</div>
+<div class="axes" id="axesBars"></div>
+</div>
+<div class="card">
+<div class="tabs" id="tabNav"></div>
+<div id="tab0" class="tab-body"></div>
+<div id="tab1" class="tab-body"></div>
+<div id="tab2" class="tab-body"></div>
+</div>
+</div>
+</div>
+<footer>AEO記事診断ツール — SynLab Digital Marketing｜全処理はブラウザ内で完結（APIキー不要）</footer>
+<script>
+const AXES=[{key:"faq",name:"FAQ構造充実度",color:"#3b82f6"},{key:"def",name:"定義文明確度",color:"#8b5cf6"},{key:"num",name:"数値データ密度",color:"#10b981"},{key:"cmp",name:"比較表有無",color:"#f59e0b"},{key:"chk",name:"文チャンク独立性",color:"#ef4444"}];
+const TABS=["JSON-LD出力","改善チェックリスト","コピペテンプレート"];
+function splitParas(t){return t.split(/\n{2,}|\r?\n(?=#{1,3}\s)/).map(p=>p.trim()).filter(p=>p.length>0)}
+function splitSents(t){return t.split(/(?<=[。？！\?\!])\s*/).filter(s=>s.length>1)}
+function extractNouns(t){let ws=t.replace(/[^\u3040-\u9FFF\uFF66-\uFF9Fa-zA-Z0-9ー]/g," ").split(/\s+/).filter(w=>w.length>=2&&!/^[ぁ-ん]{1,3}$/.test(w)&&!/^(する|ある|いる|なる|できる|ため|こと|もの|それ|これ|あれ|ない|この|その|また|さらに|しかし|つまり)$/.test(w));let f={};ws.forEach(w=>{f[w]=(f[w]||0)+1});return Object.entries(f).sort((a,b)=>b[1]-a[1]).slice(0,8).map(e=>e[0])}
+function scoreFaq(text,sents){let qs=sents.filter(s=>/[？\?]$/.test(s)||/^Q[:.：．\s]/i.test(s)||/でしょうか[。？]?$/.test(s)||/ですか[。？]?$/.test(s));let hq=text.match(/^#{1,3}\s.*[？\?]/gm)||[];let n=qs.length+hq.length;let d={questions:qs.concat(hq.map(h=>h.replace(/^#+\s*/,""))),count:n};d.score=n>=5?20:n>=3?14:n>=1?8:0;return d}
+function scoreDef(text,sents,paras){let re=[/とは[、,].{4,}[。です]/,/を指し(ます|て)/,/と定義/,/の略(で|称|語)/,/という意味/,/と呼(ば|び|ぶ)/];let defs=sents.filter(s=>re.some(r=>r.test(s)));let missing=[];paras.forEach((p,i)=>{if(i<3&&!re.some(r=>r.test(p)))missing.push(i)});let n=defs.length;return{score:Math.min(20,n*5),defs,missing,count:n}}
+function scoreNum(text){let re=/\d[\d,.]*\s*(%|％|円|万|億|兆|倍|件|社|人|個|本|回|年度?|月|日|時間|kg|km|ドル)/g;let ms=text.match(re)||[];let n=ms.length;return{score:n>=10?20:n>=6?16:n>=3?10:n>=1?5:0,found:[...new Set(ms)],count:n}}
+function scoreCmp(text){let hasTable=/\|.+\|.+\|/.test(text);let cmpRe=[/一方[、で]/,/に対して/,/に比べ/,/それに対し/,/比較する/,/versus|vs\.?/i,/メリット.{0,20}デメリット/];let cc=cmpRe.reduce((a,r)=>(text.match(r)||[]).length+a,0);let hasList=/^[\s]*[・\-\*①②③④⑤●▶]|^\d+[\.．)）]/m.test(text);let sc=0;if(hasTable)sc+=10;if(cc>=2)sc+=6;else if(cc>=1)sc+=3;if(hasList)sc+=4;return{score:Math.min(20,sc),hasTable,cmpCount:cc,hasList}}
+function scoreChunk(text,paras){let h=(text.match(/^#{1,3}\s.+/gm)||[]).length+(text.match(/^[■●▶【].+/gm)||[]).length;let avg=paras.reduce((a,p)=>a+p.length,0)/Math.max(paras.length,1);let lp=paras.filter(p=>p.length>300).length;let sc=0;if(h>=4)sc+=8;else if(h>=2)sc+=5;else if(h>=1)sc+=2;if(avg<=200)sc+=7;else if(avg<=300)sc+=4;else sc+=1;if(lp===0)sc+=5;else if(lp<=2)sc+=3;return{score:Math.min(20,sc),headings:h,avgLen:Math.round(avg),longParas:lp,paraCount:paras.length}}
+function buildRadar(scores){let svg=document.getElementById("radar");svg.innerHTML="";let cx=150,cy=135,R=110;let ang=AXES.map((_,i)=>-Math.PI/2+i*2*Math.PI/5);function pt(a,r){return[cx+r*Math.cos(a),cy+r*Math.sin(a)]}function poly(rs,fl,st,sw){let ps=ang.map((a,i)=>pt(a,typeof rs==="number"?rs:rs[i]));let d="M"+ps.map(p=>p.join(",")).join("L")+"Z";let el=document.createElementNS("http://www.w3.org/2000/svg","path");el.setAttribute("d",d);el.setAttribute("fill",fl);el.setAttribute("stroke",st);el.setAttribute("stroke-width",sw);svg.appendChild(el)}[.25,.5,.75,1].forEach(s=>poly(R*s,"none","#cbd5e1",.8));ang.forEach(a=>{let l=document.createElementNS("http://www.w3.org/2000/svg","line");l.setAttribute("x1",cx);l.setAttribute("y1",cy);let[x2,y2]=pt(a,R);l.setAttribute("x2",x2);l.setAttribute("y2",y2);l.setAttribute("stroke","#e2e8f0");l.setAttribute("stroke-width",1);svg.appendChild(l)});poly(scores.map(s=>R*(s/20)),"rgba(59,130,246,.15)","#3b82f6",2.5);scores.forEach((s,i)=>{let[x,y]=pt(ang[i],R*(s/20));let c=document.createElementNS("http://www.w3.org/2000/svg","circle");c.setAttribute("cx",x);c.setAttribute("cy",y);c.setAttribute("r",4);c.setAttribute("fill",AXES[i].color);svg.appendChild(c)});AXES.forEach((ax,i)=>{let[x,y]=pt(ang[i],R+28);let t=document.createElementNS("http://www.w3.org/2000/svg","text");t.setAttribute("x",x);t.setAttribute("y",y);t.setAttribute("text-anchor","middle");t.setAttribute("font-size","11");t.setAttribute("fill","#475569");t.textContent=ax.name.replace(/度$/,"").replace(/有無$/,"");svg.appendChild(t)})}
+function buildBars(scores){let el=document.getElementById("axesBars");el.innerHTML="";scores.forEach((s,i)=>{el.innerHTML+=`<div class="axis-row"><span class="name">${AXES[i].name}</span><div class="bar-bg"><div class="bar-fg" style="width:${s/20*100}%;background:${AXES[i].color}"></div></div><span class="val">${s}/20</span></div>`})}
+function buildTabs(){let nav=document.getElementById("tabNav");nav.innerHTML="";TABS.forEach((t,i)=>{nav.innerHTML+=`<div class="tab${i===0?" active":""}" onclick="switchTab(${i})">${t}</div>`})}
+function switchTab(n){document.querySelectorAll(".tab").forEach((t,i)=>t.classList.toggle("active",i===n));document.querySelectorAll(".tab-body").forEach((t,i)=>t.classList.toggle("active",i===n))}
+function escH(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function buildJsonLd(faq){let el=document.getElementById("tab0");if(faq.questions.length===0){el.innerHTML='<p style="color:var(--sub)">FAQ形式の文が検出されませんでした。記事に「〇〇とは？」形式の見出し・文を追加してください。</p>';return}let pairs=faq.questions.slice(0,10).map(q=>({q:q.replace(/^#+\s*/,""),a:q.replace(/[？\?]+$/,"")+"について、記事内の回答をここに記入してください。"}));let ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":pairs.map(p=>({"@type":"Question","name":p.q,"acceptedAnswer":{"@type":"Answer","text":p.a}}))};let code=JSON.stringify(ld,null,2);el.innerHTML=`<p style="font-size:.88rem;color:var(--sub);margin-bottom:10px">記事HTMLの&lt;head&gt;内に以下を貼り付け（${pairs.length}件FAQ検出）</p><div class="json-out" id="jsonCode">&lt;script type="application/ld+json"&gt;\n${escH(code)}\n&lt;/script&gt;</div><button class="copy-btn" onclick="copyEl('jsonCode')">JSON-LDをコピー</button><p style="font-size:.78rem;color:var(--sub);margin-top:8px">※acceptedAnswerは記事本文の回答に書き換えてください</p>`}
+function buildChecklist(r,paras,nouns){let el=document.getElementById("tab1");let h="";if(r.def.missing.length>0){r.def.missing.forEach(i=>{h+=`<div class="check-item">第${i+1}段落に定義文パターン未検出。<strong>「${nouns[0]||"対象キーワード"}とは、〜です。」</strong>形式の一文を追加推奨</div>`})}else{h+='<div class="check-item ok">定義文：適切な定義文が含まれています</div>'}if(r.num.count<3){h+=`<div class="check-item">数値データが${r.num.count}件のみ。<strong>「${nouns[1]||"対象"}の導入企業は〇〇社」「削減率〇〇%」</strong>等の数値を追加推奨</div>`}else{h+=`<div class="check-item ok">数値データ：${r.num.count}件検出（十分）</div>`}if(!r.cmp.hasTable){h+=`<div class="check-item">比較表が未検出。<strong>「${nouns[0]||"A"}」と「${nouns[1]||"B"}」の比較表</strong>を追加推奨</div>`}else{h+='<div class="check-item ok">比較表：テーブル構造を検出</div>'}if(r.chk.longParas>0)h+=`<div class="check-item">${r.chk.longParas}段落が300文字超。<strong>1段落150〜200文字</strong>に分割推奨</div>`;if(r.chk.headings<3)h+=`<div class="check-item">見出し${r.chk.headings}個。<strong>5個以上</strong>に増やすことを推奨</div>`;if(r.faq.count===0)h+='<div class="check-item">FAQ形式ゼロ。<strong>「よくある質問」セクション</strong>を3〜5問追加推奨</div>';el.innerHTML=h}
+function buildTemplates(r,nouns){let el=document.getElementById("tab2");let n0=nouns[0]||"〇〇",n1=nouns[1]||"△△",n2=nouns[2]||"□□";let ts=[{t:"FAQ構造テンプレート",b:`## ${n0}に関するよくある質問\n\n### ${n0}とは何ですか？\n${n0}とは、（一文で定義）です。\n\n### ${n0}の費用はいくらですか？\n費用相場は月額〇〇円〜〇〇円です。\n\n### ${n0}と${n1}の違いは？\n${n0}は（特徴A）、${n1}は（特徴B）です。`},{t:"定義文テンプレート",b:`${n0}とは、（上位カテゴリ）の一種で、（核心的な特徴）を目的とした（種類）です。\n\n${n1}とは、（簡潔な定義）を指します。`},{t:"数値データテンプレート",b:`${n0}の市場規模は2025年時点で約〇〇億円、前年比〇〇%成長。\n\n導入企業の〇〇%が効果を実感（出典：〇〇調査）。`},{t:"比較表テンプレート",b:`| 項目 | ${n0} | ${n1} | ${n2} |\n|------|-------|-------|-------|\n| 料金 | 月額〇〇円 | 月額〇〇円 | 月額〇〇円 |\n| 特徴 | （A） | （B） | （C） |`},{t:"見出し構成テンプレート",b:`## ${n0}とは【定義】\n（150字以内）\n\n## ${n0}の3つのメリット\n（各150字以内）\n\n## ${n0}の費用相場\n（数値中心）\n\n## ${n0}と${n1}の比較\n（比較表）\n\n## よくある質問\n（FAQ 3〜5問）`}];el.innerHTML=ts.map(x=>`<div class="tpl-block"><h4>${x.t}</h4><div class="tpl-box" onclick="copyText(this)">${escH(x.b)}</div></div>`).join("")}
+function copyEl(id){navigator.clipboard.writeText(document.getElementById(id).textContent).then(()=>showToast("コピーしました"))}
+function copyText(el){navigator.clipboard.writeText(el.textContent).then(()=>showToast("コピーしました"))}
+function showToast(m){let d=document.createElement("div");d.textContent=m;Object.assign(d.style,{position:"fixed",bottom:"30px",left:"50%",transform:"translateX(-50%)",background:"#1e293b",color:"#fff",padding:"10px 24px",borderRadius:"8px",fontSize:".9rem",zIndex:9999});document.body.appendChild(d);setTimeout(()=>{d.style.opacity="0";setTimeout(()=>d.remove(),300)},1800)}
+function analyze(){let text=document.getElementById("input").value.trim();if(!text){alert("記事テキストを貼り付けてください");return}let paras=splitParas(text),sents=splitSents(text),nouns=extractNouns(text);let r={faq:scoreFaq(text,sents),def:scoreDef(text,sents,paras),num:scoreNum(text),cmp:scoreCmp(text),chk:scoreChunk(text,paras)};let scores=[r.faq.score,r.def.score,r.num.score,r.cmp.score,r.chk.score];let total=scores.reduce((a,b)=>a+b,0);let gCls=total>=80?"grade-s":total>=60?"grade-b":total>=40?"grade-c":"grade-d";let gLbl=total>=80?"Sランク：AI引用に最適化済み":total>=60?"Bランク：あと少しで最適化完了":total>=40?"Cランク：改善の余地あり":"Dランク：大幅な改善が必要";document.getElementById("totalNum").textContent=total;document.getElementById("totalNum").className="num "+gCls;document.getElementById("grade").textContent=gLbl;document.getElementById("grade").className=gCls;buildRadar(scores);buildBars(scores);buildTabs();buildJsonLd(r.faq);buildChecklist(r,paras,nouns);buildTemplates(r,nouns);document.getElementById("results").style.display="block";switchTab(0);document.getElementById("results").scrollIntoView({behavior:"smooth"})}
+</script>
+</body>
+</html>

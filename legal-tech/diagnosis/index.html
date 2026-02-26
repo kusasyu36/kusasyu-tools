@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PatentScout — 知財リスク・優先度スコアラー</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;padding:28px 20px;border-radius:12px;margin-bottom:24px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1e3a5f;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+label{display:block;font-size:.88em;font-weight:600;margin:10px 0 4px}
+select,input[type=number]{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;font-size:.95em;background:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.row{grid-template-columns:1fr}}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}
+.btn-primary{background:#2563eb;color:#fff}
+.btn-primary:hover{background:#1d4ed8}
+.btn-outline{background:#fff;color:#2563eb;border:2px solid #2563eb;margin-top:10px}
+.btn-outline:hover{background:#eff6ff}
+#result{display:none}
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.score-item{background:#f8fafc;border-radius:8px;padding:10px;text-align:center}
+.score-item .val{font-size:1.6em;font-weight:800;color:#2563eb}
+.score-item .lbl{font-size:.75em;color:#64748b}
+.risk-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.8em;font-weight:700;color:#fff;margin:6px 0}
+.risk-high{background:#ef4444}.risk-mid{background:#f59e0b}.risk-low{background:#22c55e}
+canvas{display:block;margin:12px auto;max-width:100%}
+.action-list{list-style:none;counter-reset:a}
+.action-list li{counter-increment:a;padding:10px 10px 10px 40px;margin:6px 0;background:#eff6ff;border-radius:8px;position:relative;font-size:.9em}
+.action-list li::before{content:counter(a);position:absolute;left:10px;top:10px;width:22px;height:22px;background:#2563eb;color:#fff;border-radius:50%;text-align:center;line-height:22px;font-size:.8em;font-weight:700}
+footer{text-align:center;font-size:.75em;color:#94a3b8;margin-top:20px;padding-bottom:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PatentScout 知財リスク・優先度スコアラー</h1>
+<p>スタートアップ向け知財セルフ診断ツール</p>
+</header>
+<div class="card">
+<h2>1. 事業フェーズ</h2>
+<label>現在のステージ</label>
+<select id="phase"><option value="seed">シード（プロダクト開発中）</option><option value="preA">プレシリーズA（PMF検証中）</option><option value="A">シリーズA（事業拡大期）</option></select>
+</div>
+<div class="card">
+<h2>2. 技術・事業情報</h2>
+<label>主要技術領域</label>
+<select id="tech"><option value="saas">SaaS / Webサービス</option><option value="ai">AI / 機械学習</option><option value="hw">ハードウェア / IoT</option><option value="bio">バイオ / ヘルスケア</option></select>
+<div class="row">
+<div><label>従業員数</label><input type="number" id="emp" min="1" max="999" value="10"></div>
+<div><label>主要競合の数</label><input type="number" id="comp" min="0" max="99" value="3"></div>
+</div>
+<div class="row">
+<div><label>競合の特許出願数（推定）</label><select id="compPat"><option value="0">ほぼなし</option><option value="1">1〜10件</option><option value="2">11〜50件</option><option value="3">50件超</option></select></div>
+<div><label>技術の新規性</label><select id="novelty"><option value="3">業界初の技術</option><option value="2">既存技術の改良</option><option value="1">公知技術の組合せ</option></select></div>
+</div>
+</div>
+<div class="card">
+<h2>3. 現在の知財状況</h2>
+<div class="row">
+<div><label>出願済み特許数</label><input type="number" id="ownPat" min="0" max="999" value="0"></div>
+<div><label>登録商標数</label><input type="number" id="ownTm" min="0" max="999" value="0"></div>
+</div>
+<label>知財に関する社内体制</label>
+<select id="team"><option value="0">何もしていない</option><option value="1">CTOが兼務で対応</option><option value="2">弁理士に都度相談</option><option value="3">顧問契約あり</option></select>
+</div>
+<button class="btn btn-primary" onclick="diagnose()">診断を実行</button>
+<div id="result">
+<div class="card">
+<h2>診断結果サマリー</h2>
+<p id="riskLabel" style="text-align:center;margin:8px 0"></p>
+<div class="score-grid" id="scores"></div>
+</div>
+<div class="card">
+<h2>スコアレーダーチャート</h2>
+<canvas id="radar" width="320" height="320"></canvas>
+</div>
+<div class="card">
+<h2>優先アクション TOP 3</h2>
+<ol class="action-list" id="actions"></ol>
+</div>
+<button class="btn btn-outline" onclick="downloadPDF()">結果をPDFダウンロード</button>
+</div>
+<footer>&copy; 2026 SynLab Legal Tech &mdash; PatentScout</footer>
+</div>
+<script>
+var AXES=["侵害リスク","出願緊急度","防衛必要度","ライセンス機会","投資家評価影響"];
+var ACTIONS={
+seed:{
+high:["先行技術調査を実施し、コア技術の特許性を確認する（費用目安5〜15万円）","最低1件のコア技術について仮出願（国内優先権）を行い権利化の起点を作る","創業者間で知財の帰属を明確にするIP譲渡契約を締結する"],
+mid:["J-PlatPatで競合他社の出願動向を月1回チェックする運用を開始する","社名・サービス名の商標を第9類/第42類で出願する","NDAテンプレートを整備し外部協業時に必ず締結するフローを構築する"],
+low:["知財に関する基礎知識をINPIT無料セミナーで学ぶ","事業計画に知財マイルストーンを追加する","弁理士の初回無料相談を予約し、出願戦略のロードマップを作成する"]
+},
+preA:{
+high:["コア技術の国内特許出願を完了し、PCT出願の要否を検討する","競合特許のクレーム分析を行い、自社製品の侵害リスクを洗い出す","投資家向けDD資料に知財ポートフォリオを整理する"],
+mid:["特許マップを作成し、ホワイトスペース（未出願領域）を特定する","主要取引先・パートナーとの契約でIP条項を再確認する","防衛出願（公知化戦略含む）の要否を検討する"],
+low:["知財管理台帳を整備し、出願・更新期限をカレンダー管理する","社員向け発明届出フローを構築する","外国出願の優先国リストを市場戦略に合わせて策定する"]
+},
+A:{
+high:["PCT国際出願を行い、主要市場（米・欧・中）での権利化を開始する","FTO調査を専門事務所に依頼し、侵害リスクを網羅的に排除する","知財戦略を取締役会アジェンダに加え、四半期レビューを制度化する"],
+mid:["非コア特許のライセンスアウト候補を選定し収益化を検討する","M&A・IPOに備えた知財DDチェックリストを整備する","競合のIPランドスケープを半期ごとに更新する"],
+low:["知財専任担当者の採用または外部知財マネージャーの起用を検討する","防衛的出版で改良発明を公知化する","社内発明報奨制度を設計し、エンジニアのモチベーションを高める"]
+}
+};
+function calc(){
+var ph=document.getElementById("phase").value;
+var tech=document.getElementById("tech").value;
+var comp=+document.getElementById("comp").value;
+var compPat=+document.getElementById("compPat").value;
+var novelty=+document.getElementById("novelty").value;
+var ownPat=+document.getElementById("ownPat").value;
+var ownTm=+document.getElementById("ownTm").value;
+var tm=+document.getElementById("team").value;
+var s=[0,0,0,0,0];
+var tb=tech==="hw"?15:tech==="bio"?12:tech==="ai"?10:5;
+s[0]=Math.min(100,compPat*20+comp*5+tb+(ownPat===0?15:0));
+s[1]=Math.min(100,novelty*20+(ownPat===0?25:ownPat<3?15:0)+(ph==="A"?20:ph==="preA"?15:10)+(comp>3?10:0));
+s[2]=Math.min(100,compPat*18+comp*6+(tm<2?15:0)+(ph==="A"?15:ph==="preA"?10:5));
+s[3]=Math.min(100,novelty*18+(ownPat>2?20:ownPat>0?10:0)+(tech==="ai"?15:tech==="bio"?18:tech==="hw"?12:8)+(ph==="A"?15:5));
+s[4]=Math.min(100,(ph==="A"?30:ph==="preA"?25:15)+(ownPat===0?20:0)+(ownTm===0?10:0)+novelty*10+(tm<2?10:0));
+return s.map(function(v){return Math.round(Math.max(5,v))});
+}
+function level(avg){return avg>=65?"high":avg>=40?"mid":"low"}
+function diagnose(){
+var sc=calc();
+var avg=Math.round(sc.reduce(function(a,b){return a+b},0)/5);
+var lv=level(avg);
+var ph=document.getElementById("phase").value;
+var sg=document.getElementById("scores");sg.innerHTML="";
+for(var i=0;i<sc.length;i++){sg.innerHTML+='<div class="score-item"><div class="val">'+sc[i]+'</div><div class="lbl">'+AXES[i]+'</div></div>'}
+var rl=document.getElementById("riskLabel");
+var tags={high:["総合リスク：高","risk-high"],mid:["総合リスク：中","risk-mid"],low:["総合リスク：低","risk-low"]};
+rl.innerHTML='<span class="risk-tag '+tags[lv][1]+'">'+tags[lv][0]+'（'+avg+'点）</span>';
+drawRadar(sc);
+var al=document.getElementById("actions");al.innerHTML="";
+var acts=ACTIONS[ph][lv];
+for(var j=0;j<acts.length;j++){al.innerHTML+="<li>"+acts[j]+"</li>"}
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function drawRadar(sc){
+var c=document.getElementById("radar"),ctx=c.getContext("2d");
+var W=c.width,H=c.height,cx=W/2,cy=H/2,R=Math.min(W,H)/2-40;
+ctx.clearRect(0,0,W,H);
+var n=5,step=Math.PI*2/n,off=-Math.PI/2;
+for(var r=1;r<=4;r++){ctx.beginPath();for(var i=0;i<=n;i++){var a=off+step*i,d=R*r/4;var x=cx+Math.cos(a)*d,y=cy+Math.sin(a)*d;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.strokeStyle="#e2e8f0";ctx.lineWidth=1;ctx.stroke()}
+for(var i=0;i<n;i++){var a=off+step*i;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);ctx.strokeStyle="#cbd5e1";ctx.stroke();var lx=cx+Math.cos(a)*(R+20),ly=cy+Math.sin(a)*(R+20);ctx.fillStyle="#475569";ctx.font="11px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(AXES[i],lx,ly)}
+ctx.beginPath();
+for(var i=0;i<sc.length;i++){var a=off+step*i,d=R*sc[i]/100;var x=cx+Math.cos(a)*d,y=cy+Math.sin(a)*d;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}
+ctx.closePath();ctx.fillStyle="rgba(37,99,235,.18)";ctx.fill();ctx.strokeStyle="#2563eb";ctx.lineWidth=2;ctx.stroke();
+for(var i=0;i<sc.length;i++){var a=off+step*i,d=R*sc[i]/100;ctx.beginPath();ctx.arc(cx+Math.cos(a)*d,cy+Math.sin(a)*d,4,0,Math.PI*2);ctx.fillStyle="#2563eb";ctx.fill()}
+}
+function downloadPDF(){
+var ph=document.getElementById("phase"),phText=ph.options[ph.selectedIndex].text;
+var sc=calc(),avg=Math.round(sc.reduce(function(a,b){return a+b},0)/5);
+var lv=level(avg),pv=ph.value,w=window.open("","_blank");
+var h='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>PatentScout診断結果</title><style>body{font-family:sans-serif;padding:30px;max-width:700px;margin:0 auto;color:#1a202c}h1{color:#1e3a5f;font-size:1.3em;border-bottom:2px solid #2563eb;padding-bottom:6px}h2{font-size:1em;margin-top:18px}table{width:100%;border-collapse:collapse;margin:10px 0}td{padding:6px 10px;border:1px solid #e2e8f0}td:first-child{background:#f8fafc;font-weight:600;width:40%}ol li{margin:6px 0;line-height:1.5}.note{margin-top:24px;padding:12px;background:#eff6ff;border-radius:6px;font-size:.85em}footer{margin-top:30px;text-align:center;font-size:.75em;color:#94a3b8}</style></head><body>';
+h+='<h1>PatentScout 知財リスク・優先度スコアラー — 診断結果</h1>';
+h+='<p>診断日: '+new Date().toLocaleDateString("ja-JP")+' ｜ フェーズ: '+phText+'</p>';
+h+='<h2>スコア一覧</h2><table>';
+for(var i=0;i<sc.length;i++){h+='<tr><td>'+AXES[i]+'</td><td>'+sc[i]+' / 100</td></tr>'}
+h+='<tr><td><strong>総合スコア</strong></td><td><strong>'+avg+' / 100</strong></td></tr></table>';
+h+='<h2>推奨アクション TOP 3</h2><ol>';
+var acts=ACTIONS[pv][lv];for(var j=0;j<acts.length;j++){h+='<li>'+acts[j]+'</li>'}
+h+='</ol><div class="note">本診断は簡易的なセルフチェックです。具体的な出願・権利化については弁理士にご相談ください。<br>より詳細な分析は SynLab Legal Tech の有料プランで提供しています。</div>';
+h+='<footer>&copy; 2026 SynLab Legal Tech — PatentScout</footer></body></html>';
+w.document.write(h);w.document.close();w.print();
+}
+</script>
+</body>
+</html>
