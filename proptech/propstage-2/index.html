@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ステージング予測vs実績トラッキングシート - kusasyu tools</title>
+<meta name="description" content="空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,ステージング予測vs実績トラッキングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propstage-2/">
+<meta property="og:title" content="ステージング予測vs実績トラッキングシート - kusasyu tools">
+<meta property="og:description" content="空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propstage-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ステージング予測vs実績トラッキングシート - kusasyu tools">
+<meta name="twitter:description" content="空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ステージング予測vs実績トラッキングシート",
+  "description": "空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propstage-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-27"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>ステージング予測vs実績トラッキングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>ステージング予測vs実績トラッキングシート</h1>
+  <p class="project-name">空室物件ステージング投資ROI予測＆最適化ツール「PropStage」</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th># PropStage 予測vs実績トラッキングシート — HTMLツール（PropStage）の試算結果を「予測値」列に転記し、成約後に「実績値」列を記入。予測精度列で自社データによるツール精度検証が可能。最大30物件管理対応。</th></tr></thead><tbody><tr><td>No</td><td>物件名</td><td>間取り</td><td>エリア</td><td>月額家賃(円)</td><td>ステージング手法</td><td>費用(円)</td><td>掲載開始日</td><td>予測_空室短縮日数</td><td>予測_ROI(%)</td><td>予測_回収期間(日)</td><td>実績_反響数_前</td><td>実績_反響数_後</td><td>実績_内見数_前</td><td>実績_内見数_後</td><td>実績_成約日数</td><td>実績_成約家賃差額(円)</td><td>実績ROI(%)</td><td>予測精度(実績÷予測)</td></tr><tr><td>1</td><td>グランメゾン中目黒201</td><td>1LDK</td><td>東京都目黒区</td><td>125000</td><td>AIバーチャル(クロスエッジ98円/枚)</td><td>980</td><td>2026-02-01</td><td>18</td><td>2204</td><td>1</td><td>3</td><td>12</td><td>1</td><td>5</td><td>22</td><td>3000</td><td>=IFERROR((Q3/G3)*100,"")</td><td>=IFERROR(R3/J3,"")</td></tr><tr><td>2</td><td>レジデンス武蔵小杉A棟305</td><td>2LDK</td><td>神奈川県川崎市</td><td>145000</td><td>AIバーチャル(クロスエッジ98円/枚)</td><td>1960</td><td>2026-02-05</td><td>15</td><td>1076</td><td>2</td><td>2</td><td>9</td><td>1</td><td>4</td><td>18</td><td>2000</td><td>=IFERROR((Q4/G4)*100,"")</td><td>=IFERROR(R4/J4,"")</td></tr><tr><td>3</td><td>プレミア梅田南802</td><td>1K</td><td>大阪府大阪市</td><td>72000</td><td>従来型バーチャルステージング</td><td>50000</td><td>2026-01-20</td><td>12</td><td>346</td><td>14</td><td>4</td><td>14</td><td>2</td><td>6</td><td>25</td><td>3000</td><td>=IFERROR((Q5/G5)*100,"")</td><td>=IFERROR(R5/J5,"")</td></tr><tr><td>4</td><td>サンハイツ博多607</td><td>1LDK</td><td>福岡県福岡市</td><td>68000</td><td>AIバーチャル(クロスエッジ98円/枚)</td><td>490</td><td>2026-02-10</td><td>20</td><td>3076</td><td>1</td><td>1</td><td>8</td><td>0</td><td>3</td><td>28</td><td>2000</td><td>=IFERROR((Q6/G6)*100,"")</td><td>=IFERROR(R6/J6,"")</td></tr><tr><td>5</td><td>アーバンコート名古屋1003</td><td>2LDK</td><td>愛知県名古屋市</td><td>95000</td><td>ホームステージング(実物家具設置)</td><td>180000</td><td>2026-01-15</td><td>22</td><td>287</td><td>7</td><td>5</td><td>15</td><td>3</td><td>7</td><td>30</td><td>5000</td><td>=IFERROR((Q7/G7)*100,"")</td><td>=IFERROR(R7/J7,"")</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td># 集計セクション（ポートフォリオ全体）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>集計項目</td><td>値</td><td>単位</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>登録物件数</td><td>=COUNTA(B3:B32)</td><td>件</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"# PropStage 予測vs実績トラッキングシート — HTMLツール（PropStage）の試算結果を「予測値」列に転記し、成約後に「実績値」列を記入。予測精度列で自社データによるツール精度検証が可能。最大30物件管理対応。"
+"No","物件名","間取り","エリア","月額家賃(円)","ステージング手法","費用(円)","掲載開始日","予測_空室短縮日数","予測_ROI(%)","予測_回収期間(日)","実績_反響数_前","実績_反響数_後","実績_内見数_前","実績_内見数_後","実績_成約日数","実績_成約家賃差額(円)","実績ROI(%)","予測精度(実績÷予測)"
+1,"グランメゾン中目黒201","1LDK","東京都目黒区",125000,"AIバーチャル(クロスエッジ98円/枚)",980,"2026-02-01",18,2204,1,3,12,1,5,22,3000,"=IFERROR((Q3/G3)*100,"""")","=IFERROR(R3/J3,"""")"
+2,"レジデンス武蔵小杉A棟305","2LDK","神奈川県川崎市",145000,"AIバーチャル(クロスエッジ98円/枚)",1960,"2026-02-05",15,1076,2,2,9,1,4,18,2000,"=IFERROR((Q4/G4)*100,"""")","=IFERROR(R4/J4,"""")"
+3,"プレミア梅田南802","1K","大阪府大阪市",72000,"従来型バーチャルステージング",50000,"2026-01-20",12,346,14,4,14,2,6,25,3000,"=IFERROR((Q5/G5)*100,"""")","=IFERROR(R5/J5,"""")"
+4,"サンハイツ博多607","1LDK","福岡県福岡市",68000,"AIバーチャル(クロスエッジ98円/枚)",490,"2026-02-10",20,3076,1,1,8,0,3,28,2000,"=IFERROR((Q6/G6)*100,"""")","=IFERROR(R6/J6,"""")"
+5,"アーバンコート名古屋1003","2LDK","愛知県名古屋市",95000,"ホームステージング(実物家具設置)",180000,"2026-01-15",22,287,7,5,15,3,7,30,5000,"=IFERROR((Q7/G7)*100,"""")","=IFERROR(R7/J7,"""")"
+,,,,,,,,,,,,,,,,,,
+"# 集計セクション（ポートフォリオ全体）",,,,,,,,,,,,,,,,,,
+"集計項目","値","単位",,,,,,,,,,,,,,,,
+"登録物件数","=COUNTA(B3:B32)","件",,,,,,,,,,,,,,,,
+"総ステージング費用","=SUM(G3:G32)","円",,,,,,,,,,,,,,,,
+"平均予測ROI","=IFERROR(AVERAGE(J3:J32),0)","%",,,,,,,,,,,,,,,,
+"平均実績ROI","=IFERROR(AVERAGE(R3:R32),0)","%",,,,,,,,,,,,,,,,
+"平均予測精度","=IFERROR(AVERAGE(S3:S32),0)","倍",,,,,,,,,,,,,,,,
+"AI手法_平均ROI","=IFERROR(AVERAGEIF(F3:F32,""AIバーチャル*"",R3:R32),0)","%",,,,,,,,,,,,,,,,
+"従来型_平均ROI","=IFERROR(AVERAGEIF(F3:F32,""従来型*"",R3:R32),0)","%",,,,,,,,,,,,,,,,
+"実物_平均ROI","=IFERROR(AVERAGEIF(F3:F32,""ホーム*"",R3:R32),0)","%",,,,,,,,,,,,,,,,
+"平均空室短縮日数(予測)","=IFERROR(AVERAGE(I3:I32),0)","日",,,,,,,,,,,,,,,,
+"平均成約日数(実績)","=IFERROR(AVERAGE(P3:P32),0)","日",,,,,,,,,,,,,,,,
+"総成約家賃差額","=SUM(Q3:Q32)","円",,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+"# 使い方: (1)PropStage HTMLツールで試算→予測値3列を転記 (2)掲載後に反響数・内見数を記録 (3)成約後に実績値を入力→予測精度が自動算出 (4)集計セクションで手法別ROIを比較し次の投資判断に活用"`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_ステージング予測vs実績トラッキングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

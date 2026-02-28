@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法改正インパクトスコアラー＆対応アクションプランナー_2026年版（統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pri:#1a365d;--acc:#2b6cb0;--ok:#276749;--warn:#c05621;--danger:#c53030;--bg:#f7fafc;--card:#fff;--border:#e2e8f0;--text:#2d3748;--sub:#718096}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+.container{max-width:960px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,var(--pri),var(--acc));color:#fff;padding:24px 16px;text-align:center;margin-bottom:24px;border-radius:0 0 12px 12px}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;color:var(--pri);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--acc)}
+label{font-weight:600;display:block;margin-bottom:4px;font-size:.9em}
+select,.cbgroup{width:100%;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:.9em;margin-bottom:12px}
+.cbgroup{display:flex;flex-wrap:wrap;gap:8px;padding:10px}
+.cbgroup label{font-weight:400;display:flex;align-items:center;gap:4px;cursor:pointer;background:var(--bg);padding:6px 10px;border-radius:6px;font-size:.85em}
+.cbgroup input:checked+span{color:var(--acc);font-weight:600}
+button{background:var(--acc);color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:.95em;font-weight:600;transition:background .2s}
+button:hover{background:var(--pri)}
+button.sec{background:#fff;color:var(--acc);border:1px solid var(--acc)}
+button.sec:hover{background:#ebf8ff}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hidden{display:none!important}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin-top:8px}
+th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--border)}
+th{background:var(--bg);font-weight:600;position:sticky;top:0}
+.score-badge{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;color:#fff;font-weight:700;font-size:.85em}
+.s1{background:#48bb78}.s2{background:#68d391}.s3{background:#ecc94b;color:#744210}.s4{background:#ed8936}.s5{background:#e53e3e}
+.bar{height:8px;border-radius:4px;background:var(--border);overflow:hidden;min-width:80px}
+.bar-fill{height:100%;border-radius:4px;transition:width .5s}
+.accordion{cursor:pointer;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:6px;margin-top:4px;font-size:.82em;color:var(--acc);user-select:none}
+.accordion:hover{background:#ebf8ff}
+.acc-body{padding:8px 12px;font-size:.82em;color:var(--sub);border:1px solid var(--border);border-top:0;border-radius:0 0 6px 6px;display:none}
+.acc-body.open{display:block}
+.phase-tab{display:flex;gap:0;margin-bottom:16px}
+.phase-tab button{flex:1;padding:12px;border-radius:0;border:2px solid var(--acc);background:#fff;color:var(--acc)}
+.phase-tab button.active{background:var(--acc);color:#fff}
+.phase-tab button:first-child{border-radius:8px 0 0 8px}
+.phase-tab button:last-child{border-radius:0 8px 8px 0}
+.check-row td:first-child{width:30px}
+.check-row.done{opacity:.5;text-decoration:line-through}
+.summary-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+.summary-item{text-align:center;padding:12px;background:var(--bg);border-radius:8px}
+.summary-item .num{font-size:1.8em;font-weight:700}
+.summary-item .lbl{font-size:.8em;color:var(--sub)}
+.deadline{font-size:.8em;color:var(--warn);font-weight:600}
+.diff{display:inline-flex;gap:1px}
+.diff i{width:10px;height:10px;border-radius:2px;background:var(--border)}
+.diff i.on{background:var(--acc)}
+@media print{button,.phase-tab,.accordion,.btnrow,.no-print{display:none!important}.card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}header{background:var(--pri)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.score-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media(max-width:600px){.summary-box{grid-template-columns:1fr 1fr}table{font-size:.78em}th,td{padding:5px 3px}}
+</style>
+<meta name="description" content="2026年の主要法改正（AI新法・改正労基法・改正個情法・サイバーセキュリティ法・ESG開示義務等）を対象に、企業の業種・事業領域・保有契約タイプを入力すると「自社への影響度スコア（5段階）」と「優先対応アクションリスト」を自動生成するインタラクティブツールキット。海外のGlobal AI Regulatio">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法改正インパクトスコアラー＆対応アクションプランナー_2026年版（統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-3/">
+<meta property="og:title" content="法改正インパクトスコアラー＆対応アクションプランナー_2026年版（統合版） - kusasyu tools">
+<meta property="og:description" content="2026年の主要法改正（AI新法・改正労基法・改正個情法・サイバーセキュリティ法・ESG開示義務等）を対象に、企業の業種・事業領域・保有契約タイプを入力すると「自社への影響度スコア（5段階）」と「優先対応アクションリスト」を自動生成するインタラクティブツールキット。海外のGlobal AI Regulatio">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法改正インパクトスコアラー＆対応アクションプランナー_2026年版（統合版） - kusasyu tools">
+<meta name="twitter:description" content="2026年の主要法改正（AI新法・改正労基法・改正個情法・サイバーセキュリティ法・ESG開示義務等）を対象に、企業の業種・事業領域・保有契約タイプを入力すると「自社への影響度スコア（5段階）」と「優先対応アクションリスト」を自動生成するインタラクティブツールキット。海外のGlobal AI Regulatio">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法改正インパクトスコアラー＆対応アクションプランナー_2026年版（統合版）",
+  "description": "2026年の主要法改正（AI新法・改正労基法・改正個情法・サイバーセキュリティ法・ESG開示義務等）を対象に、企業の業種・事業領域・保有契約タイプを入力すると「自社への影響度スコア（5段階）」と「優先対応アクションリスト」を自動生成するインタラクティブツールキット。海外のGlobal AI Regulatio",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<header>
+<h1>RegRadar Japan</h1>
+<p>法改正インパクトスコアラー＆対応アクションプランナー 2026年版</p>
+</header>
+<div class="container">
+<div class="phase-tab no-print">
+<button class="active" onclick="showPhase(1)">Phase 1: 影響度スコアリング</button>
+<button onclick="showPhase(2)">Phase 2: アクションプラン</button>
+</div>
+<div id="p1">
+<div class="card">
+<h2>Step 1 — 企業プロファイル入力</h2>
+<label>業種</label>
+<select id="ind"><option value="">選択してください</option><option value="0">製造業</option><option value="1">金融</option><option value="2">医療</option><option value="3">IT</option><option value="4">建設</option></select>
+<label>事業領域（複数選択可）</label>
+<div class="cbgroup" id="areas"></div>
+<button onclick="calcScore()">影響度を算出する</button>
+</div>
+<div id="result" class="hidden">
+<div class="card">
+<h2>影響度サマリー</h2>
+<div class="summary-box" id="summary"></div>
+</div>
+<div class="card">
+<h2>法改正別 影響度スコア一覧</h2>
+<table><thead><tr><th>#</th><th>法改正名</th><th>施行日</th><th>スコア</th><th>影響度</th></tr></thead><tbody id="stbl"></tbody></table>
+</div>
+<div class="btnrow"><button onclick="showPhase(2)">Phase 2: アクションプランへ →</button></div>
+</div>
+</div>
+<div id="p2" class="hidden">
+<div id="nodata" class="card"><p>先にPhase 1で影響度スコアリングを実行してください。</p></div>
+<div id="actions" class="hidden">
+<div class="card">
+<h2>対応アクションプラン（高影響法改正）</h2>
+<p style="font-size:.85em;color:var(--sub);margin-bottom:12px">影響度3以上の法改正に対する推奨アクションです。チェックで進捗管理できます。</p>
+<div id="atbl"></div>
+</div>
+<div class="card btnrow">
+<button onclick="exportCSV()">CSV出力</button>
+<button class="sec" onclick="window.print()">印刷用表示</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+const AREAS=["個人情報取扱","海外取引","労務管理","AI利活用","ESG開示"];
+const LABELS=["低","やや低","中","高","最高"];
+const REFORMS=[
+{n:"AI新法（AI規制法）",d:"2026/4/1",s:"高リスクAI利用への届出義務、影響評価の実施義務、透明性確保措置を規定。EU AI Act準拠の国内法制化。"},
+{n:"改正個人情報保護法",d:"2026/4/1",s:"越境移転規制の厳格化、Cookie規制導入、漏えい時の課徴金制度新設、仮名加工情報の利用範囲拡大。"},
+{n:"改正労働基準法",d:"2026/4/1",s:"時間外労働上限の引下げ（月45h→40h）、勤務間インターバル11h義務化、副業・兼業の労働時間通算見直し。"},
+{n:"サイバーセキュリティ基本法改正",d:"2026/7/1",s:"重要インフラ事業者のインシデント報告義務化（24h以内）、SBOM提出義務、セキュリティ監査義務化。"},
+{n:"ESG情報開示義務化法",d:"2026/4/1",s:"有価証券報告書でのサステナビリティ情報開示義務化、Scope1-3排出量報告、人的資本情報の定量開示。"},
+{n:"改正電子帳簿保存法（完全義務化）",d:"2026/1/1",s:"電子取引データの電子保存完全義務化。猶予措置終了、検索要件・真実性確保要件の完全適用。"},
+{n:"改正下請法",d:"2026/4/1",s:"発注書面の電子化推進、支払サイト短縮（60日→30日）、買いたたき規制の強化。"},
+{n:"改正会社法（ガバナンス強化）",d:"2026/6/1",s:"社外取締役の独立性要件強化、指名・報酬委員会の設置義務拡大、内部通報制度の実効性確保。"},
+{n:"改正特定商取引法",d:"2026/10/1",s:"サブスク契約の解約容易化義務、ダークパターン規制、デジタル広告の表示義務強化。"},
+{n:"フリーランス保護法（施行拡大）",d:"2026/4/1",s:"報酬支払期日の明確化（60日以内）、契約条件の書面明示義務、ハラスメント対策義務。"}
+];
+const BS=[[3,3,3,5,2],[4,5,5,4,3],[4,3,3,3,5],[3,5,4,5,2],[3,5,3,3,2],[3,4,3,4,2],[4,2,2,3,5],[2,5,3,3,2],[2,4,2,4,1],[3,2,2,3,4]];
+const AM=[[0,1,0,2,0],[2,1,0,0,0],[0,0,2,0,0],[1,0,0,1,0],[0,1,0,0,2],[1,0,0,0,0],[0,1,0,0,0],[0,0,0,0,1],[1,0,0,0,0],[0,0,1,0,0]];
+const ACTS=[
+[{a:"AI利用ガイドライン策定・社内周知",dept:"法務/IT",diff:3,days:60},{a:"高リスクAI利用の棚卸し・届出準備",dept:"IT/経営企画",diff:4,days:90},{a:"AI関連契約条項（免責・知的財産）見直し",dept:"法務",diff:2,days:45},{a:"AI倫理研修の企画・実施",dept:"人事/法務",diff:2,days:30}],
+[{a:"プライバシーポリシー改訂",dept:"法務",diff:2,days:30},{a:"Cookie同意管理ツール導入",dept:"IT/マーケ",diff:3,days:60},{a:"越境移転フロー再点検・SCC更新",dept:"法務",diff:3,days:45},{a:"漏えい対応フロー改訂（課徴金対応）",dept:"法務/IT",diff:3,days:30}],
+[{a:"勤怠管理システム上限値変更",dept:"人事/IT",diff:2,days:30},{a:"36協定の再締結・届出",dept:"人事/労務",diff:2,days:45},{a:"勤務間インターバル制度導入",dept:"人事",diff:3,days:60},{a:"管理職向け労務コンプライアンス研修",dept:"人事",diff:2,days:30}],
+[{a:"インシデント報告体制構築（24h対応）",dept:"IT/セキュリティ",diff:4,days:90},{a:"SBOM管理ツール導入・整備",dept:"IT",diff:4,days:90},{a:"セキュリティ監査計画策定",dept:"IT/内部監査",diff:3,days:60}],
+[{a:"Scope1-3排出量算定体制構築",dept:"経営企画/総務",diff:4,days:90},{a:"サステナビリティ開示書面作成",dept:"IR/経営企画",diff:3,days:60},{a:"人的資本データ収集・定量化",dept:"人事/IR",diff:3,days:60}],
+[{a:"電子保存要件への完全移行確認",dept:"経理/IT",diff:2,days:30},{a:"検索要件対応のファイリング整備",dept:"経理",diff:2,days:30},{a:"取引先への電子化対応依頼",dept:"購買/経理",diff:2,days:45}],
+[{a:"下請取引の支払サイト短縮対応",dept:"購買/経理",diff:3,days:45},{a:"発注書の電子化対応",dept:"購買/IT",diff:2,days:30},{a:"取引先向け説明・契約改訂",dept:"購買/法務",diff:2,days:30}],
+[{a:"取締役会構成の見直し検討",dept:"経営企画/法務",diff:4,days:90},{a:"指名・報酬委員会の設置準備",dept:"経営企画",diff:4,days:90},{a:"内部通報制度の実効性点検",dept:"法務/内部監査",diff:3,days:45}],
+[{a:"サブスク解約フロー簡素化対応",dept:"事業部/IT",diff:2,days:30},{a:"ダークパターン該当箇所点検・修正",dept:"マーケ/IT",diff:3,days:45},{a:"広告表示コンプライアンスチェック",dept:"マーケ/法務",diff:2,days:30}],
+[{a:"フリーランス契約書テンプレート改訂",dept:"法務/購買",diff:2,days:30},{a:"報酬支払フロー見直し（60日以内）",dept:"経理/購買",diff:2,days:30},{a:"委託先ハラスメント窓口整備",dept:"人事/法務",diff:2,days:45}]
+];
+let scores=[],selInd=-1,selAreas=[];
+(function(){const g=document.getElementById("areas");AREAS.forEach((a,i)=>{g.innerHTML+=`<label><input type="checkbox" value="${i}"><span>${a}</span></label>`})})();
+function calcScore(){
+selInd=+document.getElementById("ind").value;if(isNaN(selInd)||selInd<0)return alert("業種を選択してください");
+selAreas=[...document.querySelectorAll("#areas input:checked")].map(e=>+e.value);
+scores=REFORMS.map((_,i)=>{let s=BS[i][selInd];selAreas.forEach(a=>{s+=AM[i][a]});return Math.min(5,Math.max(1,s))});
+const hi=scores.filter(s=>s>=4).length,mid=scores.filter(s=>s===3).length,avg=(scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1);
+document.getElementById("summary").innerHTML=
+`<div class="summary-item"><div class="num" style="color:var(--danger)">${hi}</div><div class="lbl">高影響（4-5）</div></div><div class="summary-item"><div class="num" style="color:var(--warn)">${mid}</div><div class="lbl">中影響（3）</div></div><div class="summary-item"><div class="num">${avg}</div><div class="lbl">平均スコア</div></div><div class="summary-item"><div class="num">${scores.filter(s=>s>=3).length}</div><div class="lbl">要対応法改正</div></div>`;
+let html="";const sorted=scores.map((s,i)=>({s,i})).sort((a,b)=>b.s-a.s);
+sorted.forEach((r,rank)=>{const ref=REFORMS[r.i],sc=r.s,pct=sc*20;
+html+=`<tr><td>${rank+1}</td><td><strong>${ref.n}</strong><div class="accordion" onclick="this.nextElementSibling.classList.toggle('open')">▶ 詳細を表示</div><div class="acc-body"><strong>概要:</strong> ${ref.s}<br><strong>スコア根拠:</strong> 業種基礎点${BS[r.i][selInd]}${selAreas.length?"+領域加算"+selAreas.reduce((a,ai)=>a+AM[r.i][ai],0):""}</div></td><td>${ref.d}</td><td><span class="score-badge s${sc}">${sc}</span></td><td><div style="display:flex;align-items:center;gap:6px"><div class="bar"><div class="bar-fill s${sc}" style="width:${pct}%"></div></div><span style="font-size:.8em">${LABELS[sc-1]}</span></div></td></tr>`});
+document.getElementById("stbl").innerHTML=html;document.getElementById("result").classList.remove("hidden");
+buildActions();document.getElementById("result").scrollIntoView({behavior:"smooth"})}
+function buildActions(){const el=document.getElementById("atbl");el.innerHTML="";
+const sorted=scores.map((s,i)=>({s,i})).sort((a,b)=>b.s-a.s).filter(r=>r.s>=3);
+if(!sorted.length){el.innerHTML="<p>影響度3以上の法改正はありません。</p>";return}
+sorted.forEach(r=>{const ref=REFORMS[r.i],acts=ACTS[r.i];
+let h=`<h3 style="margin:16px 0 8px;font-size:.95em"><span class="score-badge s${r.s}" style="margin-right:6px">${r.s}</span>${ref.n}<span class="deadline" style="margin-left:8px">施行: ${ref.d}</span></h3><table><thead><tr><th style="width:30px">✓</th><th>対応アクション</th><th>担当部署</th><th>推奨期限</th><th>難易度</th></tr></thead><tbody>`;
+acts.forEach((ac,j)=>{const dl=new Date(ref.d.replace(/\//g,"-"));dl.setDate(dl.getDate()-ac.days);
+const ds=dl.toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"});
+let diff="";for(let d=0;d<5;d++)diff+=`<i${d<ac.diff?" class='on'":""}></i>`;
+h+=`<tr class="check-row" id="cr_${r.i}_${j}"><td><input type="checkbox" onchange="this.closest('tr').classList.toggle('done')"></td><td>${ac.a}</td><td>${ac.dept}</td><td class="deadline">${ds}まで</td><td><div class="diff">${diff}</div></td></tr>`});
+h+="</tbody></table>";el.innerHTML+=h})}
+function showPhase(n){document.querySelectorAll(".phase-tab button").forEach((b,i)=>b.classList.toggle("active",i===n-1));
+document.getElementById("p1").classList.toggle("hidden",n!==1);document.getElementById("p2").classList.toggle("hidden",n!==2);
+if(n===2){const has=scores.length>0;document.getElementById("nodata").classList.toggle("hidden",has);document.getElementById("actions").classList.toggle("hidden",!has)}}
+function exportCSV(){const BOM="\uFEFF";let csv=BOM+"No,法改正名,施行日,影響度スコア,影響レベル\n";
+const sorted=scores.map((s,i)=>({s,i})).sort((a,b)=>b.s-a.s);
+sorted.forEach((r,i)=>{csv+=`${i+1},"${REFORMS[r.i].n}",${REFORMS[r.i].d},${r.s},${LABELS[r.s-1]}\n`});
+csv+="\n対応アクション一覧\nNo,法改正名,アクション,担当部署,推奨期限,難易度,完了\n";let cnt=1;
+sorted.filter(r=>r.s>=3).forEach(r=>{ACTS[r.i].forEach((ac,j)=>{const dl=new Date(REFORMS[r.i].d.replace(/\//g,"-"));dl.setDate(dl.getDate()-ac.days);
+const ds=dl.toLocaleDateString("ja-JP"),done=document.querySelector(`#cr_${r.i}_${j} input`)?.checked?"済":"未";
+csv+=`${cnt++},"${REFORMS[r.i].n}","${ac.a}","${ac.dept}",${ds},${ac.diff}/5,${done}\n`})});
+const a=document.createElement("a");a.href="data:text/csv;charset=utf-8,"+encodeURIComponent(csv);
+a.download="RegRadar_影響度分析_"+new Date().toISOString().slice(0,10)+".csv";a.click()}
+</script>
+</body>
+</html>

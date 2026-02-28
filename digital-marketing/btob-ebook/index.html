@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BtoBインタラクティブeBookビルダー（コア版） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;background:#f0f4f8;color:#1a202c}
+.wrap{max-width:700px;margin:0 auto;padding:20px}
+.hd{text-align:center;padding:32px 0 24px}
+.hd h1{font-size:1.45rem;color:#1e293b}
+.hd p{color:#64748b;font-size:.88rem;margin-top:6px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h2{font-size:.95rem;color:#334155;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+label{display:block;font-size:.85rem;font-weight:600;color:#475569;margin:10px 0 3px}
+input,textarea,select{width:100%;padding:9px 11px;border:1px solid #cbd5e1;border-radius:6px;font-size:.92rem;font-family:inherit}
+input:focus,textarea:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+textarea{height:110px;resize:vertical;line-height:1.7}
+.row{display:flex;gap:10px}.row>div{flex:1}
+.ch{border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:10px 0;background:#f8fafc;position:relative}
+.ch-label{font-size:.82rem;font-weight:700;color:#3b82f6;margin-bottom:8px}
+.btn-add{width:100%;padding:10px;background:#f1f5f9;color:#475569;border:1px dashed #94a3b8;border-radius:6px;cursor:pointer;font-size:.88rem;margin:6px 0}
+.btn-add:hover{background:#e2e8f0}
+.btn-gen{display:block;width:100%;padding:15px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;border-radius:8px;font-size:1.05rem;font-weight:700;cursor:pointer;margin:20px 0;letter-spacing:.5px}
+.btn-gen:hover{background:linear-gradient(135deg,#1d4ed8,#1e40af)}
+.ft{text-align:center;padding:20px;color:#94a3b8;font-size:.75rem}
+.rm{position:absolute;top:6px;right:8px;background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.1rem}
+</style>
+<meta name="description" content="BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoBインタラクティブeBookビルダー（コア版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-ebook/">
+<meta property="og:title" content="BtoBインタラクティブeBookビルダー（コア版） - kusasyu tools">
+<meta property="og:description" content="BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-ebook/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoBインタラクティブeBookビルダー（コア版） - kusasyu tools">
+<meta name="twitter:description" content="BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoBインタラクティブeBookビルダー（コア版）",
+  "description": "BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-ebook/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<div class="hd">
+<h1>BtoB インタラクティブ eBook ビルダー</h1>
+<p>テキスト入稿 → Webブック即時生成（HTML一括ダウンロード）</p>
+</div>
+
+<div class="card">
+<h2>基本設定</h2>
+<label>企業名 <span style="color:#ef4444">*</span></label>
+<input id="co" placeholder="株式会社SynLab">
+<div class="row">
+<div><label>メインカラー</label><input id="mc" type="color" value="#2563eb"></div>
+<div><label>GA4 測定ID</label><input id="ga" placeholder="G-XXXXXXXXXX"></div>
+</div>
+<label>問い合わせURL <span style="color:#ef4444">*</span></label>
+<input id="url" placeholder="https://example.com/contact">
+</div>
+
+<div class="card">
+<h2>eBook情報</h2>
+<label>タイトル <span style="color:#ef4444">*</span></label>
+<input id="ti" placeholder="SaaS導入で実現する業務効率化ガイド">
+<label>サブタイトル（任意）</label>
+<input id="sub" placeholder="〜 現場担当者のための実践マニュアル 〜">
+<label>CTA文言パターン</label>
+<select id="cta">
+<option>無料相談を予約する</option>
+<option>資料請求・お問い合わせはこちら</option>
+<option>まずは気軽にご相談ください</option>
+</select>
+</div>
+
+<div class="card">
+<h2>章の構成（最大5章）</h2>
+<div id="chs"></div>
+<button class="btn-add" onclick="addCh()">＋ 章を追加</button>
+</div>
+
+<button class="btn-gen" onclick="gen()">eBook HTMLをダウンロード</button>
+<p class="ft">SynLab Digital Marketing — BtoB eBookファクトリー</p>
+</div>
+
+<script>
+let cn=0;
+function addCh(){
+if(cn>=5)return;cn++;
+const d=document.createElement('div');d.className='ch';
+d.innerHTML='<button class="rm" onclick="this.parentElement.remove();cn--">&times;</button><div class="ch-label">第'+cn+'章</div><label>章タイトル</label><input class="ct" placeholder="例：なぜ今、業務改革が必要なのか"><label>本文</label><textarea class="cb" placeholder="本文を入力してください。段落は改行で区切ります。"></textarea>';
+document.getElementById('chs').appendChild(d);
+}
+addCh();addCh();addCh();
+
+function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function gen(){
+const co=document.getElementById('co').value;
+if(!co){alert('企業名を入力してください');return}
+const mc=document.getElementById('mc').value;
+const ga=document.getElementById('ga').value||'G-XXXXXXXXXX';
+const url=document.getElementById('url').value||'#';
+const ti=document.getElementById('ti').value||'eBook';
+const sb=document.getElementById('sub').value;
+const cta=document.getElementById('cta').value;
+const ts=[...document.querySelectorAll('.ct')].map(x=>x.value);
+const bs=[...document.querySelectorAll('.cb')].map(x=>x.value);
+const ch=ts.map((t,i)=>({t:t||'第'+(i+1)+'章',b:bs[i]||''})).filter(c=>c.b.trim());
+if(!ch.length){alert('少なくとも1章の本文を入力してください');return}
+
+const nav=ch.map((c,i)=>'<a href="#s'+i+'" style="color:#fff;text-decoration:none;padding:6px 14px;border-radius:4px;font-size:.84rem;white-space:nowrap;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.8">'+e(c.t)+'</a>').join('');
+
+const sec=ch.map((c,i)=>{
+const ps=c.b.split(/\n+/).filter(p=>p.trim()).map(p=>'<p style="margin:0 0 18px;line-height:1.95;color:#374151;font-size:1.02rem">'+e(p)+'</p>').join('');
+return '<section id="s'+i+'" class="fd" style="max-width:740px;margin:0 auto;padding:64px 28px"><h2 style="font-size:1.5rem;color:'+mc+';margin-bottom:28px;padding-bottom:14px;border-bottom:3px solid '+mc+'">'+e(c.t)+'</h2>'+ps+'<div style="text-align:center;margin:44px 0"><a href="'+e(url)+'" onclick="gtag(\'event\',\'cta_click\',{chapter:\''+e(c.t)+'\'});return true" style="display:inline-block;padding:16px 44px;background:'+mc+';color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:1rem;box-shadow:0 4px 14px '+mc+'44;transition:transform .2s" onmouseover="this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.transform=\'none\'">'+e(cta)+'</a></div></section><hr style="max-width:740px;margin:0 auto;border:none;border-top:1px solid #e5e7eb">';
+}).join('');
+
+const h='<!DOCTYPE html>\n<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+e(ti)+' | '+e(co)+'</title><script async src="https://www.googletagmanager.com/gtag/js?id='+e(ga)+'"><\/script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","'+e(ga)+'");<\/script><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;background:#fff;color:#1f2937}.fd{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}.fd.v{opacity:1;transform:none}html{scroll-behavior:smooth}</style></head><body><nav style="position:sticky;top:0;z-index:10;background:'+mc+';padding:10px 16px;display:flex;gap:6px;overflow-x:auto;box-shadow:0 2px 12px rgba(0,0,0,.12)"><span style="color:#fff;font-weight:700;font-size:.85rem;padding:6px 8px;white-space:nowrap;opacity:.7">'+e(co)+'</span><span style="flex:1"></span>'+nav+'</nav><header class="fd" style="text-align:center;padding:80px 28px 64px;background:linear-gradient(180deg,'+mc+'0a,'+mc+'18 60%,#fff)">'+(sb?'<p style="color:'+mc+';font-size:.92rem;margin-bottom:10px;font-weight:600">'+e(sb)+'</p>':'')+'<h1 style="font-size:2.1rem;color:#111827;line-height:1.45;max-width:640px;margin:0 auto">'+e(ti)+'</h1><p style="margin-top:16px;color:#6b7280;font-size:.9rem">'+e(co)+'</p></header>'+sec+'<footer class="fd" style="text-align:center;padding:48px 28px;background:#f9fafb"><p style="font-size:1.1rem;font-weight:700;color:#1f2937;margin-bottom:16px">ご興味をお持ちいただけましたか？</p><a href="'+e(url)+'" onclick="gtag(\'event\',\'cta_click\',{chapter:\'footer\'});return true" style="display:inline-block;padding:16px 48px;background:'+mc+';color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:1rem">'+e(cta)+'</a><p style="margin-top:32px;color:#9ca3af;font-size:.78rem">&copy; '+e(co)+' All Rights Reserved.</p></footer><script>const o=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add("v");if(el.target.id)gtag("event","chapter_reach",{chapter:el.target.id})}})},{threshold:.12});document.querySelectorAll(".fd").forEach(x=>o.observe(x));<\/script></body></html>';
+
+const b=new Blob([h],{type:'text/html;charset=utf-8'});
+const a=document.createElement('a');a.href=URL.createObjectURL(b);
+a.download=(ti||'ebook').replace(/[^\w\u3000-\u9fff]/g,'_')+'.html';
+a.click();URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>

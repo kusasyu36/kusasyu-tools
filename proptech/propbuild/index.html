@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>竣工遅延リスクスコアラー（オフライン対応・依存ライブラリゼロ） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:14px}
+.header{background:linear-gradient(135deg,#0d1b2a,#1b3a4b);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.header h1{font-size:20px;letter-spacing:1px}
+.header small{opacity:.7;font-size:11px}
+.tabs{display:flex;background:#1b3a4b;flex-wrap:wrap}
+.tab{padding:10px 18px;color:#acc;cursor:pointer;border-bottom:3px solid transparent;font-size:13px;transition:.2s}
+.tab:hover{background:rgba(255,255,255,.05)}
+.tab.active{color:#fff;border-bottom-color:#00d4aa;background:rgba(255,255,255,.08)}
+.panel{display:none;padding:16px;max-width:1100px;margin:0 auto}
+.panel.active{display:block}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card h3{font-size:15px;margin-bottom:10px;color:#0d1b2a;border-left:4px solid #00d4aa;padding-left:8px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#e8f4f8;padding:6px 4px;text-align:center;font-weight:600;white-space:nowrap}
+td{padding:4px 2px;text-align:center}
+input[type=text],input[type=date],input[type=number]{width:100%;padding:5px 4px;border:1px solid #ccc;border-radius:4px;font-size:12px}
+input[type=number]{text-align:right}
+.btn{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600;transition:.2s}
+.btn-primary{background:#00d4aa;color:#fff}.btn-primary:hover{background:#00b894}
+.btn-danger{background:#e74c3c;color:#fff;font-size:11px;padding:4px 8px}
+.btn-outline{background:#fff;color:#0d1b2a;border:2px solid #0d1b2a}.btn-outline:hover{background:#0d1b2a;color:#fff}
+.score-ring{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;margin:0 auto 10px;font-size:36px;font-weight:800;border:8px solid #ccc}
+.score-ring.low{border-color:#27ae60;color:#27ae60}
+.score-ring.mid{border-color:#f39c12;color:#f39c12}
+.score-ring.high{border-color:#e74c3c;color:#e74c3c}
+.score-ring small{font-size:11px;font-weight:400;color:#666}
+.gantt-plan{background:#b2d8d8;position:absolute;height:100%;border-radius:4px;opacity:.5}
+.gantt-actual{background:#00d4aa;position:absolute;height:100%;border-radius:4px}
+.gantt-over{background:#e74c3c}
+.gantt-row{display:flex;align-items:center;margin:3px 0;font-size:12px}
+.gantt-label{width:120px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:6px}
+.gantt-area{flex:1;position:relative;height:22px;background:#f5f5f5;border-radius:4px}
+.worst-item{background:#fff5f5;border-left:4px solid #e74c3c;padding:10px 12px;margin:6px 0;border-radius:0 6px 6px 0}
+.worst-item h4{color:#e74c3c;font-size:13px}
+.worst-item p{font-size:12px;color:#555;margin-top:4px}
+.flex-cards{display:flex;gap:12px;flex-wrap:wrap}
+.flex-cards .mini{flex:1;min-width:140px;text-align:center;padding:14px 10px;background:#f8fffe;border-radius:8px;border:1px solid #e0f0ed}
+.mini .val{font-size:22px;font-weight:700;color:#0d1b2a}
+.mini .lbl{font-size:11px;color:#777;margin-top:2px}
+.slider-group{margin:12px 0}
+.slider-group label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.slider-group input[type=range]{width:100%;accent-color:#00d4aa}
+.check-item{display:flex;align-items:flex-start;gap:8px;padding:10px;border-bottom:1px solid #eee}
+.check-item input[type=checkbox]{margin-top:3px;width:18px;height:18px;accent-color:#00d4aa}
+.check-item div{font-size:13px}
+.check-item .sub{font-size:11px;color:#777;margin-top:2px}
+.footer{text-align:center;padding:14px;font-size:10px;color:#999;background:#f0f2f5;border-top:1px solid #ddd;margin-top:20px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+@media print{.tabs,.actions,.btn,.header,.footer{display:none!important}.panel{display:block!important;padding:8px}.card{box-shadow:none;break-inside:avoid}}
+@media(max-width:600px){table{font-size:10px}th,td{padding:3px 1px}input[type=text],input[type=date],input[type=number]{padding:3px;font-size:11px}.gantt-label{width:70px;font-size:10px}}
+</style>
+<meta name="description" content="中小建設会社・工務店の施工管理者が、工程表（Excelからコピペ）と週次の進捗実績を入力するだけで、竣工遅延確率・追加費用リスク・ボトルネック工程をスコアリングし可視化するHTMLダッシュボードツール。2026年1月施行の取適法（下請法改正）に対応した工程管理記録テンプレートもセットで提供。ANDPADやPR">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,竣工遅延リスクスコアラー（オフライン対応・依存ライブラリゼロ）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propbuild/">
+<meta property="og:title" content="竣工遅延リスクスコアラー（オフライン対応・依存ライブラリゼロ） - kusasyu tools">
+<meta property="og:description" content="中小建設会社・工務店の施工管理者が、工程表（Excelからコピペ）と週次の進捗実績を入力するだけで、竣工遅延確率・追加費用リスク・ボトルネック工程をスコアリングし可視化するHTMLダッシュボードツール。2026年1月施行の取適法（下請法改正）に対応した工程管理記録テンプレートもセットで提供。ANDPADやPR">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propbuild/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="竣工遅延リスクスコアラー（オフライン対応・依存ライブラリゼロ） - kusasyu tools">
+<meta name="twitter:description" content="中小建設会社・工務店の施工管理者が、工程表（Excelからコピペ）と週次の進捗実績を入力するだけで、竣工遅延確率・追加費用リスク・ボトルネック工程をスコアリングし可視化するHTMLダッシュボードツール。2026年1月施行の取適法（下請法改正）に対応した工程管理記録テンプレートもセットで提供。ANDPADやPR">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "竣工遅延リスクスコアラー（オフライン対応・依存ライブラリゼロ）",
+  "description": "中小建設会社・工務店の施工管理者が、工程表（Excelからコピペ）と週次の進捗実績を入力するだけで、竣工遅延確率・追加費用リスク・ボトルネック工程をスコアリングし可視化するHTMLダッシュボードツール。2026年1月施行の取適法（下請法改正）に対応した工程管理記録テンプレートもセットで提供。ANDPADやPR",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propbuild/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="header">
+<div><h1>PropBuild</h1><small>竣工遅延リスクスコアラー v1.0 ― オフライン対応・依存ゼロ</small></div>
+<button class="btn btn-outline" onclick="window.print()" style="color:#fff;border-color:#fff">PDF出力（印刷）</button>
+</div>
+<div class="tabs">
+<div class="tab active" onclick="showTab(0)">工程入力</div>
+<div class="tab" onclick="showTab(1)">リスク分析</div>
+<div class="tab" onclick="showTab(2)">シナリオ予測</div>
+<div class="tab" onclick="showTab(3)">取適法チェック</div>
+</div>
+<div class="panel active" id="p0">
+<div class="card">
+<h3>工程データ入力（最大15工程）</h3>
+<p style="font-size:11px;color:#777;margin-bottom:8px">Excelからコピペ可。予定期間と進捗率からリスクを自動算出します。</p>
+<div style="overflow-x:auto">
+<table><thead><tr><th>#</th><th>工程名</th><th>予定開始</th><th>予定終了</th><th>進捗%</th><th>人工単価(円)</th><th>仮設日額(円)</th><th></th></tr></thead>
+<tbody id="tbody"></tbody></table>
+</div>
+<div class="actions">
+<button class="btn btn-primary" onclick="addRow()">＋ 工程追加</button>
+<button class="btn btn-outline" onclick="loadSample()">サンプル読込</button>
+<button class="btn btn-primary" onclick="analyze()">▶ 分析実行</button>
+</div>
+</div>
+</div>
+<div class="panel" id="p1">
+<div class="card"><h3>全体遅延リスクスコア</h3><div id="scoreArea"></div><p id="scoreNote" style="font-size:11px;color:#888;margin-top:6px"></p></div>
+<div class="card"><h3>ガントチャート（予定 vs 実績）</h3><div id="gantt"></div></div>
+<div class="card"><h3>遅延ワースト3 ＆ 推奨アクション</h3><div id="worst"></div></div>
+<div class="card"><h3>費用超過リスク推定</h3><div id="cost" class="flex-cards"></div></div>
+</div>
+<div class="panel" id="p2">
+<div class="card"><h3>シナリオ別竣工予測</h3>
+<p style="font-size:11px;color:#e74c3c;margin-bottom:10px">※ユーザー入力の仮定値に基づく試算です。実際の工期は条件により変動します。</p>
+<div class="slider-group"><label>天候リスク <span id="wv">3</span>/5</label><input type="range" min="1" max="5" value="3" id="weather" oninput="document.getElementById('wv').textContent=this.value;runScenario()"></div>
+<div class="slider-group"><label>人員確保度 <span id="sv">3</span>/5</label><input type="range" min="1" max="5" value="3" id="staff" oninput="document.getElementById('sv').textContent=this.value;runScenario()"></div>
+<div id="scenario" class="flex-cards" style="margin-top:12px"></div>
+</div>
+</div>
+<div class="panel" id="p3">
+<div class="card"><h3>取適法（2026年1月施行）対応チェックリスト</h3>
+<p style="font-size:11px;color:#777;margin-bottom:10px">下請法改正に対応した工程管理記録の必須3項目を確認してください。</p>
+<div class="check-item"><input type="checkbox"><div><strong>1. 発注書面の必須項目</strong><div class="sub">工事内容・工期・請負代金額・支払期日・資材調達先を明記した書面を交付しているか。電子書面も可。発注後30日以内に書面化が義務。</div></div></div>
+<div class="check-item"><input type="checkbox"><div><strong>2. 工程変更の合意記録</strong><div class="sub">工期変更・仕様変更発生時、変更内容・理由・追加費用の有無を双方署名入りで記録しているか。口頭合意のみは違法リスクあり。</div></div></div>
+<div class="check-item"><input type="checkbox"><div><strong>3. 支払条件の書面化</strong><div class="sub">支払期日（引渡日から60日以内）・支払方法・手形期間（120日以内）を明記。割引困難な手形や不当な減額は禁止。月末締め翌月末払い推奨。</div></div></div>
+<div style="margin-top:12px;padding:10px;background:#f0faf5;border-radius:6px;font-size:12px">
+<strong>記録保管の推奨</strong>：上記3項目の記録は電子・紙問わず<strong>5年間保管</strong>が推奨されます。本ツールのPDF出力も工程管理エビデンスとして保管してください。</div>
+</div>
+</div>
+<div class="footer">
+<strong>免責事項</strong>：本ツール（PropBuild）はリスクの目安を示す簡易試算ツールであり、計算結果の正確性・完全性を保証するものではありません。利用により生じた損害について開発元は一切の責任を負いません。重要な経営判断には専門家にご相談ください。取適法チェックリストは2026年1月施行時点の情報に基づく参考資料であり、法的助言ではありません。<br>&copy; 2026 SynLab PropTech &mdash; PropBuild v1.0
+</div>
+<script>
+var RC=0,TD=document.getElementById('tbody'),G_DATA=[];
+function addRow(d){if(RC>=15)return alert('最大15工程です');RC++;var r=document.createElement('tr');r.innerHTML='<td>'+RC+'</td><td><input type=text value="'+(d?d[0]:'')+'"></td><td><input type=date value="'+(d?d[1]:'')+'"></td><td><input type=date value="'+(d?d[2]:'')+'"></td><td><input type=number min=0 max=100 value="'+(d?d[3]:0)+'"></td><td><input type=number min=0 value="'+(d?d[4]:25000)+'"></td><td><input type=number min=0 value="'+(d?d[5]:5000)+'"></td><td><button class="btn btn-danger" onclick="this.closest(\'tr\').remove();RC--">&#10005;</button></td>';TD.appendChild(r);}
+function loadSample(){TD.innerHTML='';RC=0;[['仮設工事','2026-03-01','2026-03-15',100,25000,8000],['基礎工事','2026-03-10','2026-04-10',85,28000,5000],['躯体工事','2026-04-01','2026-06-15',40,30000,6000],['屋根工事','2026-06-01','2026-06-30',10,26000,3000],['外壁工事','2026-06-15','2026-07-31',5,27000,4000],['電気設備','2026-07-01','2026-08-15',0,32000,2000],['給排水設備','2026-07-01','2026-08-10',0,30000,2000],['内装工事','2026-08-01','2026-09-15',0,24000,3000],['外構工事','2026-09-01','2026-09-30',0,22000,4000],['検査・引渡','2026-10-01','2026-10-15',0,20000,1000]].forEach(function(d){addRow(d);});}
+function getData(){var rows=TD.querySelectorAll('tr'),out=[];for(var i=0;i<rows.length;i++){var inp=rows[i].querySelectorAll('input');out.push({name:inp[0].value||'未入力',start:inp[1].value,end:inp[2].value,prog:+inp[3].value,cost:+inp[4].value,temp:+inp[5].value});}return out.filter(function(d){return d.start&&d.end;});}
+function dB(a,b){return Math.max(1,Math.round((new Date(b)-new Date(a))/864e5));}
+function exP(d){var t=new Date(),s=new Date(d.start),e=new Date(d.end);if(t<=s)return 0;if(t>=e)return 100;return Math.round((t-s)/(e-s)*100);}
+function analyze(){G_DATA=getData();if(!G_DATA.length)return alert('工程を入力してください');var data=G_DATA,n=data.length;var sc=data.map(function(d){var exp=exP(d),gap=Math.max(0,exp-d.prog),days=dB(d.start,d.end);return{name:d.name,start:d.start,end:d.end,prog:d.prog,cost:d.cost,temp:d.temp,exp:exp,gap:gap,delay:gap*Math.min(2,days/30),days:days};});var mx=Math.max(1,Math.max.apply(null,sc.map(function(s){return s.delay;})));sc.forEach(function(s){s.norm=Math.round(s.delay/mx*100);});var total=Math.round(sc.reduce(function(a,s){return a+s.norm;},0)/n);var cls=total<=30?'low':total<=60?'mid':'high',lbl=total<=30?'低リスク':total<=60?'中リスク':'高リスク';document.getElementById('scoreArea').innerHTML='<div class="score-ring '+cls+'">'+total+'<small>/100</small></div><div style="text-align:center;font-weight:700;font-size:15px">'+lbl+'</div>';document.getElementById('scoreNote').textContent='算出ロジック：各工程の「期待進捗率−実績進捗率」×工期重み（日数/30、上限2.0）を正規化し全工程平均をスコア化（0=遅延なし、100=最大遅延）。';
+var aD=[];data.forEach(function(d){aD.push(new Date(d.start).getTime());aD.push(new Date(d.end).getTime());});var mn=Math.min.apply(null,aD),mxD=Math.max.apply(null,aD),sp=mxD-mn||1;var gh='';sc.forEach(function(s){var l=(new Date(s.start).getTime()-mn)/sp*100,w=s.days*864e5/sp*100,aw=w*s.prog/100,ov=s.gap>20;gh+='<div class="gantt-row"><div class="gantt-label" title="'+s.name+'">'+s.name+'</div><div class="gantt-area"><div class="gantt-plan" style="left:'+l+'%;width:'+w+'%"></div><div class="gantt-actual '+(ov?'gantt-over':'')+'" style="left:'+l+'%;width:'+Math.min(aw,w)+'%"></div></div><div style="width:40px;text-align:right;font-size:11px;color:'+(ov?'#e74c3c':'#27ae60')+'">'+s.prog+'%</div></div>';});document.getElementById('gantt').innerHTML=gh;
+var sorted=sc.slice().sort(function(a,b){return b.gap-a.gap;}).slice(0,3);var acts=['人員増強または工程分割による並行作業化を検討してください。','資材の先行発注と仮設スケジュールの再調整が有効です。','工程順序の入替え、または部分外注で遅延吸収を図ってください。'];var wh='';sorted.forEach(function(s,i){if(s.gap<=0)return;wh+='<div class="worst-item"><h4>'+(i+1)+'位：'+s.name+'（遅延乖離 '+s.gap+'pt）</h4><p>期待進捗 '+s.exp+'% → 実績 '+s.prog+'%　｜　推奨：'+acts[i]+'</p></div>';});document.getElementById('worst').innerHTML=wh||'<p style="color:#27ae60">大きな遅延工程はありません。</p>';
+var lO=0,tO=0;sc.forEach(function(s){if(s.gap>0){var od=Math.round(s.days*s.gap/100);lO+=od*s.cost;tO+=od*s.temp;}});document.getElementById('cost').innerHTML='<div class="mini"><div class="val">&yen;'+lO.toLocaleString()+'</div><div class="lbl">人件費超過見込</div></div><div class="mini"><div class="val">&yen;'+tO.toLocaleString()+'</div><div class="lbl">仮設延長費見込</div></div><div class="mini"><div class="val">&yen;'+(lO+tO).toLocaleString()+'</div><div class="lbl">合計超過リスク額</div></div>';showTab(1);runScenario();}
+function runScenario(){if(!G_DATA.length)return;var w=+document.getElementById('weather').value,s=+document.getElementById('staff').value;var ends=G_DATA.map(function(d){return new Date(d.end).getTime();});var bE=new Date(Math.max.apply(null,ends));var wD=Math.round((w-1)*3.5),sD=Math.round((5-s)*4),pD=G_DATA.reduce(function(a,d){return a+Math.max(0,exP(d)-d.prog);},0)/Math.max(1,G_DATA.length);var tD=Math.round(wD+sD+pD*0.5);var b=new Date(bE.getTime()),l=new Date(bE.getTime()),wr=new Date(bE.getTime());b.setDate(b.getDate()+Math.max(0,tD-7));l.setDate(l.getDate()+tD);wr.setDate(wr.getDate()+tD+14);function f(d){return d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate();}document.getElementById('scenario').innerHTML='<div class="mini"><div class="val" style="color:#27ae60">'+f(b)+'</div><div class="lbl">楽観シナリオ</div></div><div class="mini"><div class="val" style="color:#f39c12">'+f(l)+'</div><div class="lbl">基本シナリオ（+'+tD+'日）</div></div><div class="mini"><div class="val" style="color:#e74c3c">'+f(wr)+'</div><div class="lbl">悲観シナリオ（+'+(tD+14)+'日）</div></div>';}
+function showTab(i){var ts=document.querySelectorAll('.tab'),ps=document.querySelectorAll('.panel');for(var j=0;j<ts.length;j++){ts[j].className=j===i?'tab active':'tab';ps[j].className=j===i?'panel active':'panel';}}
+for(var i=0;i<3;i++)addRow();
+</script>
+</body>
+</html>

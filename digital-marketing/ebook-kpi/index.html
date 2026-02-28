@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eBookコンテンツ設計＆KPIマトリクス - kusasyu tools</title>
+<meta name="description" content="BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,eBookコンテンツ設計＆KPIマトリクス">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ebook-kpi/">
+<meta property="og:title" content="eBookコンテンツ設計＆KPIマトリクス - kusasyu tools">
+<meta property="og:description" content="BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ebook-kpi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eBookコンテンツ設計＆KPIマトリクス - kusasyu tools">
+<meta name="twitter:description" content="BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "eBookコンテンツ設計＆KPIマトリクス",
+  "description": "BtoBマーケティング担当者がテキスト原稿を入力するだけで、スクロール連動アニメーション・章内クイズ・問い合わせCTA・読了率トラッキングを備えたインタラクティブなWeb eBookをその場で生成できるHTMLツール。外注1本30〜100万円のeBook制作を、ブラウザ上で無料・即時に実現する。MIL（5.8",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ebook-kpi/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-27"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>eBookコンテンツ設計＆KPIマトリクス</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>eBookコンテンツ設計＆KPIマトリクス</h1>
+  <p class="project-name">BtoB eBookファクトリー — テキスト入稿→インタラクティブWebブック即時生成ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>パターンID</th><th>業種</th><th>ファネル段階</th><th>章番号</th><th>推奨章タイトル例</th><th>本文推奨文字数</th><th>CTAコピー例</th><th>GA4イベント名</th><th>chapter_reach率目安(%)</th><th>cta_click率目安(%)</th><th>KPI根拠注記</th></tr></thead><tbody><tr><td>P1-1</td><td>SaaS</td><td>認知</td><td>1</td><td>なぜ今○○業務のDXが求められるのか</td><td>1200</td><td>無料ガイドをもっと見る</td><td>ebook_chapter_reach</td><td>100</td><td>2.5</td><td>初章は全読者が到達。CTA率はHubSpot社2024年BtoBベンチマーク準拠</td></tr><tr><td>P1-2</td><td>SaaS</td><td>認知</td><td>2</td><td>業界データで見る市場トレンド2026</td><td>1000</td><td>最新レポートを受け取る</td><td>ebook_chapter_reach</td><td>72</td><td>3.0</td><td>認知段階の平均離脱率28%（Demand Gen Report 2024）</td></tr><tr><td>P1-3</td><td>SaaS</td><td>認知</td><td>3</td><td>【クイズ】あなたの業務課題タイプ診断</td><td>600</td><td>診断結果を詳しく見る</td><td>ebook_quiz_submit</td><td>58</td><td>5.8</td><td>クイズ章はエンゲージメント率が通常CTAの約2倍（MIL社事例）</td></tr><tr><td>P1-4</td><td>SaaS</td><td>認知</td><td>4</td><td>課題解決の第一歩チェックリスト</td><td>800</td><td>チェックリストPDFを無料ダウンロード</td><td>ebook_cta_click</td><td>45</td><td>4.2</td><td>読了率45%は認知eBook平均値。CTA率はContent Marketing Institute 2024参考</td></tr><tr><td>P2-1</td><td>SaaS</td><td>検討</td><td>1</td><td>○○ツール導入で変わる3つの業務フロー</td><td>1200</td><td>導入事例集を請求する</td><td>ebook_chapter_reach</td><td>100</td><td>3.2</td><td>検討段階は課題認識済みのため初章CTA率が認知比+0.7pt高い傾向</td></tr><tr><td>P2-2</td><td>SaaS</td><td>検討</td><td>2</td><td>導入企業A社の成果レポート：工数40%削減</td><td>1000</td><td>同業種の事例をもっと見る</td><td>ebook_chapter_reach</td><td>68</td><td>4.5</td><td>事例章はCTA率最高。SaaS検討層の事例ニーズはForrester 2024調査で87%</td></tr><tr><td>P2-3</td><td>SaaS</td><td>検討</td><td>3</td><td>【クイズ】自社に必要な機能を3問で特定</td><td>600</td><td>あなた専用の機能比較表を受け取る</td><td>ebook_quiz_submit</td><td>55</td><td>7.2</td><td>検討層のクイズCTAは認知層比+1.4pt。パーソナライズ訴求が有効</td></tr><tr><td>P2-4</td><td>SaaS</td><td>検討</td><td>4</td><td>ROI試算テンプレートの使い方</td><td>800</td><td>ROI試算シートをダウンロード</td><td>ebook_cta_click</td><td>42</td><td>5.5</td><td>実用テンプレート提供時のCV率は通常CTAの1.6倍（Gartner 2024）</td></tr><tr><td>P3-1</td><td>SaaS</td><td>比較</td><td>1</td><td>○○ツール主要5製品の機能比較総覧</td><td>1400</td><td>比較表の最新版をダウンロード</td><td>ebook_chapter_reach</td><td>100</td><td>4.8</td><td>比較段階は購買意欲が高くCTA率が認知比+2.3pt</td></tr><tr><td>P3-2</td><td>SaaS</td><td>比較</td><td>2</td><td>選定で失敗しないための評価シート</td><td>1000</td><td>評価シートExcelを無料入手</td><td>ebook_chapter_reach</td><td>74</td><td>6.0</td><td>評価ツール提供はリード獲得率最高。SiriusDecisions調査準拠</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `パターンID,業種,ファネル段階,章番号,推奨章タイトル例,本文推奨文字数,CTAコピー例,GA4イベント名,chapter_reach率目安(%),cta_click率目安(%),KPI根拠注記
+P1-1,SaaS,認知,1,なぜ今○○業務のDXが求められるのか,1200,無料ガイドをもっと見る,ebook_chapter_reach,100,2.5,初章は全読者が到達。CTA率はHubSpot社2024年BtoBベンチマーク準拠
+P1-2,SaaS,認知,2,業界データで見る市場トレンド2026,1000,最新レポートを受け取る,ebook_chapter_reach,72,3.0,認知段階の平均離脱率28%（Demand Gen Report 2024）
+P1-3,SaaS,認知,3,【クイズ】あなたの業務課題タイプ診断,600,診断結果を詳しく見る,ebook_quiz_submit,58,5.8,クイズ章はエンゲージメント率が通常CTAの約2倍（MIL社事例）
+P1-4,SaaS,認知,4,課題解決の第一歩チェックリスト,800,チェックリストPDFを無料ダウンロード,ebook_cta_click,45,4.2,読了率45%は認知eBook平均値。CTA率はContent Marketing Institute 2024参考
+P2-1,SaaS,検討,1,○○ツール導入で変わる3つの業務フロー,1200,導入事例集を請求する,ebook_chapter_reach,100,3.2,検討段階は課題認識済みのため初章CTA率が認知比+0.7pt高い傾向
+P2-2,SaaS,検討,2,導入企業A社の成果レポート：工数40%削減,1000,同業種の事例をもっと見る,ebook_chapter_reach,68,4.5,事例章はCTA率最高。SaaS検討層の事例ニーズはForrester 2024調査で87%
+P2-3,SaaS,検討,3,【クイズ】自社に必要な機能を3問で特定,600,あなた専用の機能比較表を受け取る,ebook_quiz_submit,55,7.2,検討層のクイズCTAは認知層比+1.4pt。パーソナライズ訴求が有効
+P2-4,SaaS,検討,4,ROI試算テンプレートの使い方,800,ROI試算シートをダウンロード,ebook_cta_click,42,5.5,実用テンプレート提供時のCV率は通常CTAの1.6倍（Gartner 2024）
+P3-1,SaaS,比較,1,○○ツール主要5製品の機能比較総覧,1400,比較表の最新版をダウンロード,ebook_chapter_reach,100,4.8,比較段階は購買意欲が高くCTA率が認知比+2.3pt
+P3-2,SaaS,比較,2,選定で失敗しないための評価シート,1000,評価シートExcelを無料入手,ebook_chapter_reach,74,6.0,評価ツール提供はリード獲得率最高。SiriusDecisions調査準拠
+P3-3,SaaS,比較,3,【クイズ】あなたに最適な製品タイプは？,600,診断結果＋おすすめプランを見る,ebook_quiz_submit,62,8.5,比較層クイズは商談化率が通常の2.1倍（TRENDEMON 2024事例）
+P3-4,SaaS,比較,4,導入ロードマップと無料トライアルのご案内,800,14日間無料トライアルを始める,ebook_cta_click,50,7.0,比較層読了率50%は業界上位。トライアルCTA率はSaaS平均6-8%
+P4-1,ITベンダー,認知,1,DX推進を阻む3つの壁とその正体,1200,DX実態調査レポートを読む,ebook_chapter_reach,100,2.0,ITベンダーの認知eBookはSaaS比でCTA率-0.5pt。情報収集段階の傾向
+P4-2,ITベンダー,認知,2,2026年版IT投資優先度ランキング,1000,IT投資計画テンプレートを入手,ebook_chapter_reach,65,2.8,ITベンダー対象の認知離脱率35%はSaaS比やや高い（IDC Japan調査）
+P4-3,ITベンダー,認知,3,【クイズ】あなたの組織のDX成熟度は？,600,成熟度診断の詳細レポートを受け取る,ebook_quiz_submit,50,5.0,診断型クイズのリード獲得率は通常フォームの1.8倍
+P4-4,ITベンダー,認知,4,まず着手すべきスモールDXの進め方,800,無料オンラインセミナーに申し込む,ebook_cta_click,38,3.5,認知段階からセミナー誘導のCV率3-4%はIT業界平均値
+P5-1,ITベンダー,検討,1,システム刷新で得られるROIの全体像,1200,ROI算出ガイドを無料で入手,ebook_chapter_reach,100,3.0,検討層は費用対効果への関心が高くROI系CTA率+1.0pt
+P5-2,ITベンダー,検討,2,B社事例：基幹システム刷新で売上120%に,1000,同規模企業の事例を請求する,ebook_chapter_reach,62,4.0,事例章のCTA率は検討層で最高値。規模感の一致が重要
+P5-3,ITベンダー,検討,3,【クイズ】自社インフラの課題を3問で可視化,600,課題分析レポートを無料で受け取る,ebook_quiz_submit,48,6.5,IT検討層のクイズ完了率はSaaS比-7pt。設問の専門度を下げると改善
+P5-4,ITベンダー,検討,4,RFP作成に使える要件定義チェックリスト,800,RFPテンプレートをダウンロード,ebook_cta_click,38,5.0,実務テンプレートのDL率はホワイトペーパー比1.4倍（ITR調査）
+P6-1,ITベンダー,比較,1,主要ベンダー4社のアーキテクチャ比較,1400,比較資料のフル版を入手,ebook_chapter_reach,100,4.5,比較層の初章CTA率は検討比+1.5pt。購買プロセス後期の特徴
+P6-2,ITベンダー,比較,2,TCO比較：5年間の総保有コスト試算,1000,TCO試算シートをダウンロード,ebook_chapter_reach,70,5.5,コスト比較章は意思決定者の閲読率が高い（Gartner 2024）
+P6-3,ITベンダー,比較,3,【クイズ】御社に最適なアーキテクチャ診断,600,診断結果＋個別相談を申し込む,ebook_quiz_submit,58,7.5,比較層クイズからの商談化率はフォーム経由の1.9倍
+P6-4,ITベンダー,比較,4,導入判断を後押しするPoC実施ガイド,800,無料PoC相談を予約する,ebook_cta_click,46,6.2,PoC提案型CTAはIT比較層で最も商談転換率が高い
+P7-1,コンサル,認知,1,経営課題の見える化：今注目すべき3領域,1200,経営課題マップを無料で入手,ebook_chapter_reach,100,2.2,コンサル認知eBookのCTA率はSaaS・IT比で中間値
+P7-2,コンサル,認知,2,データで読む業界再編と成長機会,1000,業界分析サマリーを受け取る,ebook_chapter_reach,68,3.0,コンサル対象の認知離脱率32%。専門性の高い内容は保持率が高い
+P7-3,コンサル,認知,3,【クイズ】あなたの会社の競争優位性診断,600,診断結果の詳細分析を見る,ebook_quiz_submit,54,5.5,経営層向け診断クイズの完了率はIT層比+4pt
+P7-4,コンサル,認知,4,最初の一手：90日アクションプラン策定法,800,90日プランのテンプレートを入手,ebook_cta_click,42,3.8,行動計画テンプレートのDL率は一般ホワイトペーパー比1.3倍
+P8-1,コンサル,検討,1,コンサルティング活用で成果を出す企業の共通点,1200,成功パターン集を請求する,ebook_chapter_reach,100,3.5,検討層は外部支援への関心が顕在化。SaaS比+0.3pt
+P8-2,コンサル,検討,2,C社事例：組織変革プロジェクトの全工程,1000,同業種の変革事例を見る,ebook_chapter_reach,66,4.8,コンサル検討層の事例章CTA率は全業種中最高水準
+P8-3,コンサル,検討,3,【クイズ】あなたの組織に必要な支援タイプは？,600,最適な支援プランの提案を受け取る,ebook_quiz_submit,52,7.0,パーソナライズ提案型CTAは検討層で最も効果的
+P8-4,コンサル,検討,4,プロジェクト設計書テンプレートと予算策定ガイド,800,設計書テンプレートをダウンロード,ebook_cta_click,40,5.2,予算策定ガイド付きはDL率が単独テンプレート比1.5倍
+P9-1,コンサル,比較,1,コンサルファーム選定：評価すべき7つの軸,1400,評価マトリクスExcelを入手,ebook_chapter_reach,100,5.0,比較段階の初章CTA率はコンサル業種で最高値
+P9-2,コンサル,比較,2,費用体系の読み方と隠れコストの見抜き方,1000,費用比較チェックリストをDL,ebook_chapter_reach,72,5.8,費用透明性への関心が高く離脱率が低い（比較層特有の傾向）
+P9-3,コンサル,比較,3,【クイズ】貴社の課題に合うアプローチ診断,600,診断結果＋無料相談30分を予約,ebook_quiz_submit,60,8.0,無料相談付きCTAは通常比+2.5pt。比較層の意思決定促進に有効
+P9-4,コンサル,比較,4,パートナー選定後の成功を左右するキックオフ設計,800,キックオフ設計チェックリストを入手,ebook_cta_click,48,6.5,比較層読了率48%はコンサル業種平均を上回る`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_eBookコンテンツ設計＆KPIマトリクス.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

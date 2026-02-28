@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropMatch_自然言語物件マッチングツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pri:#1a56db;--pri2:#1e40af;--bg:#f0f4ff;--card:#fff;--text:#1e293b;--sub:#64748b;--green:#059669;--orange:#d97706;--red:#dc2626;--border:#e2e8f0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,var(--pri),#7c3aed);color:#fff;padding:20px;text-align:center;border-radius:12px;margin-bottom:20px}
+header h1{font-size:1.5em}
+header p{font-size:.85em;opacity:.85;margin-top:4px}
+.card{background:var(--card);border-radius:10px;padding:16px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;color:var(--pri);margin-bottom:10px;border-bottom:2px solid var(--bg);padding-bottom:6px}
+textarea{width:100%;border:2px solid var(--border);border-radius:8px;padding:12px;font-size:1em;resize:vertical;min-height:80px;font-family:inherit}
+textarea:focus{outline:none;border-color:var(--pri)}
+.btn{display:inline-block;padding:10px 24px;border:none;border-radius:8px;font-size:1em;cursor:pointer;font-weight:600;transition:.2s}
+.btn-pri{background:var(--pri);color:#fff}.btn-pri:hover{background:var(--pri2)}
+.btn-sec{background:#f1f5f9;color:var(--text);border:1px solid var(--border)}.btn-sec:hover{background:#e2e8f0}
+.btn-sm{padding:6px 14px;font-size:.85em}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.8em;font-weight:500}
+.tag-h{background:#dbeafe;color:#1e40af}
+.tag-s{background:#fae8ff;color:#7c3aed}
+.score-bar{height:8px;border-radius:4px;background:#e2e8f0;overflow:hidden;margin:6px 0}
+.score-fill{height:100%;border-radius:4px;transition:width .5s}
+.result-item{border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;position:relative}
+.result-item:hover{border-color:var(--pri)}
+.score-badge{position:absolute;top:10px;right:10px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1em;color:#fff}
+.r-name{font-weight:700;font-size:1.05em;margin-bottom:2px}
+.r-info{font-size:.82em;color:var(--sub);padding-right:56px}
+.r-reason{font-size:.85em;margin-top:6px;padding:8px;background:#f8fafc;border-radius:6px;border-left:3px solid var(--pri)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+label.file-label{display:inline-block;padding:8px 16px;background:#f1f5f9;border:2px dashed var(--border);border-radius:8px;cursor:pointer;font-size:.85em}
+label.file-label:hover{border-color:var(--pri)}
+input[type=file]{display:none}
+.status{font-size:.82em;color:var(--green);margin-top:6px}
+.examples{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ex-btn{padding:4px 10px;border-radius:16px;border:1px solid var(--border);background:#fff;cursor:pointer;font-size:.78em;transition:.2s}
+.ex-btn:hover{background:var(--pri);color:#fff;border-color:var(--pri)}
+@media print{body{background:#fff}header,.actions,.card:has(textarea),.card:has(.file-label),.examples,.btn{display:none}.result-item{break-inside:avoid;border:1px solid #ccc}.wrap{max-width:100%;padding:0}}
+@media(max-width:600px){.grid2{grid-template-columns:1fr}.wrap{padding:10px}header h1{font-size:1.2em}}
+</style>
+<meta name="description" content="不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,PropMatch_自然言語物件マッチングツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-4/">
+<meta property="og:title" content="PropMatch_自然言語物件マッチングツール - kusasyu tools">
+<meta property="og:description" content="不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PropMatch_自然言語物件マッチングツール - kusasyu tools">
+<meta name="twitter:description" content="不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PropMatch_自然言語物件マッチングツール",
+  "description": "不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PropMatch</h1>
+<p>自然言語AI物件マッチングツール &mdash; SynLab PropTech</p>
+</header>
+<div class="card">
+<h2>顧客の要望を入力</h2>
+<textarea id="query" placeholder="例：築浅で日当たりが良く猫が飼えて渋谷まで30分以内の1LDK、家賃15万円くらい"></textarea>
+<div class="examples">
+<button class="ex-btn" onclick="setEx(this)">築浅で日当たり良い猫可1LDK 渋谷30分以内 15万</button>
+<button class="ex-btn" onclick="setEx(this)">昭和レトロな雰囲気の1LDK 家賃10万以下</button>
+<button class="ex-btn" onclick="setEx(this)">こじんまりした落ち着く部屋 駅近 8万以下</button>
+<button class="ex-btn" onclick="setEx(this)">開放的で抜け感のある広々2LDK ファミリー向け</button>
+</div>
+<div class="actions">
+<button class="btn btn-pri" onclick="analyze()">マッチング実行</button>
+<button class="btn btn-sec" onclick="clearAll()">クリア</button>
+</div>
+</div>
+<div class="card">
+<h2>CSV物件データ読込（オプション）</h2>
+<p style="font-size:.82em;color:var(--sub);margin-bottom:8px">列順: 物件名,エリア,最寄駅,徒歩分,家賃万円,間取り,面積,築年数,階数,向き,ペット可(1/0),タグ</p>
+<label class="file-label">CSVファイルを選択<input type="file" id="csvFile" accept=".csv" onchange="loadCSV(this)"></label>
+<div id="csvStatus"></div>
+</div>
+<div id="parsed"></div>
+<div id="results"></div>
+</div>
+<script>
+var DICT=[
+{w:["こじんまり","コンパクト"],hard:{areaMax:25},soft:["コンパクト","低層"],desc:"25㎡以下・低層"},
+{w:["抜け感","ぬけ感"],hard:{dir:"南",floorMin:5},soft:["開放感","眺望"],desc:"南向・高層・バルコニー広"},
+{w:["昭和レトロ","レトロ","昭和"],hard:{ageMin:30},soft:["レトロ","和室","味わい"],desc:"築30年以上・和室"},
+{w:["築浅","新築","新しい"],hard:{ageMax:5},soft:["築浅","きれい"],desc:"築5年以内"},
+{w:["日当たり","陽当たり","日当り","明るい"],hard:{dir:"南"},soft:["日当たり良好"],desc:"南向き"},
+{w:["ペット可","ペット","猫","犬","猫可","犬可","猫飼","犬飼"],hard:{pet:1},soft:["ペット可"],desc:"ペット相談可"},
+{w:["静か","閑静","しずか"],hard:{},soft:["閑静","住宅街"],desc:"閑静な住宅街"},
+{w:["おしゃれ","オシャレ","スタイリッシュ"],hard:{},soft:["デザイナーズ","おしゃれ"],desc:"デザイナーズ"},
+{w:["広々","ひろびろ","広い","ゆったり"],hard:{areaMin:50},soft:["広々","開放感"],desc:"50㎡以上"},
+{w:["駅近","えきちか","駅前"],hard:{walkMax:5},soft:["駅近"],desc:"徒歩5分以内"},
+{w:["リノベ","リフォーム","改装"],hard:{},soft:["リノベーション","きれい"],desc:"リノベ済"},
+{w:["開放的","開放感","見晴"],hard:{dir:"南",floorMin:5},soft:["開放感","眺望"],desc:"高層・南向"},
+{w:["落ち着","おちつ","穏やか"],hard:{},soft:["閑静","落ち着き","緑"],desc:"落ち着く雰囲気"},
+{w:["モダン","現代的"],hard:{ageMax:10},soft:["モダン","デザイナーズ"],desc:"築浅モダン"},
+{w:["緑","自然","みどり","公園"],hard:{},soft:["緑","公園近"],desc:"自然環境"},
+{w:["安い","格安","コスパ","リーズナブル"],hard:{rentMax:8},soft:["お手頃"],desc:"家賃8万以下"},
+{w:["一人暮らし","ひとり暮らし","単身"],hard:{},soft:["単身向け"],desc:"1K-1DK想定"},
+{w:["カップル","二人暮らし","ふたり","同棲"],hard:{},soft:["カップル向け"],desc:"1LDK-2DK想定"},
+{w:["ファミリー","家族","子供","子ども"],hard:{},soft:["ファミリー向け","広々"],desc:"2LDK以上想定"},
+{w:["セキュリティ","オートロック","防犯","安全"],hard:{},soft:["オートロック","セキュリティ"],desc:"防犯設備充実"}
+];
+var PROPS=[
+{name:"グランメゾン恵比寿",area:"渋谷区恵比寿",station:"恵比寿",walk:3,rent:18,layout:"1LDK",sqm:42,age:2,floor:10,dir:"南",pet:1,tags:["デザイナーズ","オートロック","築浅","眺望","おしゃれ"]},
+{name:"コーポ昭和荘",area:"杉並区高円寺",station:"高円寺",walk:7,rent:6.5,layout:"1DK",sqm:28,age:45,floor:2,dir:"東",pet:0,tags:["レトロ","和室","味わい","商店街","落ち着き"]},
+{name:"プレシス武蔵小杉",area:"川崎市中原区",station:"武蔵小杉",walk:5,rent:14,layout:"2LDK",sqm:58,age:4,floor:15,dir:"南",pet:1,tags:["ファミリー向け","眺望","開放感","築浅","オートロック"]},
+{name:"ヴィラ・フォレスタ世田谷",area:"世田谷区経堂",station:"経堂",walk:10,rent:11,layout:"1LDK",sqm:40,age:8,floor:3,dir:"南",pet:1,tags:["緑","公園近","閑静","落ち着き","ペット可"]},
+{name:"ルミエール中野",area:"中野区中野",station:"中野",walk:4,rent:9.5,layout:"1K",sqm:22,age:12,floor:6,dir:"西",pet:0,tags:["駅近","コンパクト","単身向け","お手頃"]},
+{name:"リノアート下北沢",area:"世田谷区北沢",station:"下北沢",walk:6,rent:12,layout:"1LDK",sqm:38,age:32,floor:3,dir:"南",pet:1,tags:["リノベーション","おしゃれ","レトロ","デザイナーズ","カップル向け"]},
+{name:"パークヒルズ三鷹",area:"三鷹市下連雀",station:"三鷹",walk:8,rent:10,layout:"2LDK",sqm:52,age:15,floor:4,dir:"南",pet:0,tags:["ファミリー向け","広々","公園近","緑","閑静"]},
+{name:"ステラコート目黒",area:"目黒区目黒",station:"目黒",walk:2,rent:16,layout:"1LDK",sqm:36,age:1,floor:12,dir:"南",pet:0,tags:["築浅","駅近","モダン","オートロック","眺望"]},
+{name:"メゾン・ド・プティ荻窪",area:"杉並区荻窪",station:"荻窪",walk:5,rent:7.5,layout:"1K",sqm:20,age:20,floor:2,dir:"東",pet:1,tags:["コンパクト","低層","落ち着き","ペット可","お手頃"]},
+{name:"アーバンテラス品川",area:"品川区大井",station:"大井町",walk:3,rent:13.5,layout:"1LDK",sqm:45,age:6,floor:8,dir:"南",pet:1,tags:["モダン","きれい","開放感","オートロック","カップル向け"]}
+];
+var customProps=[];
+function setEx(el){document.getElementById("query").value=el.textContent}
+function clearAll(){document.getElementById("query").value="";document.getElementById("parsed").innerHTML="";document.getElementById("results").innerHTML=""}
+function loadCSV(input){
+var f=input.files[0];if(!f)return;
+var r=new FileReader();
+r.onload=function(e){
+var lines=e.target.result.split("\n").filter(function(l){return l.trim()});
+customProps=[];
+for(var i=0;i<lines.length;i++){
+var c=lines[i].split(",");if(c.length<10)continue;
+if(i===0&&c[0].indexOf("物件")>=0)continue;
+customProps.push({name:c[0]||"",area:c[1]||"",station:c[2]||"",walk:+c[3]||0,rent:+c[4]||0,layout:c[5]||"",sqm:+c[6]||0,age:+c[7]||0,floor:+c[8]||0,dir:c[9]||"",pet:+c[10]||0,tags:(c[11]||"").split(/[,\u3001]/).map(function(t){return t.trim()}).filter(Boolean)});
+}
+document.getElementById("csvStatus").innerHTML='<div class="status">'+customProps.length+'件の物件を読み込みました</div>';
+};r.readAsText(f)
+}
+function parse(q){
+var hard={},softTags=[],reasons=[];
+DICT.forEach(function(d){
+if(d.w.some(function(w){return q.indexOf(w)>=0})){
+Object.keys(d.hard).forEach(function(k){
+var v=d.hard[k];
+if(k==="pet")hard.pet=v;
+else if(k==="dir")hard.dir=v;
+else if(k.indexOf("Max")>0)hard[k]=hard[k]?Math.min(hard[k],v):v;
+else if(k.indexOf("Min")>0)hard[k]=hard[k]?Math.max(hard[k],v):v;
+else hard[k]=v;
+});
+d.soft.forEach(function(s){if(softTags.indexOf(s)<0)softTags.push(s)});
+reasons.push(d.desc);
+}
+});
+var m;
+if(m=q.match(/(\d+)\s*万\s*(以下|まで|以内|くらい|程度|前後)?/)){
+var v=parseInt(m[1]);
+if(m[2]&&(m[2]==="以下"||m[2]==="まで"||m[2]==="以内"))hard.rentMax=v;
+else{hard.rentMin=Math.round(v*0.8*10)/10;hard.rentMax=Math.round(v*1.2*10)/10}
+}
+if(m=q.match(/(1K|1DK|1LDK|2K|2DK|2LDK|3LDK|ワンルーム)/i))hard.layout=m[1];
+if(m=q.match(/(渋谷|新宿|池袋|東京|品川|目黒|恵比寿|中野|高円寺|三鷹|武蔵小杉|下北沢|荻窪|大井町|経堂)/))hard.station=m[1];
+if(m=q.match(/徒歩\s*(\d+)\s*分/))hard.walkMax=parseInt(m[1]);
+return{hard:hard,softTags:softTags,reasons:reasons}
+}
+function scoreItem(prop,cond){
+var s=50,pen=0,bonus=0,good=[],bad=[];
+var h=cond.hard;
+if(h.rentMax&&prop.rent>h.rentMax){pen+=30;bad.push("家賃超過("+prop.rent+"万>"+h.rentMax+"万)")}
+else if(h.rentMax){bonus+=10;good.push("予算内("+prop.rent+"万円)")}
+if(h.rentMin&&prop.rent<h.rentMin)pen+=5;
+if(h.ageMax&&prop.age>h.ageMax){pen+=15;bad.push("築年数超過(築"+prop.age+"年)")}
+else if(h.ageMax!==undefined){bonus+=8;good.push("築"+prop.age+"年(条件内)")}
+if(h.ageMin&&prop.age<h.ageMin){pen+=15;bad.push("築年数不足")}
+else if(h.ageMin!==undefined){bonus+=8;good.push("築"+prop.age+"年")}
+if(h.areaMax&&prop.sqm>h.areaMax)pen+=10;
+else if(h.areaMax)bonus+=5;
+if(h.areaMin&&prop.sqm<h.areaMin){pen+=10;bad.push("面積不足("+prop.sqm+"㎡)")}
+else if(h.areaMin){bonus+=5;good.push("広さ"+prop.sqm+"㎡")}
+if(h.walkMax&&prop.walk>h.walkMax){pen+=15;bad.push("徒歩"+prop.walk+"分(上限"+h.walkMax+"分)")}
+else if(h.walkMax){bonus+=8;good.push("徒歩"+prop.walk+"分")}
+if(h.floorMin&&prop.floor<h.floorMin)pen+=8;
+else if(h.floorMin)bonus+=5;
+if(h.dir&&prop.dir!==h.dir)pen+=8;
+else if(h.dir){bonus+=6;good.push(prop.dir+"向き")}
+if(h.pet===1&&!prop.pet){pen+=25;bad.push("ペット不可")}
+else if(h.pet===1&&prop.pet){bonus+=10;good.push("ペット可")}
+if(h.layout){
+if(prop.layout.toUpperCase()===h.layout.toUpperCase()){bonus+=10;good.push(prop.layout)}
+else pen+=10;
+}
+if(h.station){
+if(prop.station.indexOf(h.station)>=0||prop.area.indexOf(h.station)>=0){bonus+=12;good.push(h.station+"エリア")}
+else pen+=5;
+}
+var tagMatch=0;
+cond.softTags.forEach(function(t){
+if(prop.tags.some(function(pt){return pt.indexOf(t)>=0||t.indexOf(pt)>=0})){tagMatch++;good.push(t)}
+});
+bonus+=tagMatch*6;
+var total=Math.max(0,Math.min(100,s-pen+bonus));
+return{score:total,good:good,bad:bad}
+}
+function analyze(){
+var q=document.getElementById("query").value.trim();
+if(!q){alert("要望を入力してください");return}
+var cond=parse(q);
+var ph='<div class="card"><h2>解析結果</h2><div class="grid2"><div><strong>ハード条件</strong><div class="tags">';
+var hl=[];
+if(cond.hard.rentMax)hl.push("家賃~"+cond.hard.rentMax+"万円");
+if(cond.hard.rentMin)hl.push("家賃"+cond.hard.rentMin+"万~");
+if(cond.hard.layout)hl.push(cond.hard.layout);
+if(cond.hard.ageMax!==undefined)hl.push("築"+cond.hard.ageMax+"年以内");
+if(cond.hard.ageMin)hl.push("築"+cond.hard.ageMin+"年以上");
+if(cond.hard.walkMax)hl.push("徒歩"+cond.hard.walkMax+"分以内");
+if(cond.hard.dir)hl.push(cond.hard.dir+"向き");
+if(cond.hard.pet)hl.push("ペット可");
+if(cond.hard.areaMin)hl.push(cond.hard.areaMin+"㎡以上");
+if(cond.hard.areaMax)hl.push(cond.hard.areaMax+"㎡以下");
+if(cond.hard.station)hl.push(cond.hard.station+"エリア");
+if(cond.hard.floorMin)hl.push(cond.hard.floorMin+"階以上");
+if(!hl.length)hl.push("指定なし");
+hl.forEach(function(t){ph+='<span class="tag tag-h">'+t+'</span>'});
+ph+='</div></div><div><strong>ソフト条件（雰囲気・ライフスタイル）</strong><div class="tags">';
+if(!cond.softTags.length)ph+='<span class="tag tag-s">指定なし</span>';
+cond.softTags.forEach(function(t){ph+='<span class="tag tag-s">'+t+'</span>'});
+ph+='</div></div></div></div>';
+document.getElementById("parsed").innerHTML=ph;
+var allProps=PROPS.concat(customProps);
+var scored=allProps.map(function(p){var r=scoreItem(p,cond);return{p:p,score:r.score,good:r.good,bad:r.bad}}).sort(function(a,b){return b.score-a.score});
+var rh='<div class="card"><h2>マッチング結果（'+scored.length+'件）</h2><div class="actions" style="margin-bottom:12px"><button class="btn btn-sec btn-sm" onclick="window.print()">提案シート印刷</button></div>';
+scored.forEach(function(item,i){
+var c=item.score>=70?"var(--green)":item.score>=40?"var(--orange)":"var(--red)";
+var p=item.p;
+rh+='<div class="result-item"><div class="score-badge" style="background:'+c+'">'+item.score+'</div>';
+rh+='<div class="r-name">'+(i+1)+'. '+p.name+'</div>';
+rh+='<div class="r-info">'+p.area+' / '+p.station+'駅 徒歩'+p.walk+'分 / '+p.rent+'万円 / '+p.layout+' '+p.sqm+'㎡ / 築'+p.age+'年 / '+p.floor+'階 '+p.dir+'向'+(p.pet?' / ペット可':'')+'</div>';
+rh+='<div class="score-bar"><div class="score-fill" style="width:'+item.score+'%;background:'+c+'"></div></div>';
+if(item.good.length)rh+='<div class="r-reason"><strong>推薦理由：</strong>'+item.good.join(" / ")+'</div>';
+if(item.bad.length)rh+='<div class="r-reason" style="border-left-color:var(--orange)"><strong>注意点：</strong>'+item.bad.join(" / ")+'</div>';
+rh+='</div>';
+});
+rh+='<div style="text-align:center;margin-top:16px;font-size:.75em;color:var(--sub)">PropMatch by SynLab PropTech &mdash; '+new Date().toLocaleDateString("ja-JP")+'</div></div>';
+document.getElementById("results").innerHTML=rh;
+}
+</script>
+</body>
+</html>

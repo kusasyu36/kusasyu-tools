@@ -1,63 +1,254 @@
-PropDue 不動産DD チェック項目マスター＆進捗管理シート,,,,,,,,
-※本シートの軸別集計値（完了率・問題率）をPropDue 3軸スコアリング＆レポート（HTML）の補足入力欄に転記してください,,,,,,,,
-,,,,,,,,
-【物件情報】,,,,,,,,
-物件名称,サンライズタワー新宿302号室,,,,,,,
-所在地,東京都新宿区西新宿三丁目12番5号,,,,,,,
-用途・種別,区分所有マンション（投資用1R / 専有面積25.3㎡）,,,,,,,
-DD開始日,2026-02-20,,DD担当（主）,田中一郎,,,,
-,,,,,,,,
-【軸別集計 → PropDue HTMLスコアリングツール転記用】,,,,,,,,
-集計軸,全項目数,完了,問題あり,未着手,確認中,完了率,問題率,
-法的リスク,15,"=COUNTIF(F19:F33,""完了"")","=COUNTIF(F19:F33,""問題あり"")","=COUNTIF(F19:F33,""未着手"")","=COUNTIF(F19:F33,""確認中"")",=C12/B12,=D12/B12,
-物理的リスク,15,"=COUNTIF(F34:F48,""完了"")","=COUNTIF(F34:F48,""問題あり"")","=COUNTIF(F34:F48,""未着手"")","=COUNTIF(F34:F48,""確認中"")",=C13/B13,=D13/B13,
-財務リスク,15,"=COUNTIF(F49:F63,""完了"")","=COUNTIF(F49:F63,""問題あり"")","=COUNTIF(F49:F63,""未着手"")","=COUNTIF(F49:F63,""確認中"")",=C14/B14,=D14/B14,
-,,,,,,,,
-※条件付き書式：F列（確認状況）で「問題あり」のセルを赤色ハイライトに設定してください（Excel: ホーム→条件付き書式→セルの強調表示ルール→指定の文字列→「問題あり」→赤）,,,,,,,,
-,,,,,,,,
-No.,軸,カテゴリ,チェック項目,チェック内容・確認ポイント,確認状況,担当者,備考,証跡ファイル名
-1,法的,登記簿,所有権・持分確認,登記簿甲区で現所有者・持分割合・取得原因を確認,完了,田中,単独所有確認済,touki_kouku_302.pdf
-2,法的,登記簿,抵当権・担保権設定状況,登記簿乙区で抵当権設定額・債権者・順位番号を確認,完了,田中,残債1200万円 三井住友銀行,touki_otsuku_302.pdf
-3,法的,登記簿,差押え・仮処分の有無,差押え・仮処分・仮登記・買戻特約の有無を確認,完了,田中,該当なし,touki_otsuku_302.pdf
-4,法的,登記簿,地上権・賃借権の設定,敷地権の種類と割合を確認（区分所有の場合は敷地利用権）,完了,田中,敷地権割合 8532分の25,touki_kouku_302.pdf
-5,法的,登記簿,登記簿面積と実測の整合,登記簿面積と実測面積・パンフレット面積の一致を確認,確認中,田中,壁芯25.3㎡/内法23.8㎡ 管理規約と照合中,
-6,法的,重説,用途地域・地域地区,重説記載の用途地域が登記・都市計画図と一致するか確認,完了,佐藤,商業地域 確認一致,jusetsu_p3.pdf
-7,法的,重説,建ぺい率・容積率の適合,指定建ぺい率80%/容積率600%に対し既存建物が適合しているか,完了,佐藤,適合（実績 建ぺい率72%・容積率580%）,jusetsu_p4.pdf
-8,法的,重説,接道義務（幅員・接道長）,前面道路の種別・幅員・接道長が建築基準法42条に適合するか,完了,佐藤,区道12m幅 接道18m 適合,jusetsu_p5.pdf
-9,法的,重説,都市計画道路・区画整理,都市計画道路・土地区画整理事業の区域内か確認,完了,佐藤,該当なし,jusetsu_p6.pdf
-10,法的,重説,契約不適合責任の条件,売主の契約不適合責任の期間・範囲・免責条件を確認,確認中,佐藤,引渡後2年 免責範囲の条件精査中,
-11,法的,法令制限,建築基準法の既存不適格,現行建築基準法に対する不適格事項の有無を確認,問題あり,田中,エレベーター遮煙基準に既存不適格あり,kenchiku_kakunin.pdf
-12,法的,法令制限,消防法の適合状況,消防設備点検報告書・防火管理者選任届出の確認,確認中,佐藤,直近報告書を管理組合に請求中,
-13,法的,法令制限,アスベスト・PCB規制,アスベスト使用調査報告書・PCB不使用証明の確認,完了,田中,2019年調査報告書で不使用確認済,asbestos_report.pdf
-14,法的,法令制限,景観条例・高度地区制限,高度地区制限・景観計画区域の該当有無を確認,完了,佐藤,第三種高度地区 適合,toshi_keikaku.pdf
-15,法的,法令制限,土壌汚染対策法の区域指定,土壌汚染対策法に基づく区域指定の有無を確認,完了,佐藤,指定区域外,dojo_osen_map.pdf
-16,物理,建物状態,構造躯体の劣化・損傷,RC造の躯体ひび割れ・鉄筋露出・中性化の進行状況,確認中,鈴木,築18年 管理組合の劣化診断報告を確認中,
-17,物理,建物状態,屋上・外壁の防水状態,屋上防水層の劣化・外壁タイルの浮き・シーリング劣化,完了,鈴木,2023年大規模修繕で全面改修済,shuzen_2023.pdf
-18,物理,建物状態,基礎・地盤沈下の有無,不同沈下の兆候（ドア開閉不良・床傾斜）を現地確認,完了,鈴木,異常なし 現地確認済,genchi_photo_0220.zip
-19,物理,建物状態,耐震基準への適合,新耐震基準（1981年6月以降着工）への適合を確認,完了,鈴木,2008年竣工 新耐震基準適合,kenchiku_kakunin.pdf
-20,物理,建物状態,修繕履歴と長期修繕計画,過去の修繕実績と今後30年間の長期修繕計画・費用を確認,問題あり,鈴木,長期修繕計画が2020年版のまま未更新,shuzen_keikaku_2020.pdf
-21,物理,立地環境,ハザードマップ区域種別,洪水・内水・高潮ハザードマップの区域判定を確認,問題あり,鈴木,洪水浸水想定区域0.5〜3.0mに該当,hazard_shinjuku.pdf
-22,物理,立地環境,液状化リスク判定,東京都液状化予測図による液状化可能性の判定,完了,鈴木,液状化の可能性が低い地域,ekijouka_map.pdf
-23,物理,立地環境,土砂災害警戒区域の該当,土砂災害警戒区域・特別警戒区域の該当有無を確認,完了,鈴木,該当なし,dosha_map.pdf
-24,物理,立地環境,浸水想定区域の該当,内水氾濫・下水道浸水シミュレーション結果を確認,確認中,鈴木,内水ハザードマップ入手待ち,
-25,物理,立地環境,嫌悪施設・周辺環境,半径500m以内の嫌悪施設・騒音・振動・臭気等を現地確認,完了,鈴木,該当施設なし,genchi_photo_0220.zip
-26,物理,設備,給排水管の状態・更新時期,専有部・共用部の給排水管の材質・経年・更新予定を確認,確認中,鈴木,管理組合にヒアリング予定,
-27,物理,設備,電気設備（受変電・幹線）,受変電設備・幹線容量・分電盤の状態を確認,未着手,,,
-28,物理,設備,エレベーター法定点検状況,法定点検報告書の確認・指摘事項・改修状況,確認中,鈴木,直近報告書を管理組合に請求中,
-29,物理,設備,空調設備の更新状況,共用部空調・専有部エアコンの機種・設置年・更新状況,完了,鈴木,専有部エアコン2022年交換済,setsubi_list.xlsx
-30,物理,設備,消防設備の法定点検,消防設備点検報告書の指摘事項・改修完了状況を確認,未着手,,,
-31,財務,収支,現行賃料と周辺相場比較,現行賃料月額9.2万円 vs 周辺相場8.5〜9.8万円,完了,田中,相場範囲内 適正水準,chintai_souba.xlsx
-32,財務,収支,空室率（過去3年推移）,過去3年の空室期間・空室率を確認,完了,田中,過去3年で空室1回（1.5ヶ月） 空室率4.2%,kuushitsu_data.xlsx
-33,財務,収支,管理費・修繕積立金残高,管理費12000円/月 修繕積立金15000円/月の妥当性と積立残高,問題あり,田中,修繕積立金が国交省ガイドライン比で不足（適正20000円〜）,kanrihi_meisai.pdf
-34,財務,収支,滞納状況（管理費・賃料）,管理費・修繕積立金・賃料の滞納有無を確認,完了,田中,滞納なし 管理組合発行の滞納なし証明取得,tainounashi_shomei.pdf
-35,財務,収支,NOI（営業純利益）算出,年間賃料収入110.4万円−経費32.4万円＝NOI 78万円,確認中,田中,経費精査中（固定資産税・火災保険料の確定待ち）,
-36,財務,市場比較,周辺取引事例との価格比較,売出価格2180万円 vs 周辺成約事例2050〜2300万円,完了,田中,価格帯は妥当な範囲,reins_data.xlsx
-37,財務,市場比較,路線価・公示地価との乖離,路線価ベース土地持分評価額との乖離率を算出,確認中,田中,路線価・持分按分額の算出作業中,
-38,財務,市場比較,賃料坪単価の市場ポジション,坪単価12000円/月 エリア平均11500円 やや上位,完了,田中,築年数考慮で適正範囲,chintai_souba.xlsx
-39,財務,市場比較,築年数別利回り比較,表面利回り5.1% エリア同築年帯平均4.8〜5.5%,完了,田中,中位 妥当な水準,rimawari_data.xlsx
-40,財務,市場比較,エリア供給動向（競合物件）,新宿区西新宿の新規供給・競合物件の動向を調査,確認中,田中,2027年竣工の大規模開発が近隣にあり調査中,
-41,財務,将来予測,大規模修繕費用の見積もり,次回大規模修繕（2038年予定）の一時金負担額を試算,確認中,田中,長期修繕計画の更新版を待って再試算予定,
-42,財務,将来予測,金利変動シナリオ分析,金利1%/2%/3%時のキャッシュフロー変動シミュレーション,未着手,,,
-43,財務,将来予測,人口動態・需要予測,新宿区の単身世帯数予測・賃貸需要トレンドを分析,未着手,,,
-44,財務,将来予測,再開発・インフラ計画の影響,西新宿エリアの再開発計画・リニア中央新幹線の波及効果,確認中,田中,品川駅リニア新駅の資産価値への影響を調査中,
-45,財務,将来予測,出口戦略（売却想定価格）,5年後・10年後の想定売却価格とIRR試算,未着手,,,
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産DD_3軸スコアリング＆レポート一体型ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Yu Gothic',sans-serif;background:#f5f6fa;color:#23272f;line-height:1.6;font-size:14px}
+.wrap{max-width:900px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.4em;padding:16px 0 4px;color:#1a237e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px #0001;padding:16px 18px;margin-bottom:14px}
+.card h2{font-size:1.05em;border-left:4px solid #1a237e;padding-left:8px;margin-bottom:10px;color:#1a237e}
+.card h2.ax-phys{border-color:#2e7d32;color:#2e7d32}
+.card h2.ax-fin{border-color:#e65100;color:#e65100}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;align-items:center}
+.row label{flex:1;min-width:120px;font-size:.92em}
+.row input,.row select{flex:2;min-width:140px;padding:6px 8px;border:1px solid #ccc;border-radius:6px;font-size:.92em}
+.item{padding:8px 0;border-bottom:1px solid #f0f0f0}
+.item:last-child{border-bottom:none}
+.item-name{font-weight:600;font-size:.93em;margin-bottom:4px}
+.radios{display:flex;flex-wrap:wrap;gap:4px}
+.radios label{font-size:.82em;padding:4px 10px;border:1px solid #ccc;border-radius:16px;cursor:pointer;transition:.2s;white-space:nowrap}
+.radios input{display:none}
+.radios label.s3{border-color:#1b5e20;color:#1b5e20}
+.radios label.s3.on{background:#1b5e20;color:#fff}
+.radios label.s2{border-color:#0277bd;color:#0277bd}
+.radios label.s2.on{background:#0277bd;color:#fff}
+.radios label.s1{border-color:#ef6c00;color:#ef6c00}
+.radios label.s1.on{background:#ef6c00;color:#fff}
+.radios label.s0{border-color:#b71c1c;color:#b71c1c}
+.radios label.s0.on{background:#b71c1c;color:#fff}
+.comment{font-size:.8em;color:#b71c1c;margin-top:3px;min-height:1em}
+.scores{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;text-align:center}
+.score-box{flex:1;min-width:140px;padding:14px;border-radius:10px;color:#fff}
+.score-box.leg{background:linear-gradient(135deg,#1a237e,#3949ab)}
+.score-box.phy{background:linear-gradient(135deg,#1b5e20,#43a047)}
+.score-box.fin{background:linear-gradient(135deg,#e65100,#fb8c00)}
+.score-box .sv{font-size:2em;font-weight:800}
+.score-box .sl{font-size:.8em;opacity:.9}
+.total-box{text-align:center;padding:14px;font-size:1.1em}
+.total-box .tv{font-size:2.4em;font-weight:800;color:#1a237e}
+.judge{text-align:center;padding:10px;border-radius:8px;font-size:1.1em;font-weight:700;margin-top:8px}
+.j-ok{background:#e8f5e9;color:#1b5e20}
+.j-cond{background:#fff3e0;color:#e65100}
+.j-ng{background:#ffebee;color:#b71c1c}
+canvas{display:block;margin:0 auto}
+.sup-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sup-row label{font-size:.85em;flex:1;min-width:100px}
+.sup-row input{width:60px;padding:4px;border:1px solid #ccc;border-radius:4px;font-size:.85em}
+#report{display:none;margin-top:14px}
+.btn{display:block;margin:10px auto;padding:10px 32px;background:#1a237e;color:#fff;border:none;border-radius:8px;font-size:1em;cursor:pointer}
+.btn:hover{opacity:.85}
+.btn-pdf{background:#b71c1c}
+.risk-tbl{width:100%;border-collapse:collapse;font-size:.82em;margin-top:8px}
+.risk-tbl th,.risk-tbl td{border:1px solid #ccc;padding:4px 6px;text-align:left}
+.risk-tbl th{background:#f5f5f5}
+@media print{
+body{background:#fff;font-size:12px}
+.wrap{max-width:100%;padding:0}
+.no-print{display:none!important}
+#report{display:block!important}
+.card{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+@page{size:A4 portrait;margin:12mm}
+}
+@media(max-width:600px){
+.row{flex-direction:column}
+.scores{flex-direction:column}
+}
+</style>
+<meta name="description" content="不動産取得・仲介時に必要なデューデリジェンス（法的リスク・物理的リスク・財務リスク）を、ブラウザ上のインタラクティブツールで3軸スコアリングし、投資判断レポートを即時生成する実務ツールキット。登記簿謄本・重要事項説明書・修繕履歴・ハザードマップ等の日本固有書類のチェック項目を網羅したCSV管理シートと、スコア">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産DD_3軸スコアリング＆レポート一体型ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propdue/">
+<meta property="og:title" content="不動産DD_3軸スコアリング＆レポート一体型ツール - kusasyu tools">
+<meta property="og:description" content="不動産取得・仲介時に必要なデューデリジェンス（法的リスク・物理的リスク・財務リスク）を、ブラウザ上のインタラクティブツールで3軸スコアリングし、投資判断レポートを即時生成する実務ツールキット。登記簿謄本・重要事項説明書・修繕履歴・ハザードマップ等の日本固有書類のチェック項目を網羅したCSV管理シートと、スコア">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propdue/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産DD_3軸スコアリング＆レポート一体型ツール - kusasyu tools">
+<meta name="twitter:description" content="不動産取得・仲介時に必要なデューデリジェンス（法的リスク・物理的リスク・財務リスク）を、ブラウザ上のインタラクティブツールで3軸スコアリングし、投資判断レポートを即時生成する実務ツールキット。登記簿謄本・重要事項説明書・修繕履歴・ハザードマップ等の日本固有書類のチェック項目を網羅したCSV管理シートと、スコア">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産DD_3軸スコアリング＆レポート一体型ツール",
+  "description": "不動産取得・仲介時に必要なデューデリジェンス（法的リスク・物理的リスク・財務リスク）を、ブラウザ上のインタラクティブツールで3軸スコアリングし、投資判断レポートを即時生成する実務ツールキット。登記簿謄本・重要事項説明書・修繕履歴・ハザードマップ等の日本固有書類のチェック項目を網羅したCSV管理シートと、スコア",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propdue/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>PropDue 不動産DD 3軸スコアリング</h1>
+<p class="sub">SynLab PropTech｜デューデリジェンス・リスクスコアラー</p>
+<div class="card no-print">
+<h2>物件概要</h2>
+<div class="row"><label>物件名称</label><input id="pName" placeholder="〇〇マンション"></div>
+<div class="row"><label>所在地</label><input id="pAddr" placeholder="東京都〇〇区..."></div>
+<div class="row"><label>構造</label><select id="pStruct"><option>RC造</option><option>SRC造</option><option>S造</option><option>木造</option><option>軽量鉄骨造</option></select></div>
+<div class="row"><label>築年数</label><input id="pAge" type="number" placeholder="15" min="0"></div>
+<div class="row"><label>延床面積（㎡）</label><input id="pArea" type="number" placeholder="500"></div>
+<div class="row"><label>取得予定価格（円）</label><input id="pPrice" type="number" placeholder="150000000"></div>
+</div>
+<div id="axisCards"></div>
+<div class="card no-print">
+<h2>補足：チェックシート問題件数</h2>
+<div class="sup-row">
+<label>法的リスク件数<input id="supLeg" type="number" min="0" value="0"></label>
+<label>物理的リスク件数<input id="supPhy" type="number" min="0" value="0"></label>
+<label>財務リスク件数<input id="supFin" type="number" min="0" value="0"></label>
+</div>
+</div>
+<div class="card">
+<h2>スコアリング結果</h2>
+<div class="scores">
+<div class="score-box leg"><div class="sl">法的リスク</div><div class="sv" id="sLeg">-</div><div class="sl">/15点</div></div>
+<div class="score-box phy"><div class="sl">物理的リスク</div><div class="sv" id="sPhy">-</div><div class="sl">/15点</div></div>
+<div class="score-box fin"><div class="sl">財務リスク</div><div class="sv" id="sFin">-</div><div class="sl">/15点</div></div>
+</div>
+<div class="total-box"><div>総合スコア</div><div class="tv" id="sTotal">- / 45</div></div>
+<div class="judge" id="judge">評価項目を入力してください</div>
+<canvas id="radar" width="300" height="300"></canvas>
+</div>
+<button class="btn no-print" onclick="genReport()">レポートを生成</button>
+<div id="report">
+<div class="card">
+<h2>投資判断レポート</h2>
+<div id="rptHead"></div>
+<canvas id="rptRadar" width="260" height="260"></canvas>
+<div id="rptBody"></div>
+</div>
+<button class="btn btn-pdf no-print" onclick="window.print()">PDFで保存（印刷）</button>
+</div>
+</div>
+<script>
+var AXES=[
+{name:'法的リスク',cls:'',items:[
+{n:'登記・権利関係',c:{0:'抵当権抹消未了・所有権移転に重大瑕疵の可能性',1:'共有持分や地上権設定あり、取得前に精査必要'}},
+{n:'法令制限（用途地域・建ぺい率等）',c:{0:'既存不適格で再建築不可の恐れ',1:'建ぺい率超過・容積率制限に要注意'}},
+{n:'重要事項説明書記載事項',c:{0:'告知事項に重大な瑕疵（事故物件等）',1:'石綿使用・土壌汚染等の記載あり'}},
+{n:'接道義務',c:{0:'接道義務違反（建築基準法43条）再建築不可',1:'私道のみ接道・セットバック要'}},
+{n:'境界確定・越境',c:{0:'境界未確定で紛争リスク大',1:'隣地越境物あり、覚書未締結'}}]},
+{name:'物理的リスク',cls:'ax-phys',items:[
+{n:'建物劣化',c:{0:'主要構造部に重大劣化・耐震不適合',1:'外壁・屋上防水に要補修箇所あり'}},
+{n:'ハザード区域',c:{0:'土砂災害特別警戒区域・津波浸水想定区域内',1:'浸水想定区域・液状化リスクあり'}},
+{n:'環境リスク',c:{0:'土壌汚染・アスベスト含有確認',1:'近隣に嫌悪施設・騒音源あり'}},
+{n:'修繕履歴',c:{0:'大規模修繕未実施（築20年超）',1:'修繕履歴不明・管理状態に懸念'}},
+{n:'設備状態',c:{0:'給排水管・電気設備の全面交換必要',1:'エレベーター・空調等の更新時期到来'}}]},
+{name:'財務リスク',cls:'ax-fin',items:[
+{n:'収支バランス（NOI利回り）',c:{0:'NOI利回り2%以下、借入返済に支障',1:'NOI利回り低下傾向、改善策要検討'}},
+{n:'空室率',c:{0:'空室率30%超・長期空室多数',1:'空室率15%超・競合物件増加傾向'}},
+{n:'賃料下落リスク',c:{0:'周辺相場比20%以上の乖離（下落圧力大）',1:'築年数による賃料下落トレンドあり'}},
+{n:'修繕積立金',c:{0:'修繕積立金不足率50%超',1:'長期修繕計画未策定・積立不足傾向'}},
+{n:'出口戦略',c:{0:'流動性極めて低い（人口減少地域等）',1:'売却時キャップレート悪化の可能性'}}]}
+];
+var LABELS=['問題なし','軽微','要注意','重大'],SCORES=[3,2,1,0];
+var state=[[-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1]];
+function buildUI(){
+var c=document.getElementById('axisCards');
+for(var ai=0;ai<AXES.length;ai++){var ax=AXES[ai];
+var h='<div class="card no-print"><h2 class="'+ax.cls+'">'+ax.name+'</h2>';
+for(var ii=0;ii<ax.items.length;ii++){var it=ax.items[ii],id='r'+ai+'_'+ii;
+h+='<div class="item"><div class="item-name">'+(ii+1)+'. '+it.n+'</div><div class="radios">';
+for(var li=0;li<4;li++)h+='<label class="s'+SCORES[li]+'" id="lb_'+id+'_'+li+'"><input type="radio" name="'+id+'" value="'+SCORES[li]+'" onchange="onRate('+ai+','+ii+','+SCORES[li]+')"><span>'+LABELS[li]+'</span></label>';
+h+='</div><div class="comment" id="cm_'+id+'"></div></div>';}
+h+='</div>';c.insertAdjacentHTML('beforeend',h);}}
+function onRate(ai,ii,v){state[ai][ii]=v;var id='r'+ai+'_'+ii;
+for(var li=0;li<4;li++){var lb=document.getElementById('lb_'+id+'_'+li);if(SCORES[li]===v)lb.classList.add('on');else lb.classList.remove('on');}
+var cm=document.getElementById('cm_'+id),item=AXES[ai].items[ii];
+cm.textContent=(v<=1&&item.c[v])?'\u26A0 '+item.c[v]:'';calc();}
+function getSups(){return[+document.getElementById('supLeg').value||0,+document.getElementById('supPhy').value||0,+document.getElementById('supFin').value||0];}
+function calcAxScores(){var sups=getSups(),r=[];
+for(var i=0;i<3;i++){var f=state[i].filter(function(v){return v>=0;});
+if(!f.length){r.push(-1);continue;}var s=0;for(var j=0;j<f.length;j++)s+=f[j];r.push(Math.max(0,s-sups[i]));}return r;}
+function calc(){var ax=calcAxScores(),ids=['sLeg','sPhy','sFin'];
+for(var i=0;i<3;i++)document.getElementById(ids[i]).textContent=ax[i]>=0?ax[i]:'-';
+var ok=ax[0]>=0&&ax[1]>=0&&ax[2]>=0,total=ok?ax[0]+ax[1]+ax[2]:-1;
+document.getElementById('sTotal').textContent=total>=0?total+' / 45':'- / 45';
+var j=document.getElementById('judge');
+if(total>=0){if(total>=36){j.textContent='投資判断：推奨';j.className='judge j-ok';}
+else if(total>=21){j.textContent='投資判断：条件付き推奨';j.className='judge j-cond';}
+else{j.textContent='投資判断：非推奨';j.className='judge j-ng';}}
+else{j.textContent='全項目を入力すると判定されます';j.className='judge';}
+drawRadar('radar',ax,300);}
+function drawRadar(cid,sc,sz){var cv=document.getElementById(cid),ctx=cv.getContext('2d');
+var cx=sz/2,cy=sz/2,r=sz*0.38;ctx.clearRect(0,0,sz,sz);
+var a=[-Math.PI/2,-Math.PI/2+2*Math.PI/3,-Math.PI/2+4*Math.PI/3];
+var lb=['法的','物理的','財務'],co=['#1a237e','#1b5e20','#e65100'];
+for(var g=1;g<=3;g++){ctx.beginPath();
+for(var i=0;i<3;i++){var x=cx+Math.cos(a[i])*r*g/3,y=cy+Math.sin(a[i])*r*g/3;i?ctx.lineTo(x,y):ctx.moveTo(x,y);}
+ctx.closePath();ctx.strokeStyle='#ddd';ctx.stroke();}
+for(var i=0;i<3;i++){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a[i])*r,cy+Math.sin(a[i])*r);ctx.strokeStyle='#bbb';ctx.stroke();}
+var vals=[];for(var i=0;i<3;i++)vals.push(sc[i]>=0?sc[i]/15:0);
+ctx.beginPath();for(var i=0;i<3;i++){var x=cx+Math.cos(a[i])*r*vals[i],y=cy+Math.sin(a[i])*r*vals[i];i?ctx.lineTo(x,y):ctx.moveTo(x,y);}
+ctx.closePath();ctx.fillStyle='rgba(26,35,126,0.18)';ctx.fill();ctx.strokeStyle='#1a237e';ctx.lineWidth=2;ctx.stroke();
+for(var i=0;i<3;i++){var x=cx+Math.cos(a[i])*r*vals[i],y=cy+Math.sin(a[i])*r*vals[i];
+ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle=co[i];ctx.fill();
+var lx=cx+Math.cos(a[i])*(r+18),ly=cy+Math.sin(a[i])*(r+18);
+ctx.fillStyle='#333';ctx.font='bold 12px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+ctx.fillText(lb[i]+(sc[i]>=0?'('+sc[i]+')':''),lx,ly);}}
+function genReport(){document.getElementById('report').style.display='block';
+var gv=function(k){return document.getElementById(k).value||'-';};
+var ax=calcAxScores(),total=ax[0]+ax[1]+ax[2],jt,jc;
+if(total>=36){jt='推奨';jc='総合スコアが高く、重大リスク要因は確認されません。取得を推奨します。';}
+else if(total>=21){jt='条件付き推奨';jc='一部リスク要因が存在します。下記要注意項目の対応を条件に取得を検討可能です。';}
+else{jt='非推奨';jc='重大なリスク要因が複数確認されます。取得は推奨しません。';}
+var price=Number(gv('pPrice'));
+document.getElementById('rptHead').innerHTML=
+'<p style="margin:8px 0"><b>物件名:</b> '+gv('pName')+'　<b>所在地:</b> '+gv('pAddr')+'</p>'+
+'<p><b>構造:</b> '+gv('pStruct')+'　<b>築年数:</b> '+gv('pAge')+'年　<b>面積:</b> '+gv('pArea')+'㎡　<b>価格:</b> '+(price>0?price.toLocaleString():'-')+'円</p>'+
+'<p><b>調査日:</b> '+new Date().toLocaleDateString('ja-JP')+'</p>'+
+'<p style="margin-top:8px"><b>総合スコア: '+total+' / 45点　投資判断: '+jt+'</b></p><p style="font-size:.9em">'+jc+'</p>';
+var axN=['法的','物理的','財務'];
+var tbl='<table class="risk-tbl"><tr><th>軸</th><th>項目</th><th>評価</th><th>コメント</th></tr>';
+for(var ai=0;ai<AXES.length;ai++)for(var ii=0;ii<AXES[ai].items.length;ii++){
+var v=state[ai][ii],it=AXES[ai].items[ii];
+var lb=v>=0?LABELS[SCORES.indexOf(v)]:'未入力';
+var cm=(v>=0&&v<=1&&it.c[v])?it.c[v]:'';
+tbl+='<tr><td>'+axN[ai]+'</td><td>'+it.n+'</td><td>'+lb+'</td><td>'+cm+'</td></tr>';}
+tbl+='</table>';document.getElementById('rptBody').innerHTML=tbl;
+drawRadar('rptRadar',ax,260);document.getElementById('report').scrollIntoView({behavior:'smooth'});}
+document.getElementById('supLeg').addEventListener('input',calc);
+document.getElementById('supPhy').addEventListener('input',calc);
+document.getElementById('supFin').addEventListener('input',calc);
+buildUI();calc();
+</script>
+</body>
+</html>

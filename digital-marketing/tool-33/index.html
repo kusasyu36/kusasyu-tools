@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AEO構造化リライト_プロンプト＆フォームジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:18px 0 4px;color:#1e3a5f}
+.sub{text-align:center;font-size:.85rem;color:#64748b;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.step{display:inline-block;background:#1e3a5f;color:#fff;font-size:.75rem;padding:2px 10px;border-radius:12px;margin-bottom:10px}
+label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 4px}
+textarea{width:100%;border:1px solid #cbd5e1;border-radius:6px;padding:10px;font-size:.9rem;resize:vertical;font-family:inherit}
+select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;font-size:.9rem;background:#fff}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+button{cursor:pointer;border:none;border-radius:6px;padding:12px 20px;font-size:.95rem;font-weight:600;width:100%;margin-top:12px;transition:.2s}
+.btn-p{background:#1e3a5f;color:#fff}
+.btn-p:hover{background:#2d5a8e}
+.btn-s{background:#e2e8f0;color:#1e3a5f}
+.btn-s:hover{background:#cbd5e1}
+.btn-c{background:#059669;color:#fff;width:auto;padding:8px 18px;font-size:.8rem;margin-top:8px}
+.btn-c:hover{background:#047857}
+.out{background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:14px;margin-top:10px;white-space:pre-wrap;font-size:.85rem;max-height:400px;overflow-y:auto;word-break:break-word}
+.tag{display:inline-block;background:#dbeafe;color:#1e40af;font-size:.7rem;padding:1px 8px;border-radius:8px;margin:2px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e3a5f;color:#fff;padding:10px 24px;border-radius:8px;font-size:.9rem;display:none;z-index:99}
+.fmt-row{display:flex;gap:8px;margin-top:8px}
+.fmt-row button{flex:1}
+.hide{display:none}
+@media(max-width:600px){.row{flex-direction:column;gap:8px}h1{font-size:1.1rem}}
+</style>
+<meta name="description" content="ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&amp;A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AEO構造化リライト_プロンプト＆フォームジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-33/">
+<meta property="og:title" content="AEO構造化リライト_プロンプト＆フォームジェネレーター - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&amp;A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-33/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AEO構造化リライト_プロンプト＆フォームジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&amp;A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AEO構造化リライト_プロンプト＆フォームジェネレーター",
+  "description": "ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-33/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>AEO構造化リライト<br>プロンプト＆フォームジェネレーター</h1>
+<p class="sub">既存記事をAI検索に引用される構造へ変換するプロンプトを自動生成</p>
+
+<div class="card">
+<span class="step">STEP 1</span> 既存記事の入力
+<label>記事テキスト</label>
+<textarea id="src" rows="7" placeholder="既存記事の本文をここに貼り付けてください…"></textarea>
+<div class="row">
+<div><label>業種</label>
+<select id="biz"><option value="ec">EC・通販</option><option value="food">飲食・フード</option><option value="legal">士業・専門サービス</option><option value="saas">SaaS・IT</option><option value="beauty">美容・ヘルスケア</option></select></div>
+<div><label>記事タイプ</label>
+<select id="atype"><option value="faq">FAQ・よくある質問</option><option value="howto">ハウツー・手順</option><option value="column">コラム・解説</option></select></div>
+</div>
+<button class="btn-p" onclick="genPrompt()">AEO最適化プロンプトを生成</button>
+</div>
+
+<div class="card hide" id="s2">
+<span class="step">STEP 2</span> 生成プロンプト — AIにそのまま貼り付け
+<div style="margin-top:6px">
+<span class="tag" id="tBiz"></span><span class="tag" id="tType"></span>
+</div>
+<div class="out" id="promptOut"></div>
+<button class="btn-c" onclick="copyTxt('promptOut')">📋 プロンプトをコピー</button>
+</div>
+
+<div class="card hide" id="s3">
+<span class="step">STEP 3</span> AI出力を整形
+<label>AIの出力結果を貼り付け</label>
+<textarea id="aiOut" rows="6" placeholder="ChatGPT・Claude・Geminiの出力をここに貼り付け…"></textarea>
+<div class="fmt-row">
+<button class="btn-s" onclick="fmt('html')">HTML形式で出力</button>
+<button class="btn-s" onclick="fmt('md')">Markdown形式で出力</button>
+</div>
+</div>
+
+<div class="card hide" id="s4">
+<span class="step">STEP 4</span> 最終出力
+<div class="out" id="fmtOut"></div>
+<button class="btn-c" onclick="copyTxt('fmtOut')">📋 出力をコピー</button>
+</div>
+</div>
+
+<div class="toast" id="toast">コピーしました！</div>
+
+<script>
+const bizMap={ec:{name:"EC・通販",kw:"購入,送料,返品,サイズ,在庫",ctx:"商品購入の意思決定に直結する具体的な回答"},food:{name:"飲食・フード",kw:"予約,メニュー,アレルギー,営業時間,アクセス",ctx:"来店・注文につながる簡潔で実用的な回答"},legal:{name:"士業・専門サービス",kw:"費用,期間,手続き,必要書類,相談",ctx:"専門知識を噛み砕いた信頼性の高い回答"},saas:{name:"SaaS・IT",kw:"料金プラン,導入,連携,セキュリティ,サポート",ctx:"機能比較や導入判断に役立つ明確な回答"},beauty:{name:"美容・ヘルスケア",kw:"効果,期間,痛み,料金,施術回数",ctx:"施術・購入の不安を解消する具体的な回答"}};
+const typeMap={faq:{name:"FAQ",inst:"各質問を独立したQ&Aブロックに分離し、1問1答で完結させる"},howto:{name:"ハウツー",inst:"手順を番号付きステップに分解し、各ステップに見出しと1〜2文の説明を付ける"},column:{name:"コラム",inst:"結論→理由→具体例→まとめのピラミッド構造に再構成する"}};
+
+function genPrompt(){
+  const src=document.getElementById("src").value.trim();
+  if(!src){alert("記事テキストを入力してください");return}
+  const b=bizMap[document.getElementById("biz").value];
+  const t=typeMap[document.getElementById("atype").value];
+  document.getElementById("tBiz").textContent=b.name;
+  document.getElementById("tType").textContent=t.name;
+
+  const p=`あなたはAEO（Answer Engine Optimization）の専門家です。以下の記事を生成AI検索（ChatGPT・Gemini・Perplexity）に「回答ソース」として引用されやすい構造にリライトしてください。
+
+【業種コンテキスト】${b.name}
+想定検索キーワード例: ${b.kw}
+回答トーン: ${b.ctx}
+
+【変換ルール】
+1. Q&A構造変換: ${t.inst}。各Q&Aの質問文は自然な疑問形にする。
+2. ピラミッド構造: 最も重要な結論を冒頭30字以内で述べ、その後に詳細を展開する。
+3. 30字回答文: 各質問に対して30字以内の「一言回答」を最初に置き、その下に100〜150字の補足説明を付ける。
+4. 見出し最適化: H2/H3見出しに疑問形キーワードを含める（例:「〇〇とは？」「〇〇の方法は？」）。
+5. 引用されやすさ: 箇条書き・数値・比較表を積極活用し、AIが抜粋しやすいチャンク構造にする。
+
+【出力形式】
+- 各ブロックを「## Q: 質問文」「**A(30字):** 一言回答」「補足: 詳細説明」の形式で出力
+- 必要に応じて比較表やステップリストを挿入
+- 元記事の情報は削除せず、構造のみ変換する
+
+【元記事テキスト】
+${src.substring(0,3000)}`;
+
+  document.getElementById("promptOut").textContent=p;
+  document.getElementById("s2").classList.remove("hide");
+  document.getElementById("s3").classList.remove("hide");
+  document.getElementById("s2").scrollIntoView({behavior:"smooth"});
+}
+
+function fmt(mode){
+  const raw=document.getElementById("aiOut").value.trim();
+  if(!raw){alert("AI出力を貼り付けてください");return}
+  let out="";
+  if(mode==="html"){
+    out=raw.replace(/^## Q: (.+)$/gm,"<h2>$1</h2>")
+      .replace(/^\*\*A\(30字\):\*\* ?(.+)$/gm,'<p class="short-answer"><strong>$1</strong></p>')
+      .replace(/^補足: ?(.+)$/gm,"<p>$1</p>")
+      .replace(/^### (.+)$/gm,"<h3>$1</h3>")
+      .replace(/^- (.+)$/gm,"<li>$1</li>")
+      .replace(/(<li>.*<\/li>\n?)+/g,function(m){return"<ul>\n"+m+"</ul>\n"})
+      .replace(/^(\d+)\. (.+)$/gm,"<li>$2</li>");
+    out='<article class="aeo-content">\n'+out+"\n</article>";
+  }else{
+    out=raw.replace(/^## Q: /gm,"## ").replace(/^\*\*A\(30字\):\*\* ?/gm,"**回答:** ");
+  }
+  document.getElementById("fmtOut").textContent=out;
+  document.getElementById("s4").classList.remove("hide");
+  document.getElementById("s4").scrollIntoView({behavior:"smooth"});
+}
+
+function copyTxt(id){
+  const t=document.getElementById(id).textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const ts=document.getElementById("toast");
+    ts.style.display="block";
+    setTimeout(()=>{ts.style.display="none"},1500);
+  });
+}
+</script>
+</body>
+</html>

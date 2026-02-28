@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業界×施策別マーケティングKPIベンチマーク深掘り分析シート - kusasyu tools</title>
+<meta name="description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,業界×施策別マーケティングKPIベンチマーク深掘り分析シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator/">
+<meta property="og:title" content="業界×施策別マーケティングKPIベンチマーク深掘り分析シート - kusasyu tools">
+<meta property="og:description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業界×施策別マーケティングKPIベンチマーク深掘り分析シート - kusasyu tools">
+<meta name="twitter:description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "業界×施策別マーケティングKPIベンチマーク深掘り分析シート",
+  "description": "BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-27"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>業界×施策別マーケティングKPIベンチマーク深掘り分析シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>業界×施策別マーケティングKPIベンチマーク深掘り分析シート</h1>
+  <p class="project-name">マーケ予算を通す技術 — ROIシミュレーター×稟議書ジェネレーター×業界ベンチマーク武装キット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>業界×施策別マーケティングKPIベンチマーク深掘り分析シート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>BtoB ROIシミュレーター＆稟議書ドラフト 連携テンプレート</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>作成日：2026年2月</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【セクション1】業界×施策ベンチマークマスター（5業種×5施策＝25マトリクス）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>No</td><td>業種</td><td>施策</td><td>CPA（円）</td><td>CVR（%）</td><td>リードタイム（日）</td><td>LTV（円）</td><td>ROI目安（%）</td><td>商談化率（%）</td><td>受注単価（円）</td><td>備考</td></tr><tr><td>1</td><td>製造業</td><td>SEO／コンテンツ</td><td>15000</td><td>1.2</td><td>90</td><td>3000000</td><td>250</td><td>15</td><td>3000000</td><td>長期効果型・資産性高</td></tr><tr><td>2</td><td>製造業</td><td>リスティング広告</td><td>25000</td><td>2.5</td><td>60</td><td>3000000</td><td>180</td><td>20</td><td>3000000</td><td>即効性あり</td></tr><tr><td>3</td><td>製造業</td><td>展示会／セミナー</td><td>30000</td><td>3.0</td><td>120</td><td>3000000</td><td>200</td><td>25</td><td>3000000</td><td>対面信頼構築</td></tr><tr><td>4</td><td>製造業</td><td>メールマーケティング</td><td>8000</td><td>0.8</td><td>45</td><td>3000000</td><td>320</td><td>10</td><td>3000000</td><td>既存リスト活用</td></tr><tr><td>5</td><td>製造業</td><td>SNS広告</td><td>20000</td><td>0.5</td><td>75</td><td>3000000</td><td>150</td><td>8</td><td>3000000</td><td>認知拡大向き</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"業界×施策別マーケティングKPIベンチマーク深掘り分析シート",,,,,,,,,,
+"BtoB ROIシミュレーター＆稟議書ドラフト 連携テンプレート",,,,,,,,,,
+"作成日：2026年2月",,,,,,,,,,
+,,,,,,,,,,
+"【セクション1】業界×施策ベンチマークマスター（5業種×5施策＝25マトリクス）",,,,,,,,,,
+"No","業種","施策","CPA（円）","CVR（%）","リードタイム（日）","LTV（円）","ROI目安（%）","商談化率（%）","受注単価（円）","備考"
+1,"製造業","SEO／コンテンツ",15000,1.2,90,3000000,250,15,3000000,"長期効果型・資産性高"
+2,"製造業","リスティング広告",25000,2.5,60,3000000,180,20,3000000,"即効性あり"
+3,"製造業","展示会／セミナー",30000,3.0,120,3000000,200,25,3000000,"対面信頼構築"
+4,"製造業","メールマーケティング",8000,0.8,45,3000000,320,10,3000000,"既存リスト活用"
+5,"製造業","SNS広告",20000,0.5,75,3000000,150,8,3000000,"認知拡大向き"
+6,"IT／SaaS","SEO／コンテンツ",12000,2.0,30,1800000,300,20,1800000,"SaaS相性◎"
+7,"IT／SaaS","リスティング広告",18000,3.5,21,1800000,220,28,1800000,"検索意図明確"
+8,"IT／SaaS","展示会／セミナー",35000,4.0,45,1800000,160,30,1800000,"高CPA注意"
+9,"IT／SaaS","メールマーケティング",5000,1.5,14,1800000,400,18,1800000,"ナーチャリング最適"
+10,"IT／SaaS","SNS広告",15000,1.0,28,1800000,200,12,1800000,"リターゲティング有効"
+11,"人材","SEO／コンテンツ",10000,1.8,21,1200000,280,18,1200000,"求職者向け効果大"
+12,"人材","リスティング広告",15000,3.0,14,1200000,200,25,1200000,"緊急採用ニーズ対応"
+13,"人材","展示会／セミナー",25000,3.5,30,1200000,150,28,1200000,"人事担当接点"
+14,"人材","メールマーケティング",6000,1.2,10,1200000,350,15,1200000,"低コスト高効率"
+15,"人材","SNS広告",12000,0.8,21,1200000,180,10,1200000,"ブランディング寄与"
+16,"建設","SEO／コンテンツ",18000,0.8,120,5000000,280,12,5000000,"案件単価高く高ROI"
+17,"建設","リスティング広告",30000,1.5,90,5000000,200,18,5000000,"地域指定有効"
+18,"建設","展示会／セミナー",40000,2.5,150,5000000,220,22,5000000,"長期関係構築"
+19,"建設","メールマーケティング",10000,0.5,60,5000000,300,8,5000000,"定期接点維持"
+20,"建設","SNS広告",25000,0.3,90,5000000,150,5,5000000,"認知目的中心"
+21,"士業","SEO／コンテンツ",8000,2.5,14,800000,350,22,800000,"専門性訴求◎"
+22,"士業","リスティング広告",12000,4.0,10,800000,250,30,800000,"即効性最高"
+23,"士業","展示会／セミナー",20000,3.0,30,800000,180,25,800000,"セミナー型推奨"
+24,"士業","メールマーケティング",4000,2.0,7,800000,450,20,800000,"最高効率"
+25,"士業","SNS広告",10000,1.2,14,800000,200,15,800000,"信頼醸成型"
+,,,,,,,,,,
+"【セクション2】自社データ入力エリア（ROIシミュレーターCSVから貼り付け）",,,,,,,,,,
+"No","業種","施策","自社CPA（円）","自社CVR（%）","自社リードタイム（日）","自社LTV（円）","月間予算（円）","月間リード数","月間商談数","月間受注数"
+"S1","IT／SaaS","SEO／コンテンツ",14000,1.6,35,1800000,500000,36,6,1
+"S2","IT／SaaS","リスティング広告",22000,2.8,25,1800000,800000,36,9,2
+"S3","IT／SaaS","メールマーケティング",6500,1.2,18,1800000,200000,31,5,1
+"※ ROIシミュレーター出力CSVのデータをこの欄に貼り付けてください",,,,,,,,,,
+,,,,,,,,,,
+"【セクション3】乖離分析（自社値 vs 業界ベンチマーク ＝ 自動計算）",,,,,,,,,,
+"No","業種","施策","CPA乖離（円）","CPA乖離率（%）","CVR乖離（pt）","リードタイム乖離（日）","判定","改善優先度","推定改善効果（円／月）","コメント"
+"G1","IT／SaaS","SEO／コンテンツ","=D30-D7","=(D30-D7)/D7*100","=E30-E7","=F30-F7","=IF(AND(O35<0,P35>0),""◎良好"",IF(OR(O35>20,P35<-0.5),""△要改善"",""○許容範囲""))","=IF(R35=""△要改善"",""高"",IF(R35=""○許容範囲"",""中"",""低""))","=IF(D35>0,D35*I30*-1,0)","CPA・CVRの業界比較"
+"G2","IT／SaaS","リスティング広告","=D31-D8","=(D31-D8)/D8*100","=E31-E8","=F31-F8","=IF(AND(O36<0,P36>0),""◎良好"",IF(OR(O36>20,P36<-0.5),""△要改善"",""○許容範囲""))","=IF(R36=""△要改善"",""高"",IF(R36=""○許容範囲"",""中"",""低""))","=IF(D36>0,D36*I31*-1,0)","CPA・CVRの業界比較"
+"G3","IT／SaaS","メールマーケティング","=D32-D10","=(D32-D10)/D10*100","=E32-E10","=F32-F10","=IF(AND(O37<0,P37>0),""◎良好"",IF(OR(O37>20,P37<-0.5),""△要改善"",""○許容範囲""))","=IF(R37=""△要改善"",""高"",IF(R37=""○許容範囲"",""中"",""低""))","=IF(D37>0,D37*I32*-1,0)","CPA・CVRの業界比較"
+,,,,,,,,,,
+"【セクション4】複数シナリオ比較（3パターン並列）",,,,,,,,,,
+"項目","シナリオA：現状維持","シナリオB：SEO強化","シナリオC：施策ミックス最適化",,,,,,,,
+"月間総予算（円）",1500000,1500000,1500000,,,,,,,,
+"SEO配分（円）",500000,900000,600000,,,,,,,,
+"リスティング配分（円）",800000,400000,500000,,,,,,,,
+"メール配分（円）",200000,200000,400000,,,,,,,,
+"月間総リード数","=B44/14000+B45/22000+B46/6500","=B44/12000+B45/22000+B46/5000","=B44/13000+B45/20000+B46/5500",,,,,,,,
+"月間総商談数","=B47*0.18","=C47*0.20","=D47*0.19",,,,,,,,
+"月間受注数","=B48*0.15","=C48*0.18","=D48*0.17",,,,,,,,
+"月間売上見込（円）","=B49*1800000","=C49*1800000","=D49*1800000",,,,,,,,
+"ROI（%）","=(B50-1500000)/1500000*100","=(C50-1500000)/1500000*100","=(D50-1500000)/1500000*100",,,,,,,,
+"判定","=IF(B51>200,""◎"",IF(B51>100,""○"",""△""))","=IF(C51>200,""◎"",IF(C51>100,""○"",""△""))","=IF(D51>200,""◎"",IF(D51>100,""○"",""△""))",,,,,,,,
+,,,,,,,,,,
+"【セクション5】四半期推移シミュレーション",,,,,,,,,,
+"指標","Q1（1-3月）","Q2（4-6月）","Q3（7-9月）","Q4（10-12月）","年間合計","前年比目標（%）",,,,,
+"月間予算（円）",1500000,1500000,1800000,1800000,"=SUM(B57:E57)*3",120,,,,,
+"四半期リード数","=B57/14000*3+B57*0.3/22000*3+B57*0.1/6500*3","=B58*1.05","=C58*1.10","=D58*1.05","=SUM(B58:E58)",,,,,,
+"四半期商談数","=B58*0.18","=C58*0.19","=D58*0.20","=E58*0.20","=SUM(B59:E59)",,,,,,
+"四半期受注数","=B59*0.15","=C59*0.16","=D59*0.17","=E59*0.18","=SUM(B60:E60)",,,,,,
+"四半期売上（円）","=B60*1800000","=C60*1800000","=D60*1800000","=E60*1800000","=SUM(B61:E61)",,,,,,
+"四半期ROI（%）","=(B61-B57*3)/(B57*3)*100","=(C61-C57*3)/(C57*3)*100","=(D61-D57*3)/(D57*3)*100","=(E61-E57*3)/(E57*3)*100","=(F61-F57)/(F57)*100",,,,,,
+"累積ROI（%）","=B62","=(B61+C61-B57*3-C57*3)/(B57*3+C57*3)*100","=(B61+C61+D61-B57*3-C57*3-D57*3)/(B57*3+C57*3+D57*3)*100","=F62",,,,,,
+,,,,,,,,,,
+"【使い方ガイド】",,,,,,,,,,
+"1. セクション2にROIシミュレーターのCSVエクスポートデータを貼り付け",,,,,,,,,,
+"2. セクション3の乖離分析が自動計算され改善優先度を確認",,,,,,,,,,
+"3. セクション4で予算配分パターンを3案比較し最適案を選定",,,,,,,,,,
+"4. セクション5で四半期ごとの成長シミュレーションを実施",,,,,,,,,,
+"5. 結果を稟議書ドラフトの添付資料として経営層に提出",,,,,,,,,,
+,,,,,,,,,,
+"※ ベンチマーク数値は各種業界調査・公開データの中央値を採用",,,,,,,,,,
+"※ 本シートはBtoB ROIシミュレーター＆稟議書ドラフトの連携テンプレートです",,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_業界×施策別マーケティングKPIベンチマーク深掘り分析シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

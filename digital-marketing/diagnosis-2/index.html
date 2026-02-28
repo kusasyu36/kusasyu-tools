@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LP感情設計チェックリスト診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:32px 24px;border-radius:12px;margin-bottom:24px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:8px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card h2{font-size:1.1em;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.badge{display:inline-block;background:#e8f0fe;color:#1a73e8;font-size:.7em;padding:2px 8px;border-radius:10px}
+.guide{background:#f8f9fa;border-left:3px solid #1a73e8;padding:8px 12px;margin:8px 0 12px;font-size:.8em;color:#555}
+.q{padding:10px 0;border-bottom:1px solid #f0f0f0}
+.q:last-child{border:none}
+.q label.ql{font-size:.88em;font-weight:600;display:block;margin-bottom:6px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{cursor:pointer;padding:6px 14px;border:2px solid #ddd;border-radius:20px;font-size:.8em;transition:.2s}
+.opts input{display:none}
+.opts label:has(input:checked){border-color:#1a73e8;background:#1a73e8;color:#fff}
+.industry-sel{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.industry-sel label{cursor:pointer;padding:8px 16px;border:2px solid #ddd;border-radius:8px;font-size:.85em}
+.industry-sel input{display:none}
+.industry-sel label:has(input:checked){border-color:#e8432a;background:#e8432a;color:#fff}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#e8432a,#ff6b4a);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin:16px 0}
+.btn:hover{opacity:.9}
+.btn-print{background:linear-gradient(135deg,#16213e,#1a1a2e)}
+#result{display:none}
+.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:16px 0}
+.score-item{background:#f8f9fa;padding:12px;border-radius:8px;text-align:center}
+.score-item .num{font-size:1.8em;font-weight:700}
+.score-item .lbl{font-size:.75em;color:#666}
+.high{color:#0d9488}.mid{color:#f59e0b}.low{color:#e8432a}
+.total-score{text-align:center;padding:20px;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:10px;margin:16px 0}
+.total-score .num{font-size:2.8em;font-weight:700}
+.total-score .rank{font-size:1.1em;margin-top:4px}
+canvas{max-width:100%;margin:0 auto;display:block}
+.improve{margin-top:12px}
+.improve h3{font-size:.95em;color:#e8432a;margin:12px 0 6px;padding-top:10px;border-top:1px solid #eee}
+.improve .copy-ex{background:#fff8f0;border-radius:6px;padding:10px;margin:4px 0;font-size:.82em}
+.improve .copy-ex b{color:#e8432a}
+@media(max-width:600px){header h1{font-size:1.1em}.score-grid{grid-template-columns:1fr 1fr}}
+@media print{body{background:#fff}.btn{display:none}#form-section .guide{display:none}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}}
+</style>
+<meta name="description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,LP感情設計チェックリスト診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-2/">
+<meta property="og:title" content="LP感情設計チェックリスト診断ツール - kusasyu tools">
+<meta property="og:description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LP感情設計チェックリスト診断ツール - kusasyu tools">
+<meta name="twitter:description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "LP感情設計チェックリスト診断ツール",
+  "description": "感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>LP感情設計チェックリスト診断ツール</h1>
+<p>7つの感情トリガー×5問＝計35問であなたのLPの感情設計力をスコア化</p>
+</header>
+<div class="card">
+<h2>業種を選択</h2>
+<div class="industry-sel">
+<label><input type="radio" name="industry" value="ec" checked><span>EC・通販</span></label>
+<label><input type="radio" name="industry" value="food"><span>飲食</span></label>
+<label><input type="radio" name="industry" value="beauty"><span>美容</span></label>
+<label><input type="radio" name="industry" value="estate"><span>不動産</span></label>
+<label><input type="radio" name="industry" value="saas"><span>SaaS</span></label>
+</div>
+</div>
+<div id="form-section"></div>
+<button class="btn" onclick="diagnose()">診断する</button>
+<div id="result">
+<div class="card"><h2>総合スコア</h2><div class="total-score"><div class="num" id="totalNum"></div><div class="rank" id="totalRank"></div></div></div>
+<div class="card"><h2>トリガー別スコア</h2><div class="score-grid" id="scoreGrid"></div></div>
+<div class="card"><h2>レーダーチャート</h2><canvas id="radar" width="400" height="400"></canvas></div>
+<div class="card"><h2>改善提案</h2><div class="improve" id="improveArea"></div></div>
+<button class="btn btn-print" onclick="window.print()">結果を印刷する</button>
+</div>
+</div>
+<script>
+var T=[
+{name:"恐怖",icon:"😨",guide:"恐怖トリガーが弱いと「今のままでいいか」と離脱されます。現状維持バイアスを崩す損失提示が不可欠です。",qs:["未行動による具体的な損失額・リスクを数値で提示しているか","「このまま放置すると…」等の時間経過シナリオがあるか","競合が先行した場合の不利益を示しているか","失敗事例・Before状態を具体的に描写しているか","問題の深刻さを裏付ける第三者データを引用しているか"]},
+{name:"希望",icon:"🌟",guide:"希望トリガーが弱いと読者は「自分にもできそう」と感じられず離脱します。成功後の具体イメージが鍵です。",qs:["利用後の理想状態をビジュアルまたは数値で描いているか","顧客の成功ストーリー（Before→After）があるか","達成までのステップが3つ以内で示されているか","「初心者でも」等の難易度引き下げ表現があるか","成功を裏付ける実績数値（売上○倍等）があるか"]},
+{name:"信頼",icon:"🤝",guide:"信頼トリガーが不足すると「本当に大丈夫？」の疑念が残りCTA直前で離脱が増加します。",qs:["顧客の声・レビューを3件以上掲載しているか","メディア掲載・受賞歴・資格等の権威性を示しているか","返金保証・無料トライアル等のリスク軽減策があるか","運営者・代表者の顔写真と経歴を公開しているか","具体的な数字（導入社数・満足度等）を提示しているか"]},
+{name:"緊急性",icon:"⏰",guide:"緊急性がないと「あとで見よう」と離脱。限定性・締切が購買決定を加速させます。",qs:["期間限定のオファー（残り○日等）を提示しているか","数量限定（先着○名・残○個）の表示があるか","早期申込特典など即行動のインセンティブがあるか","カウントダウンタイマーまたは期日を明記しているか","「今すぐ」「本日限り」等の即時行動ワードを使っているか"]},
+{name:"帰属意識",icon:"👥",guide:"帰属意識が弱いと「自分向けじゃない」と感じて離脱。ペルソナの明示が刺さるLPを作ります。",qs:["ターゲット像を冒頭で明確に描写しているか","「○○な方へ」等のセグメント呼びかけがあるか","同じ属性の利用者コミュニティを示しているか","業界特有の専門用語・悩みワードを使っているか","「あなたと同じ立場の人が選んでいます」的表現があるか"]},
+{name:"好奇心",icon:"🔍",guide:"好奇心トリガーが弱いとファーストビューで離脱。スクロールを促す情報ギャップが必要です。",qs:["ファーストビューに意外性のある数値や問いかけがあるか","「実は○○だった」等の常識を覆す情報があるか","段階的に情報を開示する構成（続きが気になる）になっているか","図解・比較表など視覚的に新しい情報提示があるか","「なぜ？」「どうやって？」の疑問を意図的に作っているか"]},
+{name:"罪悪感",icon:"💭",guide:"罪悪感トリガーは「何もしない自分への後ろめたさ」を喚起し行動を促します。使いすぎには注意。",qs:["「まだ○○していないのですか？」的な問いかけがあるか","行動しないことで周囲に与える影響を示しているか","無料提供や価値先出しで返報性を刺激しているか","「プロなら当然やっている」等の基準提示があるか","過去の失敗を繰り返すリスクに言及しているか"]}
+];
+var IMP={"恐怖":{ec:["「カート放棄率78%—あなたのECサイト、毎月○万円を捨てています」","「競合が送料無料を始めた今、未対応のまま3ヶ月後の売上予測は…」"],food:["「食材ロス率が業界平均を超えた飲食店の末路—廃棄コスト月○万円の現実」","「Googleマップ評価3.5未満の店舗、来店数が半年で40%減少するデータ」"],beauty:["「リピート率60%未満のサロンは2年以内に収益が頭打ちになる統計」","「ホットペッパー依存から抜け出せない店舗の新規獲得コスト、実は○円」"],estate:["「問い合わせ後24時間以内に返信がない不動産会社、成約率が半減」","「ポータルサイト掲載料が年々上昇—自社集客なしでは利益率が○%低下」"],saas:["「解約率が月2%を超えるSaaS、18ヶ月後のMRRシミュレーション」","「オンボーディング未整備のSaaS、初月解約率は整備済みの3.2倍」"]},"希望":{ec:["「導入3ヶ月でCVR1.8倍を達成したEC事例—やったことはたった2つ」","「月商50万→200万円に成長したショップオーナーの感情設計LP実物公開」"],food:["「Googleマップ経由の来店が月120件に。写真と口コミだけで達成した方法」","「客単価800円アップに成功した飲食店のメニューLP、Before/After公開」"],beauty:["「指名率90%超のスタイリストが実践する、プロフィールLPの3つの共通点」","「新規→リピート率を45%→78%に引き上げたサロンのLP改善事例」"],estate:["「内見予約率を3倍にした物件LP。変更点はコピーのたった2行だけ」","「年間成約数120件超の営業マンが使う、物件紹介LPテンプレート」"],saas:["「無料トライアルからの有料転換率を38%に引き上げたLP構成とは」","「ARR1億円SaaSが公開する、LPのA/Bテスト勝ちパターン5選」"]},"信頼":{ec:["「購入者レビュー4.8★（1,247件）の声をファーストビューに配置」","「第三者機関テスト済・ISO取得を商品画像の直下に明記」"],food:["「食べログ百名店選出・地元メディア掲載歴をヘッダーにバッジ表示」","「オーナーシェフの修業歴と顔写真付きメッセージをAboutセクションに」"],beauty:["「施術実績10,000件突破・資格保有スタッフ一覧を写真付きで掲載」","「30日間返金保証＋初回カウンセリング無料をCTA直上に配置」"],estate:["「成約実績○棟・お客様インタビュー動画をメインビジュアル下に配置」","「宅建士○名在籍・創業○年の信頼をフッター固定バーで常時表示」"],saas:["「導入企業ロゴ（有名企業5社以上）をファーストビュー直下に横並び」","「99.9% SLA保証・ISO27001取得をプライシング表の上に明記」"]},"緊急性":{ec:["「本日23:59まで送料無料＋ポイント5倍」のカウントダウン表示","「残り12個—在庫がなくなり次第、次回入荷は3ヶ月後です」"],food:["「今週末限定コース。予約枠残り3席をリアルタイム表示」","「季節食材のため今月末で提供終了。次は来年までお届けできません」"],beauty:["「今月のモニター枠 残り2名様。埋まり次第、通常料金に戻ります」","「春のキャンペーンは3/31まで。期間終了後は20%値上げ」"],estate:["「本物件への問い合わせが今週だけで14件。内見予約はお早めに」","「今月中のご成約で仲介手数料10%OFF。月末締切」"],saas:["「年間プラン早期契約で2ヶ月無料。今月末までの限定オファー」","「β版無料枠 残り50社。正式リリース後は月額○円」"]},"帰属意識":{ec:["「月商100万円を目指すECオーナーのあなたへ」とヘッダーで呼びかけ","「すでに3,200店舗のショップオーナーが導入。あなたの業界でも」"],food:["「個人飲食店オーナーで集客に悩む方へ」と冒頭で明確にターゲット指定","「同じ悩みを抱えていた居酒屋店長340名が実践した方法」"],beauty:["「開業3年以内のサロンオーナー様へ—同じ壁を越えた先輩の声」","「1人美容室・まつエクサロン専門。あなたの業態に特化した設計」"],estate:["「年間成約30件未満の営業担当者へ—トップセールスの共通点」","「地域密着型の不動産会社1,500社が選んだ集客メソッド」"],saas:["「PMF達成前のスタートアップCTO・マーケターのあなたへ」","「シリーズA前後のSaaS企業280社が導入済み」"]},"好奇心":{ec:["「なぜ同じ商品なのに、このLPだけCVR4.2%を叩き出すのか？」","「売上トップ1%のEC事業者がLPに必ず入れている、ある1セクション」"],food:["「なぜあの店だけ行列が絶えないのか？LPに隠された3秒の仕掛け」","「飲食店LPの離脱率を劇的に下げた、意外すぎるファーストビューとは」"],beauty:["「予約が埋まるサロンのLPに共通する、たった1つの違い」","「なぜこの美容院だけ指名率90%超？プロフィールページの秘密」"],estate:["「問い合わせ率18%の物件LP、普通のLPとの決定的な違いとは」","「不動産LPで写真より重要な要素。トップ営業だけが知る法則」"],saas:["「解約率0.8%のSaaSが絶対にLPに書かないこと、知っていますか？」","「無料トライアル→有料転換率40%超のLPに共通するある構造」"]},"罪悪感":{ec:["「まだスマホ未対応のLPで売上機会を失い続けますか？」","「無料で改善できるのに手を付けないのは、毎月○万円をドブに捨てるのと同じです」"],food:["「お客様の声に目を通していますか？放置した口コミが売上を蝕みます」","「スタッフが頑張っているのに、LPが足を引っ張っていませんか？」"],beauty:["「高い技術を持っているのに、LPが伝えきれていないのはもったいない」","「プロとしてお客様に最良の第一印象を届ける義務、果たせていますか？」"],estate:["「お客様は他社と比較しています。情報不足のLPで選ばれなくて本当にいいですか？」","「部下が一生懸命営業しても、LPが弱ければ問い合わせ自体が来ません」"],saas:["「プロダクトは素晴らしいのに、LPが原因でユーザーに届いていないとしたら？」","「エンジニアが作った機能、マーケティングが活かしきれていませんか？」"]}};
+var FS=document.getElementById("form-section");
+T.forEach(function(t,ti){
+var h='<div class="card"><h2>'+t.icon+" "+t.name+'トリガー <span class="badge">'+(ti+1)+'/7</span></h2><div class="guide">'+t.guide+"</div>";
+t.qs.forEach(function(q,qi){
+var id="q"+ti+"_"+qi;
+h+='<div class="q"><label class="ql">Q'+(ti*5+qi+1)+". "+q+'</label><div class="opts">';
+h+='<label><input type="radio" name="'+id+'" value="2"><span>Yes</span></label>';
+h+='<label><input type="radio" name="'+id+'" value="1"><span>部分的</span></label>';
+h+='<label><input type="radio" name="'+id+'" value="0"><span>No</span></label>';
+h+="</div></div>";
+});
+h+="</div>";
+FS.insertAdjacentHTML("beforeend",h);
+});
+function diagnose(){
+var scores=[],allOk=true;
+for(var ti=0;ti<7;ti++){
+var s=0;
+for(var qi=0;qi<5;qi++){
+var r=document.querySelector('input[name="q'+ti+"_"+qi+'"]:checked');
+if(!r){allOk=false;break;}
+s+=parseInt(r.value);
+}
+if(!allOk)break;
+scores.push(Math.round(s/10*100));
+}
+if(!allOk){alert("すべての質問に回答してください");return;}
+var ind=document.querySelector('input[name="industry"]:checked').value;
+var total=Math.round(scores.reduce(function(a,b){return a+b},0)/7);
+document.getElementById("totalNum").textContent=total+"/100";
+var rank=total>=80?"A（優秀）":total>=60?"B（良好）":total>=40?"C（改善余地あり）":"D（要改善）";
+var rc=total>=80?"#0d9488":total>=60?"#f59e0b":"#e8432a";
+document.getElementById("totalRank").innerHTML='ランク: <span style="color:'+rc+';font-weight:700">'+rank+"</span>";
+var sg=document.getElementById("scoreGrid");sg.innerHTML="";
+scores.forEach(function(s,i){
+var cls=s>=70?"high":s>=40?"mid":"low";
+sg.innerHTML+='<div class="score-item"><div class="num '+cls+'">'+s+'</div><div class="lbl">'+T[i].icon+" "+T[i].name+"</div></div>";
+});
+drawRadar(scores);
+var ia=document.getElementById("improveArea");ia.innerHTML="";
+var weak=scores.map(function(s,i){return{s:s,i:i}}).filter(function(x){return x.s<70}).sort(function(a,b){return a.s-b.s});
+if(weak.length===0){
+ia.innerHTML='<p style="color:#0d9488;font-weight:600">すべてのトリガーが70点以上です！高水準な感情設計LPです。</p>';
+}else{
+weak.forEach(function(w){
+var tn=T[w.i].name;
+var copies=IMP[tn][ind]||IMP[tn]["ec"];
+ia.innerHTML+="<h3>"+T[w.i].icon+" "+tn+"トリガー（"+w.s+'点）の改善案</h3><div class="copy-ex"><b>パターンA:</b> '+copies[0]+'</div><div class="copy-ex"><b>パターンB:</b> '+copies[1]+"</div>";
+});
+}
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function drawRadar(scores){
+var c=document.getElementById("radar");
+var dpr=window.devicePixelRatio||1;
+c.width=400*dpr;c.height=400*dpr;
+c.style.width="400px";c.style.height="400px";
+var ctx=c.getContext("2d");
+ctx.scale(dpr,dpr);
+var cx=200,cy=200,R=140,n=7,step=Math.PI*2/n,off=-Math.PI/2;
+ctx.clearRect(0,0,400,400);
+[0.25,0.5,0.75,1].forEach(function(r){
+ctx.beginPath();
+for(var i=0;i<=n;i++){var a=off+step*i;var x=cx+Math.cos(a)*R*r,y=cy+Math.sin(a)*R*r;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+ctx.closePath();ctx.strokeStyle="#ddd";ctx.lineWidth=1;ctx.stroke();
+});
+for(var i=0;i<n;i++){
+var a=off+step*i;
+ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);ctx.strokeStyle="#ddd";ctx.stroke();
+var lx=cx+Math.cos(a)*(R+28),ly=cy+Math.sin(a)*(R+28);
+ctx.fillStyle="#333";ctx.font="bold 12px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";
+ctx.fillText(T[i].icon+" "+T[i].name,lx,ly);
+}
+ctx.beginPath();
+scores.forEach(function(s,i){var a=off+step*i;var r=R*s/100;var x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+ctx.closePath();ctx.fillStyle="rgba(232,67,42,0.2)";ctx.fill();ctx.strokeStyle="#e8432a";ctx.lineWidth=2.5;ctx.stroke();
+scores.forEach(function(s,i){var a=off+step*i;var r=R*s/100;ctx.beginPath();ctx.arc(cx+Math.cos(a)*r,cy+Math.sin(a)*r,4,0,Math.PI*2);ctx.fillStyle="#e8432a";ctx.fill();});
+}
+</script>
+</body>
+</html>

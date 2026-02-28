@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>修繕費用試算＆積立金過不足診断ツール（総会レポート印刷機能付き） - kusasyu tools</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font:14px/1.6 sans-serif;background:#f5f7fa;color:#333}.w{max-width:900px;margin:0 auto;padding:16px}h1{text-align:center;color:#1a5276;font-size:1.3em;margin:8px 0}h3{font-size:1em;color:#1a5276;margin-bottom:4px}.sub{text-align:center;color:#888;font-size:.8em;margin-bottom:12px}.c{background:#fff;border-radius:8px;padding:14px;margin:10px 0;box-shadow:0 1px 3px rgba(0,0,0,.1)}label{display:block;font-size:.82em;font-weight:bold;margin:6px 0 2px}input,select{width:100%;padding:7px;border:1px solid #ccc;border-radius:4px;font-size:.9em}.r{display:flex;gap:10px;flex-wrap:wrap}.r>div{flex:1;min-width:130px}.b{display:block;width:100%;padding:11px;background:#1a5276;color:#fff;border:none;border-radius:6px;font-size:1em;cursor:pointer;margin-top:10px}.b:hover{background:#154360}.b2{background:#27ae60}.b2:hover{background:#1e8449}#R{display:none}table{width:100%;border-collapse:collapse;margin:6px 0;font-size:.82em}th,td{border:1px solid #ccc;padding:5px;text-align:right}th{background:#eaf2f8;text-align:center}td:first-child{text-align:left}canvas{width:100%}.al{padding:9px;margin:6px 0;border-radius:4px;border-left:4px solid #e74c3c;background:#fdedec}.ok{border-color:#27ae60;background:#eafaf1}.sc{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}.sc>div{flex:1;min-width:180px;padding:8px;border-radius:6px;text-align:center}.sc b{font-size:1.2em;display:block}.op{background:#eafaf1}.st{background:#eaf2f8}.pe{background:#fdedec}
+@media print{.np{display:none!important}body{background:#fff;font-size:11pt}.c{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}.w{max-width:100%;padding:0}.ph{display:block!important;text-align:center;border-bottom:2px solid #333;padding-bottom:8px;margin-bottom:16px}.pf{display:block!important;margin-top:16px;border-top:1px solid #999;padding-top:6px;font-size:9pt;text-align:center;color:#666}}
+.ph,.pf{display:none}@media(max-width:600px){.r,.sc{flex-direction:column}}
+</style><meta name="description" content="マンション管理組合が、管理会社やコンサルタントに頼らず自力で修繕費用の妥当性を判断できるツールキット。建物スペック入力で10〜30年の修繕費用を確率分布で予測し、複数業者の見積もりを統計的に比較して談合パターンを検知する。国交省ガイドライン準拠の長期修繕計画書ドラフトも自動生成。管理会社との情報格差を解消し、">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,修繕費用試算＆積立金過不足診断ツール（総会レポート印刷機能付き）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-4/">
+<meta property="og:title" content="修繕費用試算＆積立金過不足診断ツール（総会レポート印刷機能付き） - kusasyu tools">
+<meta property="og:description" content="マンション管理組合が、管理会社やコンサルタントに頼らず自力で修繕費用の妥当性を判断できるツールキット。建物スペック入力で10〜30年の修繕費用を確率分布で予測し、複数業者の見積もりを統計的に比較して談合パターンを検知する。国交省ガイドライン準拠の長期修繕計画書ドラフトも自動生成。管理会社との情報格差を解消し、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="修繕費用試算＆積立金過不足診断ツール（総会レポート印刷機能付き） - kusasyu tools">
+<meta name="twitter:description" content="マンション管理組合が、管理会社やコンサルタントに頼らず自力で修繕費用の妥当性を判断できるツールキット。建物スペック入力で10〜30年の修繕費用を確率分布で予測し、複数業者の見積もりを統計的に比較して談合パターンを検知する。国交省ガイドライン準拠の長期修繕計画書ドラフトも自動生成。管理会社との情報格差を解消し、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "修繕費用試算＆積立金過不足診断ツール（総会レポート印刷機能付き）",
+  "description": "マンション管理組合が、管理会社やコンサルタントに頼らず自力で修繕費用の妥当性を判断できるツールキット。建物スペック入力で10〜30年の修繕費用を確率分布で予測し、複数業者の見積もりを統計的に比較して談合パターンを検知する。国交省ガイドライン準拠の長期修繕計画書ドラフトも自動生成。管理会社との情報格差を解消し、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body><div class="w">
+<div class="ph"><h2>長期修繕計画 費用試算報告書</h2><p>国土交通省「マンションの修繕積立金に関するガイドライン」（2021年改訂版）準拠</p><p id="pd"></p></div>
+<h1 class="np">PropGuard 修繕費用試算＆積立金過不足診断</h1>
+<p class="sub np">国交省ガイドライン（2021年改訂版）準拠｜サーバーレス動作</p>
+<div class="c np"><h3>建物情報</h3>
+<div class="r"><div><label>建築年</label><input type="number" id="i1" value="2000" min="1960" max="2025"></div><div><label>構造</label><select id="i2"><option value="0">RC（鉄筋コンクリート）</option><option value="1">SRC（鉄骨鉄筋コンクリート）</option><option value="2">S（鉄骨造）</option></select></div></div>
+<div class="r"><div><label>総戸数</label><input type="number" id="i3" value="50" min="1"></div><div><label>延床面積（㎡）</label><input type="number" id="i4" value="4000" min="100"></div><div><label>階数</label><input type="number" id="i5" value="10" min="1"></div></div>
+<div class="r"><div><label>過去修繕実績（万円・任意）</label><input type="number" id="i6" value="0" min="0"></div></div>
+<h3 style="margin-top:10px">積立金情報</h3>
+<div class="r"><div><label>積立金残高（万円）</label><input type="number" id="i7" value="3000" min="0"></div><div><label>月額積立金（円/㎡）</label><input type="number" id="i8" value="200" min="0"></div></div>
+<button class="b" onclick="go()">診断を実行</button></div>
+<div id="R">
+<div class="c"><h3>■ 修繕費用試算（3シナリオ）</h3><div id="o1" class="sc"></div></div>
+<div class="c"><h3>■ 修繕項目別 費用内訳（標準シナリオ）</h3><table id="o2"></table></div>
+<div class="c"><h3>■ 積立金過不足推移グラフ</h3><canvas id="cv" height="260"></canvas><div id="o3"></div></div>
+<div class="c"><h3>■ ガイドライン比較＆値上げ提案</h3><div id="o4"></div></div>
+<button class="b b2 np" onclick="window.print()">総会説明資料として印刷</button></div>
+<div class="pf">本資料はPropGuard修繕費用試算ツールにより自動生成されました。<br>国土交通省「マンションの修繕積立金に関するガイドライン」（2021年改訂版）に基づく概算値であり、個別建物調査に基づく詳細診断に代わるものではありません。</div>
+</div>
+<script>
+var N=['外壁補修','屋上防水','給排水管','エレベーター','共用設備'],
+D=[[[500,1e3,1600],[350,650,1050],[280,560,920],[220,450,750],[170,380,620]],
+[[530,1060,1700],[370,690,1110],[300,595,975],[235,480,800],[180,405,660]],
+[[470,940,1500],[330,610,980],[260,525,860],[205,420,700],[160,355,580]]],
+MU=[.8,1,1.3],SN=['楽観','標準','悲観'];
+function go(){var v=function(x){return+document.getElementById(x).value},
+yr=v('i1'),si=v('i2'),un=v('i3'),ar=v('i4'),fl=v('i5'),hi=v('i6'),ba=v('i7'),mo=v('i8'),
+ag=2026-yr;
+document.getElementById('pd').textContent='作成日: '+new Date().toLocaleDateString('ja-JP')+' ／ 築'+ag+'年 '+['RC','SRC','S'][si]+'造 '+un+'戸 '+ar+'㎡ '+fl+'階';
+function cf(y,m){var t=0,it=[],i,j;for(i=0;i<5;i++){var c=0;for(j=0;j<y;j++){var a=ag+j,bi=a<10?0:a<20?1:2;c+=D[si][i][bi]*ar}c=Math.round(c*m);if(i===3&&fl<6)c=0;it.push(c);t+=c}return{t:t,it:it}}
+var rs=[];[10,20,30].forEach(function(y){var row=[];MU.forEach(function(m){row.push(cf(y,m))});rs.push(row)});
+var h='';['op','st','pe'].forEach(function(cls,j){h+='<div class="'+cls+'"><small>'+SN[j]+'（30年）</small><b>'+F(rs[2][j].t)+'万円</b><small>10年: '+F(rs[0][j].t)+'万<br>20年: '+F(rs[1][j].t)+'万</small></div>'});
+document.getElementById('o1').innerHTML=h;
+var tb='<tr><th>修繕項目</th><th>10年</th><th>20年</th><th>30年</th><th>構成比</th></tr>',t3=rs[2][1].t,i;
+for(i=0;i<5;i++){var r=rs[2][1].it[i];tb+='<tr><td>'+N[i]+'</td><td>'+F(rs[0][1].it[i])+'</td><td>'+F(rs[1][1].it[i])+'</td><td>'+F(r)+'</td><td>'+(t3?Math.round(r/t3*100):0)+'%</td></tr>'}
+tb+='<tr style="font-weight:bold"><td>合計</td><td>'+F(rs[0][1].t)+'</td><td>'+F(rs[1][1].t)+'</td><td>'+F(t3)+'</td><td>100%</td></tr>';
+document.getElementById('o2').innerHTML=tb;
+var cv=document.getElementById('cv'),cx=cv.getContext('2d');cv.width=cv.offsetWidth;cv.height=260;
+var W=cv.width,H=260,P=48,GW=W-P-16,GH=H-P-16;cx.clearRect(0,0,W,H);
+var aB=[],aC=[],b=ba*1e4,cc=0,my=mo*ar;
+for(i=0;i<=30;i++){aB.push(b);aC.push(cc);if(i<30){b+=my*12;var a2=ag+i,bi2=a2<10?0:a2<20?1:2,yc=0;for(var k=0;k<5;k++){var cv2=D[si][k][bi2]*ar;if(k===3&&fl<6)cv2=0;yc+=cv2}cc+=yc}}
+if(hi>0){for(i=0;i<=30;i++)aC[i]=Math.max(0,aC[i]-hi*1e4)}
+var mx=Math.max.apply(null,aB.concat(aC))*1.1||1;
+cx.strokeStyle='#ccc';cx.lineWidth=1;cx.beginPath();cx.moveTo(P,10);cx.lineTo(P,10+GH);cx.lineTo(P+GW,10+GH);cx.stroke();
+cx.fillStyle='#888';cx.font='10px sans-serif';cx.textAlign='right';
+for(i=0;i<=4;i++){var yp=10+GH-GH*i/4;cx.fillText(F(mx*i/4)+'万',P-3,yp+3);cx.beginPath();cx.moveTo(P,yp);cx.lineTo(P+GW,yp);cx.strokeStyle='#eee';cx.stroke()}
+cx.textAlign='center';for(i=0;i<=30;i+=5){cx.fillStyle='#888';cx.fillText(i+'年後',P+GW*i/30,10+GH+13)}
+dL(cx,aB,mx,P,GW,GH,'#27ae60',1);dL(cx,aC,mx,P,GW,GH,'#e74c3c',0);
+cx.fillStyle='#27ae60';cx.fillRect(P+6,2,14,3);cx.fillStyle='#333';cx.textAlign='left';cx.font='11px sans-serif';cx.fillText('積立金累計',P+24,7);
+cx.fillStyle='#e74c3c';cx.fillRect(P+100,2,14,3);cx.fillText('修繕費用累計',P+118,7);
+var df=aB[30]-aC[30],o3=document.getElementById('o3');
+if(df>=0){o3.innerHTML='<div class="al ok">30年後の積立金余裕: <b>+'+F(df)+'万円</b>（標準シナリオ）<br>現在の積立金計画は概ね適正です。</div>'}
+else{var s=Math.abs(df),nm=Math.ceil(s/(ar*12*30))+mo;o3.innerHTML='<div class="al">30年後の積立金不足: <b>-'+F(s)+'万円</b>（標準シナリオ）<br>月額積立金を現在の<b>'+mo+'円/㎡</b>から<b>'+nm+'円/㎡</b>へ引き上げが必要です。</div>'}
+var gl=fl>=20?338:ar<5e3?335:ar<1e4?252:271,gp=mo-gl;
+var a4='<table><tr><th>項目</th><th>値</th></tr><tr><td>国交省ガイドライン推奨単価</td><td><b>'+gl+'円/㎡/月</b></td></tr><tr><td>現在の月額積立金</td><td>'+mo+'円/㎡/月</td></tr><tr><td>ガイドラインとの差</td><td style="color:'+(gp>=0?'#27ae60':'#e74c3c')+'">'+(gp>=0?'+':'')+gp+'円/㎡/月</td></tr><tr><td>30年間の修繕費用（標準）</td><td>'+F(t3)+'万円</td></tr><tr><td>30年間の積立金見込み</td><td>'+F(aB[30])+'万円</td></tr></table>';
+if(gp<0){a4+='<div class="al" style="margin-top:6px">国交省推奨単価を<b>'+Math.abs(gp)+'円/㎡/月</b>下回っています。<br>段階増額方式の場合、5年ごとに<b>'+Math.ceil(Math.abs(gp)/6)+'円/㎡/月</b>ずつ引き上げる計画を検討してください。</div>'}
+else{a4+='<div class="al ok" style="margin-top:6px">ガイドライン推奨単価を満たしています。計画的な積立を継続してください。</div>'}
+document.getElementById('o4').innerHTML=a4;
+document.getElementById('R').style.display='block';document.getElementById('R').scrollIntoView({behavior:'smooth'})}
+function dL(c,d,mx,P,GW,GH,cl,f){c.beginPath();c.strokeStyle=cl;c.lineWidth=2;for(var i=0;i<=30;i++){var x=P+GW*i/30,y=10+GH-GH*(d[i]/mx);i?c.lineTo(x,y):c.moveTo(x,y)}c.stroke();if(f){c.lineTo(P+GW,10+GH);c.lineTo(P,10+GH);c.closePath();c.fillStyle=cl+'22';c.fill()}}
+function F(v){return Math.round(v/1e4).toLocaleString()}
+</script></body></html>

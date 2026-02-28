@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LLMOコンテンツ診断エンジン（エンジン別3軸スコアリング＋改善プロンプト出力） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#0f172a;color:#e2e8f0;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;text-align:center;padding:20px 0 4px;background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;font-size:.8rem;color:#94a3b8;margin-bottom:20px}
+.card{background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid #334155}
+label{font-size:.85rem;font-weight:600;color:#cbd5e1;display:block;margin-bottom:6px}
+textarea{width:100%;height:180px;background:#0f172a;border:1px solid #475569;border-radius:8px;color:#e2e8f0;padding:12px;font-size:.9rem;resize:vertical}
+textarea:focus{outline:none;border-color:#6366f1}
+.row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.preset-btn{flex:1;padding:10px;border:2px solid #475569;border-radius:8px;background:transparent;color:#cbd5e1;font-size:.85rem;cursor:pointer;transition:.2s}
+.preset-btn.active{border-color:#6366f1;background:#6366f120;color:#a5b4fc}
+.btn-main{width:100%;padding:14px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:8px;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;transition:.2s}
+.btn-main:hover{opacity:.9}
+#results{display:none}
+.scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:16px}
+.eng-card{background:#0f172a;border-radius:10px;padding:16px;border:1px solid #334155}
+.eng-name{font-size:.9rem;font-weight:700;margin-bottom:8px}
+.eng-name.pp{color:#22d3ee}.eng-name.cg{color:#a78bfa}.eng-name.go{color:#34d399}
+.score-big{font-size:2.2rem;font-weight:800;text-align:center;margin:8px 0}
+.bar-wrap{height:6px;background:#334155;border-radius:3px;margin:6px 0 4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:width .5s}
+.axis-row{display:flex;justify-content:space-between;font-size:.78rem;color:#94a3b8;margin-bottom:2px}
+.axis-row span:last-child{font-weight:600;color:#e2e8f0}
+.para{padding:10px 12px;margin:4px 0;border-radius:6px;font-size:.85rem;border-left:3px solid transparent;cursor:pointer;transition:.2s}
+.para:hover{background:#1e293b}
+.para.low{background:#7f1d1d20;border-left-color:#ef4444}
+.para.mid{background:#78350f20;border-left-color:#f59e0b}
+.para.high{background:#14532d20;border-left-color:#22c55e}
+.tips{margin-top:8px;font-size:.82rem;color:#94a3b8;display:none;padding:8px 12px;background:#0f172a;border-radius:6px}
+.tips li{margin:3px 0 3px 16px}
+.prompt-box{position:relative;background:#0f172a;border:1px solid #475569;border-radius:8px;padding:14px;font-size:.82rem;color:#cbd5e1;white-space:pre-wrap;max-height:260px;overflow-y:auto}
+.copy-btn{position:absolute;top:8px;right:8px;background:#6366f1;border:none;color:#fff;padding:6px 14px;border-radius:6px;font-size:.78rem;cursor:pointer}
+.copy-btn:hover{background:#4f46e5}
+.tab-row{display:flex;gap:4px;margin-bottom:12px}
+.tab{flex:1;text-align:center;padding:8px;border-radius:6px;font-size:.82rem;cursor:pointer;background:#0f172a;border:1px solid #334155;color:#94a3b8}
+.tab.active{border-color:#6366f1;color:#a5b4fc;background:#6366f120}
+.legend{display:flex;gap:16px;justify-content:center;margin:12px 0;font-size:.78rem;color:#94a3b8}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+@media(max-width:600px){.scores{grid-template-columns:1fr}.wrap{padding:10px}h1{font-size:1.2rem}}
+</style>
+<meta name="description" content="SEO担当者が既存のWebページ本文をペーストすると、Perplexity・ChatGPT検索・Google AI Overviewsなど主要LLM検索エンジンに引用されやすい文章構造（定義文パターン・箇条書き密度・数値根拠の有無・一次情報マーカー・FAQ適合度）をスコアリングし、具体的なリライト案を段落単位">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,LLMOコンテンツ診断エンジン（エンジン別3軸スコアリング＋改善プロンプト出力）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-2/">
+<meta property="og:title" content="LLMOコンテンツ診断エンジン（エンジン別3軸スコアリング＋改善プロンプト出力） - kusasyu tools">
+<meta property="og:description" content="SEO担当者が既存のWebページ本文をペーストすると、Perplexity・ChatGPT検索・Google AI Overviewsなど主要LLM検索エンジンに引用されやすい文章構造（定義文パターン・箇条書き密度・数値根拠の有無・一次情報マーカー・FAQ適合度）をスコアリングし、具体的なリライト案を段落単位">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LLMOコンテンツ診断エンジン（エンジン別3軸スコアリング＋改善プロンプト出力） - kusasyu tools">
+<meta name="twitter:description" content="SEO担当者が既存のWebページ本文をペーストすると、Perplexity・ChatGPT検索・Google AI Overviewsなど主要LLM検索エンジンに引用されやすい文章構造（定義文パターン・箇条書き密度・数値根拠の有無・一次情報マーカー・FAQ適合度）をスコアリングし、具体的なリライト案を段落単位">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "LLMOコンテンツ診断エンジン（エンジン別3軸スコアリング＋改善プロンプト出力）",
+  "description": "SEO担当者が既存のWebページ本文をペーストすると、Perplexity・ChatGPT検索・Google AI Overviewsなど主要LLM検索エンジンに引用されやすい文章構造（定義文パターン・箇条書き密度・数値根拠の有無・一次情報マーカー・FAQ適合度）をスコアリングし、具体的なリライト案を段落単位",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>LLMOコンテンツ診断エンジン</h1>
+<p class="sub">エンジン別3軸スコアリング + 改善プロンプト出力</p>
+<div class="card">
+<label>記事本文を貼り付け</label>
+<textarea id="inp" placeholder="診断したい記事のテキストをここにペーストしてください…"></textarea>
+<label style="margin-top:12px">業種プリセット</label>
+<div class="row">
+<button class="preset-btn active" onclick="setPreset(0,this)">BtoB SaaS</button>
+<button class="preset-btn" onclick="setPreset(1,this)">メディア</button>
+</div>
+<button class="btn-main" onclick="run()">診断を実行</button>
+</div>
+<div id="results">
+<div class="card">
+<label>エンジン別 総合スコア</label>
+<div class="scores" id="scoreCards"></div>
+</div>
+<div class="card">
+<label>段落別ヒートマップ（クリックで改善ポイント表示）</label>
+<div class="legend"><span><i style="background:#ef4444"></i>要改善(0-49)</span><span><i style="background:#f59e0b"></i>改善余地あり(50-74)</span><span><i style="background:#22c55e"></i>良好(75-100)</span></div>
+<div class="tab-row" id="engTabs"></div>
+<div id="paraList"></div>
+</div>
+<div class="card">
+<label>AIリライト用プロンプト</label>
+<div class="tab-row" id="promptTabs"></div>
+<div style="position:relative"><div class="prompt-box" id="promptBox"></div><button class="copy-btn" onclick="copyPrompt()">コピー</button></div>
+</div>
+</div>
+</div>
+<script>
+var preset=0,analysis=null;
+var ENG=['Perplexity','ChatGPT検索','AI Overviews'];
+var ECOL=['#22d3ee','#a78bfa','#34d399'];
+var ECLS=['pp','cg','go'];
+var W=[[[25,30,45],[40,25,35],[30,40,30]],[[30,35,35],[35,30,35],[25,45,30]]];
+function setPreset(p,el){preset=p;document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});el.classList.add('active')}
+function splitParas(t){return t.split(/\n{2,}|\n/).map(function(s){return s.trim()}).filter(function(s){return s.length>10})}
+function scoreAxis(text){
+var len=text.length||1;
+var defPats=[/とは[、。,．]/g,/を指します/g,/のことです/g,/と定義/g,/意味します/g,/である[。]/g,/と呼ばれ/g,/を意味する/g];
+var d=0;defPats.forEach(function(r){var m=text.match(r);if(m)d+=m.length});
+var a0=Math.min(100,Math.round(d*(800/Math.max(len,100))*25));
+var bullets=(text.match(/^[\s]*[・\-\*①-⑳▶●■□►→]/gm)||[]).length;
+var faq=(text.match(/(Q[:：]|質問|よくある|FAQ|\?|？)/gi)||[]).length;
+var headings=(text.match(/^#{1,3}\s/gm)||[]).length;
+var a1=Math.min(100,Math.round(bullets*8+faq*15+headings*10));
+var nums=(text.match(/\d+[%％万億兆件社名人回倍円ドル年月日時間分秒]/g)||[]).length;
+var sources=(text.match(/(調査|レポート|発表|公式|データ|統計|研究|論文|出典|参照|引用|によると|によれば)/g)||[]).length;
+var years=(text.match(/20[0-9]{2}年/g)||[]).length;
+var a2=Math.min(100,Math.round(nums*6+sources*10+years*8));
+return[a0,a1,a2]}
+function calcES(axes,eng){var w=W[preset][eng];return Math.round((axes[0]*w[0]+axes[1]*w[1]+axes[2]*w[2])/100)}
+function run(){
+var text=document.getElementById('inp').value.trim();
+if(!text){alert('テキストを入力してください');return}
+var paras=splitParas(text);
+if(!paras.length){alert('段落が検出できませんでした');return}
+var pd=paras.map(function(p){var ax=scoreAxis(p);return{text:p,axes:ax,es:[calcES(ax,0),calcES(ax,1),calcES(ax,2)]}});
+var ga=scoreAxis(text);
+analysis={paras:pd,ga:ga,et:[calcES(ga,0),calcES(ga,1),calcES(ga,2)],ft:text};
+renderAll();
+document.getElementById('results').style.display='block';
+document.getElementById('results').scrollIntoView({behavior:'smooth'})}
+function renderAll(){
+var labs=['定義文パターン密度','箇条書き・FAQ構造','数値・一次情報'];
+var h='';
+for(var e=0;e<3;e++){var s=analysis.et[e];var col=ECOL[e];
+h+='<div class="eng-card"><div class="eng-name '+ECLS[e]+'">'+ENG[e]+'</div><div class="score-big" style="color:'+col+'">'+s+'<span style="font-size:.9rem">/100</span></div>';
+for(var a=0;a<3;a++){var v=analysis.ga[a];h+='<div class="axis-row"><span>'+labs[a]+'</span><span>'+v+'</span></div><div class="bar-wrap"><div class="bar-fill" style="width:'+v+'%;background:'+col+'"></div></div>'}
+h+='</div>'}
+document.getElementById('scoreCards').innerHTML=h;
+var t='';for(var e=0;e<3;e++)t+='<div class="tab'+(e===0?' active':'')+'" onclick="sEng('+e+',this)">'+ENG[e]+'</div>';
+document.getElementById('engTabs').innerHTML=t;
+var pt='';for(var e=0;e<3;e++)pt+='<div class="tab'+(e===0?' active':'')+'" onclick="sPEng('+e+',this)">'+ENG[e]+'</div>';
+document.getElementById('promptTabs').innerHTML=pt;
+renderParas(0);renderPrompt(0)}
+function sEng(e,el){el.parentElement.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});el.classList.add('active');renderParas(e)}
+function sPEng(e,el){el.parentElement.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});el.classList.add('active');renderPrompt(e)}
+function renderParas(eng){
+var h='';analysis.paras.forEach(function(p,i){
+var s=p.es[eng];var cls=s<50?'low':s<75?'mid':'high';
+var sh=p.text.length>120?p.text.slice(0,120)+'…':p.text;
+var tips=getTips(p,eng);
+h+='<div class="para '+cls+'" onclick="tTip('+i+')"><strong>段落'+(i+1)+'</strong>（スコア:'+s+'）'+sh+'<div class="tips" id="tip'+i+'"><ul>'+tips.map(function(t){return'<li>'+t+'</li>'}).join('')+'</ul></div></div>'});
+document.getElementById('paraList').innerHTML=h}
+function tTip(i){var el=document.getElementById('tip'+i);el.style.display=el.style.display==='block'?'none':'block'}
+function getTips(p,eng){
+var t=[];var ax=p.axes;
+if(ax[0]<40){t.push(['「〇〇とは〜である」形式の定義文を冒頭に追加（Perplexityは定義文を引用しやすい）','主題を1文で定義する文を段落冒頭に配置（ChatGPTは定義文を取り込みやすい）','検索意図に直接回答する定義文を追加（AI Overviewsは質問→回答パターンを優先）'][eng])}
+if(ax[1]<40){t.push(['要点を箇条書き3〜5項目にまとめる（Perplexityは構造化リストを好む）','H2/H3見出し+箇条書きで情報を階層化（ChatGPTは段階的構造を抽出しやすい）','FAQ形式（Q:→A:）を追加（AI OverviewsはFAQリッチリザルト連動が強い）'][eng])}
+if(ax[2]<40){t.push(['具体的な数値と出典を明記（Perplexityはファクトチェック可能な数値を優先引用）','「〇〇調査によると」等の一次情報マーカーを追加（ChatGPTは信頼性シグナルとして評価）','統計データや調査年を含め鮮度情報を付与（AI Overviewsは最新データを優先）'][eng])}
+if(!t.length)t.push('この段落は良好です。現在の構造を維持してください。');
+return t}
+function renderPrompt(eng){
+var a=analysis;var weak=[];
+if(a.ga[0]<50)weak.push('定義文パターンが不足');
+if(a.ga[1]<50)weak.push('箇条書き・FAQ構造が不足');
+if(a.ga[2]<50)weak.push('数値・一次情報の根拠が不足');
+var lp=a.paras.map(function(p,i){return{i:i,s:p.es[eng]}}).filter(function(x){return x.s<60});
+var eh=['Perplexityに引用されやすいよう、各段落冒頭に「〇〇とは〜である」形式の定義文を配置し、数値データには必ず出典元と調査年を併記。箇条書きは3〜5項目で簡潔に。','ChatGPT検索に取り込まれやすいよう、H2/H3の見出し階層を明確にし、各セクション冒頭で主題を1文で要約。専門用語には括弧書きで平易な説明を。','Google AI Overviewsに表示されやすいよう、FAQ形式（Q:→A:）を積極的に使い、回答は2〜3文で完結。リスト形式は番号付きリストに。'];
+var pr='あなたはSEOとLLMO（LLM最適化）の専門家です。以下の記事を'+ENG[eng]+'に引用されやすい文体にリライトしてください。\n\n【改善すべき点】\n'+(weak.length?weak.map(function(w){return'・'+w}).join('\n'):'・全体的に良好ですが、さらに最適化してください')+'\n\n【対象エンジンの引用傾向】\n'+eh[eng]+'\n\n【特に改善が必要な段落】\n'+(lp.length?lp.map(function(x){return'段落'+(x.i+1)+'（スコア'+x.s+'/100）'}).join('、'):'全体的にスコアは良好です')+'\n\n【リライト条件】\n・元の情報を削除しない\n・専門性と読みやすさを両立\n・数値や固有名詞は正確に維持\n・業種: '+(preset===0?'BtoB SaaS':'メディア')+'向け\n\n--- 以下が対象記事 ---\n'+a.ft.slice(0,1500)+(a.ft.length>1500?'\n…（以下省略）':'');
+document.getElementById('promptBox').textContent=pr}
+function copyPrompt(){var t=document.getElementById('promptBox').textContent;navigator.clipboard.writeText(t).then(function(){var b=document.querySelector('.copy-btn');b.textContent='コピー完了!';setTimeout(function(){b.textContent='コピー'},1500)})}
+</script>
+</body>
+</html>

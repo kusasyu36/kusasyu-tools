@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法務precedent検索エンジン - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:12px 20px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.header h1{font-size:1.1rem;flex:1}
+.header button{background:#e94560;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.85rem}
+.header button.sec{background:#0f3460}
+.cap-warn{padding:4px 12px;font-size:.8rem;text-align:center;font-weight:700;display:none}
+.cap-yellow{background:#fff3cd;color:#856404;display:block}
+.cap-red{background:#f8d7da;color:#721c24;display:block}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:99}
+.modal{background:#fff;border-radius:8px;padding:24px;max-width:460px;width:90%;text-align:center}
+.modal h2{margin-bottom:12px;color:#e94560}
+.modal p{font-size:.9rem;line-height:1.6;margin-bottom:16px;text-align:left}
+.modal button{background:#1a1a2e;color:#fff;border:none;padding:8px 24px;border-radius:4px;cursor:pointer}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1rem;margin-bottom:10px;color:#16213e;border-bottom:2px solid #e94560;padding-bottom:4px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+.form-grid label{font-size:.8rem;font-weight:600;display:block;margin-bottom:2px}
+.form-grid input,.form-grid select,.form-grid textarea{width:100%;padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:.85rem}
+.form-grid textarea{resize:vertical;height:50px}
+.form-grid .full{grid-column:1/-1}
+.btn{background:#e94560;color:#fff;border:none;padding:8px 20px;border-radius:4px;cursor:pointer;font-size:.9rem;margin-top:8px}
+.btn.g{background:#0f3460}
+.search-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.search-bar input,.search-bar select{padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:.85rem;flex:1;min-width:120px}
+.result-item{border:1px solid #e0e0e0;border-radius:6px;padding:10px;margin-bottom:8px}
+.result-item h3{font-size:.9rem;color:#e94560;margin-bottom:4px}
+.result-item p{font-size:.8rem;line-height:1.5;color:#444}
+.result-item .meta{font-size:.75rem;color:#888;margin-top:4px}
+.result-item .del{float:right;background:none;border:none;color:#e94560;cursor:pointer;font-size:.8rem}
+.stats{font-size:.8rem;color:#666;margin-bottom:8px}
+.hidden{display:none}
+input[type=file]{display:none}
+</style>
+<meta name="description" content="法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務precedent検索エンジン">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/precedent/">
+<meta property="og:title" content="法務precedent検索エンジン - kusasyu tools">
+<meta property="og:description" content="法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/precedent/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務precedent検索エンジン - kusasyu tools">
+<meta name="twitter:description" content="法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務precedent検索エンジン",
+  "description": "法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/precedent/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="header">
+<h1>PrecedentDB</h1>
+<button class="sec" onclick="exportCSV()">CSV出力</button>
+<button class="sec" onclick="document.getElementById('csvFile').click()">CSV取込</button>
+<input type="file" id="csvFile" accept=".csv" onchange="importCSV(event)">
+<button onclick="toggleForm()">＋ 新規登録</button>
+</div>
+<div id="capWarn" class="cap-warn"></div>
+<div id="modal" class="modal-overlay hidden">
+<div class="modal">
+<h2>ご利用上の注意</h2>
+<p>本ツールのデータは<strong>このブラウザ固有のLocalStorage</strong>に保存されます。他のPC・ブラウザからはアクセスできません。<br><br>データ消失リスクに備え、<strong>定期的なCSVエクスポートを強く推奨</strong>します。</p>
+<button onclick="closeModal()">理解しました</button>
+</div>
+</div>
+<div class="container">
+<div id="regCard" class="card hidden">
+<h2>判断先例の登録</h2>
+<div class="form-grid">
+<div><label>契約種別</label><select id="fType"><option>秘密保持契約(NDA)</option><option>業務委託契約</option><option>売買契約</option><option>ライセンス契約</option><option>共同開発契約</option><option>その他</option></select></div>
+<div><label>条項タイプ</label><select id="fClause"><option>秘密保持</option><option>損害賠償</option><option>競業避止</option><option>解除条項</option><option>準拠法・管轄</option><option>知的財産</option><option>保証・表明</option><option>その他</option></select></div>
+<div class="full"><label>判断内容</label><textarea id="fContent" placeholder="例: 損害賠償上限を契約金額の100%に設定"></textarea></div>
+<div class="full"><label>判断理由</label><textarea id="fReason" placeholder="例: 過去に上限なしで高額請求を受けた事例があったため"></textarea></div>
+<div><label>判断者</label><input id="fJudge" placeholder="例: 佐藤部長"></div>
+<div><label>日付</label><input type="date" id="fDate"></div>
+</div>
+<button class="btn" onclick="addRecord()">登録</button>
+<button class="btn g" onclick="toggleForm()">閉じる</button>
+</div>
+<div class="card">
+<h2>先例検索</h2>
+<div class="search-bar">
+<input id="sKey" placeholder="キーワード検索" oninput="search()">
+<select id="sType" onchange="search()"><option value="">全契約種別</option><option>秘密保持契約(NDA)</option><option>業務委託契約</option><option>売買契約</option><option>ライセンス契約</option><option>共同開発契約</option><option>その他</option></select>
+<select id="sClause" onchange="search()"><option value="">全条項タイプ</option><option>秘密保持</option><option>損害賠償</option><option>競業避止</option><option>解除条項</option><option>準拠法・管轄</option><option>知的財産</option><option>保証・表明</option><option>その他</option></select>
+</div>
+<div class="stats" id="stats"></div>
+<div id="results"></div>
+</div>
+</div>
+<script>
+const STORE='precedentDB',SHOWN='precedentDBShown';
+let data=JSON.parse(localStorage.getItem(STORE)||'[]');
+function init(){
+if(!localStorage.getItem(SHOWN)){document.getElementById('modal').classList.remove('hidden')}
+if(!data.length){loadSample()}
+search();checkCap()
+}
+function closeModal(){document.getElementById('modal').classList.add('hidden');localStorage.setItem(SHOWN,'1')}
+function loadSample(){
+data=[
+{id:1,type:'秘密保持契約(NDA)',clause:'秘密保持',content:'秘密保持期間を契約終了後3年間に設定。受領者の役職員以外への開示を禁止し、違反時の損害賠償条項を明記',reason:'業界標準は1〜5年。過去に期限なしとして紛争になった事例を踏まえ3年に統一',judge:'田中法務部長',date:'2025-08-15'},
+{id:2,type:'業務委託契約',clause:'損害賠償',content:'損害賠償の上限額を委託料総額の100%に制限。間接損害・逸失利益は相互に免責',reason:'上限なしの契約で想定外の高額請求を受けた過去事例があり、リスク上限の明確化が必要と判断',judge:'佐藤マネージャー',date:'2025-09-22'},
+{id:3,type:'業務委託契約',clause:'競業避止',content:'契約期間中および終了後1年間、同一業種の競合他社への同種業務提供を禁止',reason:'前回委託先が在任中に競合案件を受託し情報漏洩リスクが発生。期間1年は判例上有効と認められやすい上限',judge:'田中法務部長',date:'2025-11-05'},
+{id:4,type:'売買契約',clause:'解除条項',content:'催告解除は書面通知後30日の是正期間を設定。重大な契約違反（反社会的勢力該当、破産申立等）は無催告即時解除',reason:'口頭催告では証拠が残らず紛争リスクが高い。是正期間30日は取引慣行上合理的と判断',judge:'鈴木リーダー',date:'2026-01-10'},
+{id:5,type:'ライセンス契約',clause:'準拠法・管轄',content:'準拠法を日本法、第一審の専属的合意管轄を東京地方裁判所に指定',reason:'当社本店が東京所在のため訴訟コスト最小化。海外取引先との交渉では仲裁条項（JCAA）を別途検討',judge:'佐藤マネージャー',date:'2026-02-01'}
+];save()
+}
+function save(){localStorage.setItem(STORE,JSON.stringify(data));checkCap()}
+function checkCap(){
+const w=document.getElementById('capWarn'),n=data.length;
+w.className='cap-warn';w.style.display='none';
+if(n>800){w.textContent='⚠ 登録件数 '+n+'/1000件 — 容量上限に近づいています。CSVエクスポート後に古いデータの削除を検討してください';w.classList.add('cap-red')}
+else if(n>500){w.textContent='📦 登録件数 '+n+'/1000件 — 定期的なCSVバックアップを推奨します';w.classList.add('cap-yellow')}
+}
+function toggleForm(){document.getElementById('regCard').classList.toggle('hidden')}
+function addRecord(){
+const c=document.getElementById('fContent').value.trim();
+if(!c){alert('判断内容を入力してください');return}
+const r={id:Date.now(),type:document.getElementById('fType').value,clause:document.getElementById('fClause').value,content:c,reason:document.getElementById('fReason').value.trim(),judge:document.getElementById('fJudge').value.trim()||'未記入',date:document.getElementById('fDate').value||new Date().toISOString().slice(0,10)};
+data.unshift(r);save();
+document.getElementById('fContent').value='';document.getElementById('fReason').value='';document.getElementById('fJudge').value='';
+search();toggleForm()
+}
+function delRecord(id){if(confirm('この先例を削除しますか？')){data=data.filter(r=>r.id!==id);save();search()}}
+function search(){
+const k=document.getElementById('sKey').value.toLowerCase(),t=document.getElementById('sType').value,cl=document.getElementById('sClause').value;
+let f=data.filter(r=>{
+if(t&&r.type!==t)return false;
+if(cl&&r.clause!==cl)return false;
+if(k){const s=(r.content+r.reason+r.judge+r.type+r.clause).toLowerCase();if(!s.includes(k))return false}
+return true
+});
+document.getElementById('stats').textContent='検索結果: '+f.length+'件 / 全'+data.length+'件';
+const box=document.getElementById('results');
+if(!f.length){box.innerHTML='<p style="color:#888;text-align:center;padding:20px">該当する先例がありません</p>';return}
+box.innerHTML=f.map(r=>'<div class="result-item"><button class="del" onclick="delRecord('+r.id+')">削除</button><h3>【'+r.clause+'】'+r.type+'</h3><p><strong>判断:</strong> '+esc(r.content)+'</p>'+(r.reason?'<p><strong>理由:</strong> '+esc(r.reason)+'</p>':'')+'<div class="meta">👤 '+esc(r.judge)+' ｜ 📅 '+r.date+'</div></div>').join('')
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function exportCSV(){
+let csv='\uFEFF"ID","契約種別","条項タイプ","判断内容","判断理由","判断者","日付"\n';
+data.forEach(r=>{csv+='"'+r.id+'","'+q(r.type)+'","'+q(r.clause)+'","'+q(r.content)+'","'+q(r.reason)+'","'+q(r.judge)+'","'+r.date+'"\n'});
+const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+a.download='precedent_'+new Date().toISOString().slice(0,10)+'.csv';a.click()
+}
+function q(s){return (s||'').replace(/"/g,'""')}
+function importCSV(e){
+const f=e.target.files[0];if(!f)return;
+const reader=new FileReader();
+reader.onload=function(ev){
+const lines=ev.target.result.split('\n').filter(l=>l.trim());
+let count=0;
+for(let i=1;i<lines.length;i++){
+const m=lines[i].match(/(?:^|,)(?:"([^"]*(?:""[^"]*)*)"|([^,]*))/g);
+if(!m||m.length<7)continue;
+const p=m.map(v=>v.replace(/^,?"?|"?$/g,'').replace(/""/g,'"'));
+data.unshift({id:Date.now()+i,type:p[1]||'その他',clause:p[2]||'その他',content:p[3]||'',reason:p[4]||'',judge:p[5]||'未記入',date:p[6]||new Date().toISOString().slice(0,10)});
+count++
+}
+save();search();alert(count+'件をインポートしました');
+};reader.readAsText(f,'UTF-8');e.target.value=''
+}
+document.getElementById('fDate').value=new Date().toISOString().slice(0,10);
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法務トリアージ＆エスカレーション判定ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e}
+.wrap{max-width:900px;margin:0 auto;padding:12px}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:20px;border-radius:12px;margin-bottom:16px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{font-size:.82em;opacity:.85}
+.disc{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px 14px;font-size:.75em;color:#664d03;margin-bottom:14px;line-height:1.5}
+.panel{background:#fff;border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.panel h2{font-size:1.05em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e9ecef}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cat-btn{padding:14px 10px;border:2px solid #dee2e6;border-radius:10px;background:#fff;cursor:pointer;text-align:center;transition:.2s;font-size:.85em}
+.cat-btn:hover{border-color:#4361ee;background:#f0f3ff}
+.cat-btn.active{border-color:#4361ee;background:#4361ee;color:#fff}
+.cat-btn .ico{font-size:1.6em;display:block;margin-bottom:4px}
+.q-group{margin-bottom:14px}
+.q-group label{display:block;font-size:.88em;font-weight:600;margin-bottom:6px}
+select{width:100%;padding:10px;border:2px solid #dee2e6;border-radius:8px;font-size:.88em;background:#fff;appearance:auto}
+select:focus{outline:none;border-color:#4361ee}
+.btn-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+button{padding:10px 24px;border:none;border-radius:8px;font-size:.9em;cursor:pointer;font-weight:600;transition:.2s}
+.btn-p{background:#4361ee;color:#fff}
+.btn-p:hover{background:#3a56d4}
+.btn-s{background:#e9ecef;color:#495057}
+.btn-s:hover{background:#dee2e6}
+.hidden{display:none}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+.stat{background:#fff;border-radius:10px;padding:14px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.stat .num{font-size:1.6em;font-weight:700}
+.stat .lbl{font-size:.72em;color:#6c757d;margin-top:2px}
+.urg-imm .num{color:#dc3545}
+.urg-week .num{color:#fd7e14}
+.urg-month .num{color:#20c997}
+.card{background:#fff;border-radius:10px;padding:14px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);border-left:5px solid #dee2e6}
+.card h3{font-size:.95em;margin-bottom:6px}
+.card p,.card li{font-size:.82em;line-height:1.6;color:#495057}
+.card ul{padding-left:18px}
+.card.c-red{border-left-color:#dc3545}
+.card.c-org{border-left-color:#fd7e14}
+.card.c-grn{border-left-color:#20c997}
+.card.c-blu{border-left-color:#4361ee}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72em;font-weight:600;margin-right:4px}
+.tag-r{background:#fde8e8;color:#dc3545}
+.tag-g{background:#e8f5e9;color:#2e7d32}
+.logic-box{background:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:12px;margin-top:10px;font-size:.78em;line-height:1.6}
+.logic-box summary{cursor:pointer;font-weight:600;font-size:.85em}
+.links a{display:block;color:#4361ee;text-decoration:none;font-size:.82em;padding:4px 0}
+.links a:hover{text-decoration:underline}
+.step-ind{display:flex;gap:0;margin-bottom:16px;justify-content:center}
+.step-ind span{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8em;font-weight:700;background:#e9ecef;color:#6c757d;position:relative}
+.step-ind span.act{background:#4361ee;color:#fff}
+.step-ind span+span{margin-left:30px}
+.step-ind span+span::before{content:'';position:absolute;left:-28px;top:50%;width:26px;height:2px;background:#dee2e6}
+.step-ind span.act+span.act::before{background:#4361ee}
+@media(max-width:500px){.cat-grid{grid-template-columns:repeat(2,1fr)}.summary{grid-template-columns:repeat(2,1fr)}}
+</style>
+<meta name="description" content="法務担当者がいない中小企業（従業員50名以下）が、弁護士に相談する前に自力で『契約書のリスク箇所の特定』『法務課題の緊急度判定と弁護士相談の要否判断』をできるようにするツールキット。LegalOnやLeCHECKが月額数十万円で大企業向けに提供している契約レビュー機能のうち、中小企業が最も必要とする『危険条項">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務トリアージ＆エスカレーション判定ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-6/">
+<meta property="og:title" content="法務トリアージ＆エスカレーション判定ツール - kusasyu tools">
+<meta property="og:description" content="法務担当者がいない中小企業（従業員50名以下）が、弁護士に相談する前に自力で『契約書のリスク箇所の特定』『法務課題の緊急度判定と弁護士相談の要否判断』をできるようにするツールキット。LegalOnやLeCHECKが月額数十万円で大企業向けに提供している契約レビュー機能のうち、中小企業が最も必要とする『危険条項">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務トリアージ＆エスカレーション判定ツール - kusasyu tools">
+<meta name="twitter:description" content="法務担当者がいない中小企業（従業員50名以下）が、弁護士に相談する前に自力で『契約書のリスク箇所の特定』『法務課題の緊急度判定と弁護士相談の要否判断』をできるようにするツールキット。LegalOnやLeCHECKが月額数十万円で大企業向けに提供している契約レビュー機能のうち、中小企業が最も必要とする『危険条項">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務トリアージ＆エスカレーション判定ツール",
+  "description": "法務担当者がいない中小企業（従業員50名以下）が、弁護士に相談する前に自力で『契約書のリスク箇所の特定』『法務課題の緊急度判定と弁護士相談の要否判断』をできるようにするツールキット。LegalOnやLeCHECKが月額数十万円で大企業向けに提供している契約レビュー機能のうち、中小企業が最も必要とする『危険条項",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>法務トリアージ判定ツール</h1>
+<p>LegalFirst — 法務課題の緊急度判定と弁護士相談の要否を無料診断</p>
+</header>
+<div class="disc">⚠️ 本ツールは法的助言ではありません。判定結果は一般的な目安であり、個別事案の法律相談は弁護士にご依頼ください。全ての判定根拠は条文番号とともに開示しています。</div>
+
+<div class="step-ind"><span class="act" id="si1">1</span><span id="si2">2</span><span id="si3">3</span></div>
+
+<!-- STEP 1 -->
+<div class="panel" id="step1">
+<h2>STEP 1：法務課題の分野を選択</h2>
+<div class="cat-grid">
+<div class="cat-btn" data-cat="contract" onclick="selCat(this)"><span class="ico">📝</span>契約トラブル</div>
+<div class="cat-btn" data-cat="labor" onclick="selCat(this)"><span class="ico">👥</span>労務問題</div>
+<div class="cat-btn" data-cat="debt" onclick="selCat(this)"><span class="ico">💰</span>債権回収</div>
+<div class="cat-btn" data-cat="ip" onclick="selCat(this)"><span class="ico">💡</span>知財侵害</div>
+<div class="cat-btn" data-cat="reg" onclick="selCat(this)"><span class="ico">📋</span>規制対応</div>
+</div>
+<div class="btn-row" style="justify-content:flex-end"><button class="btn-p" onclick="toStep2()">次へ →</button></div>
+</div>
+
+<!-- STEP 2 -->
+<div class="panel hidden" id="step2">
+<h2>STEP 2：状況の詳細を選択</h2>
+<div id="qArea"></div>
+<div class="btn-row"><button class="btn-s" onclick="toStep(1)">← 戻る</button><button class="btn-p" onclick="judge()">判定する</button></div>
+</div>
+
+<!-- STEP 3 -->
+<div class="panel hidden" id="step3">
+<h2>STEP 3：判定結果</h2>
+<div id="resArea"></div>
+<div class="btn-row"><button class="btn-s" onclick="toStep(1)">最初からやり直す</button></div>
+</div>
+</div>
+
+<script>
+var cat='',qs={};
+var QDB={
+contract:[
+{id:'c1',l:'トラブルの種類',o:[['pay','代金未払い・支払遅延'],['term','一方的な契約解除・中途解約'],['breach','契約違反（納品不備・仕様不一致）'],['unfair','不利な条項の押し付け（損害賠償上限なし等）']]},
+{id:'c2',l:'契約書の有無',o:[['yes','契約書あり'],['oral','口頭契約のみ'],['no','契約書なし・紛失']]},
+{id:'c3',l:'損害額の規模',o:[['s','50万円未満'],['m','50万〜300万円'],['l','300万〜1000万円'],['xl','1000万円超']]},
+{id:'c4',l:'相手方の対応',o:[['talk','話し合いに応じている'],['ignore','連絡を無視している'],['threat','損害賠償・訴訟を示唆している']]}
+],
+labor:[
+{id:'l1',l:'問題の種類',o:[['dismiss','解雇・雇い止め'],['harass','ハラスメント'],['wage','残業代・賃金未払い'],['accident','労災・安全配慮']]},
+{id:'l2',l:'当事者',o:[['emp','従業員からの申告'],['ex','退職者からの請求'],['agency','労基署からの是正勧告']]},
+{id:'l3',l:'緊迫度',o:[['now','訴訟・労働審判を予告された'],['soon','外部機関に相談したと言われた'],['pot','社内で不満が出ている段階']]}
+],
+debt:[
+{id:'d1',l:'回収状況',o:[['first','初回督促前'],['reminded','督促済み・反応なし'],['partial','一部入金あり・残額未回収'],['lost','連絡不通・所在不明']]},
+{id:'d2',l:'債権額',o:[['s','50万円未満'],['m','50万〜300万円'],['l','300万円超']]},
+{id:'d3',l:'消滅時効',o:[['ok','期限まで1年以上'],['warn','期限まで半年以内'],['danger','期限まで3ヶ月未満・不明']]}
+],
+ip:[
+{id:'i1',l:'侵害の種類',o:[['tm','商標の無断使用'],['copy','著作権侵害（コピーサイト等）'],['patent','特許侵害の警告を受けた'],['secret','営業秘密の漏洩']]},
+{id:'i2',l:'立場',o:[['victim','自社が被害者'],['accused','自社が侵害を指摘された']]},
+{id:'i3',l:'損害の程度',o:[['minor','売上への影響は軽微'],['moderate','顧客混同・一定の損害あり'],['severe','重大な損害・拡大中']]}
+],
+reg:[
+{id:'r1',l:'規制の種類',o:[['privacy','個人情報保護法対応'],['antimonopoly','下請法・独禁法'],['industry','業法（建設業・宅建業等）'],['export','輸出管理・外為法']]},
+{id:'r2',l:'状況',o:[['prevent','事前の体制整備'],['notice','行政からの指導・照会'],['violation','違反の指摘・調査開始']]},
+{id:'r3',l:'期限',o:[['none','特になし'],['month','1ヶ月以内に対応要'],['week','1週間以内に回答要']]}
+]};
+
+var LAWS={
+contract:{pay:'民法第541条（催告解除）、同第415条（債務不履行損害賠償）、商法第512条（報酬請求権）',term:'民法第651条（委任解除）、同第641条（請負解除）、下請法第4条第1項第5号',breach:'民法第562条〜564条（契約不適合責任）、同第415条',unfair:'民法第90条（公序良俗違反）、消費者契約法第10条、独禁法第2条第9項'},
+labor:{dismiss:'労働契約法第16条（解雇権濫用法理）、労基法第20条（解雇予告）',harass:'労働施策総合推進法第30条の2、男女雇用機会均等法第11条',wage:'労基法第24条（賃金全額払い）、同第37条（割増賃金）、同第114条（付加金）',accident:'労基法第75条（療養補償）、安衛法第3条、民法第715条（使用者責任）'},
+debt:{general:'民法第412条（履行遅滞）、同第414条（強制履行）、民事訴訟法第382条（支払督促）',statute:'民法第166条（消滅時効5年/10年）、商法第522条旧→民法改正後5年統一'},
+ip:{tm:'商標法第36条（差止請求）、同第38条（損害賠償額の推定）',copy:'著作権法第112条（差止）、同第114条（損害額推定）',patent:'特許法第100条（差止）、同第102条（損害額推定）',secret:'不正競争防止法第2条第1項第4〜10号、同第3条'},
+reg:{privacy:'個人情報保護法第23条〜25条（第三者提供制限）、同第83条（罰則：1億円以下）',antimonopoly:'下請法第4条（親事業者の禁止行為）、独禁法第19条（不公正な取引方法）',industry:'各業法の許可・届出規定',export:'外為法第25条・第48条（役務・貨物の規制）'}
+};
+
+function selCat(el){
+document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
+el.classList.add('active');cat=el.dataset.cat;
+}
+function toStep2(){
+if(!cat)return alert('分野を選択してください');
+var h='';QDB[cat].forEach(function(q){
+h+='<div class="q-group"><label>'+q.l+'</label><select id="'+q.id+'"><option value="">選択してください</option>';
+q.o.forEach(function(o){h+='<option value="'+o[0]+'">'+o[1]+'</option>'});
+h+='</select></div>';
+});
+document.getElementById('qArea').innerHTML=h;toStep(2);
+}
+function toStep(n){
+[1,2,3].forEach(function(i){
+document.getElementById('step'+i).classList.toggle('hidden',i!==n);
+document.getElementById('si'+i).classList.toggle('act',i<=n);
+});
+}
+function getVals(){
+var v={};QDB[cat].forEach(function(q){v[q.id]=document.getElementById(q.id).value});return v;
+}
+function judge(){
+var v=getVals(),empty=false;
+QDB[cat].forEach(function(q){if(!v[q.id])empty=true});
+if(empty)return alert('全ての項目を選択してください');
+var sc=0,reasons=[],selfOk=true,cost={min:0,max:0},lawKey='';
+
+if(cat==='contract'){
+lawKey=v.c1;
+if(v.c4==='threat'){sc+=40;reasons.push('相手方が訴訟を示唆→即対応必要')}
+else if(v.c4==='ignore'){sc+=25;reasons.push('相手方が連絡無視→早期に法的手段検討')}
+else{sc+=5;reasons.push('話し合い継続可能→緊急度低')}
+if(v.c3==='xl'){sc+=35;reasons.push('損害額1000万円超→弁護士必須');selfOk=false}
+else if(v.c3==='l'){sc+=25;reasons.push('損害額300万〜1000万円→弁護士推奨');selfOk=false}
+else if(v.c3==='m'){sc+=15;reasons.push('損害額50万〜300万円→簡裁対応可の可能性')}
+else{sc+=5;reasons.push('損害額50万円未満→少額訴訟（60万円以下）検討可')}
+if(v.c2==='no'){sc+=15;reasons.push('契約書なし→証拠確保が急務');selfOk=false}
+else if(v.c2==='oral'){sc+=10;reasons.push('口頭契約→やり取りの記録を保全')}
+cost=v.c3==='xl'?{min:50,max:200}:v.c3==='l'?{min:30,max:100}:v.c3==='m'?{min:10,max:50}:{min:0,max:15};
+}
+else if(cat==='labor'){
+lawKey=v.l1;
+if(v.l2==='agency'){sc+=40;reasons.push('労基署の是正勧告→行政対応が最優先');selfOk=false}
+else if(v.l2==='ex'){sc+=20;reasons.push('退職者からの請求→法的リスク中')}
+else{sc+=10;reasons.push('社内申告段階→初動対応が重要')}
+if(v.l3==='now'){sc+=40;reasons.push('訴訟・労働審判予告→即弁護士対応');selfOk=false}
+else if(v.l3==='soon'){sc+=20;reasons.push('外部相談済み→1週間以内に対策要')}
+else{sc+=5;reasons.push('不満段階→社内解決の余地あり')}
+if(v.l1==='dismiss'){sc+=10;reasons.push('解雇問題は法的リスク大');selfOk=false}
+cost=v.l3==='now'?{min:30,max:150}:v.l3==='soon'?{min:10,max:50}:{min:0,max:20};
+}
+else if(cat==='debt'){
+lawKey='general';
+if(v.d3==='danger'){sc+=40;reasons.push('時効3ヶ月未満/不明→至急時効中断措置');selfOk=false}
+else if(v.d3==='warn'){sc+=20;reasons.push('時効半年以内→早期に督促・内容証明')}
+else{sc+=5;reasons.push('時効余裕あり')}
+if(v.d1==='lost'){sc+=30;reasons.push('連絡不通→弁護士による所在調査要');selfOk=false}
+else if(v.d1==='reminded'){sc+=15;reasons.push('督促無反応→法的手段移行検討')}
+else{sc+=5}
+if(v.d2==='l'){sc+=15;reasons.push('債権額300万円超→弁護士推奨');selfOk=false}
+else if(v.d2==='m'){sc+=10;reasons.push('債権額50万〜300万円→支払督促検討')}
+cost=v.d2==='l'?{min:20,max:100}:v.d2==='m'?{min:10,max:40}:{min:0,max:15};
+}
+else if(cat==='ip'){
+lawKey=v.i1;
+if(v.i2==='accused'){sc+=30;reasons.push('侵害指摘を受けた側→防御対応が急務');selfOk=false}
+else{sc+=10;reasons.push('被害者側→証拠保全を優先')}
+if(v.i3==='severe'){sc+=35;reasons.push('重大損害が拡大中→即差止請求検討');selfOk=false}
+else if(v.i3==='moderate'){sc+=20;reasons.push('一定の損害あり→早期対応推奨')}
+else{sc+=5;reasons.push('影響軽微→経過観察可')}
+if(v.i1==='secret'){sc+=15;reasons.push('営業秘密漏洩→不正競争防止法対応');selfOk=false}
+cost=v.i3==='severe'?{min:30,max:150}:v.i3==='moderate'?{min:15,max:60}:{min:5,max:20};
+}
+else if(cat==='reg'){
+lawKey=v.r1;
+if(v.r2==='violation'){sc+=45;reasons.push('違反指摘・調査開始→即対応必須');selfOk=false}
+else if(v.r2==='notice'){sc+=25;reasons.push('行政指導→期限内の回答要')}
+else{sc+=5;reasons.push('予防的整備→計画的に対応可')}
+if(v.r3==='week'){sc+=30;reasons.push('回答期限1週間→至急対応')}
+else if(v.r3==='month'){sc+=15;reasons.push('期限1ヶ月→速やかに準備')}
+if(v.r1==='privacy'&&v.r2==='violation'){sc+=10;reasons.push('個人情報漏洩→報告義務あり（72時間以内）');selfOk=false}
+cost=v.r2==='violation'?{min:30,max:200}:v.r2==='notice'?{min:10,max:50}:{min:0,max:20};
+}
+
+sc=Math.min(sc,100);
+var urgTxt=sc>=60?'即対応':sc>=30?'1週間以内':'1ヶ月以内';
+var urgCls=sc>=60?'urg-imm':sc>=30?'urg-week':'urg-month';
+var selfTxt=selfOk?'自己対応可能（ただし経過に注意）':'弁護士への相談を推奨';
+var selfCls=selfOk?'tag-g':'tag-r';
+var lawText=LAWS[cat][lawKey]||'該当条文を個別に確認してください';
+if(cat==='debt'&&v.d3!=='ok')lawText+='\n'+LAWS.debt.statute;
+
+var h='<div class="summary">';
+h+='<div class="stat '+urgCls+'"><div class="num">'+sc+'</div><div class="lbl">緊急度スコア</div></div>';
+h+='<div class="stat '+urgCls+'"><div class="num">'+urgTxt+'</div><div class="lbl">対応期限</div></div>';
+h+='<div class="stat"><div class="num" style="font-size:1.1em">'+(cost.min===0?'無料〜':'')+(cost.min>0?cost.min+'万':'')+'〜'+cost.max+'万円</div><div class="lbl">想定弁護士費用</div></div>';
+h+='</div>';
+
+h+='<div class="card '+(selfOk?'c-grn':'c-red')+'"><h3>自己対応可否</h3><p><span class="tag '+selfCls+'">'+(selfOk?'自己対応可':'弁護士推奨')+'</span> '+selfTxt+'</p></div>';
+
+h+='<div class="card c-blu"><h3>該当法令・条文</h3><p>'+lawText.replace(/\n/g,'<br>')+'</p></div>';
+
+h+='<div class="card c-org"><h3>判定根拠（全'+reasons.length+'項目）</h3><ul>';
+reasons.forEach(function(r){h+='<li>'+r+'</li>'});
+h+='</ul><details class="logic-box"><summary>スコア計算ロジックを表示</summary><p>各選択肢に重み付けスコアを加算し合計100点満点で評価。60点以上＝即対応、30〜59点＝1週間以内、29点以下＝1ヶ月以内。損害額・相手方態度・期限の3軸で加点。弁護士推奨は金額300万円超・訴訟示唆・行政処分等の場合に自動判定。</p></details></div>';
+
+h+='<div class="card c-blu"><h3>費用の内訳目安</h3><ul><li>初回法律相談：無料〜5,500円（30分）</li><li>着手金：'+cost.min+'万〜'+cost.max+'万円（事案の複雑さによる）</li><li>報酬金：経済的利益の10〜16%が一般的</li></ul></div>';
+
+h+='<div class="card c-grn links"><h3>無料相談窓口・次のアクション</h3>';
+h+='<a href="https://www.houterasu.or.jp/" target="_blank" rel="noopener">法テラス（日本司法支援センター）— 無料法律相談・費用立替制度</a>';
+h+='<a href="https://www.nichibenren.or.jp/legal_advice/search/center.html" target="_blank" rel="noopener">日本弁護士連合会 法律相談センター検索</a>';
+h+='<a href="https://www.mhlw.go.jp/general/seido/chihou/kaiketu/soudan.html" target="_blank" rel="noopener">総合労働相談コーナー（厚生労働省）— 労務問題向け</a>';
+h+='<a href="https://www.jcci.or.jp/" target="_blank" rel="noopener">日本商工会議所 — 中小企業向け経営・法務相談</a>';
+h+='<a href="https://www.smrj.go.jp/" target="_blank" rel="noopener">中小機構 — 弁護士等の専門家派遣（無料3回）</a>';
+h+='</div>';
+
+document.getElementById('resArea').innerHTML=h;toStep(3);
+}
+</script>
+</body>
+</html>

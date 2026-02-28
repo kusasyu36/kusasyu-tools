@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ_HowTo_JSON-LDスキーママークアップ・ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.25rem;text-align:center;padding:18px 0 4px;color:#1e3a5f}
+.sub{text-align:center;font-size:.82rem;color:#64748b;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.step{display:inline-block;background:#1e3a5f;color:#fff;font-size:.75rem;padding:2px 10px;border-radius:12px;margin-bottom:10px}
+label{display:block;font-weight:600;font-size:.88rem;margin:10px 0 4px}
+input[type=text],textarea,select{width:100%;border:1px solid #cbd5e1;border-radius:6px;padding:10px;font-size:.88rem;font-family:inherit;background:#fff}
+textarea{resize:vertical}
+.tabs{display:flex;gap:4px;margin-bottom:14px}
+.tab{flex:1;text-align:center;padding:10px 6px;border:2px solid #cbd5e1;border-radius:8px;cursor:pointer;font-weight:600;font-size:.82rem;background:#f8fafc;transition:.2s}
+.tab.on{border-color:#1e3a5f;background:#1e3a5f;color:#fff}
+button{cursor:pointer;border:none;border-radius:6px;padding:10px 18px;font-size:.9rem;font-weight:600;transition:.2s}
+.btn-p{background:#1e3a5f;color:#fff;width:100%;margin-top:10px;padding:13px}
+.btn-p:hover{background:#2d5a8e}
+.btn-d{background:#dc2626;color:#fff;font-size:.78rem;padding:6px 12px}
+.btn-d:hover{background:#b91c1c}
+.btn-a{background:#e2e8f0;color:#1e3a5f;font-size:.82rem;padding:8px 16px;margin-top:8px}
+.btn-a:hover{background:#cbd5e1}
+.btn-c{background:#059669;color:#fff;padding:8px 18px;font-size:.82rem;margin-top:8px}
+.btn-c:hover{background:#047857}
+.item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:10px;position:relative}
+.item .num{position:absolute;top:10px;left:14px;background:#1e3a5f;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.7rem;display:flex;align-items:center;justify-content:center}
+.item .del{position:absolute;top:10px;right:10px}
+.out{background:#0f172a;color:#a5f3fc;border-radius:8px;padding:16px;margin-top:10px;white-space:pre-wrap;font-size:.8rem;max-height:420px;overflow-y:auto;word-break:break-word;font-family:'Courier New',monospace}
+.warn{background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;padding:10px 14px;margin-top:8px;font-size:.82rem;color:#92400e}
+.ok{background:#d1fae5;border:1px solid #10b981;border-radius:6px;padding:10px 14px;margin-top:8px;font-size:.82rem;color:#065f46}
+.guide{background:#eff6ff;border-left:4px solid #1e3a5f;padding:14px;border-radius:0 6px 6px 0;margin-top:12px;font-size:.82rem}
+.guide b{color:#1e3a5f}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1e3a5f;color:#fff;padding:10px 24px;border-radius:8px;font-size:.88rem;display:none;z-index:99}
+.cnt{font-size:.75rem;color:#94a3b8;text-align:right;margin-top:2px}
+@media(max-width:600px){.wrap{padding:10px}h1{font-size:1.1rem}.tabs{flex-direction:column}}
+</style>
+<meta name="description" content="ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&amp;A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,FAQ_HowTo_JSON-LDスキーママークアップ・ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/faq-howto-json-ld/">
+<meta property="og:title" content="FAQ_HowTo_JSON-LDスキーママークアップ・ジェネレーター - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&amp;A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/faq-howto-json-ld/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FAQ_HowTo_JSON-LDスキーママークアップ・ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&amp;A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FAQ_HowTo_JSON-LDスキーママークアップ・ジェネレーター",
+  "description": "ChatGPT・Gemini・Perplexity等の生成AI検索で自社コンテンツが「回答ソース」として引用されるために必要な3つの実務ツールを提供する。(1)既存記事をAI引用されやすいQ&A構造に変換するリライトツール、(2)FAQPage・HowToのJSON-LDスキーママークアップを即座に生成するジ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/faq-howto-json-ld/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>FAQ/HowTo JSON-LDスキーママークアップ・ジェネレーター</h1>
+<p class="sub">AEO対策コックピット｜Q&A・手順を入力 → 構造化データを即生成</p>
+
+<div class="card">
+<span class="step">STEP 1</span> スキーマタイプを選択
+<div class="tabs" id="tabs">
+<div class="tab on" onclick="sw(0)">FAQPage<br><span style="font-weight:400;font-size:.7rem">よくある質問</span></div>
+<div class="tab" onclick="sw(1)">HowTo<br><span style="font-weight:400;font-size:.7rem">手順ガイド</span></div>
+<div class="tab" onclick="sw(2)">Q&APage<br><span style="font-weight:400;font-size:.7rem">単一Q&A</span></div>
+</div>
+</div>
+
+<div class="card">
+<span class="step">STEP 2</span> コンテンツを入力
+<div id="meta"></div>
+<div id="items"></div>
+<button class="btn-a" onclick="addItem()">＋ 項目を追加</button>
+</div>
+
+<div class="card">
+<span class="step">STEP 3</span> JSON-LDを生成
+<button class="btn-p" onclick="gen()">構造化データを生成する</button>
+<div id="vld"></div>
+<div id="result" style="display:none">
+<div class="out" id="code"></div>
+<button class="btn-c" onclick="cpy()">クリップボードにコピー</button>
+</div>
+</div>
+
+<div class="card">
+<span class="step">GUIDE</span> WordPressへの貼り付け方（3ステップ）
+<div class="guide">
+<b>① 投稿編集画面を開く</b><br>JSON-LDを設置したい記事・固定ページの編集画面へ移動<br><br>
+<b>② カスタムHTMLブロックを追加</b><br>ブロックエディタで「＋」→「カスタムHTML」を選択。クラシックエディタの場合は「テキスト」タブに切替<br><br>
+<b>③ JSON-LDを貼り付けて公開</b><br>上で生成した &lt;script&gt; タグごとコピーし貼り付け → 更新ボタンで公開完了。<a href="https://search.google.com/test/rich-results" target="_blank" style="color:#1e3a5f">Googleリッチリザルトテスト</a>でURLを検証
+</div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var M=0,D=[];
+function sw(n){M=n;document.querySelectorAll('.tab').forEach(function(t,i){t.className=i===n?'tab on':'tab'});D=[];render();}
+function render(){
+var m=document.getElementById('meta'),it=document.getElementById('items');
+m.innerHTML='';it.innerHTML='';
+document.getElementById('result').style.display='none';
+document.getElementById('vld').innerHTML='';
+if(M===1){m.innerHTML='<label>タイトル（HowToの名前）</label><input type="text" id="htName" placeholder="例: WordPressにJSON-LDを設置する方法"><label>概要説明</label><textarea id="htDesc" rows="2" placeholder="例: 初心者でも5分で完了する構造化データの設置手順"></textarea>';}
+if(D.length===0){if(M===1)addItem();else{addItem();addItem();}}
+else D.forEach(function(_,i){renderItem(i);});
+}
+function addItem(){D.push({q:'',a:''});renderItem(D.length-1);}
+function renderItem(i){
+var it=document.getElementById('items'),d=document.createElement('div');d.className='item';d.id='it'+i;
+var lq=M===1?'ステップ'+(i+1)+'の名前':'質問'+(i+1);
+var la=M===1?'ステップ'+(i+1)+'の詳細手順':'回答'+(i+1);
+var pq=M===1?'例: カスタムHTMLブロックを追加':'例: AEO対策とは何ですか？';
+var pa=M===1?'例: ブロックエディタの「＋」から「カスタムHTML」を選択します':'例: AEO（Answer Engine Optimization）とは、生成AI検索で自社コンテンツが回答ソースとして引用されるための最適化施策です';
+d.innerHTML='<div class="num">'+(i+1)+'</div><div style="padding-left:30px"><label>'+lq+'</label><input type="text" id="q'+i+'" value="'+esc(D[i].q)+'" placeholder="'+pq+'" oninput="up('+i+')"><div class="cnt" id="qc'+i+'"></div><label>'+la+'</label><textarea id="a'+i+'" rows="3" placeholder="'+pa+'" oninput="up('+i+')">'+esc(D[i].a)+'</textarea><div class="cnt" id="ac'+i+'"></div></div>'+(D.length>1?'<button class="btn-d del" onclick="del('+i+')">✕</button>':'');
+it.appendChild(d);cnt(i);
+}
+function esc(s){return s.replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function up(i){D[i].q=document.getElementById('q'+i).value;D[i].a=document.getElementById('a'+i).value;cnt(i);}
+function cnt(i){
+var qe=document.getElementById('qc'+i),ae=document.getElementById('ac'+i);
+if(qe)qe.textContent=D[i].q.length+' 文字';
+if(ae)ae.textContent=D[i].a.length+' 文字'+(D[i].a.length>300?' ⚠ 300文字超（推奨以内に）':'');
+}
+function del(i){D.splice(i,1);document.getElementById('items').innerHTML='';D.forEach(function(_,j){renderItem(j);});}
+function gen(){
+D.forEach(function(_,i){up(i);});
+var w=[],e=[];
+D.forEach(function(d,i){
+if(!d.q.trim())e.push('項目'+(i+1)+'：'+(M===1?'ステップ名':'質問')+'が空です');
+if(!d.a.trim())e.push('項目'+(i+1)+'：'+(M===1?'詳細手順':'回答')+'が空です');
+if(d.a.length>2000)w.push('項目'+(i+1)+'：回答が2,000文字超（検索表示が切れる可能性）');
+if(d.a.length>300&&M!==1)w.push('項目'+(i+1)+'：回答300文字超（AI引用には簡潔さ推奨）');
+});
+if(M===1){
+if(!gv('htName'))e.push('HowToタイトルが未入力です');
+if(!gv('htDesc'))e.push('HowTo概要説明が未入力です');
+}
+if(M===2&&D.length>1)w.push('Q&APageは通常1問1答です。複数ある場合はFAQPageが適切です');
+var v=document.getElementById('vld');
+if(e.length){v.innerHTML='<div class="warn">❌ エラー（修正必須）<br>'+e.join('<br>')+'</div>';document.getElementById('result').style.display='none';return;}
+var json;
+if(M===0)json=faq();
+else if(M===1)json=howto();
+else json=qap();
+var tag='<script type="application/ld+json">\n'+JSON.stringify(json,null,2)+'\n<\/script>';
+document.getElementById('code').textContent=tag;
+document.getElementById('result').style.display='block';
+var msg=w.length?'<div class="warn">⚠ 警告（推奨改善）<br>'+w.join('<br>')+'</div>':'';
+msg+='<div class="ok">✅ バリデーション通過 — Googleリッチリザルトテスト準拠のJSON-LDが生成されました（'+(M===0?'FAQPage':M===1?'HowTo':'QAPage')+'スキーマ / '+D.length+'項目）</div>';
+v.innerHTML=msg;
+}
+function gv(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+function faq(){
+return{"@context":"https://schema.org","@type":"FAQPage",mainEntity:D.map(function(d){return{"@type":"Question",name:d.q.trim(),acceptedAnswer:{"@type":"Answer",text:d.a.trim()}};})};
+}
+function howto(){
+return{"@context":"https://schema.org","@type":"HowTo",name:gv('htName'),description:gv('htDesc'),step:D.map(function(d,i){return{"@type":"HowToStep",position:i+1,name:d.q.trim(),text:d.a.trim()};})};
+}
+function qap(){
+var d=D[0];
+return{"@context":"https://schema.org","@type":"QAPage",mainEntity:{"@type":"Question",name:d.q.trim(),answerCount:D.length,acceptedAnswer:{"@type":"Answer",text:d.a.trim(),upvoteCount:0},suggestedAnswer:D.slice(1).map(function(s){return{"@type":"Answer",text:s.a.trim(),upvoteCount:0};})}};
+}
+function cpy(){
+var t=document.getElementById('code').textContent;
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){toast('コピーしました');});}
+else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);toast('コピーしました');}
+}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(function(){t.style.display='none';},2000);}
+sw(0);
+</script>
+</body>
+</html>

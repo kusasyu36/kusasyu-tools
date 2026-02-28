@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ステージング投資ROI試算ツール（チェックリスト統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:20px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.8rem;color:#718096;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1rem;color:#2b6cb0;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #ebf4ff}
+.step-badge{display:inline-block;background:#2b6cb0;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-right:6px}
+.q-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.q-row:last-child{border:none}
+.q-label{flex:1;font-size:.85rem}
+.q-btns{display:flex;gap:6px}
+.q-btns button{padding:4px 14px;border:2px solid #cbd5e0;border-radius:6px;background:#fff;cursor:pointer;font-size:.8rem;transition:.2s}
+.q-btns button.active-y{background:#2b6cb0;color:#fff;border-color:#2b6cb0}
+.q-btns button.active-n{background:#e53e3e;color:#fff;border-color:#e53e3e}
+label{display:block;font-size:.82rem;color:#4a5568;margin:10px 0 4px;font-weight:600}
+select,input[type=number]{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:8px;font-size:.9rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-calc{width:100%;padding:12px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:16px}
+#result{display:none}
+.res-box{border-radius:10px;padding:14px;margin-bottom:10px}
+.res-loss{background:#fff5f5;border-left:4px solid #e53e3e}
+.res-ai{background:#ebf8ff;border-left:4px solid #2b6cb0}
+.res-trad{background:#f0fff4;border-left:4px solid #38a169}
+.res-title{font-size:.8rem;color:#718096;margin-bottom:4px}
+.res-val{font-size:1.4rem;font-weight:800}
+.res-detail{font-size:.75rem;color:#4a5568;margin-top:4px}
+.roi-tag{display:inline-block;padding:2px 8px;border-radius:8px;font-size:.75rem;font-weight:700;color:#fff;margin-left:6px}
+.bar-wrap{margin-top:12px}
+.bar-label{display:flex;justify-content:space-between;font-size:.75rem;color:#4a5568;margin-bottom:2px}
+.bar-bg{height:16px;background:#e2e8f0;border-radius:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:8px;transition:width .6s}
+details{margin-top:12px}
+summary{font-size:.78rem;color:#2b6cb0;cursor:pointer;font-weight:600}
+details .inner{font-size:.75rem;color:#4a5568;margin-top:8px;padding:10px;background:#f7fafc;border-radius:8px}
+details .inner p{margin-bottom:4px}
+table{width:100%;border-collapse:collapse;font-size:.75rem;margin-top:8px}
+th{background:#ebf4ff;padding:6px;text-align:left}
+td{padding:6px;border-bottom:1px solid #eee}
+.ng-msg{text-align:center;padding:20px;color:#e53e3e;font-weight:700;font-size:.9rem}
+.verdict{text-align:center;padding:12px;border-radius:10px;font-weight:700;margin-top:8px;font-size:.95rem}
+.v-go{background:#c6f6d5;color:#276749}
+.v-wait{background:#fefcbf;color:#975a16}
+.v-no{background:#fed7d7;color:#9b2c2c}
+.footer{text-align:center;font-size:.7rem;color:#a0aec0;padding:16px 0}
+</style>
+<meta name="description" content="空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,ステージング投資ROI試算ツール（チェックリスト統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propstage/">
+<meta property="og:title" content="ステージング投資ROI試算ツール（チェックリスト統合版） - kusasyu tools">
+<meta property="og:description" content="空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propstage/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ステージング投資ROI試算ツール（チェックリスト統合版） - kusasyu tools">
+<meta name="twitter:description" content="空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ステージング投資ROI試算ツール（チェックリスト統合版）",
+  "description": "空室物件のバーチャルステージングに投資すべきか・どのスタイルで・どのサービスを使うべきかを、物件属性（間取り・築年数・エリア・現在家賃・空室期間）から定量予測するHTMLツール。ステージング単体サービスは国内13社以上存在するが、『ステージングにかけたコストが何倍になって返ってくるか』を事前に試算できるツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propstage/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>PropStage</h1>
+<p class="sub">ステージング投資ROI試算ツール（チェックリスト統合版）</p>
+
+<div class="card" id="step1card">
+<h2><span class="step-badge">Step 1</span>対象物件フィルター</h2>
+<p style="font-size:.78rem;color:#718096;margin-bottom:8px">5問すべてに回答してください</p>
+<div class="q-row"><span class="q-label">① 空室期間が60日を超えている</span><div class="q-btns"><button onclick="setQ(0,1,this)">Yes</button><button onclick="setQ(0,0,this)">No</button></div></div>
+<div class="q-row"><span class="q-label">② 月額家賃が6万円以上</span><div class="q-btns"><button onclick="setQ(1,1,this)">Yes</button><button onclick="setQ(1,0,this)">No</button></div></div>
+<div class="q-row"><span class="q-label">③ 競合物件がステージング実施済み</span><div class="q-btns"><button onclick="setQ(2,1,this)">Yes</button><button onclick="setQ(2,0,this)">No</button></div></div>
+<div class="q-row"><span class="q-label">④ オーナーにステージング予算あり</span><div class="q-btns"><button onclick="setQ(3,1,this)">Yes</button><button onclick="setQ(3,0,this)">No</button></div></div>
+<div class="q-row"><span class="q-label">⑤ 物件をポータルサイトに掲載中</span><div class="q-btns"><button onclick="setQ(4,1,this)">Yes</button><button onclick="setQ(4,0,this)">No</button></div></div>
+<div id="filterMsg"></div>
+</div>
+
+<div class="card" id="step2card" style="display:none">
+<h2><span class="step-badge">Step 2</span>ROI試算</h2>
+<label>間取り</label>
+<select id="madori"><option value="1">1R・1K</option><option value="2">1LDK・2K</option><option value="3" selected>2LDK・3K</option><option value="4">3LDK以上</option></select>
+<div class="row2">
+<div><label>築年数</label><input type="number" id="age" value="15" min="0" max="60"></div>
+<div><label>エリア</label><select id="area"><option value="city">都市部</option><option value="suburb">郊外</option><option value="rural">地方</option></select></div>
+</div>
+<div class="row2">
+<div><label>現在家賃（万円/月）</label><input type="number" id="rent" value="8" min="1" max="100" step="0.1"></div>
+<div><label>空室日数</label><input type="number" id="vacancy" value="90" min="1" max="999"></div>
+</div>
+<button class="btn-calc" onclick="calc()">ROIを試算する</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>試算結果</h2>
+<div class="res-box res-loss"><div class="res-title">現在の空室損失額（累計）</div><div class="res-val" id="rLoss"></div><div class="res-detail" id="rLossD"></div></div>
+<div class="res-box res-ai"><div class="res-title">AIステージング導入時（低コスト型）</div><div class="res-val" id="rAi"></div><div class="res-detail" id="rAiD"></div>
+<div class="bar-wrap"><div class="bar-label"><span>ROI</span><span id="rAiPct"></span></div><div class="bar-bg"><div class="bar-fill" id="rAiBar" style="background:#2b6cb0"></div></div></div></div>
+<div class="res-box res-trad"><div class="res-title">従来型ステージング導入時</div><div class="res-val" id="rTrad"></div><div class="res-detail" id="rTradD"></div>
+<div class="bar-wrap"><div class="bar-label"><span>ROI</span><span id="rTradPct"></span></div><div class="bar-bg"><div class="bar-fill" id="rTradBar" style="background:#38a169"></div></div></div></div>
+<div id="verdict"></div>
+</div>
+<div class="card">
+<h2>サービス比較</h2>
+<table><tr><th>サービス</th><th>価格</th><th>特徴</th></tr>
+<tr><td>クロスエッジ</td><td>98円/枚</td><td>AI生成・最短即日・大量処理向き</td></tr>
+<tr><td>IACrea</td><td>980円/枚</td><td>AI+人力補正・品質重視</td></tr>
+<tr><td>バーチャルインテリア</td><td>3,500円/枚</td><td>高品質CG・カスタマイズ可</td></tr>
+<tr><td>従来型（撮影+家具設置）</td><td>5〜10万円/件</td><td>実物設置・現地対応必要</td></tr></table>
+</div>
+<div class="card">
+<details><summary>計算根拠・ベンチマーク仮定値を表示</summary><div class="inner">
+<p><b>空室短縮効果:</b> バーチャルステージングにより平均反響数1.5〜2倍改善（NAR 2023統計、米国データを日本市場で保守的に適用）。空室期間を都市部30%・郊外25%・地方20%短縮と仮定。</p>
+<p><b>AIステージング想定枚数:</b> 間取りに応じて3〜8枚（1R:3枚、1LDK:4枚、2LDK:5枚、3LDK+:8枚）。</p>
+<p><b>従来型コスト:</b> 1件あたり7万円（5〜10万円の中央値）で計算。</p>
+<p><b>賃料プレミアム:</b> ステージング実施物件は成約賃料が平均1〜3%上昇する傾向（ただし本ツールでは保守的に加算せず、空室短縮効果のみで計算）。</p>
+<p><b>免責:</b> 本ツールの数値は業界データに基づく推定値です。実際の効果は物件条件・市況により変動します。投資判断は自己責任でお願いします。</p>
+</div></details>
+</div>
+</div>
+<p class="footer">SynLab PropTech｜PropStage ROI試算ツール v1.0</p>
+</div>
+
+<script>
+var qa=[null,null,null,null,null];
+var photoCount={1:3,2:4,3:5,4:8};
+var shortRate={city:.30,suburb:.25,rural:.20};
+function setQ(i,v,el){
+qa[i]=v;
+var btns=el.parentNode.querySelectorAll('button');
+btns.forEach(function(b){b.className=''});
+el.className=v?'active-y':'active-n';
+checkFilter();
+}
+function checkFilter(){
+if(qa.indexOf(null)!==-1)return;
+var pass=qa[0]&&qa[1]&&qa[3]&&qa[4];
+var fm=document.getElementById('filterMsg');
+var s2=document.getElementById('step2card');
+if(!pass){
+var reasons=[];
+if(!qa[0])reasons.push('空室60日未満：まだ通常募集で埋まる可能性があります');
+if(!qa[1])reasons.push('家賃6万円未満：ステージング費用の回収が困難です');
+if(!qa[3])reasons.push('予算なし：まずオーナーへの提案が必要です');
+if(!qa[4])reasons.push('未掲載：先にポータル掲載を優先してください');
+fm.innerHTML='<div class="ng-msg">この物件はステージング投資の優先度が低い可能性があります<br><span style="font-size:.75rem;font-weight:400;color:#4a5568">'+reasons.join('<br>')+'</span></div>';
+s2.style.display='none';
+document.getElementById('result').style.display='none';
+}else{
+var note=qa[2]?'<span style="color:#2b6cb0;font-size:.8rem;font-weight:600">&#10003; 競合もステージング実施済み → 導入緊急度が高いです</span>':'<span style="color:#38a169;font-size:.8rem">&#10003; 対象物件です。Step 2 に進んでください</span>';
+fm.innerHTML='<div style="text-align:center;padding:12px">'+note+'</div>';
+s2.style.display='block';
+}
+}
+function fmt(n){return n>=10000?(n/10000).toFixed(1)+'万円':n.toLocaleString()+'円'}
+function calc(){
+var madori=parseInt(document.getElementById('madori').value);
+var rent=parseFloat(document.getElementById('rent').value)||8;
+var vac=parseInt(document.getElementById('vacancy').value)||90;
+var area=document.getElementById('area').value;
+var dailyRent=rent*10000/30;
+var totalLoss=Math.round(dailyRent*vac);
+var photos=photoCount[madori];
+var aiCost=Math.round(photos*98);
+var tradCost=70000;
+var sr=shortRate[area];
+var savedDays=Math.round(vac*sr);
+var recoveredRent=Math.round(dailyRent*savedDays);
+var aiProfit=recoveredRent-aiCost;
+var aiROI=aiCost>0?Math.round(aiProfit/aiCost*100):0;
+var tradProfit=recoveredRent-tradCost;
+var tradROI=tradCost>0?Math.round(tradProfit/tradCost*100):0;
+document.getElementById('rLoss').textContent='\u2212'+fmt(totalLoss);
+document.getElementById('rLossD').textContent='日割家賃 '+Math.round(dailyRent).toLocaleString()+'円 × '+vac+'日';
+document.getElementById('rAi').innerHTML=fmt(aiProfit)+' <span class="roi-tag" style="background:'+(aiROI>=100?'#2b6cb0':'#ed8936')+'">ROI '+aiROI+'%</span>';
+document.getElementById('rAiD').textContent='コスト: '+aiCost.toLocaleString()+'円（'+photos+'枚×98円）→ 回収見込: '+fmt(recoveredRent)+'（空室'+savedDays+'日短縮）';
+document.getElementById('rTrad').innerHTML=fmt(tradProfit)+' <span class="roi-tag" style="background:'+(tradROI>=100?'#38a169':tradROI>=0?'#ed8936':'#e53e3e')+'">ROI '+tradROI+'%</span>';
+document.getElementById('rTradD').textContent='コスト: '+tradCost.toLocaleString()+'円 → 回収見込: '+fmt(recoveredRent)+'（空室'+savedDays+'日短縮）';
+var maxROI=Math.max(aiROI,tradROI,100);
+document.getElementById('rAiBar').style.width=Math.min(aiROI/maxROI*100,100)+'%';
+document.getElementById('rAiPct').textContent=aiROI+'%';
+document.getElementById('rTradBar').style.width=Math.max(Math.min(tradROI/maxROI*100,100),0)+'%';
+document.getElementById('rTradPct').textContent=tradROI+'%';
+var vd=document.getElementById('verdict');
+if(aiROI>=300)vd.innerHTML='<div class="verdict v-go">AIステージングを強く推奨（投資効率が極めて高い）</div>';
+else if(aiROI>=100)vd.innerHTML='<div class="verdict v-go">AIステージング導入で十分な投資回収が見込めます</div>';
+else if(tradROI>=100)vd.innerHTML='<div class="verdict v-wait">従来型ステージングも検討の余地があります</div>';
+else vd.innerHTML='<div class="verdict v-no">現条件ではステージング投資の回収が困難です。賃料見直しを優先してください</div>';
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

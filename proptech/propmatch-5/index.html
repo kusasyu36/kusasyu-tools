@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セマンティック物件属性タグ付けCSVテンプレート - kusasyu tools</title>
+<meta name="description" content="不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,セマンティック物件属性タグ付けCSVテンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-5/">
+<meta property="og:title" content="セマンティック物件属性タグ付けCSVテンプレート - kusasyu tools">
+<meta property="og:description" content="不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="セマンティック物件属性タグ付けCSVテンプレート - kusasyu tools">
+<meta name="twitter:description" content="不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "セマンティック物件属性タグ付けCSVテンプレート",
+  "description": "不動産仲介会社の営業担当が、顧客の曖昧な要望（「築浅で日当たりが良く猫が飼えて渋谷まで30分以内」「昭和レトロな雰囲気のある1LDK」など）を入力すると、AIが自然言語を①構造化検索条件（ハード条件）と②セマンティック属性（雰囲気・ライフスタイル等のソフト条件）に自動分解し、物件リストに対してマッチングスコア",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propmatch-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-27"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>セマンティック物件属性タグ付けCSVテンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>セマンティック物件属性タグ付けCSVテンプレート</h1>
+  <p class="project-name">自然言語AI物件マッチングツール「PropMatch」</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th># ============================================================</th></tr></thead><tbody><tr><td># PropMatch セマンティック物件属性タグ付けCSVテンプレート v1.0</td></tr><tr><td># ============================================================</td></tr><tr><td># 用途: 既存物件データにAIマッチング用の属性列を追加するテンプレート</td></tr><tr><td># 連携: PropMatch HTMLツール（CSV読込）／PropMatch自動タグ付けPythonスクリプト（出力形式）</td></tr><tr><td># エンコーディング: UTF-8（BOM付き推奨：Excelで開く場合）</td></tr><tr><td># ============================================================</td></tr><tr><td>#</td></tr><tr><td># ■ 列の説明</td></tr><tr><td># [A〜N列] 物件基本情報 ── SUUMO・アットホーム等からエクスポートした既存データをそのまま貼付</td></tr><tr><td># [O〜S列] 雰囲気スコア ── 5カテゴリ各1〜5の整数（1=該当しない／3=やや該当／5=強く該当）</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `# ============================================================
+# PropMatch セマンティック物件属性タグ付けCSVテンプレート v1.0
+# ============================================================
+# 用途: 既存物件データにAIマッチング用の属性列を追加するテンプレート
+# 連携: PropMatch HTMLツール（CSV読込）／PropMatch自動タグ付けPythonスクリプト（出力形式）
+# エンコーディング: UTF-8（BOM付き推奨：Excelで開く場合）
+# ============================================================
+#
+# ■ 列の説明
+# [A〜N列] 物件基本情報 ── SUUMO・アットホーム等からエクスポートした既存データをそのまま貼付
+# [O〜S列] 雰囲気スコア ── 5カテゴリ各1〜5の整数（1=該当しない／3=やや該当／5=強く該当）
+# [T〜X列] ライフスタイル適合 ── 5カテゴリ各0or1（0=非適合／1=適合）
+# [Y〜AC列] 感覚キーワード ── 自由記述（最大5個）。顧客の曖昧表現と直接マッチングされる語を記入
+#
+# ■ 雰囲気スコア判定基準
+# モダン(1-5): 築10年以内=+2, デザイナーズ=+2, 設備最新=+1, コンクリ打放し=+1
+# レトロ(1-5): 築30年超=+2, 和室あり=+1, 木造=+1, 商店街徒歩圏=+1, リノベ無し=+1
+# ナチュラル(1-5): 無垢床=+2, 緑豊か周辺=+1, 低層=+1, 木質内装=+1, バルコニー広め=+1
+# ラグジュアリー(1-5): 賃料相場+30%超=+2, タワマン=+1, 内廊下=+1, コンシェルジュ=+1, 天井高2.5m超=+1
+# カジュアル(1-5): 賃料相場-20%以下=+2, 駅近5分以内=+1, コンビニ徒歩1分=+1, 単身向け設備=+1
+#
+# ■ ライフスタイル適合判定基準
+# ペット(0/1): ペット可表記あり=1（規約で猫可・小型犬可等も含む）
+# リモートワーク(0/1): 専有面積40㎡超かつ2部屋以上=1、またはワークスペース付き共用部あり=1
+# 子育て(0/1): 2LDK以上かつ公園徒歩10分以内=1、または学区評価あり=1
+# 一人暮らし(0/1): 1R〜1LDKかつ賃料12万円以下=1、またはセキュリティ設備充実=1
+# DINKS(0/1): 1LDK〜2LDKかつ駅徒歩10分以内かつ築20年以内=1
+#
+# ■ 感覚キーワード記入例
+# 日当たり良好,こじんまり,抜け感,静か,おしゃれ,落ち着く,開放的,隠れ家,生活感,下町情緒
+# ※PropMatch内蔵辞書と照合されるため、日本語の曖昧表現をそのまま記入してください
+#
+物件ID,物件名,所在地,最寄駅,駅徒歩_分,路線,間取り,専有面積_㎡,築年数,賃料_万円,管理費_円,階数,構造,ペット可否,雰囲気_モダン,雰囲気_レトロ,雰囲気_ナチュラル,雰囲気_ラグジュアリー,雰囲気_カジュアル,LS_ペット,LS_リモートワーク,LS_子育て,LS_一人暮らし,LS_DINKS,感覚KW_1,感覚KW_2,感覚KW_3,感覚KW_4,感覚KW_5
+PM-0001,グランフォート三軒茶屋,世田谷区三軒茶屋2丁目,三軒茶屋,5,東急田園都市線,1LDK,42.3,3,12.8,8000,7,RC,可,5,1,2,3,2,1,1,0,0,1,日当たり良好,おしゃれ,開放的,デザイナーズ,駅近
+PM-0002,コーポ昭和荘,杉並区高円寺南3丁目,高円寺,8,JR中央線,1LDK,38.5,42,7.2,3000,2,木造,不可,1,5,3,1,4,0,0,0,1,0,昭和レトロ,下町情緒,こじんまり,商店街近い,落ち着く
+PM-0003,パークヒルズ武蔵小杉,中原区新丸子東2丁目,武蔵小杉,6,東急東横線,2LDK,58.7,8,16.5,12000,15,RC,可,4,1,2,4,1,1,1,1,0,1,眺望良好,ファミリー向け,生活便利,抜け感,タワー
+PM-0004,メゾン・ド・フルール,目黒区自由が丘1丁目,自由が丘,3,東急東横線,1R,24.8,15,8.9,5000,3,鉄骨,不可,3,2,4,2,3,0,0,0,1,0,ナチュラル,隠れ家,静か,緑豊か,カフェ風
+PM-0005,リバーサイドテラス清澄,江東区清澄3丁目,清澄白河,4,東京メトロ半蔵門線,2LDK,52.1,5,14.2,10000,5,RC,可,4,2,3,3,2,1,1,0,0,1,リノベ済,水辺,おしゃれ,開放的,アート街`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_セマンティック物件属性タグ付けCSVテンプレート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

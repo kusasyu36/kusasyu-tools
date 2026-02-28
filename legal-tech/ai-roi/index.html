@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法務AIアシスタント導入ROI計算機＆ベンダー比較 - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:14px;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:14px 20px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.header h1{font-size:1.05rem;flex:1}.header span{font-size:.75rem;opacity:.7}
+.header button{background:#e94560;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.82rem}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:.95rem;margin-bottom:10px;color:#16213e;border-bottom:2px solid #e94560;padding-bottom:4px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.g{grid-template-columns:1fr}}
+label{font-size:.78rem;font-weight:600;display:block;margin-bottom:2px}
+input,select{width:100%;padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:.85rem}
+input:focus{outline:2px solid #0f3460;border-color:#0f3460}
+.btn{background:#e94560;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:.9rem;font-weight:700;width:100%;margin-top:10px}
+.btn:hover{background:#c73652}
+.result{display:none}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.kpi-box{background:linear-gradient(135deg,#16213e,#0f3460);color:#fff;border-radius:8px;padding:14px;text-align:center}
+.kpi-box .num{font-size:1.5rem;font-weight:800;color:#e94560}.kpi-box .lbl{font-size:.72rem;opacity:.85;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:8px}
+th,td{border:1px solid #ddd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#16213e;color:#fff;font-size:.75rem}
+td input{border:1px dashed #0f3460;background:#f0f6ff;font-size:.8rem;padding:3px 5px;width:100%}
+.best{background:#e8f5e9;font-weight:700}
+.src{font-size:.65rem;color:#888;display:block;margin-top:2px}
+.bar-wrap{height:18px;background:#e0e0e0;border-radius:9px;overflow:hidden;margin:3px 0}
+.bar-fill{height:100%;border-radius:9px;transition:width .5s}
+.note{font-size:.7rem;color:#666;margin-top:8px;line-height:1.5}
+.rec{background:#fff3cd;border-left:4px solid #e94560;padding:12px;border-radius:4px;margin-top:12px;font-size:.82rem}
+.rec strong{color:#e94560}
+@media print{.header button,.btn,.no-print{display:none!important}.header{padding:8px 12px}.card{break-inside:avoid;box-shadow:none;border:1px solid #ddd}}
+</style>
+<meta name="description" content="法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務AIアシスタント導入ROI計算機＆ベンダー比較">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/ai-roi/">
+<meta property="og:title" content="法務AIアシスタント導入ROI計算機＆ベンダー比較 - kusasyu tools">
+<meta property="og:description" content="法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/ai-roi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務AIアシスタント導入ROI計算機＆ベンダー比較 - kusasyu tools">
+<meta name="twitter:description" content="法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務AIアシスタント導入ROI計算機＆ベンダー比較",
+  "description": "法務部門が過去の契約交渉・法的判断のprecedent（先例）をキーワード・条項タイプで即座に検索できるブラウザベース検索エンジンと、AI孔明・CorporateOn等の既存SaaSと自社構築RAGの費用対効果を比較するROI計算ツール、及び日々の判断を構造化蓄積するExcel台帳を提供。前回プロジェクトLe",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/ai-roi/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="header">
+<h1>PrecedentDB — 法務AI導入ROI計算機＆ベンダー比較</h1>
+<span>SynLab Legal Tech</span>
+<button onclick="window.print()">PDF出力</button>
+</div>
+<div class="container">
+
+<div class="card">
+<h2>1. 自社の法務部門情報を入力</h2>
+<div class="g">
+<div><label>法務部員数（名）</label><input type="number" id="staff" value="5" min="1" max="100"></div>
+<div><label>月間契約レビュー件数</label><input type="number" id="contracts" value="40" min="1" max="999"></div>
+<div><label>1件あたり平均レビュー時間（分）</label><input type="number" id="reviewMin" value="90" min="10" max="600"></div>
+<div><label>法務担当の平均時給（円）</label><input type="number" id="hourly" value="4500" min="1000" max="30000"></div>
+<div><label>現在のツール月額費用（円／0なら未導入）</label><input type="number" id="curCost" value="0" min="0"></div>
+<div><label>Precedent検索による時短率（%）</label>
+<select id="saveRate"><option value="25">25%（控えめ）</option><option value="35" selected>35%（標準）</option><option value="45">45%（積極活用）</option></select></div>
+</div>
+<button class="btn" onclick="calc()">ROIを計算する</button>
+</div>
+
+<div class="result" id="res">
+<div class="card">
+<h2>2. ROIシミュレーション結果</h2>
+<div class="kpi" id="kpi"></div>
+<div id="barChart"></div>
+<div class="note">※ 時短率は業界平均値に基づく参考値です。実際の効果は運用状況により異なります。</div>
+</div>
+
+<div class="card">
+<h2>3. ベンダー比較マトリクス（価格は上書き入力可）</h2>
+<p style="font-size:.75rem;color:#666;margin-bottom:6px">価格セルは実際の見積額に変更できます。変更後は「ROIを計算する」で再計算されます。</p>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th style="width:14%">項目</th><th style="width:21.5%">AI孔明</th><th style="width:21.5%">CorporateOn</th><th style="width:21.5%">OLGA</th><th style="width:21.5%">自社構築RAG</th></tr></thead>
+<tbody>
+<tr><td><b>月額費用</b></td>
+<td><input type="number" id="p0" value="50000" onchange="calc()"><span class="src">参考: 月5万円〜</span></td>
+<td><input type="number" id="p1" value="100000" onchange="calc()"><span class="src">参考: 月10万円〜</span></td>
+<td><input type="number" id="p2" value="80000" onchange="calc()"><span class="src">参考: 月8万円〜</span></td>
+<td><input type="number" id="p3" value="30000" onchange="calc()"><span class="src">運用費のみ（開発費別途）</span></td></tr>
+<tr><td><b>初期費用</b></td>
+<td><input type="number" id="i0" value="0" onchange="calc()"></td>
+<td><input type="number" id="i1" value="200000" onchange="calc()"></td>
+<td><input type="number" id="i2" value="100000" onchange="calc()"></td>
+<td><input type="number" id="i3" value="3000000" onchange="calc()"></td></tr>
+<tr><td>検索方式</td><td>AIキーワード＋条項分類</td><td>全文検索＋タグ</td><td>AI契約レビュー連動</td><td>ベクトル検索＋RAG</td></tr>
+<tr><td>Slack連携</td><td>○</td><td>○</td><td>△（API経由）</td><td>○（自由設計）</td></tr>
+<tr><td>判断根拠表示</td><td>○（類似条項提示）</td><td>△（履歴参照）</td><td>○（修正理由表示）</td><td>○（ソース文書引用）</td></tr>
+<tr><td>カスタマイズ性</td><td>中（テンプレ選択）</td><td>中（ワークフロー設定）</td><td>低（SaaS型）</td><td>高（完全自由）</td></tr>
+<tr><td>導入期間</td><td>約2週間</td><td>約1ヶ月</td><td>約2週間</td><td>2〜4ヶ月</td></tr>
+<tr><td>適合企業規模</td><td>3〜20名</td><td>10〜50名</td><td>5〜30名</td><td>10名以上推奨</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">※ 価格は各社公開情報・推定値に基づく参考値です。正式な見積は各ベンダーにお問い合わせください。<br>※ 上記セルに実際の見積額を入力すると、ROI計算に自動反映されます。</div>
+</div>
+
+<div class="card">
+<h2>4. ベンダー別 投資回収シミュレーション</h2>
+<div id="roiDetail"></div>
+</div>
+
+<div class="card">
+<h2>5. 推奨アクション</h2>
+<div id="recArea"></div>
+</div>
+
+<div class="note no-print" style="text-align:center;margin-top:16px">
+PrecedentDB は SynLab Legal Tech が提供する法務判断先例検索エンジンです。<br>
+本ツールの計算結果は参考値であり、導入効果を保証するものではありません。
+</div>
+</div>
+</div>
+
+<script>
+var V=['AI孔明','CorporateOn','OLGA','自社構築RAG'];
+function n(id){return Number(document.getElementById(id).value)||0}
+function fmt(v){return v.toLocaleString('ja-JP')}
+function calc(){
+ var staff=n('staff'),con=n('contracts'),rMin=n('reviewMin'),hr=n('hourly'),cur=n('curCost'),sr=n('saveRate')/100;
+ var monthHrs=con*rMin/60,savedHrs=monthHrs*sr,savedYenM=savedHrs*hr,savedYenY=savedYenM*12;
+ var prices=[n('p0'),n('p1'),n('p2'),n('p3')],inits=[n('i0'),n('i1'),n('i2'),n('i3')];
+ var kH='<div class="kpi-box"><div class="num">'+savedHrs.toFixed(1)+'h</div><div class="lbl">月間削減時間</div></div>';
+ kH+='<div class="kpi-box"><div class="num">'+fmt(Math.round(savedYenY))+'円</div><div class="lbl">年間コスト削減（税前）</div></div>';
+ kH+='<div class="kpi-box"><div class="num">'+fmt(Math.round(monthHrs))+'h</div><div class="lbl">現在の月間レビュー総時間</div></div>';
+ kH+='<div class="kpi-box"><div class="num">'+staff+'名</div><div class="lbl">法務部員</div></div>';
+ document.getElementById('kpi').innerHTML=kH;
+ var afterHrs=monthHrs*(1-sr);
+ var bH='<p style="font-size:.8rem;font-weight:600;margin-bottom:4px">月間レビュー時間の比較</p>';
+ bH+=bar('現在',monthHrs,monthHrs,'#999');
+ bH+=bar('導入後',afterHrs,monthHrs,'#0f3460');
+ bH+='<p style="font-size:.72rem;color:#666;margin-top:4px">削減: '+savedHrs.toFixed(1)+'時間/月（'+(sr*100).toFixed(0)+'%）</p>';
+ document.getElementById('barChart').innerHTML=bH;
+ var dH='<table><thead><tr><th>ベンダー</th><th>月額</th><th>初期費用</th><th>月間純削減額</th><th>投資回収</th><th>1年目ROI</th></tr></thead><tbody>';
+ var roiArr=[],bestIdx=0,bestROI=-Infinity;
+ for(var i=0;i<4;i++){
+  var netM=savedYenM-prices[i];
+  var totalY1=prices[i]*12+inits[i];
+  var roi1=totalY1>0?((savedYenY-totalY1)/totalY1*100):-100;
+  var payback;
+  if(netM<=0){payback='<span style="color:#e94560">月額超過</span>'}
+  else if(inits[i]===0){payback='1ヶ月（即効）'}
+  else{payback=Math.ceil(inits[i]/netM+1)+'ヶ月'}
+  roiArr.push({netM:netM,roi1:roi1});
+  if(roi1>bestROI){bestROI=roi1;bestIdx=i}
+  dH+='<tr><td>'+V[i]+'</td><td>'+fmt(prices[i])+'円</td><td>'+fmt(inits[i])+'円</td><td>'+fmt(Math.round(netM))+'円</td><td>'+payback+'</td><td>'+roi1.toFixed(0)+'%</td></tr>';
+ }
+ dH+='</tbody></table>';
+ document.getElementById('roiDetail').innerHTML=dH;
+ var rows=document.querySelectorAll('#roiDetail tbody tr');
+ for(var j=0;j<rows.length;j++){rows[j].classList.remove('best')}
+ if(rows[bestIdx])rows[bestIdx].classList.add('best');
+ var bv=V[bestIdx],br=roiArr[bestIdx].roi1.toFixed(0);
+ var rec='<div class="rec"><strong>ROI最高: '+bv+'（1年目ROI '+br+'%）</strong><br>';
+ if(staff<=5)rec+='法務部'+staff+'名規模では、初期費用を抑えたSaaS型が最適です。'+bv+'で属人化解消と検索効率化を同時に実現できます。';
+ else if(staff<=10)rec+=staff+'名規模では、ワークフロー連携と検索精度のバランスが重要です。'+bv+'を軸に、PrecedentDBの判断先例台帳でナレッジを構造化蓄積し組織知への転換を図れます。';
+ else rec+=staff+'名規模では自社構築RAGも有力です。'+bv+'が数値上最適ですが、将来の拡張性も考慮してください。';
+ rec+='</div>';
+ rec+='<div class="note" style="margin-top:10px"><b>次のステップ:</b><br>1. 上位2ベンダーの無料トライアル／デモを申し込む<br>2. 実際の見積額を上の価格セルに入力してROIを再計算<br>3. 本ページをPDF出力して稟議資料に添付<br>4. PrecedentDBの判断先例台帳で日々の判断蓄積を開始</div>';
+ document.getElementById('recArea').innerHTML=rec;
+ document.getElementById('res').style.display='block';
+ document.getElementById('res').scrollIntoView({behavior:'smooth'});
+}
+function bar(label,val,max,color){
+ var pct=max>0?(val/max*100):0;
+ return '<div style="display:flex;align-items:center;gap:8px;margin:3px 0"><span style="width:50px;font-size:.75rem;text-align:right">'+label+'</span><div class="bar-wrap" style="flex:1"><div class="bar-fill" style="width:'+pct+'%;background:'+color+'"></div></div><span style="font-size:.75rem;width:50px">'+val.toFixed(1)+'h</span></div>';
+}
+</script>
+</body>
+</html>

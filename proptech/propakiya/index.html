@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>空き家適合診断＆費用計算ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#2d3748;font-size:1.4em;padding:16px 0;border-bottom:3px solid #3182ce}
+h1 small{display:block;font-size:.55em;color:#718096;font-weight:normal;margin-top:4px}
+h2{font-size:1.1em;color:#2b6cb0;margin:20px 0 10px;padding-left:10px;border-left:4px solid #3182ce}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 3px;color:#4a5568}
+input,select{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em}
+input:focus,select:focus{outline:none;border-color:#3182ce;box-shadow:0 0 0 2px rgba(49,130,206,.2)}
+.btn{display:block;width:100%;padding:14px;margin:20px 0;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer}
+.btn:hover{background:#2b6cb0}
+.btn-print{background:#38a169;margin-top:8px}
+.btn-print:hover{background:#2f855a}
+#result{display:none}
+.card{background:#fff;border-radius:10px;padding:16px;margin:12px 0;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.8em;font-weight:700;margin:2px}
+.ok{background:#c6f6d5;color:#22543d}
+.ng{background:#fed7d7;color:#9b2c2c}
+.chk{background:#fefcbf;color:#744210}
+table{width:100%;border-collapse:collapse;font-size:.88em;margin:8px 0}
+th,td{padding:8px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#edf2f7;font-weight:600}
+.cost-box{background:#ebf8ff;border:2px solid #90cdf4;border-radius:10px;padding:16px;text-align:center;margin:10px 0}
+.cost-box .amount{font-size:1.8em;font-weight:800;color:#2b6cb0}
+.formula{font-size:.8em;color:#718096;margin-top:6px;font-family:monospace}
+.subsidy-link{display:block;background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;margin:6px 0;text-decoration:none;color:#2b6cb0;font-size:.88em}
+.subsidy-link:hover{background:#ebf8ff}
+.meter{height:18px;background:#e2e8f0;border-radius:9px;overflow:hidden;margin:6px 0}
+.meter-fill{height:100%;border-radius:9px;transition:width .5s}
+.score-label{font-size:.8em;color:#718096}
+@media print{.no-print{display:none!important}body{background:#fff}.card{box-shadow:none;break-inside:avoid}}
+</style>
+<meta name="description" content="空き家物件の基本情報（所在地・築年数・構造・面積・現況）と買い手/移住者の希望条件を入力すると、①物件-買い手マッチングスコア、②該当自治体の補助金一覧と受給可能額、③リノベーション概算費用を一画面で算出するHTMLツール。加えて、空き家所有者への初回アプローチレターのテンプレート集と、物件評価・費用試算の管">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,空き家適合診断＆費用計算ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propakiya/">
+<meta property="og:title" content="空き家適合診断＆費用計算ツール - kusasyu tools">
+<meta property="og:description" content="空き家物件の基本情報（所在地・築年数・構造・面積・現況）と買い手/移住者の希望条件を入力すると、①物件-買い手マッチングスコア、②該当自治体の補助金一覧と受給可能額、③リノベーション概算費用を一画面で算出するHTMLツール。加えて、空き家所有者への初回アプローチレターのテンプレート集と、物件評価・費用試算の管">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propakiya/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空き家適合診断＆費用計算ツール - kusasyu tools">
+<meta name="twitter:description" content="空き家物件の基本情報（所在地・築年数・構造・面積・現況）と買い手/移住者の希望条件を入力すると、①物件-買い手マッチングスコア、②該当自治体の補助金一覧と受給可能額、③リノベーション概算費用を一画面で算出するHTMLツール。加えて、空き家所有者への初回アプローチレターのテンプレート集と、物件評価・費用試算の管">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "空き家適合診断＆費用計算ツール",
+  "description": "空き家物件の基本情報（所在地・築年数・構造・面積・現況）と買い手/移住者の希望条件を入力すると、①物件-買い手マッチングスコア、②該当自治体の補助金一覧と受給可能額、③リノベーション概算費用を一画面で算出するHTMLツール。加えて、空き家所有者への初回アプローチレターのテンプレート集と、物件評価・費用試算の管",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propakiya/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>PropAkiya<small>空き家適合診断＆費用計算ツール</small></h1>
+
+<div class="card no-print">
+<h2>物件情報</h2>
+<div class="grid">
+<div><label>築年数（年）</label><input type="number" id="age" min="0" max="150" value="35"></div>
+<div><label>構造</label><select id="struct"><option value="wood">木造</option><option value="steel">鉄骨造</option><option value="rc">RC造</option></select></div>
+<div><label>延床面積（㎡）</label><input type="number" id="area" min="10" max="1000" value="90"></div>
+<div><label>劣化状態（1=良好〜5=深刻）</label><select id="decay"><option value="1">1 - 良好</option><option value="2">2 - 軽微</option><option value="3" selected>3 - 中程度</option><option value="4">4 - 重度</option><option value="5">5 - 深刻</option></select></div>
+<div><label>接道状況</label><select id="road"><option value="good">幅員4m以上公道</option><option value="narrow">幅員4m未満</option><option value="none">接道なし/私道のみ</option></select></div>
+</div>
+
+<h2>購入者プロフィール</h2>
+<div class="grid">
+<div><label>予算（万円）</label><input type="number" id="budget" min="0" value="800"></div>
+<div><label>用途</label><select id="purpose"><option value="move">移住・定住</option><option value="invest">投資・賃貸</option><option value="biz">事業利用</option></select></div>
+<div><label>許容リノベ期間</label><select id="period"><option value="short">3ヶ月以内</option><option value="mid" selected>3〜6ヶ月</option><option value="long">6ヶ月以上可</option></select></div>
+<div><label>希望エリア種別</label><select id="areatype"><option value="mountain">山間部</option><option value="sea">海沿い</option><option value="suburban" selected>市街地近郊</option></select></div>
+<div><label>子育て世帯</label><select id="child"><option value="yes">はい</option><option value="no" selected>いいえ</option></select></div>
+<div><label>年齢層</label><select id="agegrp"><option value="young">39歳以下</option><option value="mid" selected>40〜59歳</option><option value="senior">60歳以上</option></select></div>
+</div>
+<button class="btn" onclick="run()">診断を実行</button>
+</div>
+
+<div id="result">
+<h2>① 適合診断結果</h2>
+<div class="card">
+<div style="text-align:center;margin-bottom:10px">
+<span class="score-label">総合適合スコア</span>
+<div id="totalScore" style="font-size:2em;font-weight:800;color:#2b6cb0"></div>
+<div class="meter"><div id="scoreMeter" class="meter-fill"></div></div>
+</div>
+<table><thead><tr><th>診断項目</th><th>判定</th><th>根拠</th></tr></thead><tbody id="diagBody"></tbody></table>
+</div>
+
+<h2>② リノベーション概算費用</h2>
+<div class="card">
+<div class="cost-box">
+<div>概算リノベ費用</div>
+<div class="amount" id="renoCost"></div>
+<div class="formula" id="renoFormula"></div>
+</div>
+<p style="font-size:.82em;color:#718096;margin-top:8px">※ 実際の費用は現地調査・見積りにより変動します。本概算は構造・面積・劣化度に基づく参考値です。</p>
+</div>
+
+<h2>③ 補助金カテゴリ該当診断</h2>
+<div class="card" id="subsidyCard"></div>
+
+<button class="btn btn-print no-print" onclick="window.print()">PDF / 印刷</button>
+</div>
+</div>
+
+<script>
+function v(id){return document.getElementById(id).value}
+function n(id){return Number(v(id))}
+
+function tag(type){
+  var cls={ok:'ok',ng:'ng',chk:'chk'};
+  var lbl={ok:'OK',ng:'NG',chk:'要確認'};
+  return '<span class="tag '+cls[type]+'">'+lbl[type]+'</span>';
+}
+
+function run(){
+  var age=n('age'),area=n('area'),decay=n('decay'),budget=n('budget');
+  var st=v('struct'),road=v('road'),purpose=v('purpose'),period=v('period'),child=v('child'),agegrp=v('agegrp');
+
+  var items=[];
+  var score=0,max=0;
+
+  max+=20;
+  if(age<=20){items.push(['築年数','ok','築'+age+'年：新耐震基準適合、大規模改修不要の可能性高',20]);score+=20}
+  else if(age<=40){items.push(['築年数','chk','築'+age+'年：耐震診断を推奨（1981年以降なら新耐震）',12]);score+=12}
+  else{items.push(['築年数','ng','築'+age+'年：旧耐震基準の可能性。耐震補強工事を要検討',5]);score+=5}
+
+  max+=15;
+  var stName={wood:'木造',steel:'鉄骨造',rc:'RC造'}[st];
+  if(st==='rc'){items.push(['構造','ok',stName+'：耐久性高。リノベ自由度も高い',15]);score+=15}
+  else if(st==='steel'){items.push(['構造','chk',stName+'：耐久性中程度。錆・接合部の点検推奨',10]);score+=10}
+  else{items.push(['構造','chk',stName+'：シロアリ・腐朽の確認必須。ただしリノベ費用は比較的安価',8]);score+=8}
+
+  max+=25;
+  var ds=Math.max(0,25-decay*5);
+  var dl=['','良好：即入居可能','軽微：簡易補修で対応可','中程度：部分改修が必要','重度：大規模改修が必要','深刻：建替え検討レベル'];
+  var dt=decay<=2?'ok':decay<=3?'chk':'ng';
+  items.push(['劣化状態',dt,'スコア'+decay+'/5：'+dl[decay],ds]);score+=ds;
+
+  max+=20;
+  if(road==='good'){items.push(['接道状況','ok','幅員4m以上公道：建築確認申請可能',20]);score+=20}
+  else if(road==='narrow'){items.push(['接道状況','chk','幅員4m未満：セットバック必要の可能性',10]);score+=10}
+  else{items.push(['接道状況','ng','接道なし：再建築不可の可能性。建築基準法43条但書許可の確認要',2]);score+=2}
+
+  max+=20;
+  var baseUnit={wood:8,steel:12,rc:15}[st];
+  var dCoeff=[0,1,1.3,1.7,2.2,3][decay];
+  var renoCostVal=Math.round(baseUnit*area*dCoeff);
+  if(budget>=renoCostVal*1.3){items.push(['予算適合','ok','予算'+budget+'万円 > 概算費用'+renoCostVal+'万円の130%：余裕あり',20]);score+=20}
+  else if(budget>=renoCostVal){items.push(['予算適合','chk','予算'+budget+'万円 ≧ 概算費用'+renoCostVal+'万円：ギリギリ。予備費確保を推奨',12]);score+=12}
+  else{items.push(['予算適合','ng','予算'+budget+'万円 < 概算費用'+renoCostVal+'万円：予算不足の可能性',3]);score+=3}
+
+  max+=10;
+  var needLong=decay>=4||(age>40&&st==='wood');
+  if(period==='long'||!needLong){items.push(['工期適合','ok','許容工期内で完工見込み',10]);score+=10}
+  else if(period==='mid'&&needLong){items.push(['工期適合','chk','大規模改修のため6ヶ月以上を推奨',5]);score+=5}
+  else{items.push(['工期適合','ng','工期3ヶ月では大規模改修に対応困難',2]);score+=2}
+
+  var pct=Math.round(score/max*100);
+
+  document.getElementById('totalScore').textContent=pct+'点 / 100点';
+  var m=document.getElementById('scoreMeter');
+  m.style.width=pct+'%';
+  m.style.background=pct>=70?'#48bb78':pct>=40?'#ecc94b':'#fc8181';
+
+  var rows='';
+  for(var i=0;i<items.length;i++){rows+='<tr><td>'+items[i][0]+'</td><td>'+tag(items[i][1])+'</td><td style="font-size:.82em">'+items[i][2]+'</td></tr>'}
+  document.getElementById('diagBody').innerHTML=rows;
+
+  document.getElementById('renoCost').textContent=renoCostVal.toLocaleString()+' 万円';
+  document.getElementById('renoFormula').textContent='計算式: 単価'+baseUnit+'万円/㎡('+stName+') × '+area+'㎡ × 劣化係数'+dCoeff+'(スコア'+decay+') = '+renoCostVal+'万円';
+
+  var sub='<table><thead><tr><th>補助金カテゴリ</th><th>該当</th><th>確認ポイント</th></tr></thead><tbody>';
+  var isMover=purpose==='move';
+  sub+='<tr><td>移住・定住支援補助金</td><td>'+tag(isMover?'ok':'chk')+'</td><td>'+(isMover?'移住目的のため高確率で該当。自治体により50〜300万円規模':'投資/事業目的では対象外の場合あり')+'</td></tr>';
+  sub+='<tr><td>空き家改修・再生補助金</td><td>'+tag(decay>=2?'ok':'chk')+'</td><td>'+(decay>=2?'改修を伴うため該当可能性高。上限100〜500万円が一般的':'劣化軽微のため改修補助の対象外となる場合あり')+'</td></tr>';
+  var hasChild=child==='yes';
+  sub+='<tr><td>子育て世帯向け補助金</td><td>'+tag(hasChild?'ok':'ng')+'</td><td>'+(hasChild?'子育て世帯として加算措置の可能性あり':'子育て世帯対象の補助金は非該当')+'</td></tr>';
+  var isYoung=agegrp==='young';
+  sub+='<tr><td>若者・UIJターン支援</td><td>'+tag(isYoung&&isMover?'ok':'chk')+'</td><td>'+(isYoung&&isMover?'39歳以下の移住者として優遇措置の可能性高':'年齢・目的条件により該当有無が変動')+'</td></tr>';
+  sub+='</tbody></table>';
+  sub+='<p style="font-size:.85em;font-weight:700;margin:14px 0 8px">公式補助金検索リンク</p>';
+  sub+='<a class="subsidy-link" href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk3_000014.html" target="_blank">国土交通省 — 空き家対策関連施策</a>';
+  sub+='<a class="subsidy-link" href="https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/ichiran_shien.html" target="_blank">総務省 — 地方自治体の移住支援制度一覧</a>';
+  sub+='<a class="subsidy-link" href="https://www.chisou.go.jp/sousei/ijyu_shien/index.html" target="_blank">内閣官房 — 移住支援金・起業支援金制度</a>';
+  sub+='<p style="font-size:.78em;color:#a0aec0;margin-top:10px">※ 補助金額は自治体・年度により異なります。最新情報は上記公式ページでご確認ください。</p>';
+
+  document.getElementById('subsidyCard').innerHTML=sub;
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

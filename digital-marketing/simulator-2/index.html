@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>経営層を15分で説得する予算プレゼン構成テンプレート - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1a365d;--accent:#2b6cb0;--highlight:#ed8936;--bg:#f7fafc;--card:#fff;--text:#2d3748;--light:#e2e8f0;--green:#38a169;--red:#e53e3e}
+body{font-family:"Hiragino Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.app{max-width:960px;margin:0 auto;padding:16px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;padding:12px 0;flex-wrap:wrap;gap:8px}
+.toolbar h1{font-size:16px;color:var(--primary)}
+.toolbar select,.toolbar button{padding:6px 12px;border:1px solid var(--light);border-radius:6px;font-size:13px;background:#fff;cursor:pointer}
+.toolbar button{background:var(--accent);color:#fff;border:none;font-weight:bold}
+.toolbar button:hover{background:var(--primary)}
+.nav{display:flex;gap:8px;align-items:center;justify-content:center;padding:12px 0}
+.nav button{padding:8px 20px;border:none;background:var(--accent);color:#fff;border-radius:6px;cursor:pointer;font-size:14px}
+.nav button:disabled{background:var(--light);color:#999;cursor:default}
+.nav span{font-size:14px;color:#718096;min-width:80px;text-align:center}
+.slide{display:none;background:var(--card);border-radius:12px;padding:32px;box-shadow:0 2px 8px rgba(0,0,0,.08);min-height:480px}
+.slide.active{display:block}
+.slide-num{font-size:12px;color:var(--accent);font-weight:bold;margin-bottom:4px}
+.slide h2{font-size:22px;color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:8px;margin-bottom:16px}
+.slide h3{font-size:16px;color:var(--accent);margin:16px 0 8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--bg);border-radius:8px;padding:16px;border-left:4px solid var(--accent)}
+.card.warn{border-left-color:var(--red)}
+.card.ok{border-left-color:var(--green)}
+.big-num{font-size:32px;font-weight:bold;color:var(--accent)}
+.big-num.red{color:var(--red)}
+.big-num.green{color:var(--green)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--light)}
+th{background:var(--primary);color:#fff;font-weight:bold}
+tr:nth-child(even){background:#f0f4f8}
+.editable{border:1px dashed var(--accent);padding:8px;border-radius:4px;min-height:24px;background:#fffbf0;cursor:text}
+.editable:empty::before{content:attr(data-ph);color:#a0aec0;font-style:italic}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:bold;margin:2px}
+.tag.high{background:#fed7d7;color:var(--red)}
+.tag.mid{background:#fefcbf;color:#b7791f}
+.tag.low{background:#c6f6d5;color:#276749}
+label{display:block;font-size:13px;color:#4a5568;margin-bottom:4px;font-weight:bold}
+input[type=number],select.form-select{width:100%;padding:8px;border:1px solid var(--light);border-radius:6px;font-size:14px;margin-bottom:8px}
+.summary-box{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-radius:12px;padding:24px;text-align:center;margin:16px 0}
+.summary-box .big-num{color:#fff}
+.timeline{display:flex;gap:0;margin:12px 0}
+.timeline .step{flex:1;text-align:center;padding:10px 4px;background:var(--light);font-size:12px}
+.timeline .step:first-child{border-radius:8px 0 0 8px}
+.timeline .step:last-child{border-radius:0 8px 8px 0}
+.timeline .step:nth-child(odd){background:#bee3f8}
+.timeline .step strong{display:block;font-size:11px;color:var(--primary)}
+.risk-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--light)}
+.risk-row .label{flex:1;font-weight:bold;font-size:14px}
+.footer-note{font-size:11px;color:#a0aec0;text-align:center;margin-top:12px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.slide{padding:16px}.big-num{font-size:24px}}
+@media print{
+.toolbar,.nav,button{display:none!important}
+.slide{display:block!important;page-break-after:always;box-shadow:none;border:none;padding:24px 32px;min-height:auto}
+.slide:last-child{page-break-after:avoid}
+body{background:#fff;font-size:12px}
+.app{max-width:100%;padding:0}
+.big-num{font-size:28px}
+}
+</style>
+<meta name="description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,経営層を15分で説得する予算プレゼン構成テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-2/">
+<meta property="og:title" content="経営層を15分で説得する予算プレゼン構成テンプレート - kusasyu tools">
+<meta property="og:description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="経営層を15分で説得する予算プレゼン構成テンプレート - kusasyu tools">
+<meta name="twitter:description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "経営層を15分で説得する予算プレゼン構成テンプレート",
+  "description": "BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="app">
+<div class="toolbar">
+<h1>マーケティング予算プレゼン</h1>
+<div style="display:flex;gap:8px;align-items:center">
+<select id="selIndustry" class="form-select" style="width:auto" onchange="updateBenchmark()">
+<option value="0">製造業</option><option value="1">IT／SaaS</option><option value="2">人材</option><option value="3">建設</option><option value="4">士業</option>
+</select>
+<button onclick="window.print()">PDF保存</button>
+</div>
+</div>
+<div class="nav">
+<button onclick="go(-1)" id="btnPrev" disabled>前へ</button>
+<span id="pageInfo">1 / 7</span>
+<button onclick="go(1)" id="btnNext">次へ</button>
+</div>
+
+<!-- ===== SLIDE 1 ===== -->
+<!--
+【経営層が気にするポイント】
+・競合は本当にデジタル投資を増やしているのか？具体的な企業名や数値を求められる
+・「うちの業界でも同じ傾向か？」という業界固有性の確認
+【想定Q&Aと回答例】
+Q: このデータの出典は？ → A: 経済産業省DXレポート2025、日経BPの調査データに基づいています
+Q: 競合の具体名は？ → A: 個社名は公開情報から補足します（スライド内の枠に記入）
+Q: 一過性のトレンドでは？ → A: 3年連続増加傾向であり構造的変化です
+-->
+<div class="slide active" id="s1">
+<div class="slide-num">SLIDE 1 / 7</div>
+<h2>市場環境の変化</h2>
+<div class="grid2">
+<div class="card">
+<h4>BtoB企業のデジタルマーケ投資</h4>
+<div class="big-num">前年比 +23%</div>
+<p style="font-size:13px;color:#718096;margin-top:4px">出典：経済産業省 DX投資動向調査 2025</p>
+</div>
+<div class="card warn">
+<h4>マーケ予算の課題認識</h4>
+<div class="big-num red">約80%</div>
+<p style="font-size:13px">のBtoBマーケ担当者が予算配分に課題（marketing-brain.co.jp調査）</p>
+</div>
+</div>
+<h3>競合デジタル投資状況</h3>
+<table>
+<tr><th>競合企業名</th><th>主な施策</th><th>推定投資規模</th></tr>
+<tr><td><span class="editable" contenteditable data-ph="競合A社名を入力"></span></td><td><span class="editable" contenteditable data-ph="例：SEO・MA導入"></span></td><td><span class="editable" contenteditable data-ph="例：年間2,000万円"></span></td></tr>
+<tr><td><span class="editable" contenteditable data-ph="競合B社名を入力"></span></td><td><span class="editable" contenteditable data-ph="施策を入力"></span></td><td><span class="editable" contenteditable data-ph="投資額を入力"></span></td></tr>
+<tr><td><span class="editable" contenteditable data-ph="競合C社名を入力"></span></td><td><span class="editable" contenteditable data-ph="施策を入力"></span></td><td><span class="editable" contenteditable data-ph="投資額を入力"></span></td></tr>
+</table>
+<div class="footer-note">※ 競合情報は公開情報・IR資料・展示会出展状況等から記入してください</div>
+</div>
+
+<!-- ===== SLIDE 2 ===== -->
+<!--
+【経営層が気にするポイント】
+・機会損失額の算出根拠は妥当か？過大な数字は信頼を損なう
+・「今やらなくても大丈夫では？」という先送り心理への対応
+【想定Q&Aと回答例】
+Q: この機会損失額はどう計算した？ → A: 業界ベンチマークのCVR×現在の流入数×受注単価で試算しています
+Q: 今すぐ始めないといけない理由は？ → A: SEOは効果が出るまで3〜6ヶ月。競合が先行するほどCPA高騰リスクが増大します
+Q: 人員が足りないのでは？ → A: 初期はツール導入で1名でも運用可能な施策から開始します
+-->
+<div class="slide" id="s2">
+<div class="slide-num">SLIDE 2 / 7</div>
+<h2>現状の課題と機会損失</h2>
+<div class="grid2">
+<div>
+<label>月間Web流入数（現状）</label>
+<input type="number" id="inTraffic" value="5000" onchange="calcLoss()">
+<label>現状CVR（%）</label>
+<input type="number" id="inCVR" value="0.5" step="0.1" onchange="calcLoss()">
+<label>受注単価（円）</label>
+<input type="number" id="inPrice" value="3000000" onchange="calcLoss()">
+<label>業界ベンチマークCVR（%）</label>
+<input type="number" id="inBenchCVR" value="1.2" step="0.1" onchange="calcLoss()" readonly style="background:#e2e8f0">
+</div>
+<div>
+<div class="card warn" style="margin-bottom:12px">
+<h4>年間機会損失額（推定）</h4>
+<div class="big-num red" id="lossAmt">-</div>
+<p style="font-size:12px;color:#718096" id="lossDetail"></p>
+</div>
+<div class="card ok">
+<h4>ベンチマーク達成時の期待獲得額</h4>
+<div class="big-num green" id="gainAmt">-</div>
+</div>
+</div>
+</div>
+<h3>主要課題</h3>
+<div class="editable" contenteditable data-ph="自社固有の課題を箇条書きで記入" style="min-height:80px"></div>
+</div>
+
+<!-- ===== SLIDE 3 ===== -->
+<!--
+【経営層が気にするポイント】
+・施策が具体的で実行可能か？抽象論では通らない
+・スケジュール感と段階的投資の設計
+【想定Q&Aと回答例】
+Q: なぜこの施策を選んだ？ → A: 業界ベンチマークで最もROIが高い施策を優先しています
+Q: 全部同時にやるのか？ → A: フェーズ分けで段階的に投資します（スライド内タイムライン参照）
+Q: 外注か内製か？ → A: 初期は一部外注、ノウハウ蓄積後に内製化する計画です
+-->
+<div class="slide" id="s3">
+<div class="slide-num">SLIDE 3 / 7</div>
+<h2>提案施策の概要</h2>
+<table id="tblPlan">
+<tr><th>優先度</th><th>施策</th><th>月額予算</th><th>期待CPA</th><th>開始時期</th></tr>
+</table>
+<h3>実行タイムライン</h3>
+<div class="timeline">
+<div class="step"><strong>M1-2</strong>基盤構築</div>
+<div class="step"><strong>M3-4</strong>コンテンツ展開</div>
+<div class="step"><strong>M5-6</strong>広告最適化</div>
+<div class="step"><strong>M7-9</strong>ナーチャリング</div>
+<div class="step"><strong>M10-12</strong>成果検証</div>
+</div>
+<h3>施策選定の補足</h3>
+<div class="editable" contenteditable data-ph="選定理由や自社固有の事情を補足記入"></div>
+</div>
+
+<!-- ===== SLIDE 4 ===== -->
+<!--
+【経営層が気にするポイント】
+・ROI計算の前提条件は保守的か？楽観的すぎないか
+・投資回収期間（ペイバック）はいつか
+【想定Q&Aと回答例】
+Q: この数値の信頼性は？ → A: 業界×施策別KPIベンチマーク深掘り分析シートのデータに基づき、保守的に見積もっています
+Q: 最悪のケースでは？ → A: CVR半減でもX万円の利益が見込めます（スライド6で詳述）
+-->
+<div class="slide" id="s4">
+<div class="slide-num">SLIDE 4 / 7</div>
+<h2>ROI試算</h2>
+<p style="font-size:12px;color:#718096;margin-bottom:12px">※ BtoB ROIシミュレーター＆稟議書ドラフト 連携テンプレートの出力データを使用</p>
+<div class="grid2">
+<div>
+<label>年間投資額（円）</label>
+<input type="number" id="inInvest" value="6000000" onchange="calcROI()">
+<label>想定獲得リード数/年</label>
+<input type="number" id="inLeads" value="120" onchange="calcROI()">
+<label>商談化率（%）</label>
+<input type="number" id="inDealRate" value="15" onchange="calcROI()">
+<label>受注率（%）</label>
+<input type="number" id="inWinRate" value="25" onchange="calcROI()">
+</div>
+<div>
+<div class="summary-box">
+<div style="font-size:13px">年間ROI</div>
+<div class="big-num" id="roiPct">-</div>
+</div>
+<div class="card ok">
+<h4>期待売上</h4><div class="big-num green" id="roiRevenue">-</div>
+</div>
+<div class="card" style="margin-top:8px">
+<h4>投資回収</h4><div id="roiPayback" style="font-size:18px;font-weight:bold;color:var(--primary)">-</div>
+</div>
+</div>
+</div>
+<div class="footer-note">※ 業界×施策別マーケティングKPIベンチマーク深掘り分析シート（2026年2月作成）準拠</div>
+</div>
+
+<!-- ===== SLIDE 5 ===== -->
+<!--
+【経営層が気にするポイント】
+・自社は業界平均と比べてどの位置か？
+・ベンチマークの出典と信頼性
+【想定Q&Aと回答例】
+Q: このベンチマークはどこのデータ？ → A: 業界×施策別KPIベンチマーク深掘り分析シート（25マトリクス）に基づいています
+Q: 自社が平均以下なのは問題では？ → A: むしろ伸びしろが大きいという機会です
+-->
+<div class="slide" id="s5">
+<div class="slide-num">SLIDE 5 / 7</div>
+<h2>業界ベンチマーク比較</h2>
+<p style="font-size:12px;color:#718096;margin-bottom:8px">業界×施策別マーケティングKPIベンチマーク深掘り分析シート（5業種×5施策＝25マトリクス）より</p>
+<table id="tblBench">
+<tr><th>施策</th><th>CPA</th><th>CVR</th><th>ROI目安</th><th>商談化率</th><th>LTV</th></tr>
+</table>
+<h3>自社ポジション（手入力）</h3>
+<table>
+<tr><th>指標</th><th>自社実績</th><th>業界平均</th><th>Gap</th></tr>
+<tr><td>CPA</td><td><span class="editable" contenteditable data-ph="自社CPA"></span></td><td id="avgCPA">-</td><td><span class="editable" contenteditable data-ph="差額"></span></td></tr>
+<tr><td>CVR</td><td><span class="editable" contenteditable data-ph="自社CVR"></span></td><td id="avgCVR">-</td><td><span class="editable" contenteditable data-ph="差分"></span></td></tr>
+</table>
+</div>
+
+<!-- ===== SLIDE 6 ===== -->
+<!--
+【経営層が気にするポイント】
+・失敗した場合の損失は限定的か？撤退基準はあるか
+・実行体制は確保できるか
+【想定Q&Aと回答例】
+Q: 失敗したらどうする？ → A: 3ヶ月ごとにKPI評価し、未達なら予算配分を変更。最大損失は初期投資分のみです
+Q: 誰がやるのか？ → A: 既存メンバー＋部分外注で対応。体制案は別途ご説明します
+-->
+<div class="slide" id="s6">
+<div class="slide-num">SLIDE 6 / 7</div>
+<h2>リスクと対策</h2>
+<div class="risk-row"><span class="tag high">高</span><span class="label">成果が出るまでの期間リスク</span><span>SEOは3〜6ヶ月。短期施策（リスティング）を並行し早期成果を確保</span></div>
+<div class="risk-row"><span class="tag mid">中</span><span class="label">社内リソース不足</span><span>初期は外注活用、四半期ごとに内製化率を向上</span></div>
+<div class="risk-row"><span class="tag mid">中</span><span class="label">CPA高騰リスク</span><span>ベンチマーク上限値の1.5倍で自動アラート設定</span></div>
+<div class="risk-row"><span class="tag low">低</span><span class="label">競合の急激な参入</span><span>早期着手による先行者優位を確保</span></div>
+<h3>撤退基準</h3>
+<div class="card warn">
+<p><strong>6ヶ月時点で以下を全て下回る場合、施策見直しを実施：</strong></p>
+<p>・リード獲得数がベンチマークの50%未満　・CPAがベンチマークの2倍超　・商談化率が5%未満</p>
+</div>
+</div>
+
+<!-- ===== SLIDE 7 ===== -->
+<!--
+【経営層が気にするポイント】
+・最終的に「Yes/No」の判断材料が揃っているか
+・次のアクションが明確か
+【想定Q&Aと回答例】
+Q: いつから始める？ → A: 承認後2週間以内に着手可能です
+Q: まず小さく始められないか？ → A: Phase1のみ（月額30〜50万円）でスモールスタート可能です
+-->
+<div class="slide" id="s7">
+<div class="slide-num">SLIDE 7 / 7</div>
+<h2>投資判断サマリー</h2>
+<div class="summary-box">
+<div style="font-size:14px">投資対効果</div>
+<div class="big-num" id="summaryROI">-</div>
+<div style="font-size:13px;margin-top:4px" id="summaryText"></div>
+</div>
+<div class="grid2">
+<div class="card ok">
+<h4>投資する場合</h4>
+<p>年間<span id="sumRevenue">-</span>の売上創出機会</p>
+<p>業界ベンチマーク水準への到達</p>
+<p>競合に対するデジタルマーケの先行優位</p>
+</div>
+<div class="card warn">
+<h4>投資しない場合</h4>
+<p>年間<span id="sumLoss">-</span>の機会損失継続</p>
+<p>競合との差が拡大</p>
+<p>リード獲得が展示会・紹介に依存し続ける</p>
+</div>
+</div>
+<h3>ネクストアクション</h3>
+<div class="timeline">
+<div class="step"><strong>承認後</strong>施策詳細設計</div>
+<div class="step"><strong>2週間</strong>ツール導入</div>
+<div class="step"><strong>1ヶ月</strong>運用開始</div>
+<div class="step"><strong>3ヶ月</strong>初回KPI評価</div>
+</div>
+<div class="editable" contenteditable data-ph="経営層への最終メッセージを記入" style="margin-top:12px;text-align:center;font-size:15px;padding:16px"></div>
+</div>
+</div>
+
+<script>
+var B=[
+[["SEO／コンテンツ",15000,1.2,250,15,3000000],["リスティング広告",25000,2.5,180,20,3000000],["展示会／セミナー",30000,3.0,200,25,3000000],["メールマーケティング",8000,0.8,320,10,3000000],["SNS広告",20000,0.5,150,8,3000000]],
+[["SEO／コンテンツ",12000,2.0,300,20,1800000],["リスティング広告",18000,3.5,220,28,1800000],["展示会／セミナー",35000,4.0,160,30,1800000],["メールマーケティング",5000,1.5,400,18,1800000],["SNS広告",15000,1.0,200,12,1800000]],
+[["SEO／コンテンツ",10000,1.8,280,18,1200000],["リスティング広告",15000,3.0,200,25,1200000],["展示会／セミナー",25000,3.5,150,28,1200000],["メールマーケティング",6000,1.2,350,15,1200000],["SNS広告",12000,0.8,180,10,1200000]],
+[["SEO／コンテンツ",18000,0.8,280,12,5000000],["リスティング広告",30000,1.5,200,18,5000000],["展示会／セミナー",40000,2.5,220,22,5000000],["メールマーケティング",10000,0.5,300,8,5000000],["SNS広告",25000,0.3,150,5,5000000]],
+[["SEO／コンテンツ",8000,2.5,350,22,800000],["リスティング広告",12000,4.0,250,30,800000],["展示会／セミナー",20000,3.0,180,25,800000],["メールマーケティング",4000,2.0,450,20,800000],["SNS広告",10000,1.2,200,15,800000]]
+];
+var cur=0;
+function fmt(n){return n.toLocaleString("ja-JP")}
+function go(d){cur=Math.max(0,Math.min(6,cur+d));render();}
+function render(){
+document.querySelectorAll(".slide").forEach(function(s,i){s.classList.toggle("active",i===cur)});
+document.getElementById("pageInfo").textContent=(cur+1)+" / 7";
+document.getElementById("btnPrev").disabled=cur===0;
+document.getElementById("btnNext").disabled=cur===6;
+}
+function updateBenchmark(){
+var idx=+document.getElementById("selIndustry").value;
+var d=B[idx];var ltv=d[0][5];
+var tb=document.getElementById("tblBench");
+tb.innerHTML="<tr><th>施策</th><th>CPA</th><th>CVR</th><th>ROI目安</th><th>商談化率</th><th>LTV</th></tr>";
+var sumCPA=0,sumCVR=0;
+d.forEach(function(r){
+var tr=document.createElement("tr");
+tr.innerHTML="<td>"+r[0]+"</td><td>¥"+fmt(r[1])+"</td><td>"+r[2]+"%</td><td>"+r[3]+"%</td><td>"+r[4]+"%</td><td>¥"+fmt(r[5])+"</td>";
+tb.appendChild(tr);sumCPA+=r[1];sumCVR+=r[2];
+});
+document.getElementById("avgCPA").textContent="¥"+fmt(Math.round(sumCPA/5));
+document.getElementById("avgCVR").textContent=(sumCVR/5).toFixed(1)+"%";
+document.getElementById("inBenchCVR").value=d[0][2];
+document.getElementById("inPrice").value=ltv;
+var tp=document.getElementById("tblPlan");
+tp.innerHTML="<tr><th>優先度</th><th>施策</th><th>月額予算</th><th>期待CPA</th><th>開始時期</th></tr>";
+var sorted=d.slice().sort(function(a,b){return b[3]-a[3]});
+var budgets=["30〜50万円","20〜40万円","10〜20万円"];
+var starts=["M1〜","M3〜","M5〜"];
+var stars=["★★★","★★","★"];
+for(var i=0;i<3;i++){
+var r=sorted[i];
+var tr=document.createElement("tr");
+tr.innerHTML="<td>"+stars[i]+"</td><td>"+r[0]+"</td><td>"+budgets[i]+"</td><td>¥"+fmt(r[1])+"</td><td>"+starts[i]+"</td>";
+tp.appendChild(tr);
+}
+calcLoss();calcROI();
+}
+function calcLoss(){
+var t=+document.getElementById("inTraffic").value;
+var c=+document.getElementById("inCVR").value;
+var b=+document.getElementById("inBenchCVR").value;
+var p=+document.getElementById("inPrice").value;
+var curLeads=t*c/100*12;
+var benchLeads=t*b/100*12;
+var gap=benchLeads-curLeads;
+var loss=Math.round(gap*0.15*0.25*p);
+document.getElementById("lossAmt").textContent="¥"+fmt(loss);
+document.getElementById("lossDetail").textContent="現状"+Math.round(curLeads)+"件 vs ベンチマーク"+Math.round(benchLeads)+"件/年（差分"+Math.round(gap)+"件）";
+document.getElementById("gainAmt").textContent="¥"+fmt(Math.round(benchLeads*0.15*0.25*p));
+document.getElementById("sumLoss").textContent="¥"+fmt(loss);
+}
+function calcROI(){
+var inv=+document.getElementById("inInvest").value;
+var leads=+document.getElementById("inLeads").value;
+var dr=+document.getElementById("inDealRate").value/100;
+var wr=+document.getElementById("inWinRate").value/100;
+var price=+document.getElementById("inPrice").value;
+var rev=Math.round(leads*dr*wr*price);
+var roi=inv>0?Math.round((rev-inv)/inv*100):0;
+var payback=rev>0?Math.round(inv/rev*12):99;
+document.getElementById("roiPct").textContent=roi+"%";
+document.getElementById("roiRevenue").textContent="¥"+fmt(rev);
+document.getElementById("roiPayback").textContent=payback+"ヶ月で回収";
+document.getElementById("summaryROI").textContent="ROI "+roi+"%";
+document.getElementById("summaryText").textContent="年間投資 ¥"+fmt(inv)+" → 期待売上 ¥"+fmt(rev);
+document.getElementById("sumRevenue").textContent="¥"+fmt(rev);
+}
+updateBenchmark();
+</script>
+</body>
+</html>

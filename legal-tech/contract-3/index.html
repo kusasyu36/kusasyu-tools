@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>契約エスカレーション判定シミュレーター（取適法適用診断フロー統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.2em;text-align:center;padding:16px;background:linear-gradient(135deg,#1e3a5f,#2d5a87);color:#fff;border-radius:8px;margin-bottom:16px}
+.card{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1em;color:#1e3a5f;border-left:4px solid #2d5a87;padding-left:8px;margin-bottom:12px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 4px}
+select,input{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:4px;font-size:.9em}
+button{width:100%;padding:10px;border:none;border-radius:6px;font-size:.95em;font-weight:700;cursor:pointer;margin-top:12px;color:#fff}
+.btn1{background:#2d5a87}.btn2{background:#2f855a}
+.btn1:hover{background:#1e3a5f}.btn2:hover{background:#276749}
+.result{padding:12px;border-radius:6px;margin-top:12px;font-size:.85em}
+.r-red{background:#fff5f5;border:1px solid #fc8181;color:#c53030}
+.r-yellow{background:#fffff0;border:1px solid #ecc94b;color:#744210}
+.r-green{background:#f0fff4;border:1px solid #68d391;color:#276749}
+.tag{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.75em;font-weight:700;margin:2px}
+.tag-r{background:#fed7d7;color:#c53030}.tag-y{background:#fefcbf;color:#744210}.tag-g{background:#c6f6d5;color:#276749}
+ul{margin:6px 0 6px 16px;font-size:.85em}li{margin:2px 0}
+.hidden{display:none}
+.step-ind{text-align:center;margin-bottom:12px}
+.step-ind span{display:inline-block;width:28px;height:28px;line-height:28px;border-radius:50%;margin:0 4px;font-size:.8em;font-weight:700}
+.s-active{background:#2d5a87;color:#fff}.s-inactive{background:#e2e8f0;color:#a0aec0}.s-done{background:#68d391;color:#fff}
+</style>
+<meta name="description" content="取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,契約エスカレーション判定シミュレーター（取適法適用診断フロー統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-3/">
+<meta property="og:title" content="契約エスカレーション判定シミュレーター（取適法適用診断フロー統合版） - kusasyu tools">
+<meta property="og:description" content="取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約エスカレーション判定シミュレーター（取適法適用診断フロー統合版） - kusasyu tools">
+<meta name="twitter:description" content="取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "契約エスカレーション判定シミュレーター（取適法適用診断フロー統合版）",
+  "description": "取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>契約エスカレーション判定シミュレーター<br><small style="font-size:.7em">取適法適用診断フロー統合版</small></h1>
+<div class="step-ind"><span id="si1" class="s-active">1</span><span id="si2" class="s-inactive">2</span></div>
+<div id="step1">
+<div class="card">
+<h2>ステップ1：下請法（取適法）適用確認</h2>
+<label>自社の資本金</label>
+<select id="myCapital">
+<option value="over3">3億円超</option>
+<option value="1to3">1千万円超〜3億円以下</option>
+<option value="under1k">1千万円以下</option>
+</select>
+<label>取引先の資本金</label>
+<select id="partnerCapital">
+<option value="under3">3億円以下</option>
+<option value="under1k">1千万円以下</option>
+<option value="over3">3億円超</option>
+<option value="individual">個人事業主</option>
+</select>
+<label>取引内容</label>
+<select id="txType">
+<option value="manufacturing">製造委託</option>
+<option value="info">情報成果物作成委託</option>
+<option value="service">役務提供委託</option>
+<option value="repair">修理委託</option>
+</select>
+<label>業種</label>
+<select id="industry">
+<option value="manufacturing">製造業</option>
+<option value="construction">建設業</option>
+<option value="logistics">物流業</option>
+</select>
+<button class="btn1" onclick="judgeStep1()">適用判定を実行</button>
+<div id="res1"></div>
+</div>
+</div>
+<div id="step2" class="hidden">
+<div class="card">
+<h2>ステップ2：契約別エスカレーション判定</h2>
+<div id="s1summary" class="result r-yellow" style="margin-bottom:12px"></div>
+<label>契約条項カテゴリ（複数選択可）</label>
+<div style="font-size:.85em;margin:4px 0">
+<label style="display:inline;font-weight:400"><input type="checkbox" class="clause" value="warranty"> 瑕疵担保</label>
+<label style="display:inline;font-weight:400;margin-left:8px"><input type="checkbox" class="clause" value="payment"> 支払条件</label>
+<label style="display:inline;font-weight:400;margin-left:8px"><input type="checkbox" class="clause" value="ip"> 知財帰属</label><br>
+<label style="display:inline;font-weight:400"><input type="checkbox" class="clause" value="liability"> 損害賠償上限</label>
+<label style="display:inline;font-weight:400;margin-left:8px"><input type="checkbox" class="clause" value="nda"> 秘密保持</label>
+</div>
+<label>取引金額（万円）</label>
+<input type="number" id="amount" value="500" min="0">
+<label>相手先の従業員規模</label>
+<select id="partnerSize">
+<option value="small">50人未満</option>
+<option value="mid">50〜300人</option>
+<option value="large">300人超</option>
+</select>
+<button class="btn2" onclick="judgeStep2()">エスカレーション判定を実行</button>
+<div id="res2"></div>
+</div>
+<button style="background:#718096;color:#fff;border:none;padding:8px;border-radius:4px;margin-top:4px;cursor:pointer;width:100%" onclick="backToStep1()">← ステップ1に戻る</button>
+</div>
+</div>
+<script>
+let s1Data={applicable:false,txType:'',industry:'',prohibitions:[]};
+const PROHIBITIONS={
+manufacturing:['買いたたき（不当な値下げ要求）','支払遅延（納品後60日以内ルール）','返品の制限（不当返品の禁止）','受領拒否の禁止','下請代金の減額禁止','有償支給原材料の早期決済禁止','不当な経済上の利益提供要請の禁止'],
+info:['買いたたき','支払遅延','成果物の不当なやり直し要求','知的財産権の不当な取扱い','下請代金の減額禁止','不当な経済上の利益提供要請の禁止'],
+service:['買いたたき','支払遅延','不当な給付内容の変更','不当なやり直し要求','下請代金の減額禁止','不当な経済上の利益提供要請の禁止'],
+repair:['買いたたき','支払遅延','受領拒否の禁止','返品の制限','下請代金の減額禁止','有償支給原材料の早期決済禁止']
+};
+function isApplicable(my,pt){
+if(my==='under1k')return false;
+if(my==='over3'&&pt!=='over3')return true;
+if(my==='1to3'&&(pt==='under1k'||pt==='individual'))return true;
+return false;
+}
+function judgeStep1(){
+const my=document.getElementById('myCapital').value;
+const pt=document.getElementById('partnerCapital').value;
+const tx=document.getElementById('txType').value;
+const ind=document.getElementById('industry').value;
+s1Data.txType=tx;s1Data.industry=ind;
+const applicable=isApplicable(my,pt);
+s1Data.applicable=applicable;
+let h='';
+if(applicable){
+s1Data.prohibitions=PROHIBITIONS[tx]||[];
+h=`<div class="result r-red"><span class="tag tag-r">適用対象</span> <b>下請法が適用されます</b></div>`;
+h+=`<div class="result" style="background:#fff;border:1px solid #e2e8f0;margin-top:8px"><b>▼ 自社取引に関連する禁止行為</b><ul>`;
+s1Data.prohibitions.forEach(p=>h+=`<li>${p}</li>`);
+h+=`</ul></div>`;
+h+=`<div class="result" style="background:#ebf8ff;border:1px solid #90cdf4;margin-top:8px"><b>▼ 既存契約の見直しToDoリスト（優先度順）</b><ul>`;
+h+=`<li><span class="tag tag-r">高</span> 支払サイトが60日超でないか確認・是正</li>`;
+h+=`<li><span class="tag tag-r">高</span> 発注書面（3条書面）の記載事項を点検</li>`;
+h+=`<li><span class="tag tag-r">高</span> 代金減額条項が下請法に抵触しないか確認</li>`;
+h+=`<li><span class="tag tag-y">中</span> 返品・やり直し条項の妥当性を点検</li>`;
+h+=`<li><span class="tag tag-y">中</span> 知財帰属条項が一方的でないか確認</li>`;
+h+=`<li><span class="tag tag-g">低</span> 有償支給品の決済条件を確認</li></ul></div>`;
+}else{
+h=`<div class="result r-green"><span class="tag tag-g">適用外</span> <b>下請法の直接適用はありません</b><br><small>ただし独禁法の優越的地位の濫用には注意が必要です。</small></div>`;
+}
+h+=`<button class="btn2" style="margin-top:12px" onclick="goStep2()">ステップ2へ進む →</button>`;
+document.getElementById('res1').innerHTML=h;
+}
+function goStep2(){
+document.getElementById('step1').classList.add('hidden');
+document.getElementById('step2').classList.remove('hidden');
+document.getElementById('si1').className='s-done';
+document.getElementById('si2').className='s-active';
+const st=s1Data.applicable?'<span class="tag tag-r">取適法適用</span>':'<span class="tag tag-g">取適法適用外</span>';
+const txLabel=document.getElementById('txType').selectedOptions[0].text;
+document.getElementById('s1summary').innerHTML=`ステップ1結果: ${st} ／取引: ${txLabel}`;
+}
+function backToStep1(){
+document.getElementById('step1').classList.remove('hidden');
+document.getElementById('step2').classList.add('hidden');
+document.getElementById('si1').className='s-active';
+document.getElementById('si2').className='s-inactive';
+}
+function judgeStep2(){
+const clauses=[...document.querySelectorAll('.clause:checked')].map(c=>c.value);
+const amt=parseInt(document.getElementById('amount').value)||0;
+const pSize=document.getElementById('partnerSize').value;
+const ind=s1Data.industry;
+let score=0;
+if(s1Data.applicable)score+=3;
+if(clauses.includes('ip'))score+=3;
+if(clauses.includes('liability'))score+=2;
+if(clauses.includes('payment'))score+=2;
+if(clauses.includes('warranty'))score+=1;
+if(clauses.includes('nda'))score+=1;
+if(amt>=5000)score+=3;else if(amt>=1000)score+=2;else if(amt>=500)score+=1;
+if(pSize==='large')score+=2;else if(pSize==='mid')score+=1;
+const indTerms={
+manufacturing:{high:'品質保証条項・製造物責任（PL法）との整合確認が必須。法務と技術部門で合同レビューを実施',mid:'検収基準と不適合品の処理フローを明確化。受入検査の合否判定基準を契約書に明記',low:'標準取引基本契約書で対応可能。定型フォーマットで処理'},
+construction:{high:'瑕疵担保期間・建設業法24条の6との整合確認が必須。元請・下請間の責任範囲を法務確認',mid:'工期変更・追加費用の協議条項を確認。設計変更時の精算ルールを明確化',low:'標準請負契約約款ベースで処理可能。定型条件で締結'},
+logistics:{high:'運送約款との整合・貨物損害の責任上限確認が必須。荷主との求償関係を法務確認',mid:'荷役作業範囲と待機時間の費用負担を明確化。附帯作業の料金体系を契約に反映',low:'標準運送委託契約書で対応可能。定型運賃表で処理'}
+};
+const terms=indTerms[ind]||indTerms.manufacturing;
+let level,cls,tag,action;
+if(score>=8){level='法務エスカレーション必要';cls='r-red';tag='tag-r';action=terms.high;}
+else if(score>=4){level='要注意（自力対応可）';cls='r-yellow';tag='tag-y';action=terms.mid;}
+else{level='定型処理でOK';cls='r-green';tag='tag-g';action=terms.low;}
+const indLabel=document.getElementById('industry').selectedOptions[0].text;
+let h=`<div class="result ${cls}"><span class="tag ${tag}">${level}</span><br><b>判定スコア: ${score}点</b>（8点以上:法務必須／4-7点:要注意／3点以下:定型）</div>`;
+h+=`<div class="result" style="background:#fff;border:1px solid #e2e8f0;margin-top:8px">`;
+h+=`<b>▼ 推奨アクション（${indLabel}）</b><ul><li>${action}</li>`;
+if(s1Data.applicable){
+h+=`<li><span class="tag tag-r">取適法</span> 「${s1Data.prohibitions[0]}」に該当しないか重点確認</li>`;
+h+=`<li><span class="tag tag-r">取適法</span> 3条書面の法定記載事項に不備がないか確認</li>`;
+}
+if(clauses.includes('payment'))h+=`<li>支払条件: 手形サイト120日超は要法務確認。現金比率の妥当性も検討</li>`;
+if(clauses.includes('ip'))h+=`<li>知財帰属: 共同開発成果の帰属が不明確な場合は法務エスカレーション必須</li>`;
+if(clauses.includes('liability'))h+=`<li>損害賠償: 上限設定が取引金額の10%未満は交渉余地あり。相互上限の設定を推奨</li>`;
+if(clauses.includes('warranty'))h+=`<li>瑕疵担保: 期間・範囲が業界慣行と乖離していないか確認</li>`;
+if(clauses.includes('nda'))h+=`<li>秘密保持: 存続期間と対象範囲の妥当性を確認</li>`;
+h+=`</ul></div>`;
+h+=`<div class="result" style="background:#f7fafc;border:1px solid #e2e8f0;margin-top:8px;font-size:.8em">`;
+h+=`<b>判定根拠:</b> 取適法${s1Data.applicable?'適用(+3)':'非適用(+0)'} ＋ 条項リスク(${clauses.length}項目) ＋ 金額${amt.toLocaleString()}万円 ＋ 相手先${pSize==='large'?'大規模(+2)':pSize==='mid'?'中規模(+1)':'小規模(+0)'}`;
+h+=`</div>`;
+document.getElementById('res2').innerHTML=h;
+}
+</script>
+</body>
+</html>

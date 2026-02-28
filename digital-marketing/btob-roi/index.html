@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BtoBマーケティング投資ROIシミュレーター＆稟議書ドラフト生成ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:16px 0;color:#2d3748}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h2{font-size:1.1em;color:#2b6cb0;margin-bottom:12px;border-bottom:2px solid #ebf4ff;padding-bottom:6px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 3px;color:#4a5568}
+select,input{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em;margin-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{background:#2b6cb0;color:#fff;border:none;padding:12px 20px;border-radius:8px;font-size:1em;cursor:pointer;width:100%;margin-top:12px;font-weight:600}
+button:hover{background:#2c5282}
+.btn-s{background:#38a169;font-size:.85em;padding:8px 14px;width:auto;display:inline-block;margin:6px 6px 0 0}
+canvas{width:100%;max-height:300px}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:8px 0}
+th,td{border:1px solid #e2e8f0;padding:6px 8px;text-align:right}
+th{background:#ebf4ff;text-align:center}
+.doc{background:#fffff5;border:1px solid #e2e8f0;padding:16px;border-radius:8px;font-size:.9em;white-space:pre-wrap;margin:8px 0}
+.note{font-size:.75em;color:#718096;margin-top:8px}
+.metric{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:10px 0}
+.metric div{background:#ebf4ff;padding:10px;border-radius:8px;text-align:center}
+.metric div span{display:block;font-size:1.4em;font-weight:700;color:#2b6cb0}
+#result{display:none}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+</style>
+<meta name="description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoBマーケティング投資ROIシミュレーター＆稟議書ドラフト生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-roi/">
+<meta property="og:title" content="BtoBマーケティング投資ROIシミュレーター＆稟議書ドラフト生成ツール - kusasyu tools">
+<meta property="og:description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-roi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoBマーケティング投資ROIシミュレーター＆稟議書ドラフト生成ツール - kusasyu tools">
+<meta name="twitter:description" content="BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoBマーケティング投資ROIシミュレーター＆稟議書ドラフト生成ツール",
+  "description": "BtoB企業のマーケティング担当者が「予算を経営層に通せない」という構造的課題を解決するツールキット。業界別KPIベンチマークデータを内蔵したROIシミュレーターで投資対効果を可視化し、日本の稟議文化に最適化された予算申請書を自動生成する。BtoBマーケ担当者の約8割が予算配分に課題を感じている（market",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-roi/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>BtoB マーケティング投資 ROIシミュレーター</h1>
+
+<div class="card">
+<h2>1. 業種・施策を選択</h2>
+<div class="row">
+<div><label>業種</label>
+<select id="ind"><option value="mfg">製造業</option><option value="it">IT/SaaS</option><option value="hr">人材</option><option value="con">建設</option><option value="pro">士業</option></select></div>
+<div><label>施策種別</label>
+<select id="str"><option value="seo">SEO</option><option value="ads">リスティング広告</option><option value="cm">コンテンツマーケ</option><option value="ex">展示会</option><option value="wb">ウェビナー</option></select></div>
+</div>
+<h2 style="margin-top:16px">2. 現状指標を入力</h2>
+<div class="row">
+<div><label>月間リード数</label><input id="leads" type="number" value="50" min="1"></div>
+<div><label>CVR（%）</label><input id="cvr" type="number" value="3" min="0.1" step="0.1"></div>
+<div><label>顧客単価（万円）</label><input id="price" type="number" value="100" min="1"></div>
+<div><label>現在の月間予算（万円）</label><input id="budget" type="number" value="30" min="1"></div>
+</div>
+<button onclick="run()">シミュレーション実行</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>3. 12ヶ月ROI予測</h2>
+<div class="metric" id="kpi"></div>
+<canvas id="chart" height="280"></canvas>
+<p class="note">※青線=施策実施時の累積売上、灰線=現状維持。ベンチマーク値は各業界団体公表値・調査レポートに基づく推計</p>
+</div>
+
+<div class="card">
+<h2>4. ベンチマーク乖離分析（業種別5施策）</h2>
+<table id="bench"></table>
+<p class="note">出典: BtoB企業マーケティング実態調査2025（日本マーケティング協会）、HubSpot State of Marketing 2025、WACUL調査データ等を基に推計した参考値</p>
+</div>
+
+<div class="card">
+<h2>5. 稟議書ドラフト</h2>
+<div class="doc" id="doc"></div>
+<button class="btn-s" onclick="copyDoc()">テキストコピー</button>
+<button class="btn-s" onclick="dlCSV()">CSV ダウンロード</button>
+</div>
+</div>
+</div>
+
+<script>
+// ベンチマーク25パターン: [CVR改善倍率, ベンチマークCPL(万円), 損益分岐月, リード増加率/月]
+const BM={
+mfg:{seo:[1.5,.3,6,.06],ads:[1.2,.5,3,.10],cm:[1.8,.2,9,.05],ex:[1.3,.8,2,.12],wb:[1.6,.15,4,.08]},
+it:{seo:[2.0,.2,5,.08],ads:[1.5,.3,2,.14],cm:[2.5,.15,8,.06],ex:[1.2,1.0,3,.10],wb:[2.0,.1,3,.10]},
+hr:{seo:[1.8,.25,5,.07],ads:[1.3,.4,2,.12],cm:[2.0,.18,7,.06],ex:[1.4,.7,3,.09],wb:[1.7,.12,4,.09]},
+con:{seo:[1.3,.4,7,.05],ads:[1.0,.6,3,.08],cm:[1.5,.3,10,.04],ex:[1.5,.9,2,.11],wb:[1.2,.2,5,.06]},
+pro:{seo:[1.7,.3,6,.07],ads:[1.2,.45,3,.09],cm:[2.2,.2,8,.05],ex:[1.1,.8,3,.08],wb:[1.8,.15,4,.09]}
+};
+const IN={"mfg":"製造業","it":"IT/SaaS","hr":"人材","con":"建設","pro":"士業"};
+const SN={"seo":"SEO","ads":"リスティング広告","cm":"コンテンツマーケ","ex":"展示会","wb":"ウェビナー"};
+let G={};
+
+function run(){
+  const ind=document.getElementById('ind').value,str=document.getElementById('str').value;
+  const leads=+document.getElementById('leads').value,cvr=+document.getElementById('cvr').value/100;
+  const price=+document.getElementById('price').value,budget=+document.getElementById('budget').value;
+  const b=BM[ind][str],cvrUp=b[0],benchCPL=b[1],bep=b[2],growR=b[3];
+
+  let cumBase=0,cumNew=0,mBase=[],mNew=[];const monthly=[];
+  for(let m=1;m<=12;m++){
+    const baseRev=leads*cvr*price;cumBase+=baseRev;
+    const newLeads=leads*(1+growR*m);
+    const newCvr=cvr*Math.min(cvrUp,1+(cvrUp-1)*m/12);
+    const newRev=newLeads*newCvr*price;cumNew+=newRev;
+    mBase.push(cumBase);mNew.push(cumNew);
+    monthly.push({m,baseRev,newRev,newLeads:Math.round(newLeads),newCvr});
+  }
+  const totalInvest=budget*12,addRev=cumNew-cumBase;
+  const roi=((addRev-totalInvest)/totalInvest*100).toFixed(0);
+  const oppCost=(cumNew-cumBase).toFixed(0);
+  G={ind,str,leads,cvr,price,budget,b,monthly,mBase,mNew,cumBase,cumNew,totalInvest,addRev,roi,oppCost,cvrUp,benchCPL,bep,growR};
+
+  document.getElementById('kpi').innerHTML=
+    `<div>12ヶ月ROI<span>${roi}%</span></div><div>累積増収<span>${fmt(addRev)}万</span></div><div>機会損失<span>${fmt(oppCost)}万</span></div><div>損益分岐<span>${bep}ヶ月</span></div>`;
+
+  drawChart(mBase,mNew);drawBench(ind,str);genDoc();
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function fmt(n){return Number(n).toLocaleString()}
+
+function drawChart(base,neu){
+  const c=document.getElementById('chart'),ctx=c.getContext('2d');
+  const dpr=window.devicePixelRatio||1,W=c.offsetWidth*dpr,H=560;
+  c.width=W;c.height=H;
+  const p={t:40,r:30,b:50,l:90},gw=W-p.l-p.r,gh=H-p.t-p.b,max=Math.max(...neu)*1.1;
+
+  ctx.strokeStyle='#cbd5e0';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(p.l,p.t);ctx.lineTo(p.l,H-p.b);ctx.lineTo(W-p.r,H-p.b);ctx.stroke();
+
+  ctx.fillStyle='#718096';ctx.font='20px sans-serif';ctx.textAlign='right';
+  for(let i=0;i<=4;i++){
+    const v=max*i/4,y=H-p.b-gh*i/4;
+    ctx.fillText(Math.round(v)+'万',p.l-8,y+5);
+    if(i>0){ctx.beginPath();ctx.strokeStyle='#edf2f7';ctx.moveTo(p.l,y);ctx.lineTo(W-p.r,y);ctx.stroke();}
+  }
+  ctx.textAlign='center';
+  for(let i=0;i<12;i++) ctx.fillText((i+1)+'月',p.l+gw*(i+.5)/12,H-p.b+30);
+
+  function line(data,color,w){
+    ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=w;
+    data.forEach((v,i)=>{const x=p.l+gw*(i+.5)/12,y=H-p.b-gh*v/max;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+    ctx.stroke();
+    data.forEach((v,i)=>{const x=p.l+gw*(i+.5)/12,y=H-p.b-gh*v/max;ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();});
+  }
+  line(base,'#a0aec0',3);line(neu,'#2b6cb0',4);
+  ctx.font='20px sans-serif';
+  ctx.fillStyle='#2b6cb0';ctx.fillRect(p.l+10,10,24,12);ctx.fillText('施策実施',p.l+80,22);
+  ctx.fillStyle='#a0aec0';ctx.fillRect(p.l+140,10,24,12);ctx.fillText('現状維持',p.l+210,22);
+}
+
+function drawBench(ind,str){
+  const budget=+document.getElementById('budget').value,leads=+document.getElementById('leads').value;
+  const myCPL=leads>0?(budget/leads):0;
+  let h='<tr><th>施策</th><th>CVR改善</th><th>ベンチCPL</th><th>損益分岐</th><th>リード増/月</th><th>CPL乖離</th></tr>';
+  Object.keys(SN).forEach(k=>{
+    const d=BM[ind][k],sel=k===str;
+    const gap=d[1]>0?((myCPL-d[1])/d[1]*100).toFixed(0):'--';
+    h+=`<tr style="${sel?'background:#ebf4ff;font-weight:700':''}"><td style="text-align:left">${SN[k]}${sel?' ★':''}</td><td>x${d[0]}</td><td>${d[1]}万</td><td>${d[2]}ヶ月</td><td>+${(d[3]*100).toFixed(0)}%</td><td style="color:${gap>0?'#e53e3e':'#38a169'}">${gap>0?'+':''}${gap}%</td></tr>`;
+  });
+  document.getElementById('bench').innerHTML=h;
+}
+
+function genDoc(){
+  const g=G,today=new Date().toLocaleDateString('ja-JP');
+  document.getElementById('doc').textContent=
+`━━━━━━━━━━━━━━━━━━━━━━━━━
+マーケティング施策投資 稟議書（ドラフト）
+━━━━━━━━━━━━━━━━━━━━━━━━━
+起案日: ${today}
+対象施策: ${SN[g.str]}（${IN[g.ind]}向け）
+
+■ 起案理由
+現在の月間リード数${g.leads}件・CVR${(g.cvr*100).toFixed(1)}%に対し、業界ベンチマークではCVR改善率x${g.cvrUp}・月間リード増加率+${(g.growR*100).toFixed(0)}%が見込まれる。現状維持の場合、12ヶ月間で約${fmt(g.oppCost)}万円の機会損失が発生する。競合優位性確保のため${SN[g.str]}への投資を提案する。
+
+■ 投資額
+月額${fmt(g.budget)}万円 x 12ヶ月 = 年間${fmt(g.totalInvest)}万円
+
+■ 期待効果
+・12ヶ月累積増収: ${fmt(Math.round(g.addRev))}万円
+・投資対効果（ROI）: ${g.roi}%
+・損益分岐点: ${g.bep}ヶ月目
+・12ヶ月後月間リード数: ${g.monthly[11].newLeads}件（現状${g.leads}件）
+・CVR改善: ${(g.cvr*100).toFixed(1)}% → ${(g.monthly[11].newCvr*100).toFixed(1)}%
+
+■ リスクと対策
+1. 効果発現の遅延 → 3ヶ月毎にKPIレビュー、未達時は施策を調整
+2. 市場環境の変化 → 競合モニタリング体制を構築し迅速に対応
+3. 運用リソース不足 → 外部パートナーとの連携体制を事前に確保
+
+■ 投資回収時期
+${g.bep}ヶ月目に損益分岐点到達見込み。以降は月次で正のROIを継続。
+
+■ 判断期限
+施策開始の最適時期を考慮し、○月○日までのご決裁をお願いいたします。
+━━━━━━━━━━━━━━━━━━━━━━━━━`;
+}
+
+function copyDoc(){navigator.clipboard.writeText(document.getElementById('doc').textContent).then(()=>alert('コピーしました'));}
+
+function dlCSV(){
+  const g=G;
+  let csv='月,現状月次売上(万),施策実施月次売上(万),累積現状(万),累積施策(万)\n';
+  g.monthly.forEach((r,i)=>{csv+=`${r.m},${r.baseRev.toFixed(0)},${r.newRev.toFixed(0)},${g.mBase[i].toFixed(0)},${g.mNew[i].toFixed(0)}\n`;});
+  csv+=`\n業種,${IN[g.ind]}\n施策,${SN[g.str]}\nROI,${g.roi}%\n機会損失,${g.oppCost}万円\n損益分岐,${g.bep}ヶ月\n`;
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv'}));a.download='roi_simulation.csv';a.click();
+}
+</script>
+</body>
+</html>

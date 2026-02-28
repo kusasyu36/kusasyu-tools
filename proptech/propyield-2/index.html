@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>賃料値上げ余地診断＆設備投資ROIシミュレーター（静的相場テーブル方式） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:840px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:24px;border-radius:12px;margin-bottom:24px;text-align:center}
+header h1{font-size:1.5rem;margin-bottom:4px}
+header p{font-size:.85rem;opacity:.8}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1.1rem;color:#0f3460;border-left:4px solid #e94560;padding-left:10px;margin-bottom:16px}
+label{display:block;font-size:.85rem;font-weight:600;margin-bottom:4px;color:#333}
+select,input[type=number]{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:1rem;margin-bottom:12px;background:#fafbfc}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{background:#e94560;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;width:100%;transition:.2s}
+button:hover{background:#c73650}
+.btn-sub{background:#0f3460}
+.btn-sub:hover{background:#0a264a}
+.result{background:#f0f4ff;border:2px solid #0f3460;border-radius:12px;padding:20px;margin-top:16px;display:none}
+.result h3{color:#0f3460;margin-bottom:12px;font-size:1rem}
+.metric{display:inline-block;text-align:center;background:#fff;border-radius:10px;padding:14px;margin:6px;min-width:120px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.metric .val{font-size:1.6rem;font-weight:800}
+.metric .lbl{font-size:.75rem;color:#666}
+.up{color:#e94560}.down{color:#2ecc71}.neutral{color:#f39c12}
+.bar-wrap{background:#e0e0e0;border-radius:6px;height:18px;margin:6px 0;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width .4s}
+.slider-row{margin-bottom:14px}
+.slider-row input[type=range]{width:100%;accent-color:#0f3460}
+.slider-val{font-size:.85rem;color:#0f3460;font-weight:700;float:right}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:10px}
+th,td{padding:8px 6px;border-bottom:1px solid #eee;text-align:right}
+th{background:#f5f7fa;text-align:center;font-weight:700;color:#0f3460}
+td:first-child,th:first-child{text-align:left}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:700;color:#fff}
+.tag-up{background:#e94560}.tag-ok{background:#2ecc71}.tag-warn{background:#f39c12}
+.note{font-size:.75rem;color:#888;margin-top:8px}
+@media print{
+body{background:#fff}
+.no-print{display:none!important}
+.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+.result{display:block!important;border-color:#333}
+}
+@media(max-width:600px){
+.grid2{grid-template-columns:1fr}
+.metric{min-width:auto;width:calc(50% - 16px)}
+}
+</style>
+<meta name="description" content="区分マンション3〜20戸を保有する個人投資家オーナーが、物件情報を入力するだけで①周辺相場との賃料乖離率＆値上げ余地を診断、②宅配ボックス・IoTロック等の設備投資ROIを試算、③複数物件のポートフォリオ全体の年間収支を一元管理できるツールセット。既存のAI不動産ツール30選（generativeai.tok">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,賃料値上げ余地診断＆設備投資ROIシミュレーター（静的相場テーブル方式）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propyield-2/">
+<meta property="og:title" content="賃料値上げ余地診断＆設備投資ROIシミュレーター（静的相場テーブル方式） - kusasyu tools">
+<meta property="og:description" content="区分マンション3〜20戸を保有する個人投資家オーナーが、物件情報を入力するだけで①周辺相場との賃料乖離率＆値上げ余地を診断、②宅配ボックス・IoTロック等の設備投資ROIを試算、③複数物件のポートフォリオ全体の年間収支を一元管理できるツールセット。既存のAI不動産ツール30選（generativeai.tok">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propyield-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="賃料値上げ余地診断＆設備投資ROIシミュレーター（静的相場テーブル方式） - kusasyu tools">
+<meta name="twitter:description" content="区分マンション3〜20戸を保有する個人投資家オーナーが、物件情報を入力するだけで①周辺相場との賃料乖離率＆値上げ余地を診断、②宅配ボックス・IoTロック等の設備投資ROIを試算、③複数物件のポートフォリオ全体の年間収支を一元管理できるツールセット。既存のAI不動産ツール30選（generativeai.tok">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "賃料値上げ余地診断＆設備投資ROIシミュレーター（静的相場テーブル方式）",
+  "description": "区分マンション3〜20戸を保有する個人投資家オーナーが、物件情報を入力するだけで①周辺相場との賃料乖離率＆値上げ余地を診断、②宅配ボックス・IoTロック等の設備投資ROIを試算、③複数物件のポートフォリオ全体の年間収支を一元管理できるツールセット。既存のAI不動産ツール30選（generativeai.tok",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propyield-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PropYield</h1>
+<p>賃料値上げ余地診断＆設備投資ROIシミュレーター</p>
+<p style="font-size:.7rem;margin-top:4px">データソース：国土交通省 不動産取引価格情報ベース｜静的相場テーブル 2024年度版（2025年3月更新）</p>
+</header>
+
+<div class="card">
+<h2>① 賃料乖離診断</h2>
+<div class="grid2">
+<div><label>エリア</label><select id="area">
+<optgroup label="東京23区">
+<option value="T01">千代田区</option><option value="T02">中央区</option><option value="T03">港区</option>
+<option value="T04">新宿区</option><option value="T05">渋谷区</option><option value="T06">文京区</option>
+<option value="T07">豊島区</option><option value="T08">台東区</option><option value="T09">墨田区</option>
+<option value="T10">品川区</option><option value="T11">目黒区</option><option value="T12">大田区</option>
+<option value="T13">世田谷区</option><option value="T14">中野区</option><option value="T15">杉並区</option>
+<option value="T16">練馬区</option><option value="T17">板橋区</option><option value="T18">北区</option>
+<option value="T19">荒川区</option><option value="T20">足立区</option><option value="T21">葛飾区</option>
+<option value="T22">江戸川区</option><option value="T23">江東区</option>
+</optgroup>
+<optgroup label="大阪市">
+<option value="O01">北区</option><option value="O02">中央区</option><option value="O03">西区</option>
+<option value="O04">天王寺区</option><option value="O05">浪速区</option><option value="O06">福島区</option>
+<option value="O07">淀川区</option><option value="O08">東淀川区</option><option value="O09">城東区</option>
+</optgroup>
+<optgroup label="その他主要都市">
+<option value="C01">横浜市</option><option value="C02">川崎市</option><option value="C03">さいたま市</option>
+<option value="C04">名古屋市</option><option value="C05">福岡市</option><option value="C06">札幌市</option>
+<option value="C07">仙台市</option><option value="C08">神戸市</option><option value="C09">京都市</option>
+</optgroup>
+</select></div>
+<div><label>築年数帯</label><select id="age">
+<option value="0">5年未満</option><option value="1">5〜10年</option>
+<option value="2">10〜20年</option><option value="3">20年超</option>
+</select></div>
+</div>
+<div class="grid2">
+<div><label>間取り</label><select id="layout">
+<option value="0">1K</option><option value="1">1LDK</option>
+<option value="2">2LDK</option><option value="3">3LDK</option>
+</select></div>
+<div><label>現行月額賃料（円）</label><input type="number" id="rent" placeholder="85000" min="10000" max="1000000" step="1000"></div>
+</div>
+<button onclick="diagnose()">診断する</button>
+<div class="result" id="res1"></div>
+</div>
+
+<div class="card">
+<h2>② 設備投資ROIシミュレーション</h2>
+<p class="note" style="margin-bottom:12px">スライダーで前提条件を調整してください。診断結果の賃料を基準に計算します。</p>
+
+<h3 style="font-size:.9rem;margin:10px 0 6px">🔒 IoTスマートロック</h3>
+<div class="slider-row"><label>導入費用（万円）<span class="slider-val" id="sv_lock_cost">5</span></label><input type="range" id="lock_cost" min="3" max="15" value="5" step="1" oninput="sv('lock_cost')"></div>
+<div class="slider-row"><label>月額賃料アップ（円）<span class="slider-val" id="sv_lock_up">2000</span></label><input type="range" id="lock_up" min="500" max="5000" value="2000" step="500" oninput="sv('lock_up')"></div>
+<div class="slider-row"><label>入居率改善（%pt）<span class="slider-val" id="sv_lock_occ">2</span></label><input type="range" id="lock_occ" min="0" max="10" value="2" step="1" oninput="sv('lock_occ')"></div>
+
+<h3 style="font-size:.9rem;margin:10px 0 6px">📦 宅配ボックス</h3>
+<div class="slider-row"><label>導入費用（万円）<span class="slider-val" id="sv_box_cost">8</span></label><input type="range" id="box_cost" min="3" max="25" value="8" step="1" oninput="sv('box_cost')"></div>
+<div class="slider-row"><label>月額賃料アップ（円）<span class="slider-val" id="sv_box_up">1500</span></label><input type="range" id="box_up" min="500" max="5000" value="1500" step="500" oninput="sv('box_up')"></div>
+<div class="slider-row"><label>入居率改善（%pt）<span class="slider-val" id="sv_box_occ">3</span></label><input type="range" id="box_occ" min="0" max="10" value="3" step="1" oninput="sv('box_occ')"></div>
+
+<h3 style="font-size:.9rem;margin:10px 0 6px">🚿 浴室乾燥機</h3>
+<div class="slider-row"><label>導入費用（万円）<span class="slider-val" id="sv_bath_cost">12</span></label><input type="range" id="bath_cost" min="8" max="25" value="12" step="1" oninput="sv('bath_cost')"></div>
+<div class="slider-row"><label>月額賃料アップ（円）<span class="slider-val" id="sv_bath_up">3000</span></label><input type="range" id="bath_up" min="1000" max="8000" value="3000" step="500" oninput="sv('bath_up')"></div>
+<div class="slider-row"><label>入居率改善（%pt）<span class="slider-val" id="sv_bath_occ">2</span></label><input type="range" id="bath_occ" min="0" max="10" value="2" step="1" oninput="sv('bath_occ')"></div>
+
+<button class="btn-sub" onclick="calcROI()">ROI計算</button>
+<div class="result" id="res2"></div>
+</div>
+
+<div class="card no-print">
+<h2>③ 診断結果を印刷</h2>
+<p class="note" style="margin-bottom:12px">上記の診断・ROI計算を実行後、印刷ボタンで帳票として出力できます。</p>
+<button onclick="window.print()" style="background:#333">🖨 印刷 / PDF保存</button>
+</div>
+
+<footer class="note" style="text-align:center;padding:16px">
+© 2025 SynLab PropTech — PropYield v1.0｜本ツールの数値は参考値です。投資判断は自己責任でお願いいたします。
+</footer>
+</div>
+
+<script>
+var D={};
+function r(codes,base){codes.forEach(function(c){D[c]=[];for(var a=0;a<4;a++){D[c][a]=[];for(var l=0;l<4;l++){var ag=[1,.93,.84,.72][a],lo=[1,1.6,2.1,2.7][l];
+var m=Math.round(base*ag*lo*100)/100;D[c][a][l]=[+(m*.88).toFixed(2),+m.toFixed(2),+(m*1.15).toFixed(2)]}}})}
+var TB=[9.8,11.5,13.2,10.5,12.8,9.2,8.8,8.5,8.0,9.5,10.2,7.8,8.5,8.0,8.2,7.2,7.0,7.3,7.2,6.2,6.0,6.3,8.2];
+for(var i=0;i<23;i++)r(['T'+String(i+1).padStart(2,'0')],TB[i]);
+[['O01',7.0],['O02',7.2],['O03',7.5],['O04',6.8],['O05',6.5],['O06',7.0],['O07',6.2],['O08',5.5],['O09',5.8]].forEach(function(x){r([x[0]],x[1])});
+[['C01',7.0],['C02',7.5],['C03',6.5],['C04',6.0],['C05',6.2],['C06',4.8],['C07',5.2],['C08',6.0],['C09',6.5]].forEach(function(x){r([x[0]],x[1])});
+
+function sv(id){document.getElementById('sv_'+id).textContent=document.getElementById(id).value}
+
+function diagnose(){
+ var area=document.getElementById('area').value;
+ var age=+document.getElementById('age').value;
+ var layout=+document.getElementById('layout').value;
+ var rent=+document.getElementById('rent').value;
+ if(!rent||rent<10000){alert('現行賃料を入力してください');return}
+ var d=D[area][age][layout];
+ var lo=d[0]*10000,med=d[1]*10000,hi=d[2]*10000;
+ var gap=((rent-med)/med*100).toFixed(1);
+ var gapN=+gap;
+ var tag,cls,msg;
+ if(gapN<-10){tag='値上げ余地あり';cls='tag-up';msg='相場と比較して大幅に低い賃料設定です。値上げ交渉の余地が十分にあります。'}
+ else if(gapN<-3){tag='やや低い';cls='tag-warn';msg='相場をやや下回っています。更新時の小幅値上げを検討してください。'}
+ else if(gapN<=5){tag='適正範囲';cls='tag-ok';msg='現行賃料は相場の適正範囲内です。現状維持で問題ありません。'}
+ else{tag='相場超過';cls='tag-warn';msg='相場を上回っています。空室リスクに注意してください。'}
+ var upside=gapN<0?Math.round(med-rent):0;
+ var pct=Math.min(100,Math.max(0,(rent-lo)/(hi-lo)*100));
+ var names=['1K','1LDK','2LDK','3LDK'];
+ var ages=['5年未満','5〜10年','10〜20年','20年超'];
+ var el=document.getElementById('res1');
+ el.style.display='block';
+ el.innerHTML='<h3>診断結果 <span class="tag '+cls+'">'+tag+'</span></h3>'+
+'<div style="display:flex;flex-wrap:wrap;justify-content:center">'+
+'<div class="metric"><div class="val">'+d[1].toFixed(1)+'<small>万円</small></div><div class="lbl">相場中央値</div></div>'+
+'<div class="metric"><div class="val '+(gapN<-3?'up':gapN>5?'down':'neutral')+'">'+(gapN>0?'+':'')+gap+'%</div><div class="lbl">乖離率</div></div>'+
+'<div class="metric"><div class="val up">'+(upside>0?'+'+upside.toLocaleString():'—')+'<small>'+(upside>0?'円':'')+'</small></div><div class="lbl">月額値上げ余地</div></div>'+
+'<div class="metric"><div class="val">'+(upside>0?'+'+(upside*12).toLocaleString():'—')+'<small>'+(upside>0?'円':'')+'</small></div><div class="lbl">年間増収見込</div></div>'+
+'</div>'+
+'<p style="margin-top:12px;font-size:.85rem">'+msg+'</p>'+
+'<div style="margin-top:12px">'+
+'<div style="font-size:.8rem;display:flex;justify-content:space-between"><span>下限 '+(lo/10000).toFixed(1)+'万</span><span>中央 '+(med/10000).toFixed(1)+'万</span><span>上限 '+(hi/10000).toFixed(1)+'万</span></div>'+
+'<div class="bar-wrap"><div class="bar-fill" style="width:'+pct+'%;background:'+(gapN<-3?'#e94560':gapN>5?'#f39c12':'#2ecc71')+'"></div>'+
+'<div style="position:absolute;left:'+pct+'%;top:-2px;width:3px;height:22px;background:#1a1a2e;border-radius:2px" title="現行賃料"></div></div>'+
+'<div style="font-size:.75rem;color:#888">▲ 現行賃料の位置（'+names[layout]+'・'+ages[age]+'）</div>'+
+'</div>';
+}
+
+function calcROI(){
+ var rent=+document.getElementById('rent').value;
+ if(!rent||rent<10000){alert('先に①の賃料診断を実行してください');return}
+ var items=[
+  {name:'IoTスマートロック',icon:'🔒',cost:+document.getElementById('lock_cost').value,up:+document.getElementById('lock_up').value,occ:+document.getElementById('lock_occ').value},
+  {name:'宅配ボックス',icon:'📦',cost:+document.getElementById('box_cost').value,up:+document.getElementById('box_up').value,occ:+document.getElementById('box_occ').value},
+  {name:'浴室乾燥機',icon:'🚿',cost:+document.getElementById('bath_cost').value,up:+document.getElementById('bath_up').value,occ:+document.getElementById('bath_occ').value}
+ ];
+ var html='<h3>設備投資ROI比較</h3><table><tr><th>設備</th><th>投資額</th><th>月額効果</th><th>年間効果</th><th>回収年数</th><th>5年ROI</th></tr>';
+ items.forEach(function(it){
+  var costYen=it.cost*10000;
+  var occGain=Math.round(rent*it.occ/100);
+  var monthGain=it.up+occGain;
+  var yearGain=monthGain*12;
+  var payback=yearGain>0?(costYen/yearGain).toFixed(1):'—';
+  var roi5=yearGain>0?Math.round((yearGain*5-costYen)/costYen*100):'—';
+  var roiCls=roi5!=='—'&&roi5>=100?'up':roi5!=='—'&&roi5>=30?'neutral':'down';
+  html+='<tr><td>'+it.icon+' '+it.name+'</td><td>'+it.cost+'万円</td><td>+'+monthGain.toLocaleString()+'円</td><td>+'+yearGain.toLocaleString()+'円</td><td>'+payback+'年</td><td class="'+roiCls+'">'+roi5+'%</td></tr>';
+ });
+ var allCost=items.reduce(function(s,i){return s+i.cost},0);
+ var allMonth=items.reduce(function(s,i){return s+i.up+Math.round(rent*i.occ/100)},0);
+ var allYear=allMonth*12;
+ var allPB=allYear>0?(allCost*10000/allYear).toFixed(1):'—';
+ var allROI=allYear>0?Math.round((allYear*5-allCost*10000)/(allCost*10000)*100):'—';
+ html+='<tr style="font-weight:700;border-top:2px solid #0f3460"><td>全設備導入</td><td>'+allCost+'万円</td><td>+'+allMonth.toLocaleString()+'円</td><td>+'+allYear.toLocaleString()+'円</td><td>'+allPB+'年</td><td>'+allROI+'%</td></tr></table>';
+ var best=items.slice().sort(function(a,b){
+  var ra=(a.up+Math.round(rent*a.occ/100))*12*5/(a.cost*10000);
+  var rb=(b.up+Math.round(rent*b.occ/100))*12*5/(b.cost*10000);
+  return rb-ra;
+ })[0];
+ html+='<p style="margin-top:12px;font-size:.85rem">💡 <strong>推奨：</strong>ROI効率が最も高いのは<strong>'+best.icon+' '+best.name+'</strong>です。投資対効果を重視するなら、まずこちらから導入を検討してください。</p>';
+ html+='<p class="note">※ 入居率改善効果は現行賃料×改善ポイントで概算。実際の効果は物件・エリアにより異なります。</p>';
+ var el=document.getElementById('res2');
+ el.style.display='block';
+ el.innerHTML=html;
+}
+</script>
+</body>
+</html>

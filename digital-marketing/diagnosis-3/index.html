@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>感情設計LP構成自動生成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:32px 24px;border-radius:12px;margin-bottom:24px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:8px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card h2{font-size:1.1em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.badge{display:inline-block;background:#e8f0fe;color:#1a73e8;font-size:.7em;padding:2px 8px;border-radius:10px}
+label.fl{display:block;font-size:.88em;font-weight:600;margin:10px 0 4px}
+input[type=text],select,textarea{width:100%;padding:10px 12px;border:2px solid #ddd;border-radius:8px;font-size:.9em;font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#1a73e8}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chips label{cursor:pointer;padding:8px 14px;border:2px solid #ddd;border-radius:20px;font-size:.82em;transition:.2s;user-select:none}
+.chips input{display:none}
+.chips label:has(input:checked){border-color:#e8432a;background:#e8432a;color:#fff}
+.age-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.age-row label{cursor:pointer;padding:6px 12px;border:2px solid #ddd;border-radius:8px;font-size:.82em}
+.age-row input{display:none}
+.age-row label:has(input:checked){border-color:#1a73e8;background:#1a73e8;color:#fff}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#e8432a,#ff6b4a);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin:16px 0}
+.btn:hover{opacity:.9}
+.btn-copy{background:linear-gradient(135deg,#1a73e8,#4a90e8);margin-top:8px}
+#result{display:none}
+.sec-block{background:#f8f9fa;border-radius:8px;padding:16px;margin-bottom:12px;border-left:4px solid #1a73e8}
+.sec-block h3{font-size:1em;margin-bottom:6px}
+.sec-block .trigger-tag{display:inline-block;background:#fff3e0;color:#e65100;font-size:.75em;padding:2px 8px;border-radius:10px;margin:2px}
+.sec-block .copy-text{background:#fff;padding:10px;border-radius:6px;margin:8px 0;font-size:.9em;border:1px solid #e0e0e0}
+.sec-block .reason{font-size:.8em;color:#666;margin:4px 0}
+.sec-block .color-row{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:.82em}
+.sec-block .color-swatch{width:24px;height:24px;border-radius:4px;border:1px solid #ccc}
+.warn{color:#e8432a;font-size:.8em;margin-top:4px}
+.copied-msg{text-align:center;color:#1a73e8;font-weight:700;font-size:.9em;margin-top:8px;display:none}
+footer{text-align:center;padding:16px;font-size:.75em;color:#888}
+@media(max-width:600px){header h1{font-size:1.2em}.wrap{padding:10px}}
+</style>
+<meta name="description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,感情設計LP構成自動生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-3/">
+<meta property="og:title" content="感情設計LP構成自動生成ツール - kusasyu tools">
+<meta property="og:description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="感情設計LP構成自動生成ツール - kusasyu tools">
+<meta name="twitter:description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "感情設計LP構成自動生成ツール",
+  "description": "感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>感情設計LP構成 自動生成ツール</h1>
+<p>業種・商品・ターゲットを入力 → 感情最適化されたLP構成案をワンクリック生成</p>
+</header>
+
+<div class="card">
+<h2>❶ 基本情報 <span class="badge">必須</span></h2>
+<label class="fl">業種</label>
+<select id="ind">
+<option value="">選択してください</option>
+<option value="ec">EC・通販</option>
+<option value="saas">SaaS・IT</option>
+<option value="edu">教育・スクール</option>
+<option value="health">健康・美容</option>
+<option value="finance">金融・保険</option>
+<option value="realestate">不動産</option>
+<option value="food">飲食・食品</option>
+<option value="consulting">コンサル・士業</option>
+</select>
+<label class="fl">商品・サービス名</label>
+<input type="text" id="pname" placeholder="例：スキンケアサブスク HARIMO">
+<label class="fl">商品の特徴・強み（1行）</label>
+<input type="text" id="usp" placeholder="例：皮膚科医監修、初回980円、解約自由">
+</div>
+
+<div class="card">
+<h2>❷ ターゲット属性 <span class="badge">必須</span></h2>
+<label class="fl">年齢層（複数可）</label>
+<div class="age-row">
+<label><input type="checkbox" name="age" value="20代">20代</label>
+<label><input type="checkbox" name="age" value="30代">30代</label>
+<label><input type="checkbox" name="age" value="40代">40代</label>
+<label><input type="checkbox" name="age" value="50代以上">50代以上</label>
+</div>
+<label class="fl">性別</label>
+<select id="gen"><option value="all">指定なし</option><option value="f">女性中心</option><option value="m">男性中心</option></select>
+<label class="fl">ターゲットの主な課題</label>
+<textarea id="pain" rows="2" placeholder="例：肌荒れが治らない、何を使っても変わらない"></textarea>
+</div>
+
+<div class="card">
+<h2>❸ 感情トリガー選択 <span class="badge">最大3つ</span></h2>
+<p style="font-size:.82em;color:#666;margin-bottom:8px">LPで訴求したい感情を選んでください（未選択時は業種に最適な組合せを自動選択）</p>
+<div class="chips" id="triggers">
+<label><input type="checkbox" value="fear">😨 恐怖</label>
+<label><input type="checkbox" value="hope">🌟 希望</label>
+<label><input type="checkbox" value="trust">🤝 信頼</label>
+<label><input type="checkbox" value="urgency">⏰ 緊急性</label>
+<label><input type="checkbox" value="belonging">👥 帰属意識</label>
+<label><input type="checkbox" value="curiosity">🔍 好奇心</label>
+<label><input type="checkbox" value="guilt">💭 罪悪感</label>
+</div>
+<div class="warn" id="twarn" style="display:none">※ 最大3つまで選択できます</div>
+</div>
+
+<button class="btn" onclick="generate()">LP構成案を自動生成する</button>
+
+<div id="result">
+<div class="card">
+<h2>📄 生成結果</h2>
+<div id="output"></div>
+<button class="btn btn-copy" onclick="copyAll()">📋 構成案をすべてコピー</button>
+<div class="copied-msg" id="cmsg">コピーしました！</div>
+</div>
+</div>
+
+<footer>感情設計LP構成自動生成ツール — LP感情設計チェックリスト診断ツール 連携版<br>© SynLab Digital Marketing</footer>
+</div>
+
+<script>
+(function(){
+var cbs=document.querySelectorAll('#triggers input');
+cbs.forEach(function(c){c.addEventListener('change',function(){
+var sel=document.querySelectorAll('#triggers input:checked');
+if(sel.length>3){c.checked=false;document.getElementById('twarn').style.display='block';setTimeout(function(){document.getElementById('twarn').style.display='none'},2000)}
+})});
+})();
+
+var TN={fear:'恐怖',hope:'希望',trust:'信頼',urgency:'緊急性',belonging:'帰属意識',curiosity:'好奇心',guilt:'罪悪感'};
+var TICON={fear:'😨',hope:'🌟',trust:'🤝',urgency:'⏰',belonging:'👥',curiosity:'🔍',guilt:'💭'};
+var COLORS={fear:['#b71c1c','#d32f2f'],hope:['#1b5e20','#43a047'],trust:['#0d47a1','#1976d2'],urgency:['#e65100','#f57c00'],belonging:['#4a148c','#7b1fa2'],curiosity:['#006064','#00838f'],guilt:['#4e342e','#6d4c41']};
+
+var INDUSTRY_DEFAULT={ec:['hope','trust','urgency'],saas:['curiosity','trust','fear'],edu:['hope','curiosity','guilt'],health:['fear','hope','trust'],finance:['fear','trust','urgency'],realestate:['trust','urgency','belonging'],food:['curiosity','hope','belonging'],consulting:['trust','fear','hope']};
+
+var SECTION_MAP={
+fv:{name:'ファーストビュー',slots:[0],role:'3秒で離脱を防ぎ、感情を動かす'},
+problem:{name:'課題提起',slots:[0,2],role:'読者の痛みを言語化し共感を得る'},
+solution:{name:'解決策提示',slots:[1],role:'商品を希望の光として提示する'},
+proof:{name:'社会的証明',slots:[1,2],role:'第三者の声で信頼を積み上げる'},
+cta:{name:'CTA（行動喚起）',slots:[0,1],role:'今すぐ行動させる最後の一押し'}
+};
+
+var COPY_TMPL={
+fear:{fv:'「まだ{pain}で悩み続けますか？」',problem:'「放置すると{negative}になるリスクがあります」',solution:'「{product}があれば、もうその不安は不要です」',proof:'「私も同じ不安を抱えていました」—{age}・利用者の声',cta:'「今すぐ{product}で不安を解消する」'},
+hope:{fv:'「{age}から始める、理想の{goal}」',problem:'「本当はもっと{goal}たいと思っていませんか？」',solution:'「{product}で叶える、あなたの{goal}」',proof:'「{product}のおかげで{goal}を実現できました」—体験者の声',cta:'「理想の{goal}を手に入れる」'},
+trust:{fv:'「{expert}が選んだ{product}」',problem:'「{count}種類もある中で、本当に信頼できるものは？」',solution:'「{product}は{usp}。だから選ばれています」',proof:'「利用者{users}人突破。満足度{rate}%」',cta:'「まずは無料で{product}を試す」'},
+urgency:{fv:'「【期間限定】{product}特別キャンペーン」',problem:'「{deadline}を過ぎると、この条件ではご案内できません」',solution:'「今だけの特別条件で{product}をお届け」',proof:'「残りわずか。すでに{users}人がお申し込み済み」',cta:'「今すぐ限定価格で申し込む →」'},
+belonging:{fv:'「{age}の{count}人が選んだ{product}」',problem:'「周りはもう始めています。あなたはまだですか？」',solution:'「{product}ユーザーのコミュニティに参加しませんか」',proof:'「同じ{age}の仲間と一緒に{goal}を目指せる」',cta:'「みんなと一緒に始める」'},
+curiosity:{fv:'「なぜ{age}の間で{product}が話題なのか？」',problem:'「{pain}の"本当の原因"をご存知ですか？」',solution:'「{product}が選ばれる3つの科学的根拠」',proof:'「{expert}も注目。その秘密とは」',cta:'「その理由を今すぐ確認する →」'},
+guilt:{fv:'「"まだやっていない"その後悔、今日で終わりに」',problem:'「{pain}を放置している自分に、心のどこかで気づいていませんか？」',solution:'「{product}なら、今日から変われます」',proof:'「あの時始めていれば…と後悔する前に」',cta:'「後悔しない選択をする」'}
+};
+
+function v(id){return document.getElementById(id).value.trim()}
+function getAges(){var a=[];document.querySelectorAll('input[name=age]:checked').forEach(function(c){a.push(c.value)});return a}
+function getTrigs(){var a=[];document.querySelectorAll('#triggers input:checked').forEach(function(c){a.push(c.value)});return a}
+
+function fillTmpl(t,d){return t.replace(/\{(\w+)\}/g,function(_,k){return d[k]||'〇〇'})}
+
+function generate(){
+var ind=v('ind'),pname=v('pname'),usp=v('usp'),pain=v('pain'),gen=v('gen');
+var ages=getAges(),trigs=getTrigs();
+if(!ind||!pname){alert('業種と商品名は必須です');return}
+if(ages.length===0) ages=['30代'];
+if(trigs.length===0) trigs=INDUSTRY_DEFAULT[ind]||['hope','trust','fear'];
+
+var ageStr=ages.join('・');
+var data={product:pname,usp:usp||'独自の強み',pain:pain||'現状の課題',age:ageStr,goal:'理想の姿',expert:'専門家',count:'100',users:'5,000',rate:'96.8',deadline:'今月末',negative:'さらなる悪化'};
+if(gen==='f'){data.goal='キレイ';data.expert='美容の専門家'}
+if(gen==='m'){data.goal='成果';data.expert='業界のプロ'}
+if(ind==='health'){data.goal='キレイな自分';data.expert='皮膚科医';data.negative='肌トラブルの悪化'}
+if(ind==='saas'){data.goal='業務効率化';data.expert='IT専門家';data.count='200';data.negative='競合に遅れを取る状態'}
+if(ind==='edu'){data.goal='スキルアップ';data.expert='現役講師';data.negative='キャリアの停滞'}
+if(ind==='finance'){data.goal='安心できる将来';data.expert='ファイナンシャルプランナー';data.negative='資産リスクの拡大'}
+if(ind==='realestate'){data.goal='理想の暮らし';data.expert='不動産のプロ';data.count='300';data.negative='好条件物件の売り切れ'}
+if(ind==='food'){data.goal='おいしい食卓';data.expert='料理研究家';data.negative='食の満足度低下'}
+if(ind==='consulting'){data.goal='ビジネスの成長';data.expert='経営コンサルタント';data.negative='機会損失の拡大'}
+
+var secs=['fv','problem','solution','proof','cta'];
+var html='';var plain='';
+plain+='═══════════════════════════════════\n';
+plain+='感情設計LP構成案 — '+pname+'\n';
+plain+='業種: '+document.getElementById('ind').selectedOptions[0].text+'｜ターゲット: '+ageStr+'\n';
+plain+='感情トリガー: '+trigs.map(function(t){return TN[t]}).join('・')+'\n';
+plain+='═══════════════════════════════════\n\n';
+
+secs.forEach(function(sk,i){
+var s=SECTION_MAP[sk];
+var usedTrigs=s.slots.map(function(si){return trigs[Math.min(si,trigs.length-1)]});
+var unique={};usedTrigs=usedTrigs.filter(function(t){if(unique[t])return false;unique[t]=1;return true});
+var mainTrig=usedTrigs[0];
+var copyTmpl=COPY_TMPL[mainTrig]?COPY_TMPL[mainTrig][sk]:'「{product}で{goal}を実現」';
+var copy=fillTmpl(copyTmpl,data);
+var mainColor=COLORS[mainTrig]?COLORS[mainTrig][0]:'#1a1a2e';
+var subColor=COLORS[mainTrig]?COLORS[mainTrig][1]:'#333';
+
+html+='<div class="sec-block" style="border-left-color:'+mainColor+'">';
+html+='<h3>Section '+(i+1)+'：'+s.name+'</h3>';
+html+='<div style="margin:4px 0">'+usedTrigs.map(function(t){return '<span class="trigger-tag">'+TICON[t]+' '+TN[t]+'</span>'}).join('')+'</div>';
+html+='<div class="copy-text">'+copy+'</div>';
+html+='<div class="reason">💡 感情設計の意図：'+s.role+'。'+TN[mainTrig]+'トリガーで読者の感情を動かし、次セクションへの遷移率を高めます。</div>';
+html+='<div class="color-row"><span class="color-swatch" style="background:'+mainColor+'"></span>メイン '+mainColor+' <span class="color-swatch" style="background:'+subColor+'"></span>サブ '+subColor+'</div>';
+html+='</div>';
+
+plain+='【Section '+(i+1)+'】'+s.name+'\n';
+plain+='感情トリガー: '+usedTrigs.map(function(t){return TN[t]}).join('・')+'\n';
+plain+='コピー案: '+copy+'\n';
+plain+='設計意図: '+s.role+'。'+TN[mainTrig]+'トリガーで感情を動かし遷移率を向上。\n';
+plain+='推奨カラー: メイン'+mainColor+' / サブ'+subColor+'\n\n';
+});
+
+plain+='═══════════════════════════════════\n';
+plain+='生成元: 感情設計LP構成自動生成ツール\n';
+
+document.getElementById('output').innerHTML=html;
+document.getElementById('result').style.display='block';
+document.getElementById('result').dataset.plain=plain;
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function copyAll(){
+var t=document.getElementById('result').dataset.plain||'';
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){showCopied()})}
+else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showCopied()}
+}
+function showCopied(){var m=document.getElementById('cmsg');m.style.display='block';setTimeout(function(){m.style.display='none'},2000)}
+</script>
+</body>
+</html>

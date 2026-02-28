@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>業種別・交渉サポートキット - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6;font-size:15px}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px 20px;text-align:center}
+.header h1{font-size:1.3em;margin-bottom:4px}
+.header p{font-size:.8em;opacity:.8}
+.container{max-width:900px;margin:0 auto;padding:16px}
+.panel{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.panel h2{font-size:1.1em;color:#16213e;margin-bottom:12px;border-left:4px solid #e94560;padding-left:10px}
+.sel-group{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.sel-group label{font-weight:600;width:100%;font-size:.9em}
+.btn{padding:10px 18px;border:2px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-size:.9em;transition:.2s}
+.btn:hover{border-color:#e94560;background:#fff5f7}
+.btn.active{background:#e94560;color:#fff;border-color:#e94560}
+.result{display:none}
+.result.show{display:block}
+.card{border:1px solid #e8e8e8;border-radius:8px;padding:14px;margin-bottom:10px;position:relative}
+.card .num{position:absolute;top:10px;right:12px;background:#16213e;color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:.75em}
+.card .scene{font-weight:700;color:#e94560;margin-bottom:6px;font-size:.95em}
+.card .talk{background:#f0f4ff;padding:10px 12px;border-radius:6px;margin-bottom:6px;font-size:.9em}
+.card .talk::before{content:"💬 "}
+.card .letter{background:#fff8e1;padding:10px 12px;border-radius:6px;font-size:.85em;border-left:3px solid #ffc107}
+.card .letter::before{content:"✉️ 修正依頼文: "}
+.warn{background:#fff3f3;border:1px solid #e94560;border-radius:6px;padding:10px 12px;margin-top:8px;font-size:.85em}
+.warn::before{content:"⚠️ 下請法ポイント: ";font-weight:700;color:#e94560}
+.actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.actions button{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:.9em}
+#printBtn{background:#16213e;color:#fff}
+#copyBtn{background:#0f3460;color:#fff}
+.footer{text-align:center;padding:20px;font-size:.75em;color:#999}
+@media print{.header,.sel-wrap,.actions,.footer{display:none!important}.result{display:block!important}.container{padding:0}.panel{box-shadow:none;border:1px solid #ccc}}
+@media(max-width:600px){.sel-group{flex-direction:column}.btn{width:100%;text-align:center}}
+</style>
+<meta name="description" content="取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,業種別・交渉サポートキット">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-4/">
+<meta property="og:title" content="業種別・交渉サポートキット - kusasyu tools">
+<meta property="og:description" content="取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別・交渉サポートキット - kusasyu tools">
+<meta name="twitter:description" content="取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "業種別・交渉サポートキット",
+  "description": "取適法（新下請法）施行を受け、製造業・建設業・物流業の調達・購買担当者が『この契約、法務に回すべき？自分で処理していい？』を即座に判断でき、交渉に必要なチェックリストまで自動生成するツールキット。既存の契約書レビューAI（LeCHECK・LegalOn等）が法務部門向けに法律用語で結果を返すのに対し、本ツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="header">
+<h1>業種別・交渉サポートキット</h1>
+<p>SynLab Legal Tech — 法務監修済み定型文テンプレート</p>
+</div>
+<div class="container">
+<div class="panel sel-wrap">
+<h2>① 業種を選択</h2>
+<div class="sel-group" id="indG"></div>
+<h2>② リスク項目を選択</h2>
+<div class="sel-group" id="riskG"></div>
+</div>
+<div class="panel result" id="res">
+<h2 id="resTitle">交渉トーク例・修正依頼文</h2>
+<div id="cards"></div>
+<div class="actions">
+<button id="printBtn" onclick="window.print()">🖨️ 印刷用に出力</button>
+<button id="copyBtn" onclick="copyAll()">📋 全文コピー</button>
+</div>
+</div>
+</div>
+<div class="footer">© 2026 SynLab Legal Tech｜本ツールは情報提供目的です。個別案件は弁護士にご相談ください。</div>
+<script>
+const D={
+"製造業":{
+"支払条件":[
+{s:"納品後の支払いが90日になっている",t:"弊社としては、納品後60日以内のお支払いをお願いしております。業界の標準的な慣行でもありますので、ご検討いただけますか。",l:"第○条の支払期日を「納品検収後60日以内」に変更をお願いいたします。",w:"下請法では、受領日から60日以内の支払が義務です。60日超は違反となります。"},
+{s:"手形払い（120日サイト）を提示された",t:"現金払いへの変更をお願いできますでしょうか。手形サイトが長期になると資金繰りに影響が出るため、60日以内の現金払いでご調整いただけると助かります。",l:"お支払方法を「銀行振込・60日以内」への変更をご検討ください。"},
+{s:"検収完了の基準が曖昧で支払が延びる",t:"検収基準を事前に明確にさせてください。納品後○営業日以内に検収が完了しない場合は自動的に検収完了とする取り決めにしたいのですが。",l:"検収期間を「納品後10営業日以内」とし、期間内に異議がない場合は検収完了とする旨の追記をお願いします。"},
+{s:"値引きと相殺して支払額を減らされた",t:"発注時にお決めいただいた金額から一方的に差し引くのは、双方の信頼関係にも関わりますので、変更がある場合は事前にご相談いただけますか。",l:"発注書記載の金額を全額お支払いいただくよう、お願い申し上げます。",w:"下請法では、下請代金の減額は禁止されています（発注後の一方的減額）。"},
+{s:"消費税分を支払額に含めないと言われた",t:"消費税は法律上お支払いいただく必要がありますので、本体価格に加えて消費税分もお支払い対象としていただけますようお願いします。",l:"お支払金額に消費税相当額を加算してお支払いくださるよう、契約書への明記をお願いします。",w:"消費税を支払わない・消費税分を値引きすることは下請法違反です。"}
+],
+"価格改定":[
+{s:"原材料が高騰したのに単価据え置きを求められた",t:"原材料費が○○%上昇しております。品質を維持するためにも、単価の見直しについてご相談させてください。",l:"原材料費高騰に伴い、単価を○○円から○○円への改定をお願いいたします。根拠資料を添付いたします。",w:"原材料高騰時に一方的に単価を据え置くことは「買いたたき」に該当する可能性があります。"},
+{s:"数量が減ったのに単価を下げろと言われた",t:"数量の減少はロット効率にも影響しますので、むしろ単価の調整が必要になります。現行単価の維持をベースにご相談させてください。",l:"発注数量の減少に伴う単価変更は、双方協議のうえ決定としていただきたく存じます。"},
+{s:"他社の見積もりを見せられて値下げを要求された",t:"弊社の品質・納期対応力を含めた総合的な価値でご判断いただければ幸いです。一律の価格比較だけでなく、品質コストも含めてご検討ください。",l:"価格のみの比較ではなく、品質・納期・アフターサポートを含めた総合評価でのご判断をお願いいたします。"},
+{s:"毎年一律3%の値下げを要求された",t:"一律の値下げではなく、コスト分析に基づいた合理的な価格設定をご一緒に検討させてください。",l:"一律の値下げ要請ではなく、原価構成を踏まえた協議による価格決定への変更をお願いします。",w:"合理的理由なく一方的に単価を引き下げることは「買いたたき」に該当します。"},
+{s:"試作費・金型費を無償提供するよう求められた",t:"試作・金型にも材料費と加工費がかかりますので、これらは別途お見積りとさせてください。",l:"試作費・金型費について、別途お見積書を提出いたしますので、ご査収ください。"}
+],
+"納期・品質":[
+{s:"短納期を一方的に指定された",t:"品質を確保するために必要な製造リードタイムがございます。ご希望納期に対して○日の追加をいただければ、品質を保証してお届けできます。",l:"納期を「発注日から○営業日」に変更いただくか、特急対応費用の別途ご負担をご検討ください。"},
+{s:"不良品発生時の全数検査費用を負担しろと言われた",t:"不良原因が弊社にある場合は対応いたしますが、全数検査費用の負担範囲は事前に取り決めをさせてください。",l:"品質問題発生時の費用負担について、原因者負担の原則を契約書に明記ください。"},
+{s:"仕様変更後のやり直し費用を持ってくれと言われた",t:"仕様変更は喜んで対応しますが、変更に伴う追加費用と納期調整についてはご了承いただけますか。",l:"仕様変更に伴う追加費用・納期変更については、変更指示書に基づき別途お見積りとさせてください。",w:"やり直しを無償で要求することは「不当な給付内容の変更・やり直し」として下請法違反です。"},
+{s:"図面なしの口頭発注で後から仕様違いを指摘された",t:"仕様の認識違いを防ぐため、今後は書面での発注をお願いできますでしょうか。双方の確認記録にもなりますので。",l:"発注時に仕様書（図面）を書面で交付いただくよう、お願い申し上げます。",w:"書面を交付せずに発注すること自体が下請法違反です。"},
+{s:"検査基準を後出しで厳しくされた",t:"検査基準は発注時にお決めいただいた基準でお願いいたします。基準を変更される場合は事前協議とさせてください。",l:"検査基準の変更は事前協議事項とし、変更時は書面での合意を条件とする旨の追記をお願いします。"}
+]
+},
+"建設業":{
+"支払条件":[
+{s:"工事完了後90日以上の支払サイトになっている",t:"工事代金のお支払いは、完了後できるだけ早くお願いしたいと考えています。60日以内でご調整いただけませんか。",l:"工事代金の支払期日を「工事完了・検査合格後60日以内」に変更をお願いします。",w:"建設業法でも下請代金の支払は、引渡し申出日から50日以内が目安です。"},
+{s:"出来高払いの中間金がない",t:"資材の仕入れが先行するため、出来高に応じた中間払いを設定いただけると大変助かります。",l:"出来高に応じた中間払い（着工時○%、上棟時○%、完了時残金）を支払条件に追加してください。"},
+{s:"追加工事の代金を元請が認めない",t:"追加工事は元請様のご指示で実施したものですので、追加費用のお支払いについてご確認させてください。",l:"追加工事分の費用○○円について、変更契約書の締結と追加代金のお支払いをお願いいたします。",w:"追加工事を行わせながら代金を支払わないことは下請法・建設業法違反です。"},
+{s:"赤伝処理で一方的に差し引かれた",t:"赤伝での差し引きについては、事前にご相談のうえ金額を確認させてください。一方的な控除は避けていただきたいです。",l:"赤伝処理を行う場合は、事前に内容・金額について書面で合意のうえ実施していただくようお願いします。",w:"一方的な赤伝処理は下請代金の減額禁止に抵触します。"},
+{s:"リテンション（留保金）の返還時期が不明確",t:"留保金の返還条件と時期を契約書に明記いただけますか。完成後○日以内など、具体的な日付で決めたいです。",l:"リテンション返還時期を「最終検査合格後30日以内」と明記してください。"}
+],
+"価格改定":[
+{s:"資材価格が急騰したが契約金額の変更に応じてもらえない",t:"鋼材が○○%値上がりしており、当初見積り時の前提が崩れています。スライド条項の適用をご検討いただけませんか。",l:"資材価格高騰に伴い、契約約款のスライド条項に基づく契約金額の変更協議をお願いいたします。",w:"一方的に価格据え置きを強いることは「買いたたき」に該当する可能性があります。"},
+{s:"人件費上昇分を認めてもらえない",t:"技能労働者の日当が国の公共工事設計労務単価でも○○%上昇しています。労務費の見直しをお願いできますか。",l:"労務費の上昇を反映した契約金額の変更についてご協議をお願いいたします。"},
+{s:"値引きを前提とした指値発注をされた",t:"適正な利益を確保できる金額でなければ、品質と安全の確保が難しくなります。見積書ベースでのご発注をお願いします。",l:"弊社見積書記載の金額での発注をお願いいたします。指値での発注は建設業法上も適切でない場合がございます。",w:"指値発注は建設業法上の問題となり得ます。"},
+{s:"設計変更があったが増額を認めない",t:"設計変更に伴い追加の材料・工数が発生しております。変更契約として増額をお認めいただけますか。",l:"設計変更に伴う追加費用について、変更見積書を提出いたしますのでご承認をお願いします。"},
+{s:"短期間の見積もりで安値を強要された",t:"正確なお見積りには現場確認も含めて○日必要です。適正な見積期間をいただけますようお願いします。",l:"見積期間を○日間いただきますようお願いいたします。建設業法上も適正な見積期間の設定が求められています。"}
+],
+"納期・品質":[
+{s:"天候不良での工期遅延を下請の責任にされた",t:"天候による遅延は不可抗力ですので、工期の延長をお認めいただけますか。",l:"不可抗力による工期遅延について、○日間の工期延長をお願いいたします。"},
+{s:"安全対策費を見積もりに入れるなと言われた",t:"安全対策は法令で義務付けられておりますので、必要な費用として見積りに含めさせてください。",l:"労働安全衛生法に基づく安全対策費を見積項目として計上させていただきます。"},
+{s:"施工範囲外の作業を追加で指示された",t:"契約範囲外の作業になりますので、追加の契約として別途お見積りをさせてください。",l:"追加指示の作業は契約範囲外のため、追加契約のうえ実施させていただきます。",w:"契約範囲外の作業を無償で行わせることは下請法違反となります。"},
+{s:"やり直しを無償で要求された（元請の指示ミス）",t:"元請様のご指示に基づいて施工した部分ですので、やり直し費用は別途ご負担をお願いいたします。",l:"元請指示に起因するやり直し費用について、別途お支払いをお願いいたします。",w:"元請の指示ミスに起因するやり直しを無償で要求することは禁止されています。"},
+{s:"必要書類が遅れて工事が止まったのに下請の遅延扱い",t:"承認図の回答が遅れた期間は、弊社の責任ではございません。その分の工期延長をお願いいたします。",l:"元請様からの承認遅延○日間について、工期延長をお願いいたします。"}
+]
+},
+"物流業":{
+"支払条件":[
+{s:"運賃の支払いが翌々月末になっている",t:"運送完了後60日以内のお支払いに変更いただけますでしょうか。燃料費等の支払いが先行するため、資金繰りに影響がございます。",l:"運賃の支払期日を「運送完了月の翌月末（60日以内）」に変更をお願いします。",w:"下請法の対象となる運送委託では、60日以内の支払が必要です。"},
+{s:"燃料サーチャージを認めてもらえない",t:"燃料費が○○%上昇しておりますので、燃料サーチャージの導入をご検討いただけませんか。",l:"燃料費高騰に伴う燃料サーチャージの適用について、ご協議をお願いいたします。",w:"燃料費高騰分を運賃に反映させない場合は「買いたたき」に該当する可能性があります。"},
+{s:"待機時間の料金を払ってもらえない",t:"荷待ち時間が○時間を超えることが常態化しております。待機料金のお支払いをお願いできますか。",l:"荷待ち時間が○時間を超える場合の待機料金（1時間あたり○○円）を契約に追加してください。"},
+{s:"附帯作業（荷役・仕分け）を無償でやらされる",t:"荷積み・荷下ろし等の附帯作業は運送とは別の業務ですので、別途料金をいただきたく存じます。",l:"附帯作業（荷役・仕分け・検品等）について、別途料金を設定いただくようお願いします。",w:"運送以外の附帯作業を無償で行わせることは下請法上問題となります。"},
+{s:"一方的に運賃を値下げされた",t:"品質の高い輸送サービスを維持するためにも、一方的な値下げではなく協議のうえで決めさせてください。",l:"運賃の変更については、双方協議のうえ書面で合意することとしていただきたく存じます。",w:"一方的な運賃引下げは下請代金の減額禁止に該当します。"}
+],
+"価格改定":[
+{s:"2024年問題で人件費が上がったが運賃に反映されない",t:"ドライバーの労働時間規制強化により人件費が上昇しています。運賃への反映をお願いできますか。",l:"働き方改革に伴う人件費上昇分を運賃に反映いただくよう、改定のご協議をお願いします。",w:"労務費上昇を無視した運賃据え置きは「買いたたき」に該当し得ます。"},
+{s:"標準的な運賃よりも大幅に安い単価を要求された",t:"国交省の標準的な運賃を参考に、適正な水準でのお取引をお願いいたします。",l:"「標準的な運賃」を参考にした運賃設定への見直しをお願いいたします。"},
+{s:"複数荷主の混載を強要され運賃は据え置き",t:"混載対応には追加の仕分け作業が発生しますので、追加料金のご負担をお願いできますか。",l:"混載対応に伴う追加作業料を運賃に上乗せさせていただくよう、ご協議をお願いします。"},
+{s:"繁忙期でも通常単価で対応しろと言われた",t:"繁忙期は車両・人員の確保コストが上がりますので、繁忙期割増の設定をお願いいたします。",l:"繁忙期（○月〜○月）における割増運賃の設定をご協議させてください。"},
+{s:"年間契約を理由に一切の値上げを拒否された",t:"年間契約であっても、著しい環境変化があった場合の価格改定条項は必要です。見直し条項を入れさせてください。",l:"年間契約に「著しい経済変動時の価格改定協議条項」を追加してください。"}
+],
+"納期・品質":[
+{s:"荷物の破損リスクを全て運送業者の責任にされた",t:"梱包状態に起因する破損については、荷主様側のご責任としていただきたく存じます。",l:"運送中の破損について、梱包不備に起因する場合は荷主責任とする旨を契約に明記してください。"},
+{s:"配送時間指定が厳しすぎる（30分刻み）",t:"交通事情により30分刻みの指定は困難です。1時間幅での時間指定とさせてください。",l:"配送時間指定を「1時間幅」に変更をお願いいたします。"},
+{s:"急な配送ルート変更を無償で対応しろと言われた",t:"ルート変更には追加の走行距離・時間が発生しますので、変更料金を設定させてください。",l:"当日のルート変更時は変更手数料○○円を申し受けます。"},
+{s:"再配達の費用を負担してもらえない",t:"受取人様不在による再配達は追加コストが発生しますので、再配達料金を設定させてください。",l:"受取人不在による再配達費用（1回あたり○○円）のご負担をお願いいたします。"},
+{s:"過積載を指示された",t:"過積載は法令違反となり、弊社として対応いたしかねます。法定積載量内での運送をお願いいたします。",l:"法定積載量を超える積載指示には応じかねます。分割配送でのご対応をお願いいたします。"}
+]
+}
+};
+const industries=Object.keys(D);
+const risks=["支払条件","価格改定","納期・品質"];
+let selInd="",selRisk="";
+function render(){
+const ig=document.getElementById("indG");
+ig.innerHTML="<label>業種</label>"+industries.map(i=>`<button class="btn${selInd===i?" active":""}" onclick="pick('ind','${i}')">${i}</button>`).join("");
+const rg=document.getElementById("riskG");
+rg.innerHTML="<label>リスク項目</label>"+risks.map(r=>`<button class="btn${selRisk===r?" active":""}" onclick="pick('risk','${r}')">${r}</button>`).join("");
+const res=document.getElementById("res"),cards=document.getElementById("cards"),title=document.getElementById("resTitle");
+if(selInd&&selRisk&&D[selInd]&&D[selInd][selRisk]){
+const items=D[selInd][selRisk];
+title.textContent=`${selInd} × ${selRisk}（${items.length}パターン）`;
+cards.innerHTML=items.map((it,i)=>`<div class="card"><span class="num">${i+1}</span><div class="scene">場面: ${it.s}</div><div class="talk">${it.t}</div><div class="letter">${it.l}</div>${it.w?`<div class="warn">${it.w}</div>`:""}</div>`).join("");
+res.classList.add("show");
+}else{res.classList.remove("show")}
+}
+function pick(type,val){
+if(type==="ind")selInd=selInd===val?"":val;
+else selRisk=selRisk===val?"":val;
+render();
+}
+function copyAll(){
+const cards=document.getElementById("cards").innerText;
+navigator.clipboard.writeText(cards).then(()=>alert("コピーしました"));
+}
+render();
+</script>
+</body>
+</html>

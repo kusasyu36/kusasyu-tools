@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート - kusasyu tools</title>
+<meta name="description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-4/">
+<meta property="og:title" content="業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート - kusasyu tools">
+<meta property="og:description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート - kusasyu tools">
+<meta name="twitter:description" content="感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート",
+  "description": "感情プロセス理論（恐怖・希望・信頼・緊急性・帰属意識・好奇心・罪悪感の7トリガー）を軸に、既存LPの感情設計スコアを診断し、改善案を自動提案するツールと、業種・商品・ターゲットを入力するだけで感情最適化されたLP構成案（コピー・CTA・セクション順序）を自動生成するHTMLツールを提供する。汎用AI LP生成",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-4/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-02-26"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート</h1>
+  <p class="project-name">感情設計LP診断＆自動構成ツールキット — 7つの感情トリガーで中小企業のLPコンバージョンを科学する</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>■ 感情設計LP診断 — 業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート</th></tr></thead><tbody><tr><td>※「感情設計LP構成自動生成ツール」の診断・生成結果を記録・蓄積する補完資料です</td></tr><tr></tr><tr><td>■ セクション1: 業種×感情トリガー 推奨配合比率マトリクス（%）</td></tr><tr><td>業種</td><td>恐怖</td><td>希望</td><td>信頼</td><td>緊急性</td><td>帰属意識</td><td>好奇心</td><td>罪悪感</td><td>合計</td></tr><tr><td>EC（通販）</td><td>15</td><td>20</td><td>25</td><td>20</td><td>5</td><td>10</td><td>5</td><td>=SUM(B6:H6)</td></tr><tr><td>飲食</td><td>5</td><td>25</td><td>20</td><td>15</td><td>15</td><td>15</td><td>5</td><td>=SUM(B7:H7)</td></tr><tr><td>美容</td><td>20</td><td>25</td><td>20</td><td>10</td><td>5</td><td>10</td><td>10</td><td>=SUM(B8:H8)</td></tr><tr><td>不動産</td><td>15</td><td>15</td><td>30</td><td>15</td><td>10</td><td>10</td><td>5</td><td>=SUM(B9:H9)</td></tr><tr><td>SaaS</td><td>10</td><td>20</td><td>25</td><td>15</td><td>10</td><td>15</td><td>5</td><td>=SUM(B10:H10)</td></tr><tr></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `■ 感情設計LP診断 — 業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート
+※「感情設計LP構成自動生成ツール」の診断・生成結果を記録・蓄積する補完資料です
+
+■ セクション1: 業種×感情トリガー 推奨配合比率マトリクス（%）
+業種,恐怖,希望,信頼,緊急性,帰属意識,好奇心,罪悪感,合計
+EC（通販）,15,20,25,20,5,10,5,=SUM(B6:H6)
+飲食,5,25,20,15,15,15,5,=SUM(B7:H7)
+美容,20,25,20,10,5,10,10,=SUM(B8:H8)
+不動産,15,15,30,15,10,10,5,=SUM(B9:H9)
+SaaS,10,20,25,15,10,15,5,=SUM(B10:H10)
+
+※ 各業種で7トリガー合計=100%。上位3トリガーを重点的に設計すると効果的
+※ EC=信頼25%・希望20%・緊急性20% / 飲食=希望25%・信頼20%・緊急性15% / 美容=希望25%・恐怖20%・信頼20% / 不動産=信頼30%・緊急性15%・恐怖15% / SaaS=信頼25%・希望20%・好奇心15%
+
+■ セクション2: LP改善トラッキングシート（記入例3件＋入力用5行）
+No.,日付,企業名,業種,LP名,改善対象トリガー,改善施策概要,改善前スコア(0-100),改善後スコア(0-100),スコア改善幅【自動】,改善前CVR(%),改善後CVR(%),CVR変化率(%)【自動】,改善インパクト【自動】
+1,2026-01-15,ナチュラルコスメEC「haruiro」,EC,春色キャンペーンLP,緊急性,カウントダウンタイマー追加＋在庫残数表示を実装,42,78,=I16-H16,1.2,2.1,=(L16-K16)/K16*100,=J16*M16/100
+2,2026-02-03,恵比寿美容クリニック,美容,シミ取りレーザーLP,恐怖,放置リスクの医学的根拠セクション追加＋ビフォーアフター写真強化,55,82,=I17-H17,0.8,1.5,=(L17-K17)/K17*100,=J17*M17/100
+3,2026-02-20,クラウド在庫管理「StockNavi」,SaaS,無料トライアルLP,信頼,導入企業ロゴ12社追加＋具体的ROI数値を掲載,38,71,=I18-H18,2.5,4.2,=(L18-K18)/K18*100,=J18*M18/100
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+
+■ セクション3: 感情トリガー別 改善効果ランキング（自動集計）
+感情トリガー,平均スコア改善幅【自動】,平均CVR変化率(%)【自動】,改善実施件数【自動】,総合評価スコア【自動】,順位【自動】
+恐怖,"=IFERROR(AVERAGEIF($F$16:$F$100,$A27,$J$16:$J$100),""—"")","=IFERROR(AVERAGEIF($F$16:$F$100,$A27,$M$16:$M$100),""—"")","=COUNTIF($F$16:$F$100,$A27)","=IFERROR(B27*C27/100,""—"")","=IFERROR(RANK(E27,$E$27:$E$33,0),""—"")"
+希望,"=IFERROR(AVERAGEIF($F$16:$F$100,$A28,$J$16:$J$100),""—"")","=IFERROR(AVERAGEIF($F$16:$F$100,$A28,$M$16:$M$100),""—"")","=COUNTIF($F$16:$F$100,$A28)","=IFERROR(B28*C28/100,""—"")","=IFERROR(RANK(E28,$E$27:$E$33,0),""—"")"
+信頼,"=IFERROR(AVERAGEIF($F$16:$F$100,$A29,$J$16:$J$100),""—"")","=IFERROR(AVERAGEIF($F$16:$F$100,$A29,$M$16:$M$100),""—"")","=COUNTIF($F$16:$F$100,$A29)","=IFERROR(B29*C29/100,""—"")","=IFERROR(RANK(E29,$E$27:$E$33,0),""—"")"
+緊急性,"=IFERROR(AVERAGEIF($F$16:$F$100,$A30,$J$16:$J$100),""—"")","=IFERROR(AVERAGEIF($F$16:$F$100,$A30,$M$16:$M$100),""—"")","=COUNTIF($F$16:$F$100,$A30)","=IFERROR(B30*C30/100,""—"")","=IFERROR(RANK(E30,$E$27:$E$33,0),""—"")"
+帰属意識,"=IFERROR(AVERAGEIF($F$16:$F$100,$A31,$J$16:$J$100),""—"")","=IFERROR(AVERAGEIF($F$16:$F$100,$A31,$M$16:$M$100),""—"")","=COUNTIF($F$16:$F$100,$A31)","=IFERROR(B31*C31/100,""—"")","=IFERROR(RANK(E31,$E$27:$E$33,0),""—"")"
+好奇心,"=IFERROR(AVERAGEIF($F$16:$F$100,$A32,$J$16:$J$100),""—"")","=IFERROR(AVERAGEIF($F$16:$F$100,$A32,$M$16:$M$100),""—"")","=COUNTIF($F$16:$F$100,$A32)","=IFERROR(B32*C32/100,""—"")","=IFERROR(RANK(E32,$E$27:$E$33,0),""—"")"
+罪悪感,"=IFERROR(AVERAGEIF($F$16:$F$100,$A33,$J$16:$J$100),""—"")","=IFERROR(AVERAGEIF($F$16:$F$100,$A33,$M$16:$M$100),""—"")","=COUNTIF($F$16:$F$100,$A33)","=IFERROR(B33*C33/100,""—"")","=IFERROR(RANK(E33,$E$27:$E$33,0),""—"")"
+
+■ 使い方ガイド
+1. セクション1のマトリクスで自社業種の推奨配合比率を確認する
+2. 「感情設計LP構成自動生成ツール」でLP診断・構成生成を実施する
+3. セクション2に結果を記録（H〜I列にスコア／K〜L列にCVRを入力→J・M・N列が自動計算）
+4. セクション3のランキングが自動更新され効果の高いトリガーが一目でわかる
+※ 行追加時はRow18の数式（J・M・N列）をコピー。集計範囲はRow100まで対応
+※ 改善インパクト = スコア改善幅 × CVR変化率 ÷ 100。数値が大きいほど改善効果が高い施策`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_業種×感情トリガー最適配合マトリクス＆LP改善トラッキングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
