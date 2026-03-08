@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DD重要条項_横断集計・比較管理シート - kusasyu tools</title>
+<meta name="description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,DD重要条項_横断集計・比較管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-8/">
+<meta property="og:title" content="DD重要条項_横断集計・比較管理シート - kusasyu tools">
+<meta property="og:description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DD重要条項_横断集計・比較管理シート - kusasyu tools">
+<meta name="twitter:description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DD重要条項_横断集計・比較管理シート",
+  "description": "M&A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-07"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>DD重要条項_横断集計・比較管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>DD重要条項_横断集計・比較管理シート</h1>
+  <p class="project-name">DD Clause Hunter — M&amp;A対象契約 重要条項抽出＆交渉優先度マッピングツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>﻿案件ID</th><th>契約名</th><th>相手方企業</th><th>条項カテゴリ</th><th>条項詳細</th><th>CoC_トリガー条件</th><th>CoC_閾値_パーセント</th><th>インデムニティ上限額_万円</th><th>インデムニティ_対価比率_パーセント</th><th>表明保証存続期間_月</th><th>表明保証_長短判定</th><th>競業避止_制限地域</th><th>競業避止_制限期間_月</th><th>競業避止_制限業種範囲</th><th>競業避止_総合判定</th><th>リスクスコア</th><th>条項タイプ係数</th><th>交渉優先度</th><th>交渉ステータス</th><th>弁護士コメント</th></tr></thead><tbody><tr><td>A-001</td><td>東洋精機株式取得契約</td><td>東洋精機(株)</td><td>CoC</td><td>主要取引先契約のCoC条項</td><td>株式50%超の譲渡</td><td>50</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>4</td><td>1.5</td><td>=P2*Q2</td><td>未着手</td><td>主要顧客3社の事前同意取得が必要</td></tr><tr><td>A-001</td><td>東洋精機株式取得契約</td><td>東洋精機(株)</td><td>インデムニティ</td><td>一般インデムニティ条項</td><td></td><td></td><td>50000</td><td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td>3</td><td>2.0</td><td>=P3*Q3</td><td>交渉中</td><td>対価比10%は標準的水準</td></tr><tr><td>A-001</td><td>東洋精機株式取得契約</td><td>東洋精機(株)</td><td>表明保証</td><td>環境・知財に関する表明保証</td><td></td><td></td><td></td><td></td><td>36</td><td>=IF(J4&gt;=24,"長期","標準")</td><td></td><td></td><td></td><td></td><td>4</td><td>1.8</td><td>=P4*Q4</td><td>要検討</td><td>環境36ヶ月は長い。24ヶ月への短縮交渉推奨</td></tr><tr><td>A-001</td><td>東洋精機株式取得契約</td><td>東洋精機(株)</td><td>競業避止</td><td>売主の競業避止義務</td><td></td><td></td><td></td><td></td><td></td><td></td><td>日本全国</td><td>36</td><td>広範</td><td>=IF(AND(M5&gt;=24,N5="広範"),"要交渉",IF(OR(M5&gt;=24,N5="広範"),"注意","許容"))</td><td>5</td><td>1.2</td><td>=P5*Q5</td><td>未着手</td><td>36ヶ月×全国×広範は過大。限定交渉必須</td></tr><tr><td>B-002</td><td>中部オートパーツ株式取得契約</td><td>中部オートパーツ(株)</td><td>CoC</td><td>OEM契約のCoC条項</td><td>役員過半数の変更</td><td>50</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>3</td><td>1.5</td><td>=P6*Q6</td><td>交渉中</td><td>役員変更トリガーは厳しめ。株式変動に限定提案</td></tr><tr><td>B-002</td><td>中部オートパーツ株式取得契約</td><td>中部オートパーツ(株)</td><td>インデムニティ</td><td>特別インデムニティ(環境)</td><td></td><td></td><td>45000</td><td>15</td><td></td><td></td><td></td><td></td><td></td><td></td><td>4</td><td>2.0</td><td>=P7*Q7</td><td>要検討</td><td>対価比15%はやや高い。10%上限を提案</td></tr><tr><td>B-002</td><td>中部オートパーツ株式取得契約</td><td>中部オートパーツ(株)</td><td>表明保証</td><td>財務・労務に関する表明保証</td><td></td><td></td><td></td><td></td><td>18</td><td>=IF(J8&gt;=24,"長期","標準")</td><td></td><td></td><td></td><td></td><td>2</td><td>1.8</td><td>=P8*Q8</td><td>合意済</td><td>18ヶ月は標準的水準</td></tr><tr><td>B-002</td><td>中部オートパーツ株式取得契約</td><td>中部オートパーツ(株)</td><td>競業避止</td><td>売主の競業避止義務</td><td></td><td></td><td></td><td></td><td></td><td></td><td>東海3県</td><td>24</td><td>同一業種</td><td>=IF(AND(M9&gt;=24,N9="広範"),"要交渉",IF(OR(M9&gt;=24,N9="広範"),"注意","許容"))</td><td>3</td><td>1.2</td><td>=P9*Q9</td><td>交渉中</td><td>地域限定は妥当。期間24ヶ月を18ヶ月に短縮提案</td></tr><tr><td>C-003</td><td>西日本ケミカル株式取得契約</td><td>西日本ケミカル(株)</td><td>CoC</td><td>許認可に係るCoC条項</td><td>支配権の実質的変更</td><td>33</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>5</td><td>1.5</td><td>=P10*Q10</td><td>未着手</td><td>33%閾値は非常に厳格。50%への引上げ交渉必須</td></tr><tr><td>C-003</td><td>西日本ケミカル株式取得契約</td><td>西日本ケミカル(株)</td><td>インデムニティ</td><td>一般+特別インデムニティ</td><td></td><td></td><td>120000</td><td>15</td><td></td><td></td><td></td><td></td><td></td><td></td><td>4</td><td>2.0</td><td>=P11*Q11</td><td>要検討</td><td>12億円は高額。上限8億円への交渉推奨</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `﻿案件ID,契約名,相手方企業,条項カテゴリ,条項詳細,CoC_トリガー条件,CoC_閾値_パーセント,インデムニティ上限額_万円,インデムニティ_対価比率_パーセント,表明保証存続期間_月,表明保証_長短判定,競業避止_制限地域,競業避止_制限期間_月,競業避止_制限業種範囲,競業避止_総合判定,リスクスコア,条項タイプ係数,交渉優先度,交渉ステータス,弁護士コメント
+A-001,東洋精機株式取得契約,東洋精機(株),CoC,主要取引先契約のCoC条項,株式50%超の譲渡,50,,,,,,,,,4,1.5,=P2*Q2,未着手,主要顧客3社の事前同意取得が必要
+A-001,東洋精機株式取得契約,東洋精機(株),インデムニティ,一般インデムニティ条項,,,50000,10,,,,,,,3,2.0,=P3*Q3,交渉中,対価比10%は標準的水準
+A-001,東洋精機株式取得契約,東洋精機(株),表明保証,環境・知財に関する表明保証,,,,,36,"=IF(J4>=24,""長期"",""標準"")",,,,,4,1.8,=P4*Q4,要検討,環境36ヶ月は長い。24ヶ月への短縮交渉推奨
+A-001,東洋精機株式取得契約,東洋精機(株),競業避止,売主の競業避止義務,,,,,,,日本全国,36,広範,"=IF(AND(M5>=24,N5=""広範""),""要交渉"",IF(OR(M5>=24,N5=""広範""),""注意"",""許容""))",5,1.2,=P5*Q5,未着手,36ヶ月×全国×広範は過大。限定交渉必須
+B-002,中部オートパーツ株式取得契約,中部オートパーツ(株),CoC,OEM契約のCoC条項,役員過半数の変更,50,,,,,,,,,3,1.5,=P6*Q6,交渉中,役員変更トリガーは厳しめ。株式変動に限定提案
+B-002,中部オートパーツ株式取得契約,中部オートパーツ(株),インデムニティ,特別インデムニティ(環境),,,45000,15,,,,,,,4,2.0,=P7*Q7,要検討,対価比15%はやや高い。10%上限を提案
+B-002,中部オートパーツ株式取得契約,中部オートパーツ(株),表明保証,財務・労務に関する表明保証,,,,,18,"=IF(J8>=24,""長期"",""標準"")",,,,,2,1.8,=P8*Q8,合意済,18ヶ月は標準的水準
+B-002,中部オートパーツ株式取得契約,中部オートパーツ(株),競業避止,売主の競業避止義務,,,,,,,東海3県,24,同一業種,"=IF(AND(M9>=24,N9=""広範""),""要交渉"",IF(OR(M9>=24,N9=""広範""),""注意"",""許容""))",3,1.2,=P9*Q9,交渉中,地域限定は妥当。期間24ヶ月を18ヶ月に短縮提案
+C-003,西日本ケミカル株式取得契約,西日本ケミカル(株),CoC,許認可に係るCoC条項,支配権の実質的変更,33,,,,,,,,,5,1.5,=P10*Q10,未着手,33%閾値は非常に厳格。50%への引上げ交渉必須
+C-003,西日本ケミカル株式取得契約,西日本ケミカル(株),インデムニティ,一般+特別インデムニティ,,,120000,15,,,,,,,4,2.0,=P11*Q11,要検討,12億円は高額。上限8億円への交渉推奨
+C-003,西日本ケミカル株式取得契約,西日本ケミカル(株),表明保証,環境・製造物責任の表明保証,,,,,48,"=IF(J12>=24,""長期"",""標準"")",,,,,5,1.8,=P12*Q12,未着手,48ヶ月は異例。最大24ヶ月に短縮交渉必須
+C-003,西日本ケミカル株式取得契約,西日本ケミカル(株),競業避止,売主の競業避止義務,,,,,,,アジア全域,36,広範,"=IF(AND(M13>=24,N13=""広範""),""要交渉"",IF(OR(M13>=24,N13=""広範""),""注意"",""許容""))",5,1.2,=P13*Q13,未着手,アジア全域は執行困難。日本+中国に限定提案
+,,,,,,,,,,,,,,,,,,,,
+【集計】SUM,,,,,,,=SUM(H2:H13),,,,,,,,,,,,
+【集計】MAX,,,,,,,=MAX(H2:H13),,=MAX(J2:J13),,,=MAX(M2:M13),,,,,=MAX(R2:R13),,
+【集計】件数,,,,,,,=COUNT(H2:H13),,=COUNT(J2:J13),,,=COUNT(M2:M13),,,,,=COUNT(R2:R13),,
+,,,,,,,,,,,,,,,,,,,,
+【使い方】,,,,,,,,,,,,,,,,,,,,
+1. 成果物①のCSVエクスポートを2行目以降に貼り付け,,,,,,,,,,,,,,,,,,,
+2. K列=表明保証の長短自動判定(24ヶ月以上で長期),,,,,,,,,,,,,,,,,,,
+3. O列=競業避止の制限範囲×期間の組合せ自動判定,,,,,,,,,,,,,,,,,,,
+4. R列=交渉優先度(リスクスコア×条項タイプ係数),,,,,,,,,,,,,,,,,,,
+5. 条件付き書式: K列で長期→赤背景 / O列で要交渉→赤背景 / R列で8以上→赤背景,,,,,,,,,,,,,,,,,,,
+6. 条項タイプ係数: CoC=1.5 / インデムニティ=2.0 / 表明保証=1.8 / 競業避止=1.2,,,,,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_DD重要条項_横断集計・比較管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

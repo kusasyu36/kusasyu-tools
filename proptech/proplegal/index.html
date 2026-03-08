@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>重要事項説明書_宅建業法35条準拠チェッカー - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6;padding:16px}
+h1{text-align:center;font-size:1.3em;margin-bottom:4px;color:#1a365d}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+label{font-weight:600;display:block;margin-bottom:6px;font-size:.9em}
+select{width:100%;padding:10px;border:1px solid #d1d5db;border-radius:6px;font-size:1em;margin-bottom:8px}
+button{width:100%;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer}
+button:hover{background:#1d4ed8}
+#result{display:none}
+.prog-wrap{background:#e5e7eb;border-radius:20px;height:28px;overflow:hidden;margin:8px 0}
+.prog-bar{height:100%;border-radius:20px;transition:width .5s;display:flex;align-items:center;justify-content:center;font-size:.8em;font-weight:700;color:#fff;min-width:40px}
+.score{text-align:center;font-size:2em;font-weight:800;margin:4px 0}
+.item{padding:10px;border-bottom:1px solid #eee;display:flex;align-items:flex-start;gap:8px}
+.item:last-child{border-bottom:none}
+.item.miss{background:#fef2f2}
+.item input{margin-top:4px;width:18px;height:18px;flex-shrink:0}
+.item-text{flex:1}
+.item-name{font-size:.9em}
+.risk-tag{display:inline-block;background:#dc2626;color:#fff;font-size:.7em;padding:1px 6px;border-radius:4px;margin-left:4px}
+.risk-info{font-size:.78em;color:#b91c1c;margin-top:4px;padding:6px 8px;background:#fef2f2;border-left:3px solid #dc2626;border-radius:0 4px 4px 0}
+.warn{background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;padding:10px;margin:10px 0;font-size:.85em;color:#92400e}
+.ok{background:#ecfdf5;border:1px solid #10b981;border-radius:8px;padding:10px;margin:10px 0;font-size:.85em;color:#065f46;text-align:center}
+.cat-title{font-weight:700;font-size:.95em;padding:8px 10px;background:#f0f4ff;color:#1e40af;margin-top:4px}
+.print-btn{background:#6b7280;margin-top:8px}
+.print-btn:hover{background:#4b5563}
+@media print{body{padding:0;background:#fff}.card{box-shadow:none;border:1px solid #ddd}button,.no-print{display:none!important}.item.miss{background:#fdd!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.risk-tag{background:#c00!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+<meta name="description" content="PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重要事項説明書_宅建業法35条準拠チェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/proplegal/">
+<meta property="og:title" content="重要事項説明書_宅建業法35条準拠チェッカー - kusasyu tools">
+<meta property="og:description" content="PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/proplegal/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重要事項説明書_宅建業法35条準拠チェッカー - kusasyu tools">
+<meta name="twitter:description" content="PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "重要事項説明書_宅建業法35条準拠チェッカー",
+  "description": "PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/proplegal/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<h1>重要事項説明書チェッカー</h1>
+<p class="sub">宅建業法第35条準拠 記載事項チェックリスト</p>
+<div class="card no-print">
+<label>物件種別</label>
+<select id="pType"><option value="">選択してください</option><option value="land">土地</option><option value="building">建物</option><option value="condo">区分所有建物</option></select>
+<label>取引形態</label>
+<select id="tType"><option value="">選択してください</option><option value="sale">売買</option><option value="rent">賃貸</option><option value="agent">媒介（代理）</option></select>
+<button onclick="generate()">チェックリストを生成</button>
+</div>
+<div id="result">
+<div class="card">
+<label>準拠率</label>
+<div class="score" id="scoreNum">0%</div>
+<div class="prog-wrap"><div class="prog-bar" id="progBar" style="width:0%">0%</div></div>
+<div id="msg"></div>
+</div>
+<div class="card" id="listArea"></div>
+<button class="print-btn no-print" onclick="window.print()">印刷用表示</button>
+</div>
+<script>
+const DB={common:[{cat:"登記記録に関する事項",items:[{n:"登記簿上の権利関係（所有権・抵当権等）",risk:1,case:"抵当権の説明漏れで買主が損害→業務停止15日",tip:"登記事項証明書を取得し全権利を記載"},{n:"登記名義人の確認",risk:0}]},{cat:"法令上の制限",items:[{n:"都市計画法に基づく制限（用途地域・地区計画等）",risk:1,case:"用途地域の誤記載で建築不可→指示処分＋損害賠償",tip:"都市計画課で最新情報を確認"},{n:"建築基準法に基づく制限",risk:1,case:"建ぺい率・容積率の説明不足→業務停止7日",tip:"建築確認台帳で数値を正確に記載"},{n:"その他法令に基づく制限（土壌汚染・景観法等）",risk:0}]},{cat:"インフラ・設備",items:[{n:"飲用水・電気・ガスの供給施設の整備状況",risk:0},{n:"排水施設（下水道等）の整備状況",risk:0}]},{cat:"取引条件",items:[{n:"代金・交換差金・借賃以外に授受される金銭",risk:1,case:"手付金の説明漏れ→指示処分",tip:"契約時に授受する全金銭を列挙"},{n:"契約の解除に関する事項",risk:1,case:"解除条件の不備でトラブル→業務停止",tip:"手付解除・違約解除・ローン特約を全て記載"},{n:"損害賠償の予定・違約金に関する事項",risk:0},{n:"手付金等の保全措置の概要",risk:1,case:"保全措置未説明で消費者被害→免許取消事例あり",tip:"未完成物件5%/完成物件10%超で保全義務"}]},{cat:"その他重要事項",items:[{n:"瑕疵担保責任（契約不適合責任）の履行に関する措置",risk:1,case:"保証・保険の説明漏れ→指示処分",tip:"住宅瑕疵担保履行法の適用有無を確認"},{n:"支払金・預り金の保全措置",risk:0},{n:"金銭の貸借のあっせん（ローンあっせん）",risk:0},{n:"割賦販売に該当する場合の事項",risk:0}]}],land:[{cat:"土地固有事項",items:[{n:"私道に関する負担（私道持分・通行権等）",risk:1,case:"私道負担の未説明→業務停止30日の事例",tip:"私道の有無・負担面積・維持管理を明記"},{n:"造成宅地防災区域内か否か",risk:0},{n:"土砂災害警戒区域内か否か",risk:1,case:"警戒区域の未告知→行政処分＋訴訟リスク",tip:"ハザードマップで必ず確認"},{n:"津波災害警戒区域内か否か",risk:0},{n:"水害ハザードマップにおける所在地",risk:1,case:"2020年法改正で義務化。未説明→指示処分対象",tip:"水防法に基づくハザードマップを提示"}]}],building:[{cat:"建物固有事項",items:[{n:"建物の構造耐力上主要な部分等の状況（インスペクション結果）",risk:0},{n:"石綿（アスベスト）使用調査結果の有無・内容",risk:1,case:"アスベスト未告知で健康被害→損害賠償請求",tip:"調査記録の有無を確認し結果を記載"},{n:"耐震診断の有無・内容（昭和56年5月以前の建物）",risk:1,case:"旧耐震建物で未説明→指示処分",tip:"旧耐震か新耐震か必ず確認"},{n:"住宅性能評価の有無",risk:0}]}],condo:[{cat:"区分所有建物固有事項",items:[{n:"敷地に関する権利の種類・内容",risk:0},{n:"共用部分に関する規約の定め",risk:1,case:"管理規約の重要制限を未説明→業務停止",tip:"ペット・リフォーム制限等を網羅的に確認"},{n:"専用使用権に関する規約の定め",risk:0},{n:"建物の修繕積立金・管理費の額",risk:1,case:"修繕積立金不足の未告知→損害賠償訴訟",tip:"管理組合から最新の収支報告書を取得"},{n:"管理の委託先",risk:0},{n:"建物の維持修繕の実施状況（修繕履歴）",risk:0}]}],sale:[{cat:"売買固有事項",items:[{n:"固定資産税・都市計画税の精算に関する事項",risk:0},{n:"融資利用の特約（ローン条項）の有無・内容",risk:1,case:"ローン特約の不備→解約トラブル多発",tip:"融資先・金額・不成立時の解除条件を明記"}]}],rent:[{cat:"賃貸固有事項",items:[{n:"台所・浴室・便所等の設備の整備状況",risk:0},{n:"契約期間・契約の更新に関する事項",risk:0},{n:"敷金等の精算に関する事項",risk:1,case:"退去時の原状回復トラブル→訴訟多発",tip:"国交省ガイドラインに基づき精算基準を明記"},{n:"定期借家の場合の説明（借地借家法38条）",risk:1,case:"定期借家の書面説明漏れ→普通借家と見なされる",tip:"書面での事前説明が成立要件"},{n:"用途その他の利用の制限に関する事項",risk:0}]}],agent:[]};
+let items=[];
+function generate(){const p=document.getElementById("pType").value,t=document.getElementById("tType").value;if(!p||!t){alert("物件種別と取引形態を選択してください");return}items=[];let cats=[...DB.common];if(DB[p])cats=cats.concat(DB[p]);if(DB[t])cats=cats.concat(DB[t]);let html="",idx=0;cats.forEach(c=>{html+=`<div class="cat-title">${c.cat}</div>`;c.items.forEach(it=>{items.push({...it,checked:false,idx});html+=`<div class="item miss" id="row${idx}"><input type="checkbox" id="chk${idx}" onchange="toggle(${idx})"><div class="item-text"><div class="item-name">${it.n}${it.risk?'<span class="risk-tag">高リスク</span>':''}</div>`;if(it.risk&&it.case)html+=`<div class="risk-info" id="ri${idx}"><b>処分事例:</b> ${it.case}<br><b>対策:</b> ${it.tip}</div>`;html+=`</div></div>`;idx++})});document.getElementById("listArea").innerHTML=html;document.getElementById("result").style.display="block";updateScore()}
+function toggle(i){items[i].checked=document.getElementById("chk"+i).checked;document.getElementById("row"+i).classList.toggle("miss",!items[i].checked);const ri=document.getElementById("ri"+i);if(ri)ri.style.display=items[i].checked?"none":"block";updateScore()}
+function updateScore(){const total=items.length,done=items.filter(x=>x.checked).length,pct=total?Math.round(done/total*100):0;document.getElementById("scoreNum").textContent=pct+"%";const bar=document.getElementById("progBar");bar.style.width=pct+"%";bar.textContent=pct+"%";bar.style.background=pct===100?"#10b981":pct>=80?"#f59e0b":"#ef4444";const miss=items.filter(x=>!x.checked),highMiss=miss.filter(x=>x.risk),msgEl=document.getElementById("msg");if(pct===100){msgEl.innerHTML='<div class="ok"><b>全項目記載済み</b> — 宅建業法35条の記載事項を網羅しています</div>'}else{msgEl.innerHTML=`<div class="warn"><b>未記載: ${miss.length}項目</b>（うち高リスク: ${highMiss.length}項目）<br>高リスク項目の漏れは行政処分の対象となる可能性があります。</div>`}}
+</script>
+</body>
+</html>

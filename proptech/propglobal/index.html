@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>外国人テナント向け賃貸トータルコスト診断ツール「PropGlobal」 - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pri:#1a5276;--acc:#e67e22;--bg:#f4f6f9;--card:#fff;--txt:#2c3e50;--sub:#7f8c8d;--ok:#27ae60;--r1:#3498db;--r2:#e74c3c;--r3:#2ecc71;--r4:#9b59b6;--r5:#f39c12}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--txt);line-height:1.5;padding:12px;max-width:1200px;margin:0 auto}
+h1{font-size:1.4em;color:var(--pri);text-align:center;padding:16px 0 4px}
+.sub{text-align:center;color:var(--sub);font-size:.85em;margin-bottom:16px}
+.lang{display:flex;justify-content:center;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.lang button{padding:6px 14px;border:2px solid var(--pri);background:#fff;color:var(--pri);border-radius:20px;cursor:pointer;font-size:.85em;font-weight:600}
+.lang button.on{background:var(--pri);color:#fff}
+.props{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;flex-wrap:wrap}
+.prop{background:var(--card);border-radius:10px;padding:14px;min-width:220px;flex:1;box-shadow:0 2px 8px rgba(0,0,0,.08);border-top:4px solid var(--r1);position:relative}
+.prop:nth-child(2){border-top-color:var(--r2)}.prop:nth-child(3){border-top-color:var(--r3)}.prop:nth-child(4){border-top-color:var(--r4)}.prop:nth-child(5){border-top-color:var(--r5)}
+.prop h3{font-size:.95em;color:var(--pri);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.prop label{display:flex;justify-content:space-between;align-items:center;font-size:.8em;color:var(--sub);margin:5px 0 2px;gap:4px;position:relative}
+.prop input{width:100%;padding:7px;border:1px solid #ddd;border-radius:6px;font-size:.9em}
+.prop input:focus{outline:none;border-color:var(--acc)}
+.info-icon{display:inline-flex;width:16px;height:16px;border-radius:50%;background:var(--acc);color:#fff;font-size:10px;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-weight:700}
+.tip{display:none;position:absolute;background:#333;color:#fff;padding:10px;border-radius:8px;font-size:.78em;z-index:10;width:260px;left:0;top:100%;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,.3);white-space:pre-line}
+.tip.show{display:block}
+.btns{display:flex;gap:8px;justify-content:center;margin:14px 0;flex-wrap:wrap}
+.btns button{padding:10px 24px;border:none;border-radius:8px;font-size:.95em;cursor:pointer;font-weight:600}
+#calcBtn{background:var(--acc);color:#fff}
+#addBtn{background:var(--pri);color:#fff}
+#resetBtn{background:#95a5a6;color:#fff}
+.del{position:absolute;top:8px;right:10px;background:none;border:none;color:#ccc;font-size:1.1em;cursor:pointer}
+.del:hover{color:var(--r2)}
+.result{background:var(--card);border-radius:10px;padding:16px;margin-top:14px;box-shadow:0 2px 8px rgba(0,0,0,.08);display:none}
+.result h2{font-size:1.1em;color:var(--pri);margin-bottom:12px}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:16px}
+.res-card{background:var(--bg);border-radius:8px;padding:12px;text-align:center}
+.res-card .name{font-size:.8em;margin-bottom:2px;font-weight:700}
+.res-card .vals{font-size:.75em;margin-top:6px}
+.res-card .val{font-size:1.3em;font-weight:700;color:var(--pri)}
+.res-card .best{color:var(--ok)}
+.bar-group{display:flex;align-items:center;margin:6px 0;gap:8px}
+.bar-label{width:70px;font-size:.8em;text-align:right;flex-shrink:0}
+.bar-track{flex:1;background:#ecf0f1;border-radius:6px;height:28px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:.75em;color:#fff;font-weight:600;white-space:nowrap;transition:width .5s}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;justify-content:center}
+.legend span{font-size:.7em;display:flex;align-items:center;gap:3px}
+.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+footer{text-align:center;color:var(--sub);font-size:.7em;margin:20px 0 10px}
+@media(max-width:600px){.props{flex-direction:column}.prop{min-width:100%}}
+</style>
+<meta name="description" content="外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,外国人テナント向け賃貸トータルコスト診断ツール「PropGlobal」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propglobal/">
+<meta property="og:title" content="外国人テナント向け賃貸トータルコスト診断ツール「PropGlobal」 - kusasyu tools">
+<meta property="og:description" content="外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propglobal/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="外国人テナント向け賃貸トータルコスト診断ツール「PropGlobal」 - kusasyu tools">
+<meta name="twitter:description" content="外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "外国人テナント向け賃貸トータルコスト診断ツール「PropGlobal」",
+  "description": "外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propglobal/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<h1 id="title">PropGlobal</h1>
+<p class="sub" id="subtitle"></p>
+<div class="lang" id="langBar"></div>
+<div class="props" id="propList"></div>
+<div class="btns">
+<button id="addBtn" onclick="addProp()"></button>
+<button id="calcBtn" onclick="calc()"></button>
+<button id="resetBtn" onclick="resetAll()"></button>
+</div>
+<div class="result" id="result">
+<h2 id="resTitle"></h2>
+<div class="res-grid" id="resGrid"></div>
+<div id="chartTitle" style="font-size:.9em;font-weight:600;color:var(--pri);margin:12px 0 4px"></div>
+<div id="chart"></div>
+<div class="legend" id="legend"></div>
+<p style="font-size:.7em;color:var(--sub);margin-top:10px" id="note"></p>
+</div>
+<footer>&copy; 2026 Kusasyu PropTech &mdash; PropGlobal v1.0</footer>
+<script>
+const L={
+ja:{sub:'5年間の総コストを多言語で可視化・比較',add:'＋ 物件追加',calc:'診断する',reset:'リセット',prop:'物件',rent:'家賃（月額）',mgmt:'管理費（月額）',dep:'敷金',key:'礼金',guar:'保証会社費用',fire:'火災保険料',lock:'鍵交換費',renew:'更新料',restore:'退去時原状回復費（概算）',resTitle:'診断結果：5年間トータルコスト比較',init:'初期費用',monthly:'月額費用',total5:'5年間総額',best:'最安',chartT:'5年間コスト比較チャート',note:'※更新料は2年ごと（2回）、火災保険は2年ごとに再計算。原状回復費は退去時1回。',
+t_rent:'毎月支払う部屋の使用料です。\n相場：東京23区1Kで7〜10万円\n交渉：入居時期により可能な場合あり',t_mgmt:'共用部の維持管理費。\n相場：3,000〜15,000円/月\n交渉：基本的に不可',t_dep:'退去時の原状回復に充てる預り金。精算後、残額は返金。\n相場：家賃0〜2ヶ月分\n交渉：可能な場合あり',t_key:'大家への謝礼金。返金されません。日本独特の慣習。\n相場：家賃0〜2ヶ月分\n交渉：ゼロ物件も増加中',t_guar:'連帯保証人の代わりに保証会社を利用。外国人は原則必須。\n相場：初回 家賃50〜100%\n交渉：会社選択の余地あり',t_fire:'入居時に加入必須の火災保険。2年契約が一般的。\n相場：1.5〜2万円/2年\n交渉：自分で選べる場合あり',t_lock:'入居時にシリンダーを交換する費用。\n相場：1〜2.5万円\n交渉：基本不可',t_renew:'2年ごとの契約更新時に発生。日本独特の制度。\n相場：家賃1ヶ月分\n交渉：ゼロの物件も増加',t_restore:'退去時に借主負担となる修繕費の概算。\n相場：1Kで3〜6万円\n交渉：ガイドラインに基づき精算'},
+en:{sub:'Visualize & compare 5-year total cost in multiple languages',add:'+ Add Property',calc:'Calculate',reset:'Reset',prop:'Property',rent:'Monthly Rent',mgmt:'Management Fee',dep:'Deposit (Shikikin)',key:'Key Money (Reikin)',guar:'Guarantor Fee',fire:'Fire Insurance',lock:'Lock Change',renew:'Renewal Fee',restore:'Move-out Restoration (Est.)',resTitle:'Result: 5-Year Total Cost Comparison',init:'Initial Cost',monthly:'Monthly Cost',total5:'5-Year Total',best:'Cheapest',chartT:'5-Year Cost Comparison',note:'* Renewal fee: every 2 yrs (x2). Fire insurance renewed every 2 yrs. Restoration at move-out.',
+t_rent:'Monthly room usage fee.\nTokyo 1K avg: 70K-100K yen\nNegotiable: sometimes',t_mgmt:'Common area maintenance.\nAvg: 3K-15K yen/mo\nNegotiable: usually not',t_dep:'Refundable deposit for repairs at move-out.\nAvg: 0-2 months rent\nNegotiable: sometimes',t_key:'Non-refundable gift to landlord. Unique to Japan.\nAvg: 0-2 months rent\nNegotiable: zero-reikin increasing',t_guar:'Guarantor company fee. Usually required for foreigners.\nAvg: 50-100% of rent initially\nNegotiable: company choice varies',t_fire:'Mandatory fire insurance. 2-year contract.\nAvg: 15K-20K yen/2yrs\nNegotiable: you may choose your own',t_lock:'Lock replacement at move-in.\nAvg: 10K-25K yen\nNegotiable: usually not',t_renew:'Fee every 2 years at renewal. Unique to Japan.\nAvg: 1 month rent\nNegotiable: zero-renewal growing',t_restore:'Estimated tenant-paid repairs at move-out.\nAvg: 30K-60K yen for 1K\nNegotiable: per guidelines'},
+zh:{sub:'多语言可视化对比5年总费用',add:'+ 添加房源',calc:'开始诊断',reset:'重置',prop:'房源',rent:'月租金',mgmt:'管理费（月）',dep:'押金（敷金）',key:'礼金',guar:'担保公司费',fire:'火灾保险',lock:'换锁费',renew:'续约费',restore:'退租修复费（估算）',resTitle:'诊断结果：5年总费用对比',init:'初期费用',monthly:'月费用',total5:'5年总额',best:'最低',chartT:'5年费用对比图',note:'※续约费每2年一次（共2次）。火灾保险每2年续保。修复费退租时一次性。',
+t_rent:'每月使用费。\n东京1K均价：7-10万日元\n可议价：视时间而定',t_mgmt:'公共区域维护费。\n均价：3千-1.5万/月\n可议价：通常不可',t_dep:'退租修缮押金，余额退还。\n均价：0-2个月租金\n可议价：有时可以',t_key:'给房东的感谢金，不退还。日本特有。\n均价：0-2个月租金\n可议价：零礼金增加中',t_guar:'担保公司费用。外国人通常必须。\n均价：首次租金50-100%\n可议价：可选择公司',t_fire:'入住必须火灾保险，2年合同。\n均价：1.5-2万/2年\n可议价：有时可自选',t_lock:'入住时更换锁芯。\n均价：1-2.5万\n可议价：基本不可',t_renew:'每2年续约费。日本特有。\n均价：1个月租金\n可议价：零续约增加中',t_restore:'退租修缮费估算。\n均价：1K约3-6万\n可议价：按指南结算'},
+vi:{sub:'So sanh tong chi phi 5 nam da ngon ngu',add:'+ Them BDS',calc:'Chan doan',reset:'Dat lai',prop:'BDS',rent:'Tien thue/thang',mgmt:'Phi quan ly/thang',dep:'Dat coc (Shikikin)',key:'Tien le (Reikin)',guar:'Phi bao lanh',fire:'Bao hiem chay',lock:'Phi doi khoa',renew:'Phi gia han',restore:'Phi khoi phuc (uoc tinh)',resTitle:'Ket qua: So sanh tong chi phi 5 nam',init:'Chi phi ban dau',monthly:'Chi phi/thang',total5:'Tong 5 nam',best:'Re nhat',chartT:'Bieu do so sanh 5 nam',note:'*Phi gia han moi 2 nam (x2). Bao hiem moi 2 nam. Phi khoi phuc 1 lan.',
+t_rent:'Phi phong hang thang.\nTokyo 1K: 70K-100K yen\nThuong luong: tuy thoi diem',t_mgmt:'Phi bao tri khu vuc chung.\nTB: 3K-15K yen/thang\nThuong luong: thuong khong',t_dep:'Tien coc hoan lai.\nTB: 0-2 thang thue\nThuong luong: doi khi',t_key:'Tien cam on chu nha, khong hoan lai. Rieng Nhat.\nTB: 0-2 thang thue\nThuong luong: nha 0 reikin tang',t_guar:'Phi bao lanh. Nguoi nuoc ngoai bat buoc.\nTB: 50-100% thue\nThuong luong: chon cong ty',t_fire:'Bao hiem chay bat buoc. HD 2 nam.\nTB: 15K-20K yen\nThuong luong: doi khi tu chon',t_lock:'Thay khoa khi nhan phong.\nTB: 10K-25K yen\nThuong luong: thuong khong',t_renew:'Phi gia han moi 2 nam. Rieng Nhat.\nTB: 1 thang thue\nThuong luong: nha 0 phi tang',t_restore:'Uoc tinh sua chua khi di.\nTB: 30K-60K yen\nThuong luong: theo huong dan'}
+};
+const F=['rent','mgmt','dep','key','guar','fire','lock','renew','restore'];
+const D=[80000,5000,80000,80000,40000,18000,15000,80000,50000];
+const C=['#3498db','#e74c3c','#2ecc71','#9b59b6','#f39c12'];
+let lang='ja',pCnt=0;
+function t(k){return L[lang][k]||k}
+function setLang(l){
+lang=l;
+document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+document.getElementById('subtitle').textContent=t('sub');
+document.getElementById('addBtn').textContent=t('add');
+document.getElementById('calcBtn').textContent=t('calc');
+document.getElementById('resetBtn').textContent=t('reset');
+document.querySelectorAll('.prop').forEach((p,i)=>{
+p.querySelector('h3 span').textContent=t('prop')+' '+(i+1);
+p.querySelectorAll('.lbl-text').forEach((lb,j)=>lb.textContent=t(F[j]));
+});
+if(document.getElementById('result').style.display==='block')calc();
+}
+function showTip(el,key){
+document.querySelectorAll('.tip').forEach(t=>t.classList.remove('show'));
+const tip=el.parentElement.querySelector('.tip');
+if(tip){tip.textContent=t('t_'+key);tip.classList.add('show');setTimeout(()=>tip.classList.remove('show'),5000);}
+}
+function addProp(){
+if(pCnt>=5)return;pCnt++;
+const d=document.createElement('div');d.className='prop';
+let h='<button class="del" onclick="delProp(this)">&times;</button>';
+h+='<h3><span>'+t('prop')+' '+pCnt+'</span></h3>';
+F.forEach((f,i)=>{
+h+='<label><span class="lbl-text">'+t(f)+'</span><span class="info-icon" onclick="showTip(this,\''+f+'\')">?</span><div class="tip"></div></label>';
+h+='<input type="number" data-f="'+f+'" value="'+D[i]+'" min="0">';
+});
+d.innerHTML=h;document.getElementById('propList').appendChild(d);
+}
+function delProp(btn){
+if(pCnt<=1)return;btn.parentElement.remove();pCnt--;
+document.querySelectorAll('.prop h3 span').forEach((s,i)=>s.textContent=t('prop')+' '+(i+1));
+}
+function resetAll(){
+document.getElementById('propList').innerHTML='';document.getElementById('result').style.display='none';pCnt=0;addProp();
+}
+function fmt(n){return '\u00a5'+n.toLocaleString()}
+function calc(){
+const props=document.querySelectorAll('.prop'),data=[];
+props.forEach((p,i)=>{
+const v={};p.querySelectorAll('input').forEach(inp=>v[inp.dataset.f]=Number(inp.value)||0);
+const init=v.dep+v.key+v.guar+v.fire+v.lock+v.rent+v.mgmt;
+const mo=v.rent+v.mgmt;
+const yr5=init+(mo*59)+v.renew*2+v.fire*2+v.restore;
+data.push({name:t('prop')+' '+(i+1),init,mo,yr5,color:C[i]});
+});
+const minT=Math.min(...data.map(d=>d.yr5)),maxT=Math.max(...data.map(d=>d.yr5));
+let g='';
+data.forEach(d=>{
+const best=d.yr5===minT&&data.length>1;
+g+='<div class="res-card"><div class="name" style="color:'+d.color+'">'+d.name+'</div>';
+g+='<div class="val'+(best?' best':'')+'">'+fmt(d.yr5)+(best?' \u2713':'')+'</div>';
+g+='<div class="vals">'+t('init')+': '+fmt(d.init)+'<br>'+t('monthly')+': '+fmt(d.mo)+'</div></div>';
+});
+document.getElementById('resGrid').innerHTML=g;
+document.getElementById('resTitle').textContent=t('resTitle');
+document.getElementById('chartTitle').textContent=t('chartT');
+document.getElementById('note').textContent=t('note');
+let ch='';
+data.forEach(d=>{
+const pct=maxT>0?Math.max((d.yr5/maxT)*100,12):0;
+ch+='<div class="bar-group"><div class="bar-label" style="color:'+d.color+'">'+d.name+'</div>';
+ch+='<div class="bar-track"><div class="bar-fill" style="width:'+pct+'%;background:'+d.color+'">'+fmt(d.yr5)+'</div></div></div>';
+});
+document.getElementById('chart').innerHTML=ch;
+let le='';data.forEach(d=>le+='<span><i style="background:'+d.color+'"></i>'+d.name+'</span>');
+document.getElementById('legend').innerHTML=le;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+['ja','en','zh','vi'].forEach(l=>{
+const b=document.createElement('button');
+b.textContent={ja:'\u65E5\u672C\u8A9E',en:'English',zh:'\u4E2D\u6587',vi:'Ti\u1EBFng Vi\u1EC7t'}[l];
+b.dataset.l=l;b.onclick=()=>setLang(l);
+document.getElementById('langBar').appendChild(b);
+});
+addProp();setLang('ja');
+document.addEventListener('click',e=>{if(!e.target.classList.contains('info-icon'))document.querySelectorAll('.tip').forEach(t=>t.classList.remove('show'));});
+</script>
+</body>
+</html>

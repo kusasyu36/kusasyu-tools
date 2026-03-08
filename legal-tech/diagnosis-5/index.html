@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サプライヤー取引リスク管理台帳 - kusasyu tools</title>
+<meta name="description" content="2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,サプライヤー取引リスク管理台帳">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-5/">
+<meta property="og:title" content="サプライヤー取引リスク管理台帳 - kusasyu tools">
+<meta property="og:description" content="2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サプライヤー取引リスク管理台帳 - kusasyu tools">
+<meta name="twitter:description" content="2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サプライヤー取引リスク管理台帳",
+  "description": "2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-07"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>サプライヤー取引リスク管理台帳</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>サプライヤー取引リスク管理台帳</h1>
+  <p class="project-name">TekitekiGuard — 製造業向け 取適法コンプライアンス移行＆取引条件リスク診断ツールキット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管理No.</th><th>取引先名</th><th>取引類型</th><th>業種カテゴリ</th><th>年間取引額（万円）</th><th>契約締結日</th><th>支払条件_現状日数</th><th>支払起算基準</th><th>支払_適法判定</th><th>検収期間_日数</th><th>返品条項</th><th>返品_適法判定</th><th>価格改定条項</th><th>最終価格改定日</th><th>価格改定_適法判定</th><th>PL法条項</th><th>PL法_リスク判定</th><th>取適法対応ステータス</th><th>対応期限</th><th>違反リスク判定</th><th>対応担当者</th><th>備考</th></tr></thead><tbody><tr><td>S-001</td><td>東和精密部品株式会社</td><td>製造</td><td>自動車部品</td><td>48000</td><td>2019-04-01</td><td>90</td><td>検収完了日</td><td>違反</td><td>30</td><td>あり（無限定）</td><td>違反</td><td>なし</td><td></td><td>要追加</td><td>あり</td><td>高（全額転嫁）</td><td>未着手</td><td>2026-06-30</td><td>高</td><td></td><td>支払90日＝60日ルール違反。返品条項が無限定で取適法違反。価格改定条項なし。早急な契約改定が必要</td></tr><tr><td>S-002</td><td>サクラ電子工業株式会社</td><td>製造</td><td>電子部品</td><td>12000</td><td>2021-10-01</td><td>75</td><td>受領日</td><td>要改善</td><td>10</td><td>あり（瑕疵限定）</td><td>適法</td><td>あり</td><td>2024-04-01</td><td>要改善（据置義務不明確）</td><td>あり</td><td>中（一部転嫁）</td><td>対応中</td><td>2026-09-30</td><td>中</td><td>法務部 山田太郎</td><td>支払75日→60日以内への短縮交渉中。価格改定条項の据置義務明確化が必要</td></tr><tr><td>S-003</td><td>丸善フーズ株式会社</td><td>製造</td><td>食品加工</td><td>5500</td><td>2023-07-01</td><td>45</td><td>受領日</td><td>適法</td><td>10</td><td>あり（瑕疵限定）</td><td>適法</td><td>あり</td><td>2025-10-01</td><td>適法</td><td>あり</td><td>低（適切な分担）</td><td>完了</td><td>2026-03-31</td><td>低</td><td>法務部 山田太郎</td><td>2025年12月に取適法準拠で契約改定済み。対応完了</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管理No.,取引先名,取引類型,業種カテゴリ,年間取引額（万円）,契約締結日,支払条件_現状日数,支払起算基準,支払_適法判定,検収期間_日数,返品条項,返品_適法判定,価格改定条項,最終価格改定日,価格改定_適法判定,PL法条項,PL法_リスク判定,取適法対応ステータス,対応期限,違反リスク判定,対応担当者,備考
+S-001,東和精密部品株式会社,製造,自動車部品,48000,2019-04-01,90,検収完了日,違反,30,あり（無限定）,違反,なし,,要追加,あり,高（全額転嫁）,未着手,2026-06-30,高,,支払90日＝60日ルール違反。返品条項が無限定で取適法違反。価格改定条項なし。早急な契約改定が必要
+S-002,サクラ電子工業株式会社,製造,電子部品,12000,2021-10-01,75,受領日,要改善,10,あり（瑕疵限定）,適法,あり,2024-04-01,要改善（据置義務不明確）,あり,中（一部転嫁）,対応中,2026-09-30,中,法務部 山田太郎,支払75日→60日以内への短縮交渉中。価格改定条項の据置義務明確化が必要
+S-003,丸善フーズ株式会社,製造,食品加工,5500,2023-07-01,45,受領日,適法,10,あり（瑕疵限定）,適法,あり,2025-10-01,適法,あり,低（適切な分担）,完了,2026-03-31,低,法務部 山田太郎,2025年12月に取適法準拠で契約改定済み。対応完了`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_サプライヤー取引リスク管理台帳.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

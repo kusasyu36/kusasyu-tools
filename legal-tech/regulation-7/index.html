@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI規制コンプライアンス証跡保管チェックリスト - kusasyu tools</title>
+<meta name="description" content="日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,AI規制コンプライアンス証跡保管チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-7/">
+<meta property="og:title" content="AI規制コンプライアンス証跡保管チェックリスト - kusasyu tools">
+<meta property="og:description" content="日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI規制コンプライアンス証跡保管チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI規制コンプライアンス証跡保管チェックリスト",
+  "description": "日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-01"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>AI規制コンプライアンス証跡保管チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>AI規制コンプライアンス証跡保管チェックリスト</h1>
+  <p class="project-name">AI RegCheck — マルチ管轄AI規制コンプライアンス・ギャップ診断＆対応管理ツールキット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>管轄名</th><th>規制条項</th><th>要求証跡の種類</th><th>保管ファイル名</th><th>保管場所</th><th>最終更新日</th><th>次回レビュー予定日</th><th>担当者</th><th>ステータス</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>日本</td><td>AI新法 第12条（影響評価義務）</td><td>高リスクAI影響評価報告書</td><td>impact_assessment_jp_v1.pdf</td><td>SharePoint/AI-Compliance/JP/Assessment/</td><td>2026-03-01</td><td>2026-06-30</td><td>法務部</td><td>未取得</td><td>AI RegCheck診断スコア70点未満の項目を優先対応</td></tr><tr><td>2</td><td>日本</td><td>AI新法 第8条（透明性確保義務）</td><td>AI透明性ポリシー文書</td><td></td><td></td><td></td><td></td><td>法務部／AI推進室</td><td>未取得</td><td>顧客接点のあるAI機能すべてが対象</td></tr><tr><td>3</td><td>日本</td><td>AI新法 第15条（ガバナンス体制）</td><td>AI倫理委員会設置決議書・運営規程</td><td></td><td></td><td></td><td></td><td>経営企画部</td><td>未取得</td><td>取締役会決議が必要</td></tr><tr><td>4</td><td>日本</td><td>AI新法 第10条（届出義務）</td><td>高リスクAI利用届出書控え・受理番号通知書</td><td></td><td></td><td></td><td></td><td>法務部</td><td>未取得</td><td>届出様式は官庁HPで公開予定</td></tr><tr><td>5</td><td>日本</td><td>AI新法 第20条（社内規程）</td><td>AI利用社内ポリシー・ガイドライン</td><td></td><td></td><td></td><td></td><td>法務部／人事部</td><td>未取得</td><td>就業規則改定も検討</td></tr><tr><td>6</td><td>日本</td><td>AI新法 第14条（説明義務）</td><td>AI自動意思決定説明フロー文書・顧客向けFAQ</td><td></td><td></td><td></td><td></td><td>AI推進室</td><td>未取得</td><td>顧客向けFAQ・問合せ窓口を含む</td></tr><tr><td>7</td><td>日本</td><td>AI新法 第11条（データ品質）</td><td>学習データ品質管理チェックリスト・検証記録</td><td></td><td></td><td></td><td></td><td>AI推進室／情報システム部</td><td>未取得</td><td>外部ベンダー提供データも対象</td></tr><tr><td>8</td><td>日本</td><td>AI新法 第18条（事故報告）</td><td>AIインシデント報告フロー・連絡体制図</td><td></td><td></td><td></td><td></td><td>法務部／情報システム部</td><td>未取得</td><td>72時間以内報告ルールに対応</td></tr><tr><td>9</td><td>日本</td><td>AI新法 第16条（人的監督）</td><td>AI人的監督体制図・承認フロー文書</td><td></td><td></td><td></td><td></td><td>AI推進室</td><td>未取得</td><td>自動化レベルに応じた監督基準を設定</td></tr><tr><td>10</td><td>日本</td><td>AI新法 第22条（記録保持）</td><td>AI利用ログ保持ポリシー・判断記録サンプル</td><td></td><td></td><td></td><td></td><td>情報システム部</td><td>未取得</td><td>保持期間は最低5年を想定</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,管轄名,規制条項,要求証跡の種類,保管ファイル名,保管場所,最終更新日,次回レビュー予定日,担当者,ステータス,備考
+1,日本,AI新法 第12条（影響評価義務）,高リスクAI影響評価報告書,impact_assessment_jp_v1.pdf,SharePoint/AI-Compliance/JP/Assessment/,2026-03-01,2026-06-30,法務部,未取得,AI RegCheck診断スコア70点未満の項目を優先対応
+2,日本,AI新法 第8条（透明性確保義務）,AI透明性ポリシー文書,,,,,法務部／AI推進室,未取得,顧客接点のあるAI機能すべてが対象
+3,日本,AI新法 第15条（ガバナンス体制）,AI倫理委員会設置決議書・運営規程,,,,,経営企画部,未取得,取締役会決議が必要
+4,日本,AI新法 第10条（届出義務）,高リスクAI利用届出書控え・受理番号通知書,,,,,法務部,未取得,届出様式は官庁HPで公開予定
+5,日本,AI新法 第20条（社内規程）,AI利用社内ポリシー・ガイドライン,,,,,法務部／人事部,未取得,就業規則改定も検討
+6,日本,AI新法 第14条（説明義務）,AI自動意思決定説明フロー文書・顧客向けFAQ,,,,,AI推進室,未取得,顧客向けFAQ・問合せ窓口を含む
+7,日本,AI新法 第11条（データ品質）,学習データ品質管理チェックリスト・検証記録,,,,,AI推進室／情報システム部,未取得,外部ベンダー提供データも対象
+8,日本,AI新法 第18条（事故報告）,AIインシデント報告フロー・連絡体制図,,,,,法務部／情報システム部,未取得,72時間以内報告ルールに対応
+9,日本,AI新法 第16条（人的監督）,AI人的監督体制図・承認フロー文書,,,,,AI推進室,未取得,自動化レベルに応じた監督基準を設定
+10,日本,AI新法 第22条（記録保持）,AI利用ログ保持ポリシー・判断記録サンプル,,,,,情報システム部,未取得,保持期間は最低5年を想定
+11,韓国,AI基本法 第27条（事前影響評価）,高影響AI事前影響評価書,,,,,法務部／AI推進室,未取得,2026年1月施行・罰則付き。違反時最大3億ウォンの過料
+12,韓国,AI基本法 第10条（倫理基準）,韓国AI倫理基準準拠社内規程,,,,,法務部,未取得,科学技術情報通信部の告示内容を反映
+13,韓国,AI基本法 第30条（告知義務）,AI告知文言一覧・韓国語UI画面キャプチャ,,,,,AI推進室／マーケティング部,未取得,ユーザー接点の全画面が対象
+14,韓国,AI基本法 第28条（記録保存）,AI開発・運用記録保存規程,,,,,情報システム部,未取得,韓国語での記録保持が必要か要確認
+15,韓国,AI基本法 第25条（安全性テスト）,AI安全性テスト計画書・実施報告書,,,,,AI推進室／品質管理部,未取得,第三者機関によるテストが推奨
+16,韓国,AI基本法 第35条（個人情報保護）,PIPA整合性チェック報告書,,,,,法務部,未取得,PIPAの2025年改正内容も反映
+17,韓国,AI基本法 第12条（差別禁止）,AIアルゴリズム公平性監査報告書,,,,,AI推進室,未取得,性別・年齢・国籍等のバイアステスト
+18,韓国,AI基本法 第32条（事故対応）,韓国向けAI事故対応計画（IRP）,,,,,法務部／情報システム部,未取得,KISA（韓国インターネット振興院）への報告を含む
+19,韓国,AI基本法 第15条（教育訓練）,AI基本法社内教育実施記録・受講者リスト,,,,,人事部,未取得,年1回以上の定期研修が推奨
+20,韓国,AI基本法 第29条（定期監査）,韓国向けAI定期監査報告書・監査スケジュール,,,,,法務部／内部監査室,未取得,年次監査を基本とする
+21,カリフォルニア,SB-1047（AI安全法）第5条,ADS影響評価報告書,,,,,法務部／AI推進室,未取得,2026年1月施行。カリフォルニア州居住者向けサービスが対象
+22,カリフォルニア,SB-1047（AI安全法）第6条,AI利用透明性通知文書・ユーザー告知文,,,,,法務部／AI推進室,未取得,英語での開示が必須
+23,カリフォルニア,SB-1047（AI安全法）第7条,AI安全性テスト結果報告書,,,,,AI推進室／品質管理部,未取得,リリース前および重大更新時に実施
+24,カリフォルニア,SB-1047（AI安全法）第8条,リスク軽減措置実施記録,,,,,AI推進室,未取得,特定されたリスクごとに軽減策を文書化
+25,カリフォルニア,SB-1047（AI安全法）第9条,人間監視体制文書・エスカレーションフロー,,,,,AI推進室,未取得,自動停止（キルスイッチ）の実装証跡を含む
+26,カリフォルニア,SB-1047（AI安全法）第10条,AIデータガバナンスポリシー,,,,,情報システム部,未取得,CCPA/CPRAとの整合性も確認
+27,カリフォルニア,SB-1047（AI安全法）第12条,年次コンプライアンス報告書,,,,,法務部,未取得,毎年1月末までに前年分を作成
+28,カリフォルニア,SB-1047（AI安全法）第15条,AI事故対応計画（IRP）・報告テンプレート,,,,,法務部／情報システム部,未取得,カリフォルニア州司法長官への報告手順を含む
+29,カリフォルニア,CCPA/CPRA整合,AI利用プライバシー影響評価書（PIA）,,,,,法務部,未取得,自動意思決定に関するオプトアウト手順を含む
+30,カリフォルニア,AB-2013（AI透明性法）,AI学習データ開示文書・モデルカード,,,,,AI推進室／情報システム部,未取得,学習データの出所・前処理手順を記載`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_AI規制コンプライアンス証跡保管チェックリスト.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropReno_リノベROIシミュレーター（強化版） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1a5276;--accent:#2ecc71;--warn:#e74c3c;--bg:#f4f6f9;--card:#fff;--text:#2c3e50;--border:#dce1e8}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+.container{max-width:960px;margin:0 auto;padding:16px}
+header{background:var(--primary);color:#fff;padding:20px 24px;text-align:center;border-radius:8px;margin-bottom:20px}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:var(--card);border-radius:8px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:6px;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-weight:600;font-size:.85em;margin-bottom:4px}
+input,select{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:5px;font-size:14px}
+input:focus,select:focus{outline:none;border-color:var(--primary)}
+.btn{display:inline-block;padding:10px 28px;border:none;border-radius:6px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{opacity:.85}
+.btn-sub{background:#ecf0f1;color:var(--text);font-size:.85em;padding:7px 16px}
+.btn-sub:hover{background:#dce1e8}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.result-hide{display:none}
+table{width:100%;border-collapse:collapse;font-size:.9em;margin-top:10px}
+th,td{padding:8px 10px;border:1px solid var(--border);text-align:right}
+th{background:var(--primary);color:#fff;font-weight:600;text-align:center}
+td:first-child{text-align:left;font-weight:600}
+.positive{color:var(--accent);font-weight:700}
+.negative{color:var(--warn);font-weight:700}
+.chart-wrap{margin-top:16px}
+canvas{width:100%;max-height:260px}
+.top3 .rec{background:#eafaf1;border-left:4px solid var(--accent);padding:12px 16px;margin-bottom:10px;border-radius:0 6px 6px 0}
+.top3 .rec h4{margin-bottom:4px;color:var(--primary)}
+.top3 .rec .roi{font-size:1.3em;font-weight:700;color:var(--accent)}
+.disclaimer{font-size:.75em;color:#888;margin-top:12px;padding:10px;border:1px dashed #ccc;border-radius:4px}
+.data-src{font-size:.75em;color:#999;text-align:right;margin-top:8px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}.container{padding:10px}}
+@media print{
+body{background:#fff;font-size:11px}
+.no-print{display:none!important}
+.container{max-width:100%;padding:0}
+header{border-radius:0;padding:12px;margin-bottom:10px}
+.card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid;padding:12px;margin-bottom:10px}
+.top3 .rec{page-break-inside:avoid}
+@page{size:A4 landscape;margin:10mm}
+}
+</style>
+<meta name="description" content="中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,PropReno_リノベROIシミュレーター（強化版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propreno/">
+<meta property="og:title" content="PropReno_リノベROIシミュレーター（強化版） - kusasyu tools">
+<meta property="og:description" content="中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propreno/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PropReno_リノベROIシミュレーター（強化版） - kusasyu tools">
+<meta name="twitter:description" content="中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PropReno_リノベROIシミュレーター（強化版）",
+  "description": "中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propreno/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="container">
+<header>
+<h1>PropReno リノベROIシミュレーター</h1>
+<p>中古物件リノベーションの費用対効果を即座に試算 ― そのまま売る vs リノベして売る</p>
+</header>
+
+<div class="card no-print">
+<h2>物件情報を入力</h2>
+<div class="form-grid">
+<div><label>築年数（年）</label><input type="number" id="age" min="1" max="60" value="25"></div>
+<div><label>専有面積（㎡）</label><input type="number" id="area" min="20" max="300" value="75"></div>
+<div><label>エリア区分</label>
+<select id="region"><option value="metro">都心部（23区中心）</option><option value="urban" selected>都市部（政令市・県庁所在地）</option><option value="suburb">郊外（駅徒歩15分超）</option><option value="rural">地方（人口20万未満）</option></select></div>
+<div><label>現状グレード</label>
+<select id="grade"><option value="A">A：良好（目立つ劣化なし）</option><option value="B" selected>B：標準（経年相応の劣化）</option><option value="C">C：要修繕（目立つ劣化あり）</option></select></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-primary" onclick="simulate()">シミュレーション実行</button>
+</div>
+</div>
+
+<div id="results" class="result-hide">
+<div class="card" id="secOverview">
+<h2>物件概要・基準価格</h2>
+<div id="overview"></div>
+</div>
+<div class="card">
+<h2>リノベーション項目別 費用対効果</h2>
+<table><thead><tr><th>施工項目</th><th>施工費概算</th><th>売却価格上昇</th><th>差額（利益）</th><th>単体ROI</th></tr></thead><tbody id="itemTable"></tbody></table>
+</div>
+<div class="card">
+<h2>シナリオ比較チャート</h2>
+<div class="chart-wrap"><canvas id="chart" height="240"></canvas></div>
+</div>
+<div class="card">
+<h2>ROI最大の組み合わせ TOP3</h2>
+<div class="top3" id="top3"></div>
+</div>
+<div class="btn-row no-print">
+<button class="btn btn-sub" onclick="exportCSV()">CSVエクスポート</button>
+<button class="btn btn-sub" onclick="window.print()">印刷 / PDF出力</button>
+</div>
+<div class="disclaimer">【免責事項】本シミュレーションは国土交通省「住宅リフォーム事業者実態調査」及び（公財）不動産流通推進センター「既存住宅流通データ」に基づく統計的概算であり、実際の施工費・売却価格を保証するものではありません。正確な見積もりは施工業者・不動産鑑定士にご依頼ください。</div>
+<div class="data-src">単価データ最終更新: 2025年10月（令和5年度 国土交通省住宅リフォーム統計準拠）</div>
+</div>
+</div>
+
+<script>
+const ITEMS=[
+{id:"kitchen",name:"キッチン",icon:"🍳"},
+{id:"bath",name:"浴室・洗面",icon:"🛁"},
+{id:"floor",name:"床・壁紙",icon:"🏠"},
+{id:"exterior",name:"外壁塗装",icon:"🖌"},
+{id:"equip",name:"設備更新",icon:"⚙"}
+];
+const COST_TABLE={
+kitchen:{base:1200000,gradeK:{A:.7,B:1,C:1.3},regionK:{metro:1.2,urban:1,suburb:.9,rural:.8}},
+bath:{base:900000,gradeK:{A:.7,B:1,C:1.25},regionK:{metro:1.15,urban:1,suburb:.9,rural:.8}},
+floor:{base:8500,perSqm:true,gradeK:{A:.6,B:1,C:1.3},regionK:{metro:1.15,urban:1,suburb:.9,rural:.85}},
+exterior:{base:6500,perSqm:true,extFactor:1.1,gradeK:{A:.65,B:1,C:1.35},regionK:{metro:1.1,urban:1,suburb:.95,rural:.85}},
+equip:{base:550000,gradeK:{A:.6,B:1,C:1.2},regionK:{metro:1.1,urban:1,suburb:.9,rural:.85}}
+};
+const UPLIFT={
+kitchen:{base:.045,ageFactor:.001,gradeK:{A:.6,B:1,C:1.4},regionK:{metro:1.25,urban:1,suburb:.8,rural:.6}},
+bath:{base:.035,ageFactor:.0008,gradeK:{A:.6,B:1,C:1.35},regionK:{metro:1.2,urban:1,suburb:.8,rural:.6}},
+floor:{base:.025,ageFactor:.0006,gradeK:{A:.5,B:1,C:1.3},regionK:{metro:1.15,urban:1,suburb:.85,rural:.65}},
+exterior:{base:.03,ageFactor:.0009,gradeK:{A:.5,B:1,C:1.4},regionK:{metro:1.1,urban:1,suburb:.85,rural:.7}},
+equip:{base:.02,ageFactor:.0005,gradeK:{A:.5,B:1,C:1.25},regionK:{metro:1.15,urban:1,suburb:.8,rural:.6}}
+};
+const BASE_PRICE_SQM={metro:850000,urban:520000,suburb:320000,rural:180000};
+const AGE_DEPRECIATION=.015;
+const GRADE_PRICE={A:1.08,B:1,C:.88};
+const REGION_LABEL={metro:"都心部",urban:"都市部",suburb:"郊外",rural:"地方"};
+const GRADE_LABEL={A:"A：良好",B:"B：標準",C:"C：要修繕"};
+
+let simData=null;
+
+function calcBasePrice(age,area,region,grade){
+let p=BASE_PRICE_SQM[region]*area;
+let dep=Math.max(.3,1-AGE_DEPRECIATION*Math.min(age,40));
+return Math.round(p*dep*GRADE_PRICE[grade]);
+}
+
+function calcItemCost(id,area,region,grade){
+let t=COST_TABLE[id];
+let c=t.perSqm?t.base*area*(t.extFactor||1):t.base;
+return Math.round(c*t.gradeK[grade]*t.regionK[region]);
+}
+
+function calcUplift(id,basePrice,age,region,grade){
+let u=UPLIFT[id];
+let rate=u.base+u.ageFactor*Math.min(age,40);
+return Math.round(basePrice*rate*u.gradeK[grade]*u.regionK[region]);
+}
+
+function fmt(n){return n.toLocaleString("ja-JP")}
+
+function simulate(){
+let age=parseInt(document.getElementById("age").value)||25;
+let area=parseInt(document.getElementById("area").value)||75;
+let region=document.getElementById("region").value;
+let grade=document.getElementById("grade").value;
+age=Math.max(1,Math.min(60,age));area=Math.max(20,Math.min(300,area));
+let basePrice=calcBasePrice(age,area,region,grade);
+let items=ITEMS.map(it=>{
+let cost=calcItemCost(it.id,area,region,grade);
+let up=calcUplift(it.id,basePrice,age,region,grade);
+return{...it,cost,uplift:up,profit:up-cost,roi:((up-cost)/cost*100)};
+});
+document.getElementById("overview").innerHTML=
+`<p><strong>築${age}年 / ${area}㎡ / ${REGION_LABEL[region]} / ${GRADE_LABEL[grade]}</strong></p>
+<p>現状推定売却価格: <strong style="font-size:1.3em;color:var(--primary)">¥${fmt(basePrice)}</strong></p>`;
+let tb=document.getElementById("itemTable");tb.innerHTML="";
+items.forEach(it=>{
+let cls=it.profit>=0?"positive":"negative";
+tb.innerHTML+=`<tr><td>${it.icon} ${it.name}</td><td>¥${fmt(it.cost)}</td><td>¥${fmt(it.uplift)}</td><td class="${cls}">¥${fmt(it.profit)}</td><td class="${cls}">${it.roi.toFixed(1)}%</td></tr>`;
+});
+let combos=[];
+for(let mask=1;mask<32;mask++){
+let sel=[];let totalCost=0;let totalUp=0;
+for(let i=0;i<5;i++){if(mask&(1<<i)){sel.push(items[i]);totalCost+=items[i].cost;totalUp+=items[i].uplift;}}
+let synergy=sel.length>=3?1.05:sel.length>=2?1.02:1;
+totalUp=Math.round(totalUp*synergy);
+let profit=totalUp-totalCost;
+let roi=totalCost>0?(profit/totalCost*100):0;
+combos.push({mask,sel,totalCost,totalUp,profit,roi,newPrice:basePrice+totalUp});
+}
+combos.sort((a,b)=>b.roi-a.roi);
+let top3=combos.slice(0,3);
+let t3=document.getElementById("top3");t3.innerHTML="";
+top3.forEach((c,i)=>{
+let names=c.sel.map(s=>s.icon+" "+s.name).join(" + ");
+t3.innerHTML+=`<div class="rec"><h4>${i+1}位: ${names}</h4>
+<p>施工費合計: ¥${fmt(c.totalCost)} → 価格上昇: ¥${fmt(c.totalUp)}</p>
+<p>純利益: ¥${fmt(c.profit)} ／ <span class="roi">ROI ${c.roi.toFixed(1)}%</span></p>
+<p>リノベ後推定売却価格: ¥${fmt(c.newPrice)}</p></div>`;
+});
+drawChart(basePrice,top3);
+simData={age,area,region,grade,basePrice,items,top3};
+document.getElementById("results").classList.remove("result-hide");
+document.getElementById("results").scrollIntoView({behavior:"smooth"});
+}
+
+function drawChart(basePrice,top3){
+let cv=document.getElementById("chart");
+let W=cv.parentElement.clientWidth;cv.width=W;cv.height=240;
+let ctx=cv.getContext("2d");ctx.clearRect(0,0,W,240);
+let bars=[{label:"そのまま売却",val:basePrice,color:"#95a5a6"}];
+top3.forEach((c,i)=>bars.push({label:`TOP${i+1}リノベ`,val:c.newPrice,color:["#2ecc71","#27ae60","#1abc9c"][i]}));
+let maxV=Math.max(...bars.map(b=>b.val))*1.15;
+let bw=Math.min(80,(W-100)/bars.length-20);
+let startX=60;
+ctx.strokeStyle="#ddd";ctx.fillStyle="#666";ctx.font="11px sans-serif";ctx.textAlign="right";
+for(let i=0;i<=4;i++){
+let y=200-i*45;let v=maxV/4*i;
+ctx.beginPath();ctx.moveTo(55,y);ctx.lineTo(W-10,y);ctx.stroke();
+ctx.fillText((v/10000).toFixed(0)+"万",50,y+4);
+}
+bars.forEach((b,i)=>{
+let x=startX+i*(bw+20);let h=b.val/maxV*180;let y=200-h;
+ctx.fillStyle=b.color;ctx.fillRect(x,y,bw,h);
+ctx.fillStyle="#333";ctx.font="bold 11px sans-serif";ctx.textAlign="center";
+ctx.fillText("¥"+(b.val/10000).toFixed(0)+"万",x+bw/2,y-6);
+ctx.font="10px sans-serif";ctx.fillText(b.label,x+bw/2,216);
+});
+}
+
+function exportCSV(){
+if(!simData)return;
+let d=simData;let lines=[];
+lines.push("PropReno シミュレーション結果");
+lines.push(`築年数,${d.age}`);lines.push(`面積,${d.area}`);
+lines.push(`エリア,${REGION_LABEL[d.region]}`);lines.push(`グレード,${d.grade}`);
+lines.push(`現状推定売却価格,${d.basePrice}`);lines.push("");
+lines.push("施工項目,施工費,価格上昇,差額,ROI(%)");
+d.items.forEach(it=>lines.push(`${it.name},${it.cost},${it.uplift},${it.profit},${it.roi.toFixed(1)}`));
+lines.push("");lines.push("推奨組み合わせTOP3");
+d.top3.forEach((c,i)=>{
+let n=c.sel.map(s=>s.name).join("+");
+lines.push(`${i+1}位,${n},施工費:${c.totalCost},価格上昇:${c.totalUp},利益:${c.profit},ROI:${c.roi.toFixed(1)}%`);
+});
+let bom="\uFEFF";let blob=new Blob([bom+lines.join("\n")],{type:"text/csv"});
+let a=document.createElement("a");a.href=URL.createObjectURL(blob);
+a.download="PropReno_simulation.csv";a.click();
+}
+
+window.addEventListener("resize",()=>{if(simData)simulate()});
+</script>
+</body>
+</html>

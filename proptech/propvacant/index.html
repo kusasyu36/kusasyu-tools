@@ -1,0 +1,249 @@
+ファイル書き込み権限が得られないため、HTMLコードを直接出力します。以下をコピーして `.html` ファイルとして保存し、ブラウザで開いてください。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>空き家活用3パターンNPV比較シミュレーター「PropVacant」（統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.4em;padding:16px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;border-left:4px solid #3182ce;padding-left:8px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.85em;font-weight:600;margin-bottom:2px;color:#4a5568}
+select,input{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em;margin-bottom:8px}
+.hint{font-size:.75em;color:#a0aec0;margin-top:-6px;margin-bottom:8px}
+button{width:100%;padding:12px;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:4px}
+button:hover{opacity:.9}
+.warn{background:#fffbeb;border:1px solid #f6e05e;border-radius:8px;padding:10px;margin:10px 0;font-size:.85em;color:#744210}
+.warn b{color:#c53030}
+#chart{margin:12px 0}
+.bar-wrap{display:flex;align-items:center;margin:6px 0}
+.bar-label{width:80px;font-size:.82em;font-weight:600;text-align:right;padding-right:8px;flex-shrink:0}
+.bar{height:28px;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:.78em;color:#fff;font-weight:700;min-width:2px;transition:width .5s}
+.tbl{width:100%;border-collapse:collapse;font-size:.82em;margin-top:8px}
+.tbl th,.tbl td{border:1px solid #e2e8f0;padding:6px 8px;text-align:right}
+.tbl th{background:#edf2f7;text-align:center}
+.tbl td:first-child{text-align:left;font-weight:600}
+details{margin-top:10px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden}
+summary{padding:10px 14px;background:#edf2f7;font-weight:700;font-size:.9em;cursor:pointer}
+details[open] summary{border-bottom:1px solid #e2e8f0}
+details .inner{padding:12px 14px;font-size:.83em}
+details .inner li{margin-bottom:4px}
+details .inner ol{padding-left:20px}
+.scenario-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75em;font-weight:700;margin-right:4px}
+.best{background:#c6f6d5;color:#22543d}.mid{background:#fefcbf;color:#744210}.low{background:#fed7d7;color:#9b2c2c}
+@media print{body{background:#fff}.card{box-shadow:none;break-inside:avoid}button,.sub{display:none}}
+</style>
+<meta name="description" content="空き家オーナーが物件情報（所在地エリア・築年数・面積・現状態）を入力すると、①売却②賃貸③民泊・シェアハウス転用の3パターンで10年間のNPV（正味現在価値）を自動算出し、最適な活用方法を可視化するHTMLツール。2024年改正空家特措法による固定資産税6倍ペナルティを放置コストとして自動計算し、『何もしない">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,空き家活用3パターンNPV比較シミュレーター「PropVacant」（統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propvacant/">
+<meta property="og:title" content="空き家活用3パターンNPV比較シミュレーター「PropVacant」（統合版） - kusasyu tools">
+<meta property="og:description" content="空き家オーナーが物件情報（所在地エリア・築年数・面積・現状態）を入力すると、①売却②賃貸③民泊・シェアハウス転用の3パターンで10年間のNPV（正味現在価値）を自動算出し、最適な活用方法を可視化するHTMLツール。2024年改正空家特措法による固定資産税6倍ペナルティを放置コストとして自動計算し、『何もしない">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propvacant/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空き家活用3パターンNPV比較シミュレーター「PropVacant」（統合版） - kusasyu tools">
+<meta name="twitter:description" content="空き家オーナーが物件情報（所在地エリア・築年数・面積・現状態）を入力すると、①売却②賃貸③民泊・シェアハウス転用の3パターンで10年間のNPV（正味現在価値）を自動算出し、最適な活用方法を可視化するHTMLツール。2024年改正空家特措法による固定資産税6倍ペナルティを放置コストとして自動計算し、『何もしない">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "空き家活用3パターンNPV比較シミュレーター「PropVacant」（統合版）",
+  "description": "空き家オーナーが物件情報（所在地エリア・築年数・面積・現状態）を入力すると、①売却②賃貸③民泊・シェアハウス転用の3パターンで10年間のNPV（正味現在価値）を自動算出し、最適な活用方法を可視化するHTMLツール。2024年改正空家特措法による固定資産税6倍ペナルティを放置コストとして自動計算し、『何もしない",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propvacant/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>PropVacant</h1>
+<p class="sub">空き家活用3パターン 10年NPV比較シミュレーター</p>
+<div class="card">
+<h2>物件情報入力</h2>
+<div class="grid">
+<div><label>エリア区分</label><select id="area">
+<option value="1.0">都心部（23区中心）</option>
+<option value="0.75" selected>郊外住宅地（政令市）</option>
+<option value="0.55">地方中核市</option>
+<option value="0.35">地方一般市</option>
+<option value="0.18">過疎地域</option>
+</select></div>
+<div><label>築年数（年）</label><input type="number" id="age" value="35" min="0" max="100"></div>
+<div><label>延床面積（㎡）</label><input type="number" id="sqm" value="100" min="10" max="1000"></div>
+<div><label>現状態</label><select id="cond">
+<option value="1.0">良好（即入居可）</option>
+<option value="0.8" selected>軽微補修要</option>
+<option value="0.5">大規模改修要</option>
+<option value="0.25">老朽危険</option>
+</select></div>
+</div>
+<div class="grid">
+<div><label>売却価格（万円）※任意</label><input type="number" id="sellP" placeholder="未入力で自動推計">
+<p class="hint">未入力時はエリア係数から参考値算出（±30%誤差あり）</p></div>
+<div><label>月額賃料（万円）※任意</label><input type="number" id="rentP" placeholder="未入力で自動推計">
+<p class="hint">同上。正確な判断には不動産会社の査定を推奨</p></div>
+</div>
+<div class="grid">
+<div><label>割引率（%）</label><input type="number" id="dr" value="3" min="0" max="20" step="0.5"></div>
+<div><label>初期改修費（万円）</label><input type="number" id="reno" value="300" min="0"></div>
+</div>
+<button onclick="calc()">NPVを計算する</button>
+</div>
+<div id="result" style="display:none">
+<div class="card">
+<h2>10年NPV比較（万円）</h2>
+<div id="chart"></div>
+<div id="warnBox"></div>
+</div>
+<div class="card">
+<h2>詳細数値</h2>
+<table class="tbl" id="dtbl"></table>
+</div>
+<details><summary>① 活用判断チェックリスト（15項目）</summary><div class="inner"><ol>
+<li>相続登記は完了しているか</li>
+<li>共有名義者全員の同意はあるか</li>
+<li>建物の耐震基準（旧耐震/新耐震）を確認したか</li>
+<li>アスベスト・シロアリ等の調査は済んでいるか</li>
+<li>接道条件（幅員4m以上）を満たしているか</li>
+<li>都市計画区域・用途地域を確認したか</li>
+<li>固定資産税の納付状況に滞納はないか</li>
+<li>近隣からの苦情・行政指導の履歴はないか</li>
+<li>水道・電気・ガスの供給状況を確認したか</li>
+<li>民泊の場合、住宅宿泊事業届出の可否を確認したか</li>
+<li>自治体の空き家補助金・助成制度を調べたか</li>
+<li>火災保険・地震保険の加入状況を確認したか</li>
+<li>境界確定測量は実施済みか</li>
+<li>残置物の処分費用を見積もったか</li>
+<li>活用後の管理体制（自主/委託）を決めたか</li>
+</ol></div></details>
+<details><summary>② 特定空家制度と指定プロセス解説</summary><div class="inner">
+<p><b>特定空家等とは（空家等対策特別措置法）：</b></p>
+<ol>
+<li><b>管理不全空家</b>→助言・指導→勧告で固定資産税特例解除（住宅用地1/6→更地並み＝<b>最大6倍</b>）</li>
+<li><b>特定空家</b>→助言・指導→勧告→命令→行政代執行（費用は所有者負担）</li>
+</ol>
+<p style="margin-top:8px"><b>指定プロセス：</b></p>
+<ol>
+<li>近隣通報・自治体パトロールで発見</li>
+<li>立入調査（法14条）</li>
+<li>特定空家等審議会で判定</li>
+<li>助言・指導（猶予期間あり）</li>
+<li>勧告（固定資産税特例解除）</li>
+<li>命令（50万円以下の過料）</li>
+<li>行政代執行（解体費200〜500万円請求）</li>
+</ol>
+<p style="margin-top:8px;color:#e53e3e"><b>※2023年改正で「管理不全空家」カテゴリ新設。勧告段階で税優遇解除のため早期対応が重要。</b></p>
+</div></details>
+<details><summary>③ 業者見積もり比較表テンプレート（印刷対応）</summary><div class="inner">
+<table class="tbl">
+<tr><th>比較項目</th><th>A社</th><th>B社</th><th>C社</th></tr>
+<tr><td>会社名</td><td></td><td></td><td></td></tr>
+<tr><td>担当者・連絡先</td><td></td><td></td><td></td></tr>
+<tr><td>見積金額（税込）</td><td></td><td></td><td></td></tr>
+<tr><td>工期</td><td></td><td></td><td></td></tr>
+<tr><td>改修範囲</td><td></td><td></td><td></td></tr>
+<tr><td>保証期間</td><td></td><td></td><td></td></tr>
+<tr><td>アフターサポート</td><td></td><td></td><td></td></tr>
+<tr><td>実績・口コミ</td><td></td><td></td><td></td></tr>
+<tr><td>支払条件</td><td></td><td></td><td></td></tr>
+<tr><td>総合評価</td><td></td><td></td><td></td></tr>
+</table>
+<p style="margin-top:8px;color:#718096">※印刷してご利用ください（Ctrl+P）</p>
+</div></details>
+</div>
+</div>
+<script>
+function calc(){
+var A=+document.getElementById('area').value,age=+document.getElementById('age').value,
+sqm=+document.getElementById('sqm').value,C=+document.getElementById('cond').value,
+dr=+document.getElementById('dr').value/100,reno=+document.getElementById('reno').value,
+sIn=document.getElementById('sellP').value,rIn=document.getElementById('rentP').value;
+var base=sqm*A*25,ageFactor=Math.max(0.2,1-age*0.015);
+var sellP=sIn?+sIn:Math.round(base*ageFactor*C);
+var rentM=rIn?+rIn:Math.round(base*ageFactor*C*0.005*10)/10;
+var sellNPV=Math.round(sellP-reno-(sellP*0.03+6));
+var rentNPV=-reno,annualRent=rentM*12;
+for(var y=1;y<=10;y++)rentNPV+=annualRent*0.9*0.95/Math.pow(1+dr,y);
+rentNPV=Math.round(rentNPV);
+var nightP=rentM*1.8;
+var mS=[{n:'楽観',d:180,cls:'best'},{n:'標準',d:120,cls:'mid'},{n:'保守',d:60,cls:'low'}];
+var mNPVs=mS.map(function(s){
+var npv=-reno-50;
+for(var y=1;y<=10;y++)npv+=nightP*s.d*0.85/Math.pow(1+dr,y);
+return{name:s.n,days:s.d,npv:Math.round(npv),cls:s.cls};
+});
+var annualTax=Math.round(sellP*0.014*10)/10,abandonNPV=0;
+for(var y=1;y<=10;y++){
+var cost=annualTax+12;if(y>=4)cost=annualTax*6+12;
+abandonNPV-=cost/Math.pow(1+dr,y);
+}
+abandonNPV=Math.round(abandonNPV);
+var all=[{l:'売却',v:sellNPV,c:'#3182ce'},{l:'賃貸',v:rentNPV,c:'#38a169'},
+{l:'民泊(標準)',v:mNPVs[1].npv,c:'#d69e2e'},{l:'放置',v:abandonNPV,c:'#e53e3e'}];
+var maxV=Math.max.apply(null,all.map(function(x){return Math.abs(x.v)}))||1;
+var ch='';
+all.forEach(function(x){
+var w=Math.max(2,Math.abs(x.v)/maxV*100);
+ch+='<div class="bar-wrap"><span class="bar-label">'+x.l+'</span>'
++'<div class="bar" style="width:'+w+'%;background:'+x.c+';'+(x.v<0?'opacity:.7;':'')+'">'+x.v.toLocaleString()+'万円</div></div>';
+});
+document.getElementById('chart').innerHTML=ch;
+var wb='';
+if(C<=0.5)wb+='<div class="warn">⚠️ <b>特定空家指定リスク：</b>現状態が「大規模改修要」以下の場合、管理不全空家→特定空家に指定され固定資産税が<b>最大6倍</b>に増額される可能性（空家等対策特別措置法）。放置NPVには4年目以降このリスクを反映済。</div>';
+if(!sIn||!rIn)wb+='<div class="warn">⚠️ <b>参考値使用中：</b>'+(sIn?'':'売却価格')+((!sIn&&!rIn)?' / ':'')+(rIn?'':'賃料')+'はエリア係数による自動推計値（±30%誤差）。不動産会社の査定を推奨。</div>';
+document.getElementById('warnBox').innerHTML=wb;
+var t='<tr><th>パターン</th><th>初期費用</th><th>年間収支</th><th>10年NPV</th></tr>';
+t+='<tr><td>売却</td><td>改修'+reno+'万</td><td>一括'+sellP+'万</td><td><b>'+sellNPV.toLocaleString()+'万円</b></td></tr>';
+t+='<tr><td>賃貸</td><td>改修'+reno+'万</td><td>賃料'+rentM+'万/月(空室10%)</td><td><b>'+rentNPV.toLocaleString()+'万円</b></td></tr>';
+mNPVs.forEach(function(m){
+t+='<tr><td>民泊<span class="scenario-tag '+m.cls+'">'+m.name+'('+m.days+'日)</span></td><td>改修'+reno+'万+設備50万</td><td>1泊'+Math.round(nightP*10)/10+'万×'+m.days+'日</td><td><b>'+m.npv.toLocaleString()+'万円</b></td></tr>';
+});
+t+='<tr><td style="color:#e53e3e">放置</td><td>—</td><td>税'+annualTax+'万+管理12万/年</td><td style="color:#e53e3e"><b>'+abandonNPV.toLocaleString()+'万円</b></td></tr>';
+document.getElementById('dtbl').innerHTML=t;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
+```
+
+**搭載機能：**
+- **入力**: エリア5区分・築年数・延床面積・現状態4段階・売却価格/賃料（任意直接入力、未入力時は自動推計+精度注記）
+- **NPV計算**: 売却・賃貸・民泊（楽観180日/標準120日/保守60日の3シナリオ）・放置の4パターン
+- **棒グラフ**: 4パターン一画面比較
+- **特定空家リスク**: 状態が「大規模改修要」以下で条件付き警告表示、放置NPVに4年目以降の税6倍リスク反映
+- **折りたたみパネル3種**: チェックリスト15項目・特定空家制度解説・業者見積比較表（印刷対応）

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>取適法対応_取引条件コンプライアンス診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:780px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:24px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.3em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;color:#1a237e;border-left:4px solid #1a237e;padding-left:10px;margin-bottom:14px}
+label.radio-label{display:block;padding:10px 14px;margin:6px 0;border:2px solid #e0e0e0;border-radius:8px;cursor:pointer;transition:.2s}
+label.radio-label:hover{border-color:#5c6bc0;background:#f5f5ff}
+label.radio-label input{margin-right:8px}
+.q-block{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #eee}
+.q-block:last-child{border-bottom:none}
+.q-title{font-weight:700;margin-bottom:6px;font-size:.95em}
+.tip{display:inline-block;background:#fff3e0;color:#e65100;font-size:.78em;padding:3px 10px;border-radius:12px;margin-top:4px;margin-bottom:8px;line-height:1.5}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s;margin-top:12px}
+.btn-primary{background:#1a237e;color:#fff}
+.btn-primary:hover{background:#283593}
+.btn-secondary{background:#e8eaf6;color:#1a237e}
+.btn-secondary:hover{background:#c5cae9}
+.hidden{display:none}
+.result-item{padding:14px;border-radius:8px;margin-bottom:10px}
+.r-ok{background:#e8f5e9;border-left:4px solid #2e7d32}
+.r-warn{background:#fff8e1;border-left:4px solid #f9a825}
+.r-ng{background:#ffebee;border-left:4px solid #c62828}
+.badge{display:inline-block;padding:2px 10px;border-radius:10px;font-size:.8em;font-weight:700;color:#fff;margin-right:8px}
+.b-ok{background:#2e7d32}.b-warn{background:#f9a825;color:#333}.b-ng{background:#c62828}
+.summary-box{text-align:center;padding:20px;border-radius:10px;margin-bottom:16px}
+.score{font-size:2.2em;font-weight:700}
+.meter{height:8px;background:#e0e0e0;border-radius:4px;margin-top:8px;overflow:hidden}
+.meter-fill{height:100%;border-radius:4px;transition:width .5s}
+.step-indicator{display:flex;justify-content:center;gap:8px;margin-bottom:16px}
+.step-dot{width:10px;height:10px;border-radius:50%;background:#ccc}
+.step-dot.active{background:#1a237e}
+@media print{body{background:#fff}.wrap{max-width:100%}.btn,.step-indicator,header p{display:none}header{background:#1a237e!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.result-item{break-inside:avoid}}
+@media(max-width:600px){.wrap{padding:10px}header{padding:16px}header h1{font-size:1.1em}}
+</style>
+<meta name="description" content="2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,取適法対応_取引条件コンプライアンス診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-4/">
+<meta property="og:title" content="取適法対応_取引条件コンプライアンス診断ツール - kusasyu tools">
+<meta property="og:description" content="2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="取適法対応_取引条件コンプライアンス診断ツール - kusasyu tools">
+<meta name="twitter:description" content="2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "取適法対応_取引条件コンプライアンス診断ツール",
+  "description": "2026年1月施行の『中小受託取引適正化法（取適法）』に対応するため、製造業の購買・調達・法務担当者が自社の取引基本契約を新法基準でセルフチェックし、違反リスクのある条項を特定・修正できるツールキット。汎用AI契約レビュー（LeCHECK・LegalOn等）では拾えない製造業固有の取適法・下請法移行ポイント、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>取適法対応 取引条件コンプライアンス診断ツール</h1>
+<p>TekitekiGuard — 製造業向けセルフチェック（2026年1月施行対応）</p>
+</header>
+<div class="step-indicator"><span class="step-dot active" id="sd1"></span><span class="step-dot" id="sd2"></span><span class="step-dot" id="sd3"></span></div>
+
+<div class="card" id="step1">
+<h2>STEP 1：取引類型の選択</h2>
+<p style="font-size:.9em;margin-bottom:12px">貴社の取引基本契約に該当する委託類型を選択してください。</p>
+<label class="radio-label"><input type="radio" name="type" value="mfg">製造委託（部品・完成品の製造を委託）</label>
+<label class="radio-label"><input type="radio" name="type" value="rep">修理委託（製品の修理・メンテナンスを委託）</label>
+<label class="radio-label"><input type="radio" name="type" value="info">情報成果物作成委託（設計図・ソフトウェア等の作成を委託）</label>
+<button class="btn btn-primary" onclick="goStep2()">次へ進む</button>
+</div>
+
+<div class="card hidden" id="step2">
+<h2>STEP 2：取引条件の入力</h2>
+<div id="questions"></div>
+<button class="btn btn-primary" onclick="diagnose()">診断を実行</button>
+<button class="btn btn-secondary" onclick="back1()">戻る</button>
+</div>
+
+<div class="card hidden" id="step3">
+<h2>STEP 3：診断結果</h2>
+<div id="resultArea"></div>
+<button class="btn btn-primary" onclick="window.print()">印刷 / PDF保存</button>
+<button class="btn btn-secondary" onclick="reset()">最初からやり直す</button>
+</div>
+</div>
+
+<script>
+var QS={
+pay:{title:"支払期日の設定",tip:"【旧下請法との差分】取適法では「受領日から60日以内」が厳格化。月末締め翌月末払いでも受領日基準で60日超は違反リスク。",opts:[
+{v:"ok",t:"受領日から60日以内に支払い"},
+{v:"warn",t:"月末締め翌月末払い（60日前後）"},
+{v:"ng",t:"受領日から60日を超える支払条件"}
+]},
+ret:{title:"返品条項",tip:"【旧下請法との差分】取適法では受領後の返品は原則禁止。検査不合格の返品も「受領後6か月以内」の期限が明文化。",opts:[
+{v:"ok",t:"返品条項なし、または検査不合格時のみ（6か月以内）"},
+{v:"warn",t:"検査不合格時の返品あり（期限の明記なし）"},
+{v:"ng",t:"任意の理由で返品可能な条項あり"}
+]},
+price:{title:"価格改定条項",tip:"【旧下請法との差分】取適法では「原材料費・エネルギーコスト上昇時の価格協議義務」が新設。一方的な据え置き・減額は買いたたきとして規制強化。",opts:[
+{v:"ok",t:"双方協議による価格改定条項あり"},
+{v:"warn",t:"価格改定条項はあるが発注者側に決定権"},
+{v:"ng",t:"価格改定条項なし、または一方的な価格決定権を規定"}
+]},
+ip:{title:"知的財産権の帰属",tip:"【旧下請法との差分】取適法では受託者の技術・ノウハウの不当な取得禁止が明確化。成果物の知財を無償で発注者帰属とする条項は違反リスク。",opts:[
+{v:"ok",t:"知財は受託者に帰属、またはライセンス対価を明記"},
+{v:"warn",t:"知財は発注者帰属だが対価の定めあり"},
+{v:"ng",t:"知財は無条件で発注者に帰属（対価の定めなし）"}
+]},
+mold:{title:"型・金型の保管期間",tip:"【旧下請法との差分】取適法では型保管の費用負担・保管期間の書面明示が義務化。曖昧な「必要な期間」は不適合。",opts:[
+{v:"ok",t:"保管期間・費用負担を明記"},
+{v:"warn",t:"保管義務はあるが期間または費用が不明確"},
+{v:"ng",t:"保管期間・費用の定めなし"}
+]},
+mfg_spec:{title:"製造仕様変更時の費用負担",tip:"【製造委託固有】仕様変更に伴う追加費用を受託者に負担させる条項は取適法上の不当な経済的利益提供要請に該当しうる。",opts:[
+{v:"ok",t:"仕様変更費用は発注者負担を明記"},
+{v:"warn",t:"協議の上決定（費用負担が曖昧）"},
+{v:"ng",t:"仕様変更費用は受託者負担、または規定なし"}
+]},
+rep_war:{title:"修理後の保証範囲",tip:"【修理委託固有】取適法では修理範囲外の不具合まで受託者に保証させることは不当な給付内容の変更に該当。",opts:[
+{v:"ok",t:"修理箇所に限定した保証を明記"},
+{v:"warn",t:"保証範囲の記載が曖昧"},
+{v:"ng",t:"修理箇所以外も含む包括保証を要求"}
+]},
+info_del:{title:"成果物の納品形態・検収基準",tip:"【情報成果物固有】取適法では検収基準の事前明示が義務化。「発注者の満足」等の主観基準は不適合。",opts:[
+{v:"ok",t:"客観的な検収基準を書面で事前合意"},
+{v:"warn",t:"検収基準はあるが主観的要素を含む"},
+{v:"ng",t:"検収基準なし、または発注者の任意判断"}
+]}
+};
+var COMMON=["pay","ret","price","ip","mold"];
+var TYPE_Q={mfg:["mfg_spec"],rep:["rep_war"],info:["info_del"]};
+var LABELS={ok:"適合",warn:"要修正",ng:"違反リスク"};
+var CLASSES={ok:"r-ok",warn:"r-warn",ng:"r-ng"};
+var BADGES={ok:"b-ok",warn:"b-warn",ng:"b-ng"};
+var curType="",curKeys=[];
+
+function goStep2(){
+  var r=document.querySelector('input[name="type"]:checked');
+  if(!r){alert("取引類型を選択してください");return}
+  curType=r.value;
+  curKeys=COMMON.concat(TYPE_Q[curType]);
+  renderQ();
+  show("step2");hide("step1");setDot(2);
+}
+function back1(){show("step1");hide("step2");setDot(1)}
+function reset(){show("step1");hide("step2");hide("step3");setDot(1);var els=document.querySelectorAll('input[name="type"]');for(var i=0;i<els.length;i++)els[i].checked=false}
+function show(id){document.getElementById(id).classList.remove("hidden")}
+function hide(id){document.getElementById(id).classList.add("hidden")}
+function setDot(n){var dots=document.querySelectorAll(".step-dot");for(var i=0;i<dots.length;i++)dots[i].classList.toggle("active",i<n)}
+
+function renderQ(){
+  var c=document.getElementById("questions");
+  c.innerHTML="";
+  for(var i=0;i<curKeys.length;i++){
+    var k=curKeys[i],q=QS[k];
+    var h='<div class="q-block"><div class="q-title">Q'+(i+1)+'. '+q.title+'</div><div class="tip">'+q.tip+'</div>';
+    for(var j=0;j<q.opts.length;j++){
+      var o=q.opts[j];
+      h+='<label class="radio-label"><input type="radio" name="q_'+k+'" value="'+o.v+'">'+o.t+'</label>';
+    }
+    h+="</div>";
+    c.innerHTML+=h;
+  }
+}
+
+function diagnose(){
+  var results=[],okN=0,warnN=0,ngN=0;
+  for(var i=0;i<curKeys.length;i++){
+    var k=curKeys[i];
+    var r=document.querySelector('input[name="q_'+k+'"]:checked');
+    if(!r){alert("すべての質問に回答してください");return}
+    var v=r.value,q=QS[k];
+    var advice=v==="ok"?"現行条項は取適法に適合しています。":v==="warn"?"条項の文言修正を推奨します。早期に法務確認を行ってください。":"取適法違反のリスクがあります。速やかに条項の改定が必要です。";
+    results.push({title:q.title,val:v,label:LABELS[v],cls:CLASSES[v],badge:BADGES[v],advice:advice});
+    if(v==="ok")okN++;else if(v==="warn")warnN++;else ngN++;
+  }
+  var total=curKeys.length,score=Math.round((okN*100+warnN*50)/total);
+  var color=score>=80?"#2e7d32":score>=50?"#f9a825":"#c62828";
+  var typeNames={mfg:"製造委託",rep:"修理委託",info:"情報成果物作成委託"};
+
+  var html='<div class="summary-box" style="background:'+color+'11;border:2px solid '+color+'">';
+  html+='<div style="font-size:.85em;color:'+color+'">コンプライアンススコア</div>';
+  html+='<div class="score" style="color:'+color+'">'+score+'<span style="font-size:.4em">/ 100</span></div>';
+  html+='<div class="meter"><div class="meter-fill" style="width:'+score+'%;background:'+color+'"></div></div>';
+  html+='<div style="margin-top:10px;font-size:.85em">取引類型：'+typeNames[curType]+'｜適合 '+okN+' ／ 要修正 '+warnN+' ／ 違反リスク '+ngN+'</div></div>';
+
+  for(var i=0;i<results.length;i++){
+    var r=results[i];
+    html+='<div class="result-item '+r.cls+'"><span class="badge '+r.badge+'">'+r.label+'</span><strong>'+r.title+'</strong><p style="margin-top:6px;font-size:.9em">'+r.advice+'</p></div>';
+  }
+
+  html+='<div style="margin-top:16px;padding:14px;background:#e8eaf6;border-radius:8px;font-size:.85em"><strong>次のアクション：</strong><br>';
+  if(ngN>0)html+="・違反リスク項目について、顧問弁護士への相談を推奨します。<br>";
+  if(warnN>0)html+="・要修正項目について、取引先との条件見直し協議を開始してください。<br>";
+  if(ngN===0&&warnN===0)html+="・全項目が適合しています。定期的な再診断（年1回推奨）を継続してください。<br>";
+  html+='・診断日：'+new Date().toLocaleDateString("ja-JP")+'｜本ツールは法的助言ではありません。具体的な対応は弁護士にご相談ください。</div>';
+
+  document.getElementById("resultArea").innerHTML=html;
+  hide("step2");show("step3");setDot(3);
+}
+</script>
+</body>
+</html>

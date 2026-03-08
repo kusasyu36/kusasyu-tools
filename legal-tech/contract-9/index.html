@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDレッドフラグ・サマリー報告テンプレート - kusasyu tools</title>
+<meta name="description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,DDレッドフラグ・サマリー報告テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-9/">
+<meta property="og:title" content="DDレッドフラグ・サマリー報告テンプレート - kusasyu tools">
+<meta property="og:description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DDレッドフラグ・サマリー報告テンプレート - kusasyu tools">
+<meta name="twitter:description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DDレッドフラグ・サマリー報告テンプレート",
+  "description": "M&A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-9/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-07"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>DDレッドフラグ・サマリー報告テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>DDレッドフラグ・サマリー報告テンプレート</h1>
+  <p class="project-name">DD Clause Hunter — M&amp;A対象契約 重要条項抽出＆交渉優先度マッピングツール</p>
+  <div class="content">
+<pre><code>          影響度
+    低(1-2)   中(3)   高(4-5)
+   ┌────────┬───────┬────────┐
+</code></pre>
+<p>高(4-5)│        │       │ ★★★  │ ← 即時対応
+       │        │       │[記入例:│
+       │        │       │C-003  │
+       │        │       │CoC/表明│
+       │        │       │保証/   │
+確     │        │       │競業避止]│
+率     ├────────┼───────┼────────┤
+中(3)  │        │[記入例:│[記入例:│ ← 計画的対応
+       │        │B-002  │A-001  │
+       │        │競業避止]│CoC/   │
+       │        │       │表明保証]│
+       ├────────┼───────┼────────┤
+低(1-2)│ 許容   │[記入例:│[記入例:│ ← 監視
+       │        │B-002  │C-003  │
+       │        │表明保証]│ｲﾝﾃﾞﾑ │
+       │        │       │ﾆﾃｨ]   │
+       └────────┴───────┴────────┘</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

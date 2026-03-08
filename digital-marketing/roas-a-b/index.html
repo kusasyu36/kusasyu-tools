@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動画広告ROAS管理＆A_Bテスト計算シート - kusasyu tools</title>
+<meta name="description" content="商品名・ターゲット・訴求軸を入力するだけで、Meta/TikTok/YouTube Shorts/LINE Ads各プラットフォーム向けの15秒・30秒動画広告の脚本（シーン割り・ナレーション・テロップ指示）、絵コンテテキスト、広告コピー3パターンを一括生成するHTMLツール。Vista Movie・MetA">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,動画広告ROAS管理＆A_Bテスト計算シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roas-a-b/">
+<meta property="og:title" content="動画広告ROAS管理＆A_Bテスト計算シート - kusasyu tools">
+<meta property="og:description" content="商品名・ターゲット・訴求軸を入力するだけで、Meta/TikTok/YouTube Shorts/LINE Ads各プラットフォーム向けの15秒・30秒動画広告の脚本（シーン割り・ナレーション・テロップ指示）、絵コンテテキスト、広告コピー3パターンを一括生成するHTMLツール。Vista Movie・MetA">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roas-a-b/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="動画広告ROAS管理＆A_Bテスト計算シート - kusasyu tools">
+<meta name="twitter:description" content="商品名・ターゲット・訴求軸を入力するだけで、Meta/TikTok/YouTube Shorts/LINE Ads各プラットフォーム向けの15秒・30秒動画広告の脚本（シーン割り・ナレーション・テロップ指示）、絵コンテテキスト、広告コピー3パターンを一括生成するHTMLツール。Vista Movie・MetA">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "動画広告ROAS管理＆A_Bテスト計算シート",
+  "description": "商品名・ターゲット・訴求軸を入力するだけで、Meta/TikTok/YouTube Shorts/LINE Ads各プラットフォーム向けの15秒・30秒動画広告の脚本（シーン割り・ナレーション・テロップ指示）、絵コンテテキスト、広告コピー3パターンを一括生成するHTMLツール。Vista Movie・MetA",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roas-a-b/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-01"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>動画広告ROAS管理＆A_Bテスト計算シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>動画広告ROAS管理＆A_Bテスト計算シート</h1>
+  <p class="project-name">SNS動画広告AIクリエイティブ設計エンジン — 商品情報だけでSora2対応の脚本・絵コンテ・コピーを一括生成</p>
+  <div class="content">
+<h1>動画広告ROAS管理＆A/Bテスト計算シート｜Excel完全ガイド</h1>
+<h2>このシートでできること</h2>
+<ul>
+<li><strong>3クリエイティブ×4プラットフォーム＝12パターン</strong>を1シートで比較</li>
+<li>広告費・imp・click・CVを入力するだけでROAS・CPA・CTR・CVRを自動算出</li>
+<li>EC/D2C業界ベンチマークとの比較が一目でわかる</li>
+<li>条件付き書式で「勝ちクリエイティブ」を自動ハイライト</li>
+<li>Excel／Google Sheets両対応の数式設計</li>
+</ul>
+<hr />
+<h2>シート構成</h2>
+<h3>A. ヘッダー行（1〜2行目）</h3>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>項目</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>プラットフォーム</td>
+<td>YouTube / Meta / TikTok / LINE</td>
+</tr>
+<tr>
+<td>B</td>
+<td>クリエイティブ名</td>
+<td>A・B・C の3パターン</td>
+</tr>
+<tr>
+<td>C</td>
+<td>広告費（円）</td>
+<td><strong>手入力</strong></td>
+</tr>
+<tr>
+<td>D</td>
+<td>インプレッション</td>
+<td><strong>手入力</strong></td>
+</tr>
+<tr>
+<td>E</td>
+<td>クリック数</td>
+<td><strong>手入力</strong></td>
+</tr>
+<tr>
+<td>F</td>
+<td>CV数</td>
+<td><strong>手入力</strong></td>
+</tr>
+<tr>
+<td>G</td>
+<td>売上（円）</td>
+<td><strong>手入力</strong></td>
+</tr>
+<tr>
+<td>H</td>
+<td>CTR（%）</td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>I</td>
+<td>CVR（%）</td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>J</td>
+<td>CPA（円）</td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>K</td>
+<td>ROAS（%）</td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>L</td>
+<td>業界CTR</td>
+<td>ベンチマーク参照値</td>
+</tr>
+<tr>
+<td>M</td>
+<td>業界CVR</td>
+<td>ベンチマーク参照値</td>
+</tr>
+<tr>
+<td>N</td>
+<td>業界CPA</td>
+<td>ベンチマーク参照値</td>
+</tr>
+<tr>
+<td>O</td>
+<td>業界ROAS</td>
+<td>ベンチマーク参照値</td>
+</tr>
+<tr>
+<td>P</td>
+<td>判定</td>
+<td>勝ち／普通／負け</td>
+</tr>
+</tbody>
+</table>
+<h3>B. データ行（3〜14行目：12パターン）</h3>
+<table>
+<thead>
+<tr>
+<th>行</th>
+<th>プラットフォーム</th>
+<th>クリエイティブ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3〜5</td>
+<td>YouTube</td>
+<td>A・B・C</td>
+</tr>
+<tr>
+<td>6〜8</td>
+<td>Meta（Instagram/Facebook）</td>
+<td>A・B・C</td>
+</tr>
+<tr>
+<td>9〜11</td>
+<td>TikTok</td>
+<td>A・B・C</td>
+</tr>
+<tr>
+<td>12〜14</td>
+<td>LINE</td>
+<td>A・B・C</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>自動計算の数式一覧</h2>
+<p>すべて3行目の例。14行目までオートフィルでコピー。</p>
+<h3>基本KPI（H〜K列）</h3>
+<pre><code>H3（CTR%）  = IF(D3=0, 0, E3/D3*100)
+I3（CVR%）  = IF(E3=0, 0, F3/E3*100)
+J3（CPA）   = IF(F3=0, 0, C3/F3)
+K3（ROAS%） = IF(C3=0, 0, G3/C3*100)
+</code></pre>
+<h3>勝ちクリエイティブ判定（P列）</h3>
+<p>同一プラットフォーム内でROASが最大のクリエイティブを「勝ち」と判定する。</p>
+<pre><code>P3 = IF(K3=MAX(OFFSET(K3, -MOD(ROW(K3)-3,3), 0, 3, 1)),
+      IF(AND(K3&gt;=O3, H3&gt;=L3), &quot;◎ 勝ち&quot;, &quot;○ 普通&quot;),
+      IF(K3&lt;O3*0.7, &quot;× 負け&quot;, &quot;△ 要改善&quot;))
+</code></pre>
+<p><strong>判定ロジック：</strong></p>
+<table>
+<thead>
+<tr>
+<th>判定</th>
+<th>条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>◎ 勝ち</td>
+<td>同プラットフォーム内ROAS最大 かつ 業界ROAS・CTR以上</td>
+</tr>
+<tr>
+<td>○ 普通</td>
+<td>同プラットフォーム内ROAS最大だが業界基準未達</td>
+</tr>
+<tr>
+<td>△ 要改善</td>
+<td>ROAS最大ではないが業界の70%以上</td>
+</tr>
+<tr>
+<td>× 負け</td>
+<td>業界ROASの70%未満</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Google Sheets互換メモ</strong>: <code>OFFSET</code>関数はGoogle Sheetsでも動作する。<code>MOD(ROW())</code>による相対参照もそのまま使用可能。</p>
+</blockquote>
+<hr />
+<h2>EC/D2C業界ベンチマーク参照値（L〜O列）</h2>
+<p>2025〜2026年の業界平均データ。プラットフォーム行ごとに固定値として入力する。</p>
+<table>
+<thead>
+<tr>
+<th>プラットフォーム</th>
+<th>CTR（%）</th>
+<th>CVR（%）</th>
+<th>CPA（円）</th>
+<th>ROAS（%）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YouTube</td>
+<td>0.50</td>
+<td>2.0</td>
+<td>4,500</td>
+<td>350</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>1.20</td>
+<td>3.5</td>
+<td>3,200</td>
+<td>450</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>1.80</td>
+<td>2.8</td>
+<td>2,800</td>
+<td>380</td>
+</tr>
+<tr>
+<td>LINE</td>
+<td>0.80</td>
+<td>4.0</td>
+<td>3,800</td>
+<td>400</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>補足</strong>: 上記は動画広告に限定したEC/D2C業界の中央値。商材単価や利益率により大きく変動するため、自社データが蓄積されたら上書き推奨。</p>
+</blockquote>
+<hr />
+<h2>条件付き書式の設定</h2>
+<h3>設定1：ROAS列（K3:K14）のカラースケール</h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>書式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROAS 500%以上</td>
+<td>緑背景（#C6EFCE）＋太字</td>
+</tr>
+<tr>
+<td>ROAS 300〜499%</td>
+<td>黄背景（#FFEB9C）</td>
+</tr>
+<tr>
+<td>ROAS 300%未満</td>
+<td>赤背景（#FFC7CE）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Excel設定手順：</strong>
+1. K3:K14を選択
+2. ホーム → 条件付き書式 → 新しいルール
+3. 「数式を使用して…」を選択</p>
+<pre><code>緑: =$K3&gt;=500
+黄: =AND($K3&gt;=300, $K3&lt;500)
+赤: =$K3&lt;300
+</code></pre>
+<h3>設定2：判定列（P3:P14）のアイコン表示</h3>
+<table>
+<thead>
+<tr>
+<th>判定テキスト</th>
+<th>書式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>◎ 勝ち</td>
+<td>緑背景＋太字</td>
+</tr>
+<tr>
+<td>× 負け</td>
+<td>赤背景＋赤文字</td>
+</tr>
+</tbody>
+</table>
+<pre><code>緑: =LEFT($P3,1)=&quot;◎&quot;
+赤: =LEFT($P3,1)=&quot;×&quot;
+</code></pre>
+<h3>設定3：業界比較ハイライト（H〜K列 vs L〜O列）</h3>
+<p>自社値が業界値を上回るセルを緑文字にする。</p>
+<pre><code>H列: =$H3&gt;=$L3
+I列: =$I3&gt;=$M3
+J列: =$J3&lt;=$N3   ← CPAは低い方が良いので不等号逆
+K列: =$K3&gt;=$O3
+</code></pre>
+<hr />
+<h2>集計エリア（16〜20行目）</h2>
+<p>シート下部にプラットフォーム別サマリーを設置する。</p>
+<h3>プラットフォーム別合計・平均</h3>
+<pre><code>C16（YouTube広告費合計）  = SUM(C3:C5)
+H16（YouTube平均CTR）     = AVERAGEIF(H3:H5,&quot;&gt;&quot;&amp;0)
+K16（YouTube平均ROAS）    = IF(SUM(C3:C5)=0, 0, SUM(G3:G5)/SUM(C3:C5)*100)
+</code></pre>
+<blockquote>
+<p><strong>ROAS平均の注意</strong>: 単純平均ではなく加重平均（総売上÷総広告費）を使う。広告費の大きいクリエイティブの影響を正しく反映するため。</p>
+</blockquote>
+<h3>全体サマリー（20行目）</h3>
+<pre><code>C20（総広告費）   = SUM(C3:C14)
+K20（総合ROAS）   = IF(C20=0, 0, SUM(G3:G14)/C20*100)
+J20（全体CPA）    = IF(SUM(F3:F14)=0, 0, C20/SUM(F3:F14))
+P20（ベスト）     = INDEX(B3:B14, MATCH(MAX(K3:K14), K3:K14, 0))
+</code></pre>
+<hr />
+<h2>使い方（3ステップ）</h2>
+<p><strong>Step 1｜データ入力</strong>
+C〜G列（広告費・imp・click・CV・売上）に各プラットフォームの管理画面から数値を転記する。週次または月次で更新。</p>
+<p><strong>Step 2｜自動判定を確認</strong>
+H〜K列のKPIとP列の判定が自動で算出される。緑ハイライトのクリエイティブが現時点の勝者。</p>
+<p><strong>Step 3｜アクションを決定</strong></p>
+<table>
+<thead>
+<tr>
+<th>判定結果</th>
+<th>推奨アクション</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>◎ 勝ち</td>
+<td>予算を集中投下。類似バリエーションを追加テスト</td>
+</tr>
+<tr>
+<td>○ 普通</td>
+<td>CTRまたはCVRのどちらがボトルネックか特定して改善</td>
+</tr>
+<tr>
+<td>△ 要改善</td>
+<td>サムネイル・冒頭3秒・CTAを変更して再テスト</td>
+</tr>
+<tr>
+<td>× 負け</td>
+<td>配信停止。予算を勝ちクリエイティブへ再配分</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>A/Bテスト運用のポイント</h2>
+<ol>
+<li><strong>同時期・同予算で比較する</strong> — 時期ズレは季節要因が混入する</li>
+<li><strong>最低1,000クリック到達まで判定しない</strong> — サンプル不足の早期判断は誤判定の元</li>
+<li><strong>変数は1つずつ変える</strong> — サムネ＋CTA＋尺を同時に変えると勝因が特定できない</li>
+<li><strong>2週間サイクルで回す</strong> — テスト→判定→差替えを月2回ペースで継続</li>
+</ol>
+<hr />
+<h2>Google Sheetsで使う場合の補足</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>対応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>条件付き書式</td>
+<td>表示形式 → 条件付き書式 → カスタム数式。Excel版と同じ数式がそのまま使える</td>
+</tr>
+<tr>
+<td>OFFSET関数</td>
+<td>Google Sheetsでも完全互換</td>
+</tr>
+<tr>
+<td>色コード</td>
+<td>Excelのテーマカラーは自動変換されないため、カスタム色（#C6EFCE等）を手動設定</td>
+</tr>
+<tr>
+<td>共同編集</td>
+<td>シート保護（データ → シートを保護）で数式セルをロックし、入力セルのみ編集可にする</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>このテンプレートを使えば、動画広告の勝ちパターンをデータで即判断できます。感覚的な「なんとなく良さそう」から脱却し、ROAS起点の意思決定を始めましょう。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

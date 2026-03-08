@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI規制対応タスク管理＆ロードマップシート（拡充版） - kusasyu tools</title>
+<meta name="description" content="日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,AI規制対応タスク管理＆ロードマップシート（拡充版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-6/">
+<meta property="og:title" content="AI規制対応タスク管理＆ロードマップシート（拡充版） - kusasyu tools">
+<meta property="og:description" content="日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI規制対応タスク管理＆ロードマップシート（拡充版） - kusasyu tools">
+<meta name="twitter:description" content="日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI規制対応タスク管理＆ロードマップシート（拡充版）",
+  "description": "日本AI新法・韓国AI基本法（2026年1月施行・罰則付き）・カリフォルニア州AI規制（2026年1月施行）の3管轄に対し、企業が設問に回答するだけでコンプライアンス・ギャップをスコアリングし、対応すべきタスクを優先度付きで一覧化するインタラクティブ診断ツール＋対応管理シート＋経営報告テンプレートの3点セット",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-01"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>AI規制対応タスク管理＆ロードマップシート（拡充版）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>AI規制対応タスク管理＆ロードマップシート（拡充版）</h1>
+  <p class="project-name">AI RegCheck — マルチ管轄AI規制コンプライアンス・ギャップ診断＆対応管理ツールキット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管轄名</th><th>規制条項</th><th>対応タスク</th><th>優先度</th><th>難易度</th><th>担当部署</th><th>期限</th><th>ステータス</th><th>証跡ファイル名</th><th>備考</th></tr></thead><tbody><tr><td>日本</td><td>AI新法 第12条（影響評価義務）</td><td>高リスクAIシステムの影響評価を実施し報告書を作成する</td><td>A</td><td>高</td><td>法務部</td><td>2026-06-30</td><td>未着手</td><td></td><td>AI RegCheck診断スコア70点未満の項目を優先対応</td></tr><tr><td>日本</td><td>AI新法 第8条（透明性確保義務）</td><td>AI利用についてのユーザー向け説明文書を整備する</td><td>A</td><td>中</td><td>法務部／AI推進室</td><td>2026-05-31</td><td>未着手</td><td></td><td>顧客接点のあるAI機能すべてが対象</td></tr><tr><td>日本</td><td>AI新法 第15条（ガバナンス体制）</td><td>AI倫理委員会を設置し運営規程を策定する</td><td>A</td><td>高</td><td>経営企画部</td><td>2026-04-30</td><td>未着手</td><td></td><td>取締役会決議が必要</td></tr><tr><td>日本</td><td>AI新法 第10条（届出義務）</td><td>高リスクAIシステムの利用届出を所管官庁へ提出する</td><td>A</td><td>中</td><td>法務部</td><td>2026-06-30</td><td>未着手</td><td></td><td>届出様式は官庁HPで公開予定</td></tr><tr><td>日本</td><td>AI新法 第20条（社内規程）</td><td>AI利用に関する社内ポリシー・ガイドラインを策定する</td><td>B</td><td>中</td><td>法務部／人事部</td><td>2026-07-31</td><td>未着手</td><td></td><td>就業規則改定も検討</td></tr><tr><td>日本</td><td>AI新法 第14条（説明義務）</td><td>AIによる自動意思決定について個別説明フローを構築する</td><td>B</td><td>高</td><td>AI推進室</td><td>2026-08-31</td><td>未着手</td><td></td><td>顧客向けFAQ・問合せ窓口を含む</td></tr><tr><td>日本</td><td>AI新法 第11条（データ品質）</td><td>学習データの品質管理プロセスとチェックリストを整備する</td><td>B</td><td>高</td><td>AI推進室／情報システム部</td><td>2026-08-31</td><td>未着手</td><td></td><td>外部ベンダー提供データも対象</td></tr><tr><td>日本</td><td>AI新法 第18条（事故報告）</td><td>AI関連インシデント発生時の報告フロー・連絡体制を構築する</td><td>A</td><td>中</td><td>法務部／情報システム部</td><td>2026-05-31</td><td>未着手</td><td></td><td>72時間以内報告ルールに対応</td></tr><tr><td>日本</td><td>AI新法 第16条（人的監督）</td><td>AIシステムの運用における人的監督体制・承認フローを整備する</td><td>B</td><td>中</td><td>AI推進室</td><td>2026-07-31</td><td>未着手</td><td></td><td>自動化レベルに応じた監督基準を設定</td></tr><tr><td>日本</td><td>AI新法 第22条（記録保持）</td><td>AI利用に関するログ・判断記録の保持ポリシーを策定する</td><td>C</td><td>中</td><td>情報システム部</td><td>2026-09-30</td><td>未着手</td><td></td><td>保持期間は最低5年を想定</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管轄名,規制条項,対応タスク,優先度,難易度,担当部署,期限,ステータス,証跡ファイル名,備考
+日本,AI新法 第12条（影響評価義務）,高リスクAIシステムの影響評価を実施し報告書を作成する,A,高,法務部,2026-06-30,未着手,,AI RegCheck診断スコア70点未満の項目を優先対応
+日本,AI新法 第8条（透明性確保義務）,AI利用についてのユーザー向け説明文書を整備する,A,中,法務部／AI推進室,2026-05-31,未着手,,顧客接点のあるAI機能すべてが対象
+日本,AI新法 第15条（ガバナンス体制）,AI倫理委員会を設置し運営規程を策定する,A,高,経営企画部,2026-04-30,未着手,,取締役会決議が必要
+日本,AI新法 第10条（届出義務）,高リスクAIシステムの利用届出を所管官庁へ提出する,A,中,法務部,2026-06-30,未着手,,届出様式は官庁HPで公開予定
+日本,AI新法 第20条（社内規程）,AI利用に関する社内ポリシー・ガイドラインを策定する,B,中,法務部／人事部,2026-07-31,未着手,,就業規則改定も検討
+日本,AI新法 第14条（説明義務）,AIによる自動意思決定について個別説明フローを構築する,B,高,AI推進室,2026-08-31,未着手,,顧客向けFAQ・問合せ窓口を含む
+日本,AI新法 第11条（データ品質）,学習データの品質管理プロセスとチェックリストを整備する,B,高,AI推進室／情報システム部,2026-08-31,未着手,,外部ベンダー提供データも対象
+日本,AI新法 第18条（事故報告）,AI関連インシデント発生時の報告フロー・連絡体制を構築する,A,中,法務部／情報システム部,2026-05-31,未着手,,72時間以内報告ルールに対応
+日本,AI新法 第16条（人的監督）,AIシステムの運用における人的監督体制・承認フローを整備する,B,中,AI推進室,2026-07-31,未着手,,自動化レベルに応じた監督基準を設定
+日本,AI新法 第22条（記録保持）,AI利用に関するログ・判断記録の保持ポリシーを策定する,C,中,情報システム部,2026-09-30,未着手,,保持期間は最低5年を想定
+韓国,AI基本法 第27条（事前影響評価）,韓国市場向けAIサービスの高影響AI事前影響評価を実施する,A,高,法務部／AI推進室,2026-05-31,未着手,,2026年1月施行・罰則付き。違反時最大3億ウォンの過料
+韓国,AI基本法 第10条（倫理基準）,韓国AI倫理基準に準拠した社内AI倫理規程を策定する,A,中,法務部,2026-05-31,未着手,,科学技術情報通信部の告示内容を反映
+韓国,AI基本法 第30条（告知義務）,AI利用である旨の告知文言・UI表示を韓国語で整備する,A,中,AI推進室／マーケティング部,2026-04-30,未着手,,ユーザー接点の全画面が対象
+韓国,AI基本法 第28条（記録保存）,AI開発・運用の記録保存体制を韓国法要件に合わせて整備する,B,中,情報システム部,2026-07-31,未着手,,韓国語での記録保持が必要か要確認
+韓国,AI基本法 第25条（安全性テスト）,韓国向けAIサービスの安全性テスト計画を策定・実施する,A,高,AI推進室／品質管理部,2026-06-30,未着手,,第三者機関によるテストが推奨
+韓国,AI基本法 第35条（個人情報保護）,韓国個人情報保護法（PIPA）との整合性を確認し対応する,B,高,法務部,2026-07-31,未着手,,PIPAの2025年改正内容も反映
+韓国,AI基本法 第12条（差別禁止）,AIアルゴリズムの公平性監査を実施し差別リスクを評価する,B,高,AI推進室,2026-08-31,未着手,,性別・年齢・国籍等のバイアステスト
+韓国,AI基本法 第32条（事故対応）,韓国向けAI事故対応計画（IRP）を策定する,A,中,法務部／情報システム部,2026-05-31,未着手,,KISA（韓国インターネット振興院）への報告を含む
+韓国,AI基本法 第15条（教育訓練）,韓国AI基本法に関する社内教育プログラムを実施する,C,低,人事部,2026-09-30,未着手,,年1回以上の定期研修が推奨
+韓国,AI基本法 第29条（定期監査）,韓国向けAIシステムの定期監査スケジュールと手順を策定する,B,中,法務部／内部監査室,2026-08-31,未着手,,年次監査を基本とする
+カリフォルニア,SB-1047（AI安全法）第5条,自動意思決定システム（ADS）の影響評価を実施する,A,高,法務部／AI推進室,2026-05-31,未着手,,2026年1月施行。カリフォルニア州の顧客がいる場合は対象
+カリフォルニア,SB-1047 第8条（消費者通知）,AI利用に関する消費者向け通知文を英語で作成し実装する,A,中,法務部／マーケティング部,2026-04-30,未着手,,Webサイト・アプリ内の全AI機能が対象
+カリフォルニア,AB-2930（アルゴリズム説明責任法）第3条,アルゴリズムの公平性・差別監査を第三者機関に委託し実施する,A,高,AI推進室,2026-06-30,未着手,,年次監査義務あり
+カリフォルニア,SB-942（AI透明性法）第4条,生成AIのトレーニングデータに関する透明性レポートを作成する,B,高,AI推進室／情報システム部,2026-08-31,未着手,,データソース・前処理手順の文書化
+カリフォルニア,SB-942 第6条（ウォーターマーク）,生成AIコンテンツへの電子透かし・来歴表示機能を実装する,B,高,情報システム部,2026-08-31,未着手,,C2PA規格準拠を推奨
+カリフォルニア,AB-2930 第7条（オプトアウト）,AI利用に関する消費者オプトアウト機能を実装する,B,中,情報システム部／AI推進室,2026-07-31,未着手,,UI・API両方での対応が必要
+カリフォルニア,CCPA/CPRA AI条項,AIに関連するプライバシーポリシーを更新しCPRA要件に適合させる,A,中,法務部,2026-04-30,未着手,,既存プライバシーポリシーの改定で対応可
+カリフォルニア,SB-1047 第12条（年次報告）,AI利用に関する年次透明性報告書のテンプレートを作成する,C,中,法務部／経営企画部,2026-09-30,未着手,,初回報告は2027年3月末
+カリフォルニア,AB-2930 第10条（ベンダー管理）,サードパーティAIベンダーのデューデリジェンス手順を整備する,B,中,法務部／調達部,2026-07-31,未着手,,契約書のAI条項見直しを含む
+カリフォルニア,SB-1047 第15条（苦情処理）,AI関連の消費者苦情受付・処理体制を構築する,B,中,法務部／カスタマーサポート部,2026-07-31,未着手,,30日以内の回答義務あり
+,,,,,,,,,,
+===README: Excelでの活用手順===,,,,,,,,,,
+,,,,,,,,,,
+【1. ファイルの開き方】,,,,,,,,,,
+"本CSVはUTF-8エンコーディングです。Excelで開く際は「データ」→「テキストまたはCSVから」→エンコーディング「UTF-8」を選択してください。",,,,,,,,,,
+"直接ダブルクリックで文字化けする場合は、上記手順で再度インポートしてください。",,,,,,,,,,
+,,,,,,,,,,
+【2. フィルタの設定】,,,,,,,,,,
+"1行目（ヘッダー行）を選択 → 「データ」タブ → 「フィルター」をクリック。各列のドロップダウンで管轄名・優先度・ステータス等を絞り込めます。",,,,,,,,,,
+,,,,,,,,,,
+【3. 条件付き書式（ステータス別色分け）の設定手順】,,,,,,,,,,
+"手順1: ステータス列（H列）のデータ範囲を選択（H2:H31）",,,,,,,,,,
+"手順2: 「ホーム」→「条件付き書式」→「新しいルール」→「指定の値を含むセルだけを書式設定」",,,,,,,,,,
+"手順3: 以下の3ルールを順に作成する",,,,,,,,,,
+"  ルール1: セルの値 = ""完了"" → 塗りつぶし: 緑（#C6EFCE）/ 文字色: 濃緑（#006100）",,,,,,,,,,
+"  ルール2: セルの値 = ""対応中"" → 塗りつぶし: 黄（#FFEB9C）/ 文字色: 濃黄（#9C5700）",,,,,,,,,,
+"  ルール3: セルの値 = ""未着手"" → 塗りつぶし: 赤（#FFC7CE）/ 文字色: 濃赤（#9C0006）",,,,,,,,,,
+,,,,,,,,,,
+【4. 優先度別の条件付き書式（任意）】,,,,,,,,,,
+"D列（優先度）に対し同様の手順で設定: A=赤系、B=黄系、C=緑系",,,,,,,,,,
+,,,,,,,,,,
+【5. AI RegCheck診断エンジンとの連携】,,,,,,,,,,
+"AI RegCheck診断ツールの「CSVエクスポート」機能で出力されるCSVは本シートと同一の列構成です。",,,,,,,,,,
+"エクスポートしたCSVをExcelで開き、データ行をコピーして本シートの最終行以降に貼り付けることで統合運用できます。",,,,,,,,,,
+"統合後はフィルタ・並べ替えで管轄別・優先度別に整理してください。",,,,,,,,,,
+,,,,,,,,,,
+【6. ステータスの運用ルール（推奨）】,,,,,,,,,,
+"未着手: タスク未開始",,,,,,,,,,
+"対応中: 着手済み・作業進行中",,,,,,,,,,
+"完了: 対応完了・証跡ファイル添付済み",,,,,,,,,,
+"保留: 法令の施行細則待ち等で一時停止中",,,,,,,,,,
+,,,,,,,,,,
+"※本テンプレートはAI RegCheck — マルチ管轄コンプライアンス・ギャップ診断の対応管理シート（拡充版）です。",,,,,,,,,,
+"※3管轄（日本AI新法・韓国AI基本法・カリフォルニア州AI規制）の主要30タスクをプリセットしています。",,,,,,,,,,
+"※診断スコアに応じてタスクの優先度・期限を適宜調整してご利用ください。",,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_AI規制対応タスク管理＆ロードマップシート（拡充版）.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

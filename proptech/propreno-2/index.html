@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>売却前リノベ判断フロー＆提案書テンプレート（シミュレーター連動版） - kusasyu tools</title>
+<meta name="description" content="中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,売却前リノベ判断フロー＆提案書テンプレート（シミュレーター連動版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propreno-2/">
+<meta property="og:title" content="売却前リノベ判断フロー＆提案書テンプレート（シミュレーター連動版） - kusasyu tools">
+<meta property="og:description" content="中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propreno-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="売却前リノベ判断フロー＆提案書テンプレート（シミュレーター連動版） - kusasyu tools">
+<meta name="twitter:description" content="中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "売却前リノベ判断フロー＆提案書テンプレート（シミュレーター連動版）",
+  "description": "中古物件の売却前リノベーションの費用対効果を即座に試算するHTMLツール。物件の築年数・面積・エリア・現状グレードを入力すると、リノベーション項目別（キッチン/浴室/床・壁紙/外壁塗装/設備更新）の施工費概算と、施工後の想定売却価格上昇額を自動計算。「そのまま売る」vs「リノベして売る」のシナリオ比較で、RO",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propreno-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-01"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>売却前リノベ判断フロー＆提案書テンプレート（シミュレーター連動版）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>売却前リノベ判断フロー＆提案書テンプレート（シミュレーター連動版）</h1>
+  <p class="project-name">中古物件リノベーション投資対効果シミュレーター「PropReno」</p>
+  <div class="content">
+<h1>売却前リノベ判断フロー＆提案書テンプレート（PropReno リノベROIシミュレーター 連動版）</h1>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li><strong>STEP 1〜4の判断フロー</strong>に沿って物件を評価し、リノベーション実施の推奨度を判定する</li>
+<li>判定結果に基づき、<strong>提案書テンプレート（A4×2ページ）</strong>の各欄を記入する</li>
+<li>PropReno リノベROIシミュレーターの印刷出力を「シミュレーション結果」欄に貼り付ける</li>
+<li>売主への説明時にそのまま手渡せる提案書として使用する</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>: 判断フローの閾値はPropRenoの計算ロジックと整合しています。シミュレーター結果と合わせてご活用ください。</p>
+</blockquote>
+<hr />
+<h2>Part 1｜売却前リノベ 4ステップ判断フロー</h2>
+<h3>STEP 1｜リノベ候補物件の選定</h3>
+<table>
+<thead>
+<tr>
+<th>判定項目</th>
+<th>閾値</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>築年数</td>
+<td><strong>20年超</strong> → 候補 ／ 20年以下 → STEP 2へ（現状売却優先）</td>
+<td>□ 該当 □ 非該当</td>
+</tr>
+<tr>
+<td>エリア需要</td>
+<td><strong>需要「高」または「中」</strong> → 候補 ／「低」→ 現状売却推奨</td>
+<td>□ 該当 □ 非該当</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定ルール</strong>: 両方「該当」→ <strong>リノベ候補物件</strong>としてSTEP 2へ進む</p>
+<p>[記入例] 築28年・横浜市青葉区（需要「高」）→ 両方該当 → STEP 2へ</p>
+<hr />
+<h3>STEP 2｜現状グレード評価</h3>
+<table>
+<thead>
+<tr>
+<th>現状グレード</th>
+<th>定義</th>
+<th>リノベ効果の見込み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A（良好）</td>
+<td>直近5年以内にリフォーム済み</td>
+<td>低い → 現状売却推奨</td>
+</tr>
+<tr>
+<td>B（標準）</td>
+<td>使用感あるが大きな劣化なし</td>
+<td>中程度 → 部分リノベ検討</td>
+</tr>
+<tr>
+<td>C（要改修）</td>
+<td>設備老朽化・内装劣化が顕著</td>
+<td><strong>高い → STEP 3へ</strong></td>
+</tr>
+<tr>
+<td>D（大規模改修要）</td>
+<td>構造含む全面改修が必要</td>
+<td>費用過大リスク → 要精査</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定ルール</strong>: グレードB〜D → STEP 3へ ／ グレードA → 現状売却推奨</p>
+<p>[記入例] キッチン・浴室とも旧式、壁紙に汚れ多数 → グレードC → STEP 3へ</p>
+<hr />
+<h3>STEP 3｜PropRenoシミュレーション実行</h3>
+<p>PropReno リノベROIシミュレーターに以下を入力し、結果を取得する。</p>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>築年数</td>
+<td>＿＿＿年 [記入例] 28年</td>
+</tr>
+<tr>
+<td>延床面積</td>
+<td>＿＿＿㎡ [記入例] 85㎡</td>
+</tr>
+<tr>
+<td>エリア</td>
+<td>＿＿＿ [記入例] 横浜市青葉区</td>
+</tr>
+<tr>
+<td>現状グレード</td>
+<td>＿＿＿ [記入例] C（要改修）</td>
+</tr>
+<tr>
+<td>リノベ項目</td>
+<td>□キッチン □浴室 □床・壁紙 □外壁塗装 □設備更新</td>
+</tr>
+</tbody>
+</table>
+<p><strong>取得する数値</strong>:
+- 施工費合計: ＿＿＿万円
+- 想定売却価格上昇額: ＿＿＿万円
+- ROI: ＿＿＿％
+- 推奨リノベ組み合わせTOP3</p>
+<p>[記入例] キッチン+浴室+床・壁紙を選択 → 施工費合計380万円、売却価格上昇580万円、ROI 153%</p>
+<hr />
+<h3>STEP 4｜最終判定</h3>
+<p>シミュレーション結果から以下の基準で最終推奨度を判定する。</p>
+<table>
+<thead>
+<tr>
+<th>ROI</th>
+<th>投資回収見込み</th>
+<th>最終判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>120%以上</strong> かつ 回収2年以内</td>
+<td>◎</td>
+<td><strong>★強く推奨</strong> — リノベ実施を積極提案</td>
+</tr>
+<tr>
+<td><strong>100〜120%</strong></td>
+<td>○</td>
+<td><strong>推奨</strong> — 費用対効果あり、売主の意向次第</td>
+</tr>
+<tr>
+<td><strong>80〜100%</strong></td>
+<td>△</td>
+<td><strong>条件付き</strong> — 部分施工に絞る提案を検討</td>
+</tr>
+<tr>
+<td><strong>80%未満</strong></td>
+<td>×</td>
+<td><strong>非推奨</strong> — 現状売却を推奨</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定ルール</strong>:
+- ROI 120%以上 ＋ 回収期間2年以内 → 提案書を作成し<strong>強く推奨</strong>
+- ROI 100〜120% → 提案書を作成し<strong>推奨</strong>として提示
+- ROI 80%未満 → 提案書は作成せず、現状売却プランを提示</p>
+<p>[記入例] ROI 153%、回収期間 約1.2年 → ★強く推奨</p>
+<hr />
+<h2>Part 2｜提案書テンプレート（A4×2ページ）</h2>
+<hr />
+<h3>──── 1ページ目 ────</h3>
+<hr />
+<h1>売却前リノベーションご提案書</h1>
+<p><strong>作成日</strong>: ＿＿＿＿年＿＿月＿＿日 [記入例] 2026年3月2日</p>
+<p><strong>作成者</strong>: ＿＿＿＿不動産 ＿＿＿＿ [記入例] 草薙不動産 田中太郎</p>
+<p><strong>売主様</strong>: ＿＿＿＿ 様 [記入例] 佐藤一郎 様</p>
+<hr />
+<h2>1. 物件概要</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所在地</td>
+<td>＿＿＿＿＿＿＿＿＿ [記入例] 神奈川県横浜市青葉区美しが丘2丁目</td>
+</tr>
+<tr>
+<td>物件種別</td>
+<td>□ マンション ／ □ 戸建て [記入例] マンション</td>
+</tr>
+<tr>
+<td>築年数</td>
+<td>＿＿＿年（＿＿＿＿年築） [記入例] 28年（1998年築）</td>
+</tr>
+<tr>
+<td>延床面積</td>
+<td>＿＿＿㎡ [記入例] 85㎡（3LDK）</td>
+</tr>
+<tr>
+<td>間取り</td>
+<td>＿＿＿＿ [記入例] 3LDK</td>
+</tr>
+<tr>
+<td>エリア需要</td>
+<td>高 ／ 中 ／ 低 [記入例] 高</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 現状評価</h2>
+<table>
+<thead>
+<tr>
+<th>評価項目</th>
+<th>現状</th>
+<th>グレード</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>キッチン</td>
+<td>＿＿＿＿＿＿＿ [記入例] 旧式システムキッチン、水栓に劣化あり</td>
+<td>C</td>
+</tr>
+<tr>
+<td>浴室</td>
+<td>＿＿＿＿＿＿＿ [記入例] ユニットバス、タイルにひび割れ</td>
+<td>C</td>
+</tr>
+<tr>
+<td>床・壁紙</td>
+<td>＿＿＿＿＿＿＿ [記入例] フローリング傷多数、壁紙黄ばみ</td>
+<td>C</td>
+</tr>
+<tr>
+<td>外壁</td>
+<td>＿＿＿＿＿＿＿ [記入例] 塗装剥がれ一部あり</td>
+<td>B</td>
+</tr>
+<tr>
+<td>設備</td>
+<td>＿＿＿＿＿＿＿ [記入例] 給湯器15年経過、エアコン旧式</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p><strong>総合グレード</strong>: ＿＿ [記入例] C（要改修）</p>
+<hr />
+<h2>3. シミュレーション結果（PropReno リノベROIシミュレーター出力）</h2>
+<blockquote>
+<p><strong>【ここにPropRenoの印刷出力を貼り付けてください】</strong></p>
+<p>貼付手順: PropRenoシミュレーター画面で「印刷」ボタンを押下 → A4印刷 → この枠内に貼付</p>
+<p>※ シミュレーション結果には以下が含まれます:
+- リノベーション項目別の施工費概算
+- 施工後の想定売却価格上昇額
+- 「そのまま売る」vs「リノベして売る」シナリオ比較
+- ROIが最大になるリノベ組み合わせTOP3</p>
+</blockquote>
+<p><strong>シミュレーション要約</strong>（印刷出力から転記）:</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>現状での想定売却価格</td>
+<td>＿＿＿＿万円 [記入例] 3,200万円</td>
+</tr>
+<tr>
+<td>推奨リノベ施工費合計</td>
+<td>＿＿＿＿万円 [記入例] 380万円</td>
+</tr>
+<tr>
+<td>リノベ後の想定売却価格</td>
+<td>＿＿＿＿万円 [記入例] 3,780万円</td>
+</tr>
+<tr>
+<td>想定売却価格上昇額</td>
+<td>＿＿＿＿万円 [記入例] 580万円</td>
+</tr>
+<tr>
+<td><strong>ROI</strong></td>
+<td><strong>＿＿＿％</strong> [記入例] <strong>153%</strong></td>
+</tr>
+<tr>
+<td><strong>投資回収見込み</strong></td>
+<td>＿＿＿ [記入例] 約1.2年</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>──── 2ページ目 ────</h3>
+<hr />
+<h2>4. 推奨アクション</h2>
+<h3>判定結果: ＿＿＿＿＿ [記入例] ★強く推奨（ROI 120%以上・回収2年以内）</h3>
+<h3>推奨リノベーション施工内容</h3>
+<table>
+<thead>
+<tr>
+<th>優先順位</th>
+<th>施工項目</th>
+<th>概算費用</th>
+<th>売却価格への効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>＿＿＿＿ [記入例] キッチン交換</td>
+<td>＿＿万円 [記入例] 150万円</td>
+<td>＿＿万円 [記入例] +250万円</td>
+</tr>
+<tr>
+<td>2</td>
+<td>＿＿＿＿ [記入例] 浴室リニューアル</td>
+<td>＿＿万円 [記入例] 120万円</td>
+<td>＿＿万円 [記入例] +180万円</td>
+</tr>
+<tr>
+<td>3</td>
+<td>＿＿＿＿ [記入例] 床・壁紙張替え</td>
+<td>＿＿万円 [記入例] 110万円</td>
+<td>＿＿万円 [記入例] +150万円</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>※ 施工費概算は国土交通省「住宅リフォーム単価統計」に基づくPropReno試算値です。
+※ 想定売却価格上昇額は不動産流通機構の成約価格データに基づく推計です。</p>
+</blockquote>
+<h3>今後のスケジュール（目安）</h3>
+<table>
+<thead>
+<tr>
+<th>段階</th>
+<th>内容</th>
+<th>期間目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 施工業者選定</td>
+<td>見積り取得（2〜3社推奨）</td>
+<td>2週間</td>
+</tr>
+<tr>
+<td>② 施工実施</td>
+<td>リノベーション工事</td>
+<td>3〜6週間</td>
+</tr>
+<tr>
+<td>③ 売却活動開始</td>
+<td>内覧・販売活動</td>
+<td>施工完了後即時</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. よくあるご質問</h2>
+<p><strong>Q1. リノベーション費用はどうやって用意すればいいですか？</strong></p>
+<p>主に3つの方法があります。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>概要</th>
+<th>目安金利</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>リフォームローン</strong></td>
+<td>無担保で借入可能。審査が早い</td>
+<td>年2〜5%</td>
+</tr>
+<tr>
+<td><strong>住宅ローン借り換え</strong></td>
+<td>既存ローン残債にリノベ費用を上乗せ</td>
+<td>年0.5〜1.5%</td>
+</tr>
+<tr>
+<td><strong>売却代金からの精算</strong></td>
+<td>買主との価格交渉で施工費を反映し、売却代金から回収</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>[記入例] 380万円のリノベ費用 → リフォームローン（年3%・2年返済）で月約16.3万円。売却益580万円で完済後も約200万円の手取り増。</p>
+<p><strong>Q2. リノベしても売れなかったらどうなりますか？</strong></p>
+<p>PropRenoの試算はエリア需要を考慮しています。本物件のエリア需要は「＿＿」[記入例] 高 であり、直近の同エリア成約データに基づく試算です。ただし市場環境の変動リスクはゼロではないため、売却活動と並行して価格戦略の見直しも計画します。</p>
+<p><strong>Q3. 工事中に住み続けられますか？</strong></p>
+<p>施工内容により異なります。キッチン・浴室のみの場合は居住しながらの工事が可能です（工期3〜4週間目安）。全面施工の場合は仮住まいが必要になることがあります。</p>
+<p><strong>Q4. PropRenoの試算はどのくらい正確ですか？</strong></p>
+<p>PropReno リノベROIシミュレーターは国土交通省の住宅リフォーム単価統計と不動産流通機構（レインズ）の成約価格データに基づいて算出しています。概算見積もりとしての精度であり、実際の施工費は施工業者の見積り、売却価格は市場動向により変動します。正式な判断には施工業者の現地見積りを取得してください。</p>
+<hr />
+<h2>ご確認・ご署名</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>売主様ご確認</td>
+<td>□ 提案内容を確認しました</td>
+</tr>
+<tr>
+<td>ご意向</td>
+<td>□ リノベ実施で進めたい ／ □ 検討したい ／ □ 現状のまま売却したい</td>
+</tr>
+<tr>
+<td>ご署名</td>
+<td>＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>日付</td>
+<td>＿＿＿＿年＿＿月＿＿日</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本提案書はPropReno リノベROIシミュレーターによる概算試算に基づくものであり、確定的な売却価格・施工費を保証するものではありません。正式なご判断の際は施工業者の見積りおよび不動産査定をご取得ください。</em></p>
+<p><strong>ご不明な点は担当者までお気軽にお問い合わせください。</strong></p>
+<hr />
+<p><em>Powered by PropReno リノベROIシミュレーター ｜ Kusasyu PropTech</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

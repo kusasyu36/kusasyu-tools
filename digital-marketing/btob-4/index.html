@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BtoBパーソナライズ・テンプレート・セレクター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 6px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:18px}
+.panel{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.row label{font-size:.82em;font-weight:700;color:#4a5568;width:100%;margin-bottom:2px}
+.btn{flex:1;min-width:100px;padding:10px 6px;border:2px solid #cbd5e0;border-radius:8px;background:#fff;font-size:.88em;cursor:pointer;text-align:center;transition:.15s}
+.btn:hover{border-color:#4299e1;background:#ebf8ff}
+.btn.active{border-color:#3182ce;background:#3182ce;color:#fff;font-weight:700}
+.tone-row{display:flex;gap:8px;margin-bottom:10px}
+.tone-btn{padding:8px 16px;border:2px solid #cbd5e0;border-radius:20px;background:#fff;font-size:.82em;cursor:pointer;transition:.15s}
+.tone-btn.active{border-color:#38a169;background:#38a169;color:#fff;font-weight:700}
+#result{display:none}
+.card{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:10px;position:relative}
+.card h3{font-size:.85em;color:#3182ce;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.card h3::before{content:"";display:inline-block;width:4px;height:16px;background:#3182ce;border-radius:2px}
+.card p{font-size:.9em;white-space:pre-wrap}
+.copy-btn{position:absolute;top:10px;right:10px;padding:4px 10px;border:1px solid #cbd5e0;border-radius:4px;background:#fff;font-size:.75em;cursor:pointer}
+.copy-btn:hover{background:#edf2f7}
+.copy-btn.done{background:#38a169;color:#fff;border-color:#38a169}
+.seg{font-size:.8em;color:#718096;background:#edf2f7;padding:8px 12px;border-radius:6px;margin-bottom:10px}
+.dl-btn{display:inline-block;padding:10px 20px;background:#2d3748;color:#fff;border:none;border-radius:8px;font-size:.88em;cursor:pointer;margin-top:6px}
+.dl-btn:hover{background:#4a5568}
+.foot{text-align:center;font-size:.75em;color:#a0aec0;padding:12px 0}
+@media(max-width:500px){.btn{min-width:80px;font-size:.8em;padding:8px 4px}.wrap{padding:10px}}
+</style>
+<meta name="description" content="BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoBパーソナライズ・テンプレート・セレクター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-4/">
+<meta property="og:title" content="BtoBパーソナライズ・テンプレート・セレクター - kusasyu tools">
+<meta property="og:description" content="BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoBパーソナライズ・テンプレート・セレクター - kusasyu tools">
+<meta name="twitter:description" content="BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoBパーソナライズ・テンプレート・セレクター",
+  "description": "BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>BtoB パーソナライズ・テンプレート・セレクター</h1>
+<p class="sub">業界の商談慣習に基づいたテンプレートをワンクリック選択・即コピー</p>
+<div class="panel">
+<div class="row"><label>業種</label>
+<button class="btn" data-g="ind" data-v="mfg" onclick="sel(this)">製造業</button>
+<button class="btn" data-g="ind" data-v="it" onclick="sel(this)">IT・SaaS</button>
+<button class="btn" data-g="ind" data-v="pro" onclick="sel(this)">士業</button>
+</div>
+<div class="row"><label>企業規模</label>
+<button class="btn" data-g="sz" data-v="s" onclick="sel(this)">〜30名</button>
+<button class="btn" data-g="sz" data-v="l" onclick="sel(this)">31名〜</button>
+</div>
+<div class="row"><label>購買段階</label>
+<button class="btn" data-g="stg" data-v="aw" onclick="sel(this)">認知</button>
+<button class="btn" data-g="stg" data-v="co" onclick="sel(this)">検討</button>
+<button class="btn" data-g="stg" data-v="de" onclick="sel(this)">決裁</button>
+</div>
+<div class="row"><label>敬語レベル</label>
+<div class="tone-row">
+<button class="tone-btn active" data-v="p" onclick="setTone(this)">丁寧体</button>
+<button class="tone-btn" data-v="b" onclick="setTone(this)">ビジネス体</button>
+</div>
+</div>
+</div>
+<div id="result">
+<div class="seg" id="seg-info"></div>
+<div class="card"><h3>初回アプローチメール</h3><p id="t-mail"></p><button class="copy-btn" onclick="cp('t-mail',this)">コピー</button></div>
+<div class="card"><h3>LP見出し</h3><p id="t-lp"></p><button class="copy-btn" onclick="cp('t-lp',this)">コピー</button></div>
+<div class="card"><h3>CTA文言</h3><p id="t-cta"></p><button class="copy-btn" onclick="cp('t-cta',this)">コピー</button></div>
+<button class="dl-btn" onclick="dlCSV()">CSV セグメント定義表ダウンロード</button>
+</div>
+<p class="foot">Kusasyu Digital Marketing｜18パターン×2敬語レベル対応</p>
+</div>
+<script>
+var S={ind:"",sz:"",stg:""},tone="p";
+var LB={ind:{mfg:"製造業",it:"IT・SaaS",pro:"士業"},sz:{s:"〜30名",l:"31名〜"},stg:{aw:"認知",co:"検討",de:"決裁"}};
+var D={
+"mfg_s_aw":{p:{mail:"突然のご連絡失礼いたします。\n貴社の製品製造における工程管理について、同規模の製造企業様で月間30時間の工数削減を実現した事例がございます。\n現場のお困りごとをお伺いできればと存じますが、15分ほどお時間をいただけますでしょうか。",lp:"製造現場の「あの手間」、同業他社はもう解決しています",cta:"製造業向け工数削減事例集を無料で受け取る"},b:{mail:"お世話になります。\n御社と同規模の製造企業で月間30時間の工数削減を実現した事例があります。\n現場の課題について15分ほどお話しできればと思いますが、いかがでしょうか。",lp:"製造現場の「あの手間」、同業他社はもう解決しています",cta:"工数削減事例集を今すぐダウンロード"}},
+"mfg_s_co":{p:{mail:"先日はお時間をいただきありがとうございました。\nご検討中の工程改善について、貴社と同じ従業員規模の企業様での導入ステップと費用感をまとめた資料をご用意いたしました。\n具体的な適用範囲のご相談も承れますので、お気軽にお申し付けください。",lp:"従業員30名以下の製造業に特化した導入プランをご提案",cta:"自社に合った導入プランを無料で相談する"},b:{mail:"先日はありがとうございました。\nご検討中の工程改善について、同規模企業での導入ステップと費用感の資料を用意しました。\n具体的な適用範囲もご相談いただけます。",lp:"30名以下の製造業に特化した導入プラン",cta:"導入プランを無料相談する"}},
+"mfg_s_de":{p:{mail:"ご検討ありがとうございます。\n決裁に必要な費用対効果の試算書をお送りいたします。初年度ROI 180%の根拠を明記しておりますので、社内稟議にそのままご活用いただけます。\nご不明点がございましたら何なりとお申し付けください。",lp:"稟議書テンプレート付き｜導入効果を数値で証明",cta:"稟議用ROI試算書を無料ダウンロード"},b:{mail:"ご検討ありがとうございます。\n費用対効果の試算書をお送りします。初年度ROI 180%の根拠を明記しており、社内稟議にそのまま使えます。\nご不明点があればお知らせください。",lp:"稟議書テンプレート付き｜導入効果を数値で証明",cta:"ROI試算書を今すぐ取得"}},
+"mfg_l_aw":{p:{mail:"突然のご連絡失礼いたします。\n貴社のような中堅製造企業様向けに、生産管理のDX化で年間1,200万円のコスト削減を実現した支援実績がございます。\n製造部門のご担当者様と情報交換の機会をいただけますと幸いです。",lp:"中堅製造業のDX推進｜年間1,200万円コスト削減の実績",cta:"製造DX成功事例レポートを無料で請求する"},b:{mail:"お世話になります。\n中堅製造企業向けに、生産管理DXで年間1,200万円のコスト削減を実現した実績があります。\n製造部門の方と情報交換の機会をいただければ幸いです。",lp:"中堅製造業のDX推進｜年間1,200万円コスト削減",cta:"DX成功事例レポートをダウンロード"}},
+"mfg_l_co":{p:{mail:"ご検討いただきありがとうございます。\n貴社の生産ライン構成に合わせたカスタマイズ提案書と、同業種での段階導入スケジュール案を作成いたしました。\n技術部門の方にもご同席いただける形でのデモをご提案させていただければと存じます。",lp:"既存ラインを止めない段階導入｜技術部門向けデモ受付中",cta:"カスタマイズ提案書とデモを無料で申し込む"},b:{mail:"ご検討ありがとうございます。\n御社の生産ライン構成に合わせた提案書と段階導入スケジュール案を作成しました。\n技術部門同席でのデモをご提案します。",lp:"既存ラインを止めない段階導入｜デモ受付中",cta:"提案書とデモを申し込む"}},
+"mfg_l_de":{p:{mail:"最終ご検討ありがとうございます。\n経営層向けの投資回収シミュレーションと、導入後の保守体制を含む契約条件書をご用意いたしました。\n役員会での説明にそのままお使いいただける体裁で作成しております。",lp:"役員説明資料一式を完備｜最短2週間で導入開始",cta:"経営層向け投資回収シミュレーションを請求する"},b:{mail:"最終検討ありがとうございます。\n経営層向け投資回収シミュレーションと保守体制含む契約条件書を用意しました。\n役員会説明にそのまま使える体裁です。",lp:"役員説明資料一式完備｜最短2週間で導入開始",cta:"投資回収シミュレーションを請求"}},
+"it_s_aw":{p:{mail:"突然のご連絡失礼いたします。\n少数精鋭のIT企業様に特化し、エンジニア1人あたりの生産性を25%向上させた導入事例をご紹介しております。\nSlack連携デモも可能ですので、お気軽にご連絡くださいませ。",lp:"エンジニア10名以下でも生産性25%向上を実現する方法",cta:"少数精鋭IT企業向け生産性改善事例を受け取る"},b:{mail:"お世話になります。\n少数精鋭のIT企業に特化し、エンジニア1人あたり生産性25%向上の導入事例をご紹介しています。\nSlack連携デモも可能です。",lp:"エンジニア10名以下でも生産性25%向上",cta:"生産性改善事例をダウンロード"}},
+"it_s_co":{p:{mail:"ご関心をお寄せいただきありがとうございます。\n貴社の技術スタックに合わせた連携構成図と、API仕様書をご用意いたしました。\nGitHub連携のハンズオンも実施可能ですので、ぜひご検討くださいませ。",lp:"既存の技術スタックにそのまま統合｜API連携ハンズオン",cta:"技術スタック別の連携構成図を無料で取得する"},b:{mail:"ご関心ありがとうございます。\n御社の技術スタックに合わせた連携構成図とAPI仕様書を用意しました。\nGitHub連携のハンズオンも実施可能です。",lp:"既存スタックにそのまま統合｜API連携ハンズオン",cta:"連携構成図を取得する"}},
+"it_s_de":{p:{mail:"最終ご検討ありがとうございます。\n月額費用と年間契約時の割引を反映したお見積書をお送りいたします。\nスタートアップ向け特別プランもご用意しておりますので、ぜひご確認くださいませ。",lp:"スタートアップ特別プラン｜年間契約で20%OFF",cta:"見積書とスタートアップ特別プランを確認する"},b:{mail:"最終検討ありがとうございます。\n月額費用と年間契約割引を反映した見積書をお送りします。\nスタートアップ向け特別プランも用意しています。",lp:"スタートアップ特別プラン｜年間契約20%OFF",cta:"見積書と特別プランを確認"}},
+"it_l_aw":{p:{mail:"突然のご連絡失礼いたします。\n開発チーム30名以上のIT企業様向けに、プロジェクト管理コストを年間800万円削減した実績がございます。\nエンタープライズ環境でのセキュリティ要件にも対応しております。",lp:"開発チーム30名超のプロジェクト管理コストを年間800万円削減",cta:"エンタープライズ向け導入事例集を無料請求"},b:{mail:"お世話になります。\n開発チーム30名以上のIT企業向けに、プロジェクト管理コスト年間800万円削減の実績があります。\nエンタープライズ環境のセキュリティ要件にも対応しています。",lp:"開発チーム30名超の管理コストを年間800万円削減",cta:"エンタープライズ導入事例集をダウンロード"}},
+"it_l_co":{p:{mail:"ご検討ありがとうございます。\nSSO対応・監査ログ・権限管理など、エンタープライズ要件を満たす構成でのPoC環境をご用意いたしました。\n情シス部門の方を交えた技術検証会をご提案いたします。",lp:"SSO・監査ログ完備｜情シス承認済みのセキュリティ基準",cta:"エンタープライズPoC環境を無料で申し込む"},b:{mail:"ご検討ありがとうございます。\nSSO・監査ログ・権限管理対応のPoC環境を用意しました。\n情シス部門を交えた技術検証会をご提案します。",lp:"SSO・監査ログ完備｜情シス承認済みセキュリティ",cta:"PoC環境を申し込む"}},
+"it_l_de":{p:{mail:"最終ご検討ありがとうございます。\nエンタープライズライセンスの年間契約書と、SLA保証内容を記載した覚書をお送りいたします。\n導入後の専任カスタマーサクセス体制もご確認くださいませ。",lp:"SLA保証99.9%＋専任CSチーム｜エンタープライズ契約",cta:"年間契約書とSLA詳細を請求する"},b:{mail:"最終検討ありがとうございます。\nエンタープライズライセンス年間契約書とSLA保証の覚書をお送りします。\n専任カスタマーサクセス体制も併せてご確認ください。",lp:"SLA保証99.9%＋専任CS｜エンタープライズ契約",cta:"契約書とSLA詳細を請求"}},
+"pro_s_aw":{p:{mail:"突然のご連絡失礼いたします。\n個人事務所・少人数事務所の先生方に特化した業務効率化サービスをご案内しております。\n顧問先対応の事務工数を月20時間削減した事例がございます。お忙しいところ恐縮ですが、資料だけでもご覧いただけますと幸いです。",lp:"士業事務所の事務工数を月20時間削減する方法",cta:"士業特化の業務効率化事例集を無料で受け取る"},b:{mail:"お世話になります。\n少人数事務所向けの業務効率化サービスをご案内しています。\n顧問先対応の事務工数を月20時間削減した事例があります。資料をお送りできますがいかがでしょうか。",lp:"士業事務所の事務工数を月20時間削減",cta:"業務効率化事例集をダウンロード"}},
+"pro_s_co":{p:{mail:"ご関心をお寄せいただきありがとうございます。\n先生の事務所規模に合わせた料金プランと、同じ士業の先生からのご評価をまとめた資料をお送りいたします。\n顧問先への影響なく段階的に導入できる手順もご説明いたします。",lp:"同業の先生方の声｜「顧問先に迷惑をかけず移行できた」",cta:"士業向け料金プランと導入事例を確認する"},b:{mail:"ご関心ありがとうございます。\n事務所規模に合わせた料金プランと、同業の先生方の評価資料をお送りします。\n顧問先に影響なく段階導入できる手順もご説明します。",lp:"同業の先生方の声｜「顧問先に迷惑なく移行できた」",cta:"料金プランと導入事例を確認"}},
+"pro_s_de":{p:{mail:"ご検討ありがとうございます。\n年間ご契約の場合の費用と、中途解約条件を明記した契約書案をお送りいたします。\n先生のご都合に合わせて、今月中のお申し込みで初月無料の特典もございます。",lp:"初月無料＋中途解約可能｜安心してお試しいただける契約設計",cta:"契約条件と初月無料特典の詳細を確認する"},b:{mail:"ご検討ありがとうございます。\n年間契約の費用と中途解約条件の契約書案をお送りします。\n今月中のお申し込みで初月無料です。",lp:"初月無料＋中途解約可能｜安心の契約設計",cta:"契約条件と初月無料特典を確認"}},
+"pro_l_aw":{p:{mail:"突然のご連絡失礼いたします。\n複数拠点・30名以上の総合事務所様向けに、所内ナレッジ共有と案件管理の一元化を実現するサービスをご提供しております。\n大規模事務所様での導入実績をご紹介できればと存じます。",lp:"30名以上の総合事務所向け｜案件管理とナレッジ共有を一元化",cta:"大規模事務所の導入実績レポートを無料請求"},b:{mail:"お世話になります。\n30名以上の総合事務所向けに、ナレッジ共有と案件管理一元化のサービスを提供しています。\n大規模事務所での導入実績をご紹介できます。",lp:"30名以上の総合事務所向け｜案件・ナレッジ一元化",cta:"大規模事務所の導入実績をダウンロード"}},
+"pro_l_co":{p:{mail:"ご検討いただきありがとうございます。\n所内の部門別権限設定やコンプライアンス要件に対応した構成でのデモ環境をご用意いたしました。\n所長先生・管理部門の方と合同でのご説明会も承ります。",lp:"部門別権限・コンプライアンス対応｜所内デモ実施中",cta:"部門別権限設定のデモ環境を無料で申し込む"},b:{mail:"ご検討ありがとうございます。\n部門別権限設定・コンプライアンス要件対応のデモ環境を用意しました。\n所長・管理部門合同での説明会も可能です。",lp:"部門別権限・コンプライアンス対応｜デモ実施中",cta:"デモ環境を申し込む"}},
+"pro_l_de":{p:{mail:"最終ご検討ありがとうございます。\nエンタープライズ契約の条件書と、導入後の専任サポート体制をまとめた資料をお送りいたします。\n年度予算への計上に間に合うよう、スケジュールも調整いたします。",lp:"年度予算対応｜専任サポート付きエンタープライズ契約",cta:"契約条件書と導入スケジュールを請求する"},b:{mail:"最終検討ありがとうございます。\nエンタープライズ契約条件書と専任サポート体制の資料をお送りします。\n年度予算計上に間に合うスケジュールで調整します。",lp:"年度予算対応｜専任サポート付き契約",cta:"契約条件書と導入スケジュールを請求"}}
+};
+function sel(el){var g=el.dataset.g;document.querySelectorAll('.btn[data-g="'+g+'"]').forEach(function(b){b.classList.remove("active")});el.classList.add("active");S[g]=el.dataset.v;render()}
+function setTone(el){document.querySelectorAll(".tone-btn").forEach(function(b){b.classList.remove("active")});el.classList.add("active");tone=el.dataset.v;render()}
+function render(){if(!S.ind||!S.sz||!S.stg)return;var key=S.ind+"_"+S.sz+"_"+S.stg,d=D[key][tone];document.getElementById("t-mail").textContent=d.mail;document.getElementById("t-lp").textContent=d.lp;document.getElementById("t-cta").textContent=d.cta;document.getElementById("seg-info").textContent="セグメント: "+LB.ind[S.ind]+" / "+LB.sz[S.sz]+" / "+LB.stg[S.stg]+" / "+(tone==="p"?"丁寧体":"ビジネス体");document.getElementById("result").style.display="block";document.querySelectorAll(".copy-btn").forEach(function(b){b.textContent="コピー";b.classList.remove("done")})}
+function cp(id,btn){var t=document.getElementById(id).textContent;if(navigator.clipboard){navigator.clipboard.writeText(t)}else{var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");document.body.removeChild(a)}btn.textContent="OK";btn.classList.add("done");setTimeout(function(){btn.textContent="コピー";btn.classList.remove("done")},1500)}
+function dlCSV(){var rows=[["業種","企業規模","購買段階","敬語","メール本文","LP見出し","CTA文言"]];var inds=["mfg","it","pro"],szs=["s","l"],stgs=["aw","co","de"],tns=["p","b"];for(var i=0;i<inds.length;i++)for(var j=0;j<szs.length;j++)for(var k=0;k<stgs.length;k++)for(var t=0;t<tns.length;t++){var key=inds[i]+"_"+szs[j]+"_"+stgs[k],d=D[key][tns[t]];rows.push([LB.ind[inds[i]],LB.sz[szs[j]],LB.stg[stgs[k]],tns[t]==="p"?"丁寧体":"ビジネス体",'"'+d.mail.replace(/\n/g," ").replace(/"/g,'""')+'"','"'+d.lp+'"','"'+d.cta+'"'])}var csv="\uFEFF"+rows.map(function(r){return r.join(",")}).join("\n");var blob=new Blob([csv],{type:"text/csv;charset=utf-8"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="btob_segment_templates.csv";a.click();URL.revokeObjectURL(url)}
+</script>
+</body>
+</html>

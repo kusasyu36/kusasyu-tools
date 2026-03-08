@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産売買契約書_リスク条項スコアリング＆改善提案ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.3em;padding:16px 0;color:#2d3748}
+.tabs{display:flex;gap:4px;margin-bottom:12px}
+.tab{flex:1;padding:10px;text-align:center;border:2px solid #4299e1;border-radius:8px;cursor:pointer;font-weight:700;transition:.2s}
+.tab.active{background:#4299e1;color:#fff}
+.tab:not(.active){background:#fff;color:#4299e1}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1em;color:#2b6cb0;margin-bottom:10px;border-bottom:2px solid #bee3f8;padding-bottom:4px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:.85em;font-weight:600;margin-bottom:3px}
+.field select,.field input{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9em}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4299e1,#3182ce);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin:8px 0}
+.btn:hover{opacity:.9}
+canvas{display:block;margin:0 auto}
+.score-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-weight:700;font-size:.85em;color:#fff}
+.s1{background:#38a169}.s2{background:#68d391}.s3{background:#ecc94b;color:#744210}.s4{background:#ed8936}.s5{background:#e53e3e}
+.detail{border-left:4px solid #e53e3e;background:#fff5f5;padding:10px 12px;margin:8px 0;border-radius:0 6px 6px 0;font-size:.85em}
+.detail h4{color:#c53030;margin-bottom:4px}
+.detail p{margin:2px 0}
+.low-risk{border-left-color:#38a169;background:#f0fff4}
+.low-risk h4{color:#276749}
+.total{text-align:center;font-size:1.8em;font-weight:700;margin:10px 0}
+.total.low{color:#38a169}.total.mid{color:#ecc94b}.total.high{color:#ed8936}.total.danger{color:#e53e3e}
+#results{display:none}
+</style>
+<meta name="description" content="PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産売買契約書_リスク条項スコアリング＆改善提案ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/proplegal-2/">
+<meta property="og:title" content="不動産売買契約書_リスク条項スコアリング＆改善提案ツール - kusasyu tools">
+<meta property="og:description" content="PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/proplegal-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産売買契約書_リスク条項スコアリング＆改善提案ツール - kusasyu tools">
+<meta name="twitter:description" content="PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産売買契約書_リスク条項スコアリング＆改善提案ツール",
+  "description": "PropClause（隠れコスト試算）の成功を受け、同じ「不動産契約書」ドメインの法務リスク面に展開。宅建業法35条（重要事項説明）・37条（契約書面）の準拠チェックと、売買契約条項のリスクスコアリングをブラウザ上で完結するツール2点を開発。中小不動産会社が弁護士なしで法務セルフチェックできることを価値訴求と",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/proplegal-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>売買契約書 リスクスコアリングツール</h1>
+<div class="tabs">
+<div class="tab active" onclick="setView('buyer')">買主側の視点</div>
+<div class="tab" onclick="setView('seller')">売主側の視点</div>
+</div>
+<div class="card"><h2>① 手付金</h2><div class="row">
+<div class="field"><label>手付金率（物件価格に対する%）</label><input type="number" id="c1" min="1" max="30" value="10" step="1"></div>
+<div class="field"><label>手付金の種類</label><select id="c1t"><option value="kaisho">解約手付</option><option value="shoyaku">証約手付</option><option value="iyaku">違約手付</option></select></div>
+</div></div>
+<div class="card"><h2>② 違約金</h2><div class="row">
+<div class="field"><label>違約金率（%）</label><input type="number" id="c2" min="5" max="30" value="20" step="1"></div>
+<div class="field"><label>損害賠償の予定額の有無</label><select id="c2t"><option value="yes">あり（違約金＝上限）</option><option value="no">なし（実損請求可）</option></select></div>
+</div></div>
+<div class="card"><h2>③ 契約不適合責任</h2><div class="row">
+<div class="field"><label>責任期間（月）</label><input type="number" id="c3" min="0" max="24" value="3"></div>
+<div class="field"><label>免責特約</label><select id="c3t"><option value="none">なし</option><option value="partial">一部免責</option><option value="all">全部免責</option></select></div>
+</div></div>
+<div class="card"><h2>④ ローン特約</h2><div class="row">
+<div class="field"><label>ローン特約</label><select id="c4"><option value="yes">あり</option><option value="no">なし</option></select></div>
+<div class="field"><label>解除期限（契約後の日数）</label><input type="number" id="c4d" min="7" max="90" value="30"></div>
+</div></div>
+<div class="card"><h2>⑤ 契約解除条件</h2><div class="row">
+<div class="field"><label>手付解除の期限</label><select id="c5"><option value="date">日付指定あり</option><option value="perf">履行着手まで</option><option value="none">定めなし</option></select></div>
+<div class="field"><label>催告解除の猶予期間（日）</label><input type="number" id="c5d" min="0" max="30" value="7"></div>
+</div></div>
+<div class="card"><h2>⑥ 引渡し条件</h2><div class="row">
+<div class="field"><label>引渡し猶予期間</label><select id="c6"><option value="same">決済同時</option><option value="short">1ヶ月以内</option><option value="long">1ヶ月超</option></select></div>
+<div class="field"><label>現況有姿条項</label><select id="c6t"><option value="no">なし</option><option value="yes">あり</option></select></div>
+</div></div>
+<div class="card"><h2>⑦ 公租公課精算</h2><div class="row">
+<div class="field"><label>起算日</label><select id="c7"><option value="jan">1月1日</option><option value="apr">4月1日</option></select></div>
+<div class="field"><label>精算条項の明確さ</label><select id="c7t"><option value="clear">明確</option><option value="vague">曖昧</option></select></div>
+</div></div>
+<div class="card"><h2>⑧ 付帯設備</h2><div class="row">
+<div class="field"><label>付帯設備表</label><select id="c8"><option value="detail">詳細記載あり</option><option value="simple">簡易記載</option><option value="none">なし</option></select></div>
+<div class="field"><label>設備の修復義務</label><select id="c8t"><option value="7day">引渡後7日以内</option><option value="none">免責</option></select></div>
+</div></div>
+<button class="btn" onclick="evaluate()">リスクを診断する</button>
+<div id="results">
+<div class="card"><h2>総合リスクスコア</h2><div class="total" id="totalScore"></div><canvas id="radar" width="320" height="320"></canvas></div>
+<div class="card"><h2>各条項の評価・改善提案</h2><div id="details"></div></div>
+</div>
+</div>
+<script>
+var V='buyer';
+function setView(v){V=v;document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',i===(v==='buyer'?0:1))});if(document.getElementById('results').style.display==='block')evaluate()}
+function g(id){var e=document.getElementById(id);return e.tagName==='SELECT'?e.value:parseFloat(e.value)||0}
+var labels=['手付金','違約金','契約不適合','ローン特約','解除条件','引渡し','公租公課','付帯設備'];
+function evaluate(){
+var scores=[],advices=[];
+var r1=g('c1'),t1=g('c1t'),s1;
+if(V==='buyer'){s1=r1<=5?1:r1<=10?2:r1<=15?3:r1<=20?4:5}else{s1=r1>=20?1:r1>=15?2:r1>=10?3:r1>=5?4:5}
+var a1=s1>=4?(V==='buyer'?'手付金率が高く解約時の負担大。10%以下への交渉を推奨。\n【改善文言例】「手付金は売買代金の10%とする」':'手付金率が低く保全が弱い。15〜20%を推奨。'):'適正範囲内。';
+if(t1==='iyaku'){s1=Math.min(5,s1+1);a1+=' 違約手付は拘束力が強い点に注意（宅建業法40条）。'}
+scores.push(s1);advices.push(a1);
+var r2=g('c2'),t2=g('c2t'),s2;
+if(V==='buyer'){s2=r2<=10?1:r2<=15?2:r2<=20?3:r2<=25?4:5}else{s2=r2>=25?1:r2>=20?2:r2>=15?3:r2>=10?4:5}
+var a2='';if(r2>20&&V==='buyer')a2='宅建業法38条：業者売主の場合、違約金＋損害賠償は代金の20%が上限。\n【改善文言例】「違約金は売買代金の20%を超えないものとする」';
+else if(r2<10&&V==='seller')a2='違約金が低く抑止力不足。15〜20%を推奨。';else a2='適正範囲内。';
+if(t2==='no'){s2=Math.min(5,s2+1);a2+=' 損害賠償額の予定なし＝実損請求の可能性あり。上限設定を推奨。'}
+scores.push(s2);advices.push(a2);
+var r3=g('c3'),t3=g('c3t'),s3;
+if(V==='buyer'){s3=r3>=12?1:r3>=6?2:r3>=3?3:r3>=1?4:5;if(t3==='all')s3=5;else if(t3==='partial')s3=Math.min(5,s3+1)}
+else{s3=r3<=1?1:r3<=3?2:r3<=6?3:r3<=12?4:5;if(t3==='all')s3=1}
+var a3=V==='buyer'&&s3>=4?'責任期間が短い/免責あり。最低3ヶ月、可能なら1年を交渉。\n【改善文言例】「契約不適合責任の期間は引渡しから1年間とする」\n※宅建業法40条：業者売主は2年以上が義務':'適正範囲内。';
+scores.push(s3);advices.push(a3);
+var r4=g('c4'),d4=g('c4d'),s4;
+if(V==='buyer'){s4=r4==='no'?5:(d4>=30?1:d4>=21?2:d4>=14?3:4)}else{s4=r4==='no'?1:(d4<=14?1:d4<=21?2:d4<=30?3:4)}
+var a4=V==='buyer'&&r4==='no'?'ローン特約なしは買主に極めて高リスク。必ず特約を付すべき。\n【改善文言例】「融資未承認の場合、買主は本契約を解除でき、手付金は全額返還する」':'適正。';
+scores.push(s4);advices.push(a4);
+var r5=g('c5'),d5=g('c5d'),s5;
+if(V==='buyer'){s5=r5==='perf'?1:r5==='date'?2:4;if(d5<7)s5=Math.min(5,s5+1)}else{s5=r5==='date'?1:r5==='perf'?3:4}
+var a5=s5>=4?'解除条件が曖昧。期限・猶予を明記すべき。\n【改善文言例】「催告後7日以内に是正なき場合、契約を解除できる」':'適正。';
+scores.push(s5);advices.push(a5);
+var r6=g('c6'),t6=g('c6t'),s6;
+if(V==='buyer'){s6=r6==='same'?1:r6==='short'?2:4;if(t6==='yes')s6=Math.min(5,s6+1)}else{s6=r6==='long'?1:r6==='short'?2:4}
+var a6=s6>=4?(V==='buyer'?'引渡猶予が長い/現況有姿はリスク大。\n【改善文言例】「引渡しは決済と同時に行う。現況有姿でも契約不適合責任は免除しない」':'引渡猶予が短くリスクあり。'):'適正。';
+scores.push(s6);advices.push(a6);
+var r7=g('c7'),t7=g('c7t'),s7=t7==='vague'?4:1;
+var a7=t7==='vague'?'精算方法が曖昧。起算日・日割計算を明記。\n【改善文言例】「公租公課は'+(r7==='jan'?'1月1日':'4月1日')+'を起算日とし日割精算する」':'適正。';
+scores.push(s7);advices.push(a7);
+var r8=g('c8'),t8=g('c8t'),s8;
+s8=r8==='detail'?1:r8==='simple'?3:5;
+if(t8==='none'&&V==='buyer')s8=Math.min(5,s8+1);
+var a8=s8>=3?'設備表の記載不足はトラブルの元。全設備を個別に記載し故障有無を明示。\n【改善文言例】「付帯設備表記載の設備は引渡後7日以内に限り修復する」':'適正。';
+scores.push(s8);advices.push(a8);
+var total=scores.reduce(function(a,b){return a+b},0);
+var avg=(total/8).toFixed(1);
+var te=document.getElementById('totalScore');
+te.textContent=avg+' / 5.0（'+(['','安全','やや安全','標準','要注意','高リスク'])[Math.round(parseFloat(avg))]+'）';
+te.className='total '+(avg<=1.5?'low':avg<=2.5?'mid':avg<=3.5?'high':'danger');
+drawRadar(scores);
+var html='';
+for(var i=0;i<8;i++){var cls=scores[i]>=4?'detail':'detail low-risk';html+='<div class="'+cls+'"><h4>'+labels[i]+' <span class="score-badge s'+scores[i]+'">'+scores[i]+'/5</span></h4><p>'+advices[i].replace(/\n/g,'<br>')+'</p></div>'}
+document.getElementById('details').innerHTML=html;
+document.getElementById('results').style.display='block';
+document.getElementById('results').scrollIntoView({behavior:'smooth'})}
+function drawRadar(sc){
+var c=document.getElementById('radar'),ctx=c.getContext('2d'),cx=160,cy=160,R=120,n=8;
+ctx.clearRect(0,0,320,320);
+for(var lv=1;lv<=5;lv++){ctx.beginPath();for(var i=0;i<=n;i++){var a=-Math.PI/2+2*Math.PI/n*i,r=R*lv/5;ctx[i?'lineTo':'moveTo'](cx+r*Math.cos(a),cy+r*Math.sin(a))}ctx.strokeStyle='#e2e8f0';ctx.stroke()}
+for(var i=0;i<n;i++){var a=-Math.PI/2+2*Math.PI/n*i;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));ctx.strokeStyle='#cbd5e0';ctx.stroke();ctx.fillStyle='#2d3748';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText(labels[i],cx+(R+18)*Math.cos(a),cy+(R+18)*Math.sin(a)+4)}
+ctx.beginPath();
+for(var i=0;i<=n;i++){var idx=i%n,a=-Math.PI/2+2*Math.PI/n*i,r=R*sc[idx]/5;ctx[i?'lineTo':'moveTo'](cx+r*Math.cos(a),cy+r*Math.sin(a))}
+ctx.fillStyle='rgba(229,62,62,.2)';ctx.fill();ctx.strokeStyle='#e53e3e';ctx.lineWidth=2;ctx.stroke();
+for(var i=0;i<n;i++){var a=-Math.PI/2+2*Math.PI/n*i,r=R*sc[i]/5;ctx.beginPath();ctx.arc(cx+r*Math.cos(a),cy+r*Math.sin(a),4,0,2*Math.PI);ctx.fillStyle='#e53e3e';ctx.fill()}}
+</script>
+</body>
+</html>

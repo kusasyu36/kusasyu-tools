@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理会社向け・外国人入居説明テンプレート（4言語対照表） - kusasyu tools</title>
+<meta name="description" content="外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,管理会社向け・外国人入居説明テンプレート（4言語対照表）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propglobal-2/">
+<meta property="og:title" content="管理会社向け・外国人入居説明テンプレート（4言語対照表） - kusasyu tools">
+<meta property="og:description" content="外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propglobal-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="管理会社向け・外国人入居説明テンプレート（4言語対照表） - kusasyu tools">
+<meta name="twitter:description" content="外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "管理会社向け・外国人入居説明テンプレート（4言語対照表）",
+  "description": "外国人入居者が日本の賃貸契約で発生する「見えないコスト」（礼金・更新料・保証会社費用・火災保険・退去時原状回復費等）を多言語で可視化・試算するHTMLツール。日本独特の商慣習（敷金/礼金/更新料/保証会社）を英語・中国語・ベトナム語で解説しながら、物件比較時の5年間トータルコストを自動計算。管理会社が外国人テ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propglobal-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-02-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>管理会社向け・外国人入居説明テンプレート（4言語対照表）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>管理会社向け・外国人入居説明テンプレート（4言語対照表）</h1>
+  <p class="project-name">外国人テナント向け賃貸契約トータルコスト診断ツール「PropGlobal」</p>
+  <div class="content">
+<h1>PropGlobal 外国人入居者向け説明テンプレート（4言語対照表）</h1>
+<h2>使い方</h2>
+<ol>
+<li>各セクションの【　】内に物件固有の情報を記入してください（[記入例]を参考に）</li>
+<li>入居者の母語に応じて該当言語列をハイライトまたは抜粋して配布可能です</li>
+<li>A4印刷・PDF配布・メール添付いずれにも対応するレイアウトです</li>
+<li>契約締結前に本テンプレートを用いて口頭説明を行い、入居者の署名を取得してください</li>
+</ol>
+<hr />
+<h2>1. 契約基本条件 / Basic Contract Terms / 基本合同条款 / Điều khoản hợp đồng cơ bản</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件名</td>
+<td>【　】[記入例: グランメゾン新宿301号室]</td>
+<td>【　】[Ex: Gran Maison Shinjuku #301]</td>
+<td>【　】[例: 新宿Gran Maison 301室]</td>
+<td>【　】[VD: Gran Maison Shinjuku phòng 301]</td>
+</tr>
+<tr>
+<td>月額賃料</td>
+<td>【　】円 [記入例: 85,000円]</td>
+<td>¥【　】/month [Ex: ¥85,000]</td>
+<td>每月租金【　】日元 [例: 85,000日元]</td>
+<td>【　】yên/tháng [VD: 85,000 yên]</td>
+</tr>
+<tr>
+<td>管理費（共益費）</td>
+<td>【　】円 [記入例: 5,000円]</td>
+<td>Management fee: ¥【　】</td>
+<td>管理费【　】日元</td>
+<td>Phí quản lý: 【　】yên</td>
+</tr>
+<tr>
+<td>契約期間</td>
+<td>【　】年 [記入例: 2年]</td>
+<td>【　】year(s)</td>
+<td>合同期限【　】年</td>
+<td>Thời hạn HĐ: 【　】năm</td>
+</tr>
+<tr>
+<td>契約開始日</td>
+<td>【　】[記入例: 2026年4月1日]</td>
+<td>Starting from【　】</td>
+<td>合同起始日【　】</td>
+<td>Ngày bắt đầu:【　】</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 初期費用の内訳 / Initial Costs / 初期费用明细 / Chi phí ban đầu</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>敷金</td>
+<td>【　】ヶ月分 = 【　】円 [記入例: 1ヶ月分=85,000円]</td>
+<td>Deposit:【　】month(s) = ¥【　】</td>
+<td>押金【　】个月 = 【　】日元</td>
+<td>Tiền đặt cọc:【　】tháng = 【　】yên</td>
+</tr>
+<tr>
+<td>礼金</td>
+<td>【　】ヶ月分 = 【　】円 [記入例: 1ヶ月分=85,000円]</td>
+<td>Key money:【　】month(s) = ¥【　】</td>
+<td>礼金【　】个月 = 【　】日元</td>
+<td>Tiền lễ:【　】tháng = 【　】yên</td>
+</tr>
+<tr>
+<td>仲介手数料</td>
+<td>【　】ヶ月分 = 【　】円 [記入例: 1ヶ月分=85,000円]</td>
+<td>Brokerage fee: ¥【　】</td>
+<td>中介费【　】日元</td>
+<td>Phí môi giới: 【　】yên</td>
+</tr>
+<tr>
+<td>保証会社費用</td>
+<td>初回【　】円＋年次【　】円 [記入例: 初回42,500円＋年次10,000円]</td>
+<td>Guarantor fee: initial ¥【　】+ annual ¥【　】</td>
+<td>担保公司费: 首次【　】+ 年付【　】日元</td>
+<td>Phí bảo lãnh: lần đầu【　】+ hàng năm【　】yên</td>
+</tr>
+<tr>
+<td>火災保険</td>
+<td>【　】円/年 [記入例: 15,000円/年]</td>
+<td>Fire insurance: ¥【　】/year</td>
+<td>火灾保险【　】日元/年</td>
+<td>Bảo hiểm cháy nổ:【　】yên/năm</td>
+</tr>
+<tr>
+<td>鍵交換費用</td>
+<td>【　】円 [記入例: 16,500円]</td>
+<td>Key replacement: ¥【　】</td>
+<td>换锁费【　】日元</td>
+<td>Phí thay ổ khóa:【　】yên</td>
+</tr>
+<tr>
+<td><strong>初期費用合計</strong></td>
+<td><strong>【　】円</strong></td>
+<td><strong>Total: ¥【　】</strong></td>
+<td><strong>合计【　】日元</strong></td>
+<td><strong>Tổng cộng:【　】yên</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>なぜ礼金があるのか？ / Why does "key money" exist?</h3>
+<table>
+<thead>
+<tr>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>礼金は大家への謝礼として日本で長年続く商慣習です。法律上の義務ではありませんが、多くの物件で設定されています。退去時に返還されません。</td>
+<td>Key money is a customary "thank-you" payment to the landlord. It is not legally required but is common. It is non-refundable.</td>
+<td>礼金是日本长期以来向房东表示感谢的商业惯例，非法律义务但十分常见，退房时不予退还。</td>
+<td>Tiền lễ là khoản cảm ơn chủ nhà theo tập quán Nhật Bản. Không bắt buộc theo luật nhưng rất phổ biến. Không được hoàn lại.</td>
+</tr>
+</tbody>
+</table>
+<h3>なぜ保証会社が必要か？ / Why is a guarantor company required?</h3>
+<table>
+<thead>
+<tr>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日本では連帯保証人の慣習がありますが、外国人は保証人を見つけにくいため、保証会社が代行します。家賃滞納時に保証会社が立て替え払いを行います。</td>
+<td>In Japan, a personal guarantor is customary. Since foreign residents often cannot find one, a guarantor company serves this role and covers unpaid rent on your behalf.</td>
+<td>日本有连带保证人制度，外国人难以找到保证人，因此由担保公司代为担保，在拖欠房租时由其代付。</td>
+<td>Ở Nhật có tập quán bảo lãnh liên đới. Vì người nước ngoài khó tìm người bảo lãnh, công ty bảo lãnh sẽ đảm nhận vai trò này và thanh toán thay khi bạn chậm trả tiền thuê.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 更新料・月次費用 / Renewal &amp; Monthly Costs / 续约及月度费用 / Phí gia hạn &amp; hàng tháng</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更新料</td>
+<td>契約満了時に賃料【　】ヶ月分 [記入例: 1ヶ月分]</td>
+<td>Renewal fee:【　】month(s) rent at lease end</td>
+<td>续约费: 合同到期时支付【　】个月租金</td>
+<td>Phí gia hạn:【　】tháng tiền thuê khi hết HĐ</td>
+</tr>
+<tr>
+<td>更新事務手数料</td>
+<td>【　】円 [記入例: 11,000円]</td>
+<td>Renewal admin fee: ¥【　】</td>
+<td>续约手续费【　】日元</td>
+<td>Phí thủ tục gia hạn:【　】yên</td>
+</tr>
+<tr>
+<td>月額合計（賃料+管理費）</td>
+<td>【　】円 [記入例: 90,000円]</td>
+<td>Monthly total: ¥【　】</td>
+<td>每月应付总额【　】日元</td>
+<td>Tổng hàng tháng:【　】yên</td>
+</tr>
+<tr>
+<td>支払期限</td>
+<td>毎月【　】日まで [記入例: 27日]</td>
+<td>Due by the【　】th of each month</td>
+<td>每月【　】日前</td>
+<td>Hạn thanh toán: ngày【　】hàng tháng</td>
+</tr>
+<tr>
+<td>支払方法</td>
+<td>【　】[記入例: 口座振替]</td>
+<td>【　】[Ex: Bank transfer]</td>
+<td>【　】[例: 银行转账]</td>
+<td>【　】[VD: Chuyển khoản]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>: 更新料は日本独自の制度で、契約を継続するために2年ごとに支払う費用です。5年間で2回発生します。<br />
+<strong>Note</strong>: Renewal fee is unique to Japan—paid every 2 years to continue your lease. You will pay it twice over 5 years.<br />
+<strong>注意</strong>: 续约费是日本特有制度，每2年续约时需支付，5年间共需支付2次。<br />
+<strong>Lưu ý</strong>: Phí gia hạn là đặc thù Nhật Bản, trả mỗi 2 năm khi tiếp tục hợp đồng. Trong 5 năm sẽ trả 2 lần.</p>
+</blockquote>
+<hr />
+<h2>4. 退去時のルール / Move-out Rules / 退房规则 / Quy định khi chuyển đi</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解約予告</td>
+<td>退去の【　】ヶ月前まで [記入例: 1ヶ月前]</td>
+<td>Notify【　】month(s) in advance</td>
+<td>提前【　】个月通知</td>
+<td>Báo trước【　】tháng</td>
+</tr>
+<tr>
+<td>原状回復義務</td>
+<td>入居者の故意・過失による損耗は入居者負担。通常使用による経年劣化は貸主負担。</td>
+<td>Tenant pays for damage caused by negligence. Normal wear and tear is the landlord's responsibility.</td>
+<td>因租客故意或过失造成的损耗由租客承担，正常使用的自然损耗由房东承担。</td>
+<td>Hư hỏng do lỗi người thuê thì người thuê chịu. Hao mòn tự nhiên do sử dụng bình thường thì chủ nhà chịu.</td>
+</tr>
+<tr>
+<td>敷金返還</td>
+<td>原状回復費を差し引き、退去後【　】日以内に返還 [記入例: 30日]</td>
+<td>Deposit refunded within【　】days after deducting restoration costs</td>
+<td>扣除修复费后【　】日内退还押金</td>
+<td>Hoàn trả tiền cọc trong【　】ngày sau khi trừ phí khôi phục</td>
+</tr>
+<tr>
+<td>退去時立会い</td>
+<td>退去日に管理会社と室内確認を行います</td>
+<td>Room inspection with management on move-out day</td>
+<td>退房当天与管理公司一起检查房间</td>
+<td>Kiểm tra phòng cùng công ty quản lý vào ngày chuyển đi</td>
+</tr>
+</tbody>
+</table>
+<h3>原状回復の目安 / Restoration Cost Guide / 修复费用参考 / Tham khảo phí khôi phục</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>壁紙の汚れ・傷</td>
+<td>1面あたり約20,000〜40,000円</td>
+<td>¥20,000–40,000 per wall</td>
+<td>每面墙约2万〜4万日元</td>
+<td>20,000–40,000 yên/mặt tường</td>
+</tr>
+<tr>
+<td>フローリング傷</td>
+<td>1箇所あたり約10,000〜30,000円</td>
+<td>¥10,000–30,000 per area</td>
+<td>每处约1万〜3万日元</td>
+<td>10,000–30,000 yên/vị trí</td>
+</tr>
+<tr>
+<td>クリーニング費</td>
+<td>1Kで約25,000〜35,000円</td>
+<td>¥25,000–35,000 for 1K apt</td>
+<td>1K户型约2.5万〜3.5万日元</td>
+<td>25,000–35,000 yên cho căn 1K</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 生活ルール / Living Rules / 生活规则 / Quy tắc sinh hoạt</h2>
+<h3>ゴミ出しルール / Garbage Disposal / 垃圾分类 / Phân loại rác</h3>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可燃ごみ</td>
+<td>毎週【　】曜日 [記入例: 月・木]</td>
+<td>Burnable: Every【　】[Ex: Mon &amp; Thu]</td>
+<td>可燃垃圾: 每周【　】</td>
+<td>Rác cháy được: Thứ【　】hàng tuần</td>
+</tr>
+<tr>
+<td>不燃ごみ</td>
+<td>月【　】回 [記入例: 第2・4水曜]</td>
+<td>Non-burnable:【　】[Ex: 2nd &amp; 4th Wed]</td>
+<td>不可燃垃圾:【　】</td>
+<td>Rác không cháy:【　】</td>
+</tr>
+<tr>
+<td>資源ごみ</td>
+<td>毎週【　】曜日 [記入例: 火曜]</td>
+<td>Recyclables: Every【　】</td>
+<td>可回收垃圾: 每周【　】</td>
+<td>Rác tái chế: Thứ【　】</td>
+</tr>
+<tr>
+<td>収集時間</td>
+<td>当日朝【　】時までに出す [記入例: 8時]</td>
+<td>Put out by【　】AM on collection day</td>
+<td>收集当天早上【　】点前</td>
+<td>Đem ra trước【　】giờ sáng ngày thu gom</td>
+</tr>
+<tr>
+<td>ゴミ置場</td>
+<td>【　】[記入例: 1階西側ゴミ置場]</td>
+<td>Location:【　】</td>
+<td>垃圾放置处:【　】</td>
+<td>Nơi đặt rác:【　】</td>
+</tr>
+</tbody>
+</table>
+<h3>騒音・マナー / Noise &amp; Manners / 噪音与礼仪 / Tiếng ồn &amp; Phép lịch sự</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>静粛時間</td>
+<td>【　】時〜【　】時 [記入例: 22時〜7時]</td>
+<td>Quiet hours:【　】–【　】</td>
+<td>安静时间:【　】至【　】</td>
+<td>Giờ yên tĩnh:【　】–【　】</td>
+</tr>
+<tr>
+<td>楽器演奏</td>
+<td>【　】[記入例: 禁止]</td>
+<td>Musical instruments:【　】[Ex: Prohibited]</td>
+<td>乐器演奏:【　】</td>
+<td>Nhạc cụ:【　】</td>
+</tr>
+<tr>
+<td>ペット</td>
+<td>【　】[記入例: 不可]</td>
+<td>Pets:【　】[Ex: Not allowed]</td>
+<td>宠物:【　】</td>
+<td>Thú cưng:【　】</td>
+</tr>
+<tr>
+<td>喫煙</td>
+<td>【　】[記入例: 室内禁煙・ベランダも不可]</td>
+<td>Smoking:【　】[Ex: No smoking indoors or on balcony]</td>
+<td>吸烟:【　】</td>
+<td>Hút thuốc:【　】</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 緊急連絡先 / Emergency Contacts / 紧急联系方式 / Liên hệ khẩn cấp</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>日本語</th>
+<th>English</th>
+<th>中文</th>
+<th>Tiếng Việt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>管理会社</td>
+<td>【　】TEL:【　】[記入例: ○○管理 03-XXXX-XXXX]</td>
+<td>Management:【　】</td>
+<td>管理公司:【　】</td>
+<td>Cty quản lý:【　】</td>
+</tr>
+<tr>
+<td>緊急時（24H）</td>
+<td>TEL:【　】[記入例: 0120-XXX-XXX]</td>
+<td>Emergency 24H:【　】</td>
+<td>24小时紧急电话:【　】</td>
+<td>Khẩn cấp 24H:【　】</td>
+</tr>
+<tr>
+<td>警察</td>
+<td>110</td>
+<td>Police: 110</td>
+<td>报警: 110</td>
+<td>Cảnh sát: 110</td>
+</tr>
+<tr>
+<td>救急・消防</td>
+<td>119</td>
+<td>Ambulance/Fire: 119</td>
+<td>急救/消防: 119</td>
+<td>Cấp cứu/Cứu hỏa: 119</td>
+</tr>
+<tr>
+<td>多言語相談</td>
+<td>外国人総合相談 0570-013904</td>
+<td>Multilingual hotline: 0570-013904</td>
+<td>多语种咨询: 0570-013904</td>
+<td>Tư vấn đa ngôn ngữ: 0570-013904</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. 入居者確認署名 / Tenant Confirmation / 租客确认签字 / Xác nhận của người thuê</h2>
+<blockquote>
+<p>私は上記の契約条件・生活ルール・費用について説明を受け、内容を理解しました。<br />
+I have received an explanation of the above contract terms, living rules, and costs, and I understand them.<br />
+本人已接受上述合同条款、生活规则及费用的说明，并已理解其内容。<br />
+Tôi đã được giải thích về các điều khoản hợp đồng, quy tắc sinh hoạt và chi phí nêu trên, và tôi đã hiểu nội dung.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入居者氏名 / Tenant Name / 租客姓名 / Họ tên người thuê</td>
+<td>【　　　　　　　　　】</td>
+</tr>
+<tr>
+<td>署名 / Signature / 签名 / Chữ ký</td>
+<td>【　　　　　　　　　】</td>
+</tr>
+<tr>
+<td>日付 / Date / 日期 / Ngày</td>
+<td>【　　　/　　　/　　　】</td>
+</tr>
+<tr>
+<td>説明者氏名 / Explained by / 说明人 / Người giải thích</td>
+<td>【　　　　　　　　　】</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本テンプレートは PropGlobal（外国人テナント向け賃貸トータルコスト診断ツール）の付属資料です。5年間トータルコスト試算と併せてご活用ください。</em></p>
+<p><em>Powered by Kusasyu PropTech</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

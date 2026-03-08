@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>パーソナライズROI＆MAコスト比較シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 6px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:18px}
+.panel{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.panel h2{font-size:1em;color:#2d3748;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #3182ce}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:.82em;font-weight:700;color:#4a5568;margin-bottom:3px}
+.field input{width:100%;padding:9px;border:2px solid #e2e8f0;border-radius:8px;font-size:1em}
+.field input:focus{outline:none;border-color:#3182ce}
+.hint{font-size:.73em;color:#a0aec0;margin-top:2px}
+.calc-btn{width:100%;padding:14px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:4px}
+.calc-btn:hover{background:#2b6cb0}
+#result{display:none}
+.row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #edf2f7;font-size:.88em}
+.row:last-child{border:none}
+.row .lb{color:#4a5568}
+.row .vl{font-weight:700;color:#2d3748}
+.row .vl.up{color:#38a169}
+.row .vl.rd{color:#e53e3e}
+.hl{background:#ebf8ff;border:2px solid #3182ce;border-radius:10px;padding:16px;text-align:center;margin:14px 0}
+.hl .big{font-size:1.8em;font-weight:900;color:#3182ce}
+.hl .nt{font-size:.78em;color:#718096;margin-top:4px}
+.bar-wrap{display:flex;align-items:flex-end;justify-content:center;gap:18px;padding:16px 0;height:200px}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;max-width:120px}
+.bar{width:100%;border-radius:6px 6px 0 0;min-height:4px;transition:.4s}
+.bar-val{font-size:.78em;font-weight:700;color:#2d3748}
+.bar-lbl{font-size:.7em;color:#718096;text-align:center;line-height:1.3}
+.line-wrap{position:relative;height:160px;margin:10px 0;border-left:2px solid #e2e8f0;border-bottom:2px solid #e2e8f0}
+.leg{display:flex;gap:16px;justify-content:center;font-size:.75em;margin-bottom:6px}
+.leg span::before{content:"● ";margin-right:2px}
+.leg .a::before{color:#3182ce}
+.leg .b::before{color:#e53e3e}
+.src{font-size:.72em;color:#a0aec0;margin-top:8px;line-height:1.5}
+.foot{text-align:center;font-size:.75em;color:#a0aec0;padding:12px 0}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.bar-wrap{gap:10px}}
+</style>
+<meta name="description" content="BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,パーソナライズROI＆MAコスト比較シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roi-ma/">
+<meta property="og:title" content="パーソナライズROI＆MAコスト比較シミュレーター - kusasyu tools">
+<meta property="og:description" content="BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roi-ma/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="パーソナライズROI＆MAコスト比較シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "パーソナライズROI＆MAコスト比較シミュレーター",
+  "description": "BtoB中小企業のマーケ担当者が、業種・企業規模・購買段階を選ぶだけで、セグメント別にパーソナライズされたメール本文・LP見出し・CTAバリエーションを自動生成するHTMLツール。HubSpot等の高額MAツール（月額数万〜数十万円）を導入できない中小企業が、海外事例（TSB銀行: 成約率24%→75%、Te",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roi-ma/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>パーソナライズROI＆MAコスト比較シミュレーター</h1>
+<p class="sub">BtoB パーソナライズ・テンプレート・セレクター 連携ツール<br>現在の配信実績を入力 → 改善効果とMAツールとのコスト差を即試算</p>
+
+<div class="panel">
+<h2>現在のメール配信実績</h2>
+<div class="grid">
+<div class="field"><label>月間メール配信数</label><input type="number" id="i1" value="5000" min="100"><div class="hint">例: 5,000通/月</div></div>
+<div class="field"><label>現在の開封率（%）</label><input type="number" id="i2" value="18" min="0.1" max="100" step="0.1"><div class="hint">BtoB平均: 15〜25%</div></div>
+<div class="field"><label>現在のCTR（%）</label><input type="number" id="i3" value="2.5" min="0.1" max="100" step="0.1"><div class="hint">BtoB平均: 2〜4%</div></div>
+<div class="field"><label>現在のCVR（%）</label><input type="number" id="i4" value="3" min="0.1" max="100" step="0.1"><div class="hint">商談化率。BtoB平均: 2〜5%</div></div>
+</div>
+<div class="field"><label>平均商談単価（円）</label><input type="number" id="i5" value="500000" min="10000" step="10000"><div class="hint">1商談あたりの平均受注額</div></div>
+<button class="calc-btn" onclick="calc()">改善効果をシミュレーション</button>
+</div>
+
+<div id="result">
+<div class="panel">
+<h2>パーソナライズ導入後の改善予測</h2>
+<div class="row"><span class="lb">現在の月間商談数</span><span class="vl" id="r1"></span></div>
+<div class="row"><span class="lb">改善後の月間商談数</span><span class="vl up" id="r2"></span></div>
+<div class="row"><span class="lb">現在の月間売上見込</span><span class="vl" id="r3"></span></div>
+<div class="row"><span class="lb">改善後の月間売上見込</span><span class="vl up" id="r4"></span></div>
+<div class="row"><span class="lb">月間改善額</span><span class="vl up" id="r5"></span></div>
+<div class="hl"><div class="big" id="r6"></div><div class="nt">パーソナライズ導入による年間改善額（MAツール費用ゼロ）</div></div>
+<p class="src">改善率根拠: CTR +14%（Aberdeen Group セグメント配信調査）/ 商談化率 +25%（Salesforce State of Marketing調査）<br>海外実績: TSB銀行 成約率24%→75% / Telmore 売上11%増</p>
+</div>
+
+<div class="panel">
+<h2>MAツール年間コストとの比較</h2>
+<div class="row"><span class="lb">HubSpot Starter（月額2,400円）</span><span class="vl" id="h1"></span></div>
+<div class="row"><span class="lb">HubSpot Professional（月額96,000円）</span><span class="vl" id="h2"></span></div>
+<div class="row"><span class="lb">本ツール利用コスト</span><span class="vl">¥0</span></div>
+<div class="row"><span class="lb">Starter比 年間節約額</span><span class="vl rd" id="s1"></span></div>
+<div class="row"><span class="lb">Professional比 年間節約額</span><span class="vl rd" id="s2"></span></div>
+<div class="bar-wrap" id="bars"></div>
+<p class="src">HubSpot価格は2026年3月時点の公開情報に基づく</p>
+</div>
+
+<div class="panel">
+<h2>12か月間の累計改善額推移</h2>
+<div class="leg"><span class="a">本ツール（¥0）</span><span class="b">HubSpot Professional利用時</span></div>
+<div class="line-wrap" id="lineC"></div>
+<div id="lineLbl" style="display:flex;justify-content:space-between;font-size:.68em;color:#a0aec0;padding:0 2px"></div>
+<p class="src">導入コスト¥0のため初月から効果発生。社内工数（月2時間想定）のみ考慮</p>
+</div>
+</div>
+
+<p class="foot">Kusasyu Digital Marketing｜18パターン×2敬語レベル対応</p>
+</div>
+
+<script>
+function fmt(n){if(n>=100000000)return'¥'+(n/100000000).toFixed(1)+'億';if(n>=10000)return'¥'+(n/10000).toFixed(1)+'万';return'¥'+Math.round(n).toLocaleString()}
+function calc(){
+var S=+document.getElementById('i1').value,O=+document.getElementById('i2').value/100,C=+document.getElementById('i3').value/100,V=+document.getElementById('i4').value/100,D=+document.getElementById('i5').value;
+var cD=S*O*C*V,cR=cD*D,nC=C*1.14,nV=V*1.25,nD=S*O*nC*nV,nR=nD*D;
+var mD=nR-cR,yD=mD*12,hs=28800,hp=1152000;
+document.getElementById('r1').textContent=cD.toFixed(1)+'件';
+document.getElementById('r2').textContent=nD.toFixed(1)+'件（+'+(((nD/cD)-1)*100).toFixed(1)+'%）';
+document.getElementById('r3').textContent=fmt(cR);
+document.getElementById('r4').textContent=fmt(nR);
+document.getElementById('r5').textContent='+'+fmt(mD);
+document.getElementById('r6').textContent='+'+fmt(yD);
+document.getElementById('h1').textContent='年間 '+fmt(hs);
+document.getElementById('h2').textContent='年間 '+fmt(hp);
+document.getElementById('s1').textContent=fmt(hs)+' 節約';
+document.getElementById('s2').textContent=fmt(hp)+' 節約';
+drawBars(yD,hs,hp);drawLine(mD,hp);
+document.getElementById('result').style.display='block'}
+function drawBars(yD,hs,hp){
+var items=[{v:yD,l:'年間改善額',c:'#38a169'},{v:0,l:'ツール費用<br>(本ツール)',c:'#3182ce'},{v:hs,l:'HubSpot<br>Starter',c:'#e53e3e'},{v:hp,l:'HubSpot<br>Professional',c:'#e53e3e'}];
+var mx=Math.max(yD,hp)*1.1||1,h=150,html='';
+items.forEach(function(it){var bh=Math.max((it.v/mx)*h,3);
+html+='<div class="bar-col"><div class="bar-val">'+fmt(it.v)+'</div><div class="bar" style="height:'+bh+'px;background:'+it.c+'"></div><div class="bar-lbl">'+it.l+'</div></div>'});
+document.getElementById('bars').innerHTML=html}
+function drawLine(mD,hp){
+var c=document.getElementById('lineC');c.innerHTML='';
+var w=c.offsetWidth,h=c.offsetHeight;if(!w)w=760;if(!h)h=160;
+var free=[],ma=[];
+for(var i=0;i<12;i++){free.push(mD*(i+1));ma.push(mD*(i+1)-(hp/12)*(i+1))}
+var mx=Math.max(free[11],1)*1.15,mn=Math.min(0,ma[0]||0)*1.15,rng=mx-mn||1;
+function gy(v){return h-((v-mn)/rng)*h}
+function gx(i){return((i+.5)/12)*w}
+var ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');
+svg.setAttribute('width',w);svg.setAttribute('height',h);
+svg.style.cssText='position:absolute;left:0;top:0';
+function line(pts,col,d){var p=document.createElementNS(ns,'polyline');
+p.setAttribute('points',pts.map(function(a){return a[0]+','+a[1]}).join(' '));
+p.setAttribute('fill','none');p.setAttribute('stroke',col);p.setAttribute('stroke-width','2.5');
+if(d)p.setAttribute('stroke-dasharray','6,4');svg.appendChild(p)}
+var fp=[],mp=[];
+for(var i=0;i<12;i++){fp.push([gx(i),gy(free[i])]);mp.push([gx(i),gy(ma[i])])}
+if(mn<0){var zy=gy(0),zl=document.createElementNS(ns,'line');
+zl.setAttribute('x1',0);zl.setAttribute('y1',zy);zl.setAttribute('x2',w);zl.setAttribute('y2',zy);
+zl.setAttribute('stroke','#cbd5e0');zl.setAttribute('stroke-dasharray','3,3');svg.appendChild(zl)}
+line(fp,'#3182ce',false);line(mp,'#e53e3e',true);
+[fp,mp].forEach(function(pts,idx){pts.forEach(function(p){
+var ci=document.createElementNS(ns,'circle');
+ci.setAttribute('cx',p[0]);ci.setAttribute('cy',p[1]);ci.setAttribute('r','3');
+ci.setAttribute('fill',idx?'#e53e3e':'#3182ce');svg.appendChild(ci)})});
+c.appendChild(svg);
+var lb=document.getElementById('lineLbl');lb.innerHTML='';
+for(var i=0;i<12;i++){var sp=document.createElement('span');sp.textContent=(i+1)+'月';lb.appendChild(sp)}}
+calc();
+</script>
+</body>
+</html>

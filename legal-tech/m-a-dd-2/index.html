@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M&amp;A法務DDチェックリスト・ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:20px;text-align:center}
+.header h1{font-size:1.4em;margin-bottom:4px}
+.header p{font-size:.85em;opacity:.8}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+.form-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.form-group{flex:1;min-width:200px}
+.form-group label{display:block;font-size:.85em;font-weight:600;margin-bottom:4px;color:#555}
+.form-group select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;font-size:.95em;background:#fff}
+.btn{display:inline-block;padding:12px 28px;border:none;border-radius:6px;font-size:1em;font-weight:600;cursor:pointer;transition:.2s}
+.btn-primary{background:#1a1a2e;color:#fff}
+.btn-primary:hover{background:#16213e;transform:translateY(-1px)}
+.btn-csv{background:#0f9d58;color:#fff;margin-left:8px}
+.btn-csv:hover{background:#0b8043}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.stat-box{flex:1;min-width:120px;padding:12px;border-radius:8px;text-align:center;color:#fff;font-weight:600}
+.stat-box .num{font-size:1.8em}
+.stat-box .lbl{font-size:.75em;opacity:.9}
+.sb-red{background:#e53935}.sb-yel{background:#f9a825}.sb-blu{background:#1e88e5}.sb-grn{background:#43a047}
+.cl-section{margin-bottom:16px}
+.cl-section h3{font-size:.95em;background:#f5f5f5;padding:8px 12px;border-radius:6px;margin-bottom:8px}
+.cl-item{display:flex;align-items:flex-start;padding:8px 12px;border-bottom:1px solid #f0f0f0;gap:10px;transition:.2s}
+.cl-item:hover{background:#fafafa}
+.cl-item.hi-risk{background:#fff3f3;border-left:3px solid #e53935}
+.cl-item input[type=checkbox]{margin-top:4px;width:18px;height:18px;flex-shrink:0}
+.cl-item .badge{display:inline-block;width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.b-r{background:#e53935}.b-y{background:#f9a825}.b-b{background:#1e88e5}
+.cl-item .text{flex:1}
+.cl-item .text .title{font-weight:600;font-size:.9em}
+.cl-item .text .desc{font-size:.78em;color:#777;margin-top:2px}
+.cl-item .memo{width:140px;padding:4px 6px;border:1px solid #ddd;border-radius:4px;font-size:.8em}
+.cl-item.checked .title{text-decoration:line-through;color:#999}
+.legend{display:flex;gap:16px;font-size:.82em;margin-bottom:12px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:4px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.tantou{padding:6px 10px;border:1px solid #ccc;border-radius:6px;font-size:.85em;width:160px}
+#result{display:none}
+@media(max-width:600px){.form-row{flex-direction:column}.cl-item{flex-wrap:wrap}.cl-item .memo{width:100%;margin-top:4px}}
+</style>
+<meta name="description" content="中堅M&amp;Aアドバイザリー会社・事業承継専門税理士法人が、買収対象企業の法務DDを効率的に進めるためのツールキット。業種・取引形態を選ぶだけでDD確認項目チェックリストを自動生成し、契約書ごとのリスクスコアリングをExcelで管理し、最終報告レポートのひな形まで一貫して提供する。既存のAidiligence・L">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,M&amp;A法務DDチェックリスト・ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-2/">
+<meta property="og:title" content="M&amp;A法務DDチェックリスト・ジェネレーター - kusasyu tools">
+<meta property="og:description" content="中堅M&amp;Aアドバイザリー会社・事業承継専門税理士法人が、買収対象企業の法務DDを効率的に進めるためのツールキット。業種・取引形態を選ぶだけでDD確認項目チェックリストを自動生成し、契約書ごとのリスクスコアリングをExcelで管理し、最終報告レポートのひな形まで一貫して提供する。既存のAidiligence・L">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="M&amp;A法務DDチェックリスト・ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="中堅M&amp;Aアドバイザリー会社・事業承継専門税理士法人が、買収対象企業の法務DDを効率的に進めるためのツールキット。業種・取引形態を選ぶだけでDD確認項目チェックリストを自動生成し、契約書ごとのリスクスコアリングをExcelで管理し、最終報告レポートのひな形まで一貫して提供する。既存のAidiligence・L">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "M&A法務DDチェックリスト・ジェネレーター",
+  "description": "中堅M&Aアドバイザリー会社・事業承継専門税理士法人が、買収対象企業の法務DDを効率的に進めるためのツールキット。業種・取引形態を選ぶだけでDD確認項目チェックリストを自動生成し、契約書ごとのリスクスコアリングをExcelで管理し、最終報告レポートのひな形まで一貫して提供する。既存のAidiligence・L",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="header"><h1>DD Express — M&A法務DDチェックリスト</h1><p>業種・取引形態・企業規模を選択 → DD項目を自動生成</p></div>
+<div class="container">
+<div class="card">
+<h2>対象企業の基本情報</h2>
+<div class="form-row">
+<div class="form-group"><label>業種</label><select id="ind"><option value="">選択してください</option><option value="製造">製造</option><option value="IT">IT</option><option value="小売">小売</option><option value="飲食">飲食</option><option value="建設">建設</option></select></div>
+<div class="form-group"><label>取引形態</label><select id="deal"><option value="">選択してください</option><option value="株式譲渡">株式譲渡</option><option value="事業譲渡">事業譲渡</option><option value="合併">合併</option></select></div>
+<div class="form-group"><label>企業規模（売上高）</label><select id="size"><option value="">選択してください</option><option value="S">10億円未満</option><option value="M">10〜100億円</option><option value="L">100億円超</option></select></div>
+</div>
+<div style="text-align:center"><button class="btn btn-primary" onclick="generate()">チェックリストを生成</button></div>
+</div>
+<div id="result">
+<div class="card">
+<h2>DD進捗サマリー</h2>
+<div class="stats"><div class="stat-box sb-red"><div class="num" id="s-r">0</div><div class="lbl">高リスク未確認</div></div><div class="stat-box sb-yel"><div class="num" id="s-y">0</div><div class="lbl">中リスク未確認</div></div><div class="stat-box sb-blu"><div class="num" id="s-b">0</div><div class="lbl">低リスク未確認</div></div><div class="stat-box sb-grn"><div class="num" id="s-done">0</div><div class="lbl">確認済み</div></div></div>
+<div style="height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden"><div id="prog-fill" style="height:100%;background:#43a047;width:0%;transition:.3s"></div></div>
+</div>
+<div class="card">
+<h2>チェックリスト</h2>
+<div class="legend"><span><span class="badge b-r"></span>高リスク（赤）</span><span><span class="badge b-y"></span>中リスク（黄）</span><span><span class="badge b-b"></span>低リスク（青）</span></div>
+<div class="actions"><input class="tantou" id="tantou" placeholder="担当者名を入力"><button class="btn btn-csv" onclick="exportCSV()">CSVエクスポート</button></div>
+<div id="checklist"></div>
+</div>
+</div>
+</div>
+<script>
+const C=[
+["会社設立・登記","登記簿謄本の確認と現況一致","R"],["定款","定款の最新版・変更履歴の確認","R"],["株主名簿","株主構成・名義株の有無","R"],["株式譲渡制限","譲渡制限条項・承認手続","R"],["取締役会・株主総会","議事録の整備状況","Y"],["役員構成","役員の兼任・競業の有無","Y"],["関連当事者取引","関連会社との取引条件の公正性","R"],["重要契約一覧","主要取引先との契約書の存否","R"],["契約のCoC条項","チェンジオブコントロール条項の確認","R"],["長期契約","長期拘束条件・自動更新の有無","Y"],
+["保証・担保契約","連帯保証・担保提供の有無","R"],["リース契約","リース資産・残債務の確認","Y"],["ライセンス契約","ソフトウェア・知的財産ライセンス","Y"],["雇用契約","就業規則・雇用条件の適法性","R"],["未払残業代","未払賃金リスクの試算","R"],["退職金制度","退職金規程・引当金の充足性","Y"],["労使紛争","労働審判・訴訟の有無","R"],["社会保険","社会保険の加入状況","Y"],["特許・商標","知的財産権の保有・登録状況","Y"],["営業秘密管理","秘密管理体制・NDA整備","Y"],
+["訴訟・紛争","係属中訴訟・潜在的紛争","R"],["行政処分","過去の行政処分・指導歴","R"],["許認可","事業に必要な許認可の有効性","R"],["コンプライアンス","反社チェック・内部通報制度","R"],["個人情報保護","個人情報管理体制・漏洩歴","Y"],["不動産","所有・賃借不動産の権利関係","Y"],["環境問題","土壌汚染・環境規制対応","Y"],["税務","税務申告の適正性・税務調査歴","Y"],["簿外債務","偶発債務・簿外負債の有無","R"],["表明保証","表明保証条項の設計方針","Y"]
+];
+const I={
+"製造":[["製造物責任","PL法対応・リコール歴の確認","R"],["品質管理体系","ISO認証・品質管理規程","Y"],["環境規制","排出基準・廃棄物処理の適法性","R"],["工場用地","土壌汚染調査・アスベスト","R"],["設備保全","主要設備の老朽度・更新計画","Y"],["下請法","下請法遵守状況","Y"],["輸出管理","安全保障輸出管理","R"],["特許侵害","製品の特許クリアランス","R"],["労災","労災事故歴・安全衛生管理","Y"],["在庫","滞留在庫・評価損リスク","Y"],["サプライチェーン","主要仕入先の集中リスク","Y"],["技術者","キーパーソンの退職リスク","Y"]],
+"IT":[["SaaS契約","顧客契約のSLA・解約条件","R"],["ソースコード","コードの帰属・第三者権利","R"],["OSS","OSSライセンス汚染リスク","R"],["情報セキュリティ","ISMS・脆弱性管理体制","R"],["個人データ越境","GDPR・海外データ移転","Y"],["SES契約","偽装請負リスク","R"],["技術的負債","システム老朽化・刷新コスト","Y"],["ドメイン・SSL","ドメイン・証明書の名義","B"],["クラウド依存","AWS等の契約条件・ロックイン","Y"],["エンジニア離職","開発キーパーソンの流出リスク","R"],["API連携","外部API依存度・契約条件","Y"]],
+"小売":[["店舗賃貸借","賃貸借契約・定借の期限","R"],["フランチャイズ","FC契約のCoC・競業避止","R"],["食品表示","景品表示法・食品表示法遵守","R"],["POS・顧客DB","顧客データの帰属・移行","Y"],["在庫評価","季節商品・滞留在庫リスク","Y"],["EC規約","特定商取引法対応","Y"],["テナント契約","商業施設の出店条件・違約金","R"],["商標・ブランド","ブランドの権利関係","Y"],["物流契約","物流委託契約の継続性","Y"],["パート雇用","非正規雇用の無期転換リスク","Y"],["ポイント制度","ポイント引当金・債務承継","Y"]],
+"飲食":[["食品衛生許可","営業許可・HACCP対応","R"],["店舗賃貸借","賃貸借契約・原状回復義務","R"],["フランチャイズ","FC契約の制約・ロイヤリティ","R"],["食中毒","食中毒事故歴・保険加入","R"],["酒類免許","酒類販売免許の承継可否","R"],["深夜営業","風営法届出の確認","Y"],["アレルギー表示","アレルゲン管理体制","Y"],["仕入先","食材仕入先の集中度","Y"],["人手不足","離職率・採用コスト","Y"],["Uber等契約","デリバリー契約条件","B"],["厨房設備","設備リース・老朽化","Y"],["衛生管理者","食品衛生責任者の配置","Y"]],
+"建設":[["建設業許可","許可区分・更新時期の確認","R"],["経営事項審査","経審スコア・入札参加資格","R"],["工事瑕疵","瑕疵担保・アフター対応履歴","R"],["下請関係","建設業法・下請法遵守","R"],["安全管理","労災事故率・安全衛生体制","R"],["技術者","監理技術者・主任技術者の確保","R"],["JV契約","共同企業体の責任関係","Y"],["産廃処理","産廃マニフェスト管理","Y"],["アスベスト","石綿対策・調査履歴","R"],["入札談合","過去の処分歴・コンプラ体制","R"],["工事保証","完成保証・履行保証の状況","Y"],["資材高騰","資材価格変動リスク条項","Y"]]
+};
+let items=[];
+function generate(){
+const ind=document.getElementById("ind").value,deal=document.getElementById("deal").value,sz=document.getElementById("size").value;
+if(!ind||!deal||!sz){alert("すべての項目を選択してください");return}
+items=[];let id=1;
+C.forEach(c=>{items.push({id:id++,cat:"共通",name:c[0],desc:c[1],risk:c[2],checked:false,memo:""})});
+(I[ind]||[]).forEach(c=>{items.push({id:id++,cat:ind+"業種別",name:c[0],desc:c[1],risk:c[2],checked:false,memo:""})});
+if(deal==="事業譲渡"){items.push({id:id++,cat:"取引形態別",name:"個別承継",desc:"債権債務・契約の個別移転手続",risk:"R",checked:false,memo:""});items.push({id:id++,cat:"取引形態別",name:"債権者保護",desc:"詐害的事業譲渡リスクの検討",risk:"R",checked:false,memo:""});}
+if(deal==="合併"){items.push({id:id++,cat:"取引形態別",name:"債権者異議",desc:"債権者異議手続の要否・スケジュール",risk:"R",checked:false,memo:""});items.push({id:id++,cat:"取引形態別",name:"合併比率",desc:"合併対価の公正性・算定根拠",risk:"R",checked:false,memo:""});}
+if(sz==="L"){items.push({id:id++,cat:"規模別",name:"独禁法届出",desc:"企業結合届出の要否判定",risk:"R",checked:false,memo:""});items.push({id:id++,cat:"規模別",name:"外為法届出",desc:"外国投資家規制の該当性",risk:"Y",checked:false,memo:""});}
+render();document.getElementById("result").style.display="block";document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function render(){
+const cl=document.getElementById("checklist");let cats=[...new Set(items.map(i=>i.cat))];let html="";
+cats.forEach(cat=>{
+html+=`<div class="cl-section"><h3>${cat}（${items.filter(i=>i.cat===cat).length}項目）</h3>`;
+items.filter(i=>i.cat===cat).forEach(i=>{
+const bc=i.risk==="R"?"b-r":i.risk==="Y"?"b-y":"b-b";
+const hi=!i.checked&&i.risk==="R"?"hi-risk":"";
+const ck=i.checked?"checked":"";
+html+=`<div class="cl-item ${hi} ${ck}"><input type="checkbox" ${i.checked?"checked":""} onchange="toggle(${i.id})"><span class="badge ${bc}"></span><div class="text"><div class="title">${i.name}</div><div class="desc">${i.desc}</div></div><input class="memo" placeholder="メモ" value="${i.memo}" onchange="setMemo(${i.id},this.value)"></div>`;
+});html+="</div>";});
+cl.innerHTML=html;updateStats();
+}
+function toggle(id){const i=items.find(x=>x.id===id);i.checked=!i.checked;render();}
+function setMemo(id,v){items.find(x=>x.id===id).memo=v;}
+function updateStats(){
+const r=items.filter(i=>!i.checked&&i.risk==="R").length;
+const y=items.filter(i=>!i.checked&&i.risk==="Y").length;
+const b=items.filter(i=>!i.checked&&i.risk!=="R"&&i.risk!=="Y").length;
+const d=items.filter(i=>i.checked).length;
+document.getElementById("s-r").textContent=r;document.getElementById("s-y").textContent=y;document.getElementById("s-b").textContent=b;document.getElementById("s-done").textContent=d;
+document.getElementById("prog-fill").style.width=(items.length?Math.round(d/items.length*100):0)+"%";
+}
+function exportCSV(){
+const ind=document.getElementById("ind").value,deal=document.getElementById("deal").value;
+let csv="\uFEFF契約書名,リスク区分,確認状況,担当者メモ,カテゴリ,業種,取引形態\n";
+items.forEach(i=>{
+const rk=i.risk==="R"?"高（赤）":i.risk==="Y"?"中（黄）":"低（青）";
+const st=i.checked?"確認済":"未確認";
+csv+=`"${i.name}","${rk}","${st}","${i.memo.replace(/"/g,'""')}","${i.cat}","${ind}","${deal}"\n`;
+});
+const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));
+a.download=`DD_Checklist_${ind}_${deal}_${new Date().toISOString().slice(0,10)}.csv`;a.click();
+}
+</script>
+</body>
+</html>

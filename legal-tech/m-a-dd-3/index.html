@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M&amp;A_DD_重要条項_入力・リスク判定ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:14px}
+.wrap{max-width:960px;margin:0 auto;padding:12px}
+h1{font-size:1.3em;text-align:center;padding:14px 0 4px;color:#1a1a2e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:14px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e8e8e8;color:#2c3e50}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.row>*{flex:1;min-width:140px}
+label{display:block;font-size:.8em;color:#555;margin-bottom:3px;font-weight:600}
+input,select,textarea{width:100%;padding:7px 9px;border:1px solid #d0d0d0;border-radius:6px;font-size:.9em}
+textarea{height:50px;resize:vertical}
+select{background:#fff}
+.btn{padding:8px 18px;border:none;border-radius:6px;cursor:pointer;font-size:.85em;font-weight:600;transition:.2s}
+.btn-p{background:#2563eb;color:#fff}.btn-p:hover{background:#1d4ed8}
+.btn-s{background:#e2e8f0;color:#334155}.btn-s:hover{background:#cbd5e1}
+.btn-d{background:#ef4444;color:#fff;font-size:.75em;padding:4px 10px}.btn-d:hover{background:#dc2626}
+.btn-g{background:#059669;color:#fff}.btn-g:hover{background:#047857}
+.actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75em;font-weight:700;color:#fff}
+.r-high{background:#ef4444}.r-mid{background:#f59e0b}.r-low{background:#22c55e}
+.flag{background:#fef2f2;border:1px solid #fca5a5;border-radius:6px;padding:6px 10px;margin-top:6px;font-size:.82em;color:#991b1b}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+th,td{padding:7px 8px;text-align:left;border-bottom:1px solid #e5e7eb}
+th{background:#f8fafc;font-weight:600;color:#475569}
+.heat{display:grid;grid-template-columns:100px repeat(3,1fr);gap:2px;margin:10px 0}
+.heat>div{padding:8px;text-align:center;border-radius:4px;font-size:.8em;font-weight:600}
+.h-label{background:transparent;font-weight:700;font-size:.78em;display:flex;align-items:center}
+.h-h{background:#fee2e2;color:#991b1b}.h-m{background:#fef3c7;color:#92400e}.h-l{background:#dcfce7;color:#166534}
+.cnt{font-size:1.4em;display:block}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tab{padding:6px 14px;border-radius:6px 6px 0 0;cursor:pointer;font-size:.82em;background:#e2e8f0;border:1px solid #d0d0d0;border-bottom:none}
+.tab.active{background:#fff;font-weight:700;border-color:#2563eb;color:#2563eb}
+.contract-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;font-size:.8em;margin:2px;cursor:pointer}
+.contract-tag.sel{background:#2563eb;color:#fff;border-color:#2563eb}
+.score-bar{height:8px;border-radius:4px;background:#e5e7eb;margin-top:3px}
+.score-fill{height:100%;border-radius:4px}
+.empty{text-align:center;color:#999;padding:24px;font-size:.9em}
+@media(max-width:600px){.row{flex-direction:column}.row>*{min-width:100%}.heat{grid-template-columns:80px repeat(3,1fr)}}
+</style>
+<meta name="description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,M&amp;A_DD_重要条項_入力・リスク判定ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-3/">
+<meta property="og:title" content="M&amp;A_DD_重要条項_入力・リスク判定ツール - kusasyu tools">
+<meta property="og:description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="M&amp;A_DD_重要条項_入力・リスク判定ツール - kusasyu tools">
+<meta name="twitter:description" content="M&amp;A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "M&A_DD_重要条項_入力・リスク判定ツール",
+  "description": "M&A法務DDで最も工数がかかる『重要条項の抽出・分類・集計』を効率化するツールキット。契約書群からチェンジオブコントロール(CoC)条項・インデムニティ（補償）条項・表明保証条項・競業避止条項を検出・分類し、リスクレベルと交渉優先度を自動マッピングする。前回のDD Express（DD全体の進捗管理＆汎用ス",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>DD Clause Hunter</h1>
+<p class="sub">M&A対象契約 重要条項抽出＆交渉優先度マッピングツール</p>
+
+<div class="card">
+<h2>契約管理（最大10件）</h2>
+<div class="row">
+<div><label>契約名称</label><input id="cName" placeholder="例：A社業務委託契約"></div>
+<div><label>契約相手方</label><input id="cParty" placeholder="例：株式会社A"></div>
+<div style="flex:0 0 auto;display:flex;align-items:flex-end"><button class="btn btn-p" onclick="addContract()">契約追加</button></div>
+</div>
+<div id="cList" style="margin-top:6px"></div>
+</div>
+
+<div class="card" id="clausePanel" style="display:none">
+<h2>条項入力 — <span id="selCName"></span></h2>
+<div class="row">
+<div><label>条項タイプ</label><select id="clType"><option value="coc">CoC（チェンジオブコントロール）</option><option value="indem">インデムニティ（補償）</option><option value="rw">表明保証</option><option value="nc">競業避止</option></select></div>
+<div><label>条項番号/名称</label><input id="clRef" placeholder="例：第12条"></div>
+</div>
+<div class="row">
+<div><label>キートリガー</label><select id="clTrigger"><option value="consent">同意・承諾要</option><option value="notify">通知のみ</option><option value="terminate">解除権発生</option><option value="penalty">違約金・損害賠償</option><option value="uncapped">上限なし補償</option><option value="fundamental">基本的表明保証</option><option value="general">一般的表明保証</option><option value="broad">広範囲制限</option><option value="narrow">限定的制限</option></select></div>
+<div><label>金額（万円）</label><input id="clAmt" type="number" placeholder="0＝定めなし"></div>
+</div>
+<div class="row">
+<div><label>期間（月）</label><input id="clPeriod" type="number" placeholder="0＝定めなし"></div>
+<div><label>制限範囲</label><select id="clScope"><option value="broad">広範囲</option><option value="medium">中程度</option><option value="narrow">限定的</option></select></div>
+<div><label>治癒期間有無</label><select id="clCure"><option value="0">なし</option><option value="1">あり</option></select></div>
+</div>
+<div><label>備考</label><textarea id="clNote" placeholder="特記事項があれば記入"></textarea></div>
+<div class="actions"><button class="btn btn-p" onclick="addClause()">条項を登録</button></div>
+</div>
+
+<div class="card" id="resultPanel" style="display:none">
+<div class="tabs">
+<div class="tab active" onclick="showTab(0,this)">条項一覧</div>
+<div class="tab" onclick="showTab(1,this)">ヒートマップ</div>
+<div class="tab" onclick="showTab(2,this)">レッドフラグ</div>
+</div>
+<div id="tab0"></div><div id="tab1" style="display:none"></div><div id="tab2" style="display:none"></div>
+<div class="actions" style="margin-top:12px">
+<button class="btn btn-g" onclick="exportCSV()">CSVエクスポート</button>
+<button class="btn btn-s" onclick="clearAll()">全データ削除</button>
+</div>
+</div>
+</div>
+
+<script>
+const LS='ddch_data',TN={coc:'CoC',indem:'インデムニティ',rw:'表明保証',nc:'競業避止'};
+let data=JSON.parse(localStorage.getItem(LS)||'{"contracts":[],"sel":null}');
+let selC=data.sel;
+
+function save(){localStorage.setItem(LS,JSON.stringify(data))}
+function $(id){return document.getElementById(id)}
+
+function risk(cl){
+  let s=0,t=cl.type,tr=cl.trigger,amt=+cl.amt,per=+cl.period,sc=cl.scope,cu=+cl.cure;
+  if(t==='coc'){s=tr==='terminate'?9:tr==='consent'?7:tr==='notify'?3:5;if(!cu)s+=1}
+  else if(t==='indem'){s=tr==='uncapped'?10:amt>10000?7:amt>1000?5:3;if(per>24)s+=2}
+  else if(t==='rw'){s=tr==='fundamental'?8:4;if(per>18)s+=2;else if(per>12)s+=1}
+  else if(t==='nc'){s=per>24?8:per>12?5:3;s+=sc==='broad'?2:sc==='medium'?1:0}
+  return s>=8?'high':s>=5?'mid':'low';
+}
+
+function priority(cl){
+  let r=risk(cl),b=r==='high'?80:r==='mid'?50:20;
+  if(+cl.amt>5000)b+=10;if(+cl.period>24)b+=5;if(!+cl.cure)b+=5;
+  return Math.min(100,b);
+}
+
+function needsHuman(cl){
+  let r=risk(cl),reasons=[];
+  if(r==='high'&&cl.type==='coc'&&cl.trigger==='terminate')reasons.push('解除権トリガー：取引継続性に重大影響');
+  if(cl.trigger==='uncapped')reasons.push('補償上限なし：損害額の上限交渉が必須');
+  if(cl.type==='rw'&&cl.trigger==='fundamental'&&+cl.period>18)reasons.push('基本的表明保証の長期存続：リスク評価要');
+  if(cl.type==='nc'&&+cl.period>24&&cl.scope==='broad')reasons.push('広範囲・長期の競業避止：独禁法リスク検討要');
+  if(r==='high'&&+cl.amt>10000)reasons.push('高額補償条項：上限・バスケット条件の交渉要');
+  return reasons;
+}
+
+function addContract(){
+  let n=$('cName').value.trim(),p=$('cParty').value.trim();
+  if(!n)return alert('契約名称を入力してください');
+  if(data.contracts.length>=10)return alert('最大10件です');
+  data.contracts.push({name:n,party:p,clauses:[],id:Date.now()});
+  $('cName').value='';$('cParty').value='';
+  selC=data.contracts.length-1;data.sel=selC;save();render();
+}
+
+function selContract(i){selC=i;data.sel=i;save();render()}
+function delContract(i){
+  if(!confirm(data.contracts[i].name+'を削除しますか？'))return;
+  data.contracts.splice(i,1);selC=data.contracts.length?0:null;data.sel=selC;save();render();
+}
+
+function addClause(){
+  if(selC===null)return alert('契約を選択してください');
+  let cl={type:$('clType').value,ref:$('clRef').value,trigger:$('clTrigger').value,
+    amt:$('clAmt').value||'0',period:$('clPeriod').value||'0',scope:$('clScope').value,
+    cure:$('clCure').value,note:$('clNote').value};
+  if(!cl.ref)return alert('条項番号を入力してください');
+  data.contracts[selC].clauses.push(cl);save();
+  $('clRef').value='';$('clAmt').value='';$('clPeriod').value='';$('clNote').value='';
+  render();
+}
+
+function delClause(ci){data.contracts[selC].clauses.splice(ci,1);save();render();}
+
+function render(){
+  let cl=$('cList');cl.innerHTML='';
+  data.contracts.forEach((c,i)=>{
+    let t=document.createElement('span');
+    t.className='contract-tag'+(i===selC?' sel':'');
+    t.innerHTML=c.name+' <span style="cursor:pointer;margin-left:4px" onclick="event.stopPropagation();delContract('+i+')">&times;</span>';
+    t.onclick=()=>selContract(i);cl.appendChild(t);
+  });
+  let hasC=selC!==null&&data.contracts[selC];
+  $('clausePanel').style.display=hasC?'':'none';
+  $('resultPanel').style.display=hasC?'':'none';
+  if(!hasC)return;
+  $('selCName').textContent=data.contracts[selC].name;
+  renderList();renderHeat();renderFlags();
+}
+
+function renderList(){
+  let con=data.contracts[selC],h='';
+  if(!con.clauses.length){$('tab0').innerHTML='<div class="empty">条項が登録されていません</div>';return;}
+  h='<table><tr><th>条項</th><th>タイプ</th><th>トリガー</th><th>リスク</th><th>優先度</th><th></th></tr>';
+  con.clauses.forEach((cl,i)=>{
+    let r=risk(cl),p=priority(cl),rc=r==='high'?'#ef4444':r==='mid'?'#f59e0b':'#22c55e';
+    h+='<tr><td>'+cl.ref+'</td><td>'+TN[cl.type]+'</td><td>'+cl.trigger+'</td>';
+    h+='<td><span class="badge r-'+r+'">'+(r==='high'?'高':r==='mid'?'中':'低')+'</span></td>';
+    h+='<td><div class="score-bar"><div class="score-fill" style="width:'+p+'%;background:'+rc+'"></div></div>'+p+'点</td>';
+    h+='<td><button class="btn-d" onclick="delClause('+i+')">削除</button></td></tr>';
+  });
+  $('tab0').innerHTML=h+'</table>';
+}
+
+function renderHeat(){
+  let counts={coc:{high:0,mid:0,low:0},indem:{high:0,mid:0,low:0},rw:{high:0,mid:0,low:0},nc:{high:0,mid:0,low:0}};
+  data.contracts.forEach(c=>c.clauses.forEach(cl=>{counts[cl.type][risk(cl)]++}));
+  let h='<p style="font-size:.85em;color:#666;margin-bottom:6px">全契約横断ヒートマップ（条項タイプ×リスクレベル）</p>';
+  h+='<div class="heat"><div></div><div class="h-label" style="justify-content:center">高リスク</div><div class="h-label" style="justify-content:center">中リスク</div><div class="h-label" style="justify-content:center">低リスク</div>';
+  for(let t of['coc','indem','rw','nc']){
+    h+='<div class="h-label">'+TN[t]+'</div>';
+    for(let r of['high','mid','low']){
+      let v=counts[t][r],cls=r==='high'?'h-h':r==='mid'?'h-m':'h-l';
+      h+='<div class="'+cls+'"><span class="cnt">'+v+'</span>件</div>';
+    }
+  }
+  $('tab1').innerHTML=h+'</div>';
+}
+
+function renderFlags(){
+  let flags=[];
+  data.contracts.forEach(c=>c.clauses.forEach(cl=>{
+    let reasons=needsHuman(cl);
+    reasons.forEach(r=>flags.push({contract:c.name,ref:cl.ref,type:TN[cl.type],reason:r}));
+  }));
+  if(!flags.length){$('tab2').innerHTML='<div class="empty">レッドフラグはありません</div>';return;}
+  let h='<p style="font-size:.85em;color:#991b1b;font-weight:700;margin-bottom:8px">&#9888; 要・人間判断（'+flags.length+'件）</p>';
+  flags.forEach(f=>{h+='<div class="flag"><strong>'+f.contract+' / '+f.ref+'</strong>（'+f.type+'）<br>'+f.reason+'</div>';});
+  $('tab2').innerHTML=h;
+}
+
+function showTab(n,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  for(let i=0;i<3;i++) $('tab'+i).style.display=i===n?'':'none';
+}
+
+function exportCSV(){
+  let rows=[['契約名','相手方','条項番号','タイプ','トリガー','金額(万円)','期間(月)','範囲','治癒期間','リスク','優先度','備考','レッドフラグ']];
+  data.contracts.forEach(c=>c.clauses.forEach(cl=>{
+    let flags=needsHuman(cl).join('／');
+    rows.push([c.name,c.party,cl.ref,TN[cl.type],cl.trigger,cl.amt,cl.period,cl.scope,cl.cure==='1'?'あり':'なし',
+      risk(cl)==='high'?'高':risk(cl)==='mid'?'中':'低',priority(cl),cl.note,flags]);
+  }));
+  let csv='\uFEFF'+rows.map(r=>r.map(v=>'"'+(v+'').replace(/"/g,'""')+'"').join(',')).join('\n');
+  let a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='dd_clauses_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+}
+
+function clearAll(){if(confirm('全データを削除しますか？')){data={contracts:[],sel:null};selC=null;save();render();}}
+
+render();
+</script>
+</body>
+</html>

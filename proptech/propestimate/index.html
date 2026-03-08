@@ -1,0 +1,184 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>リノベ見積書_適正価格スコアリングチェッカー | 中古物件のリノベーション工事見積書をチェックするツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Hiragino Sans',sans-serif;background:#f4f6f9;color:#333;line-height:1.6}
+.w{max-width:980px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:20px 16px;border-radius:0 0 12px 12px;margin-bottom:16px}
+header h1{font-size:1.25em;letter-spacing:.05em}
+header p{font-size:.82em;opacity:.85;margin-top:4px}
+.note{font-size:.73em;color:#888;background:#fff;padding:8px 12px;border-radius:6px;margin-bottom:14px;border-left:3px solid #ff9800}
+.bar{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;align-items:end}
+.bar div{display:flex;flex-direction:column;gap:2px}
+.bar label{font-size:.78em;font-weight:700;color:#555}
+.bar select{padding:6px 10px;border:1px solid #ccc;border-radius:5px;font-size:.88em}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#1a237e;margin-bottom:10px;border-bottom:2px solid #e8eaf6;padding-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:.82em}
+th{background:#e8eaf6;padding:6px 4px;text-align:center;font-size:.78em;white-space:nowrap}
+td{padding:4px 2px}
+td input,td select{width:100%;padding:5px;border:1px solid #ddd;border-radius:4px;font-size:.85em}
+.n{text-align:right}
+.btn{padding:8px 20px;border:none;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:700;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.bp{background:#1a237e;color:#fff}
+.bs{background:#e0e0e0;color:#555}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.hi{background:#ffebee;color:#c62828}
+.ok{background:#e8f5e9;color:#2e7d32}
+.lo{background:#e3f2fd;color:#1565c0}
+.tag{display:inline-block;padding:2px 10px;border-radius:4px;font-size:.78em;font-weight:700}
+.sb{text-align:center;padding:16px}
+.sn{font-size:3.2em;font-weight:800}
+.sl{font-size:.9em;margin-top:4px}
+.warn{background:#fff8e1;border-left:4px solid #ffa000;padding:8px 12px;margin:6px 0;border-radius:0 6px 6px 0;font-size:.84em}
+.neg{background:#fce4ec;border-left:4px solid #e91e63;padding:8px 12px;margin:6px 0;border-radius:0 6px 6px 0;font-size:.84em}
+.hid{display:none}
+.tot{text-align:right;font-weight:700;font-size:.95em;padding:8px 0;border-top:2px solid #1a237e}
+@media(max-width:640px){
+ table{font-size:.72em}td input,td select{padding:3px;font-size:.78em}
+ .sn{font-size:2.2em}header h1{font-size:1.05em}}
+</style><meta name="description" content="中古物件のリノベーション工事見積書をチェックするツール。見積もり項目を入力すると、項目別の適正価格帯と比較して割高・割安を判定し、見落としがちな追加工事・隠れコスト（養生費・廃材処理・管理費等）を自動検出。さらに見積書の交渉ポイントを提示する。VirtualStaging.artのようなビジュアル系ツールは既">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,リノベ見積書_適正価格スコアリングチェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propestimate/">
+<meta property="og:title" content="リノベ見積書_適正価格スコアリングチェッカー | 中古物件のリノベーション工事見積書をチェックするツール - kusasyu tools">
+<meta property="og:description" content="中古物件のリノベーション工事見積書をチェックするツール。見積もり項目を入力すると、項目別の適正価格帯と比較して割高・割安を判定し、見落としがちな追加工事・隠れコスト（養生費・廃材処理・管理費等）を自動検出。さらに見積書の交渉ポイントを提示する。VirtualStaging.artのようなビジュアル系ツールは既">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propestimate/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="リノベ見積書_適正価格スコアリングチェッカー | 中古物件のリノベーション工事見積書をチェックするツール - kusasyu tools">
+<meta name="twitter:description" content="中古物件のリノベーション工事見積書をチェックするツール。見積もり項目を入力すると、項目別の適正価格帯と比較して割高・割安を判定し、見落としがちな追加工事・隠れコスト（養生費・廃材処理・管理費等）を自動検出。さらに見積書の交渉ポイントを提示する。VirtualStaging.artのようなビジュアル系ツールは既">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "リノベ見積書_適正価格スコアリングチェッカー",
+  "description": "中古物件のリノベーション工事見積書をチェックするツール。見積もり項目を入力すると、項目別の適正価格帯と比較して割高・割安を判定し、見落としがちな追加工事・隠れコスト（養生費・廃材処理・管理費等）を自動検出。さらに見積書の交渉ポイントを提示する。VirtualStaging.artのようなビジュアル系ツールは既",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propestimate/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<header><h1>PropEstimate｜リノベ見積書 適正価格スコアリングチェッカー</h1>
+<p>見積書の項目を入力 → 適正価格帯と比較 → 割高/適正/割安を自動判定</p></header>
+<div class="w">
+<div class="note">⚠ 本ツールはルールベースの参考判定です。適正単価は住宅リフォーム推進協議会ガイドライン参考値（税抜）に基づく概算であり、物件状況・施工条件・時期により実費は変動します。投資判断の最終責任はご利用者にあります。</div>
+<div class="bar"><div><label>エリア</label><select id="area"><option value="0">首都圏（東京・神奈川・千葉・埼玉）</option><option value="1">関西圏（大阪・京都・兵庫）</option><option value="2">その他地域</option></select></div>
+<div><label>グレード</label><select id="grade"><option value="0">スタンダード</option><option value="1">ミドル</option><option value="2">ハイグレード</option></select></div></div>
+<div class="card"><h2>見積書入力（最大20行）</h2>
+<table><thead><tr><th style="width:23%">工事種別</th><th style="width:12%">数量</th><th style="width:8%">単位</th><th style="width:15%">単価(税抜)</th><th style="width:17%">金額</th><th style="width:12%">判定</th><th style="width:5%"></th></tr></thead>
+<tbody id="rows"></tbody>
+<tfoot><tr><td colspan="4" class="tot">合計（税抜）</td><td class="tot n" id="total">0</td><td colspan="2"></td></tr></tfoot>
+</table>
+<div class="btns"><button class="btn bs" onclick="addRow()">＋ 行を追加</button><button class="btn bp" onclick="diagnose()">診断する</button></div></div>
+<div id="result" class="hid">
+<div class="card"><h2>総合評価スコア</h2><div class="sb"><div class="sn" id="sv">—</div><div class="sl" id="slb">/ 100点</div></div></div>
+<div class="card"><h2>項目別 適正価格比較</h2><div id="det"></div></div>
+<div class="card"><h2>見落とし項目チェック</h2><div id="wrn"></div></div>
+<div class="card"><h2>交渉優先度 TOP3</h2><div id="neg"></div></div>
+</div></div>
+<script>
+const T=[
+['解体工事','m²',5000,10000],
+['床工事（フローリング等）','m²',8000,15000],
+['壁・天井工事（クロス等）','m²',1200,2500],
+['キッチン設備工事','式',500000,1200000],
+['浴室設備工事','式',600000,1500000],
+['トイレ設備工事','式',150000,400000],
+['洗面台工事','式',100000,300000],
+['電気設備工事','m²',3000,6000],
+['給排水設備工事','m²',4000,8000],
+['塗装工事','m²',2000,4000],
+['建具工事（1箇所）','箇所',30000,80000],
+['防水工事','m²',4000,8000]];
+const AM=[1.2,1.1,1.0],GM=[1.0,1.5,2.3];
+const MI=[['養生費','養生'],['廃材処理費','廃材|産廃|処分'],['諸経費','諸経費'],['現場管理費','管理費|現場管理'],['消費税','税|消費税'],['予備費（追加工事リスク）','予備|リスク|追加工事']];
+let rc=0;
+function addRow(){
+ if(rc>=20)return alert('最大20行です');
+ const tb=document.getElementById('rows'),tr=document.createElement('tr');tr.id='r'+rc;
+ let op='<option value="-1">— 選択 —</option>';
+ T.forEach((t,i)=>op+=`<option value="${i}">${t[0]}</option>`);
+ op+='<option value="99">その他（手入力）</option>';
+ tr.innerHTML=`<td><select onchange="uc(this)">${op}</select></td><td><input type="number" min="0" step="0.1" class="n" placeholder="0" oninput="calc(this)"></td><td class="ut" style="text-align:center;font-size:.78em">—</td><td><input type="number" min="0" class="n" placeholder="0" oninput="calc(this)"></td><td class="amt n">0</td><td class="jdg" style="text-align:center">—</td><td><button class="btn bs" style="padding:2px 6px;font-size:.7em" onclick="delRow('r${rc}')">✕</button></td>`;
+ tb.appendChild(tr);rc++;
+}
+function uc(s){const tr=s.closest('tr'),i=+s.value;tr.querySelector('.ut').textContent=i>=0&&i<T.length?T[i][1]:'式';}
+function calc(el){
+ const tr=el.closest('tr'),ins=tr.querySelectorAll('input');
+ const q=parseFloat(ins[0].value)||0,u=parseFloat(ins[1].value)||0;
+ tr.querySelector('.amt').textContent=Math.round(q*u).toLocaleString();updTotal();
+}
+function updTotal(){
+ let s=0;document.querySelectorAll('#rows .amt').forEach(e=>s+=parseInt(e.textContent.replace(/,/g,''))||0);
+ document.getElementById('total').textContent=s.toLocaleString()+'円';
+}
+function delRow(id){document.getElementById(id)?.remove();updTotal();}
+function rng(ti){const a=+document.getElementById('area').value,g=+document.getElementById('grade').value;return[Math.round(T[ti][2]*AM[a]*GM[g]),Math.round(T[ti][3]*AM[a]*GM[g])];}
+function diagnose(){
+ const rows=document.querySelectorAll('#rows tr');
+ if(!rows.length)return alert('工事項目を入力してください');
+ let items=[],txt='',overs=[];
+ rows.forEach(tr=>{
+  const sel=tr.querySelector('select'),ins=tr.querySelectorAll('input');
+  const ti=+sel.value,q=parseFloat(ins[0].value)||0,u=parseFloat(ins[1].value)||0,amt=Math.round(q*u);
+  const nm=sel.options[sel.selectedIndex].text;txt+=nm+' ';
+  if(ti<0)return;
+  let jd='—',cl='',df=0;
+  if(ti<T.length&&q>0&&u>0){
+   const[mn,mx]=rng(ti);
+   if(u<mn*0.8){jd='割安';cl='lo';}
+   else if(u<=mx*1.1){jd='適正';cl='ok';}
+   else{jd='割高';cl='hi';df=amt-q*mx;overs.push({nm,df,u,mx:Math.round(mx)});}
+  }
+  tr.querySelector('.jdg').innerHTML=jd!=='—'?`<span class="tag ${cl}">${jd}</span>`:'—';
+  items.push({nm,ti,q,u,amt,jd,cl,df});
+ });
+ let warns=[];
+ MI.forEach(([lb,pt])=>{if(!new RegExp(pt,'i').test(txt))warns.push(lb);});
+ let sc=100,oc=items.filter(x=>x.cl==='hi').length,lc=items.filter(x=>x.cl==='lo').length,vc=items.filter(x=>x.jd!=='—').length;
+ sc-=oc*12;sc-=lc*3;sc-=warns.length*5;
+ if(vc===0)sc=50;sc=Math.max(0,Math.min(100,sc));
+ document.getElementById('result').classList.remove('hid');
+ const sv=document.getElementById('sv');sv.textContent=sc;
+ sv.style.color=sc>=80?'#2e7d32':sc>=50?'#ef6c00':'#c62828';
+ document.getElementById('slb').textContent=sc>=80?'/ 100点 — 概ね妥当な見積書です':sc>=50?'/ 100点 — いくつか確認すべき項目があります':'/ 100点 — 交渉余地が大きい見積書です';
+ let dh='<table><tr><th>工事名</th><th>入力単価</th><th>適正単価帯</th><th>判定</th></tr>';
+ items.forEach(it=>{if(it.ti>=0&&it.ti<T.length&&it.q>0){const[mn,mx]=rng(it.ti);
+  dh+=`<tr><td>${it.nm}</td><td class="n">${it.u.toLocaleString()}円</td><td class="n">${mn.toLocaleString()}〜${mx.toLocaleString()}円</td><td style="text-align:center"><span class="tag ${it.cl}">${it.jd}</span></td></tr>`;}});
+ dh+='</table>';document.getElementById('det').innerHTML=dh;
+ let wh='';if(!warns.length)wh='<p style="color:#2e7d32;font-size:.88em">✔ 主要な見落とし項目は検出されませんでした</p>';
+ else warns.forEach(w=>wh+=`<div class="warn">⚠ <strong>${w}</strong>が見積書に含まれていない可能性があります。施工会社に確認を推奨します。</div>`);
+ document.getElementById('wrn').innerHTML=wh;
+ overs.sort((a,b)=>b.df-a.df);let nh='';
+ if(!overs.length)nh='<p style="color:#2e7d32;font-size:.88em">✔ 割高判定の項目はありません。見積書は適正範囲です。</p>';
+ else overs.slice(0,3).forEach((it,i)=>nh+=`<div class="neg"><strong>${i+1}位：${it.nm}</strong><br>入力単価 ${it.u.toLocaleString()}円 → 適正上限 ${it.mx.toLocaleString()}円（差額 約<strong>${Math.round(it.df).toLocaleString()}円</strong>の交渉余地）</div>`);
+ document.getElementById('neg').innerHTML=nh;
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+for(let i=0;i<5;i++)addRow();
+</script></body></html>

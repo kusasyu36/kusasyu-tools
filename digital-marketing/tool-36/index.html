@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI動画生成ツール選定_インタラクティブ比較マトリクス | BtoB企業（製造業・IT・医療機器）向け - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:18px 0 8px;color:#1e3a5f}
+.warn{background:#fff0f0;border:2px solid #e53e3e;color:#c53030;padding:10px 14px;border-radius:8px;font-size:.85rem;text-align:center;margin-bottom:18px;font-weight:700}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05rem;color:#2b6cb0;margin-bottom:12px;border-left:4px solid #3182ce;padding-left:10px}
+.form-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.form-group{flex:1;min-width:200px}
+.form-group label{display:block;font-size:.82rem;font-weight:600;margin-bottom:4px;color:#4a5568}
+.form-group select,.form-group input{width:100%;padding:9px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9rem;background:#fff}
+.btn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,#2b6cb0,#3182ce);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:6px}
+.btn:hover{opacity:.9}
+.result{display:none;margin-top:16px}
+.rec-box{background:linear-gradient(135deg,#ebf8ff,#bee3f8);border:2px solid #3182ce;border-radius:10px;padding:16px;margin-bottom:14px;text-align:center}
+.rec-box .name{font-size:1.3rem;font-weight:800;color:#2b6cb0}
+.rec-box .score{font-size:.95rem;color:#2d3748;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th,td{padding:8px 6px;border:1px solid #e2e8f0;text-align:center}
+th{background:#edf2f7;font-weight:700;color:#2d3748}
+.best{background:#ebf8ff;font-weight:700}
+.bar-wrap{height:18px;background:#e2e8f0;border-radius:9px;overflow:hidden;margin:2px 0}
+.bar{height:100%;border-radius:9px;transition:width .5s}
+.gantt-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:10px}
+.gantt-table th,.gantt-table td{padding:5px 4px;border:1px solid #e2e8f0;text-align:center}
+.gantt-table th{background:#edf2f7}
+.g-fill{background:#3182ce;color:#fff;border-radius:4px;font-weight:600}
+.g-rev{background:#ed8936;color:#fff;border-radius:4px;font-weight:600}
+.g-pub{background:#38a169;color:#fff;border-radius:4px;font-weight:600}
+.cost-box{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.cost-card{flex:1;min-width:140px;background:#f7fafc;border-radius:8px;padding:12px;text-align:center;border:1px solid #e2e8f0}
+.cost-card .val{font-size:1.3rem;font-weight:800;color:#2b6cb0}
+.cost-card .lbl{font-size:.75rem;color:#718096}
+.note{font-size:.75rem;color:#718096;margin-top:8px}
+@media(max-width:600px){.form-row{flex-direction:column}.cost-box{flex-direction:column}table{font-size:.72rem}}
+</style>
+<meta name="description" content="BtoB企業（製造業・IT・医療機器）向け。製品カタログ情報を入力するだけで、AI動画生成ツール（Sora/Runway/Haiper）に直接投入可能な動画台本・シーン構成・プロンプトを自動生成し、外注コストvs AI内製コストをリアルタイム比較する。展示会依存・制作会社依存を脱却し、月5〜10本の製品デモ動">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI動画生成ツール選定_インタラクティブ比較マトリクス">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-36/">
+<meta property="og:title" content="AI動画生成ツール選定_インタラクティブ比較マトリクス | BtoB企業（製造業・IT・医療機器）向け - kusasyu tools">
+<meta property="og:description" content="BtoB企業（製造業・IT・医療機器）向け。製品カタログ情報を入力するだけで、AI動画生成ツール（Sora/Runway/Haiper）に直接投入可能な動画台本・シーン構成・プロンプトを自動生成し、外注コストvs AI内製コストをリアルタイム比較する。展示会依存・制作会社依存を脱却し、月5〜10本の製品デモ動">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-36/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI動画生成ツール選定_インタラクティブ比較マトリクス | BtoB企業（製造業・IT・医療機器）向け - kusasyu tools">
+<meta name="twitter:description" content="BtoB企業（製造業・IT・医療機器）向け。製品カタログ情報を入力するだけで、AI動画生成ツール（Sora/Runway/Haiper）に直接投入可能な動画台本・シーン構成・プロンプトを自動生成し、外注コストvs AI内製コストをリアルタイム比較する。展示会依存・制作会社依存を脱却し、月5〜10本の製品デモ動">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI動画生成ツール選定_インタラクティブ比較マトリクス",
+  "description": "BtoB企業（製造業・IT・医療機器）向け。製品カタログ情報を入力するだけで、AI動画生成ツール（Sora/Runway/Haiper）に直接投入可能な動画台本・シーン構成・プロンプトを自動生成し、外注コストvs AI内製コストをリアルタイム比較する。展示会依存・制作会社依存を脱却し、月5〜10本の製品デモ動",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-36/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>AI動画生成ツール選定<br>インタラクティブ比較マトリクス</h1>
+<div class="warn">⚠ 最終確認日: 2026年3月 ／ 料金・機能は変動します。導入前に必ず各ツールの公式サイトで最新情報を確認ください</div>
+
+<div class="card">
+<h2>① 条件を選択</h2>
+<div class="form-row">
+<div class="form-group"><label>主な用途</label>
+<select id="usage"><option value="demo">製品デモ動画</option><option value="expo">展示会映像</option><option value="tech">技術解説動画</option></select></div>
+<div class="form-group"><label>月間予算（AIツール費）</label>
+<select id="budget"><option value="5000">〜5,000円/月</option><option value="12000" selected>〜12,000円/月</option><option value="30000">〜30,000円/月</option></select></div>
+<div class="form-group"><label>日本語テキスト対応</label>
+<select id="jpn"><option value="1">必須</option><option value="0">不要（英語OK）</option></select></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>月間制作本数</label>
+<input type="number" id="vols" value="5" min="1" max="30"></div>
+<div class="form-group"><label>現在の外注単価（円/本）</label>
+<input type="number" id="extcost" value="100000" step="10000"></div>
+</div>
+<button class="btn" onclick="calc()">最適ツールを診断する</button>
+</div>
+
+<div class="result" id="res">
+<div class="card">
+<h2>② 診断結果</h2>
+<div class="rec-box"><div class="name" id="recName"></div><div class="score" id="recScore"></div></div>
+<table><thead><tr><th>項目</th><th>Runway</th><th>Kling</th><th>Pika</th><th>Haiper</th></tr></thead><tbody id="tbody"></tbody></table>
+</div>
+
+<div class="card">
+<h2>③ コスト比較（成果物1連動）</h2>
+<div class="cost-box">
+<div class="cost-card"><div class="lbl">月間外注費</div><div class="val" id="cExt">-</div></div>
+<div class="cost-card"><div class="lbl">月間内製コスト</div><div class="val" id="cInt">-</div></div>
+<div class="cost-card"><div class="lbl">月間削減額</div><div class="val" id="cSave">-</div></div>
+<div class="cost-card"><div class="lbl">年間削減額</div><div class="val" id="cYear">-</div></div>
+</div>
+<p class="note">※ 計算式: 月間外注費=外注単価×本数 ／ 月間内製コスト=AIツール月額+(0.25h×3,000円×本数) ／ 精密部品メーカーA社モデル準拠</p>
+</div>
+
+<div class="card">
+<h2>④ 月次量産カレンダー（月5〜10本 週次ガントチャート）</h2>
+<p class="note" style="margin-bottom:8px">5ステップ×4週で月5〜10本を量産するモデルスケジュール</p>
+<table class="gantt-table"><thead><tr><th style="width:22%">ステップ</th><th>第1週</th><th>第2週</th><th>第3週</th><th>第4週</th></tr></thead>
+<tbody>
+<tr><td style="text-align:left;font-weight:600">❶ 企画（製品選定）</td><td class="g-fill">2本</td><td class="g-fill">2本</td><td class="g-fill">1本</td><td>-</td></tr>
+<tr><td style="text-align:left;font-weight:600">❷ 台本生成（AI）</td><td class="g-fill">2本</td><td class="g-fill">2本</td><td class="g-fill">1本</td><td>-</td></tr>
+<tr><td style="text-align:left;font-weight:600">❸ AI動画生成</td><td>-</td><td class="g-fill">2本</td><td class="g-fill">2本</td><td class="g-fill">1本</td></tr>
+<tr><td style="text-align:left;font-weight:600">❹ 社内レビュー</td><td>-</td><td class="g-rev">2本</td><td class="g-rev">2本</td><td class="g-rev">1本</td></tr>
+<tr><td style="text-align:left;font-weight:600">❺ 公開・配信</td><td>-</td><td>-</td><td class="g-pub">2本</td><td class="g-pub">3本</td></tr>
+</tbody></table>
+<p class="note">■青=企画〜生成 ■橙=レビュー ■緑=公開 ｜ 各ステップ15〜30分/本。月5本で合計工数約6.25時間（=0.25h×5本×5ステップ）</p>
+</div>
+</div>
+</div>
+
+<script>
+var tools=[
+{name:"Runway",price:4200,priceUSD:28,plan:"Gen-3 Turbo Pro",maxSec:16,resolution:"4K",imgToVid:1,textToVid:1,jpn:0.6,demo:9,expo:8,tech:7,quality:9,speed:7,control:9,api:1},
+{name:"Kling",price:2200,priceUSD:15,plan:"Pro",maxSec:10,resolution:"1080p",imgToVid:1,textToVid:1,jpn:0.7,demo:8,expo:7,tech:7,quality:8,speed:8,control:7,api:1},
+{name:"Pika",price:1200,priceUSD:8,plan:"Standard",maxSec:8,resolution:"1080p",imgToVid:1,textToVid:1,jpn:0.5,demo:7,expo:6,tech:6,quality:7,speed:9,control:6,api:0},
+{name:"Haiper",price:1500,priceUSD:10,plan:"Pro",maxSec:8,resolution:"1080p",imgToVid:1,textToVid:1,jpn:0.5,demo:7,expo:7,tech:8,quality:7,speed:8,control:7,api:0}
+];
+function fmt(n){return n.toLocaleString("ja-JP")}
+function calc(){
+var usage=document.getElementById("usage").value;
+var budget=parseInt(document.getElementById("budget").value);
+var jpn=parseInt(document.getElementById("jpn").value);
+var vols=parseInt(document.getElementById("vols").value)||5;
+var extcost=parseInt(document.getElementById("extcost").value)||100000;
+var scores=tools.map(function(t){
+var s=0;
+if(usage==="demo")s+=t.demo*3;
+else if(usage==="expo")s+=t.expo*3;
+else s+=t.tech*3;
+s+=t.quality*2+t.speed*1.5+t.control*1.5;
+if(jpn===1)s+=t.jpn*10;
+if(t.price>budget)s-=15;
+else s+=((budget-t.price)/budget)*5;
+if(t.api)s+=3;
+return{tool:t,score:Math.round(s*10)/10};
+});
+scores.sort(function(a,b){return b.score-a.score});
+var maxS=scores[0].score;
+document.getElementById("recName").textContent="推奨: "+scores[0].tool.name+" ("+scores[0].tool.plan+")";
+document.getElementById("recScore").textContent="総合スコア "+scores[0].score+"pt ／ 予算内で用途適合度トップ";
+var tb=document.getElementById("tbody");
+tb.innerHTML="";
+var rows=[
+["月額料金",function(t){return"\xA5"+fmt(t.price)+"($"+t.priceUSD+"/月)"}],
+["プラン名",function(t){return t.plan}],
+["最大動画長",function(t){return t.maxSec+"秒"}],
+["最大解像度",function(t){return t.resolution}],
+["画像→動画",function(t){return t.imgToVid?"○":"×"}],
+["テキスト→動画",function(t){return t.textToVid?"○":"×"}],
+["API提供",function(t){return t.api?"○":"△"}],
+["日本語対応度",function(t){var v=Math.round(t.jpn*10);return v>=7?"◎":v>=5?"○":"△"}],
+["映像品質",function(t){return t.quality+"/10"}],
+["生成速度",function(t){return t.speed+"/10"}],
+["操作性",function(t){return t.control+"/10"}],
+["総合スコア",null]
+];
+rows.forEach(function(r){
+var tr=document.createElement("tr");
+var th=document.createElement("td");
+th.style.fontWeight="600";th.style.textAlign="left";th.textContent=r[0];
+tr.appendChild(th);
+scores.forEach(function(s,i){
+var td=document.createElement("td");
+if(r[1])td.textContent=r[1](s.tool);
+else{
+var w=Math.round(s.score/maxS*100);
+td.innerHTML='<div class="bar-wrap"><div class="bar" style="width:'+w+'%;background:'+(i===0?"#3182ce":"#a0aec0")+'"></div></div>'+s.score+'pt';
+}
+if(i===0)td.className="best";
+tr.appendChild(td);
+});
+tb.appendChild(tr);
+});
+var toolCost=scores[0].tool.price;
+var hourly=3000;var laborH=0.25;
+var extTotal=extcost*vols;
+var intTotal=toolCost+(laborH*hourly*vols);
+var save=extTotal-intTotal;
+var yearly=save*12;
+document.getElementById("cExt").textContent="\xA5"+fmt(extTotal);
+document.getElementById("cInt").textContent="\xA5"+fmt(intTotal);
+document.getElementById("cSave").textContent="\xA5"+fmt(save);
+document.getElementById("cYear").textContent="\xA5"+fmt(yearly);
+document.getElementById("res").style.display="block";
+document.getElementById("res").scrollIntoView({behavior:"smooth"});
+}
+</script>
+</body>
+</html>

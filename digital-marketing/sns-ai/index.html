@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>観光スポット多言語SNS投稿ジェネレーター（AIプロンプト出力機能付き） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Yu Gothic',sans-serif;background:#f0f4f8;color:#333;line-height:1.6}
+.wrap{max-width:780px;margin:0 auto;padding:12px}
+h1{background:linear-gradient(135deg,#e63946,#f77f00);color:#fff;text-align:center;padding:18px 12px;font-size:1.2em;border-radius:12px 12px 0 0}
+h1 small{display:block;font-size:.65em;opacity:.9;margin-top:4px}
+.card{background:#fff;border-radius:0 0 12px 12px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+label{display:block;font-weight:700;margin:12px 0 4px;font-size:.9em}
+label:first-child{margin-top:0}
+input,select{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:1em;font-family:inherit}
+.row{display:flex;gap:8px}
+.row>*{flex:1}
+.btn{display:block;width:100%;padding:14px;margin-top:16px;background:linear-gradient(135deg,#e63946,#f77f00);color:#fff;border:none;border-radius:10px;font-size:1.1em;font-weight:700;cursor:pointer}
+.btn:hover{opacity:.9}
+.tabs{display:flex;gap:4px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px;border:2px solid #e63946;background:#fff;color:#e63946;border-radius:8px 8px 0 0;font-weight:700;cursor:pointer;font-size:.95em}
+.tabs button.on{background:#e63946;color:#fff}
+.tp{display:none}.tp.on{display:block}
+.lang-tabs{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+.lang-tabs button{padding:6px 14px;border:1px solid #457b9d;background:#fff;color:#457b9d;border-radius:6px;cursor:pointer;font-size:.85em;font-weight:700}
+.lang-tabs button.on{background:#457b9d;color:#fff}
+.lp{display:none}.lp.on{display:block}
+.out-box{background:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:12px;margin:8px 0;position:relative;white-space:pre-wrap;font-size:.9em;line-height:1.7}
+.out-box h4{color:#e63946;margin-bottom:4px;font-size:.85em}
+.cp{position:absolute;top:6px;right:6px;background:#457b9d;color:#fff;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:.75em}
+.cp.done{background:#2a9d8f}
+#result{margin-top:20px;display:none}
+.note{font-size:.78em;color:#888;margin-top:4px}
+@media(max-width:600px){.row{flex-direction:column;gap:0}h1{font-size:1em}}
+</style>
+<meta name="description" content="観光協会・自治体の担当者が観光スポットの基本情報（名前・カテゴリ・特徴・季節・アクセス）をフォームに入力するだけで、Instagram投稿文・X投稿文・Googleマップ紹介文を日本語・英語・中国語・韓国語の4言語で一括生成するHTMLツール。加えて、ChatGPT/Claudeに貼るだけで観光コンテンツを量">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,観光スポット多言語SNS投稿ジェネレーター（AIプロンプト出力機能付き）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sns-ai/">
+<meta property="og:title" content="観光スポット多言語SNS投稿ジェネレーター（AIプロンプト出力機能付き） - kusasyu tools">
+<meta property="og:description" content="観光協会・自治体の担当者が観光スポットの基本情報（名前・カテゴリ・特徴・季節・アクセス）をフォームに入力するだけで、Instagram投稿文・X投稿文・Googleマップ紹介文を日本語・英語・中国語・韓国語の4言語で一括生成するHTMLツール。加えて、ChatGPT/Claudeに貼るだけで観光コンテンツを量">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sns-ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="観光スポット多言語SNS投稿ジェネレーター（AIプロンプト出力機能付き） - kusasyu tools">
+<meta name="twitter:description" content="観光協会・自治体の担当者が観光スポットの基本情報（名前・カテゴリ・特徴・季節・アクセス）をフォームに入力するだけで、Instagram投稿文・X投稿文・Googleマップ紹介文を日本語・英語・中国語・韓国語の4言語で一括生成するHTMLツール。加えて、ChatGPT/Claudeに貼るだけで観光コンテンツを量">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "観光スポット多言語SNS投稿ジェネレーター（AIプロンプト出力機能付き）",
+  "description": "観光協会・自治体の担当者が観光スポットの基本情報（名前・カテゴリ・特徴・季節・アクセス）をフォームに入力するだけで、Instagram投稿文・X投稿文・Googleマップ紹介文を日本語・英語・中国語・韓国語の4言語で一括生成するHTMLツール。加えて、ChatGPT/Claudeに貼るだけで観光コンテンツを量",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sns-ai/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>観光スポット多言語SNS投稿ジェネレーター<small>AIプロンプト出力機能付き — インバウンド4言語対応</small></h1>
+<div class="card">
+<label>観光スポット名 *</label>
+<input id="name" placeholder="例：伏見稲荷大社">
+<div class="row">
+<div><label>カテゴリ *</label>
+<select id="cat"><option value="shrine">神社仏閣</option><option value="nature">自然景観</option><option value="onsen">温泉</option><option value="food">グルメ</option><option value="culture">文化体験</option></select></div>
+<div><label>ベストシーズン</label>
+<select id="season"><option value="spring">春（3〜5月）</option><option value="summer">夏（6〜8月）</option><option value="autumn">秋（9〜11月）</option><option value="winter">冬（12〜2月）</option><option value="all">通年</option></select></div>
+</div>
+<label>特徴①</label><input id="f1" placeholder="例：千本鳥居">
+<label>特徴②</label><input id="f2" placeholder="例：24時間参拝可能">
+<label>特徴③</label><input id="f3" placeholder="例：キツネの絵馬">
+<label>アクセス情報</label><input id="acc" placeholder="例：JR稲荷駅 徒歩すぐ">
+<label>追加ハッシュタグ（半角スペース区切り）</label>
+<input id="etag" placeholder="例：#京都観光 #フォトジェニック">
+<button class="btn" onclick="gen()">4言語で一括生成</button>
+</div>
+<div id="result">
+<div class="tabs">
+<button class="on" onclick="stab(0)">SNS投稿</button>
+<button onclick="stab(1)">AIプロンプト</button>
+</div>
+<div class="tp on" id="t0"><div class="lang-tabs" id="lt0"></div><div id="lc0"></div></div>
+<div class="tp" id="t1"><div id="ai-out"></div></div>
+</div>
+</div>
+<script>
+var C={shrine:{ja:'神社仏閣',en:'Shrine & Temple',zh:'神社寺庙',ko:'신사/사찰'},nature:{ja:'自然景観',en:'Natural Scenery',zh:'自然景观',ko:'자연경관'},onsen:{ja:'温泉',en:'Hot Spring',zh:'温泉',ko:'온천'},food:{ja:'グルメ',en:'Local Cuisine',zh:'美食',ko:'맛집'},culture:{ja:'文化体験',en:'Cultural Experience',zh:'文化体验',ko:'문화체험'}};
+var S={spring:{ja:'春',en:'Spring',zh:'春季',ko:'봄'},summer:{ja:'夏',en:'Summer',zh:'夏季',ko:'여름'},autumn:{ja:'秋',en:'Autumn',zh:'秋季',ko:'가을'},winter:{ja:'冬',en:'Winter',zh:'冬季',ko:'겨울'},all:{ja:'通年',en:'Year-round',zh:'全年',ko:'연중'}};
+var TG={shrine:'#神社 #寺院 #JapaneseTemple #shrine #御朱印 #パワースポット #日本文化',nature:'#絶景 #自然 #landscape #NatureJapan #四季の風景 #日本旅行 #scenic',onsen:'#温泉 #onsen #HotSpring #露天風呂 #癒し #温泉旅行 #日帰り温泉',food:'#日本グルメ #JapaneseFood #foodie #食べ歩き #ご当地グルメ #Delicious #yummy',culture:'#日本文化 #JapaneseCulture #伝統 #体験 #tradition #文化体験 #Japan'};
+var LN=['ja','en','zh','ko'],LL={ja:'日本語',en:'English',zh:'中文',ko:'한국어'};
+function v(id){return document.getElementById(id).value.trim()}
+function stab(i){document.querySelectorAll('.tabs button').forEach(function(b,j){b.className=j===i?'on':''});document.querySelectorAll('.tp').forEach(function(p,j){p.className=j===i?'tp on':'tp'})}
+function ltab(i){document.querySelectorAll('#lt0 button').forEach(function(b,j){b.className=j===i?'on':''});document.querySelectorAll('#lc0 .lp').forEach(function(p,j){p.className=j===i?'lp on':'lp'})}
+function cp(btn){var box=btn.parentElement;var t=box.querySelector('span').innerText;navigator.clipboard.writeText(t).then(function(){btn.textContent='\u2713';btn.className='cp done';setTimeout(function(){btn.textContent='コピー';btn.className='cp'},1500)})}
+function ob(title,text){return '<div class="out-box"><h4>'+title+'</h4><button class="cp" onclick="cp(this)">コピー</button><span>'+esc(text)+'</span></div>'}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function gen(){
+var n=v('name'),cat=v('cat'),sn=v('season'),f1=v('f1'),f2=v('f2'),f3=v('f3'),ac=v('acc'),et=v('etag');
+if(!n){alert('スポット名を入力してください');return}
+var cl=C[cat],sl=S[sn],tags=TG[cat]+(et?' '+et:'');
+var fs=[f1,f2,f3].filter(function(x){return x});
+var fj=fs.join('・')||'見どころ満載';
+var fe=fs.join(', ')||'many attractions';
+var ig={
+ja:'✨【'+n+'】✨\n\n'+fj+'が魅力の'+cl.ja+'スポット！\n\n📍アクセス：'+(ac||'詳細はプロフィールへ')+'\n🗓️おすすめ時期：'+sl.ja+'\n\n'+n+'で特別なひとときを過ごしませんか？\n\n'+tags,
+en:'✨ '+n+' ✨\n\nA must-visit '+cl.en.toLowerCase()+' destination featuring '+fe+'!\n\n📍Access: '+(ac||'See profile')+'\n🗓️Best season: '+sl.en+'\n\nDiscover the beauty of '+n+'.\n\n'+tags+' #VisitJapan #Travel',
+zh:'✨【'+n+'】✨\n\n以'+fj+'闻名的'+cl.zh+'景点！\n\n📍交通：'+(ac||'详情请看简介')+'\n🗓️最佳季节：'+sl.zh+'\n\n来'+n+'感受日本之美吧！\n\n'+tags+' #日本旅游 #打卡',
+ko:'✨【'+n+'】✨\n\n'+fj+'이/가 매력적인 '+cl.ko+' 명소!\n\n📍가는 법: '+(ac||'프로필 참조')+'\n🗓️추천 시기: '+sl.ko+'\n\n'+n+'에서 특별한 시간을 보내세요!\n\n'+tags+' #일본여행 #여행스타그램'};
+var tw={
+ja:n+'｜'+fj+'が魅力✨ '+sl.ja+'がおすすめ！📍'+(ac||'')+' '+tags.split(' ').slice(0,4).join(' '),
+en:n+' — '+fe+' ✨ Best in '+sl.en+'! 📍'+(ac||'')+' #VisitJapan #Japan',
+zh:n+'｜'+fj+'✨ '+sl.zh+'最佳！📍'+(ac||'')+' #日本旅游 #日本景点',
+ko:n+'｜'+fj+' ✨ '+sl.ko+' 추천! 📍'+(ac||'')+' #일본여행 #일본'};
+var gm={
+ja:n+'は'+cl.ja+'の人気スポットです。'+(fs.length?'見どころは'+fj+'。':'')+'おすすめの時期は'+sl.ja+'です。'+(ac?'アクセス：'+ac+'。':''),
+en:n+' is a popular '+cl.en.toLowerCase()+' spot in Japan. '+(fs.length?'Known for '+fe+'. ':'')+'Best season: '+sl.en+'. '+(ac?'Access: '+ac+'.':''),
+zh:n+'是日本热门的'+cl.zh+'景点。'+(fs.length?'以'+fj+'著称。':'')+'最佳季节：'+sl.zh+'。'+(ac?'交通：'+ac+'。':''),
+ko:n+'은/는 일본의 인기 '+cl.ko+' 명소입니다. '+(fs.length?fj+'(으)로 유명합니다. ':'')+'추천 시기: '+sl.ko+'. '+(ac?'가는 법: '+ac+'.':'')};
+var ltH='',lcH='';
+LN.forEach(function(l,i){
+ltH+='<button class="'+(i===0?'on':'')+'" onclick="ltab('+i+')">'+LL[l]+'</button>';
+lcH+='<div class="lp '+(i===0?'on':'')+'">';
+lcH+=ob('Instagram投稿文',ig[l]);
+lcH+=ob('X（Twitter）投稿文',tw[l]);
+lcH+=ob('Googleマップ紹介文',gm[l]);
+lcH+='</div>'});
+document.getElementById('lt0').innerHTML=ltH;
+document.getElementById('lc0').innerHTML=lcH;
+var spot='スポット名: '+n+'\nカテゴリ: '+cl.ja+'\n特徴: '+fj+'\nベストシーズン: '+sl.ja+'\nアクセス: '+(ac||'未入力');
+var p1='以下の観光スポットについて、日本語・英語・中国語・韓国語の4言語で、それぞれ200〜300字の観光案内文を作成してください。各言語のネイティブが自然に感じる表現を使い、文化的背景も考慮してください。\n\n'+spot+'\n\n出力形式:\n【日本語】…\n【English】…\n【中文】…\n【한국어】…';
+var p2='以下の観光スポットのInstagramリール台本（30秒）を4言語で作成してください。冒頭フック→見どころ紹介→CTAの構成で、ナレーション原稿とテロップ案を含めてください。\n\n'+spot+'\n\nハッシュタグ候補: '+tags;
+var p3='以下の観光スポットの季節イベント告知SNS投稿を作成してください。Instagram用（画像投稿）とX用（140字以内）をそれぞれ4言語で出力してください。季節感のある表現と具体的な日程の仮置き（「○月○日〜」形式）を入れてください。\n\n'+spot;
+var aiH='<p class="note">以下のプロンプトをChatGPTまたはClaudeに貼り付けて実行してください。</p>';
+aiH+=ob('多言語観光案内文プロンプト',p1);
+aiH+=ob('SNSリール台本プロンプト',p2);
+aiH+=ob('季節イベント告知文プロンプト',p3);
+document.getElementById('ai-out').innerHTML=aiH;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+stab(0);ltab(0)}
+</script>
+</body>
+</html>

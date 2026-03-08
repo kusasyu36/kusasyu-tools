@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>マーケ戦略コーチ＆KPIシミュレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.3em;padding:16px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:16px}
+.steps{display:flex;gap:4px;margin-bottom:16px}
+.steps button{flex:1;padding:8px 4px;border:none;border-radius:8px 8px 0 0;font-size:.8em;cursor:pointer;background:#e2e8f0;color:#4a5568;font-weight:600;transition:.2s}
+.steps button.active{background:#3182ce;color:#fff}
+.steps button.done{background:#48bb78;color:#fff}
+.panel{display:none;background:#fff;border-radius:0 0 12px 12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.panel.show{display:block}
+label{display:block;font-size:.85em;font-weight:600;margin:10px 0 4px;color:#4a5568}
+select,input[type=number],input[type=text]{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+.btn{display:inline-block;padding:10px 24px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:.95em;cursor:pointer;margin-top:12px;font-weight:600}
+.btn:hover{background:#2b6cb0}
+.btn.green{background:#48bb78}.btn.green:hover{background:#38a169}
+.btn.gray{background:#a0aec0}.btn.gray:hover{background:#718096}
+.card{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:10px 0}
+.card h3{font-size:.95em;color:#2d3748;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:8px 0}
+th,td{padding:6px 8px;border:1px solid #e2e8f0;text-align:left}
+th{background:#edf2f7;font-weight:600}
+.bar-wrap{background:#e2e8f0;border-radius:4px;height:18px;margin:4px 0}
+.bar{height:18px;border-radius:4px;background:#3182ce;font-size:.7em;color:#fff;line-height:18px;padding:0 6px;min-width:20px}
+.tag{display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 8px;border-radius:4px;font-size:.75em;margin:2px}
+.note{font-size:.75em;color:#a0aec0;margin-top:8px}
+#pdcaLog{max-height:300px;overflow-y:auto}
+</style>
+<meta name="description" content="マーケ専任者がいないBtoB中小企業向けに、自社情報（業種・ターゲット・現状施策・予算）を入力するだけで、週次のマーケティングアクションプラン（タスクリスト・コンテンツ構成案・KPI目標・効果測定方法）を自動生成するブラウザツール。既存の競合（アドカル・PromoBrain）が広告最適化やコンテンツ生成の『単">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,マーケ戦略コーチ＆KPIシミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-3/">
+<meta property="og:title" content="マーケ戦略コーチ＆KPIシミュレーター - kusasyu tools">
+<meta property="og:description" content="マーケ専任者がいないBtoB中小企業向けに、自社情報（業種・ターゲット・現状施策・予算）を入力するだけで、週次のマーケティングアクションプラン（タスクリスト・コンテンツ構成案・KPI目標・効果測定方法）を自動生成するブラウザツール。既存の競合（アドカル・PromoBrain）が広告最適化やコンテンツ生成の『単">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="マーケ戦略コーチ＆KPIシミュレーター - kusasyu tools">
+<meta name="twitter:description" content="マーケ専任者がいないBtoB中小企業向けに、自社情報（業種・ターゲット・現状施策・予算）を入力するだけで、週次のマーケティングアクションプラン（タスクリスト・コンテンツ構成案・KPI目標・効果測定方法）を自動生成するブラウザツール。既存の競合（アドカル・PromoBrain）が広告最適化やコンテンツ生成の『単">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "マーケ戦略コーチ＆KPIシミュレーター",
+  "description": "マーケ専任者がいないBtoB中小企業向けに、自社情報（業種・ターゲット・現状施策・予算）を入力するだけで、週次のマーケティングアクションプラン（タスクリスト・コンテンツ構成案・KPI目標・効果測定方法）を自動生成するブラウザツール。既存の競合（アドカル・PromoBrain）が広告最適化やコンテンツ生成の『単",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>BtoBマーケ戦略コーチ＆KPIシミュレーター</h1>
+<p class="sub">4ステップで最適なマーケ戦略を設計・実行・改善</p>
+
+<div class="steps">
+<button id="s1b" class="active" onclick="go(1)">①基本情報</button>
+<button id="s2b" onclick="go(2)">②KPI設計</button>
+<button id="s3b" onclick="go(3)">③施策計画</button>
+<button id="s4b" onclick="go(4)">④PDCA記録</button>
+</div>
+
+<!-- Step1 -->
+<div id="p1" class="panel show">
+<div class="row">
+<div><label>業種</label><select id="ind"><option value="IT">IT・SaaS</option><option value="MFG">製造業</option><option value="PRO">士業</option><option value="CON">コンサル</option></select></div>
+<div><label>年商規模</label><select id="rev"><option value="S">〜1億円</option><option value="M">1〜10億円</option><option value="L">10〜50億円</option><option value="XL">50億円超</option></select></div>
+</div>
+<label>ターゲット顧客像</label>
+<input type="text" id="tgt" placeholder="例：従業員50〜300名の製造業 経営企画部">
+<div class="row">
+<div><label>現在の主力施策</label><select id="cur"><option>SEO・コンテンツ</option><option>メルマガ</option><option>展示会</option><option>テレアポ</option><option>なし</option></select></div>
+<div><label>月間マーケ予算(万円)</label><input type="number" id="bgt" value="50" min="5" max="5000"></div>
+</div>
+<button class="btn" onclick="calcStep2()">KPIを設計する →</button>
+</div>
+
+<!-- Step2 -->
+<div id="p2" class="panel">
+<h3 style="margin-bottom:8px">■ 業種別ベンチマークKPI目標</h3>
+<p class="note">出典: HubSpot State of Marketing 2025 / Content Marketing Institute B2B Report 2025 / Forrester B2B Benchmark</p>
+<table><thead><tr><th>指標</th><th>業界平均</th><th>目標値</th></tr></thead><tbody id="kpiTbl"></tbody></table>
+
+<h3 style="margin:14px 0 8px">■ 施策別ROIシミュレーション（月額）</h3>
+<div id="roiSim"></div>
+
+<h3 style="margin:14px 0 8px">■ 推奨予算配分</h3>
+<div id="allocDiv"></div>
+<button class="btn" onclick="calcStep3()">施策計画を作成 →</button>
+</div>
+
+<!-- Step3 -->
+<div id="p3" class="panel">
+<h3>■ 優先施策 週次タスク（4週間）</h3>
+<div id="taskDiv"></div>
+<button class="btn" onclick="go(4)">PDCA記録へ →</button>
+</div>
+
+<!-- Step4 -->
+<div id="p4" class="panel">
+<h3>■ PDCA週次ログ</h3>
+<div class="row" style="align-items:end">
+<div><label>週番号</label><input type="number" id="wk" value="1" min="1" max="52"></div>
+<div><label>PV実績</label><input type="number" id="rPV" value="0"></div>
+<div><label>リード数</label><input type="number" id="rLD" value="0"></div>
+<div><label>商談数</label><input type="number" id="rMT" value="0"></div>
+</div>
+<button class="btn green" onclick="addLog()" style="margin-right:8px">記録を保存</button>
+<button class="btn gray" onclick="exportCSV()">CSVエクスポート</button>
+<div id="advice" class="card" style="display:none"></div>
+<h3 style="margin-top:14px">記録一覧</h3>
+<div id="pdcaLog"></div>
+</div>
+</div>
+
+<script>
+const BM={
+IT:{S:{pv:3000,cvr:2.5,cpl:8000,mtg:12},M:{pv:8000,cvr:2.2,cpl:12000,mtg:25},L:{pv:20000,cvr:1.8,cpl:18000,mtg:50},XL:{pv:50000,cvr:1.5,cpl:25000,mtg:100}},
+MFG:{S:{pv:1500,cvr:1.8,cpl:15000,mtg:6},M:{pv:5000,cvr:1.5,cpl:20000,mtg:15},L:{pv:12000,cvr:1.2,cpl:28000,mtg:30},XL:{pv:30000,cvr:1.0,cpl:35000,mtg:60}},
+PRO:{S:{pv:2000,cvr:3.0,cpl:5000,mtg:10},M:{pv:6000,cvr:2.8,cpl:8000,mtg:20},L:{pv:15000,cvr:2.2,cpl:12000,mtg:40},XL:{pv:35000,cvr:1.8,cpl:18000,mtg:70}},
+CON:{S:{pv:2500,cvr:2.8,cpl:6000,mtg:10},M:{pv:7000,cvr:2.5,cpl:10000,mtg:22},L:{pv:18000,cvr:2.0,cpl:15000,mtg:45},XL:{pv:40000,cvr:1.6,cpl:22000,mtg:80}}
+};
+const ROI_M={SEO:{roi:3.2,name:"SEO・コンテンツ"},MAIL:{roi:4.0,name:"メルマガ"},WP:{roi:2.8,name:"ホワイトペーパー"},EXPO:{roi:1.5,name:"展示会"}};
+const ALLOC={IT:{SEO:40,MAIL:25,WP:25,EXPO:10},MFG:{SEO:25,MAIL:15,WP:20,EXPO:40},PRO:{SEO:45,MAIL:30,WP:20,EXPO:5},CON:{SEO:35,MAIL:25,WP:30,EXPO:10}};
+const TASKS={
+IT:[
+{t:"SEOコンテンツ制作",r:"IT業界はオーガニック流入がリード獲得の主軸",c:"課題解決型記事3本（2,000字×3）、CTAをホワイトペーパーDLに誘導",m:"GA4 PV・直帰率・CV数",d:"W1-W2"},
+{t:"メルマガ自動化シナリオ構築",r:"ナーチャリングでCVR1.5倍が見込める",c:"ウェルカム→事例→比較→CTA の4通シナリオ設計",m:"開封率25%以上・CTR3%以上",d:"W2-W3"},
+{t:"ホワイトペーパー（業界レポート型）",r:"リード獲得単価がSEOの次に低い",c:"表紙+課題提起+データ3点+解決策+CTA 全8P",m:"DL数・DL→商談転換率",d:"W3-W4"}
+],
+MFG:[
+{t:"展示会リード獲得設計",r:"製造業は対面接点が信頼形成に直結",c:"ブース設計案+アンケート+フォローメール3通",m:"名刺獲得数・後追い商談化率",d:"W1-W2"},
+{t:"技術ブログSEO",r:"ニッチKWで専門性を訴求しリード獲得",c:"技術解説記事2本+導入事例1本",m:"検索順位・PV・問合せ数",d:"W2-W3"},
+{t:"ホワイトペーパー（技術比較型）",r:"技術者の情報収集ニーズに合致",c:"従来工法 vs 新工法 比較表+コスト試算",m:"DL数・営業へのパス率",d:"W3-W4"}
+],
+PRO:[
+{t:"専門コラムSEO",r:"士業は専門性の証明が最重要",c:"法改正解説・Q&A形式記事3本",m:"検索順位・PV・問合せ数",d:"W1-W2"},
+{t:"メルマガ（判例・改正速報）",r:"定期接点で想起率を高める",c:"月2回配信、速報+解説+相談CTA",m:"開封率30%以上・相談予約数",d:"W2-W3"},
+{t:"無料診断ツール/チェックリスト",r:"リード獲得CPLが最も低い施策",c:"10問診断→結果PDF→個別相談CTA",m:"診断完了数・相談転換率",d:"W3-W4"}
+],
+CON:[
+{t:"ソートリーダーシップ記事",r:"コンサルは知見の深さが差別化要因",c:"市場分析レポート型記事2本+業界データ引用",m:"PV・SNSシェア数・問合せ数",d:"W1-W2"},
+{t:"ホワイトペーパー（ROI試算型）",r:"意思決定者の稟議支援に直結",c:"課題定量化→解決策→ROI試算テンプレ付き",m:"DL数・商談転換率",d:"W2-W3"},
+{t:"メルマガ（成功事例シリーズ）",r:"実績提示がコンサル選定の最大要因",c:"Before/After数値付き事例×4通シリーズ",m:"開封率・CTA CTR・商談化数",d:"W3-W4"}
+]
+};
+
+let curBM,curInd,curBgt;
+
+function go(n){
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+document.getElementById('p'+n).classList.add('show');
+document.querySelectorAll('.steps button').forEach((b,i)=>{b.classList.remove('active');if(i<n-1)b.classList.add('done');else b.classList.remove('done')});
+document.getElementById('s'+n+'b').classList.add('active');
+}
+
+function calcStep2(){
+curInd=document.getElementById('ind').value;
+const rev=document.getElementById('rev').value;
+curBgt=+document.getElementById('bgt').value;
+curBM=BM[curInd][rev];
+const tbl=document.getElementById('kpiTbl');
+tbl.innerHTML=[
+['月間PV',curBM.pv.toLocaleString(),Math.round(curBM.pv*1.2).toLocaleString()],
+['CVR（%）',curBM.cvr,Math.min(curBM.cvr*1.15,5).toFixed(1)],
+['リード単価（円）',curBM.cpl.toLocaleString(),Math.round(curBM.cpl*0.85).toLocaleString()],
+['月間商談数',curBM.mtg,Math.round(curBM.mtg*1.3)]
+].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td><strong>${r[2]}</strong></td></tr>`).join('');
+
+const bm=curBgt*10000;
+let roiH='<table><tr><th>施策</th><th>配分</th><th>投資額</th><th>期待ROI</th><th>期待リターン</th></tr>';
+const al=ALLOC[curInd];
+for(let k in al){
+const inv=Math.round(bm*al[k]/100);
+const ret=Math.round(inv*ROI_M[k].roi);
+roiH+=`<tr><td>${ROI_M[k].name}</td><td>${al[k]}%</td><td>${(inv/10000).toFixed(0)}万</td><td>${ROI_M[k].roi}倍</td><td>${(ret/10000).toFixed(0)}万</td></tr>`;
+}
+roiH+='</table>';
+document.getElementById('roiSim').innerHTML=roiH;
+
+let alcH='';
+for(let k in al){
+alcH+=`<div style="margin:4px 0"><span style="display:inline-block;width:120px;font-size:.85em">${ROI_M[k].name}</span><div class="bar-wrap" style="display:inline-block;width:calc(100% - 130px);vertical-align:middle"><div class="bar" style="width:${al[k]}%">${al[k]}%</div></div></div>`;
+}
+document.getElementById('allocDiv').innerHTML=alcH;
+
+saveCompany();
+go(2);
+}
+
+function calcStep3(){
+const tasks=TASKS[curInd];
+let h='';
+tasks.forEach((t,i)=>{
+h+=`<div class="card"><h3>${i+1}. ${t.t} <span class="tag">${t.d}</span></h3>
+<table><tr><th width="80">選定理由</th><td>${t.r}</td></tr>
+<tr><th>構成案</th><td>${t.c}</td></tr>
+<tr><th>測定方法</th><td>${t.m}</td></tr></table></div>`;
+});
+document.getElementById('taskDiv').innerHTML=h;
+go(3);
+}
+
+function addLog(){
+const logs=JSON.parse(localStorage.getItem('msc_logs')||'[]');
+const w=+document.getElementById('wk').value;
+const pv=+document.getElementById('rPV').value;
+const ld=+document.getElementById('rLD').value;
+const mt=+document.getElementById('rMT').value;
+logs.push({w,pv,ld,mt,date:new Date().toLocaleDateString('ja-JP')});
+localStorage.setItem('msc_logs',JSON.stringify(logs));
+renderLogs();
+
+const adv=document.getElementById('advice');adv.style.display='block';
+let msg='<h3>翌週の改善アクション</h3><ul>';
+const tPV=curBM?curBM.pv:5000;
+if(pv<tPV*0.7)msg+='<li>PVが目標の70%未満 → KW再選定＋記事リライトを優先</li>';
+else if(pv<tPV)msg+='<li>PVあと少し → 内部リンク強化＋SNS拡散で底上げ</li>';
+else msg+='<li>PV好調 → CVR改善（CTA配置・フォーム最適化）にシフト</li>';
+if(ld===0)msg+='<li>リード0件 → CTAの視認性・オファー内容を見直し</li>';
+else if(mt/ld<0.15)msg+='<li>商談化率が低い → リードスコアリング導入を検討</li>';
+if(mt<3)msg+='<li>商談数が少ない → ナーチャリングメール頻度を週1→週2に増加</li>';
+msg+='</ul>';
+adv.innerHTML=msg;
+}
+
+function renderLogs(){
+const logs=JSON.parse(localStorage.getItem('msc_logs')||'[]');
+if(!logs.length){document.getElementById('pdcaLog').innerHTML='<p class="note">まだ記録がありません</p>';return}
+let h='<table><tr><th>週</th><th>日付</th><th>PV</th><th>リード</th><th>商談</th></tr>';
+logs.slice().reverse().forEach(l=>{h+=`<tr><td>W${l.w}</td><td>${l.date}</td><td>${l.pv.toLocaleString()}</td><td>${l.ld}</td><td>${l.mt}</td></tr>`});
+h+='</table>';
+document.getElementById('pdcaLog').innerHTML=h;
+}
+
+function saveCompany(){
+const d={ind:document.getElementById('ind').value,rev:document.getElementById('rev').value,tgt:document.getElementById('tgt').value,cur:document.getElementById('cur').value,bgt:document.getElementById('bgt').value};
+localStorage.setItem('msc_company',JSON.stringify(d));
+}
+function loadCompany(){
+const d=JSON.parse(localStorage.getItem('msc_company')||'null');
+if(d){document.getElementById('ind').value=d.ind;document.getElementById('rev').value=d.rev;document.getElementById('tgt').value=d.tgt;document.getElementById('cur').value=d.cur;document.getElementById('bgt').value=d.bgt}
+}
+
+function exportCSV(){
+const logs=JSON.parse(localStorage.getItem('msc_logs')||'[]');
+if(!logs.length){alert('記録がありません');return}
+let csv='週番号,日付,PV,リード数,商談数\n';
+logs.forEach(l=>{csv+=`${l.w},${l.date},${l.pv},${l.ld},${l.mt}\n`});
+const a=document.createElement('a');
+a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+a.download='pdca_log.csv';a.click();
+}
+
+loadCompany();renderLogs();
+</script>
+</body>
+</html>
