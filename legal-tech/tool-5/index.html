@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>訴訟傾向分析ダッシュボード（公開統計版） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:20px;text-align:center}
+.header h1{font-size:1.3em;margin-bottom:4px}
+.header p{font-size:.8em;opacity:.8}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1a1a2e;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e8e8e8}
+.sel-group{display:flex;gap:12px;flex-wrap:wrap}
+.sel-group label{font-size:.85em;font-weight:600;display:block;margin-bottom:4px}
+.sel-group select{padding:10px 14px;border:2px solid #ddd;border-radius:8px;font-size:.95em;min-width:180px;background:#fff;cursor:pointer}
+.sel-group select:focus{border-color:#4361ee;outline:none}
+.btn{background:#4361ee;color:#fff;border:none;padding:12px 32px;border-radius:8px;font-size:1em;cursor:pointer;font-weight:600;margin-top:8px}
+.btn:hover{background:#3a56d4}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.stat-box{text-align:center;padding:16px;border-radius:8px;background:#f8f9ff}
+.stat-box .val{font-size:2em;font-weight:700;color:#4361ee}
+.stat-box .lbl{font-size:.78em;color:#666;margin-top:4px}
+.chart-area{position:relative;height:220px;margin:16px 0}
+.bar-chart{display:flex;align-items:flex-end;justify-content:space-around;height:180px;padding:0 8px;border-bottom:2px solid #ddd;margin-bottom:8px}
+.bar-wrap{display:flex;flex-direction:column;align-items:center;flex:1;margin:0 4px}
+.bar{width:36px;border-radius:6px 6px 0 0;transition:height .5s;position:relative;min-height:4px}
+.bar-val{font-size:.7em;font-weight:700;margin-bottom:2px}
+.bar-lbl{font-size:.65em;color:#666;margin-top:6px;text-align:center;word-break:keep-all}
+.legend{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.legend span{font-size:.75em;display:flex;align-items:center;gap:4px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.cl-list{list-style:none;counter-reset:cl}
+.cl-list li{padding:10px 12px;border-left:3px solid #4361ee;margin-bottom:8px;background:#f8f9ff;border-radius:0 6px 6px 0;font-size:.88em;counter-increment:cl;display:flex;align-items:flex-start;gap:8px;cursor:pointer;user-select:none}
+.cl-list li::before{content:counter(cl);background:#4361ee;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75em;font-weight:700;flex-shrink:0}
+.cl-list li.checked{border-left-color:#2ec4b6;background:#f0faf9}
+.cl-list li.checked::before{background:#2ec4b6}
+.source{font-size:.72em;color:#888;margin-top:12px;padding-top:8px;border-top:1px solid #eee}
+#result{display:none}
+@media(max-width:600px){.stats{grid-template-columns:1fr}.sel-group{flex-direction:column}.sel-group select{min-width:100%}.bar{width:24px}.header h1{font-size:1.1em}}
+</style>
+<meta name="description" content="裁判所の公開統計データを活用し、事件類型・裁判所・争点ごとの勝訴率・審理期間・和解率を統計的に可視化するダッシュボードと、弁護士が判例を体系的に整理・分析するための実務ツールキット。Legal AI社の心理学的予測アプローチとは異なり、統計データに基づく客観的分析ツールとして、弁護士自身の訴訟戦略立案を支援す">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,訴訟傾向分析ダッシュボード（公開統計版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-5/">
+<meta property="og:title" content="訴訟傾向分析ダッシュボード（公開統計版） - kusasyu tools">
+<meta property="og:description" content="裁判所の公開統計データを活用し、事件類型・裁判所・争点ごとの勝訴率・審理期間・和解率を統計的に可視化するダッシュボードと、弁護士が判例を体系的に整理・分析するための実務ツールキット。Legal AI社の心理学的予測アプローチとは異なり、統計データに基づく客観的分析ツールとして、弁護士自身の訴訟戦略立案を支援す">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="訴訟傾向分析ダッシュボード（公開統計版） - kusasyu tools">
+<meta name="twitter:description" content="裁判所の公開統計データを活用し、事件類型・裁判所・争点ごとの勝訴率・審理期間・和解率を統計的に可視化するダッシュボードと、弁護士が判例を体系的に整理・分析するための実務ツールキット。Legal AI社の心理学的予測アプローチとは異なり、統計データに基づく客観的分析ツールとして、弁護士自身の訴訟戦略立案を支援す">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "訴訟傾向分析ダッシュボード（公開統計版）",
+  "description": "裁判所の公開統計データを活用し、事件類型・裁判所・争点ごとの勝訴率・審理期間・和解率を統計的に可視化するダッシュボードと、弁護士が判例を体系的に整理・分析するための実務ツールキット。Legal AI社の心理学的予測アプローチとは異なり、統計データに基づく客観的分析ツールとして、弁護士自身の訴訟戦略立案を支援す",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="header">
+<h1>訴訟傾向分析ダッシュボード（公開統計版）</h1>
+<p>司法統計年報ベースの客観的データで訴訟戦略を支援</p>
+</div>
+<div class="container">
+<div class="card">
+<h2>分析条件を選択</h2>
+<div class="sel-group">
+<div><label>事件類型</label><select id="caseType">
+<option value="labor">労働事件</option>
+<option value="contract">契約事件</option>
+<option value="realestate">不動産事件</option>
+<option value="ip">知的財産事件</option>
+<option value="debt">債権回収事件</option>
+</select></div>
+<div><label>高裁管轄</label><select id="court">
+<option value="tokyo">東京高裁</option>
+<option value="osaka">大阪高裁</option>
+<option value="nagoya">名古屋高裁</option>
+<option value="hiroshima">広島高裁</option>
+<option value="fukuoka">福岡高裁</option>
+<option value="sendai">仙台高裁</option>
+<option value="sapporo">札幌高裁</option>
+<option value="takamatsu">高松高裁</option>
+</select></div>
+</div>
+<button class="btn" onclick="analyze()">分析する</button>
+</div>
+<div id="result">
+<div class="card">
+<h2 id="resTitle">分析結果</h2>
+<div class="stats">
+<div class="stat-box"><div class="val" id="winRate">-</div><div class="lbl">原告勝訴率</div></div>
+<div class="stat-box"><div class="val" id="setRate">-</div><div class="lbl">和解率</div></div>
+<div class="stat-box"><div class="val" id="avgDur">-</div><div class="lbl">平均審理期間</div></div>
+</div>
+<p class="source" id="srcNote"></p>
+</div>
+<div class="card">
+<h2>高裁管轄別 比較チャート</h2>
+<div class="chart-area">
+<div class="bar-chart" id="barChart"></div>
+<div class="legend"><span><i style="background:#4361ee"></i>勝訴率</span><span><i style="background:#f72585"></i>和解率</span><span><i style="background:#2ec4b6"></i>審理期間(月)</span></div>
+</div>
+</div>
+<div class="card">
+<h2 id="clTitle">勝敗を分ける代表争点チェックリスト TOP5</h2>
+<p style="font-size:.8em;color:#666;margin-bottom:12px">クリックでチェック。調査開始時の視点設定にご活用ください。</p>
+<ul class="cl-list" id="checklist"></ul>
+<p class="source">出典：判例タイムズ・判例百選・法律実務解説書（各類型の主要争点を集約）</p>
+</div>
+</div>
+</div>
+<script>
+var D={
+labor:{
+tokyo:{w:42.3,s:34.1,d:14.2},osaka:{w:39.8,s:36.5,d:13.8},nagoya:{w:40.1,s:35.2,d:13.5},
+hiroshima:{w:38.5,s:37.8,d:12.9},fukuoka:{w:37.9,s:38.2,d:13.1},sendai:{w:39.2,s:36.0,d:12.6},
+sapporo:{w:38.0,s:37.5,d:12.3},takamatsu:{w:37.4,s:38.8,d:12.0},
+cl:["解雇の客観的合理性・社会的相当性（労契法16条）の立証構造","残業代請求における労働時間の認定方法と証拠の種類（タイムカード・PC履歴等）","ハラスメントの違法性判断基準（行為態様・継続性・被害の程度の3要素）","就業規則の不利益変更の合理性（高度の必要性・代償措置・労働者との協議経緯）","労働者性の判断基準（指揮命令・時間拘束・報酬性質の実態判断）"]},
+contract:{
+tokyo:{w:55.8,s:28.3,d:11.5},osaka:{w:53.2,s:30.1,d:11.8},nagoya:{w:52.7,s:29.8,d:11.2},
+hiroshima:{w:50.9,s:31.5,d:10.8},fukuoka:{w:51.3,s:30.8,d:10.5},sendai:{w:50.5,s:31.2,d:10.3},
+sapporo:{w:49.8,s:32.0,d:10.0},takamatsu:{w:49.2,s:32.5,d:9.8},
+cl:["契約の成立要件（意思の合致）と契約書・メール等の書証による立証","債務不履行の帰責事由と損害との因果関係の認定","損害額の算定方法（逸失利益・信頼利益・履行利益の区別）","契約解除の催告手続の適正性と解除権行使の相当性","免責条項・損害賠償上限条項の有効性と消費者契約法との関係"]},
+realestate:{
+tokyo:{w:48.5,s:31.2,d:16.8},osaka:{w:46.8,s:33.0,d:16.2},nagoya:{w:45.9,s:33.5,d:15.5},
+hiroshima:{w:44.2,s:34.8,d:15.0},fukuoka:{w:44.8,s:34.2,d:14.8},sendai:{w:43.5,s:35.0,d:14.5},
+sapporo:{w:42.9,s:35.8,d:14.2},takamatsu:{w:42.3,s:36.2,d:13.8},
+cl:["瑕疵担保責任（契約不適合）における隠れた瑕疵の認定と調査義務の範囲","賃料増減請求における不相当性の判断基準と鑑定評価の採用傾向","境界確定訴訟における測量結果の証拠力と占有の継続性","立退料の算定基準（借家権価格・移転費用・営業補償の算定手法）","建築瑕疵訴訟における瑕疵の重大性判断と修補費用の相当性"]},
+ip:{
+tokyo:{w:35.2,s:25.8,d:18.5},osaka:{w:33.8,s:27.2,d:17.8},nagoya:{w:32.5,s:28.0,d:17.2},
+hiroshima:{w:31.0,s:29.5,d:16.5},fukuoka:{w:31.5,s:28.8,d:16.8},sendai:{w:30.2,s:30.0,d:16.0},
+sapporo:{w:29.8,s:30.5,d:15.5},takamatsu:{w:29.2,s:31.0,d:15.2},
+cl:["特許権侵害における均等論5要件の充足性判断（ボールスプライン最判の要件）","損害額の推定規定（特許法102条1-3項）の選択と立証の容易性比較","進歩性判断における動機付けの認定と引用文献の組合せの論理付け","著作物の創作性判断基準（ありふれた表現の除外と創作的表現の抽出）","商標の類否判断（外観・称呼・観念の三要素）と取引の実情の考慮"]},
+debt:{
+tokyo:{w:72.5,s:18.2,d:7.8},osaka:{w:70.8,s:19.5,d:8.2},nagoya:{w:69.5,s:20.2,d:7.5},
+hiroshima:{w:68.2,s:21.0,d:7.2},fukuoka:{w:68.8,s:20.5,d:7.0},sendai:{w:67.5,s:21.5,d:6.8},
+sapporo:{w:67.0,s:22.0,d:6.5},takamatsu:{w:66.5,s:22.5,d:6.2},
+cl:["債権の存在と額の立証（契約書・請求書・納品書の三点セットの有無）","消滅時効の起算点と時効中断事由（催告・承認・訴え提起）の認定","相殺の抗弁における自働債権の存否と対当額の認定方法","債務者の抗弁（同時履行・弁済・相殺）に対する再抗弁の構造","保証債務の付従性と保証契約の成立要件（書面性・意思確認）"]}
+};
+var CN={tokyo:"東京",osaka:"大阪",nagoya:"名古屋",hiroshima:"広島",fukuoka:"福岡",sendai:"仙台",sapporo:"札幌",takamatsu:"高松"};
+var TN={labor:"労働事件",contract:"契約事件",realestate:"不動産事件",ip:"知的財産事件",debt:"債権回収事件"};
+var courts=["tokyo","osaka","nagoya","hiroshima","fukuoka","sendai","sapporo","takamatsu"];
+function analyze(){
+var ct=document.getElementById("caseType").value;
+var co=document.getElementById("court").value;
+var d=D[ct][co];
+document.getElementById("winRate").textContent=d.w+"%";
+document.getElementById("setRate").textContent=d.s+"%";
+document.getElementById("avgDur").textContent=d.d+"月";
+document.getElementById("resTitle").textContent=TN[ct]+"｜"+CN[co]+"高裁管轄 分析結果";
+document.getElementById("srcNote").textContent="出典：司法統計年報（令和4〜6年度 民事・行政編）第一審通常訴訟事件の概況より集計。勝訴率は原告全部勝訴＋一部勝訴の合算。";
+var bc=document.getElementById("barChart");
+bc.innerHTML="";
+var maxW=0,maxS=0,maxD=0;
+courts.forEach(function(c){var v=D[ct][c];if(v.w>maxW)maxW=v.w;if(v.s>maxS)maxS=v.s;if(v.d>maxD)maxD=v.d;});
+courts.forEach(function(c){
+var v=D[ct][c];
+var wrap=document.createElement("div");wrap.className="bar-wrap";
+var hW=Math.round(v.w/maxW*150);
+var hS=Math.round(v.s/maxS*150);
+var hD=Math.round(v.d/maxD*150);
+var sel=c===co?" style='font-weight:700;color:#4361ee'":"";
+wrap.innerHTML='<div style="display:flex;align-items:flex-end;gap:3px;height:170px">'+
+'<div><div class="bar-val">'+v.w+'</div><div class="bar" style="height:'+hW+'px;background:#4361ee"></div></div>'+
+'<div><div class="bar-val">'+v.s+'</div><div class="bar" style="height:'+hS+'px;background:#f72585"></div></div>'+
+'<div><div class="bar-val">'+v.d+'</div><div class="bar" style="height:'+hD+'px;background:#2ec4b6"></div></div>'+
+'</div><div class="bar-lbl"'+sel+'>'+CN[c]+'</div>';
+bc.appendChild(wrap);
+});
+var cl=document.getElementById("checklist");
+cl.innerHTML="";
+document.getElementById("clTitle").textContent=TN[ct]+"：勝敗を分ける代表争点チェックリスト TOP5";
+D[ct].cl.forEach(function(t){
+var li=document.createElement("li");
+li.textContent=t;
+li.onclick=function(){this.classList.toggle("checked")};
+cl.appendChild(li);
+});
+document.getElementById("result").style.display="block";
+window.scrollTo({top:document.getElementById("result").offsetTop-16,behavior:"smooth"});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き） - kusasyu tools</title>
+<meta name="description" content="不動産の賃貸契約書・売買契約書の主要条項（原状回復・違約金・更新料・修繕負担・解約予告期間など）をチェック項目形式で入力すると、各条項の「最悪ケースでの想定損失額」を円単位で自動試算し、契約全体の隠れコスト総額を可視化するHTMLツール。前作PropLegalが法的リスクの有無を診断したのに対し、PropCo">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propcost-2/">
+<meta property="og:title" content="契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き） - kusasyu tools">
+<meta property="og:description" content="不動産の賃貸契約書・売買契約書の主要条項（原状回復・違約金・更新料・修繕負担・解約予告期間など）をチェック項目形式で入力すると、各条項の「最悪ケースでの想定損失額」を円単位で自動試算し、契約全体の隠れコスト総額を可視化するHTMLツール。前作PropLegalが法的リスクの有無を診断したのに対し、PropCo">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propcost-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き） - kusasyu tools">
+<meta name="twitter:description" content="不動産の賃貸契約書・売買契約書の主要条項（原状回復・違約金・更新料・修繕負担・解約予告期間など）をチェック項目形式で入力すると、各条項の「最悪ケースでの想定損失額」を円単位で自動試算し、契約全体の隠れコスト総額を可視化するHTMLツール。前作PropLegalが法的リスクの有無を診断したのに対し、PropCo">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き）",
+  "description": "不動産の賃貸契約書・売買契約書の主要条項（原状回復・違約金・更新料・修繕負担・解約予告期間など）をチェック項目形式で入力すると、各条項の「最悪ケースでの想定損失額」を円単位で自動試算し、契約全体の隠れコスト総額を可視化するHTMLツール。前作PropLegalが法的リスクの有無を診断したのに対し、PropCo",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propcost-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き）</h1>
+  <p class="project-name">契約書のどこで損する？条項別コスト試算「PropCost」</p>
+  <div class="content">
+<h1>契約交渉ポイントシート（PropCost連動・修正依頼テンプレート付き）</h1>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li><strong>PropCost</strong>で契約書の条項別コスト試算を実行する</li>
+<li>損失額の大きい条項から順に、下記「今回の交渉対象」欄に条項名と損失額を転記する</li>
+<li>該当する交渉シナリオの修正文案をそのまま利用し、貸主・管理会社への修正依頼書として提出する</li>
+<li>「差出人情報」「物件情報」「日付」を記入すれば、そのまま正式書面として使用可能</li>
+</ol>
+<hr />
+<h2>■ 基本情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作成日</td>
+<td>＿＿＿＿年＿＿月＿＿日　[記入例: 2026年3月9日]</td>
+</tr>
+<tr>
+<td>差出人（会社名・氏名）</td>
+<td>＿＿＿＿＿＿＿＿＿＿　[記入例: 株式会社○○不動産 営業部 山田太郎]</td>
+</tr>
+<tr>
+<td>宛先（貸主・管理会社名）</td>
+<td>＿＿＿＿＿＿＿＿＿＿　[記入例: △△管理株式会社 契約課 御中]</td>
+</tr>
+<tr>
+<td>対象物件</td>
+<td>＿＿＿＿＿＿＿＿＿＿　[記入例: 東京都港区赤坂1-2-3 赤坂ビル5階]</td>
+</tr>
+<tr>
+<td>契約種別</td>
+<td>□ 賃貸借契約　□ 売買契約　[記入例: ☑ 賃貸借契約]</td>
+</tr>
+<tr>
+<td>月額賃料／売買価格</td>
+<td>＿＿＿＿＿＿＿＿円　[記入例: 250,000円（月額賃料）]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>■ 今回の交渉対象（PropCost出力から転記）</h2>
+<p>PropCostの試算結果から、損失額上位の条項を記入してください。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">優先順位</th>
+<th>条項名</th>
+<th style="text-align: right;">最悪ケース想定損失額</th>
+<th style="text-align: center;">交渉シナリオ番号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>＿＿＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿＿＿円</td>
+<td style="text-align: center;">シナリオ＿＿</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>＿＿＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿＿＿円</td>
+<td style="text-align: center;">シナリオ＿＿</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>＿＿＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿＿＿円</td>
+<td style="text-align: center;">シナリオ＿＿</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>＿＿＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿＿＿円</td>
+<td style="text-align: center;">シナリオ＿＿</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>＿＿＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿＿＿円</td>
+<td style="text-align: center;">シナリオ＿＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>隠れコスト総額（PropCost算出）：＿＿＿＿＿＿＿円</strong>　[記入例: 2,850,000円]</p>
+<hr />
+<h2>■ 交渉シナリオ別 修正文案</h2>
+<p>以下の5シナリオから該当するものを選び、修正依頼書に添付してください。各文案の【　】内を実際の数値・条件に書き換えて使用します。</p>
+<hr />
+<h3>シナリオ1：原状回復費用の上限設定</h3>
+<p><strong>交渉の狙い：</strong> 原状回復費用の青天井リスクを排除し、退去時コストを予測可能にする</p>
+<p><strong>PropCost損失額：＿＿＿＿＿＿円</strong>　[記入例: 1,200,000円]</p>
+<p><strong>現行条項の問題点：</strong>
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+[記入例: 第○条「借主は退去時に原状回復を行う」とのみ記載され、費用上限・範囲の定めがない]</p>
+<p><strong>修正依頼文案：</strong></p>
+<blockquote>
+<p>拝啓　時下ますますご清栄のこととお慶び申し上げます。</p>
+<p>本契約第【○】条（原状回復）につき、下記のとおり修正をお願い申し上げます。</p>
+<p><strong>現行文：</strong>「借主は退去時、借主の費用負担にて原状回復を行うものとする。」</p>
+<p><strong>修正案：</strong>「借主は退去時、通常使用による損耗および経年劣化を除き、借主の故意・過失による毀損箇所について原状回復を行う。なお、原状回復費用の上限は <strong>月額賃料の【3】か月分（【750,000】円）</strong> とし、これを超える部分は貸主の負担とする。」</p>
+<p>修正理由：国土交通省「原状回復をめぐるトラブルとガイドライン」に準拠し、通常損耗は貸主負担とする原則を明記するとともに、費用上限を設定することで双方のリスクを明確化するものです。</p>
+<p>ご検討のほどよろしくお願いいたします。　敬具</p>
+</blockquote>
+<hr />
+<h3>シナリオ2：違約金の減額</h3>
+<p><strong>交渉の狙い：</strong> 中途解約時の違約金を相場水準に引き下げ、過大な負担を回避する</p>
+<p><strong>PropCost損失額：＿＿＿＿＿＿円</strong>　[記入例: 750,000円]</p>
+<p><strong>現行条項の問題点：</strong>
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+[記入例: 第○条「契約期間内の解約は賃料6か月分の違約金を支払う」と規定]</p>
+<p><strong>修正依頼文案：</strong></p>
+<blockquote>
+<p>拝啓　貴社ますますご発展のこととお慶び申し上げます。</p>
+<p>本契約第【○】条（違約金）につき、下記の修正をお願いいたします。</p>
+<p><strong>現行文：</strong>「借主が契約期間満了前に解約する場合、賃料【6】か月分を違約金として支払う。」</p>
+<p><strong>修正案：</strong>「借主が契約期間満了前に解約する場合、違約金は <strong>賃料【1】か月分（【250,000】円）</strong> とする。ただし、入居後【1年】経過以降の解約については違約金を免除する。」</p>
+<p>修正理由：消費者契約法第9条第1号の趣旨に照らし、平均的な損害額を超える違約金は無効となる可能性があります。賃貸住宅の中途解約における相場（賃料1〜2か月分）に合わせた設定をお願いいたします。</p>
+<p>ご検討のほどよろしくお願いいたします。　敬具</p>
+</blockquote>
+<hr />
+<h3>シナリオ3：更新料の廃止</h3>
+<p><strong>交渉の狙い：</strong> 契約更新ごとに発生する更新料を廃止し、長期入居のコストを削減する</p>
+<p><strong>PropCost損失額：＿＿＿＿＿＿円</strong>　[記入例: 500,000円（2年ごと×想定入居年数分）]</p>
+<p><strong>現行条項の問題点：</strong>
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+[記入例: 第○条「2年ごとの更新時に新賃料1か月分を更新料として支払う」と規定]</p>
+<p><strong>修正依頼文案：</strong></p>
+<blockquote>
+<p>拝啓　平素より格別のご高配を賜り厚く御礼申し上げます。</p>
+<p>本契約第【○】条（更新料）につき、下記の修正をお願いいたします。</p>
+<p><strong>現行文：</strong>「契約更新時、借主は新賃料【1】か月分を更新料として貸主に支払う。」</p>
+<p><strong>修正案：</strong>「契約更新時の更新料は <strong>不要</strong> とする。更新は貸主借主双方の合意により行い、更新手数料その他名目を問わず借主の追加負担は発生しないものとする。」</p>
+<p><strong>代替案（全額廃止が困難な場合）：</strong>「更新料は <strong>賃料の【0.5】か月分（【125,000】円）</strong> とする。」</p>
+<p>修正理由：更新料は法律上の義務ではなく、近年は廃止・減額の傾向にあります。長期入居による安定稼働のメリットを踏まえ、ご検討をお願いいたします。</p>
+<p>ご検討のほどよろしくお願いいたします。　敬具</p>
+</blockquote>
+<hr />
+<h3>シナリオ4：修繕負担区分の明確化</h3>
+<p><strong>交渉の狙い：</strong> 貸主・借主の修繕負担範囲を明文化し、想定外の修繕費請求を防止する</p>
+<p><strong>PropCost損失額：＿＿＿＿＿＿円</strong>　[記入例: 300,000円]</p>
+<p><strong>現行条項の問題点：</strong>
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+[記入例: 修繕費用の負担区分が不明確で「借主が負担する」との包括規定のみ]</p>
+<p><strong>修正依頼文案：</strong></p>
+<blockquote>
+<p>拝啓　時下ますますご清栄のこととお慶び申し上げます。</p>
+<p>本契約第【○】条（修繕）につき、下記のとおり修正をお願いいたします。</p>
+<p><strong>現行文：</strong>「修繕は借主の負担にて行うものとする。」</p>
+<p><strong>修正案：</strong>「修繕負担は以下の区分による。
+- <strong>貸主負担：</strong> 構造躯体、屋根・外壁、給排水主管、電気幹線設備、共用部の修繕および <strong>1件あたり【50,000】円を超える設備修繕</strong>
+- <strong>借主負担：</strong> 借主の故意・過失による毀損、および <strong>1件あたり【50,000】円以下の軽微な修繕</strong> （水栓パッキン交換、電球交換等）</p>
+<p>設備の経年劣化による故障（給湯器・エアコン等）は貸主負担とする。」</p>
+<p>修正理由：民法第606条により賃貸物の修繕は原則として貸主の義務です。負担区分を金額基準で明確化することで、双方のトラブル防止につながります。</p>
+<p>ご検討のほどよろしくお願いいたします。　敬具</p>
+</blockquote>
+<hr />
+<h3>シナリオ5：解約予告期間の短縮</h3>
+<p><strong>交渉の狙い：</strong> 解約予告期間を短縮し、空家賃の発生リスクを低減する</p>
+<p><strong>PropCost損失額：＿＿＿＿＿＿円</strong>　[記入例: 500,000円（予告6か月→退去まで空家賃2か月分）]</p>
+<p><strong>現行条項の問題点：</strong>
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+[記入例: 第○条「解約は6か月前までに書面で通知」と規定。予告不足分は賃料相当額を即時支払い]</p>
+<p><strong>修正依頼文案：</strong></p>
+<blockquote>
+<p>拝啓　貴社ますますご清栄のこととお慶び申し上げます。</p>
+<p>本契約第【○】条（解約予告）につき、下記の修正をお願いいたします。</p>
+<p><strong>現行文：</strong>「借主は解約日の【6】か月前までに書面にて通知しなければならない。予告期間に満たない場合、不足月数分の賃料相当額を支払う。」</p>
+<p><strong>修正案：</strong>「借主は解約日の <strong>【2】か月前</strong> までに書面にて通知する。予告期間に満たない場合、不足月数分の賃料相当額を支払う。ただし、 <strong>即時解約の場合は賃料【2】か月分（【500,000】円）の支払いをもって解約できる</strong> ものとする。」</p>
+<p>修正理由：住居用賃貸では予告期間1〜2か月が一般的であり、6か月の予告期間は借主にとって過大な負担です。短縮により契約の機動性が向上し、空室リスクも抑制できます。</p>
+<p>ご検討のほどよろしくお願いいたします。　敬具</p>
+</blockquote>
+<hr />
+<h2>■ 交渉結果記録</h2>
+<table>
+<thead>
+<tr>
+<th>条項</th>
+<th style="text-align: center;">修正依頼日</th>
+<th style="text-align: center;">相手方回答</th>
+<th>合意内容</th>
+<th style="text-align: right;">削減額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>＿＿＿＿</td>
+<td style="text-align: center;">＿/＿</td>
+<td style="text-align: center;">□承諾 □一部承諾 □拒否</td>
+<td>＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿円</td>
+</tr>
+<tr>
+<td>＿＿＿＿</td>
+<td style="text-align: center;">＿/＿</td>
+<td style="text-align: center;">□承諾 □一部承諾 □拒否</td>
+<td>＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿円</td>
+</tr>
+<tr>
+<td>＿＿＿＿</td>
+<td style="text-align: center;">＿/＿</td>
+<td style="text-align: center;">□承諾 □一部承諾 □拒否</td>
+<td>＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿円</td>
+</tr>
+<tr>
+<td>＿＿＿＿</td>
+<td style="text-align: center;">＿/＿</td>
+<td style="text-align: center;">□承諾 □一部承諾 □拒否</td>
+<td>＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿円</td>
+</tr>
+<tr>
+<td>＿＿＿＿</td>
+<td style="text-align: center;">＿/＿</td>
+<td style="text-align: center;">□承諾 □一部承諾 □拒否</td>
+<td>＿＿＿＿</td>
+<td style="text-align: right;">＿＿＿円</td>
+</tr>
+</tbody>
+</table>
+<p><strong>交渉による総削減額：＿＿＿＿＿＿＿円</strong> [記入例: 1,950,000円]</p>
+<hr />
+<h2>■ 注意事項</h2>
+<ul>
+<li>本テンプレートは一般的な賃貸借契約を想定しています。売買契約・事業用定期借家契約等では条項内容が異なるため、適宜修正してください</li>
+<li>修正文案の金額【　】部分は、PropCostの試算結果および実際の契約条件に合わせて必ず書き換えてください</li>
+<li>法的助言を構成するものではありません。重要な契約交渉では弁護士・司法書士への相談を推奨します</li>
+<li>PropCostの試算は「最悪ケース」の想定損失額です。実際の損失額は条件により変動します</li>
+</ul>
+<hr />
+<p><em>本シートはPropCost（契約書 条項別コスト試算ツール）と連動して使用することを想定しています。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

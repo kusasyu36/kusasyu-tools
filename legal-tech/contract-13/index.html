@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>取引先別_契約条件比較＆リスクスコア自動計算シート - kusasyu tools</title>
+<meta name="description" content="法務専任者を持たない製造業中小企業の現場担当者（購買・営業）が、取引先から受け取った発注書・契約書の危険な条項を自分で見つけられるツールキット。条項テキストを貼り付けるだけでリスクレベルと平易な日本語解説を表示するHTMLツール、現場担当者が1人で回せるチェック手順書、取引先ごとの契約条件をExcel数式でリ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,取引先別_契約条件比較＆リスクスコア自動計算シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-13/">
+<meta property="og:title" content="取引先別_契約条件比較＆リスクスコア自動計算シート - kusasyu tools">
+<meta property="og:description" content="法務専任者を持たない製造業中小企業の現場担当者（購買・営業）が、取引先から受け取った発注書・契約書の危険な条項を自分で見つけられるツールキット。条項テキストを貼り付けるだけでリスクレベルと平易な日本語解説を表示するHTMLツール、現場担当者が1人で回せるチェック手順書、取引先ごとの契約条件をExcel数式でリ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="取引先別_契約条件比較＆リスクスコア自動計算シート - kusasyu tools">
+<meta name="twitter:description" content="法務専任者を持たない製造業中小企業の現場担当者（購買・営業）が、取引先から受け取った発注書・契約書の危険な条項を自分で見つけられるツールキット。条項テキストを貼り付けるだけでリスクレベルと平易な日本語解説を表示するHTMLツール、現場担当者が1人で回せるチェック手順書、取引先ごとの契約条件をExcel数式でリ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "取引先別_契約条件比較＆リスクスコア自動計算シート",
+  "description": "法務専任者を持たない製造業中小企業の現場担当者（購買・営業）が、取引先から受け取った発注書・契約書の危険な条項を自分で見つけられるツールキット。条項テキストを貼り付けるだけでリスクレベルと平易な日本語解説を表示するHTMLツール、現場担当者が1人で回せるチェック手順書、取引先ごとの契約条件をExcel数式でリ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-13/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>取引先別_契約条件比較＆リスクスコア自動計算シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>取引先別_契約条件比較＆リスクスコア自動計算シート</h1>
+  <p class="project-name">QuickLegal Factory — 製造業向け 法務担当者ゼロでも使える 契約リスク即時判定ツールキット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>取引先名</th><th>契約種別</th><th>契約開始日</th><th>契約終了日</th><th>支払サイト（日）</th><th>支払サイトリスク</th><th>損害賠償上限区分</th><th>損害賠償リスク</th><th>知財帰属</th><th>知財リスク</th><th>品質保証期間（月）</th><th>品質保証リスク</th><th>秘密保持期間（年）</th><th>秘密保持リスク</th><th>総合リスクスコア</th><th>リスク判定</th><th>アラートフラグ</th></tr></thead><tbody><tr><td>1</td><td>株式会社Alpha Systems</td><td>業務委託</td><td>2026/04/01</td><td>2027/03/31</td><td>30</td><td>=IF(F2&gt;=91,5,IF(F2&gt;=61,4,IF(F2&gt;=46,3,IF(F2&gt;=31,2,1))))</td><td>契約金額</td><td>=IF(H2="上限なし",5,IF(H2="契約金額の200%",4,IF(H2="契約金額",3,IF(H2="契約金額の50%",2,1))))</td><td>自社帰属</td><td>=IF(J2="相手方帰属",5,IF(J2="共有",3,1))</td><td>12</td><td>=IF(L2&lt;=3,5,IF(L2&lt;=6,4,IF(L2&lt;=12,3,IF(L2&lt;=24,2,1))))</td><td>3</td><td>=IF(N2&gt;=5,1,IF(N2&gt;=3,2,IF(N2&gt;=2,3,IF(N2&gt;=1,4,5))))</td><td>=G2+I2+K2+M2+O2</td><td>=IF(P2&gt;=20,"最高リスク",IF(P2&gt;=15,"高リスク",IF(P2&gt;=10,"中リスク","低リスク")))</td><td>=IF(P2&gt;=15,"⚠要確認","—")</td></tr><tr><td>2</td><td>Beta株式会社</td><td>ソフトウェアライセンス</td><td>2026/01/15</td><td>2026/12/31</td><td>60</td><td>=IF(F3&gt;=91,5,IF(F3&gt;=61,4,IF(F3&gt;=46,3,IF(F3&gt;=31,2,1))))</td><td>上限なし</td><td>=IF(H3="上限なし",5,IF(H3="契約金額の200%",4,IF(H3="契約金額",3,IF(H3="契約金額の50%",2,1))))</td><td>共有</td><td>=IF(J3="相手方帰属",5,IF(J3="共有",3,1))</td><td>6</td><td>=IF(L3&lt;=3,5,IF(L3&lt;=6,4,IF(L3&lt;=12,3,IF(L3&lt;=24,2,1))))</td><td>1</td><td>=IF(N3&gt;=5,1,IF(N3&gt;=3,2,IF(N3&gt;=2,3,IF(N3&gt;=1,4,5))))</td><td>=G3+I3+K3+M3+O3</td><td>=IF(P3&gt;=20,"最高リスク",IF(P3&gt;=15,"高リスク",IF(P3&gt;=10,"中リスク","低リスク")))</td><td>=IF(P3&gt;=15,"⚠要確認","—")</td></tr><tr><td>3</td><td>株式会社Gamma商事</td><td>売買基本契約</td><td>2025/10/01</td><td>2026/09/30</td><td>45</td><td>=IF(F4&gt;=91,5,IF(F4&gt;=61,4,IF(F4&gt;=46,3,IF(F4&gt;=31,2,1))))</td><td>契約金額の200%</td><td>=IF(H4="上限なし",5,IF(H4="契約金額の200%",4,IF(H4="契約金額",3,IF(H4="契約金額の50%",2,1))))</td><td>相手方帰属</td><td>=IF(J4="相手方帰属",5,IF(J4="共有",3,1))</td><td>3</td><td>=IF(L4&lt;=3,5,IF(L4&lt;=6,4,IF(L4&lt;=12,3,IF(L4&lt;=24,2,1))))</td><td>2</td><td>=IF(N4&gt;=5,1,IF(N4&gt;=3,2,IF(N4&gt;=2,3,IF(N4&gt;=1,4,5))))</td><td>=G4+I4+K4+M4+O4</td><td>=IF(P4&gt;=20,"最高リスク",IF(P4&gt;=15,"高リスク",IF(P4&gt;=10,"中リスク","低リスク")))</td><td>=IF(P4&gt;=15,"⚠要確認","—")</td></tr><tr><td>4</td><td>Delta Holdings合同会社</td><td>コンサルティング</td><td>2026/06/01</td><td>2027/05/31</td><td>90</td><td>=IF(F5&gt;=91,5,IF(F5&gt;=61,4,IF(F5&gt;=46,3,IF(F5&gt;=31,2,1))))</td><td>契約金額の50%</td><td>=IF(H5="上限なし",5,IF(H5="契約金額の200%",4,IF(H5="契約金額",3,IF(H5="契約金額の50%",2,1))))</td><td>自社帰属</td><td>=IF(J5="相手方帰属",5,IF(J5="共有",3,1))</td><td>24</td><td>=IF(L5&lt;=3,5,IF(L5&lt;=6,4,IF(L5&lt;=12,3,IF(L5&lt;=24,2,1))))</td><td>5</td><td>=IF(N5&gt;=5,1,IF(N5&gt;=3,2,IF(N5&gt;=2,3,IF(N5&gt;=1,4,5))))</td><td>=G5+I5+K5+M5+O5</td><td>=IF(P5&gt;=20,"最高リスク",IF(P5&gt;=15,"高リスク",IF(P5&gt;=10,"中リスク","低リスク")))</td><td>=IF(P5&gt;=15,"⚠要確認","—")</td></tr><tr><td>5</td><td>株式会社Epsilon工業</td><td>製造委託</td><td>2026/02/01</td><td>2027/01/31</td><td>120</td><td>=IF(F6&gt;=91,5,IF(F6&gt;=61,4,IF(F6&gt;=46,3,IF(F6&gt;=31,2,1))))</td><td>上限なし</td><td>=IF(H6="上限なし",5,IF(H6="契約金額の200%",4,IF(H6="契約金額",3,IF(H6="契約金額の50%",2,1))))</td><td>相手方帰属</td><td>=IF(J6="相手方帰属",5,IF(J6="共有",3,1))</td><td>1</td><td>=IF(L6&lt;=3,5,IF(L6&lt;=6,4,IF(L6&lt;=12,3,IF(L6&lt;=24,2,1))))</td><td>1</td><td>=IF(N6&gt;=5,1,IF(N6&gt;=3,2,IF(N6&gt;=2,3,IF(N6&gt;=1,4,5))))</td><td>=G6+I6+K6+M6+O6</td><td>=IF(P6&gt;=20,"最高リスク",IF(P6&gt;=15,"高リスク",IF(P6&gt;=10,"中リスク","低リスク")))</td><td>=IF(P6&gt;=15,"⚠要確認","—")</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【スコアリング基準（各項目1〜5点／合計5〜25点）】</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>支払サイトリスク</td><td>30日以下=1</td><td>31〜45日=2</td><td>46〜60日=3</td><td>61〜90日=4</td><td>91日以上=5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>損害賠償リスク</td><td>固定額上限あり=1</td><td>契約金額の50%=2</td><td>契約金額=3</td><td>契約金額の200%=4</td><td>上限なし=5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>知財リスク</td><td>自社帰属=1</td><td>共有=3</td><td>相手方帰属=5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,取引先名,契約種別,契約開始日,契約終了日,支払サイト（日）,支払サイトリスク,損害賠償上限区分,損害賠償リスク,知財帰属,知財リスク,品質保証期間（月）,品質保証リスク,秘密保持期間（年）,秘密保持リスク,総合リスクスコア,リスク判定,アラートフラグ
+1,株式会社Alpha Systems,業務委託,2026/04/01,2027/03/31,30,"=IF(F2>=91,5,IF(F2>=61,4,IF(F2>=46,3,IF(F2>=31,2,1))))",契約金額,"=IF(H2=""上限なし"",5,IF(H2=""契約金額の200%"",4,IF(H2=""契約金額"",3,IF(H2=""契約金額の50%"",2,1))))",自社帰属,"=IF(J2=""相手方帰属"",5,IF(J2=""共有"",3,1))",12,"=IF(L2<=3,5,IF(L2<=6,4,IF(L2<=12,3,IF(L2<=24,2,1))))",3,"=IF(N2>=5,1,IF(N2>=3,2,IF(N2>=2,3,IF(N2>=1,4,5))))","=G2+I2+K2+M2+O2","=IF(P2>=20,""最高リスク"",IF(P2>=15,""高リスク"",IF(P2>=10,""中リスク"",""低リスク"")))","=IF(P2>=15,""⚠要確認"",""—"")"
+2,Beta株式会社,ソフトウェアライセンス,2026/01/15,2026/12/31,60,"=IF(F3>=91,5,IF(F3>=61,4,IF(F3>=46,3,IF(F3>=31,2,1))))",上限なし,"=IF(H3=""上限なし"",5,IF(H3=""契約金額の200%"",4,IF(H3=""契約金額"",3,IF(H3=""契約金額の50%"",2,1))))",共有,"=IF(J3=""相手方帰属"",5,IF(J3=""共有"",3,1))",6,"=IF(L3<=3,5,IF(L3<=6,4,IF(L3<=12,3,IF(L3<=24,2,1))))",1,"=IF(N3>=5,1,IF(N3>=3,2,IF(N3>=2,3,IF(N3>=1,4,5))))","=G3+I3+K3+M3+O3","=IF(P3>=20,""最高リスク"",IF(P3>=15,""高リスク"",IF(P3>=10,""中リスク"",""低リスク"")))","=IF(P3>=15,""⚠要確認"",""—"")"
+3,株式会社Gamma商事,売買基本契約,2025/10/01,2026/09/30,45,"=IF(F4>=91,5,IF(F4>=61,4,IF(F4>=46,3,IF(F4>=31,2,1))))",契約金額の200%,"=IF(H4=""上限なし"",5,IF(H4=""契約金額の200%"",4,IF(H4=""契約金額"",3,IF(H4=""契約金額の50%"",2,1))))",相手方帰属,"=IF(J4=""相手方帰属"",5,IF(J4=""共有"",3,1))",3,"=IF(L4<=3,5,IF(L4<=6,4,IF(L4<=12,3,IF(L4<=24,2,1))))",2,"=IF(N4>=5,1,IF(N4>=3,2,IF(N4>=2,3,IF(N4>=1,4,5))))","=G4+I4+K4+M4+O4","=IF(P4>=20,""最高リスク"",IF(P4>=15,""高リスク"",IF(P4>=10,""中リスク"",""低リスク"")))","=IF(P4>=15,""⚠要確認"",""—"")"
+4,Delta Holdings合同会社,コンサルティング,2026/06/01,2027/05/31,90,"=IF(F5>=91,5,IF(F5>=61,4,IF(F5>=46,3,IF(F5>=31,2,1))))",契約金額の50%,"=IF(H5=""上限なし"",5,IF(H5=""契約金額の200%"",4,IF(H5=""契約金額"",3,IF(H5=""契約金額の50%"",2,1))))",自社帰属,"=IF(J5=""相手方帰属"",5,IF(J5=""共有"",3,1))",24,"=IF(L5<=3,5,IF(L5<=6,4,IF(L5<=12,3,IF(L5<=24,2,1))))",5,"=IF(N5>=5,1,IF(N5>=3,2,IF(N5>=2,3,IF(N5>=1,4,5))))","=G5+I5+K5+M5+O5","=IF(P5>=20,""最高リスク"",IF(P5>=15,""高リスク"",IF(P5>=10,""中リスク"",""低リスク"")))","=IF(P5>=15,""⚠要確認"",""—"")"
+5,株式会社Epsilon工業,製造委託,2026/02/01,2027/01/31,120,"=IF(F6>=91,5,IF(F6>=61,4,IF(F6>=46,3,IF(F6>=31,2,1))))",上限なし,"=IF(H6=""上限なし"",5,IF(H6=""契約金額の200%"",4,IF(H6=""契約金額"",3,IF(H6=""契約金額の50%"",2,1))))",相手方帰属,"=IF(J6=""相手方帰属"",5,IF(J6=""共有"",3,1))",1,"=IF(L6<=3,5,IF(L6<=6,4,IF(L6<=12,3,IF(L6<=24,2,1))))",1,"=IF(N6>=5,1,IF(N6>=3,2,IF(N6>=2,3,IF(N6>=1,4,5))))","=G6+I6+K6+M6+O6","=IF(P6>=20,""最高リスク"",IF(P6>=15,""高リスク"",IF(P6>=10,""中リスク"",""低リスク"")))","=IF(P6>=15,""⚠要確認"",""—"")"
+,,,,,,,,,,,,,,,,,
+【スコアリング基準（各項目1〜5点／合計5〜25点）】,,,,,,,,,,,,,,,,,
+支払サイトリスク,30日以下=1,31〜45日=2,46〜60日=3,61〜90日=4,91日以上=5,,,,,,,,,,,,
+損害賠償リスク,固定額上限あり=1,契約金額の50%=2,契約金額=3,契約金額の200%=4,上限なし=5,,,,,,,,,,,,
+知財リスク,自社帰属=1,共有=3,相手方帰属=5,,,,,,,,,,,,,,
+品質保証リスク,25月以上=1,13〜24月=2,7〜12月=3,4〜6月=4,3月以下=5,,,,,,,,,,,,
+秘密保持リスク,5年以上=1,3〜4年=2,2年=3,1年=4,1年未満=5,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+【総合リスク判定基準】,,,,,,,,,,,,,,,,,
+低リスク,5〜9点,対応不要,,,,,,,,,,,,,,,
+中リスク,10〜14点,次回更新時に条件改善を検討,,,,,,,,,,,,,,,
+高リスク,15〜19点,⚠要確認 — 早期に条件交渉を推奨,,,,,,,,,,,,,,,
+最高リスク,20〜25点,⚠要確認 — 即時対応・法務レビュー必須,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+【使い方】,,,,,,,,,,,,,,,,,
+1. サンプルデータ（行2〜6）を自社の取引先データに差し替えてください,,,,,,,,,,,,,,,,,
+2. 行をコピーして取引先を追加できます（数式は行番号に合わせて修正してください）,,,,,,,,,,,,,,,,,
+3. 損害賠償上限区分は「固定額上限あり／契約金額の50%／契約金額／契約金額の200%／上限なし」から選択,,,,,,,,,,,,,,,,,
+4. 知財帰属は「自社帰属／共有／相手方帰属」から選択,,,,,,,,,,,,,,,,,
+5. 条件付き書式：P列を選択→15以上を赤背景・10以上を黄背景に設定すると一覧性が向上します,,,,,,,,,,,,,,,,,
+6. Excelで開く際はUTF-8を指定してください（文字化け防止）,,,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_取引先別_契約条件比較＆リスクスコア自動計算シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

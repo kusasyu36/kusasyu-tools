@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>製造業テクニカルコンテンツ・プロンプトジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3rem;padding:18px 0;color:#2d3748;border-bottom:3px solid #3182ce}
+.sub{text-align:center;color:#718096;font-size:.85rem;margin:6px 0 16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1rem;color:#3182ce;margin-bottom:12px;border-left:4px solid #3182ce;padding-left:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.82rem;font-weight:600;color:#4a5568;margin-bottom:3px}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9rem}
+textarea{height:70px;resize:vertical}
+.full{grid-column:1/-1}
+.tabs{display:flex;gap:0;margin-bottom:0}
+.tab{flex:1;padding:10px;text-align:center;background:#e2e8f0;cursor:pointer;font-size:.85rem;font-weight:600;border:none;color:#4a5568;transition:.2s}
+.tab:first-child{border-radius:8px 0 0 0}
+.tab:last-child{border-radius:0 8px 0 0}
+.tab.active{background:#3182ce;color:#fff}
+.out{background:#f7fafc;border:1px solid #e2e8f0;border-radius:0 0 8px 8px;padding:16px;min-height:200px;white-space:pre-wrap;font-size:.85rem;line-height:1.7;position:relative}
+.btn{display:inline-block;padding:10px 24px;background:#3182ce;color:#fff;border:none;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;transition:.2s}
+.btn:hover{background:#2c5282}
+.btns{text-align:center;margin:12px 0}
+.copy-btn{position:absolute;top:8px;right:8px;padding:5px 12px;background:#48bb78;color:#fff;border:none;border-radius:4px;font-size:.78rem;cursor:pointer}
+.copy-btn:hover{background:#38a169}
+.tag{display:inline-block;background:#ebf4ff;color:#3182ce;padding:2px 8px;border-radius:10px;font-size:.75rem;margin:2px}
+.info{font-size:.78rem;color:#a0aec0;margin-top:8px}
+</style>
+<meta name="description" content="製造業の製品仕様（型番・材質・用途・スペック値）をフォームに入力するだけで、ターゲット読者別（調達担当者向け・技術者向け・経営層向け）のブログ記事ドラフトをワンクリック生成するHTMLツール。テクノポート等のコンサル型サービス（累計1,200社超が利用）が月額で提供している機能を、セルフサービス型の無料ツール">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,製造業テクニカルコンテンツ・プロンプトジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-38/">
+<meta property="og:title" content="製造業テクニカルコンテンツ・プロンプトジェネレーター - kusasyu tools">
+<meta property="og:description" content="製造業の製品仕様（型番・材質・用途・スペック値）をフォームに入力するだけで、ターゲット読者別（調達担当者向け・技術者向け・経営層向け）のブログ記事ドラフトをワンクリック生成するHTMLツール。テクノポート等のコンサル型サービス（累計1,200社超が利用）が月額で提供している機能を、セルフサービス型の無料ツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-38/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="製造業テクニカルコンテンツ・プロンプトジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="製造業の製品仕様（型番・材質・用途・スペック値）をフォームに入力するだけで、ターゲット読者別（調達担当者向け・技術者向け・経営層向け）のブログ記事ドラフトをワンクリック生成するHTMLツール。テクノポート等のコンサル型サービス（累計1,200社超が利用）が月額で提供している機能を、セルフサービス型の無料ツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "製造業テクニカルコンテンツ・プロンプトジェネレーター",
+  "description": "製造業の製品仕様（型番・材質・用途・スペック値）をフォームに入力するだけで、ターゲット読者別（調達担当者向け・技術者向け・経営層向け）のブログ記事ドラフトをワンクリック生成するHTMLツール。テクノポート等のコンサル型サービス（累計1,200社超が利用）が月額で提供している機能を、セルフサービス型の無料ツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-38/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>製造業テクニカルコンテンツ<br>プロンプトジェネレーター</h1>
+<p class="sub">製品情報を入力 → 3種類の記事作成プロンプトを即時生成 → AIに貼り付けるだけ</p>
+
+<div class="card">
+<h2>製品基本情報</h2>
+<div class="grid">
+<div><label>製品名 *</label><input id="pName" placeholder="例: 精密ボールベアリング"></div>
+<div><label>型番</label><input id="pModel" placeholder="例: NSK-6205DDU"></div>
+<div><label>材質</label><input id="pMat" placeholder="例: SUJ2（高炭素クロム軸受鋼）"></div>
+<div><label>業種カテゴリ *</label>
+<select id="pCat"><option value="mechanical">機械部品</option><option value="electronic">電子部品</option><option value="material">素材・材料</option></select></div>
+<div class="full"><label>主要スペック（カンマ区切り）</label><input id="pSpec" placeholder="例: 内径25mm, 外径52mm, 耐熱温度120℃, 回転数15000rpm"></div>
+<div class="full"><label>主な用途</label><input id="pUse" placeholder="例: 工作機械の主軸, 搬送装置, ポンプ"></div>
+<div class="full"><label>導入実績・採用事例</label><textarea id="pCase" placeholder="例: 大手自動車部品メーカーA社で年間50万個採用、不良率0.01%以下を達成"></textarea></div>
+</div>
+</div>
+
+<div class="btns"><button class="btn" onclick="generate()">プロンプトを生成</button></div>
+
+<div id="result" style="display:none">
+<div class="card" style="padding:0;overflow:hidden">
+<div class="tabs">
+<button class="tab active" onclick="switchTab(0)">📋 調達担当者向け</button>
+<button class="tab" onclick="switchTab(1)">🔧 技術者向け</button>
+<button class="tab" onclick="switchTab(2)">📊 経営層向け</button>
+</div>
+<div class="out" id="output"><button class="copy-btn" onclick="copyText()">コピー</button></div>
+</div>
+<div id="terms" class="card"></div>
+</div>
+</div>
+
+<script>
+var TERMS={
+mechanical:["公差","面粗度","焼入れ硬度","引張強度","降伏点","疲労限度","摺動性","耐摩耗性","寸法精度","同軸度","真円度","振れ精度","トルク","バックラッシュ","潤滑寿命"],
+electronic:["インピーダンス","誘電率","はんだ耐熱性","絶縁抵抗","静電容量","ESR","挿入損失","遮断周波数","耐電圧","温度特性","リフロー耐性","基板実装","EMC適合","信頼性試験","MTBF"],
+material:["引張強度","伸び率","硬度","耐食性","熱伝導率","線膨張係数","密度","弾性率","クリープ特性","疲労強度","溶接性","被削性","表面処理","結晶粒度","不純物濃度"]
+};
+var JIS=[
+"JIS B 0401（寸法公差）","JIS B 0601（表面粗さ）","JIS B 1501（転がり軸受用鋼球）",
+"JIS G 4805（高炭素クロム軸受鋼）","JIS G 3101（一般構造用圧延鋼材）","JIS G 4051（機械構造用炭素鋼）",
+"JIS H 4000（アルミニウム板）","JIS K 6900（プラスチック用語）","JIS C 5101（電子部品）",
+"JIS Z 2241（引張試験）","JIS Z 2244（ビッカース硬さ試験）","JIS Z 2242（シャルピー衝撃試験）",
+"JIS Q 9001（品質マネジメント）","JIS B 6336（工作機械精度）","JIS Z 8703（試験場所の標準状態）"
+];
+
+var prompts=["","",""],currentTab=0;
+
+function switchTab(i){
+currentTab=i;
+var tabs=document.querySelectorAll('.tab');
+for(var j=0;j<tabs.length;j++) tabs[j].className=j===i?'tab active':'tab';
+document.getElementById('output').innerHTML='<button class="copy-btn" onclick="copyText()">コピー</button>'+escHtml(prompts[i]);
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function copyText(){
+navigator.clipboard.writeText(prompts[currentTab]).then(function(){
+var b=document.querySelector('.copy-btn');b.textContent='\u2713 コピー済';setTimeout(function(){b.textContent='コピー'},1500);
+});
+}
+
+function generate(){
+var name=document.getElementById('pName').value.trim();
+if(!name){alert('製品名を入力してください');return;}
+var model=document.getElementById('pModel').value.trim()||'（型番未設定）';
+var mat=document.getElementById('pMat').value.trim()||'（材質未設定）';
+var cat=document.getElementById('pCat').value;
+var spec=document.getElementById('pSpec').value.trim()||'（スペック未設定）';
+var use=document.getElementById('pUse').value.trim()||'（用途未設定）';
+var cs=document.getElementById('pCase').value.trim()||'（実績未設定）';
+var catName={mechanical:'機械部品',electronic:'電子部品',material:'素材・材料'}[cat];
+var terms=TERMS[cat];
+var jisStr=JIS.join('\n- ');
+var termStr=terms.join('、');
+
+var base='【製品情報】\n製品名: '+name+'\n型番: '+model+'\n材質: '+mat+'\n業種: '+catName+'\n主要スペック: '+spec+'\n用途: '+use+'\n導入実績: '+cs;
+
+prompts[0]='あなたは製造業専門のBtoBコンテンツライターです。以下の製品について、調達・購買担当者向けの技術記事（2000〜3000字）を作成してください。\n\n'+base+'\n\n【記事の要件】\n1. タイトル: 調達担当者が検索しそうなキーワードを含める（「'+name+' 選定」「'+name+' 比較」等）\n2. 構成:\n   - リード文（課題提起: コスト・納期・品質のバランス）\n   - 製品概要と競合比較ポイント\n   - 調達時の選定チェックリスト（5項目以上）\n   - コスト分析（初期費用 vs ランニングコスト）\n   - 導入実績に基づくROI試算\n   - まとめ（RFQ時の確認事項）\n3. 文体: 専門的だが平易。意思決定を後押しする論理的構成\n4. 以下の業界専門用語を適切に使用:\n   '+termStr+'\n5. 関連JIS規格を適宜参照:\n- '+jisStr+'\n6. SEO対策: メタディスクリプション案も末尾に付記\n\n【出力形式】Markdown。見出し・表・箇条書きを活用。';
+
+prompts[1]='あなたは製造業の技術文書に精通したテクニカルライターです。以下の製品について、設計・開発エンジニア向けの技術解説記事（2000〜3000字）を作成してください。\n\n'+base+'\n\n【記事の要件】\n1. タイトル: 技術者が検索する具体的スペック用語を含める\n2. 構成:\n   - 技術的背景と設計思想\n   - 詳細スペック解説（数値の意味と設計への影響）\n   - 材質特性と選定理由（'+mat+'の物性値）\n   - 設計計算例または選定計算フロー\n   - 使用環境別の推奨条件（温度・荷重・速度等）\n   - トラブルシューティング（よくある設計ミス3つ）\n   - CADデータ・技術資料の活用法\n3. 文体: 技術論文に近い正確さ。数値と根拠を重視\n4. 以下の専門用語を正確に使用:\n   '+termStr+'\n5. 関連JIS規格を本文中で引用:\n- '+jisStr+'\n6. 計算式がある場合はLaTeX記法で記載\n\n【出力形式】Markdown。技術図表の代わりにASCII図やテーブルを使用。';
+
+prompts[2]='あなたは製造業のビジネスコンサルタント兼ライターです。以下の製品について、経営層・事業部長向けの戦略記事（1500〜2500字）を作成してください。\n\n'+base+'\n\n【記事の要件】\n1. タイトル: 経営課題（生産性・競争力・DX）と紐づける\n2. 構成:\n   - エグゼクティブサマリー（3行で結論）\n   - 市場動向と競争環境の変化\n   - 本製品がもたらす経営インパクト（定量的に）\n   - 導入事例のビジネス成果を強調\n   - 投資対効果（3年TCO比較）\n   - 競合製品との差別化ポイント（経営視点）\n   - Next Step（意思決定に必要なアクション3つ）\n3. 文体: 簡潔明瞭。箇条書き多用。数字で語る\n4. 業界用語は最小限に。以下から必要なもののみ使用:\n   '+termStr+'\n5. 品質保証の文脈でJIS規格に言及:\n- '+jisStr+'\n6. グラフ用データがあればテーブルで提示\n\n【出力形式】Markdown。経営会議資料としても転用可能な構成で。';
+
+document.getElementById('result').style.display='block';
+
+var th='<h2>自動組み込み済みの専門用語・規格</h2>';
+th+='<p><strong>'+catName+'用語（15語）:</strong></p><p>';
+for(var i=0;i<terms.length;i++) th+='<span class="tag">'+terms[i]+'</span> ';
+th+='</p><p style="margin-top:8px"><strong>JIS規格参照（15規格）:</strong></p><p>';
+for(var j=0;j<JIS.length;j++) th+='<span class="tag">'+JIS[j]+'</span> ';
+th+='</p><p class="info">※ 上記の用語・規格はプロンプト内に自動で組み込まれています。生成AIに貼り付けるだけで専門性の高い記事が得られます。</p>';
+document.getElementById('terms').innerHTML=th;
+switchTab(0);
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

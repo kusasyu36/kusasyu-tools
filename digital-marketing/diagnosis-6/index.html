@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業種別AEOページ設計テンプレート集 - kusasyu tools</title>
+<meta name="description" content="既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,業種別AEOページ設計テンプレート集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-6/">
+<meta property="og:title" content="業種別AEOページ設計テンプレート集 - kusasyu tools">
+<meta property="og:description" content="既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別AEOページ設計テンプレート集 - kusasyu tools">
+<meta name="twitter:description" content="既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "業種別AEOページ設計テンプレート集",
+  "description": "既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>業種別AEOページ設計テンプレート集</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>業種別AEOページ設計テンプレート集</h1>
+  <p class="project-name">AI検索に引用されない？AEO診断＆リライトツール</p>
+  <div class="content">
+<p>[製品カテゴリ名]とは、[原理・仕組みを1文で説明]する[装置／部品／素材]です。
+主に[業界名]で使用され、[主要メリットを2つ]という特長があります。</p>
+<p>[記入例]
+産業用リニアガイドとは、ボールの転がり運動を利用して機械部品を直線方向に
+高精度で案内する装置です。主に半導体製造装置や工作機械で使用され、
+位置決め精度±0.005mmと長寿命（走行距離10万km以上）という特長があります。</p>
+<pre><code>
+### ■ FAQ配置パターン（定義文の直後に配置）
+
+```markdown
+## よくある質問
+
+### Q. [製品名]の標準納期はどのくらいですか？
+A. 標準品は[日数]営業日、特注品は[日数]営業日が目安です。
+
+[記入例] 標準品は5営業日、特注品は15営業日が目安です。
+
+### Q. 小ロット（1個〜）での発注は可能ですか？
+A. はい、[最小ロット数]から対応しています。[条件があれば記載]。
+
+[記入例] はい、1個から対応しています。10個未満の場合は別途小口手数料が発生します。
+
+### Q. [認証・規格名]に対応していますか？
+A. [対応状況]。認証番号は[番号]です。
+
+[記入例] ISO 9001:2015認証取得済みです。認証番号はJQA-QMA12345です。
+</code></pre>
+<h3>■ JSON-LD（<code>&lt;head&gt;</code>内に貼り付け）</h3>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;Product&quot;,
+  &quot;name&quot;: &quot;産業用リニアガイド HSRシリーズ&quot;,
+  &quot;description&quot;: &quot;ボールの転がり運動を利用して機械部品を直線方向に高精度で案内する装置&quot;,
+  &quot;brand&quot;: { &quot;@type&quot;: &quot;Brand&quot;, &quot;name&quot;: &quot;[自社名]&quot; },
+  &quot;manufacturer&quot;: {
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;[自社名]&quot;,
+    &quot;iso6523Code&quot;: &quot;[法人番号]&quot;
+  },
+  &quot;hasFAQPage&quot;: {
+    &quot;@type&quot;: &quot;FAQPage&quot;,
+    &quot;mainEntity&quot;: [
+      {
+        &quot;@type&quot;: &quot;Question&quot;,
+        &quot;name&quot;: &quot;産業用リニアガイドの標準納期はどのくらいですか？&quot;,
+        &quot;acceptedAnswer&quot;: {
+          &quot;@type&quot;: &quot;Answer&quot;,
+          &quot;text&quot;: &quot;標準品は5営業日、特注品は15営業日が目安です。&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<hr />
+<h2>テンプレート2｜IT（SaaS・システム開発）</h2>
+<h3>■ 定義文</h3>
+<pre><code>[サービス名]とは、[課題]を解決するための[クラウド型／オンプレミス型]
+[サービス種別]です。[主要機能]により、[定量的な効果]を実現します。
+
+[記入例]
+クラウド在庫管理Pro とは、複数拠点の在庫差異を解消するためのクラウド型
+在庫管理システムです。リアルタイム同期と自動発注機能により、
+在庫差異率を平均82%削減し、棚卸工数を月20時間短縮します。
+</code></pre>
+<h3>■ FAQ配置パターン</h3>
+<pre><code class="language-markdown">## よくある質問
+
+### Q. 無料トライアルはありますか？
+A. [期間]の無料トライアルを提供しています。[制限事項]。
+
+[記入例] 14日間の無料トライアルを提供しています。全機能を制限なくご利用いただけます。
+
+### Q. 既存の[連携先システム名]と連携できますか？
+A. はい、[連携方式]で対応しています。主要な連携先は[サービス名を列挙]です。
+
+[記入例] はい、REST APIとCSVインポートで対応しています。主要な連携先はfreee会計、マネーフォワード、弥生会計です。
+
+### Q. セキュリティ対策はどうなっていますか？
+A. [暗号化方式]を採用し、[認証・監査の実績]を取得しています。
+
+[記入例] AES-256暗号化を採用し、SOC 2 Type II監査およびISMSを取得しています。
+</code></pre>
+<h3>■ JSON-LD</h3>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;SoftwareApplication&quot;,
+  &quot;name&quot;: &quot;[サービス名]&quot;,
+  &quot;applicationCategory&quot;: &quot;BusinessApplication&quot;,
+  &quot;operatingSystem&quot;: &quot;Web&quot;,
+  &quot;description&quot;: &quot;[定義文と同じ1文説明]&quot;,
+  &quot;offers&quot;: {
+    &quot;@type&quot;: &quot;AggregateOffer&quot;,
+    &quot;lowPrice&quot;: &quot;[最低価格]&quot;,
+    &quot;highPrice&quot;: &quot;[最高価格]&quot;,
+    &quot;priceCurrency&quot;: &quot;JPY&quot;,
+    &quot;offerCount&quot;: &quot;[プラン数]&quot;
+  },
+  &quot;provider&quot;: {
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;[自社名]&quot;,
+    &quot;url&quot;: &quot;[自社URL]&quot;
+  },
+  &quot;mainEntity&quot;: {
+    &quot;@type&quot;: &quot;FAQPage&quot;,
+    &quot;mainEntity&quot;: [
+      {
+        &quot;@type&quot;: &quot;Question&quot;,
+        &quot;name&quot;: &quot;無料トライアルはありますか？&quot;,
+        &quot;acceptedAnswer&quot;: {
+          &quot;@type&quot;: &quot;Answer&quot;,
+          &quot;text&quot;: &quot;14日間の無料トライアルを提供しています。全機能を制限なくご利用いただけます。&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<hr />
+<h2>テンプレート3｜士業（税理士・弁護士・社労士）</h2>
+<h3>■ 定義文</h3>
+<pre><code>[手続き・制度名]とは、[根拠法令]に基づき、[目的を1文で]するための
+[届出／申請／契約]です。対象は[対象者]で、期限は[期限]です。
+
+[記入例]
+事業承継税制（特例措置）とは、租税特別措置法第70条の7の5に基づき、
+非上場株式の贈与税・相続税の納税を猶予・免除するための制度です。
+対象は中小企業の後継者で、特例承継計画の提出期限は2026年3月31日です。
+</code></pre>
+<h3>■ FAQ配置パターン</h3>
+<pre><code class="language-markdown">## よくある質問
+
+### Q. [手続き名]の費用はいくらですか？
+A. [価格帯]が目安です。[変動要因]により変わります。
+
+[記入例] 30万円〜80万円が目安です。株式評価額や関係者の人数により変わります。
+
+### Q. 自分で手続きできますか？専門家に依頼すべきですか？
+A. [可否]。ただし[リスク・注意点]があるため、[推奨]をお勧めします。
+
+[記入例] 法的には可能です。ただし要件の見落としで猶予取消となるリスクがあるため、税理士への依頼をお勧めします。
+
+### Q. 相談だけでも費用はかかりますか？
+A. [初回相談の条件]。[時間・方法]で対応しています。
+
+[記入例] 初回60分は無料です。対面・オンライン（Zoom）いずれも対応しています。
+</code></pre>
+<h3>■ JSON-LD</h3>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;ProfessionalService&quot;,
+  &quot;name&quot;: &quot;[事務所名]&quot;,
+  &quot;description&quot;: &quot;[事務所の専門領域を1文で]&quot;,
+  &quot;priceRange&quot;: &quot;¥[下限]〜¥[上限]&quot;,
+  &quot;areaServed&quot;: { &quot;@type&quot;: &quot;Place&quot;, &quot;name&quot;: &quot;[対応地域]&quot; },
+  &quot;hasCredential&quot;: {
+    &quot;@type&quot;: &quot;EducationalOccupationalCredential&quot;,
+    &quot;credentialCategory&quot;: &quot;[資格名]&quot;,
+    &quot;recognizedBy&quot;: { &quot;@type&quot;: &quot;Organization&quot;, &quot;name&quot;: &quot;[認定機関]&quot; }
+  },
+  &quot;mainEntity&quot;: {
+    &quot;@type&quot;: &quot;FAQPage&quot;,
+    &quot;mainEntity&quot;: [
+      {
+        &quot;@type&quot;: &quot;Question&quot;,
+        &quot;name&quot;: &quot;事業承継税制の手続き費用はいくらですか？&quot;,
+        &quot;acceptedAnswer&quot;: {
+          &quot;@type&quot;: &quot;Answer&quot;,
+          &quot;text&quot;: &quot;30万円〜80万円が目安です。株式評価額や関係者の人数により変わります。&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+<hr />
+<h2>テンプレート4｜不動産</h2>
+<h3>■ 定義文</h3>
+<pre><code>[エリア名]の[物件種別]とは、[立地・特徴を1文で]説明する[物件カテゴリ]です。
+[相場情報]で、[ターゲット層]に適しています。
+
+[記入例]
+横浜市中区の事業用賃貸オフィスとは、みなとみらい線沿線を中心に
+IT企業や士業事務所の需要が高いオフィス物件です。
+坪単価の相場は月額12,000〜18,000円で、10〜30名規模の企業に適しています。
+</code></pre>
+<h3>■ FAQ配置パターン</h3>
+<pre><code class="language-markdown">## よくある質問
+
+### Q. 初期費用の目安はいくらですか？
+A. [費用項目と金額の内訳]が一般的です。
+
+[記入例] 敷金2ヶ月＋礼金1ヶ月＋仲介手数料1ヶ月＋前家賃1ヶ月の計5ヶ月分が一般的です。
+
+### Q. 内見はオンラインでも可能ですか？
+A. [対応状況]。[使用ツール・所要時間]。
+
+[記入例] はい、Zoomによるオンライン内見に対応しています。所要時間は1物件あたり約20分です。
+
+### Q. 契約から入居までどのくらいかかりますか？
+A. [標準期間]が目安です。[短縮・延長される条件]。
+
+[記入例] 申込から2〜3週間が目安です。審査状況や内装工事の有無により前後します。
+</code></pre>
+<h3>■ JSON-LD</h3>
+<p>```json
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "[会社名]",
+  "description": "[会社の専門領域を1文で]",
+  "areaServed": { "@type": "Place", "name": "[対応エリア]" },
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Accommodation",
+      "accommodationCategory": "[物件種別]",
+      "floorSize": { "@type": "QuantitativeValue", "value": "[面積]", "unitCode": "MTK" }
+    }
+  },
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "初期費用の目安はいくらですか？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "敷金2ヶ月＋礼金1ヶ月＋仲介手数料1ヶ月＋前家賃1ヶ月の計5ヶ月分が一般的です。"
+        }
+      }
+    ]
+  }
+}</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

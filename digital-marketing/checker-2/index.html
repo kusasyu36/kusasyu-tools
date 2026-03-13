@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3シーン別・発信実行チェックリスト - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;padding:16px;max-width:900px;margin:0 auto}
+h1{font-size:1.3rem;text-align:center;padding:12px 0;color:#1a365d}
+.ctrl{display:flex;gap:8px;align-items:center;margin:12px 0;flex-wrap:wrap}
+select{padding:8px 12px;border:1px solid #cbd5e0;border-radius:6px;font-size:1rem;flex:1;max-width:320px}
+.btn{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.85rem;background:#e53e3e;color:#fff}
+.prog{margin:8px 0;font-size:.9rem;color:#4a5568}
+.prog b{color:#2b6cb0}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.85rem}
+th,td{border:1px solid #cbd5e0;padding:6px 8px;text-align:left}
+th{background:#edf2f7;font-weight:600;white-space:nowrap}
+td:first-child{width:28px;text-align:center}
+td:nth-child(2){width:60px;white-space:nowrap;font-weight:600}
+td:nth-child(4){width:56px;text-align:center}
+.pri-高{color:#e53e3e;font-weight:700}.pri-中{color:#d69e2e;font-weight:600}.pri-低{color:#718096}
+input[type=text]{width:100%;border:1px solid #e2e8f0;border-radius:4px;padding:3px 6px;font-size:.8rem}
+tr.done td{opacity:.5;text-decoration:line-through}
+.phase{background:#ebf8ff;font-weight:700;text-align:center!important;color:#2c5282}
+@media print{body{padding:0;background:#fff}h1{font-size:1.1rem}.ctrl,.btn{display:none}table{font-size:.75rem}td,th{padding:4px}input[type=text]{border:none;padding:0}}
+@media(max-width:600px){table{font-size:.75rem}td,th{padding:4px}}
+</style>
+<meta name="description" content="製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,3シーン別・発信実行チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-2/">
+<meta property="og:title" content="3シーン別・発信実行チェックリスト - kusasyu tools">
+<meta property="og:description" content="製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3シーン別・発信実行チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "3シーン別・発信実行チェックリスト",
+  "description": "製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<h1>📋 発信実行チェックリスト</h1>
+<div class="ctrl">
+<select id="scene" onchange="render()">
+<option value="">-- シーンを選択 --</option>
+<option value="fund">資金調達発表</option>
+<option value="product">新製品リリース</option>
+<option value="expo">展示会出展</option>
+</select>
+<button class="btn" onclick="resetAll()">リセット</button>
+</div>
+<div class="prog" id="prog"></div>
+<div id="out"></div>
+<script>
+const D={
+fund:[
+["準備フェーズ（D-14〜D-8）"],
+[-14,"プレスリリース原稿作成","社内","高",""],
+[-12,"メディアリスト精査・記者アプローチ開始","広報","高",""],
+[-10,"SNS告知用クリエイティブ制作","制作","中",""],
+[-9,"投資家向けメール文面作成","経営","高",""],
+[-8,"社内共有・FAQ準備","広報","中",""],
+["発表直前（D-7〜D-1）"],
+[-7,"エンバーゴ付きメディアブリーフィング","広報","高",""],
+[-5,"CEOインタビュー記事仕込み","広報","中",""],
+[-3,"SNS投稿スケジュール設定","SNS","中",""],
+[-1,"プレスリリース配信予約・最終確認","広報","高",""],
+["発表当日〜フォロー（D-Day〜D+7）"],
+[0,"プレスリリース配信","広報","高",""],
+[0,"SNS一斉投稿（X/LinkedIn/note）","SNS","高",""],
+[1,"メディア掲載確認・お礼連絡","広報","中",""],
+[3,"社員向けSNSシェア依頼","人事","低",""],
+[7,"掲載実績まとめ・KPIレビュー","広報","高",""]
+],
+product:[
+["準備フェーズ（D-14〜D-8）"],
+[-14,"ティザーコンテンツ企画・制作開始","制作","高",""],
+[-12,"製品紹介LP作成","Web","高",""],
+[-10,"デモ動画撮影・編集","制作","高",""],
+[-9,"ブロガー/インフルエンサーへの事前案内","広報","中",""],
+[-8,"メルマガ原稿作成","マーケ","中",""],
+["発表直前（D-7〜D-1）"],
+[-7,"プレスリリース原稿完成","広報","高",""],
+[-5,"SNSティザー投稿開始","SNS","中",""],
+[-3,"既存顧客向け先行案内メール配信","CS","高",""],
+[-1,"LP公開テスト・最終チェック","Web","高",""],
+["発表当日〜フォロー（D-Day〜D+7）"],
+[0,"LP公開・プレスリリース配信","広報","高",""],
+[0,"SNS製品発表投稿","SNS","高",""],
+[1,"問い合わせ対応体制確認","CS","中",""],
+[3,"ユーザーレビュー依頼","CS","中",""],
+[7,"初週KPI集計・改善点洗い出し","マーケ","高",""]
+],
+expo:[
+["準備フェーズ（D-14〜D-8）"],
+[-14,"出展告知プレスリリース作成","広報","高",""],
+[-12,"ブース用パネル/配布物デザイン発注","制作","高",""],
+[-10,"来場誘導SNS投稿計画策定","SNS","中",""],
+[-9,"アポイント取得（メディア・顧客）","営業","高",""],
+[-8,"展示デモ環境構築・リハーサル","技術","高",""],
+["発表直前（D-7〜D-1）"],
+[-7,"来場者向け招待メール配信","マーケ","高",""],
+[-5,"SNSカウントダウン投稿開始","SNS","中",""],
+[-3,"スタッフ役割分担・トークスクリプト確認","営業","中",""],
+[-1,"ブース設営・最終動作確認","全員","高",""],
+["発表当日〜フォロー（D-Day〜D+7）"],
+[0,"会場からリアルタイムSNS発信","SNS","高",""],
+[0,"名刺/リード情報の即日デジタル化","営業","高",""],
+[1,"お礼メール一斉送信","営業","高",""],
+[3,"展示会レポート記事公開","広報","中",""],
+[7,"リード分類・フォロー架電開始","営業","高",""]
+]};
+const K="pr-chk-v1";
+function load(){try{return JSON.parse(localStorage.getItem(K))||{}}catch(e){return{}}}
+function save(d){localStorage.setItem(K,JSON.stringify(d))}
+function render(){
+const s=document.getElementById("scene").value,o=document.getElementById("out"),p=document.getElementById("prog");
+if(!s){o.innerHTML="";p.innerHTML="";return}
+const items=D[s],st=load();
+let h='<table><tr><th>✓</th><th>日程</th><th>タスク</th><th>優先</th><th>担当</th><th>メモ</th></tr>';
+let total=0,done=0;
+items.forEach((r,i)=>{
+if(r.length===1){h+=`<tr><td class="phase" colspan="6">${r[0]}</td></tr>`;return}
+const id=s+"-"+i,c=st[id]||{},ck=c.c?'checked':'',cls=c.c?'done':'';
+const label=r[0]===0?'D-Day':r[0]>0?'D+'+r[0]:'D'+r[0];
+const memo=(c.m||'').replace(/"/g,'&quot;');
+total++;if(c.c)done++;
+h+=`<tr class="${cls}"><td><input type="checkbox" ${ck} onchange="tog('${id}',this)"></td><td>${label}</td><td>${r[1]}</td><td class="pri-${r[3]}">${r[3]}</td><td>${r[2]}</td><td><input type="text" value="${memo}" onchange="memo('${id}',this.value)" placeholder="メモ"></td></tr>`;
+});
+h+='</table>';
+o.innerHTML=h;
+const pct=total?Math.round(done/total*100):0;
+p.innerHTML=`進捗: <b>${done}/${total}</b>（${pct}%）${'█'.repeat(Math.round(pct/5))}${'░'.repeat(20-Math.round(pct/5))}`;
+}
+function tog(id,el){const d=load();d[id]=d[id]||{};d[id].c=el.checked;save(d);render()}
+function memo(id,v){const d=load();d[id]=d[id]||{};d[id].m=v;save(d)}
+function resetAll(){if(confirm('チェックとメモをすべてリセットしますか？')){localStorage.removeItem(K);render()}}
+</script>
+</body>
+</html>

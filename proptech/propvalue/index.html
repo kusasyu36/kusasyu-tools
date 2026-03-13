@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産投資スコアリングシミュレーター「PropValue」 - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.5em;padding:14px 0 2px;color:#0d1b3e}
+.sub{text-align:center;color:#888;font-size:.78em;margin-bottom:14px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:.95em;margin-bottom:10px;color:#0d1b3e;border-left:4px solid #e94560;padding-left:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column}
+.fg label{font-size:.72em;color:#555;margin-bottom:2px;font-weight:600}
+.fg input,.fg select{padding:7px 10px;border:1px solid #ccc;border-radius:6px;font-size:.92em;background:#fafbfc}
+.fg input:focus,.fg select:focus{outline:none;border-color:#e94560;box-shadow:0 0 0 2px rgba(233,69,96,.15)}
+.btn{width:100%;padding:12px;background:linear-gradient(135deg,#e94560,#0d1b3e);color:#fff;border:none;border-radius:8px;font-size:1.05em;cursor:pointer;margin-top:12px;font-weight:700;letter-spacing:.5px}
+.btn:hover{opacity:.88}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:10px 0}
+.kpi{background:#f8f9fb;border-radius:8px;padding:10px;text-align:center}
+.kpi .v{font-size:1.35em;font-weight:800;color:#e94560}
+.kpi .l{font-size:.65em;color:#888;margin-top:2px}
+.score-circle{width:100px;height:100px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 8px;color:#fff;font-weight:900}
+.score-circle .n{font-size:2.2em;line-height:1}
+.score-circle .u{font-size:.6em;opacity:.85}
+.judge{text-align:center;font-size:1.1em;font-weight:700;margin:6px 0}
+.bar-wrap{margin:6px 0}
+.bar-label{display:flex;justify-content:space-between;font-size:.72em;color:#555;margin-bottom:2px}
+.bar-bg{height:10px;background:#e8e8e8;border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;transition:width .4s}
+.advice-box{background:#fffbe6;border:1px solid #ffe066;border-radius:8px;padding:12px;margin-top:10px;font-size:.82em;line-height:1.7}
+.advice-box strong{color:#e94560}
+canvas{width:100%;max-width:100%;display:block;margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:.78em;margin-top:8px}
+th,td{border:1px solid #e0e0e0;padding:5px 8px;text-align:right}
+th{background:#0d1b3e;color:#fff;text-align:center;font-weight:600}
+tr:nth-child(even){background:#f8f9fb}
+.disc{font-size:.6em;color:#999;text-align:center;margin-top:12px;padding:8px;border:1px dashed #ccc;border-radius:6px}
+.hidden{display:none}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.72em;color:#fff;font-weight:600}
+.tag-buy{background:#27ae60}.tag-hold{background:#f39c12}.tag-avoid{background:#c0392b}
+</style>
+<meta name="description" content="物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産投資スコアリングシミュレーター「PropValue」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propvalue/">
+<meta property="og:title" content="不動産投資スコアリングシミュレーター「PropValue」 - kusasyu tools">
+<meta property="og:description" content="物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propvalue/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産投資スコアリングシミュレーター「PropValue」 - kusasyu tools">
+<meta name="twitter:description" content="物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産投資スコアリングシミュレーター「PropValue」",
+  "description": "物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propvalue/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>PropValue</h1>
+<p class="sub">不動産投資スコアリングシミュレーター｜Kusasyu PropTech</p>
+
+<div class="card">
+<h2>物件情報</h2>
+<div class="grid">
+<div class="fg"><label>購入価格（万円）</label><input id="price" type="number" value="3000"></div>
+<div class="fg"><label>想定月額賃料（万円）</label><input id="rent" type="number" value="12" step="0.1"></div>
+<div class="fg"><label>管理費（月額・万円）</label><input id="mgmt" type="number" value="1.0" step="0.1"></div>
+<div class="fg"><label>修繕積立金（月額・万円）</label><input id="repair" type="number" value="0.8" step="0.1"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>ローン条件</h2>
+<div class="grid">
+<div class="fg"><label>頭金（万円）</label><input id="down" type="number" value="300"></div>
+<div class="fg"><label>金利（年%）</label><input id="rate" type="number" value="1.5" step="0.1"></div>
+<div class="fg"><label>返済期間（年）</label><input id="term" type="number" value="35"></div>
+<div class="fg"><label>エリア区分</label>
+<select id="area">
+<option value="0">東京23区</option>
+<option value="1" selected>首都圏（23区外）</option>
+<option value="2">地方中核市</option>
+<option value="3">地方</option>
+</select></div>
+</div>
+</div>
+
+<button class="btn" onclick="run()">PropValueスコアを算出</button>
+
+<div id="result" class="hidden"></div>
+
+<div class="disc">※本ツールは投資判断の参考情報であり、投資助言ではありません。固定資産税は評価額（購入価格の70%想定）×1.4%、都市計画税は×0.3%で概算。空室損失は想定賃料の5%。実際の投資は専門家にご相談ください。</div>
+</div>
+
+<script>
+function g(id){return parseFloat(document.getElementById(id).value)||0}
+
+function pmt(r,n,pv){
+if(r===0)return pv/n;
+var x=Math.pow(1+r,n);
+return pv*r*x/(x-1);
+}
+
+var BM=[
+[3.8,5.5,2.3,3.5,4.0],
+[5.0,7.5,3.2,5.0,5.5],
+[6.5,10.0,4.5,7.0,7.0],
+[8.0,15.0,5.5,10.0,9.0]
+];
+var AREA_NAME=['東京23区','首都圏','地方中核市','地方'];
+
+function run(){
+var price=g('price'),rent=g('rent'),mgmt=g('mgmt'),repair=g('repair');
+var down=g('down'),rate=g('rate'),term=g('term'),ai=parseInt(document.getElementById('area').value);
+
+if(price<=0||rent<=0){alert('購入価格と賃料を入力してください');return}
+if(down>=price){alert('頭金は購入価格未満にしてください');return}
+if(down<=0)down=1;
+
+var annualRent=rent*12;
+var annualMgmt=(mgmt+repair)*12;
+var assessed=price*0.7;
+var propTax=assessed*0.014;
+var cityTax=assessed*0.003;
+var vacancy=annualRent*0.05;
+var totalExp=annualMgmt+propTax+cityTax+vacancy;
+var netIncome=annualRent-totalExp;
+
+var loan=price-down;
+var mr=rate/100/12;
+var months=term*12;
+var annualPmt=(loan>0)?pmt(mr,months,loan)*12:0;
+var annualCF=netIncome-annualPmt;
+var grossY=annualRent/price*100;
+var netY=netIncome/price*100;
+var ccr=annualCF/down*100;
+var repayRatio=annualRent>0?annualPmt/annualRent*100:0;
+
+var cf10=[],cumCF=0,bal=loan;
+for(var y=1;y<=10;y++){
+  var intY=0,prinY=0;
+  for(var m=0;m<12;m++){
+    if(bal<=0)break;
+    var intM=bal*mr;
+    var pmtM=pmt(mr,months-(y-1)*12-m,bal);
+    if(pmtM>bal+intM)pmtM=bal+intM;
+    intY+=intM;prinY+=pmtM-intM;bal-=(pmtM-intM);
+  }
+  var cfY=netIncome-intY-prinY;
+  cumCF+=cfY;
+  cf10.push({year:y,cf:cfY,cum:cumCF,bal:Math.max(bal,0)});
+}
+
+var bm=BM[ai];
+var s1=scoreYield(netY,bm);
+var s2=scoreRepay(repayRatio);
+var s3=scoreCCR(ccr,bm[4]);
+var s4=scoreCF(annualCF,annualRent);
+var total=s1.s+s2.s+s3.s+s4.s;
+
+var judge,jcls;
+if(total>=75){judge='割安 — 投資妙味あり';jcls='tag-buy'}
+else if(total>=50){judge='適正 — 条件次第で検討可';jcls='tag-hold'}
+else{judge='割高 — 慎重な検討が必要';jcls='tag-avoid'}
+
+var sc=total>=75?'#27ae60':total>=50?'#f39c12':'#c0392b';
+
+var h='<div class="card"><h2>PropValueスコア</h2>';
+h+='<div class="score-circle" style="background:'+sc+'"><span class="n">'+total+'</span><span class="u">/ 100</span></div>';
+h+='<div class="judge"><span class="tag '+jcls+'">'+judge+'</span></div>';
+h+='<p style="text-align:center;font-size:.75em;color:#888;margin-top:4px">エリア: '+AREA_NAME[ai]+'基準で評価</p>';
+h+=bar('利回り水準',s1.s,30,s1.c);
+h+=bar('返済比率',s2.s,20,s2.c);
+h+=bar('CCR（自己資金利回り）',s3.s,25,s3.c);
+h+=bar('CF安定性',s4.s,25,s4.c);
+h+='</div>';
+
+h+='<div class="card"><h2>収益指標</h2><div class="kpi-row">';
+h+=kpi(grossY.toFixed(2)+'%','表面利回り');
+h+=kpi(netY.toFixed(2)+'%','実質利回り');
+h+=kpi(ccr.toFixed(2)+'%','CCR');
+h+=kpi(fmt(annualCF)+'万','年間CF');
+h+=kpi(fmt(cumCF)+'万','10年累計CF');
+h+=kpi(repayRatio.toFixed(1)+'%','返済比率');
+h+='</div></div>';
+
+h+='<div class="card"><h2>経費内訳（年額）</h2><div class="kpi-row">';
+h+=kpi(fmt(annualMgmt)+'万','管理費+修繕');
+h+=kpi(fmt(propTax)+'万','固定資産税');
+h+=kpi(fmt(cityTax)+'万','都市計画税');
+h+=kpi(fmt(vacancy)+'万','空室損失(5%)');
+h+=kpi(fmt(totalExp)+'万','経費合計');
+h+=kpi(fmt(annualPmt)+'万','年間返済額');
+h+='</div></div>';
+
+h+='<div class="card"><h2>10年キャッシュフロー推移</h2>';
+h+='<canvas id="chart" width="800" height="280"></canvas>';
+h+='<table><tr><th>年</th><th>年間CF</th><th>累計CF</th><th>残債</th></tr>';
+for(var i=0;i<10;i++){
+  var r=cf10[i];
+  h+='<tr><td style="text-align:center">'+r.year+'年目</td><td>'+fmt(r.cf)+'万</td><td>'+fmt(r.cum)+'万</td><td>'+fmt(r.bal)+'万</td></tr>';
+}
+h+='</table></div>';
+
+var adv=[];
+if(s1.s<20)adv.push('実質利回りがエリア平均を下回っています。<strong>購入価格を'+fmt(price*0.9)+'万円以下</strong>に交渉できれば利回りが改善します。');
+if(s2.s<12)adv.push('返済比率が'+repayRatio.toFixed(1)+'%と高めです。<strong>頭金を'+fmt(down*1.5)+'万円に増額</strong>すると返済負担が軽減されます。');
+if(s3.s<15)adv.push('CCRが低く自己資金の効率が悪い状態です。<strong>金利'+Math.max(rate-0.3,0.5).toFixed(1)+'%以下</strong>のローンを探すか、頭金比率を見直しましょう。');
+if(s4.s<15)adv.push('年間CFがマイナスまたは薄利です。<strong>賃料'+fmt(rent*1.1)+'万円/月</strong>以上が見込めるか、管理コスト削減を検討してください。');
+if(adv.length===0)adv.push('各指標が良好なバランスです。物件の現地調査・修繕履歴の確認を行った上で、購入検討を進めて問題ありません。');
+
+h+='<div class="card"><h2>改善アドバイス</h2><div class="advice-box">';
+for(var i=0;i<adv.length;i++)h+='<p style="margin-bottom:6px">'+adv[i]+'</p>';
+h+='</div></div>';
+
+document.getElementById('result').innerHTML=h;
+document.getElementById('result').classList.remove('hidden');
+drawChart(cf10);
+}
+
+function scoreYield(netY,bm){
+var mid=(bm[2]+bm[3])/2;
+var r=netY/mid;
+var s=Math.min(Math.round(r*22),30);
+if(s<0)s=0;
+var c=netY>=bm[3]?'#27ae60':netY>=bm[2]?'#f39c12':'#c0392b';
+return{s:s,c:c};
+}
+function scoreRepay(rr){
+var s;
+if(rr<=40)s=20;else if(rr<=50)s=16;else if(rr<=60)s=12;else if(rr<=70)s=7;else s=3;
+var c=rr<=45?'#27ae60':rr<=55?'#f39c12':'#c0392b';
+return{s:s,c:c};
+}
+function scoreCCR(ccr,target){
+var r=ccr/target;
+var s=Math.min(Math.round(r*18),25);
+if(s<0)s=0;
+var c=ccr>=target?'#27ae60':ccr>=target*0.6?'#f39c12':'#c0392b';
+return{s:s,c:c};
+}
+function scoreCF(cf,rent){
+var ratio=rent>0?cf/rent:0;
+var s;
+if(ratio>=0.25)s=25;else if(ratio>=0.15)s=20;else if(ratio>=0.05)s=14;else if(ratio>=0)s=8;else s=3;
+var c=ratio>=0.15?'#27ae60':ratio>=0.05?'#f39c12':'#c0392b';
+return{s:s,c:c};
+}
+
+function bar(label,val,max,color){
+var pct=val/max*100;
+return '<div class="bar-wrap"><div class="bar-label"><span>'+label+'</span><span>'+val+' / '+max+'点</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+pct+'%;background:'+color+'"></div></div></div>';
+}
+function kpi(v,l){return '<div class="kpi"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>'}
+function fmt(n){return Math.round(n*10)/10}
+
+function drawChart(data){
+var c=document.getElementById('chart');
+if(!c)return;
+var ctx=c.getContext('2d');
+var W=c.width,H=c.height;
+ctx.clearRect(0,0,W,H);
+
+var vals=data.map(function(d){return d.cf});
+var cums=data.map(function(d){return d.cum});
+var all=vals.concat(cums);
+var mn=Math.min.apply(null,all);
+var mx=Math.max.apply(null,all);
+if(mn>0)mn=0;
+var range=mx-mn||1;
+
+var pad={l:60,r:20,t:20,b:30};
+var pw=W-pad.l-pad.r;
+var ph=H-pad.t-pad.b;
+var bw=pw/10*0.35;
+
+function yPos(v){return pad.t+ph*(1-(v-mn)/range)}
+var zeroY=yPos(0);
+
+ctx.strokeStyle='#e0e0e0';ctx.lineWidth=1;
+for(var i=0;i<=4;i++){
+  var v=mn+(mx-mn)*i/4;
+  var y=yPos(v);
+  ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();
+  ctx.fillStyle='#888';ctx.font='11px sans-serif';ctx.textAlign='right';
+  ctx.fillText(Math.round(v)+'万',pad.l-6,y+4);
+}
+
+for(var i=0;i<10;i++){
+  var x=pad.l+pw/10*i+pw/10*0.15;
+  var h1=zeroY-yPos(vals[i]);
+  ctx.fillStyle=vals[i]>=0?'rgba(39,174,96,.7)':'rgba(192,57,43,.7)';
+  if(vals[i]>=0)ctx.fillRect(x,yPos(vals[i]),bw,h1);
+  else ctx.fillRect(x,zeroY,bw,-h1);
+  ctx.fillStyle='#555';ctx.font='10px sans-serif';ctx.textAlign='center';
+  ctx.fillText((i+1)+'年',x+bw/2+bw*0.7,H-pad.b+14);
+}
+
+ctx.beginPath();ctx.strokeStyle='#e94560';ctx.lineWidth=2.5;
+for(var i=0;i<10;i++){
+  var x=pad.l+pw/10*i+pw/10*0.5;
+  var y=yPos(cums[i]);
+  if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+}
+ctx.stroke();
+for(var i=0;i<10;i++){
+  var x=pad.l+pw/10*i+pw/10*0.5;
+  var y=yPos(cums[i]);
+  ctx.beginPath();ctx.arc(x,y,3.5,0,Math.PI*2);ctx.fillStyle='#e94560';ctx.fill();
+}
+
+ctx.fillStyle='rgba(39,174,96,.7)';ctx.fillRect(pad.l+10,pad.t-2,14,10);
+ctx.fillStyle='#333';ctx.font='11px sans-serif';ctx.textAlign='left';ctx.fillText('年間CF',pad.l+28,pad.t+8);
+ctx.strokeStyle='#e94560';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(pad.l+100,pad.t+3);ctx.lineTo(pad.l+116,pad.t+3);ctx.stroke();
+ctx.fillStyle='#333';ctx.fillText('累計CF',pad.l+120,pad.t+8);
+
+ctx.strokeStyle='#666';ctx.lineWidth=1;ctx.setLineDash([4,3]);
+ctx.beginPath();ctx.moveTo(pad.l,zeroY);ctx.lineTo(W-pad.r,zeroY);ctx.stroke();
+ctx.setLineDash([]);
+}
+</script>
+</body>
+</html>

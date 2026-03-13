@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PR×メールシーケンス一括生成ツール（スリム版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+label{display:block;font-weight:600;margin-bottom:4px;font-size:.9em}
+input,textarea,select{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em;margin-bottom:12px;font-family:inherit}
+textarea{resize:vertical;height:70px}
+select{appearance:auto}
+.btn{background:#3182ce;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:1em;cursor:pointer;width:100%;font-weight:600}
+.btn:hover{background:#2b6cb0}
+.out{display:none}
+.out-section{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1);position:relative}
+.out-section h3{color:#2d3748;font-size:1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+.out-text{white-space:pre-wrap;font-size:.88em;color:#4a5568;line-height:1.7}
+.copy-btn{position:absolute;top:14px;right:14px;background:#edf2f7;border:1px solid #cbd5e0;padding:5px 12px;border-radius:5px;cursor:pointer;font-size:.78em}
+.copy-btn:hover{background:#bee3f8}
+.acc{margin-top:14px}
+.acc-toggle{background:#faf5ff;border:1px solid #d6bcfa;padding:10px 14px;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:600;color:#553c9a;width:100%;text-align:left}
+.acc-toggle:hover{background:#e9d8fd}
+.acc-body{display:none;padding:12px 14px;font-size:.85em;color:#553c9a;background:#faf5ff;border:1px solid #d6bcfa;border-top:none;border-radius:0 0 6px 6px;line-height:1.8}
+.acc-body.open{display:block}
+.tag{display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 8px;border-radius:4px;font-size:.78em;margin-right:4px;font-weight:600}
+@media(max-width:600px){.wrap{padding:10px}h1{font-size:1.1em}.card,.out-section{padding:14px}}
+</style>
+<meta name="description" content="製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,PR×メールシーケンス一括生成ツール（スリム版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-39/">
+<meta property="og:title" content="PR×メールシーケンス一括生成ツール（スリム版） - kusasyu tools">
+<meta property="og:description" content="製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-39/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PR×メールシーケンス一括生成ツール（スリム版） - kusasyu tools">
+<meta name="twitter:description" content="製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PR×メールシーケンス一括生成ツール（スリム版）",
+  "description": "製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-39/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>PR×メールシーケンス一括生成ツール</h1>
+<p class="sub">5項目入力で、メール3通+件名ABテスト+プレスリリース+X投稿を一括生成</p>
+
+<div class="card">
+<label>1. 製品・サービス名</label>
+<input id="pName" placeholder="例：クラウド在庫管理「StockAI」">
+<label>2. 特徴（3行で記入）</label>
+<textarea id="pFeat" placeholder="例：&#10;AI需要予測で在庫ロス30%削減&#10;既存POSと5分で連携&#10;月額9,800円から"></textarea>
+<label>3. ターゲット</label>
+<input id="pTarget" placeholder="例：中小小売業の経営者・店舗責任者">
+<label>4. 発信シーン</label>
+<select id="pScene">
+<option value="funding">資金調達プレス</option>
+<option value="product" selected>新製品・サービスリリース</option>
+<option value="expo">展示会・イベント出展</option>
+</select>
+<label>5. 会社名</label>
+<input id="pCompany" placeholder="例：株式会社テックソリューション">
+<button class="btn" onclick="generate()">一括生成する</button>
+</div>
+
+<div class="out" id="output">
+<div class="out-section" id="s1"><button class="copy-btn" onclick="cp('s1')">コピー</button><h3><span class="tag">メール1</span>認知フェーズ</h3><div class="out-text" id="t1"></div></div>
+<div class="out-section" id="s2"><button class="copy-btn" onclick="cp('s2')">コピー</button><h3><span class="tag">メール2</span>比較検討フェーズ</h3><div class="out-text" id="t2"></div></div>
+<div class="out-section" id="s3"><button class="copy-btn" onclick="cp('s3')">コピー</button><h3><span class="tag">メール3</span>クロージング</h3><div class="out-text" id="t3"></div></div>
+<div class="out-section" id="s4"><button class="copy-btn" onclick="cp('s4')">コピー</button><h3><span class="tag">ABテスト</span>件名2パターン</h3><div class="out-text" id="t4"></div></div>
+<div class="out-section" id="s5"><button class="copy-btn" onclick="cp('s5')">コピー</button><h3><span class="tag">PR</span>プレスリリース（PR TIMES形式）</h3><div class="out-text" id="t5"></div></div>
+<div class="out-section" id="s6"><button class="copy-btn" onclick="cp('s6')">コピー</button><h3><span class="tag">X</span>告知投稿文</h3><div class="out-text" id="t6"></div></div>
+
+<div class="acc">
+<button class="acc-toggle" onclick="toggleAcc()">📚 メール改善ヒント（開封率UPのポイント）▼</button>
+<div class="acc-body" id="accBody">
+<b>■ 件名の鉄則</b>
+・20文字以内が最適（モバイル表示で切れない）
+・数字を入れると開封率+26%（例:「30%削減」「3分で完了」）
+・【】で囲むと視認性UP（例:【無料】【期間限定】）
+・疑問形は開封率が高い（例:「まだ手作業ですか？」）
+
+<b>■ 本文の構成</b>
+・1通1メッセージに絞る（詰め込み厳禁）
+・CTAボタンは1つだけ（選択肢を減らす）
+・F字パターンを意識（重要情報は左上に）
+・PS欄に特典を書くとクリック率向上
+
+<b>■ 送信タイミング</b>
+・BtoB最適: 火〜木 10:00-11:00
+・BtoC最適: 土日 8:00-9:00
+・メール間隔: 3〜5日が最適（毎日は解除率上昇）
+
+<b>■ ABテストの進め方</b>
+・1回に1要素だけ変える（件名or本文orCTA）
+・最低300通ずつ送って比較
+・勝者を次のテストのベースにする
+</div>
+</div>
+</div>
+</div>
+
+<script>
+function v(id){return document.getElementById(id).value.trim()}
+function toggleAcc(){document.getElementById('accBody').classList.toggle('open')}
+function cp(id){
+  var t=document.querySelector('#'+id+' .out-text').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    var b=document.querySelector('#'+id+' .copy-btn');b.textContent='✓コピー済';
+    setTimeout(function(){b.textContent='コピー'},1500)
+  })
+}
+
+function generate(){
+  var n=v('pName'),f=v('pFeat'),tg=v('pTarget'),sc=v('pScene'),co=v('pCompany');
+  if(!n||!f||!tg||!co){alert('全項目を入力してください');return}
+  var fl=f.split('\n').filter(function(x){return x.trim()});
+  var f1=fl[0]||'高機能',f2=fl[1]||'簡単導入',f3=fl[2]||'低コスト';
+  var scMap={funding:'資金調達',product:'新製品リリース',expo:'展示会出展'};
+  var scTxt=scMap[sc];
+
+  document.getElementById('t1').textContent=
+'件名：'+tg+'の皆さまへ｜'+f1+'を実現する方法\n\n'+
+co+'の○○です。\n\n'+
+'突然のご連絡失礼いたします。\n'+
+tg+'の方から「'+f1.replace(/[。、]/g,'')+'」に関するお悩みを多くいただいております。\n\n'+
+'この度、'+co+'では'+n+'をリリースいたしました。\n\n'+
+'▼ '+n+'の3つの特長\n'+
+'① '+f1+'\n② '+f2+'\n③ '+f3+'\n\n'+
+'まずは3分でわかるサービス概要資料をご用意しました。\n'+
+'▶ 資料ダウンロードはこちら（URL）\n\n'+
+'ご不明点がございましたらお気軽にご返信ください。\n\n'+
+co+' ○○';
+
+  document.getElementById('t2').textContent=
+'件名：'+n+'と他社製品の違い｜選ばれる3つの理由\n\n'+
+'先日、'+n+'のご案内をお送りした○○です。\n\n'+
+tg+'の方が製品選定で重視される3つの観点で比較しました。\n\n'+
+'┌──────────────────┐\n'+
+'│ 比較ポイント        │\n'+
+'├──────────────────┤\n'+
+'│ ① '+f1+'   → 他社平均の2倍の実績 │\n'+
+'│ ② '+f2+'   → 最短即日で稼働     │\n'+
+'│ ③ '+f3+'   → 初期費用0円       │\n'+
+'└──────────────────┘\n\n'+
+'導入企業の事例インタビューもご覧いただけます。\n'+
+'▶ 事例を読む（URL）\n\n'+
+'個別のご質問にもお答えいたします。\n'+
+co+' ○○';
+
+  document.getElementById('t3').textContent=
+'件名：【期間限定】'+n+'無料トライアルのご案内\n\n'+
+'いつもメールをお読みいただきありがとうございます。\n'+
+co+'の○○です。\n\n'+
+'現在、'+n+'では'+scTxt+'を記念し、\n'+
+'14日間の無料トライアルをご提供しております。\n\n'+
+'━━ トライアル特典 ━━\n'+
+'✔ 全機能を14日間無制限で利用可能\n'+
+'✔ 専任サポートが導入をお手伝い\n'+
+'✔ トライアル後の自動課金なし\n\n'+
+'▶ 無料トライアルに申し込む（URL）\n\n'+
+'※ 本キャンペーンは今月末までの期間限定です。\n'+
+'ご検討中の方はお早めにお申し込みください。\n\n'+
+co+' ○○';
+
+  document.getElementById('t4').textContent=
+'━━ パターンA（数字訴求型）━━\n'+
+'メール1A：「'+f1+'」を数字で証明｜'+n+'のご紹介\n'+
+'メール2A：導入企業の92%が継続｜'+n+'が選ばれる理由\n'+
+'メール3A：【残り10社限定】'+n+'無料トライアル受付中\n\n'+
+'━━ パターンB（課題共感型）━━\n'+
+'メール1B：まだ手作業ですか？｜'+tg+'向け'+n+'\n'+
+'メール2B：「もっと早く導入すれば…」お客様の声をご紹介\n'+
+'メール3B：'+tg+'限定｜'+n+'を0円でお試しいただけます';
+
+  var today=new Date();var ds=today.getFullYear()+'年'+(today.getMonth()+1)+'月'+today.getDate()+'日';
+  var prHead=sc==='funding'?co+'、シリーズA資金調達を完了':sc==='expo'?co+'、展示会に'+n+'を出展':co+'、'+n+'を正式リリース';
+  document.getElementById('t5').textContent=
+prHead+'\n'+
+'〜'+f1+'で'+tg+'を支援〜\n\n'+
+ds+'\n'+co+'\n\n'+
+co+'（本社：東京都）は、'+ds+'、'+n+'を'+scTxt+'いたしました。\n\n'+
+'■ 背景と課題\n'+
+tg+'において、業務効率化やコスト削減は喫緊の課題です。従来の方法では限界があり、新たなソリューションが求められていました。\n\n'+
+'■ '+n+'の概要\n'+
+'・'+f1+'\n・'+f2+'\n・'+f3+'\n\n'+
+'■ 今後の展開\n'+
+co+'は'+n+'を通じて、'+tg+'のさらなる業務改善に貢献してまいります。\n\n'+
+'■ 会社概要\n'+
+'会社名：'+co+'\n'+
+'所在地：東京都○○区\n'+
+'代表者：○○ ○○\n'+
+'設立：20XX年\n'+
+'URL：https://example.com\n\n'+
+'■ 本件に関するお問い合わせ\n'+
+co+' 広報担当\nE-mail: pr@example.com';
+
+  document.getElementById('t6').textContent=
+'／\n'+n+'、'+scTxt+'🎉\n＼\n\n'+
+'✅ '+f1+'\n✅ '+f2+'\n✅ '+f3+'\n\n'+
+tg+'の方、ぜひチェックしてください👇\n'+
+'▶ 詳細はこちら（URL）\n\n'+
+'#'+n.replace(/[「」\s]/g,'')+' #PR #'+scTxt;
+
+  document.getElementById('output').style.display='block';
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

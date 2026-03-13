@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M&amp;A案件_4領域リスク即時診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:14px}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.35em;text-align:center;padding:18px 0 4px;color:#1e293b}
+.sub{text-align:center;color:#64748b;font-size:.82em;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e2e8f0;color:#334155}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.row>*{flex:1;min-width:200px}
+label{display:block;font-size:.8em;color:#475569;margin-bottom:3px;font-weight:600}
+select{width:100%;padding:8px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:.9em;background:#fff}
+.hint{font-size:.72em;color:#94a3b8;margin-top:2px}
+.btn{display:block;width:100%;padding:12px;border:none;border-radius:8px;cursor:pointer;font-size:1em;font-weight:700;transition:.2s}
+.btn-p{background:#2563eb;color:#fff}.btn-p:hover{background:#1d4ed8}
+.btn-r{background:#e2e8f0;color:#475569;font-size:.85em;margin-top:8px}.btn-r:hover{background:#cbd5e1}
+#result{display:none}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.sc{text-align:center;padding:16px 8px;border-radius:10px;border:2px solid}
+.sc .grade{font-size:2.2em;font-weight:800;line-height:1.1}
+.sc .lbl{font-size:.78em;font-weight:600;margin-bottom:4px}
+.sc .pts{font-size:.72em;margin-top:2px}
+.gA{background:#ecfdf5;border-color:#86efac;color:#166534}
+.gB{background:#eff6ff;border-color:#93c5fd;color:#1e40af}
+.gC{background:#fffbeb;border-color:#fcd34d;color:#92400e}
+.gD{background:#fef2f2;border-color:#fca5a5;color:#991b1b}
+.area{margin-bottom:12px}
+.area h3{font-size:.92em;padding:8px 12px;border-radius:6px 6px 0 0;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.area h3 .g{font-size:1.1em;font-weight:800}
+.hf{background:#1e40af}.hl{background:#166534}.hr{background:#b45309}.hb{background:#7c3aed}
+.flags{border:1px solid #e2e8f0;border-top:none;border-radius:0 0 6px 6px;padding:10px 14px}
+.fi{padding:6px 0;border-bottom:1px solid #f1f5f9;font-size:.85em;display:flex;gap:6px}
+.fi:last-child{border:none}
+.fi .ic{flex-shrink:0;width:20px;text-align:center}
+.red{color:#dc2626}.ylw{color:#d97706}.grn{color:#16a34a}
+.total{text-align:center;padding:16px;border-radius:10px;font-size:1.1em;font-weight:700;margin-bottom:14px}
+.tA{background:#dcfce7;color:#166534}.tB{background:#dbeafe;color:#1e40af}.tC{background:#fef3c7;color:#92400e}.tD{background:#fee2e2;color:#991b1b}
+.disc{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:.75em;color:#64748b;line-height:1.6;margin-top:14px}
+@media print{body{background:#fff}.wrap{padding:0}.btn,#form{display:none!important}#result{display:block!important}.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}}
+@media(max-width:640px){.grid4{grid-template-columns:repeat(2,1fr)}.row{flex-direction:column}.row>*{min-width:100%}}
+</style>
+<meta name="description" content="中小M&amp;A仲介業者・スタートアップCFO・エンジェル投資家が、案件概要（業種・売上・従業員数・負債比率・主要契約の有無等）を入力するだけで、財務・法務・労務・事業の4領域のリスクスコアと要確認事項を即時表示するHTMLツール、DD作業を漏れなく進めるためのExcel計算式付きチェックリスト、DD結果を買い手・">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,M&amp;A案件_4領域リスク即時診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-6/">
+<meta property="og:title" content="M&amp;A案件_4領域リスク即時診断ツール - kusasyu tools">
+<meta property="og:description" content="中小M&amp;A仲介業者・スタートアップCFO・エンジェル投資家が、案件概要（業種・売上・従業員数・負債比率・主要契約の有無等）を入力するだけで、財務・法務・労務・事業の4領域のリスクスコアと要確認事項を即時表示するHTMLツール、DD作業を漏れなく進めるためのExcel計算式付きチェックリスト、DD結果を買い手・">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="M&amp;A案件_4領域リスク即時診断ツール - kusasyu tools">
+<meta name="twitter:description" content="中小M&amp;A仲介業者・スタートアップCFO・エンジェル投資家が、案件概要（業種・売上・従業員数・負債比率・主要契約の有無等）を入力するだけで、財務・法務・労務・事業の4領域のリスクスコアと要確認事項を即時表示するHTMLツール、DD作業を漏れなく進めるためのExcel計算式付きチェックリスト、DD結果を買い手・">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "M&A案件_4領域リスク即時診断ツール",
+  "description": "中小M&A仲介業者・スタートアップCFO・エンジェル投資家が、案件概要（業種・売上・従業員数・負債比率・主要契約の有無等）を入力するだけで、財務・法務・労務・事業の4領域のリスクスコアと要確認事項を即時表示するHTMLツール、DD作業を漏れなく進めるためのExcel計算式付きチェックリスト、DD結果を買い手・",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>M&amp;A案件 4領域リスク即時診断ツール</h1>
+<p class="sub">6項目を入力 → 財務・法務・労務・事業の4領域リスクを即時スコアリング</p>
+
+<div class="card" id="form">
+<h2>案件情報を入力</h2>
+<div class="row">
+<div><label>1. 業種</label>
+<select id="i1"><option value="">選択してください</option>
+<option value="mfg">製造業</option><option value="it">IT・情報通信</option>
+<option value="retail">小売・卸売</option><option value="food">飲食・宿泊</option>
+<option value="const">建設・不動産</option><option value="med">医療・介護</option>
+<option value="svc">その他サービス</option></select>
+<div class="hint">業種により規制リスクが変動します</div></div>
+<div><label>2. 直近年度売上高</label>
+<select id="i2"><option value="">選択してください</option>
+<option value="u1">1億円未満</option><option value="u5">1〜5億円</option>
+<option value="u10">5〜10億円</option><option value="o10">10億円以上</option></select></div>
+</div>
+<div class="row">
+<div><label>3. 負債比率（有利子負債 ÷ 総資産）</label>
+<select id="i3"><option value="">選択してください</option>
+<option value="lo">30%未満</option><option value="md">30〜60%</option>
+<option value="hi">60〜80%</option><option value="vh">80%以上</option></select>
+<div class="hint">決算書B/Sから算出してください</div></div>
+<div><label>4. 主要取引先への売上集中度</label>
+<select id="i4"><option value="">選択してください</option>
+<option value="lo">30%未満（分散型）</option><option value="md">30〜50%</option>
+<option value="hi">50〜70%</option><option value="vh">70%以上（極端に依存）</option></select></div>
+</div>
+<div class="row">
+<div><label>5. 未払残業・労務リスク</label>
+<select id="i5"><option value="">選択してください</option>
+<option value="no">問題なし（勤怠管理適正）</option>
+<option value="lo">軽微な懸念あり</option>
+<option value="md">未払残業の可能性あり</option>
+<option value="hi">明確な未払い・労基署指導歴あり</option></select></div>
+<div><label>6. 主要契約書の整備状況</label>
+<select id="i6"><option value="">選択してください</option>
+<option value="ok">主要契約すべて書面あり</option>
+<option value="part">一部口頭ベース</option>
+<option value="poor">多数が未整備・期限切れ</option>
+<option value="none">契約書がほぼ存在しない</option></select></div>
+</div>
+<button class="btn btn-p" onclick="run()">診断を実行</button>
+<div id="err" style="color:#dc2626;font-size:.85em;margin-top:8px;text-align:center"></div>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>総合診断結果</h2>
+<div id="totalBox" class="total"></div>
+<div class="grid4" id="scores"></div>
+</div>
+<div class="card" id="details"></div>
+<div class="disc">
+<strong>免責事項：</strong>本ツールは参考情報の提供を目的とし、法的・税務的アドバイスを構成しません。診断結果は中小企業庁「中小M&amp;Aガイドライン」の優先確認項目を参考にした簡易スコアであり、個別案件の最終判断には専門家（弁護士・公認会計士・税理士等）への相談を推奨します。結果の利用に起因する損害について当社は一切の責任を負いません。
+</div>
+<button class="btn btn-p" onclick="window.print()" style="margin-top:12px">PDF印刷 / 保存</button>
+<button class="btn btn-r" onclick="reset()">入力に戻る</button>
+</div>
+</div>
+
+<script>
+function v(id){return document.getElementById(id).value}
+function run(){
+ var ids=['i1','i2','i3','i4','i5','i6'];
+ for(var k=0;k<ids.length;k++){if(!v(ids[k])){document.getElementById('err').textContent='全6項目を入力してください';return}}
+ document.getElementById('err').textContent='';
+ var ind=v('i1'),rev=v('i2'),debt=v('i3'),conc=v('i4'),labor=v('i5'),cont=v('i6');
+ // 各領域0-100点（高い=リスク高い）。重み付き加算ロジック
+ var F=0,L=0,R=0,B=0;
+ // 負債比率→財務(重み40%),事業(10%)
+ var ds={lo:10,md:35,hi:65,vh:90};
+ F+=ds[debt]*0.4; B+=ds[debt]*0.1;
+ // 売上規模→財務(15%),事業(10%) 小規模ほどリスク高
+ var rs={u1:70,u5:45,u10:25,o10:10};
+ F+=rs[rev]*0.15; B+=rs[rev]*0.1;
+ // 取引先集中度→事業(40%),財務(15%)
+ var cs={lo:10,md:35,hi:65,vh:90};
+ B+=cs[conc]*0.4; F+=cs[conc]*0.15;
+ // 未払残業→労務(50%),法務(15%)
+ var ls={no:5,lo:25,md:60,hi:90};
+ R+=ls[labor]*0.5; L+=ls[labor]*0.15;
+ // 契約整備→法務(45%),事業(15%)
+ var cts={ok:5,part:35,poor:65,none:90};
+ L+=cts[cont]*0.45; B+=cts[cont]*0.15;
+ // 業種固有リスク→法務(20%),労務(20%),事業(15%),財務(10%)
+ var ir={mfg:[30,25,30,20],it:[15,20,15,15],retail:[25,35,25,15],food:[35,45,30,25],const:[40,35,25,20],med:[50,30,20,15],svc:[20,25,20,15]};
+ var iv=ir[ind];
+ L+=iv[0]*0.2; R+=iv[1]*0.2; B+=iv[2]*0.15; F+=iv[3]*0.1;
+ // クロス領域影響
+ R+=cts[cont]*0.1; F+=ls[labor]*0.1;
+ F=Math.min(100,Math.round(F));L=Math.min(100,Math.round(L));R=Math.min(100,Math.round(R));B=Math.min(100,Math.round(B));
+ var grade=function(s){return s<=25?'A':s<=50?'B':s<=75?'C':'D'};
+ var avg=Math.round((F+L+R+B)/4);
+ var tg=grade(avg);
+ var gl={A:'低リスク — 大きな障害は見当たりません',B:'中程度 — 一部要確認事項があります',C:'要注意 — 複数のリスク要因が存在します',D:'高リスク — 専門家への相談を強く推奨'};
+ document.getElementById('totalBox').className='total t'+tg;
+ document.getElementById('totalBox').innerHTML='総合評価：<span style="font-size:1.3em">'+tg+'</span>（スコア '+avg+'/100）<br><span style="font-size:.82em;font-weight:400">'+gl[tg]+'</span>';
+ var areas=[{n:'財務',s:F},{n:'法務',s:L},{n:'労務',s:R},{n:'事業',s:B}];
+ var sh='';
+ for(var a=0;a<4;a++){var g=grade(areas[a].s);sh+='<div class="sc g'+g+'"><div class="lbl">'+areas[a].n+'</div><div class="grade">'+g+'</div><div class="pts">'+areas[a].s+'/100</div></div>';}
+ document.getElementById('scores').innerHTML=sh;
+ // 領域別レッドフラグ生成
+ var dh='<h2>領域別レッドフラグ・要確認事項</h2>';
+ var flags=[[],[],[],[]];
+ // 財務フラグ
+ if(debt==='vh')flags[0].push(['red','負債比率80%超：債務超過リスク。簿外負債・偶発債務の網羅的確認が必須']);
+ else if(debt==='hi')flags[0].push(['ylw','負債比率60-80%：返済余力とキャッシュフローの精査が必要']);
+ if(rev==='u1')flags[0].push(['ylw','年商1億円未満：収益基盤が脆弱。固定費比率と損益分岐点の確認を推奨']);
+ if(conc==='vh'||conc==='hi')flags[0].push(['red','主要取引先依存による売上消失リスク：取引先との契約継続条件を確認']);
+ if(labor==='hi')flags[0].push(['ylw','未払残業の財務インパクト：簿外労務債務の金額試算が必要']);
+ if(flags[0].length===0)flags[0].push(['grn','重大な財務リスク要因は検出されませんでした']);
+ // 法務フラグ
+ if(cont==='none')flags[1].push(['red','契約書がほぼ不在：権利義務関係の確認が極めて困難。全取引の契約状況棚卸しが最優先']);
+ else if(cont==='poor')flags[1].push(['red','多数の契約が未整備・期限切れ：COC条項・自動更新条件の網羅的確認が必要']);
+ else if(cont==='part')flags[1].push(['ylw','一部口頭ベース契約：書面化の優先度を判定し、リスクの高い取引から対応']);
+ if(ind==='med')flags[1].push(['red','医療・介護業：許認可の承継可否と届出要件を最優先で確認']);
+ if(ind==='const')flags[1].push(['ylw','建設業：建設業許可・経審の承継要件、下請法の遵守状況を確認']);
+ if(ind==='food')flags[1].push(['ylw','飲食業：食品衛生許可・営業許可の承継、FC契約のCOC条項を確認']);
+ if(labor==='hi')flags[1].push(['ylw','労基署指導歴：是正勧告の内容と対応状況、訴訟リスクの法的評価が必要']);
+ if(flags[1].length===0)flags[1].push(['grn','重大な法務リスク要因は検出されませんでした']);
+ // 労務フラグ
+ if(labor==='hi')flags[2].push(['red','未払残業・労基署指導歴：過去2年分の未払額試算と是正対応の完了確認が最優先']);
+ else if(labor==='md')flags[2].push(['red','未払残業の可能性：勤怠記録と給与台帳の突合、36協定の有効性を確認']);
+ else if(labor==='lo')flags[2].push(['ylw','軽微な労務懸念：就業規則の最終更新日、変形労働時間制の届出状況を確認']);
+ if(ind==='food'||ind==='retail')flags[2].push(['ylw','シフト制業種：変形労働時間制の適正運用、社保加入漏れを確認']);
+ if(ind==='med')flags[2].push(['ylw','医療従事者の労働時間：医師働き方改革への対応状況を確認']);
+ if(cont==='none'||cont==='poor')flags[2].push(['ylw','雇用契約書の整備状況：労働条件通知書の交付義務違反がないか確認']);
+ if(flags[2].length===0)flags[2].push(['grn','重大な労務リスク要因は検出されませんでした']);
+ // 事業フラグ
+ if(conc==='vh')flags[3].push(['red','売上70%超が特定取引先に依存：COC条項で契約解除されるリスクを最優先で確認']);
+ else if(conc==='hi')flags[3].push(['red','売上集中度50-70%：取引先との関係継続の確約取得を推奨']);
+ if(debt==='vh')flags[3].push(['ylw','高負債が事業継続性に影響：運転資金枯渇リスクと金融機関の態度変更を確認']);
+ if(rev==='u1')flags[3].push(['ylw','小規模事業：経営者依存度（キーマンリスク）と事業の属人性を評価']);
+ if(cont==='none'||cont==='poor')flags[3].push(['ylw','契約未整備による事業リスク：主要取引の継続性が担保されていない可能性']);
+ if(ind==='it')flags[3].push(['ylw','IT業：エンジニアの離職リスク、ソースコード・知財の帰属を確認']);
+ if(flags[3].length===0)flags[3].push(['grn','重大な事業リスク要因は検出されませんでした']);
+ // レッドフラグ描画
+ var hn=['hf','hl','hr','hb'],an=['財務リスク','法務リスク','労務リスク','事業リスク'];
+ for(var a=0;a<4;a++){
+  var g=grade(areas[a].s);
+  dh+='<div class="area"><h3 class="'+hn[a]+'">'+an[a]+'<span class="g">'+g+'</span></h3><div class="flags">';
+  for(var f=0;f<flags[a].length;f++){
+   var ic=flags[a][f][0]==='red'?'&#9888;':flags[a][f][0]==='ylw'?'&#9679;':'&#10003;';
+   dh+='<div class="fi"><span class="ic '+flags[a][f][0]+'">'+ic+'</span><span>'+flags[a][f][1]+'</span></div>';
+  }
+  dh+='</div></div>';
+ }
+ // 推奨アクション
+ dh+='<div style="margin-top:14px;padding:12px;background:#f0f9ff;border-radius:8px;border:1px solid #bae6fd"><h3 style="font-size:.9em;color:#0369a1;margin-bottom:8px">推奨ネクストアクション</h3><ul style="font-size:.84em;line-height:1.7;padding-left:18px;color:#334155">';
+ if(tg==='D')dh+='<li>専門家（M&A専門弁護士・公認会計士）への相談を最優先で実施</li><li>本格DDの前にプレDD（予備調査）を推奨</li>';
+ if(tg==='C')dh+='<li>リスクスコアC以下の領域について、専門家によるスポット相談を推奨</li>';
+ dh+='<li>本ツールの診断結果をDD開始時の優先確認リストとして活用</li>';
+ dh+='<li>レッドフラグ項目は買収価格の減額交渉材料としても検討</li>';
+ if(conc==='vh'||conc==='hi')dh+='<li>主要取引先へのヒアリング（取引継続意思の確認）を早期に実施</li>';
+ if(labor==='hi'||labor==='md')dh+='<li>労務DDで未払残業の金額試算を行い、表明保証・補償条項に反映</li>';
+ dh+='</ul></div>';
+ document.getElementById('details').innerHTML=dh;
+ document.getElementById('form').style.display='none';
+ document.getElementById('result').style.display='block';
+ window.scrollTo(0,0);
+}
+function reset(){document.getElementById('form').style.display='block';document.getElementById('result').style.display='none';window.scrollTo(0,0);}
+</script>
+</body>
+</html>

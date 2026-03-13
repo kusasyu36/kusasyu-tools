@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AEOスコア診断＆改善テンプレートジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:18px 0;color:#2d3748}
+h2{font-size:1.1rem;margin:18px 0 10px;color:#2b6cb0;border-left:4px solid #3182ce;padding-left:8px}
+h3{font-size:.95rem;margin:10px 0 6px;color:#2d3748}
+textarea,input[type=text]{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9rem;font-family:inherit}
+textarea{height:160px;resize:vertical}
+button{background:#3182ce;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:.9rem;margin:8px 4px 8px 0}
+button:hover{background:#2b6cb0}
+button.sec{background:#718096}
+button.sec:hover{background:#4a5568}
+.card{background:#fff;border-radius:8px;padding:16px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.bar-wrap{display:flex;align-items:center;margin:4px 0}
+.bar-label{width:120px;font-size:.85rem;flex-shrink:0}
+.bar-bg{flex:1;height:20px;background:#e2e8f0;border-radius:10px;overflow:hidden;margin:0 8px}
+.bar-fill{height:100%;border-radius:10px;transition:width .4s}
+.bar-score{width:40px;font-weight:700;font-size:.85rem;text-align:right}
+.total{text-align:center;font-size:2rem;font-weight:700;margin:10px 0}
+.total span{font-size:1rem;color:#718096}
+.tip{background:#ebf8ff;border-left:3px solid #3182ce;padding:10px 12px;margin:6px 0;font-size:.85rem;border-radius:0 6px 6px 0}
+.tip-bad{background:#fff5f5;border-left-color:#e53e3e}
+pre{background:#1a202c;color:#68d391;padding:12px;border-radius:6px;font-size:.8rem;overflow-x:auto;white-space:pre-wrap;word-break:break-all;margin:6px 0}
+.copy-btn{background:#48bb78;font-size:.8rem;padding:4px 12px;margin:4px 0}
+.copy-btn:hover{background:#38a169}
+.tabs{display:flex;border-bottom:2px solid #e2e8f0;margin-bottom:12px}
+.tab{padding:8px 16px;cursor:pointer;font-size:.9rem;border-bottom:2px solid transparent;margin-bottom:-2px}
+.tab.active{border-bottom-color:#3182ce;color:#3182ce;font-weight:700}
+.pane{display:none}.pane.active{display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:200px}
+@media(max-width:600px){.bar-label{width:90px;font-size:.78rem}}
+</style>
+<meta name="description" content="既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AEOスコア診断＆改善テンプレートジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-5/">
+<meta property="og:title" content="AEOスコア診断＆改善テンプレートジェネレーター - kusasyu tools">
+<meta property="og:description" content="既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AEOスコア診断＆改善テンプレートジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AEOスコア診断＆改善テンプレートジェネレーター",
+  "description": "既存のWebページのテキストを貼り付けると、ChatGPT・Perplexity等の生成AI検索に「回答として引用される可能性」を5つの観点（定義文・FAQ構造・Schema.org対応・簡潔性・権威性シグナル）で自動スコアリングし、低スコア項目に対して具体的なリライト案とJSON-LD構造化データを即座に生",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>AEOスコア診断＆改善テンプレート</h1>
+<div class="tabs">
+<div class="tab active" onclick="switchTab(0)">診断</div>
+<div class="tab" onclick="switchTab(1)">JSON-LD生成</div>
+</div>
+
+<div class="pane active" id="p0">
+<div class="card">
+<h3>ページテキストを貼り付け</h3>
+<textarea id="src" placeholder="診断したいWebページのテキストをここに貼り付けてください…"></textarea>
+<button onclick="diagnose()">診断する</button>
+<button class="sec" onclick="document.getElementById('src').value='';document.getElementById('result').innerHTML=''">クリア</button>
+</div>
+<div id="result"></div>
+</div>
+
+<div class="pane" id="p1">
+<div class="card">
+<h2>Schema.org JSON-LD 生成</h2>
+<div class="row"><div>
+<label>サービス名</label><input type="text" id="sn" placeholder="例：SEOコンサルティング">
+</div><div>
+<label>サービス説明</label><input type="text" id="sd" placeholder="例：中小企業向けSEO支援">
+</div></div>
+<h3 style="margin-top:12px">FAQ項目（最大5件）</h3>
+<div id="faqInputs"></div>
+<button class="sec" onclick="addFaq()">＋ FAQ追加</button>
+<button onclick="genLD()">JSON-LD生成</button>
+</div>
+<div id="ldOut"></div>
+</div>
+</div>
+
+<script>
+function switchTab(i){
+document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i)});
+document.querySelectorAll('.pane').forEach(function(p,j){p.classList.toggle('active',j===i)});
+}
+
+function diagnose(){
+var t=document.getElementById('src').value.trim();
+if(!t){alert('テキストを入力してください');return}
+var scores=[chkDef(t),chkFaq(t),chkSchema(t),chkBrev(t),chkAuth(t)];
+var labels=['定義文','FAQ構造','構造化データ','簡潔性','権威性'];
+var colors=['#3182ce','#38a169','#805ad5','#d69e2e','#e53e3e'];
+var total=scores.reduce(function(a,b){return a+b.s},0);
+var html='<div class="card"><h2>診断結果</h2><div class="total">'+total+' <span>/ 100</span></div>';
+scores.forEach(function(sc,i){
+var pct=sc.s*5;
+html+='<div class="bar-wrap"><div class="bar-label">'+labels[i]+'</div><div class="bar-bg"><div class="bar-fill" style="width:'+pct+'%;background:'+colors[i]+'"></div></div><div class="bar-score">'+sc.s+'</div></div>';
+});
+html+='</div>';
+var hasLow=false;
+scores.forEach(function(sc,i){
+if(sc.s<14){
+if(!hasLow){html+='<div class="card"><h2>改善が必要な項目</h2>';hasLow=true}
+html+='<h3>'+labels[i]+'（'+sc.s+'/20）</h3><div class="tip-bad tip">'+sc.reason+'</div>';
+sc.fixes.forEach(function(f){html+='<div class="tip">'+f+'</div>'});
+}
+});
+if(hasLow)html+='</div>';
+if(total>=80)html+='<div class="card tip">総合80以上：AEO対応は概ね良好です。個別項目を微調整しましょう。</div>';
+else if(total>=50)html+='<div class="card tip">総合50〜79：改善余地あり。低スコア項目から優先対応しましょう。</div>';
+else html+='<div class="card tip tip-bad">総合50未満：AI検索に引用される可能性が低い状態です。定義文とFAQ構造の追加を最優先で。</div>';
+document.getElementById('result').innerHTML=html;
+}
+
+function chkDef(t){
+var s=0,r='',f=[];
+var defPat=/は[、,].*(?:です|である|を指し|のこと|とは|意味)/;
+if(defPat.test(t))s+=12;else{r+='明確な定義文（「〇〇とは〜です」）が見つかりません。';f.push('テンプレート：「【キーワード】とは、【カテゴリ】の一種で、【特徴】を持つ【概念】です。」')}
+if(/とは[？?]|(?:意味|定義)/.test(t))s+=4;
+var first=(t.split(/[。\n]/)[0])||'';
+if(first.length<100&&defPat.test(first))s+=4;else{r+=' 冒頭に定義文を配置すると効果的。';f.push('改善案：記事の最初の1文を「〇〇とは〜です。」形式にしましょう。')}
+return{s:Math.min(s,20),reason:r||'OK',fixes:f};
+}
+
+function chkFaq(t){
+var s=0,r='',f=[];
+var qCount=(t.match(/[？?]/g)||[]).length;
+var qaHit=(t.match(/(?:Q[.．:：]|質問|よくある)/gi)||[]).length;
+if(qCount>=3)s+=8;else if(qCount>=1)s+=4;else{r+='質問形式の文が見つかりません。';f.push('テンプレート：「Q. 【サービス名】の料金は？ A. 料金は〇〇円からです。」')}
+if(qaHit>=2)s+=8;else{r+=' FAQ形式の構造がありません。';f.push('改善案：記事末尾に「よくある質問」セクションを追加し、3〜5問のQ&Aを記載。')}
+if(/##.*(?:質問|FAQ|Q&A)/i.test(t))s+=4;else f.push('見出しに「よくある質問」を含めると構造が明確に。');
+return{s:Math.min(s,20),reason:r||'OK',fixes:f};
+}
+
+function chkSchema(t){
+var s=0,r='',f=[];
+if(/application\/ld\+json/i.test(t))s+=10;
+if(/"@type"\s*:\s*"FAQ/i.test(t))s+=5;
+if(/"@type"\s*:\s*"Service/i.test(t))s+=5;
+if(s<10){r='JSON-LD構造化データが検出されません。';f.push('「JSON-LD生成」タブでFAQ/Service構造化データを作成し、ページに埋め込みましょう。');f.push('構造化データはリッチリザルトとAI検索の両方に有効です。')}
+return{s:Math.min(s,20),reason:r||'OK',fixes:f};
+}
+
+function chkBrev(t){
+var s=0,r='',f=[];
+var sens=t.split(/[。！!]/).filter(function(x){return x.trim().length>0});
+var avg=sens.reduce(function(a,b){return a+b.length},0)/(sens.length||1);
+if(avg<=60)s+=10;else if(avg<=80)s+=6;else{r+='平均文長が'+Math.round(avg)+'文字と長め。';f.push('改善案：1文60文字以内に分割するとAI検索に引用されやすくなります。')}
+var longP=t.split(/\n\n+/).filter(function(p){return p.length>200}).length;
+if(longP===0)s+=5;else{r+=' 200文字超の段落が'+longP+'箇所。';f.push('改善案：段落を3〜4文ごとに区切り小見出しを入れましょう。')}
+if(/[•\-・].*\n[•\-・]/m.test(t)||/\d[.．)）].*\n\d[.．)）]/m.test(t))s+=5;else f.push('箇条書きやリストを活用すると要点が伝わりやすくなります。');
+return{s:Math.min(s,20),reason:r||'OK',fixes:f};
+}
+
+function chkAuth(t){
+var s=0,r='',f=[];
+var hits=(t.match(/(?:年|調査|統計|研究|データ|実績|導入|社|件|万|億|専門|監修|資格|経験|受賞)/g)||[]).length;
+if(hits>=5)s+=10;else if(hits>=2)s+=5;else{r+='数値データや専門性を示す表現が不足。';f.push('テンプレート：「当社は【数値】年の実績があり、累計【数値】社を支援。」')}
+if(/https?:\/\/|出典|参照|引用元|参考/.test(t))s+=5;else f.push('改善案：統計や外部ソースへの出典を明記しましょう。');
+if(/監修|執筆|著者|プロフィール|専門家/.test(t))s+=5;else{r+=' 著者・監修者情報がありません。';f.push('改善案：記事末尾に著者プロフィール（肩書き・資格・経験年数）を追加。')}
+return{s:Math.min(s,20),reason:r||'OK',fixes:f};
+}
+
+var faqCount=0;
+function addFaq(){
+if(faqCount>=5)return;faqCount++;
+var d=document.createElement('div');d.className='row';d.style.marginBottom='6px';
+d.innerHTML='<div><input type="text" placeholder="質問'+faqCount+'" class="fq"></div><div><input type="text" placeholder="回答'+faqCount+'" class="fa"></div>';
+document.getElementById('faqInputs').appendChild(d);
+}
+addFaq();addFaq();
+
+function genLD(){
+var sn=document.getElementById('sn').value.trim()||'サービス名';
+var sd=document.getElementById('sd').value.trim()||'サービスの説明';
+var qs=document.querySelectorAll('.fq'),as=document.querySelectorAll('.fa'),faqs=[];
+qs.forEach(function(q,i){var qv=q.value.trim(),av=as[i].value.trim();if(qv&&av)faqs.push({q:qv,a:av})});
+var svc={"@context":"https://schema.org","@type":"Service","name":sn,"description":sd,"provider":{"@type":"Organization","name":"【会社名を入力】"}};
+var html='<div class="card"><h3>Service JSON-LD</h3><pre id="svcLD">'+esc(JSON.stringify(svc,null,2))+'</pre><button class="copy-btn" onclick="cp(\'svcLD\')">コピー</button>';
+if(faqs.length>0){
+var fld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqs.map(function(f){return{"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}})};
+html+='<h3>FAQPage JSON-LD</h3><pre id="faqLD">'+esc(JSON.stringify(fld,null,2))+'</pre><button class="copy-btn" onclick="cp(\'faqLD\')">コピー</button>';
+}
+html+='<div class="tip">上記コードを &lt;script type="application/ld+json"&gt;...&lt;/script&gt; で囲んでHTMLのhead内に設置してください。</div></div>';
+document.getElementById('ldOut').innerHTML=html;
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function cp(id){var el=document.getElementById(id);if(!el)return;var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy');s.removeAllRanges();alert('コピーしました')}
+</script>
+</body>
+</html>

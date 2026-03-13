@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産投資の数字の読み方ガイド - kusasyu tools</title>
+<meta name="description" content="物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産投資の数字の読み方ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator/">
+<meta property="og:title" content="不動産投資の数字の読み方ガイド - kusasyu tools">
+<meta property="og:description" content="物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産投資の数字の読み方ガイド - kusasyu tools">
+<meta name="twitter:description" content="物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産投資の数字の読み方ガイド",
+  "description": "物件の購入価格・想定賃料・ローン条件を入力すると、表面利回り・実質利回り・CCR・10年キャッシュフロー推移を即時計算し、AIが地域相場と比較して「割高/適正/割安」を根拠付きで診断するHTMLツール。海外で成立済みのPropertizerの日本版として、日本の税制・管理費体系・ローン条件に完全対応。過去プロ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-10"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産投資の数字の読み方ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産投資の数字の読み方ガイド</h1>
+  <p class="project-name">その物件、本当に買い？AI投資判断シミュレーター</p>
+  <div class="content">
+<h1>不動産投資の数字の読み方ガイド — PropValueシミュレーターを120%活用するための必須知識</h1>
+<p>「利回り8%の好物件！」——この言葉だけで購入を決めていませんか？</p>
+<p>不動産投資の成否は<strong>数字の読み方</strong>で決まります。同じ物件でも、計算の仕方ひとつで「お買い得」にも「割高」にもなる。本ガイドでは、<strong>購入価格3,000万円・想定賃料月12万円の区分マンション</strong>を例に、投資判断に必要な指標をゼロから解説します。</p>
+<p>読み終えたら、ぜひ<a href=".">PropValue - 不動産投資スコアリングシミュレーター</a>であなたの検討物件を診断してみてください。</p>
+<hr />
+<h2>1. 表面利回りと実質利回り——「見かけの数字」に騙されない</h2>
+<h3>表面利回り（グロス利回り）</h3>
+<p>最もシンプルな指標です。物件広告に載っている「利回り」はほぼこれです。</p>
+<p>$$
+\text{表面利回り} = \frac{\text{年間家賃収入}}{\text{物件購入価格}} \times 100
+$$</p>
+<p><strong>計算例（3,000万円の区分マンション）</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>購入価格</td>
+<td>3,000万円</td>
+</tr>
+<tr>
+<td>月額賃料</td>
+<td>12万円</td>
+</tr>
+<tr>
+<td>年間賃料</td>
+<td>144万円</td>
+</tr>
+<tr>
+<td><strong>表面利回り</strong></td>
+<td><strong>4.80%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>一見悪くない数字ですが、<strong>これだけで判断するのは危険</strong>です。経費が一切含まれていないからです。</p>
+<h3>実質利回り（ネット利回り）</h3>
+<p>実際にかかるコストを差し引いた「手残りベース」の利回りです。</p>
+<p>$$
+\text{実質利回り} = \frac{\text{年間家賃収入} - \text{年間経費}}{\text{物件購入価格} + \text{購入時諸費用}} \times 100
+$$</p>
+<p><strong>同じ物件で計算してみましょう。</strong></p>
+<table>
+<thead>
+<tr>
+<th>経費項目</th>
+<th>年間金額</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>管理費</td>
+<td>14.4万円</td>
+<td>月1.2万円</td>
+</tr>
+<tr>
+<td>修繕積立金</td>
+<td>12万円</td>
+<td>月1万円</td>
+</tr>
+<tr>
+<td>固定資産税</td>
+<td>8万円</td>
+<td>評価額による</td>
+</tr>
+<tr>
+<td>都市計画税</td>
+<td>2万円</td>
+<td>市街化区域0.3%</td>
+</tr>
+<tr>
+<td>賃貸管理委託料</td>
+<td>7.2万円</td>
+<td>賃料の5%</td>
+</tr>
+<tr>
+<td>火災保険料</td>
+<td>2万円</td>
+<td>年払い</td>
+</tr>
+<tr>
+<td><strong>経費合計</strong></td>
+<td><strong>45.6万円</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>購入時諸費用（登記費用・仲介手数料・不動産取得税等）を購入価格の7%＝210万円と仮定すると：</p>
+<p>$$
+\text{実質利回り} = \frac{144 - 45.6}{3{,}000 + 210} \times 100 = \frac{98.4}{3{,}210} \times 100 = \textbf{3.07\%}
+$$</p>
+<blockquote>
+<p><strong>表面4.80% → 実質3.07%。約1.7ポイントも下がりました。</strong> これが「見かけの数字」と「現実」の差です。PropValueでは、これらの経費項目を入力するだけで自動計算されます。</p>
+</blockquote>
+<hr />
+<h2>2. CCR（自己資本回収率）——「自分のお金」を何年で回収できるか</h2>
+<p>CCR（Cash on Cash Return）は、<strong>自己資金に対する年間キャッシュフローの割合</strong>を示します。ローンを使うなら、利回りよりもこちらが重要です。</p>
+<p>$$
+\text{CCR} = \frac{\text{年間キャッシュフロー}}{\text{自己資金（頭金＋諸費用）}} \times 100
+$$</p>
+<p><strong>計算例：頭金300万円＋諸費用210万円＝自己資金510万円</strong></p>
+<p>ローン条件：借入2,700万円、金利1.8%、35年元利均等</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>年間金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>家賃収入</td>
+<td>144万円</td>
+</tr>
+<tr>
+<td>経費合計</td>
+<td>45.6万円</td>
+</tr>
+<tr>
+<td>ローン返済額</td>
+<td>約104.4万円（月8.7万円）</td>
+</tr>
+<tr>
+<td><strong>年間キャッシュフロー</strong></td>
+<td><strong>▲6.0万円</strong></td>
+</tr>
+</tbody>
+</table>
+<p>$$
+\text{CCR} = \frac{-6.0}{510} \times 100 = \textbf{-1.18\%}
+$$</p>
+<blockquote>
+<p><strong>マイナスです。</strong> つまりこの条件では、毎年約6万円の持ち出しが発生します。表面利回り4.80%に見えても、レバレッジをかけると赤字——これがCCRで初めて見える現実です。</p>
+</blockquote>
+<h3>CCRの目安</h3>
+<table>
+<thead>
+<tr>
+<th>CCR</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8%以上</td>
+<td>優良。自己資金を12〜13年で回収</td>
+</tr>
+<tr>
+<td>5〜8%</td>
+<td>良好。標準的な投資水準</td>
+</tr>
+<tr>
+<td>0〜5%</td>
+<td>要注意。キャッシュフローが薄い</td>
+</tr>
+<tr>
+<td>マイナス</td>
+<td>危険。持ち出しが発生している</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. キャッシュフロー計算で見落としがちな5つのコスト</h2>
+<p>初心者が赤字に陥る最大の原因は<strong>「知らなかったコスト」</strong>です。</p>
+<h3>① 管理費・修繕積立金</h3>
+<p>マンション区分所有では毎月必ず発生します。築年数が経つと<strong>修繕積立金は値上がり</strong>します。築20年を超えると当初の2〜3倍になることも珍しくありません。</p>
+<h3>② 固定資産税・都市計画税</h3>
+<p>毎年1月1日時点の所有者に課税されます。物件の評価額に基づくため、購入価格とは一致しません。<strong>新築の軽減措置が切れた後の金額</strong>で計算するのが安全です。</p>
+<h3>③ 空室損失</h3>
+<p>年間を通じて常に満室という前提は非現実的です。<strong>年間5〜10%の空室率</strong>を見込むべきです。上の計算例で空室率5%を加味すると：</p>
+<ul>
+<li>空室損失：144万円 × 5% ＝ 7.2万円</li>
+<li>年間キャッシュフロー：▲6.0万円 − 7.2万円 ＝ <strong>▲13.2万円</strong></li>
+</ul>
+<h3>④ 入居者募集・原状回復費用</h3>
+<p>退去のたびに発生するコストです。原状回復に10〜30万円、募集広告費に家賃1ヶ月分が相場。<strong>2年に1度の退去</strong>を想定すると、年間平均で10〜15万円のコストになります。</p>
+<h3>⑤ 税金（所得税・住民税）</h3>
+<p>家賃収入は不動産所得として課税されます。サラリーマンの場合、<strong>給与所得に上乗せ</strong>されるため、年収帯によっては所得税率20〜30%が適用されます。減価償却で節税できますが、売却時に「償却分の取り戻し」が発生する点も見落としがちです。</p>
+<blockquote>
+<p>PropValueでは、管理費・修繕積立金・固定資産税・都市計画税・空室率を入力項目として用意しています。<strong>入力を省略すると、見かけ上のキャッシュフローが膨らんで誤った判断</strong>につながります。面倒でも全項目を埋めてください。</p>
+</blockquote>
+<hr />
+<h2>4. 10年キャッシュフロー推移の読み方</h2>
+<p>PropValueが出力する<strong>10年キャッシュフロー推移</strong>は、単年の利回りでは見えないリスクを可視化します。</p>
+<p>注目すべきポイントは3つです。</p>
+<table>
+<thead>
+<tr>
+<th>チェック項目</th>
+<th>見るべきこと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>累積キャッシュフロー</strong></td>
+<td>10年間トータルでプラスになるか</td>
+</tr>
+<tr>
+<td><strong>損益分岐点</strong></td>
+<td>何年目で累積黒字に転じるか</td>
+</tr>
+<tr>
+<td><strong>後半の傾向</strong></td>
+<td>修繕費増・家賃下落で悪化していないか</td>
+</tr>
+</tbody>
+</table>
+<p>10年累積がマイナスの物件は、よほどの値上がり益（キャピタルゲイン）が見込めない限り避けるべきです。</p>
+<hr />
+<h2>5. エリア別・適正利回りの目安</h2>
+<p>同じ利回りでも、エリアによって「高い・低い」の基準は異なります。以下は2025〜2026年時点の区分マンションの目安です。</p>
+<table>
+<thead>
+<tr>
+<th>エリア</th>
+<th>表面利回り目安</th>
+<th>実質利回り目安</th>
+<th>特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>東京23区（都心5区）</td>
+<td>3.5〜4.5%</td>
+<td>2.0〜3.0%</td>
+<td>空室リスク低、価格高</td>
+</tr>
+<tr>
+<td>東京23区（城東・城北）</td>
+<td>4.5〜5.5%</td>
+<td>2.5〜3.5%</td>
+<td>バランス型</td>
+</tr>
+<tr>
+<td>横浜・川崎</td>
+<td>4.5〜6.0%</td>
+<td>3.0〜4.0%</td>
+<td>都心アクセス良好</td>
+</tr>
+<tr>
+<td>大阪市中心部</td>
+<td>5.0〜6.5%</td>
+<td>3.5〜4.5%</td>
+<td>利回り水準やや高め</td>
+</tr>
+<tr>
+<td>名古屋市</td>
+<td>5.5〜7.0%</td>
+<td>3.5〜5.0%</td>
+<td>価格帯が手頃</td>
+</tr>
+<tr>
+<td>地方中核都市</td>
+<td>7.0〜10.0%</td>
+<td>4.5〜7.0%</td>
+<td>高利回りだが空室リスク大</td>
+</tr>
+<tr>
+<td>地方郊外</td>
+<td>10.0%〜</td>
+<td>5.0%〜</td>
+<td>流動性リスクに注意</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>PropValueの<strong>AIスコアリング機能</strong>は、入力された物件情報を地域相場と比較し、「割高／適正／割安」を100点満点で判定します。上記の目安と合わせて確認することで、より精度の高い投資判断が可能になります。</p>
+</blockquote>
+<hr />
+<h2>6. まとめ——数字が読めれば、物件が見える</h2>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>意味</th>
+<th>この物件の値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表面利回り</td>
+<td>経費を無視した見かけの収益率</td>
+<td>4.80%</td>
+</tr>
+<tr>
+<td>実質利回り</td>
+<td>経費を引いた実際の収益率</td>
+<td>3.07%</td>
+</tr>
+<tr>
+<td>CCR</td>
+<td>自己資金の年間回収率</td>
+<td>-1.18%</td>
+</tr>
+<tr>
+<td>年間CF</td>
+<td>手元に残る（出ていく）現金</td>
+<td>▲6.0万円</td>
+</tr>
+</tbody>
+</table>
+<p>購入価格3,000万円・月額賃料12万円のこの物件は、<strong>表面利回りだけ見れば平均的</strong>ですが、経費とローンを加味すると<strong>キャッシュフローはマイナス</strong>です。投資判断としては、「金利引き下げ交渉」「頭金の増額」「物件価格の値引き交渉」のいずれかが成立しない限り見送りが妥当、という結論になります。</p>
+<p><strong>こうした判断を、条件を変えながら何度でもシミュレーションできるのがPropValueの強みです。</strong></p>
+<p>まずは本ガイドの知識を頭に入れた上で、あなたの検討物件の数字をPropValueに入力してみてください。「なんとなく良さそう」から「数字で納得できる判断」へ、投資の質が変わるはずです。</p>
+<hr />
+<p><em>本記事は<a href=".">PropValue - 不動産投資スコアリングシミュレーター</a>の活用ガイドとして作成されました。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

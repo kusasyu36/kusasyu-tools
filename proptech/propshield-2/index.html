@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説「ここだけは見て」30秒チェックシート - kusasyu tools</title>
+<meta name="description" content="マイホーム購入検討者が受け取った重要事項説明書の主要10項目を入力するだけで、各項目の危険度（低/中/高）と総合リスクスコア（100点満点）を即時算出するセルフチェックツール。既存のAI重説サービス（Paradis・スカイネット・PICK FORM）は全て「業者が重説を作成する」B2Bツールであり、「買主が受">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説「ここだけは見て」30秒チェックシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propshield-2/">
+<meta property="og:title" content="重説「ここだけは見て」30秒チェックシート - kusasyu tools">
+<meta property="og:description" content="マイホーム購入検討者が受け取った重要事項説明書の主要10項目を入力するだけで、各項目の危険度（低/中/高）と総合リスクスコア（100点満点）を即時算出するセルフチェックツール。既存のAI重説サービス（Paradis・スカイネット・PICK FORM）は全て「業者が重説を作成する」B2Bツールであり、「買主が受">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propshield-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説「ここだけは見て」30秒チェックシート - kusasyu tools">
+<meta name="twitter:description" content="マイホーム購入検討者が受け取った重要事項説明書の主要10項目を入力するだけで、各項目の危険度（低/中/高）と総合リスクスコア（100点満点）を即時算出するセルフチェックツール。既存のAI重説サービス（Paradis・スカイネット・PICK FORM）は全て「業者が重説を作成する」B2Bツールであり、「買主が受">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説「ここだけは見て」30秒チェックシート",
+  "description": "マイホーム購入検討者が受け取った重要事項説明書の主要10項目を入力するだけで、各項目の危険度（低/中/高）と総合リスクスコア（100点満点）を即時算出するセルフチェックツール。既存のAI重説サービス（Paradis・スカイネット・PICK FORM）は全て「業者が重説を作成する」B2Bツールであり、「買主が受",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propshield-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説「ここだけは見て」30秒チェックシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説「ここだけは見て」30秒チェックシート</h1>
+  <p class="project-name">重要事項説明書 買主セルフリスク診断ツール「PropShield」</p>
+  <div class="content">
+<h1>重説「ここだけは見て」30秒チェックシート</h1>
+<blockquote>
+<p><strong>使い方</strong>: 重要事項説明書を受け取ったら、以下5項目を上から順にチェック。各項目に✅または❌を記入し、1つでも❌があれば<strong>契約前に必ず確認・交渉</strong>してください。所要時間：約30秒。</p>
+</blockquote>
+<hr />
+<h2>✍️ 物件情報（記入欄）</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件名・所在地</td>
+<td>[記入例: 東京都世田谷区○○1-2-3 ○○マンション301号室]</td>
+</tr>
+<tr>
+<td>確認日</td>
+<td>[記入例: 2026年3月9日]</td>
+</tr>
+<tr>
+<td>確認者</td>
+<td>[記入例: 山田太郎]</td>
+</tr>
+<tr>
+<td>判定結果</td>
+<td>全項目OK → 契約手続きへ / NG有り → 下記アクション実施</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>チェック① 瑕疵担保責任（契約不適合責任）の範囲</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認箇所</strong></td>
+<td>重説「瑕疵担保責任（契約不適合責任）」欄</td>
+</tr>
+<tr>
+<td><strong>判定</strong></td>
+<td>✅ or ❌：______</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OK基準</strong>
+- 売主が<strong>宅建業者</strong>→ 引渡しから<strong>2年以上</strong>の保証期間がある
+- 売主が<strong>個人</strong>→ 保証期間が<strong>3ヶ月以上</strong>ある（一般的には3ヶ月〜1年）
+- 対象範囲に「構造耐力上主要な部分」「雨水の浸入を防止する部分」が含まれている</p>
+<p><strong>NG基準</strong>
+- 「瑕疵担保責任を負わない」「免責」と記載されている
+- 保証期間が極端に短い（業者売主で2年未満）
+- 対象範囲が限定的すぎる（「設備のみ」など）</p>
+<p><strong>NGの場合のアクション</strong>
+1. 売主に保証期間の延長・免責撤回を交渉
+2. 交渉不可の場合、<strong>ホームインスペクション（住宅診断）</strong> を契約前に実施
+3. 既存住宅売買瑕疵保険の付保を検討</p>
+<p><strong>よくある落とし穴</strong></p>
+<blockquote>
+<p>個人間売買で「現状有姿・免責」が慣例とされがちだが、交渉で条件を付けることは可能。「免責だから仕方ない」と鵜呑みにしない。</p>
+</blockquote>
+<hr />
+<h2>チェック② ハザードマップ該当有無</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認箇所</strong></td>
+<td>重説「水害ハザードマップ」「土砂災害警戒区域」欄</td>
+</tr>
+<tr>
+<td><strong>判定</strong></td>
+<td>✅ or ❌：______</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OK基準</strong>
+- 洪水浸水想定区域：<strong>区域外</strong>、または浸水想定<strong>0.5m未満</strong>
+- 土砂災害警戒区域：<strong>非該当</strong>
+- 津波災害警戒区域：<strong>非該当</strong></p>
+<p><strong>NG基準</strong>
+- 浸水想定<strong>3m以上</strong>（2階床上浸水レベル）
+- 土砂災害<strong>特別</strong>警戒区域（レッドゾーン）に該当
+- 複数のハザードに重複該当</p>
+<p><strong>NGの場合のアクション</strong>
+1. 自治体のハザードマップポータルで<strong>最新版</strong>を自分でも確認
+2. 火災保険の<strong>水災補償の保険料</strong>を事前見積もり（年数万円の差になる場合あり）
+3. 浸水想定3m以上の場合は<strong>購入再検討</strong>を強く推奨</p>
+<p><strong>よくある落とし穴</strong></p>
+<blockquote>
+<p>重説に添付されるハザードマップは縮小・白黒コピーで見づらいことが多い。必ず自治体HP等でカラー版の原本を確認すること。2020年の法改正で説明義務化されたが、「該当なし」の誤記載事例も報告されている。</p>
+</blockquote>
+<hr />
+<h2>チェック③ 接道義務の充足</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認箇所</strong></td>
+<td>重説「道路との関係」「接道」欄</td>
+</tr>
+<tr>
+<td><strong>判定</strong></td>
+<td>✅ or ❌：______</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OK基準</strong>
+- 建築基準法上の道路（幅員<strong>4m以上</strong>）に<strong>2m以上</strong>接している
+- 道路の種別が「第42条1項◯号道路」と明記されている</p>
+<p><strong>NG基準</strong>
+- 接道が<strong>2m未満</strong>（＝再建築不可の可能性大）
+- 道路幅員が<strong>4m未満</strong>でセットバックが必要
+- 「建築基準法上の道路に該当しない」旨の記載がある</p>
+<p><strong>NGの場合のアクション</strong>
+1. 接道2m未満 → <strong>再建築不可物件</strong>の可能性。住宅ローンが通らないケースが多い。購入を慎重に再検討
+2. セットバック要 → 有効敷地面積が減少。<strong>実質の建築可能面積</strong>を再計算
+3. 市区町村の建築指導課で<strong>建築確認の可否</strong>を事前確認</p>
+<p><strong>よくある落とし穴</strong></p>
+<blockquote>
+<p>「道路に面している」と「建築基準法上の接道義務を満たしている」は別。見た目は道路でも法律上は「通路」扱いの場合がある。旗竿地（路地状敷地）は間口2mギリギリのケースが多く、実測で2m未満と判明する事例も。</p>
+</blockquote>
+<hr />
+<h2>チェック④ 管理費・修繕積立金の滞納額（マンションの場合）</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認箇所</strong></td>
+<td>重説「管理費等の滞納」「修繕積立金の積立状況」欄</td>
+</tr>
+<tr>
+<td><strong>判定</strong></td>
+<td>✅ or ❌：______（※戸建ての場合は「該当なし」と記入）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OK基準</strong>
+- 売主（当該住戸）の滞納額が<strong>0円</strong>
+- 管理組合全体の滞納率が記載されていて<strong>深刻でない</strong>（目安：滞納率5%以下）
+- 修繕積立金の残高が<strong>長期修繕計画と整合</strong>している</p>
+<p><strong>NG基準</strong>
+- 当該住戸に<strong>滞納がある</strong>（買主が承継する可能性あり）
+- 大規模修繕の予定があるのに<strong>積立金が不足</strong>している
+- 近年の<strong>管理費値上げ履歴</strong>がある（今後も上がる可能性）</p>
+<p><strong>NGの場合のアクション</strong>
+1. 滞納ありの場合 → 売主に<strong>決済前の完済</strong>を条件に入れる（売買契約書に明記）
+2. 積立金不足 → <strong>長期修繕計画書</strong>と<strong>直近の総会議事録</strong>を取り寄せて確認
+3. 将来の値上げリスクを<strong>月額ランニングコストに上乗せ</strong>して資金計画を見直す</p>
+<p><strong>よくある落とし穴</strong></p>
+<blockquote>
+<p>滞納は区分所有法により買主に承継される（第8条）。「売主の問題だから関係ない」は誤り。また、修繕積立金が「異常に安い」物件は、将来の一時金徴収や大幅値上げのリスクが高い。月額㎡あたり200円未満は要注意。</p>
+</blockquote>
+<hr />
+<h2>チェック⑤ 建ぺい率・容積率の超過有無</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>確認箇所</strong></td>
+<td>重説「用途地域」「建ぺい率・容積率」欄、および建築確認通知書</td>
+</tr>
+<tr>
+<td><strong>判定</strong></td>
+<td>✅ or ❌：______</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OK基準</strong>
+- 指定建ぺい率・容積率の範囲<strong>以内</strong>で建築されている
+- 建築確認済証・検査済証が<strong>存在する</strong>
+- 増改築の履歴がある場合、<strong>確認申請済み</strong>である</p>
+<p><strong>NG基準</strong>
+- 既存建物が建ぺい率・容積率を<strong>超過</strong>している（＝既存不適格or違法建築）
+- 検査済証が<strong>ない</strong>（完了検査を受けていない）
+- 増改築が<strong>無届け</strong>で行われた形跡がある</p>
+<p><strong>NGの場合のアクション</strong>
+1. 既存不適格（建築時は適法→法改正で超過） → 住宅ローン審査が厳しくなる。<strong>融資可能な金融機関を事前確認</strong>
+2. 違法建築（建築時から超過） → <strong>住宅ローンがほぼ不可</strong>。購入を再検討
+3. 検査済証なし → 台帳記載事項証明書を市区町村で取得し、建築確認の有無だけでも確認</p>
+<p><strong>よくある落とし穴</strong></p>
+<blockquote>
+<p>中古戸建ての約半数は検査済証がないとも言われる。検査済証がない＝即違法ではないが、ローン審査でのハードルは高い。また、カーポートや増築部分が建ぺい率超過の原因になっている「隠れ違反」は非常に多い。</p>
+</blockquote>
+<hr />
+<h2>総合判定</h2>
+<table>
+<thead>
+<tr>
+<th>チェック項目</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①瑕疵担保責任</td>
+<td>✅ / ❌</td>
+</tr>
+<tr>
+<td>②ハザードマップ</td>
+<td>✅ / ❌</td>
+</tr>
+<tr>
+<td>③接道義務</td>
+<td>✅ / ❌</td>
+</tr>
+<tr>
+<td>④管理費等の滞納</td>
+<td>✅ / ❌</td>
+</tr>
+<tr>
+<td>⑤建ぺい率・容積率</td>
+<td>✅ / ❌</td>
+</tr>
+<tr>
+<td><strong>総合</strong></td>
+<td><strong>全項目✅ → 契約手続きへ</strong> / <strong>❌あり → 要対応</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>❌が1つでもある場合：</strong>
+契約予定日の<strong>最低1週間前</strong>までに不動産会社・売主に確認し、解決できない場合は<strong>契約延期または購入中止</strong>を検討してください。</p>
+<hr />
+<p><em>© Kusasyu PropTech｜本チェックシートは一般的な確認ポイントの整理であり、法的助言ではありません。個別案件は宅建士・弁護士にご相談ください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PropInspect_建物劣化診断＆30年修繕計画シミュレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;font-size:14px;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:12px}
+h1{font-size:1.3em;text-align:center;padding:16px 0 4px;color:#1a365d}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#2b6cb0;margin-bottom:10px;border-left:4px solid #3182ce;padding-left:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-weight:600;font-size:.85em;margin-bottom:2px;color:#4a5568}
+input,select{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em}
+.chk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:4px}
+.chk-grid label{font-weight:400;display:flex;align-items:center;gap:4px}
+.btn{display:block;width:100%;padding:12px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{background:#2b6cb0}
+.tabs{display:flex;gap:4px;margin-bottom:0}
+.tab{flex:1;padding:10px;text-align:center;background:#e2e8f0;border-radius:8px 8px 0 0;cursor:pointer;font-weight:600;font-size:.9em}
+.tab.on{background:#fff;color:#3182ce}
+.tpanel{display:none;background:#fff;border-radius:0 0 10px 10px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.tpanel.on{display:block}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:8px 0}
+th,td{border:1px solid #e2e8f0;padding:6px 8px;text-align:center}
+th{background:#edf2f7;font-weight:600}
+.gA{color:#38a169;font-weight:700}.gB{color:#3182ce;font-weight:700}.gC{color:#d69e2e;font-weight:700}.gD{color:#e53e3e;font-weight:700}
+.urgent{background:#fff5f5;border-left:4px solid #e53e3e}
+.bar-wrap{height:18px;background:#edf2f7;border-radius:4px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px}
+.deficit{background:#fc8181}.surplus{background:#68d391}
+.scenario-h{font-size:.95em;font-weight:700;margin:12px 0 6px;color:#2b6cb0}
+.cf-cell{padding:4px 6px;font-size:.8em}
+.cf-red{background:#fff5f5;color:#e53e3e;font-weight:700}
+.cf-green{background:#f0fff4;color:#38a169}
+.ck-tbl td{text-align:left;font-size:.82em}
+.ck-tbl input[type=checkbox]{margin-right:4px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0;font-size:.8em}
+.legend span{display:flex;align-items:center;gap:3px}
+.leg-box{width:14px;height:14px;border-radius:3px;display:inline-block}
+#result{display:none}
+@media(max-width:600px){.grid{grid-template-columns:1fr}.tabs{flex-wrap:wrap}}
+@media print{body{background:#fff;font-size:12px}.wrap{padding:0;max-width:100%}.card,.btn,.tabs,.tab,#inputSection{display:none!important}#result{display:block!important}.tpanel{display:block!important;box-shadow:none;page-break-inside:avoid;border:1px solid #ccc;margin-bottom:10px}.tpanel h3{font-size:1em}table{font-size:10px}h1{font-size:1.1em}}
+</style>
+<meta name="description" content="築年数・構造・延床面積・設備情報を入力すると、外壁・屋上防水・給排水・エレベーター等10カテゴリの劣化リスクをスコアリングし、修繕優先順位・概算費用・30年間の長期修繕計画を自動生成するブラウザツール。国交省の修繕積立金ガイドラインと長期修繕計画標準様式に準拠し、現在の積立金が足りているかを即座に判定する。専">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,PropInspect_建物劣化診断＆30年修繕計画シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-4/">
+<meta property="og:title" content="PropInspect_建物劣化診断＆30年修繕計画シミュレーター - kusasyu tools">
+<meta property="og:description" content="築年数・構造・延床面積・設備情報を入力すると、外壁・屋上防水・給排水・エレベーター等10カテゴリの劣化リスクをスコアリングし、修繕優先順位・概算費用・30年間の長期修繕計画を自動生成するブラウザツール。国交省の修繕積立金ガイドラインと長期修繕計画標準様式に準拠し、現在の積立金が足りているかを即座に判定する。専">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PropInspect_建物劣化診断＆30年修繕計画シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="築年数・構造・延床面積・設備情報を入力すると、外壁・屋上防水・給排水・エレベーター等10カテゴリの劣化リスクをスコアリングし、修繕優先順位・概算費用・30年間の長期修繕計画を自動生成するブラウザツール。国交省の修繕積立金ガイドラインと長期修繕計画標準様式に準拠し、現在の積立金が足りているかを即座に判定する。専">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PropInspect_建物劣化診断＆30年修繕計画シミュレーター",
+  "description": "築年数・構造・延床面積・設備情報を入力すると、外壁・屋上防水・給排水・エレベーター等10カテゴリの劣化リスクをスコアリングし、修繕優先順位・概算費用・30年間の長期修繕計画を自動生成するブラウザツール。国交省の修繕積立金ガイドラインと長期修繕計画標準様式に準拠し、現在の積立金が足りているかを即座に判定する。専",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div class="wrap">
+<h1>PropInspect</h1>
+<p class="sub">建物劣化診断＆30年修繕計画シミュレーター<br>国交省 長期修繕計画ガイドライン準拠</p>
+
+<div id="inputSection">
+<div class="card">
+<h2>建物基本情報</h2>
+<div class="grid">
+<div><label>築年数（年）</label><input type="number" id="age" value="25" min="1" max="80"></div>
+<div><label>構造種別</label><select id="struct"><option value="RC">RC造（鉄筋コンクリート）</option><option value="SRC">SRC造（鉄骨鉄筋コンクリート）</option><option value="S">S造（鉄骨）</option><option value="W">木造</option></select></div>
+<div><label>延床面積（㎡）</label><input type="number" id="area" value="3000" min="50"></div>
+<div><label>階数</label><input type="number" id="floors" value="8" min="1" max="60"></div>
+<div><label>総戸数</label><input type="number" id="units" value="40" min="1"></div>
+<div><label>竣工年（西暦）</label><input type="number" id="builtYear" value="2001" min="1950" max="2026"></div>
+</div>
+</div>
+<div class="card">
+<h2>主要設備の有無</h2>
+<div class="chk-grid">
+<label><input type="checkbox" id="eqEV" checked>エレベーター</label>
+<label><input type="checkbox" id="eqAuto" checked>自動火災報知設備</label>
+<label><input type="checkbox" id="eqPump" checked>給水ポンプ</label>
+<label><input type="checkbox" id="eqGas" checked>都市ガス配管</label>
+<label><input type="checkbox" id="eqMBX" checked>宅配ボックス</label>
+<label><input type="checkbox" id="eqMech">機械式駐車場</label>
+</div>
+</div>
+<div class="card">
+<h2>積立金情報（タブ2で使用・任意）</h2>
+<div class="grid">
+<div><label>月額積立金（円/戸）</label><input type="number" id="monthFund" value="12000" min="0"></div>
+<div><label>現在の積立金残高（万円）</label><input type="number" id="fundBal" value="3000" min="0"></div>
+</div>
+</div>
+<button class="btn" onclick="run()">診断を実行する</button>
+</div>
+
+<div id="result">
+<div class="tabs">
+<div class="tab on" onclick="showTab(0)">劣化リスク</div>
+<div class="tab" onclick="showTab(1)">30年修繕計画</div>
+<div class="tab" onclick="showTab(2)">点検チェックリスト</div>
+</div>
+<div class="tpanel on" id="tp0"></div>
+<div class="tpanel" id="tp1"></div>
+<div class="tpanel" id="tp2"></div>
+<button class="btn" onclick="document.getElementById('result').style.display='none';document.getElementById('inputSection').style.display='block'" style="background:#718096;margin-top:12px">入力に戻る</button>
+</div>
+</div>
+
+<script>
+const CAT=[
+{id:'wall',name:'外壁塗装',cycle:12,unit:5000,base:15},
+{id:'roof',name:'屋上防水',cycle:12,unit:6500,base:12},
+{id:'water',name:'給水管',cycle:20,unit:3500,base:20},
+{id:'drain',name:'排水管',cycle:25,unit:3000,base:25},
+{id:'gas',name:'ガス管',cycle:25,unit:2000,base:25,eq:'eqGas'},
+{id:'elev',name:'エレベーター',cycle:15,unit:4000000,base:15,eq:'eqEV',fixed:true},
+{id:'elec',name:'電気設備',cycle:15,unit:1500,base:15},
+{id:'fire',name:'消防設備',cycle:10,unit:800,base:10,eq:'eqAuto'},
+{id:'interior',name:'共用部内装',cycle:12,unit:2500,base:12},
+{id:'balcony',name:'バルコニー防水',cycle:12,unit:3500,base:12}
+];
+
+function calcGrade(age,cycle,base){
+const r=age%cycle;const p=r/cycle;
+if(age<base*0.5)return{g:'A',s:1,l:'良好'};
+if(p<0.5)return{g:'A',s:1,l:'良好'};
+if(p<0.75)return{g:'B',s:2,l:'経過観察'};
+if(p<0.95)return{g:'C',s:3,l:'修繕検討'};
+return{g:'D',s:4,l:'要緊急対応'};
+}
+
+function fmt(n){return n.toLocaleString('ja-JP')}
+function showTab(i){
+document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('on',j===i));
+document.querySelectorAll('.tpanel').forEach((t,j)=>t.classList.toggle('on',j===i));
+}
+
+function run(){
+const age=+document.getElementById('age').value;
+const st=document.getElementById('struct').value;
+const area=+document.getElementById('area').value;
+const floors=+document.getElementById('floors').value;
+const units=+document.getElementById('units').value;
+const mf=+document.getElementById('monthFund').value;
+const bal=+document.getElementById('fundBal').value*10000;
+const stMul={RC:1,SRC:1.1,S:0.9,W:0.7}[st];
+
+let results=[];
+CAT.forEach(c=>{
+if(c.eq&&!document.getElementById(c.eq).checked){results.push(null);return;}
+const gr=calcGrade(age,c.cycle,c.base);
+const cost=c.fixed?(c.unit*stMul*floors/8):(c.unit*area*stMul);
+results.push({...c,...gr,cost:Math.round(cost)});
+});
+results=results.filter(Boolean);
+results.sort((a,b)=>b.s-a.s||(b.cost-a.cost));
+
+// === Tab1: 劣化リスクスコアリング ===
+let h='<h3 style="margin-bottom:8px">劣化リスクスコアリング結果</h3>';
+h+='<table><tr><th>優先順位</th><th>カテゴリ</th><th>評価</th><th>状態</th><th>概算修繕費</th><th>周期</th></tr>';
+const top3=results.filter(r=>r.s>=3).slice(0,3);
+results.forEach((r,i)=>{
+const isUrg=top3.includes(r);
+h+=`<tr class="${isUrg?'urgent':''}"><td>${i+1}</td><td>${r.name}</td><td class="g${r.g}">${r.g}</td><td>${r.l}</td><td>¥${fmt(r.cost)}</td><td>${r.cycle}年</td></tr>`;
+});
+h+='</table>';
+if(top3.length){
+h+='<div style="margin-top:10px;padding:10px;background:#fff5f5;border-radius:6px;border:1px solid #feb2b2"><strong style="color:#e53e3e">⚠ 緊急度上位項目</strong><ul style="margin:6px 0 0 18px">';
+top3.forEach(r=>h+=`<li><strong>${r.name}</strong>（${r.g}判定）— 概算 ¥${fmt(r.cost)}</li>`);
+h+='</ul></div>';
+}
+const totalCost=results.reduce((s,r)=>s+r.cost,0);
+h+=`<p style="margin-top:10px;font-weight:700">修繕費合計概算: ¥${fmt(totalCost)}</p>`;
+h+=`<p style="color:#718096;font-size:.8em">※国交省長期修繕計画ガイドライン単価ベース。構造種別係数: ${stMul}</p>`;
+document.getElementById('tp0').innerHTML=h;
+
+// === Tab2: 30年修繕計画 ===
+const scenarios=[{label:'現行',add:0},{label:'+500円/戸',add:500},{label:'+1,000円/戸',add:1000},{label:'+2,000円/戸',add:2000}];
+let h2='<h3>30年修繕計画 ＆ 積立金キャッシュフロー</h3>';
+h2+='<div class="legend"><span><span class="leg-box surplus"></span>余剰</span><span><span class="leg-box deficit"></span>不足</span></div>';
+
+scenarios.forEach(sc=>{
+h2+=`<div class="scenario-h">${sc.label}（月額 ¥${fmt(mf+sc.add)}/戸）</div>`;
+const income=(mf+sc.add)*units*12;
+let balance=bal;
+let yearly=[];
+for(let y=1;y<=30;y++){
+let expense=0;
+results.forEach(r=>{
+const futureAge=age+y;
+if(futureAge>0&&futureAge%r.cycle===0)expense+=r.cost;
+});
+if(y%12===0)expense+=Math.round(totalCost*0.15);
+balance+=income-expense;
+yearly.push({y,expense,balance,income});
+}
+const maxBal=Math.max(...yearly.map(d=>Math.abs(d.balance)),1);
+h2+='<table><tr><th>年</th><th>収入</th><th>修繕費</th><th>残高</th><th>状況</th></tr>';
+yearly.forEach(d=>{
+const cls=d.balance<0?'cf-red':'cf-green';
+const w=Math.min(Math.abs(d.balance)/maxBal*100,100);
+const bc=d.balance<0?'deficit':'surplus';
+h2+=`<tr><td class="cf-cell">${d.y}</td><td class="cf-cell">¥${fmt(d.income)}</td><td class="cf-cell">${d.expense?'¥'+fmt(d.expense):'-'}</td><td class="cf-cell ${cls}">¥${fmt(d.balance)}</td><td class="cf-cell"><div class="bar-wrap"><div class="bar-fill ${bc}" style="width:${w}%"></div></div></td></tr>`;
+});
+h2+='</table>';
+const minBal=Math.min(...yearly.map(d=>d.balance));
+if(minBal<0)h2+=`<p style="color:#e53e3e;font-size:.85em;margin:4px 0 10px">⚠ 不足額最大 ¥${fmt(Math.abs(minBal))}（${yearly.find(d=>d.balance===minBal).y}年目）</p>`;
+else h2+=`<p style="color:#38a169;font-size:.85em;margin:4px 0 10px">✓ 30年間を通じて積立金不足なし</p>`;
+});
+h2+='<p style="color:#718096;font-size:.8em;margin-top:8px">※12年周期で大規模修繕（全体の15%追加）を想定。国交省修繕積立金ガイドライン準拠。</p>';
+document.getElementById('tp1').innerHTML=h2;
+
+// === Tab3: セルフ点検チェックリスト ===
+const checks=[
+{cat:'外壁塗装',items:[
+['外壁タイル浮き・剥離','打診で異常音なし','一部浮き10%未満','浮き10%以上または剥落','広範囲剥落・落下危険'],
+['外壁ひび割れ','幅0.2mm未満','幅0.2-0.3mm','幅0.3mm以上','貫通クラック・漏水'],
+['シーリング材','弾力あり劣化なし','表面硬化・変色','ひび割れ・肉痩せ','断裂・脱落'],
+['塗膜状態','光沢あり','色褪せ・チョーキング軽微','チョーキング顕著・膨れ','大面積剥離'],
+['鉄部錆','錆なし','点錆','面錆・膨れ','穴あき・断面欠損']]},
+{cat:'屋上防水',items:[
+['防水層表面','弾力あり異常なし','表面劣化・退色','ひび割れ・膨れ','破断・水溜まり'],
+['排水ドレン','詰まりなし','軽微な汚れ','排水不良','完全閉塞'],
+['笠木・パラペット','異常なし','シール劣化','ひび割れ・浮き','欠損・傾き'],
+['屋上設備架台','錆なし・固定良好','軽微な錆','錆進行・緩み','脱落危険'],
+['漏水跡','なし','最上階天井にシミ','複数箇所にシミ','活発な漏水']]},
+{cat:'給水管',items:[
+['赤水','なし','朝一番のみ微量','日常的に発生','常時赤水'],
+['水圧低下','問題なし','上階で若干低下','複数階で低下','使用困難'],
+['管外面腐食','なし','点錆','面錆','孔食・漏水'],
+['継手部','漏れなし','滲み','滴下','噴出'],
+['水質検査','基準値内','一部基準超過','複数項目超過','飲用不適']]},
+{cat:'排水管',items:[
+['排水の流れ','良好','やや遅い','頻繁に詰まる','逆流発生'],
+['管内カメラ調査','管内清浄','スケール薄い','スケール厚い','閉塞・破損'],
+['排水臭','なし','時々発生','常時発生','強い悪臭'],
+['管外面状態','良好','軽微な錆','腐食進行','穴あき・漏水'],
+['トラップ封水','正常','時々破封','頻繁に破封','常時破封']]},
+{cat:'ガス管',items:[
+['ガス漏れ検査','異常なし','微量検知','検知あり','危険レベル'],
+['管外面腐食','なし','表面錆','腐食進行','穴あき危険'],
+['継手部状態','異常なし','軽微な劣化','劣化顕著','交換必要'],
+['ガスメーター周辺','良好','軽微劣化','配管変形','漏れ危険'],
+['埋設管防食','正常','一部劣化','広範囲劣化','要緊急対応']]},
+{cat:'エレベーター',items:[
+['運転状態','正常','時々異音','頻繁に停止','使用不能'],
+['かご内装','良好','軽微な傷','劣化顕著','破損'],
+['ドア開閉','正常','若干遅い','不具合あり','危険'],
+['制御盤','正常','部品劣化兆候','部品製造中止','交換不可'],
+['安全装置','全て正常','一部要調整','不具合あり','即時停止要']]},
+{cat:'電気設備',items:[
+['受変電設備','正常','部品劣化兆候','異音・異臭','停電リスク'],
+['分電盤','正常','端子変色','発熱・焦げ','火災リスク'],
+['幹線ケーブル','正常','被覆硬化','ひび割れ','露出・断線'],
+['照明設備','全灯正常','一部不点灯','多数不点灯','器具脱落'],
+['接地抵抗','基準値内','やや上昇','基準超過','測定不能']]},
+{cat:'消防設備',items:[
+['感知器','全数正常','一部不良','多数不良','機能不全'],
+['消火器','有効期限内','期限間近','期限切れ','未設置'],
+['屋内消火栓','正常','軽微な漏れ','放水不良','使用不能'],
+['避難器具','正常・表示あり','表示薄い','器具劣化','欠品'],
+['非常照明','点灯30分以上','点灯20分程度','点灯10分未満','不点灯']]},
+{cat:'共用部内装',items:[
+['床仕上げ','良好','軽微な傷','剥がれ・浮き','つまずき危険'],
+['壁・天井','良好','汚れ・変色','ひび割れ・剥離','漏水跡'],
+['手すり','固定良好','軽微なぐらつき','ぐらつき顕著','脱落危険'],
+['共用ドア','開閉良好','若干重い','開閉困難','施錠不良'],
+['掲示板・案内板','良好','色褪せ','破損・判読困難','欠落']]},
+{cat:'バルコニー防水',items:[
+['床防水','弾力あり','表面劣化','ひび割れ','破断・漏水'],
+['排水溝','流れ良好','軽微な詰まり','排水不良','逆流'],
+['手すり壁','異常なし','ひび割れ微細','ひび割れ0.3mm以上','鉄筋露出'],
+['手すり支柱','固定良好','軽微な錆','根元腐食','ぐらつき危険'],
+['天井面','異常なし','変色','剥離・エフロ','漏水活発']]]
+];
+
+let h3='<h3>セルフ点検チェックリスト</h3>';
+h3+='<p style="font-size:.82em;color:#718096;margin-bottom:8px">建築基準法12条定期報告対応｜判定: 正常(A)/経過観察(B)/要修繕(C)/緊急(D)</p>';
+const rMap={};results.forEach(r=>rMap[r.name]=r);
+checks.forEach(ck=>{
+const catR=rMap[ck.cat];
+const autoCheck=catR&&catR.s>=3;
+h3+=`<table class="ck-tbl"><tr><th colspan="6" style="text-align:left;background:${catR&&catR.s>=3?'#fff5f5':'#edf2f7'}">${ck.cat}${catR?' — 現在 '+catR.g+'判定':''}</th></tr>`;
+h3+='<tr><th style="width:24px">✓</th><th>点検項目</th><th style="width:18%">A 正常</th><th style="width:18%">B 経過観察</th><th style="width:18%">C 要修繕</th><th style="width:18%">D 緊急</th></tr>';
+ck.items.forEach(it=>{
+const chk=autoCheck?'checked':'';
+h3+=`<tr><td><input type="checkbox" ${chk}></td><td>${it[0]}</td><td>${it[1]}</td><td>${it[2]}</td><td>${it[3]}</td><td>${it[4]}</td></tr>`;
+});
+h3+='</table>';
+});
+h3+='<p style="margin-top:12px;font-size:.82em;color:#718096">※Ctrl+P / ⌘+PでA4印刷・PDF化できます。C/D判定カテゴリは自動チェック済み。</p>';
+document.getElementById('tp2').innerHTML=h3;
+
+document.getElementById('inputSection').style.display='none';
+document.getElementById('result').style.display='block';
+showTab(0);
+}
+</script>
+</body>
+</html>
