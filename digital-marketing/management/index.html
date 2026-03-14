@@ -2,159 +2,79 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート - kusasyu tools</title>
-<meta name="description" content="製造業の技術仕様テキストを入力すると、製品紹介LP文章・導入事例記事・プレスリリースのドラフトを自動生成するHTMLツールを中核に、生成コンテンツの品質を5軸で自動採点するスコアラー、そしてコンテンツマーケをゼロから立ち上げる中小製造業向けの制作フロー＆品質管理テンプレートを組み合わせたツールキット。テクノポ">
-<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7;padding-bottom:40px}
+.w{max-width:760px;margin:0 auto;padding:12px}
+h1{font-size:1.15rem;text-align:center;padding:14px 0 4px;color:#2b6cb0}
+.sub{text-align:center;font-size:.75rem;color:#718096;margin-bottom:14px}
+.card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:12px}
+.card h2{font-size:.95rem;color:#2b6cb0;margin-bottom:10px;border-bottom:2px solid #ebf4ff;padding-bottom:5px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.f{flex:1;min-width:100px}
+label{display:block;font-size:.78rem;font-weight:600;margin-bottom:3px;color:#4a5568}
+input,select{width:100%;padding:8px;border:1.5px solid #cbd5e0;border-radius:6px;font-size:.88rem;background:#fff}
+input:focus,select:focus{outline:none;border-color:#4299e1}
+.btn{width:100%;padding:11px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer}
+.btn:hover{opacity:.88}
+.btn-s{padding:7px 14px;font-size:.8rem;width:auto;border-radius:6px}
+.btn-r{background:linear-gradient(135deg,#e53e3e,#fc8181)}
+.btn-g{background:linear-gradient(135deg,#38a169,#68d391)}
+.hide{display:none}
+.res{margin-top:12px}
+.winner{text-align:center;padding:14px;border-radius:8px;font-weight:700;font-size:1rem;margin-bottom:10px}
+.win-a{background:#ebf4ff;color:#2b6cb0}
+.win-b{background:#f0fff4;color:#276749}
+.win-d{background:#fffaf0;color:#c05621}
+.tbl{width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:10px}
+.tbl th,.tbl td{padding:6px 8px;border:1px solid #e2e8f0;text-align:center}
+.tbl th{background:#ebf4ff;color:#2b6cb0;font-weight:600}
+.bar-w{background:#e2e8f0;border-radius:4px;height:18px;position:relative;margin-top:3px}
+.bar-f{height:100%;border-radius:4px;transition:width .4s}
+.bar-a{background:linear-gradient(90deg,#2b6cb0,#4299e1)}
+.bar-b{background:linear-gradient(90deg,#38a169,#68d391)}
+.tag{display:inline-block;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:4px;font-size:.7rem;margin:2px}
+.hist-item{background:#f7fafc;border-radius:6px;padding:10px;margin-bottom:8px;font-size:.8rem;border-left:3px solid #4299e1}
+.hist-item:hover{background:#ebf4ff}
+.ss{font-size:.82rem;background:#fffaf0;padding:10px;border-radius:6px;margin-top:8px}
+.mt8{margin-top:8px}.mb8{margin-bottom:8px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:500px){.g{grid-template-columns:1fr}.row{flex-direction:column}}
+</style>
+<meta name="description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール">
 <link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management/">
-<meta property="og:title" content="製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート - kusasyu tools">
-<meta property="og:description" content="製造業の技術仕様テキストを入力すると、製品紹介LP文章・導入事例記事・プレスリリースのドラフトを自動生成するHTMLツールを中核に、生成コンテンツの品質を5軸で自動採点するスコアラー、そしてコンテンツマーケをゼロから立ち上げる中小製造業向けの制作フロー＆品質管理テンプレートを組み合わせたツールキット。テクノポ">
+<meta property="og:title" content="メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール - kusasyu tools">
+<meta property="og:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
 <meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="kusasyu tools">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート - kusasyu tools">
-<meta name="twitter:description" content="製造業の技術仕様テキストを入力すると、製品紹介LP文章・導入事例記事・プレスリリースのドラフトを自動生成するHTMLツールを中核に、生成コンテンツの品質を5軸で自動採点するスコアラー、そしてコンテンツマーケをゼロから立ち上げる中小製造業向けの制作フロー＆品質管理テンプレートを組み合わせたツールキット。テクノポ">
+<meta name="twitter:title" content="メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール - kusasyu tools">
+<meta name="twitter:description" content="MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート",
-  "description": "製造業の技術仕様テキストを入力すると、製品紹介LP文章・導入事例記事・プレスリリースのドラフトを自動生成するHTMLツールを中核に、生成コンテンツの品質を5軸で自動採点するスコアラー、そしてコンテンツマーケをゼロから立ち上げる中小製造業向けの制作フロー＆品質管理テンプレートを組み合わせたツールキット。テクノポ",
+  "@type": "WebApplication",
+  "name": "メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール",
+  "description": "MAツールを導入したが成果が出ないBtoB企業向けに、顧客セグメント（業種×役職×購買ステージ）に応じたメール文面をワンクリックで生成し、A/Bテストの統計的勝者判定まで一気通貫で行えるツールキット。TSB銀行がパーソナライズで成約率24%→75%（300%増）を達成した手法を、日本のBtoB企業が自社の既存",
   "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
   "author": {
     "@type": "Organization",
     "name": "kusasyu Digital Marketing"
-  },
-  "datePublished": "2026-02-24"
+  }
 }
 </script>
-<style>
-:root {
-  --bg: #0f172a;
-  --card-bg: #1e293b;
-  --card-hover: #334155;
-  --text: #e2e8f0;
-  --text2: #94a3b8;
-  --accent: #38bdf8;
-  --green: #10b981;
-  --blue: #3b82f6;
-  --border: #334155;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.7;
-}
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.breadcrumb {
-  padding: 12px 20px;
-  font-size: 13px;
-  color: var(--text2);
-  max-width: 900px;
-  margin: 0 auto;
-}
-.breadcrumb a { color: var(--accent); }
-article {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 20px 60px;
-}
-.meta {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-.badge {
-  padding: 2px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: white;
-  background: #f59e0b;
-}
-.score-badge {
-  padding: 2px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: white;
-  background: #10b981;
-}
-article h1 {
-  font-size: 26px;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-.project-name {
-  font-size: 14px;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-.actions {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.btn {
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s;
-}
-.btn-primary {
-  background: var(--accent);
-  color: var(--bg);
-}
-.btn-primary:hover { opacity: 0.85; }
-.btn-secondary {
-  background: var(--card-bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-.btn-secondary:hover { background: var(--card-hover); }
-.preview h2 {
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  overflow-x: auto;
-  display: block;
-}
-th, td {
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  text-align: left;
-  white-space: nowrap;
-}
-th { background: var(--card-bg); font-weight: 600; }
-footer {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 24px 20px;
-  border-top: 1px solid var(--border);
-  font-size: 13px;
-  color: var(--text2);
-}
-footer a { color: var(--accent); }
-@media (max-width: 640px) {
-  article h1 { font-size: 20px; }
-  .actions { flex-direction: column; }
-}
-</style>
-
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
 <script>
@@ -169,60 +89,176 @@ gtag('config', 'G-MDQEPV7SFL');
 <meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
 </head>
 <body>
-<nav class="breadcrumb">
-  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
-  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
-  <span>製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート</span>
-</nav>
-<article>
-  <div class="meta">
-    <span class="badge">テンプレート</span>
-    <span class="score-badge">9/10</span>
-    <span class="company">📊 kusasyu Digital Marketing</span>
-  </div>
-  <h1>製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート</h1>
-  <p class="project-name">製造業テクニカルコンテンツ・セルフサービス工房 — 仕様書→マーケ文 即変換ツールキット</p>
-  <div class="actions">
-    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
-    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
-  </div>
-  <div class="preview">
-    <h2>プレビュー</h2>
-    <table><thead><tr><th>月</th><th>フェーズ</th><th>コンテンツ種別</th><th>タイトル案</th><th>対象製品・技術領域</th><th>SEO主要キーワード</th><th>月間検索Vol目安</th><th>Step1_変換エンジン投入日</th><th>Step2_スコアラー合計(/100)</th><th>技術正確性(/20)</th><th>読解容易性(/20)</th><th>SEO最適化(/20)</th><th>訴求力(/20)</th><th>規格準拠(/20)</th><th>技術者レビュー済</th><th>制作ステータス</th><th>担当者</th><th>公開予定日</th><th>ワークフロー・備考</th></tr></thead><tbody><tr><td>1</td><td>基盤構築</td><td>製品紹介LP</td><td>5軸CNC精密加工センタ XR-500 製品紹介ページ</td><td>5軸CNC加工機 XR-500</td><td>5軸加工 精密部品 加工精度</td><td>720</td><td>2026-03-03</td><td>82</td><td>18</td><td>16</td><td>15</td><td>17</td><td>16</td><td>済</td><td>公開済</td><td>田中（営業企画）</td><td>2026-03-15</td><td>仕様書PDF→変換エンジンでLP文生成→スコアラー82点（技術正確性・規格準拠を重点確認）→技術部山田チェック→本シートでステータス更新→公開</td></tr><tr><td>1</td><td>基盤構築</td><td>技術用語集ページ</td><td>精密加工 技術用語辞典（切削・研削・放電加工編）</td><td>切削加工全般</td><td>切削加工 用語 意味</td><td>480</td><td>2026-03-05</td><td>78</td><td>17</td><td>18</td><td>14</td><td>13</td><td>16</td><td>済</td><td>公開済</td><td>田中（営業企画）</td><td>2026-03-20</td><td>内蔵専門用語辞書300語超から主要50語を抜粋→変換エンジンで解説文生成→スコアラーで読解容易性を重点チェック</td></tr><tr><td>2</td><td>基盤構築</td><td>製品紹介LP</td><td>超精密円筒研削盤 GC-200シリーズ 製品紹介</td><td>円筒研削盤 GC-200</td><td>円筒研削 高精度 公差</td><td>590</td><td>2026-04-01</td><td>85</td><td>19</td><td>16</td><td>16</td><td>17</td><td>17</td><td>済</td><td>公開済</td><td>田中（営業企画）</td><td>2026-04-10</td><td>仕様書→変換エンジン→スコアラー85点→公差表記（±0.001mm等）を技術部が重点確認→公開</td></tr><tr><td>3</td><td>基盤構築</td><td>導入事例記事</td><td>自動車部品メーカーA社：XR-500導入で不良率0.3%→0.05%に改善</td><td>5軸CNC加工機 XR-500</td><td>精密部品 不良率改善 事例</td><td>320</td><td>2026-05-07</td><td>79</td><td>17</td><td>15</td><td>14</td><td>18</td><td>15</td><td>済</td><td>レビュー中</td><td>田中（営業企画）</td><td>2026-05-20</td><td>顧客ヒアリングメモ+仕様書→変換エンジンで事例記事ドラフト生成→スコアラー79点（訴求力は高いがSEO最適化を改善指摘）→キーワード追加修正→再採点→技術部確認中</td></tr><tr><td>4</td><td>コンテンツ拡充</td><td>導入事例記事</td><td>金型メーカーB社：GC-200で納期30%短縮を実現</td><td>円筒研削盤 GC-200</td><td>研削加工 納期短縮 金型</td><td>260</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>未</td><td>企画中</td><td>田中（営業企画）</td><td>2026-06-15</td><td>ヒアリング実施予定→変換エンジン→スコアラー→技術部確認→本シート更新</td></tr><tr><td>5</td><td>コンテンツ拡充</td><td>技術コラム</td><td>表面処理の基礎知識：めっき・アルマイト・PVDコーティングの選び方</td><td>表面処理全般</td><td>表面処理 種類 選び方</td><td>880</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>未</td><td>企画中</td><td>佐藤（技術部）</td><td>2026-07-10</td><td>技術部から素材提供→変換エンジンでコラム化→スコアラーで技術正確性を重点確認</td></tr><tr><td>6</td><td>コンテンツ拡充</td><td>ホワイトペーパー</td><td>中小製造業のための精密加工トレンド2026：5軸加工・自動化・品質保証</td><td>精密加工トレンド全般</td><td>精密加工 トレンド 2026 製造業DX</td><td>1200</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>未</td><td>未着手</td><td>田中（営業企画）</td><td>2026-08-01</td><td>変換エンジンで章ごとにドラフト生成→スコアラーで全軸チェック→リード獲得用PDF化→本シートでDL数追跡</td></tr><tr><td>7</td><td>発信加速</td><td>プレスリリース</td><td>新製品：次世代レーザー加工機 LX-100 発売開始</td><td>レーザー加工機 LX-100</td><td>レーザー加工 新製品 精密切断</td><td>410</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>未</td><td>未着手</td><td>田中（営業企画）</td><td>2026-09-01</td><td>仕様書→変換エンジンでプレスリリース文生成→スコアラーで規格準拠・技術正確性を最優先確認→広報チェック→配信</td></tr><tr><td>8</td><td>発信加速</td><td>導入事例記事</td><td>医療機器メーカーC社：LX-100で微細加工の歩留まり向上</td><td>レーザー加工機 LX-100</td><td>レーザー加工 医療機器 微細加工</td><td>350</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>未</td><td>未着手</td><td>佐藤（技術部）</td><td>2026-10-01</td><td>事例テンプレートに沿い変換エンジン→スコアラー→技術部確認</td></tr><tr><td>9</td><td>発信加速</td><td>ホワイトペーパー</td><td>鍛造vs切削：コスト・精度・納期で徹底比較ガイド</td><td>鍛造・切削比較</td><td>鍛造 切削 比較 コスト</td><td>740</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>未</td><td>未着手</td><td>田中（営業企画）</td><td>2026-11-01</td><td>比較データ→変換エンジンで構成生成→スコアラーで数値整合性を重点確認</td></tr></tbody></table>
-  </div>
-</article>
-<footer>
-  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
-</footer>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">メールA_Bテスト統計的勝者判定＆改善サイクル管理ツール</span></div>
+<div class="w">
+<h1>メールA/Bテスト 統計的勝者判定ツール</h1>
+<p class="sub">BtoBパーソナライズメール文面ジェネレーター 連携 — χ²検定で感覚に頼らない改善サイクルを実現<br>TSB銀行事例：パーソナライズで成約率24%→75%（約3倍）を達成</p>
+
+<div class="card">
+<h2>テスト情報</h2>
+<div class="row">
+<div class="f"><label>テスト名</label><input id="tName" placeholder="例：製造業向け件名テスト"></div>
+<div class="f"><label>セグメント</label>
+<select id="tSeg"><option>IT・情報通信</option><option>製造業</option><option>金融・保険</option><option>商社・卸売</option><option>その他</option></select></div>
+<div class="f"><label>評価指標</label>
+<select id="tKpi"><option value="open">開封率</option><option value="click">クリック率</option><option value="cv" selected>CV率（成約率）</option></select></div>
+</div>
+</div>
+
+<div class="g">
+<div class="card">
+<h2>バリアントA（現行）</h2>
+<label>配信数</label><input type="number" id="aS" min="0" value="500">
+<label class="mt8">開封数</label><input type="number" id="aO" min="0" value="110">
+<label class="mt8">クリック数</label><input type="number" id="aC" min="0" value="30">
+<label class="mt8">CV数（成約）</label><input type="number" id="aV" min="0" value="5">
+</div>
+<div class="card">
+<h2>バリアントB（テスト）</h2>
+<label>配信数</label><input type="number" id="bS" min="0" value="500">
+<label class="mt8">開封数</label><input type="number" id="bO" min="0" value="140">
+<label class="mt8">クリック数</label><input type="number" id="bC" min="0" value="45">
+<label class="mt8">CV数（成約）</label><input type="number" id="bV" min="0" value="12">
+</div>
+</div>
+
+<button class="btn mt8" onclick="judge()">χ²検定で勝者を判定する</button>
+
+<div id="result" class="res hide">
+<div class="card">
+<div id="winBanner" class="winner"></div>
+<table class="tbl"><thead><tr><th>指標</th><th>A（現行）</th><th>B（テスト）</th><th>差分</th></tr></thead><tbody id="tbody"></tbody></table>
+<div id="bars"></div>
+<div id="chi2"></div>
+<div id="ssCalc" class="ss hide"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>必要サンプルサイズ計算</h2>
+<p style="font-size:.78rem;color:#718096;margin-bottom:8px">あと何通配信すれば統計的に結論が出るか試算します</p>
+<div class="row">
+<div class="f"><label>現在のCV率（%）</label><input type="number" id="crBase" value="1.0" step="0.1"></div>
+<div class="f"><label>検出したいリフト（%）</label><input type="number" id="crLift" value="50" step="5"></div>
+</div>
+<button class="btn btn-s btn-g" onclick="calcSS()">必要数を計算</button>
+<div id="ssResult" class="ss hide mt8"></div>
+</div>
+
+<div class="card">
+<h2>テスト履歴（ローカル保存）</h2>
+<div id="hist"></div>
+<button class="btn btn-s btn-r mt8" onclick="clearHist()">履歴をクリア</button>
+</div>
+
+<div class="card">
+<h2>セグメント別 勝ちパターン集計</h2>
+<div id="segSummary" style="font-size:.82rem;color:#718096">履歴データが蓄積されると、セグメントごとの最適パターンが表示されます。</div>
+</div>
+</div>
+
 <script>
-const csvData = `月,フェーズ,コンテンツ種別,タイトル案,対象製品・技術領域,SEO主要キーワード,月間検索Vol目安,Step1_変換エンジン投入日,Step2_スコアラー合計(/100),技術正確性(/20),読解容易性(/20),SEO最適化(/20),訴求力(/20),規格準拠(/20),技術者レビュー済,制作ステータス,担当者,公開予定日,ワークフロー・備考
-1,基盤構築,製品紹介LP,"5軸CNC精密加工センタ XR-500 製品紹介ページ",5軸CNC加工機 XR-500,5軸加工 精密部品 加工精度,720,2026-03-03,82,18,16,15,17,16,済,公開済,田中（営業企画）,2026-03-15,"仕様書PDF→変換エンジンでLP文生成→スコアラー82点（技術正確性・規格準拠を重点確認）→技術部山田チェック→本シートでステータス更新→公開"
-1,基盤構築,技術用語集ページ,"精密加工 技術用語辞典（切削・研削・放電加工編）",切削加工全般,切削加工 用語 意味,480,2026-03-05,78,17,18,14,13,16,済,公開済,田中（営業企画）,2026-03-20,"内蔵専門用語辞書300語超から主要50語を抜粋→変換エンジンで解説文生成→スコアラーで読解容易性を重点チェック"
-2,基盤構築,製品紹介LP,"超精密円筒研削盤 GC-200シリーズ 製品紹介",円筒研削盤 GC-200,円筒研削 高精度 公差,590,2026-04-01,85,19,16,16,17,17,済,公開済,田中（営業企画）,2026-04-10,"仕様書→変換エンジン→スコアラー85点→公差表記（±0.001mm等）を技術部が重点確認→公開"
-3,基盤構築,導入事例記事,"自動車部品メーカーA社：XR-500導入で不良率0.3%→0.05%に改善",5軸CNC加工機 XR-500,精密部品 不良率改善 事例,320,2026-05-07,79,17,15,14,18,15,済,レビュー中,田中（営業企画）,2026-05-20,"顧客ヒアリングメモ+仕様書→変換エンジンで事例記事ドラフト生成→スコアラー79点（訴求力は高いがSEO最適化を改善指摘）→キーワード追加修正→再採点→技術部確認中"
-4,コンテンツ拡充,導入事例記事,"金型メーカーB社：GC-200で納期30%短縮を実現",円筒研削盤 GC-200,研削加工 納期短縮 金型,260,,,,,,,,未,企画中,田中（営業企画）,2026-06-15,"ヒアリング実施予定→変換エンジン→スコアラー→技術部確認→本シート更新"
-5,コンテンツ拡充,技術コラム,"表面処理の基礎知識：めっき・アルマイト・PVDコーティングの選び方",表面処理全般,表面処理 種類 選び方,880,,,,,,,,未,企画中,佐藤（技術部）,2026-07-10,"技術部から素材提供→変換エンジンでコラム化→スコアラーで技術正確性を重点確認"
-6,コンテンツ拡充,ホワイトペーパー,"中小製造業のための精密加工トレンド2026：5軸加工・自動化・品質保証",精密加工トレンド全般,精密加工 トレンド 2026 製造業DX,1200,,,,,,,,未,未着手,田中（営業企画）,2026-08-01,"変換エンジンで章ごとにドラフト生成→スコアラーで全軸チェック→リード獲得用PDF化→本シートでDL数追跡"
-7,発信加速,プレスリリース,"新製品：次世代レーザー加工機 LX-100 発売開始",レーザー加工機 LX-100,レーザー加工 新製品 精密切断,410,,,,,,,,未,未着手,田中（営業企画）,2026-09-01,"仕様書→変換エンジンでプレスリリース文生成→スコアラーで規格準拠・技術正確性を最優先確認→広報チェック→配信"
-8,発信加速,導入事例記事,"医療機器メーカーC社：LX-100で微細加工の歩留まり向上",レーザー加工機 LX-100,レーザー加工 医療機器 微細加工,350,,,,,,,,未,未着手,佐藤（技術部）,2026-10-01,"事例テンプレートに沿い変換エンジン→スコアラー→技術部確認"
-9,発信加速,ホワイトペーパー,"鍛造vs切削：コスト・精度・納期で徹底比較ガイド",鍛造・切削比較,鍛造 切削 比較 コスト,740,,,,,,,,未,未着手,田中（営業企画）,2026-11-01,"比較データ→変換エンジンで構成生成→スコアラーで数値整合性を重点確認"
-10,最適化,製品LP改訂,"XR-500 製品LP改訂（SEOリライト＋事例リンク追加）",5軸CNC加工機 XR-500,5軸加工 精密部品 導入事例,720,,,,,,,,未,未着手,田中（営業企画）,2026-12-01,"既存LP→変換エンジンでリライト案生成→スコアラーでSEO最適化スコア改善を確認→GA4データと照合"
-11,最適化,総合ガイド,"製造業マーケ担当者のためのコンテンツ制作完全マニュアル",コンテンツマーケ全般,製造業 コンテンツマーケティング 始め方,520,,,,,,,,未,未着手,田中（営業企画）,2027-01-15,"過去10ヶ月の制作ノウハウを集約→変換エンジン+手動編集→スコアラー全軸80点以上目標"
-12,最適化,年間振り返り・次年度計画,"コンテンツマーケ1年目KPIレビュー＆2年目計画",全製品横断,—,—,,,,,,,,未,未着手,田中（営業企画）,2027-02-01,"本シートの12ヶ月データを集計→PV・CV・スコアラー平均点を分析→次年度の種別・本数計画を策定"`;
-function downloadCSV() {
-  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "03_製造業コンテンツマーケ立ち上げロードマップ＆制作管理テンプレート.csv";
-  a.click();
+function v(id){return parseInt(document.getElementById(id).value)||0}
+function pct(n,d){return d?((n/d)*100).toFixed(2):'0.00'}
+function chi2test(a1,a2,b1,b2){
+var n=a1+a2+b1+b2;if(n===0)return{chi:0,p:1};
+var r1=a1+a2,r2=b1+b2,c1=a1+b1,c2=a2+b2;
+var e=[[r1*c1/n,r1*c2/n],[r2*c1/n,r2*c2/n]];
+var o=[[a1,a2],[b1,b2]],s=0;
+for(var i=0;i<2;i++)for(var j=0;j<2;j++){if(e[i][j]===0)continue;s+=Math.pow(o[i][j]-e[i][j],2)/e[i][j];}
+return{chi:s,p:1-chi2cdf(s)};
 }
-function copyCSV() {
-  navigator.clipboard.writeText(csvData).then(() => {
-    const btn = event.target;
-    btn.textContent = "コピーしました!";
-    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
-  });
+function chi2cdf(x){
+if(x<=0)return 0;
+var a=0.5,s=0,t=1/a,xx=x/2;
+for(var n=0;n<200;n++){s+=t;t*=xx/(a+n+1);}
+return s*Math.exp(-xx+a*Math.log(xx)-gammaln(a));
 }
+function gammaln(x){
+var c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.001208650973866179,-0.000005395239384953];
+var y=x,t=x+5.5;t-=(x+0.5)*Math.log(t);
+var s=1.0000000000000190015;for(var j=0;j<6;j++)s+=c[j]/++y;
+return -t+Math.log(2.5066282746310005*s/x);
+}
+function judge(){
+var aS=v('aS'),aO=v('aO'),aC=v('aC'),aV=v('aV');
+var bS=v('bS'),bO=v('bO'),bC=v('bC'),bV=v('bV');
+if(aS<1||bS<1){alert('配信数を1以上で入力してください');return;}
+var kpi=document.getElementById('tKpi').value;
+var an,ad,bn,bd,lbl;
+if(kpi==='open'){an=aO;ad=aS;bn=bO;bd=bS;lbl='開封率';}
+else if(kpi==='click'){an=aC;ad=aS;bn=bC;bd=bS;lbl='クリック率';}
+else{an=aV;ad=aS;bn=bV;bd=bS;lbl='CV率';}
+var rA=ad?an/ad:0,rB=bd?bn/bd:0;
+var t=chi2test(an,ad-an,bn,bd-bn);
+var sig=t.p<0.05;
+var win=sig?(rB>rA?'B':'A'):'引き分け';
+var wb=document.getElementById('winBanner');
+if(win==='B'){wb.className='winner win-b';wb.textContent='バリアントBが統計的に有意に優勝（p='+t.p.toFixed(4)+'）';}
+else if(win==='A'){wb.className='winner win-a';wb.textContent='バリアントAが統計的に有意に優勝（p='+t.p.toFixed(4)+'）';}
+else{wb.className='winner win-d';wb.textContent='有意差なし — サンプル追加が必要（p='+t.p.toFixed(4)+'）';}
+var tb=document.getElementById('tbody');
+var d=function(a,b){var df=b-a;return (df>=0?'+':'')+df.toFixed(2)+'%pt';};
+tb.innerHTML='<tr><td>配信数</td><td>'+aS+'</td><td>'+bS+'</td><td>-</td></tr>'
++'<tr><td>開封率</td><td>'+pct(aO,aS)+'%</td><td>'+pct(bO,bS)+'%</td><td>'+d(aO/aS*100,bO/bS*100)+'</td></tr>'
++'<tr><td>クリック率</td><td>'+pct(aC,aS)+'%</td><td>'+pct(bC,bS)+'%</td><td>'+d(aC/aS*100,bC/bS*100)+'</td></tr>'
++'<tr><td>CV率</td><td>'+pct(aV,aS)+'%</td><td>'+pct(bV,bS)+'%</td><td>'+d(aV/aS*100,bV/bS*100)+'</td></tr>';
+var bars=document.getElementById('bars');
+var mxO=Math.max(aO/aS,bO/bS)||1,mxV=Math.max(aV/aS,bV/bS)||1;
+bars.innerHTML='<p style="font-size:.78rem;font-weight:600;margin:6px 0 2px">開封率比較</p>'
++'<div class="bar-w"><div class="bar-f bar-a" style="width:'+((aO/aS/mxO)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">A: '+pct(aO,aS)+'%</div>'
++'<div class="bar-w"><div class="bar-f bar-b" style="width:'+((bO/bS/mxO)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">B: '+pct(bO,bS)+'%</div>'
++'<p style="font-size:.78rem;font-weight:600;margin:6px 0 2px">CV率比較</p>'
++'<div class="bar-w"><div class="bar-f bar-a" style="width:'+((aV/aS/mxV)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">A: '+pct(aV,aS)+'%</div>'
++'<div class="bar-w"><div class="bar-f bar-b" style="width:'+((bV/bS/mxV)*100).toFixed(1)+'%"></div></div><div style="font-size:.7rem">B: '+pct(bV,bS)+'%</div>';
+document.getElementById('chi2').innerHTML='<p style="font-size:.78rem;margin-top:8px"><b>χ²統計量:</b> '+t.chi.toFixed(4)+' / <b>p値:</b> '+t.p.toFixed(4)+' / <b>有意水準:</b> p&lt;0.05 '+(sig?'有意':'非有意')+'</p>';
+if(!sig){
+var need=calcNeeded(rA,rB);
+var sc=document.getElementById('ssCalc');sc.className='ss';
+sc.innerHTML='有意差を得るにはバリアントあたり約<b>'+need+'通</b>の配信が必要です（検出力80%）。現在A='+aS+'通・B='+bS+'通なので、あと約<b>'+Math.max(0,need-Math.min(aS,bS))+'通</b>ずつ追加配信してください。';
+}else{document.getElementById('ssCalc').className='ss hide';}
+document.getElementById('result').className='res';
+saveHist({name:document.getElementById('tName').value||'無題',seg:document.getElementById('tSeg').value,kpi:lbl,rA:(rA*100).toFixed(2),rB:(rB*100).toFixed(2),win:win,p:t.p.toFixed(4),date:new Date().toLocaleDateString('ja-JP')});
+renderHist();
+}
+function calcNeeded(p1,p2){
+if(p1===p2||Math.abs(p1-p2)<0.0001)return 99999;
+var za=1.96,zb=0.84,p=(p1+p2)/2;
+var n=Math.ceil(Math.pow(za*Math.sqrt(2*p*(1-p))+zb*Math.sqrt(p1*(1-p1)+p2*(1-p2)),2)/Math.pow(p1-p2,2));
+return Math.max(n,100);
+}
+function calcSS(){
+var base=parseFloat(document.getElementById('crBase').value)/100;
+var lift=parseFloat(document.getElementById('crLift').value)/100;
+if(base<=0||lift<=0){alert('正の値を入力してください');return;}
+var p2=base*(1+lift),n=calcNeeded(base,p2);
+var r=document.getElementById('ssResult');r.className='ss mt8';
+r.innerHTML='現行CV率 <b>'+(base*100).toFixed(1)+'%</b> に対し <b>'+(lift*100).toFixed(0)+'%</b> のリフトを検出するには、各バリアントに<b>'+n+'通</b>（合計<b>'+(n*2)+'通</b>）の配信が必要です。<br>月4回配信・リスト3,000件の場合、約<b>'+Math.ceil(n*2/3000)+'回</b>の配信で結論が出ます。';
+}
+function getHist(){try{return JSON.parse(localStorage.getItem('abHist'))||[];}catch(e){return[];}}
+function saveHist(d){var h=getHist();h.unshift(d);if(h.length>50)h=h.slice(0,50);localStorage.setItem('abHist',JSON.stringify(h));}
+function clearHist(){if(confirm('履歴をすべて削除しますか？')){localStorage.removeItem('abHist');renderHist();}}
+function renderHist(){
+var h=getHist(),el=document.getElementById('hist');
+if(!h.length){el.innerHTML='<p style="font-size:.8rem;color:#a0aec0">まだ履歴がありません。テストを実行すると自動保存されます。</p>';renderSeg([]);return;}
+el.innerHTML=h.map(function(d){
+var wc=d.win==='B'?'color:#276749':d.win==='A'?'color:#2b6cb0':'color:#c05621';
+return '<div class="hist-item"><b>'+d.date+'</b>　'+d.name+'<br><span class="tag">'+d.seg+'</span><span class="tag">'+d.kpi+'</span> A:'+d.rA+'% vs B:'+d.rB+'% → <span style="'+wc+';font-weight:700">'+(d.win==='引き分け'?'有意差なし':'バリアント'+d.win+'勝利')+'</span> (p='+d.p+')</div>';
+}).join('');
+renderSeg(h);
+}
+function renderSeg(h){
+var el=document.getElementById('segSummary');
+if(!h.length){el.innerHTML='<p style="color:#a0aec0">履歴データが蓄積されると表示されます。</p>';return;}
+var m={};
+h.forEach(function(d){if(d.win==='引き分け')return;if(!m[d.seg])m[d.seg]={A:0,B:0,tests:0};m[d.seg][d.win]++;m[d.seg].tests++;});
+var keys=Object.keys(m);
+if(!keys.length){el.innerHTML='<p style="color:#a0aec0">有意差のあるテスト結果がまだありません。</p>';return;}
+el.innerHTML='<table class="tbl"><thead><tr><th>セグメント</th><th>テスト数</th><th>A勝利</th><th>B勝利</th><th>傾向</th></tr></thead><tbody>'
++keys.map(function(k){var d=m[k];var trend=d.B>d.A?'新パターン優勢':'現行パターン優勢';return '<tr><td>'+k+'</td><td>'+d.tests+'</td><td>'+d.A+'</td><td>'+d.B+'</td><td style="font-size:.75rem">'+trend+'</td></tr>';}).join('')
++'</tbody></table>';
+}
+renderHist();
 </script>
 </body>
 </html>

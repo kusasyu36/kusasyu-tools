@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>専門家相談_費用概算・準備チェックツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.7}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:20px 0 4px;color:#1a1a2e}
+.sub{text-align:center;font-size:.82em;color:#666;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1.05em;color:#2d5a9e;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e8edf5}
+label{display:block;font-weight:600;font-size:.9em;margin-bottom:4px}
+select,input[type=range]{width:100%;padding:10px;border:1px solid #d0d5dd;border-radius:8px;font-size:1em;margin-bottom:12px;appearance:auto;background:#fff}
+input[type=range]{padding:4px 0;border:none;accent-color:#2d5a9e}
+.amt{font-size:1.1em;font-weight:700;color:#2d5a9e;text-align:center;margin:4px 0 10px}
+.note{font-size:.78em;color:#888;margin-top:-8px;margin-bottom:10px}
+button{width:100%;padding:14px;background:linear-gradient(135deg,#2d5a9e,#1a3a6e);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;letter-spacing:.05em}
+button:active{transform:scale(.98)}
+#result{display:none}
+table{width:100%;border-collapse:collapse;font-size:.88em;margin-top:8px}
+th,td{border:1px solid #d0d5dd;padding:8px 6px;text-align:center}
+th{background:#eaf0fb;color:#1a1a2e;font-weight:700}
+td:first-child{text-align:left;font-weight:600;background:#f9fafc;white-space:nowrap}
+.tip{background:#fff8e1;border-left:4px solid #f5a623;padding:10px 12px;border-radius:0 8px 8px 0;font-size:.85em;margin:12px 0}
+.chk{margin:10px 0}
+.chk label{font-weight:400;font-size:.9em;display:flex;align-items:flex-start;gap:6px;margin-bottom:6px;cursor:pointer}
+.chk input[type=checkbox]{margin-top:4px;accent-color:#2d5a9e;min-width:16px}
+.tag{display:inline-block;background:#eaf0fb;color:#2d5a9e;font-size:.75em;padding:2px 8px;border-radius:10px;font-weight:600;margin-bottom:8px}
+.warn{background:#fef3f2;border:1px solid #f5c6c2;border-radius:8px;padding:10px 12px;font-size:.82em;color:#9b1c1c;margin-top:12px}
+.ref{font-size:.78em;color:#888;margin-top:6px}
+.foot{text-align:center;font-size:.75em;color:#999;padding:16px 0 24px}
+.sec3{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px}
+@media(min-width:520px){.sec3{grid-template-columns:1fr 1fr 1fr}}
+.expert-card{border:1px solid #d0d5dd;border-radius:8px;padding:12px;text-align:center}
+.expert-card h3{font-size:.95em;margin-bottom:6px}
+.expert-card .price{font-size:1.2em;font-weight:800;color:#2d5a9e}
+.expert-card .detail{font-size:.8em;color:#666;margin-top:4px}
+.total-box{background:#eaf0fb;border-radius:8px;padding:14px;text-align:center;margin:12px 0}
+.total-box .big{font-size:1.4em;font-weight:800;color:#1a3a6e}
+</style>
+<meta name="description" content="法律トラブルを抱えた個人・フリーランス・小規模事業主が、弁護士に相談する前に「これは弁護士案件か」「誰に相談すべきか」「費用はどのくらいか」「今すぐ自分でできることは何か」を判断できるツールキット。対話型の診断ツールで法律分類・専門家推薦・費用目安を即座に表示し、自分で対応できるケースには内容証明・クーリング">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,専門家相談_費用概算・準備チェックツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-11/">
+<meta property="og:title" content="専門家相談_費用概算・準備チェックツール - kusasyu tools">
+<meta property="og:description" content="法律トラブルを抱えた個人・フリーランス・小規模事業主が、弁護士に相談する前に「これは弁護士案件か」「誰に相談すべきか」「費用はどのくらいか」「今すぐ自分でできることは何か」を判断できるツールキット。対話型の診断ツールで法律分類・専門家推薦・費用目安を即座に表示し、自分で対応できるケースには内容証明・クーリング">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="専門家相談_費用概算・準備チェックツール - kusasyu tools">
+<meta name="twitter:description" content="法律トラブルを抱えた個人・フリーランス・小規模事業主が、弁護士に相談する前に「これは弁護士案件か」「誰に相談すべきか」「費用はどのくらいか」「今すぐ自分でできることは何か」を判断できるツールキット。対話型の診断ツールで法律分類・専門家推薦・費用目安を即座に表示し、自分で対応できるケースには内容証明・クーリング">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "専門家相談_費用概算・準備チェックツール",
+  "description": "法律トラブルを抱えた個人・フリーランス・小規模事業主が、弁護士に相談する前に「これは弁護士案件か」「誰に相談すべきか」「費用はどのくらいか」「今すぐ自分でできることは何か」を判断できるツールキット。対話型の診断ツールで法律分類・専門家推薦・費用目安を即座に表示し、自分で対応できるケースには内容証明・クーリング",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-11/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">専門家相談_費用概算・準備チェックツール</span></div>
+<div class="wrap">
+<h1>専門家相談 費用概算・準備チェックツール</h1>
+<p class="sub">弁護士法72条の範囲内の一般的な情報提供です。個別の法的助言ではありません。</p>
+
+<div class="card">
+<h2>① 相談カテゴリを選択</h2>
+<label for="cat">トラブルの種類</label>
+<select id="cat">
+<option value="">-- 選択してください --</option>
+<option value="labor">労働問題（未払い賃金・解雇・ハラスメント等）</option>
+<option value="consumer">消費者トラブル（クーリングオフ・詐欺的商法等）</option>
+<option value="estate">不動産問題（敷金・欠陥住宅・立退き等）</option>
+<option value="net">ネットトラブル（誹謗中傷・情報削除・著作権等）</option>
+</select>
+
+<label for="detail">具体的な内容</label>
+<select id="detail"><option value="">-- 先にカテゴリを選択 --</option></select>
+</div>
+
+<div class="card">
+<h2>② 案件の規模</h2>
+<label>請求額・損害額の目安</label>
+<input type="range" id="amount" min="0" max="6" value="2">
+<div class="amt" id="amtLabel">30万〜50万円</div>
+<p class="note">※ 例: フリーランスWeb制作代金 330,000円（税込）、個人間売買 80,000円 など</p>
+
+<label>争点の複雑さ</label>
+<select id="complexity">
+<option value="simple">シンプル（事実関係が明確・証拠あり）</option>
+<option value="medium">やや複雑（相手方が争う可能性あり）</option>
+<option value="complex">複雑（事実関係が不明確・多数の論点）</option>
+</select>
+</div>
+
+<button onclick="calc()">費用を概算する</button>
+
+<div id="result">
+<div class="card">
+<h2>専門家別 費用比較</h2>
+<p id="scenarioText" style="font-size:.88em;margin-bottom:8px"></p>
+
+<div class="sec3" id="cards3"></div>
+
+<table style="margin-top:14px">
+<thead><tr><th>費目</th><th>弁護士</th><th>司法書士</th><th>行政書士</th></tr></thead>
+<tbody id="feeBody"></tbody>
+</table>
+
+<div class="total-box">
+<div>解決までの想定総額（弁護士の場合）</div>
+<div class="big" id="totalEst"></div>
+</div>
+
+<div class="tip" id="tipBox"></div>
+<div class="warn">※ 上記は一般的な相場であり、地域・事務所・案件難易度により大幅に異なります。必ず複数の事務所から見積りを取ってください。遅延損害金は年3％（民法第404条法定利率）で別途請求可能です。</div>
+</div>
+
+<div class="card">
+<h2>③ 相談時の持参書類チェックリスト</h2>
+<div id="checklistArea"></div>
+<div class="ref">※ 内容証明郵便の発送費用は約1,300〜1,800円（基本郵便料110円＋内容証明加算480円＋配達証明350円）。請求書には14日程度の支払期限を設定するのが一般的です。</div>
+</div>
+</div>
+
+<p class="foot">© Kusasyu Legal Tech｜本ツールは一般的な費用相場の情報提供であり、弁護士法第72条に定める法律事務の取扱いには該当しません。</p>
+</div>
+
+<script>
+var AMTS=["〜10万円","10万〜30万円","30万〜50万円","50万〜100万円","100万〜300万円","300万〜1,000万円","1,000万円超"];
+var AMT_VAL=[5,20,40,75,200,650,1500];
+var DETAILS={
+labor:["未払い賃金・残業代の請求","不当解雇・雇止め","パワハラ・セクハラ","退職勧奨・退職トラブル","労災認定"],
+consumer:["クーリングオフ（訪問販売・電話勧誘 8日間／連鎖販売 20日間）","インターネット通販トラブル","リフォーム・修繕の契約トラブル","マルチ商法・情報商材","クレジット・ローンの過払い"],
+estate:["敷金返還請求","賃料未払い・滞納","欠陥住宅・修繕トラブル","立退き・明渡し","境界・隣人トラブル"],
+net:["誹謗中傷・名誉毀損の削除請求","個人情報・プライバシー侵害","著作権侵害","ECサイト取引トラブル","フリーランス報酬未払い"]
+};
+var CHECKLISTS={
+labor:["雇用契約書・労働条件通知書","給与明細（直近6ヶ月分）","タイムカード・勤怠記録のコピー","就業規則（入手可能な場合）","ハラスメントの記録（メール・LINE・録音等）","離職票・退職届のコピー（該当時）","源泉徴収票","会社とのやりとりの時系列メモ"],
+consumer:["契約書・申込書のコピー","クレジットカード利用明細・振込控え","商品のパンフレット・広告","担当者の名刺","やりとりの記録（メール・LINE等）","特定商取引法の法定書面","クーリングオフ期間の確認メモ（訪問販売・電話勧誘: 8日間、連鎖販売・業務提供誘引販売: 20日間）","商品の現物または写真"],
+estate:["賃貸借契約書","重要事項説明書","物件の写真（入居時・退去時）","修繕・リフォームの見積書","家賃の支払い記録","不動産会社とのやりとり記録","登記簿謄本（取得可能な場合）","敷金・保証金の預り証"],
+net:["問題のページのスクリーンショット（URL・日時入り）","投稿者のアカウント情報","サイト管理者への削除依頼の記録","被害の時系列まとめ","契約書・利用規約のコピー（取引の場合）","報酬の請求書・納品書（フリーランスの場合、例: 金330,000円等）","振込記録・未払いの証拠","発信者情報開示のログ保存依頼書（該当時）"]
+};
+
+document.getElementById("cat").addEventListener("change",function(){
+var s=document.getElementById("detail");
+s.innerHTML="<option value=''>-- 選択してください --</option>";
+var d=DETAILS[this.value]||[];
+d.forEach(function(t,i){var o=document.createElement("option");o.value=i;o.textContent=t;s.appendChild(o)});
+});
+document.getElementById("amount").addEventListener("input",function(){
+document.getElementById("amtLabel").textContent=AMTS[this.value];
+});
+
+function fmt(n){if(n<1)return"無料〜数千円";if(n<10)return Math.round(n)+"万円前後";return"約"+Math.round(n)+"万円"}
+function fmtR(lo,hi){return fmt(lo)+" 〜 "+fmt(hi)}
+
+function calc(){
+var cat=document.getElementById("cat").value;
+var amtIdx=parseInt(document.getElementById("amount").value);
+var comp=document.getElementById("complexity").value;
+if(!cat){alert("カテゴリを選択してください");return}
+var amt=AMT_VAL[amtIdx];
+var cm=comp==="simple"?1:comp==="medium"?1.3:1.7;
+
+var lConsultNote="初回30分無料〜5,500円";
+var lRetain,lReward,lMisc=2;
+if(amt<=30){lRetain=10*cm;lReward=amt*0.16*cm}
+else if(amt<=300){lRetain=20*cm;lReward=amt*0.10*cm}
+else{lRetain=30*cm;lReward=amt*0.06*cm+10}
+lRetain=Math.round(lRetain);lReward=Math.round(lReward);
+
+var canSS=amt<=140;
+var sConsultNote="初回無料〜3,300円";
+var sRetain=canSS?Math.round(lRetain*0.5):0;
+var sReward=canSS?Math.round(lReward*0.6):0;
+var sMisc=canSS?1:0;
+var ssNote=canSS?"簡裁代理権あり（請求額140万円以下）":"※ 請求額140万円超は代理不可";
+
+var aConsultNote="初回無料〜2,200円";
+var aDoc=cat==="consumer"?1.5:cat==="estate"?2:cat==="net"?2:3;
+aDoc=Math.round(aDoc*cm);
+var aMisc=0.5;
+var asNote="書類作成のみ（代理権なし）";
+
+var totalLo=lRetain+lReward+lMisc;
+var totalHi=Math.round(totalLo*1.4);
+
+document.getElementById("scenarioText").innerHTML="<strong>"+getCatName(cat)+"</strong>｜請求額 <strong>"+AMTS[amtIdx]+"</strong>｜複雑さ: "+getCompName(comp);
+
+var c3=document.getElementById("cards3");
+c3.innerHTML="";
+var experts=[
+{name:"弁護士",total:fmtR(totalLo,totalHi),note:"交渉〜訴訟まで対応"},
+{name:"司法書士",total:canSS?fmtR(sRetain+sReward+sMisc,Math.round((sRetain+sReward+sMisc)*1.3)):ssNote,note:ssNote},
+{name:"行政書士",total:fmtR(aDoc+aMisc,Math.round((aDoc+aMisc)*1.3)),note:asNote}
+];
+experts.forEach(function(e){
+c3.innerHTML+='<div class="expert-card"><h3>'+e.name+'</h3><div class="price">'+e.total+'</div><div class="detail">'+e.note+'</div></div>';
+});
+
+var tb=document.getElementById("feeBody");
+tb.innerHTML="";
+var rows=[
+["初回相談料",lConsultNote,sConsultNote,aConsultNote],
+["着手金",fmt(lRetain),canSS?fmt(sRetain):"—",fmt(aDoc)+"（書類作成）"],
+["報酬金（成功報酬）",fmt(lReward),canSS?fmt(sReward):"—","—"],
+["実費・通信費等","約"+lMisc+"万円",canSS?"約"+sMisc+"万円":"—","約"+aMisc+"万円"],
+["想定合計",fmtR(totalLo,totalHi),canSS?fmtR(sRetain+sReward+sMisc,Math.round((sRetain+sReward+sMisc)*1.3)):"対応不可",fmtR(aDoc+aMisc,Math.round((aDoc+aMisc)*1.3))]
+];
+rows.forEach(function(r){
+var cls=r[0]==="想定合計"?' style="font-weight:700;background:#eaf0fb"':"";
+tb.innerHTML+="<tr"+cls+"><td>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td><td>"+r[3]+"</td></tr>";
+});
+
+document.getElementById("totalEst").textContent=fmtR(totalLo,totalHi);
+
+var tips={
+labor:"労働問題は<strong>労働基準監督署</strong>（無料）や<strong>法テラス</strong>（収入要件あり）を先に活用できます。未払い賃金の請求書には14日程度の期限を設定し、内容証明郵便（約1,300〜1,800円）で送付するのが効果的です。",
+consumer:"クーリングオフ対象なら<strong>費用ほぼゼロで解決可能</strong>です。訪問販売・電話勧誘は契約書面受領から<strong>8日間</strong>、連鎖販売・業務提供誘引販売は<strong>20日間</strong>（特定商取引法第9条・第24条・第40条・第48条）。内容証明郵便（約1,300〜1,800円）での通知が確実です。",
+estate:"敷金返還は少額訴訟（60万円以下・手数料数千円）が有力です。請求書は14日の支払期限を設けて内容証明郵便（約1,300〜1,800円）で送付しましょう。",
+net:"誹謗中傷は<strong>法務局の人権相談</strong>（無料）→<strong>プロバイダへの削除依頼</strong>（無料）を先に試すのが定石です。発信者情報開示は弁護士費用が高額になるため、慎重に検討を。"
+};
+document.getElementById("tipBox").innerHTML="💡 <strong>コスト削減のヒント：</strong>"+tips[cat];
+
+var area=document.getElementById("checklistArea");
+area.innerHTML="<span class='tag'>"+getCatName(cat)+"</span>";
+var items=CHECKLISTS[cat]||[];
+var html='<div class="chk">';
+items.forEach(function(item,i){
+html+='<label><input type="checkbox" id="chk'+i+'"><span>'+item+'</span></label>';
+});
+html+='</div><div class="chk"><label style="font-weight:600;margin-top:8px">【全カテゴリ共通】</label>';
+["身分証明書（運転免許証等）","印鑑（認印可）","相談内容の時系列メモ","相手方の連絡先・住所","希望する解決方法のメモ"].forEach(function(item,i){
+html+='<label><input type="checkbox" id="chkc'+i+'"><span>'+item+'</span></label>';
+});
+html+='</div>';
+area.innerHTML+=html;
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function getCatName(c){return{labor:"労働問題",consumer:"消費者トラブル",estate:"不動産問題",net:"ネットトラブル"}[c]||""}
+function getCompName(c){return{simple:"シンプル",medium:"やや複雑",complex:"複雑"}[c]||""}
+</script>
+</body>
+</html>

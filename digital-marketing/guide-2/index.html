@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>予算別・広告出稿クイックスタートガイド - kusasyu tools</title>
+<meta name="description" content="商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,予算別・広告出稿クイックスタートガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-2/">
+<meta property="og:title" content="予算別・広告出稿クイックスタートガイド - kusasyu tools">
+<meta property="og:description" content="商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="予算別・広告出稿クイックスタートガイド - kusasyu tools">
+<meta name="twitter:description" content="商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "予算別・広告出稿クイックスタートガイド",
+  "description": "商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-13"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>予算別・広告出稿クイックスタートガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>予算別・広告出稿クイックスタートガイド</h1>
+  <p class="project-name">代理店なしで広告が作れるAI一括生成ツール</p>
+  <div class="content">
+<p>【スタート】月間広告予算はいくら？
+  │
+  ├─ 月5万円 → まず1媒体に集中
+  │    │
+  │    ├─ すでに欲しい人を狙いたい → Google検索広告
+  │    └─ 認知を広げたい → Instagram広告 or Facebook広告
+  │
+  ├─ 月10万円 → 2媒体を組み合わせ
+  │    │
+  │    ├─ 検索広告（5万円）＋ SNS広告（5万円）
+  │    └─ 商品が映える → Instagram優先 / BtoB要素あり → Facebook優先
+  │
+  └─ 月30万円 → 3媒体＋リターゲティング
+       │
+       ├─ 検索広告（10万円）＋ SNS広告（10万円）＋ ディスプレイ広告（10万円）
+       └─ リターゲティング広告を必ず組み込む</p>
+<pre><code>
+### 予算別おすすめ構成
+
+| 月間予算 | 媒体構成 | 配分例 | 期待できる成果 |
+|---------|---------|-------|-------------|
+| **5万円** | Google検索広告のみ | 5万円×1媒体 | 月200〜500クリック、購入意欲の高い層にリーチ |
+| **10万円** | Google検索＋Instagram広告 | 5万＋5万円 | 検索で刈り取り＋SNSで新規認知を獲得 |
+| **30万円** | 検索＋SNS＋ディスプレイ広告 | 10万＋10万＋10万円 | フルファネル対応。リターゲティングで取りこぼし防止 |
+
+### 媒体別・向いている商材
+
+| 媒体 | 向いている商材 | 文字数制限の目安 |
+|------|-------------|--------------|
+| Google検索広告 | 課題解決型商品（サプリ、修理、士業） | 見出し30文字×3＋説明文90文字×2 |
+| Instagram広告 | ビジュアル映えする商品（食品、雑貨、アパレル） | メインテキスト125文字推奨 |
+| Facebook広告 | BtoB寄り商材、セミナー集客 | メインテキスト125文字推奨 |
+| Googleディスプレイ広告 | リターゲティング、認知拡大 | 見出し30文字＋説明文90文字 |
+| LINE広告 | リピート商材、地域密着ビジネス | タイトル20文字＋説明75文字 |
+
+&gt; **ポイント：** 「AI広告コピー生成プロンプト設計ツール」は、上記の媒体別文字数制限に自動対応してコピーを生成します。文字数オーバーを気にする必要はありません。
+
+---
+
+## ステップ2：生成ツールで作ったコピーをそのまま入稿する
+
+### 2-1. コピーを生成する
+
+1. **[AI広告コピー生成プロンプト設計ツール](/)** を開く
+2. 商品情報（商品名・特徴・価格）を入力
+3. ターゲット層（年齢・性別・悩み）を選択
+4. 出稿したい媒体にチェックを入れる
+5. 季節イベント（母の日、夏セールなど）があれば選択
+6. 「生成」ボタンを押す
+
+→ **SNS広告コピー5パターン＋ディスプレイ広告テキスト＋LP骨格テキスト**が一括で出力されます。A/Bテスト用のバリエーションも自動で生成されるため、最低2パターンを入稿に使いましょう。
+
+### 2-2. Google検索広告への入稿手順
+
+| 手順 | やること | 所要時間目安 |
+|-----|---------|-----------|
+| ① | [Google広告](https://ads.google.com/)にログイン → 「新しいキャンペーン」 | 2分 |
+| ② | キャンペーン目標「販売促進」or「見込み顧客の獲得」を選択 | 1分 |
+| ③ | キャンペーンタイプ「検索」を選択、予算を日額で設定（月5万円なら日額約1,600円） | 2分 |
+| ④ | キーワードを設定（商品ジャンル＋「通販」「おすすめ」など） | 5分 |
+| ⑤ | ツールで生成した**見出し**と**説明文**をコピー&amp;ペーストで入力 | 3分 |
+| ⑥ | レスポンシブ検索広告の各欄に、A/Bバリエーションを追加入力 | 3分 |
+| ⑦ | 審査通過を待って配信開始（通常1営業日以内） | — |
+
+**合計：約16分で入稿完了**
+
+### 2-3. Instagram広告への入稿手順
+
+| 手順 | やること | 所要時間目安 |
+|-----|---------|-----------|
+| ① | Meta広告マネージャにログイン → 「作成」ボタン | 2分 |
+| ② | 目的「トラフィック」or「コンバージョン」を選択 | 1分 |
+| ③ | ターゲット設定（地域・年齢・興味関心） | 5分 |
+| ④ | 広告画像を用意し、ツールで生成した**メインテキスト**をペースト | 3分 |
+| ⑤ | A/Bテスト設定をONにし、バリエーション違いのコピーを追加 | 3分 |
+| ⑥ | 日予算を設定（月5万円なら日額約1,600円）→ 公開 | 2分 |
+
+**合計：約16分で入稿完了**
+
+### 2-4. Googleディスプレイ広告への入稿手順（月30万円プラン向け）
+
+| 手順 | やること |
+|-----|---------|
+| ① | Google広告 →「新しいキャンペーン」→「ディスプレイ」を選択 |
+| ② | リターゲティング用のオーディエンスリスト（サイト訪問者）を設定 |
+| ③ | ツールで生成した**ディスプレイ広告テキスト**をペースト |
+| ④ | 画像アセット（商品画像、ロゴ）をアップロード |
+| ⑤ | 日予算を設定（月10万円配分なら日額約3,300円）→ 公開 |
+
+&gt; **KDDIの事例に学ぶ：** KDDIはAIバナー制作で工数50%削減を実現しました。同じ発想で、コピー作成をAIに任せれば、あなたも入稿作業を**従来の半分以下の時間**で完了できます。
+
+---
+
+## ステップ3：効果測定の見方——3つの数字だけ見ればOK
+
+広告を出したあと、最初に見るべき指標はたった3つです。
+
+### 見るべき3つの指標
+
+| 指標 | 意味 | 目安（EC業界平均） | どこで見る |
+|-----|------|----------------|---------|
+| **CTR（クリック率）** | 広告を見た人のうち何%がクリックしたか | 検索広告：3〜5%、SNS広告：0.8〜1.5% | 各広告管理画面 |
+| **CPC（クリック単価）** | 1クリックあたりの費用 | 検索広告：50〜200円、SNS広告：30〜100円 | 各広告管理画面 |
+| **CVR（コンバージョン率）** | クリックした人のうち何%が購入・問合せしたか | EC平均：1〜3% | Google Analytics等 |
+
+### 判断フロー：結果を見てどうするか
+
+</code></pre>
+<p>【広告配信から1週間後】
+  │
+  ├─ CTRが目安より低い
+  │    → コピーの問題。ツールでA/Bテスト用の別パターンに差し替え
+  │
+  ├─ CTRは良いがCVRが低い
+  │    → LP（ランディングページ）の問題。ツールのLP骨格テキストを活用して改善
+  │
+  └─ CTR・CVR共に良好だがCPCが高い
+       → キーワードや入札の問題。除外キーワードを追加 or ターゲットを絞る</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

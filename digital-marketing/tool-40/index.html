@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI広告コピー生成プロンプト設計ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pri:#6C5CE7;--bg:#f8f9fa;--card:#fff;--txt:#2d3436;--sub:#636e72;--ok:#00b894;--ng:#d63031;--border:#dfe6e9;--r:10px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:var(--txt);line-height:1.6;padding:12px;max-width:820px;margin:0 auto}
+h1{font-size:1.25em;text-align:center;padding:16px 0 4px;color:var(--pri)}
+.sub{text-align:center;color:var(--sub);font-size:.8em;margin-bottom:16px}
+.card{background:var(--card);border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card h2{font-size:.95em;color:var(--pri);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e8e6ff}
+label{display:block;font-weight:600;font-size:.83em;margin:8px 0 3px}
+input,select,textarea{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:.9em;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:130px}
+.checks{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.checks label{display:inline-flex;align-items:center;font-weight:400;font-size:.85em;gap:4px;margin:0;cursor:pointer;background:#f1f0ff;padding:4px 10px;border-radius:5px}
+.checks input{width:auto}
+button{cursor:pointer;border:none;border-radius:7px;padding:10px 18px;font-size:.9em;font-weight:600;font-family:inherit;transition:.2s}
+.btn-main{background:var(--pri);color:#fff;width:100%;padding:13px;font-size:1em;margin-top:10px}
+.btn-main:hover{opacity:.9}
+.btn-copy{background:#dfe6e9;color:var(--txt);font-size:.78em;padding:5px 12px;margin-left:6px}
+.btn-copy:hover{background:#c8d6e5}
+.prompt-box{background:#1e1e2e;color:#a6e3a1;padding:14px;border-radius:8px;font-size:.82em;white-space:pre-wrap;word-break:break-all;max-height:360px;overflow-y:auto;margin:8px 0;line-height:1.5;font-family:"SF Mono",Consolas,monospace}
+.tabs{display:flex;gap:3px;margin-bottom:10px;flex-wrap:wrap}
+.tab{padding:7px 12px;border-radius:7px 7px 0 0;background:#dfe6e9;font-size:.8em;font-weight:600;cursor:pointer}
+.tab.active{background:var(--pri);color:#fff}
+.panel{display:none}.panel.active{display:block}
+.counter{font-size:.78em;margin-top:3px;font-weight:600}
+.counter.ok{color:var(--ok)}.counter.warn{color:#e17055}.counter.ng{color:var(--ng)}
+.result-area{width:100%;min-height:80px;padding:8px 10px;border:1.5px dashed var(--border);border-radius:7px;font-size:.88em;font-family:inherit;resize:vertical}
+.tip{background:#ffeaa7;padding:8px 12px;border-radius:7px;font-size:.8em;margin:8px 0;color:#2d3436}
+#output{display:none}
+@media(max-width:600px){.row{flex-direction:column}.tabs{gap:2px}.tab{font-size:.72em;padding:5px 8px}}
+</style>
+<meta name="description" content="商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI広告コピー生成プロンプト設計ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-40/">
+<meta property="og:title" content="AI広告コピー生成プロンプト設計ツール - kusasyu tools">
+<meta property="og:description" content="商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-40/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI広告コピー生成プロンプト設計ツール - kusasyu tools">
+<meta name="twitter:description" content="商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI広告コピー生成プロンプト設計ツール",
+  "description": "商品情報・ターゲット層・季節イベントを入力するだけで、SNS広告コピー（5パターン）・ディスプレイ広告テキスト・LP骨格テキストをAIが一括生成するHTMLツール。A/Bテスト用バリエーションも自動生成し、広告代理店を使えない中小EC事業者が即座に広告出稿準備ができる。媒体別の文字数制限にも自動対応する",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-40/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI広告コピー生成プロンプト設計ツール</span></div>
+<h1>AI広告コピー生成プロンプト設計ツール</h1>
+<p class="sub">商品情報を入力 → 最適化プロンプトを自動生成 → AIに貼るだけで広告コピー完成</p>
+
+<div class="card" id="inputSection">
+<h2>STEP1: 商品・サービス情報を入力</h2>
+<label>商品・サービス名 *</label>
+<input id="prodName" placeholder="例: オーガニック美容オイル HARUKA">
+<div class="row">
+<div><label>価格帯</label><input id="price" placeholder="例: 3,980円"></div>
+<div><label>業種カテゴリ</label>
+<select id="category"><option value="">選択してください</option><option>美容・コスメ</option><option>食品・飲料</option><option>アパレル・ファッション</option><option>健康・サプリ</option><option>日用品・雑貨</option><option>家電・ガジェット</option><option>教育・スクール</option><option>飲食店・店舗</option><option>BtoBサービス</option><option>その他</option></select></div>
+</div>
+<label>商品の特徴・強み（3つ以上推奨）</label>
+<textarea id="features" placeholder="例: 国産原料100%、無添加、3秒で浸透するテクスチャー"></textarea>
+<label>ターゲット層</label>
+<textarea id="target" placeholder="例: 30〜40代の乾燥肌に悩む働く女性、スキンケアにかける時間が少ない"></textarea>
+<div class="row">
+<div><label>季節・イベント</label>
+<select id="season"><option value="">選択（任意）</option><option>春（新生活・花粉）</option><option>夏（UV・冷感）</option><option>秋（乾燥・ハロウィン）</option><option>冬（クリスマス・年末）</option><option>母の日</option><option>父の日</option><option>バレンタイン</option><option>ホワイトデー</option><option>ブラックフライデー</option><option>新年セール</option></select></div>
+<div><label>トーン・雰囲気</label>
+<select id="tone"><option value="親しみやすい">親しみやすい</option><option value="高級感">高級感</option><option value="緊急性">緊急性・限定感</option><option value="専門的">専門的・信頼感</option><option value="ポップ">ポップ・カジュアル</option></select></div>
+</div>
+<label>出稿媒体（複数選択可）</label>
+<div class="checks">
+<label><input type="checkbox" value="x" checked> X（旧Twitter）</label>
+<label><input type="checkbox" value="ig" checked> Instagram</label>
+<label><input type="checkbox" value="fb"> Facebook</label>
+<label><input type="checkbox" value="google" checked> Google広告</label>
+<label><input type="checkbox" value="line"> LINE広告</label>
+<label><input type="checkbox" value="yahoo"> Yahoo!広告</label>
+</div>
+<label>補足情報（任意）</label>
+<input id="extra" placeholder="例: 初回限定50%OFF、送料無料、レビュー★4.8">
+<button class="btn-main" onclick="generate()">プロンプトを自動生成する</button>
+</div>
+
+<div id="output">
+<div class="card">
+<h2>STEP2: 生成されたプロンプト</h2>
+<p class="tip">下のプロンプトをコピーして ChatGPT / Claude に貼り付けてください。広告コピーが一括生成されます。</p>
+<div class="tabs" id="promptTabs"></div>
+<div id="promptPanels"></div>
+</div>
+
+<div class="card">
+<h2>STEP3: 生成結果を貼り付け＆文字数チェック</h2>
+<div class="tabs" id="resultTabs"></div>
+<div id="resultPanels"></div>
+</div>
+</div>
+
+<script>
+const LIMITS={x:{name:"X（旧Twitter）",headline:140,desc:0},ig:{name:"Instagram",headline:2200,desc:0},fb:{name:"Facebook",headline:125,desc:0},google:{name:"Google広告",headline:30,desc:90},line:{name:"LINE広告",headline:20,desc:75},yahoo:{name:"Yahoo!広告",headline:30,desc:90}};
+
+function getMedia(){return [...document.querySelectorAll('.checks input:checked')].map(c=>c.value)}
+
+function copy(el){
+  const t=document.getElementById(el);
+  if(!t)return;
+  const txt=t.tagName==='TEXTAREA'?t.value:t.textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const b=t.parentElement.querySelector('.btn-copy');
+    if(b){const o=b.textContent;b.textContent='コピー済み!';setTimeout(()=>b.textContent=o,1200)}
+  });
+}
+
+function buildPrompt(media){
+  const p=document.getElementById('prodName').value||'（未入力）';
+  const pr=document.getElementById('price').value;
+  const cat=document.getElementById('category').value;
+  const feat=document.getElementById('features').value||'（未入力）';
+  const tgt=document.getElementById('target').value||'（未入力）';
+  const ssn=document.getElementById('season').value;
+  const tone=document.getElementById('tone').value;
+  const ext=document.getElementById('extra').value;
+  const m=LIMITS[media];
+
+  let prompt=`あなたはダイレクトレスポンス広告のプロのコピーライターです。\n以下の商品情報をもとに、${m.name}向けの広告コピーを作成してください。\n\n## 商品情報\n- 商品名: ${p}\n`;
+  if(pr)prompt+=`- 価格: ${pr}\n`;
+  if(cat)prompt+=`- 業種: ${cat}\n`;
+  prompt+=`- 特徴・強み: ${feat}\n- ターゲット: ${tgt}\n- トーン: ${tone}\n`;
+  if(ssn)prompt+=`- 季節・イベント: ${ssn}\n`;
+  if(ext)prompt+=`- 補足: ${ext}\n`;
+
+  prompt+=`\n## 出力指示\n`;
+
+  if(media==='google'||media==='yahoo'){
+    prompt+=`### 検索広告コピー（5パターン）\nパターンごとに以下を出力:\n- 見出し1（${m.headline}文字以内）\n- 見出し2（${m.headline}文字以内）\n- 説明文（${m.desc}文字以内）\n※各パターンで訴求軸を変えること（価格訴求/品質訴求/限定訴求/悩み解決/実績訴求）\n`;
+    prompt+=`\n### ディスプレイ広告テキスト（3パターン）\n- 見出し（${m.headline}文字以内）\n- 説明文（${m.desc}文字以内）\n- CTA文言\n`;
+  } else {
+    const lim=m.headline;
+    prompt+=`### SNS広告コピー（5パターン）\n各${lim}文字以内で、訴求軸を変えて5パターン作成:\n1. 悩み共感型\n2. ベネフィット提示型\n3. 数字・実績型\n4. 限定・緊急型\n5. ストーリー型\n`;
+    if(media==='ig')prompt+=`※ハッシュタグは5個以内で末尾に付記\n`;
+    prompt+=`\n### ディスプレイ広告テキスト（3パターン）\n- 見出し（20文字以内）\n- 本文（80文字以内）\n- CTA文言\n`;
+  }
+
+  prompt+=`\n### LP（ランディングページ）骨格テキスト\n以下のセクション構成で各セクションのコピーを作成:\n1. ファーストビュー（キャッチコピー＋サブコピー）\n2. 悩み・課題の提起（3つ）\n3. 解決策としての商品紹介\n4. 特徴・ベネフィット（3つ）\n5. お客様の声（2件のサンプル）\n6. 料金・オファー\n7. CTA（行動喚起）\n\n### A/Bテスト案\n上記の広告コピーから特に成果が見込める2パターンを選び、以下を提案:\n- テストする要素（見出し/CTA/訴求軸）\n- A案 vs B案の具体的な文言\n- 判定基準と推奨テスト期間\n\n## 注意事項\n- 薬機法・景表法に抵触する表現は避ける\n- 文字数制限を厳守する\n- 各コピーの末尾に【文字数: ○○字】と記載する`;
+
+  return prompt;
+}
+
+function generate(){
+  const media=getMedia();
+  if(!media.length){alert('出稿媒体を1つ以上選択してください');return}
+  if(!document.getElementById('prodName').value){alert('商品名を入力してください');return}
+
+  const tabsEl=document.getElementById('promptTabs');
+  const panelsEl=document.getElementById('promptPanels');
+  const rTabsEl=document.getElementById('resultTabs');
+  const rPanelsEl=document.getElementById('resultPanels');
+  tabsEl.innerHTML='';panelsEl.innerHTML='';rTabsEl.innerHTML='';rPanelsEl.innerHTML='';
+
+  media.forEach((m,i)=>{
+    const info=LIMITS[m];
+    const prompt=buildPrompt(m);
+    const pid='p_'+m;
+    const ac=i===0?' active':'';
+
+    tabsEl.innerHTML+=`<div class="tab${ac}" onclick="switchTab('prompt','${m}',this)">${info.name}</div>`;
+    panelsEl.innerHTML+=`<div class="panel${ac}" id="panel_prompt_${m}"><div style="display:flex;align-items:center;justify-content:flex-end;margin-bottom:4px"><button class="btn-copy" onclick="copy('${pid}')">コピー</button></div><div class="prompt-box" id="${pid}">${escHtml(prompt)}</div></div>`;
+
+    let resultHtml=`<div class="panel${ac}" id="panel_result_${m}">`;
+    if(m==='google'||m==='yahoo'){
+      resultHtml+=`<label>見出し（${info.headline}文字以内）</label><textarea class="result-area" oninput="countChars(this,${info.headline})" placeholder="AIの生成結果を貼り付け"></textarea><div class="counter"></div>`;
+      resultHtml+=`<label>説明文（${info.desc}文字以内）</label><textarea class="result-area" oninput="countChars(this,${info.desc})" placeholder="説明文を貼り付け"></textarea><div class="counter"></div>`;
+    } else {
+      resultHtml+=`<label>広告コピー（${info.headline}文字以内）</label><textarea class="result-area" oninput="countChars(this,${info.headline})" placeholder="AIの生成結果を貼り付け" rows="6"></textarea><div class="counter"></div>`;
+    }
+    resultHtml+=`<label>LP骨格テキスト</label><textarea class="result-area" rows="6" placeholder="LP骨格テキストを貼り付け"></textarea>`;
+    resultHtml+=`<label>A/Bテスト案</label><textarea class="result-area" rows="4" placeholder="A/Bテスト案を貼り付け"></textarea></div>`;
+    rPanelsEl.innerHTML+=resultHtml;
+
+    rTabsEl.innerHTML+=`<div class="tab${ac}" onclick="switchTab('result','${m}',this)">${info.name}</div>`;
+  });
+
+  document.getElementById('output').style.display='block';
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+
+function switchTab(group,key,el){
+  const container=group==='prompt'?'promptTabs':'resultTabs';
+  const panels=group==='prompt'?'promptPanels':'resultPanels';
+  document.querySelectorAll(`#${container} .tab`).forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll(`#${panels} .panel`).forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(`panel_${group}_${key}`).classList.add('active');
+}
+
+function countChars(el,limit){
+  const len=el.value.length;
+  const cnt=el.nextElementSibling;
+  if(!cnt||!cnt.classList.contains('counter'))return;
+  cnt.textContent=`${len} / ${limit}文字`;
+  cnt.className='counter '+(len<=limit?'ok':'ng');
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+</script>
+</body>
+</html>
