@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>相続不動産4択シミュレーター「InheritCalc」 - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#2d3748,#4a5568);color:#fff;padding:24px 20px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.1em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+label{display:block;font-size:.85em;font-weight:600;margin-bottom:4px;color:#4a5568}
+input,select{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:6px;font-size:1em}
+input:focus,select:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 3px rgba(66,153,225,.2)}
+.hint{font-size:.75em;color:#718096;margin-top:2px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:8px;font-size:1.1em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{opacity:.9}
+#result{display:none}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tab{padding:8px 14px;border-radius:6px 6px 0 0;cursor:pointer;font-size:.85em;font-weight:600;border:1px solid #cbd5e0;border-bottom:none;background:#f7fafc}
+.tab.active{background:#fff;color:#3182ce;border-color:#3182ce;border-bottom:1px solid #fff;margin-bottom:-1px;position:relative;z-index:1}
+.tab-content{display:none;border:1px solid #cbd5e0;border-radius:0 6px 6px 6px;padding:16px;background:#fff}
+.tab-content.active{display:block}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+th,td{padding:6px 8px;text-align:right;border-bottom:1px solid #edf2f7}
+th{background:#f7fafc;font-weight:600;text-align:center}
+td:first-child,th:first-child{text-align:left}
+.plus{color:#38a169}.minus{color:#e53e3e}
+canvas{width:100%;max-height:300px}
+.recommend{padding:16px;border-radius:8px;margin-top:12px}
+.recommend h3{margin-bottom:8px}
+.recommend.best{background:#f0fff4;border:1px solid #9ae6b4}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75em;font-weight:600;margin-right:4px}
+.tag-sell{background:#bee3f8;color:#2b6cb0}
+.tag-rent{background:#c6f6d5;color:#276749}
+.tag-lot{background:#fefcbf;color:#975a16}
+.tag-trust{background:#e9d8fd;color:#553c9a}
+.compare-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+@media(max-width:600px){.compare-row{grid-template-columns:1fr 1fr}}
+.cbox{text-align:center;padding:12px 8px;border-radius:8px;font-size:.85em}
+.cbox .val{font-size:1.3em;font-weight:700;margin:4px 0}
+.cbox .lbl{font-size:.75em;opacity:.8}
+.notes{font-size:.75em;color:#718096;margin-top:12px;padding:10px;background:#f7fafc;border-radius:6px}
+</style>
+<meta name="description" content="相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,相続不動産4択シミュレーター「InheritCalc」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/inheritcalc/">
+<meta property="og:title" content="相続不動産4択シミュレーター「InheritCalc」 - kusasyu tools">
+<meta property="og:description" content="相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/inheritcalc/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="相続不動産4択シミュレーター「InheritCalc」 - kusasyu tools">
+<meta name="twitter:description" content="相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "相続不動産4択シミュレーター「InheritCalc」",
+  "description": "相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/inheritcalc/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">相続不動産4択シミュレーター「InheritCalc」</span></div>
+<div class="wrap">
+<header>
+<h1>InheritCalc</h1>
+<p>相続不動産4択シミュレーター ― 売る・貸す・更地・信託を5年収支で比較</p>
+</header>
+<div class="card">
+<h2>物件情報を入力</h2>
+<div class="form-grid">
+<div><label>固定資産税（年額・円）</label><input type="number" id="tax" value="120000" min="0" step="1000"><div class="hint">納税通知書の合計額</div></div>
+<div><label>築年数</label><input type="number" id="age" value="30" min="0" max="100"></div>
+<div><label>延床面積（m²）</label><input type="number" id="floor" value="100" min="1"></div>
+<div><label>土地面積（m²）</label><input type="number" id="land" value="150" min="1"></div>
+<div><label>エリア区分</label><select id="area"><option value="urban">都市部（東京23区・政令市中心部）</option><option value="suburb" selected>郊外（政令市周辺・県庁所在地）</option><option value="rural">地方（人口10万未満の市町村）</option></select></div>
+<div><label>建物構造</label><select id="struct"><option value="wood" selected>木造</option><option value="steel">鉄骨造</option><option value="rc">RC造</option></select></div>
+</div>
+<button class="btn" onclick="simulate()">シミュレーション実行</button>
+</div>
+<div id="result">
+<div class="card"><h2>5年間累計収支の比較</h2><canvas id="chart" height="260"></canvas><div class="compare-row" id="summary"></div></div>
+<div class="card"><h2>年別収支の詳細</h2><div class="tabs" id="tabs"></div><div id="panels"></div></div>
+<div class="card"><h2>総合判定</h2><div id="recContent"></div></div>
+<div class="notes">※ 本シミュレーションは概算です。実際の税額・売却価格・賃料は地域の相場や個別事情で大きく異なります。最終判断は税理士・不動産会社等の専門家にご相談ください。<br>※ 相続税の取得費加算特例・空き家3,000万円特別控除は考慮していません。適用可能な場合は売却の手取りが大幅に改善します。</div>
+</div>
+</div>
+<script>
+function yen(n){return n.toLocaleString()+'円'}
+function simulate(){
+  var tax=+document.getElementById('tax').value,age=+document.getElementById('age').value,floor=+document.getElementById('floor').value,land=+document.getElementById('land').value,area=document.getElementById('area').value,st=document.getElementById('struct').value;
+  if(!tax||!floor||!land){alert('全項目を入力してください');return}
+  // エリア別パラメータ: 市場価格倍率, 賃料単価(円/m²), 入居率, 駐車場月額/台
+  var AP={urban:{mul:1.4,rent:1800,occ:.9,park:25000},suburb:{mul:1.1,rent:1100,occ:.8,park:12000},rural:{mul:.85,rent:700,occ:.65,park:5000}};
+  var A=AP[area],life={wood:35,steel:45,rc:60},res=Math.max(.15,1-age/life[st]);
+  // 固定資産税から評価額を逆算（住宅用地特例1/6を考慮）
+  var rebU={wood:160000,steel:200000,rc:250000},bldA=floor*rebU[st]*res;
+  var landA=Math.max(0,(tax/0.014-bldA)*6),landM=landA/0.7*A.mul,bldM=Math.max(0,bldA/0.7*res),totalM=landM+bldM;
+
+  // 1.売却: 一括売却→仲介手数料3.3%+6.6万、譲渡所得税20.315%（長期）
+  function calcSell(){var p=Math.round(totalM),fee=Math.round(p*0.033+66000),reg=80000,gain=p-fee-reg-p*0.05,itx=Math.round(Math.max(0,gain)*0.20315),net=p-fee-reg-itx,rows=[{y:'初年度',inc:p,cost:fee+reg+itx,net:net}];for(var i=2;i<=5;i++)rows.push({y:i+'年目',inc:0,cost:0,net:0});return{rows:rows,total:net,label:'売却',tag:'tag-sell',detail:'売却価格 '+yen(p)+' / 手数料 '+yen(fee)+' / 税 '+yen(itx)}}
+
+  // 2.賃貸: リフォーム後に賃貸運営
+  function calcRent(){var af=Math.max(.5,1-age*0.012),mr=Math.round(floor*A.rent*af/1000)*1000,ai=mr*12*A.occ,rf=Math.round(floor*(age>20?12000:5000)),init=rf+mr,mgmt=Math.round(mr*12*0.05),rep=Math.round(mr*12*0.05),ac=tax+mgmt+rep+20000,itx=Math.round(Math.max(0,ai-ac)*0.2),rows=[{y:'初年度',inc:Math.round(ai),cost:Math.round(init+ac+itx),net:Math.round(ai-init-ac-itx)}];for(var i=2;i<=5;i++)rows.push({y:i+'年目',inc:Math.round(ai),cost:Math.round(ac+itx),net:Math.round(ai-ac-itx)});var t=rows.reduce(function(s,r){return s+r.net},0);return{rows:rows,total:t,label:'賃貸',tag:'tag-rent',detail:'月額賃料 '+yen(mr)+' / 入居率 '+Math.round(A.occ*100)+'% / リフォーム '+yen(rf)}}
+
+  // 3.更地化: 解体→駐車場運営（固定資産税は住宅用地特例消滅で約3.5倍）
+  function calcLot(){var du={wood:30000,steel:40000,rc:55000},dc=Math.round(floor*du[st]),nt=Math.round(tax*3.5),sp=Math.max(1,Math.floor(land/20)),pi=sp*A.park*12*0.75,mg=Math.round(pi*0.1),ac=nt+mg+30000,rows=[{y:'初年度',inc:0,cost:Math.round(dc+ac),net:Math.round(-dc-ac)}];for(var i=2;i<=5;i++)rows.push({y:i+'年目',inc:Math.round(pi),cost:Math.round(ac),net:Math.round(pi-ac)});var t=rows.reduce(function(s,r){return s+r.net},0);return{rows:rows,total:t,label:'更地化',tag:'tag-lot',detail:'解体費 '+yen(dc)+' / 駐車場'+sp+'台 / 税額'+yen(nt)+'/年'}}
+
+  // 4.家族信託: 信託契約→賃貸運営（初期費用+監督人報酬が追加）
+  function calcTrust(){var sc=650000,af=Math.max(.5,1-age*0.012),mr=Math.round(floor*A.rent*af/1000)*1000,ai=mr*12*A.occ,rf=Math.round(floor*(age>20?12000:5000)),sv=120000,mgmt=Math.round(mr*12*0.05),rep=Math.round(mr*12*0.05),ac=tax+mgmt+rep+sv+20000,itx=Math.round(Math.max(0,ai-ac)*0.2),rows=[{y:'初年度',inc:Math.round(ai),cost:Math.round(sc+rf+ac+itx),net:Math.round(ai-sc-rf-ac-itx)}];for(var i=2;i<=5;i++)rows.push({y:i+'年目',inc:Math.round(ai),cost:Math.round(ac+itx),net:Math.round(ai-ac-itx)});var t=rows.reduce(function(s,r){return s+r.net},0);return{rows:rows,total:t,label:'家族信託',tag:'tag-trust',detail:'初期費用 '+yen(sc+rf)+' / 監督人報酬 '+yen(sv)+'/年'}}
+
+  var opts=[calcSell(),calcRent(),calcLot(),calcTrust()],colors=['#3182ce','#38a169','#d69e2e','#805ad5'],bgC=['#ebf8ff','#f0fff4','#fefcbf','#faf5ff'];
+  // サマリーカード
+  var sh='';opts.forEach(function(o,i){sh+='<div class="cbox" style="background:'+bgC[i]+'"><div class="lbl"><span class="tag '+o.tag+'">'+o.label+'</span></div><div class="val" style="color:'+(o.total>=0?'#276749':'#c53030')+'">'+yen(o.total)+'</div><div class="lbl">5年累計</div></div>'});
+  document.getElementById('summary').innerHTML=sh;
+  drawChart(opts,colors);
+  // タブ＋年別テーブル
+  var tabH='',panH='';
+  opts.forEach(function(o,i){tabH+='<div class="tab '+(i===0?'active':'')+'" onclick="switchTab('+i+')">'+o.label+'</div>';var t='<div class="tab-content '+(i===0?'active':'')+'" id="panel'+i+'"><p style="font-size:.8em;color:#718096;margin-bottom:8px">'+o.detail+'</p><table><tr><th>年</th><th>収入</th><th>支出</th><th>収支</th><th>累計</th></tr>';var c=0;o.rows.forEach(function(r){c+=r.net;t+='<tr><td>'+r.y+'</td><td class="plus">'+(r.inc?yen(r.inc):'-')+'</td><td class="minus">'+(r.cost?yen(r.cost):'-')+'</td><td style="color:'+(r.net>=0?'#38a169':'#e53e3e')+'">'+yen(r.net)+'</td><td style="color:'+(c>=0?'#38a169':'#e53e3e')+';font-weight:600">'+yen(c)+'</td></tr>'});t+='</table></div>';panH+=t});
+  document.getElementById('tabs').innerHTML=tabH;document.getElementById('panels').innerHTML=panH;
+  // 推奨判定
+  var sorted=opts.slice().sort(function(a,b){return b.total-a.total}),best=sorted[0];
+  var rec='<div class="recommend best"><h3>推奨：<span class="tag '+best.tag+'">'+best.label+'</span>（5年累計 '+yen(best.total)+'）</h3>';
+  var msgs={売却:'築'+age+'年の物件は今後も価値が下がるリスクがあります。売却で一括現金化し、遠方管理の負担をなくすのが合理的です。',賃貸:'賃貸需要のあるエリアで安定収益が見込めます。管理会社に委託すれば遠方でも運営可能です。',更地化:'建物の価値が低く、駐車場等の土地活用が有利です。ただし固定資産税の増加に注意してください。',家族信託:'賃貸収益を確保しつつ将来の売却判断を柔軟に行えます。認知症による資産凍結リスクの回避にもなります。'};
+  rec+='<p>'+msgs[best.label]+'</p></div><div style="margin-top:10px;font-size:.85em"><strong>他の選択肢との差額：</strong><ul style="margin-top:4px;padding-left:20px">';
+  for(var i=1;i<sorted.length;i++){rec+='<li><span class="tag '+sorted[i].tag+'">'+sorted[i].label+'</span> との差：'+yen(best.total-sorted[i].total)+'</li>'}
+  rec+='</ul></div>';document.getElementById('recContent').innerHTML=rec;
+  document.getElementById('result').style.display='block';document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function switchTab(idx){document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',i===idx)});document.querySelectorAll('.tab-content').forEach(function(p,i){p.classList.toggle('active',i===idx)})}
+function drawChart(opts,colors){var cv=document.getElementById('chart'),ctx=cv.getContext('2d'),dpr=window.devicePixelRatio||1,W=cv.clientWidth,H=260;cv.width=W*dpr;cv.height=H*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);var vals=opts.map(function(o){return o.total}),mn=Math.min.apply(null,vals.concat([0])),mx=Math.max.apply(null,vals.concat([0])),range=mx-mn||1,pad={t:30,b:50,l:20,r:20},cw=W-pad.l-pad.r,ch=H-pad.t-pad.b,zeroY=pad.t+ch*(mx/range),barW=Math.min(80,cw/opts.length-20);ctx.strokeStyle='#cbd5e0';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pad.l,zeroY);ctx.lineTo(W-pad.r,zeroY);ctx.stroke();opts.forEach(function(o,i){var x=pad.l+(cw/opts.length)*i+(cw/opts.length-barW)/2,h=Math.abs(o.total)/range*ch,y=o.total>=0?zeroY-h:zeroY,r=4;ctx.fillStyle=colors[i];ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+barW-r,y);ctx.quadraticCurveTo(x+barW,y,x+barW,y+r);ctx.lineTo(x+barW,y+h-r);ctx.quadraticCurveTo(x+barW,y+h,x+barW-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.fill();ctx.fillStyle='#1a202c';ctx.font='bold 12px sans-serif';ctx.textAlign='center';var valY=o.total>=0?y-8:y+h+16,dv=Math.abs(o.total)>=10000?(o.total>=0?'+':'')+Math.round(o.total/10000)+'万円':o.total.toLocaleString()+'円';ctx.fillText(dv,x+barW/2,valY);ctx.fillStyle='#4a5568';ctx.font='12px sans-serif';ctx.fillText(o.label,x+barW/2,H-pad.b+18)})}
+</script>
+</body>
+</html>

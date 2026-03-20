@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>アナリスト不在でも回せる広告改善5ステップ - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.7}
+.header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:1.5rem 1rem;text-align:center}
+.header h1{font-size:1.25rem;margin-bottom:.3rem}
+.header p{font-size:.82rem;opacity:.8}
+.progress{background:#e0e0e0;height:8px;border-radius:4px;margin:1rem auto;max-width:600px}
+.progress-fill{height:100%;background:#43a047;border-radius:4px;transition:width .4s}
+.step-nav{display:flex;justify-content:center;gap:6px;margin:1rem 0;flex-wrap:wrap}
+.step-dot{width:36px;height:36px;border-radius:50%;border:2px solid #bbb;background:#fff;font-size:.8rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.step-dot.active{background:#1a237e;color:#fff;border-color:#1a237e}
+.step-dot.done{background:#43a047;color:#fff;border-color:#43a047}
+.wrap{max-width:720px;margin:0 auto;padding:0 1rem 2rem}
+.step{display:none}
+.step.active{display:block}
+.card{background:#fff;border-radius:10px;padding:1.2rem;margin-bottom:1rem;box-shadow:0 2px 6px rgba(0,0,0,.07)}
+.card h2{font-size:1.05rem;color:#1a237e;margin-bottom:.6rem;border-left:4px solid #3f51b5;padding-left:.5rem}
+.card h3{font-size:.92rem;color:#283593;margin:.8rem 0 .3rem}
+.ex{background:#e8eaf6;border-radius:6px;padding:.6rem .8rem;font-size:.82rem;margin:.5rem 0}
+.ex b{color:#1a237e}
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:.6rem 0}
+.tbl th{background:#e8eaf6;padding:6px 8px;text-align:left;font-size:.78rem}
+.tbl td{padding:6px 8px;border-bottom:1px solid #eee}
+.quiz{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:1rem;margin-top:1rem}
+.quiz p{font-size:.88rem;font-weight:700;margin-bottom:.5rem}
+.quiz label{display:block;padding:.3rem 0;font-size:.84rem;cursor:pointer}
+.quiz-btn{margin-top:.5rem;padding:6px 18px;background:#3f51b5;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:.84rem}
+.quiz-msg{margin-top:.4rem;font-size:.84rem;font-weight:700}
+.ok{color:#2e7d32}.ng{color:#c62828}
+.nav-btns{display:flex;gap:.5rem;margin-top:1.2rem}
+.nav-btn{flex:1;padding:.7rem;border:none;border-radius:6px;font-size:.92rem;font-weight:700;cursor:pointer}
+.prev{background:#e0e0e0;color:#333}
+.next{background:#3f51b5;color:#fff}
+.next:hover{background:#1a237e}
+.diagram{background:#f5f5f5;border-radius:8px;padding:.8rem;font-size:.82rem;text-align:center;margin:.6rem 0;font-family:monospace;line-height:1.5}
+.note{font-size:.76rem;color:#888;margin-top:.3rem}
+@media(max-width:500px){.header h1{font-size:1.1rem}}
+</style>
+<meta name="description" content="GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,アナリスト不在でも回せる広告改善5ステップ">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-42/">
+<meta property="og:title" content="アナリスト不在でも回せる広告改善5ステップ - kusasyu tools">
+<meta property="og:description" content="GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-42/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="アナリスト不在でも回せる広告改善5ステップ - kusasyu tools">
+<meta name="twitter:description" content="GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "アナリスト不在でも回せる広告改善5ステップ",
+  "description": "GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-42/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">アナリスト不在でも回せる広告改善5ステップ</span></div>
+<div class="header">
+<h1>アナリスト不在でも回せる<br>広告改善5ステップ</h1>
+<p>専任マーケターなしで広告PDCAを回す実践コース</p>
+<div class="progress"><div class="progress-fill" id="pbar" style="width:20%"></div></div>
+<div class="step-nav" id="dots"></div>
+</div>
+<div class="wrap">
+
+<!-- STEP 1 -->
+<div class="step active" id="s1">
+<div class="card">
+<h2>Step 1｜各チャネルのCSVエクスポート方法</h2>
+<p style="font-size:.85rem">「5大チャネル広告パフォーマンス自動診断ツール」にデータを読み込むため、まず各広告管理画面からCSVをダウンロードします。</p>
+<table class="tbl"><tr><th>チャネル</th><th>操作手順</th><th>注意点</th></tr>
+<tr><td><b>Google広告</b></td><td>キャンペーン→レポート→ダウンロード→CSV</td><td>期間を「過去30日」に統一</td></tr>
+<tr><td><b>GA4</b></td><td>レポート→エクスポート→CSV</td><td>「セッション」と「コンバージョン」列を含む</td></tr>
+<tr><td><b>Yahoo!広告</b></td><td>パフォーマンスレポート→CSV作成→DL</td><td>検索広告・ディスプレイ広告は別々に出力</td></tr>
+<tr><td><b>LINE広告</b></td><td>レポート→期間指定→CSVダウンロード</td><td>日別レポートを選択</td></tr>
+<tr><td><b>楽天広告</b></td><td>RPP広告→実績DL→CSV</td><td>Shift-JIS形式のため次期バージョンで対応予定</td></tr>
+</table>
+<div class="ex"><b>EC事例：</b>アパレルECでは週に1回月曜にGoogle広告・Yahoo!広告・LINE広告の3チャネル分CSVをまとめてDLし、30分で完了しています。</div>
+<div class="ex"><b>クリニック事例：</b>美容クリニックではGoogle広告とLINE広告の2チャネルのみ運用。月2回のCSV取得で十分回ります。</div>
+<div class="ex"><b>士業事例：</b>税理士事務所はGoogle広告1本。週次でCSVを取得し、繁忙期（確定申告前）だけYahoo!広告を追加。</div>
+</div>
+<div class="quiz" id="q1">
+<p>理解度チェック：GA4のCSVエクスポートで必ず含めるべき列は？</p>
+<label><input type="radio" name="q1" value="a"> インプレッション数のみ</label>
+<label><input type="radio" name="q1" value="b"> セッションとコンバージョン</label>
+<label><input type="radio" name="q1" value="c"> ページビュー数のみ</label>
+<button class="quiz-btn" onclick="chk('q1','b')">回答する</button>
+<div class="quiz-msg" id="q1m"></div>
+</div>
+<div class="nav-btns"><div style="flex:1"></div><button class="nav-btn next" onclick="go(2)">次のステップへ →</button></div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step" id="s2">
+<div class="card">
+<h2>Step 2｜KPIの読み方（数式なしで理解する）</h2>
+<p style="font-size:.85rem">CPA・ROAS・CVRの3指標だけ押さえれば、広告の良し悪しは判断できます。</p>
+<div class="diagram">
+広告費 ──→ クリック ──→ 問い合わせ/購入<br>
+　　 CTR（何%が押す？）　CVR（何%が買う？）<br><br>
+CPA = 1件獲得にかかったお金（低いほど◎）<br>
+ROAS = 広告費に対する売上の倍率（高いほど◎）
+</div>
+<h3>3指標の関係をひとことで</h3>
+<table class="tbl"><tr><th>指標</th><th>意味</th><th>目安</th></tr>
+<tr><td><b>CPA</b></td><td>1件の成果にかかった費用</td><td>粗利の1/3以下が理想</td></tr>
+<tr><td><b>ROAS</b></td><td>広告費1円あたりの売上</td><td>300%以上で黒字ライン</td></tr>
+<tr><td><b>CVR</b></td><td>クリックした人のうち成果に至った割合</td><td>業種平均1〜3%</td></tr>
+</table>
+<div class="ex"><b>EC事例：</b>客単価8,000円のアパレルECなら目標CPA 2,500円以下＝ROAS 320%以上が目安。</div>
+<div class="ex"><b>クリニック事例：</b>脱毛1件の粗利5万円→CPA 15,000円以下なら十分利益が出る計算。</div>
+<div class="ex"><b>士業事例：</b>顧問契約の年間LTV 60万円→CPA 5万円でもROAS 1,200%。高CPAでもLTVで回収。</div>
+</div>
+<div class="quiz" id="q2">
+<p>理解度チェック：ROASが300%とはどういう意味？</p>
+<label><input type="radio" name="q2" value="a"> 広告費の3倍の売上が出ている</label>
+<label><input type="radio" name="q2" value="b"> 広告費が300円かかった</label>
+<label><input type="radio" name="q2" value="c"> CVRが3%である</label>
+<button class="quiz-btn" onclick="chk('q2','a')">回答する</button>
+<div class="quiz-msg" id="q2m"></div>
+</div>
+<div class="nav-btns"><button class="nav-btn prev" onclick="go(1)">← 戻る</button><button class="nav-btn next" onclick="go(3)">次のステップへ →</button></div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step" id="s3">
+<div class="card">
+<h2>Step 3｜自動診断ツールで改善仮説を立てる</h2>
+<p style="font-size:.85rem">「5大チャネル広告パフォーマンス自動診断ツール」にCSVを読み込むと、チャネル横断でCPA・ROAS・CVR・CTRが一覧表示されます。質問テンプレートをクリックするだけで改善アクションが自動生成されます。</p>
+<h3>ツールの使い方（3ステップ）</h3>
+<table class="tbl"><tr><th>#</th><th>操作</th><th>結果</th></tr>
+<tr><td>1</td><td>CSVをドラッグ&ドロップで読み込み</td><td>チャネル別に自動認識</td></tr>
+<tr><td>2</td><td>「診断を実行」ボタンをクリック</td><td>横断比較テーブル＋アラートが表示</td></tr>
+<tr><td>3</td><td>質問テンプレート（例:「なぜCVRが下がった？」）をクリック</td><td>データに基づく改善施策が日本語で表示</td></tr>
+</table>
+<h3>改善仮説の立て方</h3>
+<div class="ex"><b>EC：</b>Google広告のCVRが先月2.1%→今月1.4%に低下→「商品ページの離脱が増えた？」→LPのファーストビュー改善を仮説に。</div>
+<div class="ex"><b>クリニック：</b>LINE広告のCPAだけ突出して高い→「ターゲティングが広すぎる？」→年齢・地域の絞り込みを仮説に。</div>
+<div class="ex"><b>士業：</b>Google広告のCTRは高いのにCVRが低い→「広告文と相談フォームの内容がズレている？」→LP内容の一致度を仮説に。</div>
+</div>
+<div class="quiz" id="q3">
+<p>理解度チェック：CTRが高いのにCVRが低い場合、最初に疑うべきは？</p>
+<label><input type="radio" name="q3" value="a"> 広告予算が足りない</label>
+<label><input type="radio" name="q3" value="b"> 広告とLPの内容にギャップがある</label>
+<label><input type="radio" name="q3" value="c"> 競合が増えた</label>
+<button class="quiz-btn" onclick="chk('q3','b')">回答する</button>
+<div class="quiz-msg" id="q3m"></div>
+</div>
+<div class="nav-btns"><button class="nav-btn prev" onclick="go(2)">← 戻る</button><button class="nav-btn next" onclick="go(4)">次のステップへ →</button></div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step" id="s4">
+<div class="card">
+<h2>Step 4｜週次振り返りサイクルを回す</h2>
+<p style="font-size:.85rem">「5大広告チャネル統合管理テンプレート」（Googleスプレッドシート）を使い、毎週15分の振り返りを習慣化します。</p>
+<h3>テンプレートの使い方</h3>
+<table class="tbl"><tr><th>曜日</th><th>やること</th><th>所要時間</th></tr>
+<tr><td><b>月曜</b></td><td>各チャネルの先週データを黄色セルに入力</td><td>10分</td></tr>
+<tr><td><b>月曜</b></td><td>CPA・ROAS・CVRの自動計算結果と前週比を確認</td><td>3分</td></tr>
+<tr><td><b>月曜</b></td><td>予算配分レコメンド（スコアリング式）を見て翌週の予算を微調整</td><td>2分</td></tr>
+</table>
+<p class="note">※テンプレートはCPA・ROAS・CVR・CTRを自動計算。前月比/目標比を色分け表示。予算消化率もバーで可視化されます。</p>
+<h3>月次レビューの進め方</h3>
+<p style="font-size:.85rem">月末に自動診断ツールでCSVを再読み込みし、月間トレンドを確認。改善仮説が当たったかを検証し、翌月の施策を決めます。</p>
+<div class="ex"><b>EC：</b>毎週月曜に3チャネル分のデータを入力→ROASが300%を下回ったチャネルは翌週予算を10%カット。</div>
+<div class="ex"><b>クリニック：</b>月2回（1日・15日）に入力→CPA目標15,000円を超えたら即ターゲティング見直し。</div>
+<div class="ex"><b>士業：</b>月1回の入力でもOK。CPA 5万円以内を維持できているか確認し、超えたら広告文を変更。</div>
+</div>
+<div class="quiz" id="q4">
+<p>理解度チェック：週次振り返りに最低限必要な時間は？</p>
+<label><input type="radio" name="q4" value="a"> 1時間</label>
+<label><input type="radio" name="q4" value="b"> 約15分</label>
+<label><input type="radio" name="q4" value="c"> 半日</label>
+<button class="quiz-btn" onclick="chk('q4','b')">回答する</button>
+<div class="quiz-msg" id="q4m"></div>
+</div>
+<div class="nav-btns"><button class="nav-btn prev" onclick="go(3)">← 戻る</button><button class="nav-btn next" onclick="go(5)">次のステップへ →</button></div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step" id="s5">
+<div class="card">
+<h2>Step 5｜ABテスト設計の最低限ルール</h2>
+<p style="font-size:.85rem">改善仮説ができたら、小さくテストして検証します。専門知識は不要。3つのルールだけ守れば十分です。</p>
+<h3>ルール1：変えるのは1要素だけ</h3>
+<p style="font-size:.84rem">広告文・画像・ターゲティングを同時に変えると、何が効いたか分かりません。1回のテストで変更するのは1箇所だけ。</p>
+<h3>ルール2：最低100クリック集まるまで待つ</h3>
+<p style="font-size:.84rem">クリック数が少ないうちは偶然の振れ幅が大きすぎます。A案・B案それぞれ100クリック（合計200クリック）を目安に判定。</p>
+<h3>ルール3：判定基準を先に決める</h3>
+<p style="font-size:.84rem">「CVRが0.5ポイント以上改善したら採用」のように、テスト前に基準を決めておく。後から都合よく解釈しない。</p>
+<div class="ex"><b>EC：</b>商品画像A（着用写真）vs B（物撮り）でCTRを比較。各100クリック後、CTRが0.3%以上高い方を採用。</div>
+<div class="ex"><b>クリニック：</b>広告文A「初回50%OFF」vs B「無料カウンセリング」でCVR比較。各100クリック後に判定。</div>
+<div class="ex"><b>士業：</b>LP見出しA「相続でお困りの方へ」vs B「相続税を100万円減らす方法」でCVR比較。2週間後に判定。</div>
+</div>
+<div class="quiz" id="q5">
+<p>理解度チェック：ABテストで同時に変更してよい要素の数は？</p>
+<label><input type="radio" name="q5" value="a"> 3つまで</label>
+<label><input type="radio" name="q5" value="b"> 制限なし</label>
+<label><input type="radio" name="q5" value="c"> 1つだけ</label>
+<button class="quiz-btn" onclick="chk('q5','c')">回答する</button>
+<div class="quiz-msg" id="q5m"></div>
+</div>
+<div class="card" style="background:#e8f5e9;text-align:center">
+<h2 style="border:none;padding:0;text-align:center">コース完了おめでとうございます！</h2>
+<p style="font-size:.88rem;margin:.5rem 0">これで広告PDCAを回す基本は完璧です。まずは「5大チャネル広告パフォーマンス自動診断ツール」にCSVを1つ読み込むところから始めましょう。</p>
+</div>
+<div class="nav-btns"><button class="nav-btn prev" onclick="go(4)">← 戻る</button><button class="nav-btn next" onclick="go(1)" style="background:#43a047">最初に戻る</button></div>
+</div>
+
+</div>
+<script>
+var cur=1,total=5,done=new Set;
+function init(){var d=document.getElementById('dots');for(var i=1;i<=total;i++){var b=document.createElement('div');b.className='step-dot'+(i===1?' active':'');b.textContent=i;b.onclick=(function(n){return function(){go(n)}})(i);d.appendChild(b)}}
+function go(n){document.getElementById('s'+cur).classList.remove('active');cur=n;document.getElementById('s'+cur).classList.add('active');done.add(cur);var dots=document.querySelectorAll('.step-dot');dots.forEach(function(d,i){d.className='step-dot';if(i+1===cur)d.classList.add('active');else if(done.has(i+1))d.classList.add('done')});document.getElementById('pbar').style.width=(cur/total*100)+'%';window.scrollTo(0,0)}
+function chk(id,ans){var r=document.querySelector('input[name="'+id+'"]:checked');var m=document.getElementById(id+'m');if(!r){m.textContent='選択してください';m.className='quiz-msg ng';return}if(r.value===ans){m.textContent='正解です！';m.className='quiz-msg ok'}else{m.textContent='不正解です。もう一度考えてみましょう。';m.className='quiz-msg ng'}}
+init();
+</script>
+</body>
+</html>

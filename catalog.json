@@ -338,6 +338,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-14",
+    "url": "legal-tech/contract-14/",
+    "title": "その契約書、大丈夫？AI条項リスク診断ツール",
+    "tool_name": "契約書リスク診断ツール",
+    "description": "中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提供している契約書レビュー機能の核心部分を、無料のブラウザツールとして中小企業に届ける。",
+    "quality_score": 10,
+    "completed_at": "2026-03-19T00:53:06.307577+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-15",
+    "url": "legal-tech/contract-15/",
+    "title": "その契約書、大丈夫？AI条項リスク診断ツール",
+    "tool_name": "中小企業向け契約書テンプレートジェネレーター",
+    "description": "中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提供している契約書レビュー機能の核心部分を、無料のブラウザツールとして中小企業に届ける。",
+    "quality_score": 10,
+    "completed_at": "2026-03-19T00:53:06.307577+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -660,6 +686,71 @@
     "description": "製品・サービス情報を1回入力するだけで、見込み客向けナーチャリングメールシーケンス（5通・件名ABテスト案付き）、PRタイムズ形式プレスリリース、SNS告知文（X・LinkedIn）を一括自動生成するHTMLツール。資金調達・新製品リリース・展示会出展の3シーン対応。広報専任がいないスタートアップ・中小企業が、発表タイミングを逃さず全チャネルで即発信できる。",
     "quality_score": 9,
     "completed_at": "2026-03-10T07:22:09.142091+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ga4-csv",
+    "url": "digital-marketing/ga4-csv/",
+    "title": "数字が苦手でも改善策が見える！マーケAI分析ツール",
+    "tool_name": "GA4＆広告データ_自動分析ダッシュボード（CSV即貼り対応）",
+    "description": "GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。",
+    "quality_score": 9,
+    "completed_at": "2026-03-19T00:53:06.146913+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "roi-excel",
+    "url": "digital-marketing/roi-excel/",
+    "title": "数字が苦手でも改善策が見える！マーケAI分析ツール",
+    "tool_name": "広告チャネル別ROI管理シート（Excel数式版）",
+    "description": "GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。",
+    "quality_score": 9,
+    "completed_at": "2026-03-19T00:53:06.146913+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-7",
+    "url": "digital-marketing/diagnosis-7/",
+    "title": "広告の「なぜ？」に答えるAIマーケ分析ツール",
+    "tool_name": "5大チャネル広告パフォーマンス自動診断ツール",
+    "description": "GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づく具体的な改善施策が日本語で返る。WACUL AIアナリスト（有料SaaS）の中核機能を無",
+    "quality_score": 9,
+    "completed_at": "2026-03-20T02:29:11.704886+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "google",
+    "url": "digital-marketing/google/",
+    "title": "広告の「なぜ？」に答えるAIマーケ分析ツール",
+    "tool_name": "国内5大広告チャネル統合管理テンプレート（Googleスプレッドシート）",
+    "description": "GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づく具体的な改善施策が日本語で返る。WACUL AIアナリスト（有料SaaS）の中核機能を無",
+    "quality_score": 9,
+    "completed_at": "2026-03-20T02:29:11.704886+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-42",
+    "url": "digital-marketing/tool-42/",
+    "title": "広告の「なぜ？」に答えるAIマーケ分析ツール",
+    "tool_name": "アナリスト不在でも回せる広告改善5ステップ",
+    "description": "GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づく具体的な改善施策が日本語で返る。WACUL AIアナリスト（有料SaaS）の中核機能を無",
+    "quality_score": 9,
+    "completed_at": "2026-03-20T02:29:11.704886+00:00",
     "content_type": "html_tool"
   },
   {
@@ -1261,6 +1352,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "m-a-dd-4",
+    "url": "legal-tech/m-a-dd-4/",
+    "title": "中小M&Aの法務DD、自力でできる診断キット",
+    "tool_name": "M&A法務DDリスクスコアカード",
+    "description": "中小企業M&A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全体像を把握できる。",
+    "quality_score": 8,
+    "completed_at": "2026-03-20T02:29:11.768186+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-16",
+    "url": "legal-tech/contract-16/",
+    "title": "中小M&Aの法務DD、自力でできる診断キット",
+    "tool_name": "M&A契約書_条項ナビゲーター",
+    "description": "中小企業M&A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全体像を把握できる。",
+    "quality_score": 8,
+    "completed_at": "2026-03-20T02:29:11.768186+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "m-a-dd-5",
+    "url": "legal-tech/m-a-dd-5/",
+    "title": "中小M&Aの法務DD、自力でできる診断キット",
+    "tool_name": "中小M&A法務DDレポートひな形",
+    "description": "中小企業M&A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全体像を把握できる。",
+    "quality_score": 8,
+    "completed_at": "2026-03-20T02:29:11.768186+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -1336,6 +1466,32 @@
     "description": "2018年宅建業法改正でインスペクション説明が義務化されたにもかかわらず実施率約5%という課題に対し、中小仲介会社がAI画像認識を活用して建物劣化の一次スクリーニングを低コストで実施するためのノウハウを全3回の連載で提供する。既存の無料・低価格AIツール（Google Cloud Vision API、GPT-4o等）を組み合わせた実践手法を解説し、有資格インスペクター手配前の事前確認フローを確立",
     "quality_score": 8,
     "completed_at": "2026-02-23T07:43:36.841611+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "inheritcalc",
+    "url": "proptech/inheritcalc/",
+    "title": "相続した家、売る・貸す・更地？5年収支で即比較",
+    "tool_name": "相続不動産4択シミュレーター「InheritCalc」",
+    "description": "相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。",
+    "quality_score": 8,
+    "completed_at": "2026-03-16T03:11:45.182646+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "checker",
+    "url": "proptech/checker/",
+    "title": "相続した家、売る・貸す・更地？5年収支で即比較",
+    "tool_name": "相続不動産の意思決定チェックリスト20問",
+    "description": "相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。",
+    "quality_score": 8,
+    "completed_at": "2026-03-16T03:11:45.182646+00:00",
     "content_type": "article"
   },
   {
@@ -2197,6 +2353,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "cf-cf",
+    "url": "proptech/cf-cf/",
+    "title": "不動産CF、どこに投資？AI利回り比較ツール",
+    "tool_name": "不動産CF利回り×リスク診断ツール「CFスコア」",
+    "description": "100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現する。",
+    "quality_score": 7,
+    "completed_at": "2026-03-19T03:12:44.270126+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "cf-cf-2",
+    "url": "proptech/cf-cf-2/",
+    "title": "不動産CF、どこに投資？AI利回り比較ツール",
+    "tool_name": "はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸",
+    "description": "100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現する。",
+    "quality_score": 7,
+    "completed_at": "2026-03-19T03:12:44.270126+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -2806,6 +2988,32 @@
     "quality_score": 6,
     "completed_at": "2026-03-01T13:04:51.273309+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "btob-ai-2",
+    "url": "digital-marketing/btob-ai-2/",
+    "title": "BtoB導入事例が書けない？AI一括生成ツール",
+    "tool_name": "BtoB導入事例AI生成ツール（テンプレートエンジン版）",
+    "description": "ヒアリングシート（業種・課題・導入経緯・数値成果）を埋めるだけで、導入事例ページ（Web掲載用HTML）・ホワイトペーパー要約・営業提案用テキストをAIが一括生成するHTMLツール。SaaS・製造業・コンサルの3業種テンプレートを内蔵し、汎用AIチャットでは出せない「BtoBらしい」構成と文体を自動適用する。",
+    "quality_score": 6,
+    "completed_at": "2026-03-16T03:11:45.047705+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-41",
+    "url": "digital-marketing/tool-41/",
+    "title": "BtoB導入事例が書けない？AI一括生成ツール",
+    "tool_name": "導入事例ヒアリングシート（営業→マーケ連携用）",
+    "description": "ヒアリングシート（業種・課題・導入経緯・数値成果）を埋めるだけで、導入事例ページ（Web掲載用HTML）・ホワイトペーパー要約・営業提案用テキストをAIが一括生成するHTMLツール。SaaS・製造業・コンサルの3業種テンプレートを内蔵し、汎用AIチャットでは出せない「BtoBらしい」構成と文体を自動適用する。",
+    "quality_score": 6,
+    "completed_at": "2026-03-16T03:11:45.047705+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "legal-tech",

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広告チャネル別ROI管理シート（Excel数式版） - kusasyu tools</title>
+<meta name="description" content="GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,広告チャネル別ROI管理シート（Excel数式版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roi-excel/">
+<meta property="og:title" content="広告チャネル別ROI管理シート（Excel数式版） - kusasyu tools">
+<meta property="og:description" content="GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roi-excel/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="広告チャネル別ROI管理シート（Excel数式版） - kusasyu tools">
+<meta name="twitter:description" content="GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "広告チャネル別ROI管理シート（Excel数式版）",
+  "description": "GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roi-excel/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-19"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>広告チャネル別ROI管理シート（Excel数式版）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>広告チャネル別ROI管理シート（Excel数式版）</h1>
+  <p class="project-name">数字が苦手でも改善策が見える！マーケAI分析ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>広告チャネル別ROI管理シート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>GA4&amp;広告データ 自動分析ダッシュボード 連携用</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 目標設定（B6・B7を自社の基準値に変更してください）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>項目</td><td>設定値</td><td>備考</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>限界CPA（円）</td><td>15000</td><td>超過チャネルに⚠表示</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>目標ROAS（%）</td><td>300</td><td>未達チャネルに⚠表示</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 当月チャネル別実績（B〜E列に実績入力→F〜L列は自動算出）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>チャネル</td><td>広告費（円）</td><td>クリック数</td><td>CV数</td><td>売上（円）</td><td>CPA（円）</td><td>ROAS（%）</td><td>CVR（%）</td><td>CPA判定</td><td>ROAS判定</td><td>配分提案</td><td>推奨増減額（円）</td></tr><tr><td>Google Ads</td><td>350000</td><td>4200</td><td>28</td><td>1120000</td><td>=B11/D11</td><td>=E11/B11*100</td><td>=D11/C11*100</td><td>=IF(F11&gt;B$6,"⚠超過","OK")</td><td>=IF(G11&lt;B$7,"⚠未達","OK")</td><td>=IF(AND(I11="OK",J11="OK"),"★増額推奨","▼要改善")</td><td>=IF(AND(I11="OK",J11="OK"),ROUND(B11*0.2,0),ROUND(B11*-0.15,0))</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `広告チャネル別ROI管理シート,,,,,,,,,,,
+GA4&広告データ 自動分析ダッシュボード 連携用,,,,,,,,,,,
+,,,,,,,,,,,
+■ 目標設定（B6・B7を自社の基準値に変更してください）,,,,,,,,,,,
+項目,設定値,備考,,,,,,,,,
+限界CPA（円）,15000,超過チャネルに⚠表示,,,,,,,,,
+目標ROAS（%）,300,未達チャネルに⚠表示,,,,,,,,,
+,,,,,,,,,,,
+■ 当月チャネル別実績（B〜E列に実績入力→F〜L列は自動算出）,,,,,,,,,,,
+チャネル,広告費（円）,クリック数,CV数,売上（円）,CPA（円）,ROAS（%）,CVR（%）,CPA判定,ROAS判定,配分提案,推奨増減額（円）
+Google Ads,350000,4200,28,1120000,=B11/D11,=E11/B11*100,=D11/C11*100,"=IF(F11>B$6,""⚠超過"",""OK"")","=IF(G11<B$7,""⚠未達"",""OK"")","=IF(AND(I11=""OK"",J11=""OK""),""★増額推奨"",""▼要改善"")","=IF(AND(I11=""OK"",J11=""OK""),ROUND(B11*0.2,0),ROUND(B11*-0.15,0))"
+Meta Ads,280000,3500,16,480000,=B12/D12,=E12/B12*100,=D12/C12*100,"=IF(F12>B$6,""⚠超過"",""OK"")","=IF(G12<B$7,""⚠未達"",""OK"")","=IF(AND(I12=""OK"",J12=""OK""),""★増額推奨"",""▼要改善"")","=IF(AND(I12=""OK"",J12=""OK""),ROUND(B12*0.2,0),ROUND(B12*-0.15,0))"
+LINE広告,150000,2100,12,480000,=B13/D13,=E13/B13*100,=D13/C13*100,"=IF(F13>B$6,""⚠超過"",""OK"")","=IF(G13<B$7,""⚠未達"",""OK"")","=IF(AND(I13=""OK"",J13=""OK""),""★増額推奨"",""▼要改善"")","=IF(AND(I13=""OK"",J13=""OK""),ROUND(B13*0.2,0),ROUND(B13*-0.15,0))"
+楽天広告,200000,1800,10,520000,=B14/D14,=E14/B14*100,=D14/C14*100,"=IF(F14>B$6,""⚠超過"",""OK"")","=IF(G14<B$7,""⚠未達"",""OK"")","=IF(AND(I14=""OK"",J14=""OK""),""★増額推奨"",""▼要改善"")","=IF(AND(I14=""OK"",J14=""OK""),ROUND(B14*0.2,0),ROUND(B14*-0.15,0))"
+【合計】,=SUM(B11:B14),=SUM(C11:C14),=SUM(D11:D14),=SUM(E11:E14),=B15/D15,=E15/B15*100,=D15/C15*100,―,―,―,=SUM(L11:L14)
+,,,,,,,,,,,
+■ 上司提出用サマリー（このセクションをコピーして報告書に貼付）,,,,,,,,,,,
+指標,値,補足,,,,,,,,,
+当月広告費合計（円）,=B15,,,,,,,,,,
+当月売上合計（円）,=E15,,,,,,,,,,
+全体ROAS（%）,=G15,目標: 300%,,,,,,,,,
+全体CPA（円）,=F15,限界: 15000円,,,,,,,,,
+総CV数,=D15,,,,,,,,,,
+好調CH増額可能額（円）,"=SUMIF(L11:L14,"">0"")",CPA・ROAS共にOKのチャネル増額合計,,,,,,,,,
+不調CH削減候補額（円）,"=SUMIF(L11:L14,""<0"")",CPA超過またはROAS未達の削減合計,,,,,,,,,
+最適化後総予算（円）,=B15+L15,現予算＋増減額の反映値,,,,,,,,,
+,,,,,,,,,,,
+■ 月次推移記録（毎月末にB〜E列の合計値を転記して1行追加）,,,,,,,,,,,
+年月,広告費合計（円）,クリック合計,CV合計,売上合計（円）,全体CPA（円）,全体ROAS（%）,全体CVR（%）,前月比ROAS（pt）,,,
+2026年1月,850000,10200,58,2200000,=B30/D30,=E30/B30*100,=D30/C30*100,―,,,
+2026年2月,920000,11000,62,2400000,=B31/D31,=E31/B31*100,=D31/C31*100,=G31-G30,,,
+2026年3月,=B15,=C15,=D15,=E15,=B32/D32,=E32/B32*100,=D32/C32*100,=G32-G31,,,
+,,,,,,,,,,,
+■ 条件付き書式の設定手順（Excel で開いた後に実施）,,,,,,,,,,,
+1. I11:J14を選択→ホーム→条件付き書式→セルの強調表示→指定の値を含む→「⚠」→赤背景に設定,,,,,,,,,,,
+2. K11:K14を選択→「▼」を含むセル→オレンジ背景／「★」を含むセル→緑背景に設定,,,,,,,,,,,
+3. 週次の速報分析にはHTMLツール（GA4&広告データ 自動分析ダッシュボード）を使用,,,,,,,,,,,
+4. 本シートは月次の予算配分管理・実績履歴の蓄積・上司報告用途で運用,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_広告チャネル別ROI管理シート（Excel数式版）.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

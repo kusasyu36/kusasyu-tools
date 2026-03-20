@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BtoB導入事例AI生成ツール（テンプレートエンジン版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:16px 0;color:#2d3748}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#2b6cb0;border-bottom:2px solid #bee3f8;padding-bottom:6px;margin-bottom:12px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 3px;color:#4a5568}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9em}
+textarea{height:70px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+button{display:block;width:100%;padding:12px;margin-top:12px;background:#2b6cb0;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer}
+button:hover{background:#2c5282}
+.out{display:none}
+.tab-bar{display:flex;gap:4px;margin-bottom:10px}
+.tab{padding:8px 14px;border:none;background:#e2e8f0;border-radius:6px 6px 0 0;cursor:pointer;font-size:.85em;font-weight:600;width:auto}
+.tab.active{background:#2b6cb0;color:#fff}
+.tab-content{display:none;background:#f7fafc;border:1px solid #e2e8f0;border-radius:0 6px 6px 6px;padding:14px;font-size:.85em;white-space:pre-wrap;word-wrap:break-word;max-height:500px;overflow-y:auto}
+.tab-content.active{display:block}
+.copy-btn{display:inline-block;padding:6px 14px;background:#38a169;color:#fff;border:none;border-radius:5px;font-size:.8em;cursor:pointer;margin-top:8px}
+.copy-btn:hover{background:#2f855a}
+.preview{border:1px solid #e2e8f0;border-radius:6px;padding:14px;background:#fff;max-height:400px;overflow-y:auto}
+.src{background:#edf2f7;padding:10px;border-radius:6px;overflow-x:auto;font-size:.78em;font-family:monospace;white-space:pre-wrap;margin-top:8px;max-height:300px;overflow-y:auto}
+@media(max-width:600px){.row{flex-direction:column}.row>div{min-width:100%}.tab{font-size:.75em;padding:6px 8px}}
+</style>
+<meta name="description" content="ヒアリングシート（業種・課題・導入経緯・数値成果）を埋めるだけで、導入事例ページ（Web掲載用HTML）・ホワイトペーパー要約・営業提案用テキストをAIが一括生成するHTMLツール。SaaS・製造業・コンサルの3業種テンプレートを内蔵し、汎用AIチャットでは出せない「BtoBらしい」構成と文体を自動適用する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoB導入事例AI生成ツール（テンプレートエンジン版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-ai-2/">
+<meta property="og:title" content="BtoB導入事例AI生成ツール（テンプレートエンジン版） - kusasyu tools">
+<meta property="og:description" content="ヒアリングシート（業種・課題・導入経緯・数値成果）を埋めるだけで、導入事例ページ（Web掲載用HTML）・ホワイトペーパー要約・営業提案用テキストをAIが一括生成するHTMLツール。SaaS・製造業・コンサルの3業種テンプレートを内蔵し、汎用AIチャットでは出せない「BtoBらしい」構成と文体を自動適用する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-ai-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoB導入事例AI生成ツール（テンプレートエンジン版） - kusasyu tools">
+<meta name="twitter:description" content="ヒアリングシート（業種・課題・導入経緯・数値成果）を埋めるだけで、導入事例ページ（Web掲載用HTML）・ホワイトペーパー要約・営業提案用テキストをAIが一括生成するHTMLツール。SaaS・製造業・コンサルの3業種テンプレートを内蔵し、汎用AIチャットでは出せない「BtoBらしい」構成と文体を自動適用する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoB導入事例AI生成ツール（テンプレートエンジン版）",
+  "description": "ヒアリングシート（業種・課題・導入経緯・数値成果）を埋めるだけで、導入事例ページ（Web掲載用HTML）・ホワイトペーパー要約・営業提案用テキストをAIが一括生成するHTMLツール。SaaS・製造業・コンサルの3業種テンプレートを内蔵し、汎用AIチャットでは出せない「BtoBらしい」構成と文体を自動適用する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-ai-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">BtoB導入事例AI生成ツール（テンプレートエンジン版）</span></div>
+<div class="wrap">
+<h1>BtoB導入事例 生成ツール</h1>
+
+<div class="card">
+<h2>基本情報</h2>
+<div class="row">
+<div><label>業種</label><select id="ind"><option value="saas">SaaS</option><option value="mfg">製造業</option><option value="con">コンサルティング</option></select></div>
+<div><label>企業名</label><input id="co" placeholder="例：株式会社テクノ"></div>
+</div>
+<div class="row">
+<div><label>従業員規模</label><select id="sz"><option>50名以下</option><option>51〜300名</option><option>301〜1,000名</option><option>1,001名以上</option></select></div>
+<div><label>担当者名・役職</label><input id="person" placeholder="例：情報システム部 田中部長"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>課題と導入経緯</h2>
+<label>導入前の課題</label>
+<textarea id="prob" placeholder="例：月次レポート作成に20時間、属人化が進み担当者不在時に業務が停止"></textarea>
+<label>導入を決めた理由・経緯</label>
+<textarea id="why" placeholder="例：展示会で知り、2週間のトライアルで効果を実感した"></textarea>
+<label>選定のポイント</label>
+<input id="point" placeholder="例：既存システムとのAPI連携が容易だった">
+</div>
+
+<div class="card">
+<h2>数値成果</h2>
+<div class="row">
+<div><label>主要KPI名</label><input id="kpi" placeholder="例：レポート作成時間"></div>
+<div><label>Before</label><input id="bef" placeholder="例：月20時間"></div>
+<div><label>After</label><input id="aft" placeholder="例：月3時間"></div>
+</div>
+<div class="row">
+<div><label>削減率/改善率</label><input id="rate" placeholder="例：85%削減"></div>
+<div><label>その他成果</label><input id="etc" placeholder="例：年間240万円のコスト削減"></div>
+</div>
+</div>
+
+<button onclick="generate()">導入事例を生成する</button>
+
+<div class="out" id="result">
+<div class="card">
+<h2>生成結果</h2>
+<div class="tab-bar" id="tabs"></div>
+<div id="panels"></div>
+</div>
+</div>
+</div>
+
+<script>
+var TPL={
+saas:{title:"データ活用",sec:"システム導入の背景",voice:"テクノロジーによる業務変革の実感",ctx:"SaaSの導入により、クラウド上での一元管理が実現。"},
+mfg:{title:"生産性向上",sec:"製造現場が抱えていた課題",voice:"現場の声から始まった改善の歩み",ctx:"製造ラインのデジタル化により、データに基づく改善が定着。"},
+con:{title:"業務効率化",sec:"クライアント支援における課題",voice:"プロフェッショナルとしての品質向上",ctx:"コンサルタントの知見をナレッジ化し、組織全体の提案力が向上。"}
+};
+
+function v(id){return document.getElementById(id).value.trim()||"\u200B"}
+
+function generate(){
+var ind=document.getElementById("ind").value,t=TPL[ind];
+var co=v("co"),sz=v("sz"),person=v("person"),prob=v("prob"),why=v("why"),point=v("point"),kpi=v("kpi"),bef=v("bef"),aft=v("aft"),rate=v("rate"),etc=v("etc");
+
+var html='<div style="font-family:sans-serif;max-width:800px;margin:0 auto;padding:24px;color:#333">'
++'<p style="color:#2b6cb0;font-weight:700;margin-bottom:4px;font-size:14px">CASE STUDY</p>'
++'<h1 style="font-size:1.5em;margin:0 0 8px">'+esc(co)+' 様｜'+esc(kpi)+'を'+esc(rate)+'した'+t.title+'の取り組み</h1>'
++'<p style="color:#718096;font-size:.9em">'+esc(co)+'（'+esc(sz)+'）｜'+esc(person)+'</p>'
++'<hr style="border:none;border-top:2px solid #2b6cb0;margin:16px 0">'
++'<h2 style="color:#2b6cb0;font-size:1.1em">■ '+t.sec+'</h2>'
++'<p>'+esc(prob)+'</p>'
++'<h2 style="color:#2b6cb0;font-size:1.1em;margin-top:16px">■ 導入の決め手</h2>'
++'<p>'+esc(why)+'</p>'
++'<p><strong>選定ポイント：</strong>'+esc(point)+'</p>'
++'<h2 style="color:#2b6cb0;font-size:1.1em;margin-top:16px">■ 導入効果</h2>'
++'<table style="width:100%;border-collapse:collapse;margin:10px 0">'
++'<tr style="background:#ebf8ff"><th style="padding:8px;border:1px solid #bee3f8;text-align:left">指標</th><th style="padding:8px;border:1px solid #bee3f8">Before</th><th style="padding:8px;border:1px solid #bee3f8">After</th><th style="padding:8px;border:1px solid #bee3f8">改善</th></tr>'
++'<tr><td style="padding:8px;border:1px solid #e2e8f0">'+esc(kpi)+'</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center">'+esc(bef)+'</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#2b6cb0;font-weight:700">'+esc(aft)+'</td><td style="padding:8px;border:1px solid #e2e8f0;text-align:center;color:#e53e3e;font-weight:700">'+esc(rate)+'</td></tr>'
++'</table>'
++'<p>'+esc(etc)+'</p>'
++'<h2 style="color:#2b6cb0;font-size:1.1em;margin-top:16px">■ '+t.voice+'</h2>'
++'<blockquote style="border-left:4px solid #2b6cb0;padding:10px 16px;background:#f7fafc;margin:10px 0;font-style:italic">'
++'「'+esc(prob.length>40?prob.substring(0,40)+'...':prob)+'という課題が、導入後は'+esc(aft)+'まで改善しました。'+esc(point)+'が決め手でした。」<br>― '+esc(person)
++'</blockquote>'
++'<p style="color:#718096;font-size:.85em;margin-top:16px">'+t.ctx+'</p>'
++'</div>';
+
+var wp='【導入事例】'+co+'様 — '+kpi+' '+rate+'を実現\n\n'
++'■ 課題\n'+prob+'\n\n'
++'■ 導入効果\n・'+kpi+'：'+bef+' → '+aft+'（'+rate+'）\n・'+etc+'\n\n'
++'■ 選定理由\n'+point+'\n\n'
++'▶ 詳しい事例はWebページをご覧ください。';
+
+var sales=co+'様（'+sz+'）の導入事例をご紹介します。\n\n'
++'【課題】'+prob+'\n'
++'【効果】'+kpi+'が'+bef+'から'+aft+'へ（'+rate+'）。'+etc+'\n'
++'【ポイント】'+point+'\n\n'
++'貴社でも同様の課題をお持ちでしたら、ぜひ一度ご相談ください。';
+
+var tabs=[{name:"Web掲載用HTML",raw:html,isHtml:true},{name:"WP要約",raw:wp,isHtml:false},{name:"営業提案用",raw:sales,isHtml:false}];
+
+var tabBar=document.getElementById("tabs");
+var panels=document.getElementById("panels");
+tabBar.innerHTML="";panels.innerHTML="";
+
+for(var i=0;i<tabs.length;i++){
+var btn=document.createElement("button");
+btn.className="tab"+(i===0?" active":"");
+btn.textContent=tabs[i].name;
+btn.setAttribute("data-i",i);
+btn.onclick=function(){switchTab(parseInt(this.getAttribute("data-i")))};
+tabBar.appendChild(btn);
+
+var div=document.createElement("div");
+div.className="tab-content"+(i===0?" active":"");
+div.id="panel"+i;
+
+if(tabs[i].isHtml){
+div.innerHTML='<div class="preview">'+tabs[i].raw+'</div>'
++'<p style="font-weight:600;margin-top:10px">HTMLソース：</p>'
++'<div class="src">'+esc(tabs[i].raw)+'</div>'
++'<button class="copy-btn" onclick="cp('+i+')">HTMLをコピー</button>';
+}else{
+div.textContent=tabs[i].raw;
+var b=document.createElement("button");
+b.className="copy-btn";b.textContent="コピー";
+b.setAttribute("data-i",i);
+b.onclick=function(){cp(parseInt(this.getAttribute("data-i")))};
+div.appendChild(b);
+}
+div.setAttribute("data-raw",tabs[i].raw);
+panels.appendChild(div);
+}
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function switchTab(i){
+var allTabs=document.querySelectorAll(".tab");
+var allPanels=document.querySelectorAll(".tab-content");
+for(var j=0;j<allTabs.length;j++){
+allTabs[j].className="tab"+(j===i?" active":"");
+allPanels[j].className="tab-content"+(j===i?" active":"");
+}
+}
+
+function cp(i){
+var el=document.getElementById("panel"+i);
+var text=el.getAttribute("data-raw");
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){
+var btns=el.querySelectorAll(".copy-btn");
+var b=btns[btns.length-1];
+var orig=b.textContent;
+b.textContent="✓ コピーしました";
+setTimeout(function(){b.textContent=orig},1500);
+});
+}else{
+var ta=document.createElement("textarea");
+ta.value=text;document.body.appendChild(ta);
+ta.select();document.execCommand("copy");
+document.body.removeChild(ta);
+}
+}
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+</script>
+</body>
+</html>

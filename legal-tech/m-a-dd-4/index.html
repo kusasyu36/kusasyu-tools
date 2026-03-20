@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>M&amp;A法務DDリスクスコアカード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0;color:#1a1a2e}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:12px;color:#2d3748;border-left:4px solid #3b82f6;padding-left:10px}
+label{display:block;font-size:.88em;font-weight:600;margin-bottom:4px;color:#4a5568}
+select,input[type=range]{width:100%;margin-bottom:8px}
+select{padding:8px;border:1px solid #d1d5db;border-radius:6px;font-size:.95em}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+.sv{font-size:.85em;color:#3b82f6;font-weight:600;text-align:right}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.78em;font-weight:700;color:#fff}
+.badge.S{background:#dc2626}.badge.A{background:#ea580c}.badge.B{background:#ca8a04}.badge.C{background:#16a34a}
+.score-box{text-align:center;padding:20px;border-radius:10px;margin-bottom:16px}
+.score-box .grade{font-size:3em;font-weight:900}
+.score-box .lbl{font-size:.9em;margin-top:4px}
+.item{border:1px solid #e5e7eb;border-radius:8px;padding:14px;margin-bottom:10px;transition:border-color .2s}
+.item:hover{border-color:#3b82f6}
+.item-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.item-hd strong{font-size:.95em}
+.det{font-size:.82em;color:#4b5563}
+.det span{display:inline-block;background:#f3f4f6;padding:2px 8px;border-radius:4px;margin:2px 4px 2px 0}
+.bar{height:6px;background:#e5e7eb;border-radius:3px;margin-top:6px}
+.bar>div{height:100%;border-radius:3px;transition:width .4s}
+.note{font-size:.8em;color:#6b7280;text-align:center;padding:16px}
+@media(max-width:600px){.row{flex-direction:column}.wrap{padding:10px}}
+</style>
+<meta name="description" content="中小企業M&amp;A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,M&amp;A法務DDリスクスコアカード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-4/">
+<meta property="og:title" content="M&amp;A法務DDリスクスコアカード - kusasyu tools">
+<meta property="og:description" content="中小企業M&amp;A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="M&amp;A法務DDリスクスコアカード - kusasyu tools">
+<meta name="twitter:description" content="中小企業M&amp;A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "M&A法務DDリスクスコアカード",
+  "description": "中小企業M&A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">M&amp;A法務DDリスクスコアカード</span></div>
+<div class="wrap">
+<h1>M&A 法務DDリスクスコアカード</h1>
+<div class="card">
+<h2>基本情報を入力</h2>
+<div class="row">
+<div><label>業種</label><select id="ind"><option value="0">製造業</option><option value="1">IT・ソフトウェア</option><option value="2">飲食・外食</option><option value="3">医療・ヘルスケア</option><option value="4">小売・流通</option></select></div>
+<div><label>取引形態</label><select id="typ"><option value="0">株式譲渡</option><option value="1">事業譲渡</option></select></div>
+</div>
+<div class="row">
+<div><label>従業員数: <span id="empV">50</span>名</label><input type="range" id="emp" min="10" max="500" value="50" step="10"></div>
+<div><label>売上規模: <span id="revV">3</span>億円</label><input type="range" id="rev" min="1" max="50" value="3" step="1"></div>
+</div>
+<div style="text-align:center;margin-top:8px"><button onclick="calc()" style="padding:10px 36px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer">診断する</button></div>
+</div>
+<div id="result"></div>
+<p class="note">※ 本ツールは法務DDの初期スクリーニングを目的とした参考情報です。正式なDDは必ず弁護士にご依頼ください。<br>© Kusasyu Legal Tech</p>
+</div>
+<script>
+var D=[
+{n:"労務管理（未払残業代・36協定）",iw:[7,5,9,6,8],tw:[8,6],doc:"賃金台帳,36協定届出,就業規則,タイムカード記録",how:"直近3年の残業実態を賃金台帳と突合。36協定届出の有無・上限時間を確認",cat:"労務"},
+{n:"許認可・ライセンス",iw:[8,4,9,10,5],tw:[6,9],doc:"許認可一覧,許可証原本,届出書控え",how:"業種固有の許認可リストと照合し、有効期限・承継可否を確認",cat:"許認可"},
+{n:"知的財産権",iw:[7,10,3,8,4],tw:[7,8],doc:"特許登録証,商標登録証,ライセンス契約書,職務発明規程",how:"知財の権利帰属・有効期限・第三者ライセンスの有無を確認",cat:"知財"},
+{n:"訴訟・紛争リスク",iw:[6,6,7,8,6],tw:[8,5],doc:"訴訟一覧,内容証明送受信履歴,和解書",how:"係属中・過去の訴訟と潜在的クレームをヒアリング。弁護士意見書を要請",cat:"訴訟"},
+{n:"税務コンプライアンス",iw:[7,6,7,7,7],tw:[7,8],doc:"税務申告書3期分,税務調査通知書,修正申告書",how:"直近3期の申告内容と税務調査指摘事項を確認。繰越欠損金の有効性を検証",cat:"税務"},
+{n:"環境規制・有害物質",iw:[10,2,5,7,3],tw:[7,9],doc:"環境測定報告書,PCB届出書,土壌調査報告書",how:"工場・事業所の環境基準適合状況と過去の是正命令を確認",cat:"環境"},
+{n:"不動産・賃貸借契約",iw:[8,4,9,6,9],tw:[5,8],doc:"登記簿謄本,賃貸借契約書,原状回復条項",how:"物件の権利関係・賃貸借条件・COC条項の有無を確認",cat:"不動産"},
+{n:"主要取引先契約（COC条項）",iw:[7,8,7,6,8],tw:[9,7],doc:"主要取引基本契約書,取引先一覧（売上上位20社）",how:"売上上位20社の契約にCOC条項・解除権が含まれるか精査",cat:"契約"},
+{n:"個人情報保護・データ管理",iw:[5,10,6,9,7],tw:[7,8],doc:"プライバシーポリシー,個人情報管理台帳,情報セキュリティ規程",how:"個人データの取得・保管・委託先管理体制を確認。漏洩事故歴の有無",cat:"情報"},
+{n:"社会保険・年金",iw:[6,5,8,6,7],tw:[7,5],doc:"社会保険届出書,労働保険料申告書,年金記録",how:"加入漏れ・届出遅延の有無を確認。未払保険料の試算",cat:"労務"},
+{n:"関連当事者取引",iw:[6,6,5,5,5],tw:[8,4],doc:"関連当事者取引一覧,取締役会議事録",how:"役員・親族企業との取引条件が市場価格と乖離していないか検証",cat:"ガバナンス"},
+{n:"偶発債務・保証",iw:[7,5,4,5,5],tw:[9,5],doc:"保証契約書,デリバティブ取引一覧,偶発債務メモ",how:"簿外債務・保証債務・デリバティブの時価評価を確認",cat:"財務"},
+{n:"株主構成・新株予約権",iw:[5,8,3,6,4],tw:[10,2],doc:"株主名簿,定款,新株予約権発行要項,株主間契約書",how:"少数株主の権利、種類株式、新株予約権の行使条件を精査",cat:"ガバナンス"},
+{n:"業法固有の規制対応",iw:[7,6,8,10,6],tw:[6,8],doc:"業法関連届出書,監督官庁指導記録,コンプライアンス報告書",how:"業種固有の規制（薬機法・食品衛生法等）への適合状況を確認",cat:"許認可"},
+{n:"在庫・棚卸資産の適正性",iw:[9,2,7,4,9],tw:[5,7],doc:"棚卸報告書,在庫評価基準書,滞留在庫リスト",how:"実地棚卸との差異・滞留在庫の評価減処理の適正性を確認",cat:"財務"}
+];
+var emp=document.getElementById("emp"),rev=document.getElementById("rev"),empV=document.getElementById("empV"),revV=document.getElementById("revV");
+emp.oninput=function(){empV.textContent=this.value};
+rev.oninput=function(){revV.textContent=this.value};
+function calc(){
+var i=+document.getElementById("ind").value,t=+document.getElementById("typ").value,e=+emp.value,r=+rev.value;
+var sm=1+(e>200?.15:e>100?.08:0)+(r>20?.15:r>10?.08:0);
+var items=D.map(function(d){var s=d.iw[i]*0.5+d.tw[t]*0.3+5*0.2;s*=sm;return{n:d.n,s:Math.min(s,10),doc:d.doc,how:d.how,cat:d.cat}}).sort(function(a,b){return b.s-a.s});
+var avg=items.reduce(function(a,b){return a+b.s},0)/items.length;
+var g,gc,gl;
+if(avg>=7.5){g="D";gc="#dc2626";gl="高リスク — 専門家への早期相談を強く推奨"}
+else if(avg>=6){g="C";gc="#ea580c";gl="要注意 — 重点項目について弁護士確認を推奨"}
+else if(avg>=4.5){g="B";gc="#ca8a04";gl="中程度 — 社内精査後に必要箇所のみ外部相談"}
+else{g="A";gc="#16a34a";gl="低リスク — 基本的な確認で対応可能"}
+var h='<div class="card score-box" style="background:'+gc+'22;border:2px solid'+gc+'"><div class="grade" style="color:'+gc+'">'+g+'</div><div class="lbl" style="color:'+gc+'">総合リスクランク: '+gl+'</div><div class="sv" style="margin-top:8px">平均スコア: '+avg.toFixed(1)+' / 10</div></div>';
+h+='<div class="card"><h2>重点チェック項目（優先度順）</h2>';
+items.forEach(function(it,idx){
+var bc=it.s>=7.5?"#dc2626":it.s>=6?"#ea580c":it.s>=4.5?"#ca8a04":"#16a34a";
+var bl=it.s>=7.5?"S":it.s>=6?"A":it.s>=4.5?"B":"C";
+h+='<div class="item"><div class="item-hd"><strong>'+(idx+1)+'. '+it.n+'</strong><span class="badge '+bl+'">'+bl+' ('+it.s.toFixed(1)+')</span></div>';
+h+='<div class="det"><b>分類:</b> <span>'+it.cat+'</span> <b>確認方法:</b> '+it.how+'</div>';
+h+='<div class="det" style="margin-top:4px"><b>必要書類:</b> '+it.doc.split(",").map(function(d){return'<span>'+d+'</span>'}).join("")+'</div>';
+h+='<div class="bar"><div style="width:'+it.s*10+'%;background:'+bc+'"></div></div></div>';
+});
+h+='</div>';
+document.getElementById("result").innerHTML=h;
+}
+</script>
+</body>
+</html>

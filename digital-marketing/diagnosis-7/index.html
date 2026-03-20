@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5大チャネル広告パフォーマンス自動診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:20px 0 8px;color:#1a237e}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1a237e;margin-bottom:12px;border-left:4px solid #3f51b5;padding-left:10px}
+.drop-zone{border:2px dashed #90caf9;border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:8px;background:#fafbff}
+.drop-zone:hover,.drop-zone.over{border-color:#1565c0;background:#e3f2fd}
+.drop-zone p{font-size:.9em;color:#555}
+.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.ch-grid{grid-template-columns:1fr}}
+.ch-label{font-size:.8em;font-weight:700;color:#1565c0;margin-bottom:4px}
+.file-name{font-size:.75em;color:#4caf50;margin-top:4px}
+.btn{display:inline-block;padding:10px 28px;background:#3f51b5;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.95em;margin-top:12px}
+.btn:hover{background:#283593}
+.btn:disabled{background:#bbb;cursor:default}
+.btn-q{display:block;width:100%;text-align:left;padding:12px 16px;background:#e8eaf6;border:1px solid #c5cae9;border-radius:6px;cursor:pointer;font-size:.9em;margin-bottom:8px;transition:.15s}
+.btn-q:hover{background:#c5cae9}
+#result,#qResult{display:none}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:12px 0}
+th,td{padding:8px 6px;border-bottom:1px solid #e0e0e0;text-align:right}
+th{background:#e8eaf6;text-align:center;font-weight:700}
+td:first-child,th:first-child{text-align:left}
+.alert{padding:12px 16px;border-radius:6px;margin-bottom:10px;font-size:.88em}
+.alert-r{background:#ffebee;border-left:4px solid #e53935;color:#b71c1c}
+.alert-y{background:#fff8e1;border-left:4px solid #ffa000;color:#e65100}
+.alert-g{background:#e8f5e9;border-left:4px solid #43a047;color:#1b5e20}
+.chart-wrap{position:relative;width:100%;height:220px;margin:12px 0}
+canvas{width:100%!important;height:100%!important}
+.note{font-size:.78em;color:#999;margin-top:8px}
+.ans-box{background:#f5f5f5;border-radius:8px;padding:16px;margin-top:10px;font-size:.9em;line-height:1.8}
+.demo-link{text-align:center;margin:8px 0}
+.demo-link a{color:#3f51b5;font-size:.85em;cursor:pointer;text-decoration:underline}
+</style>
+<meta name="description" content="GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,5大チャネル広告パフォーマンス自動診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-7/">
+<meta property="og:title" content="5大チャネル広告パフォーマンス自動診断ツール - kusasyu tools">
+<meta property="og:description" content="GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5大チャネル広告パフォーマンス自動診断ツール - kusasyu tools">
+<meta name="twitter:description" content="GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "5大チャネル広告パフォーマンス自動診断ツール",
+  "description": "GA4・Google広告・Yahoo!広告・LINE広告・楽天広告のCSVエクスポートデータをブラウザに読み込むだけで、チャネル横断のパフォーマンス分析と改善アクションを自動生成するツール。「なぜCVRが下がった？」「どのチャネルに予算を寄せるべき？」といった質問テンプレートをクリックするだけで、データに基づ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-7/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">5大チャネル広告パフォーマンス自動診断ツール</span></div>
+<div class="wrap">
+<h1>5大チャネル広告パフォーマンス自動診断ツール</h1>
+<p class="sub">CSV読み込みだけでCPA・ROAS・CVR・CTRをチャネル横断分析。改善アクションを自動生成。</p>
+
+<div class="card">
+<h2>1. CSVファイルを読み込む</h2>
+<p style="font-size:.82em;color:#666;margin-bottom:12px">各チャネルのCSVエクスポートデータをドラッグ&ドロップまたはクリックで読み込みます。<br>Google広告・GA4は必須、他はオプションです。</p>
+<div class="ch-grid">
+<div>
+<div class="ch-label">Google広告（必須）</div>
+<div class="drop-zone" id="dz-google" data-ch="google"><p>ドラッグ&ドロップ<br>またはクリック</p></div>
+<div class="file-name" id="fn-google"></div>
+</div>
+<div>
+<div class="ch-label">GA4（必須）</div>
+<div class="drop-zone" id="dz-ga4" data-ch="ga4"><p>ドラッグ&ドロップ<br>またはクリック</p></div>
+<div class="file-name" id="fn-ga4"></div>
+</div>
+<div>
+<div class="ch-label">Yahoo!広告（任意）</div>
+<div class="drop-zone" id="dz-yahoo" data-ch="yahoo"><p>ドラッグ&ドロップ<br>またはクリック</p></div>
+<div class="file-name" id="fn-yahoo"></div>
+</div>
+<div>
+<div class="ch-label">LINE広告（任意）</div>
+<div class="drop-zone" id="dz-line" data-ch="line"><p>ドラッグ&ドロップ<br>またはクリック</p></div>
+<div class="file-name" id="fn-line"></div>
+</div>
+</div>
+<p class="note">※楽天広告はShift-JISエンコーディングの互換性問題により、次期バージョンで対応予定です。</p>
+<div class="demo-link"><a onclick="loadDemo()">デモデータで試す →</a></div>
+<button class="btn" id="analyzeBtn" onclick="analyze()" disabled>診断を実行</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>2. チャネル別パフォーマンス</h2>
+<table id="perfTable"><thead><tr><th>チャネル</th><th>費用</th><th>クリック</th><th>CV</th><th>CPA</th><th>ROAS</th><th>CVR</th><th>CTR</th></tr></thead><tbody></tbody></table>
+<div class="chart-wrap"><canvas id="chart1"></canvas></div>
+</div>
+<div class="card">
+<h2>3. 自動診断レポート</h2>
+<div id="alerts"></div>
+</div>
+<div class="card">
+<h2>4. 質問テンプレート（クリックで回答）</h2>
+<button class="btn-q" onclick="askQ(0)">❓ CVRが下がった原因は？</button>
+<button class="btn-q" onclick="askQ(1)">❓ どのチャネルに予算を寄せるべき？</button>
+<button class="btn-q" onclick="askQ(2)">❓ CPAが高騰しているチャネルは？</button>
+<button class="btn-q" onclick="askQ(3)">❓ ROASが目標を下回っている原因は？</button>
+<button class="btn-q" onclick="askQ(4)">❓ 今月やるべき改善アクションTOP3は？</button>
+<div id="qResult" class="ans-box"></div>
+</div>
+</div>
+</div>
+
+<script>
+var D={},channels=['google','ga4','yahoo','line'],labels={google:'Google広告',ga4:'GA4',yahoo:'Yahoo!広告',line:'LINE広告'};
+
+document.querySelectorAll('.drop-zone').forEach(function(z){
+var ch=z.dataset.ch;
+var inp=document.createElement('input');inp.type='file';inp.accept='.csv';inp.style.display='none';
+z.appendChild(inp);
+z.addEventListener('click',function(){inp.click()});
+z.addEventListener('dragover',function(e){e.preventDefault();z.classList.add('over')});
+z.addEventListener('dragleave',function(){z.classList.remove('over')});
+z.addEventListener('drop',function(e){e.preventDefault();z.classList.remove('over');if(e.dataTransfer.files[0])readCSV(e.dataTransfer.files[0],ch)});
+inp.addEventListener('change',function(){if(inp.files[0])readCSV(inp.files[0],ch)});
+});
+
+function readCSV(f,ch){
+var r=new FileReader();
+r.onload=function(e){
+D[ch]=parseCSV(e.target.result,ch);
+document.getElementById('fn-'+ch).textContent='✓ '+f.name;
+checkReady();
+};r.readAsText(f);
+}
+
+function parseCSV(t,ch){
+var lines=t.replace(/\r/g,'').split('\n').filter(function(l){return l.trim()});
+if(lines.length<2)return null;
+var h=lines[0].split(',').map(function(s){return s.replace(/"/g,'').trim().toLowerCase()});
+var rows=[];
+for(var i=1;i<lines.length;i++){
+var c=lines[i].split(',').map(function(s){return s.replace(/"/g,'').trim()});
+var o={};h.forEach(function(k,j){o[k]=c[j]||''});rows.push(o);
+}
+return aggregate(rows,ch);
+}
+
+function num(v){return parseFloat((v||'').replace(/[¥,%円]/g,'').replace(/,/g,''))||0}
+
+function aggregate(rows,ch){
+var cost=0,clicks=0,imp=0,cv=0,rev=0;
+rows.forEach(function(r){
+var keys=Object.keys(r);
+keys.forEach(function(k){
+var v=r[k];
+if(/cost|費用|利用額|消化/.test(k))cost+=num(v);
+if(/click|クリック/.test(k))clicks+=num(v);
+if(/imp|表示/.test(k))imp+=num(v);
+if(/conv|cv|コンバ|成約|購入/.test(k)&&!/rate|率|value|値/.test(k))cv+=num(v);
+if(/revenue|売上|収益|value|conv.*val/.test(k))rev+=num(v);
+if(ch==='ga4'&&/session|セッション/.test(k))imp+=num(v);
+});
+});
+return{cost:cost,clicks:clicks,imp:imp,cv:cv,rev:rev};
+}
+
+function checkReady(){
+document.getElementById('analyzeBtn').disabled=!(D.google&&D.ga4);
+}
+
+function loadDemo(){
+D.google={cost:850000,clicks:12400,imp:320000,cv:186,rev:3720000};
+D.ga4={cost:0,clicks:28500,imp:45000,cv:310,rev:6200000};
+D.yahoo={cost:420000,clicks:5800,imp:180000,cv:72,rev:1440000};
+D.line={cost:280000,clicks:9200,imp:410000,cv:54,rev:810000};
+['google','ga4','yahoo','line'].forEach(function(c){document.getElementById('fn-'+c).textContent='✓ デモデータ読込済'});
+document.getElementById('analyzeBtn').disabled=false;
+analyze();
+}
+
+function fmt(n){return n>=10000?(n/10000).toFixed(1)+'万':n.toLocaleString()}
+function pct(n){return(n*100).toFixed(2)+'%'}
+
+function analyze(){
+var tb=document.querySelector('#perfTable tbody');tb.innerHTML='';
+var items=[];
+channels.forEach(function(ch){
+if(!D[ch])return;
+var d=D[ch],cpa=d.cv?d.cost/d.cv:0,roas=d.cost?d.rev/d.cost:0,cvr=d.clicks?d.cv/d.clicks:0,ctr=d.imp?d.clicks/d.imp:0;
+var item={ch:ch,name:labels[ch],cost:d.cost,clicks:d.clicks,cv:d.cv,cpa:cpa,roas:roas,cvr:cvr,ctr:ctr,rev:d.rev};
+items.push(item);
+var tr=document.createElement('tr');
+tr.innerHTML='<td>'+item.name+'</td><td>¥'+fmt(d.cost)+'</td><td>'+fmt(d.clicks)+'</td><td>'+d.cv+'</td><td>¥'+fmt(Math.round(cpa))+'</td><td>'+roas.toFixed(2)+'</td><td>'+pct(cvr)+'</td><td>'+pct(ctr)+'</td>';
+tb.appendChild(tr);
+});
+window._items=items;
+drawChart(items);
+runDiag(items);
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function drawChart(items){
+var c=document.getElementById('chart1'),ctx=c.getContext('2d');
+var W=c.parentElement.clientWidth,H=220;c.width=W*2;c.height=H*2;ctx.scale(2,2);
+ctx.clearRect(0,0,W,H);
+var metrics=['CPA','ROAS','CVR(%)','CTR(%)'];
+var colors=['#e53935','#43a047','#1565c0','#ff9800'];
+var n=items.length,gw=W/(metrics.length),bw=gw/(n+2),pad=bw;
+metrics.forEach(function(m,mi){
+var vals=items.map(function(it){
+if(mi===0)return it.cpa;if(mi===1)return it.roas;if(mi===2)return it.cvr*100;return it.ctr*100;
+});
+var mx=Math.max.apply(null,vals)*1.3||1;
+vals.forEach(function(v,vi){
+var x=mi*gw+pad+vi*bw,bh=(v/mx)*(H-50),y=H-30-bh;
+ctx.fillStyle=colors[mi];ctx.globalAlpha=.6+vi*.1;
+ctx.fillRect(x,y,bw-4,bh);
+ctx.globalAlpha=1;ctx.fillStyle='#333';ctx.font='10px sans-serif';ctx.textAlign='center';
+ctx.fillText(v>=100?Math.round(v):v.toFixed(1),x+bw/2-2,y-4);
+});
+ctx.fillStyle='#555';ctx.font='11px sans-serif';ctx.textAlign='center';
+ctx.fillText(m,mi*gw+gw/2,H-8);
+});
+ctx.fillStyle='#999';ctx.font='10px sans-serif';ctx.textAlign='left';
+items.forEach(function(it,i){ctx.fillStyle=colors[0];ctx.globalAlpha=.6+i*.1;ctx.fillRect(W-120,10+i*16,10,10);ctx.globalAlpha=1;ctx.fillStyle='#333';ctx.fillText(it.name,W-105,20+i*16)});
+}
+
+function runDiag(items){
+var el=document.getElementById('alerts');el.innerHTML='';
+var paid=items.filter(function(it){return it.cost>0});
+if(!paid.length){el.innerHTML='<div class="alert alert-y">有料チャネルのデータがありません。</div>';return}
+var avgCPA=paid.reduce(function(s,i){return s+i.cpa},0)/paid.length;
+
+paid.forEach(function(it){
+if(it.cvr<0.01){
+el.innerHTML+='<div class="alert alert-r"><strong>⚠ '+it.name+'：CVR低下アラート（'+pct(it.cvr)+'）</strong><br>CVRが1%未満。クリエイティブ疲弊またはLP離脱の可能性。<br><strong>改善チェックリスト：</strong><br>□ クリエイティブを30日以内に更新したか<br>□ LPのCTAボタン視認性を点検<br>□ ターゲティング設定を見直す</div>';
+}
+if(it.cpa>avgCPA*1.3){
+el.innerHTML+='<div class="alert alert-y"><strong>⚡ '+it.name+'：CPA高騰（¥'+fmt(Math.round(it.cpa))+'、平均比+'+Math.round((it.cpa/avgCPA-1)*100)+'%）</strong><br>平均CPA ¥'+fmt(Math.round(avgCPA))+'を大きく超過。入札引下げまたはCV確度の高い層への集中を検討。</div>';
+}
+if(it.roas<1.0&&it.cost>0){
+el.innerHTML+='<div class="alert alert-r"><strong>🚨 '+it.name+'：ROAS 1.0未満（'+it.roas.toFixed(2)+'）— 赤字</strong><br>即時の予算削減または停止を推奨。損益分岐ROASの再設定が必要。</div>';
+}else if(it.roas>=1.0&&it.roas<2.0&&it.cost>0){
+el.innerHTML+='<div class="alert alert-y"><strong>⚡ '+it.name+'：ROAS注意（'+it.roas.toFixed(2)+'）</strong><br>利益薄。目標3.0以上ならクリエイティブ改善を推奨。</div>';
+}
+if(it.ctr<0.005&&it.imp>0){
+el.innerHTML+='<div class="alert alert-y"><strong>📉 '+it.name+'：CTR低下（'+pct(it.ctr)+'）</strong><br>見出し・画像のA/Bテストを実施してください。</div>';
+}
+});
+
+var best=paid.reduce(function(a,b){return a.roas>b.roas?a:b});
+if(best.roas>2.0){
+el.innerHTML+='<div class="alert alert-g"><strong>✅ 最高効率：'+best.name+'（ROAS '+best.roas.toFixed(2)+'）</strong><br>予算増額を優先検討。CPA ¥'+fmt(Math.round(best.cpa))+'も良好。</div>';
+}
+if(!el.innerHTML)el.innerHTML='<div class="alert alert-g"><strong>✅ 全チャネル良好</strong><br>重大アラートなし。A/Bテストで継続改善を。</div>';
+}
+
+function askQ(qi){
+var items=window._items;if(!items||!items.length)return;
+var paid=items.filter(function(i){return i.cost>0});
+var el=document.getElementById('qResult');el.style.display='block';
+var ans='';
+if(qi===0){
+var low=paid.slice().sort(function(a,b){return a.cvr-b.cvr});
+ans='<strong>【CVRが下がった原因の分析】</strong><br><br>';
+low.forEach(function(it){
+ans+='<strong>'+it.name+'</strong>（CVR: '+pct(it.cvr)+'）<br>';
+if(it.cvr<0.01)ans+='→ 深刻。原因候補：①クリエイティブ疲弊 ②LP不一致 ③ターゲット広すぎ<br>';
+else if(it.cvr<0.03)ans+='→ 改善余地あり。CTAボタン・フォーム最適化を推奨。<br>';
+else ans+='→ 良好。現状維持OK。<br>';
+ans+='<br>';
+});
+ans+='<strong>【改善アクション】</strong><br>1. CVR最低チャネルのLPをヒートマップ分析<br>2. 広告テキストとLPのメッセージ一貫性を確認<br>3. フォーム入力項目を3項目以下に削減';
+}
+else if(qi===1){
+var sorted=paid.slice().sort(function(a,b){return b.roas-a.roas});
+ans='<strong>【予算配分の推奨】</strong><br><br>';
+sorted.forEach(function(it,i){
+ans+=(i+1)+'. <strong>'+it.name+'</strong>（ROAS: '+it.roas.toFixed(2)+' / CPA: ¥'+fmt(Math.round(it.cpa))+'）<br>';
+if(i===0)ans+='　→ <span style="color:#1b5e20">★最優先で予算増額</span><br>';
+else if(it.roas<1.0)ans+='　→ <span style="color:#b71c1c">予算削減推奨（赤字）</span><br>';
+else ans+='　→ 現状維持。ROAS推移を注視。<br>';
+ans+='<br>';
+});
+}
+else if(qi===2){
+var high=paid.slice().sort(function(a,b){return b.cpa-a.cpa});
+var avg=paid.reduce(function(s,i){return s+i.cpa},0)/paid.length;
+ans='<strong>【CPA高騰チャネル特定】</strong><br>平均CPA: ¥'+fmt(Math.round(avg))+'<br><br>';
+high.forEach(function(it){
+var diff=Math.round((it.cpa/avg-1)*100);
+ans+='<strong>'+it.name+'</strong>: ¥'+fmt(Math.round(it.cpa));
+if(diff>30)ans+=' <span style="color:#b71c1c">（+'+diff+'% ⚠）</span><br>→ 入札見直し・除外KW追加<br>';
+else if(diff>0)ans+='（+'+diff+'%）→ ターゲティング改善で最適化可能<br>';
+else ans+=' <span style="color:#1b5e20">（平均以下 ✓）</span><br>';
+ans+='<br>';
+});
+}
+else if(qi===3){
+ans='<strong>【ROAS未達の原因分析】</strong><br><br>';
+paid.forEach(function(it){
+ans+='<strong>'+it.name+'</strong>（ROAS: '+it.roas.toFixed(2)+'）<br>';
+if(it.roas<1.0)ans+='→ <span style="color:#b71c1c">赤字</span>。①客単価低い ②CVR悪化 ③競合入札高騰<br>';
+else if(it.roas<3.0)ans+='→ 目標未達。アップセル・クロスセル導線追加を推奨。<br>';
+else ans+='→ <span style="color:#1b5e20">目標達成 ✓</span><br>';
+ans+='<br>';
+});
+ans+='<strong>【共通改善策】</strong><br>・高単価商品への誘導強化<br>・リマーケティングで検討層獲得<br>・低CVキャンペーン停止';
+}
+else{
+var actions=[];
+paid.forEach(function(it){
+if(it.cvr<0.01)actions.push({p:3,t:'【'+it.name+'】LP改善でCVR回復（現在'+pct(it.cvr)+'）'});
+if(it.roas<1.0)actions.push({p:3,t:'【'+it.name+'】赤字（ROAS '+it.roas.toFixed(2)+'）予算50%削減→高効率CHへ再配分'});
+if(it.ctr<0.005)actions.push({p:2,t:'【'+it.name+'】クリエイティブA/Bテスト（CTR '+pct(it.ctr)+'）'});
+if(it.cpa>10000)actions.push({p:1,t:'【'+it.name+'】除外設定追加でCPA ¥'+fmt(Math.round(it.cpa))+'を削減'});
+});
+actions.sort(function(a,b){return b.p-a.p});
+ans='<strong>【今月の改善アクション TOP3】</strong><br><br>';
+for(var i=0;i<Math.min(3,actions.length);i++){
+ans+='<strong>'+(i+1)+'.</strong> '+actions[i].t+'<br><br>';
+}
+if(!actions.length)ans+='緊急改善ポイントなし。継続的A/Bテストを推奨。';
+}
+el.innerHTML=ans;
+el.scrollIntoView({behavior:'smooth'});
+}
+
+window.addEventListener('resize',function(){if(window._items)drawChart(window._items)});
+</script>
+</body>
+</html>

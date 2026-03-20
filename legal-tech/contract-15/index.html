@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中小企業向け契約書テンプレートジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 0 6px;color:#1a365d}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+label{font-weight:600;font-size:.9em;display:block;margin-bottom:3px}
+.hint{font-size:.78em;color:#2563eb;margin-bottom:8px;padding:3px 0 3px 8px;border-left:2px solid #93c5fd}
+input,select{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:10px;font-size:.95em;margin-bottom:2px}
+select{background:#fff;cursor:pointer}
+.btn{width:100%;background:#2563eb;color:#fff;border:none;cursor:pointer;font-weight:600;padding:13px;margin-top:10px;font-size:1em;border-radius:8px;transition:background .2s}
+.btn:hover{background:#1d4ed8}
+.copy{background:#059669;margin-top:14px}.copy:hover{background:#047857}
+.out{background:#fff;border-radius:10px;padding:18px;margin-top:10px;box-shadow:0 1px 4px rgba(0,0,0,.08);white-space:pre-wrap;font-size:.88em;line-height:1.9;border:1px solid #e5e7eb;max-height:70vh;overflow-y:auto}
+.row{display:flex;gap:12px}.row>div{flex:1}
+@media(max-width:600px){.row{flex-direction:column}}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#059669;color:#fff;padding:10px 24px;border-radius:8px;font-size:.9em;display:none;z-index:99}
+.badge{display:inline-block;background:#1a365d;color:#fff;font-size:.7em;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+</style>
+<meta name="description" content="中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,中小企業向け契約書テンプレートジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-15/">
+<meta property="og:title" content="中小企業向け契約書テンプレートジェネレーター - kusasyu tools">
+<meta property="og:description" content="中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-15/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中小企業向け契約書テンプレートジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "中小企業向け契約書テンプレートジェネレーター",
+  "description": "中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-15/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">中小企業向け契約書テンプレートジェネレーター</span></div>
+<div class="wrap">
+<h1>契約書テンプレートジェネレーター<span class="badge">無料</span></h1>
+<p class="sub">NDA・業務委託・売買 — 自社に有利な条項を含む契約書を即時生成</p>
+<div class="card">
+<label>契約書タイプを選択</label>
+<select id="tp" onchange="build()"><option value="nda">秘密保持契約（NDA）</option><option value="gy">業務委託契約</option><option value="buy">売買基本契約</option></select>
+</div>
+<div class="card" id="fm"></div>
+<button class="btn" onclick="gen()">契約書を生成する</button>
+<div id="res" style="display:none">
+<button class="btn copy" onclick="cp()">📋 クリップボードにコピー</button>
+<div class="out" id="txt"></div>
+</div>
+</div>
+<div class="toast" id="ts">クリップボードにコピーしました</div>
+<script>
+var D={
+nda:[
+{id:'a',l:'自社名（甲）',h:'契約の主体者。登記上の正式名称を入力',v:''},
+{id:'b',l:'相手方名（乙）',h:'取引先の正式名称。法人格（株式会社等）も含めて入力',v:''},
+{id:'c',l:'契約日',h:'契約の発効日。遡及適用を避けるため実際の合意日を推奨',t:'date'},
+{id:'d',l:'対象業務・取引内容',h:'秘密情報を開示する業務範囲を限定し漏洩リスクを低減',v:''},
+{id:'e',l:'秘密保持期間',h:'3年が業界標準。短すぎると重要情報の保護が不十分になる',t:'sel',o:['1年','2年','3年','5年']},
+{id:'f',l:'管轄裁判所（地名）',h:'自社所在地を指定すると万一の訴訟コストを大幅に抑えられる',v:'東京'}
+],
+gy:[
+{id:'a',l:'委託者名（甲）',h:'業務を発注する側。自社が甲だと解除権・検収権を有利に設定できる',v:''},
+{id:'b',l:'受託者名（乙）',h:'業務を受注する側の正式名称',v:''},
+{id:'c',l:'契約日',h:'契約の発効日',t:'date'},
+{id:'d',l:'委託業務の内容',h:'業務範囲を明確化し追加費用トラブルを未然に防止',v:''},
+{id:'g',l:'契約金額（税別・円）',h:'消費税別で明記し金額認識の齟齬を防止',t:'num'},
+{id:'h',l:'契約期間',h:'自動更新条項により長期的な取引関係を安定化',t:'sel',o:['3ヶ月','6ヶ月','1年','2年']},
+{id:'i',l:'知的財産の帰属',h:'委託者帰属なら成果物を自由に二次利用でき自社に有利',t:'sel',o:['委託者（甲）に帰属','受託者（乙）に帰属','共有']},
+{id:'f',l:'管轄裁判所（地名）',h:'自社所在地を指定すると訴訟コストを抑えられる',v:'東京'}
+],
+buy:[
+{id:'a',l:'買主名（甲）',h:'自社が買主なら検収条件・瑕疵担保を有利に設定できる',v:''},
+{id:'b',l:'売主名（乙）',h:'取引先の正式名称',v:''},
+{id:'c',l:'契約日',h:'契約の発効日',t:'date'},
+{id:'d',l:'商品名・品目',h:'対象を特定し納品トラブル・品質紛争を防止',v:''},
+{id:'g',l:'取引金額（税別・円）',h:'消費税別で明記し金額認識の齟齬を防止',t:'num'},
+{id:'j',l:'納期',h:'具体的日付指定で遅延時の責任を明確化',t:'date'},
+{id:'k',l:'検収期間',h:'14日以上あると品質確認に余裕が生まれ自社に有利',t:'sel',o:['7日間','14日間','30日間']},
+{id:'f',l:'管轄裁判所（地名）',h:'自社所在地を指定すると訴訟コストを抑えられる',v:'東京'}
+]};
+function build(){var t=D[document.getElementById('tp').value],h='';t.forEach(function(f){
+h+='<label>'+f.l+'</label><div class="hint">💡 '+f.h+'</div>';
+if(f.t==='sel'){h+='<select id="f_'+f.id+'">';f.o.forEach(function(o){h+='<option>'+o+'</option>'});h+='</select>';}
+else if(f.t==='date')h+='<input type="date" id="f_'+f.id+'">';
+else if(f.t==='num')h+='<input type="number" id="f_'+f.id+'" placeholder="例: 500000">';
+else h+='<input type="text" id="f_'+f.id+'" value="'+f.v+'">';
+});document.getElementById('fm').innerHTML=h;document.getElementById('res').style.display='none';}
+function v(id){var e=document.getElementById('f_'+id);return e?e.value:'';}
+function gen(){var t=document.getElementById('tp').value,s='';
+var a=v('a'),b=v('b'),c=v('c'),d=v('d'),f=v('f');
+if(!a||!b){alert('自社名と相手方名は必須です');return;}
+if(!c)c='令和　年　月　日';
+if(t==='nda'){var e=v('e');
+s=`秘密保持契約書
+
+${a}（以下「甲」という）と${b}（以下「乙」という）は、${d||'相互の事業'}に関して開示される秘密情報の取扱いについて、以下のとおり契約を締結する。
+
+第1条（秘密情報の定義）
+本契約における「秘密情報」とは、甲又は乙が相手方に対し開示する技術上・営業上・経営上の一切の非公開情報をいう。ただし次の各号に該当するものを除く。
+(1) 開示時点で既に公知であった情報
+(2) 開示後、受領者の責めに帰さない事由により公知となった情報
+(3) 開示前から受領者が適法に保有していた情報
+(4) 正当な権限を有する第三者から秘密保持義務を負わずに取得した情報
+
+第2条（秘密保持義務）
+甲及び乙は、相手方の秘密情報を善良な管理者の注意をもって管理し、相手方の書面による事前承諾なく第三者に開示・漏洩してはならない。
+
+第3条（目的外使用の禁止）
+甲及び乙は、秘密情報を${d||'本取引'}の目的以外に使用してはならない。
+
+第4条（複製の制限）
+秘密情報の複製は、目的遂行上必要な範囲に限り認められる。複製物にも本契約の秘密保持義務が適用される。
+
+第5条（返還・廃棄）
+本契約の終了時又は相手方の請求があった場合、受領者は秘密情報及びその複製物を速やかに返還又は廃棄し、その旨を書面で通知する。
+
+第6条（有効期間）
+本契約の有効期間は${c}から${e}間とする。なお、秘密保持義務は本契約終了後も${e}間存続するものとする。
+
+第7条（損害賠償）
+甲又は乙が本契約に違反し相手方に損害を与えた場合、直接かつ現実に生じた損害を賠償する責任を負う。損害賠償の上限は、本契約に関連して受領した対価相当額とする。
+
+第8条（合意管轄）
+本契約に関する一切の紛争は、${f}地方裁判所を第一審の専属的合意管轄裁判所とする。
+
+本契約締結の証として、本書2通を作成し、甲乙記名押印の上各1通を保有する。
+
+${c}
+
+甲：${a}　　　　　　　印
+
+乙：${b}　　　　　　　印`;}
+
+else if(t==='gy'){var g=v('g'),h2=v('h'),ip=v('i');
+s=`業務委託契約書
+
+${a}（以下「甲」という）と${b}（以下「乙」という）は、以下の業務委託について契約を締結する。
+
+第1条（委託業務）
+甲は乙に対し、以下の業務を委託し、乙はこれを受託する。
+業務内容：${d||'（別紙のとおり）'}
+
+第2条（契約期間）
+本契約の有効期間は${c}から${h2}間とする。期間満了の30日前までに甲乙いずれからも書面による終了の意思表示がない場合、同一条件で${h2}間自動更新されるものとし、以後も同様とする。
+
+第3条（委託料及び支払）
+委託料は金${g?Number(g).toLocaleString():'＿＿＿'}円（税別）とする。乙は業務完了後に請求書を発行し、甲は請求書受領月の翌月末日までに乙指定口座へ振込にて支払う。振込手数料は甲の負担とする。
+
+第4条（再委託の禁止）
+乙は、甲の書面による事前承諾なく、本業務の全部又は一部を第三者に再委託してはならない。
+
+第5条（検収）
+乙が成果物を納品した場合、甲は受領後14日以内に検収を行う。不合格の場合、甲は理由を明示して修正を求め、乙は合理的な期間内に無償で対応する。
+
+第6条（知的財産権）
+本業務により生じた知的財産権は、${ip}ものとする。${ip==='委託者（甲）に帰属'?'乙は甲への権利移転に必要な手続きに協力する。':''}
+
+第7条（秘密保持）
+甲及び乙は、本契約に関連して知り得た相手方の秘密情報を第三者に開示・漏洩せず、本契約の目的以外に使用しない。本義務は契約終了後3年間存続する。
+
+第8条（契約解除）
+甲又は乙は、相手方が本契約に違反し、書面による催告後14日以内に是正されない場合、本契約を解除できる。甲は30日前の書面通知により、理由の如何を問わず本契約を解除できる。
+
+第9条（損害賠償）
+甲又は乙が本契約に違反し相手方に損害を与えた場合、直接かつ現実に生じた損害を賠償する。賠償額の上限は、本契約に基づき甲が乙に支払った委託料の総額とする。
+
+第10条（合意管轄）
+本契約に関する一切の紛争は、${f}地方裁判所を第一審の専属的合意管轄裁判所とする。
+
+本契約締結の証として、本書2通を作成し、甲乙記名押印の上各1通を保有する。
+
+${c}
+
+甲（委託者）：${a}　　　　　　　印
+
+乙（受託者）：${b}　　　　　　　印`;}
+
+else{var g=v('g'),j=v('j'),k=v('k');
+s=`売買基本契約書
+
+${a}（以下「甲」という）と${b}（以下「乙」という）は、商品の売買に関して以下のとおり基本契約を締結する。
+
+第1条（目的）
+乙は甲に対し、以下の商品を売り渡し、甲はこれを買い受ける。
+商品名：${d||'（個別契約で定める）'}
+
+第2条（売買代金及び支払）
+売買代金は金${g?Number(g).toLocaleString():'＿＿＿'}円（税別）とする。甲は検収完了後、乙の請求書受領月の翌月末日までに乙指定口座へ振込にて支払う。振込手数料は甲の負担とする。
+
+第3条（納期・納品）
+乙は${j||'甲乙別途合意する日'}までに、甲の指定場所へ商品を納品する。送料は乙の負担とする。納期に遅延が生じる場合、乙は直ちに甲に通知し、対応を協議する。
+
+第4条（検収）
+甲は商品受領後${k}以内に検収を行う。不合格の場合、甲は乙に理由を明示して交換又は修補を求め、乙は速やかに対応する。検収期間内に甲から通知がない場合、検収合格とみなす。
+
+第5条（危険負担）
+商品の滅失又は毀損のリスクは、甲への納品完了時に乙から甲へ移転する。
+
+第6条（契約不適合責任）
+検収合格後1年以内に契約不適合が発見された場合、甲は乙に対し修補、代替品納入又は代金減額を請求できる。
+
+第7条（秘密保持）
+甲及び乙は、本契約に関連して知り得た相手方の秘密情報を第三者に開示・漏洩しない。本義務は契約終了後3年間存続する。
+
+第8条（契約解除）
+甲又は乙は、相手方が本契約に違反し、書面による催告後14日以内に是正されない場合、本契約を解除できる。
+
+第9条（損害賠償）
+甲又は乙が本契約に違反し相手方に損害を与えた場合、直接かつ現実に生じた損害を賠償する。賠償額の上限は、当該個別取引の売買代金相当額とする。
+
+第10条（合意管轄）
+本契約に関する一切の紛争は、${f}地方裁判所を第一審の専属的合意管轄裁判所とする。
+
+本契約締結の証として、本書2通を作成し、甲乙記名押印の上各1通を保有する。
+
+${c}
+
+甲（買主）：${a}　　　　　　　印
+
+乙（売主）：${b}　　　　　　　印`;}
+
+document.getElementById('txt').textContent=s;document.getElementById('res').style.display='block';
+document.getElementById('res').scrollIntoView({behavior:'smooth'});}
+function cp(){var t=document.getElementById('txt').textContent;navigator.clipboard.writeText(t).then(function(){var e=document.getElementById('ts');e.style.display='block';setTimeout(function(){e.style.display='none'},2000)});}
+build();
+</script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産CF利回り×リスク診断ツール「CFスコア」 - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;color:#2b6cb0;margin:12px 0 4px}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.05em;color:#2d3748;margin-bottom:10px;border-left:4px solid #3182ce;padding-left:8px}
+.slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.slot{border:2px dashed #cbd5e0;border-radius:8px;padding:10px;position:relative}
+.slot.active{border-color:#3182ce;border-style:solid}
+.slot label{display:block;font-size:.78em;color:#718096;margin-bottom:3px}
+.slot select,.slot input{width:100%;padding:5px;border:1px solid #e2e8f0;border-radius:6px;font-size:.88em}
+.slot input[type=number]{-moz-appearance:textfield}
+.slot .rm{position:absolute;top:4px;right:6px;background:none;border:none;color:#e53e3e;cursor:pointer;font-size:1.1em}
+.btn{display:inline-block;padding:10px 24px;border:none;border-radius:8px;font-size:.95em;cursor:pointer;font-weight:bold}
+.btn-primary{background:#3182ce;color:#fff}
+.btn-secondary{background:#e2e8f0;color:#2d3748;margin-left:8px}
+.btn:hover{opacity:.85}
+.actions{text-align:center;margin:12px 0}
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.rcard{background:linear-gradient(135deg,#ebf8ff,#fff);border-radius:10px;padding:14px;border:1px solid #bee3f8}
+.rcard h3{font-size:.95em;color:#2b6cb0;margin-bottom:6px}
+.score-circle{width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5em;font-weight:bold;color:#fff;margin:8px auto}
+.score-high{background:linear-gradient(135deg,#38a169,#2f855a)}
+.score-mid{background:linear-gradient(135deg,#d69e2e,#b7791f)}
+.score-low{background:linear-gradient(135deg,#e53e3e,#c53030)}
+.rcard .det{font-size:.8em;color:#4a5568;margin:4px 0}
+.rcard .comment{background:#f7fafc;border-left:3px solid #3182ce;padding:8px;font-size:.82em;margin-top:8px;border-radius:0 6px 6px 0;color:#2d3748}
+.rank{font-size:.75em;color:#fff;background:#3182ce;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:.82em}
+th,td{padding:6px 8px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#edf2f7;color:#4a5568}
+.legend{font-size:.78em;color:#a0aec0;margin-top:8px}
+.bar{height:8px;border-radius:4px;background:#e2e8f0;margin-top:3px}
+.bar-fill{height:100%;border-radius:4px}
+@media(max-width:600px){.slots{grid-template-columns:1fr 1fr}.results{grid-template-columns:1fr}}
+</style>
+<meta name="description" content="100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産CF利回り×リスク診断ツール「CFスコア」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf/">
+<meta property="og:title" content="不動産CF利回り×リスク診断ツール「CFスコア」 - kusasyu tools">
+<meta property="og:description" content="100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産CF利回り×リスク診断ツール「CFスコア」 - kusasyu tools">
+<meta name="twitter:description" content="100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産CF利回り×リスク診断ツール「CFスコア」",
+  "description": "100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産CF利回り×リスク診断ツール「CFスコア」</span></div>
+<div class="wrap">
+<h1>CFスコア</h1>
+<p class="sub">不動産クラウドファンディング 利回り×リスク診断（最大5案件比較）</p>
+
+<div class="card">
+<h2>案件を選ぶ</h2>
+<p style="font-size:.82em;color:#718096;margin-bottom:10px">プリセットから選択、または「手入力」で自由に数値を入力できます</p>
+<div class="slots" id="slots"></div>
+<div class="actions">
+<button class="btn btn-secondary" onclick="addSlot()" id="addBtn">＋ 案件を追加</button>
+</div>
+</div>
+
+<div class="actions">
+<button class="btn btn-primary" onclick="calc()">スコア診断する</button>
+<button class="btn btn-secondary" onclick="exportCSV()">CSV出力</button>
+</div>
+
+<div id="out"></div>
+</div>
+
+<script>
+var DB=[
+{n:"CREAL",y:4.5,s:10,p:12,m:1,yr:7},
+{n:"COZUCHI",y:7.0,s:15,p:18,m:1,yr:5},
+{n:"Rimple",y:3.5,s:30,p:6,m:1,yr:5},
+{n:"FUNDROP",y:5.5,s:20,p:12,m:1,yr:4},
+{n:"property+",y:3.4,s:10,p:15,m:1,yr:4},
+{n:"TECROWD",y:8.0,s:10,p:24,m:10,yr:4},
+{n:"利回りくん",y:5.0,s:15,p:12,m:1,yr:3},
+{n:"Jointoα",y:3.5,s:30,p:6,m:10,yr:8},
+{n:"TSON FUNDING",y:6.5,s:10,p:12,m:5,yr:5},
+{n:"大家どっとこむ",y:4.0,s:20,p:12,m:1,yr:5},
+{n:"ASSECLI",y:6.0,s:20,p:6,m:1,yr:4},
+{n:"ちょこっと不動産",y:5.0,s:30,p:6,m:1,yr:3},
+{n:"WARASHIBE",y:6.5,s:10,p:18,m:1,yr:3},
+{n:"みんなで大家さん",y:7.0,s:5,p:36,m:100,yr:15},
+{n:"LEVECHY",y:8.0,s:5,p:12,m:1,yr:2},
+{n:"汐留ファンディング",y:4.5,s:20,p:6,m:1,yr:3},
+{n:"えんfunding",y:5.0,s:20,p:6,m:1,yr:3},
+{n:"プレファン",y:4.5,s:20,p:6,m:1,yr:3},
+{n:"GATES FUNDING",y:5.5,s:20,p:12,m:1,yr:2},
+{n:"72CROWD",y:4.0,s:10,p:12,m:1,yr:2},
+{n:"GOLD CROWD",y:5.0,s:15,p:12,m:1,yr:2},
+{n:"Lives FUNDING",y:4.5,s:10,p:12,m:1,yr:3},
+{n:"DARWIN funding",y:5.5,s:20,p:18,m:1,yr:3},
+{n:"victory fund",y:5.0,s:15,p:12,m:1,yr:3},
+{n:"Myファンド",y:4.0,s:25,p:6,m:1,yr:2},
+{n:"TAMBO",y:5.0,s:20,p:12,m:5,yr:2},
+{n:"信長ファンディング",y:5.0,s:20,p:12,m:1,yr:4},
+{n:"SOLS",y:4.5,s:15,p:12,m:5,yr:3},
+{n:"BATSUNAGU",y:6.0,s:10,p:18,m:1,yr:3},
+{n:"i-Bond",y:1.5,s:0,p:0,m:1,yr:5}
+];
+var AVG_S=15.2,AVG_Y=5.0;
+var slots=[],results=[];
+function addSlot(){
+if(slots.length>=5)return;
+slots.push({preset:-1});
+render();
+}
+function render(){
+var c=document.getElementById("slots");
+c.innerHTML="";
+slots.forEach(function(s,i){
+var d=document.createElement("div");
+d.className="slot"+(s.preset>=0||s.preset===-2?" active":"");
+d.innerHTML='<button class="rm" onclick="rmSlot('+i+')">&times;</button>'+
+'<label>案件'+(i+1)+'</label>'+
+'<select onchange="selPreset('+i+',this.value)">'+
+'<option value="-1">-- 選択 --</option>'+
+DB.map(function(x,j){return'<option value="'+j+'"'+(s.preset===j?' selected':'')+'>'+x.n+'</option>'}).join("")+
+'<option value="-2"'+(s.preset===-2?' selected':'')+'>✏️ 手入力</option></select>'+
+(s.preset===-2?manualHTML(i,s):"");
+c.appendChild(d);
+});
+document.getElementById("addBtn").style.display=slots.length>=5?"none":"";
+}
+function manualHTML(i,s){
+return '<input placeholder="案件名" value="'+(s.mn||"")+'" onchange="slots['+i+'].mn=this.value" style="margin-top:4px">'+
+'<label>想定利回り(%)</label><input type="number" step="0.1" value="'+(s.my||"")+'" onchange="slots['+i+'].my=+this.value">'+
+'<label>劣後出資(%)</label><input type="number" value="'+(s.ms||"")+'" onchange="slots['+i+'].ms=+this.value">'+
+'<label>運用期間(月)</label><input type="number" value="'+(s.mp||"")+'" onchange="slots['+i+'].mp=+this.value">'+
+'<label>最低投資(万円)</label><input type="number" value="'+(s.mm||"")+'" onchange="slots['+i+'].mm=+this.value">'+
+'<label>運営年数</label><input type="number" value="'+(s.myr||"")+'" onchange="slots['+i+'].myr=+this.value">';
+}
+function selPreset(i,v){slots[i].preset=+v;render()}
+function rmSlot(i){slots.splice(i,1);render()}
+function getData(s){
+if(s.preset>=0){var d=DB[s.preset];return{n:d.n,y:d.y,s:d.s,p:d.p,m:d.m,yr:d.yr}}
+if(s.preset===-2)return{n:s.mn||"手入力",y:s.my||0,s:s.ms||0,p:s.mp||0,m:s.mm||0,yr:s.myr||0};
+return null;
+}
+function scoreIt(d){
+var yS=Math.min(d.y/10*30,30);
+var sS=Math.min(d.s/30*25,25);
+var pS=d.p<=12?20:d.p<=24?12:5;
+var mS=d.m<=1?15:d.m<=10?10:d.m<=50?5:0;
+var yrS=Math.min(d.yr/10*10,10);
+return Math.round(yS+sS+pS+mS+yrS);
+}
+function genComment(d,sc){
+var c=[];
+if(d.s>=AVG_S+5)c.push("劣後出資比率が業界平均より"+(d.s-AVG_S).toFixed(0)+"%高く、元本保護が厚い案件です。");
+else if(d.s<10)c.push("劣後出資比率が低め。元本毀損リスクへの備えを確認しましょう。");
+if(d.p>36)c.push("運用期間3年超は流動性リスクに注意。途中解約の可否を要確認。");
+else if(d.p<=6)c.push("短期運用で資金拘束が少なく、初心者にも始めやすい設計です。");
+if(d.y>=7)c.push("高利回りは魅力的ですが、相応のリスクを伴います。分散投資を推奨します。");
+else if(d.y<3)c.push("利回りは控えめですが、安定志向の運用に向いています。");
+if(d.yr>=7)c.push("運営実績"+d.yr+"年。長期運営の信頼性が強みです。");
+else if(d.yr<=2)c.push("運営歴が浅いため、事業者の財務基盤を確認しておくと安心です。");
+if(d.m>=50)c.push("最低投資額が高め。資金に余裕がある方向けです。");
+if(c.length===0)c.push("バランスの取れた案件です。他案件と比較して判断しましょう。");
+return c.join(" ");
+}
+function calc(){
+results=[];
+var valid=[];
+slots.forEach(function(s){var d=getData(s);if(d&&d.y>0)valid.push(d)});
+if(valid.length===0){alert("案件を1つ以上選択してください");return}
+valid.forEach(function(d){
+var sc=scoreIt(d);
+results.push({d:d,sc:sc,cm:genComment(d,sc)});
+});
+results.sort(function(a,b){return b.sc-a.sc});
+showResults();
+}
+function showResults(){
+var o=document.getElementById("out");
+var h='<div class="card"><h2>診断結果</h2><div class="results">';
+results.forEach(function(r,i){
+var cls=r.sc>=70?"score-high":r.sc>=45?"score-mid":"score-low";
+h+='<div class="rcard"><span class="rank">'+(i+1)+'位</span>'+
+'<h3>'+r.d.n+'</h3>'+
+'<div class="score-circle '+cls+'">'+r.sc+'</div>'+
+'<div class="det">利回り: '+r.d.y+'% ／ 劣後: '+r.d.s+'% ／ 運用: '+r.d.p+'ヶ月</div>'+
+'<div class="det">最低投資: '+r.d.m+'万円 ／ 運営: '+r.d.yr+'年</div>'+
+'<div style="margin-top:6px"><div class="bar"><div class="bar-fill" style="width:'+r.sc+'%;background:'+
+(r.sc>=70?"#38a169":r.sc>=45?"#d69e2e":"#e53e3e")+'"></div></div></div>'+
+'<div class="comment">'+r.cm+'</div></div>';
+});
+h+='</div></div>';
+h+='<div class="card"><h2>比較一覧</h2><table><tr><th>順位</th><th>案件名</th><th>スコア</th><th>利回り</th><th>劣後比率</th><th>運用期間</th><th>最低投資</th><th>運営年数</th></tr>';
+results.forEach(function(r,i){
+h+='<tr><td>'+(i+1)+'</td><td>'+r.d.n+'</td><td><strong>'+r.sc+'点</strong></td><td>'+r.d.y+'%</td><td>'+r.d.s+'%</td><td>'+r.d.p+'ヶ月</td><td>'+r.d.m+'万円</td><td>'+r.d.yr+'年</td></tr>';
+});
+h+='</table><p class="legend">※スコア配分：利回り30点＋劣後出資25点＋運用期間20点＋最低投資額15点＋運営年数10点＝100点満点<br>※掲載データは各社公表情報に基づく参考値です。投資判断はご自身の責任でお願いします。</p></div>';
+o.innerHTML=h;
+o.scrollIntoView({behavior:"smooth"});
+}
+function exportCSV(){
+if(results.length===0){alert("先にスコア診断を実行してください");return}
+var csv="順位,案件名,スコア,利回り(%),劣後出資比率(%),運用期間(月),最低投資額(万円),運営年数,コメント\n";
+results.forEach(function(r,i){
+csv+=(i+1)+","+r.d.n+","+r.sc+","+r.d.y+","+r.d.s+","+r.d.p+","+r.d.m+","+r.d.yr+',"'+r.cm.replace(/"/g,'""')+'"\n';
+});
+var b=new Blob(["\uFEFF"+csv],{type:"text/csv"});
+var a=document.createElement("a");
+a.href=URL.createObjectURL(b);
+a.download="cf_score_"+new Date().toISOString().slice(0,10)+".csv";
+a.click();
+}
+addSlot();addSlot();addSlot();
+</script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>相続不動産の意思決定チェックリスト20問 - kusasyu tools</title>
+<meta name="description" content="相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,相続不動産の意思決定チェックリスト20問">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/checker/">
+<meta property="og:title" content="相続不動産の意思決定チェックリスト20問 - kusasyu tools">
+<meta property="og:description" content="相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/checker/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="相続不動産の意思決定チェックリスト20問 - kusasyu tools">
+<meta name="twitter:description" content="相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "相続不動産の意思決定チェックリスト20問",
+  "description": "相続で取得した不動産について「売却・賃貸・更地化・信託」の4つの選択肢の5年間収支をシミュレーションし、最適な判断を支援するHTMLツール。固定資産税額・築年数・エリア情報を入力すると、各選択肢の想定収支・税金・維持コストを自動計算し比較表を生成する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/checker/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-16"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>相続不動産の意思決定チェックリスト20問</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>相続不動産の意思決定チェックリスト20問</h1>
+  <p class="project-name">相続した家、売る・貸す・更地？5年収支で即比較</p>
+  <div class="content">
+<h1>相続不動産の意思決定チェックリスト20問</h1>
+<p><strong>InheritCalc — 相続不動産4択シミュレーター 連動シート</strong></p>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li>各質問に回答欄へ記入してください（選択式は○で囲む）</li>
+<li>すべて記入後、末尾の「傾向診断」で該当数を集計してください</li>
+<li>売却・賃貸・更地・信託のうち最も○が多い選択肢があなたの第一候補です</li>
+<li>本シートを持参のうえ不動産会社・行政書士に相談すると、打ち合わせがスムーズに進みます</li>
+<li>より詳細な5年収支は <strong>InheritCalc（相続不動産4択シミュレーター）</strong> で自動計算できます</li>
+</ol>
+<blockquote>
+<p><strong>所要時間</strong>: 約15分｜<strong>準備するもの</strong>: 固定資産税の納税通知書・登記簿謄本（あれば）</p>
+</blockquote>
+<hr />
+<h2>第1部｜物件の基本情報（Q1〜Q5）</h2>
+<h3>Q1. 築年数は何年ですか？</h3>
+<ul>
+<li>回答欄：＿＿＿＿年</li>
+<li>[記入例] 35年</li>
+</ul>
+<blockquote>
+<p>築20年以上は建物の資産価値がほぼゼロとみなされることがあります。</p>
+</blockquote>
+<hr />
+<h3>Q2. 建物の構造は何ですか？</h3>
+<ul>
+<li>回答欄：（ 木造 ／ 鉄骨造 ／ RC造 ／ 不明 ）</li>
+<li>[記入例] 木造</li>
+</ul>
+<blockquote>
+<p>木造は法定耐用年数22年。構造で解体費用が大きく変わります。</p>
+</blockquote>
+<hr />
+<h3>Q3. 土地の面積と建物の延床面積はどのくらいですか？</h3>
+<ul>
+<li>土地：＿＿＿＿㎡（＿＿＿＿坪）</li>
+<li>建物：＿＿＿＿㎡</li>
+<li>[記入例] 土地165㎡（約50坪）／建物95㎡</li>
+</ul>
+<hr />
+<h3>Q4. 前面道路の幅員は4m以上ありますか？</h3>
+<ul>
+<li>回答欄：（ はい ／ いいえ ／ わからない ）</li>
+<li>[記入例] はい</li>
+</ul>
+<blockquote>
+<p>4m未満の場合、セットバック義務が発生し、再建築時に利用面積が減る可能性があります。</p>
+</blockquote>
+<hr />
+<h3>Q5. 年間の固定資産税額はいくらですか？</h3>
+<ul>
+<li>回答欄：＿＿＿＿万円／年</li>
+<li>[記入例] 12万円／年</li>
+</ul>
+<blockquote>
+<p>納税通知書に記載されています。更地にすると住宅用地特例が外れ、最大6倍になります。</p>
+</blockquote>
+<hr />
+<h2>第2部｜相続・権利関係（Q6〜Q10）</h2>
+<h3>Q6. 相続人は何人ですか？</h3>
+<ul>
+<li>回答欄：＿＿＿＿人</li>
+<li>[記入例] 3人（自分・兄・妹）</li>
+</ul>
+<blockquote>
+<p>相続人が多いほど合意形成に時間がかかり、賃貸・信託は全員の同意が必要です。</p>
+</blockquote>
+<hr />
+<h3>Q7. 相続登記は完了していますか？</h3>
+<ul>
+<li>回答欄：（ 完了 ／ 未了 ／ わからない ）</li>
+<li>[記入例] 未了</li>
+</ul>
+<blockquote>
+<p>2024年4月から相続登記が義務化。未了の場合、売却・賃貸いずれも手続きが進みません。</p>
+</blockquote>
+<hr />
+<h3>Q8. 他の相続人と方針の合意はとれていますか？</h3>
+<ul>
+<li>回答欄：（ 全員合意 ／ 概ね合意 ／ 未相談 ／ 意見対立あり ）</li>
+<li>[記入例] 未相談</li>
+</ul>
+<blockquote>
+<p>意見が割れている場合は、まず本チェックリストを共有して論点を整理しましょう。</p>
+</blockquote>
+<hr />
+<h3>Q9. 被相続人の居住用財産の3,000万円特別控除は使えそうですか？</h3>
+<ul>
+<li>回答欄：（ 使える ／ 使えない ／ わからない ）</li>
+<li>[記入例] わからない</li>
+</ul>
+<blockquote>
+<p>相続開始から3年後の年末までに売却すれば適用可能な場合があります。税理士に要確認。</p>
+</blockquote>
+<hr />
+<h3>Q10. 相続税の納税資金に不安はありますか？</h3>
+<ul>
+<li>回答欄：（ 不安なし ／ やや不安 ／ 売却しないと払えない ）</li>
+<li>[記入例] やや不安</li>
+</ul>
+<blockquote>
+<p>納税期限は相続開始から10か月。資金不足なら早期売却が優先選択肢になります。</p>
+</blockquote>
+<hr />
+<h2>第3部｜立地・市場環境（Q11〜Q15）</h2>
+<h3>Q11. 物件の最寄り駅までの距離は？</h3>
+<ul>
+<li>回答欄：徒歩＿＿＿＿分（約＿＿＿＿m）</li>
+<li>[記入例] 徒歩15分（約1,200m）</li>
+</ul>
+<blockquote>
+<p>徒歩10分以内なら賃貸需要が見込めます。15分超は売却か更地が現実的です。</p>
+</blockquote>
+<hr />
+<h3>Q12. 周辺エリアの人口動態は？</h3>
+<ul>
+<li>回答欄：（ 増加傾向 ／ 横ばい ／ 減少傾向 ／ わからない ）</li>
+<li>[記入例] 減少傾向</li>
+</ul>
+<blockquote>
+<p>自治体HPの「人口ビジョン」で確認できます。減少エリアでは長期保有リスクが高まります。</p>
+</blockquote>
+<hr />
+<h3>Q13. 近隣に類似物件の売り出し事例はありますか？</h3>
+<ul>
+<li>回答欄：（ ある／価格＿＿＿＿万円 ／ ない ／ 調べていない ）</li>
+<li>[記入例] ある／1,800万円</li>
+</ul>
+<blockquote>
+<p>SUUMO・アットホームで「同じ町名・同程度の面積」で検索すると相場がわかります。</p>
+</blockquote>
+<hr />
+<h3>Q14. 用途地域は何ですか？</h3>
+<ul>
+<li>回答欄：（ 第一種低層住居専用 ／ 商業 ／ 工業 ／ その他：＿＿＿＿ ／ 不明 ）</li>
+<li>[記入例] 第一種低層住居専用</li>
+</ul>
+<blockquote>
+<p>用途地域で建てられる建物が変わります。商業地域なら収益物件の可能性があります。</p>
+</blockquote>
+<hr />
+<h3>Q15. 物件があるエリアの賃貸需要はありそうですか？</h3>
+<ul>
+<li>回答欄：（ 高い ／ 普通 ／ 低い ／ わからない ）</li>
+<li>[記入例] 低い</li>
+</ul>
+<blockquote>
+<p>近隣の賃貸物件の空室率をSUUMOで確認。空室が目立つなら賃貸は慎重に。</p>
+</blockquote>
+<hr />
+<h2>第4部｜あなた自身の状況（Q16〜Q20）</h2>
+<h3>Q16. 今後、あなたまたは親族がその物件に住む予定はありますか？</h3>
+<ul>
+<li>回答欄：（ ある ／ 可能性あり ／ ない ）</li>
+<li>[記入例] ない</li>
+</ul>
+<blockquote>
+<p>居住予定がなければ、維持コストだけが発生します。早期の方針決定が重要です。</p>
+</blockquote>
+<hr />
+<h3>Q17. 物件の管理（草刈り・換気・修繕対応）を継続できますか？</h3>
+<ul>
+<li>回答欄：（ 自分でできる ／ 業者に委託可能 ／ 難しい ）</li>
+<li>[記入例] 難しい（片道3時間）</li>
+</ul>
+<blockquote>
+<p>遠方で管理困難な場合、空き家の老朽化・近隣トラブルのリスクが高まります。</p>
+</blockquote>
+<hr />
+<h3>Q18. 不動産からの定期収入（家賃）は必要ですか？</h3>
+<ul>
+<li>回答欄：（ ぜひほしい ／ あれば嬉しい ／ 不要 ）</li>
+<li>[記入例] あれば嬉しい</li>
+</ul>
+<blockquote>
+<p>定期収入が必要なら賃貸、まとまった現金が必要なら売却が基本方針です。</p>
+</blockquote>
+<hr />
+<h3>Q19. 将来の土地活用（建替え・駐車場など）を考えていますか？</h3>
+<ul>
+<li>回答欄：（ 具体的に検討中 ／ 漠然と考えている ／ 考えていない ）</li>
+<li>[記入例] 考えていない</li>
+</ul>
+<blockquote>
+<p>具体的計画がないまま更地にすると、固定資産税が跳ね上がるだけになります。</p>
+</blockquote>
+<hr />
+<h3>Q20. 資産を次世代に引き継ぐ意向はありますか？</h3>
+<ul>
+<li>回答欄：（ ぜひ残したい ／ 条件次第 ／ 残す必要なし ）</li>
+<li>[記入例] 条件次第</li>
+</ul>
+<blockquote>
+<p>次世代に残す場合は家族信託が有効です。認知症リスクに備え早めの検討を。</p>
+</blockquote>
+<hr />
+<h2>傾向診断｜回答の集計</h2>
+<p>下表の各行について、あなたの回答が条件に当てはまれば「○」をつけてください。</p>
+<h3>【売却】が向いている兆候</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>条件</th>
+<th>○/×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Q1：築30年以上</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Q6：相続人3人以上</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Q8：意見対立あり</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Q10：売却しないと納税できない</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Q16：居住予定なし</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>○の数：＿＿／5</strong></p>
+<h3>【賃貸】が向いている兆候</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>条件</th>
+<th>○/×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Q1：築20年未満</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Q11：最寄り駅 徒歩10分以内</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Q12：人口 増加〜横ばい</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Q15：賃貸需要 高い〜普通</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Q18：定期収入がほしい</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>○の数：＿＿／5</strong></p>
+<h3>【更地化】が向いている兆候</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>条件</th>
+<th>○/×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Q1：築40年以上</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Q2：木造</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Q4：前面道路4m以上</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Q17：管理が難しい</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Q19：土地活用を検討中</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>○の数：＿＿／5</strong></p>
+<h3>【家族信託】が向いている兆候</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>条件</th>
+<th>○/×</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Q6：相続人2人以下</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Q8：全員合意</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Q13：売却相場あり（資産価値が明確）</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Q16：居住の可能性あり</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Q20：次世代に残したい</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>○の数：＿＿／5</strong></p>
+<hr />
+<h2>診断結果の読み方</h2>
+<table>
+<thead>
+<tr>
+<th>○の数</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>4〜5個</strong></td>
+<td>その選択肢が最有力。優先的に専門家へ相談を</td>
+</tr>
+<tr>
+<td><strong>2〜3個</strong></td>
+<td>候補の一つ。他の選択肢と比較検討を</td>
+</tr>
+<tr>
+<td><strong>0〜1個</strong></td>
+<td>現時点では優先度低。ただし条件変化で再検討を</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>複数の選択肢が同点の場合</strong> → InheritCalc（相続不動産4択シミュレーター）で5年収支を比較し、数字で判断してください</li>
+<li><strong>どれも2個以下の場合</strong> → 物件の特殊事情がある可能性があります。不動産会社・行政書士への早期相談を推奨します</li>
+</ul>
+<hr />
+<h2>相談前の準備物チェック</h2>
+<p>不動産会社・行政書士への相談時に持参すると話が早いもの：</p>
+<ul>
+<li>[ ] 固定資産税 納税通知書（最新年度）</li>
+<li>[ ] 登記簿謄本（法務局またはオンラインで取得可）</li>
+<li>[ ] 建物の図面・間取り図（あれば）</li>
+<li>[ ] 本チェックリスト（記入済み）</li>
+<li>[ ] InheritCalcのシミュレーション結果（スクリーンショット可）</li>
+</ul>
+<hr />
+<p><em>本チェックリストは意思決定の参考情報です。最終判断は税理士・弁護士・不動産会社等の専門家にご相談ください。</em>
+<em>作成：Kusasyu PropTech ／ InheritCalc — 相続不動産4択シミュレーター</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

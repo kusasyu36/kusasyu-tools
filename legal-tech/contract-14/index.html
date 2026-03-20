@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>契約書リスク診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 0 6px;color:#1a365d}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+label{font-weight:600;font-size:.9em;display:block;margin-bottom:6px}
+select,textarea,button{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:10px;font-size:.95em}
+textarea{height:200px;resize:vertical}
+select{background:#fff;cursor:pointer}
+.btn{background:#2563eb;color:#fff;border:none;cursor:pointer;font-weight:600;padding:12px;margin-top:10px;font-size:1em;border-radius:8px;transition:background .2s}
+.btn:hover{background:#1d4ed8}
+.result{margin-top:16px}
+.risk-item{border-left:4px solid;border-radius:8px;padding:14px;margin-bottom:12px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.risk-high{border-color:#dc2626;background:#fef2f2}
+.risk-mid{border-color:#f59e0b;background:#fffbeb}
+.risk-low{border-color:#3b82f6;background:#eff6ff}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75em;font-weight:700;color:#fff;margin-bottom:6px}
+.tag-high{background:#dc2626}.tag-mid{background:#f59e0b}.tag-low{background:#3b82f6}
+.risk-item h3{font-size:.95em;margin-bottom:4px}
+.desc{font-size:.85em;color:#555;margin:4px 0}
+.fix{font-size:.85em;background:#f0fdf4;border-radius:6px;padding:8px 10px;margin-top:6px;border:1px dashed #86efac}
+.fix b{color:#166534}
+.match{font-size:.82em;color:#888;margin-top:4px}
+.summary{text-align:center;padding:20px;border-radius:10px;margin-bottom:14px}
+.summary h2{font-size:1.2em}
+.score-bar{height:10px;border-radius:5px;background:#e5e7eb;margin:10px 0;overflow:hidden}
+.score-fill{height:100%;border-radius:5px;transition:width .5s}
+.check-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f1f1f1;font-size:.9em}
+.check-row input{width:18px;height:18px;accent-color:#2563eb}
+.empty{text-align:center;color:#16a34a;padding:30px;font-size:1.05em}
+.cnt{font-size:.8em;color:#888;text-align:right;margin-top:4px}
+@media(max-width:600px){.wrap{padding:10px}textarea{height:150px}}
+</style>
+<meta name="description" content="中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,契約書リスク診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-14/">
+<meta property="og:title" content="契約書リスク診断ツール - kusasyu tools">
+<meta property="og:description" content="中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約書リスク診断ツール - kusasyu tools">
+<meta name="twitter:description" content="中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "契約書リスク診断ツール",
+  "description": "中小企業の経営者・総務担当が、契約書のテキストを貼り付けるだけで危険な条項をAIルールベースで自動検出し、リスク度・修正案を表示するHTMLツールを中心に、すぐ使える契約書テンプレートとレビュー用チェックリストをセットで提供する。LegalOnやLeCHECKが月額数万円〜数十万円で大企業・法律事務所向けに提",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-14/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">契約書リスク診断ツール</span></div>
+<div class="wrap">
+<h1>契約書リスク診断ツール</h1>
+<p class="sub">契約書テキストを貼り付けて、危険な条項を自動検出</p>
+<div class="card">
+<label>契約タイプを選択</label>
+<select id="ctype">
+<option value="nda">秘密保持契約（NDA）</option>
+<option value="outsource">業務委託契約</option>
+<option value="sales">売買契約</option>
+</select>
+</div>
+<div class="card">
+<label>契約書テキストを貼り付け</label>
+<textarea id="txt" placeholder="契約書の全文または確認したい条項をここに貼り付けてください…"></textarea>
+<div class="cnt" id="cnt">0 文字</div>
+<button class="btn" onclick="diagnose()">リスク診断を実行</button>
+</div>
+<div id="out"></div>
+</div>
+<script>
+var ta=document.getElementById('txt'),cn=document.getElementById('cnt');
+ta.addEventListener('input',function(){cn.textContent=ta.value.length+' 文字'});
+var R=[
+{name:'損害賠償上限の未設定',keys:['損害賠償','一切の損害','全ての損害','直接損害及び間接損害','無制限'],neg:['上限','限度額','を超えない'],risk:'high',
+desc:'損害賠償の上限が定められていない場合、想定外の高額請求リスクがあります。中小企業にとって経営を揺るがす致命的リスクです。',
+fix:'「本契約に基づく損害賠償の総額は、委託料の○ヶ月分を上限とする」と上限額を明記してください。'},
+{name:'一方的解除権',keys:['催告なく','直ちに解除','無条件で解除','任意に解除','いつでも解除'],neg:['双方','相手方も同様'],risk:'high',
+desc:'相手方だけが一方的に契約を解除できる条項です。突然の契約打切りで事業に大きな損害が生じる恐れがあります。',
+fix:'「解除する場合は○日前までに書面で通知する」「双方同一条件で解除できる」旨を追記してください。'},
+{name:'競業避止義務',keys:['競業避止','競合','同種の事業','競争的な活動'],neg:[],risk:'mid',
+desc:'契約終了後も同業種の活動を制限される可能性があります。期間・地域・範囲が広すぎると事業継続に支障が出ます。',
+fix:'競業避止の「期間は1年以内」「地域は限定」「対象業務を具体的に列挙」と範囲を限定してください。'},
+{name:'自動更新・自動延長',keys:['自動的に更新','自動更新','自動延長','申し出がない限り'],neg:[],risk:'mid',
+desc:'解約の申し出をしない限り契約が自動で延長されます。解約通知期限を見落とすと不要な契約が継続します。',
+fix:'「更新拒絶の通知期限は満了○ヶ月前」と明記し、カレンダーに通知期限を登録してください。'},
+{name:'知的財産権の帰属',keys:['知的財産','著作権','特許','成果物の権利','著作者人格権'],neg:[],risk:'high',
+desc:'成果物の権利が全て相手方に移転する条項は、自社で再利用できなくなるリスクがあります。',
+fix:'「汎用的なノウハウ・ツールの権利は受託者に留保する」「共同で利用できる」旨を明記してください。'},
+{name:'準拠法の確認',keys:['準拠法','外国法','governing law','州法'],neg:['日本法'],risk:'low',
+desc:'外国法が準拠法になっていると、紛争時に海外の法律で処理されコストが大幅に増加します。',
+fix:'「本契約は日本法を準拠法とする」と明記してください。'},
+{name:'管轄裁判所',keys:['管轄','専属的合意管轄','裁判所'],neg:[],risk:'low',
+desc:'遠方の裁判所が指定されていると、訴訟時の移動・費用負担が大きくなります。',
+fix:'「○○地方裁判所を第一審の専属的合意管轄裁判所とする」と自社に近い裁判所を指定してください。'},
+{name:'秘密保持期間',keys:['秘密保持','機密','開示後','存続'],neg:[],risk:'mid',
+desc:'秘密保持期間が長すぎる（5年超）又は無期限の場合、永続的に情報管理義務を負います。',
+fix:'「秘密保持義務は契約終了後○年間存続する」と合理的な期間（通常1〜3年）を設定してください。'},
+{name:'再委託の制限',keys:['再委託','第三者に委託','外注','下請'],neg:[],risk:'mid',
+desc:'再委託が全面禁止だと、専門業者への外注ができず業務遂行が困難になる場合があります。',
+fix:'「事前の書面承諾を得た場合は再委託できる」と条件付き許可に修正してください。'},
+{name:'契約期間の不利な設定',keys:['最低契約期間','中途解約不可','解約金','違約金','途中解約'],neg:[],risk:'mid',
+desc:'長期の最低契約期間や中途解約時の違約金条項は、事業環境が変わった際に足枷になります。',
+fix:'「最低契約期間は○ヶ月とし、以降は○ヶ月前通知で解約可能」と柔軟な解約条件を交渉してください。'}
+];
+var TP={nda:[0,1,4,5,6,7,2,8,3,9],outsource:[0,1,4,8,9,2,3,5,6,7],sales:[0,1,3,9,5,6,7,2,4,8]};
+function diagnose(){
+var t=ta.value.trim(),type=document.getElementById('ctype').value;
+if(!t){alert('契約書テキストを入力してください');return}
+var order=TP[type],hits=[];
+for(var x=0;x<order.length;x++){
+var r=R[order[x]],found=[];
+for(var j=0;j<r.keys.length;j++){var k=r.keys[j],pos=0;
+while((pos=t.indexOf(k,pos))!==-1){found.push(k);pos+=k.length}}
+if(found.length>0){var skip=false;
+for(var n=0;n<r.neg.length;n++){if(t.indexOf(r.neg[n])!==-1){skip=true;break}}
+if(!skip)hits.push({name:r.name,risk:r.risk,desc:r.desc,fix:r.fix,found:found})}}
+render(hits)}
+function render(hits){
+var o=document.getElementById('out');
+if(!hits.length){o.innerHTML='<div class="card empty">リスクのある条項は検出されませんでした。<br>ただし本ツールはキーワード検出のため、専門家への確認もご検討ください。</div>';return}
+var hc=0,mc=0,lc=0;
+for(var i=0;i<hits.length;i++){if(hits[i].risk==='high')hc++;else if(hits[i].risk==='mid')mc++;else lc++}
+var score=Math.max(0,100-hc*25-mc*10-lc*5);
+var cl=score>=70?'#22c55e':score>=40?'#f59e0b':'#dc2626';
+var h='<div class="card summary" style="border:2px solid '+cl+'"><h2>診断スコア: '+score+' / 100</h2><div class="score-bar"><div class="score-fill" style="width:'+score+'%;background:'+cl+'"></div></div><p style="font-size:.85em;color:#666">検出: <b style="color:#dc2626">高リスク '+hc+'件</b>　<b style="color:#f59e0b">中リスク '+mc+'件</b>　<b style="color:#3b82f6">低リスク '+lc+'件</b></p></div><div class="result">';
+for(var i=0;i<hits.length;i++){var it=hits[i];
+var rc=it.risk==='high'?'risk-high':it.risk==='mid'?'risk-mid':'risk-low';
+var tc=it.risk==='high'?'tag-high':it.risk==='mid'?'tag-mid':'tag-low';
+var rl=it.risk==='high'?'高':it.risk==='mid'?'中':'低';
+var uq=[],uf=it.found;for(var u=0;u<uf.length;u++){if(uq.indexOf(uf[u])===-1)uq.push(uf[u])}
+h+='<div class="risk-item '+rc+'"><span class="tag '+tc+'">リスク: '+rl+'</span><h3>'+it.name+'</h3><p class="desc">'+it.desc+'</p><div class="fix"><b>修正案:</b> '+it.fix+'</div><p class="match">検出キーワード: '+uq.map(function(w){return'「'+w+'」'}).join(' ')+'</p></div>'}
+h+='</div><div class="card"><label>確認チェックリスト</label>';
+for(var i=0;i<hits.length;i++){h+='<div class="check-row"><input type="checkbox" id="ck'+i+'"><label for="ck'+i+'">'+hits[i].name+' — 対応済み</label></div>'}
+h+='<p style="font-size:.8em;color:#888;margin-top:10px">全項目にチェックを入れて契約締結前の最終確認としてご活用ください。</p></div>';
+o.innerHTML=h;o.scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

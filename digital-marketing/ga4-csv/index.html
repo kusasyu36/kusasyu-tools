@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GA4＆広告データ_自動分析ダッシュボード（CSV即貼り対応） - kusasyu tools</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}h1{font-size:1.3em;text-align:center;padding:18px 0;color:#1a73e8}
+.sub{text-align:center;color:#777;font-size:.85em;margin:-10px 0 16px}
+.drop{border:3px dashed #90caf9;border-radius:12px;padding:40px 20px;text-align:center;background:#e3f2fd;cursor:pointer;transition:.3s}
+.drop.over{background:#bbdefb;border-color:#1a73e8}.drop p{font-size:1.1em;color:#555}.drop small{color:#888}
+.hidden{display:none}.panel{background:#fff;border-radius:10px;padding:16px;margin:14px 0;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.panel h2{font-size:1em;color:#1a73e8;margin-bottom:10px;border-bottom:2px solid #e3f2fd;padding-bottom:6px}
+canvas{width:100%!important;height:auto!important}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.alert{background:#fff3e0;border-left:4px solid #ff9800;padding:10px 14px;margin:6px 0;border-radius:4px;font-size:.9em}
+.alert.red{background:#fce4ec;border-color:#e53935}.action{padding:10px 14px;margin:6px 0;border-radius:6px;font-size:.9em}
+.action.h{background:#e8f5e9;border-left:4px solid #43a047}.action.m{background:#fff8e1;border-left:4px solid #fdd835}
+.action.l{background:#e3f2fd;border-left:4px solid #42a5f5}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75em;color:#fff;margin-right:6px}
+.badge.h{background:#43a047}.badge.m{background:#f9a825}.badge.l{background:#42a5f5}
+.btn{display:inline-block;padding:10px 20px;background:#1a73e8;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.95em;margin-top:10px}
+.btn:hover{background:#1557b0}
+.tag{display:inline-block;background:#e3f2fd;padding:2px 8px;border-radius:4px;font-size:.8em;margin:2px;color:#1a73e8}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:10px 0}
+.kpi{text-align:center;padding:12px;border-radius:8px;background:#f5f5f5}.kpi .v{font-size:1.4em;font-weight:700;color:#1a73e8}.kpi .l{font-size:.8em;color:#777}
+</style><meta name="description" content="GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,GA4＆広告データ_自動分析ダッシュボード（CSV即貼り対応）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ga4-csv/">
+<meta property="og:title" content="GA4＆広告データ_自動分析ダッシュボード（CSV即貼り対応） - kusasyu tools">
+<meta property="og:description" content="GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ga4-csv/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GA4＆広告データ_自動分析ダッシュボード（CSV即貼り対応） - kusasyu tools">
+<meta name="twitter:description" content="GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GA4＆広告データ_自動分析ダッシュボード（CSV即貼り対応）",
+  "description": "GA4や広告データのCSVをアップロードするだけで、PV推移・流入元・チャネル別ROIを自動可視化し、改善アクションを優先度付きで提案するダッシュボードツール。SQLもExcelピボットも不要。海外で注目されるEliottの日本版コンセプトを、API接続不要・CSV即分析の手軽さで実現する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ga4-csv/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">GA4＆広告データ_自動分析ダッシュボード（CSV即貼り対応</span></div><div class="wrap">
+<h1>GA4 &amp; 広告データ 自動分析ダッシュボード</h1>
+<p class="sub">CSVをアップロードするだけ。SQL不要・サインアップ不要。</p>
+<div class="drop" id="drop">
+<p>CSVファイルをドラッグ＆ドロップ<br>またはクリックしてアップロード</p>
+<small>GA4 / Google Ads / Meta Ads / LINE広告 / 楽天広告 CSV対応</small>
+<input type="file" id="fi" accept=".csv" style="display:none">
+</div>
+<div id="out" class="hidden">
+<div class="panel"><h2>検出フォーマット</h2><p id="fmt"></p><div id="tags"></div></div>
+<div class="panel"><h2>KPIサマリー</h2><div class="summary" id="kpis"></div></div>
+<div class="panel"><h2>推移グラフ</h2><canvas id="c1" height="220"></canvas></div>
+<div class="grid">
+<div class="panel"><h2>チャネル構成比</h2><canvas id="c2" height="250"></canvas></div>
+<div class="panel"><h2>チャネル別 CPA / ROAS</h2><canvas id="c3" height="250"></canvas></div>
+</div>
+<div class="panel"><h2>異常値アラート</h2><div id="alerts"></div></div>
+<div class="panel"><h2>改善アクション（優先度順）</h2><div id="actions"></div></div>
+<div class="panel"><h2>レポート出力</h2><button class="btn" onclick="copyMD()">Markdown形式でコピー</button><span id="copied" style="margin-left:10px;color:#43a047"></span></div>
+</div></div>
+<script>
+var D=document,g=function(id){return D.getElementById(id)},CL=['#1a73e8','#e53935','#43a047','#f9a825','#8e24aa','#00897b','#ff7043','#5c6bc0'];
+var drop=g('drop'),fi=g('fi'),R={};
+drop.onclick=function(){fi.click()};
+fi.onchange=function(e){if(e.target.files[0])proc(e.target.files[0])};
+drop.ondragover=function(e){e.preventDefault();drop.classList.add('over')};
+drop.ondragleave=function(){drop.classList.remove('over')};
+drop.ondrop=function(e){e.preventDefault();drop.classList.remove('over');if(e.dataTransfer.files[0])proc(e.dataTransfer.files[0])};
+
+function parseCSV(t){var lines=t.trim().split(/\r?\n/);var h=lines[0].split(',').map(function(s){return s.replace(/^"|"$/g,'').trim()});
+var rows=[];for(var i=1;i<lines.length;i++){var c=lines[i].split(',').map(function(s){return s.replace(/^"|"$/g,'').trim()});if(c.length>=h.length-1)rows.push(c)}return{h:h,rows:rows}}
+
+function fi_idx(h,re){for(var i=0;i<h.length;i++){if(re.test(h[i]))return i}return -1}
+function isGA4(h){return h.some(function(x){return/ページビュー|pageview|sessions/i.test(x)})}
+
+function proc(file){var reader=new FileReader();reader.onload=function(e){
+var d=parseCSV(e.target.result),h=d.h,rows=d.rows;
+var type=isGA4(h)?'ga4':'ads';
+g('fmt').textContent=type==='ga4'?'GA4 エクスポート':'広告レポート（Google/Meta/LINE/楽天 自動判別）';
+g('tags').innerHTML=h.slice(0,8).map(function(x){return'<span class="tag">'+x+'</span>'}).join('');
+if(type==='ga4')procGA4(h,rows);else procAds(h,rows);
+g('out').classList.remove('hidden')};reader.readAsText(file)}
+
+function procGA4(h,rows){
+var di=fi_idx(h,/日付|date/i),pi=fi_idx(h,/ページビュー|pageview/i),ci=fi_idx(h,/チャネル|channel|source|参照元/i),vi=fi_idx(h,/コンバージョン|conversion|目標/i);
+var dates=[],pvs=[],chMap={};
+rows.forEach(function(r){dates.push(r[di]||'');pvs.push(+r[pi]||0);
+var ch=ci>=0?(r[ci]||'direct'):'direct';chMap[ch]=(chMap[ch]||0)+(+r[pi]||0)});
+var tPV=pvs.reduce(function(a,b){return a+b},0),tCV=vi>=0?rows.reduce(function(a,r){return a+(+r[vi]||0)},0):0;
+g('kpis').innerHTML=kpi('総PV',tPV.toLocaleString())+kpi('日数',dates.length)+kpi('総CV',tCV)+kpi('平均PV/日',Math.round(tPV/dates.length));
+lineChart(g('c1'),dates,pvs,'PV');donut(g('c2'),chMap);barFromMap(g('c3'),chMap);
+var al=anomaly(pvs,'PV');showAlerts(al);
+R={type:'ga4',tPV:tPV,tCV:tCV,dates:dates,pvs:pvs,chMap:chMap,alerts:al};showActions(actGA4(R))}
+
+function procAds(h,rows){
+var ci=fi_idx(h,/campaign|キャンペーン/i),ki=fi_idx(h,/click|クリック/i),oi=fi_idx(h,/cost|費用|amount|金額/i);
+var vi=fi_idx(h,/conv|コンバージョン|cv/i),ii=fi_idx(h,/impr|表示|imp/i),ri=fi_idx(h,/value|売上|revenue|収益/i),di=fi_idx(h,/day|日|date/i);
+var ch={},dm={};
+rows.forEach(function(r){var c=ci>=0?(r[ci]||'不明'):'不明';
+if(!ch[c])ch[c]={cl:0,co:0,cv:0,im:0,rv:0};
+ch[c].cl+=+r[ki]||0;ch[c].co+=+r[oi]||0;ch[c].cv+=+r[vi]||0;ch[c].im+=+r[ii]||0;ch[c].rv+=+r[ri]||0;
+if(di>=0){var d=r[di]||'';dm[d]=(dm[d]||0)+(+r[ki]||0)}});
+var ds=Object.keys(dm).sort(),dates=[],clicks=[];
+ds.forEach(function(d){dates.push(d);clicks.push(dm[d])});
+var vals=Object.keys(ch).map(function(k){return ch[k]});
+var tc=vals.reduce(function(a,v){return a+v.co},0),tv=vals.reduce(function(a,v){return a+v.cv},0),tr=vals.reduce(function(a,v){return a+v.rv},0);
+g('kpis').innerHTML=kpi('総コスト','¥'+tc.toLocaleString())+kpi('総CV',tv)+kpi('総クリック',vals.reduce(function(a,v){return a+v.cl},0).toLocaleString())+kpi('ROAS',tr&&tc?(tr/tc*100).toFixed(0)+'%':'N/A');
+lineChart(g('c1'),dates,clicks,'クリック');
+var cm={};Object.keys(ch).forEach(function(k){cm[k]=ch[k].co});donut(g('c2'),cm);
+var cpa={},roas={};Object.keys(ch).forEach(function(k){cpa[k]=ch[k].cv?Math.round(ch[k].co/ch[k].cv):0;roas[k]=ch[k].co?Math.round(ch[k].rv/ch[k].co*100):0});
+barDbl(g('c3'),cpa,roas);
+var al=anomaly(clicks,'クリック');showAlerts(al);
+R={type:'ads',ch:ch,tc:tc,tv:tv,tr:tr,alerts:al,cpa:cpa,roas:roas,dates:dates,clicks:clicks};showActions(actAds(R))}
+
+function kpi(l,v){return'<div class="kpi"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>'}
+
+function lineChart(cv,labels,data,lbl){var ctx=cv.getContext('2d');var W=cv.width=cv.offsetWidth*2,H=cv.height=400;
+var mx=Math.max.apply(null,data)||1,mn=Math.min.apply(null,data),P={t:30,b:50,l:60,r:20};
+var cw=W-P.l-P.r,ch=H-P.t-P.b;ctx.clearRect(0,0,W,H);
+ctx.strokeStyle='#e0e0e0';ctx.lineWidth=1;
+for(var i=0;i<5;i++){var y=P.t+ch/4*i;ctx.beginPath();ctx.moveTo(P.l,y);ctx.lineTo(W-P.r,y);ctx.stroke();
+ctx.fillStyle='#999';ctx.font='18px sans-serif';ctx.textAlign='right';ctx.fillText(Math.round(mx-(mx-mn)/4*i),P.l-8,y+6)}
+ctx.strokeStyle='#1a73e8';ctx.lineWidth=3;ctx.beginPath();
+var dl=data.length-1||1;
+data.forEach(function(v,i){var x=P.l+cw/dl*i,y2=P.t+ch*(1-(v-mn)/(mx-mn||1));i?ctx.lineTo(x,y2):ctx.moveTo(x,y2)});ctx.stroke();
+ctx.fillStyle='#999';ctx.font='16px sans-serif';ctx.textAlign='center';
+var step=Math.max(1,Math.floor(labels.length/7));
+labels.forEach(function(l,i){if(i%step===0){var x=P.l+cw/dl*i;ctx.fillText(l.slice(-5),x,H-12)}})}
+
+function donut(cv,map){var ctx=cv.getContext('2d');var W=cv.width=cv.offsetWidth*2,H=cv.height=500;
+var ent=Object.keys(map).map(function(k){return[k,map[k]]}).sort(function(a,b){return b[1]-a[1]});
+var total=ent.reduce(function(a,e){return a+e[1]},0)||1;
+var cx=W/2-80,cy=H/2,r=Math.min(cx,cy)-20,a=-Math.PI/2;
+ent.forEach(function(e,i){var sa=a;a+=2*Math.PI*e[1]/total;ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,sa,a);ctx.fillStyle=CL[i%8];ctx.fill()});
+ctx.beginPath();ctx.arc(cx,cy,r*0.55,0,2*Math.PI);ctx.fillStyle='#fff';ctx.fill();
+ctx.font='bold 20px sans-serif';ctx.fillStyle='#333';ctx.textAlign='center';ctx.fillText('合計',cx,cy-6);ctx.fillText(total.toLocaleString(),cx,cy+18);
+var ly=30;ent.slice(0,6).forEach(function(e,i){ctx.fillStyle=CL[i%8];ctx.fillRect(W-160,ly,12,12);
+ctx.fillStyle='#333';ctx.font='16px sans-serif';ctx.textAlign='left';ctx.fillText(e[0].slice(0,10)+' '+(e[1]/total*100).toFixed(1)+'%',W-142,ly+12);ly+=24})}
+
+function barFromMap(cv,map){var ctx=cv.getContext('2d');var W=cv.width=cv.offsetWidth*2,H=cv.height=500;
+var ent=Object.keys(map).map(function(k){return[k,map[k]]}).sort(function(a,b){return b[1]-a[1]}).slice(0,6);
+var mx=Math.max.apply(null,ent.map(function(e){return e[1]}))||1;
+var P={t:30,b:60,l:10,r:10},bw=(W-P.l-P.r)/ent.length;
+ent.forEach(function(e,i){var x=P.l+bw*i+bw*.15,h=(H-P.t-P.b)*e[1]/mx,y=H-P.b-h;
+ctx.fillStyle=CL[i%8];ctx.fillRect(x,y,bw*.7,h);
+ctx.fillStyle='#333';ctx.font='16px sans-serif';ctx.textAlign='center';
+ctx.fillText(e[1].toLocaleString(),x+bw*.35,y-6);ctx.fillText(e[0].slice(0,8),x+bw*.35,H-P.b+18)})}
+
+function barDbl(cv,cpa,roas){var ctx=cv.getContext('2d');var W=cv.width=cv.offsetWidth*2,H=cv.height=500;
+var keys=Object.keys(cpa).slice(0,5),mx=Math.max.apply(null,keys.map(function(k){return cpa[k]}))||1;
+var P={t:30,b:60,l:10,r:10},bw=(W-P.l-P.r)/keys.length;
+var mr=Math.max.apply(null,keys.map(function(k){return roas[k]}))||1;
+keys.forEach(function(k,i){var x=P.l+bw*i+bw*.1;
+var h1=(H-P.t-P.b)*cpa[k]/mx,y1=H-P.b-h1;ctx.fillStyle='#e53935';ctx.fillRect(x,y1,bw*.35,h1);
+ctx.fillStyle='#333';ctx.font='14px sans-serif';ctx.textAlign='center';ctx.fillText('¥'+cpa[k].toLocaleString(),x+bw*.17,y1-4);
+var h2=(H-P.t-P.b)*roas[k]/mr,y2=H-P.b-h2;ctx.fillStyle='#43a047';ctx.fillRect(x+bw*.4,y2,bw*.35,h2);
+ctx.fillText(roas[k]+'%',x+bw*.57,y2-4);ctx.fillText(k.slice(0,7),x+bw*.35,H-P.b+18)});
+ctx.fillStyle='#e53935';ctx.fillRect(W-180,8,12,12);ctx.fillStyle='#333';ctx.font='14px sans-serif';ctx.textAlign='left';ctx.fillText('CPA',W-164,19);
+ctx.fillStyle='#43a047';ctx.fillRect(W-110,8,12,12);ctx.fillText('ROAS%',W-94,19)}
+
+function anomaly(vals,lbl){var a=[];if(vals.length<6)return a;
+var mid=Math.floor(vals.length/2),prev=vals.slice(0,mid),cur=vals.slice(mid);
+var ap=prev.reduce(function(a,b){return a+b},0)/prev.length,ac=cur.reduce(function(a,b){return a+b},0)/cur.length;
+var chg=ap?(ac-ap)/ap:0;if(Math.abs(chg)>.2)a.push({label:lbl,chg:chg,ap:Math.round(ap),ac:Math.round(ac)});return a}
+
+function showAlerts(al){var el=g('alerts');
+if(!al.length){el.innerHTML='<p style="color:#888">異常値なし（前半・後半比較で±20%以内）</p>';return}
+el.innerHTML=al.map(function(a){return'<div class="alert'+(Math.abs(a.chg)>.3?' red':'')+'">'+a.label+': 前半平均 '+a.ap.toLocaleString()+' → 後半平均 '+a.ac.toLocaleString()+'（<b>'+(a.chg>0?'+':'')+(a.chg*100).toFixed(1)+'%</b>）</div>'}).join('')}
+
+function actGA4(r){var a=[],ent=Object.keys(r.chMap).map(function(k){return[k,r.chMap[k]]}).sort(function(a,b){return b[1]-a[1]});
+if(ent.length>1&&ent[0][1]/r.tPV>.7)a.push({p:'高',t:'流入が「'+ent[0][0]+'」に'+(ent[0][1]/r.tPV*100).toFixed(0)+'%集中。'+ent[1][0]+'等の他チャネル強化でリスク分散を'});
+if(r.alerts.length&&r.alerts[0].chg<-.2)a.push({p:'高',t:'PVが前半比'+(r.alerts[0].chg*100).toFixed(0)+'%減少。コンテンツ更新頻度やSEO順位を確認'});
+if(r.tCV===0)a.push({p:'高',t:'CV未計測。GA4でCV目標を設定し、チャネル別ROIを可視化'});
+a.push({p:'中',t:'GA4イベント設定を見直し、CVポイント（資料DL・問合せ）トラッキングを追加'});
+a.push({p:'低',t:'週次レポート運用を開始し、PV推移の傾向を早期に把握する体制を構築'});
+return a.slice(0,3)}
+
+function actAds(r){var a=[],keys=Object.keys(r.ch);
+var hi=keys.filter(function(k){return r.ch[k].cv&&r.ch[k].co/r.ch[k].cv>r.tc/Math.max(r.tv,1)*1.5});
+if(hi.length)a.push({p:'高',t:'CPA限界値超過: '+hi.join(', ')+'。予算を高ROIチャネルへ移行'});
+var lo=keys.filter(function(k){return r.ch[k].co>0&&r.ch[k].rv/r.ch[k].co<.5});
+if(lo.length)a.push({p:'高',t:'ROAS 50%未満: '+lo.join(', ')+'。クリエイティブ刷新またはターゲティング見直し'});
+if(r.tv===0)a.push({p:'高',t:'CV計測ゼロ。広告プラットフォームのコンバージョン設定を確認'});
+a.push({p:'中',t:'各チャネルのCTRを比較し、低CTR広告のコピー・バナーをA/Bテスト'});
+a.push({p:'低',t:'週次でチャネル別CPAをモニタリングし、異常値を早期検知する運用体制を構築'});
+return a.slice(0,3)}
+
+function showActions(acts){g('actions').innerHTML=acts.map(function(a){var c=a.p==='高'?'h':a.p==='中'?'m':'l';return'<div class="action '+c+'"><span class="badge '+c+'">'+a.p+'</span>'+a.t+'</div>'}).join('')}
+
+function copyMD(){var md='# マーケティング分析レポート（'+new Date().toLocaleDateString('ja-JP')+'）\n\n';
+if(R.type==='ga4'){md+='## サマリー\n- 総PV: '+R.tPV.toLocaleString()+'\n- 総CV: '+R.tCV+'\n- 分析日数: '+R.dates.length+'日\n\n## チャネル構成\n';
+Object.keys(R.chMap).forEach(function(k){md+='- '+k+': '+R.chMap[k].toLocaleString()+' ('+(R.chMap[k]/R.tPV*100).toFixed(1)+'%)\n'})}
+else{md+='## サマリー\n- 総コスト: ¥'+R.tc.toLocaleString()+'\n- 総CV: '+R.tv+'\n- 総売上: ¥'+R.tr.toLocaleString()+'\n\n## チャネル別CPA\n';
+Object.keys(R.cpa).forEach(function(k){md+='- '+k+': ¥'+R.cpa[k].toLocaleString()+'\n'});
+md+='\n## チャネル別ROAS\n';Object.keys(R.roas).forEach(function(k){md+='- '+k+': '+R.roas[k]+'%\n'})}
+if(R.alerts.length){md+='\n## 異常値\n';R.alerts.forEach(function(a){md+='- '+a.label+': '+(a.chg*100).toFixed(1)+'%変動\n'})}
+md+='\n## 改善アクション\n';var els=D.querySelectorAll('#actions .action');
+for(var i=0;i<els.length;i++){md+=(i+1)+'. '+els[i].textContent.trim()+'\n'}
+if(navigator.clipboard){navigator.clipboard.writeText(md).then(function(){g('copied').textContent='コピーしました';setTimeout(function(){g('copied').textContent=''},2000)})}
+else{var ta=D.createElement('textarea');ta.value=md;D.body.appendChild(ta);ta.select();D.execCommand('copy');D.body.removeChild(ta);g('copied').textContent='コピーしました';setTimeout(function(){g('copied').textContent=''},2000)}}
+</script></body></html>

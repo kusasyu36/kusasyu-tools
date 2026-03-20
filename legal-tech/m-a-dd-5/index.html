@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中小M&amp;A法務DDレポートひな形 - kusasyu tools</title>
+<meta name="description" content="中小企業M&amp;A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,中小M&amp;A法務DDレポートひな形">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-5/">
+<meta property="og:title" content="中小M&amp;A法務DDレポートひな形 - kusasyu tools">
+<meta property="og:description" content="中小企業M&amp;A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中小M&amp;A法務DDレポートひな形 - kusasyu tools">
+<meta name="twitter:description" content="中小企業M&amp;A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "中小M&A法務DDレポートひな形",
+  "description": "中小企業M&A（譲渡額1〜10億円）の買収側担当者が、大手法律事務所に依頼する前に法務DDの初期スクリーニングを自力で行えるツールキット。業種・取引形態を選ぶだけでDDチェックリストを自動生成し、契約書テキストを貼り付ければリスク条項を自動検出。DDレポートのひな形も提供し、弁護士への依頼前に社内でリスクの全",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>中小M&amp;A法務DDレポートひな形</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>中小M&amp;A法務DDレポートひな形</h1>
+  <p class="project-name">中小M&amp;Aの法務DD、自力でできる診断キット</p>
+  <div class="content">
+<h1>中小M&amp;A法務DDレポートひな形</h1>
+<hr />
+<h2>【使い方】</h2>
+<p>本テンプレートは、M&amp;A法務デューデリジェンス（DD）の結果を社内稟議・取締役会に報告するための書式です。以下の手順でご利用ください。</p>
+<ol>
+<li><strong>リスクスコアカード</strong>（<code>M&amp;A法務DDリスクスコアカード</code>）で算出した総合リスクグレード・各カテゴリスコアを「第2部 エグゼクティブサマリー」と「第3部 リスク一覧表」に転記する</li>
+<li><strong>条項ナビゲーター</strong>で検出したリスク条項の結果を「第3部 リスク一覧表」の各行に転記する</li>
+<li><strong>DDチェックリスト</strong>の未充足項目を「第4部 推奨アクション」に落とし込む</li>
+<li>各セクションの <code>【記入例】</code> を参考に自社案件の内容へ書き換える</li>
+<li><code>【記入例】</code> の行を削除し、最終版として社内稟議に提出する</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>: 本レポートは社内初期スクリーニング用です。最終的な法務DDは弁護士の関与のもとで実施してください。</p>
+</blockquote>
+<hr />
+<h2>第1部｜表紙</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>レポートタイトル</strong></td>
+<td>法務デューデリジェンス報告書</td>
+</tr>
+<tr>
+<td><strong>対象案件名</strong></td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td><strong>対象会社（売主側）</strong></td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td><strong>買収スキーム</strong></td>
+<td>□ 株式譲渡　□ 事業譲渡　□ 会社分割　□ その他（　　）</td>
+</tr>
+<tr>
+<td><strong>想定譲渡額</strong></td>
+<td>＿＿＿＿億円</td>
+</tr>
+<tr>
+<td><strong>DD実施期間</strong></td>
+<td>20＿＿年＿月＿日 〜 20＿＿年＿月＿日</td>
+</tr>
+<tr>
+<td><strong>報告日</strong></td>
+<td>20＿＿年＿月＿日</td>
+</tr>
+<tr>
+<td><strong>作成部署・作成者</strong></td>
+<td>＿＿＿＿部　＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td><strong>配布先</strong></td>
+<td>□ 取締役会　□ 経営会議　□ その他（　　）</td>
+</tr>
+<tr>
+<td><strong>機密区分</strong></td>
+<td>□ 極秘　□ 社外秘　□ 関係者限り</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>対象案件名</td>
+<td>株式会社サンプルテック 株式譲渡案件</td>
+</tr>
+<tr>
+<td>対象会社（売主側）</td>
+<td>株式会社サンプルテック（東京都千代田区、従業員85名）</td>
+</tr>
+<tr>
+<td>買収スキーム</td>
+<td>☑ 株式譲渡</td>
+</tr>
+<tr>
+<td>想定譲渡額</td>
+<td>3.5億円</td>
+</tr>
+<tr>
+<td>DD実施期間</td>
+<td>2026年3月1日 〜 2026年3月14日</td>
+</tr>
+<tr>
+<td>作成部署・作成者</td>
+<td>経営企画部　山田太郎</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第2部｜エグゼクティブサマリー</h2>
+<h3>2-1. 総合評価</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>総合リスクグレード</strong> ※リスクスコアカードから転記</td>
+<td>＿＿（S / A / B / C）</td>
+</tr>
+<tr>
+<td><strong>総合スコア</strong> ※リスクスコアカードから転記</td>
+<td>＿＿ 点 / 100点</td>
+</tr>
+<tr>
+<td><strong>買収推奨判断</strong></td>
+<td>□ 推奨（条件付き）　□ 要追加調査　□ 慎重検討　□ 見送り推奨</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong> 総合リスクグレード: <strong>B</strong>（総合スコア: 62点 / 100点）→ 買収推奨判断: ☑ 推奨（条件付き）</p>
+<h3>2-2. カテゴリ別スコアサマリー</h3>
+<p>※リスクスコアカードの各カテゴリ評価を転記してください。</p>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>スコア</th>
+<th>グレード</th>
+<th>主なリスク概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会社組織・株主</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>契約・取引関係</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>労務・人事</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>知的財産</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>許認可・コンプライアンス</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>訴訟・紛争</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>不動産・資産</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>環境・規制</td>
+<td>＿＿点</td>
+<td>＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong></p>
+<table>
+<thead>
+<tr>
+<th>カテゴリ</th>
+<th>スコア</th>
+<th>グレード</th>
+<th>主なリスク概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会社組織・株主</td>
+<td>80点</td>
+<td>C</td>
+<td>少数株主の所在不明（2名・計3%）</td>
+</tr>
+<tr>
+<td>契約・取引関係</td>
+<td>45点</td>
+<td>A</td>
+<td>主要取引先とのCOC条項あり（売上の35%に影響）</td>
+</tr>
+<tr>
+<td>労務・人事</td>
+<td>70点</td>
+<td>B</td>
+<td>未払残業代リスク（推定800万円）</td>
+</tr>
+</tbody>
+</table>
+<h3>2-3. 結論と概要所見</h3>
+<p>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿（3〜5行で記載）</p>
+<p><strong>【記入例】</strong> 対象会社の法務リスクは総合グレードBであり、適切な対応策を講じることで買収を推奨できる水準である。最大のリスクは主要取引先2社との契約に含まれるチェンジ・オブ・コントロール（COC）条項であり、クロージング前に相手方の同意取得が必要。労務面では未払残業代の潜在債務が推定800万円あり、表明保証および補償条項での手当てを推奨する。</p>
+<hr />
+<h2>第3部｜リスク一覧表</h2>
+<h3>リスク評価基準</h3>
+<table>
+<thead>
+<tr>
+<th>グレード</th>
+<th>スコア範囲</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S（深刻）</strong></td>
+<td>0〜39点</td>
+<td>買収中止または大幅な条件変更を要する重大リスク</td>
+</tr>
+<tr>
+<td><strong>A（高）</strong></td>
+<td>40〜59点</td>
+<td>クロージング前の解消または価格調整が必要</td>
+</tr>
+<tr>
+<td><strong>B（中）</strong></td>
+<td>60〜79点</td>
+<td>契約条項（表明保証等）で対応可能</td>
+</tr>
+<tr>
+<td><strong>C（低）</strong></td>
+<td>80〜100点</td>
+<td>軽微またはリスクなし</td>
+</tr>
+</tbody>
+</table>
+<h3>リスク個別表</h3>
+<h4>リスク #1</h4>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>リスク名称</strong></td>
+<td>＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td><strong>カテゴリ</strong></td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td><strong>グレード</strong></td>
+<td>＿（S / A / B / C）</td>
+</tr>
+<tr>
+<td><strong>検出方法</strong></td>
+<td>□ スコアカード　□ 条項ナビゲーター　□ DDチェックリスト　□ 手動確認</td>
+</tr>
+<tr>
+<td><strong>リスク内容</strong></td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td><strong>想定影響額</strong></td>
+<td>＿＿＿＿万円（または「定量化困難」）</td>
+</tr>
+<tr>
+<td><strong>該当契約書・条項</strong> ※条項ナビゲーターの結果を転記</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td><strong>対応方針</strong></td>
+<td>□ クロージング前解消　□ 価格調整　□ 表明保証　□ 補償条項　□ 経過観察</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】リスク #1</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リスク名称</td>
+<td>主要取引先とのCOC条項</td>
+</tr>
+<tr>
+<td>カテゴリ</td>
+<td>契約・取引関係</td>
+</tr>
+<tr>
+<td>グレード</td>
+<td>A（高）</td>
+</tr>
+<tr>
+<td>検出方法</td>
+<td>☑ 条項ナビゲーター</td>
+</tr>
+<tr>
+<td>リスク内容</td>
+<td>A社との基本取引契約（第12条）およびB社との業務委託契約（第8条）にCOC条項が存在。株式譲渡により契約解除権が発生し、年間売上の35%（約1.2億円）に影響する可能性</td>
+</tr>
+<tr>
+<td>想定影響額</td>
+<td>最大12,000万円（年間売上減少リスク）</td>
+</tr>
+<tr>
+<td>該当契約書・条項</td>
+<td>A社基本取引契約書 第12条第2項 / B社業務委託契約書 第8条第1項</td>
+</tr>
+<tr>
+<td>対応方針</td>
+<td>☑ クロージング前解消（A社・B社への事前同意取得）</td>
+</tr>
+</tbody>
+</table>
+<p>※リスクの数だけ上記の表を繰り返してください（通常5〜15件程度）。</p>
+<hr />
+<h2>第4部｜推奨アクション</h2>
+<h3>4-1. クロージング前に必要な対応（前提条件）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>アクション</th>
+<th>担当</th>
+<th>期限</th>
+<th>状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿＿＿</td>
+<td>＿月＿日</td>
+<td>□ 未着手　□ 進行中　□ 完了</td>
+</tr>
+<tr>
+<td>2</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿＿＿</td>
+<td>＿月＿日</td>
+<td>□ 未着手　□ 進行中　□ 完了</td>
+</tr>
+<tr>
+<td>3</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿＿＿</td>
+<td>＿月＿日</td>
+<td>□ 未着手　□ 進行中　□ 完了</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>アクション</th>
+<th>担当</th>
+<th>期限</th>
+<th>状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>A社・B社へのCOC条項に基づく事前同意取得</td>
+<td>経営企画部 山田</td>
+<td>4月15日</td>
+<td>□ 未着手</td>
+</tr>
+<tr>
+<td>2</td>
+<td>少数株主2名の所在調査・株式買取交渉</td>
+<td>顧問弁護士</td>
+<td>4月30日</td>
+<td>□ 未着手</td>
+</tr>
+<tr>
+<td>3</td>
+<td>未払残業代の精査および対象会社との協議</td>
+<td>管理部 佐藤</td>
+<td>4月20日</td>
+<td>□ 未着手</td>
+</tr>
+</tbody>
+</table>
+<h3>4-2. 契約条項で手当てすべき事項</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>条項種別</th>
+<th>対象リスク</th>
+<th>具体的な条項案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>＿＿＿＿</td>
+<td>＿＿＿＿</td>
+<td>＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>2</td>
+<td>＿＿＿＿</td>
+<td>＿＿＿＿</td>
+<td>＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>条項種別</th>
+<th>対象リスク</th>
+<th>具体的な条項案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>表明保証</td>
+<td>未払残業代</td>
+<td>「対象会社は、労働関係法令を遵守しており、未払賃金等の潜在債務は存在しない」旨の表明保証を株式譲渡契約に規定</td>
+</tr>
+<tr>
+<td>2</td>
+<td>補償条項</td>
+<td>未払残業代</td>
+<td>表明保証違反が判明した場合、譲渡価格から控除または売主が補償する旨の条項（上限1,500万円、請求期間2年）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>価格調整</td>
+<td>簿外債務全般</td>
+<td>クロージング日の純資産に基づく価格調整条項を規定</td>
+</tr>
+</tbody>
+</table>
+<h3>4-3. クロージング後のモニタリング事項</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>モニタリング項目</th>
+<th>頻度</th>
+<th>担当</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿＿＿</td>
+<td>＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>モニタリング項目</th>
+<th>頻度</th>
+<th>担当</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>主要取引先との取引継続状況</td>
+<td>月次</td>
+<td>PMI担当</td>
+</tr>
+<tr>
+<td>2</td>
+<td>労務コンプライアンス改善状況</td>
+<td>四半期</td>
+<td>管理部</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第5部｜添付書類リスト</h2>
+<h3>5-1. 本DD実施で使用したツール出力</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>書類名</th>
+<th>形式</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>M&amp;A法務DDリスクスコアカード出力結果</td>
+<td>画面キャプチャまたはPDF</td>
+<td>総合グレード・カテゴリ別スコアの根拠</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DDチェックリスト（充足状況一覧）</td>
+<td>Excel / PDF</td>
+<td>業種・取引形態に基づく自動生成チェックリスト</td>
+</tr>
+<tr>
+<td>3</td>
+<td>条項ナビゲーター検出結果</td>
+<td>画面キャプチャまたはPDF</td>
+<td>リスク条項の自動検出結果と該当箇所</td>
+</tr>
+</tbody>
+</table>
+<h3>5-2. 対象会社から受領した資料</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>資料名</th>
+<th>受領日</th>
+<th>確認状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿月＿日</td>
+<td>□ 確認済　□ 未確認</td>
+</tr>
+<tr>
+<td>2</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿月＿日</td>
+<td>□ 確認済　□ 未確認</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>資料名</th>
+<th>受領日</th>
+<th>確認状況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>定款・登記簿謄本</td>
+<td>3月3日</td>
+<td>☑ 確認済</td>
+</tr>
+<tr>
+<td>2</td>
+<td>株主名簿</td>
+<td>3月3日</td>
+<td>☑ 確認済</td>
+</tr>
+<tr>
+<td>3</td>
+<td>主要取引先との契約書一式（5通）</td>
+<td>3月5日</td>
+<td>☑ 確認済</td>
+</tr>
+<tr>
+<td>4</td>
+<td>就業規則・賃金規程</td>
+<td>3月7日</td>
+<td>☑ 確認済</td>
+</tr>
+<tr>
+<td>5</td>
+<td>直近3期分の決算書・税務申告書</td>
+<td>3月3日</td>
+<td>☑ 確認済</td>
+</tr>
+<tr>
+<td>6</td>
+<td>許認可証・届出書の写し</td>
+<td>3月10日</td>
+<td>☑ 確認済</td>
+</tr>
+<tr>
+<td>7</td>
+<td>係属中の訴訟・紛争に関する資料</td>
+<td>3月10日</td>
+<td>☑ 確認済（該当なし）</td>
+</tr>
+</tbody>
+</table>
+<h3>5-3. 外部専門家への追加依頼事項</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>依頼先</th>
+<th>依頼内容</th>
+<th>推奨時期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>＿＿＿＿</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>【記入例】</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>依頼先</th>
+<th>依頼内容</th>
+<th>推奨時期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>顧問弁護士</td>
+<td>COC条項の法的リスク精査・同意取得交渉支援</td>
+<td>即時</td>
+</tr>
+<tr>
+<td>2</td>
+<td>社会保険労務士</td>
+<td>未払残業代の正確な算定</td>
+<td>1週間以内</td>
+</tr>
+<tr>
+<td>3</td>
+<td>弁護士（M&amp;A専門）</td>
+<td>株式譲渡契約書のドラフト・レビュー</td>
+<td>基本合意後</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>承認欄</h2>
+<table>
+<thead>
+<tr>
+<th>役職</th>
+<th>氏名</th>
+<th>日付</th>
+<th>承認</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作成者</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿月＿日</td>
+<td>□</td>
+</tr>
+<tr>
+<td>部門長</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿月＿日</td>
+<td>□</td>
+</tr>
+<tr>
+<td>経営管理担当役員</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿月＿日</td>
+<td>□</td>
+</tr>
+<tr>
+<td>代表取締役</td>
+<td>＿＿＿＿＿＿</td>
+<td>＿月＿日</td>
+<td>□</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本レポートは「M&amp;A法務DDリスクスコアカード」「DDチェックリスト」「条項ナビゲーター」の3ツールによる初期スクリーニング結果をまとめたものです。最終的なM&amp;A意思決定にあたっては、弁護士・公認会計士等の専門家による正式なデューデリジェンスを実施してください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

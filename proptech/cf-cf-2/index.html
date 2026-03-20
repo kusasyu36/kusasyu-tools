@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸 - kusasyu tools</title>
+<meta name="description" content="100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf-2/">
+<meta property="og:title" content="はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸 - kusasyu tools">
+<meta property="og:description" content="100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸 - kusasyu tools">
+<meta name="twitter:description" content="100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸",
+  "description": "100社超の不動産クラウドファンディング（CF）案件を横断比較し、利回り・リスク・運用期間を総合スコアリングするHTMLツールを中心に、投資判断に必要な情報を非専門家向けに自然言語で提供するプロジェクト。海外のFundhomes（$100から民泊小口投資）の日本版コンセプトを、まずは情報＋分析ツールとして実現",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-19"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>はじめての不動産CF投資_CFスコアで選ぶ5つの判断軸</h1>
+  <p class="project-name">不動産CF、どこに投資？AI利回り比較ツール</p>
+  <div class="content">
+<h1>はじめての不動産CF投資 ── CFスコアで選ぶ5つの判断軸</h1>
+<p><strong>「NISAもiDeCoも始めた。次は何に投資すればいい？」</strong></p>
+<p>そんなあなたにおすすめしたいのが、不動産クラウドファンディング（CF）です。1万円から始められ、物件の管理も不要。ただし、100社を超える事業者が乱立する今、<strong>「どの案件を選ぶか」こそが最大の難関</strong>です。</p>
+<p>本記事では、無料ツール<strong>「CFスコア｜不動産CF利回り×リスク診断ツール」</strong>の使い方を軸に、投資判断に必要な<strong>5つの指標</strong>をゼロから解説します。</p>
+<hr />
+<h2>そもそも不動産CFとは？ 30秒でわかる仕組み</h2>
+<p>不動産CFは、多くの投資家から少額ずつ資金を集め、プロが物件を取得・運用し、賃料収入や売却益を分配する仕組みです。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>不動産CF</th>
+<th>現物不動産</th>
+<th>NISA（投信）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最低投資額</td>
+<td>1万円〜</td>
+<td>数百万円〜</td>
+<td>100円〜</td>
+</tr>
+<tr>
+<td>管理の手間</td>
+<td>なし</td>
+<td>あり</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>想定利回り</td>
+<td>3〜10%</td>
+<td>4〜8%</td>
+<td>3〜7%</td>
+</tr>
+<tr>
+<td>元本保証</td>
+<td>なし</td>
+<td>なし</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>途中解約</td>
+<td>原則不可</td>
+<td>売却可能</td>
+<td>いつでも可</td>
+</tr>
+</tbody>
+</table>
+<p>手軽さはNISAに近く、利回りは現物不動産に近い。<strong>その中間を埋める選択肢</strong>として注目されています。</p>
+<hr />
+<h2>CFスコアとは？ ── 5つの指標を1つの数字に</h2>
+<p><strong>CFスコア</strong>は、不動産CF案件の「利回り」と「リスク」を総合的に数値化する無料診断ツールです。</p>
+<p>複数の案件情報を入力すると、<strong>0〜100点のスコア</strong>で横並び比較ができます。スコアを構成するのが、次の5つの判断軸です。</p>
+<hr />
+<h2>判断軸❶ 利回り ── 高ければいいわけではない</h2>
+<h3>指標の意味</h3>
+<p><strong>想定利回り（年利）</strong>は、投資額に対して1年間で受け取れる分配金の割合です。年利5%なら、10万円投資で年間5,000円の分配が期待できます。</p>
+<h3>なぜスコアに影響するか</h3>
+<p>利回りが高いほどリターンは大きくなりますが、<strong>高利回り＝高リスク</strong>が原則です。CFスコアでは利回りを「加点要素」としつつ、8%を超える案件には自動でリスクフラグを立てます。</p>
+<blockquote>
+<p><strong>目安</strong>: 3〜5%＝堅実型 ／ 5〜8%＝バランス型 ／ 8%超＝積極型</p>
+</blockquote>
+<hr />
+<h2>判断軸❷ 劣後出資比率 ── 投資家を守る"バンパー"</h2>
+<h3>指標の意味</h3>
+<p>劣後出資比率とは、<strong>事業者が自腹で出す資金の割合</strong>です。たとえば劣後出資20%なら、物件価格が20%下落するまで投資家の元本は毀損しません。</p>
+<h3>なぜスコアに影響するか</h3>
+<p>これは事業者の「本気度」を測るバロメーターです。自分のお金も入れている事業者は、損失が出れば自社も痛む。だから慎重に物件を選びます。CFスコアでは<strong>劣後出資比率が高いほど安全スコアが上がる</strong>仕組みです。</p>
+<blockquote>
+<p><strong>目安</strong>: 5%以下＝要注意 ／ 10〜20%＝標準 ／ 30%超＝手厚い</p>
+</blockquote>
+<hr />
+<h2>判断軸❸ 運用期間 ── 短いほどリスクは小さい</h2>
+<h3>指標の意味</h3>
+<p>投資したお金が拘束される期間です。6ヶ月の案件なら半年後、24ヶ月なら2年後に元本が返ってきます。</p>
+<h3>なぜスコアに影響するか</h3>
+<p>不動産CFは原則として<strong>途中解約ができません</strong>。運用期間が長いほど、景気変動・金利上昇・事業者の経営悪化といった不確実性にさらされます。CFスコアでは運用期間が短い案件ほど「流動性スコア」が高くなります。</p>
+<blockquote>
+<p><strong>目安</strong>: 6ヶ月以下＝短期 ／ 12ヶ月前後＝標準 ／ 24ヶ月超＝長期（要注意）</p>
+</blockquote>
+<hr />
+<h2>判断軸❹ 最低投資額 ── 分散しやすさの指標</h2>
+<h3>指標の意味</h3>
+<p>1口あたりの投資額です。1万円の案件もあれば、10万円〜という案件もあります。</p>
+<h3>なぜスコアに影響するか</h3>
+<p>投資の鉄則は<strong>分散</strong>です。100万円を1案件に集中するより、10万円×10案件に分けた方がリスクは下がります。最低投資額が低いほど分散がしやすく、CFスコアでは「分散容易性」として加点されます。</p>
+<blockquote>
+<p><strong>目安</strong>: 1万円＝分散◎ ／ 10万円＝標準 ／ 50万円超＝集中リスクあり</p>
+</blockquote>
+<hr />
+<h2>判断軸❺ 運営実績 ── 信頼はデータで測る</h2>
+<h3>指標の意味</h3>
+<p>事業者の<strong>累計案件数・元本毀損率・運営年数</strong>を総合した信頼指標です。</p>
+<h3>なぜスコアに影響するか</h3>
+<p>不動産CFは「事業者に資金を預ける」投資です。事業者が倒産すれば、不動産の価値に関係なく資金が返ってこない可能性があります。CFスコアでは、累計50案件以上・元本毀損ゼロ・運営3年以上の事業者に高い信頼スコアを付与します。</p>
+<blockquote>
+<p><strong>目安</strong>: 運営1年未満＝実績不足 ／ 3年以上・毀損ゼロ＝信頼◎</p>
+</blockquote>
+<hr />
+<h2>実践！ CFスコアで2つの案件を比較してみよう</h2>
+<p>ここからは、ツールのプリセット例を使って実際にスコアを見比べます。</p>
+<h3>ケースA：利回り8%の高リターン案件</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>想定利回り</td>
+<td>8.0%</td>
+</tr>
+<tr>
+<td>劣後出資比率</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>運用期間</td>
+<td>24ヶ月</td>
+</tr>
+<tr>
+<td>最低投資額</td>
+<td>10万円</td>
+</tr>
+<tr>
+<td>運営実績</td>
+<td>運営2年・累計15案件</td>
+</tr>
+<tr>
+<td><strong>CFスコア</strong></td>
+<td><strong>52点</strong>（バランス型）</td>
+</tr>
+</tbody>
+</table>
+<p>利回りは高いものの、劣後出資比率が薄く、運用期間も長い。運営実績もまだ浅く、スコアは中程度にとどまります。</p>
+<h3>ケースB：利回り4%の堅実案件</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>想定利回り</td>
+<td>4.0%</td>
+</tr>
+<tr>
+<td>劣後出資比率</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>運用期間</td>
+<td>6ヶ月</td>
+</tr>
+<tr>
+<td>最低投資額</td>
+<td>1万円</td>
+</tr>
+<tr>
+<td>運営実績</td>
+<td>運営5年・累計80案件・毀損ゼロ</td>
+</tr>
+<tr>
+<td><strong>CFスコア</strong></td>
+<td><strong>78点</strong>（堅実型）</td>
+</tr>
+</tbody>
+</table>
+<p>利回りは控えめですが、劣後出資30%のバンパーが厚く、短期運用で流動性も高い。実績豊富な事業者で信頼スコアも高く、<strong>総合スコアはケースAを大きく上回ります</strong>。</p>
+<h3>比較から読み取れること</h3>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>ケースA（8%）</th>
+<th>ケースB（4%）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リターン</td>
+<td>◎</td>
+<td>△</td>
+</tr>
+<tr>
+<td>元本保全</td>
+<td>△</td>
+<td>◎</td>
+</tr>
+<tr>
+<td>流動性</td>
+<td>△</td>
+<td>◎</td>
+</tr>
+<tr>
+<td>分散しやすさ</td>
+<td>○</td>
+<td>◎</td>
+</tr>
+<tr>
+<td>事業者信頼</td>
+<td>△</td>
+<td>◎</td>
+</tr>
+<tr>
+<td><strong>総合CFスコア</strong></td>
+<td><strong>52点</strong></td>
+<td><strong>78点</strong></td>
+</tr>
+</tbody>
+</table>
+<p>利回りだけで選ぶとケースAが魅力的に見えますが、5つの軸で総合評価すると<strong>ケースBの方が投資判断として合理的</strong>です。これがCFスコアの価値です。</p>
+<hr />
+<h2>CFスコアの使い方 ── 3ステップ</h2>
+<ol>
+<li><strong>案件情報を入力する</strong> ── 利回り・劣後出資比率・運用期間・最低投資額・運営実績の5項目を入力。各事業者の案件ページから数字を転記するだけです。</li>
+<li><strong>案件を追加して比較する</strong> ── 最大5案件まで同時にスロットに登録可能。「＋案件を追加」ボタンで比較対象を増やせます。</li>
+<li><strong>スコアを確認して判断する</strong> ── 0〜100点のスコアと、5軸のレーダーチャートで各案件の強み・弱みが一目でわかります。</li>
+</ol>
+<blockquote>
+<p>ツール名：<strong>CFスコア｜不動産CF利回り×リスク診断ツール</strong>
+利用料：無料 ／ 会員登録：不要</p>
+</blockquote>
+<hr />
+<h2>よくある質問</h2>
+<p><strong>Q. CFスコアが高ければ必ず儲かる？</strong>
+A. いいえ。スコアはリスクとリターンのバランスを数値化したもので、将来の収益を保証するものではありません。投資判断の「補助線」としてお使いください。</p>
+<p><strong>Q. スコアの配点は変えられる？</strong>
+A. はい。ツール上で各指標のウェイトを調整できます。「利回り重視」「安全重視」など、自分の投資スタイルに合わせてカスタマイズしてください。</p>
+<p><strong>Q. 案件情報はどこで調べる？</strong>
+A. 各事業者の公式サイトの案件詳細ページに掲載されています。利回り・劣後出資比率・運用期間は必ず記載されている情報です。</p>
+<hr />
+<h2>まとめ ── 利回りだけで選ばない投資を</h2>
+<p>不動産CFの案件選びで大切なのは、<strong>利回りという1つの数字に惑わされないこと</strong>です。</p>
+<table>
+<thead>
+<tr>
+<th>判断軸</th>
+<th>見るべきポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❶ 利回り</td>
+<td>高すぎないか（8%超は要警戒）</td>
+</tr>
+<tr>
+<td>❷ 劣後出資比率</td>
+<td>事業者が自腹を切っているか</td>
+</tr>
+<tr>
+<td>❸ 運用期間</td>
+<td>資金拘束が許容範囲か</td>
+</tr>
+<tr>
+<td>❹ 最低投資額</td>
+<td>分散投資しやすいか</td>
+</tr>
+<tr>
+<td>❺ 運営実績</td>
+<td>実績と信頼があるか</td>
+</tr>
+</tbody>
+</table>
+<p>この5つの軸を、<strong>CFスコア</strong>で一括チェック。まずは気になる案件を2〜3件入力して、スコアを比べてみてください。数字で見ると、「なんとなく良さそう」が「根拠のある判断」に変わります。</p>
+<hr />
+<p><em>※本記事は情報提供を目的としており、特定の案件や事業者への投資を推奨するものではありません。投資判断はご自身の責任でお願いいたします。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

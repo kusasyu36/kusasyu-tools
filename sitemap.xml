@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/legal-tech/</loc>
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -181,6 +181,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-14/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-15/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/contract/</loc>
     <lastmod>2026-02-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -327,6 +339,36 @@
   <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-2/</loc>
     <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ga4-csv/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/roi-excel/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-7/</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/google/</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-42/</loc>
+    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -607,6 +649,24 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-4/</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-16/</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/legal-tech/m-a-dd-5/</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/ai-response/</loc>
     <lastmod>2026-02-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -639,6 +699,18 @@
   <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/propinspect-3/</loc>
     <lastmod>2026-02-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/inheritcalc/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/checker/</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1039,6 +1111,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/proptech/cf-cf-2/</loc>
+    <lastmod>2026-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool/</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>monthly</changefreq>
@@ -1317,6 +1401,18 @@
   <url>
     <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/content-calendar/</loc>
     <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-ai-2/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-41/</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
