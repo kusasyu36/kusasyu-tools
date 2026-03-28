@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案件ナレッジ構造化テンプレート - kusasyu tools</title>
+<meta name="description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,案件ナレッジ構造化テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-2/">
+<meta property="og:title" content="案件ナレッジ構造化テンプレート - kusasyu tools">
+<meta property="og:description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="案件ナレッジ構造化テンプレート - kusasyu tools">
+<meta name="twitter:description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "案件ナレッジ構造化テンプレート",
+  "description": "法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-21"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>案件ナレッジ構造化テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>案件ナレッジ構造化テンプレート</h1>
+  <p class="project-name">過去案件が資産になる、判例ナレッジ管理キット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>案件ID</th><th>案件分類コード</th><th>関連法令コード</th><th>事実概要</th><th>主要争点</th><th>最終結果</th><th>対応方針サマリー</th><th>担当弁護士</th><th>着手日</th><th>終結日</th><th>次回期日</th></tr></thead><tbody><tr><td>KLT-2024-0001</td><td>CIV</td><td>L01</td><td>売買契約の債務不履行。買主が代金支払後も目的物引渡しなし</td><td>引渡債務の履行遅滞の帰責事由</td><td>和解（損害賠償150万円）</td><td>早期和解交渉を主導。催告書送付後に調停申立て</td><td>田中一郎</td><td>2024-01-15</td><td>2024-06-20</td><td></td></tr><tr><td>KLT-2024-0002</td><td>LAB</td><td>L03|L04</td><td>従業員が残業代未払を主張し労働審判を申立て</td><td>固定残業代の有効性と実労働時間の算定</td><td>労働審判成立（差額80万円支払）</td><td>就業規則の不備を認め早期解決を優先</td><td>佐藤花子</td><td>2024-02-01</td><td>2024-05-15</td><td></td></tr><tr><td>KLT-2024-0003</td><td>CRM</td><td>L05|L06</td><td>取引先従業員による業務上横領。被害額約500万円</td><td>共謀の有無と被害額の確定</td><td>起訴・有罪（懲役2年執行猶予3年）</td><td>告訴状作成と証拠保全を迅速に実施</td><td>鈴木健太</td><td>2024-03-10</td><td>2024-11-30</td><td></td></tr><tr><td>KLT-2024-0004</td><td>IPR</td><td>L09|L12</td><td>競合他社が特許権侵害製品を販売。差止請求提起</td><td>均等侵害の成否と損害額の算定</td><td>勝訴（差止命令＋損害賠償800万円）</td><td>技術鑑定書を早期取得し侵害立証を強化</td><td>高橋美咲</td><td>2024-04-05</td><td>2025-01-20</td><td></td></tr><tr><td>KLT-2024-0005</td><td>FAM</td><td>L18|L01</td><td>離婚調停。親権・養育費・財産分与が争点</td><td>子の親権者指定と養育費月額の算定</td><td>調停成立（親権母・養育費月8万円）</td><td>子の利益を最優先に調停案を構成</td><td>渡辺直人</td><td>2024-05-12</td><td>2024-09-30</td><td></td></tr><tr><td>KLT-2024-0006</td><td>ADM</td><td>L19</td><td>建築確認処分の取消訴訟。近隣住民が原告</td><td>原告適格と処分の違法性</td><td>棄却（原告適格なし）</td><td>処分庁側代理人として適法性を主張</td><td>伊藤雅子</td><td>2024-06-01</td><td>2025-03-15</td><td></td></tr><tr><td>KLT-2024-0007</td><td>INS</td><td>L16|L17</td><td>債務超過の中小企業。民事再生手続を申立て</td><td>再生計画の弁済率と事業譲渡スキーム</td><td>再生計画認可（弁済率15%・5年分割）</td><td>スポンサー候補との交渉を並行実施</td><td>中村大輔</td><td>2024-07-20</td><td>2025-02-28</td><td></td></tr><tr><td>KLT-2024-0008</td><td>IPL</td><td>L10|L11</td><td>商標権侵害と著作権侵害の複合案件。ECサイト上の模倣品</td><td>商標の類似性と著作物性の有無</td><td>和解（侵害品削除＋解決金200万円）</td><td>発信者情報開示請求で出品者を特定後交渉</td><td>山本裕子</td><td>2024-08-15</td><td>2024-12-10</td><td></td></tr><tr><td>KLT-2024-0009</td><td>INT</td><td>L08|L20</td><td>海外子会社との合弁契約紛争。準拠法はシンガポール法</td><td>仲裁条項の有効性とJV解消条件</td><td>仲裁和解（持分譲渡＋補償金3000万円）</td><td>SIAC仲裁規則に基づき仲裁人選定を先行</td><td>松本英治</td><td>2024-09-01</td><td>2025-03-10</td><td></td></tr><tr><td>KLT-2024-0010</td><td>OTH</td><td>L13|L14</td><td>個人情報漏洩事案。顧客DB約1万件が外部流出</td><td>安全管理措置義務違反の程度と損害範囲</td><td>行政指導（勧告）＋被害者和解（総額500万円）</td><td>個情委への報告と被害者対応を同時並行</td><td>加藤理恵</td><td>2024-10-10</td><td>2025-02-15</td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `案件ID,案件分類コード,関連法令コード,事実概要,主要争点,最終結果,対応方針サマリー,担当弁護士,着手日,終結日,次回期日
+KLT-2024-0001,CIV,L01,"売買契約の債務不履行。買主が代金支払後も目的物引渡しなし","引渡債務の履行遅滞の帰責事由",和解（損害賠償150万円）,"早期和解交渉を主導。催告書送付後に調停申立て",田中一郎,2024-01-15,2024-06-20,
+KLT-2024-0002,LAB,L03|L04,"従業員が残業代未払を主張し労働審判を申立て","固定残業代の有効性と実労働時間の算定",労働審判成立（差額80万円支払）,"就業規則の不備を認め早期解決を優先",佐藤花子,2024-02-01,2024-05-15,
+KLT-2024-0003,CRM,L05|L06,"取引先従業員による業務上横領。被害額約500万円","共謀の有無と被害額の確定",起訴・有罪（懲役2年執行猶予3年）,"告訴状作成と証拠保全を迅速に実施",鈴木健太,2024-03-10,2024-11-30,
+KLT-2024-0004,IPR,L09|L12,"競合他社が特許権侵害製品を販売。差止請求提起","均等侵害の成否と損害額の算定",勝訴（差止命令＋損害賠償800万円）,"技術鑑定書を早期取得し侵害立証を強化",高橋美咲,2024-04-05,2025-01-20,
+KLT-2024-0005,FAM,L18|L01,"離婚調停。親権・養育費・財産分与が争点","子の親権者指定と養育費月額の算定",調停成立（親権母・養育費月8万円）,"子の利益を最優先に調停案を構成",渡辺直人,2024-05-12,2024-09-30,
+KLT-2024-0006,ADM,L19,"建築確認処分の取消訴訟。近隣住民が原告","原告適格と処分の違法性",棄却（原告適格なし）,"処分庁側代理人として適法性を主張",伊藤雅子,2024-06-01,2025-03-15,
+KLT-2024-0007,INS,L16|L17,"債務超過の中小企業。民事再生手続を申立て","再生計画の弁済率と事業譲渡スキーム",再生計画認可（弁済率15%・5年分割）,"スポンサー候補との交渉を並行実施",中村大輔,2024-07-20,2025-02-28,
+KLT-2024-0008,IPL,L10|L11,"商標権侵害と著作権侵害の複合案件。ECサイト上の模倣品","商標の類似性と著作物性の有無",和解（侵害品削除＋解決金200万円）,"発信者情報開示請求で出品者を特定後交渉",山本裕子,2024-08-15,2024-12-10,
+KLT-2024-0009,INT,L08|L20,"海外子会社との合弁契約紛争。準拠法はシンガポール法","仲裁条項の有効性とJV解消条件",仲裁和解（持分譲渡＋補償金3000万円）,"SIAC仲裁規則に基づき仲裁人選定を先行",松本英治,2024-09-01,2025-03-10,
+KLT-2024-0010,OTH,L13|L14,"個人情報漏洩事案。顧客DB約1万件が外部流出","安全管理措置義務違反の程度と損害範囲",行政指導（勧告）＋被害者和解（総額500万円）,"個情委への報告と被害者対応を同時並行",加藤理恵,2024-10-10,2025-02-15,
+
+,,,,,,,,,,
+【案件分類コード一覧】,,,,,,,,,,
+コード,分類名,,,,,,,,,
+CIV,民事,,,,,,,,,
+CRM,刑事,,,,,,,,,
+LAB,労働,,,,,,,,,
+IPR,知財（紛争）,,,,,,,,,
+FAM,家事,,,,,,,,,
+ADM,行政,,,,,,,,,
+INS,倒産,,,,,,,,,
+IPL,知的財産（出願・管理）,,,,,,,,,
+INT,国際,,,,,,,,,
+OTH,その他,,,,,,,,,
+
+,,,,,,,,,,
+【関連法令コード一覧】,,,,,,,,,,
+コード,法令名,,,,,,,,,
+L01,民法,,,,,,,,,
+L02,会社法,,,,,,,,,
+L03,労働基準法,,,,,,,,,
+L04,労働契約法,,,,,,,,,
+L05,刑法,,,,,,,,,
+L06,刑事訴訟法,,,,,,,,,
+L07,民事訴訟法,,,,,,,,,
+L08,商法,,,,,,,,,
+L09,特許法,,,,,,,,,
+L10,商標法,,,,,,,,,
+L11,著作権法,,,,,,,,,
+L12,不正競争防止法,,,,,,,,,
+L13,個人情報保護法,,,,,,,,,
+L14,独占禁止法,,,,,,,,,
+L15,消費者契約法,,,,,,,,,
+L16,破産法,,,,,,,,,
+L17,民事再生法,,,,,,,,,
+L18,家事事件手続法,,,,,,,,,
+L19,行政事件訴訟法,,,,,,,,,
+L20,金融商品取引法,,,,,,,,,
+
+,,,,,,,,,,
+【各列の入力ルール】,,,,,,,,,,
+列名,入力ルール,,,,,,,,,
+案件ID,"KLT-YYYY-NNNN形式。年4桁＋連番4桁。重複不可",,,,,,,,,
+案件分類コード,"上記10分類から1つ選択。複数該当時は主たる分類を記載",,,,,,,,,
+関連法令コード,"上記20法令から選択。複数の場合はパイプ（|）区切り",,,,,,,,,
+事実概要,"100文字以内。主語・行為・結果を簡潔に記載",,,,,,,,,
+主要争点,"80文字以内。法的争点を1〜2点に絞って記載",,,,,,,,,
+最終結果,"判決・和解・調停等の結論と金額を明記",,,,,,,,,
+対応方針サマリー,"80文字以内。採用した戦略の要点を記載",,,,,,,,,
+担当弁護士,"フルネーム。共同受任時はパイプ（|）区切り",,,,,,,,,
+着手日,"YYYY-MM-DD形式。委任契約締結日を記載",,,,,,,,,
+終結日,"YYYY-MM-DD形式。未終結の場合は空欄",,,,,,,,,
+次回期日,"YYYY-MM-DD形式。終結済みの場合は空欄",,,,,,,,,
+
+,,,,,,,,,,
+【禁止表現一覧】,,,,,,,,,,
+項目,禁止表現,正しい表現例,,,,,,,
+事実概要,"個人の実名・住所・電話番号",匿名化（X氏・A社等）,,,,,,,
+事実概要,"感情的表現（悪質な・ひどい等）",客観的事実のみ記述,,,,,,,
+主要争点,"曖昧な表現（色々・など）",法的論点を具体的に特定,,,,,,,
+最終結果,"約・程度（金額は正確に）",確定額を記載（例:150万円）,,,,,,,
+対応方針,"守秘義務に抵触する依頼者情報",一般化した戦略記述に留める,,,,,,,
+全列共通,"半角カンマ（,）の直接入力",セル内改行またはパイプ（|）で代替,,,,,,,
+全列共通,"HTMLタグ・特殊文字",プレーンテキストのみ,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "01_案件ナレッジ構造化テンプレート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

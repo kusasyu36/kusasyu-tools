@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>期日・デッドラインアラート管理ボード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6;font-size:14px}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:20px;text-align:center}
+.header h1{font-size:1.3em}.header p{font-size:.85em;opacity:.8;margin-top:4px}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#16213e;margin-bottom:12px;border-left:4px solid #e94560;padding-left:10px}
+.file-area{border:2px dashed #ccc;border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:.2s}
+.file-area:hover{border-color:#e94560;background:#fef0f2}
+.file-area.loaded{border-color:#27ae60;background:#eafaf1}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.filters select{padding:8px;border:1px solid #ddd;border-radius:6px;font-size:.9em;min-width:140px}
+.summary{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.sum-box{flex:1;min-width:90px;padding:12px;border-radius:8px;text-align:center;color:#fff;font-weight:700}
+.sum-box .num{font-size:1.6em}.sum-box .lbl{font-size:.75em;opacity:.9}
+.bg-red{background:#e74c3c}.bg-ora{background:#e67e22}.bg-yel{background:#f1c40f;color:#333}.bg-grn{background:#27ae60}.bg-gry{background:#7f8c8d}
+table{width:100%;border-collapse:collapse;font-size:.88em}
+th{background:#16213e;color:#fff;padding:10px 8px;text-align:left;position:sticky;top:0;white-space:nowrap;z-index:1}
+td{padding:8px;border-bottom:1px solid #eee;vertical-align:middle}
+tr:hover td{background:#f8f9fa}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.78em;font-weight:600;color:#fff}
+.t-exp{background:#e74c3c}.t-7{background:#e67e22}.t-30{background:#f1c40f;color:#333}.t-ok{background:#27ae60}
+.ssel{padding:4px 6px;border:1px solid #ddd;border-radius:4px;font-size:.85em}
+.btn{display:inline-block;padding:10px 24px;border:none;border-radius:6px;font-size:.95em;font-weight:600;cursor:pointer;color:#fff;background:#e94560}
+.btn:hover{background:#c73e54}
+.btn-s{background:#16213e;font-size:.82em;padding:6px 14px}
+.empty{text-align:center;padding:40px;color:#999}
+.tw{overflow-x:auto;max-height:70vh;overflow-y:auto}
+.info{font-size:.82em;color:#666;margin-top:10px;line-height:1.5}
+.row-exp{background:#fdf0f0}.row-7{background:#fef8f0}.row-30{background:#fefcf0}
+@media(max-width:600px){.filters{flex-direction:column}.filters select{width:100%}.sum-box{min-width:60px;padding:8px}th,td{padding:6px 4px;font-size:.8em}}
+</style>
+<meta name="description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,期日・デッドラインアラート管理ボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-4/">
+<meta property="og:title" content="期日・デッドラインアラート管理ボード - kusasyu tools">
+<meta property="og:description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="期日・デッドラインアラート管理ボード - kusasyu tools">
+<meta name="twitter:description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "期日・デッドラインアラート管理ボード",
+  "description": "法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">期日・デッドラインアラート管理ボード</span></div>
+<div class="header">
+<h1>期日・デッドラインアラート管理ボード</h1>
+<p>判例ナレッジ管理キット — 毎朝30秒で全案件の期日状況を把握</p>
+</div>
+<div class="container">
+
+<div class="card">
+<h2>CSVファイル読み込み</h2>
+<div class="file-area" id="dz" onclick="document.getElementById('fi').click()">
+📂 CSVファイルをドラッグ＆ドロップ、またはクリックして選択<br>
+<span style="font-size:.8em;color:#999">必須列: 案件名, 期日 ／ 推奨列: 分類, 担当弁護士, ステータス</span>
+</div>
+<input type="file" id="fi" accept=".csv" style="display:none">
+<div class="info">
+<button class="btn btn-s" onclick="loadSample()">サンプルデータで試す</button>
+<span style="margin-left:8px">CSVが無い場合はサンプルで動作を確認できます</span>
+</div>
+</div>
+
+<div id="dash" style="display:none">
+<div class="summary" id="smry"></div>
+<div class="card">
+<h2>フィルタ・絞り込み</h2>
+<div class="filters">
+<select id="fC"><option value="">分類：すべて</option></select>
+<select id="fL"><option value="">担当：すべて</option></select>
+<select id="fS"><option value="">ステータス：すべて</option></select>
+<button class="btn btn-s" onclick="doExport()">CSV出力</button>
+<button class="btn btn-s" style="background:#e94560" onclick="clearSt()">ステータスリセット</button>
+</div>
+</div>
+<div class="card" style="padding:12px">
+<div class="tw">
+<table><thead><tr><th>緊急度</th><th>案件名</th><th>期日</th><th>残日数</th><th>分類</th><th>担当</th><th>ステータス</th></tr></thead>
+<tbody id="tb"></tbody></table>
+</div>
+<p class="empty" id="nd" style="display:none">条件に一致する案件がありません</p>
+</div>
+<p class="info">💡 ステータス変更はブラウザに自動保存されます（localStorage）。翌日開いても変更が維持されます。</p>
+</div>
+</div>
+
+<script>
+var D=[],ST={};
+try{ST=JSON.parse(localStorage.getItem('dlab_st')||'{}');}catch(e){ST={};}
+
+document.getElementById('fi').addEventListener('change',function(e){if(e.target.files[0])rd(e.target.files[0]);});
+var dz=document.getElementById('dz');
+dz.addEventListener('dragover',function(e){e.preventDefault();dz.style.borderColor='#e94560';});
+dz.addEventListener('dragleave',function(){dz.style.borderColor='#ccc';});
+dz.addEventListener('drop',function(e){e.preventDefault();dz.style.borderColor='#ccc';if(e.dataTransfer.files[0])rd(e.dataTransfer.files[0]);});
+
+function rd(f){var r=new FileReader();r.onload=function(e){parse(e.target.result);};r.readAsText(f);}
+
+function parse(txt){
+var ls=txt.replace(/\r\n/g,'\n').replace(/\r/g,'\n').split('\n');
+var hd=csvLine(ls[0]),mp={};
+hd.forEach(function(h,i){mp[cl(h)]=i;});
+var ni=fc(mp,['案件名','案件','name','件名']);
+var di=fc(mp,['期日','期限','deadline','date','期限日']);
+var ci=fc(mp,['分類','カテゴリ','category','案件分類']);
+var li=fc(mp,['担当弁護士','担当','lawyer','担当者']);
+var si=fc(mp,['ステータス','status','進捗','状態']);
+if(ni<0||di<0){alert('必須列「案件名」「期日」が見つかりません。CSV列名を確認してください。');return;}
+D=[];
+for(var i=1;i<ls.length;i++){
+if(!ls[i].trim())continue;
+var c=csvLine(ls[i]);var nm=cl(c[ni]);if(!nm)continue;
+var dt=cl(c[di]);
+D.push({id:i,name:nm,date:dt,cat:ci>=0?cl(c[ci]):'',law:li>=0?cl(c[li]):'',st:ST[nm]||(si>=0&&c[si]?cl(c[si]):'未着手')});
+}
+D.sort(function(a,b){return a.date<b.date?-1:1;});
+dz.className='file-area loaded';
+dz.innerHTML='✅ '+D.length+'件の案件を読み込みました';
+init();
+}
+
+function csvLine(l){
+var r=[],c='',q=false;
+for(var i=0;i<l.length;i++){
+var ch=l[i];
+if(ch==='"'){if(q&&l[i+1]==='"'){c+='"';i++;}else q=!q;}
+else if(ch===','&&!q){r.push(c);c='';}else c+=ch;
+}r.push(c);return r;
+}
+function cl(s){return s?s.trim().replace(/^"|"$/g,''):''}
+function fc(m,ns){for(var i=0;i<ns.length;i++)if(m[ns[i]]!=null)return m[ns[i]];return-1;}
+
+function dLeft(ds){
+var p=ds.match(/(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
+if(!p)return null;
+var t=new Date(+p[1],+p[2]-1,+p[3]);t.setHours(0,0,0,0);
+var n=new Date();n.setHours(0,0,0,0);
+return Math.floor((t-n)/864e5);
+}
+
+function urg(d){
+if(d==null)return{c:'t-ok',l:'—',rc:'',s:999};
+if(d<0)return{c:'t-exp',l:'期限切れ',rc:'row-exp',s:0};
+if(d<=7)return{c:'t-7',l:'7日以内',rc:'row-7',s:1};
+if(d<=30)return{c:'t-30',l:'30日以内',rc:'row-30',s:2};
+return{c:'t-ok',l:'余裕あり',rc:'',s:3};
+}
+
+function init(){
+var cs={},ls={};
+D.forEach(function(r){if(r.cat)cs[r.cat]=1;if(r.law)ls[r.law]=1;});
+fSel('fC',cs,'分類');fSel('fL',ls,'担当');
+document.getElementById('dash').style.display='';
+render();
+document.getElementById('fC').onchange=render;
+document.getElementById('fL').onchange=render;
+document.getElementById('fS').onchange=render;
+}
+
+function fSel(id,obj,lb){
+var s=document.getElementById(id);
+s.innerHTML='<option value="">'+lb+'：すべて</option>';
+Object.keys(obj).sort().forEach(function(k){s.innerHTML+='<option value="'+esc(k)+'">'+esc(k)+'</option>';});
+}
+
+function render(){
+var fc=document.getElementById('fC').value;
+var fl=document.getElementById('fL').value;
+var fs=document.getElementById('fS').value;
+var fd=D.filter(function(r){
+if(fc&&r.cat!==fc)return false;
+if(fl&&r.law!==fl)return false;
+if(fs&&r.st!==fs)return false;
+return true;
+});
+fd.sort(function(a,b){return a.date<b.date?-1:1;});
+var cnt={e:0,w7:0,w30:0,ok:0};
+fd.forEach(function(r){var d=dLeft(r.date);if(d==null)cnt.ok++;else if(d<0)cnt.e++;else if(d<=7)cnt.w7++;else if(d<=30)cnt.w30++;else cnt.ok++;});
+document.getElementById('smry').innerHTML=
+'<div class="sum-box bg-red"><div class="num">'+cnt.e+'</div><div class="lbl">期限切れ</div></div>'+
+'<div class="sum-box bg-ora"><div class="num">'+cnt.w7+'</div><div class="lbl">7日以内</div></div>'+
+'<div class="sum-box bg-yel"><div class="num">'+cnt.w30+'</div><div class="lbl">30日以内</div></div>'+
+'<div class="sum-box bg-grn"><div class="num">'+cnt.ok+'</div><div class="lbl">余裕あり</div></div>'+
+'<div class="sum-box bg-gry"><div class="num">'+fd.length+'</div><div class="lbl">合計</div></div>';
+var tb=document.getElementById('tb');tb.innerHTML='';
+if(!fd.length){document.getElementById('nd').style.display='';return;}
+document.getElementById('nd').style.display='none';
+fd.forEach(function(r){
+var d=dLeft(r.date),u=urg(d);
+var tr=document.createElement('tr');
+if(u.rc)tr.className=u.rc;
+var sts=['未着手','進行中','待機中','完了'];
+var op='';sts.forEach(function(s){op+='<option'+(r.st===s?' selected':'')+'>'+s+'</option>';});
+tr.innerHTML='<td><span class="tag '+u.c+'">'+u.l+'</span></td><td><strong>'+esc(r.name)+'</strong></td><td>'+esc(r.date)+'</td><td style="text-align:center">'+(d!=null?d+'日':'—')+'</td><td>'+esc(r.cat)+'</td><td>'+esc(r.law)+'</td><td><select class="ssel" data-n="'+esc(r.name)+'">'+op+'</select></td>';
+tr.querySelector('select').addEventListener('change',function(){
+r.st=this.value;ST[r.name]=this.value;
+localStorage.setItem('dlab_st',JSON.stringify(ST));render();
+});
+tb.appendChild(tr);
+});
+}
+
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+function doExport(){
+var b='\uFEFF',rows=['案件名,期日,分類,担当弁護士,ステータス'];
+D.forEach(function(r){rows.push('"'+r.name+'","'+r.date+'","'+r.cat+'","'+r.law+'","'+r.st+'"');});
+var bl=new Blob([b+rows.join('\n')],{type:'text/csv'});
+var a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='deadline_export.csv';a.click();
+}
+
+function clearSt(){
+if(!confirm('保存済みのステータスをすべてリセットしますか？'))return;
+ST={};localStorage.removeItem('dlab_st');
+D.forEach(function(r){r.st='未着手';});render();
+}
+
+function loadSample(){
+var csv='案件名,期日,分類,担当弁護士,ステータス\n'+
+'株式会社A 業務委託契約紛争,2026-03-20,契約紛争,山田太郎,進行中\n'+
+'B社 特許侵害訴訟,2026-03-25,知的財産,鈴木花子,進行中\n'+
+'C組合 労働審判申立,2026-03-29,労働問題,山田太郎,未着手\n'+
+'D社 株主代表訴訟,2026-04-05,会社法,佐藤一郎,未着手\n'+
+'E社 個人情報漏洩対応,2026-04-10,コンプライアンス,鈴木花子,待機中\n'+
+'F社 不動産賃貸借紛争,2026-04-22,不動産,佐藤一郎,未着手\n'+
+'G社 M&Aデューデリジェンス,2026-05-15,M&A,山田太郎,未着手\n'+
+'H協会 規約改定支援,2026-06-01,一般企業法務,鈴木花子,未着手\n'+
+'I社 海外取引NDA作成,2026-03-23,契約紛争,佐藤一郎,進行中\n'+
+'J社 債権回収訴訟,2026-03-28,債権回収,山田太郎,進行中';
+parse(csv);
+}
+</script>
+</body>
+</html>

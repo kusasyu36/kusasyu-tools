@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>コンプライアンス形骸化スコア診断ツール（改善文例統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:20px 0 4px;color:#1a1a2e}
+.sub{text-align:center;font-size:.82em;color:#666;margin-bottom:18px}
+.warn{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px 14px;font-size:.8em;color:#664d03;margin-bottom:16px}
+textarea{width:100%;min-height:180px;padding:12px;border:2px solid #d0d5dd;border-radius:8px;font-size:.95em;resize:vertical}
+textarea:focus{outline:none;border-color:#4361ee}
+.btn{display:block;width:100%;padding:14px;background:#4361ee;color:#fff;border:none;border-radius:8px;font-size:1.05em;cursor:pointer;margin:14px 0}
+.btn:hover{background:#3a56d4}
+#result{display:none}
+.score-box{text-align:center;padding:24px;border-radius:12px;margin:16px 0;color:#fff}
+.score-box .num{font-size:3em;font-weight:700}
+.score-box .label{font-size:.9em;opacity:.9}
+.s-high{background:linear-gradient(135deg,#10b981,#059669)}
+.s-mid{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.s-low{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.summary{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.summary .pill{flex:1;min-width:140px;padding:10px;border-radius:8px;text-align:center;background:#fff;border:1px solid #e5e7eb;font-size:.85em}
+.pill b{display:block;font-size:1.3em}
+.cat-hd{font-weight:700;font-size:.95em;padding:10px 0 4px;margin-top:12px;border-bottom:2px solid #4361ee;color:#4361ee}
+.item{background:#fff;border:1px solid #e5e7eb;border-radius:8px;margin:6px 0;overflow:hidden}
+.item-hd{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;cursor:pointer;gap:8px}
+.item-hd:hover{background:#f9fafb}
+.tag{font-size:.75em;padding:2px 8px;border-radius:4px;font-weight:600;white-space:nowrap}
+.tag-ok{background:#d1fae5;color:#065f46}
+.tag-ng{background:#fee2e2;color:#991b1b}
+.item-body{display:none;padding:0 14px 12px;font-size:.85em;border-top:1px solid #eee}
+.item-body.open{display:block}
+.ba{margin:6px 0;padding:8px 10px;border-radius:6px;position:relative}
+.before{background:#fef2f2;border-left:3px solid #ef4444}
+.after{background:#f0fdf4;border-left:3px solid #10b981}
+.ba-label{font-weight:700;font-size:.78em;margin-bottom:2px}
+.copy-btn{position:absolute;top:6px;right:6px;padding:2px 8px;font-size:.72em;border:1px solid #ccc;border-radius:4px;background:#fff;cursor:pointer}
+.copy-btn:hover{background:#eee}
+.note{font-size:.78em;color:#888;margin-top:4px}
+.footer{text-align:center;font-size:.75em;color:#999;padding:20px 0}
+</style>
+<meta name="description" content="企業のコンプライアンス規程・ポリシー文書を貼り付けるだけで、形式だけ整えて実態が伴っていない箇所を自動検出しスコアリングするHTMLツール。IPO準備企業が上場審査で指摘される前に、自社規程の形骸化度合いを定量的に把握できる。あわせてIPO審査対応のセルフチェックシートと、形骸化パターンを実質的な規程文に変換">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,コンプライアンス形骸化スコア診断ツール（改善文例統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-15/">
+<meta property="og:title" content="コンプライアンス形骸化スコア診断ツール（改善文例統合版） - kusasyu tools">
+<meta property="og:description" content="企業のコンプライアンス規程・ポリシー文書を貼り付けるだけで、形式だけ整えて実態が伴っていない箇所を自動検出しスコアリングするHTMLツール。IPO準備企業が上場審査で指摘される前に、自社規程の形骸化度合いを定量的に把握できる。あわせてIPO審査対応のセルフチェックシートと、形骸化パターンを実質的な規程文に変換">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-15/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="コンプライアンス形骸化スコア診断ツール（改善文例統合版） - kusasyu tools">
+<meta name="twitter:description" content="企業のコンプライアンス規程・ポリシー文書を貼り付けるだけで、形式だけ整えて実態が伴っていない箇所を自動検出しスコアリングするHTMLツール。IPO準備企業が上場審査で指摘される前に、自社規程の形骸化度合いを定量的に把握できる。あわせてIPO審査対応のセルフチェックシートと、形骸化パターンを実質的な規程文に変換">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "コンプライアンス形骸化スコア診断ツール（改善文例統合版）",
+  "description": "企業のコンプライアンス規程・ポリシー文書を貼り付けるだけで、形式だけ整えて実態が伴っていない箇所を自動検出しスコアリングするHTMLツール。IPO準備企業が上場審査で指摘される前に、自社規程の形骸化度合いを定量的に把握できる。あわせてIPO審査対応のセルフチェックシートと、形骸化パターンを実質的な規程文に変換",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-15/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">コンプライアンス形骸化スコア診断ツール（改善文例統合版）</span></div>
+<div class="wrap">
+<h1>コンプライアンス形骸化スコア診断ツール</h1>
+<p class="sub">改善文例統合版 ― 社内規程テキストを貼り付けて診断</p>
+<div class="warn">本ツールはキーワード・構造ベースのルール判定です。法的助言ではありません。実際の規程整備には専門家へご相談ください。</div>
+<textarea id="inp" placeholder="ここに社内規程・ポリシー文書のテキストを貼り付けてください&#10;（例：コンプライアンス規程、内部通報規程、情報セキュリティポリシー等）"></textarea>
+<button class="btn" onclick="diagnose()">診断を実行する</button>
+<div id="result"></div>
+<div class="footer">Kusasyu Legal Tech｜ルールベース簡易診断（30項目）<br>IPO準備企業の規程整備セルフチェック用</div>
+</div>
+<script>
+const C=[
+["体制・責任",[
+["責任者・役職の明示","責任者|管理責任者|統括責任者|コンプライアンス・オフィサー|担当役員|CCO","「責任者」の記載がありません","責任者を置く。","コンプライアンス統括責任者として取締役管理本部長を任命し、代表取締役への直接報告ラインを確保する。"],
+["責任者の権限範囲","調査権|是正命令|中止命令|改善指示|勧告する権限","責任者の権限が不明確です","責任者は必要な措置を講じる。","統括責任者は、違反の疑いがある行為について調査を指示し、是正命令・業務中止命令を発する権限を有する。"],
+["組織体制図・委員会","委員会|コンプライアンス委員会|推進体制|事務局|体制図","推進組織の記載がありません","体制を整備する。","代表取締役を委員長とするコンプライアンス委員会を設置し、各部門から選任された推進委員で構成する。事務局は法務部が担う。"],
+["役割分担の明確化","各部門|部門長|現場責任者|推進委員|役割分担","部門ごとの役割分担がありません","各部門は協力する。","各部門長は自部門のコンプライアンス推進委員を1名選任し、四半期ごとに部門内の遵守状況を委員会へ書面で報告する。"],
+["取締役会への報告","取締役会|報告する|付議|経営会議|年次報告","取締役会への報告規定がありません","必要に応じ報告する。","統括責任者は四半期に1回以上、取締役会にコンプライアンスの遵守状況・重大インシデント・改善計画の進捗を報告する。"],
+["外部専門家の活用","外部専門家|顧問弁護士|外部監査|第三者評価|外部委員","外部専門家の関与規定がありません","必要に応じ専門家に相談する。","年1回、外部の弁護士またはコンプライアンス専門家による独立評価を実施し、その結果を取締役会へ報告する。"]]],
+["手続・フロー",[
+["内部通報窓口の設置","通報窓口|内部通報|ホットライン|相談窓口|公益通報","内部通報窓口の記載がありません","通報窓口を設ける。","社内窓口（法務部）および社外窓口（外部弁護士事務所）の2系統を設置し、匿名通報を受け付ける。通報者への不利益取扱いを禁止する。"],
+["通報後の対応手順","受付|調査開始|調査期間|結果通知|フィードバック|処理手順","通報後の処理手順が不明確です","速やかに対応する。","通報受付後5営業日以内に調査開始を通報者へ通知し、原則30日以内に調査を完了する。結果は通報者へ書面で通知する。"],
+["違反発見時の対応フロー","発見時|違反が判明|報告フロー|エスカレーション|初動対応","違反発見時の対応フローがありません","違反時は報告する。","違反を発見した者は24時間以内に直属上長および統括責任者へ報告する。重大違反の場合は代表取締役へ即時エスカレーションする。"],
+["懲戒・罰則規定","懲戒|処分|罰則|制裁|けん責|減給|解雇","懲戒・罰則規定がありません","処分を行うことがある。","本規程に違反した者は、就業規則第○条に基づき、けん責・減給・出勤停止・降格・諭旨解雇・懲戒解雇のいずれかの処分を科す。"],
+["是正・再発防止措置","是正措置|再発防止|改善計画|フォローアップ|モニタリング","是正・再発防止の手順がありません","再発防止に努める。","違反事案ごとに根本原因分析を行い、30日以内に再発防止計画を策定する。計画の実施状況を3か月後にフォローアップ確認する。"],
+["承認・決裁プロセス","承認|決裁|稟議|合議|ダブルチェック","承認・決裁プロセスの規定がありません","上長の承認を得る。","贈答・接待は1件5千円超で部門長承認、3万円超で統括責任者の事前決裁を要する。決裁記録は5年間保存する。"]]],
+["法令・基準",[
+["参照法令の明示","会社法|金融商品取引法|個人情報保護法|労働基準法|下請法|独占禁止法|不正競争防止法","準拠法令の記載がありません","関係法令を遵守する。","本規程は会社法、金融商品取引法、個人情報保護法（令和5年改正対応）、公益通報者保護法に準拠する。"],
+["法令の年号・施行日参照","令和|平成|年法律第|年改正|施行日|年月日","法令の年号・改正時期が未記載です","最新の法令に従う。","個人情報保護法（令和5年4月1日施行の改正法）および公益通報者保護法（令和4年6月1日施行の改正法）に基づく。"],
+["業界ガイドライン参照","ガイドライン|指針|基準|ベストプラクティス|ISO|ISMS","業界ガイドライン等の参照がありません","業界基準に従う。","経済産業省「グループ・ガバナンス・システムに関する実務指針」および東証上場審査ガイドラインIII 5.に準拠する。"],
+["適用範囲の定義","適用範囲|適用対象|対象者|本規程は.*に適用|全役職員","適用範囲が不明確です","全社員に適用する。","本規程は、当社の全役員（社外取締役を含む）、正社員、契約社員、派遣社員、パート・アルバイトおよび業務委託先に適用する。"],
+["定義条項の有無","定義|本規程において|以下の用語|次の各号|と定義する","用語の定義条項がありません","用語は一般的な意味で用いる。","本規程において「コンプライアンス」とは、法令・社内規程・企業倫理および社会規範を遵守することをいう。「違反行為」とは前記に反する一切の行為をいう。"],
+["海外法令・域外適用","海外|域外適用|GDPR|FCPA|UK Bribery Act|国際|グローバル","海外法令への言及がありません","海外法令も遵守する。","海外拠点を有する場合、現地法令に加え、FCPA（米国海外腐敗行為防止法）およびUK Bribery Actの域外適用に留意し遵守する。"]]],
+["教育・研修",[
+["研修実施頻度の明示","年.*回|半期|四半期|毎年|定期的に研修|研修を実施","研修頻度の記載がありません","研修を行う。","全役職員を対象に年2回（4月・10月）のコンプライアンス研修を実施する。新入社員は入社後1か月以内に初回研修を完了する。"],
+["研修内容の具体性","研修内容|カリキュラム|ケーススタディ|事例|テーマ|e-learning","研修内容が具体的でありません","コンプライアンスに関する研修を行う。","研修は(1)法改正の解説(2)自社の違反・ヒヤリハット事例(3)ケーススタディ演習の3部構成とし、e-learningと対面を併用する。"],
+["理解度確認・テスト","テスト|確認テスト|理解度|合格|受講率|修了","理解度の確認方法がありません","受講を義務とする。","研修後に理解度確認テスト（合格基準80点以上）を実施する。未合格者は2週間以内に再受験する。受講率・合格率を委員会へ報告する。"],
+["階層別研修の区分","管理職|新入社員|役員向け|階層別|部門別|職位","階層別の研修区分がありません","全員一律に研修する。","管理職向け（ハラスメント・内部統制）、一般社員向け（基本ルール・通報制度）、役員向け（経営責任・ガバナンス）の3階層で実施する。"],
+["研修記録の保存","研修記録|受講記録|出席簿|記録を保存|保存期間","研修記録の保存規定がありません","記録を残す。","研修の実施日・内容・講師・受講者名簿・テスト結果を記録し、5年間保存する。上場審査資料として提出できる状態を維持する。"],
+["啓発・周知活動","周知|啓発|ポスター|社内報|イントラネット|メール配信","日常的な啓発活動の記載がありません","周知に努める。","月1回、社内イントラネットにコンプライアンス通信を掲載する。重要な法改正は施行1か月前までに全社メールで周知する。"]]],
+["文書管理・改訂",[
+["施行日の記載","施行日|年.*月.*日.*施行|適用開始|発効日|施行する","施行日の記載がありません","本規程は取締役会決議の日から施行する。","本規程は2026年4月1日から施行する。"],
+["改訂履歴の管理","改訂履歴|改訂日|版|バージョン|変更履歴|第.*版","改訂履歴がありません","必要に応じ改訂する。","改訂履歴：第1版 2024年4月1日制定、第2版 2025年10月1日改訂（通報窓口の外部化）、第3版 2026年4月1日改訂（海外対応追加）。"],
+["定期見直し規定","見直し|レビュー|年.*回.*見直|改訂の要否|定期的に検討","定期見直しの規定がありません","適宜見直す。","本規程は年1回（毎年3月）見直しを行い、法改正・社会情勢の変化・違反事案を踏まえ改訂の要否を委員会で決議する。"],
+["文書の承認権限","制定|改廃|取締役会の決議|承認を得て|決裁権限","文書の承認権限が不明確です","所定の手続により改訂する。","本規程の制定・改廃は、コンプライアンス委員会の審議を経て取締役会が決議する。軽微な字句修正は統括責任者の承認による。"],
+["関連規程との整合","関連規程|就業規則|情報セキュリティ|個人情報保護規程|内部通報規程","関連規程への言及がありません","他の規程と整合を図る。","本規程に定めのない事項は、就業規則、内部通報規程、情報セキュリティポリシー、個人情報保護規程の定めによる。各規程間で矛盾が生じた場合は本規程を優先する。"],
+["記録の保存期間","保存期間|年間保存|保管|アーカイブ|保存する","記録の保存期間が未定義です","記録を適切に管理する。","本規程に基づく記録（通報記録・調査報告書・研修記録・委員会議事録）は作成日から5年間保存する。訴訟に関連する記録は解決まで保存する。"]]]
+];
+function diagnose(){
+const t=document.getElementById("inp").value.trim();
+if(!t){alert("規程テキストを入力してください");return}
+let total=0,pass=0,html="",cats=[];
+C.forEach(([cat,items])=>{
+let cp=0,ct=0;
+let ih="<div class='cat-hd'>"+cat+"（"+items.length+"項目）</div>";
+items.forEach(([name,kw,desc,bef,aft])=>{
+const re=new RegExp(kw,"i");
+const ok=re.test(t);
+total++;ct++;
+if(ok){pass++;cp++}
+const id="i"+total;
+ih+="<div class='item'><div class='item-hd' onclick=\"toggle('"+id+"')\"><span>"+(ok?"✓ ":"✗ ")+name+"</span><span class='tag "+(ok?"tag-ok":"tag-ng")+"'>"+(ok?"OK":"要改善")+"</span></div>";
+ih+="<div class='item-body' id='"+id+"'>";
+if(!ok){
+ih+="<p class='note'>"+desc+"</p>";
+ih+="<div class='ba before'><div class='ba-label'>Before（形骸化パターン）</div>"+esc(bef)+"</div>";
+ih+="<div class='ba after'><div class='ba-label'>After（改善文例）</div>"+esc(aft)+"<button class='copy-btn' onclick=\"cp(this)\">コピー</button></div>";
+}else{ih+="<p class='note'>この項目は基準を満たしています。</p>";}
+ih+="</div></div>";
+});
+cats.push({name:cat,pass:cp,total:ct});
+html+=ih;
+});
+const sc=Math.round(pass/total*100);
+const cls=sc>=70?"s-high":sc>=40?"s-mid":"s-low";
+let r="<div class='score-box "+cls+"'><div class='num'>"+sc+"<span style='font-size:.4em'>点</span></div><div class='label'>整備スコア（"+pass+"/"+total+"項目クリア）</div></div>";
+r+="<div class='summary'>";
+cats.forEach(c=>{const p=Math.round(c.pass/c.total*100);r+="<div class='pill'><b>"+p+"%</b>"+c.name+"<br>"+c.pass+"/"+c.total+"</div>";});
+r+="</div>";
+if(sc>=70)r+="<p style='margin:8px 0;font-size:.9em'>規程の基本構造は概ね整備されています。NG項目を補強し、上場審査に備えましょう。</p>";
+else if(sc>=40)r+="<p style='margin:8px 0;font-size:.9em'>形式面にいくつかの不備があります。NG項目の改善文例を参考に規程を改訂してください。</p>";
+else r+="<p style='margin:8px 0;font-size:.9em'>規程の形骸化リスクが高い状態です。下記の改善文例を活用し、早急に整備を進めてください。</p>";
+r+=html;
+const el=document.getElementById("result");
+el.innerHTML=r;el.style.display="block";
+el.scrollIntoView({behavior:"smooth"});
+}
+function toggle(id){document.getElementById(id).classList.toggle("open")}
+function esc(s){return s.replace(/</g,"&lt;")}
+function cp(btn){
+const txt=btn.parentElement.textContent.replace("コピー","").replace("After（改善文例）","").trim();
+if(navigator.clipboard){navigator.clipboard.writeText(txt);btn.textContent="✓"}
+else{btn.textContent="✓"}
+setTimeout(()=>{btn.textContent="コピー"},1500);
+}
+</script>
+</body>
+</html>

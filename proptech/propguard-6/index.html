@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>重説リスク診断チェッカー「PropGuard」（スリム版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f4f6f8;color:#1a1a1a;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1a3a5c,#2a5a8c);color:#fff;padding:24px 16px;text-align:center;border-radius:12px;margin-bottom:20px}
+header h1{font-size:1.5em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;border-left:4px solid #2a5a8c;padding-left:10px;margin-bottom:12px}
+label{display:block;font-size:.9em;font-weight:600;margin-bottom:4px}
+select{width:100%;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.95em;margin-bottom:10px;background:#fff}
+.note{font-size:.78em;color:#666;margin-bottom:8px}
+.btn{display:block;width:100%;padding:14px;background:#2a5a8c;color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{background:#1a3a5c}
+#result{display:none}
+.grade-box{text-align:center;padding:20px;border-radius:10px;margin-bottom:16px}
+.grade-box .gl{font-size:3em;font-weight:900}
+.grade-box .gt{font-size:1em;margin-top:4px}
+.gA{background:#e8f5e9;color:#2e7d32}.gB{background:#fff8e1;color:#e65100}.gC{background:#ffebee;color:#c62828}
+.item{border:1px solid #e0e0e0;border-radius:8px;padding:12px;margin-bottom:10px}
+.item h3{font-size:.95em;margin-bottom:6px}
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.8em;font-weight:700;color:#fff;margin-bottom:6px}
+.bA{background:#43a047}.bB{background:#ef6c00}.bC{background:#d32f2f}
+.trouble{background:#fff3e0;border-radius:6px;padding:10px;margin:6px 0;font-size:.85em}
+.trouble b{color:#bf360c}
+.fix{background:#e3f2fd;border-radius:6px;padding:10px;margin:6px 0;font-size:.85em}
+.fix b{color:#1565c0}
+textarea{width:100%;height:180px;font-size:.82em;border:1px solid #ccd;border-radius:6px;padding:10px;margin-top:8px}
+.copy-btn{padding:8px 16px;background:#455a64;color:#fff;border:none;border-radius:6px;font-size:.85em;cursor:pointer;margin-top:6px}
+@media print{body{background:#fff}.btn,.copy-btn{display:none}header{background:#1a3a5c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+<meta name="description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説リスク診断チェッカー「PropGuard」（スリム版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-6/">
+<meta property="og:title" content="重説リスク診断チェッカー「PropGuard」（スリム版） - kusasyu tools">
+<meta property="og:description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説リスク診断チェッカー「PropGuard」（スリム版） - kusasyu tools">
+<meta name="twitter:description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "重説リスク診断チェッカー「PropGuard」（スリム版）",
+  "description": "重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propguard-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">重説リスク診断チェッカー「PropGuard」（スリム版）</span></div>
+<div class="wrap">
+<header>
+<h1>PropGuard</h1>
+<p>重説リスク診断チェッカー｜顧問弁護士なしでも安心チェック</p>
+</header>
+
+<div class="card">
+<h2>① 契約不適合責任の範囲</h2>
+<label>責任の記載状況</label>
+<select id="q1">
+<option value="">選択してください</option>
+<option value="A">期間・範囲を具体的に明記（例：引渡後2年、構造耐力上主要な部分等）</option>
+<option value="B">記載はあるが期間または範囲が曖昧</option>
+<option value="C">記載なし、または「一切責任を負わない」旨の記載</option>
+</select>
+<p class="note">※売主が宅建業者の場合、引渡後2年未満の免責は無効（宅建業法40条）</p>
+</div>
+
+<div class="card">
+<h2>② 瑕疵担保免責特約の有無</h2>
+<label>免責特約の状況</label>
+<select id="q2">
+<option value="">選択してください</option>
+<option value="A">免責特約なし（売主が全責任を負う）</option>
+<option value="B">一部免責あり（経年劣化のみ免責等、条件付き）</option>
+<option value="C">全部免責（現状有姿・一切免責の特約あり）</option>
+</select>
+<p class="note">※個人売主でも消費者契約法により全部免責が無効となるケースあり</p>
+</div>
+
+<div class="card">
+<h2>③ 設備告知の網羅性</h2>
+<label>付帯設備表・告知書の状態</label>
+<select id="q3">
+<option value="">選択してください</option>
+<option value="A">全設備を個別記載し、不具合の有無も明記</option>
+<option value="B">主要設備は記載あるが一部未記入あり</option>
+<option value="C">付帯設備表なし、または大半が未記入</option>
+</select>
+</div>
+
+<div class="card">
+<h2>④ 用途地域制限の明記</h2>
+<label>用途地域・建築制限の記載</label>
+<select id="q4">
+<option value="">選択してください</option>
+<option value="A">用途地域・建ぺい率・容積率・その他制限を全て明記</option>
+<option value="B">用途地域は記載あるが、具体的な制限の一部が未記載</option>
+<option value="C">用途地域の記載なし、または誤記載の疑い</option>
+</select>
+</div>
+
+<div class="card">
+<h2>⑤ 抵当権抹消条件</h2>
+<label>抵当権に関する記載</label>
+<select id="q5">
+<option value="">選択してください</option>
+<option value="A">抵当権なし、または決済時抹消を売主が確約（抹消書類の準備も明記）</option>
+<option value="B">抹消予定だが時期や条件が曖昧</option>
+<option value="C">抵当権の記載なし、または抹消の見通しが不明</option>
+</select>
+</div>
+
+<button class="btn" onclick="diagnose()">リスク診断を実行</button>
+
+<div id="result">
+<div class="card">
+<h2>総合リスクグレード</h2>
+<div id="totalGrade" class="grade-box"></div>
+</div>
+<div id="details"></div>
+<div class="card">
+<h2>診断結果レポート（コピー用）</h2>
+<p class="note">下記テキストをコピーして社内共有・印刷にご利用ください</p>
+<textarea id="report" readonly></textarea>
+<button class="copy-btn" onclick="copyReport()">クリップボードにコピー</button>
+<span id="copied" style="font-size:.8em;color:#2e7d32;margin-left:8px;display:none">コピーしました</span>
+</div>
+</div>
+</div>
+
+<script>
+const DATA={
+q1:{name:"契約不適合責任の範囲",
+A:{text:"期間・範囲が明確に定められており、安全な記載です。"},
+B:{text:"期間または範囲に曖昧さがあります。具体的な年数と対象部位を明記してください。"},
+C:{troubles:[
+"【事例1】引渡後3ヶ月で雨漏り発覚。免責記載により売主が修繕拒否→買主が全額負担（約180万円）",
+"【事例2】基礎のシロアリ被害を売主が認識していたが責任範囲が不明確で紛争に発展、解決まで14ヶ月",
+"【事例3】「瑕疵についての責任は負わない」条項を盾に売主が対応拒否。調停で買主勝訴も弁護士費用80万円"
+],fix:"【改善文案】「売主は、引渡日から2年間、目的物の種類・品質に関する契約不適合について、修補または代金減額の責任を負う。ただし、買主の検査で発見可能であった事項を除く。」"}},
+q2:{name:"瑕疵担保免責特約の有無",
+A:{text:"免責特約がなく、買主保護の観点から安全です。"},
+B:{text:"一部免責条件があります。免責範囲が合理的か確認してください。"},
+C:{troubles:[
+"【事例1】現状有姿特約のある中古戸建で購入後に傾き発覚。修繕費420万円を買主が全額負担",
+"【事例2】全部免責特約があったが売主が宅建業者→宅建業法40条違反で特約無効、紛争に",
+"【事例3】免責特約の説明不足を理由に仲介業者が損害賠償請求を受けた事例（賠償額150万円）"
+],fix:"【改善文案】免責特約を削除するか、「経年変化および通常の使用による損耗を除き、売主は契約不適合責任を負う」に修正。売主が宅建業者の場合は免責特約自体を削除すること。"}},
+q3:{name:"設備告知の網羅性",
+A:{text:"全設備が個別に記載されており、告知として十分です。"},
+B:{text:"一部未記入があります。全項目を埋めるよう売主に依頼してください。"},
+C:{troubles:[
+"【事例1】付帯設備表なしで取引→入居後に給湯器故障。「説明がなかった」として仲介業者にクレーム",
+"【事例2】エアコン残置の記載漏れ。引渡後に売主が撤去し、買主との間でトラブル"
+],fix:"【改善文案】付帯設備表を作成し、設備ごとに「有・無」「故障の有無」「故障内容」を記載。売主に署名押印をもらい重説に添付すること。"}},
+q4:{name:"用途地域制限の明記",
+A:{text:"用途地域と建築制限が正確に記載されています。"},
+B:{text:"一部の制限事項が未記載です。都市計画課で最新情報を確認してください。"},
+C:{troubles:[
+"【事例1】用途地域の記載誤りにより、買主が予定していた店舗営業が不可と判明。契約解除＋違約金紛争",
+"【事例2】建ぺい率の記載漏れ→増築不可を購入後に知り、買主が仲介業者を提訴"
+],fix:"【改善文案】都市計画課発行の都市計画証明書を取得し、用途地域・建ぺい率・容積率・高さ制限・防火指定・地区計画を正確に転記。証明書のコピーを重説に添付すること。"}},
+q5:{name:"抵当権抹消条件",
+A:{text:"抵当権の処理が明確で安全です。"},
+B:{text:"抹消時期が不明確です。決済日までの抹消と書類準備を明記してください。"},
+C:{troubles:[
+"【事例1】残債超過で抵当権抹消不能→決済不能・契約解除。買主の住宅ローン手数料20万円が損失に",
+"【事例2】抵当権の存在を説明せず引渡→登記後に発覚し、買主が仲介業者に損害賠償請求",
+"【事例3】決済日に抹消書類が間に合わず引渡延期。買主の引越し費用・仮住まい費用が紛争に"
+],fix:"【改善文案】「売主は、所有権移転登記と同時に、本物件に設定された抵当権の抹消登記手続きを行う。売主は決済日の前日までに抹消に必要な書類一式を準備し、司法書士に預託する。」"}}
+};
+
+function diagnose(){
+const qs=["q1","q2","q3","q4","q5"];
+const vals={};
+for(const q of qs){
+const v=document.getElementById(q).value;
+if(!v){alert("すべての項目を選択してください");return}
+vals[q]=v;
+}
+let cCount=0,bCount=0;
+for(const v of Object.values(vals)){if(v==="C")cCount++;if(v==="B")bCount++}
+let total="A",tLabel="安全",tDesc="重大なリスクは検出されませんでした。";
+if(cCount>=2){total="C";tLabel="危険";tDesc="複数の高リスク条項があります。専門家への相談を強く推奨します。"}
+else if(cCount===1){total="C";tLabel="危険";tDesc="高リスク条項が1つあります。該当箇所の修正を推奨します。"}
+else if(bCount>=2){total="B";tLabel="注意";tDesc="注意が必要な条項があります。確認・修正を検討してください。"}
+else if(bCount===1){total="B";tLabel="注意";tDesc="軽微な注意点があります。"}
+
+const tg=document.getElementById("totalGrade");
+tg.className="grade-box g"+total;
+tg.innerHTML='<div class="gl">'+total+'</div><div class="gt">'+tLabel+"："+tDesc+"</div>";
+
+let html="",rpt="【PropGuard 重説リスク診断レポート】\n診断日: "+new Date().toLocaleDateString("ja-JP")+"\n総合グレード: "+total+"（"+tLabel+"）\n"+tDesc+"\n──────────────────────────────\n";
+
+for(const q of qs){
+const d=DATA[q],v=vals[q];
+const gName={A:"安全",B:"注意",C:"危険"}[v];
+html+='<div class="item"><h3>'+d.name+'</h3><span class="badge b'+v+'">'+v+"："+gName+"</span>";
+rpt+="\n■ "+d.name+"："+v+"（"+gName+"）\n";
+if(v==="C"&&d.C.troubles){
+html+='<div class="trouble"><b>過去のトラブル事例</b>';
+for(const t of d.C.troubles){html+="<p>"+t+"</p>";rpt+="  "+t+"\n"}
+html+="</div>";
+html+='<div class="fix"><b>改善文案</b><p>'+d.C.fix+"</p></div>";
+rpt+="  "+d.C.fix+"\n";
+}else{
+const info=d[v].text;
+html+='<p style="font-size:.88em;margin-top:4px">'+info+"</p>";
+rpt+="  "+info+"\n";
+}
+html+="</div>";
+}
+rpt+="\n──────────────────────────────\n※本診断は一般的な法的リスクの目安です。個別案件の最終判断は宅建士・弁護士にご相談ください。\n※PropGuard｜Kusasyu PropTech";
+
+document.getElementById("details").innerHTML='<div class="card"><h2>条項別診断結果</h2>'+html+"</div>";
+document.getElementById("report").value=rpt;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function copyReport(){
+const ta=document.getElementById("report");
+ta.select();
+document.execCommand("copy");
+const c=document.getElementById("copied");
+c.style.display="inline";
+setTimeout(function(){c.style.display="none"},2000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1週間SNS投稿カレンダー自動作成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+label{display:block;font-size:.85em;font-weight:600;margin-bottom:4px;color:#4a5568}
+select,input[type=date]{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:1em;background:#fff}
+.btn{display:block;width:100%;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;cursor:pointer;font-weight:700;margin-top:14px;font-size:1em;padding:13px;border-radius:8px}
+.btn:hover{opacity:.9}
+.btn2{background:linear-gradient(135deg,#48bb78,#38a169);margin-top:8px}
+.btn3{background:linear-gradient(135deg,#ed8936,#dd6b20);margin-top:8px}
+#result{display:none}
+table{width:100%;border-collapse:collapse;font-size:.82em}
+th,td{padding:8px 6px;border:1px solid #e2e8f0;text-align:left;vertical-align:top}
+th{background:#edf2f7;font-size:.78em;white-space:nowrap}
+.day-head{background:#667eea;color:#fff;font-weight:700;text-align:center;font-size:.95em}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.73em;font-weight:700;color:#fff;margin:1px}
+.b-x{background:#1da1f2}.b-ig{background:#e1306c}.b-line{background:#06c755}
+.theme{color:#553c9a;font-weight:600;font-size:.82em}
+.time{color:#d69e2e;font-weight:700}
+textarea{width:100%;border:1px solid #cbd5e0;border-radius:6px;padding:6px;font-size:.82em;resize:vertical;min-height:38px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0;font-size:.82em;align-items:center}
+.tip{background:#fffff0;border-left:3px solid #ecc94b;padding:10px 12px;font-size:.82em;margin-top:14px;border-radius:0 8px 8px 0}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.stat{background:#edf2f7;border-radius:8px;padding:10px 14px;flex:1;min-width:120px;text-align:center}
+.stat b{display:block;font-size:1.3em;color:#667eea}
+.stat span{font-size:.75em;color:#718096}
+@media(max-width:600px){table{font-size:.72em}th,td{padding:5px 3px}.row>div{min-width:100%}.stat{min-width:80px;padding:8px}}
+</style>
+<meta name="description" content="企業情報（業種・ターゲット・サービスURL・ブランドカラー）を入力するだけで、X（140文字制限対応）・Instagram（ハッシュタグ30個最適化）・LINE公式（リッチメッセージ形式）の投稿文を一括生成するHTMLツール。海外で実証済みのMarketrコンセプトを日本語・日本SNS文化に完全特化して再設計">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,1週間SNS投稿カレンダー自動作成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-45/">
+<meta property="og:title" content="1週間SNS投稿カレンダー自動作成ツール - kusasyu tools">
+<meta property="og:description" content="企業情報（業種・ターゲット・サービスURL・ブランドカラー）を入力するだけで、X（140文字制限対応）・Instagram（ハッシュタグ30個最適化）・LINE公式（リッチメッセージ形式）の投稿文を一括生成するHTMLツール。海外で実証済みのMarketrコンセプトを日本語・日本SNS文化に完全特化して再設計">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-45/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1週間SNS投稿カレンダー自動作成ツール - kusasyu tools">
+<meta name="twitter:description" content="企業情報（業種・ターゲット・サービスURL・ブランドカラー）を入力するだけで、X（140文字制限対応）・Instagram（ハッシュタグ30個最適化）・LINE公式（リッチメッセージ形式）の投稿文を一括生成するHTMLツール。海外で実証済みのMarketrコンセプトを日本語・日本SNS文化に完全特化して再設計">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "1週間SNS投稿カレンダー自動作成ツール",
+  "description": "企業情報（業種・ターゲット・サービスURL・ブランドカラー）を入力するだけで、X（140文字制限対応）・Instagram（ハッシュタグ30個最適化）・LINE公式（リッチメッセージ形式）の投稿文を一括生成するHTMLツール。海外で実証済みのMarketrコンセプトを日本語・日本SNS文化に完全特化して再設計",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-45/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">1週間SNS投稿カレンダー自動作成ツール</span></div>
+<div class="wrap">
+<h1>1週間SNS投稿カレンダー自動作成ツール</h1>
+<p class="sub">業種と投稿頻度を選ぶだけ。最適な曜日・時間・テーマを自動割り振り</p>
+<div class="card">
+ <div class="row">
+  <div><label>業種</label><select id="biz"><option value="food">飲食店・カフェ</option><option value="beauty">美容・サロン</option><option value="estate">不動産</option><option value="ec">EC・ネットショップ</option></select></div>
+  <div><label>週あたり投稿数</label><select id="freq"><option value="3">3本（週3回）</option><option value="5">5本（平日毎日）</option><option value="7">7本（毎日）</option></select></div>
+  <div><label>開始日（月曜）</label><input type="date" id="startDate"></div>
+ </div>
+ <button class="btn" onclick="generate()">カレンダーを生成</button>
+</div>
+<div id="result">
+ <div class="card">
+  <div class="stats" id="stats"></div>
+  <div class="legend"><span><span class="badge b-x">X</span> X（旧Twitter）</span><span><span class="badge b-ig">IG</span> Instagram</span><span><span class="badge b-line">LINE</span> LINE公式</span></div>
+  <div style="overflow-x:auto"><table id="cal"></table></div>
+  <div class="tip" id="tipArea"></div>
+  <button class="btn btn2" onclick="dlGCal()">Googleカレンダー用CSV ダウンロード</button>
+  <button class="btn btn3" onclick="dlList()">投稿一覧CSV ダウンロード</button>
+ </div>
+</div>
+</div>
+<script>
+var DATA={food:{label:"飲食店・カフェ",slots:[{d:5,h:"12:00",r:"金曜ランチ最大需要"},{d:0,h:"18:00",r:"日曜ディナー検索ピーク"},{d:3,h:"12:00",r:"木曜ランチ・週後半集客"},{d:1,h:"18:30",r:"火曜夕方・夕食検討"},{d:2,h:"12:00",r:"水曜ランチ帯"},{d:6,h:"11:00",r:"土曜ブランチ需要"},{d:4,h:"18:00",r:"金曜夜ディナー訴求"}],themes:["本日のおすすめメニュー","お客様の声・レビュー紹介","厨房の裏側・仕込み風景","期間限定メニュー告知","スタッフ紹介・こだわり","食材産地ストーリー","週末イベント・空席案内"],platPri:["IG","X","LINE","X","IG","IG","LINE"],tip:"飲食店は金曜12時と日曜18時がエンゲージメント最大。料理写真はIGで最も効果的。LINEクーポンは金曜配信で週末来店を促進。"},beauty:{label:"美容・サロン",slots:[{d:0,h:"20:00",r:"日曜夜セルフケア意識UP"},{d:4,h:"20:00",r:"木曜夜の美容ゴールデンタイム"},{d:1,h:"12:00",r:"月曜昼・週始め美容モチベ"},{d:2,h:"21:00",r:"火曜夜リラックスタイム"},{d:5,h:"19:00",r:"金曜夜・週末予約促進"},{d:6,h:"10:00",r:"土曜朝の美容情報収集"},{d:3,h:"12:00",r:"水曜昼・週中メンテ訴求"}],themes:["ビフォーアフター施術例","お客様の声・変化の実感","スタッフ技術紹介","季節の美容ケアTips","予約空き状況お知らせ","新メニュー・キャンペーン","ホームケアアドバイス"],platPri:["IG","X","LINE","IG","LINE","IG","X"],tip:"美容サロンは日曜20時・木曜夜がピーク。ビフォーアフター写真のIG投稿がフォロワー獲得に最も効果的。LINE予約リマインドで無断キャンセル平均30%減。"},estate:{label:"不動産",slots:[{d:6,h:"09:00",r:"土曜朝・内見日の物件チェック"},{d:1,h:"08:00",r:"月曜通勤中の物件検索"},{d:0,h:"14:00",r:"日曜午後の検討タイム"},{d:3,h:"19:00",r:"水曜帰宅後の情報収集"},{d:5,h:"18:00",r:"金曜夜・内見前の下調べ"},{d:2,h:"12:00",r:"火曜昼休み物件チェック"},{d:4,h:"12:00",r:"木曜昼・週後半情報収集"}],themes:["新着物件ハイライト","エリア情報・周辺環境","内見チェックポイント","お客様の引越し体験談","住宅ローン基礎知識","スタッフおすすめ物件","週末内見会告知"],platPri:["IG","X","LINE","X","IG","X","LINE"],tip:"不動産は土曜9時と平日朝8時台が反応◎。物件写真はIG、速報はXが効果的。LINE公式で内見予約導線を作ると成約率UP。"},ec:{label:"EC・ネットショップ",slots:[{d:2,h:"21:00",r:"火曜夜・衝動買いピーク"},{d:4,h:"21:00",r:"木曜夜・ECゴールデンタイム"},{d:5,h:"20:00",r:"金曜夜・週末セール訴求"},{d:1,h:"12:00",r:"月曜ランチ通販タイム"},{d:0,h:"21:00",r:"日曜夜・翌週準備の購買"},{d:6,h:"10:00",r:"土曜朝ショッピング"},{d:3,h:"12:00",r:"水曜昼・週中情報収集"}],themes:["人気ランキングTOP3","お客様レビュー紹介","商品の使い方・活用術","期間限定セール告知","新商品入荷お知らせ","スタッフ愛用品紹介","週末限定クーポン配布"],platPri:["X","IG","LINE","X","IG","LINE","IG"],tip:"ECは火・木の21時と金曜20時がCV率最高。LINEクーポンは金曜が最適。IGショッピング機能で直接購入導線を確保。"}};
+var DAYS_JA=["月","火","水","木","金","土","日"],curPlan=[];
+function nextMon(){var d=new Date(),w=d.getDay(),diff=w===0?1:8-w;d.setDate(d.getDate()+diff);return d}
+function pad(n){return n<10?"0"+n:""+n}
+function fmtD(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function fmtDS(d){return d.getFullYear()+"/"+pad(d.getMonth()+1)+"/"+pad(d.getDate())}
+function generate(){
+ var biz=document.getElementById("biz").value,freq=+document.getElementById("freq").value,d=DATA[biz],slots=d.slots.slice(0,freq),val=document.getElementById("startDate").value,mon=val?new Date(val+"T00:00:00"):nextMon();
+ curPlan=[];
+ for(var i=0;i<slots.length;i++){var s=slots[i],dt=new Date(mon),off=s.d===0?6:s.d-1;dt.setDate(dt.getDate()+off);var pc=d.platPri[i];curPlan.push({date:dt,dayJa:DAYS_JA[off],time:s.h,reason:s.r,theme:d.themes[i],pc:pc,cls:pc==="X"?"b-x":pc==="IG"?"b-ig":"b-line",memo:""})}
+ curPlan.sort(function(a,b){return a.date-b.date||(a.time<b.time?-1:1)});
+ var cx=0,ci=0,cl=0;for(var j=0;j<curPlan.length;j++){if(curPlan[j].pc==="X")cx++;else if(curPlan[j].pc==="IG")ci++;else cl++}
+ document.getElementById("stats").innerHTML='<div class="stat"><b>'+freq+'</b><span>投稿/週</span></div><div class="stat"><b>'+cx+'</b><span>X投稿</span></div><div class="stat"><b>'+ci+'</b><span>IG投稿</span></div><div class="stat"><b>'+cl+'</b><span>LINE配信</span></div>';
+ var h='<tr><th>曜日</th><th>日付</th><th>時間</th><th>媒体</th><th>推奨テーマ</th><th>配信理由</th><th style="min-width:150px">メモ（投稿文貼付用）</th></tr>';
+ for(var k=0;k<curPlan.length;k++){var p=curPlan[k];h+='<tr><td class="day-head">'+p.dayJa+'</td><td>'+fmtD(p.date)+'</td><td class="time">'+p.time+'</td><td><span class="badge '+p.cls+'">'+p.pc+'</span></td><td class="theme">'+p.theme+'</td><td>'+p.reason+'</td><td><textarea id="m'+k+'" onchange="curPlan['+k+'].memo=this.value" placeholder="投稿文を入力..."></textarea></td></tr>'}
+ document.getElementById("cal").innerHTML=h;document.getElementById("tipArea").innerHTML="<strong>"+d.label+"の投稿ポイント：</strong>"+d.tip;document.getElementById("result").style.display="block";document.getElementById("result").scrollIntoView({behavior:"smooth"})
+}
+function dlGCal(){
+ var c="Subject,Start Date,Start Time,End Time,Description\r\n";
+ for(var i=0;i<curPlan.length;i++){var p=curPlan[i],ds=fmtDS(p.date),eh=+p.time.split(":")[0]+1,et=pad(eh)+":"+p.time.split(":")[1],desc=("["+p.pc+"] "+p.theme+(p.memo?" | "+p.memo:"")).replace(/"/g,'""');c+='"[SNS] '+p.pc+" "+p.theme+'","'+ds+'","'+p.time+'","'+et+'","'+desc+'"\r\n'}dl(c,"sns_calendar_gcal.csv")
+}
+function dlList(){
+ var c="日付,曜日,時間,媒体,推奨テーマ,配信理由,投稿文メモ\r\n";
+ for(var i=0;i<curPlan.length;i++){var p=curPlan[i];c+='"'+fmtDS(p.date)+'","'+p.dayJa+'","'+p.time+'","'+p.pc+'","'+p.theme+'","'+p.reason+'","'+(p.memo||"").replace(/"/g,'""')+'"\r\n'}dl(c,"sns_posts_list.csv")
+}
+function dl(c,n){var b=new Blob(["\uFEFF"+c],{type:"text/csv;charset=utf-8"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();document.body.removeChild(a)}
+(function(){document.getElementById("startDate").value=fmtD(nextMon())})();
+</script>
+</body>
+</html>

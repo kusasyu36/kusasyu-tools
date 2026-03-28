@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>重説コストスキャナー「PropCostScan」 - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:18px}
+.sec{background:#fff;border-radius:10px;padding:14px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.sec h2{font-size:.95em;color:#2b6cb0;margin-bottom:8px;border-left:4px solid #3182ce;padding-left:8px}
+label{display:block;font-size:.85em;margin:6px 0 2px;color:#4a5568}
+select,input[type=number]{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9em;background:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin:16px 0}
+.btn:active{opacity:.8}
+#result{display:none}
+.risk-card{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;margin-bottom:6px;color:#fff;font-size:.88em}
+.rg{background:#38a169}.ry{background:#d69e2e}.rr{background:#e53e3e}
+.risk-card .rv{font-weight:700;font-size:1em;text-align:right;min-width:90px}
+.summary{background:#fff;border-radius:10px;padding:16px;margin-top:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.summary h3{font-size:1em;margin-bottom:10px;color:#2d3748}
+.bar-wrap{margin-bottom:8px}
+.bar-label{font-size:.8em;color:#4a5568;display:flex;justify-content:space-between}
+.bar-bg{height:22px;background:#e2e8f0;border-radius:6px;overflow:hidden;margin-top:2px}
+.bar-fill{height:100%;border-radius:6px;transition:width .6s}
+.total-box{text-align:center;padding:14px;margin-top:12px;border-radius:10px;font-weight:700}
+.t5{background:#ebf8ff;color:#2b6cb0;font-size:1.1em}
+.t10{background:#fef3c7;color:#b7791f;font-size:1.2em;margin-top:8px}
+footer{text-align:center;color:#a0aec0;font-size:.75em;padding:16px 0}
+</style>
+<meta name="description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説コストスキャナー「PropCostScan」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propcostscan/">
+<meta property="og:title" content="重説コストスキャナー「PropCostScan」 - kusasyu tools">
+<meta property="og:description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propcostscan/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説コストスキャナー「PropCostScan」 - kusasyu tools">
+<meta name="twitter:description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "重説コストスキャナー「PropCostScan」",
+  "description": "重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propcostscan/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">重説コストスキャナー「PropCostScan」</span></div>
+<div class="wrap">
+<h1>PropCostScan</h1>
+<p class="sub">重説6セクションの隠れコストを可視化</p>
+
+<div class="sec"><h2>① 権利関係</h2>
+<label>所有権の状態</label>
+<select id="s1"><option value="0">完全所有権（単独）</option><option value="1">共有持分あり</option><option value="2">借地権</option><option value="3">抵当権付き（複数）</option></select>
+</div>
+
+<div class="sec"><h2>② 法令上の制限</h2>
+<label>用途地域リスク</label>
+<select id="s2"><option value="0">住居系（低リスク）</option><option value="1">商業系（中リスク）</option><option value="2">工業系・調整区域</option></select>
+<label>再建築可否</label>
+<select id="s2b"><option value="0">再建築可</option><option value="1">再建築不可</option></select>
+</div>
+
+<div class="sec"><h2>③ インフラ状況</h2>
+<label>上下水道・ガスの整備</label>
+<select id="s3"><option value="0">全て公営整備済み</option><option value="1">一部私設管・浄化槽</option><option value="2">井戸・浄化槽・プロパン</option></select>
+</div>
+
+<div class="sec"><h2>④ 管理費・修繕積立金</h2>
+<div class="row">
+<div><label>管理費（月額・円）</label><input type="number" id="s4a" value="12000" min="0" step="1000"></div>
+<div><label>修繕積立金（月額・円）</label><input type="number" id="s4b" value="8000" min="0" step="1000"></div>
+</div>
+<label>築年数</label>
+<select id="s4c"><option value="0">10年未満</option><option value="1">10〜20年</option><option value="2">20〜30年</option><option value="3">30年超</option></select>
+</div>
+
+<div class="sec"><h2>⑤ 手付金・違約金</h2>
+<label>物件価格（万円）</label>
+<input type="number" id="s5a" value="3000" min="0" step="100">
+<label>手付金割合</label>
+<select id="s5"><option value="5">5%</option><option value="10">10%</option><option value="20">20%</option></select>
+</div>
+
+<div class="sec"><h2>⑥ 契約不適合責任（瑕疵担保）</h2>
+<label>売主の種別</label>
+<select id="s6"><option value="0">宅建業者（2年保証）</option><option value="1">個人（期間限定）</option><option value="2">個人（免責特約あり）</option></select>
+</div>
+
+<button class="btn" onclick="calc()">隠れコストを診断する</button>
+
+<div id="result">
+<div id="cards"></div>
+<div class="summary">
+<h3>コスト内訳グラフ</h3>
+<div id="bars"></div>
+<div id="totals"></div>
+</div>
+</div>
+<footer>© Kusasyu PropTech｜概算値です。正確な判断は専門家にご相談ください。</footer>
+</div>
+<script>
+function calc(){
+var items=[];
+var v1=+document.getElementById('s1').value;
+var c1=[0,300000,600000,1200000][v1];
+items.push({name:'権利関係',c5:c1,c10:c1*1.3,risk:v1<=0?0:v1<=1?1:2});
+var v2=+document.getElementById('s2').value,v2b=+document.getElementById('s2b').value;
+var c2=v2*200000+v2b*2000000;
+items.push({name:'法令制限',c5:c2,c10:c2*1.2,risk:c2<200000?0:c2<1000000?1:2});
+var v3=+document.getElementById('s3').value;
+var c3=[0,500000,1500000][v3];
+items.push({name:'インフラ',c5:c3,c10:c3*1.8,risk:v3});
+var ma=+document.getElementById('s4a').value||0,mb=+document.getElementById('s4b').value||0;
+var age=+document.getElementById('s4c').value;
+var rate=[1.0,1.25,1.5,1.8][age];
+var c4_5=(ma+mb*rate)*60,c4_10=(ma+mb*rate*1.3)*120;
+items.push({name:'管理費・修繕',c5:c4_5,c10:c4_10,risk:age<=1?0:age<=2?1:2});
+var price=+document.getElementById('s5a').value*10000,pct=+document.getElementById('s5').value;
+var c5v=price*pct/100;
+items.push({name:'手付・違約リスク',c5:c5v,c10:c5v,risk:pct<=5?0:pct<=10?1:2});
+var v6=+document.getElementById('s6').value;
+var c6=[0,500000,1500000][v6];
+items.push({name:'契約不適合責任',c5:c6,c10:c6*1.5,risk:v6});
+var rc=['rg','ry','rr'],rl=['低リスク','中リスク','高リスク'];
+var h='',t5=0,t10=0,mx=0;
+items.forEach(function(it){t5+=it.c5;t10+=it.c10;if(it.c10>mx)mx=it.c10});
+items.forEach(function(it){
+h+='<div class="risk-card '+rc[it.risk]+'"><span>'+it.name+'<br><small>'+rl[it.risk]+'</small></span><span class="rv">'+fm(it.c5)+'<br><small>→'+fm(it.c10)+'</small></span></div>';
+});
+document.getElementById('cards').innerHTML=h;
+var b='',co=['#3182ce','#805ad5','#38a169','#d69e2e','#e53e3e','#dd6b20'];
+items.forEach(function(it,i){
+var w=mx>0?(it.c10/mx*100):0;
+b+='<div class="bar-wrap"><div class="bar-label"><span>'+it.name+'</span><span>'+fm(it.c10)+'</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+w+'%;background:'+co[i]+'"></div></div></div>';
+});
+document.getElementById('bars').innerHTML=b;
+document.getElementById('totals').innerHTML='<div class="total-box t5">5年後の隠れコスト概算：<br>'+fm(t5)+'</div><div class="total-box t10">10年後の隠れコスト概算：<br>'+fm(t10)+'</div>';
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function fm(n){return Math.round(n).toLocaleString('ja-JP')+'円'}
+</script>
+</body>
+</html>

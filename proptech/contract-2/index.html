@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>賃貸契約の条項別リスク＆隠れコストチェッカー（印刷対応版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 12px;background:linear-gradient(135deg,#1a5276,#2e86c1);color:#fff;border-radius:10px;margin-bottom:16px}
+h1 small{display:block;font-size:.6em;font-weight:400;opacity:.85;margin-top:4px}
+.step{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.step-title{font-size:1.05em;font-weight:700;color:#1a5276;margin-bottom:10px;padding-left:8px;border-left:4px solid #2e86c1}
+.room-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.room-btn{padding:12px 4px;border:2px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;text-align:center;font-size:.95em;transition:.2s}
+.room-btn.active{border-color:#2e86c1;background:#eaf2f8;font-weight:700}
+.room-btn span{display:block;font-size:.75em;color:#888}
+.clause{border-bottom:1px solid #eee;padding:10px 0}
+.clause:last-child{border-bottom:none}
+.clause label{font-weight:600;font-size:.93em;display:block;margin-bottom:4px}
+.clause select{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;font-size:.9em;background:#fff}
+#result{display:none}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.sum-card{padding:14px;border-radius:8px;text-align:center}
+.sum-card.risk{background:#fdedec;border:1px solid #e74c3c}
+.sum-card.save{background:#eafaf1;border:1px solid #27ae60}
+.sum-val{font-size:1.6em;font-weight:700}
+.sum-card.risk .sum-val{color:#c0392b}
+.sum-card.save .sum-val{color:#27ae60}
+.sum-label{font-size:.8em;color:#666}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+th,td{padding:8px 6px;text-align:left;border-bottom:1px solid #eee}
+th{background:#f8f9fa;font-weight:600;position:sticky;top:0}
+.grade{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;color:#fff;font-weight:700;font-size:.85em}
+.grade-A{background:#e74c3c}
+.grade-B{background:#f39c12}
+.grade-C{background:#27ae60}
+.neg{font-size:.8em;color:#555;line-height:1.4}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:10px;transition:.2s}
+.btn-check{background:#2e86c1;color:#fff}
+.btn-check:hover{background:#1a5276}
+.btn-print{background:#fff;color:#2e86c1;border:2px solid #2e86c1;margin-top:8px}
+.btn-reset{background:#eee;color:#666}
+.disclaimer{font-size:.75em;color:#999;text-align:center;margin-top:12px;padding:10px;border-top:1px solid #eee}
+@media(max-width:480px){.room-grid{grid-template-columns:repeat(2,1fr)}.summary{grid-template-columns:1fr}}
+@media print{
+body{background:#fff;font-size:11pt}
+.wrap{max-width:100%;padding:0}
+h1{background:#1a5276!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:14pt;padding:10px}
+.btn,.step:has(select){display:none}
+#result{display:block!important}
+.grade{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.step{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+.disclaimer{border-top:1px solid #333;color:#333}
+}
+</style>
+<meta name="description" content="賃貸契約書の特約条項を1つずつ選択・入力すると、国交省「原状回復をめぐるトラブルとガイドライン」に照らして各条項の不利度（A〜C）と想定追加コスト（円）を算出するHTMLツール。原状回復・敷金返還・退去時清掃費・鍵交換・更新料・違約金など主要10条項をカバーし、合計の隠れコストと交渉で削減可能な金額を可視化。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,賃貸契約の条項別リスク＆隠れコストチェッカー（印刷対応版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-2/">
+<meta property="og:title" content="賃貸契約の条項別リスク＆隠れコストチェッカー（印刷対応版） - kusasyu tools">
+<meta property="og:description" content="賃貸契約書の特約条項を1つずつ選択・入力すると、国交省「原状回復をめぐるトラブルとガイドライン」に照らして各条項の不利度（A〜C）と想定追加コスト（円）を算出するHTMLツール。原状回復・敷金返還・退去時清掃費・鍵交換・更新料・違約金など主要10条項をカバーし、合計の隠れコストと交渉で削減可能な金額を可視化。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="賃貸契約の条項別リスク＆隠れコストチェッカー（印刷対応版） - kusasyu tools">
+<meta name="twitter:description" content="賃貸契約書の特約条項を1つずつ選択・入力すると、国交省「原状回復をめぐるトラブルとガイドライン」に照らして各条項の不利度（A〜C）と想定追加コスト（円）を算出するHTMLツール。原状回復・敷金返還・退去時清掃費・鍵交換・更新料・違約金など主要10条項をカバーし、合計の隠れコストと交渉で削減可能な金額を可視化。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "賃貸契約の条項別リスク＆隠れコストチェッカー（印刷対応版）",
+  "description": "賃貸契約書の特約条項を1つずつ選択・入力すると、国交省「原状回復をめぐるトラブルとガイドライン」に照らして各条項の不利度（A〜C）と想定追加コスト（円）を算出するHTMLツール。原状回復・敷金返還・退去時清掃費・鍵交換・更新料・違約金など主要10条項をカバーし、合計の隠れコストと交渉で削減可能な金額を可視化。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">賃貸契約の条項別リスク＆隠れコストチェッカー（印刷対応版）</span></div>
+<div class="wrap">
+<h1>賃貸契約 条項別リスク＆隠れコストチェッカー<small>国交省ガイドライン準拠 ─ 印刷して不動産屋に持参できます</small></h1>
+
+<div class="step">
+<div class="step-title">STEP1：間取りを選択</div>
+<div class="room-grid" id="rooms"></div>
+</div>
+
+<div class="step">
+<div class="step-title">STEP2：契約書の条項を確認（10項目）</div>
+<div id="clauses"></div>
+</div>
+
+<button class="btn btn-check" onclick="calc()">チェック結果を表示</button>
+
+<div id="result">
+<div class="step">
+<div class="step-title">STEP3：診断結果</div>
+<div class="summary">
+<div class="sum-card risk"><div class="sum-label">隠れコスト合計</div><div class="sum-val" id="totalCost">-</div></div>
+<div class="sum-card save"><div class="sum-label">交渉で削減可能な額</div><div class="sum-val" id="totalSave">-</div></div>
+</div>
+<div style="overflow-x:auto"><table>
+<thead><tr><th>条項</th><th>判定</th><th>追加コスト</th><th>交渉フレーズ</th></tr></thead>
+<tbody id="tbody"></tbody>
+</table></div>
+</div>
+<button class="btn btn-print" onclick="window.print()">印刷してチェックリストにする</button>
+<button class="btn btn-reset" onclick="reset()">やり直す</button>
+</div>
+
+<div class="disclaimer">※本ツールは国土交通省「原状回復をめぐるトラブルとガイドライン」を参考にした目安です。法的判断・法的助言ではありません。個別の契約内容については宅建士・弁護士等の専門家にご相談ください。<br>© Kusasyu PropTech</div>
+</div>
+
+<script>
+const ROOMS=[{name:"1K",area:25},{name:"1LDK",area:40},{name:"2LDK",area:55},{name:"3LDK以上",area:70}];
+let selRoom=0;
+
+const CL=[
+{name:"原状回復範囲",opts:["記載なし","ガイドライン準拠","借主全額負担","曖昧な記載"],
+ g:["B","C","A","B"],base:[800,0,1500,600],neg:["「通常使用の範囲はどこまでですか」と書面で確認","─","「国交省GLでは通常損耗は貸主負担です」と提示","「原状回復の範囲を具体的に明記してください」"]},
+{name:"敷金返還条件",opts:["記載なし","全額返還","償却あり(1ヶ月等)","返還なし"],
+ g:["B","C","A","A"],base:[400,0,0,0],neg:["「返還条件を契約書に明記してください」","─","「償却の法的根拠と内訳を教えてください」","「全額未返還は消費者契約法で無効の可能性があります」"],
+ fixed:[0,0,1,2]},
+{name:"退去時清掃費",opts:["記載なし","実費精算","一律固定額","借主全額負担"],
+ g:["C","C","B","A"],base:[0,0,0,0],fixed2:[0,0,35000,50000],neg:["─","─","「固定額の根拠と相場との比較を教えてください」","「GL上、通常清掃は貸主負担です」"]},
+{name:"壁紙張替え負担",opts:["記載なし","経年劣化考慮あり","借主全額負担","曖昧な記載"],
+ g:["B","C","A","B"],base:[500,0,1200,500],neg:["「壁紙の経年劣化の考慮はありますか」","─","「GLでは6年で残存価値1円とされています」と主張","「負担割合の計算方法を明記してください」"]},
+{name:"鍵交換費",opts:["記載なし","貸主負担","借主負担(実費)","借主負担(定額)"],
+ g:["C","C","B","B"],base:[0,0,0,0],fixed2:[0,0,15000,20000],neg:["─","─","「GLでは鍵交換は貸主負担が原則です」","「定額の内訳と相場比較を確認させてください」"]},
+{name:"更新料",opts:["記載なし","なし","0.5ヶ月","1ヶ月以上"],
+ g:["C","C","B","B"],base:[0,0,0,0],fixed3:[0,0,0.5,1],neg:["─","─","「更新料の減額交渉は可能ですか」","「更新料なしの物件もあるため検討させてください」"]},
+{name:"短期解約違約金",opts:["記載なし","なし","1年未満で1ヶ月","半年未満で2ヶ月"],
+ g:["B","C","B","A"],base:[0,0,0,0],fixed3:[0,0,1,2],neg:["「短期解約時の違約金条項はありますか」","─","「転勤等やむを得ない場合の免除は可能ですか」","「2ヶ月は高額なので1ヶ月に減額を希望します」"]},
+{name:"ペット特約",opts:["記載なし","ペット不可","敷金上乗せ1ヶ月","原状回復全額負担"],
+ g:["C","C","B","A"],base:[0,0,0,0],fixed:[0,0,1,0],petBase:[0,0,0,1500],neg:["─","─","「上乗せ敷金の返還条件を確認させてください」","「全額負担の上限と範囲を明記してください」"]},
+{name:"保証会社費用",opts:["記載なし","初回のみ","毎年更新あり","高額(賃料100%以上)"],
+ g:["B","C","B","A"],base:[0,0,0,0],fixed4:[0,0,10000,0],pct:[0.5,0,0,1],neg:["「保証会社の費用体系を書面で提示してください」","─","「更新料の減額または免除は可能ですか」","「賃料100%は高額です。50%の会社への変更を希望します」"]},
+{name:"設備修繕負担",opts:["記載なし","貸主負担明記","小修繕は借主","借主全額負担"],
+ g:["B","C","B","A"],base:[0,0,200,600],neg:["「設備故障時の修繕負担を明確にしてください」","─","「小修繕の定義と上限額を確認させてください」","「GLでは設備修繕は貸主負担が原則です」"]}
+];
+
+function initRooms(){
+ const el=document.getElementById("rooms");
+ ROOMS.forEach((r,i)=>{
+  const b=document.createElement("button");
+  b.className="room-btn"+(i===0?" active":"");
+  b.innerHTML=r.name+'<span>約'+r.area+'㎡</span>';
+  b.onclick=()=>{selRoom=i;document.querySelectorAll(".room-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active")};
+  el.appendChild(b);
+ });
+}
+
+function initClauses(){
+ const el=document.getElementById("clauses");
+ CL.forEach((c,i)=>{
+  const d=document.createElement("div");d.className="clause";
+  let html='<label>'+(i+1)+'．'+c.name+'</label><select id="cl'+i+'">';
+  c.opts.forEach((o,j)=>html+='<option value="'+j+'">'+o+'</option>');
+  d.innerHTML=html+'</select>';
+  el.appendChild(d);
+ });
+}
+
+function getCost(ci,oi){
+ const c=CL[ci],r=ROOMS[selRoom],rent=r.area*3000;
+ let cost=c.base[oi]*r.area;
+ if(c.fixed)cost+=c.fixed[oi]*rent;
+ if(c.fixed2)cost+=c.fixed2[oi];
+ if(c.fixed3)cost+=c.fixed3[oi]*rent;
+ if(c.fixed4)cost+=c.fixed4[oi];
+ if(c.pct)cost+=c.pct[oi]*rent;
+ if(c.petBase)cost+=c.petBase[oi]*r.area;
+ return Math.round(cost);
+}
+
+function calc(){
+ let total=0,save=0;
+ const tbody=document.getElementById("tbody");tbody.innerHTML="";
+ CL.forEach((c,i)=>{
+  const oi=+document.getElementById("cl"+i).value;
+  const g=c.g[oi],cost=getCost(i,oi),neg=c.neg[oi];
+  total+=cost;
+  if(g==="A")save+=Math.round(cost*.7);
+  else if(g==="B")save+=Math.round(cost*.4);
+  const tr=document.createElement("tr");
+  tr.innerHTML='<td>'+c.name+'</td><td><span class="grade grade-'+g+'">'+g+'</span></td><td>'+fmt(cost)+'</td><td class="neg">'+neg+'</td>';
+  tbody.appendChild(tr);
+ });
+ document.getElementById("totalCost").textContent=fmt(total);
+ document.getElementById("totalSave").textContent="〜"+fmt(save);
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function fmt(n){return n===0?"¥0":"¥"+n.toLocaleString()}
+
+function reset(){
+ document.getElementById("result").style.display="none";
+ CL.forEach((_,i)=>document.getElementById("cl"+i).value="0");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+initRooms();initClauses();
+</script>
+</body>
+</html>

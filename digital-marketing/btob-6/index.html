@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BtoB購買フェーズ別コンテンツ自動生成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3rem;padding:20px 0 4px;color:#2b6cb0}
+.sub{text-align:center;font-size:.85rem;color:#718096;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1rem;color:#2b6cb0;margin-bottom:12px;border-left:4px solid #3182ce;padding-left:10px}
+label{display:block;font-size:.85rem;font-weight:600;margin:10px 0 4px;color:#4a5568}
+input[type=text],input[type=number],select,textarea{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:.95rem;background:#f7fafc}
+textarea{height:70px;resize:vertical}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+.phase-btns{display:flex;gap:8px;margin:14px 0}
+.phase-btn{flex:1;padding:12px 8px;border:2px solid #cbd5e0;border-radius:10px;background:#fff;font-size:.85rem;font-weight:700;cursor:pointer;text-align:center;transition:.2s}
+.phase-btn.active{border-color:#3182ce;background:#ebf8ff;color:#2b6cb0}
+.phase-btn:hover{border-color:#63b3ed}
+.gen-btn{width:100%;padding:14px;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:10px}
+.gen-btn:hover{opacity:.9}
+#output{display:none}
+.out-section{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:12px;position:relative;white-space:pre-wrap;font-size:.88rem}
+.out-section h3{font-size:.95rem;color:#2b6cb0;margin-bottom:8px}
+.copy-btn{position:absolute;top:10px;right:10px;padding:6px 14px;background:#3182ce;color:#fff;border:none;border-radius:6px;font-size:.78rem;cursor:pointer}
+.copy-btn:hover{background:#2c5282}
+.tbl{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.tbl th,.tbl td{border:1px solid #cbd5e0;padding:8px;text-align:left}
+.tbl th{background:#ebf8ff;color:#2b6cb0;font-weight:700}
+.tbl td:first-child{font-weight:600}
+.metric{display:flex;gap:10px;margin:8px 0;flex-wrap:wrap}
+.metric div{flex:1;min-width:120px;background:#ebf8ff;border-radius:8px;padding:12px;text-align:center}
+.metric div span{display:block;font-size:1.4rem;font-weight:800;color:#2b6cb0}
+.metric div small{font-size:.75rem;color:#718096}
+@media(max-width:600px){.row{flex-direction:column;gap:0}.phase-btns{flex-direction:column}.metric div{min-width:auto}}
+</style>
+<meta name="description" content="BtoBの購買フェーズ（認知→比較→決定）を選ぶだけで、そのフェーズに最適なコンテンツ（事例記事・競合比較表・ROI試算・提案書ドラフト）をブラウザ上で自動生成するHTMLツール。自社の商材名・単価・導入効果を入力すると、フェーズごとに刺さるコンテンツを即座に出力する。TRENDEMONのような高額エンタープ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoB購買フェーズ別コンテンツ自動生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-6/">
+<meta property="og:title" content="BtoB購買フェーズ別コンテンツ自動生成ツール - kusasyu tools">
+<meta property="og:description" content="BtoBの購買フェーズ（認知→比較→決定）を選ぶだけで、そのフェーズに最適なコンテンツ（事例記事・競合比較表・ROI試算・提案書ドラフト）をブラウザ上で自動生成するHTMLツール。自社の商材名・単価・導入効果を入力すると、フェーズごとに刺さるコンテンツを即座に出力する。TRENDEMONのような高額エンタープ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoB購買フェーズ別コンテンツ自動生成ツール - kusasyu tools">
+<meta name="twitter:description" content="BtoBの購買フェーズ（認知→比較→決定）を選ぶだけで、そのフェーズに最適なコンテンツ（事例記事・競合比較表・ROI試算・提案書ドラフト）をブラウザ上で自動生成するHTMLツール。自社の商材名・単価・導入効果を入力すると、フェーズごとに刺さるコンテンツを即座に出力する。TRENDEMONのような高額エンタープ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoB購買フェーズ別コンテンツ自動生成ツール",
+  "description": "BtoBの購買フェーズ（認知→比較→決定）を選ぶだけで、そのフェーズに最適なコンテンツ（事例記事・競合比較表・ROI試算・提案書ドラフト）をブラウザ上で自動生成するHTMLツール。自社の商材名・単価・導入効果を入力すると、フェーズごとに刺さるコンテンツを即座に出力する。TRENDEMONのような高額エンタープ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">BtoB購買フェーズ別コンテンツ自動生成ツール</span></div>
+<div class="wrap">
+<h1>BtoB購買フェーズ別<br>コンテンツ自動生成ツール</h1>
+<p class="sub">商材情報を入力してフェーズを選ぶだけで、すぐ使えるコンテンツを生成</p>
+
+<div class="card">
+<h2>商材情報を入力</h2>
+<label>商材・サービス名</label>
+<input type="text" id="prodName" placeholder="例：クラウド在庫管理システム「StockNavi」">
+<div class="row">
+<div><label>月額単価（税抜・円）</label><input type="number" id="price" placeholder="50000"></div>
+<div><label>導入初期費用（円）</label><input type="number" id="initCost" placeholder="200000"></div>
+</div>
+<label>ターゲット業種</label>
+<select id="industry">
+<option value="製造業">製造業</option><option value="IT・SaaS">IT・SaaS</option>
+<option value="商社・卸売">商社・卸売</option><option value="建設・不動産">建設・不動産</option>
+<option value="人材・BPO">人材・BPO</option><option value="医療・ヘルスケア">医療・ヘルスケア</option>
+</select>
+<label>主な導入効果（自由記述）</label>
+<textarea id="effect" placeholder="例：在庫差異90%削減、棚卸工数を月40時間→8時間に短縮、欠品率50%低減"></textarea>
+<label>自社の強み・優位ポイント（カンマ区切りで5つ）</label>
+<textarea id="strengths" placeholder="例：API連携数業界最多,AIによる需要予測,導入30日保証,専任CS付き,中小特化の料金体系"></textarea>
+</div>
+
+<div class="card">
+<h2>購買フェーズを選択</h2>
+<div class="phase-btns">
+<button class="phase-btn active" onclick="selPhase(this,0)">🔍 認知<br><small>課題喚起記事</small></button>
+<button class="phase-btn" onclick="selPhase(this,1)">⚖️ 比較<br><small>競合比較表</small></button>
+<button class="phase-btn" onclick="selPhase(this,2)">✅ 決定<br><small>ROI試算＋稟議</small></button>
+</div>
+<button class="gen-btn" onclick="generate()">コンテンツを生成する</button>
+</div>
+
+<div id="output"></div>
+</div>
+
+<script>
+let phase=0;
+function selPhase(el,p){phase=p;document.querySelectorAll('.phase-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active')}
+function v(id){return document.getElementById(id).value.trim()}
+function n(id){return parseInt(document.getElementById(id).value)||0}
+function esc(s){return s.replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function copyText(btn){const sec=btn.parentElement;const cl=btn.cloneNode(true);btn.remove();const t=sec.innerText;navigator.clipboard.writeText(t).then(()=>{sec.appendChild(cl);cl.textContent='✓ コピー済';setTimeout(()=>cl.textContent='コピー',1500)}).catch(()=>{sec.appendChild(cl)})}
+
+const pains={
+'製造業':['在庫の過不足による機会損失','属人化した生産計画で納期遅延','紙ベースの品質管理で不良率が見えない'],
+'IT・SaaS':['リード獲得コストの高騰','営業とマーケの連携不足で商談化率が低い','解約率の原因が特定できない'],
+'商社・卸売':['取引先ごとの価格管理が煩雑','受発注のFAX依存で転記ミスが多発','在庫回転率が見えず過剰仕入れ'],
+'建設・不動産':['現場ごとの原価管理が属人的','図面と見積の版管理ミス','協力会社との情報共有がメール頼み'],
+'人材・BPO':['求職者データベースの重複と陳腐化','マッチング精度が担当者スキル依存','請求・稼働管理の手作業'],
+'医療・ヘルスケア':['患者データの紙管理による非効率','シフト作成に毎月20時間以上','備品在庫の可視化不足で緊急発注']
+};
+
+function generate(){
+const name=v('prodName'),price=n('price'),init=n('initCost'),ind=v('industry'),effect=v('effect'),str=v('strengths');
+if(!name){alert('商材名を入力してください');return}
+if(!price){alert('月額単価を入力してください');return}
+const out=document.getElementById('output');
+out.style.display='block';
+const pain=pains[ind]||pains['製造業'];
+const strs=str?str.split(/[,、，]/).map(s=>s.trim()).filter(Boolean):['コスト優位性','導入スピード','サポート体制','カスタマイズ性','実績'];
+while(strs.length<5)strs.push('充実したサポート');
+const efTxt=effect||'業務効率の大幅な改善';
+
+if(phase===0){
+out.innerHTML=`
+<div class="card"><h2>🔍 認知フェーズ ─ 課題喚起記事テンプレート</h2>
+<div class="out-section"><button class="copy-btn" onclick="copyText(this)">コピー</button><h3>【${esc(ind)}向け】${esc(pain[0])}を放置すると起きる3つのリスク</h3>
+
+■ リード文
+「${esc(pain[0])}」——${esc(ind)}の現場で、この課題に心当たりはありませんか？
+本記事では、${esc(ind)}企業が見落としがちな業務課題と、その解決に向けた具体的なアプローチを解説します。
+
+■ 課題①：${esc(pain[0])}
+${esc(ind)}の多くの企業では、この問題が年間数百万円規模の損失を生んでいます。原因は業務プロセスの属人化とデータ分断にあります。
+
+■ 課題②：${esc(pain[1])}
+現場担当者の経験と勘に頼った運用では、担当者の異動や退職で品質が一気に低下します。再現性のある仕組みづくりが急務です。
+
+■ 課題③：${esc(pain[2])}
+この状態を1年放置すると、競合他社との生産性格差はさらに広がります。DX先行企業との差は「仕組みの有無」だけです。
+
+■ 解決の方向性
+これらの課題に対し、${esc(name)}のようなソリューションを導入する${esc(ind)}企業が増えています。
+導入企業では「${esc(efTxt)}」といった成果が報告されています。
+
+■ まとめ
+まずは自社の業務プロセスを棚卸しし、上記3つの課題が当てはまるかチェックしてみてください。
+▶ ${esc(name)}の詳細資料はこちら（※リンクを挿入）</div></div>`;
+}
+
+if(phase===1){
+out.innerHTML=`
+<div class="card"><h2>⚖️ 比較フェーズ ─ 競合比較表</h2>
+<div class="out-section"><button class="copy-btn" onclick="copyText(this)">コピー</button><h3>${esc(ind)}向け ${esc(name)} vs 他社比較</h3>
+<table class="tbl">
+<tr><th>比較項目</th><th>${esc(name)}（自社）</th><th>競合A社</th><th>競合B社</th></tr>
+<tr><td>${esc(strs[0])}</td><td>◎</td><td>○</td><td>△</td></tr>
+<tr><td>${esc(strs[1])}</td><td>◎</td><td>△</td><td>○</td></tr>
+<tr><td>${esc(strs[2])}</td><td>◎</td><td>○</td><td>○</td></tr>
+<tr><td>${esc(strs[3])}</td><td>◎</td><td>○</td><td>△</td></tr>
+<tr><td>${esc(strs[4])}</td><td>◎</td><td>△</td><td>○</td></tr>
+<tr><td>月額費用</td><td>${price.toLocaleString()}円〜</td><td>要問合せ</td><td>要問合せ</td></tr>
+</table>
+
+【選定のポイント】
+${esc(name)}は${esc(ind)}に特化した設計思想で、「${esc(strs[0])}」「${esc(strs[1])}」の2点で他社と明確な差があります。
+特に「${esc(efTxt)}」を実現したい企業には最適な選択肢です。
+
+※ 上記は公開情報に基づく概要比較です。競合社名・スコアは自社調査に基づき適宜修正してください。</div></div>`;
+}
+
+if(phase===2){
+const annual=price*12;
+const savings=Math.round(annual*2.5);
+const roi=Math.round(((savings-annual-init)/(annual+init))*100);
+const payback=((annual+init)/savings*12).toFixed(1);
+const y3=savings*3-annual*3-init;
+out.innerHTML=`
+<div class="card"><h2>✅ 決定フェーズ ─ ROI試算＋稟議書ドラフト</h2>
+<div class="out-section"><button class="copy-btn" onclick="copyText(this)">コピー</button><h3>${esc(name)} 投資対効果シミュレーション</h3>
+<div class="metric">
+<div><small>月額コスト</small><span>${price.toLocaleString()}円</span></div>
+<div><small>年間投資額</small><span>${(annual+init).toLocaleString()}円</span></div>
+<div><small>年間削減効果</small><span>${savings.toLocaleString()}円</span></div>
+<div><small>投資回収</small><span>${payback}ヶ月</span></div>
+</div>
+<table class="tbl">
+<tr><th>項目</th><th>金額</th></tr>
+<tr><td>月額利用料</td><td>${price.toLocaleString()}円/月</td></tr>
+<tr><td>初期導入費用</td><td>${init.toLocaleString()}円</td></tr>
+<tr><td>年間ランニングコスト</td><td>${annual.toLocaleString()}円</td></tr>
+<tr><td>初年度総投資額</td><td>${(annual+init).toLocaleString()}円</td></tr>
+<tr><td>年間期待削減効果</td><td>${savings.toLocaleString()}円</td></tr>
+<tr><td>初年度ROI</td><td>${roi}%</td></tr>
+<tr><td>投資回収期間</td><td>${payback}ヶ月</td></tr>
+<tr><td>3年間累計効果</td><td>+${y3.toLocaleString()}円</td></tr>
+</table>
+
+※ 削減効果は「${esc(efTxt)}」を金額換算した概算値です。自社の工数単価に合わせて調整してください。
+
+━━━━━━━━━━━━━━━━━━
+【稟議書ドラフト】
+
+件名：${esc(name)} 導入の件
+
+${esc(ind)}における業務課題（${esc(pain[0])}等）の解決を目的として、${esc(name)}の導入を提案いたします。月額${price.toLocaleString()}円（初期費用${init.toLocaleString()}円）の投資に対し、「${esc(efTxt)}」による年間約${savings.toLocaleString()}円の削減効果が見込まれ、投資回収期間は${payback}ヶ月、初年度ROIは${roi}%と試算されます。3年間の累計効果は${y3.toLocaleString()}円となり、費用対効果の高い投資と判断いたします。ご承認のほどよろしくお願いいたします。
+━━━━━━━━━━━━━━━━━━</div></div>`;
+}
+out.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

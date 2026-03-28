@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>法務リスク初動トリアージツール - kusasyu tools</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6;padding:12px;max-width:640px;margin:0 auto}
+h1{font-size:1.2em;text-align:center;padding:16px 0;color:#1a365d}
+.cats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}.cat{padding:12px;background:#fff;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;text-align:center;font-weight:600;font-size:.95em;transition:.2s}.cat:hover,.cat.on{border-color:#3182ce;background:#ebf8ff;color:#2b6cb0}
+.cat:nth-child(5){grid-column:1/3;max-width:50%;justify-self:center}
+#qa{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;display:none}
+.q{margin-bottom:14px}.q p{font-size:.93em;margin-bottom:6px;font-weight:500}.opts label{margin-right:14px;cursor:pointer}
+button{width:100%;padding:12px;background:#3182ce;color:#fff;border:none;border-radius:6px;font-size:1em;font-weight:600;cursor:pointer}button:hover{background:#2b6cb0}button:disabled{background:#a0aec0;cursor:default}
+#res{display:none;background:#fff;border-radius:8px;padding:16px;margin-bottom:12px}
+.rl{display:inline-block;padding:4px 14px;border-radius:20px;color:#fff;font-weight:700;font-size:.95em;margin-bottom:10px}
+.rl.g{background:#38a169}.rl.y{background:#d69e2e}.rl.r{background:#e53e3e}
+.ri{margin-bottom:10px;padding:10px;background:#f7fafc;border-radius:6px;border-left:4px solid #3182ce}.ri h3{font-size:.9em;margin-bottom:4px}.ri p{font-size:.85em;color:#4a5568}
+.back{background:#718096;margin-top:8px}.back:hover{background:#4a5568}
+.disc{margin-top:16px;padding:12px;background:#fff3cd;border-radius:6px;font-size:.75em;color:#744210;line-height:1.5;position:sticky;bottom:0}
+</style><meta name="description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務リスク初動トリアージツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-3/">
+<meta property="og:title" content="法務リスク初動トリアージツール - kusasyu tools">
+<meta property="og:description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務リスク初動トリアージツール - kusasyu tools">
+<meta name="twitter:description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務リスク初動トリアージツール",
+  "description": "法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">法務リスク初動トリアージツール</span></div>
+<h1>法務リスク初動トリアージツール</h1>
+<div id="sel"><div class="cats" id="cats"></div></div>
+<div id="qa"><h2 id="ctn" style="font-size:1em;margin-bottom:12px;color:#2b6cb0"></h2><div id="qs"></div><button onclick="judge()" id="jbtn" disabled>診断する</button><button class="back" onclick="back()">カテゴリ選択に戻る</button></div>
+<div id="res"><div id="ro"></div><button class="back" onclick="back()">最初からやり直す</button></div>
+<div class="disc">⚠️ 免責事項：本ツールは法的助言を構成するものではありません。一般的な法務リスクの初動判断を支援する参考情報です。個別事案の判断には必ず弁護士等の専門家にご相談ください。表示される法令名・リスク判定は簡易的なものであり、最新の法改正が反映されていない場合があります。本ツールの利用により生じた損害について、提供者は一切の責任を負いません。</div>
+<script>
+var D={c:[
+{n:"契約締結",q:[
+{t:"契約書なしで口頭合意のまま取引を開始しようとしている",l:"民法/商法",w:3},
+{t:"相手方が提示した契約書をそのまま署名しようとしている",l:"民法/消費者契約法",w:2},
+{t:"契約の解除条件・違約金条項が不明確である",l:"民法",w:2},
+{t:"反社会的勢力の排除条項がない",l:"暴対法/各都道府県条例",w:2},
+{t:"契約金額が500万円以上で社内決裁を経ていない",l:"会社法",w:1}],
+a:{g:"契約書ひな形を用いて自社で対応可能です",y:"不利な条項がないか条文単位で確認し、不明点は弁護士に相談を推奨します",r:"契約締結を保留し、速やかに弁護士に相談してください"}},
+{n:"雇用・労務",q:[
+{t:"就業規則を作成していない（従業員10名以上）",l:"労基法89条",w:3},
+{t:"残業代を固定残業代のみで処理し差額精算していない",l:"労基法37条",w:3},
+{t:"有期契約社員を5年超更新しているが無期転換の説明をしていない",l:"労契法18条",w:2},
+{t:"退職者に対し競業避止義務を課そうとしている",l:"民法/労契法",w:1},
+{t:"ハラスメント相談窓口を設置していない",l:"労施総法/均等法",w:2}],
+a:{g:"社内で対応可能です。厚労省のモデル就業規則等を参考にしてください",y:"社労士または弁護士に確認を推奨します。労基署への届出漏れに注意してください",r:"労基法違反のリスクがあります。速やかに弁護士・社労士に相談してください"}},
+{n:"個人情報",q:[
+{t:"プライバシーポリシーを公開していない",l:"個情法",w:3},
+{t:"個人情報を本人同意なく第三者に提供しようとしている",l:"個情法27条",w:3},
+{t:"個人データの安全管理措置が文書化されていない",l:"個情法23条",w:2},
+{t:"Cookieやアクセスログの取扱いについて通知していない",l:"電気通信事業法/個情法",w:1},
+{t:"漏洩発生時の報告フローが未整備である",l:"個情法26条",w:2}],
+a:{g:"PPC（個人情報保護委員会）のガイドラインに沿って自社で整備できます",y:"安全管理措置の不備は行政指導の対象です。専門家への確認を推奨します",r:"個情法違反・漏洩リスクが高い状態です。即時に弁護士に相談してください"}},
+{n:"広告表現",q:[
+{t:"「業界No.1」「最安値」等の最上級表現を根拠なく使用している",l:"景表法5条",w:3},
+{t:"キャンペーン景品の上限額を確認していない",l:"景表法/景品規約",w:2},
+{t:"体験談・口コミを広告に使用し、効果を保証する表現がある",l:"景表法/薬機法",w:2},
+{t:"アフィリエイト広告にステマ規制への対応がない",l:"景表法告示",w:2},
+{t:"二重価格表示で比較対照価格の根拠が不明確",l:"景表法",w:2}],
+a:{g:"表現を修正すれば自社対応可能です。消費者庁ガイドラインを参照してください",y:"措置命令リスクがあります。表現の適法性を弁護士に確認してください",r:"優良・有利誤認表示の疑いがあります。即座に広告を停止し弁護士に相談してください"}},
+{n:"下請取引",q:[
+{t:"発注書面を交付せずに口頭で発注している",l:"下請法3条",w:3},
+{t:"納品後60日を超えて代金を支払っていない",l:"下請法2条の2",w:3},
+{t:"一度決めた単価を一方的に引き下げている",l:"下請法4条1項3号",w:2},
+{t:"発注後にやり直しを指示し追加費用を負担していない",l:"下請法4条2項4号",w:2},
+{t:"自社の在庫処分品の購入を下請先に要請している",l:"下請法4条1項6号",w:1}]
+,a:{g:"書面交付と支払サイト確認で自社対応可能です",y:"下請法違反の可能性があります。公取委の相談窓口または弁護士に相談を推奨します",r:"下請法違反リスクが高い状態です。直ちに弁護士に相談し是正措置を講じてください"}}
+]};
+var ci=-1,ans=[];
+function init(){var h="";D.c.forEach(function(c,i){h+='<div class="cat" onclick="pick('+i+')">'+c.n+"</div>"});document.getElementById("cats").innerHTML=h}
+function pick(i){ci=i;ans=[];var c=D.c[i];document.getElementById("ctn").textContent="【"+c.n+"】以下の状況に該当しますか？";var h="";c.q.forEach(function(q,j){h+='<div class="q"><p>Q'+(j+1)+"．"+q.t+"</p><div class=\"opts\"><label><input type=\"radio\" name=\"q"+j+"\" value=\"1\" onchange=\"ck()\"> はい</label><label><input type=\"radio\" name=\"q"+j+"\" value=\"0\" onchange=\"ck()\"> いいえ</label></div></div>"});
+document.getElementById("qs").innerHTML=h;document.getElementById("sel").style.display="none";document.getElementById("qa").style.display="block";document.getElementById("res").style.display="none";document.getElementById("jbtn").disabled=true}
+function ck(){var all=true;D.c[ci].q.forEach(function(_,j){if(!document.querySelector('input[name="q'+j+'"]:checked'))all=false});document.getElementById("jbtn").disabled=!all}
+function judge(){var c=D.c[ci],sc=0,hits=[];c.q.forEach(function(q,j){var v=+document.querySelector('input[name="q'+j+'"]:checked').value;if(v){sc+=q.w;hits.push({t:q.t,l:q.l,w:q.w})}});
+var lv=sc>=5?"r":sc>=2?"y":"g",ln={g:"低リスク（緑）",y:"中リスク（黄）",r:"高リスク（赤）"},cn={g:"自力対応可",y:"要相談（早めに専門家へ）",r:"即時相談（弁護士に連絡）"};
+var h='<div style="margin-bottom:12px"><span class="rl '+lv+'">'+ln[lv]+'</span> <span style="font-size:.85em;color:#4a5568">弁護士相談：<strong>'+cn[lv]+"</strong></span></div>";
+if(hits.length===0)h+='<div class="ri"><h3>該当項目なし</h3><p>現時点で顕著なリスクは検出されませんでした。引き続き法令遵守を心がけてください。</p></div>';
+else hits.forEach(function(it){h+='<div class="ri"><h3>⚠ '+it.t+'</h3><p>関連法令：<strong>'+it.l+"</strong></p></div>"});
+h+='<div style="margin-top:12px;padding:12px;background:#edf2f7;border-radius:6px"><strong>推奨アクション：</strong><br><span style="font-size:.9em">'+c.a[lv]+"</span></div>";
+document.getElementById("ro").innerHTML=h;document.getElementById("qa").style.display="none";document.getElementById("res").style.display="block"}
+function back(){ci=-1;document.getElementById("sel").style.display="block";document.getElementById("qa").style.display="none";document.getElementById("res").style.display="none"}
+init();
+</script></body></html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>スタートアップ知財リスク・チャンス診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.7}
+.wrap{max-width:720px;margin:0 auto;padding:20px}
+h1{font-size:1.4em;text-align:center;padding:24px 0 8px;color:#16213e}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card h2{font-size:1.05em;margin-bottom:12px;color:#0f3460}
+.q{margin-bottom:18px}
+.q label.ql{display:block;font-weight:600;font-size:.93em;margin-bottom:6px}
+.q .note{font-size:.78em;color:#888;margin-bottom:4px}
+.opts label{display:block;padding:8px 12px;margin:4px 0;border:2px solid #e0e0e0;border-radius:8px;cursor:pointer;font-size:.88em;transition:.2s}
+.opts input{margin-right:8px}
+.opts label:hover{border-color:#3a86ff}
+.kw-input{width:100%;padding:10px;border:2px solid #e0e0e0;border-radius:8px;font-size:.9em}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#3a86ff,#0f3460);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{opacity:.9}
+.btn-sub{background:#fff;color:#0f3460;border:2px solid #0f3460;margin-top:10px}
+.btn-sub:hover{background:#f0f6ff}
+#result{display:none}
+.score-box{text-align:center;padding:28px;border-radius:12px;margin-bottom:20px}
+.score-box .rank{font-size:3.5em;font-weight:900}
+.score-box .lbl{font-size:1em;margin-top:4px}
+.bar{height:10px;background:#e0e0e0;border-radius:5px;margin:8px 0 16px}
+.bar-fill{height:100%;border-radius:5px;transition:width .8s}
+.ri,.ai{padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:.88em}
+.ri:last-child,.ai:last-child{border:none}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75em;font-weight:700;margin-right:6px}
+.tR{background:#ffe0e0;color:#c0392b}.tY{background:#fff3cd;color:#856404}.tG{background:#d4edda;color:#155724}
+.chk{margin:6px 0;font-size:.88em}
+.chk input{margin-right:6px}
+.disc{font-size:.75em;color:#999;text-align:center;margin-top:20px;padding:12px;border-top:1px solid #eee}
+@media print{body{background:#fff}.btn,.btn-sub,#form-section{display:none}#result{display:block!important}.wrap{max-width:100%}}
+@media(max-width:480px){.wrap{padding:12px}.score-box .rank{font-size:2.5em}}
+</style>
+<meta name="description" content="シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,スタートアップ知財リスク・チャンス診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-4/">
+<meta property="og:title" content="スタートアップ知財リスク・チャンス診断ツール - kusasyu tools">
+<meta property="og:description" content="シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="スタートアップ知財リスク・チャンス診断ツール - kusasyu tools">
+<meta name="twitter:description" content="シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "スタートアップ知財リスク・チャンス診断ツール",
+  "description": "シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">スタートアップ知財リスク・チャンス診断ツール</span></div>
+<div class="wrap">
+<h1>スタートアップ知財リスク・チャンス診断</h1>
+<p class="sub">特許3要件（新規性・進歩性・産業上利用可能性）に基づく簡易セルフ診断</p>
+
+<div id="form-section">
+<div class="card"><h2>基本情報</h2>
+<div class="q"><label class="ql">Q0. 技術分野のキーワード（J-PlatPat検索用）</label>
+<div class="note">例: 自然言語処理 異常検知 画像認識</div>
+<input type="text" id="kw" class="kw-input" placeholder="スペース区切りで2〜3語"></div>
+</div>
+
+<div class="card"><h2>新規性に関する質問</h2>
+<div class="q"><label class="ql">Q1. 技術内容を外部に公開したことはありますか？</label>
+<div class="opts"><label><input type="radio" name="q1" value="3"><span>未公開（社内のみ）</span></label>
+<label><input type="radio" name="q1" value="2"><span>NDA付きで一部開示</span></label>
+<label><input type="radio" name="q1" value="1"><span>ブログ・登壇等で概要を公開済み</span></label>
+<label><input type="radio" name="q1" value="0"><span>ソースコード含め全公開済み</span></label></div></div>
+
+<div class="q"><label class="ql">Q2. 同じ課題を解決する既存技術を把握していますか？</label>
+<div class="opts"><label><input type="radio" name="q2" value="3"><span>調査済み・類似技術なし</span></label>
+<label><input type="radio" name="q2" value="2"><span>類似はあるがアプローチが異なる</span></label>
+<label><input type="radio" name="q2" value="1"><span>類似技術あり・差分は不明</span></label>
+<label><input type="radio" name="q2" value="0"><span>調査していない</span></label></div></div>
+
+<div class="q"><label class="ql">Q3. 技術の公開からどのくらい経過していますか？</label>
+<div class="note">※日本の新規性喪失の例外適用は公開から1年以内</div>
+<div class="opts"><label><input type="radio" name="q3" value="3"><span>未公開 or 公開30日以内</span></label>
+<label><input type="radio" name="q3" value="2"><span>公開後1〜6ヶ月</span></label>
+<label><input type="radio" name="q3" value="1"><span>公開後6〜12ヶ月</span></label>
+<label><input type="radio" name="q3" value="0"><span>公開後1年超</span></label></div></div>
+</div>
+
+<div class="card"><h2>進歩性に関する質問</h2>
+<div class="q"><label class="ql">Q4. 技術の差別化ポイントは明確ですか？</label>
+<div class="opts"><label><input type="radio" name="q4" value="3"><span>従来にない新しい技術的手段を用いている</span></label>
+<label><input type="radio" name="q4" value="2"><span>既存技術の新しい組み合わせ</span></label>
+<label><input type="radio" name="q4" value="1"><span>パラメータ調整・最適化レベル</span></label>
+<label><input type="radio" name="q4" value="0"><span>差別化ポイントが不明確</span></label></div></div>
+
+<div class="q"><label class="ql">Q5. 技術により得られる効果は？</label>
+<div class="opts"><label><input type="radio" name="q5" value="3"><span>予想外の顕著な効果がある</span></label>
+<label><input type="radio" name="q5" value="2"><span>定量的に改善効果を示せる</span></label>
+<label><input type="radio" name="q5" value="1"><span>効果はあるが定量データなし</span></label>
+<label><input type="radio" name="q5" value="0"><span>効果が不明確</span></label></div></div>
+
+<div class="q"><label class="ql">Q6. 技術の課題解決アプローチは？</label>
+<div class="opts"><label><input type="radio" name="q6" value="3"><span>既存の技術常識を覆すアプローチ</span></label>
+<label><input type="radio" name="q6" value="2"><span>複数技術分野の知見を融合</span></label>
+<label><input type="radio" name="q6" value="1"><span>既知の方法を別分野に適用</span></label>
+<label><input type="radio" name="q6" value="0"><span>一般的・自明なアプローチ</span></label></div></div>
+</div>
+
+<div class="card"><h2>産業上利用可能性・事業観点</h2>
+<div class="q"><label class="ql">Q7. 技術の具体的な実装はありますか？</label>
+<div class="opts"><label><input type="radio" name="q7" value="3"><span>プロダクトとして稼働中</span></label>
+<label><input type="radio" name="q7" value="2"><span>プロトタイプ・PoC完了</span></label>
+<label><input type="radio" name="q7" value="1"><span>アルゴリズム設計のみ</span></label>
+<label><input type="radio" name="q7" value="0"><span>アイデア段階</span></label></div></div>
+
+<div class="q"><label class="ql">Q8. 事業における技術の重要度は？</label>
+<div class="opts"><label><input type="radio" name="q8" value="3"><span>コア技術（売上の中核）</span></label>
+<label><input type="radio" name="q8" value="2"><span>主要な差別化要素</span></label>
+<label><input type="radio" name="q8" value="1"><span>補助的な機能</span></label>
+<label><input type="radio" name="q8" value="0"><span>事業との関連が薄い</span></label></div></div>
+
+<div class="q"><label class="ql">Q9. 競合の知財状況を調べましたか？</label>
+<div class="opts"><label><input type="radio" name="q9" value="3"><span>競合の特許を調査済み・抵触なし</span></label>
+<label><input type="radio" name="q9" value="2"><span>一部調査した</span></label>
+<label><input type="radio" name="q9" value="1"><span>競合は把握しているが特許未調査</span></label>
+<label><input type="radio" name="q9" value="0"><span>未調査</span></label></div></div>
+
+<div class="q"><label class="ql">Q10. 現在の資金調達ステージは？</label>
+<div class="opts"><label><input type="radio" name="q10" value="3"><span>Series A以降（知財が評価対象）</span></label>
+<label><input type="radio" name="q10" value="2"><span>シード〜プレA</span></label>
+<label><input type="radio" name="q10" value="1"><span>ブートストラップ</span></label>
+<label><input type="radio" name="q10" value="0"><span>まだ検討段階</span></label></div></div>
+</div>
+
+<button class="btn" onclick="run()">診断する</button>
+</div>
+
+<div id="result">
+<div class="card score-box" id="sbox">
+<div class="lbl">出願優先度スコア</div>
+<div class="rank" id="rank"></div>
+<div id="rdesc"></div>
+<div class="bar"><div class="bar-fill" id="bfill"></div></div>
+<div id="snum" style="font-size:.85em;color:#666"></div>
+</div>
+<div class="card"><h2>リスク分析</h2><div id="risks"></div></div>
+<div class="card"><h2>推奨アクション</h2><div id="acts"></div></div>
+<div class="card"><h2>J-PlatPat推奨検索</h2><p style="font-size:.85em;margin-bottom:8px">以下のキーワードでJ-PlatPatの特許・実用新案テキスト検索を実行してください。</p><div id="jpp"></div></div>
+<div class="card"><h2>出願コスト概算</h2><div id="cost"></div></div>
+<div class="card"><h2>弁理士相談前チェックリスト</h2>
+<p style="font-size:.85em;color:#666;margin-bottom:10px">相談時に持参すべき資料と質問事項</p>
+<b style="font-size:.9em">持参資料</b>
+<div class="chk"><input type="checkbox">技術の概要説明書（A4 1〜2枚）</div>
+<div class="chk"><input type="checkbox">システム構成図・フローチャート</div>
+<div class="chk"><input type="checkbox">従来技術との比較表</div>
+<div class="chk"><input type="checkbox">技術の効果を示すデータ・ベンチマーク</div>
+<div class="chk"><input type="checkbox">公開済みの資料一覧（日付付き）</div>
+<div class="chk"><input type="checkbox">競合企業・競合特許リスト</div>
+<div class="chk"><input type="checkbox">事業計画の概要（技術の位置付け）</div>
+<b style="font-size:.9em;display:block;margin-top:12px">弁理士への質問事項</b>
+<div class="chk"><input type="checkbox">新規性喪失の例外適用は可能か？</div>
+<div class="chk"><input type="checkbox">特許と実用新案のどちらが適切か？</div>
+<div class="chk"><input type="checkbox">クレーム（請求項）の範囲をどう設定すべきか？</div>
+<div class="chk"><input type="checkbox">PCT出願（国際出願）の必要性は？</div>
+<div class="chk"><input type="checkbox">出願から登録までの想定スケジュールは？</div>
+</div>
+<button class="btn btn-sub" onclick="window.print()">PDF出力（印刷）</button>
+<button class="btn btn-sub" onclick="document.getElementById('result').style.display='none';document.getElementById('form-section').style.display='block'">診断をやり直す</button>
+<p class="disc">※本診断は簡易的なセルフチェックであり、法的助言ではありません。スコアはユーザー回答から導出した推定値です。実際の出願可否は弁理士にご相談ください。先行技術調査はJ-PlatPat（特許情報プラットフォーム）で必ず確認してください。<br>Kusasyu Legal Tech</p>
+</div>
+</div>
+<script>
+function gv(n){var r=document.querySelector('input[name="'+n+'"]:checked');return r?parseInt(r.value):-1}
+function run(){
+var qs=[];for(var i=1;i<=10;i++)qs.push(gv('q'+i));
+if(qs.some(function(v){return v<0})){alert('全ての質問に回答してください');return}
+var kw=document.getElementById('kw').value.trim();
+var total=qs.reduce(function(a,b){return a+b},0);
+var mx=30,pct=Math.round(total/mx*100);
+var rank,desc,color;
+if(pct>=80){rank='S';desc='出願を強く推奨 — 早急に弁理士に相談を';color='#27ae60'}
+else if(pct>=60){rank='A';desc='出願の価値あり — 準備を進めましょう';color='#2980b9'}
+else if(pct>=40){rank='B';desc='条件付きで出願検討 — 課題の解消が先';color='#f39c12'}
+else{rank='C';desc='現時点では出願より事業優先 — 将来再検討を';color='#c0392b'}
+document.getElementById('rank').textContent=rank;
+document.getElementById('rank').style.color=color;
+document.getElementById('rdesc').textContent=desc;
+document.getElementById('bfill').style.width=pct+'%';
+document.getElementById('bfill').style.background=color;
+document.getElementById('snum').textContent=total+'/'+mx+'点（'+pct+'%）';
+document.getElementById('sbox').style.borderLeft='6px solid '+color;
+var risks=[];
+if(qs[0]<=1)risks.push({t:'高',c:'tR',m:'技術が公開済み — 新規性喪失の例外適用（公開から1年以内）を確認してください'});
+if(qs[2]<=1)risks.push({t:'高',c:'tR',m:'公開から時間が経過 — 新規性喪失リスクが高まっています'});
+if(qs[1]<=1)risks.push({t:'中',c:'tY',m:'類似技術の調査が不十分 — 先行技術調査を実施してください'});
+if(qs[3]<=1)risks.push({t:'中',c:'tY',m:'差別化ポイントが弱い — 進歩性の主張が困難な可能性'});
+if(qs[5]<=1)risks.push({t:'中',c:'tY',m:'課題解決アプローチが自明 — 進歩性を補強する材料が必要'});
+if(qs[8]<=1)risks.push({t:'中',c:'tY',m:'競合の知財未調査 — 他社特許への抵触リスクあり'});
+if(qs[4]<=1)risks.push({t:'低',c:'tG',m:'効果の定量データ不足 — ベンチマーク整備を推奨'});
+if(risks.length===0)risks.push({t:'低',c:'tG',m:'重大なリスクは検出されませんでした'});
+document.getElementById('risks').innerHTML=risks.map(function(r){return '<div class="ri"><span class="tag '+r.c+'">'+r.t+'</span>'+r.m+'</div>'}).join('');
+var acts=[];
+if(qs[0]<=1||qs[2]<=1)acts.push('公開済み技術の新規性喪失の例外手続き（公開日から1年以内に出願+証明書提出）を至急確認');
+if(qs[1]<=1||qs[8]<=1)acts.push('J-PlatPatで先行技術調査を実施し、自社技術との差分を明確化');
+if(qs[3]<=1||qs[5]<=1)acts.push('技術の差別化ポイントを「課題→手段→効果」の形式で文書化');
+if(qs[4]<=1)acts.push('性能比較データ・ベンチマーク結果を整備して進歩性の根拠を強化');
+if(qs[6]<=1)acts.push('プロトタイプまたはPoCを作成し、産業上利用可能性を具体化');
+if(qs[7]>=2)acts.push('コア技術の技術説明書（構成図+フロー+効果データ）を作成');
+if(rank==='S'||rank==='A')acts.push('弁理士への初回相談を予約（下記チェックリストを準備）');
+if(qs[9]>=2)acts.push('出願実績を投資家向け資料に記載し、知財をアピール材料に活用');
+if(acts.length===0)acts.push('まずは技術の文書化と先行技術調査から始めましょう');
+document.getElementById('acts').innerHTML=acts.map(function(a){return '<div class="ai">'+a+'</div>'}).join('');
+var kws=kw?kw.split(/[\s,]+/).filter(Boolean):[];
+var jhtml='<div style="font-size:.88em">';
+if(kws.length>0){
+jhtml+='<b>推奨検索キーワード:</b><br>'+kws.map(function(k){return '<code style="background:#f0f0f0;padding:2px 6px;border-radius:4px;margin:2px;display:inline-block">'+k+'</code>'}).join(' ')+'<br><br><b>組み合わせ検索例:</b><br>';
+if(kws.length>=2)jhtml+='<code>'+kws[0]+' AND '+kws[1]+'</code><br>';
+if(kws.length>=3)jhtml+='<code>'+kws[0]+' AND '+kws[2]+'</code><br>';
+jhtml+='<code>'+kws[0]+' AND (方法 OR システム OR 装置)</code>';
+}else{jhtml+='<span style="color:#999">基本情報にキーワードを入力すると検索例が表示されます</span>'}
+jhtml+='</div>';document.getElementById('jpp').innerHTML=jhtml;
+var cd=[{l:'特許出願（国内）',r:'約30〜50万円',n:'弁理士費用+印紙代。請求項数で変動'},{l:'審査請求',r:'約15〜20万円',n:'出願後3年以内に請求。急ぐなら早期審査制度あり'},{l:'特許登録・維持',r:'年間 約1〜5万円',n:'登録後の年金。年数で段階的に増加'},{l:'実用新案（代替案）',r:'約15〜25万円',n:'無審査で早期登録。コスト重視なら検討'}];
+document.getElementById('cost').innerHTML=cd.map(function(c){return '<div class="ri"><b>'+c.l+'</b>: '+c.r+'<br><span style="font-size:.8em;color:#888">'+c.n+'</span></div>'}).join('');
+document.getElementById('form-section').style.display='none';
+document.getElementById('result').style.display='block';
+window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

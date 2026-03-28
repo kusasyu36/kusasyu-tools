@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説リスクチェック＆買主説明用テンプレート（印刷用） - kusasyu tools</title>
+<meta name="description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説リスクチェック＆買主説明用テンプレート（印刷用）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/disclosure-risk/">
+<meta property="og:title" content="重説リスクチェック＆買主説明用テンプレート（印刷用） - kusasyu tools">
+<meta property="og:description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/disclosure-risk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説リスクチェック＆買主説明用テンプレート（印刷用） - kusasyu tools">
+<meta name="twitter:description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説リスクチェック＆買主説明用テンプレート（印刷用）",
+  "description": "重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/disclosure-risk/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説リスクチェック＆買主説明用テンプレート（印刷用）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説リスクチェック＆買主説明用テンプレート（印刷用）</h1>
+  <p class="project-name">顧問弁護士なしでも重説を安心チェック</p>
+  <div class="content">
+<h1>重説リスクチェック＆買主説明用テンプレート（印刷用）</h1>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li><strong>表面（担当者用チェックリスト）</strong>：重要事項説明書を手元に置き、5条項×各3チェックポイント＝計15項目を順に確認してください。各項目に✓を入れ、PropGuardの診断結果（リスクグレードA〜C）を右欄に転記します。</li>
+<li><strong>裏面（買主・借主説明用シート）</strong>：PropGuardの診断結果をもとに、買主・借主へ手渡す説明補助シートです。担当者が要点を転記し、対面説明時に配布してください。</li>
+<li><strong>印刷設定</strong>：A4両面印刷推奨。表面＝チェックリスト面、裏面＝買主説明面。</li>
+</ol>
+<hr />
+<h1>【表面】担当者用：重説リスクチェックリスト</h1>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件名</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ [記入例：グランドメゾン桜台 203号室]</td>
+</tr>
+<tr>
+<td>所在地</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ [記入例：東京都練馬区桜台3-15-7]</td>
+</tr>
+<tr>
+<td>チェック日</td>
+<td>令和＿＿年＿＿月＿＿日 [記入例：令和8年3月22日]</td>
+</tr>
+<tr>
+<td>担当者名</td>
+<td>＿＿＿＿＿＿＿＿＿（宅建士番号：＿＿＿＿＿＿）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第1条項｜登記記録の権利</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>チェックポイント</th>
+<th>✓</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-1</td>
+<td>甲区の所有者と売主が一致しているか。共有の場合、全共有者の持分割合が記載されているか</td>
+<td>□</td>
+<td>[記入例：所有者＝売主 一致確認済]</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>乙区の抵当権・根抵当権について、債権額・抵当権者・抹消条件が明記されているか（例：債権額 金3,500万円、抵当権者 ○○銀行○○支店）</td>
+<td>□</td>
+<td>[記入例：抵当権1件 金3,500万円 決済時抹消条件あり]</td>
+</tr>
+<tr>
+<td>1-3</td>
+<td>抹消できない場合の白紙解除条項と返還条件（全額無利息返還等）が記載されているか</td>
+<td>□</td>
+<td>[記入例：白紙解除・全額無利息返還の記載あり]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PropGuard診断結果</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リスクグレード</td>
+<td>□ A（問題なし）　□ B（要確認）　□ C（要対応）</td>
+</tr>
+<tr>
+<td>要対応事項</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ [記入例：抹消条件の文言追記が必要]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第2条項｜法令上の制限（用途地域・建築制限）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>チェックポイント</th>
+<th>✓</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2-1</td>
+<td>用途地域名だけでなく、建ぺい率・容積率・高さ制限・日影規制など具体的な建築制限が記載されているか</td>
+<td>□</td>
+<td>[記入例：第一種低層 建ぺい50%/容積100% 高さ10m 記載済]</td>
+</tr>
+<tr>
+<td>2-2</td>
+<td>接道義務（建築基準法43条）の適合可否が明記されているか（前面道路の種類・幅員・接道間口）</td>
+<td>□</td>
+<td>[記入例：南側市道 幅員4.2m 接道間口6.5m 43条適合]</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>既存不適格・再建築不可の該当有無が明記されているか。地区計画・景観条例など自治体独自規制の調査結果が記載されているか</td>
+<td>□</td>
+<td>[記入例：既存不適格なし 地区計画該当なし]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PropGuard診断結果</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リスクグレード</td>
+<td>□ A（問題なし）　□ B（要確認）　□ C（要対応）</td>
+</tr>
+<tr>
+<td>要対応事項</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ [記入例：用途制限の具体的説明を追記]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第3条項｜インフラ整備状況（飲用水・電気・ガス・排水）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>チェックポイント</th>
+<th>✓</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3-1</td>
+<td>給水管の口径・引込経路が記載され、他人の土地を経由していないことが確認されているか</td>
+<td>□</td>
+<td>[記入例：公営水道 口径20mm 前面道路より直接引込み]</td>
+</tr>
+<tr>
+<td>3-2</td>
+<td>排水方式（公共下水道／浄化槽）が明記され、私道の場合は掘削承諾書の取得有無が記載されているか</td>
+<td>□</td>
+<td>[記入例：公共下水道 合流式 私道掘削承諾書取得済]</td>
+</tr>
+<tr>
+<td>3-3</td>
+<td>プロパンガスの場合、無償貸与契約の残存期間・中途解約時の精算条件が記載されているか</td>
+<td>□</td>
+<td>[記入例：都市ガス整備済 該当なし／またはプロパン 残存3年2か月 精算見込約8万円]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PropGuard診断結果</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リスクグレード</td>
+<td>□ A（問題なし）　□ B（要確認）　□ C（要対応）</td>
+</tr>
+<tr>
+<td>要対応事項</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ [記入例：管経路の図面添付が必要]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第4条項｜建物の状態（石綿・耐震・省エネ）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>チェックポイント</th>
+<th>✓</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4-1</td>
+<td>石綿（アスベスト）使用調査の実施有無・結果が記載されているか（未実施の場合その旨の明記）</td>
+<td>□</td>
+<td>[記入例：調査実施済 使用なし]</td>
+</tr>
+<tr>
+<td>4-2</td>
+<td>耐震診断の実施有無・結果が記載されているか（旧耐震基準物件＝昭和56年5月以前着工の場合は特に必須）</td>
+<td>□</td>
+<td>[記入例：新耐震基準（昭和62年築） 耐震診断省略]</td>
+</tr>
+<tr>
+<td>4-3</td>
+<td>省エネ基準への適合状況が記載されているか（2025年4月改正：新築は適合義務化、既存住宅は改修の有無を記載）</td>
+<td>□</td>
+<td>[記入例：省エネ基準適合 断熱等級4 適合証明書あり]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PropGuard診断結果</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リスクグレード</td>
+<td>□ A（問題なし）　□ B（要確認）　□ C（要対応）</td>
+</tr>
+<tr>
+<td>要対応事項</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ [記入例：省エネ等級の記載追記が必要]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>第5条項｜取引条件（契約解除・手付金・違約金）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>チェックポイント</th>
+<th>✓</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5-1</td>
+<td>手付解除の期限と条件が具体的に記載されているか（「相手方が履行に着手するまで」等の曖昧表現でないか）</td>
+<td>□</td>
+<td>[記入例：手付解除期限 令和○年○月○日まで 売買代金の10%]</td>
+</tr>
+<tr>
+<td>5-2</td>
+<td>契約違反による解除の場合の違約金額（売買代金の20%以内か）と損害賠償の範囲が明記されているか</td>
+<td>□</td>
+<td>[記入例：違約金 売買代金の20% 損害賠償との二重請求なし]</td>
+</tr>
+<tr>
+<td>5-3</td>
+<td>ローン特約（融資利用の場合）の解除期限・対象金融機関・融資金額が具体的に記載されているか</td>
+<td>□</td>
+<td>[記入例：ローン特約あり 期限令和○年○月○日 ○○銀行 金3,500万円]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PropGuard診断結果</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>リスクグレード</td>
+<td>□ A（問題なし）　□ B（要確認）　□ C（要対応）</td>
+</tr>
+<tr>
+<td>要対応事項</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿ [記入例：ローン特約の期限日を確定させる]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>総合判定</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C判定の条項数</td>
+<td>＿＿件 / 5条項</td>
+</tr>
+<tr>
+<td>B判定の条項数</td>
+<td>＿＿件 / 5条項</td>
+</tr>
+<tr>
+<td>総合所見</td>
+<td>□ 全条項A→そのまま説明可　□ B含む→修正推奨　□ C含む→<strong>修正必須・説明前に是正</strong></td>
+</tr>
+<tr>
+<td>是正完了予定日</td>
+<td>令和＿＿年＿＿月＿＿日</td>
+</tr>
+<tr>
+<td>確認者署名</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>【裏面】買主・借主への説明補助シート</h1>
+<blockquote>
+<p><strong>この書面は、重要事項説明書の内容をわかりやすくまとめたものです。正式な内容は重要事項説明書本体をご確認ください。</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件名</td>
+<td>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>説明日</td>
+<td>令和＿＿年＿＿月＿＿日</td>
+</tr>
+<tr>
+<td>担当者</td>
+<td>＿＿＿＿＿＿＿＿＿（宅地建物取引士）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. この物件の権利について</h2>
+<ul>
+<li>現在の所有者：＿＿＿＿＿＿＿＿
+  [記入例：○○○○様（売主ご本人です）]</li>
+<li>住宅ローンの担保（抵当権）：＿＿＿＿＿＿＿＿
+  [記入例：○○銀行の抵当権（金3,500万円）が設定されていますが、お引渡し時に必ず抹消します]</li>
+<li><strong>万が一抹消できない場合</strong>：＿＿＿＿＿＿＿＿
+  [記入例：契約は白紙解除となり、お支払い済みの金額は全額お返しします]</li>
+</ul>
+<h2>2. 建築のルールについて</h2>
+<ul>
+<li>この地域で建てられる建物：＿＿＿＿＿＿＿＿
+  [記入例：専用住宅のみ建築可能です（店舗・事務所は建てられません）]</li>
+<li>建物の大きさの上限：＿＿＿＿＿＿＿＿
+  [記入例：敷地の50%まで建築可能、延床面積は敷地の100%まで、高さ10mまで]</li>
+<li>建て替えについて：＿＿＿＿＿＿＿＿
+  [記入例：前面道路の幅・接道条件を満たしており、将来の建て替えは可能です]</li>
+</ul>
+<h2>3. 水道・ガス・排水について</h2>
+<ul>
+<li>水道：＿＿＿＿＿＿＿＿
+  [記入例：市の水道が直接つながっています。隣の土地を通っていないので安心です]</li>
+<li>排水：＿＿＿＿＿＿＿＿
+  [記入例：公共下水道に接続済みです]</li>
+<li>ガス：＿＿＿＿＿＿＿＿
+  [記入例：プロパンガスです。現在の契約が残り約3年あり、途中で変更する場合は約8万円の精算が必要です]</li>
+</ul>
+<h2>4. 建物の安全性・性能について</h2>
+<ul>
+<li>アスベスト：＿＿＿＿＿＿＿＿
+  [記入例：専門調査済みで、使用されていないことが確認されています]</li>
+<li>耐震性：＿＿＿＿＿＿＿＿
+  [記入例：新しい耐震基準（昭和56年以降）で建てられた建物です]</li>
+<li>省エネ性能：＿＿＿＿＿＿＿＿
+  [記入例：現行の省エネ基準に適合しています（断熱等級4）]</li>
+</ul>
+<h2>5. 契約の解除・お金について</h2>
+<ul>
+<li>手付金による解除：＿＿＿＿＿＿＿＿
+  [記入例：令和○年○月○日までであれば、手付金を放棄して契約を解除できます]</li>
+<li>住宅ローンが通らなかった場合：＿＿＿＿＿＿＿＿
+  [記入例：令和○年○月○日までにローンが承認されない場合、契約は白紙解除となり全額お返しします]</li>
+<li>契約違反の場合：＿＿＿＿＿＿＿＿
+  [記入例：売買代金の20%が違約金となります]</li>
+</ul>
+<hr />
+<h3>特にご注意いただきたい点</h3>
+<blockquote>
+<p>担当者がPropGuardの診断結果から、この物件で特にお伝えすべき事項を記載します。</p>
+</blockquote>
+<ol>
+<li>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+   [記入例：抵当権は必ずお引渡し時に抹消しますが、万が一の場合は全額返金の条項があります]</li>
+<li>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+   [記入例：この地域では店舗や事務所は建てられませんのでご注意ください]</li>
+<li>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+   [記入例：プロパンガスの契約残存期間にご留意ください]</li>
+</ol>
+<hr />
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ご説明日</td>
+<td>令和＿＿年＿＿月＿＿日</td>
+</tr>
+<tr>
+<td>説明者（宅地建物取引士）</td>
+<td>＿＿＿＿＿＿＿＿＿＿ 印</td>
+</tr>
+<tr>
+<td>買主・借主ご署名</td>
+<td>＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<p><em>本シートはPropGuardの診断結果に基づき作成しています。法的助言ではありません。</em></p>
+<hr />
+<p><strong>Powered by PropGuard</strong> ― 重説リスクチェックAIツール（リスクグレード A〜C 3段階判定）</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI検索時代のコンテンツ設計チェックリスト - kusasyu tools</title>
+<meta name="description" content="Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI検索時代のコンテンツ設計チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-3/">
+<meta property="og:title" content="AI検索時代のコンテンツ設計チェックリスト - kusasyu tools">
+<meta property="og:description" content="Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI検索時代のコンテンツ設計チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI検索時代のコンテンツ設計チェックリスト",
+  "description": "Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AI検索時代のコンテンツ設計チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AI検索時代のコンテンツ設計チェックリスト</h1>
+  <p class="project-name">AI検索に拾われるコンテンツ自動生成ツール</p>
+  <div class="content">
+<h1>AI検索時代のコンテンツ設計チェックリスト</h1>
+<h2>使い方</h2>
+<ol>
+<li>自社サイトのページURLを「対象ページ」欄に記入する</li>
+<li>20項目を上から順にチェックし、各項目の「対応状況」に ✅ or ❌ を記入する</li>
+<li><strong>優先度A（必須）→ B（推奨）→ C（差別化）</strong> の順に改善に取り組む</li>
+<li>各項目のビフォーアフター例を参考に、自社コンテンツを修正する</li>
+<li>修正後のHTMLは「AI検索対応コンテンツ生成キット」で自動生成も可能</li>
+</ol>
+<blockquote>
+<p><strong>判定基準</strong>: A項目が全て✅ → AI検索の引用候補に入る最低ライン ／ B項目も✅ → 引用される確率が大幅に上がる ／ C項目も✅ → 競合と明確に差別化できる</p>
+</blockquote>
+<hr />
+<h2>基本情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>対象ページURL</td>
+<td>[記入例] https://example.co.jp/service/tax-return</td>
+</tr>
+<tr>
+<td>ページタイトル</td>
+<td>[記入例] 確定申告の必要書類と手順まとめ</td>
+</tr>
+<tr>
+<td>対象キーワード</td>
+<td>[記入例] 確定申告 必要書類</td>
+</tr>
+<tr>
+<td>診断日</td>
+<td>[記入例] 2026-03-20</td>
+</tr>
+<tr>
+<td>担当者名</td>
+<td>[記入例] 田中（Web担当）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>優先度A：必須（これがないとAI検索に拾われない）</h2>
+<h3>A-1. タイトルに具体的な数値が含まれているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「確定申告の必要書類まとめ」</li>
+<li><strong>After</strong>：「確定申告の必要書類7点と手順5ステップ【2026年版】」</li>
+<li>💡 数値・年号を入れるとAIが「具体的な情報源」と判断しやすくなる</li>
+</ul>
+<h3>A-2. 冒頭30文字以内に結論があるか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「確定申告の時期が近づいてきました。毎年悩む方も多いのではないでしょうか。今回は…」</li>
+<li><strong>After</strong>：「確定申告に必要な書類は7点です。本記事では書類一覧と入手方法を解説します。」</li>
+<li>💡 AI検索は冒頭の文を引用する傾向が強い。結論ファーストが鉄則</li>
+</ul>
+<h3>A-3. FAQ形式のセクションがあるか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：本文中に質問と回答が混在し、見出しがない</li>
+<li><strong>After</strong>：「よくある質問」セクションを設け、Q&amp;Aを1問1答で5つ以上配置</li>
+<li>💡 Perplexity・ChatGPT Searchは「質問→回答」形式のテキストを優先的に引用する</li>
+</ul>
+<h3>A-4. schema.orgのFAQPageマークアップを実装しているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：FAQがあるが通常のHTMLのみ</li>
+<li><strong>After</strong>：<code>&lt;script type="application/ld+json"&gt;</code> で <code>FAQPage</code> の構造化データを追加</li>
+<li>💡 HTMLがわからなくても「AI検索対応コンテンツ生成キット」でFAQ入力すれば自動生成される</li>
+</ul>
+<h3>A-5. 1つの見出しに対して1つの明確な回答になっているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「h2: 確定申告について」→ 本文で手順・費用・期限が混在</li>
+<li><strong>After</strong>：「h2: 確定申告の期限はいつか」→ 本文は期限のみに絞って回答</li>
+<li>💡 AIは「見出し＝質問、直下の段落＝回答」として抽出する</li>
+</ul>
+<h3>A-6. 情報の鮮度（更新日）が明記されているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：日付の記載なし</li>
+<li><strong>After</strong>：ページ上部に「最終更新日：2026年3月20日」＋構造化データに <code>dateModified</code> を追加</li>
+<li>💡 AI検索は新しい情報を優先する。更新日がないと古い情報と判定される</li>
+</ul>
+<h3>A-7. 独自の一次情報（数値・事例・調査結果）が含まれているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「多くの企業が導入しています」</li>
+<li><strong>After</strong>：「当事務所の顧問先120社のうち87社（72.5%）がe-Taxを利用（2025年度実績）」</li>
+<li>💡 AIは「他のサイトにはない一次データ」を引用元として高く評価する</li>
+</ul>
+<hr />
+<h2>優先度B：推奨（引用確率を大幅に上げる）</h2>
+<h3>B-1. 箇条書き・番号リストで情報が整理されているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：手順を長い段落で説明</li>
+<li><strong>After</strong>：「1. ○○を用意 → 2. △△に記入 → 3. □□へ提出」のステップ形式</li>
+<li>💡 AI検索の回答は箇条書きで表示されることが多く、元から整理されたコンテンツが選ばれやすい</li>
+</ul>
+<h3>B-2. 表（テーブル）で比較・一覧情報を提示しているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「Aプランは月額5万円、Bプランは月額10万円で…」と文章で羅列</li>
+<li><strong>After</strong>：プラン名・料金・特徴を表形式で整理</li>
+<li>💡 Google AI Overviewは表データを直接引用する機能がある</li>
+</ul>
+<h3>B-3. 専門用語に簡潔な定義文が添えられているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「e-Taxで申告する方法を解説します」</li>
+<li><strong>After</strong>：「e-Tax（国税電子申告・納税システム）で申告する方法を解説します」</li>
+<li>💡 AI検索は用語の定義文を「用語解説」として引用する</li>
+</ul>
+<h3>B-4. ページ内リンクで関連コンテンツを相互に繋いでいるか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：記事が孤立し、他ページへのリンクがない</li>
+<li><strong>After</strong>：関連3記事へのリンクを本文中と末尾に設置</li>
+<li>💡 AIはサイト内のリンク構造から「このサイトは○○の専門家」と判定する</li>
+</ul>
+<h3>B-5. メタディスクリプションに対象キーワードと数値が入っているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：<code>&lt;meta name="description" content="確定申告について解説します"&gt;</code></li>
+<li><strong>After</strong>：<code>&lt;meta name="description" content="確定申告の必要書類7点と手順5ステップを税理士が解説。2026年の変更点も網羅"&gt;</code></li>
+<li>💡 160文字以内で、キーワード＋数値＋専門性を入れる</li>
+</ul>
+<h3>B-6. 著者情報・監修者情報が構造化データで記載されているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：著者名の記載なし</li>
+<li><strong>After</strong>：著者名・資格・所属を明記し、<code>Person</code> スキーマで構造化</li>
+<li>💡 E-E-A-T（経験・専門性・権威性・信頼性）をAIが判定する根拠になる</li>
+</ul>
+<h3>B-7. 画像にalt属性とキャプションが設定されているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：<code>&lt;img src="chart.png"&gt;</code></li>
+<li><strong>After</strong>：<code>&lt;img src="chart.png" alt="2025年度 確定申告方法別の利用率グラフ"&gt;</code> ＋キャプション</li>
+<li>💡 AIはalt属性を読み取り、画像の内容を理解する</li>
+</ul>
+<hr />
+<h2>優先度C：差別化（競合との差を広げる）</h2>
+<h3>C-1. HowTo（手順）の構造化データを実装しているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：手順を通常のHTMLで記述</li>
+<li><strong>After</strong>：<code>HowTo</code> スキーマで各ステップを構造化データとして記述</li>
+<li>💡 「AI検索対応コンテンツ生成キット」のFAQ生成と同様に、schema.orgマークアップが自動生成可能</li>
+</ul>
+<h3>C-2. 統計データに出典元と調査時期を明記しているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「約70%の企業が利用しています」</li>
+<li><strong>After</strong>：「72.5%の企業が利用（出典：国税庁 令和7年度統計、調査時期2025年4月）」</li>
+<li>💡 出典付きの数値はAIが「信頼性の高い引用元」として選びやすい</li>
+</ul>
+<h3>C-3. 地域名・業種名で絞り込んだ情報を提供しているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「中小企業の節税対策」</li>
+<li><strong>After</strong>：「東京都の製造業（従業員10〜50人）向け 設備投資減税3選」</li>
+<li>💡 AI検索は「○○市の△△」など具体的なローカル情報を引用しやすい</li>
+</ul>
+<h3>C-4. 比較表やランキングを独自基準で作成しているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：一般的な情報の並列</li>
+<li><strong>After</strong>：自社基準で「コスパ」「導入の簡単さ」「サポート体制」の3軸で5段階評価した比較表</li>
+<li>💡 独自ランキングは他サイトにない情報としてAI引用の候補に入る</li>
+</ul>
+<h3>C-5. 音声検索を意識した自然な疑問文の見出しがあるか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：「確定申告 必要書類 一覧」</li>
+<li><strong>After</strong>：「確定申告に必要な書類は何ですか？」</li>
+<li>💡 ChatGPT SearchやPerplexityはユーザーの自然言語質問に答える形式で回答を生成する</li>
+</ul>
+<h3>C-6. 定期的な更新スケジュールを宣言しているか</h3>
+<ul>
+<li>対応状況：[ ✅ / ❌ ]</li>
+<li><strong>Before</strong>：更新頻度の記載なし</li>
+<li><strong>After</strong>：「本記事は毎月1日に最新情報を反映しています（次回更新：2026年4月1日）」</li>
+<li>💡 更新を宣言しているページはAIが「メンテナンスされた情報源」と判断する</li>
+</ul>
+<hr />
+<h2>診断結果サマリー</h2>
+<table>
+<thead>
+<tr>
+<th>優先度</th>
+<th>合計</th>
+<th>✅ 数</th>
+<th>❌ 数</th>
+<th>達成率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A（必須・7項目）</td>
+<td>7</td>
+<td>[ ]</td>
+<td>[ ]</td>
+<td>[ ]%</td>
+</tr>
+<tr>
+<td>B（推奨・7項目）</td>
+<td>7</td>
+<td>[ ]</td>
+<td>[ ]</td>
+<td>[ ]%</td>
+</tr>
+<tr>
+<td>C（差別化・6項目）</td>
+<td>6</td>
+<td>[ ]</td>
+<td>[ ]</td>
+<td>[ ]%</td>
+</tr>
+<tr>
+<td><strong>合計（20項目）</strong></td>
+<td><strong>20</strong></td>
+<td><strong>[ ]</strong></td>
+<td><strong>[ ]</strong></td>
+<td><strong>[ ]%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定</strong>：
+- A達成率100% → AI検索引用の最低ラインをクリア
+- A+B達成率100% → 引用される可能性が高い
+- 全項目達成率80%以上 → 競合より明確に有利</p>
+<hr />
+<h2>改善アクションプラン</h2>
+<table>
+<thead>
+<tr>
+<th>優先順</th>
+<th>対応する項目番号</th>
+<th>具体的な改善内容</th>
+<th>担当</th>
+<th>期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[記入例] A-2</td>
+<td>[記入例] トップページの冒頭を結論ファーストに書き換え</td>
+<td>[記入例] 田中</td>
+<td>[記入例] 3/25</td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>ヒント</strong>：schema.orgマークアップ（A-4, B-6, C-1）の実装は「AI検索対応コンテンツ生成キット」で業種とキーワードを入力すればHTMLが自動生成されます。コピー＆貼り付けだけで完了します。</p>
+</blockquote>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

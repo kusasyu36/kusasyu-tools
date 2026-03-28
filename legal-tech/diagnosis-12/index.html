@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>就業規則_2028年対応_セルフチェック＆条文ドラフト提示ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6;padding:16px}
+.wrap{max-width:800px;margin:0 auto}
+h1{font-size:1.3em;text-align:center;padding:20px 16px;background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;border-radius:12px;margin-bottom:8px}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:24px}
+.domain{background:#fff;border-radius:10px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07);overflow:hidden}
+.domain-hd{padding:12px 16px;font-weight:700;color:#fff;font-size:.95em;display:flex;align-items:center;gap:8px}
+.d1 .domain-hd{background:#2563eb}.d2 .domain-hd{background:#7c3aed}.d3 .domain-hd{background:#0891b2}.d4 .domain-hd{background:#dc2626}.d5 .domain-hd{background:#059669}
+.q{padding:14px 16px;border-bottom:1px solid #eee}
+.q:last-child{border-bottom:none}
+.q-text{font-size:.9em;margin-bottom:8px;font-weight:600}
+.q-btns{display:flex;gap:8px}
+.q-btns button{padding:6px 20px;border-radius:6px;border:2px solid #ccc;background:#fff;cursor:pointer;font-size:.85em;font-weight:600;transition:.2s}
+.q-btns button.yes.on{border-color:#22c55e;background:#dcfce7;color:#166534}
+.q-btns button.no.on{border-color:#ef4444;background:#fef2f2;color:#991b1b}
+.draft{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 16px;background:#fffbeb}
+.draft.open{max-height:600px;padding:12px 16px}
+.draft-label{font-size:.78em;font-weight:700;color:#92400e;margin-bottom:4px}
+.draft pre{white-space:pre-wrap;font-size:.82em;background:#fef3c7;padding:10px;border-radius:6px;border:1px dashed #d97706;line-height:1.7}
+.draft .copy-btn{margin-top:6px;font-size:.75em;padding:4px 12px;border:1px solid #d97706;background:#fff;border-radius:4px;cursor:pointer}
+.draft .copy-btn:hover{background:#fef3c7}
+#result{display:none;background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.07);margin-top:20px}
+.score-bar{display:flex;align-items:center;gap:12px;margin:12px 0}
+.bar-bg{flex:1;height:24px;background:#e5e7eb;border-radius:12px;overflow:hidden}
+.bar-fill{height:100%;border-radius:12px;transition:width .6s}
+.bar-ok{background:linear-gradient(90deg,#22c55e,#16a34a)}
+.bar-ng{background:linear-gradient(90deg,#ef4444,#dc2626)}
+.score-num{font-size:1.1em;font-weight:700;min-width:60px;text-align:right}
+.pri-list{margin-top:16px}
+.pri-item{padding:8px 12px;border-left:4px solid;margin-bottom:6px;border-radius:0 6px 6px 0;font-size:.85em}
+.pri-high{border-color:#dc2626;background:#fef2f2}.pri-mid{border-color:#f59e0b;background:#fffbeb}.pri-low{border-color:#3b82f6;background:#eff6ff}
+.pri-tag{font-weight:700;margin-right:6px}
+.check-btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:20px}
+.check-btn:hover{opacity:.9}
+.print-btn{display:block;width:100%;padding:10px;background:#374151;color:#fff;border:none;border-radius:8px;font-size:.9em;cursor:pointer;margin-top:10px}
+.note{font-size:.72em;color:#888;text-align:center;margin-top:16px}
+@media print{body{background:#fff;padding:0}.check-btn,.print-btn,.q-btns,.copy-btn{display:none!important}.domain{break-inside:avoid;box-shadow:none;border:1px solid #ddd}.draft{max-height:none!important;padding:12px 16px!important}}
+@media(max-width:600px){h1{font-size:1.1em;padding:16px 12px}.q{padding:10px 12px}}
+</style>
+<meta name="description" content="2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,就業規則_2028年対応_セルフチェック＆条文ドラフト提示ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-12/">
+<meta property="og:title" content="就業規則_2028年対応_セルフチェック＆条文ドラフト提示ツール - kusasyu tools">
+<meta property="og:description" content="2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="就業規則_2028年対応_セルフチェック＆条文ドラフト提示ツール - kusasyu tools">
+<meta name="twitter:description" content="2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "就業規則_2028年対応_セルフチェック＆条文ドラフト提示ツール",
+  "description": "2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-12/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">就業規則_2028年対応_セルフチェック＆条文ドラフト提示ツ</span></div>
+<div class="wrap">
+<h1>就業規則 2028年対応<br>セルフチェック＆条文ドラフト</h1>
+<p class="sub">20問のYes/Noで未整備項目を特定 → そのまま使える条文ドラフトを提示</p>
+<div id="questions"></div>
+<button class="check-btn" onclick="showResult()">診断結果を表示</button>
+<div id="result"></div>
+</div>
+<script>
+var D=[
+{name:"実施義務",cls:"d1",qs:[
+{t:"ストレスチェックの実施義務に関する規定がある",p:"high",draft:"（ストレスチェックの実施）\n第○条　会社は、労働安全衛生法第66条の10に基づき、\n常時使用する労働者に対し、毎年1回以上、医師等による\n心理的な負担の程度を把握するための検査（以下「ストレス\nチェック」という。）を実施する。"},
+{t:"実施時期（年1回以上）が明記されている",p:"high",draft:"（実施時期）\n第○条　ストレスチェックは、毎年○月を基準月とし、\n当該月から起算して1か月以内に全対象者への実施を\n完了するものとする。"},
+{t:"対象労働者の範囲が定められている",p:"mid",draft:"（対象者）\n第○条　ストレスチェックの対象者は、常時使用する\n全労働者とする。ただし、契約期間1年未満の者および\n週所定労働時間が通常の労働者の4分の3未満の短時間\n労働者を除くことができる。"},
+{t:"受検の任意性（労働者の義務ではない旨）が記載されている",p:"mid",draft:"（受検の任意性）\n第○条　労働者のストレスチェックの受検は任意とし、\n会社は受検を強制してはならない。ただし、会社は\n労働者に対し受検を勧奨することができる。"}
+]},
+{name:"実施者指定",cls:"d2",qs:[
+{t:"ストレスチェックの実施者（医師等）の指定規定がある",p:"high",draft:"（実施者）\n第○条　ストレスチェックの実施者は、会社が指名する\n医師、保健師又は厚生労働大臣が定める研修を修了した\n看護師若しくは精神保健福祉士とする。"},
+{t:"実施事務従事者の指定と守秘義務規定がある",p:"high",draft:"（実施事務従事者）\n第○条　会社は、ストレスチェックの実施事務従事者を\n指名する。\n2　実施事務従事者は、業務上知り得た労働者の秘密を\n漏らしてはならない。退職後も同様とする。"},
+{t:"実施者が人事権を持つ者でない旨が明記されている",p:"mid",draft:"（実施者の制限）\n第○条　ストレスチェックの実施者及び実施事務従事者\nには、当該労働者の人事に関して直接の権限を持つ\n監督者を充ててはならない。"},
+{t:"外部委託する場合の委託先の要件が定められている",p:"low",draft:"（外部委託）\n第○条　会社は、ストレスチェックの全部又は一部を\n外部機関に委託することができる。この場合、委託先の\n選定にあたっては実施者の資格要件及び情報管理体制を\n確認するものとする。"}
+]},
+{name:"結果取扱い",cls:"d3",qs:[
+{t:"検査結果の通知方法（本人への直接通知）が規定されている",p:"high",draft:"（結果の通知）\n第○条　ストレスチェックの結果は、実施者から労働者\n本人に直接通知するものとし、会社は本人の同意なく\n結果を取得してはならない。"},
+{t:"高ストレス者の判定基準が定められている",p:"high",draft:"（高ストレス者の判定）\n第○条　実施者は、厚生労働省が定める評価基準に基づき\n高ストレス者を選定し、該当する労働者に対し医師による\n面接指導の申出を勧奨するものとする。"},
+{t:"面接指導の申出手続きと実施方法が規定されている",p:"high",draft:"（面接指導）\n第○条　高ストレス者と判定された労働者は、会社に対し\n医師による面接指導の実施を申し出ることができる。\n2　会社は、申出があった場合、遅滞なく医師による\n面接指導を実施しなければならない。"},
+{t:"結果の保存期間（5年間）と保存方法が定められている",p:"mid",draft:"（結果の保存）\n第○条　ストレスチェックの結果（本人の同意を得て\n会社が取得したものに限る。）は、5年間保存する。\n2　保存は施錠可能な場所又はアクセス制限を施した\n電磁的記録により行うものとする。"}
+]},
+{name:"不利益取扱禁止",cls:"d4",qs:[
+{t:"ストレスチェック未受検を理由とする不利益取扱いの禁止規定がある",p:"high",draft:"（未受検を理由とする不利益取扱いの禁止）\n第○条　会社は、労働者がストレスチェックを受検\nしなかったことを理由として、当該労働者に対し\n解雇その他の不利益な取扱いをしてはならない。"},
+{t:"面接指導の申出を理由とする不利益取扱いの禁止規定がある",p:"high",draft:"（面接指導申出を理由とする不利益取扱いの禁止）\n第○条　会社は、労働者が面接指導の申出を行った\nことを理由として、解雇、退職勧奨、配置転換その他\n不利益な取扱いをしてはならない。"},
+{t:"結果提供の同意・不同意を理由とする不利益取扱いの禁止がある",p:"mid",draft:"（同意拒否を理由とする不利益取扱いの禁止）\n第○条　会社は、労働者がストレスチェックの結果を\n会社に提供することに同意しなかったことを理由として、\n不利益な取扱いをしてはならない。"},
+{t:"面接指導の結果に基づく就業上の措置の範囲が明確である",p:"mid",draft:"（就業上の措置）\n第○条　会社は、面接指導を実施した医師の意見を\n聴取し、必要があると認めるときは、就業場所の変更、\n作業の転換、労働時間の短縮等の適切な措置を講じる\nものとする。"}
+]},
+{name:"産業医連携",cls:"d5",qs:[
+{t:"産業医（または地域産業保健センター）との連携規定がある",p:"high",draft:"（産業医等との連携）\n第○条　会社は、ストレスチェックの実施及び面接指導\nについて、産業医又は地域産業保健センターと連携して\n実施するものとする。"},
+{t:"医師の意見聴取の手続きが規定されている",p:"mid",draft:"（医師からの意見聴取）\n第○条　会社は、面接指導の結果に基づき、当該労働者\nの健康を保持するために必要な措置について、面接指導\n実施日から遅滞なく医師の意見を聴取するものとする。"},
+{t:"衛生委員会（または安全衛生に関する協議の場）への報告規定がある",p:"mid",draft:"（報告・審議）\n第○条　会社は、ストレスチェックの実施状況及び\n集団分析の結果について、衛生委員会又はこれに準ずる\n協議の場において報告し、職場環境の改善について\n審議するものとする。"},
+{t:"50人未満事業場の場合の対応方針（努力義務→義務化への準備）が記載されている",p:"low",draft:"（義務化への対応）\n第○条　常時使用する労働者が50人未満の事業場に\nおいては、2028年○月の法改正施行に先立ち、\n本規程に基づきストレスチェックの準備及び試行的\n実施を段階的に進めるものとする。"}
+]}
+];
+var ans={};
+function render(){
+var h="";
+var qi=0;
+D.forEach(function(d){
+h+='<div class="domain '+d.cls+'"><div class="domain-hd"><span>'+d.name+'</span><span style="font-size:.8em;opacity:.8">（'+d.qs.length+'問）</span></div>';
+d.qs.forEach(function(q){
+h+='<div class="q"><div class="q-text">Q'+(qi+1)+'．'+q.t+'</div>';
+h+='<div class="q-btns"><button class="yes" onclick="pick('+qi+',1)">Yes</button><button class="no" onclick="pick('+qi+',0)">No</button></div>';
+h+='<div class="draft" id="dr'+qi+'"><div class="draft-label">▼ 追記用 条文ドラフト</div><pre>'+q.draft+'</pre><button class="copy-btn" onclick="copyD('+qi+')">コピー</button></div></div>';
+qi++;
+});
+h+='</div>';
+});
+document.getElementById("questions").innerHTML=h;
+}
+function pick(i,v){
+ans[i]=v;
+var q=document.querySelectorAll(".q")[i];
+var btns=q.querySelectorAll("button");
+btns[0].className="yes"+(v===1?" on":"");
+btns[1].className="no"+(v===0?" on":"");
+var dr=document.getElementById("dr"+i);
+dr.className=v===0?"draft open":"draft";
+}
+function copyD(i){
+var t=document.getElementById("dr"+i).querySelector("pre").textContent;
+if(navigator.clipboard)navigator.clipboard.writeText(t);
+var b=document.getElementById("dr"+i).querySelector(".copy-btn");
+b.textContent="コピーしました";setTimeout(function(){b.textContent="コピー"},1500);
+}
+function flat(){var a=[];var i=0;D.forEach(function(d){d.qs.forEach(function(q){a.push({i:i,q:q,d:d.name});i++})});return a}
+function showResult(){
+var all=flat();var total=all.length;var answered=0;var ok=0;var ng=[];
+all.forEach(function(item){
+if(ans[item.i]!==undefined){answered++;if(ans[item.i]===1)ok++;else ng.push(item)}
+});
+if(answered<total){alert("未回答の項目があります（"+answered+"/"+total+"回答済み）。全問にお答えください。");return}
+var pct=Math.round(ok/total*100);
+var h='<h2 style="font-size:1.1em;margin-bottom:12px">診断結果</h2>';
+h+='<div class="score-bar"><span style="font-size:.85em">整備済み</span><div class="bar-bg"><div class="bar-fill bar-ok" style="width:'+pct+'%"></div></div><span class="score-num">'+ok+'/'+total+'</span></div>';
+h+='<div class="score-bar"><span style="font-size:.85em;color:#dc2626">未整備</span><div class="bar-bg"><div class="bar-fill bar-ng" style="width:'+(100-pct)+'%"></div></div><span class="score-num" style="color:#dc2626">'+ng.length+'件</span></div>';
+if(ng.length===0){
+h+='<p style="margin-top:16px;padding:12px;background:#dcfce7;border-radius:8px;font-weight:700;color:#166534">すべての項目が整備済みです。2028年義務化に対応できる状態です。</p>';
+}else{
+var hi=[],mi=[],lo=[];
+ng.forEach(function(item){if(item.q.p==="high")hi.push(item);else if(item.q.p==="mid")mi.push(item);else lo.push(item)});
+h+='<div class="pri-list"><h3 style="font-size:.95em;margin-bottom:8px">未整備項目（優先度順）</h3>';
+hi.forEach(function(item){h+='<div class="pri-item pri-high"><span class="pri-tag">優先度：高</span>【'+item.d+'】'+item.q.t+'</div>'});
+mi.forEach(function(item){h+='<div class="pri-item pri-mid"><span class="pri-tag">優先度：中</span>【'+item.d+'】'+item.q.t+'</div>'});
+lo.forEach(function(item){h+='<div class="pri-item pri-low"><span class="pri-tag">優先度：低</span>【'+item.d+'】'+item.q.t+'</div>'});
+h+='</div>';
+h+='<p style="margin-top:12px;font-size:.85em;color:#666">※ 上記の「No」回答項目には、各設問の下に条文ドラフトが表示されています。コピーして就業規則に追記してください。</p>';
+}
+h+='<button class="print-btn" onclick="window.print()">この結果を印刷する</button>';
+h+='<p class="note">本ツールは情報提供を目的としたものであり、法的助言を構成するものではありません。<br>具体的な対応については社会保険労務士等の専門家にご相談ください。<br>© Kusasyu Legal Tech</p>';
+var el=document.getElementById("result");el.innerHTML=h;el.style.display="block";el.scrollIntoView({behavior:"smooth"});
+}
+render();
+</script>
+</body>
+</html>

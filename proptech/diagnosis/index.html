@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>表面利回りに騙されない！投資判断の隠れコスト5選 - kusasyu tools</title>
+<meta name="description" content="不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,表面利回りに騙されない！投資判断の隠れコスト5選">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis/">
+<meta property="og:title" content="表面利回りに騙されない！投資判断の隠れコスト5選 - kusasyu tools">
+<meta property="og:description" content="不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="表面利回りに騙されない！投資判断の隠れコスト5選 - kusasyu tools">
+<meta name="twitter:description" content="不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "表面利回りに騙されない！投資判断の隠れコスト5選",
+  "description": "不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>表面利回りに騙されない！投資判断の隠れコスト5選</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>表面利回りに騙されない！投資判断の隠れコスト5選</h1>
+  <p class="project-name">投資物件の隠れリスク、10項目で即診断</p>
+  <div class="content">
+<h1>表面利回りに騙されない！投資判断の隠れコスト5選</h1>
+<p><strong>「利回り8%の好物件、見つけました！」</strong>——不動産投資の広告でよく見るこのフレーズ。しかし、購入後に「話が違う」と後悔する投資家が後を絶たない。原因はたった一つ。<strong>表面利回りしか見ていない</strong>からだ。</p>
+<p>本記事では、表面利回りと実質利回りの差を生む「隠れコスト」5つを具体的な数値で解説し、物件の本当の収益力を見抜く方法を紹介する。</p>
+<hr />
+<h2>表面利回りとは何か？——そのシンプルさが罠</h2>
+<p>表面利回りの計算式は極めて単純だ。</p>
+<blockquote>
+<p><strong>表面利回り（%）＝ 年間賃料 ÷ 物件価格 × 100</strong></p>
+</blockquote>
+<p>年間賃料96万円、物件価格1,200万円なら <strong>表面利回り8.0%</strong> になる。銀行預金の数百倍。魅力的に見えるのは当然だ。</p>
+<p>しかしこの計算式には、<strong>実際にかかるコストが一切含まれていない</strong>。ここに落とし穴がある。</p>
+<hr />
+<h2>隠れコスト5選——表面利回りを蝕む正体</h2>
+<h3>1. 管理費・修繕積立金（区分マンション最大の盲点）</h3>
+<p>区分マンションでは毎月の管理費と修繕積立金がオーナー負担になる。築古になるほど修繕積立金は上昇し、<strong>築20年超では月2万円以上</strong>も珍しくない。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>新築時</th>
+<th>築15年</th>
+<th>築25年</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>管理費</td>
+<td>8,000円</td>
+<td>9,500円</td>
+<td>11,000円</td>
+</tr>
+<tr>
+<td>修繕積立金</td>
+<td>5,000円</td>
+<td>12,000円</td>
+<td>22,000円</td>
+</tr>
+<tr>
+<td><strong>年間合計</strong></td>
+<td><strong>15.6万円</strong></td>
+<td><strong>25.8万円</strong></td>
+<td><strong>39.6万円</strong></td>
+</tr>
+</tbody>
+</table>
+<p>年間賃料96万円の物件なら、築25年で <strong>賃料の41%が管理費・修繕積立金で消える</strong>。</p>
+<h3>2. 賃貸管理委託費（見落とされがちな固定コスト）</h3>
+<p>賃貸管理を管理会社に委託すると、賃料の <strong>5%</strong> が毎月差し引かれる。月8万円の賃料なら月4,000円、年間4.8万円。さらに入居者募集時の広告費（AD）が賃料1〜2ヶ月分かかる。</p>
+<h3>3. 固定資産税・都市計画税</h3>
+<p>物件価格1,200万円の区分マンションで年間 <strong>約8〜12万円</strong>。一棟物件では数十万円規模になる。表面利回りの計算には一切入っていない。</p>
+<h3>4. 空室・滞納リスク（稼働率の現実）</h3>
+<p>表面利回りは <strong>満室・滞納ゼロ</strong> が前提。しかし現実には退去から次の入居まで平均1〜3ヶ月の空室が発生し、入替時にはクリーニング・原状回復費も必要になる。稼働率95%でも年間賃料は4.8万円減る。</p>
+<h3>5. ローン返済コスト（金利の破壊力）</h3>
+<p>自己資金ゼロのフルローンで物件価格1,200万円を借りた場合（金利2.0%・35年）、月々の返済は約39,800円、<strong>年間約47.8万円</strong>。賃料の半分がローン返済に消える。</p>
+<hr />
+<h2>3物件で検証——「表面8%が実質3%」のカラクリ</h2>
+<p>PropScore（投資物件DDスコアカード）の計算ロジックを使い、3つの典型物件で表面利回りと実質利回りの差を見てみよう。</p>
+<h3>物件A：都内ワンルーム（築22年）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件価格</td>
+<td>1,200万円</td>
+</tr>
+<tr>
+<td>月額賃料</td>
+<td>8.0万円（年96万円）</td>
+</tr>
+<tr>
+<td><strong>表面利回り</strong></td>
+<td><strong>8.0%</strong></td>
+</tr>
+<tr>
+<td>管理費・修繕積立金</td>
+<td>年33.6万円</td>
+</tr>
+<tr>
+<td>賃貸管理委託費（5%）</td>
+<td>年4.8万円</td>
+</tr>
+<tr>
+<td>固定資産税</td>
+<td>年10万円</td>
+</tr>
+<tr>
+<td>空室損（5%）</td>
+<td>年4.8万円</td>
+</tr>
+<tr>
+<td><strong>年間コスト合計</strong></td>
+<td><strong>53.2万円</strong></td>
+</tr>
+<tr>
+<td><strong>実質利回り</strong></td>
+<td><strong>3.6%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>表面8.0% → <strong>実質3.6%</strong>。差は4.4ポイント。</p>
+<h3>物件B：郊外ファミリー（築18年）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件価格</td>
+<td>2,500万円</td>
+</tr>
+<tr>
+<td>月額賃料</td>
+<td>12.5万円（年150万円）</td>
+</tr>
+<tr>
+<td><strong>表面利回り</strong></td>
+<td><strong>6.0%</strong></td>
+</tr>
+<tr>
+<td>管理費・修繕積立金</td>
+<td>年36万円</td>
+</tr>
+<tr>
+<td>賃貸管理委託費（5%）</td>
+<td>年7.5万円</td>
+</tr>
+<tr>
+<td>固定資産税</td>
+<td>年18万円</td>
+</tr>
+<tr>
+<td>空室損（8%）</td>
+<td>年12万円</td>
+</tr>
+<tr>
+<td><strong>年間コスト合計</strong></td>
+<td><strong>73.5万円</strong></td>
+</tr>
+<tr>
+<td><strong>実質利回り</strong></td>
+<td><strong>3.1%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>ファミリータイプは退去後の原状回復費が高く、空室期間も長い。表面6.0%が <strong>実質3.1%</strong> まで下がる。</p>
+<h3>物件C：地方築古一棟アパート（築30年）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件価格</td>
+<td>3,000万円</td>
+</tr>
+<tr>
+<td>月額賃料（6室合計）</td>
+<td>24万円（年288万円）</td>
+</tr>
+<tr>
+<td><strong>表面利回り</strong></td>
+<td><strong>9.6%</strong></td>
+</tr>
+<tr>
+<td>管理・メンテナンス</td>
+<td>年38万円</td>
+</tr>
+<tr>
+<td>賃貸管理委託費（5%）</td>
+<td>年14.4万円</td>
+</tr>
+<tr>
+<td>固定資産税</td>
+<td>年25万円</td>
+</tr>
+<tr>
+<td>空室損（15%）</td>
+<td>年43.2万円</td>
+</tr>
+<tr>
+<td>大規模修繕引当</td>
+<td>年30万円</td>
+</tr>
+<tr>
+<td><strong>年間コスト合計</strong></td>
+<td><strong>150.6万円</strong></td>
+</tr>
+<tr>
+<td><strong>実質利回り</strong></td>
+<td><strong>4.6%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>表面9.6%の「高利回り物件」が、空室率と修繕費を加味すると <strong>実質4.6%</strong>。さらにローン返済を加えれば手残りはわずかだ。</p>
+<hr />
+<h2>PropScoreの10指標で物件を「即診断」する</h2>
+<p>PropScore（投資物件DDスコアカード）は、上記のような隠れコストを含めた <strong>10の指標</strong> を自動計算し、信号機（🟢🟡🔴）で可視化するツールだ。各指標の意味と判断基準を解説する。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>指標名</th>
+<th>意味</th>
+<th>🟢 安全</th>
+<th>🟡 注意</th>
+<th>🔴 危険</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>表面利回り</strong></td>
+<td>年間賃料÷物件価格</td>
+<td>7%以上</td>
+<td>5〜7%</td>
+<td>5%未満</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>実質利回り（NOI利回り）</strong></td>
+<td>経費控除後の利回り</td>
+<td>5%以上</td>
+<td>3〜5%</td>
+<td>3%未満</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>CCR（自己資本収益率）</strong></td>
+<td>自己資金に対する年間手残り</td>
+<td>8%以上</td>
+<td>4〜8%</td>
+<td>4%未満</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>DCR（返済余裕率）</strong></td>
+<td>NOI÷年間返済額</td>
+<td><strong>1.3以上</strong></td>
+<td>1.0〜1.3</td>
+<td>1.0未満</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>BER（損益分岐稼働率）</strong></td>
+<td>経費+返済を賄う最低稼働率</td>
+<td><strong>75%以下</strong></td>
+<td>75〜90%</td>
+<td>90%超</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>返済比率</strong></td>
+<td>返済額÷賃料収入</td>
+<td>50%以下</td>
+<td>50〜60%</td>
+<td>60%超</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>空室耐性</strong></td>
+<td>赤字にならない最大空室率</td>
+<td>20%以上</td>
+<td>10〜20%</td>
+<td>10%未満</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>管理費比率</strong></td>
+<td>管理費+修繕÷賃料収入</td>
+<td>25%以下</td>
+<td>25〜35%</td>
+<td>35%超</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>キャッシュフロー</strong></td>
+<td>税引前の年間手残り額</td>
+<td>黒字</td>
+<td>月1万未満</td>
+<td>赤字</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>総合スコア</strong></td>
+<td>上記9指標の加重平均</td>
+<td>70点以上</td>
+<td>40〜70点</td>
+<td>40点未満</td>
+</tr>
+</tbody>
+</table>
+<h3>特に重要な3指標</h3>
+<p><strong>DCR（返済余裕率）</strong> は金融機関も重視する指標。1.0を切ると賃料収入だけではローンを返済できない。<strong>最低でも1.2以上、理想は1.3以上</strong>を確保しよう。</p>
+<p><strong>BER（損益分岐稼働率）</strong> は「何%埋まれば赤字にならないか」を示す。<strong>75%以下</strong>なら6室中2室空いても耐えられるが、90%超では1室空いただけで赤字転落する。</p>
+<p><strong>空室耐性</strong> はBERの裏返しで、直感的にわかりやすい。地方物件は空室率15〜20%が珍しくないため、<strong>空室耐性20%以上</strong>がないと危険だ。</p>
+<hr />
+<h2>先ほどの3物件をPropScoreで判定すると？</h2>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>物件A（ワンルーム）</th>
+<th>物件B（ファミリー）</th>
+<th>物件C（築古一棟）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表面利回り</td>
+<td>🟢 8.0%</td>
+<td>🟡 6.0%</td>
+<td>🟢 9.6%</td>
+</tr>
+<tr>
+<td>実質利回り</td>
+<td>🟡 3.6%</td>
+<td>🟡 3.1%</td>
+<td>🟡 4.6%</td>
+</tr>
+<tr>
+<td>DCR</td>
+<td>🟡 1.15</td>
+<td>🔴 0.98</td>
+<td>🟢 1.35</td>
+</tr>
+<tr>
+<td>BER</td>
+<td>🟡 82%</td>
+<td>🔴 91%</td>
+<td>🟡 78%</td>
+</tr>
+<tr>
+<td>空室耐性</td>
+<td>🟡 18%</td>
+<td>🔴 9%</td>
+<td>🟡 22%</td>
+</tr>
+<tr>
+<td><strong>総合スコア</strong></td>
+<td><strong>52点（要検討）</strong></td>
+<td><strong>31点（見送り推奨）</strong></td>
+<td><strong>58点（要検討）</strong></td>
+</tr>
+</tbody>
+</table>
+<p>表面利回りだけなら全物件「買い」に見えるが、PropScoreで診断すると <strong>物件Bは見送り推奨</strong>、物件A・Cも条件交渉が必要という結果になる。</p>
+<hr />
+<h2>まとめ——数字の裏側を見る習慣が資産を守る</h2>
+<p>不動産投資で失敗する最大の原因は、<strong>表面利回りという一つの数字だけで判断すること</strong>だ。</p>
+<ul>
+<li>管理費・修繕積立金は築年数とともに必ず上がる</li>
+<li>空室は必ず発生する。満室前提の計算は幻想</li>
+<li>ローン返済を加味した手残り（キャッシュフロー）こそが本当の利回り</li>
+<li>DCR・BER・空室耐性の3指標で「守りの強さ」を測る</li>
+</ul>
+<p>物件情報を入力するだけで10指標を自動計算し、100点満点で即判定——それが <strong>PropScore（投資物件DDスコアカード）</strong> だ。</p>
+<p>次に気になる物件を見つけたら、不動産会社の営業トークを鵜呑みにする前に、まずPropScoreで診断してみてほしい。<strong>5分の入力が、数千万円の判断ミスを防ぐ。</strong></p>
+<p>▶ <strong><a href="#">PropScoreで物件を無料診断する →</a></strong></p>
+<hr />
+<p><em>本記事の数値はシミュレーション例であり、実際の投資判断は個別の条件・税務状況に基づいて行ってください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>製造業向け_契約リスク診断チェッカー - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0;color:#2d3748;border-bottom:3px solid #3182ce}
+.step{display:none;margin-top:20px}.step.active{display:block}
+label.tb{display:block;padding:14px;margin:8px 0;border:2px solid #cbd5e0;border-radius:8px;cursor:pointer;text-align:center;font-weight:bold;transition:.2s}
+label.tb:hover,label.tb.sel{border-color:#3182ce;background:#ebf8ff}
+input[type=radio]{display:none}
+.qc{background:#fff;border-radius:8px;padding:14px;margin:10px 0;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.qc p{font-weight:bold;font-size:.95em;margin-bottom:8px}
+.qc span{font-size:.8em;color:#718096}
+.yn{display:flex;gap:8px;margin-top:6px}
+.yn button{flex:1;padding:8px;border:2px solid #cbd5e0;border-radius:6px;background:#fff;font-size:.95em;cursor:pointer}
+.yn button.yes{border-color:#38a169;background:#f0fff4;font-weight:bold}
+.yn button.no{border-color:#e53e3e;background:#fff5f5;font-weight:bold}
+.btn{display:block;width:100%;padding:14px;margin-top:16px;border:none;border-radius:8px;font-size:1em;font-weight:bold;cursor:pointer;color:#fff;background:#3182ce}
+.btn:disabled{background:#a0aec0;cursor:default}
+.rb{background:#fff;border-radius:12px;padding:20px;margin-top:16px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.rank{text-align:center;font-size:2.5em;font-weight:bold;margin:8px 0}
+.rA{color:#38a169}.rB{color:#d69e2e}.rC{color:#dd6b20}.rD{color:#e53e3e}
+.bg{height:16px;background:#e2e8f0;border-radius:8px;overflow:hidden;margin:8px 0}
+.bf{height:100%;border-radius:8px;transition:width .5s}
+.al li{margin:6px 0;font-size:.9em}
+.ct{font-weight:bold;margin-top:12px;padding:4px 8px;background:#edf2f7;border-radius:4px;font-size:.9em}
+@media print{.np{display:none!important}body{background:#fff}.wrap{max-width:100%}}
+</style>
+<meta name="description" content="法務部を持たない製造業・建設業の中小企業向けに、日常的に扱う契約書（NDA・発注書・取引基本契約書）のリスク条項を自分でチェックできる診断ツールと、危険条項を安全な文言に差し替える修正文例集、契約の更新期限を見落とさないための管理台帳をセットで提供する。LegalForce等の月30万円超サービスと同等のチェ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,製造業向け_契約リスク診断チェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-17/">
+<meta property="og:title" content="製造業向け_契約リスク診断チェッカー - kusasyu tools">
+<meta property="og:description" content="法務部を持たない製造業・建設業の中小企業向けに、日常的に扱う契約書（NDA・発注書・取引基本契約書）のリスク条項を自分でチェックできる診断ツールと、危険条項を安全な文言に差し替える修正文例集、契約の更新期限を見落とさないための管理台帳をセットで提供する。LegalForce等の月30万円超サービスと同等のチェ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-17/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="製造業向け_契約リスク診断チェッカー - kusasyu tools">
+<meta name="twitter:description" content="法務部を持たない製造業・建設業の中小企業向けに、日常的に扱う契約書（NDA・発注書・取引基本契約書）のリスク条項を自分でチェックできる診断ツールと、危険条項を安全な文言に差し替える修正文例集、契約の更新期限を見落とさないための管理台帳をセットで提供する。LegalForce等の月30万円超サービスと同等のチェ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "製造業向け_契約リスク診断チェッカー",
+  "description": "法務部を持たない製造業・建設業の中小企業向けに、日常的に扱う契約書（NDA・発注書・取引基本契約書）のリスク条項を自分でチェックできる診断ツールと、危険条項を安全な文言に差し替える修正文例集、契約の更新期限を見落とさないための管理台帳をセットで提供する。LegalForce等の月30万円超サービスと同等のチェ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-17/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">製造業向け_契約リスク診断チェッカー</span></div>
+<div class="wrap">
+<h1>製造業向け 契約リスク診断チェッカー</h1>
+<div id="s1" class="step active">
+<h2 style="margin:16px 0 8px">契約書タイプを選択</h2>
+<label class="tb" onclick="selT(0)"><input type="radio" name="ct" value="0">秘密保持契約書（NDA）</label>
+<label class="tb" onclick="selT(1)"><input type="radio" name="ct" value="1">発注書・注文書</label>
+<label class="tb" onclick="selT(2)"><input type="radio" name="ct" value="2">取引基本契約書</label>
+<button class="btn" id="b1" disabled onclick="goQ()">診断を開始 →</button>
+</div>
+<div id="s2" class="step">
+<p style="font-size:.85em;color:#718096;margin-bottom:8px">各質問に「はい／いいえ」で回答してください</p>
+<div id="qa"></div>
+<button class="btn" id="b2" disabled onclick="calc()">診断結果を見る →</button>
+</div>
+<div id="s3" class="step">
+<div class="rb" id="res"></div>
+<button class="btn np" style="background:#2d3748;margin-top:12px" onclick="window.print()">印刷用レポート出力</button>
+<button class="btn np" style="background:#718096;margin-top:8px" onclick="location.reload()">最初からやり直す</button>
+</div>
+</div>
+<script>
+var Q=[
+[{q:"秘密情報の定義が明確に記載されているか？",c:"秘密保持",w:2},{q:"秘密保持義務の期間が定められているか？",c:"秘密保持",w:2},{q:"情報漏洩時の損害賠償条項があるか？",c:"秘密保持",w:3},{q:"従業員・再委託先への義務波及条項があるか？",c:"秘密保持",w:2},{q:"契約終了後の情報返却・破棄義務が明記されているか？",c:"秘密保持",w:2},{q:"秘密情報の例外規定（公知情報等）が定められているか？",c:"秘密保持",w:1},{q:"管轄裁判所が自社に不利でない場所か？",c:"製造物責任",w:1},{q:"知的財産権の帰属が明確か？",c:"秘密保持",w:2},{q:"目的外使用の禁止条項があるか？",c:"秘密保持",w:2},{q:"アクセス者の範囲が限定されているか？",c:"秘密保持",w:1},{q:"契約違反発見時の通知義務があるか？",c:"秘密保持",w:2},{q:"複写・複製の制限条項があるか？",c:"秘密保持",w:1}],
+[{q:"発注書に数量・単価・納期が明記されているか？",c:"下請法",w:3},{q:"支払期日が受領日から60日以内か？",c:"下請法",w:3},{q:"不当な返品・やり直しの禁止条項があるか？",c:"下請法",w:3},{q:"買いたたき防止の価格決定プロセスがあるか？",c:"下請法",w:2},{q:"製造物の検収基準・期間が明確か？",c:"製造物責任",w:2},{q:"瑕疵担保（契約不適合）責任の範囲が適切か？",c:"製造物責任",w:3},{q:"PL保険の付保が求められているか？",c:"製造物責任",w:2},{q:"原材料・部品の支給条件が明確か？",c:"下請法",w:2},{q:"秘密保持条項が含まれているか？",c:"秘密保持",w:1},{q:"知的財産権の帰属が明記されているか？",c:"秘密保持",w:2},{q:"不可抗力条項（天災・疫病等）があるか？",c:"製造物責任",w:1},{q:"下請法3条書面の交付がなされているか？",c:"下請法",w:3}],
+[{q:"契約期間と自動更新条件が明確か？",c:"下請法",w:2},{q:"支払条件が下請法に適合しているか？",c:"下請法",w:3},{q:"製造物責任の負担割合が明記されているか？",c:"製造物責任",w:3},{q:"品質保証基準と検査方法が定められているか？",c:"製造物責任",w:2},{q:"秘密保持義務と情報管理体制が規定されているか？",c:"秘密保持",w:2},{q:"解約条件と予告期間が適切か？",c:"下請法",w:2},{q:"損害賠償の上限・範囲が定められているか？",c:"製造物責任",w:3},{q:"下請法の禁止行為への対応条項があるか？",c:"下請法",w:3},{q:"知的財産・技術情報の取扱いが明確か？",c:"秘密保持",w:2},{q:"再委託の可否と条件が明記されているか？",c:"秘密保持",w:1},{q:"反社会的勢力排除条項があるか？",c:"製造物責任",w:1},{q:"紛争解決方法が定められているか？",c:"製造物責任",w:1}]
+];
+var TN=["秘密保持契約書（NDA）","発注書・注文書","取引基本契約書"],ct=-1,ans=[];
+function selT(i){ct=i;document.querySelectorAll('.tb').forEach(function(e,j){e.classList.toggle('sel',j===i)});document.getElementById('b1').disabled=false}
+function goQ(){document.getElementById('s1').classList.remove('active');document.getElementById('s2').classList.add('active');var a=document.getElementById('qa');ans=new Array(12).fill(null);Q[ct].forEach(function(q,i){var d=document.createElement('div');d.className='qc';d.innerHTML='<p>Q'+(i+1)+'. '+q.q+'</p><span>観点：'+q.c+'</span><div class="yn"><button onclick="pk('+i+',1,this)">はい</button><button onclick="pk('+i+',0,this)">いいえ</button></div>';a.appendChild(d)})}
+function pk(i,v,el){ans[i]=v;el.parentElement.querySelectorAll('button').forEach(function(b){b.className=''});el.className=v?'yes':'no';document.getElementById('b2').disabled=ans.includes(null)}
+function calc(){
+var qs=Q[ct],total=0,max=0,cats={};
+qs.forEach(function(q,i){max+=q.w;if(ans[i])total+=q.w;if(!cats[q.c])cats[q.c]={s:0,m:0,issues:[]};cats[q.c].m+=q.w;if(ans[i])cats[q.c].s+=q.w;else cats[q.c].issues.push(q.q)});
+var pct=Math.round(total/max*100);
+var rank=pct>=85?'A':pct>=65?'B':pct>=40?'C':'D';
+var rl={A:'低リスク — 概ね適切に管理されています',B:'中リスク — 一部条項の改善が必要です',C:'高リスク — 早急な契約見直しを推奨します',D:'重大リスク — 直ちに専門家への相談を推奨します'};
+var co={A:'#38a169',B:'#d69e2e',C:'#dd6b20',D:'#e53e3e'};
+var h='<h2 style="text-align:center">診断結果</h2><p style="text-align:center;font-size:.9em;color:#718096">'+TN[ct]+'</p><div class="rank r'+rank+'">ランク '+rank+'</div><p style="text-align:center">'+rl[rank]+'</p><div class="bg"><div class="bf" style="width:'+pct+'%;background:'+co[rank]+'"></div></div><p style="text-align:center;font-size:.9em">スコア: '+total+'/'+max+'（'+pct+'%）</p>';
+for(var c in cats){var ct2=cats[c];var cp=ct2.m?Math.round(ct2.s/ct2.m*100):0;h+='<div class="ct">'+c+'（'+cp+'%）</div>';if(ct2.issues.length){h+='<ul class="al">';ct2.issues.forEach(function(is){h+='<li>⚠ '+is+' → <strong>条項の追加・修正を検討</strong></li>'});h+='</ul>'}else h+='<p style="font-size:.9em;color:#38a169;margin:4px 0">✓ 問題なし</p>'}
+h+='<p style="margin-top:16px;font-size:.8em;color:#a0aec0;text-align:center">診断日: '+new Date().toLocaleDateString('ja-JP')+' | Kusasyu Legal Tech</p>';
+document.getElementById('res').innerHTML=h;document.getElementById('s2').classList.remove('active');document.getElementById('s3').classList.add('active')}
+</script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>相続空き家で使える補助金・税制優遇ガイド - kusasyu tools</title>
+<meta name="description" content="空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,相続空き家で使える補助金・税制優遇ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-2/">
+<meta property="og:title" content="相続空き家で使える補助金・税制優遇ガイド - kusasyu tools">
+<meta property="og:description" content="空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="相続空き家で使える補助金・税制優遇ガイド - kusasyu tools">
+<meta name="twitter:description" content="空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "相続空き家で使える補助金・税制優遇ガイド",
+  "description": "空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/guide-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-26"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>相続空き家で使える補助金・税制優遇ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>相続空き家で使える補助金・税制優遇ガイド</h1>
+  <p class="project-name">相続空き家、売る貸す活用どれが得？</p>
+  <div class="content">
+<h1>相続空き家で使える補助金・税制優遇ガイド</h1>
+<p><strong>「売る・壊す・直す」どの選択でも、使える制度を見逃さない。</strong></p>
+<hr />
+<h2>1. 相続空き家の3,000万円特別控除</h2>
+<p>相続した空き家を売却した際、譲渡所得から<strong>最大3,000万円</strong>を控除できる制度（租税特別措置法35条3項）。</p>
+<h3>適用条件</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>要件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>対象建物</strong></td>
+<td>1981年（昭和56年）5月31日以前に建築された戸建住宅</td>
+</tr>
+<tr>
+<td><strong>被相続人の居住</strong></td>
+<td>相続開始直前まで被相続人が一人で居住（老人ホーム入居も一定条件で可）</td>
+</tr>
+<tr>
+<td><strong>相続後の利用</strong></td>
+<td>相続から売却まで、居住・貸付・事業に使用していないこと</td>
+</tr>
+<tr>
+<td><strong>譲渡期限</strong></td>
+<td>相続開始日から<strong>3年後の12月31日</strong>まで</td>
+</tr>
+<tr>
+<td><strong>譲渡価額</strong></td>
+<td><strong>1億円以下</strong></td>
+</tr>
+<tr>
+<td><strong>耐震要件</strong></td>
+<td>①耐震リフォーム済みで新耐震基準適合、または②建物を解体して更地で譲渡</td>
+</tr>
+</tbody>
+</table>
+<h3>控除額の計算例</h3>
+<pre><code>売却価格：2,500万円
+取得費（不明のため概算）：2,500万円 × 5% = 125万円
+譲渡費用（仲介手数料等）：89万円
+────────────────────────
+譲渡所得：2,500万 − 125万 − 89万 = 2,286万円
+特別控除適用後：2,286万 − 2,286万 = 0円 → 税額ゼロ
+</code></pre>
+<blockquote>
+<p>控除がなければ、所得税・住民税（長期譲渡：約20.315%）で<strong>約464万円</strong>の納税が発生する。</p>
+</blockquote>
+<h3>手続きの流れ</h3>
+<ol>
+<li><strong>市区町村</strong>で「被相続人居住用家屋等確認書」を取得</li>
+<li>耐震改修または解体を実施（改修の場合は耐震基準適合証明書を取得）</li>
+<li>売買契約・引渡し</li>
+<li><strong>確定申告</strong>で譲渡所得の特例を申告（売却翌年の2〜3月）</li>
+</ol>
+<p><strong>必要書類</strong>: 登記事項証明書、被相続人の住民票除票、確認書、売買契約書の写し、耐震証明書または解体証明書</p>
+<hr />
+<h2>2. 自治体の解体・リフォーム補助金</h2>
+<h3>主な補助金の種類と補助額レンジ</h3>
+<table>
+<thead>
+<tr>
+<th>補助金の種類</th>
+<th>一般的な補助額</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>老朽空き家解体補助</strong></td>
+<td>上限50〜150万円（費用の1/3〜1/2）</td>
+<td>耐震不足・老朽化が条件の自治体が多い</td>
+</tr>
+<tr>
+<td><strong>耐震改修補助</strong></td>
+<td>上限100〜200万円（費用の1/2〜2/3）</td>
+<td>1981年以前の旧耐震建築が対象</td>
+</tr>
+<tr>
+<td><strong>リフォーム補助（空き家活用）</strong></td>
+<td>上限50〜200万円</td>
+<td>移住促進・地域活性化とセットの制度が多い</td>
+</tr>
+<tr>
+<td><strong>空き家バンク登録補助</strong></td>
+<td>上限30〜100万円</td>
+<td>空き家バンク登録が前提条件</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>補助額・条件は自治体により大きく異なる。<strong>年度予算に達し次第終了</strong>のため、早めの申請が重要。</p>
+</blockquote>
+<h3>自治体の補助金を探す方法</h3>
+<ul>
+<li><strong><a href="https://www.j-reform.com/reform-support/">地方公共団体における住宅リフォームに係る支援制度検索サイト</a></strong>: 都道府県・市区町村別に補助制度を検索</li>
+<li><strong>各自治体の公式サイト</strong>: 「○○市 空き家 補助金」で検索</li>
+<li><strong>空き家相談窓口</strong>: 各自治体の住宅課・都市計画課に電話で確認が最も確実</li>
+</ul>
+<p><strong>申請の一般的な流れ</strong>: 事前相談 → 申請書提出 → 交付決定通知 → 工事実施 → 完了報告 → 補助金交付</p>
+<blockquote>
+<p>⚠️ <strong>交付決定前に着工すると補助対象外</strong>になるケースがほとんど。必ず事前申請を。</p>
+</blockquote>
+<hr />
+<h2>3. 固定資産税 ── 住宅用地特例と「税額6倍」リスク</h2>
+<h3>住宅用地特例（減額措置）</h3>
+<p>住宅が建っている土地は、固定資産税が大幅に軽減される。</p>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>固定資産税</th>
+<th>都市計画税</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>小規模住宅用地</strong>（200㎡以下）</td>
+<td>評価額 × <strong>1/6</strong></td>
+<td>評価額 × 1/3</td>
+</tr>
+<tr>
+<td><strong>一般住宅用地</strong>（200㎡超部分）</td>
+<td>評価額 × <strong>1/3</strong></td>
+<td>評価額 × 2/3</td>
+</tr>
+</tbody>
+</table>
+<h3>特定空き家に指定されると？</h3>
+<p>空家等対策特別措置法により<strong>「特定空き家」に指定</strong>されると、住宅用地特例が解除される。</p>
+<h4>具体的な金額シミュレーション</h4>
+<p><strong>前提</strong>: 土地評価額1,200万円（200㎡以下）、税率1.4%</p>
+<table>
+<thead>
+<tr>
+<th>状態</th>
+<th>課税標準</th>
+<th>固定資産税（年額）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>住宅あり（特例適用）</td>
+<td>1,200万 × 1/6 = <strong>200万円</strong></td>
+<td><strong>2.8万円</strong></td>
+</tr>
+<tr>
+<td>特定空き家指定（特例解除）</td>
+<td>1,200万 × 70%※ = <strong>840万円</strong></td>
+<td><strong>11.76万円</strong></td>
+</tr>
+</tbody>
+</table>
+<p>※負担調整措置により評価額の70%程度が課税標準となるのが一般的</p>
+<blockquote>
+<p><strong>差額は年間約9万円、税負担は約4.2倍に増加。</strong>
+都市計画税を含めると実質的な負担増はさらに大きくなる。</p>
+</blockquote>
+<h3>特定空き家に指定される主な基準</h3>
+<ul>
+<li>倒壊など保安上危険な状態</li>
+<li>衛生上有害（ごみ放置、害虫等）</li>
+<li>景観を著しく損なう</li>
+<li>周辺の生活環境に悪影響</li>
+</ul>
+<hr />
+<h2>4. 制度活用の判断フローチャート</h2>
+<pre><code>相続した空き家がある
+　├─ 売却したい
+　│　├─ 旧耐震（1981年以前）→ 3,000万円特別控除を検討
+　│　│　├─ 耐震改修して売却（耐震改修補助を併用）
+　│　│　└─ 解体して更地売却（解体補助を併用）
+　│　└─ 新耐震（1981年以降）→ 通常の譲渡所得課税
+　│
+　├─ 活用したい（賃貸・自己利用）
+　│　└─ リフォーム補助・空き家バンク補助を検討
+　│
+　└─ 放置している
+　 　└─ ⚠️ 特定空き家指定リスク → 早期に方針決定を
+</code></pre>
+<hr />
+<h2>まとめ：使える制度チェックリスト</h2>
+<table>
+<thead>
+<tr>
+<th>やること</th>
+<th>活用できる制度</th>
+<th>効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空き家を売却</td>
+<td>3,000万円特別控除</td>
+<td>譲渡所得税が最大ゼロに</td>
+</tr>
+<tr>
+<td>解体して更地売却</td>
+<td>解体補助金 + 特別控除</td>
+<td>解体費用の軽減＋売却益非課税</td>
+</tr>
+<tr>
+<td>耐震改修して売却</td>
+<td>耐震改修補助 + 特別控除</td>
+<td>改修費軽減＋売却益非課税</td>
+</tr>
+<tr>
+<td>リフォームして活用</td>
+<td>リフォーム補助</td>
+<td>改修費50〜200万円軽減</td>
+</tr>
+<tr>
+<td>何もしない</td>
+<td>なし</td>
+<td>特定空き家指定で税額増のリスク</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>制度には期限と予算枠がある。</strong> 相続を知った時点で早めに専門家（税理士・不動産会社）に相談し、最適な組み合わせを選択しましょう。</p>
+</blockquote>
+<hr />
+<p><em>本記事の内容は2026年3月時点の制度に基づいています。最新の適用条件・補助額は各自治体窓口または国税庁サイトでご確認ください。</em></p>
+<p><strong>Kusasyu PropTech</strong> ── 不動産の「困った」をテクノロジーで解決</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

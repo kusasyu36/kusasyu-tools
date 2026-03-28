@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2028年義務化_対応度チェッカー＆ロードマップ - kusasyu tools</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#1a56db;--primary-light:#e8eefb;--green:#059669;--yellow:#d97706;--orange:#ea580c;--red:#dc2626;--gray:#64748b;--bg:#f8fafc;--white:#fff;--border:#e2e8f0;--text:#1e293b;--text-light:#64748b;--radius:12px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+.container{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+header{text-align:center;padding:32px 0 24px;border-bottom:2px solid var(--primary)}
+header h1{font-size:clamp(1.3rem,4vw,1.7rem);color:var(--primary);margin-bottom:8px}
+header p{color:var(--text-light);font-size:.9rem}
+.countdown-bar{background:linear-gradient(135deg,#1a56db,#3b82f6);color:#fff;border-radius:var(--radius);padding:20px;margin:24px 0;text-align:center}
+.countdown-bar .days{font-size:2.5rem;font-weight:800;letter-spacing:1px}
+.countdown-bar .label{font-size:.85rem;opacity:.9;margin-top:4px}
+.section{background:var(--white);border-radius:var(--radius);padding:24px;margin:20px 0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.section h2{font-size:1.15rem;color:var(--primary);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--primary-light);display:flex;align-items:center;gap:8px}
+.q-item{padding:16px 0;border-bottom:1px solid var(--border)}
+.q-item:last-child{border-bottom:none}
+.q-num{display:inline-block;background:var(--primary);color:#fff;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-size:.8rem;font-weight:700;margin-right:8px;flex-shrink:0}
+.q-text{font-weight:600;font-size:.95rem;margin-bottom:10px;display:flex;align-items:center}
+.q-hint{font-size:.8rem;color:var(--text-light);margin-bottom:10px;padding-left:36px}
+.options{display:flex;flex-wrap:wrap;gap:8px;padding-left:36px}
+.options label{display:block;padding:8px 16px;border:2px solid var(--border);border-radius:8px;cursor:pointer;font-size:.85rem;transition:all .15s;flex:1;min-width:120px;text-align:center}
+.options input{display:none}
+.options input:checked+span{color:var(--primary)}
+.options label:has(input:checked){border-color:var(--primary);background:var(--primary-light)}
+.options label:hover{border-color:#93b4f0}
+.btn-primary{background:var(--primary);color:#fff;border:none;padding:16px 40px;border-radius:var(--radius);font-size:1.05rem;font-weight:700;cursor:pointer;width:100%;margin-top:16px;transition:background .2s}
+.btn-primary:hover{background:#1346b8}
+.btn-secondary{background:var(--white);color:var(--primary);border:2px solid var(--primary);padding:10px 24px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{background:var(--primary-light)}
+#result{display:none}
+.grade-card{text-align:center;padding:32px;border-radius:var(--radius);margin-bottom:24px}
+.grade-card .grade{font-size:4rem;font-weight:900}
+.grade-card .grade-label{font-size:1.2rem;font-weight:700;margin-top:4px}
+.grade-card .score-detail{font-size:.9rem;margin-top:8px;opacity:.8}
+.grade-A{background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#065f46}
+.grade-B{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e}
+.grade-C{background:linear-gradient(135deg,#ffedd5,#fed7aa);color:#9a3412}
+.grade-D{background:linear-gradient(135deg,#fee2e2,#fecaca);color:#991b1b}
+.score-bar-wrap{background:#e2e8f0;border-radius:20px;height:20px;margin:16px 0 8px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:20px;transition:width .8s ease}
+.cat-scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}
+.cat-score-item{background:var(--bg);padding:12px;border-radius:8px;text-align:center}
+.cat-score-item .cat-name{font-size:.8rem;color:var(--text-light)}
+.cat-score-item .cat-val{font-size:1.3rem;font-weight:800;color:var(--primary);margin-top:4px}
+.timeline{position:relative;padding-left:32px;margin:16px 0}
+.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:3px;background:var(--border)}
+.tl-item{position:relative;padding:16px 0 16px 16px;border-bottom:1px dashed var(--border)}
+.tl-item:last-child{border-bottom:none}
+.tl-item::before{content:'';position:absolute;left:-26px;top:20px;width:14px;height:14px;border-radius:50%;border:3px solid var(--primary);background:var(--white);z-index:1}
+.tl-item.done::before{background:var(--green);border-color:var(--green)}
+.tl-item .tl-period{font-size:.8rem;font-weight:700;color:var(--primary);margin-bottom:4px}
+.tl-item .tl-title{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.tl-item .tl-desc{font-size:.85rem;color:var(--text-light)}
+.tl-item .tl-ref{font-size:.78rem;color:var(--gray);margin-top:4px;font-style:italic}
+.memo-area{margin-top:8px}
+.memo-area textarea{width:100%;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:.82rem;resize:vertical;min-height:44px;font-family:inherit}
+.memo-area textarea:focus{outline:none;border-color:var(--primary)}
+.actions-row{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.legal-note{font-size:.75rem;color:var(--text-light);margin-top:24px;padding:16px;background:var(--bg);border-radius:8px;border-left:3px solid var(--gray)}
+footer{text-align:center;padding:20px 0;font-size:.75rem;color:var(--text-light)}
+@media print{
+body{background:#fff;font-size:11pt}
+.container{max-width:100%;padding:0}
+.countdown-bar{background:#1a56db!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#quiz{display:none!important}
+.no-print{display:none!important}
+.section{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+.grade-card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.tl-item{break-inside:avoid}
+}
+</style>
+<meta name="description" content="2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,2028年義務化_対応度チェッカー＆ロードマップ">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-14/">
+<meta property="og:title" content="2028年義務化_対応度チェッカー＆ロードマップ - kusasyu tools">
+<meta property="og:description" content="2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2028年義務化_対応度チェッカー＆ロードマップ - kusasyu tools">
+<meta name="twitter:description" content="2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "2028年義務化_対応度チェッカー＆ロードマップ",
+  "description": "2028年のストレスチェック義務化（50人未満事業場）に向け、(1)自社の就業規則を貼り付けるだけで労働安全衛生法との適合ギャップを自動検出するHTMLツール、(2)実施に必要な全書式テンプレート一式、(3)準備状況を自己チェックできる対応度診断＆ロードマップツール の3点セット。既存のストレスチェックSaa",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-14/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">2028年義務化_対応度チェッカー＆ロードマップ</span></div>
+<div class="container">
+<header>
+<h1>2028年義務化 対応度チェッカー＆ロードマップ</h1>
+<p>ストレスチェック制度（50人未満事業場への拡大）準備状況を15問で診断</p>
+</header>
+
+<div class="countdown-bar">
+<div class="days" id="countdownDays">---</div>
+<div class="label">2028年4月1日（義務化開始）まで あと</div>
+</div>
+
+<div id="quiz">
+<div class="section">
+<h2>対応度チェック（全15問）</h2>
+<p style="font-size:.85rem;color:var(--text-light);margin-bottom:12px">各質問に最も近い回答を選んでください。所要時間：約5分</p>
+<div id="questions"></div>
+<button class="btn-primary no-print" onclick="diagnose()">診断する</button>
+<p id="errorMsg" style="color:var(--red);font-size:.85rem;margin-top:8px;display:none;text-align:center"></p>
+</div>
+</div>
+
+<div id="result">
+<div class="section">
+<h2>診断結果</h2>
+<div id="gradeCard" class="grade-card"></div>
+<div class="score-bar-wrap"><div id="scoreBar" class="score-bar-fill"></div></div>
+<p style="text-align:right;font-size:.8rem;color:var(--text-light)" id="scoreText"></p>
+<div id="catScores" class="cat-scores"></div>
+</div>
+
+<div class="section">
+<h2>対応ロードマップ</h2>
+<p style="font-size:.85rem;color:var(--text-light);margin-bottom:16px">判定結果に基づく、2028年4月の義務化開始までの具体的ステップです。各ステップにメモを残せます（自動保存）。</p>
+<div id="timeline" class="timeline"></div>
+</div>
+
+<div class="section">
+<h2>必要書式一覧</h2>
+<p style="font-size:.85rem;color:var(--text-light)">ストレスチェック制度の実施に必要な主要書式です（労働安全衛生法第66条の10関連）。</p>
+<ul style="margin:12px 0 0 20px;font-size:.88rem;line-height:2.2">
+<li><strong>ストレスチェック実施同意書</strong> ― 法第66条の10、規則第52条の12に基づく受検同意。結果は実施者が5年間保存。</li>
+<li><strong>ストレスチェック結果通知書</strong> ― 法第66条の10第2項、規則第52条の15に基づく本人通知。職業性ストレス簡易調査票（57項目）を使用。</li>
+<li><strong>面接指導申出書</strong> ― 法第66条の10第3項、規則第52条の16に基づく申出。申出を理由とする不利益取扱いは法律で禁止。</li>
+</ul>
+</div>
+
+<div class="actions-row no-print">
+<button class="btn-secondary" onclick="exportText()">テキストエクスポート</button>
+<button class="btn-secondary" onclick="window.print()">印刷する</button>
+<button class="btn-secondary" onclick="resetAll()">やり直す</button>
+</div>
+
+<div class="legal-note">
+<strong>ご注意：</strong>本ツールは2028年のストレスチェック義務化（50人未満事業場への拡大）に向けた準備状況の自己評価を目的とした参考ツールです。法的助言を構成するものではありません。具体的な対応については社会保険労務士・弁護士等の専門家にご相談ください。法的根拠：労働安全衛生法第66条の10、同法施行規則第52条の9〜第52条の21。使用調査票：職業性ストレス簡易調査票（57項目）。結果の保存義務5年間（規則第52条の12）。不利益取扱いの禁止（法第66条の10第3項）。
+</div>
+</div>
+
+<footer>Kusasyu Legal Tech — 2028年義務化 対応度チェッカー＆ロードマップ</footer>
+</div>
+
+<script>
+var QUESTIONS=[
+{cat:"制度理解",q:"2028年からストレスチェックが50人未満事業場にも義務化されることを知っていますか？",opts:["詳しく知っている","聞いたことはある","あまり知らない","全く知らない"]},
+{cat:"制度理解",q:"労働安全衛生法第66条の10（ストレスチェック制度）の概要を把握していますか？",opts:["条文レベルで把握","大まかに理解","名前だけ知っている","知らない"]},
+{cat:"制度理解",q:"職業性ストレス簡易調査票（57項目）の内容を確認したことがありますか？",opts:["内容を把握済み","見たことはある","存在は知っている","知らない"]},
+{cat:"体制整備",q:"ストレスチェックの実施者（医師・保健師等）の候補はいますか？",opts:["確定済み","候補あり・未確定","探し始めた段階","未着手"]},
+{cat:"体制整備",q:"ストレスチェックに関する社内担当者（実施事務従事者）は決まっていますか？",opts:["決定・周知済み","内定・未周知","検討中","未着手"]},
+{cat:"体制整備",q:"衛生委員会（または安全衛生委員会）の設置・運営状況はどうですか？",opts:["設置済み・稼働中","設置済み・形骸化","設置予定あり","未設置・予定なし"]},
+{cat:"規程・書式",q:"ストレスチェックに関する社内規程（実施規程等）の整備状況は？",opts:["整備済み","ドラフト作成中","検討段階","未着手"]},
+{cat:"規程・書式",q:"ストレスチェック実施同意書・結果通知書・面接指導申出書などの書式は準備していますか？",opts:["全書式を準備済み","一部準備済み","テンプレートを探している","未着手"]},
+{cat:"規程・書式",q:"就業規則にストレスチェック・メンタルヘルスに関する条項はありますか？",opts:["明記済み","関連する記載あり","記載なし・改定予定あり","記載なし・予定もなし"]},
+{cat:"実施準備",q:"ストレスチェックの実施方法（紙 or Web）は決まっていますか？",opts:["決定済み","比較検討中","情報収集中","未着手"]},
+{cat:"実施準備",q:"結果の保存方法と保存期間（5年間、規則第52条の12）について取り決めはありますか？",opts:["規程に明記済み","方針のみ決定","検討中","未着手"]},
+{cat:"実施準備",q:"高ストレス者への面接指導（法第66条の10第3項）の実施体制は整っていますか？",opts:["体制確立済み","医師と協議中","検討段階","未着手"]},
+{cat:"予算・周知",q:"ストレスチェック実施に関する予算は確保していますか？",opts:["予算確保済み","概算は把握","未試算","全く考えていない"]},
+{cat:"予算・周知",q:"従業員への制度説明・周知は行いましたか？",opts:["説明会実施済み","資料配布済み","計画中","未着手"]},
+{cat:"予算・周知",q:"不利益取扱いの禁止（法第66条の10第3項）について管理職に周知していますか？",opts:["研修実施済み","文書で通知済み","計画中","未着手"]}
+];
+
+var CATS=["制度理解","体制整備","規程・書式","実施準備","予算・周知"];
+var GRADE_INFO={
+A:{label:"準備万端",color:"grade-A",msg:"素晴らしい対応状況です。2028年の義務化にスムーズに移行できる見込みです。引き続き運用面の点検と従業員への定期的な周知を行いましょう。"},
+B:{label:"概ね順調",color:"grade-B",msg:"基本的な準備は進んでいます。不足している項目を2027年前半までに補完すれば、十分間に合います。下のロードマップで弱点を確認してください。"},
+C:{label:"要対策",color:"grade-C",msg:"いくつかの重要な準備が不足しています。今年度中に体制整備と書式準備に着手することを強くお勧めします。"},
+D:{label:"早急に着手を",color:"grade-D",msg:"準備はほぼこれからの状態です。まずは制度の概要把握と実施者の選定から始めましょう。本ロードマップに沿って一歩ずつ進めてください。"}
+};
+
+function buildQuestions(){
+var wrap=document.getElementById("questions");
+for(var i=0;i<QUESTIONS.length;i++){
+var q=QUESTIONS[i];
+var div=document.createElement("div");div.className="q-item";
+var optsHtml="";
+for(var j=0;j<q.opts.length;j++){
+optsHtml+='<label><input type="radio" name="q'+i+'" value="'+(3-j)+'"><span>'+q.opts[j]+'</span></label>';
+}
+div.innerHTML='<div class="q-text"><span class="q-num">'+(i+1)+'</span>'+q.q+'</div><div class="q-hint">カテゴリ：'+q.cat+'</div><div class="options">'+optsHtml+'</div>';
+wrap.appendChild(div);
+}
+}
+
+function calcCountdown(){
+var target=new Date(2028,3,1);
+var now=new Date();
+var diff=Math.ceil((target-now)/(1000*60*60*24));
+document.getElementById("countdownDays").textContent=diff>0?diff+"日":"義務化開始済み";
+}
+
+function diagnose(){
+var total=0;var catTotals={};var catCounts={};
+for(var c=0;c<CATS.length;c++){catTotals[CATS[c]]=0;catCounts[CATS[c]]=0;}
+for(var i=0;i<QUESTIONS.length;i++){
+var sel=document.querySelector('input[name="q'+i+'"]:checked');
+if(!sel){
+document.getElementById("errorMsg").style.display="block";
+document.getElementById("errorMsg").textContent="Q"+(i+1)+"が未回答です。全15問にお答えください。";
+return;
+}
+var v=parseInt(sel.value);total+=v;
+catTotals[QUESTIONS[i].cat]+=v;catCounts[QUESTIONS[i].cat]++;
+}
+document.getElementById("errorMsg").style.display="none";
+var pct=Math.round(total/45*100);
+var grade;
+if(total>=36)grade="A";else if(total>=24)grade="B";else if(total>=12)grade="C";else grade="D";
+showResult(grade,total,pct,catTotals,catCounts);
+}
+
+function showResult(grade,total,pct,catTotals,catCounts){
+var info=GRADE_INFO[grade];
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+document.getElementById("gradeCard").className="grade-card "+info.color;
+document.getElementById("gradeCard").innerHTML='<div class="grade">'+grade+'</div><div class="grade-label">'+info.label+'</div><div class="score-detail">'+total+' / 45 点（'+pct+'%）</div><p style="margin-top:12px;font-size:.9rem;text-align:left">'+info.msg+'</p>';
+var bar=document.getElementById("scoreBar");
+bar.style.width=pct+"%";
+bar.style.background=grade==="A"?"var(--green)":grade==="B"?"var(--yellow)":grade==="C"?"var(--orange)":"var(--red)";
+document.getElementById("scoreText").textContent=total+"点 / 45点満点";
+var catWrap=document.getElementById("catScores");catWrap.innerHTML="";
+for(var c=0;c<CATS.length;c++){
+var cat=CATS[c];var mx=catCounts[cat]*3;var vl=catTotals[cat];
+catWrap.innerHTML+='<div class="cat-score-item"><div class="cat-name">'+cat+'</div><div class="cat-val">'+vl+' / '+mx+'</div></div>';
+}
+buildTimeline(grade,catTotals);
+window.scrollTo({top:0,behavior:"smooth"});
+try{localStorage.setItem("sc_grade",grade);localStorage.setItem("sc_total",total);}catch(e){}
+}
+
+function buildTimeline(grade,catTotals){
+var steps=[];
+var now=new Date();var y=now.getFullYear();var m=now.getMonth()+1;
+function monthLabel(yr,mn){while(mn>12){mn-=12;yr++;}return yr+"年"+mn+"月";}
+
+if(grade==="D"||grade==="C"){
+steps.push({period:monthLabel(y,m)+"（今月）",title:"制度の概要を把握する",desc:"労働安全衛生法第66条の10を読み、ストレスチェック制度の目的・対象・罰則を理解する。厚生労働省の導入マニュアルをダウンロード。",ref:"参照：労働安全衛生法第66条の10、職業性ストレス簡易調査票（57項目）"});
+steps.push({period:monthLabel(y,m+1),title:"実施者（医師・保健師）の候補を選定",desc:"産業医契約がない場合は、地域産業保健センター（無料）の活用を検討。ストレスチェック実施同意書に記載する実施者の氏名・資格を確定する。",ref:"参照：ストレスチェック実施同意書の「実施者の氏名・資格」欄"});
+}
+if(grade==="D"||grade==="C"||catTotals["体制整備"]<6){
+steps.push({period:monthLabel(y,m+2),title:"実施事務従事者の選任・社内体制の構築",desc:"人事権を持たない担当者を実施事務従事者に選任。結果の取扱い権限を整理する（本人の同意なく事業者に結果が提供されない体制）。",ref:"参照：規則第52条の10（実施事務従事者の要件）"});
+}
+if(catTotals["規程・書式"]<6){
+steps.push({period:"2026年度中",title:"必要書式の整備",desc:"「ストレスチェック実施同意書」「ストレスチェック結果通知書」「面接指導申出書」の3書式を準備。自社の事業場名称・実施者情報を記入して完成させる。",ref:"参照：実施同意書（法第66条の10）、結果通知書（規則第52条の15）、面接指導申出書（規則第52条の16）"});
+steps.push({period:"2026年度中",title:"社内規程（実施規程）の策定",desc:"実施時期・対象者・結果の保存方法（5年間、規則第52条の12）・不利益取扱い禁止（法第66条の10第3項）を明文化。就業規則への反映も検討。",ref:""});
+}
+steps.push({period:"2027年前半",title:"実施方法の決定と予算確保",desc:"紙またはWebでの実施方法を決定。外部委託の場合は見積を取得して予算を確保する。",ref:""});
+steps.push({period:"2027年前半",title:"高ストレス者対応フローの確立",desc:"高ストレス者が面接指導申出書を提出した場合の対応手順を確定。面接指導を行う医師との連携体制を整備。申出を理由とする不利益取扱いは法律で禁止。",ref:"参照：面接指導申出書、法第66条の10第3項"});
+steps.push({period:"2027年後半",title:"管理職研修・従業員説明会の実施",desc:"不利益取扱いの禁止（受検の有無および結果を理由とする不利益な取扱いは行わない）を管理職に徹底周知。従業員には制度の目的と受検方法を説明する。",ref:"参照：法第66条の10第3項（不利益取扱いの禁止）"});
+if(grade!=="A"){
+steps.push({period:"2027年度末",title:"試行実施（プレ運用）",desc:"職業性ストレス簡易調査票（57項目）を用いてテスト実施。実施同意書の配布→回収→結果通知書の発行→面接指導申出の一連の流れを確認し、課題を洗い出す。",ref:"参照：職業性ストレス簡易調査票（57項目）、ストレスチェック結果通知書"});
+}
+steps.push({period:"2028年4月〜",title:"義務化開始・本番実施",desc:"年1回以上のストレスチェックを確実に実施。結果は実施者から本人に直接通知し、本人の同意なく事業者に提供しない。実施者が5年間保存する（規則第52条の12）。",ref:"参照：ストレスチェック結果通知書、規則第52条の12"});
+
+var tlWrap=document.getElementById("timeline");tlWrap.innerHTML="";
+for(var i=0;i<steps.length;i++){
+var s=steps[i];
+var saved="";try{saved=localStorage.getItem("sc_memo_"+i)||"";}catch(e){}
+tlWrap.innerHTML+='<div class="tl-item"><div class="tl-period">'+s.period+'</div><div class="tl-title">'+s.title+'</div><div class="tl-desc">'+s.desc+'</div>'+(s.ref?'<div class="tl-ref">'+s.ref+'</div>':'')+'<div class="memo-area no-print"><textarea placeholder="メモを入力（自動保存されます）" oninput="saveMemo('+i+',this.value)">'+saved+'</textarea></div></div>';
+}
+}
+
+function saveMemo(i,v){try{localStorage.setItem("sc_memo_"+i,v);}catch(e){}}
+
+function exportText(){
+var g,t;try{g=localStorage.getItem("sc_grade")||"-";t=localStorage.getItem("sc_total")||"-";}catch(e){g="-";t="-";}
+var d=new Date();var dateStr=d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate();
+var txt="【2028年義務化 対応度チェッカー 診断結果】\n";
+txt+="診断日："+dateStr+"\n";
+txt+="判定："+g+"（"+t+"/45点）\n\n";
+txt+="【必要書式一覧】\n";
+txt+="・ストレスチェック実施同意書（法第66条の10、規則第52条の12）\n";
+txt+="・ストレスチェック結果通知書（法第66条の10第2項、規則第52条の15）\n";
+txt+="  使用調査票：職業性ストレス簡易調査票（57項目）\n";
+txt+="・面接指導申出書（法第66条の10第3項、規則第52条の16）\n\n";
+txt+="【対応ロードマップ】\n";
+var items=document.querySelectorAll(".tl-item");
+for(var i=0;i<items.length;i++){
+var el=items[i];
+var p=el.querySelector(".tl-period").textContent;
+var ti=el.querySelector(".tl-title").textContent;
+var ds=el.querySelector(".tl-desc").textContent;
+var memo="";try{memo=localStorage.getItem("sc_memo_"+i)||"";}catch(e){}
+txt+=p+"："+ti+"\n";
+txt+="  "+ds+"\n";
+if(memo)txt+="  [メモ] "+memo+"\n";
+txt+="\n";
+}
+txt+="---\n";
+txt+="法的根拠：労働安全衛生法第66条の10、同法施行規則第52条の9〜第52条の21\n";
+txt+="※ 本診断は参考ツールであり法的助言を構成するものではありません。\n";
+
+var blob=new Blob([txt],{type:"text/plain;charset=utf-8"});
+var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+a.download="ストレスチェック対応度診断_"+d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+".txt";
+document.body.appendChild(a);a.click();document.body.removeChild(a);
+URL.revokeObjectURL(a.href);
+}
+
+function resetAll(){
+for(var i=0;i<20;i++){try{localStorage.removeItem("sc_memo_"+i);}catch(e){}}
+try{localStorage.removeItem("sc_grade");localStorage.removeItem("sc_total");}catch(e){}
+document.getElementById("quiz").style.display="block";
+document.getElementById("result").style.display="none";
+var radios=document.querySelectorAll('input[type="radio"]');
+for(var i=0;i<radios.length;i++)radios[i].checked=false;
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+buildQuestions();
+calcCountdown();
+setInterval(calcCountdown,86400000);
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>空き家3シナリオ収益比較シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.w{max-width:860px;margin:0 auto;padding:12px}
+header{background:linear-gradient(135deg,#2d5016,#48742c);color:#fff;padding:20px;border-radius:12px;margin-bottom:16px;text-align:center}
+header h1{font-size:1.25em}header p{font-size:.8em;opacity:.85}
+.c{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.c h2{font-size:1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.g{grid-template-columns:1fr}}
+label{display:block;font-size:.8em;font-weight:600;margin-bottom:3px;color:#4a5568}
+select,input[type=number]{width:100%;padding:9px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em}
+select:focus,input:focus{outline:none;border-color:#48742c;box-shadow:0 0 0 2px rgba(72,116,44,.2)}
+.btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,#48742c,#2d5016);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{opacity:.9}
+#R{display:none}
+canvas{width:100%;height:260px;display:block}
+.sc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+@media(max-width:600px){.sc{grid-template-columns:1fr}}
+.sb{padding:10px;border-radius:8px;font-size:.82em}
+.sb h3{font-size:.95em;margin-bottom:4px}
+.sb .v{font-size:1.15em;font-weight:700;margin-top:4px}
+.s1{background:#e6f2ff;border:1px solid #90cdf4}
+.s2{background:#f0fff4;border:1px solid #9ae6b4}
+.s3{background:#fffbeb;border:1px solid #fbd38d}
+.info{background:#f7fafc;border-radius:6px;padding:10px;margin-top:10px;font-size:.8em}
+.info h3{font-size:.9em;margin-bottom:4px}
+.ok{color:#38a169;font-weight:600}.ng{color:#e53e3e;font-weight:600}
+.bt{display:inline-block;background:#48742c;color:#fff;padding:2px 10px;border-radius:10px;font-size:.8em;font-weight:700}
+.note{font-size:.7em;color:#718096;margin-top:8px}
+</style>
+<meta name="description" content="空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,空き家3シナリオ収益比較シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-3/">
+<meta property="og:title" content="空き家3シナリオ収益比較シミュレーター - kusasyu tools">
+<meta property="og:description" content="空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空き家3シナリオ収益比較シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "空き家3シナリオ収益比較シミュレーター",
+  "description": "空き家を相続・保有する個人オーナー向けに、「売却・賃貸・用途変換（民泊/シェアオフィス等）」の3シナリオで収益・コスト・補助金を一括比較できるWebシミュレーターと、判断に必要な情報をまとめたガイドを提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">空き家3シナリオ収益比較シミュレーター</span></div>
+<div class="w">
+<header>
+<h1>空き家3シナリオ収益比較シミュレーター</h1>
+<p>売却・賃貸・民泊 — 5年/10年の手残りを一括比較</p>
+</header>
+<div class="c"><h2>物件情報を入力</h2>
+<div class="g">
+<div><label>築年数</label><input type="number" id="age" value="35" min="0" max="100"></div>
+<div><label>延床面積（㎡）</label><input type="number" id="area" value="90" min="10" max="500"></div>
+<div><label>都道府県</label><select id="pref">
+<option>東京都</option><option>大阪府</option><option>愛知県</option><option>福岡県</option><option>北海道</option><option selected>その他</option>
+</select></div>
+<div><label>立地タイプ</label><select id="loc">
+<option value="city">都市中心部</option><option value="local" selected>地方都市</option><option value="rural">郊外・農村</option>
+</select></div>
+<div><label>建物状態</label><select id="cond">
+<option value="good">良好</option><option value="repair" selected>要修繕</option><option value="bad">半壊</option>
+</select></div>
+<div><label>相続からの経過年数</label><input type="number" id="yrs" value="1" min="0" max="30"></div>
+</div>
+<button class="btn" onclick="run()">シミュレーション実行</button>
+</div>
+<div id="R">
+<div class="c"><h2>収益比較グラフ（万円）</h2><canvas id="cv"></canvas></div>
+<div class="c"><h2>シナリオ別 詳細</h2><div class="sc" id="cards"></div></div>
+<div class="c" id="sub"></div>
+<p class="note">※本シミュレーションは概算です。実際の金額は物件の個別条件により異なります。税理士・不動産会社にご相談ください。</p>
+</div>
+</div>
+<script>
+function run(){
+var age=+document.getElementById('age').value,
+area=+document.getElementById('area').value,
+pref=document.getElementById('pref').value,
+loc=document.getElementById('loc').value,
+cond=document.getElementById('cond').value,
+yrs=+document.getElementById('yrs').value;
+var up={city:{s:45,r:.18,m:.25},local:{s:20,r:.09,m:.13},rural:{s:8,r:.04,m:.06}};
+var pm={'東京都':1.6,'大阪府':1.2,'愛知県':1.1,'福岡県':1.0,'北海道':.85,'その他':1.0};
+var cf={good:1.0,repair:.7,bad:.35};
+var dep=Math.max(0.1,1-age*0.02);
+var p=pm[pref]||1,co=cf[cond],u=up[loc];
+var pv=Math.round(area*u.s*p*dep*co);
+var fee=Math.round(pv*0.033+6);
+var stx=Math.round(pv*0.04);
+var demo=cond==='bad'?Math.round(area*3.5):0;
+var sc=fee+stx+demo;
+var pre81=age>=(2026-1981),w3=yrs<=3,elig=pre81&&w3;
+var ded=elig?Math.min(Math.round(pv*0.2),600):0;
+var sn=pv-sc+ded;
+var mr=Math.round(area*u.r*p*co*10)/10;
+var renov=cond==='good'?0:cond==='repair'?Math.round(area*2):Math.round(area*4.5);
+var ar=Math.round(mr*12);
+var rc=Math.round(ar*0.05)+Math.round(pv*0.014)+Math.round(ar*0.05);
+var r5=ar*5-rc*5-renov,r10=ar*10-rc*10-renov;
+var dr=Math.round(area*u.m*p*co*0.8*10)/10;
+var occ=loc==='city'?0.65:loc==='local'?0.5:0.35;
+var days=Math.round(180*occ);
+var am=Math.round(dr*days);
+var rm=cond==='good'?Math.round(area*1):cond==='repair'?Math.round(area*3.5):Math.round(area*6);
+var fur=Math.round(area*1.2);
+var mc=Math.round(am*0.18)+Math.round(am*0.08)+Math.round(pv*0.014)+Math.round(am*0.03);
+var m5=am*5-mc*5-rm-fur,m10=am*10-mc*10-rm-fur;
+document.getElementById('R').style.display='block';
+draw([sn,r5,m5,sn,r10,m10]);
+var F=function(v){return(v>=0?'+':'')+v.toLocaleString()+'万円'};
+var b5=sn>=r5&&sn>=m5?'売却':r5>=m5?'賃貸':'民泊';
+var b10=sn>=r10&&sn>=m10?'売却':r10>=m10?'賃貸':'民泊';
+document.getElementById('cards').innerHTML=
+'<div class="sb s1"><h3>売却</h3><p>売却想定額: '+pv.toLocaleString()+'万円</p><p>諸費用: '+sc.toLocaleString()+'万円</p><p>控除効果: '+(ded>0?'+'+ded+'万円':'対象外')+'</p><p class="v">手残り: '+F(sn)+'</p></div>'+
+'<div class="sb s2"><h3>賃貸</h3><p>月額賃料: '+mr+'万円</p><p>初期改修: '+renov.toLocaleString()+'万円</p><p>年間経費: '+rc.toLocaleString()+'万円/年</p><p class="v">5年: '+F(r5)+'<br>10年: '+F(r10)+'</p></div>'+
+'<div class="sb s3"><h3>民泊</h3><p>1泊: '+dr+'万円 × 年'+days+'日</p><p>初期投資: '+(rm+fur).toLocaleString()+'万円</p><p>年間経費: '+mc.toLocaleString()+'万円/年</p><p class="v">5年: '+F(m5)+'<br>10年: '+F(m10)+'</p></div>';
+document.getElementById('sub').innerHTML=
+'<h2>補助金・特別控除の判定</h2>'+
+'<div class="info"><h3>相続空き家3,000万円特別控除</h3>'+
+'<p>① 昭和56年(1981年)以前の建築: <span class="'+(pre81?'ok':'ng')+'">'+(pre81?'該当':'非該当')+'（築'+age+'年）</span></p>'+
+'<p>② 相続後3年以内の譲渡: <span class="'+(w3?'ok':'ng')+'">'+(w3?'該当':'非該当')+'（経過'+yrs+'年）</span></p>'+
+'<p>③ 被相続人が一人暮らしであった（要別途確認）</p>'+
+'<p>④ 譲渡価額1億円以下（要別途確認）</p>'+
+'<p><strong>'+(elig?'<span class="ok">①②を満たしています。③④も満たせば最大3,000万円控除（税軽減約'+ded+'万円）が適用可能</span>':'<span class="ng">条件未充足のため適用困難です</span>')+'</strong></p></div>'+
+'<div class="info"><h3>解体補助金（参考レンジ）</h3>'+
+'<p>一般的な補助額: <strong>20〜100万円</strong>（自治体により異なる）</p>'+
+'<p>補助率: 解体費の1/3〜2/3が目安</p>'+
+'<p>本物件の解体費目安: <strong>約'+Math.round(area*3.5).toLocaleString()+'万円</strong>（木造'+area+'㎡×3.5万円/㎡）</p>'+
+'<p>→お住まいの自治体の空き家対策課にお問い合わせください</p></div>'+
+'<div class="info" style="background:#f0fff4;border:1px solid #9ae6b4"><h3>総合判定</h3>'+
+'<p>5年スパン: <span class="bt">'+b5+'</span> が最有利（'+F(b5==='売却'?sn:b5==='賃貸'?r5:m5)+'）</p>'+
+'<p>10年スパン: <span class="bt">'+b10+'</span> が最有利（'+F(b10==='売却'?sn:b10==='賃貸'?r10:m10)+'）</p></div>';
+}
+function draw(d){
+var cv=document.getElementById('cv');
+var dpr=window.devicePixelRatio||1;
+var W=cv.parentElement.clientWidth,H=260;
+cv.width=W*dpr;cv.height=H*dpr;
+cv.style.width=W+'px';cv.style.height=H+'px';
+var ctx=cv.getContext('2d');
+ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);
+var lb=['売却','賃貸','民泊'];
+var c1=['#3182ce','#38a169','#d69e2e'],c2=['#90cdf4','#9ae6b4','#fbd38d'];
+var mx=Math.max.apply(null,d.map(Math.abs))||1;
+var hasN=d.some(function(v){return v<0});
+var baseY=H-30,top=25,chartH=baseY-top;
+var zeroY=hasN?top+chartH*0.65:baseY;
+var gW=(W-80)/3;
+ctx.strokeStyle='#cbd5e0';ctx.lineWidth=1;
+ctx.beginPath();ctx.moveTo(45,baseY);ctx.lineTo(W-10,baseY);ctx.stroke();
+if(hasN){ctx.strokeStyle='#a0aec0';ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(45,zeroY);ctx.lineTo(W-10,zeroY);ctx.stroke();ctx.setLineDash([]);}
+for(var i=0;i<3;i++){
+var x=55+i*gW,bw=gW*0.32;
+for(var j=0;j<2;j++){
+var v=d[i+j*3],h=Math.abs(v)/mx*(chartH*0.55);
+var y=v>=0?zeroY-h:zeroY;
+ctx.fillStyle=j===0?c1[i]:c2[i];
+ctx.fillRect(x+j*(bw+3),y,bw,h);
+ctx.fillStyle='#1a202c';ctx.font='bold 10px sans-serif';ctx.textAlign='center';
+ctx.fillText(v.toLocaleString(),x+j*(bw+3)+bw/2,v>=0?y-3:y+h+11);
+}
+ctx.fillStyle='#4a5568';ctx.font='11px sans-serif';
+ctx.fillText(lb[i],x+bw+1,baseY+14);
+}
+ctx.font='10px sans-serif';ctx.textAlign='left';
+ctx.fillStyle=c1[0];ctx.fillRect(W-130,6,10,10);ctx.fillStyle='#1a202c';ctx.fillText('5年',W-117,15);
+ctx.fillStyle=c2[0];ctx.fillRect(W-80,6,10,10);ctx.fillStyle='#1a202c';ctx.fillText('10年',W-67,15);
+}
+window.onresize=function(){if(document.getElementById('R').style.display!=='none')run()};
+</script>
+</body>
+</html>

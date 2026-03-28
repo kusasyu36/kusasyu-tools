@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>契約書リスク診断ツール（対話型・製造業特化） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f4f6f9;color:#222;line-height:1.6}
+.w{max-width:640px;margin:0 auto;padding:16px}h1{font-size:1.2em;text-align:center;color:#1a3353;padding:16px 0 4px}
+.sub{text-align:center;font-size:.8em;color:#777;margin-bottom:16px}
+.c{background:#fff;border-radius:10px;padding:18px;margin-bottom:12px;box-shadow:0 1px 6px #0001}
+.c h2{font-size:1em;color:#0d2137;margin-bottom:10px}
+.opt label{display:block;padding:8px 10px;margin:4px 0;border:2px solid #e2e2e2;border-radius:8px;cursor:pointer;font-size:.85em;transition:.15s}
+.opt label:hover{border-color:#3b82f6}.opt input{margin-right:6px}
+.b{width:100%;padding:12px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;color:#fff;background:#1a3353;margin-top:8px}
+.b:hover{opacity:.88}.b:disabled{opacity:.4;cursor:default}
+.bar{height:8px;background:#e5e5e5;border-radius:4px;overflow:hidden;margin:4px 0 10px}
+.bf{height:100%;border-radius:4px;transition:width .5s}
+.hi{background:#ef4444}.mi{background:#f59e0b}.lo{background:#22c55e}
+.tag{display:inline-block;padding:1px 7px;border-radius:4px;font-size:.72em;font-weight:700;color:#fff;margin-right:4px}
+.adv{background:#fef3c7;border-left:3px solid #f59e0b;padding:8px 10px;margin:4px 0 8px;font-size:.82em;border-radius:0 6px 6px 0}
+.prog{height:4px;background:#e5e5e5;border-radius:2px;margin-bottom:12px}.pf{height:100%;background:#3b82f6;border-radius:2px;transition:width .3s}
+.d{font-size:.72em;color:#999;text-align:center;margin-top:16px}
+#R{display:none}
+</style><meta name="description" content="製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,契約書リスク診断ツール（対話型・製造業特化）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-20/">
+<meta property="og:title" content="契約書リスク診断ツール（対話型・製造業特化） - kusasyu tools">
+<meta property="og:description" content="製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-20/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約書リスク診断ツール（対話型・製造業特化） - kusasyu tools">
+<meta name="twitter:description" content="製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "契約書リスク診断ツール（対話型・製造業特化）",
+  "description": "製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-20/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">契約書リスク診断ツール（対話型・製造業特化）</span></div><div class="w">
+<h1>契約書リスク診断ツール</h1>
+<p class="sub">製造業特化｜12観点×選択式｜修正文案付き</p>
+<div id="S"><div class="c"><h2>契約種別を選択</h2>
+<div class="opt" id="tp"></div>
+<button class="b" onclick="start()" id="sb" disabled>診断開始</button></div></div>
+<div id="Q" style="display:none"><div class="prog"><div class="pf" id="pg"></div></div>
+<div class="c"><h2 id="qn"></h2><div class="opt" id="qo"></div>
+<button class="b" onclick="next()" id="nb" disabled>次へ</button></div></div>
+<div id="R"><div class="c" id="rs"></div></div>
+<p class="d">© Kusasyu Legal Tech — 本診断は参考情報です。実務では弁護士にご相談ください。</p>
+</div><script>
+const T=["NDA（秘密保持契約）","売買基本契約","業務委託契約"],
+D=[
+["秘密保持の範囲",[["明確に限定定義",0],["やや広範だが合理的",1],["無制限または未定義",3]],"修正案:「秘密情報」を別紙で具体列挙し公知情報を除外する条項を追加"],
+["損害賠償の上限",[["契約金額以内に限定",0],["上限なし・直接損害のみ",1],["上限なし・間接損害含む",3]],"交渉:「賠償額は受領済み対価を上限」とする条項の追加を要請"],
+["知的財産権の帰属",[["自社に帰属と明記",0],["共有または協議で決定",1],["相手方に全帰属",3]],"修正案:「製造ノウハウは提供側に留保」と明記し改良発明は共有とする"],
+["品質保証・瑕疵担保",[["検収後1年・修補優先",0],["検収後6ヶ月・代替納品",1],["無期限または記載なし",3]],"交渉:「瑕疵担保は検収後12ヶ月、修補→代品→減額の順」を提案"],
+["納期遅延ペナルティ",[["遅延日数×定率で上限あり",0],["遅延で即時解除権が発生",2],["ペナルティ規定なし",1]],"修正案:「遅延損害金は納品額の0.1%/日、上限10%」に限定を要請"],
+["検収条件",[["検査基準・期間を明記",0],["期間のみ記載あり",1],["みなし検収・条件不明",3]],"交渉:「検査基準書を別紙添付、検収14日、不合格は書面通知」を要請"],
+["不可抗力条項",[["定義・通知義務・解除権あり",0],["定義のみ記載",1],["条項自体がない",3]],"修正案:「天災・疫病・輸出規制を含む不可抗力は免責、30日超で解除可」を追加"],
+["再委託の制限",[["事前書面承諾が必要",0],["届出制（事後報告可）",1],["制限なし・記載なし",3]],"交渉:「再委託は書面承諾制、品質責任は受託者が負う」旨を追加"],
+["契約解除条件",[["催告解除＋無催告事由を列挙",0],["任意解除権が一方のみ",2],["解除条項なし",3]],"修正案:「重大違反は催告14日、倒産等は即時解除、双方同条件」に修正"],
+["競業避止義務",[["期間・地域・範囲が限定的",0],["範囲がやや広い",1],["無期限・広範・一方的",3]],"交渉:「競業避止は契約終了後1年、対象製品カテゴリのみ」に限定を要請"],
+["準拠法・紛争解決",[["日本法・合意管轄を明記",0],["準拠法のみ記載",1],["記載なし・海外法",3]],"修正案:「準拠法は日本法、東京地裁を第一審の専属合意管轄」を追加"],
+["契約期間・自動更新",[["期間明記・更新は書面合意",0],["自動更新・解約通知30日前",1],["自動更新・解約条件不明",3]],"交渉:「期間1年、更新は60日前に書面合意、デフォルトは終了」に変更を要請"]
+];
+let ct=-1,ci=0,ans=[];
+const $=id=>document.getElementById(id);
+T.forEach((t,i)=>{let l=document.createElement('label');
+l.innerHTML='<input type="radio" name="ct" value="'+i+'" onchange="ct='+i+';$(\'sb\').disabled=false">'+t;$('tp').appendChild(l);});
+function start(){$('S').style.display='none';$('Q').style.display='';show();}
+function show(){let q=D[ci];$('qn').textContent='Q'+(ci+1)+'/12：'+q[0];
+$('pg').style.width=(ci/12*100)+'%';let h='';
+q[1].forEach((o,j)=>{h+='<label><input type="radio" name="qi" value="'+j+'" onchange="$(\'nb\').disabled=false">'+o[0]+'</label>';});
+$('qo').innerHTML=h;$('nb').disabled=true;}
+function next(){let v=+document.querySelector('input[name="qi"]:checked').value;
+ans.push(v);ci++;if(ci<12)show();else result();}
+function result(){$('Q').style.display='none';$('R').style.display='';
+let total=0,h='<h2>診断結果【'+T[ct]+'】</h2>';
+let items=D.map((q,i)=>{let s=q[1][ans[i]][1];total+=s;return{n:q[0],s:s,a:q[2]};});
+let pct=Math.round((1-total/36)*100),lv=total<=8?'安全':total<=18?'要注意':'高リスク',
+lc=total<=8?'#22c55e':total<=18?'#f59e0b':'#ef4444';
+h+='<div style="text-align:center;padding:16px"><div style="font-size:2.8em;font-weight:900;color:'+lc+'">'+lv+'</div>';
+h+='<div style="font-size:.9em;color:#666;margin:4px 0">総合スコア: '+total+'/36（安全度'+pct+'%）</div></div>';
+items.forEach(it=>{let cl=it.s===0?'#22c55e':it.s<=1?'#f59e0b':'#ef4444',
+c=it.s===0?'lo':it.s<=1?'mi':'hi',w=Math.round(it.s/3*100);
+h+='<div style="margin-top:8px"><span class="tag" style="background:'+cl+'">'+(it.s===0?'低':it.s<=1?'中':'高')+'</span><b>'+it.n+'</b>';
+h+='<div class="bar"><div class="bf '+c+'" style="width:'+w+'%"></div></div>';
+if(it.s>=2)h+='<div class="adv">⚠ '+it.a+'</div>';h+='</div>';});
+let hi=items.filter(i=>i.s>=2).length;
+h+='<div style="margin-top:16px;padding:12px;background:#f0f4ff;border-radius:8px;font-size:.85em"><b>要対応: '+hi+'件</b><br>';
+h+=hi===0?'重大リスクなし。軽微な改善点を確認してください。':hi<=3?hi+'件の高リスク観点について上記の修正案を参考に相手方と協議してください。':'高リスク多数。契約締結前に弁護士への相談を強く推奨します。';
+h+='</div><button class="b" onclick="location.reload()" style="margin-top:12px">もう一度診断する</button>';
+$('rs').innerHTML=h;}
+</script></body></html>

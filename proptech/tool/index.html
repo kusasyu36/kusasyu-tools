@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説を受け取ったら聞く「お金の質問」20選 - kusasyu tools</title>
+<meta name="description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説を受け取ったら聞く「お金の質問」20選">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool/">
+<meta property="og:title" content="重説を受け取ったら聞く「お金の質問」20選 - kusasyu tools">
+<meta property="og:description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説を受け取ったら聞く「お金の質問」20選 - kusasyu tools">
+<meta name="twitter:description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説を受け取ったら聞く「お金の質問」20選",
+  "description": "重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説を受け取ったら聞く「お金の質問」20選</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説を受け取ったら聞く「お金の質問」20選</h1>
+  <p class="project-name">その重説、追加コストいくら隠れてる？</p>
+  <div class="content">
+<h1>重説を受け取ったら聞く「お金の質問」20選</h1>
+<p><strong>PropCostScan｜重説コストスキャナー 連動チェックリスト</strong></p>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li>重要事項説明書を受け取ったら、本リストを印刷またはスマホで開く</li>
+<li>該当する質問を担当者に口頭で確認し、回答欄にメモする</li>
+<li>「購入」「賃貸」マークで自分に該当する質問を優先する</li>
+<li>回答が曖昧な場合は「書面でください」と依頼する</li>
+<li>帰宅後、<a href="/">PropCostScan｜重説コストスキャナー</a>に数値を入力して追加コストを可視化する</li>
+</ol>
+<blockquote>
+<p><strong>凡例</strong> 🏠 = 購入向け ／ 🔑 = 賃貸向け ／ ⚠️ = 聞かないと損する最重要質問</p>
+</blockquote>
+<hr />
+<h2>A｜修繕積立金・管理費（マンション）</h2>
+<h3>質問1 ⚠️🏠｜長期修繕計画書を見せてもらえますか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 修繕積立金は5年・10年で段階値上げされるケースが大半。計画書を見ないと将来の月額がわからない</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「第3回（築15年）で月額8,500円→15,200円に改定予定」</li>
+</ul>
+<h3>質問2 ⚠️🏠｜修繕積立金の現在の残高と、直近の大規模修繕の実施時期はいつですか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 残高不足だと一時金の徴収や借入が発生する。直近の実施時期で次回の目安もわかる</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「残高4,800万円。前回大規模修繕は2021年（築12年時）」</li>
+</ul>
+<h3>質問3 🏠｜管理費の改定予定はありますか？過去5年で値上げは何回ありましたか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 管理費も理事会決議で値上げされる。過去の頻度が将来の予測材料になる</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「2023年に月額12,000円→13,500円へ改定。次回改定予定なし」</li>
+</ul>
+<hr />
+<h2>B｜手付金・違約金・契約解除</h2>
+<h3>質問4 ⚠️🏠｜手付解除の場合、違約金率は売買価格の何%ですか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 手付金放棄だけでなく、違約金条項が別に設定されている場合がある</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「手付金100万円の放棄。違約金は売買価格の20%（別途）」</li>
+</ul>
+<h3>質問5 🏠｜ローン特約の期限はいつですか？期限を過ぎた場合のペナルティは？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: ローン特約期限を過ぎると白紙解除ができず、違約金が発生する</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「契約日から30日以内。期限超過後は手付放棄＋違約金20%」</li>
+</ul>
+<h3>質問6 🔑｜中途解約の場合、違約金は家賃何か月分ですか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 定期借家では中途解約不可の場合もある。普通借家でも1〜2か月分の違約金が一般的</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「1年未満の解約は家賃1か月分。1年以上は違約金なし」</li>
+</ul>
+<hr />
+<h2>C｜税金・公租公課</h2>
+<h3>質問7 🏠｜固定資産税・都市計画税の年額はいくらですか？軽減措置の残り期間は？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 新築軽減（固定資産税1/2）は戸建て3年・マンション5年で終了し、税額が倍増する</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「年額98,000円（軽減適用中）。軽減終了後は約185,000円」</li>
+</ul>
+<h3>質問8 🏠｜不動産取得税の概算額は把握できますか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 入居後半年〜1年で届く"忘れた頃の税金"。軽減申告しないと満額請求される</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「課税標準額1,800万円 × 3% ＝ 54万円。軽減申告で0円の見込み」</li>
+</ul>
+<hr />
+<h2>D｜都市計画・用途地域・建築制限</h2>
+<h3>質問9 🏠｜用途地域の制限で、将来の増築・リフォームに制約はありますか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 建ぺい率・容積率オーバーの既存不適格物件は、建替え時に今より小さくなる</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「第一種低層住居専用地域。建ぺい率50%・容積率100%。現況は適合」</li>
+</ul>
+<h3>質問10 🏠｜都市計画道路・区画整理の予定区域に入っていませんか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 計画道路上の建物はRC造の建築が制限される場合がある。将来の立退きリスクも</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「都市計画道路の計画区域外。区画整理事業の予定なし」</li>
+</ul>
+<hr />
+<h2>E｜地盤・災害リスク・保険</h2>
+<h3>質問11 ⚠️🏠🔑｜ハザードマップ上の浸水想定区域・土砂災害警戒区域に該当しますか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 該当すると火災保険の水災特約料が高くなり、年間数万円の差が出る</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「洪水浸水想定0.5〜3m区域。土砂災害警戒区域外」</li>
+</ul>
+<h3>質問12 🏠｜地盤調査報告書はありますか？過去に地盤改良工事は実施されましたか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 軟弱地盤は不同沈下リスクがあり、地盤改良費100〜300万円が後から発生することも</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「地盤調査済み。柱状改良（深さ5m、28本）実施済み」</li>
+</ul>
+<h3>質問13 🏠｜火災保険・地震保険の概算年額を教えてもらえますか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 構造（木造/RC）・所在地・築年数で保険料は大きく変わる。年間5〜15万円の幅がある</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「火災保険5年一括18万円＋地震保険5年9万円＝計27万円」</li>
+</ul>
+<hr />
+<h2>F｜設備・インフラ・瑕疵</h2>
+<h3>質問14 🏠｜設備の故障・不具合の告知事項はありますか？引渡し後の保証期間は？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 個人間売買は瑕疵担保免責が多い。引渡し後に給湯器交換（15〜30万円）等が自己負担に</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「給湯器（築18年・交換推奨）。契約不適合責任は引渡し後3か月」</li>
+</ul>
+<h3>質問15 🏠🔑｜上下水道・ガスの引込み状況と、私設管の場合の維持費負担は？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 私設管（私道下の配管）だと修繕費を近隣と按分する。公設管への切替え工事は50〜100万円</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「公営水道・公共下水。都市ガス引込み済み。全て公設管」</li>
+</ul>
+<hr />
+<h2>G｜賃貸特有の費用</h2>
+<h3>質問16 🔑｜更新料は家賃何か月分ですか？更新事務手数料は別途かかりますか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 更新料＋事務手数料で家賃2か月分近くになるケースもある</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「更新料：家賃1か月分。更新事務手数料：0.5か月分（税別）」</li>
+</ul>
+<h3>質問17 🔑｜原状回復の費用負担の基準は？ガイドライン準拠ですか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 国交省ガイドラインでは通常損耗は貸主負担だが、特約で借主負担にしている場合がある</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「国交省ガイドライン準拠。ただしハウスクリーニング費35,000円は借主負担（特約）」</li>
+</ul>
+<h3>質問18 ⚠️🔑｜退去時の敷金返還の条件と、差し引かれる項目を具体的に教えてください</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 「敷金1か月」でも全額差し引かれるケースが多い。事前に項目を把握しておく</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「敷金12万円。クリーニング代35,000円＋鍵交換15,000円を差引き、残額返還」</li>
+</ul>
+<hr />
+<h2>H｜諸費用・その他</h2>
+<h3>質問19 🏠｜仲介手数料は法定上限（売買価格×3%＋6万円＋税）ですか？値引き交渉は可能ですか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 法定上限はあくまで上限。交渉で半額になる場合もある</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「法定上限額（3,000万円×3%＋6万円＝96万円＋税）。値引き不可」</li>
+</ul>
+<h3>質問20 🏠🔑｜この物件で、入居後に追加でかかる費用として他に把握しておくべきものはありますか？</h3>
+<ul>
+<li><strong>なぜ聞く</strong>: 町内会費、ケーブルTV強制加入、駐車場・駐輪場の別途費用など、重説に書かれにくい費用がある</li>
+<li><strong>回答欄</strong>: ____________________</li>
+<li>[記入例] 「町内会費：年3,600円。インターネット利用料：月1,100円（全戸一括加入）」</li>
+</ul>
+<hr />
+<h2>確認済みチェック表</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>質問</th>
+<th>確認日</th>
+<th>担当者名</th>
+<th>回答の納得度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>長期修繕計画書</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>2</td>
+<td>修繕積立金残高</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>3</td>
+<td>管理費改定</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>4</td>
+<td>手付解除・違約金</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>5</td>
+<td>ローン特約期限</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>6</td>
+<td>中途解約違約金</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>7</td>
+<td>固定資産税・軽減</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>8</td>
+<td>不動産取得税</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>9</td>
+<td>増築・リフォーム制限</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>10</td>
+<td>都市計画道路</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>11</td>
+<td>ハザードマップ</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>12</td>
+<td>地盤調査</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>13</td>
+<td>火災保険・地震保険</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>14</td>
+<td>設備告知・保証</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>15</td>
+<td>上下水道・ガス</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>16</td>
+<td>更新料</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>17</td>
+<td>原状回復基準</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>18</td>
+<td>敷金返還条件</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>19</td>
+<td>仲介手数料</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+<tr>
+<td>20</td>
+<td>その他の隠れ費用</td>
+<td>__/__/__</td>
+<td>______</td>
+<td>□納得 □要再確認</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>💡 ヒント</strong>: 回答をメモしたら、<a href="/">PropCostScan｜重説コストスキャナー</a>に金額を入力すると、5年・10年の追加コストを自動で可視化できます。</p>
+<p><strong>作成</strong>: Kusasyu PropTech ／ 最終更新: 2026年3月</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

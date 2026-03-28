@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>製造業の「危ない条項」修正文案＋交渉フレーズ集 - kusasyu tools</title>
+<meta name="description" content="製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,製造業の「危ない条項」修正文案＋交渉フレーズ集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-21/">
+<meta property="og:title" content="製造業の「危ない条項」修正文案＋交渉フレーズ集 - kusasyu tools">
+<meta property="og:description" content="製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-21/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="製造業の「危ない条項」修正文案＋交渉フレーズ集 - kusasyu tools">
+<meta name="twitter:description" content="製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "製造業の「危ない条項」修正文案＋交渉フレーズ集",
+  "description": "製造業の中小企業が取引先から受け取るNDA・売買契約書・業務委託契約書のテキストを貼り付けるだけで、条項ごとにリスクスコア（0〜10）を自動判定し、不利な条項には具体的な修正文案を提示するHTMLツール。LegalOn・LeCHECKが月額数万〜数十万円で提供する機能のうち「条項別リスク可視化＋修正案提示」の",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-21/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-26"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>製造業の「危ない条項」修正文案＋交渉フレーズ集</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>製造業の「危ない条項」修正文案＋交渉フレーズ集</h1>
+  <p class="project-name">その契約書、不利かも？条項リスク自動採点ツール</p>
+  <div class="content">
+<h1>製造業の「危ない条項」修正文案＋交渉フレーズ集</h1>
+<blockquote>
+<p><strong>本書の使い方</strong>
+「契約書リスク診断ツール（製造業特化｜12観点×選択式｜修正文案付き）」で高リスク（スコア7以上）と判定された条項について、本フレーズ集の該当番号を参照してください。各項目に<strong>①なぜ危険か → ②修正文案 → ③交渉フレーズ</strong>をセットで掲載しています。修正文案の [　] 部分を自社の実情に合わせて書き換え、取引先への回答書・修正依頼メールにそのまま貼り付けてお使いください。</p>
+</blockquote>
+<hr />
+<h2>不利条項 No.1｜瑕疵担保（契約不適合）責任の期間が過大</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「瑕疵担保・契約不適合責任」</p>
+<p><strong>なぜ危険か</strong>
+民法上の消滅時効は「知った時から5年」だが、製造業の契約書では「引渡後3年間」「無期限」などと書かれることがある。部品の設計寿命を超える保証期間は、過去の全納品ロットに遡及するリスクを生む。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>買主は、本製品の契約不適合を発見したときは、検収完了日から [6か月] 以内に売主へ書面で通知するものとし、当該期間を経過した後は請求できないものとする。ただし、売主の故意または重過失による場合はこの限りでない。</p>
+<p>[記入例] 6か月 → 自社製品の標準保証期間に合わせて設定。金属加工品なら6か月〜1年が業界慣行</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「弊社の品質管理体系では出荷後 [6か月] の保証期間を設けており、同業他社様との取引でもこの期間で運用しております。御社の品質基準を満たすため検収プロセスを厳格に運用する前提で、この期間にてご了承いただけないでしょうか。」</p>
+<hr />
+<h2>不利条項 No.2｜技術ノウハウの無制限開示義務</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「秘密情報・NDAの範囲」</p>
+<p><strong>なぜ危険か</strong>
+NDAに「甲が要求する一切の技術情報を開示する」と定められると、自社のコア製造ノウハウまで相手に渡す義務が生じる。情報を受領した側が競合に転注する際の「踏み台」にされる実例が多い。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>開示の対象は、本取引の目的達成に合理的に必要な範囲の技術情報に限る。開示当事者が営業秘密として管理する製造プロセスの詳細は、別途書面にて個別合意した場合を除き、開示義務の対象外とする。</p>
+<p>[記入例] 「金型設計データ」「表面処理の配合比率」等、自社のコア技術を具体的に除外リストへ記載</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「情報開示には全面的に協力いたしますが、弊社の製造ノウハウの核心部分につきましては、御社との長期的な取引関係を守るためにも、個別に協議のうえ範囲を確定させていただければ幸いです。」</p>
+<hr />
+<h2>不利条項 No.3｜一方的解除条項（催告なし即時解除）</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「契約解除・中途解約条件」</p>
+<p><strong>なぜ危険か</strong>
+「甲はいつでも催告なく本契約を解除できる」という条項があると、金型投資・材料調達後に一方的に切られても損害を請求できない。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>当事者の一方が解除を行う場合、相手方に対し [30日] 前までに書面で催告し、催告期間内に是正されない場合に限り解除できるものとする。ただし、発注済み製品に係る材料費・加工費は解除後も支払うものとする。</p>
+<p>[記入例] 30日 → 原材料の調達リードタイムに応じて設定（鋳物・特殊鋼なら60日が妥当）</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「弊社では御社向けに専用材料を先行手配しておりますので、万一の解除の場合にも [30日] の猶予期間と、発注済み分の費用精算をお願いできれば、安定供給体制を維持できます。」</p>
+<hr />
+<h2>不利条項 No.4｜知的財産権の全権移転</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「知的財産権の帰属」</p>
+<p><strong>なぜ危険か</strong>
+「本取引で生じた発明・考案の一切の権利は甲に帰属する」と書かれると、自社が開発した治具・工程改善のノウハウまで無償で相手のものになる。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>本取引の遂行に伴い新たに生じた発明等について、甲の仕様書に基づく部分は甲に帰属し、乙が独自に開発した製造方法・治具に係る権利は乙に帰属する。共同で生じた発明等は甲乙共有とし、持分は別途協議のうえ定める。</p>
+<p>[記入例] 「乙独自」の範囲 → 自社が費用負担した治具・自社既存特許の改良など</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「弊社が自費で開発した製造プロセス部分の権利についてのみ、弊社帰属とさせていただきたく存じます。御社の設計に基づく成果物の権利は御社帰属で異存ございません。」</p>
+<hr />
+<h2>不利条項 No.5｜損害賠償の上限なし</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「損害賠償の範囲・上限」</p>
+<p><strong>なぜ危険か</strong>
+「逸失利益を含む一切の損害を賠償する」とあると、取引先の後工程・最終製品の損害まで際限なく請求される可能性がある。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>売主の損害賠償額は、当該契約不適合に係る個別注文金額を上限とする。いかなる場合も間接損害・逸失利益は賠償の対象としない。</p>
+<p>[記入例] 個別注文金額 → 年間取引額の20%等、自社のリスク許容度に応じて設定</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「万一の品質トラブル時に迅速な対応をお約束するためにも、賠償範囲を該当ロットの注文金額内とさせていただくことで、双方にとって予見可能な取引条件にできればと存じます。」</p>
+<hr />
+<h2>不利条項 No.6｜検収条件の曖昧さ（無期限みなし合格なし）</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「検収条件・合格基準」</p>
+<p><strong>なぜ危険か</strong>
+検収期限の定めがないと、納品後数か月経ってから「不合格」と言われ、代金支払いを拒否される。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>買主は納品日から [10営業日] 以内に検収を完了する。期間内に書面での不合格通知がない場合、検収合格とみなす。</p>
+<p>[記入例] 10営業日 → 製品特性に応じて5〜15営業日で設定</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「品質問題の早期発見は双方のメリットですので、検収期間を [10営業日] と明確化し、みなし合格条項を設けることをご提案いたします。」</p>
+<hr />
+<h2>不利条項 No.7｜下請法違反の支払条件（60日超）</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「支払条件・支払サイト」</p>
+<p><strong>なぜ危険か</strong>
+下請法では受領日から60日以内の支払が義務。「月末締め翌々月末払い（最大90日）」は違法であり、遅延利息14.6%の請求根拠となる。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>買主は、検収完了月の翌月 [末日] までに代金を支払う。</p>
+<p>[記入例] 末日 → 下請法の60日ルールに収まる最長の締日・支払日を設定</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「下請法の観点から、受領後60日以内のお支払いサイトでお願いしております。御社の経理サイクルに合わせ、月末締め翌月末払いでいかがでしょうか。」</p>
+<hr />
+<h2>不利条項 No.8｜競業避止義務の過大な範囲</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「競業避止・排他条項」</p>
+<p><strong>なぜ危険か</strong>
+「契約期間中および終了後 [3年間]、同種製品の製造を禁じる」とあると、主力事業そのものが制約される。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>競業避止義務は、甲が書面で指定した [特定製品名] に限り、契約終了後 [1年間] を上限とする。乙の既存製品ラインおよび汎用技術を用いた製造はこの限りでない。</p>
+<p>[記入例] 特定製品名 → 「A社向け専用センサーモジュール」等、具体的に限定</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「弊社の事業継続性を確保するため、競業避止の対象を御社専用品に限定し、期間も [1年] とさせていただけますと、御社向けの品質投資にも安心して取り組めます。」</p>
+<hr />
+<h2>不利条項 No.9｜不可抗力条項の欠如</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「不可抗力・免責条項」</p>
+<p><strong>なぜ危険か</strong>
+天災・パンデミック・半導体不足等で納期遅延が発生しても、不可抗力条項がなければ債務不履行として損害賠償を請求される。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>天災、戦争、感染症の流行、政府規制、原材料の供給途絶その他当事者の合理的な支配を超える事由により債務の履行が困難となった場合、当該当事者はその期間中、債務不履行の責を負わない。影響が [90日] を超える場合、いずれの当事者も書面により本契約を解除できる。</p>
+<p>[記入例] 90日 → 代替調達の可否に応じて60〜180日で設定</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「昨今のサプライチェーンリスクを踏まえ、双方を守る不可抗力条項の追加をご提案いたします。御社の調達安定にも寄与する内容ですのでご検討ください。」</p>
+<hr />
+<h2>不利条項 No.10｜管轄裁判所が相手方の本店所在地</h2>
+<p><strong>診断ツール対応</strong>: リスク項目「紛争解決・準拠法・管轄」</p>
+<p><strong>なぜ危険か</strong>
+紛争時に遠方の裁判所まで出向く交通費・弁護士費用は中小企業にとって大きな負担。事実上、訴訟を断念させる効果がある。</p>
+<p><strong>修正文案</strong></p>
+<blockquote>
+<p>本契約に関する一切の紛争は、[乙の本店所在地 / 被告の本店所在地] を管轄する地方裁判所を第一審の専属的合意管轄裁判所とする。</p>
+<p>[記入例] 被告の本店所在地 → 双方にとって公平。自社所在地にできればなお良い</p>
+</blockquote>
+<p><strong>交渉フレーズ</strong>
+「万一の紛争時に双方が公平にアクセスできるよう、被告地管轄とさせていただくか、弊社所在地の [○○地方裁判所] を合意管轄とすることをお願いできますでしょうか。」</p>
+<hr />
+<h2>活用チェックリスト</h2>
+<p>契約書を受け取ったら、以下の手順で使ってください。</p>
+<ul>
+<li>[ ] <strong>Step 1</strong>: 「契約書リスク診断ツール」に契約書テキストを貼り付けて12観点で診断</li>
+<li>[ ] <strong>Step 2</strong>: スコア7以上の高リスク項目の番号を控える</li>
+<li>[ ] <strong>Step 3</strong>: 本フレーズ集の該当番号を開き、修正文案を自社の状況に合わせて [　] 内を書き換え</li>
+<li>[ ] <strong>Step 4</strong>: 交渉フレーズを参考に、取引先への修正依頼メールまたは打合せでの発言を準備</li>
+<li>[ ] <strong>Step 5</strong>: 合意した修正内容を契約書に反映し、双方で締結</li>
+</ul>
+<hr />
+<p><em>本フレーズ集は「契約書リスク診断ツール（製造業特化｜12観点×選択式｜修正文案付き）」の補助資料です。法的助言を構成するものではありません。重要な契約締結時は弁護士への確認を推奨します。</em></p>
+<p><em>© Kusasyu Legal Tech</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

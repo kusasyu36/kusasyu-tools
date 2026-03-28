@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説チェック実務マニュアル - kusasyu tools</title>
+<meta name="description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説チェック実務マニュアル">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-2/">
+<meta property="og:title" content="重説チェック実務マニュアル - kusasyu tools">
+<meta property="og:description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説チェック実務マニュアル - kusasyu tools">
+<meta name="twitter:description" content="重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説チェック実務マニュアル",
+  "description": "重要事項説明書の主要条項を選択・入力すると、法的リスクの高い箇所をA〜Cの3段階でスコアリングし、過去の実際のトラブル事例と照合して改善文案を提示するHTMLツール。買主・借主向けの平易な要約レポートも自動生成し、印刷・PDF保存できる。中小不動産仲介業者が顧問弁護士なしでも重説のリスクチェックを自力で完結で",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/checker-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-22"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説チェック実務マニュアル</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説チェック実務マニュアル</h1>
+  <p class="project-name">顧問弁護士なしでも重説を安心チェック</p>
+  <div class="content">
+<p>【登記記録の権利】
+甲区：所有権移転 令和○年○月○日 原因：売買 所有者：○○○○
+乙区：抵当権設定 令和○年○月○日 債権額：金3,500万円
+      抵当権者：○○銀行○○支店
+※売主は所有権移転と同時に上記抵当権を抹消する。
+  万一抹消できない場合、本契約は白紙解除とし、
+  受領済み金員は全額無利息にて返還する。</p>
+<pre><code>
+### PropGuardでC判定になるケース
+
+- 抵当権の記載なし、または「決済時抹消予定」のみで解除条件の記載がない
+- 共有物件で持分割合が未記載
+
+---
+
+## 第2条項｜法令上の制限（用途地域・建築制限）
+
+### なぜ重要か
+
+購入後に「建て替えできない」「希望の用途で使えない」と判明するケースの大半は、この条項の説明不足が原因です。
+
+### よくある見落としパターン
+
+- **再建築不可の説明不足**: 接道義務（建築基準法43条）を満たさない物件で、単に「市街化区域」とだけ記載
+- **建ぺい率・容積率の既存不適格**: 現行基準では違反だが建築時は適法だった物件の説明漏れ
+- **地区計画・景観条例の未調査**: 自治体独自の高さ制限・壁面後退などを見落とす
+
+### 実際のトラブル事例
+
+&gt; **事例**: 第一種低層住居専用地域の土地を購入し、店舗併用住宅を計画していた買主が、用途制限により店舗部分の建築不可と判明。重説では用途地域名のみ記載し、具体的な建築制限の説明がなかったため、仲介業者が説明義務違反で賠償（大阪高裁平成30年判決参考）。
+
+### 正しい記載例
+
+</code></pre>
+<p>【法令上の制限】
+用途地域：第一種低層住居専用地域
+建ぺい率：50%（角地緩和なし）/ 容積率：100%
+高さ制限：10m（絶対高さ制限）
+日影規制：あり（測定面4m、5h-3h）
+接道：南側市道 幅員4.2m 接道間口6.5m → 建築基準法43条適合
+※本地域では店舗・事務所等の建築は原則不可。
+  建築可能な用途は専用住宅・兼用住宅（非住宅部分50㎡以下）等に限られます。</p>
+<pre><code>
+### PropGuardでC判定になるケース
+
+- 用途地域名だけで具体的な建築制限（高さ・用途）の説明がない
+- 接道義務の適合可否が未記載
+- 既存不適格物件でその旨の明記がない
+
+---
+
+## 第3条項｜インフラ整備状況（飲用水・電気・ガス・排水）
+
+### なぜ重要か
+
+特に中古物件・郊外物件で、上下水道の未整備や私設管の問題は高額な追加費用に直結します。
+
+### よくある見落としパターン
+
+- **私道下の埋設管**: 前面道路が私道の場合、給排水管の掘削承諾が必要だが未確認
+- **浄化槽物件の下水道計画**: 近い将来に公共下水道が整備される地域で、受益者負担金の説明漏れ
+- **プロパンガスの供給条件**: 無償貸与契約の残存期間・違約金の説明漏れ
+
+### 実際のトラブル事例
+
+&gt; **事例**: 購入した中古住宅の給水管が隣地の地下を通過しており、隣地所有者から撤去を求められた。重説では「公営水道」とだけ記載し、管の経路を調査・説明していなかったため仲介業者が責任を負った（横浜地裁令和2年判決参考）。
+
+### 正しい記載例
+
+</code></pre>
+<p>【飲用水・排水施設の整備状況】
+飲用水：公営水道（○○市水道局）整備済
+  引込管：口径20mm、前面道路より直接引込み
+  ※他人の土地を経由していない
+排水：公共下水道（合流式）接続済
+  ※前面私道部分の排水管について、私道所有者○名との
+  掘削承諾書を取得済み（写し別添）
+ガス：個別プロパン（○○ガス㈱）
+  ※無償貸与契約残存期間：3年2か月
+  中途解約の場合、設備残存簿価の精算が必要（見込額：約8万円）</p>
+<pre><code>
+### PropGuardでC判定になるケース
+
+- 供給元の記載のみで管の経路・口径など詳細がない
+- 私道の掘削承諾の有無が未記載
+- プロパンガスの無償貸与契約に関する記載なし
+
+---
+
+## 第4条項｜建物の状態（石綿・耐震・省エネ）
+
+### なぜ重要か
+
+2025年4月の改正建築物省エネ法により、新築住宅の省エネ基準適合が義務化されました。重説でも省エネ関連の説明事項が追加・強化されており、対応漏れが増えています。
+
+### 2025年改正で変わったポイント
+
+| 項目 | 改正前 | 改正後（2025年4月〜） |
+|------|--------|----------------------|
+| 省エネ基準 | 努力義務（説明義務のみ） | **新築は適合義務** |
+| 重説記載 | 省エネ性能の説明義務 | 適合証明書の有無・等級の記載が必須 |
+| 既存住宅 | 記載推奨レベル | 省エネ改修の有無を説明することが望ましい |
+
+### よくある見落としパターン
+
+- **石綿調査の記載不備**: 「調査記録なし」で済ませるが、2023年以降は解体・改修時の事前調査が義務化されており、買主への影響説明が不十分
+- **耐震診断の未記載**: 旧耐震（1981年5月以前）物件で耐震診断の有無を記載しない
+- **省エネ基準適合の説明不足（2025年改正）**: 新築なのに省エネ等級・適合証明書の記載がない
+
+### 実際のトラブル事例
+
+&gt; **事例**: 築40年の中古マンションで、重説に耐震診断の記載がなかった。購入後に耐震性不足が判明し、大規模修繕の一時金として1戸あたり120万円の負担が発生。買主が仲介業者に「耐震診断未実施の旨を説明すべきだった」と主張し紛争に（国交省ADR事例集参考）。
+
+### 正しい記載例
+
+</code></pre>
+<p>【建物の状態】
+石綿使用調査：調査記録なし
+  ※調査未実施。今後の改修・解体時には法令に基づく事前調査が必要です。
+耐震診断：未実施（昭和53年築・旧耐震基準）
+  ※新耐震基準（昭和56年6月1日施行）を満たしていない可能性があります。
+  耐震改修には数百万円の費用が見込まれます。
+省エネルギー性能：
+  建築物エネルギー消費性能基準への適合：不明（竣工時に基準なし）
+  ※2025年4月以降の新築住宅は省エネ基準適合が義務化されています。
+  本物件は既存住宅のため適合義務の対象外ですが、
+  省エネ改修履歴はありません。</p>
+<pre><code>
+### PropGuardでC判定になるケース
+
+- 旧耐震物件で耐震診断の有無が未記載
+- 新築物件で省エネ基準適合の記載がない（2025年改正対応漏れ）
+- 石綿調査について一切記載なし
+
+---
+
+## 第5条項｜契約解除・違約金・手付金等の保全
+
+### なぜ重要か
+
+トラブルが起きたとき、最終的に「お金がどうなるか」を決めるのがこの条項です。ここの記載が曖昧だと、解約時に売主・買主双方が不利益を被ります。
+
+### よくある見落としパターン
+
+- **手付金等の保全措置の省略**: 未完成物件で受領する手付金が代金の5%または1,000万円を超えるのに保全措置の説明がない
+- **ローン特約の条件不備**: 「融資未承認の場合は白紙解除」とするが、期限・申込先・金額が未記載で、発動条件が曖昧
+- **違約金と損害賠償の二重請求リスク**: 違約金の定めがあるのに、別途損害賠償を請求できるかが不明確
+
+### 実際のトラブル事例
+
+&gt; **事例**: 住宅ローン本審査が否認されたが、重説のローン特約に申込先金融機関が明記されていなかった。売主が「他行で再申込みすべき」と主張し白紙解除を拒否。手付金200万円の返還を巡り紛争に発展（不動産適正取引推進機構裁判例参考）。
+
+### 正しい記載例
+
+</code></pre>
+<p>【契約の解除・違約金】
+手付解除：売買代金の10%（金○○万円）を手付金とし、
+  相手方が履行に着手するまでは手付放棄（買主）
+  または手付倍返し（売主）により解除できる。
+ローン特約：
+  申込先：○○銀行○○支店
+  融資額：金○○万円 期間：35年
+  承認期限：令和○年○月○日
+  期限までに融資の承認が得られない場合、本契約は白紙解除とし、
+  受領済みの金員を全額無利息にて返還する。
+違約金：売買代金の20%
+  ※違約金は損害賠償額の予定であり、別途損害賠償請求はできない。
+手付金等の保全措置：講ずる
+  保全方法：○○保証㈱による保証委託（完成物件）</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

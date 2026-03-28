@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産法人化_税負担シミュレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f4f6f8;color:#1a1a1a;line-height:1.6;font-size:15px}
+.wrap{max-width:720px;margin:0 auto;padding:12px}
+header{background:linear-gradient(135deg,#0d2137,#1a5276);color:#fff;padding:22px 16px;text-align:center;border-radius:12px;margin-bottom:16px}
+header h1{font-size:1.3em;margin-bottom:2px}
+header p{font-size:.8em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;border-left:4px solid #1a5276;padding-left:10px;margin-bottom:10px;color:#1a5276}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+label{display:block;font-size:.82em;font-weight:600;margin:6px 0 2px;color:#444}
+input[type=number]{width:100%;padding:8px;border:1px solid #ccd;border-radius:6px;font-size:.92em}
+.unit{font-size:.78em;color:#888}
+.note{font-size:.78em;color:#e67e22;margin-top:4px}
+.btn{display:block;width:100%;padding:13px;background:#1a5276;color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:10px}
+.btn:hover{background:#0d2137}
+#result{display:none}
+.res-card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.verdict{text-align:center;padding:18px;border-radius:10px;margin-bottom:14px;font-weight:700;font-size:1.1em}
+.v-corp{background:#e8f5e9;color:#2e7d32;border:2px solid #66bb6a}
+.v-stay{background:#fff3e0;color:#e65100;border:2px solid #ffa726}
+.v-neutral{background:#e3f2fd;color:#1565c0;border:2px solid #42a5f5}
+table{width:100%;border-collapse:collapse;font-size:.88em;margin-top:8px}
+th,td{padding:8px 6px;border-bottom:1px solid #e8e8e8;text-align:right}
+th{text-align:left;color:#555;font-weight:600}
+td.lbl{text-align:left;font-weight:600}
+.hl{color:#1a5276;font-weight:700}
+.bar-wrap{height:28px;background:#eee;border-radius:6px;margin:6px 0;position:relative;overflow:hidden}
+.bar{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.78em;font-weight:700;color:#fff;transition:width .6s}
+.bar-p{background:linear-gradient(90deg,#e57373,#c62828)}
+.bar-c{background:linear-gradient(90deg,#66bb6a,#2e7d32)}
+.legend{display:flex;gap:16px;font-size:.8em;margin-top:6px}
+.legend span::before{content:'';display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.lg-p::before{background:#c62828}
+.lg-c::before{background:#2e7d32}
+.link-box{background:#f0f4f8;border:1px dashed #1a5276;border-radius:8px;padding:12px;text-align:center;font-size:.88em;margin-top:8px}
+.link-box a{color:#1a5276;font-weight:700;text-decoration:none}
+footer{text-align:center;font-size:.75em;color:#999;padding:16px 0}
+@media(max-width:500px){.row>div{min-width:100%}header h1{font-size:1.1em}}
+</style>
+<meta name="description" content="1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産法人化_税負担シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-2/">
+<meta property="og:title" content="不動産法人化_税負担シミュレーター - kusasyu tools">
+<meta property="og:description" content="1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産法人化_税負担シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産法人化_税負担シミュレーター",
+  "description": "1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産法人化_税負担シミュレーター</span></div>
+<div class="wrap">
+<header>
+<h1>不動産法人化 税負担シミュレーター</h1>
+<p>個人所有 vs 法人化 — 年間税負担差額と回収年数を即算出</p>
+</header>
+<div class="card">
+<h2>基本情報を入力</h2>
+<div class="row">
+<div><label>給与年収 <span class="unit">（万円）</span></label><input type="number" id="salary" value="700" min="0" step="10"></div>
+<div><label>年間不動産収入 <span class="unit">（万円）</span></label><input type="number" id="reIncome" value="400" min="0" step="10">
+<div class="note">※ 500万円以上が法人化検討ライン</div></div>
+</div>
+<div class="row">
+<div><label>保有物件数 <span class="unit">（棟）</span></label><input type="number" id="units" value="3" min="1" max="50"></div>
+<div><label>法人設立費用 <span class="unit">（万円）</span></label><input type="number" id="setupCost" value="30" min="0" step="1">
+<div class="note">※ 合同会社10〜15万、株式会社25〜30万が目安</div></div>
+</div>
+<div class="row">
+<div><label>年間経費率 <span class="unit">（%）</span></label><input type="number" id="expRate" value="20" min="0" max="80" step="5">
+<div class="note">※ 管理費・修繕費・減価償却等</div></div>
+<div><label>法人からの役員報酬 <span class="unit">（万円/年）</span></label><input type="number" id="dirPay" value="300" min="0" step="10">
+<div class="note">※ 不動産収入の50〜70%が目安</div></div>
+</div>
+<button class="btn" onclick="calc()">シミュレーション実行</button>
+</div>
+<div id="result">
+<div id="verdict" class="verdict"></div>
+<div class="res-card">
+<h2>年間税負担の比較</h2>
+<div class="legend"><span class="lg-p">個人のまま</span><span class="lg-c">法人化した場合</span></div>
+<div class="bar-wrap"><div class="bar bar-p" id="barP"></div></div>
+<div class="bar-wrap"><div class="bar bar-c" id="barC"></div></div>
+<table>
+<tr><th></th><th>個人のまま</th><th>法人化</th></tr>
+<tr><td class="lbl">所得税</td><td id="r_pit"></td><td id="r_cit"></td></tr>
+<tr><td class="lbl">住民税</td><td id="r_prz"></td><td id="r_crz"></td></tr>
+<tr><td class="lbl">法人税等</td><td>—</td><td id="r_corp"></td></tr>
+<tr><td class="lbl">社会保険増減</td><td>—</td><td id="r_si"></td></tr>
+<tr style="border-top:2px solid #1a5276"><td class="lbl">合計税負担</td><td class="hl" id="r_ptotal"></td><td class="hl" id="r_ctotal"></td></tr>
+<tr><td class="lbl">年間差額</td><td colspan="2" class="hl" id="r_diff"></td></tr>
+</table>
+</div>
+<div class="res-card">
+<h2>回収年数・損益分岐</h2>
+<table>
+<tr><td class="lbl">法人設立費用</td><td id="r_setup"></td></tr>
+<tr><td class="lbl">年間維持費（税理士顧問料等）</td><td id="r_maint"></td></tr>
+<tr><td class="lbl">年間節税メリット</td><td id="r_merit"></td></tr>
+<tr style="border-top:2px solid #1a5276"><td class="lbl">回収年数</td><td class="hl" id="r_payback"></td></tr>
+</table>
+<div id="yearTable"></div>
+</div>
+<div class="res-card">
+<h2>判定の根拠</h2>
+<div id="reasons" style="font-size:.88em"></div>
+</div>
+<div class="link-box">
+📊 物件ごとの「売却 vs 保有」判定は<br><a href="#">PropExit｜投資物件ポートフォリオ出口判定ツール</a>で分析
+</div>
+</div>
+<footer>© Kusasyu PropTech — 本ツールは概算シミュレーションです。実際の税額は税理士にご確認ください。</footer>
+</div>
+<script>
+function incomeTax(inc){
+var t=[
+[195,0.05,0],[330,0.10,97500],[695,0.20,427500],[900,0.23,636000],
+[1800,0.33,1536000],[4000,0.40,2796000],[Infinity,0.45,4796000]
+];
+for(var i=0;i<t.length;i++){if(inc*1e4<=t[i][0]*1e4)return Math.max(0,inc*1e4*t[i][1]-t[i][2]);}
+return 0;
+}
+function fmt(v){return Math.round(v/1e4)+'万円';}
+function calc(){
+var S=+document.getElementById('salary').value;
+var R=+document.getElementById('reIncome').value;
+var U=+document.getElementById('units').value;
+var SC=+document.getElementById('setupCost').value;
+var ER=+document.getElementById('expRate').value/100;
+var DP=+document.getElementById('dirPay').value;
+var exp=R*ER;
+var netR=R-exp;
+// ===== 個人 =====
+var pInc=S+netR;
+var pIT=incomeTax(pInc);
+var pRZ=pInc*1e4*0.10;
+var pTotal=pIT+pRZ;
+// ===== 法人化 =====
+// 個人側：給与＋役員報酬
+var cSalary=S+DP;
+var cIT=incomeTax(cSalary);
+var cRZ=cSalary*1e4*0.10;
+// 法人側：不動産収入−経費−役員報酬
+var corpProfit=Math.max(0,(netR-DP)*1e4);
+var corpTax;
+if(corpProfit<=4e6){corpTax=corpProfit*0.21;}
+else if(corpProfit<=8e6){corpTax=4e6*0.21+(corpProfit-4e6)*0.23;}
+else{corpTax=4e6*0.21+4e6*0.23+(corpProfit-8e6)*0.335;}
+// 社保増（役員報酬分の概算15%）
+var siDelta=DP*1e4*0.15;
+var cTotal=cIT+cRZ+corpTax+siDelta;
+var diff=pTotal-cTotal;
+var annualMaint=30*1e4;// 税理士顧問料等
+var netMerit=diff-annualMaint;
+var payback=netMerit>0?SC*1e4/netMerit:Infinity;
+// ===== 表示 =====
+document.getElementById('result').style.display='block';
+document.getElementById('r_pit').textContent=fmt(pIT);
+document.getElementById('r_cit').textContent=fmt(cIT);
+document.getElementById('r_prz').textContent=fmt(pRZ);
+document.getElementById('r_crz').textContent=fmt(cRZ);
+document.getElementById('r_corp').textContent=fmt(corpTax);
+document.getElementById('r_si').textContent='+'+fmt(siDelta);
+document.getElementById('r_ptotal').textContent=fmt(pTotal);
+document.getElementById('r_ctotal').textContent=fmt(cTotal);
+document.getElementById('r_diff').textContent=(diff>=0?'▼ ':'▲ ')+fmt(Math.abs(diff))+(diff>=0?' 法人化が有利':' 個人が有利');
+document.getElementById('r_setup').textContent=SC+'万円';
+document.getElementById('r_maint').textContent='約30万円';
+document.getElementById('r_merit').textContent=(netMerit>=0?'':'-')+fmt(Math.abs(netMerit));
+document.getElementById('r_payback').textContent=netMerit>0?payback.toFixed(1)+'年':'—（メリットなし）';
+var mx=Math.max(pTotal,cTotal);
+document.getElementById('barP').style.width=Math.round(pTotal/mx*100)+'%';
+document.getElementById('barP').textContent=fmt(pTotal);
+document.getElementById('barC').style.width=Math.round(cTotal/mx*100)+'%';
+document.getElementById('barC').textContent=fmt(cTotal);
+// verdict
+var vd=document.getElementById('verdict');
+if(netMerit>0&&payback<=3){
+vd.className='verdict v-corp';vd.innerHTML='✅ 法人化を強く推奨<br><span style="font-size:.8em">年間'+fmt(netMerit)+'の節税。設立費用は約'+payback.toFixed(1)+'年で回収</span>';
+}else if(netMerit>0&&payback<=7){
+vd.className='verdict v-neutral';vd.innerHTML='🔍 法人化を検討する価値あり<br><span style="font-size:.8em">年間'+fmt(netMerit)+'の節税。回収に'+payback.toFixed(1)+'年</span>';
+}else{
+vd.className='verdict v-stay';vd.innerHTML='⏸ 現時点では個人所有の継続が合理的<br><span style="font-size:.8em">不動産収入500万円以上が法人化の検討ラインです</span>';
+}
+// 5年推移
+var yt='<table style="margin-top:12px"><tr><th>年</th><th>累計節税</th><th>累計コスト</th><th>累計損益</th></tr>';
+for(var y=1;y<=5;y++){
+var cs=diff*y;var cc=SC*1e4+annualMaint*y;var pl=cs-cc;
+yt+='<tr><td class="lbl">'+y+'年目</td><td>'+fmt(cs)+'</td><td>'+fmt(cc)+'</td><td style="color:'+(pl>=0?'#2e7d32':'#c62828')+'">'+fmt(pl)+'</td></tr>';
+}
+yt+='</table>';
+document.getElementById('yearTable').innerHTML=yt;
+// reasons
+var rs=[];
+if(R>=500)rs.push('不動産収入'+R+'万円は検討ライン（500万円）以上です。');
+else rs.push('不動産収入'+R+'万円は検討ライン（500万円）未満。まずは収入拡大が優先です。');
+if(S+netR>900)rs.push('個人の課税所得が900万円超で所得税率33%以上。法人税実効税率（21〜23%）との差が大きくなります。');
+if(U>=5)rs.push('5棟以上の保有は事業的規模とみなされ、法人化のメリットが拡大します。');
+if(DP>netR*0.7)rs.push('⚠ 役員報酬が不動産所得の70%超。税務署に否認されるリスクがあります。報酬を下げて再試算を推奨します。');
+if(netMerit>0)rs.push('税理士顧問料（年約30万円）を差し引いても年間'+fmt(netMerit)+'のメリットがあります。');
+else rs.push('税理士顧問料（年約30万円）を考慮するとメリットが相殺されます。');
+document.getElementById('reasons').innerHTML=rs.map(function(r){return '<p style="margin:4px 0">• '+r+'</p>';}).join('');
+window.scrollTo({top:document.getElementById('result').offsetTop-10,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

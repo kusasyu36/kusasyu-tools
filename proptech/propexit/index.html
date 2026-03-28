@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PropExit_投資物件ポートフォリオ出口判定ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f4f6f8;color:#1a1a1a;line-height:1.6;font-size:15px}
+.wrap{max-width:780px;margin:0 auto;padding:12px}
+header{background:linear-gradient(135deg,#0d2137,#1a5276);color:#fff;padding:22px 16px;text-align:center;border-radius:12px;margin-bottom:16px}
+header h1{font-size:1.4em;margin-bottom:2px}
+header p{font-size:.82em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;border-left:4px solid #1a5276;padding-left:10px;margin-bottom:10px;color:#1a5276}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tab{flex:1;padding:10px;text-align:center;background:#e8eef4;border:none;border-radius:8px 8px 0 0;font-size:.9em;font-weight:700;cursor:pointer;color:#555}
+.tab.on{background:#1a5276;color:#fff}
+.tab-body{display:none}.tab-body.on{display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+label{display:block;font-size:.82em;font-weight:600;margin:6px 0 2px;color:#444}
+input[type=number],input[type=text],select{width:100%;padding:8px;border:1px solid #ccd;border-radius:6px;font-size:.92em}
+.unit{font-size:.78em;color:#888}
+.btn{display:block;width:100%;padding:13px;background:#1a5276;color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:10px}
+.btn:hover{background:#0d2137}
+.btn-add{background:#5d8aa8;font-size:.9em;padding:10px;margin-bottom:10px}
+.btn-del{background:#c0392b;font-size:.8em;padding:6px 14px;border:none;color:#fff;border-radius:6px;cursor:pointer;float:right}
+#result{display:none}
+.res-card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.verdict{text-align:center;padding:14px;border-radius:8px;margin-bottom:12px;font-weight:700;font-size:1.1em}
+.v-sell{background:#e8f5e9;color:#2e7d32;border:2px solid #66bb6a}
+.v-hold{background:#e3f2fd;color:#1565c0;border:2px solid #42a5f5}
+table{width:100%;border-collapse:collapse;font-size:.82em;margin:8px 0}
+th,td{padding:6px 4px;text-align:right;border-bottom:1px solid #eee}
+th{background:#f0f4f8;font-weight:600;color:#1a5276}
+td:first-child,th:first-child{text-align:left}
+.best{background:#e8f5e9;font-weight:700}
+canvas{width:100%;max-height:200px;margin:8px 0}
+.corp-box{padding:12px;border-radius:8px;margin-top:10px;font-size:.9em}
+.corp-y{background:#fff8e1;border:1px solid #ffc107;color:#e65100}
+.corp-n{background:#f1f8e9;border:1px solid #aed581;color:#33691e}
+.checklist{page-break-before:always}
+.chk-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid #eee;font-size:.88em}
+.chk-item input{margin-top:4px;width:18px;height:18px}
+.note{font-size:.75em;color:#888;margin-top:8px}
+@media(max-width:500px){.row>div{min-width:100%}header h1{font-size:1.15em}table{font-size:.75em}}
+@media print{body{background:#fff}.btn,.btn-add,.btn-del,.tabs{display:none}.tab-body{display:block!important}.no-print{display:none}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.verdict,.corp-box{-webkit-print-color-adjust:exact;print-color-adjust:exact}.checklist{display:block!important}}
+</style>
+<meta name="description" content="1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,PropExit_投資物件ポートフォリオ出口判定ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propexit/">
+<meta property="og:title" content="PropExit_投資物件ポートフォリオ出口判定ツール - kusasyu tools">
+<meta property="og:description" content="1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propexit/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PropExit_投資物件ポートフォリオ出口判定ツール - kusasyu tools">
+<meta name="twitter:description" content="1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PropExit_投資物件ポートフォリオ出口判定ツール",
+  "description": "1〜10棟保有の個人不動産投資家向けに、物件ごとの「売却 vs 保有」判定を自動算出するHTMLツールを中心としたプロジェクト。築年数・残債・家賃下落率・減価償却の残存期間を入力すると、5年後までのキャッシュフローと売却益を比較し、最適な出口戦略を提示する。法人化の損益分岐点も算出。検証結果で判明したGate",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propexit/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">PropExit_投資物件ポートフォリオ出口判定ツール</span></div>
+<div class="wrap">
+<header>
+<h1>PropExit</h1>
+<p>投資物件ポートフォリオ 出口判定ツール</p>
+</header>
+<div id="propForms">
+<div class="tabs" id="tabs"></div>
+<div id="formsContainer"></div>
+</div>
+<button class="btn btn-add no-print" onclick="addProp()" id="addBtn">+ 物件を追加（最大3件）</button>
+<button class="btn no-print" onclick="calc()">出口タイミングを判定する</button>
+<div id="result"></div>
+<div class="checklist" id="checklist" style="display:none">
+<div class="card">
+<h2>売却前 確認チェックリスト（5項目）</h2>
+<div class="chk-item"><input type="checkbox"><span>残債の繰上返済手数料・違約金を金融機関に確認したか</span></div>
+<div class="chk-item"><input type="checkbox"><span>売却年の譲渡所得税（短期/長期）を税理士と確認したか</span></div>
+<div class="chk-item"><input type="checkbox"><span>入居者への通知・賃貸借契約の承継手続きを確認したか</span></div>
+<div class="chk-item"><input type="checkbox"><span>減価償却の残存期間と売却タイミングの税務影響を検討したか</span></div>
+<div class="chk-item"><input type="checkbox"><span>仲介手数料・登記費用等の売却諸費用を見積もったか</span></div>
+<p class="note">※ 本ツールは簡易シミュレーションです。実際の売却判断は税理士・不動産会社にご相談ください。</p>
+</div>
+</div>
+</div>
+<script>
+var props=[],pid=0;
+function defaultProp(){return{id:++pid,name:'物件'+pid,price:3000,current:2800,debt:2000,rent:180,decline:1,expense:15,depLeft:10,owned:3,structure:'rc'}}
+function addProp(){if(props.length>=3)return;props.push(defaultProp());renderForms();switchTab(props.length-1)}
+function delProp(i){props.splice(i,1);if(!props.length)addProp();else renderForms();switchTab(Math.min(i,props.length-1))}
+function switchTab(i){document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('on',j===i)});document.querySelectorAll('.tab-body').forEach(function(t,j){t.classList.toggle('on',j===i)})}
+function renderForms(){var tc=document.getElementById('tabs'),fc=document.getElementById('formsContainer');tc.innerHTML='';fc.innerHTML='';
+props.forEach(function(p,i){
+tc.innerHTML+='<button class="tab'+(i===0?' on':'')+'" onclick="switchTab('+i+')">'+p.name+'</button>';
+fc.innerHTML+='<div class="tab-body card'+(i===0?' on':'')+'"><h2>'+p.name+(props.length>1?'<button class="btn-del" onclick="delProp('+i+')">削除</button>':'')+'</h2>'+
+'<label>物件名</label><input type="text" value="'+p.name+'" onchange="props['+i+'].name=this.value;document.querySelectorAll(\'.tab\')['+i+'].textContent=this.value">'+
+'<div class="row"><div><label>取得価格 <span class="unit">万円</span></label><input type="number" value="'+p.price+'" onchange="props['+i+'].price=+this.value"></div>'+
+'<div><label>現在の想定売却価格 <span class="unit">万円</span></label><input type="number" value="'+p.current+'" onchange="props['+i+'].current=+this.value"></div></div>'+
+'<div class="row"><div><label>残債 <span class="unit">万円</span></label><input type="number" value="'+p.debt+'" onchange="props['+i+'].debt=+this.value"></div>'+
+'<div><label>年間家賃収入 <span class="unit">万円</span></label><input type="number" value="'+p.rent+'" onchange="props['+i+'].rent=+this.value"></div></div>'+
+'<div class="row"><div><label>年間経費率 <span class="unit">%（家賃比）</span></label><input type="number" value="'+p.expense+'" onchange="props['+i+'].expense=+this.value"></div>'+
+'<div><label>家賃下落率 <span class="unit">%/年</span></label><input type="number" value="'+p.decline+'" step="0.5" onchange="props['+i+'].decline=+this.value"></div></div>'+
+'<div class="row"><div><label>減価償却 残存年数 <span class="unit">年</span></label><input type="number" value="'+p.depLeft+'" onchange="props['+i+'].depLeft=+this.value"></div>'+
+'<div><label>保有年数（現在まで）<span class="unit">年</span></label><input type="number" value="'+p.owned+'" onchange="props['+i+'].owned=+this.value"></div></div>'+
+'<div class="row"><div><label>構造</label><select onchange="props['+i+'].structure=this.value"><option value="rc"'+(p.structure==='rc'?' selected':'')+'>RC造（47年）</option><option value="s"'+(p.structure==='s'?' selected':'')+'>鉄骨造（34年）</option><option value="w"'+(p.structure==='w'?' selected':'')+'>木造（22年）</option></select></div><div></div></div></div>'});
+document.getElementById('addBtn').style.display=props.length>=3?'none':'block'}
+function depYrs(s){return s==='rc'?47:s==='s'?34:22}
+function simProp(p){var rows=[],cumCF=0,dT=depYrs(p.structure),aD=p.price*0.9/dT;
+for(var y=1;y<=5;y++){var yo=p.owned+y,rY=p.rent*Math.pow(1-p.decline/100,y),eY=rY*p.expense/100,dep=p.depLeft>=y?aD:0,tx=rY-eY-dep,iT=tx>0?tx*0.2:0,cf=rY-eY-iT;cumCF+=cf;
+var sP=p.current*Math.pow(0.99,y),pD=aD*Math.min(p.owned,dT),fD=aD*Math.min(y,p.depLeft),bV=p.price-pD-fD;if(bV<p.price*0.1)bV=p.price*0.1;
+var g=sP-bV,tR=yo>5?0.20315:0.39630,cT=g>0?g*tR:0,dY=p.debt*(1-y*0.03);if(dY<0)dY=0;
+var nS=sP-dY-cT-sP*0.035;rows.push({y:y,rent:rY,cf:cf,cumCF:cumCF,sale:sP,taxType:yo>5?'長期':'短期',capTax:cT,netSale:nS,adv:nS-cumCF})}return rows}
+function calc(){var html='',totalInc=0;
+props.forEach(function(p,idx){var rows=simProp(p),bY=0,bN=-1e9;
+for(var r=0;r<rows.length;r++)if(rows[r].netSale>bN){bN=rows[r].netSale;bY=rows[r].y}
+totalInc+=p.rent;var hB=rows[4].cumCF>rows[0].netSale;
+html+='<div class="res-card"><h2>'+p.name+'</h2><div class="verdict '+(hB?'v-hold':'v-sell')+'">';
+if(hB)html+='推奨：当面保有継続（5年CF '+f(rows[4].cumCF)+'万円 ＞ 即売却益 '+f(rows[0].netSale)+'万円）';
+else html+='推奨：'+bY+'年後に売却（手取り '+f(bN)+'万円が最大）';
+html+='</div><table><tr><th></th><th>家賃</th><th>年間CF</th><th>累計CF</th><th>売却額</th><th>税区分</th><th>売却手取</th><th>優位額</th></tr>';
+for(var r=0;r<rows.length;r++){var d=rows[r];html+='<tr'+(d.y===bY&&!hB?' class="best"':'')+'><td>'+d.y+'年後</td><td>'+f(d.rent)+'</td><td>'+f(d.cf)+'</td><td>'+f(d.cumCF)+'</td><td>'+f(d.sale)+'</td><td>'+d.taxType+'</td><td>'+f(d.netSale)+'</td><td>'+f(d.adv)+'</td></tr>'}
+html+='</table><canvas id="cv'+idx+'" height="180"></canvas></div>'});
+html+='<div class="res-card"><h2>法人化インジケーター</h2>';
+if(totalInc>=900)html+='<div class="corp-box corp-y">年間不動産所得 約'+Math.round(totalInc)+'万円 → <b>法人化を検討する水準</b>です（目安: 900万円以上）。<br>詳しくは税理士にご相談ください。</div>';
+else html+='<div class="corp-box corp-n">年間不動産所得 約'+Math.round(totalInc)+'万円 → 現時点では<b>個人のまま</b>で問題ありません（目安: 900万円未満）。</div>';
+html+='</div>';
+document.getElementById('result').innerHTML=html;document.getElementById('result').style.display='block';document.getElementById('checklist').style.display='block';
+setTimeout(drawCharts,100);document.getElementById('result').scrollIntoView({behavior:'smooth'})}
+function f(v){return Math.round(v*10)/10}
+function drawCharts(){props.forEach(function(p,idx){var cv=document.getElementById('cv'+idx);if(!cv)return;
+var ctx=cv.getContext('2d'),W=cv.width=cv.offsetWidth,H=cv.height=180;ctx.clearRect(0,0,W,H);
+var rows=simProp(p),mx=0;for(var r=0;r<rows.length;r++)mx=Math.max(mx,rows[r].cumCF,rows[r].netSale);if(!mx)return;
+var pad=40,bw=(W-pad*2)/5*0.35;ctx.font='11px sans-serif';ctx.textAlign='center';
+for(var i=0;i<5;i++){var x=pad+((W-pad*2)/5)*(i+0.5),h1=rows[i].cumCF/mx*(H-50),h2=rows[i].netSale/mx*(H-50);
+ctx.fillStyle='#42a5f5';ctx.fillRect(x-bw-1,H-30-h1,bw,h1);ctx.fillStyle='#66bb6a';ctx.fillRect(x+1,H-30-h2,bw,h2);ctx.fillStyle='#333';ctx.fillText((i+1)+'年',x,H-12)}
+ctx.fillStyle='#42a5f5';ctx.fillRect(pad,8,12,10);ctx.fillStyle='#333';ctx.textAlign='left';ctx.fillText('累計CF',pad+16,17);
+ctx.fillStyle='#66bb6a';ctx.fillRect(pad+70,8,12,10);ctx.fillStyle='#333';ctx.fillText('売却手取',pad+86,17)})}
+addProp();
+</script>
+</body>
+</html>

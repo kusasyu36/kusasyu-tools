@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI検索に選ばれるコンテンツの書き方ガイド - kusasyu tools</title>
+<meta name="description" content="自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI検索に選ばれるコンテンツの書き方ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-11/">
+<meta property="og:title" content="AI検索に選ばれるコンテンツの書き方ガイド - kusasyu tools">
+<meta property="og:description" content="自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI検索に選ばれるコンテンツの書き方ガイド - kusasyu tools">
+<meta name="twitter:description" content="自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI検索に選ばれるコンテンツの書き方ガイド",
+  "description": "自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-11/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AI検索に選ばれるコンテンツの書き方ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AI検索に選ばれるコンテンツの書き方ガイド</h1>
+  <p class="project-name">AI検索に選ばれてる？AEOスコア診断ツール</p>
+  <div class="content">
+<h1>AI検索に選ばれるコンテンツの書き方ガイド</h1>
+<h2>はじめに：AI検索時代のルール変更</h2>
+<p>Google SGE、Perplexity、ChatGPT検索——ユーザーが「検索」する先がAIに移行しつつある。従来のSEOで上位表示されていても、AIの回答に引用されなければトラフィックはゼロになる。本記事では、AIに「引用元」として選ばれるコンテンツの書き方を実例付きで解説する。</p>
+<hr />
+<h2>1. 従来SEO vs AEO（Answer Engine Optimization）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">従来SEO</th>
+<th style="text-align: left;">AEO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>目的</strong></td>
+<td style="text-align: left;">検索結果で上位表示</td>
+<td style="text-align: left;">AIの回答に引用される</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>最適化対象</strong></td>
+<td style="text-align: left;">Googleのランキングアルゴリズム</td>
+<td style="text-align: left;">LLMの情報抽出ロジック</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>コンテンツ形式</strong></td>
+<td style="text-align: left;">キーワード密度・内部リンク重視</td>
+<td style="text-align: left;">明確な定義文・構造化データ重視</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>成果指標</strong></td>
+<td style="text-align: left;">順位・CTR</td>
+<td style="text-align: left;">AI引用回数・参照トラフィック</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>文体</strong></td>
+<td style="text-align: left;">自然なキーワード配置</td>
+<td style="text-align: left;">一文で完結する簡潔な回答</td>
+</tr>
+</tbody>
+</table>
+<p><strong>要点：</strong> SEOが「見つけてもらう技術」なら、AEOは「引用してもらう技術」。両立が理想だが、AEOではコンテンツの構造と明確さがより重要になる。</p>
+<hr />
+<h2>2. AIに引用されやすい「定義文の型」</h2>
+<p>AIは明確で簡潔な定義文を好んで引用する。以下の3つの型を使い分けよう。</p>
+<h3>型1：「〇〇とは、△△である」型</h3>
+<blockquote>
+<p><strong>AEOとは、</strong> AIによる回答エンジン（Perplexity、Google SGEなど）に自社コンテンツを引用させることを目的とした最適化手法である。</p>
+</blockquote>
+<h3>型2：「〇〇は△△を指す。具体的には〜」型</h3>
+<blockquote>
+<p><strong>構造化データは、</strong> Webページの内容を検索エンジンやAIが理解しやすい形式で記述したメタデータを指す。具体的には、JSON-LD形式でページ内の情報（FAQ、レビュー、商品情報など）をマークアップする。</p>
+</blockquote>
+<h3>型3：「〇〇のメリットは以下の3点」型（リスト誘導）</h3>
+<blockquote>
+<p>FAQスキーマを実装するメリットは以下の3点である。
+1. AI検索での引用確率が向上する
+2. リッチリザルトとして検索結果に表示される
+3. ユーザーの検索意図に直接回答できる</p>
+</blockquote>
+<p><strong>共通ルール：</strong>
+- 最初の1〜2文で定義を完結させる
+- 主語と述語を近くに置く
+- 専門用語には括弧で補足を入れる</p>
+<hr />
+<h2>3. FAQスキーマの具体的な記述例</h2>
+<p>FAQスキーマはAI検索に最も効果的な構造化データの一つ。JSON-LD形式での実装例を示す。</p>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;FAQPage&quot;,
+  &quot;mainEntity&quot;: [
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;AEOとは何ですか？&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;AEO（Answer Engine Optimization）とは、AIによる回答エンジンに自社コンテンツを引用させるための最適化手法です。従来のSEOがGoogle検索の順位を対象とするのに対し、AEOはPerplexityやChatGPT検索などのAI回答に選ばれることを目指します。&quot;
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;Question&quot;,
+      &quot;name&quot;: &quot;FAQスキーマの効果は？&quot;,
+      &quot;acceptedAnswer&quot;: {
+        &quot;@type&quot;: &quot;Answer&quot;,
+        &quot;text&quot;: &quot;FAQスキーマを実装すると、Googleリッチリザルトへの表示率が向上し、AIが回答を生成する際の引用元として選ばれやすくなります。&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<p><strong>実装時のポイント：</strong>
+- 回答は80〜150文字で簡潔にまとめる
+- 1ページあたりFAQは5〜10個が目安
+- 質問文はユーザーが実際に検索するフレーズを使う
+- <code>&lt;head&gt;</code>内または<code>&lt;/body&gt;</code>直前に配置する</p>
+<hr />
+<h2>4. 出典明示のベストプラクティス</h2>
+<p>AIは「信頼性の高い情報源」を優先的に引用する。出典の示し方がコンテンツの信頼性を左右する。</p>
+<h3>4つの基本ルール</h3>
+<ol>
+<li><strong>一次情報にリンクする</strong> — 「〇〇によると」ではなく、公式レポートや論文へ直接リンク</li>
+<li><strong>発行年を明記する</strong> — 「（出典：総務省, 2025年）」のように年を必ず入れる</li>
+<li><strong>数値には必ず出典をつける</strong> — 裏付けのない数値はAIに無視される</li>
+<li><strong>引用元の権威性を示す</strong> — 政府統計、学術論文、業界大手のレポートを優先</li>
+</ol>
+<h3>良い例・悪い例</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">悪い例</th>
+<th style="text-align: left;">良い例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>数値</strong></td>
+<td style="text-align: left;">「市場規模は急成長中」</td>
+<td style="text-align: left;">「国内AI市場は2兆1,700億円（出典：IDC Japan, 2025年）」</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>主張</strong></td>
+<td style="text-align: left;">「専門家も推奨している」</td>
+<td style="text-align: left;">「Google Search Central公式ドキュメント（2025年更新）で推奨」</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>統計</strong></td>
+<td style="text-align: left;">「多くの企業が導入済み」</td>
+<td style="text-align: left;">「Fortune 500企業の62%が導入（出典：Gartner, 2025年）」</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 実践チェックリスト</h2>
+<p>記事を公開する前に確認すべき項目：</p>
+<ul>
+<li>[ ] 主要キーワードの定義文が冒頭2文以内にあるか</li>
+<li>[ ] FAQスキーマをJSON-LDで実装したか</li>
+<li>[ ] 数値データに出典（発行元・年）を明記したか</li>
+<li>[ ] 見出しが「質問形式」または「〇〇とは」形式になっているか</li>
+<li>[ ] 1段落が3行以内に収まっているか</li>
+<li>[ ] 箇条書き・表で情報が構造化されているか</li>
+<li>[ ] メタディスクリプションに定義文を含めたか</li>
+</ul>
+<hr />
+<h2>まとめ</h2>
+<p>AI検索に選ばれるための3原則：</p>
+<ol>
+<li><strong>明確に定義する</strong> — 曖昧な表現を避け、一文で完結する定義文を書く</li>
+<li><strong>構造化する</strong> — FAQスキーマ、見出し階層、箇条書きでAIが解析しやすい構造にする</li>
+<li><strong>信頼性を証明する</strong> — 全ての主張・数値に権威ある出典を明示する</li>
+</ol>
+<p>従来SEOの知識を土台にしつつ、「AIが引用しやすい形式」を意識することが、これからのコンテンツ制作の基本となる。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

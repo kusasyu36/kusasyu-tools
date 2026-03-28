@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>原状回復費算定ツール「RestoreCalc」 - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#2b6cb0;font-size:1.4em;margin:8px 0}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h2{font-size:1.1em;color:#2b6cb0;border-bottom:2px solid #bee3f8;padding-bottom:6px;margin-bottom:12px}
+label{display:block;font-weight:600;font-size:.9em;margin:8px 0 4px}
+select,input[type=number]{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:1em;background:#fff}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.area-item{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px}
+.area-item .name{font-weight:700;font-size:.9em;margin-bottom:4px}
+.area-item select{font-size:.85em;padding:6px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#3182ce);color:#fff;border:none;border-radius:8px;font-size:1.1em;font-weight:700;cursor:pointer;margin-top:12px}
+.btn:hover{opacity:.9}
+.btn-print{background:linear-gradient(135deg,#38a169,#48bb78);margin-top:8px}
+#result{display:none}
+table{width:100%;border-collapse:collapse;font-size:.88em;margin-top:8px}
+th,td{border:1px solid #e2e8f0;padding:8px 6px;text-align:center}
+th{background:#ebf8ff;color:#2b6cb0;font-weight:700}
+.total-row{background:#fefcbf;font-weight:700}
+.summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.summary-box{text-align:center;padding:12px;border-radius:8px;color:#fff;font-weight:700}
+.sb-owner{background:#e53e3e}
+.sb-tenant{background:#3182ce}
+.sb-total{background:#38a169}
+.summary-box .val{font-size:1.5em;display:block}
+.summary-box .lbl{font-size:.75em;opacity:.9}
+.note{font-size:.78em;color:#718096;margin-top:8px}
+@media print{body{background:#fff}.btn,.card:first-child{display:none}#result{display:block!important}.wrap{padding:0}}
+@media(max-width:600px){.row,.area-grid,.summary{grid-template-columns:1fr}.summary-box .val{font-size:1.2em}}
+</style>
+<meta name="description" content="退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,原状回復費算定ツール「RestoreCalc」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/restorecalc/">
+<meta property="og:title" content="原状回復費算定ツール「RestoreCalc」 - kusasyu tools">
+<meta property="og:description" content="退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/restorecalc/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原状回復費算定ツール「RestoreCalc」 - kusasyu tools">
+<meta name="twitter:description" content="退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "原状回復費算定ツール「RestoreCalc」",
+  "description": "退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/restorecalc/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">原状回復費算定ツール「RestoreCalc」</span></div>
+<div class="wrap">
+<h1>RestoreCalc</h1>
+<p class="sub">原状回復費算定ツール｜国交省ガイドライン準拠</p>
+
+<div class="card">
+<h2>基本情報</h2>
+<div class="row">
+<div><label>部屋タイプ</label>
+<select id="roomType">
+<option value="1R">1R</option><option value="1K">1K</option>
+<option value="1DK">1DK</option><option value="1LDK" selected>1LDK</option>
+<option value="2DK">2DK</option><option value="2LDK">2LDK</option>
+<option value="3LDK">3LDK</option>
+</select></div>
+<div><label>入居年数</label>
+<input type="number" id="years" min="0" max="50" value="3"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>損耗箇所・レベル選択</h2>
+<div class="area-grid" id="areas"></div>
+</div>
+
+<button class="btn" onclick="calc()">算定する</button>
+
+<div id="result">
+<div class="card">
+<h2>算定結果</h2>
+<div class="summary" id="summary"></div>
+<table><thead><tr><th>箇所</th><th>修繕費</th><th>耐用年数</th><th>経年劣化率</th><th>残存価値</th><th>オーナー負担</th><th>借主負担</th></tr></thead><tbody id="tbody"></tbody></table>
+<p class="note">※国交省「原状回復をめぐるトラブルとガイドライン」に基づく経年劣化率を適用。通常損耗は全額オーナー負担。残存価値の最低値は10%。</p>
+</div>
+<button class="btn btn-print" onclick="window.print()">印刷用見積書を出力</button>
+</div>
+</div>
+
+<script>
+const AREAS=[
+{id:'wall',name:'壁（クロス）',life:6},
+{id:'floor',name:'床（CF・カーペット）',life:6},
+{id:'ceiling',name:'天井',life:6},
+{id:'water',name:'水回り',life:15},
+{id:'fitting',name:'建具（襖・柱等）',life:12},
+{id:'equip',name:'設備（エアコン等）',life:8}
+];
+const LEVELS=[
+{v:'none',l:'損耗なし',r:0},
+{v:'normal',l:'通常損耗',r:0},
+{v:'minor',l:'軽微な損耗',r:0.3},
+{v:'mid',l:'中度の損耗',r:0.6},
+{v:'severe',l:'重度の損耗',r:1.0}
+];
+const BASE_COST={'1R':[28000,25000,15000,20000,12000,18000],'1K':[32000,30000,18000,22000,14000,20000],'1DK':[40000,38000,22000,25000,18000,22000],'1LDK':[52000,48000,28000,30000,22000,25000],'2DK':[48000,45000,26000,28000,22000,24000],'2LDK':[65000,60000,35000,35000,28000,30000],'3LDK':[80000,75000,42000,40000,35000,35000]};
+
+const ag=document.getElementById('areas');
+AREAS.forEach((a,i)=>{
+let opts=LEVELS.map(l=>`<option value="${l.v}">${l.l}</option>`).join('');
+ag.innerHTML+=`<div class="area-item"><div class="name">${a.name}</div><select id="lv_${i}">${opts}</select></div>`;
+});
+
+function calc(){
+const room=document.getElementById('roomType').value;
+const yrs=parseInt(document.getElementById('years').value)||0;
+const costs=BASE_COST[room];
+let totalRepair=0,totalOwner=0,totalTenant=0;
+let rows='';
+AREAS.forEach((a,i)=>{
+const lv=document.getElementById('lv_'+i).value;
+const lvObj=LEVELS.find(l=>l.v===lv);
+const base=costs[i];
+if(lv==='none'){
+rows+=`<tr><td>${a.name}</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>`;
+return;
+}
+const depRate=Math.min(yrs/a.life,1);
+const remain=Math.max(1-depRate,0.1);
+const repairCost=base;
+let tenantBurden,ownerBurden;
+if(lv==='normal'){tenantBurden=0;ownerBurden=repairCost;}
+else{tenantBurden=Math.round(repairCost*remain*lvObj.r);ownerBurden=repairCost-tenantBurden;}
+totalRepair+=repairCost;totalOwner+=ownerBurden;totalTenant+=tenantBurden;
+rows+=`<tr><td>${a.name}</td><td>${yen(repairCost)}</td><td>${a.life}年</td><td>${(depRate*100).toFixed(0)}%</td><td>${(remain*100).toFixed(0)}%</td><td>${yen(ownerBurden)}</td><td>${yen(tenantBurden)}</td></tr>`;
+});
+rows+=`<tr class="total-row"><td>合計</td><td>${yen(totalRepair)}</td><td colspan="3">-</td><td>${yen(totalOwner)}</td><td>${yen(totalTenant)}</td></tr>`;
+document.getElementById('tbody').innerHTML=rows;
+document.getElementById('summary').innerHTML=`
+<div class="summary-box sb-total"><span class="lbl">修繕費合計</span><span class="val">${yen(totalRepair)}</span></div>
+<div class="summary-box sb-owner"><span class="lbl">オーナー負担</span><span class="val">${yen(totalOwner)}</span></div>
+<div class="summary-box sb-tenant"><span class="lbl">借主負担</span><span class="val">${yen(totalTenant)}</span></div>`;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function yen(n){return'¥'+n.toLocaleString()}
+</script>
+</body>
+</html>

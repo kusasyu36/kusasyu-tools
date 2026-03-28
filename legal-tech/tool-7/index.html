@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法務相談ログ＆カスタムQ&amp;A蓄積シート - kusasyu tools</title>
+<meta name="description" content="法務部がない中小企業向けに、社内の法務Q&amp;Aを蓄積・検索できるブラウザ型ナレッジベースツールを構築する。よくある法務質問15問をプリセットし、自社固有のQ&amp;Aを追加していくことで『毎回ゼロから調べる』問題を解消する。弁護士相談が必要かどうかのトリアージ機能付き。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務相談ログ＆カスタムQ&amp;A蓄積シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-7/">
+<meta property="og:title" content="法務相談ログ＆カスタムQ&amp;A蓄積シート - kusasyu tools">
+<meta property="og:description" content="法務部がない中小企業向けに、社内の法務Q&amp;Aを蓄積・検索できるブラウザ型ナレッジベースツールを構築する。よくある法務質問15問をプリセットし、自社固有のQ&amp;Aを追加していくことで『毎回ゼロから調べる』問題を解消する。弁護士相談が必要かどうかのトリアージ機能付き。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務相談ログ＆カスタムQ&amp;A蓄積シート - kusasyu tools">
+<meta name="twitter:description" content="法務部がない中小企業向けに、社内の法務Q&amp;Aを蓄積・検索できるブラウザ型ナレッジベースツールを構築する。よくある法務質問15問をプリセットし、自社固有のQ&amp;Aを追加していくことで『毎回ゼロから調べる』問題を解消する。弁護士相談が必要かどうかのトリアージ機能付き。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "法務相談ログ＆カスタムQ&A蓄積シート",
+  "description": "法務部がない中小企業向けに、社内の法務Q&Aを蓄積・検索できるブラウザ型ナレッジベースツールを構築する。よくある法務質問15問をプリセットし、自社固有のQ&Aを追加していくことで『毎回ゼロから調べる』問題を解消する。弁護士相談が必要かどうかのトリアージ機能付き。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>法務相談ログ＆カスタムQ&amp;A蓄積シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>法務相談ログ＆カスタムQ&amp;A蓄積シート</h1>
+  <p class="project-name">法務の『また同じ質問？』をなくすQAツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>法務相談ログ＆コスト集計シート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>連携ツール: 社内法務トリアージ早見表（Kusasyu Legal Tech）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 相談ログ</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>日付</td><td>質問・相談内容</td><td>カテゴリ</td><td>トリアージ判定</td><td>対応方法</td><td>外部費用（税込円）</td><td>結果・ステータス</td><td>対応者</td></tr><tr><td>2026-01-15</td><td>取引先から届いたNDAに損害賠償の上限条項がない。締結してよいか</td><td>契約</td><td>自分で対応可</td><td>社内法務トリアージ早見表で確認後、賠償上限追加を依頼</td><td>0</td><td>先方が修正に応じ締結完了</td><td>山田太郎</td></tr><tr><td>2026-02-03</td><td>退職した社員から未払い残業代120万円を請求する内容証明が届いた</td><td>労働法</td><td>すぐ弁護士へ</td><td>顧問弁護士に相談。勤怠記録と36協定を提出</td><td>165000</td><td>弁護士交渉により80万円で和解成立</td><td>佐藤花子</td></tr><tr><td>2026-02-20</td><td>自社Webサイトに掲載している画像がフリー素材か不明。指摘メールあり</td><td>知的財産</td><td>専門家に確認推奨</td><td>該当画像を即時削除。購入履歴を調査</td><td>33000</td><td>ライセンス違反なし確認。有料素材に差替え完了</td><td>山田太郎</td></tr><tr><td>2026-03-05</td><td>顧客リスト200件をBCC入れ忘れで取引先にメール送信してしまった</td><td>個人情報</td><td>すぐ弁護士へ</td><td>送信先に削除依頼。個人情報保護委員会への報告要否を弁護士確認</td><td>55000</td><td>1000人以下のため委員会報告不要。本人通知と再発防止策を実施</td><td>佐藤花子</td></tr><tr><td>2026-03-12</td><td>取締役会を書面決議で実施したいが定款に規定がない</td><td>会社法</td><td>専門家に確認推奨</td><td>司法書士に定款変更手続きを相談</td><td>88000</td><td>臨時株主総会で定款変更後に書面決議を実施</td><td>山田太郎</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `法務相談ログ＆コスト集計シート,,,,,,,
+連携ツール: 社内法務トリアージ早見表（Kusasyu Legal Tech）,,,,,,,
+,,,,,,,
+■ 相談ログ,,,,,,,
+日付,質問・相談内容,カテゴリ,トリアージ判定,対応方法,外部費用（税込円）,結果・ステータス,対応者
+2026-01-15,取引先から届いたNDAに損害賠償の上限条項がない。締結してよいか,契約,自分で対応可,社内法務トリアージ早見表で確認後、賠償上限追加を依頼,0,先方が修正に応じ締結完了,山田太郎
+2026-02-03,退職した社員から未払い残業代120万円を請求する内容証明が届いた,労働法,すぐ弁護士へ,顧問弁護士に相談。勤怠記録と36協定を提出,165000,弁護士交渉により80万円で和解成立,佐藤花子
+2026-02-20,自社Webサイトに掲載している画像がフリー素材か不明。指摘メールあり,知的財産,専門家に確認推奨,該当画像を即時削除。購入履歴を調査,33000,ライセンス違反なし確認。有料素材に差替え完了,山田太郎
+2026-03-05,顧客リスト200件をBCC入れ忘れで取引先にメール送信してしまった,個人情報,すぐ弁護士へ,送信先に削除依頼。個人情報保護委員会への報告要否を弁護士確認,55000,1000人以下のため委員会報告不要。本人通知と再発防止策を実施,佐藤花子
+2026-03-12,取締役会を書面決議で実施したいが定款に規定がない,会社法,専門家に確認推奨,司法書士に定款変更手続きを相談,88000,臨時株主総会で定款変更後に書面決議を実施,山田太郎
+,,,,,,,
+■ カテゴリ別 年間コスト集計（ドロップダウン選択肢: 労働法 / 契約 / 知的財産 / 個人情報 / 会社法）,,,,,,,
+カテゴリ,相談件数,外部費用合計（円）,自分で対応可（件）,専門家に確認推奨（件）,すぐ弁護士へ（件）,平均費用（円）,備考
+労働法,1,165000,0,0,1,165000,残業代請求は早期に弁護士相談が費用を抑える
+契約,1,0,1,0,0,0,トリアージ早見表で自己解決できたケース
+知的財産,1,33000,0,1,0,33000,画像著作権は事前ガイドライン整備で予防可能
+個人情報,1,55000,0,0,1,55000,誤送信防止ツール導入を検討中
+会社法,1,88000,0,1,0,88000,定款整備は一度行えば再発なし
+合計,5,341000,1,2,2,68200,—
+,,,,,,,
+■ ドロップダウン選択肢一覧（Excel設定用）,,,,,,,
+列名,選択肢,,,,,,
+カテゴリ,労働法 / 契約 / 知的財産 / 個人情報 / 会社法,,,,,,
+トリアージ判定,自分で対応可 / 専門家に確認推奨 / すぐ弁護士へ,,,,,,
+結果・ステータス,対応中 / 解決済み / 弁護士対応中 / 保留,,,,,,
+\`\`\`
+
+---
+
+**シート2: 社内ナレッジQ&A蓄積シート**
+
+\`\`\`csv
+社内ナレッジQ&A蓄積シート,,,,,,,
+連携ツール: 社内法務トリアージ早見表（Kusasyu Legal Tech）,,,,,,,
+※ HTMLツールのプリセット15問にない自社固有のQ&Aをここに追記・蓄積してください,,,,,,,
+,,,,,,,
+■ 社内固有Q&A（ドロップダウン選択肢: 労働法 / 契約 / 知的財産 / 個人情報 / 会社法 / 社内規程 / 許認可 / その他）,,,,,,,
+登録日,カテゴリ,質問（社内でよく聞かれること）,回答・対応方針,トリアージ判定,確認チェックリスト,登録者,最終更新日
+2026-01-20,社内規程,出張旅費の事前申請なしに立替払いしても経費精算できるか,就業規則第32条により事前申請が原則。ただし緊急出張は事後3営業日以内の申請で精算可。領収書原本が必須,自分で対応可,1.就業規則第32条を確認 2.領収書原本の有無 3.上長承認の取得,山田太郎,2026-01-20
+2026-02-10,許認可,飲食店の深夜営業（0時以降）を始めるのに届出は必要か,風営法に基づく「深夜酒類提供飲食店営業」の届出が必要。届出先は所轄警察署。届出後10日で営業可能。届出なしの深夜営業は50万円以下の罰金,専門家に確認推奨,1.営業時間の変更内容を確認 2.所轄警察署を特定 3.届出書類一式を準備 4.届出後の営業開始日を設定,佐藤花子,2026-02-10
+2026-03-01,契約,海外取引先との契約で準拠法を日本法にできるか。相手がNY州法を主張している,当事者間の合意で準拠法は自由に選択可能。ただし相手国の強行法規は排除不可。折衷案として被告地主義（訴えられた側の国の法律）を提案するケースも多い,すぐ弁護士へ,1.契約金額と取引規模を確認 2.相手国の強行法規を調査 3.仲裁条項（ICC等）の採用を検討 4.国際取引に強い弁護士に相談,山田太郎,2026-03-01
+,,,,,,,
+■ ドロップダウン選択肢一覧（Excel設定用）,,,,,,,
+列名,選択肢,,,,,,
+カテゴリ,労働法 / 契約 / 知的財産 / 個人情報 / 会社法 / 社内規程 / 許認可 / その他,,,,,,
+トリアージ判定,自分で対応可 / 専門家に確認推奨 / すぐ弁護士へ,,,,,,
+,,,,,,,
+■ 運用ルール,,,,,,,
+1,新しい法務相談があり既存のプリセット15問で対応できなかった場合にこのシートに追記する,,,,,,,
+2,回答は「結論→根拠→具体的アクション」の順で簡潔に記載する,,,,,,,
+3,トリアージ判定は社内法務トリアージ早見表の3段階（自分で対応可/専門家に確認推奨/すぐ弁護士へ）に準拠する,,,,,,,
+4,四半期に1回は内容の見直しを行い最終更新日を更新する,,,,,,,
+5,弁護士に相談した結果は必ず回答欄に反映し社内ナレッジとして蓄積する,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_法務相談ログ＆カスタムQ&amp;A蓄積シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

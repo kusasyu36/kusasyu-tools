@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>営業トークに騙されない！投資物件の実質利回りガイド - kusasyu tools</title>
+<meta name="description" content="物件価格・想定家賃・ローン条件を入力すると、表面利回りだけでなく、不動産取得税・固定資産税・減価償却・空室損を加味した『実質手取り額』を自動算出するHTMLシミュレーター。10年間の収支推移グラフと総合判定（A〜D）で、営業マンの甘い数字に惑わされない投資判断を支援する。海外のPropertizer（Prod">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,営業トークに騙されない！投資物件の実質利回りガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/guide/">
+<meta property="og:title" content="営業トークに騙されない！投資物件の実質利回りガイド - kusasyu tools">
+<meta property="og:description" content="物件価格・想定家賃・ローン条件を入力すると、表面利回りだけでなく、不動産取得税・固定資産税・減価償却・空室損を加味した『実質手取り額』を自動算出するHTMLシミュレーター。10年間の収支推移グラフと総合判定（A〜D）で、営業マンの甘い数字に惑わされない投資判断を支援する。海外のPropertizer（Prod">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/guide/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="営業トークに騙されない！投資物件の実質利回りガイド - kusasyu tools">
+<meta name="twitter:description" content="物件価格・想定家賃・ローン条件を入力すると、表面利回りだけでなく、不動産取得税・固定資産税・減価償却・空室損を加味した『実質手取り額』を自動算出するHTMLシミュレーター。10年間の収支推移グラフと総合判定（A〜D）で、営業マンの甘い数字に惑わされない投資判断を支援する。海外のPropertizer（Prod">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "営業トークに騙されない！投資物件の実質利回りガイド",
+  "description": "物件価格・想定家賃・ローン条件を入力すると、表面利回りだけでなく、不動産取得税・固定資産税・減価償却・空室損を加味した『実質手取り額』を自動算出するHTMLシミュレーター。10年間の収支推移グラフと総合判定（A〜D）で、営業マンの甘い数字に惑わされない投資判断を支援する。海外のPropertizer（Prod",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/guide/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-21"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>営業トークに騙されない！投資物件の実質利回りガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>営業トークに騙されない！投資物件の実質利回りガイド</h1>
+  <p class="project-name">その利回り、本当？投資物件の手取り即計算</p>
+  <div class="content">
+<h1>営業トークに騙されない！投資物件の実質利回りガイド</h1>
+<h2>はじめに——「利回り8%」の罠</h2>
+<p>不動産投資セミナーや営業トークで飛び交う「利回り8%」「高利回り物件」という言葉。しかし、その数字の多くは<strong>表面利回り</strong>であり、あなたの手元に残るお金とは大きくかけ離れています。</p>
+<p>本ガイドでは、投資判断で本当に見るべき<strong>実質手取り額</strong>の考え方と、見落としがちな5つの隠れコストを具体的な数字で解説します。最後に、無料シミュレーター「<strong>PropCalc</strong>」を使って自分の検討物件を即座に診断する方法もお伝えします。</p>
+<hr />
+<h2>1. 表面利回りと実質利回りの違い</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>表面利回り</th>
+<th>実質利回り</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>計算式</strong></td>
+<td>年間家賃 ÷ 物件価格 × 100</td>
+<td>(年間家賃 − 年間経費) ÷ (物件価格 + 購入諸費用) × 100</td>
+</tr>
+<tr>
+<td><strong>含まれるコスト</strong></td>
+<td>なし</td>
+<td>税金・管理費・修繕費・空室損など全て</td>
+</tr>
+<tr>
+<td><strong>営業資料での表記</strong></td>
+<td>ほぼ100% これ</td>
+<td>ほとんど記載なし</td>
+</tr>
+<tr>
+<td><strong>あなたの手取りとの関係</strong></td>
+<td>遠い</td>
+<td>近い</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体例：物件価格3,000万円・月額家賃12万円の場合</strong></p>
+<ul>
+<li>表面利回り：144万円 ÷ 3,000万円 = <strong>4.80%</strong></li>
+<li>実質利回り：(144万円 − 約55万円) ÷ (3,000万円 + 約210万円) = <strong>約2.77%</strong></li>
+</ul>
+<p>表面利回りの約6割しか手元に残りません。この差を生む正体が、次に解説する「5つの隠れコスト」です。</p>
+<hr />
+<h2>2. 見落としがちな5つの隠れコスト</h2>
+<h3>① 不動産取得税（購入時に1回）</h3>
+<p>物件を買ったときに都道府県に納める税金です。請求が届くのは購入の半年後ごろなので、忘れたころにやってきます。</p>
+<p><strong>計算方法：</strong>
+- 土地：固定資産税評価額 × 1/2 × 3%
+- 建物：固定資産税評価額 × 3%（住宅用）</p>
+<blockquote>
+<p>3,000万円の物件（評価額2,100万円、土地:建物＝4:6と仮定）の場合：
+土地 840万円 × 1/2 × 3% = 12.6万円、建物 1,260万円 × 3% = 37.8万円
+<strong>合計 約50万円</strong></p>
+</blockquote>
+<h3>② 管理費（毎月）</h3>
+<p>入居者募集・家賃回収・クレーム対応などを管理会社に委託する費用です。</p>
+<p><strong>相場：月額家賃の3〜5%</strong></p>
+<blockquote>
+<p>月額家賃12万円 × 5% = 6,000円/月 → <strong>年間7.2万円</strong></p>
+</blockquote>
+<p>自主管理で0円にもできますが、本業がある副業投資家には非現実的です。</p>
+<h3>③ 修繕積立金（毎月 or 突発）</h3>
+<p>外壁塗装・給排水管交換・設備故障など、建物は必ず劣化します。</p>
+<p><strong>目安：家賃収入の5〜10%</strong></p>
+<blockquote>
+<p>月額家賃12万円 × 7% = 8,400円/月 → <strong>年間約10万円</strong></p>
+</blockquote>
+<p>築10年を超えると給湯器交換（15〜25万円）やエアコン交換が発生しやすくなります。</p>
+<h3>④ 空室損（年間）</h3>
+<p>365日満室はほぼありえません。退去から次の入居まで平均1〜3か月かかります。</p>
+<p><strong>計算方法：年間家賃 × 空室率</strong></p>
+<blockquote>
+<p>空室率10%の場合：144万円 × 10% = <strong>年間14.4万円の損失</strong></p>
+</blockquote>
+<p>都心ワンルームなら5%、地方ファミリーなら15〜20%が現実的な見積もりです。</p>
+<h3>⑤ 固定資産税・都市計画税（毎年）</h3>
+<p>毎年1月1日時点の所有者に課税されます。</p>
+<p><strong>計算方法：</strong>
+- 固定資産税：評価額 × 1.4%
+- 都市計画税：評価額 × 0.3%（市街化区域内）</p>
+<blockquote>
+<p>評価額2,100万円の場合：2,100万円 × 1.7% = <strong>年間約35.7万円</strong>
+（住宅用地の軽減措置適用前の概算）</p>
+</blockquote>
+<hr />
+<h3>5つの隠れコスト年間合計（3,000万円物件の例）</h3>
+<table>
+<thead>
+<tr>
+<th>コスト項目</th>
+<th>年間金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 不動産取得税（10年按分）</td>
+<td>約5万円</td>
+</tr>
+<tr>
+<td>② 管理費</td>
+<td>約7.2万円</td>
+</tr>
+<tr>
+<td>③ 修繕積立</td>
+<td>約10万円</td>
+</tr>
+<tr>
+<td>④ 空室損（10%）</td>
+<td>約14.4万円</td>
+</tr>
+<tr>
+<td>⑤ 固定資産税・都市計画税</td>
+<td>約35.7万円</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td><strong>約72.3万円</strong></td>
+</tr>
+</tbody>
+</table>
+<p>年間家賃収入144万円のうち<strong>約半分が消える</strong>のが現実です。</p>
+<hr />
+<h2>3. 減価償却の節税効果——具体例3つ</h2>
+<p>減価償却とは、建物の購入費用を耐用年数にわたって経費計上できる仕組みです。実際にお金は出ていかないのに帳簿上は赤字にでき、所得税・住民税を圧縮できます。</p>
+<h3>【例1】新築RC（鉄筋コンクリート）マンション</h3>
+<ul>
+<li>建物価格：2,400万円</li>
+<li>耐用年数：47年（定額法）</li>
+<li><strong>年間償却額：2,400万円 ÷ 47 = 約51万円</strong></li>
+</ul>
+<p>→ 所得税率20%の会社員なら、51万円 × 20% = <strong>年間約10.2万円の節税</strong></p>
+<h3>【例2】築15年の木造アパート</h3>
+<ul>
+<li>建物価格：1,200万円</li>
+<li>残耐用年数：(22年 − 15年) + 15年 × 20% = <strong>10年</strong></li>
+<li><strong>年間償却額：1,200万円 ÷ 10 = 120万円</strong></li>
+</ul>
+<p>→ 所得税率30%の高所得者なら、120万円 × 30% = <strong>年間36万円の節税</strong>。木造中古は償却スピードが速く節税効果が大きいのが特徴です。</p>
+<h3>【例3】築10年の鉄骨造（軽量鉄骨）</h3>
+<ul>
+<li>建物価格：1,800万円</li>
+<li>残耐用年数：(27年 − 10年) + 10年 × 20% = <strong>19年</strong></li>
+<li><strong>年間償却額：1,800万円 ÷ 19 = 約94.7万円</strong></li>
+</ul>
+<p>→ 所得税率20%の会社員なら、94.7万円 × 20% = <strong>年間約19万円の節税</strong></p>
+<blockquote>
+<p><strong>ポイント：</strong> 築古の木造・軽量鉄骨は耐用年数が短いため、年間の償却額が大きく節税効果が高い。一方でRC新築は償却が緩やかな代わりに、長期間にわたって安定した経費計上が可能です。</p>
+</blockquote>
+<hr />
+<h2>4. PropCalcの使い方</h2>
+<p>「<strong>PropCalc</strong>」は、ここまで解説した全てのコストと減価償却を自動計算する無料シミュレーターです。会員登録不要で、ブラウザだけで使えます。</p>
+<h3>入力する項目（3ステップ）</h3>
+<p><strong>ステップ1：物件情報</strong>
+- 物件価格（万円）
+- 建物割合（%）
+- 構造（RC / 鉄骨 / 木造）
+- 築年数</p>
+<p><strong>ステップ2：収入条件</strong>
+- 想定月額家賃
+- 空室率（%）</p>
+<p><strong>ステップ3：ローン条件</strong>
+- 自己資金（万円）
+- 借入金利（%）
+- 借入期間（年）</p>
+<p>入力が終わったら「シミュレーション実行」ボタンを押すだけです。</p>
+<h3>出力される情報</h3>
+<table>
+<thead>
+<tr>
+<th>出力項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表面利回り</td>
+<td>経費を含まない単純計算</td>
+</tr>
+<tr>
+<td>実質利回り（NET）</td>
+<td>5つの隠れコストを差し引いた利回り</td>
+</tr>
+<tr>
+<td>年間キャッシュフロー</td>
+<td>ローン返済後に手元に残る金額</td>
+</tr>
+<tr>
+<td>10年間収支推移グラフ</td>
+<td>年ごとの収入・支出・手取りの推移を可視化</td>
+</tr>
+<tr>
+<td>総合判定（A〜D）</td>
+<td>投資としての総合評価</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 総合判定（A〜D）の読み方</h2>
+<p>PropCalcは実質利回りと年間キャッシュフローをもとに、物件をA〜Dの4段階で判定します。</p>
+<table>
+<thead>
+<tr>
+<th>判定</th>
+<th>意味</th>
+<th>目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A（優良）</strong></td>
+<td>キャッシュフローが安定してプラス。初心者にもおすすめ</td>
+<td>実質利回り4%以上・CF黒字</td>
+</tr>
+<tr>
+<td><strong>B（標準）</strong></td>
+<td>収支はプラスだが余裕は薄い。経費上振れリスクに注意</td>
+<td>実質利回り2〜4%・CF黒字</td>
+</tr>
+<tr>
+<td><strong>C（要注意）</strong></td>
+<td>キャッシュフローがほぼトントンか赤字。追加出費で苦しくなる</td>
+<td>実質利回り1〜2%・CFギリギリ</td>
+</tr>
+<tr>
+<td><strong>D（再検討）</strong></td>
+<td>持ち出しが続く可能性が高い。条件の見直しを推奨</td>
+<td>実質利回り1%未満・CF赤字</td>
+</tr>
+</tbody>
+</table>
+<h3>判定を改善するヒント</h3>
+<ul>
+<li><strong>D→C：</strong> 自己資金を増やしてローン返済額を下げる</li>
+<li><strong>C→B：</strong> 空室率の低いエリアに変更する、または家賃設定を見直す</li>
+<li><strong>B→A：</strong> 築古木造で減価償却を最大化し、節税効果で実質手取りを増やす</li>
+</ul>
+<hr />
+<h2>まとめ</h2>
+<ol>
+<li><strong>表面利回りだけで判断しない。</strong> 実質利回りは表面の5〜6割になるのが普通</li>
+<li><strong>5つの隠れコストを必ず計算に入れる。</strong> 特に固定資産税と空室損のインパクトが大きい</li>
+<li><strong>減価償却の節税効果も加味する。</strong> 構造と築年数で効果が大きく変わる</li>
+<li><strong>PropCalcで即診断。</strong> 営業マンから提示された数字をその場で検証できる</li>
+</ol>
+<p>不動産投資は「買ったあとの数字」が全てです。甘い利回りトークに流されず、PropCalcで冷静にシミュレーションしてから判断しましょう。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退去立会い現場チェックリスト - kusasyu tools</title>
+<meta name="description" content="退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,退去立会い現場チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-3/">
+<meta property="og:title" content="退去立会い現場チェックリスト - kusasyu tools">
+<meta property="og:description" content="退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="退去立会い現場チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "退去立会い現場チェックリスト",
+  "description": "退去時に部屋の各箇所（壁・床・キッチン・浴室・建具・設備）の損耗状態と入居年数を選択すると、国交省ガイドラインの経年劣化率テーブルに基づいてオーナー負担額・借主負担額を自動算定するHTMLツール。修繕費相場DBを内蔵し、根拠ある見積書をその場で印刷可能にする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/checker-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>退去立会い現場チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>退去立会い現場チェックリスト</h1>
+  <p class="project-name">原状回復費の負担割合、根拠付きで即算定</p>
+  <div class="content">
+<h1>退去立会い現場チェックリスト</h1>
+<p><strong>RestoreCalc 原状回復費算定ツール 連携シート</strong></p>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li>退去立会い当日、本シートを印刷して現場に持参する</li>
+<li>各箇所を目視確認し「損耗レベル」「負担区分」を記入する</li>
+<li>損傷がある箇所はスマホで撮影し「写真No.」欄に番号を記録する</li>
+<li>立会い終了後、本シートの記入内容を <strong>RestoreCalc</strong> に入力すると、国交省ガイドラインの経年劣化率に基づきオーナー負担額・借主負担額が自動算定される</li>
+</ol>
+<blockquote>
+<p><strong>損耗レベルの基準</strong>
+- <strong>A（良好）</strong>: 通常使用の範囲内。清掃で回復可能
+- <strong>B（軽微な損耗）</strong>: 小さな傷・汚れあり。部分補修で対応可能
+- <strong>C（中程度の損耗）</strong>: 目立つ傷・シミ・変色あり。部分〜全面補修が必要
+- <strong>D（重度の損傷）</strong>: 大きな破損・穴・焦げ等あり。交換が必要</p>
+</blockquote>
+<hr />
+<h2>物件情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件名</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: グランメゾン目黒 302号室]</td>
+</tr>
+<tr>
+<td>所在地</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: 東京都目黒区下目黒3-1-2]</td>
+</tr>
+<tr>
+<td>間取り／面積</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: 1LDK／42.5㎡]</td>
+</tr>
+<tr>
+<td>構造</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: RC造]</td>
+</tr>
+<tr>
+<td>入居日</td>
+<td>＿＿＿＿年＿＿月＿＿日 [記入例: 2020年4月1日]</td>
+</tr>
+<tr>
+<td>退去日</td>
+<td>＿＿＿＿年＿＿月＿＿日 [記入例: 2026年3月31日]</td>
+</tr>
+<tr>
+<td>入居年数</td>
+<td>＿＿＿＿年＿＿ヶ月 [記入例: 6年0ヶ月]</td>
+</tr>
+<tr>
+<td>立会い日時</td>
+<td>＿＿＿＿年＿＿月＿＿日 ＿＿時＿＿分</td>
+</tr>
+<tr>
+<td>立会い者（管理側）</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: 鈴木太郎]</td>
+</tr>
+<tr>
+<td>立会い者（借主側）</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: 佐藤花子]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. 壁・天井（クロス）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>確認箇所</th>
+<th>損耗レベル</th>
+<th>損耗の具体的内容</th>
+<th>負担区分</th>
+<th>写真No.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-1</td>
+<td>リビング壁面</td>
+<td>＿ [記入例: B]</td>
+<td>＿＿＿＿ [記入例: 画鋲穴5箇所]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓通常損耗]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>リビング天井</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 照明焼け・変色]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>1-3</td>
+<td>寝室壁面</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: タバコヤニによる黄ばみ]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>1-4</td>
+<td>寝室天井</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>1-5</td>
+<td>キッチン壁面</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 油汚れ（換気扇周辺）]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>1-6</td>
+<td>廊下・玄関壁面</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 引越し時の擦り傷]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>1-7</td>
+<td>トイレ壁面</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ガイドライン参考</strong>: 画鋲・ピン穴＝通常損耗／ネジ穴・釘穴＝故意過失／タバコのヤニ汚れ＝故意過失／日照による変色＝通常損耗</p>
+<hr />
+<h2>2. 床（フローリング・CF・畳）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>確認箇所</th>
+<th>床材種類</th>
+<th>損耗レベル</th>
+<th>損耗の具体的内容</th>
+<th>負担区分</th>
+<th>写真No.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2-1</td>
+<td>リビング</td>
+<td>＿ [記入例: フローリング]</td>
+<td>＿ [記入例: B]</td>
+<td>＿＿＿＿ [記入例: 家具設置跡のへこみ]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓通常損耗]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2-2</td>
+<td>寝室</td>
+<td>＿</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: キャスター傷（広範囲）]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>キッチン</td>
+<td>＿ [記入例: CF]</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 冷蔵庫跡のへこみ]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2-4</td>
+<td>廊下・玄関</td>
+<td>＿</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>2-5</td>
+<td>和室（畳）</td>
+<td>＿ [記入例: 畳]</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 家具跡・日焼け]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ガイドライン参考</strong>: 家具設置跡・日焼け＝通常損耗／引きずり傷・落下物による傷＝故意過失／ペットによる傷＝故意過失</p>
+<hr />
+<h2>3. キッチン</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>確認箇所</th>
+<th>損耗レベル</th>
+<th>損耗の具体的内容</th>
+<th>負担区分</th>
+<th>写真No.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3-1</td>
+<td>シンク・排水口</td>
+<td>＿ [記入例: A]</td>
+<td>＿＿＿＿ [記入例: 水垢あるが清掃で除去可能]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3-2</td>
+<td>ガスコンロ／IH周辺</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 油汚れの固着（清掃不足）]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3-3</td>
+<td>換気扇・レンジフード</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: フィルター油汚れ]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3-4</td>
+<td>キッチン収納・棚</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>3-5</td>
+<td>蛇口・水栓金具</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: パッキン劣化で水漏れ]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓通常損耗]</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ガイドライン参考</strong>: 清掃で除去可能な油汚れ＝通常損耗／清掃怠りによる固着汚れ＝故意過失／設備の経年劣化＝通常損耗</p>
+<hr />
+<h2>4. 浴室・洗面</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>確認箇所</th>
+<th>損耗レベル</th>
+<th>損耗の具体的内容</th>
+<th>負担区分</th>
+<th>写真No.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4-1</td>
+<td>浴槽</td>
+<td>＿ [記入例: B]</td>
+<td>＿＿＿＿ [記入例: 水垢・軽微な変色]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4-2</td>
+<td>浴室壁面・床</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: カビ（目地部分）]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4-3</td>
+<td>シャワー・水栓</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4-4</td>
+<td>洗面台・鏡</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 鏡のサビ（端部）]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓通常損耗]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4-5</td>
+<td>換気扇</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>4-6</td>
+<td>排水口</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 髪の毛詰まり]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ガイドライン参考</strong>: 鏡のサビ（端部）＝通常損耗／カビ放置による拡大＝故意過失／設備経年劣化＝通常損耗</p>
+<hr />
+<h2>5. 建具（ドア・窓・襖・網戸）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>確認箇所</th>
+<th>損耗レベル</th>
+<th>損耗の具体的内容</th>
+<th>負担区分</th>
+<th>写真No.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5-1</td>
+<td>玄関ドア（内側）</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 傷なし]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5-2</td>
+<td>室内ドア</td>
+<td>＿ [記入例: C]</td>
+<td>＿＿＿＿ [記入例: ペットの引っかき傷]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5-3</td>
+<td>襖・障子</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 破れ1箇所]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5-4</td>
+<td>窓ガラス・サッシ</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5-5</td>
+<td>網戸</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 破れ（ペット）]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>5-6</td>
+<td>クローゼット扉・棚</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ガイドライン参考</strong>: 建付けの自然な狂い＝通常損耗／ペットによる傷・破損＝故意過失／地震によるひび＝通常損耗</p>
+<hr />
+<h2>6. 設備（エアコン・給湯器・照明・その他）</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>確認箇所</th>
+<th>損耗レベル</th>
+<th>損耗の具体的内容</th>
+<th>負担区分</th>
+<th>写真No.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6-1</td>
+<td>エアコン</td>
+<td>＿ [記入例: B]</td>
+<td>＿＿＿＿ [記入例: フィルター汚れ]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>6-2</td>
+<td>給湯器</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 正常動作]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>6-3</td>
+<td>照明器具</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: カバー破損]</td>
+<td>□通常損耗 □故意過失 [記入例: ✓故意過失]</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>6-4</td>
+<td>インターホン</td>
+<td>＿</td>
+<td>＿＿＿＿</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>6-5</td>
+<td>コンセント・スイッチ</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: プレート割れ]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+<tr>
+<td>6-6</td>
+<td>トイレ本体・温水洗浄便座</td>
+<td>＿</td>
+<td>＿＿＿＿ [記入例: 正常動作]</td>
+<td>□通常損耗 □故意過失</td>
+<td>＿</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ガイドライン参考</strong>: 設備の経年劣化・自然故障＝通常損耗／清掃怠りによる故障・破損＝故意過失</p>
+<hr />
+<h2>7. 鍵・その他</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>確認項目</th>
+<th>状態</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7-1</td>
+<td>鍵の返却</td>
+<td>□全数返却（＿本） □不足（＿本） [記入例: ✓全数返却（2本）]</td>
+<td>＿＿＿＿</td>
+</tr>
+<tr>
+<td>7-2</td>
+<td>残置物の有無</td>
+<td>□なし □あり [記入例: ✓あり]</td>
+<td>＿＿＿＿ [記入例: バルコニーに物干し竿1本]</td>
+</tr>
+<tr>
+<td>7-3</td>
+<td>メーター検針</td>
+<td>電気＿＿＿ ガス＿＿＿ 水道＿＿＿</td>
+<td>[記入例: 電気15234 ガス8721 水道4532]</td>
+</tr>
+<tr>
+<td>7-4</td>
+<td>郵便受け確認</td>
+<td>□空 □残留物あり</td>
+<td>＿＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>総合所見</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全体の印象</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: 全体的に良好。一部ペット損傷あり]</td>
+</tr>
+<tr>
+<td>故意過失が認められた箇所数</td>
+<td>＿＿箇所 [記入例: 5箇所]</td>
+</tr>
+<tr>
+<td>特記事項</td>
+<td>＿＿＿＿＿＿＿＿＿＿ [記入例: ペット飼育（契約書に禁止条項あり）について別途協議要]</td>
+</tr>
+<tr>
+<td>RestoreCalc入力予定日</td>
+<td>＿＿＿＿年＿＿月＿＿日 [記入例: 立会い翌営業日]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>署名</h2>
+<p>本チェックリストの記載内容について、立会い時に双方で確認したことを認めます。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>管理者側</th>
+<th>借主側</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>氏名</td>
+<td>＿＿＿＿＿＿＿＿</td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>日付</td>
+<td>＿＿年＿＿月＿＿日</td>
+<td>＿＿年＿＿月＿＿日</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本チェックリストの記入後、</em><em>RestoreCalc（原状回復費算定ツール）</em><em> に各箇所の損耗レベル・入居年数を入力することで、国交省ガイドラインの経年劣化率テーブルに基づいたオーナー負担額・借主負担額が自動算定されます。算定結果は根拠付き見積書として印刷可能です。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

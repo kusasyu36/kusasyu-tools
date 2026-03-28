@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>弁護士相談・準備チェックリスト生成ツール - kusasyu tools</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6;padding:12px;max-width:900px;margin:0 auto}
+.disc{padding:10px 14px;background:#fff3cd;border-radius:6px;font-size:.75em;color:#744210;line-height:1.5;margin-bottom:12px;position:sticky;top:0;z-index:10}
+h1{font-size:1.2em;text-align:center;padding:12px 0;color:#1a365d}
+.sub{text-align:center;font-size:.8em;color:#718096;margin-bottom:14px}
+.form{background:#fff;border-radius:8px;padding:16px;margin-bottom:14px}
+.form label{font-weight:600;font-size:.9em;display:block;margin-bottom:4px}
+.form select,.form textarea{width:100%;padding:10px;border:2px solid #e2e8f0;border-radius:6px;font-size:.95em;margin-bottom:12px;background:#fff;-webkit-appearance:auto}
+.form textarea{height:60px;resize:vertical;font-family:inherit}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{width:100%;padding:12px;background:#3182ce;color:#fff;border:none;border-radius:6px;font-size:1em;font-weight:600;cursor:pointer}button:hover{background:#2b6cb0}
+#result{display:none}
+.sec{background:#fff;border-radius:8px;margin-bottom:10px;overflow:hidden;break-inside:avoid}
+.sh{padding:10px 14px;font-weight:700;color:#fff;font-size:.95em}
+.s1{background:#2b6cb0}.s2{background:#2c7a7b}.s3{background:#276749}.s4{background:#975a16}.s5{background:#9b2c2c}
+.bd{padding:10px 14px}
+.ci{padding:5px 0;border-bottom:1px solid #edf2f7;font-size:.85em;display:flex;gap:8px;align-items:flex-start}
+.ci:last-child{border:none}
+.ck{flex-shrink:0;width:16px;height:16px;border:2px solid #cbd5e0;border-radius:3px;margin-top:2px;cursor:pointer}
+.ck.on{background:#3182ce;border-color:#3182ce;position:relative}
+.ck.on::after{content:"✓";color:#fff;font-size:11px;position:absolute;top:-2px;left:2px}
+.ct{flex:1}.ct b{font-size:.85em}.ct span{display:block;font-size:.78em;color:#718096}
+.pb{margin-top:10px}.bk{background:#718096;margin-top:6px}.bk:hover{background:#4a5568}
+.ft{text-align:center;font-size:.78em;color:#718096;margin-top:10px}
+.ph{display:none;text-align:center;margin-bottom:10px;font-size:.85em;color:#4a5568}
+.sum{background:#ebf8ff;border-radius:6px;padding:10px 14px;margin-bottom:10px;font-size:.85em}
+.sum b{color:#2b6cb0}
+@media print{.disc{position:static}button,.form,.ft,.pb{display:none!important}#result{display:block!important}.sec{box-shadow:none;border:1px solid #ccc}body{padding:0;max-width:100%;font-size:11pt}.ph{display:block!important}.ck{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
+</style><meta name="description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,弁護士相談・準備チェックリスト生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-2/">
+<meta property="og:title" content="弁護士相談・準備チェックリスト生成ツール - kusasyu tools">
+<meta property="og:description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="弁護士相談・準備チェックリスト生成ツール - kusasyu tools">
+<meta name="twitter:description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "弁護士相談・準備チェックリスト生成ツール",
+  "description": "法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">弁護士相談・準備チェックリスト生成ツール</span></div>
+<div class="disc">⚠️ 本ツールは弁護士相談の準備を支援する参考情報です。法的助言ではありません。具体的な対応は必ず弁護士にご確認ください。</div>
+<h1>弁護士相談・準備チェックリスト生成ツール</h1>
+<p class="sub">法務リスク初動トリアージツール シリーズ</p>
+<div class="form">
+<label>相談場面</label>
+<select id="sc1"><option value="">-- 選択してください --</option><option value="contract">契約トラブル</option><option value="employee">従業員問題</option><option value="claim">クレーム・損害賠償</option><option value="admin">行政対応・許認可</option><option value="ip">知的財産</option></select>
+<div class="row">
+<div><label>金額規模</label><select id="sc2"><option value="">-- 選択 --</option><option value="s">〜100万円</option><option value="m">100万〜1,000万円</option><option value="l">1,000万円超</option></select></div>
+<div><label>相手方の種別</label><select id="sc3"><option value="">-- 選択 --</option><option value="corp">法人（取引先）</option><option value="consumer">個人（消費者）</option><option value="gov">行政機関</option><option value="internal">社内（従業員等）</option></select></div>
+</div>
+<label>発生からの経過</label>
+<select id="sc4"><option value="">-- 選択 --</option><option value="now">発生直後（1週間以内）</option><option value="mid">1週間〜1ヶ月</option><option value="old">1ヶ月以上経過</option></select>
+<label>状況メモ（任意）</label>
+<textarea id="memo" placeholder="例：取引先から契約解除の通知書が届いた"></textarea>
+<button onclick="gen()">チェックリストを生成</button>
+</div>
+<div id="result"><div class="ph" id="ph"></div><div class="sum" id="sumbox"></div><div id="out"></div><div class="pb"><button onclick="window.print()">🖨 A4印刷する</button><button class="bk" onclick="document.getElementById('result').style.display='none'">選択に戻る</button></div></div>
+<p class="ft">© 2026 Kusasyu Legal Tech｜本ツールは情報提供のみを目的とし、法的助言を構成しません。</p>
+<script>
+const D={
+contract:{name:"契約トラブル",docs:["問題の契約書原本（全ページ・署名ページ含む）","関連する覚書・変更合意書・発注書","契約締結前後のメール・チャット履歴","請求書・納品書・検収書","相手方からの通知書・催告書（あれば）"],info:["契約締結日・契約期間・自動更新条項の有無","債務不履行の具体的内容と発生日","損害額の算定根拠・既払金額","相手方の連絡先・担当者名","時効期間の確認（民法166条: 知った時から5年）"],facts:["トラブル発生の時系列（日付ごとの経緯）","自社側の履行状況（納品・支払等の完了/未完了）","相手方の契約違反の具体的事実","これまでの交渉経緯と相手方の主張内容","希望する解決方法（継続/解除/損害賠償等）"]},
+employee:{name:"従業員問題",docs:["当該従業員の雇用契約書・労働条件通知書","就業規則・賃金規程・懲戒規程","問題に関する報告書・始末書","出勤記録・タイムカード（直近3ヶ月）","該当者とのメール・面談記録"],info:["雇用形態（正社員/契約/派遣）・勤続年数","問題行動の発生日・回数・内容","過去の指導歴・注意歴（書面の有無）","同種事案での前例処分","労働基準監督署への届出状況"],facts:["問題の具体的事実（5W1Hで整理）","目撃者・関係者の有無と証言内容","就業規則上の該当条項","本人の弁明内容","検討中の処分内容とその根拠"]},
+claim:{name:"クレーム・損害賠償",docs:["クレーム内容を記録した書面・メール","自社の製品仕様書・サービス契約書","品質検査記録・検品記録","相手方からの損害賠償請求書（あれば）","PL保険・賠償責任保険の証券"],info:["クレーム発生日と認知日","損害の種類（身体/財産/精神的）と規模","自社の過失割合に関する見解","保険適用の可否と補償範囲","類似クレームの過去発生件数"],facts:["製品・サービスの提供から問題発生までの経緯","原因の特定状況（自社原因/外部要因/不明）","相手方の要求内容（金額・対応方法）","初動対応で行った内容","SNS・メディアへの露出状況"]},
+admin:{name:"行政対応・許認可",docs:["関連する許認可証・届出受理書","行政からの通知書・指導書・是正命令書","定期報告書の控え（直近3期分）","業法に基づく帳簿・台帳","改善計画書（作成済みの場合）"],info:["所管行政機関の名称・担当部署","許認可の種類・有効期限・更新時期","指摘事項の内容と回答期限","同業他社での類似処分事例","行政処分の段階（指導/勧告/命令/取消）"],facts:["行政からの指摘・調査の経緯","指摘事項に対する自社の現状","改善に必要な期間と費用の見積もり","事業継続への影響度","過去の行政指導歴"]},
+ip:{name:"知的財産",docs:["自社の特許証・商標登録証・意匠登録証","出願書類・明細書の控え","侵害が疑われる相手方製品のカタログ・URL","ライセンス契約書（あれば）","先行技術調査報告書（あれば）"],info:["権利の種類（特許/商標/意匠/著作権/営業秘密）","権利の登録番号・出願日・存続期間","侵害の態様（製造/販売/使用/模倣）","侵害品の流通規模・推定売上","自社の実施状況と市場への影響"],facts:["権利取得の経緯と時系列","侵害発見の経緯と証拠保全状況","相手方の特定状況（企業名/所在地/規模）","これまでの警告・交渉の有無","希望する解決方法（差止/損害賠償/ライセンス）"]}
+};
+const AMT={s:"少額（〜100万円）",m:"中規模（100万〜1,000万円）",l:"高額（1,000万円超）"};
+const PAR={corp:"法人（取引先）",consumer:"個人（消費者）",gov:"行政機関",internal:"社内（従業員等）"};
+const TIM={now:"発生直後（1週間以内）",mid:"1週間〜1ヶ月経過",old:"1ヶ月以上経過"};
+const EXTRA_AMT={m:["取引履歴・入出金明細（金額の裏付け）"],l:["取引履歴・入出金明細（金額の裏付け）","財務諸表（損害の立証用）","経営への影響を示す資料"]};
+const EXTRA_TIM={old:["対応が遅れた理由の説明メモ","時効・除斥期間の確認結果"],mid:["初動対応の記録"]};
+const EXTRA_PAR={consumer:["消費者契約法上の問題点の有無を確認","特定商取引法の適用可否"],gov:["情報公開請求の検討","審査基準・処分基準の事前確認"]};
+function gen(){
+ const s1=document.getElementById("sc1").value,s2=document.getElementById("sc2").value,s3=document.getElementById("sc3").value,s4=document.getElementById("sc4").value,memo=document.getElementById("memo").value.trim();
+ if(!s1||!s2||!s3||!s4){alert("すべての項目を選択してください");return}
+ const d=D[s1],now=new Date,ds=now.getFullYear()+"年"+(now.getMonth()+1)+"月"+now.getDate()+"日";
+ document.getElementById("ph").innerHTML="弁護士相談 準備チェックリスト<br>生成日: "+ds;
+ document.getElementById("sumbox").innerHTML="<b>相談場面:</b> "+d.name+" ／ <b>金額規模:</b> "+AMT[s2]+" ／ <b>相手方:</b> "+PAR[s3]+" ／ <b>経過:</b> "+TIM[s4]+(memo?" ／ <b>メモ:</b> "+esc(memo):"");
+ let h="";
+ h+=sec("準備すべき書類",d.docs.concat(EXTRA_AMT[s2]||[]),"s1");
+ h+=sec("確認すべき情報",d.info.concat(EXTRA_PAR[s3]||[]),"s2");
+ h+=sec("整理すべき事実関係",d.facts.concat(EXTRA_TIM[s4]||[]),"s3");
+ h+=sec("相談当日の持ち物",["本チェックリスト（印刷したもの）","印鑑（認印で可）","名刺","身分証明書","メモ帳・筆記用具"],"s4");
+ h+=sec("相談時の確認事項",["弁護士費用の体系（着手金・報酬金・タイムチャージ）","見通し（期間・勝算・リスク）","次のアクションと期限","追加で必要な書類・情報","連絡方法と対応スピード"],"s5");
+ document.getElementById("out").innerHTML=h;
+ document.getElementById("result").style.display="block";
+ document.querySelectorAll(".ck").forEach(e=>e.onclick=function(){this.classList.toggle("on")});
+}
+function sec(t,items,cls){let h='<div class="sec"><div class="sh '+cls+'">'+t+'（'+items.length+'項目）</div><div class="bd">';items.forEach((v,i)=>{h+='<div class="ci"><div class="ck"></div><div class="ct"><b>'+(i+1)+". "+esc(v)+"</b></div></div>"});return h+"</div></div>"}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+</script></body></html>

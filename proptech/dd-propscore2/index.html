@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>投資物件DDスコアカード「PropScore」（2物件比較機能統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#333;padding:16px;max-width:920px;margin:0 auto}
+h1{text-align:center;color:#1a237e;font-size:1.5em;margin-bottom:2px}
+.sub{text-align:center;color:#666;font-size:.82em;margin-bottom:14px}
+.tabs{display:flex;gap:4px;margin-bottom:14px}
+.tab{flex:1;padding:10px;text-align:center;background:#cfd8dc;border:none;border-radius:8px 8px 0 0;cursor:pointer;font-size:.95em;font-weight:700;transition:.2s}
+.tab.act{background:#1a237e;color:#fff}
+.pnl{display:none}.pnl.act{display:block}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+label{font-size:.78em;color:#555;display:block;margin-bottom:1px}
+input{width:100%;padding:7px;border:1px solid #bbb;border-radius:4px;font-size:.95em}
+input:focus{outline:2px solid #1a237e;border-color:#1a237e}
+.btn{display:block;width:100%;padding:11px;background:#1a237e;color:#fff;border:none;border-radius:6px;font-size:1em;cursor:pointer;margin:12px 0;font-weight:700;transition:.2s}
+.btn:hover{background:#283593}
+.bp{background:#e65100}.bp:hover{background:#bf360c}
+.res{background:#fff;border-radius:10px;padding:16px;margin-top:10px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.sb{text-align:center;font-size:2.8em;font-weight:800;margin:6px 0;line-height:1}
+.sb span{font-size:.35em;font-weight:400}
+.jd{text-align:center;font-size:1.15em;font-weight:700;padding:8px;border-radius:6px;margin-bottom:10px;color:#fff}
+.ir{display:flex;align-items:center;padding:7px 4px;border-bottom:1px solid #eee;font-size:.88em}
+.ir:last-child{border:none}
+.in{flex:1;font-weight:500}.iv{width:90px;text-align:right;font-weight:700;font-size:.92em}
+.dt{width:18px;height:18px;border-radius:50%;margin-left:10px;flex-shrink:0}
+.g{background:#2e7d32}.y{background:#f57f17}.r{background:#c62828}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cmp h3{text-align:center;color:#1a237e;font-size:1em;margin-bottom:8px}
+.tip{font-size:.72em;color:#888;text-align:center;margin-top:12px}
+@media(max-width:640px){.fg,.cmp{grid-template-columns:1fr}.sb{font-size:2.2em}}
+@media print{.tabs,.btn,.bp{display:none}.pnl{display:block!important}.res{box-shadow:none;border:1px solid #ccc}body{padding:0}}
+</style>
+<meta name="description" content="不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,投資物件DDスコアカード「PropScore」（2物件比較機能統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/dd-propscore2/">
+<meta property="og:title" content="投資物件DDスコアカード「PropScore」（2物件比較機能統合版） - kusasyu tools">
+<meta property="og:description" content="不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/dd-propscore2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資物件DDスコアカード「PropScore」（2物件比較機能統合版） - kusasyu tools">
+<meta name="twitter:description" content="不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "投資物件DDスコアカード「PropScore」（2物件比較機能統合版）",
+  "description": "不動産投資検討者が物件情報（価格・賃料・管理費・修繕積立金・築年数・借入条件等）を入力すると、表面利回り・実質利回り・CCR・DCR・BER・返済比率・空室耐性等の10指標を自動計算し、信号機式で可視化。総合スコア100点満点で「買い推奨/要検討/見送り推奨」を即判定するブラウザツール。米国BiggerPoc",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/dd-propscore2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">投資物件DDスコアカード「PropScore」（2物件比較機</span></div>
+<h1>PropScore</h1>
+<p class="sub">投資物件DDスコアカード — 10指標で即診断・2物件比較対応</p>
+<div class="tabs">
+<button class="tab act" onclick="sw(0)">単体診断</button>
+<button class="tab" onclick="sw(1)">2物件比較</button>
+</div>
+<div id="p0" class="pnl act"></div>
+<div id="p1" class="pnl"></div>
+<p class="tip">※ 本ツールは投資判断の参考情報です。最終判断はご自身の責任でお願いします。印刷はブラウザの印刷機能をご利用ください。</p>
+
+<script>
+var F=[
+['price','物件価格（万円）',2000],
+['rent','月額賃料（万円）',8],
+['mgmt','管理費（円/月）',8000],
+['repair','修繕積立金（円/月）',5000],
+['age','築年数',15],
+['down','自己資金率（%）',10],
+['rate','借入金利（%）',2.0],
+['term','借入期間（年）',35],
+['misc','諸費用率（%）',7],
+['tax','固定資産税（万円/年）',5]
+];
+
+var IND=[
+['表面利回り','%',10,function(d){return d.rent*12/d.price*100},function(v){return v>=6?2:v>=4?1:0}],
+['実質利回り','%',12,function(d){return(d.rent*12-d.exp)/(d.price+d.price*d.misc/100)*100},function(v){return v>=4?2:v>=2.5?1:0}],
+['CCR（自己資金利回り）','%',12,function(d){return d.eq>0?(d.rent*12-d.exp-d.ann)/d.eq*100:0},function(v){return v>=8?2:v>=4?1:0}],
+['DCR（返済余裕率）','倍',12,function(d){return d.ann>0?(d.rent*12-d.exp)/d.ann:99},function(v){return v>=1.3?2:v>=1.0?1:0}],
+['BER（損益分岐率）','%',10,function(d){return(d.exp+d.ann)/(d.rent*12)*100},function(v){return v<=70?2:v<=85?1:0}],
+['返済比率','%',10,function(d){return d.ann/(d.rent*12)*100},function(v){return v<=50?2:v<=60?1:0}],
+['空室耐性','ヶ月',10,function(d){var m=d.rent>0?(d.rent*12-d.exp-d.ann)/d.rent:0;return Math.max(0,m)},function(v){return v>=3?2:v>=1?1:0}],
+['修繕積立金比率','%',8,function(d){return d.rent>0?d.repair/(d.rent*10000)*100:0},function(v){return v<=10?2:v<=15?1:0}],
+['築年数スコア','年',8,function(d){return d.age},function(v){return v<=15?2:v<=25?1:0}],
+['月間CF','万円',8,function(d){return(d.rent*12-d.exp-d.ann)/12},function(v){return v>=2?2:v>=0?1:0}]
+];
+
+function mkForm(id,empty){
+var h='<button class="btn bp" onclick="preset(\''+id+'\')">プリセット：都内ワンルーム（築15年・2,000万円）</button>';
+h+='<div class="fg">';
+for(var i=0;i<F.length;i++){
+h+='<div><label>'+F[i][1]+'</label><input id="'+id+'_'+F[i][0]+'" type="number" step="any" value="'+(empty?'':F[i][2])+'"></div>';
+}
+h+='</div><button class="btn" onclick="calc(\''+id+'\')">診断する</button><div id="'+id+'_r"></div>';
+return h;
+}
+
+document.getElementById('p0').innerHTML=mkForm('a','');
+document.getElementById('p1').innerHTML='<div class="cmp"><div><h3>物件A</h3>'+mkForm('b',1)+'</div><div><h3>物件B</h3>'+mkForm('c',1)+'</div></div>';
+
+function sw(i){
+var tabs=document.querySelectorAll('.tab');
+var pnls=document.querySelectorAll('.pnl');
+for(var j=0;j<tabs.length;j++){
+tabs[j].className=j===i?'tab act':'tab';
+pnls[j].className=j===i?'pnl act':'pnl';
+}
+}
+
+function gv(id,k){return parseFloat(document.getElementById(id+'_'+k).value)||0}
+
+function preset(id){
+for(var i=0;i<F.length;i++) document.getElementById(id+'_'+F[i][0]).value=F[i][2];
+}
+
+function pmt(principal,rateY,termY){
+if(rateY===0) return principal/(termY*12);
+var mr=rateY/100/12,mn=termY*12;
+return principal*mr*Math.pow(1+mr,mn)/(Math.pow(1+mr,mn)-1);
+}
+
+function calc(id){
+var d={};
+for(var i=0;i<F.length;i++) d[F[i][0]]=gv(id,F[i][0]);
+if(d.price<=0||d.rent<=0){
+document.getElementById(id+'_r').innerHTML='<div class="res" style="text-align:center;color:#c62828;font-weight:700;padding:20px">物件価格と月額賃料を入力してください</div>';
+return;
+}
+d.exp=(d.mgmt+d.repair)*12/10000+d.tax;
+var loan=d.price*(1-d.down/100);
+d.ann=pmt(loan*10000,d.rate,d.term)*12/10000;
+d.eq=d.price*d.down/100+d.price*d.misc/100;
+
+var total=0,max=0,rows='';
+for(var j=0;j<IND.length;j++){
+var ind=IND[j];
+var v=ind[3](d);
+var s=ind[4](v);
+var cls=['r','y','g'][s];
+var sc=s===2?ind[2]:s===1?ind[2]*0.5:0;
+total+=sc;max+=ind[2];
+var disp;
+if(ind[1]==='年') disp=v.toFixed(0);
+else if(ind[1]==='倍') disp=v.toFixed(2);
+else disp=v.toFixed(1);
+rows+='<div class="ir"><span class="in">'+ind[0]+'</span><span class="iv">'+disp+ind[1]+'</span><span class="dt '+cls+'"></span></div>';
+}
+var pct=Math.round(total/max*100);
+var jc=pct>=70?'#2e7d32':(pct>=40?'#f57f17':'#c62828');
+var jt=pct>=70?'買い推奨':(pct>=40?'要検討':'見送り推奨');
+
+document.getElementById(id+'_r').innerHTML=
+'<div class="res"><div class="sb" style="color:'+jc+'">'+pct+'<span> / 100点</span></div>'+
+'<div class="jd" style="background:'+jc+'">'+jt+'</div>'+rows+'</div>';
+}
+</script>
+</body>
+</html>

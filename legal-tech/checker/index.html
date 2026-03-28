@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>業種別コンプライアンス年間カレンダー - kusasyu tools</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6;padding:12px;max-width:900px;margin:0 auto}
+.disc{padding:10px 14px;background:#fff3cd;border-radius:6px;font-size:.75em;color:#744210;line-height:1.5;margin-bottom:12px;position:sticky;top:0;z-index:10}
+h1{font-size:1.2em;text-align:center;padding:12px 0;color:#1a365d}
+.sub{text-align:center;font-size:.8em;color:#718096;margin-bottom:14px}
+.form{background:#fff;border-radius:8px;padding:16px;margin-bottom:14px}
+.form label{font-weight:600;font-size:.9em;display:block;margin-bottom:4px}
+.form select{width:100%;padding:10px;border:2px solid #e2e8f0;border-radius:6px;font-size:.95em;margin-bottom:12px;background:#fff;-webkit-appearance:auto}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{width:100%;padding:12px;background:#3182ce;color:#fff;border:none;border-radius:6px;font-size:1em;font-weight:600;cursor:pointer}button:hover{background:#2b6cb0}
+#result{display:none}.mc{background:#fff;border-radius:8px;margin-bottom:10px;overflow:hidden;break-inside:avoid}
+.mh{padding:10px 14px;font-weight:700;color:#fff;font-size:.95em}
+.c1{background:#2b6cb0}.c2{background:#2c7a7b}.c3{background:#276749}.c4{background:#975a16}.c5{background:#9b2c2c}.c6{background:#553c9a}.c7{background:#2b6cb0}.c8{background:#2c7a7b}.c9{background:#276749}.c10{background:#975a16}.c11{background:#9b2c2c}.c12{background:#553c9a}
+.items{padding:8px 12px}.item{padding:6px 0;border-bottom:1px solid #edf2f7;font-size:.85em;display:flex;gap:8px;align-items:flex-start}
+.item:last-child{border:none}.tag{flex-shrink:0;font-size:.7em;padding:2px 8px;border-radius:10px;color:#fff;font-weight:600}
+.ta{background:#3182ce}.ti{background:#d69e2e}.ts{background:#e53e3e}
+.itx{flex:1}.itx b{font-size:.85em}.itx span{display:block;font-size:.78em;color:#718096}
+.empty{padding:12px;font-size:.85em;color:#a0aec0;text-align:center}
+.legend{display:flex;gap:14px;margin:10px 0 14px;flex-wrap:wrap;font-size:.8em}.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.pb{margin-top:10px}.bk{background:#718096;margin-top:6px}.bk:hover{background:#4a5568}
+.ft{text-align:center;font-size:.78em;color:#718096;margin-top:10px}
+@media print{.disc{position:static}button,.form,.legend,.ft,.pb{display:none!important}#result{display:block!important}.mc{box-shadow:none;border:1px solid #ccc}body{padding:0;max-width:100%}.ph{display:block!important}}
+.ph{display:none;text-align:center;margin-bottom:10px;font-size:.85em;color:#4a5568}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
+</style><meta name="description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,業種別コンプライアンス年間カレンダー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker/">
+<meta property="og:title" content="業種別コンプライアンス年間カレンダー - kusasyu tools">
+<meta property="og:description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別コンプライアンス年間カレンダー - kusasyu tools">
+<meta name="twitter:description" content="法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "業種別コンプライアンス年間カレンダー",
+  "description": "法務担当者がいない中小企業（従業員30〜300名）向けに、日常業務で発生する法的判断を自力で初動対応できるHTMLツール群を作る。General Legal（YC W26）が海外で実証した『法務部の代わりにAIが初動対応』コンセプトを、日本の法令・商慣習に合わせたセルフサービスツールとして提供。既存のLega",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">業種別コンプライアンス年間カレンダー</span></div>
+<div class="disc">⚠️ 最終確認: 2026年3月｜本情報は参考値です。届出期日・要件は法改正により変更される場合があります。所管省庁の最新情報および顧問弁護士・社会保険労務士に必ずご確認ください。</div>
+<h1>業種別コンプライアンス年間カレンダー</h1>
+<p class="sub">法務リスク初動トリアージツール シリーズ</p>
+<div class="form"><div class="row"><div><label>業種を選択</label><select id="ind"><option value="">-- 選択 --</option><option value="it">IT・情報通信</option><option value="mfg">製造業</option><option value="food">飲食業</option><option value="retail">小売業</option><option value="con">建設業</option></select></div><div><label>従業員規模</label><select id="sc"><option value="">-- 選択 --</option><option value="s">30〜49名</option><option value="m">50〜99名</option><option value="l">100〜300名</option></select></div></div><button onclick="gen()">カレンダーを生成</button></div>
+<div id="result"><div class="ph" id="ph"></div><div class="legend"><span><i style="background:#3182ce"></i>全業種共通</span><span><i style="background:#d69e2e"></i>業種固有</span><span><i style="background:#e53e3e"></i>規模要件</span></div><div id="cal"></div><div class="pb"><button onclick="window.print()">🖨 印刷する</button><button class="bk" onclick="document.getElementById('result').style.display='none'">選択に戻る</button></div></div>
+<p class="ft">© Kusasyu Legal Tech — 法務部ゼロでも回る日常リーガルチェックツール</p>
+<script>
+var A={all:[
+[1,[["年末調整の法定調書・給与支払報告書提出","税務署・市区町村へ 1/31期限"],["労働者死傷病報告（10〜12月分）","該当時、労基署へ"]]],
+[3,[["36協定の更新届出確認","年度末期限の場合は労基署へ届出"],["就業規則の年次見直し","変更時は届出義務あり"]]],
+[4,[["定期健康診断の年間計画策定","年1回実施は法定義務"],["雇入れ時の安全衛生教育","新入社員への実施"],["個人情報保護方針の見直し","年度初め確認推奨"]]],
+[5,[["住民税特別徴収額の通知確認","市区町村からの通知を給与に反映"]]],
+[6,[["定時株主総会（3月決算の場合）","議事録作成・保存義務あり"],["賞与支払届","支給日から5日以内に年金事務所へ"]]],
+[7,[["労働保険の年度更新","6/1〜7/10 申告・納付期限"],["社会保険の算定基礎届","7/10まで 年金事務所へ"],["高年齢者・障害者雇用状況報告","7/15まで ハローワークへ"]]],
+[9,[["最低賃金改定の確認","10月発効に備え給与テーブル見直し"]]],
+[10,[["最低賃金の発効・賃金改定","都道府県別に確認"],["社会保険料率変更の反映","9月分（10月納付）から新等級"]]],
+[11,[["年末調整の準備開始","扶養控除等申告書の回収"]]],
+[12,[["年末調整の実施・源泉徴収票作成","全従業員分を処理"],["賞与支払届（冬季）","支給日から5日以内"]]]
+],it:[
+[1,[["Pマーク・ISMS更新審査の確認","有効期限2年 更新6ヶ月前に申請"]]],
+[4,[["下請法の自主点検","3条書面・5条書類の保存確認"],["SES/業務委託の偽装請負チェック","指揮命令関係の再確認"]]],
+[6,[["電気通信事業届出の確認","該当サービスの年次報告"]]],
+[10,[["個人情報取扱いの棚卸","プライバシーポリシー・安全管理措置見直し"]]],
+[12,[["ソフトウェアライセンス棚卸","不正利用・期限切れの確認"]]]
+],mfg:[
+[1,[["安全衛生管理計画の策定","年間の安全目標・活動計画"]]],
+[3,[["化学物質リスクアセスメント","新規物質・法改正対応"]]],
+[4,[["PRTR届出準備","前年度実績を6月末まで届出"],["産業廃棄物管理票の交付等状況報告","前年度分を6/30まで"]]],
+[7,[["全国安全週間（7/1〜7）","安全大会・パトロール実施"]]],
+[9,[["防火管理者の届出確認","変更時は消防署へ届出"]]],
+[10,[["全国労働衛生週間（10/1〜7）","作業環境測定・健康管理"]]],
+[12,[["特定自主検査（年次）","フォークリフト・プレス機等の法定検査"]]]
+],food:[
+[1,[["食品衛生責任者の届出確認","変更時は保健所へ届出"]]],
+[3,[["営業許可証の更新確認","有効期限5〜8年 期限6ヶ月前に申請"]]],
+[4,[["HACCP衛生管理計画の見直し","記録の確認・手順更新"]]],
+[5,[["食品表示法の対応確認","アレルゲン・栄養成分の再確認"]]],
+[6,[["食中毒予防強化（梅雨期）","従業員研修・設備点検"]]],
+[8,[["防虫・防鼠対策の総点検","夏季の衛生管理強化"]]],
+[10,[["消防用設備点検報告","6ヶ月ごと機器点検＋年1回総合点検"]]],
+[11,[["ノロウイルス対策の従業員研修","冬季衛生管理の開始"]]]
+],retail:[
+[1,[["棚卸資産の確定・税務報告準備","在庫評価方法の確認"]]],
+[3,[["景品表示法の社内チェック","セール表示・二重価格の適法性"]]],
+[4,[["消防設備の総合点検報告","年1回 消防署へ報告"]]],
+[6,[["特定商取引法の表示確認","通信販売の表示義務見直し"]]],
+[9,[["消費税転嫁対策の確認","価格表示の適正性チェック"]]],
+[10,[["消防用設備の機器点検","6ヶ月ごとの法定点検"]]],
+[11,[["歳末商戦の景表法チェック","不当表示・優良誤認に注意"]]],
+[12,[["個人情報の棚卸","顧客データの管理・廃棄確認"]]]
+],con:[
+[1,[["建設業許可の更新確認","5年ごと更新 期限30日前まで"]]],
+[3,[["経営事項審査（経審）の申請","公共工事入札参加に必要"]]],
+[4,[["建設業の決算届出","事業年度終了後4ヶ月以内"],["建退共の証紙購入・貼付確認","被共済者名簿の更新"]]],
+[5,[["安全衛生責任者の選任確認","現場ごとの体制整備"]]],
+[7,[["全国安全週間（建設業重点）","墜落・転落防止対策の点検"]]],
+[8,[["建設業法令遵守推進月間","下請代金の支払い適正化"]]],
+[10,[["建設業の社会保険加入状況確認","元請・下請の加入徹底"]]],
+[11,[["冬季の安全対策","凍結・降雪時の安全措置計画"]]]
+]},S={m:[
+[4,[["産業医の選任届出","50名以上は義務（労基署届出）"],["衛生委員会の設置","月1回以上の開催義務"],["ストレスチェック実施計画の策定","年1回実施義務（50名以上）"]]],
+[6,[["ストレスチェックの実施","実施後は労基署へ報告"]]],
+[9,[["定期健康診断結果報告","50名以上は労基署への報告義務"]]]
+],l:[
+[4,[["産業医の選任届出","50名以上は義務（労基署届出）"],["衛生委員会の設置","月1回以上の開催義務"],["ストレスチェック実施計画の策定","年1回実施義務"],["一般事業主行動計画の策定・届出","101名以上は義務（次世代法・女性活躍推進法）"]]],
+[6,[["ストレスチェックの実施","実施後は労基署へ報告"],["女性活躍推進法の情報公表","年1回の公表義務（101名以上）"]]],
+[9,[["定期健康診断結果報告","50名以上は労基署への報告義務"]]]
+]};
+var MN=["","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+var IN={it:"IT・情報通信",mfg:"製造業",food:"飲食業",retail:"小売業",con:"建設業"};
+var SN={s:"30〜49名",m:"50〜99名",l:"100〜300名"};
+function gen(){
+var ind=document.getElementById("ind").value,sc=document.getElementById("sc").value;
+if(!ind||!sc){alert("業種と従業員規模を選択してください");return}
+var mg={};
+function add(a,tg){a.forEach(function(e){var m=e[0];if(!mg[m])mg[m]=[];e[1].forEach(function(i){mg[m].push({n:i[0],d:i[1],tg:tg})})})}
+add(A.all,"a");add(A[ind],"i");if(S[sc])add(S[sc],"s");
+var h="";
+for(var m=1;m<=12;m++){h+='<div class="mc"><div class="mh c'+m+'">'+MN[m]+'</div>';
+if(mg[m]&&mg[m].length){h+='<div class="items">';mg[m].forEach(function(it){
+var c=it.tg==="a"?"ta":it.tg==="i"?"ti":"ts";
+var l=it.tg==="a"?"共通":it.tg==="i"?"業種":"規模";
+h+='<div class="item"><span class="tag '+c+'">'+l+'</span><div class="itx"><b>'+it.n+'</b><span>'+it.d+'</span></div></div>'});
+h+='</div>'}else{h+='<div class="empty">この月の特記事項はありません</div>'}
+h+='</div>'}
+document.getElementById("ph").textContent=IN[ind]+"（"+SN[sc]+"）コンプライアンス年間カレンダー";
+document.getElementById("cal").innerHTML=h;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"})}
+</script></body></html>

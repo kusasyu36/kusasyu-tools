@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ショート動画企画→台本テンプレ→字幕SRT一括エクスポーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;min-height:100vh}
+.wrap{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.2rem;text-align:center;padding:18px 0 6px;color:#2d3748}
+.sub{text-align:center;font-size:.8rem;color:#718096;margin-bottom:18px}
+.steps{display:flex;gap:4px;margin-bottom:20px}
+.steps span{flex:1;height:6px;border-radius:3px;background:#cbd5e0;transition:.3s}
+.steps span.active{background:#3182ce}
+.steps span.done{background:#38a169}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);display:none}
+.card.show{display:block}
+label{display:block;font-weight:600;font-size:.85rem;margin:12px 0 6px;color:#4a5568}
+label:first-child{margin-top:0}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button{padding:8px 14px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;font-size:.82rem;cursor:pointer;transition:.2s;color:#4a5568}
+.opts button:hover{border-color:#90cdf4}
+.opts button.sel{border-color:#3182ce;background:#ebf8ff;color:#2b6cb0;font-weight:600}
+textarea,input[type=text]{width:100%;padding:10px;border:2px solid #e2e8f0;border-radius:8px;font-size:.9rem;resize:vertical;font-family:inherit}
+textarea:focus,input:focus{outline:none;border-color:#3182ce}
+.nav{display:flex;gap:10px;margin-top:18px}
+.nav button{flex:1;padding:12px;border:none;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:.2s}
+.btn-back{background:#e2e8f0;color:#4a5568}
+.btn-next{background:#3182ce;color:#fff}
+.btn-next:hover{background:#2b6cb0}
+.btn-dl{background:#38a169;color:#fff}
+.btn-dl:hover{background:#2f855a}
+.preview{background:#f7fafc;border-radius:8px;padding:14px;margin-top:10px}
+.scene{margin-bottom:12px;padding:10px;border-left:3px solid #3182ce;background:#fff;border-radius:0 6px 6px 0}
+.scene.hook{border-color:#e53e3e}
+.scene.cta{border-color:#38a169}
+.scene-label{font-size:.72rem;font-weight:700;color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;margin-bottom:4px}
+.hook .scene-label{background:#e53e3e}
+.main .scene-label{background:#3182ce}
+.cta .scene-label{background:#38a169}
+.scene p{font-size:.88rem;line-height:1.6}
+.time{font-size:.72rem;color:#a0aec0;margin-top:4px}
+.srt-box{background:#1a202c;color:#68d391;border-radius:8px;padding:14px;font-family:monospace;font-size:.78rem;white-space:pre-wrap;margin-top:10px;max-height:200px;overflow-y:auto}
+.idea-box{background:#fffff0;border:1px solid #f6e05e;border-radius:8px;padding:12px;margin-top:10px}
+.idea-box h4{font-size:.82rem;color:#975a16;margin-bottom:6px}
+.idea-box li{font-size:.82rem;margin-left:16px;line-height:1.6;color:#744210}
+.warn{color:#e53e3e;font-size:.78rem;margin-top:4px;display:none}
+</style>
+<meta name="description" content="商品説明や会社概要をテキスト入力するだけで、TikTok・Instagram Reels・YouTube Shorts向けのショート動画台本（フック→本編→CTA構成）と字幕SRTファイルを自動生成するブラウザツール。業種を選ぶだけで最適な動画企画アイデアも提案。外注なし・専門知識なしで、中小企業が今日からシ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ショート動画企画→台本テンプレ→字幕SRT一括エクスポーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-44/">
+<meta property="og:title" content="ショート動画企画→台本テンプレ→字幕SRT一括エクスポーター - kusasyu tools">
+<meta property="og:description" content="商品説明や会社概要をテキスト入力するだけで、TikTok・Instagram Reels・YouTube Shorts向けのショート動画台本（フック→本編→CTA構成）と字幕SRTファイルを自動生成するブラウザツール。業種を選ぶだけで最適な動画企画アイデアも提案。外注なし・専門知識なしで、中小企業が今日からシ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-44/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ショート動画企画→台本テンプレ→字幕SRT一括エクスポーター - kusasyu tools">
+<meta name="twitter:description" content="商品説明や会社概要をテキスト入力するだけで、TikTok・Instagram Reels・YouTube Shorts向けのショート動画台本（フック→本編→CTA構成）と字幕SRTファイルを自動生成するブラウザツール。業種を選ぶだけで最適な動画企画アイデアも提案。外注なし・専門知識なしで、中小企業が今日からシ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ショート動画企画→台本テンプレ→字幕SRT一括エクスポーター",
+  "description": "商品説明や会社概要をテキスト入力するだけで、TikTok・Instagram Reels・YouTube Shorts向けのショート動画台本（フック→本編→CTA構成）と字幕SRTファイルを自動生成するブラウザツール。業種を選ぶだけで最適な動画企画アイデアも提案。外注なし・専門知識なしで、中小企業が今日からシ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-44/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">ショート動画企画→台本テンプレ→字幕SRT一括エクスポーター</span></div>
+<div class="wrap">
+<h1>ショート動画 台本＆SRT 一括生成</h1>
+<p class="sub">TikTok / Reels / Shorts 対応｜30秒台本を即作成</p>
+<div class="steps" id="steps"><span></span><span></span><span></span><span></span></div>
+<div class="card show" id="s1">
+<label>業種を選択</label>
+<div class="opts" id="ind"></div>
+<label>企画フォーマット</label>
+<div class="opts" id="fmt"></div>
+<label>訴求軸</label>
+<div class="opts" id="apl"></div>
+<div class="idea-box" id="ideaBox" style="display:none"><h4>この業種の企画アイデア</h4><ul id="ideaList"></ul></div>
+<div class="nav"><button class="btn-next" onclick="goTo(2)">次へ：情報入力</button></div>
+</div>
+<div class="card" id="s2">
+<label>商品・サービス名</label>
+<input type="text" id="prodName" placeholder="例：熟成デミグラスハンバーグ">
+<label>特徴・セールスポイント（箇条書きOK）</label>
+<textarea id="prodFeat" rows="4" placeholder="例：国産黒毛和牛100%&#10;注文後に手ごね&#10;ランチ限定20食"></textarea>
+<p class="warn" id="w2">商品名と特徴を入力してください</p>
+<div class="nav">
+<button class="btn-back" onclick="goTo(1)">戻る</button>
+<button class="btn-next" onclick="goTo(3)">台本を生成</button>
+</div>
+</div>
+<div class="card" id="s3">
+<label>生成された台本プレビュー</label>
+<div class="preview" id="prevArea"></div>
+<label style="margin-top:14px">SRTプレビュー</label>
+<div class="srt-box" id="srtPrev"></div>
+<div class="nav">
+<button class="btn-back" onclick="goTo(2)">戻る</button>
+<button class="btn-next" onclick="goTo(4)">ダウンロードへ</button>
+</div>
+</div>
+<div class="card" id="s4">
+<label>ダウンロード</label>
+<p style="font-size:.85rem;color:#4a5568;margin-bottom:12px">台本テキストとSRTファイルをそれぞれダウンロードできます。</p>
+<div class="nav" style="flex-direction:column;gap:10px">
+<button class="btn-dl" onclick="dlFile('txt')">台本テキストをダウンロード（.txt）</button>
+<button class="btn-dl" onclick="dlFile('srt')">字幕SRTをダウンロード（.srt）</button>
+<button class="btn-back" onclick="goTo(1)" style="margin-top:6px">最初からやり直す</button>
+</div>
+</div>
+</div>
+<script>
+var D={ind:['飲食','美容','EC','士業','不動産'],fmt:['Before/After','How-to','Q&A','裏側公開','比較','共感型'],apl:['価格','限定性','実績','悩み解決','こだわり'],sel:{ind:'',fmt:'',apl:''},script:null};
+var T={hook:{'Before/After':['「{product}を知る前の自分に戻りたくない」','「まだ{old}で悩んでますか？」','「{product}のBefore/After見てください」'],'How-to':['「{product}の正しい使い方、知ってますか？」','「プロが教える{product}活用術」','「{industry}の人、これ知らないと損します」'],'Q&A':['「{product}って本当に効果あるの？」','「{industry}でよくある質問に答えます」','「ぶっちゃけ{product}ってどうなの？」'],'裏側公開':['「{product}の裏側、全部見せます」','「{industry}の現場、初公開します」','「実は{product}には秘密があります」'],'比較':['「{product}と他社の違い、一目瞭然です」','「{industry}選びで失敗する人の共通点」','「比べてみたら差は歴然でした」'],'共感型':['「{industry}あるある、わかりすぎて泣ける」','「{product}に出会う前、正直つらかった」','「同じ悩みの人、いませんか？」']},
+main:{'Before/After':'以前は{pain}というお悩みを抱えていたお客様。{product}を使い始めてからは{benefit}。{feat}が決め手でした。','How-to':'まず{step1}。次に{step2}。最後に{step3}。たったこれだけで{benefit}が手に入ります。','Q&A':'答えはYESです。なぜなら{product}は{feat}だから。実際に{result}というお声をいただいています。','裏側公開':'{product}ができるまでの裏側をお見せします。{feat}。ここまでこだわっているのは{industry}でうちだけです。','比較':'一般的な{industry}のサービスとの違いは3つ。{feat}。だから{benefit}が実現できるんです。','共感型':'その気持ち、よくわかります。私たちも{pain}で悩んでいました。でも{product}なら{benefit}。{feat}がその理由です。'},
+cta:{'価格':'今なら特別価格でご提供中。詳しくはプロフィールのリンクから。','限定性':'数量限定なのでお早めに。プロフィールのリンクからどうぞ。','実績':'すでに多くの方にご利用いただいています。プロフィールのリンクから詳細をチェック。','悩み解決':'あなたの悩み、解決できます。プロフィールのリンクから無料相談へ。','こだわり':'本物を届けたいから。プロフィールのリンクで詳しくご紹介しています。'}};
+var IDEAS={'飲食':['仕込み風景の早回し','お客様の「おいしい！」リアクション','メニュー誕生の裏話'],'美容':['施術ビフォーアフター','スタイリストの1日密着','セルフケアワンポイント講座'],'EC':['開封動画（アンボクシング）','使い方30秒チュートリアル','お客様レビュー紹介'],'士業':['「実はそれ違法です」法律豆知識','相談事例ダイジェスト','書類作成タイムラプス'],'不動産':['物件ルームツアー30秒版','内見あるある','住んでわかったメリット3選']};
+function init(){render('ind',D.ind);render('fmt',D.fmt);render('apl',D.apl);updateSteps(1);}
+function render(id,arr){var c=document.getElementById(id);arr.forEach(function(v){var b=document.createElement('button');b.textContent=v;b.onclick=function(){c.querySelectorAll('button').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');D.sel[id]=v;if(id==='ind')showIdeas();};c.appendChild(b);});}
+function showIdeas(){var box=document.getElementById('ideaBox'),ul=document.getElementById('ideaList');if(!D.sel.ind){box.style.display='none';return;}box.style.display='block';ul.innerHTML='';(IDEAS[D.sel.ind]||[]).forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});}
+function updateSteps(n){document.querySelectorAll('#steps span').forEach(function(s,i){s.className=i<n-1?'done':i===n-1?'active':'';});}
+function goTo(n){if(n===2&&(!D.sel.ind||!D.sel.fmt||!D.sel.apl)){alert('業種・企画フォーマット・訴求軸をすべて選択してください');return;}if(n===3){var nm=document.getElementById('prodName').value.trim(),ft=document.getElementById('prodFeat').value.trim();if(!nm||!ft){document.getElementById('w2').style.display='block';return;}document.getElementById('w2').style.display='none';generate(nm,ft);}for(var i=1;i<=4;i++)document.getElementById('s'+i).classList.remove('show');document.getElementById('s'+n).classList.add('show');updateSteps(n);window.scrollTo(0,0);}
+function generate(name,feat){var ind=D.sel.ind,fmt=D.sel.fmt,apl=D.sel.apl,feats=feat.replace(/\n+/g,'、');var hooks=T.hook[fmt],hookText=hooks[Math.floor(Math.random()*hooks.length)].replace(/\{product\}/g,name).replace(/\{industry\}/g,ind).replace(/\{old\}/g,'いつもの方法');var pains={'飲食':'集客に苦戦していた','美容':'リピート率が低かった','EC':'カート離脱が多かった','士業':'認知度が低かった','不動産':'内見予約が少なかった'};var bens={'飲食':'来店数が1.5倍に','美容':'リピート率が大幅アップ','EC':'売上が右肩上がりに','士業':'問い合わせが増加','不動産':'内見予約が急増'};var mainText=T.main[fmt].replace(/\{product\}/g,name).replace(/\{industry\}/g,ind).replace(/\{feat\}/g,feats).replace(/\{pain\}/g,pains[ind]||'課題を抱えていた').replace(/\{benefit\}/g,bens[ind]||'成果が出た').replace(/\{result\}/g,bens[ind]||'成果が出た').replace(/\{step1\}/g,'特徴を確認').replace(/\{step2\}/g,'実際に試して').replace(/\{step3\}/g,'効果を実感');D.script={hook:hookText,main:mainText,cta:T.cta[apl],name:name};renderPreview();}
+function calcTime(text){return Math.ceil(text.replace(/[「」『』（）\s]/g,'').length/4.5*10)/10;}
+function renderPreview(){var s=D.script,area=document.getElementById('prevArea');var ht=calcTime(s.hook),mt=calcTime(s.main),ct=calcTime(s.cta),total=ht+mt+ct;area.innerHTML='<div class="scene hook"><span class="scene-label">HOOK</span><p>'+esc(s.hook)+'</p><p class="time">'+ht.toFixed(1)+'秒</p></div><div class="scene main"><span class="scene-label">MAIN</span><p>'+esc(s.main)+'</p><p class="time">'+mt.toFixed(1)+'秒</p></div><div class="scene cta"><span class="scene-label">CTA</span><p>'+esc(s.cta)+'</p><p class="time">'+ct.toFixed(1)+'秒</p></div><p style="text-align:right;font-size:.78rem;color:#718096;margin-top:8px">合計 約'+total.toFixed(1)+'秒｜読速 4.5字/秒</p>';document.getElementById('srtPrev').textContent=buildSRT();}
+function esc(t){return t.replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function buildSRT(){var s=D.script,parts=[s.hook,s.main,s.cta],srt='',idx=1,cur=0;parts.forEach(function(text){splitSeg(text,18).forEach(function(seg){var dur=calcTime(seg);srt+=idx+'\n'+fmtT(cur)+' --> '+fmtT(cur+dur)+'\n'+seg+'\n\n';idx++;cur+=dur;});});return srt.trim();}
+function splitSeg(text,maxLen){var result=[],buf='';text.replace(/([。！？」])/g,'$1|').split('|').filter(function(s){return s.trim();}).forEach(function(s){if((buf+s).length>maxLen&&buf){result.push(buf.trim());buf='';}buf+=s;});if(buf)result.push(buf.trim());return result;}
+function fmtT(sec){var h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=Math.floor(sec%60),ms=Math.round((sec%1)*1000);return pad(h)+':'+pad(m)+':'+pad(s)+','+pad3(ms);}
+function pad(n){return n<10?'0'+n:''+n;}
+function pad3(n){return n<10?'00'+n:n<100?'0'+n:''+n;}
+function dlFile(type){var s=D.script,content,ext;if(type==='srt'){content=buildSRT();ext='.srt';}else{content='【ショート動画台本】'+s.name+'\n\n[HOOK]\n'+s.hook+'\n\n[MAIN]\n'+s.main+'\n\n[CTA]\n'+s.cta+'\n';ext='.txt';}var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type:'text/plain;charset=utf-8'}));a.download=s.name+'_台本'+ext;a.click();URL.revokeObjectURL(a.href);}
+init();
+</script>
+</body>
+</html>

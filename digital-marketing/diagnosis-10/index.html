@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO改善トラッキングシート - kusasyu tools</title>
+<meta name="description" content="自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AEO改善トラッキングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-10/">
+<meta property="og:title" content="AEO改善トラッキングシート - kusasyu tools">
+<meta property="og:description" content="自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AEO改善トラッキングシート - kusasyu tools">
+<meta name="twitter:description" content="自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AEO改善トラッキングシート",
+  "description": "自社コンテンツ（記事・FAQページ）のテキストをペーストすると、ChatGPT・Perplexity・GeminiなどのAI検索に「回答として引用されやすいか」を10項目でスコアリングし、項目別に具体的な改善アクションを提示するブラウザ完結型の診断ツール。FAQ構造化、権威性ある定義文、出典明示、簡潔回答文の",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-10/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AEO改善トラッキングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AEO改善トラッキングシート</h1>
+  <p class="project-name">AI検索に選ばれてる？AEOスコア診断ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>```csv</th></tr></thead><tbody><tr><td>記事ID</td><td>記事タイトル</td><td>URL</td><td>担当者</td><td>フェーズ</td><td>チェック日</td><td>1_質問形式見出し</td><td>2_簡潔な直接回答</td><td>3_構造化データ</td><td>4_FAQスキーマ</td><td>5_EEAT信頼性</td><td>6_定義・要約文</td><td>7_リスト・表活用</td><td>8_情報の鮮度</td><td>9_ページ表示速度</td><td>10_内部リンク最適化</td><td>合計スコア(/20)</td><td>達成率(%)</td><td>スコア変化</td><td>実施した施策</td><td>AI検索表示確認</td><td>備考</td></tr><tr><td>A001</td><td>SEOとは？初心者向け完全ガイド</td><td>https://example.com/seo-guide</td><td>田中</td><td>改善前</td><td>2026-03-01</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>2</td><td>1</td><td>7</td><td>35</td><td></td><td></td><td></td><td></td></tr><tr><td>A001</td><td>SEOとは？初心者向け完全ガイド</td><td>https://example.com/seo-guide</td><td>田中</td><td>改善後</td><td>2026-03-15</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>18</td><td>90</td><td>+11</td><td>見出しを質問形式に変更/冒頭40字以内の直接回答追加/FAQ構造化データ実装/定義文をページ冒頭に配置</td><td>Perplexityで引用確認済</td><td>AI Overviewでも表示確認</td></tr><tr><td>A002</td><td>コンテンツマーケティング戦略の立て方</td><td>https://example.com/content-strategy</td><td>佐藤</td><td>改善前</td><td>2026-03-03</td><td>1</td><td>0</td><td>0</td><td>0</td><td>2</td><td>1</td><td>2</td><td>1</td><td>1</td><td>0</td><td>8</td><td>40</td><td></td><td></td><td></td><td></td></tr><tr><td>A002</td><td>コンテンツマーケティング戦略の立て方</td><td>https://example.com/content-strategy</td><td>佐藤</td><td>改善後</td><td>2026-03-17</td><td>2</td><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>2</td><td>18</td><td>90</td><td>+10</td><td>H2を質問形式に書き換え/各セクション冒頭に結論ファースト追加/FAQセクション新設/内部リンク5本追加</td><td>Geminiで引用確認済</td><td>ページ速度は改善余地あり</td></tr><tr><td>A003</td><td>Webデザインのトレンド2026年版</td><td>https://example.com/design-trends-2026</td><td>鈴木</td><td>改善前</td><td>2026-03-05</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>6</td><td>30</td><td></td><td></td><td></td><td></td></tr><tr><td>A003</td><td>Webデザインのトレンド2026年版</td><td>https://example.com/design-trends-2026</td><td>鈴木</td><td>改善後</td><td>2026-03-19</td><td>2</td><td>2</td><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>19</td><td>95</td><td>+13</td><td>全見出しを疑問文に変更/トレンドごとに定義文追加/HowToスキーマ実装/2026年最新データに更新/画像圧縮でLCP改善</td><td>Perplexity・ChatGPTで引用確認済</td><td>最も改善効果が高かった記事</td></tr><tr><td>A004</td><td>リスティング広告の費用相場と運用方法</td><td>https://example.com/listing-ads-cost</td><td>山田</td><td>改善前</td><td>2026-03-10</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>5</td><td>25</td><td></td><td></td><td></td><td></td></tr><tr><td>A004</td><td>リスティング広告の費用相場と運用方法</td><td>https://example.com/listing-ads-cost</td><td>山田</td><td>改善後</td><td>2026-03-24</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>1</td><td>2</td><td>19</td><td>95</td><td>+14</td><td>全H2をユーザーの疑問形に変更/費用相場を冒頭で明示/料金表をTableスキーマで実装/FAQ5問追加/著者プロフィール強化</td><td>ChatGPT・Perplexityで引用確認済</td><td>費用系クエリはAEO効果が特に高い</td></tr><tr><td>```</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `\`\`\`csv
+記事ID,記事タイトル,URL,担当者,フェーズ,チェック日,1_質問形式見出し,2_簡潔な直接回答,3_構造化データ,4_FAQスキーマ,5_EEAT信頼性,6_定義・要約文,7_リスト・表活用,8_情報の鮮度,9_ページ表示速度,10_内部リンク最適化,合計スコア(/20),達成率(%),スコア変化,実施した施策,AI検索表示確認,備考
+A001,SEOとは？初心者向け完全ガイド,https://example.com/seo-guide,田中,改善前,2026-03-01,0,1,0,0,1,0,1,1,2,1,7,35,,,,
+A001,SEOとは？初心者向け完全ガイド,https://example.com/seo-guide,田中,改善後,2026-03-15,2,2,2,2,1,2,2,2,2,1,18,90,+11,見出しを質問形式に変更/冒頭40字以内の直接回答追加/FAQ構造化データ実装/定義文をページ冒頭に配置,Perplexityで引用確認済,AI Overviewでも表示確認
+A002,コンテンツマーケティング戦略の立て方,https://example.com/content-strategy,佐藤,改善前,2026-03-03,1,0,0,0,2,1,2,1,1,0,8,40,,,,
+A002,コンテンツマーケティング戦略の立て方,https://example.com/content-strategy,佐藤,改善後,2026-03-17,2,2,1,2,2,2,2,2,1,2,18,90,+10,H2を質問形式に書き換え/各セクション冒頭に結論ファースト追加/FAQセクション新設/内部リンク5本追加,Geminiで引用確認済,ページ速度は改善余地あり
+A003,Webデザインのトレンド2026年版,https://example.com/design-trends-2026,鈴木,改善前,2026-03-05,1,1,0,0,1,0,1,0,1,1,6,30,,,,
+A003,Webデザインのトレンド2026年版,https://example.com/design-trends-2026,鈴木,改善後,2026-03-19,2,2,2,1,2,2,2,2,2,2,19,95,+13,全見出しを疑問文に変更/トレンドごとに定義文追加/HowToスキーマ実装/2026年最新データに更新/画像圧縮でLCP改善,Perplexity・ChatGPTで引用確認済,最も改善効果が高かった記事
+A004,リスティング広告の費用相場と運用方法,https://example.com/listing-ads-cost,山田,改善前,2026-03-10,0,0,1,0,1,0,0,1,1,1,5,25,,,,
+A004,リスティング広告の費用相場と運用方法,https://example.com/listing-ads-cost,山田,改善後,2026-03-24,2,2,2,2,2,2,2,2,1,2,19,95,+14,全H2をユーザーの疑問形に変更/費用相場を冒頭で明示/料金表をTableスキーマで実装/FAQ5問追加/著者プロフィール強化,ChatGPT・Perplexityで引用確認済,費用系クエリはAEO効果が特に高い
+\`\`\`
+
+**使い方ガイド（シート内に記載不要・運用メモ）**
+
+| 項目 | 説明 |
+|------|------|
+| **スコア基準** | 0=未対応 / 1=部分対応 / 2=完全対応 |
+| **満点** | 20点（10項目×2点） |
+| **フェーズ** | 同一記事IDで「改善前」「改善後」の2行で管理 |
+| **達成率** | 合計スコア÷20×100（Excel: \`=Q2/20*100\`） |
+| **スコア変化** | 改善後合計−改善前合計（Excel: \`=Q3-Q2\`） |
+| **施策メモ** | \`/\`区切りで複数施策を記録 |
+| **AEO10項目** | 1.質問形式見出し 2.簡潔な直接回答 3.構造化データ 4.FAQスキーマ 5.E-E-A-T信頼性 6.定義・要約文 7.リスト・表活用 8.情報の鮮度 9.ページ表示速度 10.内部リンク最適化 |`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_AEO改善トラッキングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI検索対応コンテンツ生成キット（プロンプト＋マークアップ自動出力） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:20px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.85rem;color:#718096;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1rem;margin-bottom:12px;color:#2d3748}
+label{display:block;font-size:.85rem;font-weight:700;margin-bottom:4px;color:#4a5568}
+select,input[type=text]{width:100%;padding:10px 12px;border:1px solid #cbd5e0;border-radius:8px;font-size:.9rem;margin-bottom:12px;background:#fff}
+.btn{display:block;width:100%;padding:14px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer}
+.btn:hover{background:#2b6cb0}
+.note{font-size:.75rem;color:#a0aec0;margin-top:8px}
+#out{display:none}
+.ocard{background:#fff;border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1);position:relative}
+.ocard h3{font-size:.95rem;margin-bottom:8px;color:#2d3748;padding-right:60px}
+.tag{display:inline-block;font-size:.7rem;padding:2px 8px;border-radius:10px;color:#fff;margin-bottom:8px}
+.t1{background:#3182ce}.t2{background:#38a169}
+pre{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:.78rem;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow-y:auto;font-family:monospace;line-height:1.5}
+.cpb{position:absolute;top:14px;right:14px;background:#edf2f7;border:1px solid #cbd5e0;border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer;color:#4a5568}
+.cpb:hover{background:#e2e8f0}
+.step{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.step div{flex:1;min-width:140px;background:#ebf8ff;border-radius:8px;padding:10px;text-align:center;font-size:.8rem}
+.step div b{display:block;font-size:1.1rem;color:#2b6cb0;margin-bottom:2px}
+.sep{border:none;border-top:2px solid #3182ce;margin:24px 0 16px}
+@media(max-width:600px){.step div{min-width:100%}}
+</style>
+<meta name="description" content="Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI検索対応コンテンツ生成キット（プロンプト＋マークアップ自動出力）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-43/">
+<meta property="og:title" content="AI検索対応コンテンツ生成キット（プロンプト＋マークアップ自動出力） - kusasyu tools">
+<meta property="og:description" content="Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-43/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI検索対応コンテンツ生成キット（プロンプト＋マークアップ自動出力） - kusasyu tools">
+<meta name="twitter:description" content="Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI検索対応コンテンツ生成キット（プロンプト＋マークアップ自動出力）",
+  "description": "Perplexity・ChatGPT Search・Google AI OverviewなどのAI検索エンジンに「引用元」として選ばれるための構造化コンテンツを、中小企業が自力で作れるツールセット。業種と専門キーワードを入力するだけで、schema.orgマークアップ付きFAQ・用語解説・統計まとめのHTML",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-43/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI検索対応コンテンツ生成キット（プロンプト＋マークアップ自</span></div>
+<div class="wrap">
+<h1>AI検索対応コンテンツ生成キット</h1>
+<p class="sub">プロンプト＋schema.orgマークアップを自動出力 — 3ステップでAI検索に引用されるコンテンツを作成</p>
+<div class="card">
+<div class="step">
+<div><b>Step 1</b>業種を選択しキーワード入力</div>
+<div><b>Step 2</b>プロンプトをAIにコピペ</div>
+<div><b>Step 3</b>HTMLシェルに貼ってサイトに挿入</div>
+</div>
+</div>
+<div class="card">
+<h2>業種とキーワードを入力</h2>
+<label>業種カテゴリ</label>
+<select id="biz">
+<option value="">選択してください</option>
+<option>士業（税理士・弁護士・社労士等）</option>
+<option>飲食業</option>
+<option>美容・サロン</option>
+<option>製造業（BtoB）</option>
+<option>不動産業</option>
+<option>医療・クリニック</option>
+<option>IT・Web制作</option>
+<option>建設・リフォーム</option>
+<option>教育・スクール</option>
+<option>小売・EC</option>
+</select>
+<label>専門キーワード（3〜5個、カンマ区切り）</label>
+<input type="text" id="kw" placeholder="例：相続税対策, 贈与税, 生前贈与, 税務調査, 確定申告">
+<button class="btn" onclick="gen()">プロンプト＆HTMLシェルを生成</button>
+<p class="note">※ すべてブラウザ内で生成。入力内容は外部に送信されません。</p>
+</div>
+<div id="out"></div>
+</div>
+<script>
+function E(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function cp(id){var el=document.getElementById(id);var t=el.textContent;navigator.clipboard?navigator.clipboard.writeText(t).then(function(){sb(id)}):fb(el)}
+function fb(el){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy');s.removeAllRanges()}
+function sb(id){var b=document.getElementById(id).parentElement.querySelector('.cpb');b.textContent='Copied!';setTimeout(function(){b.textContent='Copy'},1500)}
+
+function gen(){
+var biz=document.getElementById('biz').value;
+var raw=document.getElementById('kw').value.trim();
+if(!biz){alert('業種を選択してください');return}
+if(!raw){alert('キーワードを入力してください');return}
+var kws=raw.split(/[,、，\s]+/).filter(function(k){return k.length>0});
+if(kws.length<3){alert('キーワードを3個以上入力してください');return}
+if(kws.length>5)kws=kws.slice(0,5);
+
+var kwl=kws.join('」「');
+var kwc=kws.join(', ');
+var bz=biz.replace(/（.*）/,'');
+
+var p1='あなたは'+bz+'に精通した専門家です。\n以下のキーワードについて、中小企業のマーケティング担当者が検索しそうなFAQを作成してください。\n\n■ 業種: '+biz+'\n■ キーワード: 「'+kwl+'」\n\n【出力ルール】\n- キーワードごとに2問ずつ、合計'+kws.length*2+'問のQ&Aを作成\n- 各回答は80〜150文字で簡潔に\n- 回答の冒頭に結論を書く（AI検索が引用しやすい形式）\n- 具体的な数値・期間・金額を必ず含める\n- 専門用語には（）で平易な補足を付ける\n\n【出力フォーマット】\nQ1. [疑問文]\nA1. [回答]\n\nQ2. [疑問文]\nA2. [回答]\n\n…以下同様';
+
+var p2='あなたは'+bz+'の用語に精通した専門家です。\n以下のキーワードについて、初心者向けの用語解説コンテンツを作成してください。\n\n■ 業種: '+biz+'\n■ キーワード: 「'+kwl+'」\n\n【出力ルール】\n- 各キーワードにつき「一言定義」（30文字以内）＋「詳細解説」（100〜200文字）を作成\n- 解説には具体例・数値・比較を1つ以上含める\n- 「〜とは、」で始まる定義文にする（AI検索の引用パターンに最適化）\n- 関連する法律・制度名があれば明記\n\n【出力フォーマット】\n### [キーワード]\n**一言定義:** [30文字以内の定義]\n**詳細解説:** [100〜200文字の解説]\n\n…各キーワードについて同様に作成';
+
+var p3='あなたは'+bz+'の市場データに詳しいリサーチャーです。\n以下のキーワードに関する数値・実績コンテンツを作成してください。\n\n■ 業種: '+biz+'\n■ キーワード: 「'+kwl+'」\n\n【出力ルール】\n- キーワードごとに2〜3個の統計データ・実績例を提示\n- 各データには「数値」「出典（調査機関名・年度）」「示唆するポイント」を含める\n- AI検索が引用しやすいよう「〇〇は△△である（出典：□□）」の形式にする\n- 自社実績として使う場合の書き方例も1つ添える\n\n【出力フォーマット】\n### [キーワード]に関する数値データ\n- [統計1]（出典：[調査機関名], [年度]）\n- [統計2]（出典：[調査機関名], [年度]）\n→ ポイント: [この数値が示す意味]\n→ 自社実績の書き方例: 「[テンプレート文]」\n\n…各キーワードについて同様に作成';
+
+var faqItems='';
+for(var i=0;i<kws.length;i++){
+faqItems+='    {\n      "@type": "Question",\n      "name": "【ここにQ'+(i*2+1)+'の質問文を貼る】",\n      "acceptedAnswer": {\n        "@type": "Answer",\n        "text": "【ここにA'+(i*2+1)+'の回答文を貼る】"\n      }\n    }';
+faqItems+=(i<kws.length-1?',':'')+'\n';
+}
+
+var html1='<!-- ============================================ -->\n<!-- AI検索対応 FAQPage schema.org マークアップ -->\n<!-- 業種: '+biz+' -->\n<!-- キーワード: '+kwc+' -->\n<!-- ============================================ -->\n\n<!-- ▼ JSON-LD構造化データ（<head>内または</body>直前に設置） -->\n<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "FAQPage",\n  "mainEntity": [\n'+faqItems+'  ]\n}\n<'+'/script>\n\n<!-- ▼ FAQ表示用HTML（ページ本文に設置） -->\n<section>\n  <h2>「'+kws[0]+'」に関するよくある質問</h2>\n  <dl>\n    <!-- プロンプト1で生成したQ&Aをここに貼り付け -->\n    <dt>Q. 【質問文を貼る】</dt>\n    <dd>A. 【回答文を貼る】</dd>\n    <!-- Q&Aの数だけdt/ddを繰り返す -->\n  </dl>\n</section>';
+
+var termItems='';
+for(var j=0;j<kws.length;j++){
+termItems+='    {\n      "@type": "DefinedTerm",\n      "name": "'+kws[j]+'",\n      "description": "【ここにプロンプト2の「一言定義」を貼る】"\n    }'+(j<kws.length-1?',':'')+'\n';
+}
+
+var html2='<!-- ============================================ -->\n<!-- AI検索対応 DefinedTermSet schema.org マークアップ -->\n<!-- ============================================ -->\n\n<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "DefinedTermSet",\n  "name": "'+bz+'の専門用語集",\n  "hasDefinedTerm": [\n'+termItems+'  ]\n}\n<'+'/script>\n\n<!-- ▼ 用語集HTML（ページ本文に設置） -->\n<section>\n  <h2>'+bz+'の専門用語解説</h2>\n  <!-- プロンプト2で生成した用語解説を以下に貼り付け -->\n  <dl>\n    <dt>'+kws[0]+'</dt>\n    <dd>【一言定義と詳細解説を貼る】</dd>\n    <!-- 各キーワードについてdt/ddを繰り返す -->\n  </dl>\n  <p><small>最終更新：'+new Date().toISOString().slice(0,10)+'　著者：【著者名・資格を記入】</small></p>\n</section>';
+
+var h='<hr class="sep"><div class="ocard"><h3><span class="tag t1">プロンプト1</span> 構造化FAQ生成用</h3><button class="cpb" onclick="cp(\'o1\')">Copy</button><pre id="o1">'+E(p1)+'</pre></div>';
+h+='<div class="ocard"><h3><span class="tag t1">プロンプト2</span> 専門用語解説生成用</h3><button class="cpb" onclick="cp(\'o2\')">Copy</button><pre id="o2">'+E(p2)+'</pre></div>';
+h+='<div class="ocard"><h3><span class="tag t1">プロンプト3</span> 数値・実績例示コンテンツ生成用</h3><button class="cpb" onclick="cp(\'o3\')">Copy</button><pre id="o3">'+E(p3)+'</pre></div>';
+h+='<hr class="sep">';
+h+='<div class="ocard"><h3><span class="tag t2">HTMLシェル①</span> FAQPage JSON-LD付き</h3><button class="cpb" onclick="cp(\'h1\')">Copy</button><pre id="h1">'+E(html1)+'</pre></div>';
+h+='<div class="ocard"><h3><span class="tag t2">HTMLシェル②</span> DefinedTermSet JSON-LD付き</h3><button class="cpb" onclick="cp(\'h2\')">Copy</button><pre id="h2">'+E(html2)+'</pre></div>';
+
+h+='<div class="card"><h2>使い方ガイド</h2><div style="font-size:.85rem;color:#4a5568"><p><b>Step 1:</b> 上の青い「プロンプト1〜3」をCopyし、ChatGPTまたはClaudeに貼り付けて実行</p><p style="margin:6px 0"><b>Step 2:</b> AIが生成したテキストを、緑の「HTMLシェル①②」内の【】部分に貼り付け</p><p><b>Step 3:</b> 完成したHTMLをWordPressの「カスタムHTML」ブロックに挿入して公開</p><p style="margin-top:10px;padding:8px;background:#fffff0;border-radius:6px;font-size:.8rem">ヒント：公開後、姉妹ツール「<b>AI検索被参照スコア診断＆改善ツール</b>」でページを診断すると改善点が分かります。</p></div></div>';
+
+document.getElementById('out').innerHTML=h;
+document.getElementById('out').style.display='block';
+document.getElementById('out').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特許出願コスト試算シート - kusasyu tools</title>
+<meta name="description" content="シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,特許出願コスト試算シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-5/">
+<meta property="og:title" content="特許出願コスト試算シート - kusasyu tools">
+<meta property="og:description" content="シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="特許出願コスト試算シート - kusasyu tools">
+<meta name="twitter:description" content="シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "特許出願コスト試算シート",
+  "description": "シード〜Series Aのスタートアップ創業者・CTOが、弁理士に相談する前に自社技術の知財リスクとチャンスをセルフ診断できるツールキット。技術の概要・競合状況・事業ステージを入力すると、特許出願の優先度スコア・差別化ポイント・推奨アクションを自動生成。出願コストの概算試算と弁理士への相談準備までワンストップ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-25"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>特許出願コスト試算シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>特許出願コスト試算シート</h1>
+  <p class="project-name">うちの技術、特許取れる？知財セルフ診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>セクション</th><th>項目</th><th>単位</th><th>単価（円）</th><th>計算式（Excel参考）</th><th>備考</th></tr></thead><tbody><tr><td>===== 入力セル =====</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>入力</td><td>出願件数</td><td>件</td><td>1</td><td></td><td>B3セルに入力</td></tr><tr><td>入力</td><td>請求項数（1件あたり）</td><td>項</td><td>5</td><td></td><td>B4セルに入力</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>===== 国内出願ルート（権利化まで約2〜3年） =====</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>国内出願_出願時</td><td>特許庁_出願料</td><td>円/件</td><td>14000</td><td>=D9*B3</td><td>法定額（2026年度）</td></tr><tr><td>国内出願_出願時</td><td>特許庁_電子化手数料</td><td>円/件</td><td>2400</td><td>=D10*B3</td><td>オンライン出願時</td></tr><tr><td>国内出願_出願時</td><td>弁理士_出願手数料（中央値）</td><td>円/件</td><td>250000</td><td>=D11*B3</td><td>相場20万〜35万</td></tr><tr><td>国内出願_出願時</td><td>弁理士_明細書作成（中央値）</td><td>円/件</td><td>300000</td><td>=D12*B3</td><td>相場20万〜50万</td></tr><tr><td>国内出願_出願時</td><td>弁理士_請求項加算</td><td>円/項</td><td>15000</td><td>=D13*B3*B4</td><td>6項目以降加算の場合あり</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `セクション,項目,単位,単価（円）,計算式（Excel参考）,備考
+===== 入力セル =====,,,,,
+入力,出願件数,件,1,,B3セルに入力
+入力,請求項数（1件あたり）,項,5,,B4セルに入力
+,,,,,
+===== 国内出願ルート（権利化まで約2〜3年） =====,,,,,
+国内出願_出願時,特許庁_出願料,円/件,14000,=D9*B3,法定額（2026年度）
+国内出願_出願時,特許庁_電子化手数料,円/件,2400,=D10*B3,オンライン出願時
+国内出願_出願時,弁理士_出願手数料（中央値）,円/件,250000,=D11*B3,相場20万〜35万
+国内出願_出願時,弁理士_明細書作成（中央値）,円/件,300000,=D12*B3,相場20万〜50万
+国内出願_出願時,弁理士_請求項加算,円/項,15000,=D13*B3*B4,6項目以降加算の場合あり
+国内出願_出願時,弁理士_図面作成,円/件,30000,=D14*B3,相場2万〜5万
+国内出願_出願時小計,,,,"=SUM(E9:E14)",
+,,,,,
+国内出願_審査請求（出願から3年以内）,特許庁_審査請求料（基本）,円/件,138000,=D17*B3,法定額
+国内出願_審査請求（出願から3年以内）,特許庁_審査請求料（請求項加算）,円/項,4000,=D18*B3*B4,1項あたり
+国内出願_審査請求（出願から3年以内）,弁理士_中間処理（拒絶対応1回分）,円/件,100000,=D19*B3,相場8万〜15万
+国内出願_審査請求小計,,,,"=SUM(E17:E19)",
+,,,,,
+国内出願_登録時,特許庁_設定登録料（1〜3年分一括）,円/件,6900,=（2100+D22*B4*3）*B3,毎年2100+200×項数
+国内出願_登録時,弁理士_登録手続,円/件,30000,=D23*B3,相場2万〜5万
+国内出願_登録時小計,,,,"=SUM(E22:E23)",
+,,,,,
+国内出願_維持年金（4〜10年目）,特許庁_年金（4〜6年目・年額）,円/件,6400,=（6100+300*B4）*B3,毎年6100+300×項数
+国内出願_維持年金（4〜10年目）,特許庁_年金（7〜9年目・年額）,円/件,18100,=（18300-200+500*B4）*B3,毎年18300+500×項数
+国内出願_維持年金（4〜10年目）,特許庁_年金（10年目・年額）,円/件,50700,=（50600+100+1200*B4）*B3,毎年50600+1200×項数
+国内出願_4〜10年維持合計,,,,"=E26*3+E27*3+E28*1",3+3+1年分概算
+,,,,,
+★国内ルート総額（出願〜10年維持）,,,,"=E15+E20+E24+E29",
+,,,,,
+===== PCT出願ルート（国際段階＋国内移行で約30ヶ月〜4年） =====,,,,,
+PCT_国際段階（0〜18ヶ月）,国際出願手数料（受理官庁JPO）,円/件,175500,=D33*B3,2026年度参考額
+PCT_国際段階（0〜18ヶ月）,送付手数料,円/件,10000,=D34*B3,JPO受理
+PCT_国際段階（0〜18ヶ月）,国際調査手数料（JPO）,円/件,156000,=D35*B3,日本語出願の場合
+PCT_国際段階（0〜18ヶ月）,弁理士_PCT出願手数料（中央値）,円/件,350000,=D36*B3,相場25万〜50万
+PCT_国際段階（0〜18ヶ月）,弁理士_翻訳料（英語・概算）,円/件,300000,=D37*B3,明細書量による
+PCT_国際段階小計,,,,"=SUM(E33:E37)",
+,,,,,
+PCT_日本国内移行（30ヶ月以内）,特許庁_国内書面料,円/件,14000,=D40*B3,法定額
+PCT_日本国内移行（30ヶ月以内）,特許庁_審査請求料,円/件,138000,=(138000+4000*B4)*B3,基本+項数加算
+PCT_日本国内移行（30ヶ月以内）,弁理士_国内移行手続,円/件,100000,=D42*B3,相場8万〜15万
+PCT_日本国内移行小計,,,,"=SUM(E40:E42)",
+,,,,,
+PCT_米国国内移行（30ヶ月以内）,USPTO_国内移行手数料（小規模）,USD/件,800,=D45*150*B3,Small Entity・1USD=150円換算
+PCT_米国国内移行（30ヶ月以内）,USPTO_サーチ費用（小規模）,USD/件,420,=D46*150*B3,Small Entity
+PCT_米国国内移行（30ヶ月以内）,USPTO_審査費用（小規模）,USD/件,500,=D47*150*B3,Small Entity
+PCT_米国国内移行（30ヶ月以内）,現地代理人費用（中央値）,USD/件,3500,=D48*150*B3,相場2500〜5000USD
+PCT_米国国内移行小計,,,,"=SUM(E45:E48)",
+,,,,,
+★PCTルート総額（国際＋日米2か国移行）,,,,"=E38+E43+E49",日米2か国の場合
+,,,,,
+===== 米国直接出願ルート（権利化まで約2〜4年） =====,,,,,
+米国直接_出願時,USPTO_出願手数料（小規模）,USD/件,800,=D53*150*B3,Small Entity
+米国直接_出願時,USPTO_サーチ費用（小規模）,USD/件,420,=D54*150*B3,Small Entity
+米国直接_出願時,USPTO_審査費用（小規模）,USD/件,500,=D55*150*B3,Small Entity
+米国直接_出願時,現地代理人_出願手数料（中央値）,USD/件,5000,=D56*150*B3,相場3500〜7000USD
+米国直接_出願時,弁理士_翻訳・国内対応,円/件,200000,=D57*B3,国内弁理士連携費
+米国直接_出願時小計,,,,"=SUM(E53:E57)",
+,,,,,
+米国直接_登録時,USPTO_発行手数料（小規模）,USD/件,560,=D60*150*B3,Small Entity
+米国直接_登録時,現地代理人_登録手続,USD/件,800,=D61*150*B3,相場500〜1200USD
+米国直接_登録時小計,,,,"=SUM(E60:E61)",
+,,,,,
+米国直接_維持年金,USPTO_3.5年目（小規模）,USD/件,1000,=D64*150*B3,Small Entity
+米国直接_維持年金,USPTO_7.5年目（小規模）,USD/件,2000,=D65*150*B3,Small Entity
+米国直接_維持年金,USPTO_11.5年目（小規模）,USD/件,3760,=D66*150*B3,Small Entity
+米国直接_維持合計,,,,"=SUM(E64:E66)",
+,,,,,
+★米国直接ルート総額（出願〜11.5年維持）,,,,"=E58+E62+E67",
+,,,,,
+===== 費用発生タイムライン =====,,,,,
+タイムライン,フェーズ,発生時期,国内ルート概算,PCTルート概算,米国直接概算
+タイムライン,出願時（0ヶ月目）,YEAR0,約60万/件,約100万/件,約130万/件
+タイムライン,審査請求（出願後1〜3年）,YEAR1-3,約24万/件,各国移行で別途,―
+タイムライン,中間処理（審査中・1〜2回）,YEAR2-3,約10万〜20万/件,各国で別途,約15万〜30万/件
+タイムライン,登録時,YEAR2-4,約4万/件,各国で別途,約20万/件
+タイムライン,維持年金（毎年〜10年目）,YEAR4-10,年1万〜5万/件,各国で別途,3回合計約100万/件
+,,,,,
+===== スタートアップ向け費用削減Tips =====,,,,,
+Tips,早期審査制度の活用,―,0,特許庁に申請で審査期間を約6ヶ月に短縮。追加費用ゼロ,スタートアップ優遇あり
+Tips,減免制度（小規模企業）,―,審査請求料1/3,特許庁の中小・スタートアップ減免で最大2/3減額,要事前申請
+Tips,自社で先行技術調査,―,0,J-PlatPat（無料）で事前調査→弁理士工数を削減,弁理士費用5万〜10万節約
+Tips,仮出願（米国）の活用,―,―,USD150程度で1年間の優先日確保,正式出願の判断時間を確保`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_特許出願コスト試算シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説で見落とすと100万円損する5つのコスト項目 - kusasyu tools</title>
+<meta name="description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説で見落とすと100万円損する5つのコスト項目">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-2/">
+<meta property="og:title" content="重説で見落とすと100万円損する5つのコスト項目 - kusasyu tools">
+<meta property="og:description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説で見落とすと100万円損する5つのコスト項目 - kusasyu tools">
+<meta name="twitter:description" content="重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説で見落とすと100万円損する5つのコスト項目",
+  "description": "重要事項説明書の条項から、購入後・入居後に発生する隠れコスト（修繕積立金の将来値上げ、管理費改定リスク、都市計画制限による改修コスト、地盤・浸水リスクの保険料増、契約解除時の違約金等）を条項別に洗い出し、5年・10年の追加コスト概算を可視化するHTMLツール。加えて、不動産会社に確認すべき金額関連の質問チェッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説で見落とすと100万円損する5つのコスト項目</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説で見落とすと100万円損する5つのコスト項目</h1>
+  <p class="project-name">その重説、追加コストいくら隠れてる？</p>
+  <div class="content">
+<h1>重説で見落とすと100万円損する5つのコスト項目</h1>
+<p><strong>PropCostScan｜重説コストスキャナー 活用ガイド</strong></p>
+<hr />
+<p>マンションや戸建ての購入を決め、不動産会社から<strong>重要事項説明書（重説）</strong>を受け取ったとき、あなたは何ページ目で集中力が切れるだろうか。</p>
+<p>重説は数十ページに及ぶ法律文書だ。しかし、その中には<strong>購入後5年・10年で数十万〜100万円超の追加コスト</strong>に直結する条項が埋まっている。本記事では、実際に見落とされやすい上位5項目を、具体的な金額シナリオ付きで解説する。</p>
+<blockquote>
+<p>記事内の質問番号は、連動チェックリスト「<a href="/">重説を受け取ったら聞く「お金の質問」20選</a>」に対応しています。帰宅後は <a href="/">PropCostScan｜重説コストスキャナー</a> に数値を入力し、追加コストを可視化しましょう。</p>
+</blockquote>
+<hr />
+<h2>コスト1｜修繕積立金の段階値上げ — 10年で+200万円も</h2>
+<p><strong>関連質問</strong>: 質問1 ⚠️・質問2 ⚠️・質問3</p>
+<h3>どこに書いてある？</h3>
+<p>重説の「管理費・修繕積立金」欄。現在の月額は記載されるが、<strong>将来の値上げスケジュールは長期修繕計画書を見なければわからない</strong>。</p>
+<h3>具体的な金額シナリオ</h3>
+<table>
+<thead>
+<tr>
+<th>時期</th>
+<th>月額（値上げなし想定）</th>
+<th>月額（実際の計画）</th>
+<th>差額（月）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>購入時</td>
+<td>8,500円</td>
+<td>8,500円</td>
+<td>0円</td>
+</tr>
+<tr>
+<td>築10年（5年後）</td>
+<td>8,500円</td>
+<td>12,800円</td>
+<td>+4,300円</td>
+</tr>
+<tr>
+<td>築15年（10年後）</td>
+<td>8,500円</td>
+<td>15,200円</td>
+<td>+6,700円</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>5年間の追加コスト</strong>: 4,300円 × 12か月 × 約3年（値上げ後期間）＝ <strong>約15.5万円</strong></li>
+<li><strong>10年間の追加コスト</strong>: 段階値上げを累計すると <strong>約60〜80万円</strong></li>
+</ul>
+<h3>見落とすとこうなる</h3>
+<p>「月8,500円なら安い」と思って購入したのに、5年後に月額が1.5倍に。さらに修繕積立金の残高不足で<strong>一時金30〜50万円</strong>を徴収されるケースもある。合計で<strong>100万円超</strong>の想定外出費になり得る。</p>
+<h3>防ぎ方</h3>
+<ul>
+<li>質問1で<strong>長期修繕計画書</strong>を必ず見せてもらう</li>
+<li>質問2で<strong>積立金の現在残高</strong>と直近の大規模修繕時期を確認する</li>
+<li>PropCostScanに現在の月額と計画書の値上げ時期を入力すれば、5年・10年の累計コストが一目でわかる</li>
+</ul>
+<hr />
+<h2>コスト2｜固定資産税の軽減終了 — 税額が突然2倍に</h2>
+<p><strong>関連質問</strong>: 質問7・質問8</p>
+<h3>どこに書いてある？</h3>
+<p>重説の「公租公課」欄に年額が記載される。ただし<strong>軽減措置の適用中かどうか</strong>は、自分から聞かないと教えてもらえないことが多い。</p>
+<h3>具体的な金額シナリオ</h3>
+<table>
+<thead>
+<tr>
+<th>期間</th>
+<th>固定資産税（年額）</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>購入〜軽減終了まで</td>
+<td>98,000円</td>
+<td>新築軽減（1/2）適用中</td>
+</tr>
+<tr>
+<td>軽減終了後</td>
+<td>185,000円</td>
+<td>本来の税額に戻る</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>新築マンションの軽減期間は<strong>5年</strong>、戸建ては<strong>3年</strong></li>
+<li><strong>軽減終了後の5年間の追加負担</strong>: (185,000 − 98,000) × 5 ＝ <strong>約43.5万円</strong></li>
+</ul>
+<h3>見落とすとこうなる</h3>
+<p>「年10万円弱なら問題ない」と資金計画を立てたのに、数年後に税額がほぼ倍増。住宅ローン返済に加え、年間約9万円の追加負担が重くのしかかる。</p>
+<p>さらに、不動産取得税（質問8）は入居後半年〜1年で届く。軽減申告をしないと<strong>数十万円が満額請求</strong>される。例えば課税標準額1,800万円の物件なら、軽減なしで54万円、軽減申告すれば0円になるケースもある。</p>
+<h3>防ぎ方</h3>
+<ul>
+<li>質問7で<strong>軽減措置の残り期間</strong>と終了後の税額を具体的に聞く</li>
+<li>質問8で不動産取得税の概算と軽減申告の要否を確認する</li>
+<li>PropCostScanの「税金・公租公課」セクションに入力すれば、軽減終了後を含む10年間の税負担を自動計算できる</li>
+</ul>
+<hr />
+<h2>コスト3｜手付解除・違約金の二重構造 — 最大で売買価格の20%</h2>
+<p><strong>関連質問</strong>: 質問4 ⚠️・質問5・質問6</p>
+<h3>どこに書いてある？</h3>
+<p>重説の「契約の解除に関する事項」欄。手付金の額と、違約金の率が別々に記載されている。</p>
+<h3>具体的な金額シナリオ（売買価格4,000万円の場合）</h3>
+<table>
+<thead>
+<tr>
+<th>解除パターン</th>
+<th>負担額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>手付解除（手付金放棄のみ）</td>
+<td>100万円</td>
+</tr>
+<tr>
+<td>契約違反による解除（違約金20%）</td>
+<td><strong>800万円</strong></td>
+</tr>
+<tr>
+<td>ローン特約期限切れ後の解除</td>
+<td>手付100万円 + 違約金800万円 ＝ <strong>900万円</strong></td>
+</tr>
+<tr>
+<td>ローン特約期限内の解除</td>
+<td><strong>0円</strong>（白紙解除）</td>
+</tr>
+</tbody>
+</table>
+<h3>見落とすとこうなる</h3>
+<p>「手付金100万円を捨てれば解約できる」と思い込んでいたが、実は違約金条項が別途あり、売買価格の20%＝800万円を請求された——という事例は実在する。</p>
+<p>特に危険なのが<strong>ローン特約の期限切れ</strong>（質問5）。期限内なら0円で白紙解除できるのに、1日でも過ぎると手付放棄＋違約金の二重負担になる。</p>
+<h3>防ぎ方</h3>
+<ul>
+<li>質問4で「手付放棄とは別に違約金条項があるか」を明確に確認する</li>
+<li>質問5でローン特約の期限日をカレンダーに登録する</li>
+<li>賃貸の場合は質問6で中途解約違約金を確認（1年未満の解約で家賃1か月分が一般的）</li>
+</ul>
+<hr />
+<h2>コスト4｜都市計画制限による建替え・改修コスト増</h2>
+<p><strong>関連質問</strong>: 質問9・質問10・質問11</p>
+<h3>どこに書いてある？</h3>
+<p>重説の「都市計画法・建築基準法に基づく制限」欄。用途地域、建ぺい率、容積率、高度地区制限などが記載される。</p>
+<h3>具体的な金額シナリオ</h3>
+<table>
+<thead>
+<tr>
+<th>リスク</th>
+<th>追加コスト目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>既存不適格で建替え時に延床面積20%減</td>
+<td>資産価値 −300〜500万円</td>
+</tr>
+<tr>
+<td>セットバック義務（前面道路4m未満）</td>
+<td>土地面積の減少＋外構工事 50〜150万円</td>
+</tr>
+<tr>
+<td>用途地域変更で改修に追加申請・設計変更</td>
+<td>30〜80万円</td>
+</tr>
+<tr>
+<td>都市計画道路の計画線にかかる</td>
+<td>将来の立退き・補償交渉リスク</td>
+</tr>
+</tbody>
+</table>
+<h3>見落とすとこうなる</h3>
+<p>「駅近で安い」と飛びついた物件が、実は<strong>建ぺい率オーバーの既存不適格</strong>だった。今の建物に住む分には問題ないが、将来建替えると今より20%小さい家しか建てられない。売却時にも買い手がつきにくく、資産価値が数百万円下がる。</p>
+<h3>防ぎ方</h3>
+<ul>
+<li>質問9で「増築・建替え時に現在より小さくなるか」を直接聞く</li>
+<li>質問10でセットバック義務の有無を確認する</li>
+<li>質問11で都市計画道路や再開発計画の予定を確認する</li>
+<li>PropCostScanでは建築制限リスクを「低・中・高」で判定し、該当する場合の概算コストを表示する</li>
+</ul>
+<hr />
+<h2>コスト5｜地盤・浸水リスクによる保険料増と修繕費</h2>
+<p><strong>関連質問</strong>: 質問12・質問13・質問14</p>
+<h3>どこに書いてある？</h3>
+<p>重説の「土砂災害警戒区域」「浸水想定区域」「造成宅地防災区域」欄。ハザードマップとの照合結果が記載される。</p>
+<h3>具体的な金額シナリオ</h3>
+<table>
+<thead>
+<tr>
+<th>リスク要因</th>
+<th>追加コスト（10年間）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>浸水想定区域で水災補償付き火災保険</td>
+<td>保険料 +20〜40万円</td>
+</tr>
+<tr>
+<td>地盤が弱いエリアでの地震保険割増</td>
+<td>保険料 +10〜25万円</td>
+</tr>
+<tr>
+<td>浸水被害後の修繕（床上30cm想定）</td>
+<td>1回あたり 100〜300万円</td>
+</tr>
+<tr>
+<td>地盤沈下による基礎補修</td>
+<td>50〜200万円</td>
+</tr>
+</tbody>
+</table>
+<h3>見落とすとこうなる</h3>
+<p>重説に「浸水想定区域：該当あり（想定浸水深0.5〜3.0m）」と小さく書かれていたのを読み飛ばした。入居3年後に豪雨で床上浸水し、修繕費150万円と仮住まい費用50万円が発生——保険の水災補償にも入っていなかった。</p>
+<h3>防ぎ方</h3>
+<ul>
+<li>質問12でハザードマップ上のリスク区分を具体的に確認する</li>
+<li>質問13で過去の浸水・地盤沈下の履歴を聞く</li>
+<li>質問14で地盤調査データの有無を確認する</li>
+<li>PropCostScanに地域のハザード情報を入力すると、保険料の増加額と被災時の想定コストを算出できる</li>
+</ul>
+<hr />
+<h2>5項目の合計：10年間で最大いくら？</h2>
+<table>
+<thead>
+<tr>
+<th>コスト項目</th>
+<th>5年間の追加コスト</th>
+<th>10年間の追加コスト</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 修繕積立金の値上げ</td>
+<td>15〜30万円</td>
+<td>60〜80万円</td>
+</tr>
+<tr>
+<td>2. 固定資産税の軽減終了</td>
+<td>15〜25万円</td>
+<td>40〜50万円</td>
+</tr>
+<tr>
+<td>3. 違約金リスク（発生時）</td>
+<td>100〜900万円</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4. 都市計画制限（建替え時）</td>
+<td>—</td>
+<td>50〜500万円</td>
+</tr>
+<tr>
+<td>5. 地盤・浸水リスク</td>
+<td>10〜20万円</td>
+<td>30〜65万円</td>
+</tr>
+<tr>
+<td><strong>合計（違約金除く）</strong></td>
+<td><strong>40〜75万円</strong></td>
+<td><strong>180〜695万円</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>違約金を除いても、見落とすだけで<strong>10年間で最大約700万円</strong>の追加コストが発生し得る。</p>
+</blockquote>
+<hr />
+<h2>PropCostScanで「見える化」する3ステップ</h2>
+<ol>
+<li><strong>重説を手元に用意</strong> — 修繕積立金、固定資産税、用途地域、ハザード情報のページを開く</li>
+<li><strong><a href="/">PropCostScan｜重説コストスキャナー</a>に数値を入力</strong> — 各項目のフォームに重説の数値を転記するだけ。所要時間は約10分</li>
+<li><strong>5年・10年の追加コストグラフを確認</strong> — 項目別の内訳と合計額がグラフで可視化される。不動産会社への質問チェックリストも自動生成</li>
+</ol>
+<p>さらに、連動チェックリスト「<a href="/">重説を受け取ったら聞く「お金の質問」20選</a>」を事前に確認しておけば、重説の読み合わせ当日にその場で質問できる。</p>
+<hr />
+<h2>まとめ</h2>
+<p>重説の「隠れコスト」は、知っていれば防げるものばかりだ。</p>
+<ul>
+<li><strong>修繕積立金</strong> → 長期修繕計画書を見れば将来の月額がわかる</li>
+<li><strong>固定資産税</strong> → 軽減期間の残りを聞けば終了後の税額を予測できる</li>
+<li><strong>違約金</strong> → 手付金とは別の条項がないか確認すれば二重負担を回避できる</li>
+<li><strong>都市計画制限</strong> → 建替え可能な面積を聞けば資産価値の毀損を判断できる</li>
+<li><strong>地盤・浸水リスク</strong> → ハザード情報を確認すれば保険設計に反映できる</li>
+</ul>
+<p><strong>「知らなかった」で100万円を失う前に、PropCostScanで10分だけ時間を使おう。</strong></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

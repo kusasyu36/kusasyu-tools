@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>類似案件マッチング＆対応方針検索ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:20px;text-align:center}
+.header h1{font-size:1.3em}
+.header p{font-size:.85em;opacity:.8;margin-top:4px}
+.container{max-width:900px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#16213e;margin-bottom:12px;border-left:4px solid #e94560;padding-left:10px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 4px;color:#333}
+input,textarea,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:.95em}
+textarea{height:60px;resize:vertical}
+.btn{display:inline-block;padding:12px 28px;border:none;border-radius:6px;font-size:1em;font-weight:600;cursor:pointer;margin-top:12px}
+.btn-primary{background:#e94560;color:#fff}
+.btn-primary:hover{background:#c73e54}
+.btn-sub{background:#16213e;color:#fff;font-size:.85em;padding:8px 16px}
+.file-area{border:2px dashed #ccc;border-radius:8px;padding:24px;text-align:center;cursor:pointer;transition:.2s}
+.file-area:hover{border-color:#e94560;background:#fef0f2}
+.file-area.loaded{border-color:#27ae60;background:#eafaf1}
+.badge{display:inline-block;background:#e94560;color:#fff;padding:2px 10px;border-radius:12px;font-size:.75em;margin-left:6px}
+.result-card{border:1px solid #e0e0e0;border-radius:8px;padding:16px;margin-bottom:12px;position:relative}
+.result-card .rank{position:absolute;top:-10px;left:12px;background:#16213e;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85em;font-weight:700}
+.result-card h3{margin:4px 0 8px 28px;font-size:.95em;color:#16213e}
+.score-bar{height:8px;background:#eee;border-radius:4px;margin:6px 0}
+.score-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#e94560,#f5a623);transition:width .5s}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:.82em;color:#555;margin-top:8px}
+.meta span{background:#f8f9fa;padding:4px 8px;border-radius:4px}
+.summary-box{background:#f8f9fa;border-left:3px solid #e94560;padding:10px;margin-top:8px;font-size:.85em;border-radius:0 6px 6px 0}
+.info{background:#eef4ff;border-radius:6px;padding:12px;font-size:.82em;color:#555;margin-bottom:12px}
+.score-detail{font-size:.78em;color:#888;margin-top:4px}
+#noResult{display:none;text-align:center;padding:30px;color:#999}
+.sample-btn{margin-top:8px}
+</style>
+<meta name="description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,類似案件マッチング＆対応方針検索ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-3/">
+<meta property="og:title" content="類似案件マッチング＆対応方針検索ツール - kusasyu tools">
+<meta property="og:description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="類似案件マッチング＆対応方針検索ツール - kusasyu tools">
+<meta name="twitter:description" content="法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "類似案件マッチング＆対応方針検索ツール",
+  "description": "法律事務所が過去の案件・判例・対応方針を構造化して蓄積し、新規案件で即座に類似事例を検索できるツールキット。CSVで案件情報を整理し、HTMLツールで類似案件マッチングと期日管理を実現する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">類似案件マッチング＆対応方針検索ツール</span></div>
+<div class="header">
+<h1>類似案件マッチング＆対応方針検索ツール</h1>
+<p>CSVデータから類似案件TOP5を高速検索 — ルールベース透明スコアリング</p>
+</div>
+<div class="container">
+
+<div class="card">
+<h2>STEP 1: 案件データ読み込み</h2>
+<div class="info">CSV必須列: 案件名, 案件分類, 関連法令, キーワード, 最終結果, 対応方針, 担当弁護士, 着手日, 終結日<br>※関連法令・キーワードはカンマ区切りで複数指定可</div>
+<div class="file-area" id="dropArea" onclick="document.getElementById('csvFile').click()">
+<div id="fileMsg">📁 CSVファイルをクリックまたはドロップ</div>
+<input type="file" id="csvFile" accept=".csv" style="display:none">
+</div>
+<button class="btn btn-sub sample-btn" onclick="loadSample()">サンプルデータで試す</button>
+</div>
+
+<div class="card">
+<h2>STEP 2: 新規案件情報を入力</h2>
+<label>案件分類</label>
+<select id="inClass"><option value="">-- 選択 --</option></select>
+<label>関連法令コード（カンマ区切り）</label>
+<input id="inLaw" placeholder="例: 民法,会社法,個人情報保護法">
+<label>キーワード（カンマ区切り）</label>
+<input id="inKw" placeholder="例: 損害賠償,契約解除,瑕疵担保">
+<button class="btn btn-primary" onclick="search()">🔍 類似案件を検索</button>
+</div>
+
+<div class="card" id="resultArea" style="display:none">
+<h2>検索結果: 類似案件 TOP5</h2>
+<div class="score-detail" style="margin-bottom:12px">スコア = 案件分類一致(40点) + 法令コード一致(30点) + キーワード頻度(30点)</div>
+<div id="results"></div>
+<div id="noResult">条件に一致する案件が見つかりませんでした。</div>
+</div>
+</div>
+
+<script>
+let cases=[];
+
+function parseCSV(t){
+const lines=t.split(/\r?\n/).filter(l=>l.trim());
+if(lines.length<2)return[];
+const h=splitCSVLine(lines[0]).map(s=>s.trim());
+const idx=k=>h.indexOf(k);
+return lines.slice(1).map(l=>{
+const c=splitCSVLine(l);
+const g=i=>((c[i]||'').trim());
+return{name:g(idx('案件名')),cls:g(idx('案件分類')),law:g(idx('関連法令')),kw:g(idx('キーワード')),result:g(idx('最終結果')),policy:g(idx('対応方針')),lawyer:g(idx('担当弁護士')),start:g(idx('着手日')),end:g(idx('終結日'))};
+}).filter(r=>r.name);
+}
+
+function splitCSVLine(line){
+const r=[];let cur='',inQ=false;
+for(let i=0;i<line.length;i++){
+const c=line[i];
+if(c==='"'){inQ=!inQ}
+else if(c===','&&!inQ){r.push(cur);cur=''}
+else{cur+=c}
+}
+r.push(cur);return r;
+}
+
+function updateClassOptions(){
+const s=new Set(cases.map(c=>c.cls).filter(Boolean));
+const sel=document.getElementById('inClass');
+sel.innerHTML='<option value="">-- 選択 --</option>';
+s.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o)});
+}
+
+document.getElementById('csvFile').addEventListener('change',e=>{
+const f=e.target.files[0];if(!f)return;
+const r=new FileReader();
+r.onload=ev=>{
+cases=parseCSV(ev.target.result);
+document.getElementById('dropArea').classList.add('loaded');
+document.getElementById('fileMsg').textContent='✅ '+cases.length+'件の案件を読み込みました';
+updateClassOptions();
+};r.readAsText(f,'UTF-8');
+});
+
+const da=document.getElementById('dropArea');
+da.addEventListener('dragover',e=>{e.preventDefault();da.style.borderColor='#e94560'});
+da.addEventListener('dragleave',()=>{da.style.borderColor='#ccc'});
+da.addEventListener('drop',e=>{
+e.preventDefault();da.style.borderColor='#ccc';
+const f=e.dataTransfer.files[0];if(f){
+document.getElementById('csvFile').files=e.dataTransfer.files;
+document.getElementById('csvFile').dispatchEvent(new Event('change'));
+}});
+
+function toSet(s){return new Set(s.split(/[,、，]/).map(x=>x.trim().toLowerCase()).filter(Boolean))}
+
+function calcScore(c,cls,laws,kws){
+let s1=c.cls===cls?40:0;
+const cLaws=toSet(c.law);
+let matched=0;laws.forEach(l=>{if(cLaws.has(l))matched++});
+let s2=laws.size?Math.round((matched/laws.size)*30):0;
+const cKws=(c.kw+' '+c.name+' '+c.policy).toLowerCase();
+let kwHits=0;kws.forEach(k=>{if(cKws.includes(k))kwHits++});
+let s3=kws.size?Math.round((kwHits/kws.size)*30):0;
+return{total:s1+s2+s3,s1,s2,s3};
+}
+
+function search(){
+if(!cases.length){alert('先にCSVを読み込んでください');return}
+const cls=document.getElementById('inClass').value;
+const laws=toSet(document.getElementById('inLaw').value);
+const kws=toSet(document.getElementById('inKw').value);
+if(!cls&&!laws.size&&!kws.size){alert('少なくとも1つの条件を入力してください');return}
+
+const scored=cases.map(c=>({...c,score:calcScore(c,cls,laws,kws)})).filter(c=>c.score.total>0).sort((a,b)=>b.score.total-a.score.total).slice(0,5);
+
+const box=document.getElementById('results');
+const nr=document.getElementById('noResult');
+document.getElementById('resultArea').style.display='block';
+
+if(!scored.length){box.innerHTML='';nr.style.display='block';return}
+nr.style.display='none';
+
+box.innerHTML=scored.map((c,i)=>`
+<div class="result-card">
+<div class="rank">${i+1}</div>
+<h3>${esc(c.name)}<span class="badge">${c.score.total}点</span></h3>
+<div class="score-bar"><div class="score-fill" style="width:${c.score.total}%"></div></div>
+<div class="score-detail">分類: ${c.score.s1}/40 ｜ 法令: ${c.score.s2}/30 ｜ KW: ${c.score.s3}/30</div>
+<div class="meta">
+<span>📂 ${esc(c.cls)}</span><span>👤 ${esc(c.lawyer)}</span>
+<span>📅 ${esc(c.start)} → ${esc(c.end)}</span><span>⚖️ ${esc(c.result)}</span>
+</div>
+<div class="summary-box"><strong>対応方針:</strong> ${esc(c.policy)}</div>
+</div>`).join('');
+document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+function esc(s){const d=document.createElement('div');d.textContent=s||'-';return d.innerHTML}
+
+function loadSample(){
+const csv=`案件名,案件分類,関連法令,キーワード,最終結果,対応方針,担当弁護士,着手日,終結日
+A社との業務委託契約紛争,契約紛争,民法,損害賠償,契約解除,債務不履行,和解成立,内容証明送付後に交渉。損害額の70%で和解,田中太郎,2024-01-15,2024-06-30
+B社個人情報漏洩対応,データ保護,個人情報保護法,漏洩,報告義務,再発防止,是正完了,個人情報保護委員会への報告と再発防止策策定,佐藤花子,2024-03-01,2024-05-15
+C社取締役解任訴訟,会社紛争,会社法,取締役,解任,株主総会,請求棄却,解任の正当事由を立証し勝訴,鈴木一郎,2023-11-01,2024-08-20
+D社との秘密保持契約違反,契約紛争,民法,不正競争防止法,秘密保持,NDA,情報漏洩,損害賠償命令,差止請求と損害賠償請求を並行。全額認容,田中太郎,2024-02-10,2024-09-30
+E社労務トラブル,労務紛争,労働基準法,残業,未払賃金,解雇,労働審判成立,労働審判で未払賃金と解決金の支払いで調停成立,山田次郎,2024-04-01,2024-07-15
+F社フランチャイズ契約解除,契約紛争,民法,フランチャイズ,ロイヤリティ,契約解除,和解成立,契約解除条項に基づき通知。違約金減額で和解,佐藤花子,2023-09-01,2024-03-10
+G社株主代表訴訟,会社紛争,会社法,株主代表訴訟,取締役,善管注意義務,一部認容,善管注意義務違反の一部を認定。損害の30%賠償命令,鈴木一郎,2023-06-15,2024-11-30
+H社GDPR対応支援,データ保護,個人情報保護法,GDPR,越境移転,同意取得,対応完了,EU向けプライバシーポリシー改訂と社内体制整備,山田次郎,2024-05-01,2024-08-31
+I社との売買契約瑕疵担保,契約紛争,民法,瑕疵担保,契約不適合,損害賠償,一部認容,契約不適合責任に基づく修補請求と損害賠償の一部認容,田中太郎,2024-01-20,2024-10-15
+J社不正競争行為差止,知財紛争,不正競争防止法,営業秘密,差止,損害賠償,差止認容,営業秘密の不正使用を立証し差止命令獲得,佐藤花子,2024-06-01,2024-12-20`;
+cases=parseCSV(csv);
+document.getElementById('dropArea').classList.add('loaded');
+document.getElementById('fileMsg').textContent='✅ '+cases.length+'件のサンプルデータを読み込みました';
+updateClassOptions();
+}
+</script>
+</body>
+</html>
