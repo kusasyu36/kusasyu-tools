@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案件ナレッジDB構築テンプレート - kusasyu tools</title>
+<meta name="description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,案件ナレッジDB構築テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/template-2/">
+<meta property="og:title" content="案件ナレッジDB構築テンプレート - kusasyu tools">
+<meta property="og:description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/template-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="案件ナレッジDB構築テンプレート - kusasyu tools">
+<meta name="twitter:description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "案件ナレッジDB構築テンプレート",
+  "description": "弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/template-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>案件ナレッジDB構築テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>案件ナレッジDB構築テンプレート</h1>
+  <p class="project-name">退職で消える案件知識、AI検索で資産化</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>```csv</th></tr></thead><tbody><tr><td>案件番号</td><td>受任日</td><td>完了日</td><td>分野</td><td>案件種別</td><td>主要論点タグ</td><td>適用条文</td><td>結果概要</td><td>解決方法</td><td>担当弁護士</td><td>依頼者業種</td><td>相手方種別</td><td>難易度(1-5)</td><td>キーフレーズ</td><td>備考</td></tr><tr><td>LT-2024-001</td><td>2024-01-15</td><td>2024-06-30</td><td>労働</td><td>不当解雇</td><td>解雇権濫用;整理解雇四要件;退職金</td><td>労働契約法16条;労働基準法20条</td><td>和解成立。解雇撤回+解決金350万円で合意。復職せず合意退職の形式。</td><td>和解</td><td>山田太郎</td><td>製造業(従業員200名)</td><td>中小企業</td><td>3</td><td>整理解雇四要件を満たさず解雇無効の心証を得た上での和解交渉が奏功</td><td>労働審判申立後第2回期日で調停成立</td></tr><tr><td>LT-2024-002</td><td>2024-03-01</td><td>2024-09-15</td><td>不動産</td><td>賃料増額請求</td><td>借地借家法32条;継続賃料;スライド法;差額配分法</td><td>借地借家法32条1項</td><td>調停成立。現行賃料月額45万円→月額52万円への増額で合意。年間84万円の増収。</td><td>調停</td><td>佐藤花子</td><td>不動産賃貸業</td><td>個人(テナント)</td><td>2</td><td>不動産鑑定士の継続賃料評価（スライド法・差額配分法併用）が調停委員会の心証形成に寄与</td><td>鑑定費用は依頼者負担。投資回収まで約14ヶ月</td></tr><tr><td>LT-2024-003</td><td>2024-04-10</td><td>2025-01-20</td><td>相続</td><td>遺産分割</td><td>特別受益;寄与分;不動産評価;代償分割</td><td>民法903条;904条の2;906条</td><td>審判。長男に不動産取得+代償金1</td><td>200万円支払いを命じる審判確定。総遺産額約8</td><td>000万円。</td><td>審判</td><td>山田太郎;鈴木一郎</td><td>なし(個人間紛争)</td><td>個人(相続人3名)</td><td>4</td><td>被相続人の介護を10年間行った依頼者の寄与分800万円が認められた点が勝因</td><td>不動産評価で固定資産税評価額と時価に1</td><td>500万円の乖離があり鑑定実施</td></tr><tr><td>LT-2024-004</td><td>2024-06-01</td><td>2024-08-31</td><td>企業法務</td><td>利用規約作成</td><td>電子商取引;特商法表記;個人情報保護;免責条項</td><td>特定商取引法11条;個人情報保護法18条;消費者契約法8条</td><td>納品完了。SaaS型サービスの利用規約・プライバシーポリシー・特商法表記の3文書セットを作成。</td><td>契約書作成</td><td>佐藤花子</td><td>IT・SaaS(従業員30名)</td><td>なし(予防法務)</td><td>2</td><td>消費者契約法8条・10条に抵触しない免責条項の設計と、改正個人情報保護法対応の第三者提供同意条項がポイント</td><td>定期見直し条項（年1回）を規約内に設置。改正法対応のアラート体制も助言</td></tr><tr><td>LT-2024-005</td><td>2024-07-20</td><td>2024-12-10</td><td>企業法務</td><td>株主間契約</td><td>デッドロック条項;先買権;競業避止;ドラッグアロング</td><td>会社法108条;109条2項;136条</td><td>契約締結完了。3社JVの株主間契約を策定。デッドロック解消手順・先買権・ドラッグアロング条項を整備。</td><td>契約書作成</td><td>鈴木一郎</td><td>IT・SaaS(従業員150名)</td><td>事業会社2社</td><td>5</td><td>3社間の利害調整が最大の難所。段階的デッドロック解消条項（協議→調停→バイアウト）の設計が差別化要因</td><td>英文版も並行作成（海外投資家向け）。準拠法は日本法+仲裁はJCAA</td></tr><tr><td>```</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `\`\`\`csv
+案件番号,受任日,完了日,分野,案件種別,主要論点タグ,適用条文,結果概要,解決方法,担当弁護士,依頼者業種,相手方種別,難易度(1-5),キーフレーズ,備考
+LT-2024-001,2024-01-15,2024-06-30,労働,不当解雇,解雇権濫用;整理解雇四要件;退職金,労働契約法16条;労働基準法20条,和解成立。解雇撤回+解決金350万円で合意。復職せず合意退職の形式。,和解,山田太郎,製造業(従業員200名),中小企業,3,"整理解雇四要件を満たさず解雇無効の心証を得た上での和解交渉が奏功",労働審判申立後第2回期日で調停成立
+LT-2024-002,2024-03-01,2024-09-15,不動産,賃料増額請求,借地借家法32条;継続賃料;スライド法;差額配分法,借地借家法32条1項,調停成立。現行賃料月額45万円→月額52万円への増額で合意。年間84万円の増収。,調停,佐藤花子,不動産賃貸業,個人(テナント),2,"不動産鑑定士の継続賃料評価（スライド法・差額配分法併用）が調停委員会の心証形成に寄与",鑑定費用は依頼者負担。投資回収まで約14ヶ月
+LT-2024-003,2024-04-10,2025-01-20,相続,遺産分割,特別受益;寄与分;不動産評価;代償分割,民法903条;904条の2;906条,審判。長男に不動産取得+代償金1,200万円支払いを命じる審判確定。総遺産額約8,000万円。,審判,山田太郎;鈴木一郎,なし(個人間紛争),個人(相続人3名),4,"被相続人の介護を10年間行った依頼者の寄与分800万円が認められた点が勝因",不動産評価で固定資産税評価額と時価に1,500万円の乖離があり鑑定実施
+LT-2024-004,2024-06-01,2024-08-31,企業法務,利用規約作成,電子商取引;特商法表記;個人情報保護;免責条項,特定商取引法11条;個人情報保護法18条;消費者契約法8条,納品完了。SaaS型サービスの利用規約・プライバシーポリシー・特商法表記の3文書セットを作成。,契約書作成,佐藤花子,IT・SaaS(従業員30名),なし(予防法務),2,"消費者契約法8条・10条に抵触しない免責条項の設計と、改正個人情報保護法対応の第三者提供同意条項がポイント",定期見直し条項（年1回）を規約内に設置。改正法対応のアラート体制も助言
+LT-2024-005,2024-07-20,2024-12-10,企業法務,株主間契約,デッドロック条項;先買権;競業避止;ドラッグアロング,会社法108条;109条2項;136条,契約締結完了。3社JVの株主間契約を策定。デッドロック解消手順・先買権・ドラッグアロング条項を整備。,契約書作成,鈴木一郎,IT・SaaS(従業員150名),事業会社2社,5,"3社間の利害調整が最大の難所。段階的デッドロック解消条項（協議→調停→バイアウト）の設計が差別化要因",英文版も並行作成（海外投資家向け）。準拠法は日本法+仲裁はJCAA
+\`\`\``;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "01_案件ナレッジDB構築テンプレート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>弁護士退職時ナレッジ引継ぎチェックリスト - kusasyu tools</title>
+<meta name="description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,弁護士退職時ナレッジ引継ぎチェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-3/">
+<meta property="og:title" content="弁護士退職時ナレッジ引継ぎチェックリスト - kusasyu tools">
+<meta property="og:description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="弁護士退職時ナレッジ引継ぎチェックリスト - kusasyu tools">
+<meta name="twitter:description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "弁護士退職時ナレッジ引継ぎチェックリスト",
+  "description": "弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-03-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>弁護士退職時ナレッジ引継ぎチェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>弁護士退職時ナレッジ引継ぎチェックリスト</h1>
+  <p class="project-name">退職で消える案件知識、AI検索で資産化</p>
+  <div class="content">
+<h1>弁護士退職時 ナレッジ引継ぎチェックリスト</h1>
+<h2>使い方</h2>
+<ol>
+<li>退職・異動が決まった時点で、担当案件ごとに本シートを1部ずつ作成する</li>
+<li>退職者が事前に記入し、引継ぎ面談で後任と読み合わせる</li>
+<li>面談後、後任が不明点を追記し、事務所の案件管理システムに保存する</li>
+<li><strong>引継ぎ面談の目安</strong>: 1案件あたり30〜45分／全案件の総括面談に別途60分</li>
+</ol>
+<hr />
+<h2>A. 基本情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作成日</td>
+<td><strong><em>_年</em></strong>_月____日</td>
+</tr>
+<tr>
+<td>退職者名</td>
+<td></td>
+</tr>
+<tr>
+<td>後任者名</td>
+<td></td>
+</tr>
+<tr>
+<td>案件名・事件番号</td>
+<td></td>
+</tr>
+<tr>
+<td>依頼者名</td>
+<td></td>
+</tr>
+<tr>
+<td>案件種別</td>
+<td>□訴訟 □交渉 □契約 □顧問対応 □その他（　　）</td>
+</tr>
+<tr>
+<td>案件ステータス</td>
+<td>□進行中 □和解協議中 □控訴審 □待機中 □その他（　　）</td>
+</tr>
+<tr>
+<td>次回期日・締切</td>
+<td><strong><em>_年</em></strong>_月____日　内容：　　　　　</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>B. 相手方に関する暗黙知</h2>
+<h3>B-1. 相手方代理人の交渉傾向</h3>
+<ul>
+<li><strong>交渉スタイル</strong>: □強硬型 □協調型 □場当たり型 □ロジック重視型</li>
+<li><strong>意思決定の特徴</strong>:
+  [記入例] 本人に逐一確認するため回答に3営業日以上かかる。金曜夕方の連絡は翌週まで放置される傾向</li>
+<li><strong>有効だったアプローチ</strong>:
+  [記入例] 判例を3件以上提示すると折れやすい。感情論には乗らず数字で返すのが有効</li>
+<li><strong>避けるべき対応</strong>:
+  [記入例] 電話での口頭合意は後から覆されるため必ずメールで確認を取ること</li>
+<li><strong>キーパーソン（代理人以外）</strong>:
+  [記入例] 相手方の法務部長・鈴木氏が実質的な決裁者。代理人より鈴木氏の意向が優先される</li>
+</ul>
+<h3>B-2. 相手方本人の特徴</h3>
+<ul>
+<li><strong>性格・対応傾向</strong>:
+  [記入例] 感情的になりやすいが、丁寧に経緯を説明すれば納得する。プライドが高いため譲歩を「敗北」と捉えがち</li>
+<li><strong>過去のトラブル・注意点</strong>:
+  [記入例] 第2回期日後に代理人を解任して本人訴訟に切り替えようとした経緯あり</li>
+</ul>
+<hr />
+<h2>C. 裁判所・裁判官に関する暗黙知</h2>
+<ul>
+<li><strong>担当裁判官名</strong>: 　　　　部　　　　裁判官</li>
+<li><strong>裁判官の進行スタイル</strong>: □和解勧試積極型 □書面重視型 □口頭議論重視型</li>
+<li><strong>裁判官の特徴メモ</strong>:
+  [記入例] 準備書面の長さに厳しく、15頁超は心証が悪くなる。時系列表を好む。和解案は裁判官自ら金額を提示するタイプ</li>
+<li><strong>書記官の特徴・連絡方法</strong>:
+  [記入例] 山田書記官。FAXより電話連絡を好む。期日変更は早めに相談すれば柔軟に対応してくれる</li>
+<li><strong>法廷での注意点</strong>:
+  [記入例] 毎回冒頭で争点整理の確認を求められる。反訴の示唆があったが正式にはまだ出ていない</li>
+</ul>
+<hr />
+<h2>D. 依頼者との関係に関する暗黙知</h2>
+<h3>D-1. 信頼関係のコツ</h3>
+<ul>
+<li><strong>コミュニケーション上の注意</strong>:
+  [記入例] 法律用語を極力使わず平易に説明すること。メールより電話を好む。配偶者が同席する場合は配偶者にも直接説明すると安心される</li>
+<li><strong>報告の頻度・方法</strong>:
+  [記入例] 月1回の電話報告を期待している。進展がなくても「動きなし」の一報を入れないと不安になる</li>
+<li><strong>地雷（触れてはいけない話題）</strong>:
+  [記入例] 前任弁護士（他事務所）への不信感が強い。前任の対応と比較する発言は避けること</li>
+<li><strong>依頼者の本音・真の目的</strong>:
+  [記入例] 勝訴より「相手に謝罪させること」が最優先。金銭的解決だけでは納得しない可能性が高い</li>
+</ul>
+<h3>D-2. 費用・請求に関する注意</h3>
+<ul>
+<li><strong>費用感度</strong>: □高い（都度説明必要） □普通 □低い（一任型）</li>
+<li><strong>請求上の特記事項</strong>:
+  [記入例] タイムチャージの上限を口頭で月50万円と約束済み（契約書には未記載）。日当請求に敏感なため出張前に必ず見積提示すること</li>
+</ul>
+<hr />
+<h2>E. 次回期日・直近タスクの留意点</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>期日・締切</th>
+<th>内容</th>
+<th>留意点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[記入例] 4/15</td>
+<td>準備書面提出</td>
+<td>損害額の立証が争点。医療記録の追加取寄せが未了</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[記入例] 4/22</td>
+<td>第5回口頭弁論</td>
+<td>裁判官が和解勧試する可能性大。依頼者に和解条件の腹案を事前確認</td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>F. 書面に残っていない重要情報</h2>
+<ul>
+<li><strong>口頭での合意・約束事項</strong>:
+  [記入例] 相手方代理人と「証人尋問は互いに2名以内」と口頭で合意済み</li>
+<li><strong>未文書化のリスク・懸念</strong>:
+  [記入例] 依頼者の証言に一部矛盾あり（初回相談時と陳述書で日付が異なる）。本人に再確認が必要</li>
+<li><strong>関連案件・波及リスク</strong>:
+  [記入例] 同じ相手方と別部門で取引継続中。本件の強硬姿勢が取引関係に影響する可能性あり</li>
+<li><strong>個人的ネットワーク・紹介元</strong>:
+  [記入例] 依頼者は税理士・佐藤先生の紹介。解決後にお礼の報告を入れるのが慣例</li>
+</ul>
+<hr />
+<h2>G. 引継ぎ完了チェック</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>確認項目</th>
+<th>退職者</th>
+<th>後任者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>本チェックリストの全セクションを記入した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+<tr>
+<td>2</td>
+<td>案件ファイル（紙・電子）の所在を共有した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+<tr>
+<td>3</td>
+<td>依頼者に後任者を紹介（面談or電話）した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+<tr>
+<td>4</td>
+<td>相手方代理人に担当変更を通知した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+<tr>
+<td>5</td>
+<td>裁判所に担当弁護士変更届を提出した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+<tr>
+<td>6</td>
+<td>期日・締切をカレンダーに移行した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+<tr>
+<td>7</td>
+<td>預り金・預り物の確認と引渡しを完了した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+<tr>
+<td>8</td>
+<td>本シートを案件管理システムに保存した</td>
+<td>□</td>
+<td>□</td>
+</tr>
+</tbody>
+</table>
+<p><strong>引継ぎ面談実施日</strong>: <strong><em>_年</em></strong>_月<strong><em>_日
+<strong>退職者署名</strong>: </em></strong><strong><em>_</em></strong><strong><em>_</em>_　<strong>後任者署名</strong>: </strong><strong><em>_</em></strong><strong><em>_</em></strong></p>
+<hr />
+<h2>引継ぎ面談の進行手順</h2>
+<table>
+<thead>
+<tr>
+<th>所要時間</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5分</td>
+<td>A.基本情報の確認、案件の全体像を共有</td>
+</tr>
+<tr>
+<td>10分</td>
+<td>B〜C.相手方・裁判官の暗黙知を読み合わせ</td>
+</tr>
+<tr>
+<td>10分</td>
+<td>D.依頼者との関係（信頼構築のコツ・地雷）</td>
+</tr>
+<tr>
+<td>5分</td>
+<td>E.直近タスクと期日の留意点</td>
+</tr>
+<tr>
+<td>5分</td>
+<td>F.書面外の重要情報の補足</td>
+</tr>
+<tr>
+<td>5分</td>
+<td>G.チェック・質疑応答・署名</td>
+</tr>
+<tr>
+<td><strong>計40分</strong></td>
+<td><strong>※複雑案件は60分に延長</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>全案件の総括面談（別途60分）</strong>: 案件横断の人脈情報、事務所内の暗黙ルール、担当外だが相談を受けていた案件の申し送りを行う。</p>
+</blockquote>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

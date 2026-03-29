@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>類似案件マッチング＆論点集計ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3rem;padding:18px 0;color:#2d3748;border-bottom:3px solid #3182ce}
+h2{font-size:1.05rem;margin:18px 0 10px;padding-left:10px;border-left:4px solid #3182ce;color:#2d3748}
+.card{background:#fff;border-radius:8px;padding:16px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+label{display:block;font-weight:600;margin:8px 0 4px;font-size:.88rem}
+input,select,textarea{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9rem}
+textarea{height:60px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:200px}
+button{background:#3182ce;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:.92rem;margin:6px 4px 6px 0}
+button:hover{background:#2b6cb0}
+button.sec{background:#718096}
+.upload-area{border:2px dashed #a0aec0;border-radius:8px;padding:20px;text-align:center;cursor:pointer;transition:.2s}
+.upload-area:hover{border-color:#3182ce;background:#ebf8ff}
+.upload-area.loaded{border-color:#38a169;background:#f0fff4}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+th,td{border:1px solid #e2e8f0;padding:6px 8px;text-align:left}
+th{background:#edf2f7;font-weight:600;white-space:nowrap}
+tr:nth-child(even){background:#f7fafc}
+.score{display:inline-block;background:#3182ce;color:#fff;border-radius:12px;padding:2px 10px;font-weight:700;font-size:.85rem}
+.rank{font-size:1.1rem;font-weight:700;color:#d69e2e}
+.tag{display:inline-block;background:#bee3f8;color:#2a4365;border-radius:4px;padding:1px 6px;margin:2px;font-size:.78rem}
+.bar-bg{background:#e2e8f0;border-radius:4px;height:18px;position:relative;margin-top:2px}
+.bar-fill{background:#3182ce;height:100%;border-radius:4px;min-width:2px}
+.bar-label{position:absolute;right:4px;top:0;font-size:.72rem;line-height:18px;color:#2d3748}
+#result,#agg{display:none}
+.note{font-size:.8rem;color:#718096;margin-top:4px}
+.empty{text-align:center;padding:20px;color:#a0aec0}
+@media(max-width:600px){.row{flex-direction:column}.wrap{padding:10px}h1{font-size:1.1rem}}
+</style>
+<meta name="description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,類似案件マッチング＆論点集計ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-8/">
+<meta property="og:title" content="類似案件マッチング＆論点集計ツール - kusasyu tools">
+<meta property="og:description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="類似案件マッチング＆論点集計ツール - kusasyu tools">
+<meta name="twitter:description" content="弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "類似案件マッチング＆論点集計ツール",
+  "description": "弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-8/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">類似案件マッチング＆論点集計ツール</span></div>
+<div class="wrap">
+<h1>類似案件マッチング＆論点集計ツール</h1>
+
+<div class="card">
+<h2>1. 過去案件CSVをアップロード</h2>
+<p class="note">案件ナレッジ構造化テンプレート（CSV）をアップロードしてください。</p>
+<div class="upload-area" id="dropZone" onclick="document.getElementById('csvFile').click()">
+<div id="uploadMsg">📁 クリックまたはドラッグ＆ドロップでCSVを選択<br><span class="note">※ブラウザ内で処理。サーバーへの送信なし</span></div>
+<input type="file" id="csvFile" accept=".csv" style="display:none">
+</div>
+<button class="sec" onclick="loadSample()">サンプルデータで試す</button>
+<p class="note" id="csvStatus"></p>
+</div>
+
+<div class="card">
+<h2>2. 新規案件の情報を入力</h2>
+<div class="row">
+<div><label>分野</label>
+<select id="field"><option value="">選択してください</option><option>労働</option><option>不動産</option><option>相続</option><option>企業法務</option><option>債権回収</option><option>知的財産</option><option>家事事件</option><option>刑事</option></select></div>
+<div><label>キーワード（カンマ区切り）</label>
+<input id="keywords" placeholder="例: 固定残業代, 労働時間"></div>
+</div>
+<label>主要論点タグ（セミコロン区切り）</label>
+<input id="issues" placeholder="例: 残業代;固定残業代;労働時間管理">
+<label>適用条文（セミコロン区切り）</label>
+<input id="laws" placeholder="例: 労基法37条;労基法32条">
+<label>争点・概要メモ</label>
+<textarea id="memo" placeholder="案件の概要や争点を自由記述"></textarea>
+<button onclick="runMatch()">🔍 類似案件を検索</button>
+</div>
+
+<div id="result" class="card">
+<h2>3. 類似案件トップ5</h2>
+<div id="matchTable"></div>
+</div>
+
+<div id="agg" class="card">
+<h2>4. 論点集計テーブル</h2>
+<p class="note">事務所のノウハウ蓄積状況を論点タグ別に集計</p>
+<div id="aggTable"></div>
+</div>
+</div>
+
+<script>
+let cases=[];
+const SAMPLE=`案件番号,受任日,終了日,分野,案件名,主要論点タグ,適用条文,結果概要,結果区分,係争金額（万円）,回収・減額金額（万円）,担当弁護士,共同担当,クライアント業種,キーフレーズ,対応難易度,所要期間（月）,備考
+LT-2024-001,2024-01-15,2024-06-30,労働,元従業員による残業代請求事件,残業代;固定残業代;労働時間管理,労基法37条;労基法32条;最判H12.3.9,固定残業代の有効性を立証し請求額の70%減額で和解成立,和解,1500,1050,山田太郎,,IT・ソフトウェア,固定残業代の明確区分性・対価性要件を充足する就業規則設計が鍵,B,5,就業規則改定も併せて助言
+LT-2024-002,2024-02-01,2024-09-15,不動産,商業ビル賃貸借契約の解除・明渡請求,賃料不払い;信頼関係破壊;立退料,借地借家法28条;民法541条;最判S46.11.25,6ヶ月分賃料不払いによる信頼関係破壊を認定し明渡し認容。立退料なし,勝訴,3200,3200,佐藤花子,山田太郎,不動産管理,催告書の送付時期・回数の記録が信頼関係破壊の立証に直結,A,7,控訴なし確定
+LT-2024-003,2024-03-10,2024-08-20,相続,遺留分侵害額請求事件,遺留分;特別受益;不動産評価,民法1042条;民法1043条;民法903条,不動産評価額で争いがあったが鑑定により時価8000万円と確定。遺留分2000万円の支払いで和解,和解,2000,2000,鈴木一郎,,個人,不動産の評価方法（路線価vs時価）の選択が遺留分算定に大きく影響,B,5,不動産鑑定士と連携
+LT-2024-004,2024-04-01,2025-01-31,企業法務,業務委託先による営業秘密漏洩事件,営業秘密;不正競争;秘密管理性,不競法2条1項7号;不競法3条;不競法4条,秘密管理性の立証に成功し差止め＋損害賠償4500万円認容,勝訴,5000,4500,山田太郎,佐藤花子,製造業,秘密管理性三要件（秘密管理意思・認識可能性・アクセス制限）の事前整備が勝敗を分ける,S,10,情報セキュリティ体制構築も支援
+LT-2024-005,2024-05-20,2024-11-30,企業法務,取引先との売買契約に関する製造物責任訴訟,PL法;製造物責任;因果関係,PL法3条;民法709条;民法415条,製品の欠陥と損害の因果関係の立証が不十分として請求棄却（被告側代理）,勝訴（被告側）,8000,8000,鈴木一郎,山田太郎,小売・流通,原告側の因果関係立証のハードルの高さと技術的反証資料の準備が防御の要,A,6,外部技術専門家の意見書活用`;
+
+function parseCSV(t){
+ let lines=t.split('\n').filter(l=>l.trim());
+ if(lines.length<2)return[];
+ let h=splitCSVLine(lines[0]);
+ let res=[];
+ for(let i=1;i<lines.length;i++){
+  let v=splitCSVLine(lines[i]);
+  if(v.length<5)continue;
+  let o={};
+  h.forEach((k,j)=>o[k.trim()]=v[j]?v[j].trim():'');
+  res.push(o);
+ }
+ return res;
+}
+function splitCSVLine(line){
+ let r=[],cur='',inQ=false;
+ for(let c of line){
+  if(c==='"'){inQ=!inQ}
+  else if(c===','&&!inQ){r.push(cur);cur=''}
+  else{cur+=c}
+ }
+ r.push(cur);return r;
+}
+
+document.getElementById('csvFile').addEventListener('change',function(e){
+ let f=e.target.files[0];if(!f)return;
+ let r=new FileReader();
+ r.onload=function(ev){
+  cases=parseCSV(ev.target.result);
+  document.getElementById('dropZone').className='upload-area loaded';
+  document.getElementById('uploadMsg').innerHTML='✅ '+f.name+' を読み込みました';
+  document.getElementById('csvStatus').textContent='読み込み件数: '+cases.length+'件';
+ };
+ r.readAsText(f);
+});
+
+function loadSample(){
+ cases=parseCSV(SAMPLE);
+ document.getElementById('dropZone').className='upload-area loaded';
+ document.getElementById('uploadMsg').innerHTML='✅ サンプルデータ（5件）を読み込みました';
+ document.getElementById('csvStatus').textContent='読み込み件数: '+cases.length+'件';
+}
+
+function tokenize(s){return s.split(/[;；,、\s]+/).map(x=>x.trim().toLowerCase()).filter(x=>x)}
+
+function runMatch(){
+ if(!cases.length){alert('先にCSVをアップロードしてください');return}
+ let field=document.getElementById('field').value;
+ let kw=tokenize(document.getElementById('keywords').value);
+ let iss=tokenize(document.getElementById('issues').value);
+ let laws=tokenize(document.getElementById('laws').value);
+ let memo=document.getElementById('memo').value.toLowerCase();
+
+ let scored=cases.map(c=>{
+  let s=0,details=[];
+  if(field&&c['分野']===field){s+=20;details.push('分野一致(+20)')}
+  let cIss=tokenize(c['主要論点タグ']||'');
+  let im=0;iss.forEach(t=>{if(cIss.some(ci=>ci.includes(t)||t.includes(ci)))im++});
+  if(im){s+=im*15;details.push('論点タグ'+im+'件一致(+'+(im*15)+')')}
+  let cLaw=tokenize(c['適用条文']||'');
+  let lm=0;laws.forEach(t=>{if(cLaw.some(cl=>cl.includes(t)||t.includes(cl)))lm++});
+  if(lm){s+=lm*12;details.push('適用条文'+lm+'件一致(+'+(lm*12)+')')}
+  let target=(c['キーフレーズ']||'')+' '+(c['案件名']||'')+' '+(c['結果概要']||'');
+  target=target.toLowerCase();
+  let km=0;kw.forEach(k=>{if(target.includes(k))km++});
+  if(km){s+=km*10;details.push('キーワード'+km+'件一致(+'+(km*10)+')')}
+  if(memo){let mm=0;cIss.concat(cLaw).forEach(t=>{if(memo.includes(t))mm++});
+   if(mm){s+=mm*5;details.push('メモ関連'+mm+'件(+'+(mm*5)+')')}}
+  return{c,score:s,details};
+ });
+
+ scored.sort((a,b)=>b.score-a.score);
+ let top=scored.slice(0,5);
+ let maxS=top[0]?top[0].score:1;
+
+ let h='<table><tr><th>順位</th><th>案件番号</th><th>案件名</th><th>分野</th><th>スコア</th><th>一致内訳</th><th>結果区分</th><th>担当</th></tr>';
+ if(!top.length||top[0].score===0){
+  h+='<tr><td colspan="8" class="empty">一致する案件が見つかりませんでした。検索条件を変更してください。</td></tr>';
+ }else{
+  top.forEach((r,i)=>{
+   if(r.score===0)return;
+   h+='<tr><td><span class="rank">#'+(i+1)+'</span></td>';
+   h+='<td>'+esc(r.c['案件番号'])+'</td>';
+   h+='<td>'+esc(r.c['案件名'])+'</td>';
+   h+='<td>'+esc(r.c['分野'])+'</td>';
+   h+='<td><span class="score">'+r.score+'</span><div class="bar-bg"><div class="bar-fill" style="width:'+Math.round(r.score/maxS*100)+'%"></div><div class="bar-label">'+Math.round(r.score/maxS*100)+'%</div></div></td>';
+   h+='<td>'+r.details.map(d=>'<span class="tag">'+esc(d)+'</span>').join('')+'</td>';
+   h+='<td>'+esc(r.c['結果区分'])+'</td>';
+   h+='<td>'+esc(r.c['担当弁護士'])+'</td></tr>';
+  });
+ }
+ h+='</table>';
+ document.getElementById('matchTable').innerHTML=h;
+ document.getElementById('result').style.display='block';
+ buildAgg();
+}
+
+function buildAgg(){
+ let tagMap={};
+ cases.forEach(c=>{
+  let tags=tokenize(c['主要論点タグ']||'');
+  tags.forEach(t=>{
+   if(!tagMap[t])tagMap[t]={count:0,ids:[],fields:new Set()};
+   tagMap[t].count++;
+   tagMap[t].ids.push(c['案件番号']||'?');
+   tagMap[t].fields.add(c['分野']||'');
+  });
+ });
+ let arr=Object.entries(tagMap).sort((a,b)=>b[1].count-a[1].count);
+ let mx=arr[0]?arr[0][1].count:1;
+ let h='<table><tr><th>論点タグ</th><th>案件数</th><th>蓄積度</th><th>関連案件番号</th><th>関連分野</th></tr>';
+ arr.forEach(([tag,d])=>{
+  let pct=Math.round(d.count/mx*100);
+  h+='<tr><td><strong>'+esc(tag)+'</strong></td><td style="text-align:center">'+d.count+'</td>';
+  h+='<td><div class="bar-bg" style="width:120px"><div class="bar-fill" style="width:'+pct+'%;background:'+(pct>60?'#38a169':pct>30?'#d69e2e':'#e53e3e')+'"></div><div class="bar-label">'+d.count+'件</div></div></td>';
+  h+='<td>'+d.ids.map(id=>'<span class="tag">'+esc(id)+'</span>').join('')+'</td>';
+  h+='<td>'+[...d.fields].map(f=>'<span class="tag">'+esc(f)+'</span>').join('')+'</td></tr>';
+ });
+ h+='</table>';
+ document.getElementById('aggTable').innerHTML=h;
+ document.getElementById('agg').style.display='block';
+ document.getElementById('agg').scrollIntoView({behavior:'smooth'});
+}
+
+function esc(s){let d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+let dz=document.getElementById('dropZone');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.style.borderColor='#3182ce'});
+dz.addEventListener('dragleave',()=>{dz.style.borderColor=''});
+dz.addEventListener('drop',e=>{
+ e.preventDefault();dz.style.borderColor='';
+ let f=e.dataTransfer.files[0];
+ if(f){let r=new FileReader();r.onload=ev=>{
+  cases=parseCSV(ev.target.result);
+  dz.className='upload-area loaded';
+  document.getElementById('uploadMsg').innerHTML='✅ '+f.name+' を読み込みました';
+  document.getElementById('csvStatus').textContent='読み込み件数: '+cases.length+'件';
+ };r.readAsText(f)}
+});
+</script>
+</body>
+</html>

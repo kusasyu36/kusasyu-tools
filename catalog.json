@@ -507,6 +507,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "template-2",
+    "url": "legal-tech/template-2/",
+    "title": "退職で消える案件知識、AI検索で資産化",
+    "tool_name": "案件ナレッジDB構築テンプレート",
+    "description": "弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキットの3点セットで、個人の頭の中にある知識を事務所の組織資産に変える。",
+    "quality_score": 10,
+    "completed_at": "2026-03-28T16:10:54.084462+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-8",
+    "url": "legal-tech/tool-8/",
+    "title": "退職で消える案件知識、AI検索で資産化",
+    "tool_name": "類似案件マッチング＆論点集計ツール",
+    "description": "弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキットの3点セットで、個人の頭の中にある知識を事務所の組織資産に変える。",
+    "quality_score": 10,
+    "completed_at": "2026-03-28T16:10:54.084462+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "checker-3",
+    "url": "legal-tech/checker-3/",
+    "title": "退職で消える案件知識、AI検索で資産化",
+    "tool_name": "弁護士退職時ナレッジ引継ぎチェックリスト",
+    "description": "弁護士3〜30名規模の中小法律事務所が、過去の案件情報（準備書面・意見書・相談記録）を構造化データベースに蓄積し、新案件受任時にキーワード＋論点ベースで類似案件を即座に検索・活用できる仕組みを提供する。案件ナレッジの構造化テンプレート、類似案件マッチング＆論点マップ生成ツール、弁護士退職時のナレッジ引継ぎキットの3点セットで、個人の頭の中にある知識を事務所の組織資産に変える。",
+    "quality_score": 10,
+    "completed_at": "2026-03-28T16:10:54.084462+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
