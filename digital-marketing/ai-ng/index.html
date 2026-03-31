@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AIコンテンツ品質監査ツール（ルールベーストーン＋NGワード一括チェック） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#1a1a2e}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:16px}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tab{padding:8px 16px;border:none;background:#ddd;border-radius:8px 8px 0 0;cursor:pointer;font-size:.9em;flex:1;min-width:120px;text-align:center}
+.tab.active{background:#1a1a2e;color:#fff}
+.panel{display:none;background:#fff;border-radius:0 0 12px 12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.panel.active{display:block}
+textarea{width:100%;min-height:140px;border:1px solid #ccc;border-radius:8px;padding:10px;font-size:.95em;resize:vertical;font-family:inherit}
+label{display:block;font-weight:600;margin:10px 0 4px;font-size:.9em}
+input[type=text],select{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;font-size:.9em}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1;min-width:200px}
+button{padding:10px 20px;border:none;border-radius:8px;cursor:pointer;font-size:.95em;font-weight:600}
+.btn-p{background:#1a1a2e;color:#fff;width:100%;margin-top:12px}
+.btn-p:hover{background:#2d2d5e}
+.btn-s{background:#e8e8e8;color:#333;font-size:.85em;padding:6px 12px;margin:4px}
+.score-card{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.sc{flex:1;min-width:140px;border-radius:12px;padding:16px;text-align:center;color:#fff}
+.sc.good{background:linear-gradient(135deg,#00b894,#00cec9)}
+.sc.mid{background:linear-gradient(135deg,#667eea,#764ba2)}
+.sc.warn{background:linear-gradient(135deg,#f39c12,#e74c3c)}
+.sc .num{font-size:2em;font-weight:700}
+.sc .lbl{font-size:.8em;opacity:.9}
+.meter{height:8px;background:#e0e0e0;border-radius:4px;margin:6px 0;overflow:hidden}
+.meter-fill{height:100%;border-radius:4px;transition:width .4s}
+.hl{background:#ffe0e0;color:#c0392b;font-weight:600;padding:1px 3px;border-radius:3px;cursor:help}
+.det{background:#f8f9fa;border-radius:8px;padding:12px;margin:8px 0;font-size:.9em}
+.det h4{margin-bottom:6px}
+.tag{display:inline-block;border-radius:4px;padding:2px 8px;margin:2px;font-size:.8em}
+.tag.ng{background:#ffe0e0;color:#c0392b}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0}
+.output-box{white-space:pre-wrap;word-break:break-all;background:#fafafa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;margin:8px 0;font-size:.9em;line-height:1.8;max-height:300px;overflow-y:auto}
+.grade{font-size:1.1em;font-weight:700;padding:4px 12px;border-radius:6px;display:inline-block}
+.g-a{background:#27ae60;color:#fff}.g-b{background:#2ecc71;color:#fff}.g-c{background:#f39c12;color:#fff}.g-d{background:#e67e22;color:#fff}.g-e{background:#e74c3c;color:#fff}
+.actions{background:#f0f7ff;border-radius:8px;padding:12px;margin:8px 0}
+.actions li{margin:4px 0;font-size:.9em}
+small{color:#888}
+@media(max-width:600px){.wrap{padding:8px}h1{font-size:1.1em}.sc{min-width:100%}}
+</style>
+<meta name="description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AIコンテンツ品質監査ツール（ルールベーストーン＋NGワード一括チェック）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ai-ng/">
+<meta property="og:title" content="AIコンテンツ品質監査ツール（ルールベーストーン＋NGワード一括チェック） - kusasyu tools">
+<meta property="og:description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ai-ng/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIコンテンツ品質監査ツール（ルールベーストーン＋NGワード一括チェック） - kusasyu tools">
+<meta name="twitter:description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AIコンテンツ品質監査ツール（ルールベーストーン＋NGワード一括チェック）",
+  "description": "生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ai-ng/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AIコンテンツ品質監査ツール（ルールベーストーン＋NGワード</span></div>
+<div class="wrap">
+<h1>AIコンテンツ品質監査ツール</h1>
+<p class="sub">ブランドトーン・NGワード・差別化を3軸で自動スコアリング</p>
+<div class="tabs">
+<button class="tab active" onclick="switchTab(0)">監査実行</button>
+<button class="tab" onclick="switchTab(1)">ガイドライン設定</button>
+<button class="tab" onclick="switchTab(2)">使い方</button>
+</div>
+<div class="panel active" id="p0">
+<label>監査するコンテンツを貼り付け</label>
+<textarea id="contentInput" placeholder="AIが生成したブログ記事・LP・メール文をここに貼り付けてください…"></textarea>
+<div class="row">
+<div><label>業界プリセット</label>
+<select id="preset">
+<option value="cosmetics">化粧品</option>
+<option value="health">健康食品</option>
+<option value="pharma">医薬品</option>
+<option value="finance">金融</option>
+</select></div>
+<div><label>チェック対象</label>
+<div style="margin-top:6px">
+<label style="font-weight:400;display:inline"><input type="checkbox" id="chkTone" checked> トーン</label>
+<label style="font-weight:400;display:inline;margin:0 8px"><input type="checkbox" id="chkNG" checked> NGワード</label>
+<label style="font-weight:400;display:inline"><input type="checkbox" id="chkDiff" checked> 差別化</label>
+</div></div>
+</div>
+<button class="btn-p" onclick="runAudit()">品質監査を実行</button>
+<div id="resultArea"></div>
+</div>
+<div class="panel" id="p1">
+<h3 style="margin-bottom:8px">ブランドトーン設定</h3>
+<label>推奨する文末表現（カンマ区切り）</label>
+<input type="text" id="cfgEndings" placeholder="です,ます,ください,ましょう">
+<label>禁止語（カンマ区切り）</label>
+<input type="text" id="cfgBanned" placeholder="ヤバい,マジで,ぶっちゃけ">
+<label>推奨語彙（カンマ区切り）</label>
+<input type="text" id="cfgPreferred" placeholder="ご提案,お客様,ソリューション">
+<h3 style="margin:16px 0 8px">差別化設定</h3>
+<label>自社推奨キーワード（カンマ区切り）</label>
+<input type="text" id="cfgOwnKw" placeholder="独自AI,特許技術,業界No.1">
+<label>競合頻出ワード（カンマ区切り）</label>
+<input type="text" id="cfgCompKw" placeholder="最安値,業界最大,圧倒的">
+<div style="margin-top:12px">
+<button class="btn-p" onclick="saveConfig()">設定を保存</button>
+<button class="btn-s" onclick="resetConfig()">初期化</button>
+</div>
+<small>localStorageに保存され次回起動時に復元されます</small>
+</div>
+<div class="panel" id="p2">
+<div class="det"><h4>1. ブランドトーン適合度（5段階）</h4><p>敬語語彙の出現率・文末表現の統一度・禁止語ゼロかどうかをルールベースで判定。設定タブで推奨文末・禁止語・推奨語彙をカスタマイズ可能。</p></div>
+<div class="det"><h4>2. NGワード検出（4業界プリセット）</h4><p>薬機法・景表法・金融商品取引法の要注意語を業界別に切り替え検出。該当箇所は赤ハイライト表示され代替表現を提案。各プリセット約38語、計150語超を収録。</p></div>
+<div class="det"><h4>3. 差別化スコア</h4><p>自社キーワードの密度と競合頻出語の混入率から独自性を数値化。設定タブで自社・競合キーワードを登録してください。</p></div>
+</div>
+</div>
+<script>
+var NG_DB={
+cosmetics:[
+{w:"シミが消える",a:"シミを防ぐ"},{w:"シワが消える",a:"乾燥による小ジワを目立たなくする"},{w:"美白効果",a:"メラニンの生成を抑えシミ・そばかすを防ぐ"},{w:"アンチエイジング",a:"年齢に応じたケア"},{w:"若返り",a:"ハリ・ツヤのある印象へ"},{w:"肌が生まれ変わる",a:"肌をすこやかに保つ"},{w:"細胞が活性化",a:"肌にうるおいを与える"},{w:"肌トラブルが治る",a:"肌荒れを防ぐ"},{w:"100%効果",a:"個人差があります"},{w:"即効性",a:"使い続けることで実感"},{w:"劇的に改善",a:"すこやかな肌へ導く"},{w:"世界初",a:"※当社調べ"},{w:"永久",a:"長時間持続"},{w:"完全に除去",a:"目立たなくする"},{w:"絶対",a:"ぜひお試しください"},{w:"万能",a:"幅広い肌悩みに"},{w:"奇跡",a:"新しい体験を"},{w:"シミを消す",a:"シミを防ぐ"},{w:"ニキビが治る",a:"ニキビを防ぐ"},{w:"たるみが消える",a:"ハリを与える"},{w:"毛穴が消える",a:"毛穴を目立たなくする"},{w:"アトピーに効く",a:"敏感肌にもお使いいただけます"},{w:"浸透する",a:"角質層まで浸透"},{w:"肌の奥まで届く",a:"角質層まで"},{w:"デトックス",a:"すっきり整える"},{w:"痩せる",a:"スッキリした印象に"},{w:"脂肪が燃える",a:"健康的な毎日をサポート"},{w:"確実に",a:"おすすめです"},{w:"保証します",a:"自信を持ってお届け"},{w:"他社より優れた",a:"こだわりの処方"},{w:"画期的",a:"新発想の"},{w:"革命的",a:"新しいアプローチ"},{w:"医師推奨",a:"※個人の感想です"},{w:"No.1",a:"※〇〇調べ（期間明記）"},{w:"最高級",a:"こだわりの品質"},{w:"セルライト除去",a:"ボディケア"},{w:"皮膚科医が認めた",a:"※出典を明記"},{w:"肝斑が治る",a:"肌を整える"}
+],
+health:[
+{w:"治る",a:"健康をサポート"},{w:"効く",a:"健康維持に役立つ"},{w:"予防",a:"健康的な毎日を応援"},{w:"治療",a:"日々の健康管理に"},{w:"改善する",a:"健やかな毎日をサポート"},{w:"痩せる",a:"ダイエットをサポート"},{w:"血圧が下がる",a:"血圧が高めの方に"},{w:"血糖値が下がる",a:"食後の血糖値が気になる方に"},{w:"がんに効く",a:"健康維持のために"},{w:"認知症予防",a:"考える力をサポート"},{w:"免疫力アップ",a:"毎日の健康維持に"},{w:"デトックス",a:"すっきりした毎日に"},{w:"体質改善",a:"健康的な生活習慣を応援"},{w:"万病に効く",a:"栄養補助として"},{w:"医者いらず",a:"日々の栄養補給に"},{w:"副作用なし",a:"食品ですので安心"},{w:"脂肪燃焼",a:"ダイエットを応援"},{w:"アレルギー改善",a:"デリケートな方にも"},{w:"便秘解消",a:"スッキリをサポート"},{w:"不眠解消",a:"休息をサポート"},{w:"100%天然",a:"自然由来の成分を使用"},{w:"完全無添加",a:"添加物に配慮"},{w:"科学的に証明",a:"研究に基づく成分を配合"},{w:"即効性",a:"毎日の習慣に"},{w:"確実に効果",a:"多くの方にご愛用いただいています"},{w:"最強",a:"おすすめの"},{w:"No.1",a:"※〇〇調べ"},{w:"世界初",a:"※当社調べ"},{w:"奇跡の",a:"話題の"},{w:"医師推奨",a:"※出典を明記"},{w:"必ず",a:"ぜひお試しください"},{w:"絶対",a:"おすすめ"},{w:"永久",a:"長くご愛用いただける"},{w:"激やせ",a:"理想のスタイルを目指す"},{w:"飲むだけで",a:"毎日の習慣として"},{w:"コレステロール低下",a:"コレステロールが気になる方に"},{w:"老廃物を排出",a:"すっきりをサポート"},{w:"若返る",a:"いきいきとした毎日に"}
+],
+pharma:[
+{w:"絶対に治る",a:"症状の緩和が期待できます"},{w:"副作用ゼロ",a:"副作用の発現率が低い"},{w:"万能薬",a:"幅広い症状に"},{w:"奇跡の薬",a:"新しい選択肢"},{w:"完治",a:"症状の改善"},{w:"100%安全",a:"安全性に配慮"},{w:"他社より効く",a:"特徴ある処方"},{w:"最新の治療法",a:"新しいアプローチ"},{w:"末期でも",a:"医師にご相談ください"},{w:"手術不要",a:"治療の選択肢の一つ"},{w:"がんが消える",a:"医師にご相談ください"},{w:"糖尿病が治る",a:"血糖コントロールをサポート"},{w:"認知症が治る",a:"認知機能の維持に"},{w:"うつ病が治る",a:"こころの健康をサポート"},{w:"アトピー完治",a:"症状の緩和に"},{w:"即効",a:"服用後効果を実感される方も"},{w:"一生効く",a:"継続的な使用で"},{w:"医者いらず",a:"セルフメディケーションに"},{w:"処方箋不要",a:"薬剤師にご相談ください"},{w:"最強",a:"信頼の処方"},{w:"痩せ薬",a:"体重管理のサポートに"},{w:"若返り",a:"健やかな毎日に"},{w:"不老",a:"健康維持に"},{w:"体質が変わる",a:"体調管理のサポートに"},{w:"遺伝子レベルで",a:"※表現にご注意ください"},{w:"FDA承認",a:"※正確な承認内容を明記"},{w:"WHO推奨",a:"※出典を明記"},{w:"ノーベル賞",a:"※正確な関連を明記"},{w:"保証",a:"ぜひお試しください"},{w:"確実",a:"多くの方にご使用いただいています"},{w:"必ず治る",a:"症状の緩和をサポート"},{w:"飲むだけ",a:"用法用量を守って"},{w:"天然だから安全",a:"自然由来成分を配合"},{w:"副作用がない",a:"副作用が少ない"},{w:"誰にでも効く",a:"個人差があります"},{w:"すぐに効く",a:"効果には個人差があります"},{w:"癌を克服",a:"治療をサポート"},{w:"根治",a:"症状の管理をサポート"}
+],
+finance:[
+{w:"必ず儲かる",a:"収益が期待できます"},{w:"元本保証",a:"元本割れのリスクがあります"},{w:"ノーリスク",a:"リスクを抑えた設計"},{w:"絶対に損しない",a:"リスク管理を徹底"},{w:"年利保証",a:"過去の実績であり将来を保証するものではありません"},{w:"誰でも稼げる",a:"資産形成の第一歩に"},{w:"確実に増える",a:"中長期的な資産形成を目指す"},{w:"今すぐ始めないと損",a:"早めのスタートがおすすめ"},{w:"限定○名",a:"お早めにご検討ください"},{w:"業界最高利回り",a:"※〇〇調べ（期間を明記）"},{w:"損失ゼロ",a:"リスクの低減を目指す"},{w:"FXで月収100万",a:"※個人の投資実績です"},{w:"不労所得",a:"資産運用による収益"},{w:"秘密の投資法",a:"資産運用のご提案"},{w:"プロが運用",a:"専門チームによる運用"},{w:"AI自動売買で確実",a:"AIを活用した運用サポート"},{w:"老後資金が足りない",a:"将来の資金計画をサポート"},{w:"年金だけでは",a:"ゆとりある生活設計を"},{w:"借金返済",a:"資産形成のご相談"},{w:"一攫千金",a:"計画的な資産形成"},{w:"暗号資産で必ず",a:"暗号資産にはリスクがあります"},{w:"元本割れしない",a:"元本割れのリスクがあります"},{w:"税金ゼロ",a:"税制優遇があります"},{w:"無審査",a:"柔軟な審査基準"},{w:"ブラックOK",a:"まずはご相談ください"},{w:"即日融資保証",a:"最短即日のご案内も可能"},{w:"金利0%永久",a:"初回特典として一定期間"},{w:"他社より必ず安い",a:"競争力のある条件"},{w:"最安",a:"※条件による"},{w:"簡単審査",a:"お手続きは簡単"},{w:"放置で稼げる",a:"運用状況は定期的にご確認ください"},{w:"勝率100%",a:"過去実績であり将来を保証しません"},{w:"リスクなし",a:"リスクを低減する設計"},{w:"必ず利益",a:"利益を目指した運用"},{w:"損しない仕組み",a:"リスク管理の仕組み"},{w:"月利○%確定",a:"※想定利回りです"},{w:"楽して儲かる",a:"効率的な資産運用"},{w:"裏ワザ",a:"活用テクニック"}
+]
+};
+var DEF={endings:"です,ます,ください,ましょう,でしょう,ません,でした,ました",banned:"ヤバい,マジで,ぶっちゃけ,超,めっちゃ,ガチで,ウケる,エグい",preferred:"ご提案,お客様,ソリューション,ご活用,お問い合わせ,ご検討,お気軽に",ownKw:"",compKw:""};
+function ls(k,v){if(v!==undefined)localStorage.setItem('qa_'+k,v);return localStorage.getItem('qa_'+k)}
+function csv(s){return s?s.split(',').map(function(x){return x.trim()}).filter(Boolean):[]}
+function loadConfig(){
+document.getElementById('cfgEndings').value=ls('endings')||DEF.endings;
+document.getElementById('cfgBanned').value=ls('banned')||DEF.banned;
+document.getElementById('cfgPreferred').value=ls('preferred')||DEF.preferred;
+document.getElementById('cfgOwnKw').value=ls('ownKw')||DEF.ownKw;
+document.getElementById('cfgCompKw').value=ls('compKw')||DEF.compKw;
+}
+function saveConfig(){
+ls('endings',document.getElementById('cfgEndings').value);
+ls('banned',document.getElementById('cfgBanned').value);
+ls('preferred',document.getElementById('cfgPreferred').value);
+ls('ownKw',document.getElementById('cfgOwnKw').value);
+ls('compKw',document.getElementById('cfgCompKw').value);
+alert('設定を保存しました');
+}
+function resetConfig(){
+['endings','banned','preferred','ownKw','compKw'].forEach(function(k){localStorage.removeItem('qa_'+k)});
+loadConfig();alert('初期値に戻しました');
+}
+function switchTab(i){
+document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i)});
+document.querySelectorAll('.panel').forEach(function(p,j){p.classList.toggle('active',j===i)});
+}
+function getConf(){
+return{
+endings:csv(document.getElementById('cfgEndings').value||DEF.endings),
+banned:csv(document.getElementById('cfgBanned').value||DEF.banned),
+preferred:csv(document.getElementById('cfgPreferred').value||DEF.preferred),
+ownKw:csv(document.getElementById('cfgOwnKw').value),
+compKw:csv(document.getElementById('cfgCompKw').value)
+};
+}
+function scoreTone(text,cfg){
+var sentences=text.split(/[。！？!?\n]+/).filter(function(s){return s.trim().length>2});
+if(!sentences.length)return{score:0,grade:'E',endMatch:0,prefRate:0,bannedFound:[]};
+var endOk=0;
+sentences.forEach(function(s){
+var t=s.trim();
+cfg.endings.forEach(function(e){if(t.endsWith(e))endOk++});
+});
+var endMatch=Math.round(endOk/sentences.length*100);
+var prefCount=0;
+cfg.preferred.forEach(function(p){var r=new RegExp(p,'g');var m=text.match(r);if(m)prefCount+=m.length});
+var prefRate=Math.min(Math.round(prefCount/(text.length/200)*100),100);
+var bannedFound=[];
+cfg.banned.forEach(function(b){if(text.includes(b))bannedFound.push(b)});
+var pts=0;
+if(endMatch>=80)pts+=2;else if(endMatch>=50)pts+=1;
+if(prefRate>=30)pts+=1;else if(prefRate>=10)pts+=0.5;
+if(bannedFound.length===0)pts+=2;else if(bannedFound.length<=2)pts+=1;
+var score=Math.min(5,Math.round(pts));
+var grades=['E','E','D','C','B','A'];
+return{score:score,grade:grades[score],endMatch:endMatch,prefRate:prefRate,bannedFound:bannedFound};
+}
+function checkNG(text,preset){
+var db=NG_DB[preset]||[];
+var found=[];
+db.forEach(function(item){if(text.includes(item.w))found.push(item)});
+return found;
+}
+function highlightNG(text,ngItems){
+var r=text;
+ngItems.forEach(function(item){
+r=r.split(item.w).join('<span class="hl" title="代替: '+item.a+'">'+item.w+'</span>');
+});
+return r;
+}
+function scoreDiff(text,cfg){
+if(!cfg.ownKw.length&&!cfg.compKw.length)return{score:'-',ownHit:0,compHit:0,ownD:0,compD:0,msg:'自社/競合キーワード未設定'};
+var len=text.length;
+var ownHit=0,compHit=0;
+cfg.ownKw.forEach(function(k){var m=text.match(new RegExp(k,'g'));if(m)ownHit+=m.length});
+cfg.compKw.forEach(function(k){var m=text.match(new RegExp(k,'g'));if(m)compHit+=m.length});
+var ownD=len?Math.round(ownHit/(len/500)*100):0;
+var compD=len?Math.round(compHit/(len/500)*100):0;
+var score=Math.min(100,Math.max(0,Math.round(ownD*1.5-compD*2+50)));
+return{score:score,ownHit:ownHit,compHit:compHit,ownD:ownD,compD:compD,msg:''};
+}
+function runAudit(){
+var text=document.getElementById('contentInput').value.trim();
+if(!text){alert('テキストを入力してください');return}
+var cfg=getConf();
+var preset=document.getElementById('preset').value;
+var doTone=document.getElementById('chkTone').checked;
+var doNG=document.getElementById('chkNG').checked;
+var doDiff=document.getElementById('chkDiff').checked;
+var html='',totalScore=0,axes=0;
+var toneResult,ngResult,diffResult;
+if(doTone){
+toneResult=scoreTone(text,cfg);
+var cl=toneResult.score>=4?'good':toneResult.score>=3?'mid':'warn';
+html+='<div class="score-card"><div class="sc '+cl+'"><div class="num">'+toneResult.score+'/5</div><div class="lbl">トーン適合度<br><span class="grade g-'+toneResult.grade.toLowerCase()+'">'+toneResult.grade+'</span></div></div></div>';
+html+='<div class="det"><h4>トーン詳細</h4>';
+html+='<p>文末表現一致率: <strong>'+toneResult.endMatch+'%</strong></p><div class="meter"><div class="meter-fill" style="width:'+toneResult.endMatch+'%;background:'+(toneResult.endMatch>=70?'#27ae60':'#e67e22')+'"></div></div>';
+html+='<p>推奨語彙密度: <strong>'+toneResult.prefRate+'%</strong></p><div class="meter"><div class="meter-fill" style="width:'+toneResult.prefRate+'%;background:'+(toneResult.prefRate>=30?'#27ae60':'#e67e22')+'"></div></div>';
+if(toneResult.bannedFound.length){
+html+='<p>禁止語検出:</p><div class="chips">'+toneResult.bannedFound.map(function(b){return'<span class="tag ng">'+b+'</span>'}).join('')+'</div>';
+}else{html+='<p>禁止語: 検出なし</p>';}
+html+='</div>';
+totalScore+=toneResult.score*20;axes++;
+}
+if(doNG){
+ngResult=checkNG(text,preset);
+var names={cosmetics:'化粧品',health:'健康食品',pharma:'医薬品',finance:'金融'};
+var ngScore=Math.max(0,100-ngResult.length*12);
+var cl2=ngScore>=80?'good':ngScore>=50?'mid':'warn';
+html+='<div class="score-card"><div class="sc '+cl2+'"><div class="num">'+ngResult.length+'</div><div class="lbl">NGワード検出数<br><small>'+names[preset]+'</small></div></div></div>';
+if(ngResult.length){
+html+='<div class="det"><h4>NGワード一覧（'+ngResult.length+'件）</h4><table style="width:100%;font-size:.85em;border-collapse:collapse"><tr style="background:#f0f0f0"><th style="padding:4px;text-align:left">検出語</th><th style="padding:4px;text-align:left">代替表現</th></tr>';
+ngResult.forEach(function(item){
+html+='<tr><td style="padding:4px;border-top:1px solid #eee"><span class="tag ng">'+item.w+'</span></td><td style="padding:4px;border-top:1px solid #eee;color:#27ae60">'+item.a+'</td></tr>';
+});
+html+='</table></div>';
+html+='<div class="det"><h4>ハイライト表示</h4><div class="output-box">'+highlightNG(text,ngResult)+'</div><small>※赤字にマウスを合わせると代替表現が表示されます</small></div>';
+}else{html+='<div class="det">NGワードは検出されませんでした。</div>';}
+totalScore+=ngScore;axes++;
+}
+if(doDiff){
+diffResult=scoreDiff(text,cfg);
+if(diffResult.score==='-'){
+html+='<div class="det">'+diffResult.msg+'。「ガイドライン設定」タブで登録してください。</div>';
+}else{
+var cl3=diffResult.score>=70?'good':diffResult.score>=40?'mid':'warn';
+html+='<div class="score-card"><div class="sc '+cl3+'"><div class="num">'+diffResult.score+'</div><div class="lbl">差別化スコア<br><small>/100</small></div></div></div>';
+html+='<div class="det"><h4>差別化詳細</h4>';
+html+='<p>自社KW出現: <strong>'+diffResult.ownHit+'回</strong>（密度'+diffResult.ownD+'%）</p><div class="meter"><div class="meter-fill" style="width:'+Math.min(diffResult.ownD,100)+'%;background:#27ae60"></div></div>';
+html+='<p>競合KW混入: <strong>'+diffResult.compHit+'回</strong>（密度'+diffResult.compD+'%）</p><div class="meter"><div class="meter-fill" style="width:'+Math.min(diffResult.compD,100)+'%;background:#e74c3c"></div></div>';
+html+='</div>';
+totalScore+=diffResult.score;axes++;
+}
+}
+if(axes){
+var avg=Math.round(totalScore/axes);
+var ovg=avg>=80?'A':avg>=60?'B':avg>=40?'C':avg>=20?'D':'E';
+var ovClass=avg>=80?'good':avg>=50?'mid':'warn';
+var actions=[];
+if(doTone&&toneResult){
+if(toneResult.bannedFound.length)actions.push('禁止語「'+toneResult.bannedFound.join('、')+'」を削除または言い換えてください');
+if(toneResult.endMatch<70)actions.push('文末表現を「です・ます」調に統一してください（現在'+toneResult.endMatch+'%）');
+}
+if(doNG&&ngResult&&ngResult.length)actions.push('NGワード'+ngResult.length+'件を代替表現に置き換えてください（上の表を参照）');
+if(doDiff&&diffResult&&diffResult.score!=='-'){
+if(diffResult.score<50)actions.push('自社キーワードをもう少し盛り込んでください');
+if(diffResult.compD>20)actions.push('競合と同じ表現が多いです。独自の言い回しに変更を推奨');
+}
+var top='<div class="score-card"><div class="sc '+ovClass+'" style="min-width:100%"><div class="num">'+avg+'<small>/100</small></div><div class="lbl">総合品質スコア <span class="grade g-'+ovg.toLowerCase()+'">'+ovg+'</span></div></div></div>';
+html=top+html;
+if(actions.length){
+html+='<div class="actions"><h4>推奨アクション</h4><ol>'+actions.map(function(a){return'<li>'+a+'</li>'}).join('')+'</ol></div>';
+}
+var sentCount=text.split(/[。！？!?\n]+/).filter(function(s){return s.trim()}).length;
+html+='<p style="text-align:center;margin-top:8px;font-size:.85em;color:#888">文字数: '+text.length+' / 文数: '+sentCount+'</p>';
+}
+document.getElementById('resultArea').innerHTML=html;
+}
+loadConfig();
+</script>
+</body>
+</html>

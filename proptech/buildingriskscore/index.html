@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildingRiskScore_—_築古物件リスク診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:16px}
+header{text-align:center;padding:24px 0 16px;border-bottom:3px solid #2c3e7a}
+header h1{font-size:1.5rem;color:#2c3e7a;letter-spacing:.05em}
+header p{font-size:.85rem;color:#666;margin-top:4px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:20px;margin-top:16px}
+.card h2{font-size:1.1rem;color:#2c3e7a;border-left:4px solid #2c3e7a;padding-left:10px;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column}
+.form-group label{font-size:.82rem;font-weight:600;color:#444;margin-bottom:4px}
+.form-group select,.form-group input{padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:.95rem;background:#fafbfc}
+.form-group select:focus,.form-group input:focus{outline:none;border-color:#2c3e7a;box-shadow:0 0 0 2px rgba(44,62,122,.15)}
+.btn{display:block;width:100%;padding:12px;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s}
+.btn-primary{background:#2c3e7a;color:#fff;margin-top:16px}
+.btn-primary:hover{background:#1e2d5e}
+.btn-secondary{background:#e8ecf1;color:#2c3e7a;margin-top:10px;font-size:.9rem}
+.btn-secondary:hover{background:#d0d7e2}
+.ext-panel{background:#fffbe6;border:1px solid #f0d86e;border-radius:8px;padding:14px;margin-top:12px}
+.ext-panel h3{font-size:.95rem;color:#8a6d00;margin-bottom:8px}
+.ext-link{display:inline-block;padding:6px 14px;background:#2c3e7a;color:#fff;border-radius:6px;text-decoration:none;font-size:.82rem;margin-right:8px;margin-bottom:6px}
+.ext-link:hover{background:#1e2d5e}
+.ext-row{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.ext-row label{font-size:.82rem;font-weight:600;min-width:100px}
+.ext-row select{padding:6px 8px;border:1px solid #ccc;border-radius:6px;font-size:.9rem}
+#result{display:none}
+.scores-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.chart-wrap{display:flex;justify-content:center;align-items:center;min-height:300px}
+.score-list{list-style:none}
+.score-list li{padding:10px 12px;border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:.9rem;font-weight:600}
+.score-list .val{font-size:1.3rem}
+.rank-box{text-align:center;padding:20px;border-radius:10px;margin-top:16px}
+.rank-box .rank{font-size:3rem;font-weight:900}
+.rank-box .rank-label{font-size:1rem;margin-top:4px}
+.notes ul{list-style:disc;padding-left:20px;font-size:.88rem;color:#333}
+.notes ul li{margin-bottom:6px}
+.color-low{background:#e8f5e9;color:#2e7d32}
+.color-mid{background:#fff8e1;color:#f57f17}
+.color-high{background:#fbe9e7;color:#c62828}
+.rank-a{background:#e8f5e9;color:#2e7d32}
+.rank-b{background:#e3f2fd;color:#1565c0}
+.rank-c{background:#fff8e1;color:#ef6c00}
+.rank-d{background:#fbe9e7;color:#c62828}
+@media print{
+body{background:#fff}
+.btn,.ext-link,.no-print{display:none!important}
+.card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+header{border-bottom:2px solid #000}
+}
+@media(max-width:600px){
+.form-grid,.scores-grid{grid-template-columns:1fr}
+.chart-wrap{min-height:250px}
+header h1{font-size:1.2rem}
+}
+</style>
+<meta name="description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,BuildingRiskScore_—_築古物件リスク診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/buildingriskscore/">
+<meta property="og:title" content="BuildingRiskScore_—_築古物件リスク診断ツール - kusasyu tools">
+<meta property="og:description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/buildingriskscore/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BuildingRiskScore_—_築古物件リスク診断ツール - kusasyu tools">
+<meta name="twitter:description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BuildingRiskScore_—_築古物件リスク診断ツール",
+  "description": "築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/buildingriskscore/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">BuildingRiskScore_—_築古物件リスク診断ツ</span></div>
+<div class="container">
+<header>
+<h1>BuildingRiskScore</h1>
+<p>築古物件リスク診断ツール ― 耐震・老朽化・資産価値・災害リスクを総合評価</p>
+</header>
+
+<div class="card">
+<h2>物件情報入力</h2>
+<div class="form-grid">
+<div class="form-group">
+<label>築年数（年）</label>
+<input type="number" id="age" min="0" max="150" value="" placeholder="例: 35">
+</div>
+<div class="form-group">
+<label>構造種別</label>
+<select id="structure">
+<option value="">選択してください</option>
+<option value="src">SRC造（鉄骨鉄筋コンクリート）</option>
+<option value="rc">RC造（鉄筋コンクリート）</option>
+<option value="s">S造（鉄骨造）</option>
+<option value="w">木造</option>
+<option value="cb">CB造（コンクリートブロック）</option>
+</select>
+</div>
+<div class="form-group">
+<label>所在地（都道府県）</label>
+<select id="prefecture">
+<option value="">選択してください</option>
+</select>
+</div>
+<div class="form-group">
+<label>階数</label>
+<input type="number" id="floors" min="1" max="60" value="" placeholder="例: 5">
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>外部確認パネル（浸水・地盤リスク）</h2>
+<div class="ext-panel">
+<h3>以下のサイトで物件所在地のリスクを確認してください</h3>
+<a class="ext-link" href="https://disaportal.gsi.go.jp/" target="_blank" rel="noopener">国交省ハザードマップポータル</a>
+<a class="ext-link" href="https://supportmap.jp/" target="_blank" rel="noopener">地盤サポートマップ</a>
+<div class="ext-row">
+<label>浸水リスク</label>
+<select id="flood">
+<option value="-1">未確認</option>
+<option value="0">リスクなし（浸水想定区域外）</option>
+<option value="3">低い（0.5m未満）</option>
+<option value="6">中程度（0.5〜3m）</option>
+<option value="10">高い（3m以上）</option>
+</select>
+</div>
+<div class="ext-row">
+<label>地盤リスク</label>
+<select id="ground">
+<option value="-1">未確認</option>
+<option value="0">良好（台地・丘陵地）</option>
+<option value="3">やや注意（段丘・扇状地）</option>
+<option value="6">注意（低地・谷底平野）</option>
+<option value="10">要警戒（埋立地・干拓地）</option>
+</select>
+</div>
+</div>
+</div>
+
+<button class="btn btn-primary" onclick="diagnose()">診断する</button>
+<button class="btn btn-secondary no-print" onclick="resetAll()">リセット</button>
+
+<div id="result">
+<div class="card">
+<h2>診断結果</h2>
+<div class="scores-grid">
+<div class="chart-wrap"><canvas id="radar" width="300" height="300"></canvas></div>
+<div>
+<ul class="score-list" id="scoreList"></ul>
+<div class="rank-box" id="rankBox">
+<div class="rank" id="rankLetter"></div>
+<div class="rank-label" id="rankLabel"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<h2>重説注意ポイント</h2>
+<div class="notes" id="notes"></div>
+</div>
+<button class="btn btn-secondary no-print" onclick="window.print()">印刷 / PDF保存</button>
+</div>
+</div>
+
+<script>
+(function(){
+var prefs=["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"];
+var sel=document.getElementById("prefecture");
+prefs.forEach(function(p){var o=document.createElement("option");o.value=p;o.textContent=p;sel.appendChild(o);});
+})();
+
+var highSeismic=["東京都","神奈川県","千葉県","埼玉県","静岡県","愛知県","三重県","大阪府","兵庫県","高知県","宮城県","北海道","茨城県","和歌山県","徳島県"];
+
+function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
+
+function calcSeismic(age,st,pref,fl){
+var s=0;
+if(age>=45)s+=4;else if(age>=35)s+=3;else if(age>=25)s+=2;else if(age>=15)s+=1;
+var stMap={w:3,cb:2.5,s:1.5,rc:1,src:0.5};
+s+=(stMap[st]||1);
+if(highSeismic.indexOf(pref)!==-1)s+=2;
+if(st==="w"&&fl>=3)s+=1;
+if(st==="s"&&fl>=6)s+=0.5;
+if(age>=45&&st==="w")s+=1;
+return clamp(Math.round(s*10)/10,0,10);
+}
+
+function calcDeter(age,st,fl){
+var s=0;
+if(age>=50)s+=4;else if(age>=40)s+=3;else if(age>=30)s+=2.5;else if(age>=20)s+=1.5;else s+=0.5;
+var durMap={src:0.5,rc:1,s:2,cb:2.5,w:3};
+s+=(durMap[st]||1.5);
+if(fl>=10)s+=1;
+if(age>=30&&(st==="w"||st==="cb"))s+=1.5;
+if(age>=40&&st==="s")s+=0.5;
+return clamp(Math.round(s*10)/10,0,10);
+}
+
+function calcAsset(age,st,pref){
+var s=0;
+if(age>=50)s+=4;else if(age>=40)s+=3;else if(age>=30)s+=2;else if(age>=20)s+=1.5;else s+=0.5;
+var stA={w:2.5,cb:2,s:1.5,rc:1,src:0.5};
+s+=(stA[st]||1);
+var rural=["秋田県","青森県","山形県","岩手県","島根県","鳥取県","高知県","徳島県","和歌山県","鹿児島県","宮崎県","大分県","佐賀県","長崎県"];
+var metro=["東京都","大阪府","神奈川県","愛知県","福岡県"];
+if(rural.indexOf(pref)!==-1)s+=2;
+else if(metro.indexOf(pref)===-1)s+=1;
+if(age>=40&&(st==="w"||st==="cb"))s+=1;
+return clamp(Math.round(s*10)/10,0,10);
+}
+
+function colorClass(v){return v<=3?"color-low":v<=6?"color-mid":"color-high";}
+
+function drawRadar(canvas,labels,values){
+var ctx=canvas.getContext("2d");
+var W=canvas.width,H=canvas.height;
+var cx=W/2,cy=H/2+5,R=Math.min(W,H)/2-40;
+ctx.clearRect(0,0,W,H);
+var n=labels.length;
+var angles=[];
+for(var i=0;i<n;i++)angles.push(-Math.PI/2+2*Math.PI*i/n);
+
+ctx.strokeStyle="#ddd";ctx.lineWidth=1;
+[0.25,0.5,0.75,1].forEach(function(r){
+ctx.beginPath();
+for(var i=0;i<n;i++){
+var x=cx+Math.cos(angles[i])*R*r;
+var y=cy+Math.sin(angles[i])*R*r;
+if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+}
+ctx.closePath();ctx.stroke();
+});
+
+ctx.strokeStyle="#ccc";
+for(var i=0;i<n;i++){
+ctx.beginPath();ctx.moveTo(cx,cy);
+ctx.lineTo(cx+Math.cos(angles[i])*R,cy+Math.sin(angles[i])*R);
+ctx.stroke();
+}
+
+ctx.fillStyle="#e8e8e8";ctx.font="11px sans-serif";ctx.textAlign="center";
+[2.5,5,7.5,10].forEach(function(v,idx){
+var r=[0.25,0.5,0.75,1][idx];
+ctx.fillText(v,cx+12,cy-R*r+4);
+});
+
+ctx.beginPath();
+ctx.fillStyle="rgba(44,62,122,0.18)";
+ctx.strokeStyle="#2c3e7a";ctx.lineWidth=2.5;
+for(var i=0;i<n;i++){
+var v=values[i]/10;
+var x=cx+Math.cos(angles[i])*R*v;
+var y=cy+Math.sin(angles[i])*R*v;
+if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+}
+ctx.closePath();ctx.fill();ctx.stroke();
+
+for(var i=0;i<n;i++){
+var v=values[i]/10;
+var x=cx+Math.cos(angles[i])*R*v;
+var y=cy+Math.sin(angles[i])*R*v;
+ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle="#2c3e7a";ctx.fill();
+}
+
+ctx.fillStyle="#333";ctx.font="bold 12px sans-serif";ctx.textAlign="center";
+for(var i=0;i<n;i++){
+var lx=cx+Math.cos(angles[i])*(R+22);
+var ly=cy+Math.sin(angles[i])*(R+22)+4;
+ctx.fillText(labels[i],lx,ly);
+}
+}
+
+function getRank(avg){
+if(avg<=2.5)return{letter:"A",label:"低リスク — 大きな問題なし",cls:"rank-a"};
+if(avg<=5)return{letter:"B",label:"やや注意 — 一部対策推奨",cls:"rank-b"};
+if(avg<=7.5)return{letter:"C",label:"要注意 — 対策必須",cls:"rank-c"};
+return{letter:"D",label:"高リスク — 購入再検討を推奨",cls:"rank-d"};
+}
+
+function genNotes(age,st,pref,fl,scores){
+var ns=[];
+if(age>=45)ns.push("旧耐震基準（1981年以前）の建物です。耐震診断の実施有無を重要事項説明に必ず記載してください。");
+else if(age>=35)ns.push("新耐震基準ですが築35年以上です。耐震改修の履歴を確認し重説に記載してください。");
+if(st==="w"&&age>=30)ns.push("木造築30年超の場合、シロアリ被害・雨漏り・基礎劣化について調査報告書を添付することを推奨します。");
+if(st==="cb")ns.push("CB造は耐震性が低い構造です。自治体の補強助成制度の案内を検討してください。");
+if(scores.seismic>=7)ns.push("耐震リスクが高評価です。耐震補強工事の見積りを売主側に確認してください。");
+if(scores.deter>=7)ns.push("老朽化リスクが高いです。大規模修繕履歴と今後の修繕計画の有無を確認してください。");
+if(scores.asset>=7)ns.push("資産価値下落リスクが高い物件です。将来の売却・賃貸時の収支シミュレーションを買主に提示してください。");
+if(scores.flood>=6)ns.push("浸水想定区域内です。水災補償付き火災保険の加入を強く推奨し、重説に浸水想定区域である旨を記載してください。");
+if(scores.ground>=6)ns.push("地盤の軟弱が懸念されるエリアです。地盤調査報告書の有無を確認し、液状化リスクについて重説に記載してください。");
+if(fl>=6&&st!=="src"&&st!=="rc")ns.push("6階以上の非RC/SRC構造は構造計算適合性判定の対象です。検査済証の有無を確認してください。");
+if(highSeismic.indexOf(pref)!==-1)ns.push("地震危険度の高い地域です。耐震性能評価書の取得を推奨します。");
+if(scores.flood===-1)ns.push("浸水リスクが未確認です。国交省ハザードマップポータルで確認のうえ、結果を入力して再診断してください。");
+if(scores.ground===-1)ns.push("地盤リスクが未確認です。地盤サポートマップで確認のうえ、結果を入力して再診断してください。");
+if(ns.length===0)ns.push("現時点で特筆すべき重説注意ポイントはありません。通常の確認事項を遵守してください。");
+return ns;
+}
+
+window.diagnose=function(){
+var age=parseInt(document.getElementById("age").value);
+var st=document.getElementById("structure").value;
+var pref=document.getElementById("prefecture").value;
+var fl=parseInt(document.getElementById("floors").value);
+var floodVal=parseInt(document.getElementById("flood").value);
+var groundVal=parseInt(document.getElementById("ground").value);
+
+if(isNaN(age)||age<0){alert("築年数を正しく入力してください。");return;}
+if(!st){alert("構造種別を選択してください。");return;}
+if(!pref){alert("都道府県を選択してください。");return;}
+if(isNaN(fl)||fl<1){alert("階数を正しく入力してください。");return;}
+
+var seismic=calcSeismic(age,st,pref,fl);
+var deter=calcDeter(age,st,fl);
+var asset=calcAsset(age,st,pref);
+var floodScore=floodVal===-1?-1:floodVal;
+var groundScore=groundVal===-1?-1:groundVal;
+
+var allLabels=["耐震","老朽化","資産価値下落","浸水","地盤"];
+var allVals=[seismic,deter,asset,floodScore<0?0:floodScore,groundScore<0?0:groundScore];
+drawRadar(document.getElementById("radar"),allLabels,allVals);
+
+var items=[
+{name:"耐震リスク",val:seismic},
+{name:"老朽化リスク",val:deter},
+{name:"資産価値下落リスク",val:asset},
+{name:"浸水リスク",val:floodScore},
+{name:"地盤リスク",val:groundScore}
+];
+var list=document.getElementById("scoreList");
+list.innerHTML="";
+items.forEach(function(it){
+var li=document.createElement("li");
+if(it.val===-1){
+li.className="color-mid";
+li.innerHTML=it.name+"<span class='val'>未確認</span>";
+}else{
+li.className=colorClass(it.val);
+li.innerHTML=it.name+"<span class='val'>"+it.val+" / 10</span>";
+}
+list.appendChild(li);
+});
+
+var counted=items.filter(function(x){return x.val>=0;});
+var avg=counted.reduce(function(s,x){return s+x.val;},0)/counted.length;
+avg=Math.round(avg*10)/10;
+var rank=getRank(avg);
+var rb=document.getElementById("rankBox");
+rb.className="rank-box "+rank.cls;
+document.getElementById("rankLetter").textContent=rank.letter;
+document.getElementById("rankLabel").textContent="総合スコア "+avg+"/10 — "+rank.label;
+
+var notes=genNotes(age,st,pref,fl,{seismic:seismic,deter:deter,asset:asset,flood:floodScore,ground:groundScore});
+var ul=document.createElement("ul");
+notes.forEach(function(n){var li=document.createElement("li");li.textContent=n;ul.appendChild(li);});
+document.getElementById("notes").innerHTML="";
+document.getElementById("notes").appendChild(ul);
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+};
+
+window.resetAll=function(){
+document.getElementById("age").value="";
+document.getElementById("structure").value="";
+document.getElementById("prefecture").value="";
+document.getElementById("floors").value="";
+document.getElementById("flood").value="-1";
+document.getElementById("ground").value="-1";
+document.getElementById("result").style.display="none";
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説前リスクチェックシート - kusasyu tools</title>
+<meta name="description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説前リスクチェックシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-2/">
+<meta property="og:title" content="重説前リスクチェックシート - kusasyu tools">
+<meta property="og:description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説前リスクチェックシート - kusasyu tools">
+<meta name="twitter:description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説前リスクチェックシート",
+  "description": "築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-30"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説前リスクチェックシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説前リスクチェックシート</h1>
+  <p class="project-name">築古物件のリスク、重説前にAIで即診断</p>
+  <div class="content">
+<h1>BuildingRiskScore 重説前リスクチェックシート</h1>
+<h2>使い方</h2>
+<p>本シートは、中古・築古物件の重要事項説明の<strong>事前調査</strong>に使用するチェックリストです。物件情報を入力し、15項目を順にチェックしてください。各項目の「判定基準」に従い該当欄に✓を入れ、「重説説明文例」を参考に説明書面を作成します。調査先URLは巻末に一覧化しています。</p>
+<ul>
+<li><strong>対象</strong>: 中古住宅（戸建・マンション）、築古収益物件</li>
+<li><strong>所要時間目安</strong>: 1物件あたり30〜45分</li>
+<li><strong>作成ツール</strong>: <a href="https://example.com">BuildingRiskScore</a>（築古物件リスク診断ツール）と併用推奨</li>
+</ul>
+<hr />
+<h2>物件基本情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件名称</td>
+<td>[記入例: ○○マンション301号室]</td>
+</tr>
+<tr>
+<td>所在地</td>
+<td>[記入例: 東京都墨田区○○1-2-3]</td>
+</tr>
+<tr>
+<td>築年月</td>
+<td>[記入例: 1978年6月]</td>
+</tr>
+<tr>
+<td>構造</td>
+<td>[記入例: RC造 / 木造 / S造 / SRC造]</td>
+</tr>
+<tr>
+<td>階数</td>
+<td>[記入例: 地上5階建 3階部分]</td>
+</tr>
+<tr>
+<td>延床面積</td>
+<td>[記入例: 65.4㎡]</td>
+</tr>
+<tr>
+<td>調査日</td>
+<td>[記入例: 2026年3月29日]</td>
+</tr>
+<tr>
+<td>調査者（宅建士）</td>
+<td>[記入例: 山田太郎（登録番号 第○○号）]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>チェック項目一覧（全15項目）</h2>
+<h3>A. 耐震リスク（3項目）</h3>
+<p><strong>項目1: 耐震基準区分</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 旧耐震</td>
+<td>1981年5月以前に建築確認 → <strong>高リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 新耐震</td>
+<td>1981年6月〜2000年5月に建築確認 → <strong>中リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 2000年基準</td>
+<td>2000年6月以降に建築確認 → <strong>低リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>確認方法</strong>: 建築確認通知書の日付、または登記簿の新築年月日から判定</li>
+<li><strong>重説説明文例</strong>: 「本物件は○年○月に建築確認を取得しており、（旧耐震基準/新耐震基準/2000年基準）に該当します。旧耐震基準の建物は、震度6強以上の地震に対する安全性が確認されていません。」</li>
+</ul>
+<p>記入欄: [記入例: 旧耐震（1978年建築確認）。耐震診断未実施]</p>
+<hr />
+<p><strong>項目2: 耐震診断・補強の実施有無</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 実施済（補強済）</td>
+<td>診断+補強工事完了 → リスク低減</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 実施済（補強未了）</td>
+<td>診断のみ実施 → 結果を確認</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 未実施</td>
+<td>旧耐震の場合は <strong>高リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>重説説明文例</strong>: 「耐震診断は（実施済/未実施）です。耐震改修促進法に基づく耐震診断の結果、Is値は○○であり、（倒壊の危険性が高い/低い）と判定されています。」</li>
+</ul>
+<p>記入欄: [記入例: 未実施。管理組合で検討中とのこと]</p>
+<hr />
+<p><strong>項目3: 検査済証の存在</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ あり</td>
+<td>完了検査を受けている</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ なし</td>
+<td>違法建築の可能性 → <strong>要注意</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 不明</td>
+<td>役所の台帳記載証明で確認要</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>重説説明文例</strong>: 「本物件の検査済証は（存在します/確認できませんでした）。検査済証がない場合、建築基準法に適合しない部分が存在する可能性があります。」</li>
+</ul>
+<p>記入欄: [記入例: なし。特定行政庁にて台帳記載証明を取得済み]</p>
+<hr />
+<h3>B. 災害リスク — ハザードマップ5項目（項目4〜8）</h3>
+<p><strong>項目4: 洪水浸水想定区域</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 区域外</td>
+<td>浸水想定なし</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 0.5m未満</td>
+<td>床下浸水レベル → <strong>中リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 0.5m〜3m</td>
+<td>1階浸水レベル → <strong>高リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 3m以上</td>
+<td>2階以上浸水 → <strong>最高リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>重説説明文例</strong>: 「水防法に基づく洪水浸水想定区域（想定最大規模）において、本物件は浸水深○mの区域に所在します。」</li>
+</ul>
+<p>記入欄: [記入例: 0.5〜3m区域（荒川氾濫想定）]</p>
+<hr />
+<p><strong>項目5: 内水氾濫（雨水出水）</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 想定区域外</td>
+<td>リスク低</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 想定区域内</td>
+<td><strong>中〜高リスク</strong>（浸水深を記録）</td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 想定区域内・浸水深0.3m]</p>
+<hr />
+<p><strong>項目6: 土砂災害警戒区域</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 区域外</td>
+<td>リスク低</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 警戒区域（イエロー）</td>
+<td><strong>中リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 特別警戒区域（レッド）</td>
+<td><strong>最高リスク</strong>・建築制限あり</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>重説説明文例</strong>: 「本物件は土砂災害防止法に基づく（土砂災害警戒区域/土砂災害特別警戒区域）に指定されています。」</li>
+</ul>
+<p>記入欄: [記入例: 区域外]</p>
+<hr />
+<p><strong>項目7: 津波浸水想定区域</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 区域外</td>
+<td>リスク低</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 区域内</td>
+<td>浸水深を記録 → <strong>高リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 区域外（内陸部のため）]</p>
+<hr />
+<p><strong>項目8: 高潮浸水想定区域</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 区域外</td>
+<td>リスク低</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 区域内</td>
+<td>浸水深を記録 → <strong>中〜高リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 区域内・浸水深1.2m]</p>
+<hr />
+<h3>C. 建物劣化・有害物質リスク（4項目）</h3>
+<p><strong>項目9: アスベスト使用可能性</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 調査済（不使用）</td>
+<td>リスクなし</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 調査済（使用あり）</td>
+<td>除去・封じ込め状況を確認 → <strong>高リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 未調査</td>
+<td>2006年以前の建物は <strong>可能性あり</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>重説説明文例</strong>: 「石綿使用調査は（実施済/未実施）です。調査の結果、（石綿の使用は確認されませんでした/○○部分に使用が確認されています）。」</li>
+</ul>
+<p>記入欄: [記入例: 未調査。1978年築のため使用可能性あり]</p>
+<hr />
+<p><strong>項目10: 修繕履歴の有無</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 履歴あり（計画的）</td>
+<td>長期修繕計画に基づく実施</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 履歴あり（部分的）</td>
+<td>一部のみ実施 → <strong>中リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 履歴なし / 不明</td>
+<td>大規模修繕未実施 → <strong>高リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>重説説明文例</strong>: 「直近の大規模修繕は○年に実施されています。（修繕履歴の記録はありません。）」</li>
+</ul>
+<p>記入欄: [記入例: 2015年に外壁塗装・屋上防水実施。記録あり]</p>
+<hr />
+<p><strong>項目11: 雨漏り・水漏れの有無</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ なし</td>
+<td>現地確認済み</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ あり（補修済）</td>
+<td>再発リスクを確認</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ あり（未補修）</td>
+<td><strong>高リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 天井にシミあり。売主申告では2020年に補修済み]</p>
+<hr />
+<p><strong>項目12: シロアリ被害（木造の場合）</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 調査済（被害なし）</td>
+<td>直近5年以内の調査が望ましい</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 被害あり（駆除済）</td>
+<td>駆除時期と保証を確認</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 未調査</td>
+<td>木造築20年超は <strong>要注意</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 該当なし</td>
+<td>RC造・S造</td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 該当なし（RC造）]</p>
+<hr />
+<h3>D. 資産価値・法的リスク（3項目）</h3>
+<p><strong>項目13: 建ぺい率・容積率の適合性</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 適合</td>
+<td>現行法規に適合</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 既存不適格</td>
+<td>建築時は適法だが現行法に不適合 → <strong>中リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 違反建築の疑い</td>
+<td><strong>高リスク</strong>・融資困難の可能性</td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 既存不適格（建ぺい率70%に対し実測75%）]</p>
+<hr />
+<p><strong>項目14: 接道義務（幅員4m以上の道路に2m以上接道）</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 適合</td>
+<td>再建築可能</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ セットバック要</td>
+<td>2項道路 → 有効面積減少</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 不適合</td>
+<td><strong>再建築不可</strong> → <strong>最高リスク</strong></td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 2項道路。0.5mセットバック要]</p>
+<hr />
+<p><strong>項目15: 管理費・修繕積立金の滞納（マンションの場合）</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">チェック欄</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">□ 滞納なし</td>
+<td>管理組合に確認済み</td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 滞納あり</td>
+<td>金額と期間を記録 → <strong>中〜高リスク</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">□ 該当なし</td>
+<td>戸建の場合</td>
+</tr>
+</tbody>
+</table>
+<p>記入欄: [記入例: 滞納なし。修繕積立金残高8,500万円（管理組合回答書による）]</p>
+<hr />
+<h2>総合所見</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高リスク項目数</td>
+<td>[記入例: 2項目（耐震基準・洪水浸水）]</td>
+</tr>
+<tr>
+<td>特記事項</td>
+<td>[記入例: 旧耐震かつ洪水浸水想定区域内。買主に対し耐震診断の推奨を説明する]</td>
+</tr>
+<tr>
+<td>BuildingRiskScoreスコア</td>
+<td>[記入例: 耐震32/浸水58/老朽化45/資産価値下落61（総合リスク：中〜高）]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>巻末：調査先URL一覧</h2>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>サイト名</th>
+<th>URL</th>
+<th>確認できる項目</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>国交省ハザードマップポータルサイト</td>
+<td>https://disaportal.gsi.go.jp/</td>
+<td>洪水・内水・土砂・津波・高潮（項目4〜8）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>重ねるハザードマップ</td>
+<td>https://disaportal.gsi.go.jp/maps/</td>
+<td>複数災害リスクの重畳表示</td>
+</tr>
+<tr>
+<td>3</td>
+<td>地盤サポートマップ（ジャパンホームシールド）</td>
+<td>https://supportmap.jp/</td>
+<td>地盤の強さ・液状化リスク</td>
+</tr>
+<tr>
+<td>4</td>
+<td>建築年代別耐震基準早見表（国交省）</td>
+<td>https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_fr_000043.html</td>
+<td>耐震基準区分の判定（項目1）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>建物の石綿対策（国交省）</td>
+<td>https://www.mlit.go.jp/jutakukentiku/build/jutakukentiku_house_tk_000049.html</td>
+<td>アスベスト関連情報（項目9）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>登記情報提供サービス</td>
+<td>https://www1.touki.or.jp/</td>
+<td>登記簿謄本・建築年月の確認</td>
+</tr>
+<tr>
+<td>7</td>
+<td>特定行政庁一覧（国交省）</td>
+<td>https://www.mlit.go.jp/jutakukentiku/build/jutakukentiku_house_tk_000058.html</td>
+<td>検査済証の台帳記載証明（項目3）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本シートはBuildingRiskScoreの診断結果と併用することで、重要事項説明書の記載漏れ防止と調査効率の向上を目的としています。法的判断は必ず宅建士の資格に基づき行ってください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブランドガイドライン設計＆インポートテンプレート - kusasyu tools</title>
+<meta name="description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ブランドガイドライン設計＆インポートテンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-5/">
+<meta property="og:title" content="ブランドガイドライン設計＆インポートテンプレート - kusasyu tools">
+<meta property="og:description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ブランドガイドライン設計＆インポートテンプレート - kusasyu tools">
+<meta name="twitter:description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ブランドガイドライン設計＆インポートテンプレート",
+  "description": "生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-30"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>ブランドガイドライン設計＆インポートテンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>ブランドガイドライン設計＆インポートテンプレート</h1>
+  <p class="project-name">AI量産コンテンツ、そのまま出して大丈夫？品質監査ツール</p>
+  <div class="content">
+<p>[画面イメージ]
+┌─────────────────────────────────────┐
+│  AIコンテンツ品質監査ツール           │
+│  ┌────┐ ┌────┐ ┌────────┐          │
+│  │監査│ │履歴│ │★ 設定 │          │
+│  └────┘ └────┘ └────────┘          │
+│                                     │
+│  ▼ 設定画面が表示される              │
+└─────────────────────────────────────┘</p>
+<pre><code>
+### 手順2：トーン定義を貼り付け
+
+1. 本テンプレートのセクション①を全選択してコピー
+2. ツールの「ブランドトーン」テキストエリアに貼り付け
+3. 基準レベル（1〜5）をプルダウンで選択
+
+</code></pre>
+<p>[画面イメージ]
+┌─────────────────────────────────────┐
+│  ブランドトーン設定                   │
+│  ┌─────────────────────────────┐    │
+│  │ ここにセクション①を貼り付け   │    │
+│  │                             │    │
+│  └─────────────────────────────┘    │
+│  基準レベル: [▼ レベル3           ]  │
+└─────────────────────────────────────┘</p>
+<pre><code>
+### 手順3：NGワードリストを貼り付け
+
+1. セクション②のうち、自社に該当する法律のNGワード表をコピー
+2. 「NGワード」テキストエリアに貼り付け
+3. 複数の法律に該当する場合はすべて貼り付けてOK
+
+</code></pre>
+<p>[画面イメージ]
+┌─────────────────────────────────────┐
+│  NGワード設定                        │
+│  業界: [▼ 化粧品・健康食品        ]  │
+│  ┌─────────────────────────────┐    │
+│  │ ここにセクション②を貼り付け   │    │
+│  │                             │    │
+│  └─────────────────────────────┘    │
+│  ☑ 薬機法  ☑ 景表法  ☐ 金商法     │
+└─────────────────────────────────────┘</p>
+<pre><code>
+### 手順4：推奨表現・差別化キーワードを貼り付け
+
+1. セクション③の推奨表現テーブルと差別化キーワードテーブルをコピー
+2. 「推奨表現」テキストエリアに貼り付け
+
+### 手順5：設定を保存して監査テスト
+
+1. 「設定を保存」ボタンをクリック
+2. 「監査」タブに戻り、テスト用のAIコンテンツを貼り付け
+3. 「監査を実行」ボタンで3つのスコアが表示されることを確認
+   - **トーン一致度スコア**（0〜100点）
+   - **法規制リスクスコア**（NGワード検出数と該当法律）
+   - **競合差別化スコア**（0〜100点）
+
+</code></pre>
+<p>[画面イメージ]
+┌─────────────────────────────────────┐
+│  監査結果                            │
+│  ┌──────┐ ┌──────┐ ┌──────┐       │
+│  │ 85点 │ │NG:2件│ │ 72点 │       │
+│  │トーン│ │法規制│ │差別化│       │
+│  └──────┘ └──────┘ └──────┘       │
+│                                     │
+│  ⚠ NGワード検出:                    │
+│  L3「効果抜群」→ 景表法リスク        │
+│  L8「シミが消える」→ 薬機法リスク    │
+└─────────────────────────────────────┘</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

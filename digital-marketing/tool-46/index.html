@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月次AIコンテンツ品質トラッキングシート - kusasyu tools</title>
+<meta name="description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,月次AIコンテンツ品質トラッキングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-46/">
+<meta property="og:title" content="月次AIコンテンツ品質トラッキングシート - kusasyu tools">
+<meta property="og:description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-46/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="月次AIコンテンツ品質トラッキングシート - kusasyu tools">
+<meta name="twitter:description" content="生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "月次AIコンテンツ品質トラッキングシート",
+  "description": "生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-46/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-03-30"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>月次AIコンテンツ品質トラッキングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>月次AIコンテンツ品質トラッキングシート</h1>
+  <p class="project-name">AI量産コンテンツ、そのまま出して大丈夫？品質監査ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>記事タイトル</th><th>公開日</th><th>コンテンツ種別</th><th>トーンスコア(0-100)</th><th>NGワード検出数</th><th>検出NGワード詳細</th><th>差別化スコア(0-100)</th><th>総合判定</th><th>修正対応ステータス</th><th>担当者</th><th>修正完了日</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>【2026年最新】BtoB SaaSのリード獲得完全ガイド</td><td>2026-03-01</td><td>ブログ記事</td><td>85</td><td>0</td><td></td><td>72</td><td>合格</td><td>完了</td><td>田中</td><td>2026-03-01</td><td>AIコンテンツ品質監査ツールで検査済み</td></tr><tr><td>2</td><td>健康食品ECサイト向けLP：春のキャンペーン</td><td>2026-03-03</td><td>LP</td><td>62</td><td>2</td><td>「効果抜群」(景表法)/「シミが消える」(薬機法)</td><td>58</td><td>要修正</td><td>対応中</td><td>佐藤</td><td></td><td>NGワード2件検出・トーン乖離あり</td></tr><tr><td>3</td><td>化粧品メルマガ：新商品ご案内</td><td>2026-03-05</td><td>メール</td><td>91</td><td>0</td><td></td><td>80</td><td>合格</td><td>完了</td><td>鈴木</td><td>2026-03-05</td><td>トーン一致度・差別化ともに高評価</td></tr><tr><td>4</td><td>不動産テック導入事例インタビュー</td><td>2026-03-08</td><td>ブログ記事</td><td>45</td><td>1</td><td>「業界No.1」(景表法)</td><td>65</td><td>要修正</td><td>未対応</td><td>田中</td><td></td><td>トーンスコア60未満・NGワードあり</td></tr><tr><td>5</td><td>SaaS比較記事：勤怠管理ツール10選</td><td>2026-03-10</td><td>ブログ記事</td><td>78</td><td>0</td><td></td><td>42</td><td>要改善</td><td>対応中</td><td>佐藤</td><td></td><td>差別化スコア60未満・競合と類似表現多数</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>===月次サマリー（2026年3月）===</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>集計項目</td><td>値</td><td>算出方法</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>総コンテンツ数</td><td>5</td><td>データ行数のCOUNT</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>平均トーンスコア</td><td>72.2</td><td>AVERAGE(E2:E6)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,記事タイトル,公開日,コンテンツ種別,トーンスコア(0-100),NGワード検出数,検出NGワード詳細,差別化スコア(0-100),総合判定,修正対応ステータス,担当者,修正完了日,備考
+1,【2026年最新】BtoB SaaSのリード獲得完全ガイド,2026-03-01,ブログ記事,85,0,,72,合格,完了,田中,2026-03-01,AIコンテンツ品質監査ツールで検査済み
+2,健康食品ECサイト向けLP：春のキャンペーン,2026-03-03,LP,62,2,「効果抜群」(景表法)/「シミが消える」(薬機法),58,要修正,対応中,佐藤,,NGワード2件検出・トーン乖離あり
+3,化粧品メルマガ：新商品ご案内,2026-03-05,メール,91,0,,80,合格,完了,鈴木,2026-03-05,トーン一致度・差別化ともに高評価
+4,不動産テック導入事例インタビュー,2026-03-08,ブログ記事,45,1,「業界No.1」(景表法),65,要修正,未対応,田中,,トーンスコア60未満・NGワードあり
+5,SaaS比較記事：勤怠管理ツール10選,2026-03-10,ブログ記事,78,0,,42,要改善,対応中,佐藤,,差別化スコア60未満・競合と類似表現多数
+,,,,,,,,,,,,
+===月次サマリー（2026年3月）===,,,,,,,,,,,,
+集計項目,値,算出方法,,,,,,,,,,
+総コンテンツ数,5,データ行数のCOUNT,,,,,,,,,,
+平均トーンスコア,72.2,AVERAGE(E2:E6),,,,,,,,,,
+平均差別化スコア,63.4,AVERAGE(H2:H6),,,,,,,,,,
+NGワード検出総数,3,SUM(F2:F6),,,,,,,,,,
+NGワード検出率,40%,COUNTIF(F2:F6>0)/5,,,,,,,,,,
+合格率,40%,COUNTIF(I2:I6="合格")/5,,,,,,,,,,
+トーンスコア60未満件数,1,COUNTIF(E2:E6<60),,,,,,,,,,
+未対応件数,1,COUNTIF(J2:J6="未対応"),,,,,,,,,,
+対応中件数,2,COUNTIF(J2:J6="対応中"),,,,,,,,,,
+完了件数,2,COUNTIF(J2:J6="完了"),,,,,,,,,,
+,,,,,,,,,,,,
+===条件付き書式ルール（Excel貼付後に設定）===,,,,,,,,,,,,
+対象列,条件,書式,,,,,,,,,,
+トーンスコア(E列),60未満,セル背景を赤(#FFcccc)・文字を赤(#cc0000),,,,,,,,,,
+NGワード検出数(F列),1以上,セル背景を赤(#FFcccc)・文字を赤(#cc0000),,,,,,,,,,
+差別化スコア(H列),60未満,セル背景を黄(#FFFFCC)・文字をオレンジ(#FF8C00),,,,,,,,,,
+総合判定(I列),「要修正」,セル背景を赤(#FFcccc),,,,,,,,,,
+修正対応ステータス(J列),「未対応」,セル背景を赤(#FFcccc),,,,,,,,,,
+,,,,,,,,,,,,
+===判定基準===,,,,,,,,,,,,
+総合判定,条件,,,,,,,,,,,,
+合格,トーンスコア60以上 AND NGワード0件 AND 差別化スコア60以上,,,,,,,,,,,,
+要改善,上記いずれか1項目のみ未達,,,,,,,,,,,,
+要修正,NGワード1件以上 または トーンスコア60未満,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_月次AIコンテンツ品質トラッキングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

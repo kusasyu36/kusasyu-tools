@@ -3068,6 +3068,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "buildingriskscore",
+    "url": "proptech/buildingriskscore/",
+    "title": "築古物件のリスク、重説前にAIで即診断",
+    "tool_name": "BuildingRiskScore_—_築古物件リスク診断ツール",
+    "description": "築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価AI』の必要性を語っており、需要は実在する。",
+    "quality_score": 7,
+    "completed_at": "2026-03-30T14:33:33.588988+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-2",
+    "url": "proptech/diagnosis-2/",
+    "title": "築古物件のリスク、重説前にAIで即診断",
+    "tool_name": "重説前リスクチェックシート",
+    "description": "築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価AI』の必要性を語っており、需要は実在する。",
+    "quality_score": 7,
+    "completed_at": "2026-03-30T14:33:33.588988+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "disclosure-risk-2",
+    "url": "proptech/disclosure-risk-2/",
+    "title": "築古物件のリスク、重説前にAIで即診断",
+    "tool_name": "2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策",
+    "description": "築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価AI』の必要性を語っており、需要は実在する。",
+    "quality_score": 7,
+    "completed_at": "2026-03-30T14:33:33.588988+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -3742,6 +3781,45 @@
     "quality_score": 6,
     "completed_at": "2026-03-21T23:23:09.827419+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ai-ng",
+    "url": "digital-marketing/ai-ng/",
+    "title": "AI量産コンテンツ、そのまま出して大丈夫？品質監査ツール",
+    "tool_name": "AIコンテンツ品質監査ツール（ルールベーストーン＋NGワード一括チェック）",
+    "description": "生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え、月50本以上のAIコンテンツを安全に公開できる体制を構築する。",
+    "quality_score": 6,
+    "completed_at": "2026-03-30T06:54:57.420128+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "guide-5",
+    "url": "digital-marketing/guide-5/",
+    "title": "AI量産コンテンツ、そのまま出して大丈夫？品質監査ツール",
+    "tool_name": "ブランドガイドライン設計＆インポートテンプレート",
+    "description": "生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え、月50本以上のAIコンテンツを安全に公開できる体制を構築する。",
+    "quality_score": 6,
+    "completed_at": "2026-03-30T06:54:57.420128+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-46",
+    "url": "digital-marketing/tool-46/",
+    "title": "AI量産コンテンツ、そのまま出して大丈夫？品質監査ツール",
+    "tool_name": "月次AIコンテンツ品質トラッキングシート",
+    "description": "生成AIで量産したブログ・LP・メール文を貼り付けるだけで、ブランドトーンとの一致度スコア・薬機法/景表法のNGワード検出・競合との差別化度を自動判定するHTMLツール。ブランドガイドライン（トーン・禁止表現・推奨表現）を事前登録し、全コンテンツを同じ基準でチェックできる。品質ゲートを人手からツールに置き換え、月50本以上のAIコンテンツを安全に公開できる体制を構築する。",
+    "quality_score": 6,
+    "completed_at": "2026-03-30T06:54:57.420128+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "legal-tech",

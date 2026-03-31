@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策 - kusasyu tools</title>
+<meta name="description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/disclosure-risk-2/">
+<meta property="og:title" content="2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策 - kusasyu tools">
+<meta property="og:description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/disclosure-risk-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策 - kusasyu tools">
+<meta name="twitter:description" content="築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策",
+  "description": "築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価A",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/disclosure-risk-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-30"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策</h1>
+  <p class="project-name">築古物件のリスク、重説前にAIで即診断</p>
+  <div class="content">
+<h1>2030年問題で変わる重説リスク開示、宅建士が今やるべき3つの対策</h1>
+<p><strong>公開日: 2026年3月29日 ｜ 対象読者: 中小不動産仲介会社の宅建士・物件調査担当者</strong></p>
+<hr />
+<h2>はじめに — 空き家800万戸時代の重説リスク</h2>
+<p>総務省の住宅・土地統計調査（2023年）で、全国の空き家は約900万戸に迫り、2030年には<strong>800万戸超が流通・管理の対象外</strong>として放置される見通しです。国土交通省はこの「2030年問題」に対応するため、中古住宅取引時の情報開示ルールを段階的に強化しています。</p>
+<p>宅建士にとって最も影響が大きいのは<strong>重要事項説明（重説）でのリスク開示範囲の拡大</strong>です。2020年の水害ハザードマップ説明義務化に続き、耐震性能・老朽化状態・将来の資産価値に関する説明責任が年々重くなっています。</p>
+<p>本記事では、<strong>耐震・浸水・老朽化の3大リスク</strong>について「正しい説明例文」と「やりがちなNG例」を対比形式で紹介し、宅建士が今すぐ実践できる3つの対策を解説します。</p>
+<hr />
+<h2>対策1: 耐震リスクの説明を「基準区分の読み上げ」で終わらせない</h2>
+<h3>なぜ重要か</h3>
+<p>築古物件の多くは<strong>旧耐震基準（1981年5月以前に建築確認）</strong>に該当します。「旧耐震です」と伝えるだけでは、買主はリスクの大きさを正しく判断できません。耐震診断の有無・補強の実施状況・検査済証の存在まで踏み込んだ説明が求められます。</p>
+<h3>説明例文とNG例の対比</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>NG例（不十分な説明）</th>
+<th>OK例（適切な説明）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>耐震基準区分</strong></td>
+<td>「昭和53年築なので旧耐震です」</td>
+<td>「本物件は1978年に建築確認を取得しており、旧耐震基準に該当します。旧耐震基準の建物は、<strong>震度6強以上の地震に対する安全性が確認されていません</strong>」</td>
+</tr>
+<tr>
+<td><strong>耐震診断</strong></td>
+<td>「耐震診断はやってないみたいです」</td>
+<td>「耐震診断は未実施です。耐震改修促進法に基づく診断を行う場合、費用目安は戸建で20〜50万円、マンションで一戸あたり3〜5万円です」</td>
+</tr>
+<tr>
+<td><strong>検査済証</strong></td>
+<td>「検査済証は見当たりません」</td>
+<td>「検査済証は確認できませんでした。<strong>建築基準法に適合しない部分が存在する可能性</strong>があります。特定行政庁にて台帳記載証明を取得し、建築確認の記録を確認済みです」</td>
+</tr>
+</tbody>
+</table>
+<h3>実務のポイント</h3>
+<ul>
+<li><strong>旧耐震＝即NG</strong>ではない。耐震診断でIs値0.6以上なら「倒壊の危険性が低い」と説明可能</li>
+<li>新耐震（1981年6月〜2000年5月）でも<strong>2000年基準未満</strong>は中リスク。木造の接合部金物不足に注意</li>
+<li><a href="https://example.com">BuildingRiskScore</a>で築年月・構造を入力すれば、耐震基準区分とリスクスコアを自動判定できる</li>
+</ul>
+<hr />
+<h2>対策2: 浸水リスクは「ハザードマップの提示」だけでは足りない</h2>
+<h3>なぜ重要か</h3>
+<p>2020年8月の法改正で、宅建士は重説時に<strong>水害ハザードマップにおける物件の所在地を説明する義務</strong>を負っています。しかし実務では「ハザードマップを見せて終わり」になりがちです。洪水・内水氾濫・高潮・土砂災害・津波の<strong>5種類のハザード情報</strong>を網羅的に確認し、浸水深の具体的な数値まで伝えることが重要です。</p>
+<h3>説明例文とNG例の対比</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>NG例（不十分な説明）</th>
+<th>OK例（適切な説明）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>洪水浸水</strong></td>
+<td>「ハザードマップだとこのあたりは色がついてます」</td>
+<td>「水防法に基づく洪水浸水想定区域（想定最大規模）において、本物件は<strong>浸水深0.5m〜3mの区域</strong>に所在します。1階部分が浸水するレベルです」</td>
+</tr>
+<tr>
+<td><strong>内水氾濫</strong></td>
+<td>（説明なし）</td>
+<td>「雨水出水（内水氾濫）の想定区域内で、浸水深0.3mが見込まれます。<strong>洪水とは別の原因</strong>（下水の排水能力超過）で発生するリスクです」</td>
+</tr>
+<tr>
+<td><strong>土砂災害</strong></td>
+<td>「土砂災害のエリアではないと思います」</td>
+<td>「土砂災害警戒区域（イエローゾーン）・特別警戒区域（レッドゾーン）のいずれにも<strong>該当しません</strong>。都道府県の指定状況図にて確認済みです」</td>
+</tr>
+</tbody>
+</table>
+<h3>実務のポイント</h3>
+<ul>
+<li>ハザードマップは<strong>洪水・内水氾濫・高潮・土砂災害・津波</strong>の5種類を全て確認する</li>
+<li>浸水深は4段階（0.5m未満／0.5〜3m／3〜5m／5m以上）で明確に伝える</li>
+<li>「区域外」でも<strong>過去の浸水実績</strong>がある場合は説明が望ましい（告知義務の観点）</li>
+<li><a href="https://example.com">BuildingRiskScore 重説前リスクチェックシート</a>の項目4〜8（ハザードマップ5項目）に沿って漏れなくチェックできる</li>
+</ul>
+<hr />
+<h2>対策3: 老朽化リスクを「築年数」だけで語らない</h2>
+<h3>なぜ重要か</h3>
+<p>2030年には築40年超の住宅が<strong>全ストックの約4割</strong>を占めるとされています。老朽化リスクは単なる築年数ではなく、<strong>管理状態・修繕履歴・設備の更新状況</strong>で大きく異なります。特にマンションでは長期修繕計画の有無と修繕積立金の充足率が資産価値を左右します。</p>
+<h3>説明例文とNG例の対比</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>NG例（不十分な説明）</th>
+<th>OK例（適切な説明）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>建物の劣化</strong></td>
+<td>「築48年なので古いです」</td>
+<td>「築48年のRC造です。外壁タイルの浮き・剥離、鉄筋の爆裂（コンクリートのひび割れから鉄筋が露出する現象）の有無について<strong>建物状況調査（インスペクション）の実施をお勧めします</strong>」</td>
+</tr>
+<tr>
+<td><strong>修繕履歴</strong></td>
+<td>「大規模修繕はやったらしいです」</td>
+<td>「管理組合の記録によると、大規模修繕は2015年に実施済み（外壁補修・屋上防水）。次回は2030年頃の予定で、<strong>修繕積立金の現在残高は○○万円、計画上の必要額に対する充足率は○○%</strong>です」</td>
+</tr>
+<tr>
+<td><strong>設備の寿命</strong></td>
+<td>特に説明なし</td>
+<td>「給排水管は築30年前後で更新時期を迎えます。本物件は築48年で<strong>管の更新履歴が確認できないため、漏水リスクが高い状態</strong>です。更新費用は戸建で50〜150万円が目安です」</td>
+</tr>
+</tbody>
+</table>
+<h3>実務のポイント</h3>
+<ul>
+<li><strong>建物状況調査（インスペクション）の実施有無</strong>は重説の記載事項。未実施なら「実施していない」旨を明記</li>
+<li>マンションは<strong>管理に係る重要事項調査報告書</strong>から修繕積立金・長期修繕計画・管理費滞納を確認</li>
+<li>戸建はアスベスト使用調査の有無（2006年以前の建物は要確認）も重説記載事項</li>
+<li>老朽化＋耐震＋浸水が重複する物件は<strong>資産価値下落リスクが最も高い</strong>。BuildingRiskScoreでは4大リスク（耐震・浸水・老朽化・資産価値下落）を総合スコアで可視化できる</li>
+</ul>
+<hr />
+<h2>3つの対策まとめ</h2>
+<table>
+<thead>
+<tr>
+<th>対策</th>
+<th>やること</th>
+<th>使うツール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. 耐震リスクの深掘り</strong></td>
+<td>基準区分＋診断有無＋検査済証の3点セットで説明</td>
+<td>BuildingRiskScore（項目1〜3）</td>
+</tr>
+<tr>
+<td><strong>2. 浸水リスクの網羅</strong></td>
+<td>ハザードマップ5種類を全て確認し、浸水深を数値で伝える</td>
+<td>BuildingRiskScore（項目4〜8）</td>
+</tr>
+<tr>
+<td><strong>3. 老朽化の具体化</strong></td>
+<td>築年数ではなく管理状態・修繕履歴・設備寿命で説明</td>
+<td>BuildingRiskScore（項目9〜15）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>重説リスク開示チェックの効率化</h2>
+<p>築古物件1件あたりの調査に<strong>30〜45分</strong>かかるのが実務の現実です。物件数が増えるほど、調査漏れのリスクも高まります。</p>
+<p><strong><a href="https://example.com">BuildingRiskScore 重説前リスクチェックシート</a></strong> は、築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、重説に使える説明文例まで自動生成します。全15項目のチェックリストに沿って調査すれば、確認漏れを防ぎながら調査時間を短縮できます。</p>
+<blockquote>
+<p>2030年問題で中古物件の流通量が増えるほど、リスク開示の質が宅建士の信頼と差別化の源泉になります。「旧耐震です」「ハザードマップはこちら」で終わらせず、買主が判断できる具体的な情報を伝えることが、これからの重説の標準です。</p>
+</blockquote>
+<hr />
+<p><strong>関連リンク</strong>
+- <a href="https://example.com">BuildingRiskScore — 築古物件リスク診断ツール</a>
+- <a href="https://example.com">BuildingRiskScore 重説前リスクチェックシート（全15項目）</a></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>
