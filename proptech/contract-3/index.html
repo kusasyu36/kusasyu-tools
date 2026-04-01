@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産契約チェックリスト（売買・賃貸・商業3種） - kusasyu tools</title>
+<meta name="description" content="不動産売買契約書・賃貸借契約書の主要条項をチェック項目形式で入力すると、条項ごとにリスクレベル（高・中・低）を即座にスコアリングし、見落としやすい危険条項・業法違反の疑いをわかりやすくハイライト表示するWebツール。LeCHECK等の汎用法務AIレビューが月額数万円かかるのに対し、不動産特化で無料提供。宅建業">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産契約チェックリスト（売買・賃貸・商業3種）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-3/">
+<meta property="og:title" content="不動産契約チェックリスト（売買・賃貸・商業3種） - kusasyu tools">
+<meta property="og:description" content="不動産売買契約書・賃貸借契約書の主要条項をチェック項目形式で入力すると、条項ごとにリスクレベル（高・中・低）を即座にスコアリングし、見落としやすい危険条項・業法違反の疑いをわかりやすくハイライト表示するWebツール。LeCHECK等の汎用法務AIレビューが月額数万円かかるのに対し、不動産特化で無料提供。宅建業">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産契約チェックリスト（売買・賃貸・商業3種） - kusasyu tools">
+<meta name="twitter:description" content="不動産売買契約書・賃貸借契約書の主要条項をチェック項目形式で入力すると、条項ごとにリスクレベル（高・中・低）を即座にスコアリングし、見落としやすい危険条項・業法違反の疑いをわかりやすくハイライト表示するWebツール。LeCHECK等の汎用法務AIレビューが月額数万円かかるのに対し、不動産特化で無料提供。宅建業">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産契約チェックリスト（売買・賃貸・商業3種）",
+  "description": "不動産売買契約書・賃貸借契約書の主要条項をチェック項目形式で入力すると、条項ごとにリスクレベル（高・中・低）を即座にスコアリングし、見落としやすい危険条項・業法違反の疑いをわかりやすくハイライト表示するWebツール。LeCHECK等の汎用法務AIレビューが月額数万円かかるのに対し、不動産特化で無料提供。宅建業",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-03-31"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産契約チェックリスト（売買・賃貸・商業3種）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産契約チェックリスト（売買・賃貸・商業3種）</h1>
+  <p class="project-name">その契約書、危険条項が隠れていませんか？</p>
+  <div class="content">
+<h1>PropGuard 不動産契約チェックリスト（売買・賃貸・商業 3種対応）</h1>
+<h2>使い方</h2>
+<ol>
+<li>契約種別に応じたチェックシートを選び、契約書と照合しながら各項目をチェックする</li>
+<li>状態欄に <strong>✅ 確認済み ／ ⚠️ 要注意 ／ ❌ 未確認</strong> のいずれかを記入する</li>
+<li>⚠️ が1つでもあれば契約締結前に専門家へ相談を推奨。❌ は必ず確認してから押印すること</li>
+<li>本シートはA4印刷を想定。契約書コピーと合わせてファイリングすると管理しやすい</li>
+</ol>
+<blockquote>
+<p><strong>記入例</strong>: 状態欄 → <code>✅</code>、備考欄 → <code>第12条に免責条項あり。売主に修正依頼済み（3/15）</code></p>
+</blockquote>
+<hr />
+<table>
+<thead>
+<tr>
+<th>物件名</th>
+<th>[記入例] グランドメゾン南青山 301号室</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>契約日</td>
+<td>[記入例] 2026年4月15日</td>
+</tr>
+<tr>
+<td>契約種別</td>
+<td>売買 ／ 賃貸 ／ 商業（該当に○）</td>
+</tr>
+<tr>
+<td>確認者</td>
+<td>[記入例] 田中 太郎（宅地建物取引士）</td>
+</tr>
+<tr>
+<td>相手方</td>
+<td>[記入例] 株式会社○○不動産</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>■ 売買契約チェックシート（15項目）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">No.</th>
+<th>チェック項目</th>
+<th>なぜ危ないか</th>
+<th style="text-align: center;">状態</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>重要事項説明書の交付・説明を受けたか</td>
+<td>宅建業法35条違反。説明なしの契約は取消し主張の根拠になる</td>
+<td style="text-align: center;">[✅]</td>
+<td>[記入例] 3/10に対面で説明済み</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>契約不適合責任（旧・瑕疵担保責任）の期間と範囲</td>
+<td>「免責」「引渡し後一切負わない」は買主に著しく不利。業者売主は最低2年必要（宅建業法40条）</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>手付金の額と保全措置</td>
+<td>売買代金の20%超は宅建業法39条違反。未完成物件5%・完成物件10%超は保全義務あり</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>違約金・損害賠償額の上限</td>
+<td>代金の20%を超える設定は宅建業法38条違反</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>ローン特約（融資利用の場合）</td>
+<td>特約なしだと融資否認時に手付放棄。期限日と白紙解除条件を必ず確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>登記簿上の権利関係（抵当権・差押え等）</td>
+<td>抵当権抹消が決済時に確実に行われないと物件を失うリスクあり</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td>都市計画法・建築基準法上の制限</td>
+<td>再建築不可・接道義務未達は資産価値を大きく毀損。重説で見落としやすい</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td>境界確定・実測の有無</td>
+<td>公簿面積と実測の乖離はトラブル直結。確定測量図の有無を確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td>設備・付帯物の引渡し条件</td>
+<td>付帯設備表と現況が不一致だと引渡し後の紛争原因になる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td>固定資産税・管理費の精算基準日</td>
+<td>起算日（1/1 or 4/1）の認識ズレで数万円の差額が発生する</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td>契約解除条件と解除期限</td>
+<td>手付解除の期限が極端に短い（3日以内等）と実質解除不能になる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td>引渡し日と所有権移転時期</td>
+<td>「代金完済時」以外の記載は二重譲渡リスクが生じる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td>土壌汚染・アスベスト・浸水履歴</td>
+<td>告知義務違反は損害賠償対象。重説に記載がなければ自ら確認要</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td>仲介手数料の額と支払時期</td>
+<td>上限は売買代金×3%＋6万円＋税（400万超の場合）。超過請求は違法</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">15</td>
+<td>クーリングオフの適用有無</td>
+<td>事務所等以外での契約は8日間のクーリングオフ可（宅建業法37条の2）</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定</strong>：⚠️ 要注意が <strong><em>件 ／ ❌ 未確認が </em></strong>件 → 0件なら署名可、1件以上は要対応</p>
+<hr />
+<h2>■ 賃貸契約チェックシート（15項目）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">No.</th>
+<th>チェック項目</th>
+<th>なぜ危ないか</th>
+<th style="text-align: center;">状態</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>重要事項説明書の交付・説明を受けたか</td>
+<td>宅建業法35条義務。IT重説の場合も書面交付は必須</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>敷金の額と返還条件</td>
+<td>「償却○ヶ月」「返還なし」は借主に不利。敷金は原則全額返還が基本（民法622条の2）</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>原状回復の範囲と費用負担</td>
+<td>通常使用による損耗は貸主負担（国交省ガイドライン）。「全額借主負担」は消費者契約法で無効の可能性</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>更新料の有無と金額</td>
+<td>家賃1ヶ月分を大幅に超える更新料は無効となる判例あり</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>中途解約条項と違約金</td>
+<td>解約予告期間が6ヶ月以上は借主に著しく不利。通常1〜2ヶ月が相場</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>契約期間と更新方法（普通/定期）</td>
+<td>定期借家は更新なし。普通借家と誤認していると退去を迫られる（借地借家法38条）</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td>賃料増額・減額の条件</td>
+<td>「賃料改定なし」条項は借地借家法32条の強行規定に反する場合あり</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td>禁止事項（ペット・楽器・事務所利用等）</td>
+<td>違反時に即解除とする条項は過度に厳しい場合がある。確認して合意を明確に</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td>修繕義務の分担</td>
+<td>小修繕を全て借主負担とする特約は範囲と上限額の明示がないと争いになる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td>連帯保証人の極度額</td>
+<td>2020年民法改正で極度額の定めがない保証契約は無効（民法465条の2）</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td>保証会社の利用条件と費用</td>
+<td>保証会社＋連帯保証人の二重要求は過剰。保証料が家賃の100%超は要確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td>退去時の立会い・精算方法</td>
+<td>立会い拒否・後日一方的請求はトラブルの元。精算期限の明記を確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td>設備故障時の対応フロー</td>
+<td>給湯器やエアコン等の故障は貸主負担だが、報告義務と対応期限の記載を確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td>鍵交換費用の負担者</td>
+<td>国交省ガイドラインでは貸主負担が妥当。借主に全額請求する特約は要注意</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">15</td>
+<td>火災保険・家財保険の加入義務</td>
+<td>指定保険会社への強制加入は独禁法に抵触する可能性。自由選択できるか確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定</strong>：⚠️ 要注意が <strong><em>件 ／ ❌ 未確認が </em></strong>件 → 0件なら署名可、1件以上は要対応</p>
+<hr />
+<h2>■ 商業（事業用）契約チェックシート（15項目）</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">No.</th>
+<th>チェック項目</th>
+<th>なぜ危ないか</th>
+<th style="text-align: center;">状態</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>重要事項説明書の交付・説明</td>
+<td>事業用でも宅建業法35条は適用。テナント仲介でも省略不可</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>用途制限・業種制限条項</td>
+<td>「飲食不可」「深夜営業不可」等の制限が事業計画と合致するか必ず確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>定期借家か普通借家か</td>
+<td>事業用は定期借家が多い。再契約の保証がなければ投資回収計画に直結</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>賃料改定条項（賃料増額特約）</td>
+<td>CPI連動・3年ごと○%増額等の自動増額条項は長期で大きな負担増になる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>保証金（敷金）の額と償却</td>
+<td>商業は6〜12ヶ月分が相場。「解約時50%償却」等は数百万の損失になりうる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>原状回復の範囲と指定業者</td>
+<td>事業用はスケルトン返しが基本。指定業者のみだと相見積もりが取れず割高になる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td>中途解約条項と違約金</td>
+<td>定期借家は原則中途解約不可。違約金が残存期間全額の賃料だと致命的</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td>造作・内装工事の承諾条件</td>
+<td>B工事（貸主指定業者・借主負担）の範囲が広いとコスト膨張の原因になる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td>共益費・管理費の内訳と改定</td>
+<td>「実費精算」の場合、過去の実績値を確認しないと予算超過リスクあり</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td>看板・サイン設置の可否と条件</td>
+<td>設置不可や厳しいデザイン制限は集客に直結。事前確認必須</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td>営業時間の制限</td>
+<td>商業施設内テナントは強制営業時間あり。人件費に大きく影響する</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td>競業避止義務（同業出店制限）</td>
+<td>同一ビル内に競合が入る可能性を確認。競業避止の有無は売上に直結</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">13</td>
+<td>契約解除事由と催告期間</td>
+<td>賃料1回滞納で即解除とする条項は信頼関係破壊の法理で無効になりうるが、交渉力が弱い</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">14</td>
+<td>転貸・業態変更の承諾要件</td>
+<td>事業ピボット時に業態変更が禁止されていると撤退しか選択肢がなくなる</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center;">15</td>
+<td>反社会的勢力排除条項</td>
+<td>未記載は契約不備。記載があっても表明保証の範囲が自社のみか関係者含むか確認</td>
+<td style="text-align: center;">[ ]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定</strong>：⚠️ 要注意が <strong><em>件 ／ ❌ 未確認が </em></strong>件 → 0件なら署名可、1件以上は要対応</p>
+<hr />
+<h2>総合判定</h2>
+<table>
+<thead>
+<tr>
+<th>契約種別</th>
+<th style="text-align: center;">⚠️ 要注意</th>
+<th style="text-align: center;">❌ 未確認</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>売買</td>
+<td style="text-align: center;">___件</td>
+<td style="text-align: center;">___件</td>
+<td>署名可 ／ 要対応</td>
+</tr>
+<tr>
+<td>賃貸</td>
+<td style="text-align: center;">___件</td>
+<td style="text-align: center;">___件</td>
+<td>署名可 ／ 要対応</td>
+</tr>
+<tr>
+<td>商業</td>
+<td style="text-align: center;">___件</td>
+<td style="text-align: center;">___件</td>
+<td>署名可 ／ 要対応</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>: 本チェックリストは一般的な確認項目を整理したものであり、法的助言ではありません。⚠️・❌ の項目がある場合は、宅建士または弁護士に相談のうえ契約を進めてください。</p>
+<p><strong>作成ツール</strong>: <a href="https://www.example.com">PropGuard - 不動産契約リスクスコアラー</a> で条項ごとのリスクスコアリングも併用すると、より精度の高い契約チェックが可能です。</p>
+</blockquote>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

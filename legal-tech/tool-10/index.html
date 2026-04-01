@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>士業事務所カスタマイズ用相談受付設定シート - kusasyu tools</title>
+<meta name="description" content="弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,士業事務所カスタマイズ用相談受付設定シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-10/">
+<meta property="og:title" content="士業事務所カスタマイズ用相談受付設定シート - kusasyu tools">
+<meta property="og:description" content="弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="士業事務所カスタマイズ用相談受付設定シート - kusasyu tools">
+<meta name="twitter:description" content="弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "士業事務所カスタマイズ用相談受付設定シート",
+  "description": "弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-10/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-01"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>士業事務所カスタマイズ用相談受付設定シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>士業事務所カスタマイズ用相談受付設定シート</h1>
+  <p class="project-name">初回相談の準備、まだ手作業？士業AI受付キット</p>
+  <div class="content">
+<h1>=============================================</h1>
+<h1>士業向け相談受付スクリーニングツール — 事務所設定CSV</h1>
+<h1>ファイル名: office_config.csv</h1>
+<h1>文字コード: UTF-8（BOM付き推奨）</h1>
+<h1>更新日についてはB2セルの値を変更してください</h1>
+<h1>=============================================</h1>
+<h1>--- セクション1: 事務所基本情報 ---</h1>
+<h1>key（設定キー）は変更しないでください。value（値）のみ書き換えます。</h1>
+<p>key,value
+office_name,山田法律事務所
+office_type,弁護士
+representative,山田 太郎
+postal_code,100-0005
+address,東京都千代田区丸の内1-1-1 丸の内ビル5F
+phone,03-1234-5678
+email,info@yamada-law.example.jp
+website,https://yamada-law.example.jp
+booking_url,https://yamada-law.example.jp/reserve
+last_updated,2026-03-31</p>
+<h1>--- セクション2: 初回相談料設定 ---</h1>
+<h1>fee_type: free（無料）/ paid（有料）/ conditional（条件付無料）</h1>
+<h1>fee_amount: 円単位（税込）。無料の場合は0</h1>
+<h1>fee_duration: 分単位</h1>
+<h1>fee_note: 相談者に表示する補足</h1>
+<p>key,value
+fee_type,conditional
+fee_amount,5500
+fee_duration,30
+fee_note,債務整理・交通事故は初回30分無料。その他は30分5,500円（税込）</p>
+<h1>--- セクション3: 対応エリア ---</h1>
+<h1>area_prefectures: 都道府県をカンマ区切り</h1>
+<h1>area_note: 補足（オンライン対応可否など）</h1>
+<p>key,value
+area_prefectures,東京都,神奈川県,埼玉県,千葉県
+area_note,Zoom・Teams対応可。全国からオンライン相談可能</p>
+<h1>--- セクション4: 担当士業・スタッフ ---</h1>
+<h1>staff_id,name,qualification,specialty,available_days</h1>
+<h1>qualification: 弁護士 / 司法書士 / 社労士 / 行政書士 / パラリーガル</h1>
+<h1>available_days: mon,tue,wed,thu,fri,sat,sun</h1>
+<p>staff_id,name,qualification,specialty,available_days
+S001,山田 太郎,弁護士,企業法務・M&amp;A・労働問題,mon-tue-wed-thu-fri
+S002,佐藤 花子,弁護士,離婚・相続・不動産,mon-wed-fri
+S003,鈴木 一郎,パラリーガル,初回ヒアリング全般,mon-tue-wed-thu-fri-sat</p>
+<h1>--- セクション5: 対応分野と費用レンジ ---</h1>
+<h1>category: ツールの相談カテゴリに対応</h1>
+<h1>enabled: true（対応可）/ false（非対応）</h1>
+<h1>fee_min: 概算費用の下限（円・税込）</h1>
+<h1>fee_max: 概算費用の上限（円・税込）</h1>
+<h1>assigned_staff: 担当staff_id</h1>
+<p>category,enabled,fee_min,fee_max,assigned_staff
+離婚・男女問題,true,330000,880000,S002
+相続・遺言,true,220000,1100000,S002
+債務整理・破産,true,220000,550000,S001
+交通事故,true,0,※成功報酬制,S001
+労働問題,true,330000,660000,S001
+企業法務・顧問契約,true,55000,110000,S001
+不動産トラブル,true,330000,880000,S002
+刑事事件,false,,,
+知的財産,false,,,
+入管・ビザ,false,,,</p>
+<h1>--- セクション6: 非対応分野の案内先 ---</h1>
+<h1>category: 非対応の分野名</h1>
+<h1>referral_type: 紹介先の種別（bar_association / specific_office / none）</h1>
+<h1>referral_info: 具体的な案内文</h1>
+<p>category,referral_type,referral_info
+刑事事件,bar_association,東京弁護士会 法律相談センター（03-3581-2201）へお問い合わせください
+知的財産,specific_office,知財太郎特許事務所（03-9999-0000）をご紹介可能です
+入管・ビザ,bar_association,東京行政書士会（03-5489-2411）へお問い合わせください</p>
+<h1>--- セクション7: 緊急度判定の閾値 ---</h1>
+<h1>urgency_key: ツール内の緊急度キー（変更不可）</h1>
+<h1>days_threshold: この日数以内なら該当ランクに振り分け</h1>
+<h1>label: 表示ラベル</h1>
+<h1>color: 表示色（HTMLカラーコード）</h1>
+<p>urgency_key,days_threshold,label,color
+critical,3,至急対応,#e53e3e
+high,14,早期対応推奨,#dd6b20
+medium,30,通常,#3182ce
+low,9999,余裕あり,#38a169</p>
+<pre><code>
+---
+
+## 記入手順（3ステップ）
+
+### ステップ1：事務所情報を書き換える
+
+1. `office_config.csv` をExcelまたはGoogleスプレッドシートで開く
+2. **セクション1〜3**の `value` 列を自事務所の情報に書き換える
+3. `booking_url` には予約システム（Calendly、STORES予約など）のURLを入力
+
+&gt; **注意**: `key` 列は絶対に変更しないでください。ツール側がこのキー名で値を読み取ります。
+
+### ステップ2：担当者と対応分野を設定する
+
+| 作業 | 対象セクション | ポイント |
+|------|--------------|---------|
+| 担当者追加 | セクション4 | `staff_id` はS001から連番。`available_days` はハイフン区切り |
+| 対応分野ON/OFF | セクション5 | 非対応なら `enabled` を `false` に。費用欄は空欄でOK |
+| 非対応の案内先 | セクション6 | `false` にした分野の相談者に表示する案内先を記入 |
+
+### ステップ3：保存してツールに反映する
+
+1. **UTF-8（BOM付き）** で保存（Excel: 「CSV UTF-8」を選択）
+2. `office_config.csv` をHTMLファイルと同じフォルダに配置
+3. ブラウザでHTMLを開き、各画面の表示が自事務所の情報に切り替わっていることを確認
+
+---
+
+## 士業種別ごとのカスタマイズ例
+
+### 司法書士事務所の場合
+
+```csv
+office_name,鈴木司法書士事務所
+office_type,司法書士
+fee_type,paid
+fee_amount,5500
+fee_duration,60
+fee_note,初回相談60分5,500円（税込）。登記案件は着手後に相談料を充当
+
+category,enabled,fee_min,fee_max,assigned_staff
+不動産登記,true,44000,110000,S001
+商業登記,true,33000,88000,S001
+相続登記,true,66000,154000,S001
+債務整理,true,220000,440000,S001
+成年後見,true,110000,330000,S001
+離婚・男女問題,false,,,
+刑事事件,false,,,
+</code></pre>
+<h3>社労士事務所の場合</h3>
+<p>```csv
+office_name,佐藤社会保険労務士事務所
+office_type,社労士
+fee_type,free
+fee_amount,0
+fee_duration,30
+fee_note,初回相談30分無料。顧問契約ご検討の方は60分まで無料</p>
+<p>category,enabled,fee_min,fee_max,assigned_staff
+就業規則作成・改定,true,110000,330000,S001
+助成金申請,true,着手金0,※受給額の15-20%,S001
+労務トラブル対応,true,55000,220000,S001
+社会保険手続代行,true,22000,55000,S002
+給与計算代行,true,33000,88000,S002
+労災申請,true,33000,110000,S001
+相続・遺言,false,,,</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

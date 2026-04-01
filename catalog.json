@@ -273,6 +273,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "btob-9",
+    "url": "digital-marketing/btob-9/",
+    "title": "メルマガのネタ切れ？AI文面パーソナライズツール",
+    "tool_name": "BtoBメルマガ文面テンプレートジェネレーター",
+    "description": "業種・役職・検討フェーズを選ぶだけで、BtoBメルマガの本文・件名・CTAをAIが自動生成するHTMLツール。セグメントごとに異なる文面を一括で作成でき、件名A/Bテストの設計まで完結する。MAツール（SATORI・HubSpot等）は配信管理は得意だが文面生成は人手依存という課題を、AIパーソナライズで解決する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-01T09:01:57.704445+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-4",
+    "url": "digital-marketing/management-4/",
+    "title": "メルマガのネタ切れ？AI文面パーソナライズツール",
+    "tool_name": "セグメント別メルマガABテスト管理シート",
+    "description": "業種・役職・検討フェーズを選ぶだけで、BtoBメルマガの本文・件名・CTAをAIが自動生成するHTMLツール。セグメントごとに異なる文面を一括で作成でき、件名A/Bテストの設計まで完結する。MAツール（SATORI・HubSpot等）は配信管理は得意だが文面生成は人手依存という課題を、AIパーソナライズで解決する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-01T09:01:57.704445+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -2678,6 +2704,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-9",
+    "url": "legal-tech/tool-9/",
+    "title": "初回相談の準備、まだ手作業？士業AI受付キット",
+    "tool_name": "士業向け相談受付スクリーニングツール（離婚・相続・労働3分野版）",
+    "description": "弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断（2点）はエンドユーザー向けB2Cだったが、今回は士業事務所向けB2Bとして根本から再設計",
+    "quality_score": 7,
+    "completed_at": "2026-04-01T00:22:54.219223+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-10",
+    "url": "legal-tech/tool-10/",
+    "title": "初回相談の準備、まだ手作業？士業AI受付キット",
+    "tool_name": "士業事務所カスタマイズ用相談受付設定シート",
+    "description": "弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断（2点）はエンドユーザー向けB2Cだったが、今回は士業事務所向けB2Bとして根本から再設計",
+    "quality_score": 7,
+    "completed_at": "2026-04-01T00:22:54.219223+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "risk-4",
+    "url": "legal-tech/risk-4/",
+    "title": "初回相談の準備、まだ手作業？士業AI受付キット",
+    "tool_name": "非弁行為リスク回避チェックリスト付き導入ガイド",
+    "description": "弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断（2点）はエンドユーザー向けB2Cだったが、今回は士業事務所向けB2Bとして根本から再設計",
+    "quality_score": 7,
+    "completed_at": "2026-04-01T00:22:54.219223+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -3104,6 +3169,45 @@
     "description": "築年数・構造・所在地を入力するだけで耐震・浸水・老朽化・資産価値下落の4大リスクをスコアリングし、宅建士が重要事項説明前に使えるチェックレポートをHTML上で即時生成するツール。2030年問題（空き家800万戸超）を背景に、中古物件取引時のリスク開示を効率化する。note.comで実務者が『全自動リスク評価AI』の必要性を語っており、需要は実在する。",
     "quality_score": 7,
     "completed_at": "2026-03-30T14:33:33.588988+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "propguard-7",
+    "url": "proptech/propguard-7/",
+    "title": "その契約書、危険条項が隠れていませんか？",
+    "tool_name": "不動産契約リスクスコアラー「PropGuard」",
+    "description": "不動産売買契約書・賃貸借契約書の主要条項をチェック項目形式で入力すると、条項ごとにリスクレベル（高・中・低）を即座にスコアリングし、見落としやすい危険条項・業法違反の疑いをわかりやすくハイライト表示するWebツール。LeCHECK等の汎用法務AIレビューが月額数万円かかるのに対し、不動産特化で無料提供。宅建業法・借地借家法・消費者契約法の観点から不動産特有のチェック項目（瑕疵担保免責・違約金上限・",
+    "quality_score": 7,
+    "completed_at": "2026-03-31T15:45:56.124891+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-3",
+    "url": "proptech/contract-3/",
+    "title": "その契約書、危険条項が隠れていませんか？",
+    "tool_name": "不動産契約チェックリスト（売買・賃貸・商業3種）",
+    "description": "不動産売買契約書・賃貸借契約書の主要条項をチェック項目形式で入力すると、条項ごとにリスクレベル（高・中・低）を即座にスコアリングし、見落としやすい危険条項・業法違反の疑いをわかりやすくハイライト表示するWebツール。LeCHECK等の汎用法務AIレビューが月額数万円かかるのに対し、不動産特化で無料提供。宅建業法・借地借家法・消費者契約法の観点から不動産特有のチェック項目（瑕疵担保免責・違約金上限・",
+    "quality_score": 7,
+    "completed_at": "2026-03-31T15:45:56.124891+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-4",
+    "url": "proptech/contract-4/",
+    "title": "その契約書、危険条項が隠れていませんか？",
+    "tool_name": "不動産契約で実際にトラブルになった危険条項5選",
+    "description": "不動産売買契約書・賃貸借契約書の主要条項をチェック項目形式で入力すると、条項ごとにリスクレベル（高・中・低）を即座にスコアリングし、見落としやすい危険条項・業法違反の疑いをわかりやすくハイライト表示するWebツール。LeCHECK等の汎用法務AIレビューが月額数万円かかるのに対し、不動産特化で無料提供。宅建業法・借地借家法・消費者契約法の観点から不動産特有のチェック項目（瑕疵担保免責・違約金上限・",
+    "quality_score": 7,
+    "completed_at": "2026-03-31T15:45:56.124891+00:00",
     "content_type": "article"
   },
   {
@@ -3820,6 +3924,32 @@
     "quality_score": 6,
     "completed_at": "2026-03-30T06:54:57.420128+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-12",
+    "url": "digital-marketing/diagnosis-12/",
+    "title": "SNS投稿が続かない？ブランド声AI生成ツール",
+    "tool_name": "ブランドボイス診断＆SNS投稿ジェネレーター",
+    "description": "企業のブランド情報（社名・業界・トーン・キーメッセージ）を入力すると、X（140文字制限対応）・Instagram・LinkedIn向けの投稿文・ハッシュタグ・投稿スケジュールをブランドボイスに統一して一括生成するHTMLツール。Marketrの日本語版コンセプトを無料ツールとして提供し、SNS運用代行（月額5.5万〜26万円）を使えない中小企業が自力でブランド統一したSNS運用を回せるようにする",
+    "quality_score": 6,
+    "completed_at": "2026-03-31T13:25:37.947566+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "guide-6",
+    "url": "digital-marketing/guide-6/",
+    "title": "SNS投稿が続かない？ブランド声AI生成ツール",
+    "tool_name": "少人数チームのブランドボイス統一ガイド",
+    "description": "企業のブランド情報（社名・業界・トーン・キーメッセージ）を入力すると、X（140文字制限対応）・Instagram・LinkedIn向けの投稿文・ハッシュタグ・投稿スケジュールをブランドボイスに統一して一括生成するHTMLツール。Marketrの日本語版コンセプトを無料ツールとして提供し、SNS運用代行（月額5.5万〜26万円）を使えない中小企業が自力でブランド統一したSNS運用を回せるようにする",
+    "quality_score": 6,
+    "completed_at": "2026-03-31T13:25:37.947566+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "legal-tech",

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>士業向け相談受付スクリーニングツール（離婚・相続・労働3分野版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.2em;text-align:center;padding:16px;background:#1a365d;color:#fff;border-radius:8px 8px 0 0}
+.card{background:#fff;border-radius:0 0 8px 8px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.step{display:none}.step.active{display:block}
+.step-indicator{display:flex;justify-content:center;gap:8px;margin:16px 0}
+.step-indicator span{width:32px;height:32px;border-radius:50%;background:#cbd5e0;display:flex;align-items:center;justify-content:center;font-size:.85em;color:#fff;font-weight:700}
+.step-indicator span.done{background:#38a169}
+.step-indicator span.cur{background:#3182ce}
+label{display:block;font-weight:700;margin:12px 0 6px;font-size:.95em}
+select,input[type=text],input[type=date]{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:6px;font-size:1em;margin-bottom:4px}
+.radio-group{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.radio-group label{font-weight:400;padding:8px 14px;border:2px solid #cbd5e0;border-radius:6px;cursor:pointer;flex:1;min-width:120px;text-align:center;font-size:.9em}
+.radio-group input{display:none}
+.radio-group input:checked+span{color:#fff}
+.radio-group label:has(input:checked){background:#3182ce;border-color:#3182ce;color:#fff}
+.btn{display:inline-block;padding:10px 24px;border:none;border-radius:6px;font-size:1em;cursor:pointer;font-weight:700;margin:4px}
+.btn-p{background:#3182ce;color:#fff}.btn-p:hover{background:#2c5282}
+.btn-s{background:#e2e8f0;color:#333}.btn-s:hover{background:#cbd5e0}
+.btn-copy{background:#38a169;color:#fff}.btn-copy:hover{background:#2f855a}
+.btns{text-align:right;margin-top:16px}
+.result-section{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin:10px 0}
+.result-section h3{font-size:.95em;color:#2d3748;border-bottom:1px solid #e2e8f0;padding-bottom:6px;margin-bottom:8px}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.85em;font-weight:700;color:#fff;margin:2px}
+.badge-r{background:#e53e3e}.badge-y{background:#d69e2e}.badge-g{background:#38a169}
+.badge-pro{background:#553c9a}
+.doc-list{list-style:none;padding:0}.doc-list li{padding:4px 0;border-bottom:1px solid #edf2f7;font-size:.9em}
+.doc-list li::before{content:"☐ ";color:#3182ce}
+.cost{font-size:1.3em;font-weight:700;color:#2d3748;text-align:center;padding:8px}
+.disclaimer{font-size:.75em;color:#718096;background:#fff5f5;border:1px solid #feb2b2;border-radius:6px;padding:10px;margin-top:16px}
+.copied{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#38a169;color:#fff;padding:8px 20px;border-radius:6px;font-weight:700;z-index:99;display:none}
+</style>
+<meta name="description" content="弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,士業向け相談受付スクリーニングツール（離婚・相続・労働3分野版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-9/">
+<meta property="og:title" content="士業向け相談受付スクリーニングツール（離婚・相続・労働3分野版） - kusasyu tools">
+<meta property="og:description" content="弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="士業向け相談受付スクリーニングツール（離婚・相続・労働3分野版） - kusasyu tools">
+<meta name="twitter:description" content="弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "士業向け相談受付スクリーニングツール（離婚・相続・労働3分野版）",
+  "description": "弁護士・司法書士・社労士事務所向けの相談受付スクリーニングツール。相談者がフォームに入力すると、管轄士業の自動判定、必要書類リスト、概算費用レンジ、緊急度評価を即座に表示し、士業側に整理済みサマリーを出力。弁護士法72条に準拠し「法的判断」は行わず「情報の仕分けと整理」に限定した設計。過去の法務トリアージ診断",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-9/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">士業向け相談受付スクリーニングツール（離婚・相続・労働3分野</span></div>
+<div class="wrap">
+<h1>相談受付スクリーニングツール<br><small style="font-weight:400;font-size:.7em">離婚・相続・労働 3分野対応</small></h1>
+<div class="card">
+<div class="step-indicator"><span id="si1" class="cur">1</span><span id="si2">2</span><span id="si3">3</span><span id="si4">4</span></div>
+
+<div class="step active" id="s1">
+<label>相談分野を選択してください</label>
+<div class="radio-group" id="field">
+<label><input type="radio" name="field" value="divorce"><span>離婚</span></label>
+<label><input type="radio" name="field" value="inherit"><span>相続</span></label>
+<label><input type="radio" name="field" value="labor"><span>労働</span></label>
+</div>
+<div class="btns"><button class="btn btn-p" onclick="next(2)">次へ →</button></div>
+</div>
+
+<div class="step" id="s2">
+<label>具体的な相談内容</label>
+<select id="subtype"></select>
+<label>相談者氏名（任意）</label>
+<input type="text" id="cname" placeholder="例：山田太郎">
+<label>相談者連絡先（任意）</label>
+<input type="text" id="ctel" placeholder="例：090-1234-5678">
+<div class="btns"><button class="btn btn-s" onclick="next(1)">← 戻る</button><button class="btn btn-p" onclick="next(3)">次へ →</button></div>
+</div>
+
+<div class="step" id="s3">
+<label>期限・時効に関する状況</label>
+<div class="radio-group" id="urgency">
+<label><input type="radio" name="urg" value="high"><span>期限1ヶ月以内</span></label>
+<label><input type="radio" name="urg" value="mid"><span>期限3ヶ月以内</span></label>
+<label><input type="radio" name="urg" value="low"><span>期限なし/不明</span></label>
+</div>
+<label>相手方との紛争状態</label>
+<div class="radio-group" id="conflict">
+<label><input type="radio" name="conf" value="yes"><span>紛争あり</span></label>
+<label><input type="radio" name="conf" value="no"><span>紛争なし</span></label>
+</div>
+<label>備考（自由記述）</label>
+<input type="text" id="memo" placeholder="電話口での補足情報など">
+<div class="btns"><button class="btn btn-s" onclick="next(2)">← 戻る</button><button class="btn btn-p" onclick="calc()">判定する</button></div>
+</div>
+
+<div class="step" id="s4">
+<div id="result"></div>
+<div class="btns"><button class="btn btn-copy" onclick="copySum()">📋 サマリーをコピー</button><button class="btn btn-s" onclick="reset()">新規受付</button></div>
+<div class="disclaimer">【免責事項】本ツールは弁護士法第72条に準拠し、法的判断・法律相談を行うものではありません。相談内容の情報整理・仕分けのみを目的としています。管轄士業の判定および費用レンジは一般的な目安であり、個別案件の法的助言ではありません。最終的な判断は必ず担当士業が行ってください。</div>
+</div>
+</div>
+</div>
+<div class="copied" id="copied">✓ コピーしました</div>
+</div>
+
+<script>
+const D={
+divorce:{
+ subs:["財産分与","親権・養育費","DV・保護命令","年金分割","離婚協議・調停"],
+ docs:{
+  "財産分与":["戸籍謄本","住民票","不動産登記簿謄本","預貯金通帳コピー","源泉徴収票/確定申告書","ローン残高証明","生命保険証券","車検証コピー"],
+  "親権・養育費":["戸籍謄本","住民票","源泉徴収票","子の在学証明書","養育費算定用収入資料","母子手帳コピー"],
+  "DV・保護命令":["戸籍謄本","住民票","診断書（暴力の証拠）","被害写真","警察相談記録","DV相談証明書","陳述書"],
+  "年金分割":["戸籍謄本","年金手帳","年金分割情報通知書","婚姻期間証明書","標準報酬改定請求書","住民票"],
+  "離婚協議・調停":["戸籍謄本","住民票","財産目録","収入証明書","離婚協議書案","子の戸籍謄本","不動産評価証明書"]
+ },
+ pro:{"財産分与":"弁護士","親権・養育費":"弁護士","DV・保護命令":"弁護士","年金分割":"社労士","離婚協議・調停":"弁護士"},
+ cost:{"財産分与":"30〜80万円","親権・養育費":"30〜60万円","DV・保護命令":"20〜50万円","年金分割":"3〜8万円","離婚協議・調停":"20〜60万円"}
+},
+inherit:{
+ subs:["遺産分割協議","遺言書作成","相続登記","相続放棄","遺留分侵害額請求"],
+ docs:{
+  "遺産分割協議":["被相続人の出生〜死亡の戸籍","相続人全員の戸籍・印鑑証明","遺産目録","不動産登記簿謄本","預貯金残高証明","固定資産評価証明","車両査定書"],
+  "遺言書作成":["戸籍謄本","財産目録","不動産登記簿謄本","預貯金一覧","受遺者情報","印鑑証明書"],
+  "相続登記":["被相続人の戸籍謄本","相続人全員の戸籍","住民票","遺産分割協議書","固定資産評価証明","不動産登記簿謄本","印鑑証明書","委任状"],
+  "相続放棄":["被相続人の戸籍謄本","申述人の戸籍謄本","死亡診断書コピー","住民票","債務一覧","相続放棄申述書"],
+  "遺留分侵害額請求":["被相続人の戸籍謄本","遺言書コピー","遺産目録","不動産鑑定書","預貯金残高証明","相続人全員の戸籍","内容証明郵便控え"]
+ },
+ pro:{"遺産分割協議":"弁護士","遺言書作成":"弁護士/司法書士","相続登記":"司法書士","相続放棄":"司法書士","遺留分侵害額請求":"弁護士"},
+ cost:{"遺産分割協議":"30〜100万円","遺言書作成":"10〜30万円","相続登記":"6〜15万円","相続放棄":"3〜8万円","遺留分侵害額請求":"30〜80万円"}
+},
+labor:{
+ subs:["不当解雇","未払残業代","ハラスメント","労災申請","社会保険手続"],
+ docs:{
+  "不当解雇":["雇用契約書","就業規則","解雇通知書/解雇理由証明書","給与明細（直近6ヶ月）","タイムカード","離職票","メール等の証拠"],
+  "未払残業代":["雇用契約書","就業規則","給与明細（直近2年分）","タイムカード/勤怠記録","36協定","業務日報"],
+  "ハラスメント":["雇用契約書","就業規則","ハラスメント記録（日時・内容）","メール/チャット履歴","診断書","社内相談記録","録音データ"],
+  "労災申請":["雇用契約書","労災事故報告書","診断書","休業損害証明","タイムカード","療養費領収書"],
+  "社会保険手続":["雇用契約書","被保険者資格取得届","算定基礎届","月額変更届","離職証明書","賃金台帳"]
+ },
+ pro:{"不当解雇":"弁護士","未払残業代":"弁護士","ハラスメント":"弁護士","労災申請":"社労士","社会保険手続":"社労士"},
+ cost:{"不当解雇":"30〜80万円","未払残業代":"20〜60万円（+成功報酬）","ハラスメント":"30〜60万円","労災申請":"5〜15万円","社会保険手続":"3〜10万円"}
+}};
+
+let field,sub,urg,conf;
+function gv(n){const r=document.querySelector(`input[name="${n}"]:checked`);return r?r.value:null}
+function show(id){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function upSI(n){for(let i=1;i<=4;i++){const e=document.getElementById('si'+i);e.className=i<n?'done':i===n?'cur':''}}
+
+function next(n){
+ if(n===2){
+  field=gv('field');if(!field){alert('分野を選択してください');return}
+  const sel=document.getElementById('subtype');sel.innerHTML='';
+  D[field].subs.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;sel.appendChild(o)});
+ }
+ if(n===3){sub=document.getElementById('subtype').value}
+ show('s'+n);upSI(n);
+}
+
+function calc(){
+ urg=gv('urg');conf=gv('conf');
+ if(!urg||!conf){alert('全項目を選択してください');return}
+ sub=document.getElementById('subtype').value;
+ const d=D[field],pro=d.pro[sub],docs=d.docs[sub],cost=d.cost[sub];
+ let urgL,urgC,urgT;
+ if(urg==='high'){urgL='緊急';urgC='badge-r';urgT='期限1ヶ月以内 — 即日対応を推奨'}
+ else if(urg==='mid'){urgL='要注意';urgC='badge-y';urgT='期限3ヶ月以内 — 1週間以内に初回面談推奨'}
+ else{urgL='通常';urgC='badge-g';urgT='期限の切迫なし — 通常スケジュールで対応可'}
+ let finalPro=pro;
+ if(conf==='yes'&&(pro==='司法書士'||pro==='社労士'))finalPro='弁護士（紛争あり）';
+ const fn={divorce:'離婚',inherit:'相続',labor:'労働'}[field];
+ const cn=document.getElementById('cname').value||'未記入';
+ const ct=document.getElementById('ctel').value||'未記入';
+ const mm=document.getElementById('memo').value||'なし';
+
+ let h=`<div class="result-section"><h3>管轄士業</h3><span class="badge badge-pro">${finalPro}</span></div>`;
+ h+=`<div class="result-section"><h3>緊急度</h3><span class="badge ${urgC}">${urgL}</span><p style="margin-top:6px;font-size:.9em">${urgT}</p></div>`;
+ h+=`<div class="result-section"><h3>概算費用レンジ</h3><div class="cost">${cost}</div><p style="font-size:.8em;color:#718096;text-align:center">※事案の複雑さにより変動します</p></div>`;
+ h+=`<div class="result-section"><h3>必要書類チェックリスト</h3><ul class="doc-list">${docs.map(d=>`<li>${d}</li>`).join('')}</ul></div>`;
+ document.getElementById('result').innerHTML=h;
+
+ window._sum=`【相談受付サマリー】
+受付日時: ${new Date().toLocaleString('ja-JP')}
+相談者: ${cn} / ${ct}
+分野: ${fn} ＞ ${sub}
+管轄士業: ${finalPro}
+緊急度: ${urgL}（${urgT}）
+概算費用: ${cost}
+紛争状態: ${conf==='yes'?'あり':'なし'}
+備考: ${mm}
+---必要書類---
+${docs.map((d,i)=>`☐ ${d}`).join('\n')}
+---
+※本サマリーは情報整理を目的としたものであり法的助言ではありません`;
+ show('s4');upSI(4);
+}
+
+function copySum(){
+ navigator.clipboard.writeText(window._sum).then(()=>{
+  const c=document.getElementById('copied');c.style.display='block';setTimeout(()=>c.style.display='none',1500);
+ });
+}
+function reset(){
+ document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+ document.getElementById('cname').value='';document.getElementById('ctel').value='';document.getElementById('memo').value='';
+ show('s1');upSI(1);
+}
+</script>
+</body>
+</html>
