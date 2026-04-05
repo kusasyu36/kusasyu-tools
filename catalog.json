@@ -572,6 +572,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-22",
+    "url": "legal-tech/contract-22/",
+    "title": "契約の更新漏れ、まだExcelで管理？期限アラート＆交渉文案AI",
+    "tool_name": "契約期限アラートダッシュボード",
+    "description": "締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条件変更の文案を自動生成するツール、取引先別のリスクを可視化するCSV管理表の3点セットを提",
+    "quality_score": 10,
+    "completed_at": "2026-04-05T07:25:21.529416+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-23",
+    "url": "legal-tech/contract-23/",
+    "title": "契約の更新漏れ、まだExcelで管理？期限アラート＆交渉文案AI",
+    "tool_name": "契約更新・交渉文案ジェネレーター",
+    "description": "締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条件変更の文案を自動生成するツール、取引先別のリスクを可視化するCSV管理表の3点セットを提",
+    "quality_score": 10,
+    "completed_at": "2026-04-05T07:25:21.529416+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-24",
+    "url": "legal-tech/contract-24/",
+    "title": "契約の更新漏れ、まだExcelで管理？期限アラート＆交渉文案AI",
+    "tool_name": "取引先リスク管理シート",
+    "description": "締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条件変更の文案を自動生成するツール、取引先別のリスクを可視化するCSV管理表の3点セットを提",
+    "quality_score": 10,
+    "completed_at": "2026-04-05T07:25:21.529416+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -1378,6 +1417,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-3",
+    "url": "proptech/diagnosis-3/",
+    "title": "その空き店舗、どの業種なら埋まる？",
+    "tool_name": "テナント業種マッチング診断ツール",
+    "description": "商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。",
+    "quality_score": 9,
+    "completed_at": "2026-04-04T16:07:57.304591+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "template",
+    "url": "proptech/template/",
+    "title": "その空き店舗、どの業種なら埋まる？",
+    "tool_name": "テナント誘致提案書テンプレート",
+    "description": "商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。",
+    "quality_score": 9,
+    "completed_at": "2026-04-04T16:07:57.304591+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "guide-3",
+    "url": "proptech/guide-3/",
+    "title": "その空き店舗、どの業種なら埋まる？",
+    "tool_name": "商業テナント誘致の実践ガイド",
+    "description": "商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。",
+    "quality_score": 9,
+    "completed_at": "2026-04-04T16:07:57.304591+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -1518,6 +1596,32 @@
     "description": "SEO担当者が既存のWebページ本文をペーストすると、Perplexity・ChatGPT検索・Google AI Overviewsなど主要LLM検索エンジンに引用されやすい文章構造（定義文パターン・箇条書き密度・数値根拠の有無・一次情報マーカー・FAQ適合度）をスコアリングし、具体的なリライト案を段落単位で自動生成するブラウザ完結型ツール。既存の競合18社超（SORAMICHI、デジタルアイデ",
     "quality_score": 8,
     "completed_at": "2026-02-27T23:45:16.916419+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-5",
+    "url": "digital-marketing/management-5/",
+    "title": "事例動画が高すぎる？AI台本自動生成ツール",
+    "tool_name": "事例動画ディレクション管理シート",
+    "description": "BtoB企業の導入事例データ（売上増減率・工数削減率・顧客の声）を入力するだけで、縦型ショート動画（60秒）とYouTube長尺（3分）の2フォーマットで動画台本・ナレーション原稿・字幕テキスト・サムネイル構成案を一括生成するHTMLツール。業種別テンプレート（SaaS・製造業・IT商社）を搭載し、日本のBtoB商慣習（稟議・ROI訴求・Before/After比較）に最適化された構成を出力する。",
+    "quality_score": 8,
+    "completed_at": "2026-04-04T15:59:19.462598+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "guide-7",
+    "url": "digital-marketing/guide-7/",
+    "title": "事例動画が高すぎる？AI台本自動生成ツール",
+    "tool_name": "AI×事例動画_月10本量産ワークフローガイド",
+    "description": "BtoB企業の導入事例データ（売上増減率・工数削減率・顧客の声）を入力するだけで、縦型ショート動画（60秒）とYouTube長尺（3分）の2フォーマットで動画台本・ナレーション原稿・字幕テキスト・サムネイル構成案を一括生成するHTMLツール。業種別テンプレート（SaaS・製造業・IT商社）を搭載し、日本のBtoB商慣習（稟議・ROI訴求・Before/After比較）に最適化された構成を出力する。",
+    "quality_score": 8,
+    "completed_at": "2026-04-04T15:59:19.462598+00:00",
     "content_type": "article"
   },
   {

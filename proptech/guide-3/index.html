@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商業テナント誘致の実践ガイド - kusasyu tools</title>
+<meta name="description" content="商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,商業テナント誘致の実践ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-3/">
+<meta property="og:title" content="商業テナント誘致の実践ガイド - kusasyu tools">
+<meta property="og:description" content="商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="商業テナント誘致の実践ガイド - kusasyu tools">
+<meta name="twitter:description" content="商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "商業テナント誘致の実践ガイド",
+  "description": "商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/guide-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-04"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>商業テナント誘致の実践ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>商業テナント誘致の実践ガイド</h1>
+  <p class="project-name">その空き店舗、どの業種なら埋まる？</p>
+  <div class="content">
+<h1>商業テナント誘致の実践ガイド ― 空室期間を最短にする5ステップ</h1>
+<p>商業物件の空室は、1か月ごとに賃料収入がゼロになるだけでなく、建物の印象悪化や管理コストの増加を招きます。本ガイドでは、中小オーナーが自力で実行できるテナント誘致プロセスを5つのステップに分けて解説します。<strong>テナント業種マッチング診断ツール</strong>の活用を前提に、周辺分析から契約交渉まで一気通貫で進められる内容です。</p>
+<hr />
+<h2>はじめに：なぜ「業種選定」が空室対策の核心なのか</h2>
+<p>空室が長期化する最大の原因は「来た問い合わせを待つだけ」の受動的なリーシングです。物件に合わない業種のテナントが入居しても、短期退去のリスクが高まり、再び空室→募集のループに陥ります。</p>
+<p><strong>空室長期化の典型パターン</strong></p>
+<table>
+<thead>
+<tr>
+<th>原因</th>
+<th style="text-align: center;">発生頻度</th>
+<th>影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>業種ミスマッチ（立地と合わない）</td>
+<td style="text-align: center;">非常に多い</td>
+<td>早期退去→再空室</td>
+</tr>
+<tr>
+<td>賃料が相場から乖離</td>
+<td style="text-align: center;">多い</td>
+<td>問い合わせゼロ</td>
+</tr>
+<tr>
+<td>物件情報の発信不足</td>
+<td style="text-align: center;">やや多い</td>
+<td>認知されない</td>
+</tr>
+<tr>
+<td>内見時の印象が悪い</td>
+<td style="text-align: center;">時々</td>
+<td>成約率低下</td>
+</tr>
+</tbody>
+</table>
+<p>最初に「この物件にはどの業種が最も合うか」を見極め、そのうえで該当業種に能動的にアプローチする。これが空室期間を短縮する最も確実な方法です。</p>
+<hr />
+<h2>ステップ1：周辺分析 ― 立地のポテンシャルを数字で把握する</h2>
+<h3>調べるべき4つのデータ</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>情報源</th>
+<th>確認ポイント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>商圏人口・年齢構成</strong></td>
+<td>自治体の統計データ、RESAS</td>
+<td>半径500m〜1kmの人口・年齢分布</td>
+</tr>
+<tr>
+<td><strong>昼間人口・就業者数</strong></td>
+<td>国勢調査、経済センサス</td>
+<td>オフィス需要・ランチ需要の指標</td>
+</tr>
+<tr>
+<td><strong>交通量・乗降客数</strong></td>
+<td>鉄道会社公表データ、道路交通センサス</td>
+<td>通行量が集客力に直結</td>
+</tr>
+<tr>
+<td><strong>競合テナントの分布</strong></td>
+<td>Googleマップ、現地踏査</td>
+<td>半径300m以内の業種別店舗数</td>
+</tr>
+</tbody>
+</table>
+<h3>実践のコツ</h3>
+<ul>
+<li><strong>Googleマップで半径300mの円を描き、業種別に店舗数を数える。</strong> 同業種が3店舗以上あれば飽和エリア、0〜1店舗なら空白エリアと判断できます</li>
+<li><strong>平日昼・平日夜・休日の3回、現地で人通りを観察する。</strong> 時間帯ごとの客層（ビジネスパーソン・学生・ファミリー等）を記録しておくと、業種選定の判断材料になります</li>
+<li><strong>テナント業種マッチング診断ツール</strong>を使えば、物件の立地・面積・賃料・周辺環境を入力するだけで、これらの分析を自動化し業種適合スコアを算出できます</li>
+</ul>
+<hr />
+<h2>ステップ2：業種選定 ― 「誰に貸すか」を戦略的に決める</h2>
+<h3>業種選定の5つの判断基準</h3>
+<table>
+<thead>
+<tr>
+<th>基準</th>
+<th>内容</th>
+<th style="text-align: center;">重要度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>立地適合性</strong></td>
+<td>駅距離・人通り・視認性と業種の相性</td>
+<td style="text-align: center;">★★★</td>
+</tr>
+<tr>
+<td><strong>面積・設備の一致</strong></td>
+<td>必要面積・天井高・給排水・電気容量</td>
+<td style="text-align: center;">★★★</td>
+</tr>
+<tr>
+<td><strong>競合の空白度</strong></td>
+<td>周辺に同業種が少ないほど有利</td>
+<td style="text-align: center;">★★☆</td>
+</tr>
+<tr>
+<td><strong>賃料負担力</strong></td>
+<td>業種の平均売上に対する賃料比率（8〜15%が目安）</td>
+<td style="text-align: center;">★★☆</td>
+</tr>
+<tr>
+<td><strong>長期安定性</strong></td>
+<td>業種のトレンドと退去リスク</td>
+<td style="text-align: center;">★★☆</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別の物件適性早見表</h3>
+<table>
+<thead>
+<tr>
+<th>業種</th>
+<th style="text-align: center;">必要面積目安</th>
+<th>重要設備</th>
+<th>好立地条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>カフェ・軽飲食</td>
+<td style="text-align: center;">15〜35坪</td>
+<td>給排水・グリストラップ・ガス</td>
+<td>駅徒歩5分以内、間口4m以上</td>
+</tr>
+<tr>
+<td>ヘアサロン・美容</td>
+<td style="text-align: center;">15〜30坪</td>
+<td>給排水・電気容量60A以上</td>
+<td>住宅街〜駅近、1F路面店</td>
+</tr>
+<tr>
+<td>クリニック・薬局</td>
+<td style="text-align: center;">25〜50坪</td>
+<td>エレベーター（2F以上の場合）</td>
+<td>駅徒歩圏、住宅密集地</td>
+</tr>
+<tr>
+<td>物販（セレクトショップ）</td>
+<td style="text-align: center;">15〜25坪</td>
+<td>特になし</td>
+<td>回遊性の高い商店街、視認性</td>
+</tr>
+<tr>
+<td>フィットネス・ヨガ</td>
+<td style="text-align: center;">25〜50坪</td>
+<td>天井高2.7m以上、防音</td>
+<td>駅近、オフィス街隣接</td>
+</tr>
+</tbody>
+</table>
+<h3>実践のコツ</h3>
+<ul>
+<li><strong>テナント業種マッチング診断ツール</strong>の「業種適合スコア」で上位3業種に絞り込みましょう。スコア80点以上（◎最適）の業種が第一候補、70点以上（○適合）が第二候補です</li>
+<li>飲食系はグリストラップや排気ダクトの有無で成約可否が決まります。設備が揃っていれば飲食系を優先、なければサービス業・物販を軸に検討してください</li>
+</ul>
+<hr />
+<h2>ステップ3：賃料設定 ― 相場と収益のバランスを取る</h2>
+<h3>適正賃料の算出方法</h3>
+<p><strong>3つのアプローチを組み合わせて決定します。</strong></p>
+<ol>
+<li><strong>周辺相場比較法</strong> ― 同エリア・同規模の募集物件3〜5件の坪単価を調べ、平均値を基準にする</li>
+<li><strong>収益還元法</strong> ― 想定テナントの月商に対し賃料比率8〜15%となる金額を逆算する</li>
+<li><strong>投資回収法</strong> ― 自身の取得コスト・ローン返済から必要な最低賃料を算出する</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>算出方法</th>
+<th>計算例</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>周辺相場</td>
+<td>近隣5件の平均坪単価18,000円 × 35坪</td>
+<td>月額630,000円</td>
+</tr>
+<tr>
+<td>収益還元</td>
+<td>想定月商500万円 × 賃料比率12%</td>
+<td>月額600,000円</td>
+</tr>
+<tr>
+<td>投資回収</td>
+<td>ローン返済+管理費の合計</td>
+<td>月額最低520,000円</td>
+</tr>
+</tbody>
+</table>
+<p>この場合、<strong>月額60〜63万円が適正レンジ</strong>と判断できます。</p>
+<h3>賃料設定の3つのコツ</h3>
+<ul>
+<li><strong>空室3か月超なら相場の5〜10%引きで再設定する。</strong> 空室6か月分の機会損失は、賃料10%引き×5年分（60か月）の減収より大きい</li>
+<li><strong>フリーレント（1〜3か月）を活用する。</strong> 募集賃料を下げずにテナントの初期負担を軽減でき、物件の「相場感」を守れます</li>
+<li><strong>段階賃料も有効。</strong> 開業1年目は80%、2年目は90%、3年目以降100%とすることで、テナントの事業立ち上げリスクを下げ、長期入居につなげます</li>
+</ul>
+<hr />
+<h2>ステップ4：テナント候補へのアプローチ ― 待ちから攻めへ</h2>
+<h3>アプローチ先の見つけ方</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>具体的なアクション</th>
+<th style="text-align: center;">期待効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>出店情報サイト</strong></td>
+<td>居抜き物件サイト・テナント募集ポータルへ掲載</td>
+<td style="text-align: center;">★★☆</td>
+</tr>
+<tr>
+<td><strong>チェーン本部への直接提案</strong></td>
+<td>診断結果をもとに<strong>テナント誘致提案書テンプレート</strong>で提案書を作成し送付</td>
+<td style="text-align: center;">★★★</td>
+</tr>
+<tr>
+<td><strong>地元の商工会議所</strong></td>
+<td>創業希望者リストや出店相談会で接点を作る</td>
+<td style="text-align: center;">★★☆</td>
+</tr>
+<tr>
+<td><strong>同業種の既存店舗オーナー</strong></td>
+<td>2号店・多店舗展開の意向がないかヒアリング</td>
+<td style="text-align: center;">★★☆</td>
+</tr>
+<tr>
+<td><strong>不動産仲介会社への情報提供</strong></td>
+<td>物件資料+診断結果をセットで共有し、紹介を依頼</td>
+<td style="text-align: center;">★★★</td>
+</tr>
+</tbody>
+</table>
+<h3>提案書作成のポイント</h3>
+<p><strong>テナント誘致提案書テンプレート</strong>を活用し、以下の情報を盛り込みます。</p>
+<ol>
+<li><strong>物件概要</strong>（面積・設備・現況を正確に記載）</li>
+<li><strong>立地の優位性</strong>（商圏人口、就業者数、交通アクセスを数字で提示）</li>
+<li><strong>テナント業種マッチング診断ツールの結果</strong>（業種適合スコアを添付し、客観的なデータで説得力を持たせる）</li>
+<li><strong>収支シミュレーション</strong>（想定月商・賃料比率・初期費用を提示）</li>
+<li><strong>オーナーからの支援条件</strong>（フリーレント・内装協力金等があれば記載）</li>
+</ol>
+<p>提案書はPDF化してテナント候補企業に送付します。1社ではなく<strong>上位3業種それぞれ2〜3社、計6〜9社に同時アプローチ</strong>することで成約確率を高められます。</p>
+<hr />
+<h2>ステップ5：契約条件の交渉 ― 長期安定経営のための設計</h2>
+<h3>交渉すべき主要条件</h3>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>オーナー側の狙い</th>
+<th>テナント側の関心</th>
+<th>落としどころ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>賃料</strong></td>
+<td>安定収入の確保</td>
+<td>初期負担の軽減</td>
+<td>段階賃料やフリーレント1〜3か月で調整</td>
+</tr>
+<tr>
+<td><strong>契約期間</strong></td>
+<td>長期入居（5年以上）</td>
+<td>撤退リスクの低減</td>
+<td>普通借家3年+更新 or 定期借家5年</td>
+</tr>
+<tr>
+<td><strong>原状回復</strong></td>
+<td>退去時の負担軽減</td>
+<td>範囲の明確化</td>
+<td>写真付きで現況を記録、範囲を契約書に明記</td>
+</tr>
+<tr>
+<td><strong>内装協力金</strong></td>
+<td>早期入居の促進</td>
+<td>初期投資の圧縮</td>
+<td>坪1〜3万円 or フリーレントとの選択制</td>
+</tr>
+<tr>
+<td><strong>中途解約</strong></td>
+<td>違約金で回収</td>
+<td>解約条件の柔軟さ</td>
+<td>6か月前予告+賃料3〜6か月分の違約金</td>
+</tr>
+<tr>
+<td><strong>用途制限</strong></td>
+<td>建物価値の維持</td>
+<td>業態変更の余地</td>
+<td>大分類（飲食/物販/サービス）で制限</td>
+</tr>
+</tbody>
+</table>
+<h3>交渉の3原則</h3>
+<ol>
+<li><strong>「賃料」と「条件」はセットで考える。</strong> 賃料を下げる代わりに契約期間を長くする、フリーレントを付ける代わりに原状回復範囲を広げるなど、トレードオフで交渉する</li>
+<li><strong>数字で説明する。</strong> テナント業種マッチング診断ツールの適合スコアや収支シミュレーションを提示し、「この立地でこの業種なら成功確率が高い」と客観データで合意形成を図る</li>
+<li><strong>契約書は専門家にレビューを依頼する。</strong> 特に定期借家契約の場合、書面要件の不備で普通借家と見なされるリスクがあるため、不動産に強い弁護士か宅建士のチェックを経ること</li>
+</ol>
+<hr />
+<h2>まとめ：5ステップの全体像</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">ステップ</th>
+<th>やること</th>
+<th>使うツール・資料</th>
+<th style="text-align: center;">所要目安</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>周辺分析</td>
+<td>Googleマップ・RESAS・現地踏査</td>
+<td style="text-align: center;">2〜3日</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>業種選定</td>
+<td><strong>テナント業種マッチング診断ツール</strong></td>
+<td style="text-align: center;">1日</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>賃料設定</td>
+<td>周辺相場調査・収支シミュレーション</td>
+<td style="text-align: center;">1〜2日</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>テナントへのアプローチ</td>
+<td><strong>テナント誘致提案書テンプレート</strong></td>
+<td style="text-align: center;">1〜2週間</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>契約交渉</td>
+<td>契約書ひな形・専門家レビュー</td>
+<td style="text-align: center;">2〜4週間</td>
+</tr>
+</tbody>
+</table>
+<p>空室発生から最短1か月で成約に至るケースもあります。重要なのは、退去が決まった段階（退去予告受領時）からステップ1〜3を前倒しで進めておくことです。退去完了を待ってから動き出すと、それだけで1〜2か月のロスが発生します。</p>
+<p><strong>テナント業種マッチング診断ツール</strong>と<strong>テナント誘致提案書テンプレート</strong>を組み合わせれば、データに基づいた戦略的なリーシングが実現できます。「来た問い合わせを待つ」受動型から「最適なテナントを見つけに行く」能動型へ。そのシフトが、空室期間の短縮と安定経営への第一歩です。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

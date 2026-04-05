@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>取引先リスク管理シート | 締結済み契約の「その後」を管理するツールセット - kusasyu tools</title>
+<meta name="description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,取引先リスク管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-24/">
+<meta property="og:title" content="取引先リスク管理シート | 締結済み契約の「その後」を管理するツールセット - kusasyu tools">
+<meta property="og:description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-24/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="取引先リスク管理シート | 締結済み契約の「その後」を管理するツールセット - kusasyu tools">
+<meta name="twitter:description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "取引先リスク管理シート",
+  "description": "締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-24/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-05"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>取引先リスク管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>取引先リスク管理シート</h1>
+  <p class="project-name">契約の更新漏れ、まだExcelで管理？期限アラート＆交渉文案AI</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>取引先名</th><th>契約件数</th><th>年間取引額（万円）</th><th>契約集中度（%）</th><th>最古契約日</th><th>直近更新日</th><th>支払遅延回数</th><th>リスクランク</th><th>備考</th></tr></thead><tbody><tr><td>山田製作所</td><td>8</td><td>2400</td><td>24.0</td><td>2019-04-01</td><td>2025-10-15</td><td>1</td><td>=IF(OR(D2&gt;=30,G2&gt;=3),"D",IF(OR(D2&gt;=20,G2&gt;=2),"C",IF(OR(D2&gt;=10,G2&gt;=1),"B","A")))</td><td>売上比率20%超・集中リスク</td></tr><tr><td>テクノソリューションズ株式会社</td><td>5</td><td>1500</td><td>15.0</td><td>2020-07-01</td><td>2026-01-20</td><td>0</td><td>=IF(OR(D3&gt;=30,G3&gt;=3),"D",IF(OR(D3&gt;=20,G3&gt;=2),"C",IF(OR(D3&gt;=10,G3&gt;=1),"B","A")))</td><td></td></tr><tr><td>グローバルサービス合同会社</td><td>3</td><td>800</td><td>8.0</td><td>2022-01-15</td><td>2025-12-01</td><td>0</td><td>=IF(OR(D4&gt;=30,G4&gt;=3),"D",IF(OR(D4&gt;=20,G4&gt;=2),"C",IF(OR(D4&gt;=10,G4&gt;=1),"B","A")))</td><td></td></tr><tr><td>株式会社ネクストフーズ</td><td>12</td><td>3200</td><td>32.0</td><td>2017-06-01</td><td>2026-02-28</td><td>3</td><td>=IF(OR(D5&gt;=30,G5&gt;=3),"D",IF(OR(D5&gt;=20,G5&gt;=2),"C",IF(OR(D5&gt;=10,G5&gt;=1),"B","A")))</td><td>依存度最高・遅延常習</td></tr><tr><td>エコシステム株式会社</td><td>4</td><td>1100</td><td>11.0</td><td>2021-09-01</td><td>2025-08-30</td><td>2</td><td>=IF(OR(D6&gt;=30,G6&gt;=3),"D",IF(OR(D6&gt;=20,G6&gt;=2),"C",IF(OR(D6&gt;=10,G6&gt;=1),"B","A")))</td><td>支払遅延2回</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【リスクランク判定基準】</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>A（低リスク）</td><td>集中度10%未満かつ支払遅延なし</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>B（要観察）</td><td>集中度10%以上または支払遅延1回</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>C（高リスク）</td><td>集中度20%以上または支払遅延2回以上</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `取引先名,契約件数,年間取引額（万円）,契約集中度（%）,最古契約日,直近更新日,支払遅延回数,リスクランク,備考
+山田製作所,8,2400,24.0,2019-04-01,2025-10-15,1,"=IF(OR(D2>=30,G2>=3),""D"",IF(OR(D2>=20,G2>=2),""C"",IF(OR(D2>=10,G2>=1),""B"",""A"")))",売上比率20%超・集中リスク
+テクノソリューションズ株式会社,5,1500,15.0,2020-07-01,2026-01-20,0,"=IF(OR(D3>=30,G3>=3),""D"",IF(OR(D3>=20,G3>=2),""C"",IF(OR(D3>=10,G3>=1),""B"",""A"")))",
+グローバルサービス合同会社,3,800,8.0,2022-01-15,2025-12-01,0,"=IF(OR(D4>=30,G4>=3),""D"",IF(OR(D4>=20,G4>=2),""C"",IF(OR(D4>=10,G4>=1),""B"",""A"")))",
+株式会社ネクストフーズ,12,3200,32.0,2017-06-01,2026-02-28,3,"=IF(OR(D5>=30,G5>=3),""D"",IF(OR(D5>=20,G5>=2),""C"",IF(OR(D5>=10,G5>=1),""B"",""A"")))",依存度最高・遅延常習
+エコシステム株式会社,4,1100,11.0,2021-09-01,2025-08-30,2,"=IF(OR(D6>=30,G6>=3),""D"",IF(OR(D6>=20,G6>=2),""C"",IF(OR(D6>=10,G6>=1),""B"",""A"")))",支払遅延2回
+,,,,,,,,
+【リスクランク判定基準】,,,,,,,,
+A（低リスク）,集中度10%未満かつ支払遅延なし,,,,,,,
+B（要観察）,集中度10%以上または支払遅延1回,,,,,,,
+C（高リスク）,集中度20%以上または支払遅延2回以上,,,,,,,
+D（最高リスク）,集中度30%以上または支払遅延3回以上,,,,,,,
+,,,,,,,,
+【条件付き書式の設定手順（Excel）】,,,,,,,,
+1. D列（契約集中度）のデータ範囲を選択,,,,,,,,
+2. ホーム→条件付き書式→新しいルール,,,,,,,,
+3.「数式を使用して書式設定するセルを決定」を選択,,,,,,,,
+4. 数式欄に =D2>20 と入力,,,,,,,,
+5. 書式→塗りつぶし→赤色を選択→OK,,,,,,,,
+,,,,,,,,
+【使い方】,,,,,,,,
+・サンプルデータ（2〜6行目）を自社の取引先情報に置き換えてください,,,,,,,,
+・契約集中度＝年間取引額÷自社年間売上×100で算出,,,,,,,,
+・行を追加する場合はH列のIF関数を下にコピーしてください,,,,,,,,
+・本シートは「交渉文案テンプレート自動補完ツール」と併用すると効果的です,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_取引先リスク管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

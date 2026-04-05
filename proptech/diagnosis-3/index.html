@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テナント業種マッチング診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.5rem;padding:20px 0 8px;color:#2d3748}
+.subtitle{text-align:center;color:#718096;font-size:.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.1rem;color:#2b6cb0;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #bee3f8}
+.card h3{font-size:.95rem;color:#2d3748;margin:16px 0 8px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:.82rem;font-weight:600;color:#4a5568;margin-bottom:4px}
+.form-group select,.form-group input{width:100%;padding:10px 12px;border:1px solid #cbd5e0;border-radius:8px;font-size:.9rem;background:#fff;appearance:auto}
+.form-group select:focus,.form-group input:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 3px rgba(66,153,225,.15)}
+.unit{font-size:.75rem;color:#718096;margin-top:2px}
+.checklist-section{margin-top:8px}
+.checklist-item{background:#f7fafc;border-radius:8px;padding:12px;margin-bottom:8px;border:1px solid #e2e8f0}
+.checklist-item .q{font-size:.85rem;font-weight:600;color:#2d3748;margin-bottom:6px}
+.checklist-item .q .num{display:inline-block;background:#2b6cb0;color:#fff;border-radius:50%;width:22px;height:22px;text-align:center;line-height:22px;font-size:.72rem;margin-right:6px}
+.radio-group{display:flex;gap:6px;flex-wrap:wrap}
+.radio-group label{display:flex;align-items:center;gap:4px;font-size:.8rem;color:#4a5568;cursor:pointer;padding:5px 10px;border:1px solid #cbd5e0;border-radius:6px;transition:.2s;flex:1;justify-content:center;min-width:80px}
+.radio-group label:has(input:checked){background:#ebf8ff;border-color:#4299e1;color:#2b6cb0;font-weight:600}
+.radio-group input{display:none}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#2c5282);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:16px;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(43,108,176,.3)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-secondary{background:linear-gradient(135deg,#718096,#4a5568);margin-top:8px}
+#result{display:none}
+.rank-card{display:flex;gap:16px;padding:16px;background:#f7fafc;border-radius:10px;margin-bottom:12px;border-left:4px solid #2b6cb0;align-items:flex-start}
+.rank-card.r1{border-left-color:#d69e2e;background:#fffff0}
+.rank-card.r2{border-left-color:#a0aec0;background:#f7fafc}
+.rank-card.r3{border-left-color:#c05621;background:#fffaf0}
+.rank-num{font-size:1.8rem;font-weight:800;color:#2b6cb0;min-width:40px;text-align:center;line-height:1}
+.rank-card.r1 .rank-num{color:#d69e2e}
+.rank-card.r2 .rank-num{color:#a0aec0}
+.rank-card.r3 .rank-num{color:#c05621}
+.rank-body{flex:1}
+.rank-body .name{font-size:1rem;font-weight:700;color:#2d3748}
+.rank-body .score-bar{height:8px;background:#e2e8f0;border-radius:4px;margin:6px 0;overflow:hidden}
+.rank-body .score-fill{height:100%;background:linear-gradient(90deg,#2b6cb0,#4299e1);border-radius:4px;transition:width .8s ease}
+.rank-body .score-val{font-size:.8rem;color:#4a5568;font-weight:600}
+.rank-body .reason{font-size:.8rem;color:#718096;margin-top:4px}
+.rank-body .rent-comment{font-size:.78rem;color:#c05621;margin-top:4px;padding:4px 8px;background:#fffaf0;border-radius:4px;border:1px solid #fbd38d}
+.radar-wrap{position:relative;width:100%;max-width:420px;margin:0 auto}
+.radar-wrap canvas{width:100%;height:auto}
+.all-scores{margin-top:16px}
+.all-scores table{width:100%;border-collapse:collapse;font-size:.8rem}
+.all-scores th,.all-scores td{padding:6px 8px;text-align:left;border-bottom:1px solid #e2e8f0}
+.all-scores th{background:#f7fafc;font-weight:600;color:#4a5568}
+.all-scores .bar-cell{width:40%}
+.all-scores .mini-bar{height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden}
+.all-scores .mini-fill{height:100%;background:#4299e1;border-radius:3px}
+.export-box{background:#f0fff4;border:1px solid #c6f6d5;border-radius:8px;padding:16px;margin-top:16px}
+.export-box h3{color:#276749;font-size:.9rem;margin-bottom:8px}
+.export-box textarea{width:100%;height:140px;border:1px solid #c6f6d5;border-radius:6px;padding:8px;font-size:.78rem;font-family:monospace;resize:vertical}
+.export-box .copy-btn{display:inline-block;padding:6px 16px;background:#276749;color:#fff;border:none;border-radius:6px;font-size:.8rem;cursor:pointer;margin-top:6px}
+.progress{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.progress .step{flex:1;min-width:60px;text-align:center;padding:6px 4px;font-size:.7rem;border-radius:6px;background:#e2e8f0;color:#718096;font-weight:600}
+.progress .step.active{background:#2b6cb0;color:#fff}
+.progress .step.done{background:#48bb78;color:#fff}
+.err{color:#e53e3e;font-size:.78rem;margin-top:4px;display:none}
+@media(max-width:600px){
+ .form-grid{grid-template-columns:1fr}
+ .rank-card{flex-direction:column;gap:8px}
+ .rank-num{font-size:1.3rem}
+ .radio-group{flex-direction:column}
+ .radio-group label{min-width:auto}
+}
+</style>
+<meta name="description" content="商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,テナント業種マッチング診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-3/">
+<meta property="og:title" content="テナント業種マッチング診断ツール - kusasyu tools">
+<meta property="og:description" content="商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="テナント業種マッチング診断ツール - kusasyu tools">
+<meta name="twitter:description" content="商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "テナント業種マッチング診断ツール",
+  "description": "商業物件の立地・面積・賃料・周辺環境を入力すると、最適なテナント業種をスコア付きで提案するAI診断ツール。周辺の競合状況・人口動態・業種別成功パターンに基づき、業種適合度ランキングとテナント誘致戦略を自動生成する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">テナント業種マッチング診断ツール</span></div>
+<div class="container">
+<h1>テナント業種マッチング診断</h1>
+<p class="subtitle">現地を見ながら回答するだけで、最適なテナント業種がわかります</p>
+
+<div class="progress" id="progressBar">
+ <div class="step active" id="ps1">①物件情報</div>
+ <div class="step" id="ps2">②周辺環境</div>
+ <div class="step" id="ps3">③診断結果</div>
+</div>
+
+<!-- STEP1 -->
+<div id="step1">
+<div class="card">
+<h2>① 物件基本情報</h2>
+<div class="form-grid">
+<div class="form-group">
+ <label>立地タイプ</label>
+ <select id="locationType">
+  <option value="">選択してください</option>
+  <option value="station_front">駅前（徒歩3分以内）</option>
+  <option value="shopping_street">商店街沿い</option>
+  <option value="main_road">幹線道路沿い</option>
+  <option value="residential">住宅街</option>
+  <option value="office_area">オフィス街</option>
+  <option value="suburban">郊外ロードサイド</option>
+  <option value="complex">複合施設内</option>
+ </select>
+</div>
+<div class="form-group">
+ <label>専有面積</label>
+ <input type="number" id="area" placeholder="例: 50" min="5" max="5000">
+ <div class="unit">㎡（坪数は自動計算されます）</div>
+</div>
+<div class="form-group">
+ <label>月額賃料（税別）</label>
+ <input type="number" id="rent" placeholder="例: 300000" min="10000" max="50000000">
+ <div class="unit">円/月</div>
+</div>
+<div class="form-group">
+ <label>築年数</label>
+ <select id="buildingAge">
+  <option value="">選択してください</option>
+  <option value="new">新築〜5年</option>
+  <option value="mid1">6〜15年</option>
+  <option value="mid2">16〜30年</option>
+  <option value="old">31年以上</option>
+ </select>
+</div>
+<div class="form-group">
+ <label>階数</label>
+ <select id="floor">
+  <option value="">選択してください</option>
+  <option value="b1">地下1階</option>
+  <option value="1f">1階（路面店）</option>
+  <option value="2f">2階</option>
+  <option value="3up">3階以上</option>
+ </select>
+</div>
+<div class="form-group">
+ <label>前テナントの業種</label>
+ <select id="prevTenant">
+  <option value="">選択してください（空室の場合も）</option>
+  <option value="restaurant">飲食店</option>
+  <option value="retail">小売店</option>
+  <option value="service">サービス業</option>
+  <option value="office">事務所</option>
+  <option value="medical">医療・福祉</option>
+  <option value="beauty">美容・理容</option>
+  <option value="none">長期空室/新築</option>
+ </select>
+</div>
+</div>
+<div id="err1" class="err">すべての項目を入力してください</div>
+<button class="btn" onclick="goStep2()">次へ：周辺環境チェック →</button>
+</div>
+</div>
+
+<!-- STEP2 -->
+<div id="step2" style="display:none">
+<div class="card">
+<h2>② 周辺環境チェックリスト（徒歩5分圏内）</h2>
+<p style="font-size:.82rem;color:#718096;margin-bottom:12px">現地で周囲を見渡しながら、各項目に該当するものを選んでください。</p>
+<div class="checklist-section" id="checklistArea"></div>
+<div id="err2" class="err">すべてのチェック項目に回答してください</div>
+<button class="btn" onclick="runDiagnosis()">診断を実行する</button>
+<button class="btn btn-secondary" onclick="backStep1()">← 物件情報を修正</button>
+</div>
+</div>
+
+<!-- RESULT -->
+<div id="result">
+<div class="card">
+<h2>③ 診断結果：推奨テナント業種 TOP5</h2>
+<div id="topResults"></div>
+</div>
+<div class="card">
+<h2>レーダーチャート（上位5業種の特性比較）</h2>
+<div class="radar-wrap"><canvas id="radarCanvas" width="500" height="500"></canvas></div>
+</div>
+<div class="card">
+<h2>全20業種スコア一覧</h2>
+<div class="all-scores" id="allScores"></div>
+</div>
+<div class="card">
+<div class="export-box">
+<h3>診断結果エクスポート（テナント募集資料向け）</h3>
+<textarea id="exportText" readonly></textarea>
+<button class="copy-btn" onclick="copyExport()">クリップボードにコピー</button>
+<span id="copyMsg" style="font-size:.78rem;color:#276749;margin-left:8px;display:none">コピーしました</span>
+</div>
+</div>
+<button class="btn btn-secondary" onclick="resetAll()">最初からやり直す</button>
+</div>
+</div>
+
+<script>
+var CHECKLIST=[
+{id:"restaurants",q:"周辺の飲食店の数",a:["ほぼない（0〜2軒）","いくつかある（3〜7軒）","多い（8軒以上）"],v:[0,1,2]},
+{id:"convenience",q:"コンビニの有無",a:["なし","1軒ある","2軒以上ある"],v:[0,1,2]},
+{id:"office_bldg",q:"オフィスビル・企業の有無",a:["ほぼない","数棟ある","オフィス街と言える"],v:[0,1,2]},
+{id:"housing",q:"住宅（マンション・戸建て）の密度",a:["少ない","中程度","住宅街と言える"],v:[0,1,2]},
+{id:"station_dist",q:"最寄り駅までの体感距離",a:["徒歩10分以上","徒歩5〜10分","徒歩5分以内"],v:[0,1,2]},
+{id:"parking",q:"近隣の駐車場（コインP含む）",a:["なし・少ない","いくつかある","大型駐車場あり"],v:[0,1,2]},
+{id:"foot_traffic",q:"今の時間帯の歩行者の多さ",a:["ほぼ人通りなし","まばらに通る","常に人通りあり"],v:[0,1,2]},
+{id:"schools",q:"学校・塾・保育施設",a:["見当たらない","1〜2施設","3施設以上"],v:[0,1,2]},
+{id:"medical",q:"病院・クリニック・薬局",a:["見当たらない","1〜2軒","3軒以上"],v:[0,1,2]},
+{id:"supermarket",q:"スーパー・ドラッグストア",a:["見当たらない","1軒ある","2軒以上ある"],v:[0,1,2]},
+{id:"competitors",q:"空きテナント・空室の多さ",a:["ほぼ空きなし","いくつか空きあり","空きが目立つ"],v:[2,1,0]},
+{id:"nightlife",q:"夜間営業の店（居酒屋・バー等）",a:["ほぼない","数軒ある","繁華街と言える"],v:[0,1,2]},
+{id:"bus_stop",q:"バス停の有無",a:["なし","1箇所","複数あり"],v:[0,1,2]},
+{id:"greenery",q:"公園・緑地・広場",a:["なし","小さい公園あり","大きな公園・広場あり"],v:[0,1,2]}
+];
+
+var INDUSTRIES=[
+{id:"cafe",name:"カフェ・喫茶店",cat:"飲食",baseRent:12000},
+{id:"ramen",name:"ラーメン・麺類店",cat:"飲食",baseRent:10000},
+{id:"izakaya",name:"居酒屋・バー",cat:"飲食",baseRent:11000},
+{id:"restaurant",name:"レストラン・食堂",cat:"飲食",baseRent:13000},
+{id:"bakery",name:"パン・スイーツ店",cat:"飲食",baseRent:11000},
+{id:"convenience_store",name:"コンビニ・ミニスーパー",cat:"小売",baseRent:9000},
+{id:"apparel",name:"アパレル・雑貨",cat:"小売",baseRent:14000},
+{id:"drugstore",name:"ドラッグストア",cat:"小売",baseRent:8000},
+{id:"electronics",name:"携帯ショップ・家電",cat:"小売",baseRent:12000},
+{id:"florist",name:"花屋・園芸店",cat:"小売",baseRent:9000},
+{id:"hair_salon",name:"美容室・理容室",cat:"サービス",baseRent:10000},
+{id:"nail_esthe",name:"ネイル・エステ",cat:"サービス",baseRent:12000},
+{id:"fitness",name:"フィットネス・ヨガ",cat:"サービス",baseRent:8000},
+{id:"cram_school",name:"学習塾・習い事",cat:"サービス",baseRent:7000},
+{id:"dental",name:"歯科・クリニック",cat:"医療",baseRent:11000},
+{id:"pharmacy",name:"調剤薬局",cat:"医療",baseRent:10000},
+{id:"elderly_care",name:"デイサービス・福祉",cat:"福祉",baseRent:6000},
+{id:"coworking",name:"コワーキング・シェアオフィス",cat:"オフィス",baseRent:9000},
+{id:"realtor",name:"不動産仲介店舗",cat:"サービス",baseRent:10000},
+{id:"laundry",name:"コインランドリー",cat:"サービス",baseRent:5000}
+];
+
+function buildChecklist(){
+var h='';
+CHECKLIST.forEach(function(c,i){
+h+='<div class="checklist-item"><div class="q"><span class="num">'+(i+1)+'</span>'+c.q+'</div><div class="radio-group">';
+c.a.forEach(function(a,j){
+h+='<label><input type="radio" name="cl_'+c.id+'" value="'+c.v[j]+'">'+a+'</label>';
+});
+h+='</div></div>';
+});
+document.getElementById('checklistArea').innerHTML=h;
+}
+buildChecklist();
+
+function goStep2(){
+var f=['locationType','area','rent','buildingAge','floor','prevTenant'];
+var ok=true;
+f.forEach(function(id){var el=document.getElementById(id);if(!el.value){ok=false;el.style.borderColor='#e53e3e'}else{el.style.borderColor='#cbd5e0'}});
+if(!ok){document.getElementById('err1').style.display='block';return}
+document.getElementById('err1').style.display='none';
+document.getElementById('step1').style.display='none';
+document.getElementById('step2').style.display='block';
+document.getElementById('ps1').className='step done';
+document.getElementById('ps2').className='step active';
+window.scrollTo(0,0);
+}
+function backStep1(){
+document.getElementById('step2').style.display='none';
+document.getElementById('step1').style.display='block';
+document.getElementById('ps1').className='step active';
+document.getElementById('ps2').className='step';
+window.scrollTo(0,0);
+}
+
+function getChecklistValues(){
+var vals={};
+var allAnswered=true;
+CHECKLIST.forEach(function(c){
+var r=document.querySelector('input[name="cl_'+c.id+'"]:checked');
+if(!r){allAnswered=false;vals[c.id]=-1}
+else{vals[c.id]=parseInt(r.value)}
+});
+return{vals:vals,ok:allAnswered};
+}
+
+function calcScores(){
+var loc=document.getElementById('locationType').value;
+var area=parseFloat(document.getElementById('area').value);
+var rent=parseFloat(document.getElementById('rent').value);
+var age=document.getElementById('buildingAge').value;
+var floor=document.getElementById('floor').value;
+var prev=document.getElementById('prevTenant').value;
+var cl=getChecklistValues().vals;
+var tsubo=area/3.30579;
+var rentPerTsubo=rent/tsubo;
+
+var scores=[];
+INDUSTRIES.forEach(function(ind){
+var s=50;
+var reasons=[];
+
+// --- Industry-specific scoring ---
+if(ind.id==='cafe'){
+if(loc==='station_front'){s+=15;reasons.push('駅前立地はカフェの集客に最適')}
+if(loc==='office_area'){s+=12;reasons.push('オフィスワーカーの需要が見込める')}
+if(loc==='shopping_street'){s+=8;reasons.push('商店街の回遊客を取り込める')}
+if(cl.foot_traffic===2){s+=10;reasons.push('人通りが多く来店機会が豊富')}
+if(cl.office_bldg>=1){s+=5}
+if(cl.housing>=1){s+=3}
+}
+if(ind.id==='ramen'){
+if(loc==='station_front'){s+=14;reasons.push('駅前の回転率重視業態に好立地')}
+if(loc==='office_area'){s+=10;reasons.push('ランチ需要が安定')}
+if(cl.foot_traffic>=1){s+=8}
+if(cl.office_bldg>=1){s+=6;reasons.push('昼食需要の取り込みが可能')}
+if(cl.parking>=1){s+=3}
+}
+if(ind.id==='izakaya'){
+if(loc==='station_front'){s+=15;reasons.push('駅前は夜の集客に強い')}
+if(cl.nightlife>=1){s+=10;reasons.push('夜間営業エリアとしての認知あり')}
+if(cl.office_bldg>=1){s+=8;reasons.push('仕事帰りの利用が期待できる')}
+if(floor==='b1'){s+=5;reasons.push('地下は居酒屋の雰囲気づくりに好適')}
+if(cl.housing>=2){s-=5}
+}
+if(ind.id==='restaurant'){
+if(loc==='station_front'||loc==='shopping_street'){s+=12;reasons.push('集客力の高い立地')}
+if(cl.foot_traffic===2){s+=8}
+if(cl.office_bldg>=1){s+=6}
+if(cl.housing>=1){s+=4;reasons.push('近隣住民のリピートが見込める')}
+if(area>=40){s+=4}
+}
+if(ind.id==='bakery'){
+if(loc==='shopping_street'){s+=14;reasons.push('商店街は買い回り客を取り込める')}
+if(loc==='residential'){s+=12;reasons.push('住宅街の日常利用に適合')}
+if(cl.housing>=1){s+=8;reasons.push('近隣住民の来店頻度が高い')}
+if(cl.schools>=1){s+=4}
+if(floor==='1f'){s+=6;reasons.push('路面店はテイクアウトに有利')}
+}
+if(ind.id==='convenience_store'){
+if(cl.convenience===0){s+=15;reasons.push('コンビニ空白エリアで競合なし')}
+if(cl.foot_traffic>=1){s+=8}
+if(loc==='station_front'){s+=10;reasons.push('駅前は安定した売上が見込める')}
+if(cl.office_bldg>=1){s+=6}
+if(cl.housing>=1){s+=5}
+if(cl.convenience>=1){s-=15;reasons.push('既存コンビニと競合する')}
+}
+if(ind.id==='apparel'){
+if(loc==='shopping_street'){s+=14;reasons.push('商店街の回遊客を取り込める')}
+if(loc==='station_front'){s+=10}
+if(cl.foot_traffic===2){s+=10;reasons.push('高い通行量がウィンドウショッピングを誘発')}
+if(floor==='1f'){s+=6}
+if(cl.housing<=0&&cl.office_bldg<=0){s-=8}
+}
+if(ind.id==='drugstore'){
+if(cl.supermarket>=1){s+=6;reasons.push('生活利便施設との相乗効果')}
+if(loc==='suburban'){s+=10;reasons.push('ロードサイドは大型店舗に好適')}
+if(cl.housing>=1){s+=8;reasons.push('住民の日常利用が見込める')}
+if(cl.parking>=1){s+=6;reasons.push('駐車場ありで車来店に対応')}
+if(area>=50){s+=5}
+}
+if(ind.id==='electronics'){
+if(loc==='station_front'){s+=12;reasons.push('駅前の通行量を活かせる')}
+if(loc==='main_road'){s+=8}
+if(cl.foot_traffic>=1){s+=6}
+if(cl.office_bldg>=1){s+=4}
+}
+if(ind.id==='florist'){
+if(loc==='shopping_street'){s+=10;reasons.push('商店街の買い回りに適合')}
+if(cl.housing>=1){s+=8;reasons.push('住宅街で冠婚葬祭需要あり')}
+if(cl.medical>=1){s+=5;reasons.push('病院お見舞い需要')}
+if(floor==='1f'){s+=6}
+}
+if(ind.id==='hair_salon'){
+if(loc==='residential'){s+=12;reasons.push('住宅街の固定客ビジネスに最適')}
+if(loc==='station_front'){s+=10;reasons.push('通勤動線上の来店が期待できる')}
+if(cl.housing>=1){s+=8;reasons.push('近隣住民のリピートが安定')}
+if(floor==='2f'){s+=4;reasons.push('2階でも集客可能な業態')}
+}
+if(ind.id==='nail_esthe'){
+if(cl.office_bldg>=1){s+=10;reasons.push('OLの勤務先近くは来店率が高い')}
+if(loc==='station_front'){s+=8;reasons.push('駅近は予約来店しやすい')}
+if(cl.housing>=1){s+=5}
+if(floor==='2f'||floor==='3up'){s+=5;reasons.push('上階でも予約制なら問題なし')}
+if(cl.foot_traffic===0){s-=5}
+}
+if(ind.id==='fitness'){
+if(loc==='station_front'){s+=12;reasons.push('通勤前後の利用に好立地')}
+if(cl.office_bldg>=1){s+=8;reasons.push('ビジネスパーソンの健康需要')}
+if(cl.housing>=1){s+=6}
+if(area>=80){s+=8;reasons.push('十分な面積でマシン配置可能')}
+if(area<30){s-=10;reasons.push('面積が狭くフィットネスには不向き')}
+if(floor==='2f'||floor==='3up'){s+=3}
+if(cl.parking>=1){s+=4}
+}
+if(ind.id==='cram_school'){
+if(cl.schools>=1){s+=12;reasons.push('周辺に学校があり生徒が通いやすい')}
+if(cl.housing>=1){s+=10;reasons.push('住宅街で保護者の送迎に便利')}
+if(loc==='residential'){s+=8;reasons.push('住宅立地は学習塾の定番')}
+if(cl.station_dist>=1){s+=4}
+if(floor==='2f'||floor==='3up'){s+=4;reasons.push('上階でも通塾には支障なし')}
+}
+if(ind.id==='dental'){
+if(cl.housing>=1){s+=12;reasons.push('住民の通院圏内')}
+if(cl.medical>=1){s+=6;reasons.push('医療施設集積エリアの信頼感')}
+if(cl.medical===0){s+=4;reasons.push('歯科空白エリアの可能性')}
+if(loc==='station_front'){s+=8;reasons.push('駅近は通院利便性が高い')}
+if(floor==='1f'||floor==='2f'){s+=5;reasons.push('低層階はクリニックに適合')}
+if(area>=25){s+=3}
+}
+if(ind.id==='pharmacy'){
+if(cl.medical>=1){s+=15;reasons.push('近隣にクリニックがあり処方箋需要が安定')}
+if(cl.housing>=1){s+=6}
+if(floor==='1f'){s+=6;reasons.push('路面店は視認性・アクセスに優れる')}
+if(cl.medical===0){s-=10;reasons.push('近隣に医療施設がなく処方箋需要が低い')}
+}
+if(ind.id==='elderly_care'){
+if(cl.housing>=2){s+=12;reasons.push('住宅密集エリアで利用者が多い')}
+if(loc==='residential'){s+=10;reasons.push('住宅立地は福祉施設に最適')}
+if(cl.bus_stop>=1){s+=6;reasons.push('公共交通でのアクセスが可能')}
+if(area>=60){s+=6;reasons.push('デイサービスに必要な面積を確保')}
+if(area<40){s-=8;reasons.push('面積が狭くデイサービスには不足')}
+if(cl.greenery>=1){s+=4;reasons.push('近隣に緑地がありリハビリに活用可能')}
+}
+if(ind.id==='coworking'){
+if(loc==='station_front'){s+=14;reasons.push('駅近はコワーキング最重要条件')}
+if(loc==='office_area'){s+=12;reasons.push('オフィス街でビジネス需要が高い')}
+if(cl.office_bldg>=1){s+=6}
+if(cl.restaurants>=1){s+=4;reasons.push('周辺に飲食店がありランチに困らない')}
+if(cl.convenience>=1){s+=3}
+if(area>=40){s+=4}
+if(floor==='2f'||floor==='3up'){s+=3;reasons.push('上階でも問題ない業態')}
+}
+if(ind.id==='realtor'){
+if(loc==='station_front'){s+=15;reasons.push('駅前は不動産店舗の定番立地')}
+if(floor==='1f'){s+=8;reasons.push('路面店は飛び込み来店を獲得できる')}
+if(cl.housing>=1){s+=6;reasons.push('住宅エリアで賃貸・売買需要あり')}
+if(cl.foot_traffic>=1){s+=5}
+}
+if(ind.id==='laundry'){
+if(cl.housing>=2){s+=14;reasons.push('住宅密集エリアは最大のターゲット')}
+if(loc==='residential'){s+=10;reasons.push('住宅立地はコインランドリーの王道')}
+if(cl.parking>=1){s+=6;reasons.push('車で大量の洗濯物を持ち込める')}
+if(cl.supermarket>=1){s+=4;reasons.push('買い物ついでの利用が期待できる')}
+if(floor==='1f'){s+=5}
+}
+
+// --- Area fitness ---
+if(ind.cat==='飲食'&&area<15){s-=10;reasons.push('飲食店としては面積が狭い')}
+if(ind.cat==='飲食'&&area>=20&&area<=80){s+=5}
+if(ind.cat==='小売'&&area>=30&&area<=200){s+=4}
+if(ind.cat==='医療'&&area>=20&&area<=100){s+=5}
+
+// --- Floor bonus/penalty ---
+if(floor==='1f'){
+if(ind.cat==='飲食'||ind.cat==='小売'){s+=6}
+}
+if(floor==='3up'){
+if(ind.cat==='飲食'){s-=6}
+if(ind.cat==='小売'){s-=8}
+}
+if(floor==='b1'){
+if(ind.id!=='izakaya'&&ind.id!=='fitness'){s-=4}
+}
+
+// --- Building age ---
+if(age==='new'){
+if(ind.id==='dental'||ind.id==='pharmacy'||ind.id==='nail_esthe'){s+=5;reasons.push('新しい建物は清潔感が重要な業態に有利')}
+}
+if(age==='old'){
+if(ind.id==='izakaya'){s+=3;reasons.push('味のある建物は居酒屋の雰囲気にプラス')}
+if(ind.id==='dental'||ind.id==='pharmacy'){s-=5}
+}
+
+// --- Previous tenant synergy ---
+if(prev==='restaurant'&&ind.cat==='飲食'){s+=8;reasons.push('前テナントも飲食で設備流用の可能性あり')}
+if(prev==='beauty'&&(ind.id==='hair_salon'||ind.id==='nail_esthe')){s+=8;reasons.push('前テナント美容系で設備流用の可能性あり')}
+if(prev==='medical'&&(ind.id==='dental'||ind.id==='pharmacy')){s+=8;reasons.push('前テナント医療系で設備・認知を活用可能')}
+if(prev==='office'&&ind.id==='coworking'){s+=6;reasons.push('事務所仕様をそのまま活用可能')}
+
+// --- Rent fitness ---
+var rentGap=rentPerTsubo-ind.baseRent;
+var rentPct=Math.round((rentGap/ind.baseRent)*100);
+var rentComment='';
+if(rentPct<=-20){s+=8;rentComment='相場より大幅に安く、'+ind.name+'にとって好条件です';reasons.push('賃料が相場より安い')}
+else if(rentPct<=-5){s+=4;rentComment='相場よりやや安めで、出店しやすい条件です'}
+else if(rentPct<=10){s+=0;rentComment='相場並みの賃料水準です'}
+else if(rentPct<=30){s-=5;rentComment='相場よりやや高めですが、立地次第で成立します'}
+else{s-=12;rentComment='相場を大幅に上回り、この業種には賃料負担が重い可能性があります';reasons.push('賃料が相場より高い')}
+
+s=Math.max(0,Math.min(100,s));
+if(reasons.length>3)reasons=reasons.slice(0,3);
+scores.push({ind:ind,score:s,reasons:reasons,rentComment:rentComment,rentPerTsubo:Math.round(rentPerTsubo),baseRent:ind.baseRent,rentPct:rentPct});
+});
+
+scores.sort(function(a,b){return b.score-a.score});
+return scores;
+}
+
+function runDiagnosis(){
+var chk=getChecklistValues();
+if(!chk.ok){document.getElementById('err2').style.display='block';return}
+document.getElementById('err2').style.display='none';
+
+var scores=calcScores();
+document.getElementById('step2').style.display='none';
+document.getElementById('result').style.display='block';
+document.getElementById('ps2').className='step done';
+document.getElementById('ps3').className='step active';
+
+renderTopResults(scores);
+renderRadar(scores.slice(0,5));
+renderAllScores(scores);
+renderExport(scores);
+window.scrollTo(0,0);
+}
+
+function renderTopResults(scores){
+var h='';
+var top5=scores.slice(0,5);
+top5.forEach(function(s,i){
+var rc=i===0?'r1':i===1?'r2':i===2?'r3':'';
+h+='<div class="rank-card '+rc+'">';
+h+='<div class="rank-num">'+(i+1)+'</div>';
+h+='<div class="rank-body">';
+h+='<div class="name">'+s.ind.name+'<span style="font-size:.75rem;color:#718096;margin-left:8px">['+s.ind.cat+']</span></div>';
+h+='<div class="score-bar"><div class="score-fill" style="width:'+s.score+'%"></div></div>';
+h+='<div class="score-val">適合スコア: '+s.score+' / 100</div>';
+h+='<div class="reason">推薦理由: '+s.reasons.join(' / ')+'</div>';
+h+='<div class="rent-comment">賃料相場比: 坪単価'+s.rentPerTsubo.toLocaleString()+'円 vs 相場'+s.baseRent.toLocaleString()+'円（'+(s.rentPct>=0?'+':'')+s.rentPct+'%） — '+s.rentComment+'</div>';
+h+='</div></div>';
+});
+document.getElementById('topResults').innerHTML=h;
+}
+
+function renderRadar(top5){
+var canvas=document.getElementById('radarCanvas');
+var ctx=canvas.getContext('2d');
+var W=canvas.width,H=canvas.height;
+var cx=W/2,cy=H/2-10,R=175;
+ctx.clearRect(0,0,W,H);
+
+var labels=['集客力','賃料適合','面積適合','立地相性','将来性'];
+var n=labels.length;
+var colors=['rgba(214,158,46,0.85)','rgba(160,174,192,0.85)','rgba(192,86,33,0.85)','rgba(43,108,176,0.85)','rgba(56,161,105,0.85)'];
+var fills=['rgba(214,158,46,0.12)','rgba(160,174,192,0.12)','rgba(192,86,33,0.12)','rgba(43,108,176,0.12)','rgba(56,161,105,0.12)'];
+
+for(var g=1;g<=5;g++){
+ctx.beginPath();
+for(var i=0;i<n;i++){
+var angle=Math.PI*2*i/n-Math.PI/2;
+var r=R*g/5;
+var x=cx+r*Math.cos(angle);
+var y=cy+r*Math.sin(angle);
+if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+}
+ctx.closePath();ctx.strokeStyle='#e2e8f0';ctx.lineWidth=1;ctx.stroke();
+if(g%2===0){ctx.fillStyle='rgba(226,232,240,0.15)';ctx.fill()}
+}
+for(var i=0;i<n;i++){
+var angle=Math.PI*2*i/n-Math.PI/2;
+ctx.beginPath();ctx.moveTo(cx,cy);
+ctx.lineTo(cx+R*Math.cos(angle),cy+R*Math.sin(angle));
+ctx.strokeStyle='#cbd5e0';ctx.lineWidth=1;ctx.stroke();
+var lx=cx+(R+28)*Math.cos(angle);
+var ly=cy+(R+28)*Math.sin(angle);
+ctx.fillStyle='#2d3748';ctx.font='bold 13px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+ctx.fillText(labels[i],lx,ly);
+}
+
+top5.forEach(function(s,idx){
+var dims=calcDimensions(s);
+ctx.beginPath();
+for(var i=0;i<n;i++){
+var angle=Math.PI*2*i/n-Math.PI/2;
+var val=dims[i]/100;
+var x=cx+R*val*Math.cos(angle);
+var y=cy+R*val*Math.sin(angle);
+if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+}
+ctx.closePath();
+ctx.strokeStyle=colors[idx];ctx.lineWidth=2.5;ctx.globalAlpha=1;ctx.stroke();
+ctx.fillStyle=fills[idx];ctx.globalAlpha=1;ctx.fill();
+});
+
+var ly=H-35;
+top5.forEach(function(s,idx){
+var lx=15+idx*98;
+ctx.globalAlpha=1;
+ctx.fillStyle=colors[idx].replace('0.85','1');
+ctx.fillRect(lx,ly,12,12);
+ctx.fillStyle='#2d3748';ctx.font='11px sans-serif';ctx.textAlign='left';
+var shortName=s.ind.name.length>7?s.ind.name.substring(0,7)+'…':s.ind.name;
+ctx.fillText(shortName,lx+16,ly+10);
+});
+}
+
+function calcDimensions(s){
+var cl=getChecklistValues().vals;
+var loc=document.getElementById('locationType').value;
+var area=parseFloat(document.getElementById('area').value);
+var traffic=Math.min(100,30+cl.foot_traffic*20+(loc==='station_front'?20:0)+(cl.restaurants>=1?10:0)+(cl.convenience>=1?5:0));
+var rentFit=Math.max(10,Math.min(100,80-Math.abs(s.rentPct)*1.2));
+var areaFit=65;
+if(s.ind.cat==='飲食'&&area>=20&&area<=100)areaFit=90;
+else if(s.ind.cat==='小売'&&area>=30&&area<=200)areaFit=85;
+else if(s.ind.cat==='医療'&&area>=20&&area<=80)areaFit=88;
+else if(s.ind.cat==='サービス'&&area>=15&&area<=120)areaFit=82;
+else if(area<15)areaFit=30;
+var locFit=Math.min(100,Math.max(20,s.score*1.1));
+var future=Math.min(100,45+cl.housing*10+cl.office_bldg*8+(cl.competitors===2?15:cl.competitors===0?-5:0)+cl.schools*5+cl.greenery*3);
+return[traffic,rentFit,areaFit,locFit,future];
+}
+
+function renderAllScores(scores){
+var h='<table><tr><th>#</th><th>業種</th><th>分類</th><th>点数</th><th class="bar-cell"></th></tr>';
+scores.forEach(function(s,i){
+h+='<tr><td>'+(i+1)+'</td><td>'+s.ind.name+'</td><td>'+s.ind.cat+'</td><td><strong>'+s.score+'</strong></td>';
+h+='<td class="bar-cell"><div class="mini-bar"><div class="mini-fill" style="width:'+s.score+'%"></div></div></td></tr>';
+});
+h+='</table>';
+document.getElementById('allScores').innerHTML=h;
+}
+
+function renderExport(scores){
+var loc=document.getElementById('locationType');
+var locText=loc.options[loc.selectedIndex].text;
+var area=document.getElementById('area').value;
+var rent=document.getElementById('rent').value;
+var age=document.getElementById('buildingAge');
+var ageText=age.options[age.selectedIndex].text;
+var fl=document.getElementById('floor');
+var flText=fl.options[fl.selectedIndex].text;
+var tsubo=(parseFloat(area)/3.30579).toFixed(1);
+var top5=scores.slice(0,5);
+
+var txt='【テナント業種マッチング診断結果】\n';
+txt+='診断日: '+new Date().toLocaleDateString('ja-JP')+'\n';
+txt+='━━━━━━━━━━━━━━━━━━━━\n';
+txt+='■ 物件概要\n';
+txt+='  立地: '+locText+'\n';
+txt+='  面積: '+area+'㎡（'+tsubo+'坪）\n';
+txt+='  賃料: '+parseInt(rent).toLocaleString()+'円/月（坪単価 '+Math.round(parseInt(rent)/parseFloat(tsubo)).toLocaleString()+'円）\n';
+txt+='  築年数: '+ageText+'\n';
+txt+='  階数: '+flText+'\n';
+txt+='━━━━━━━━━━━━━━━━━━━━\n';
+txt+='■ 推奨テナント業種 TOP5\n\n';
+top5.forEach(function(s,i){
+txt+='  '+(i+1)+'位: '+s.ind.name+'（適合スコア: '+s.score+'/100）\n';
+txt+='     推薦理由: '+s.reasons.join(' / ')+'\n';
+txt+='     賃料評価: '+s.rentComment+'\n\n';
+});
+txt+='━━━━━━━━━━━━━━━━━━━━\n';
+txt+='※本診断はルールベースの簡易分析です。\n';
+txt+='  実際のテナント募集にあたっては不動産の\n';
+txt+='  専門家へご相談ください。\n';
+txt+='━━━━━━━━━━━━━━━━━━━━\n';
+txt+='Powered by Kusasyu PropTech テナント業種マッチング診断ツール\n';
+document.getElementById('exportText').value=txt;
+}
+
+function copyExport(){
+var ta=document.getElementById('exportText');
+ta.select();
+document.execCommand('copy');
+var msg=document.getElementById('copyMsg');
+msg.style.display='inline';
+setTimeout(function(){msg.style.display='none'},2000);
+}
+
+function resetAll(){
+document.getElementById('result').style.display='none';
+document.getElementById('step2').style.display='none';
+document.getElementById('step1').style.display='block';
+document.getElementById('ps1').className='step active';
+document.getElementById('ps2').className='step';
+document.getElementById('ps3').className='step';
+var radios=document.querySelectorAll('input[type=radio]');
+radios.forEach(function(r){r.checked=false});
+window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

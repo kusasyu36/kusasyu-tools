@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>契約期限アラートダッシュボード | 締結済み契約の「その後」を管理するツールセット - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.banner{background:#e74c3c;color:#fff;text-align:center;padding:10px 16px;font-size:14px;font-weight:600;position:sticky;top:0;z-index:100}
+.banner span{background:rgba(255,255,255,.2);border-radius:4px;padding:2px 8px;margin-left:6px}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:24px 20px 18px;text-align:center}
+header h1{font-size:22px;margin-bottom:4px}
+header p{font-size:13px;opacity:.8}
+.container{max-width:900px;margin:0 auto;padding:16px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.btn{border:none;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn-primary{background:#2563eb;color:#fff}
+.btn-export{background:#059669;color:#fff}
+.btn-import{background:#7c3aed;color:#fff}
+.btn-danger{background:#dc2626;color:#fff;font-size:12px;padding:6px 12px}
+.btn-cancel{background:#6b7280;color:#fff}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:20px}
+.summary-card{background:#fff;border-radius:10px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.summary-card .num{font-size:28px;font-weight:700}
+.summary-card .label{font-size:12px;color:#666;margin-top:2px}
+.s-green .num{color:#059669}
+.s-yellow .num{color:#d97706}
+.s-red .num{color:#dc2626}
+.s-total .num{color:#2563eb}
+.cards{display:grid;gap:14px}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:6px solid #ccc;position:relative}
+.card.green{border-left-color:#059669;background:linear-gradient(90deg,#ecfdf5,#fff 30%)}
+.card.yellow{border-left-color:#d97706;background:linear-gradient(90deg,#fffbeb,#fff 30%)}
+.card.red{border-left-color:#dc2626;background:linear-gradient(90deg,#fef2f2,#fff 30%)}
+.card.expired{border-left-color:#6b7280;background:linear-gradient(90deg,#f3f4f6,#fff 30%)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.card-title{font-size:16px;font-weight:700}
+.badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;white-space:nowrap}
+.badge-green{background:#d1fae5;color:#065f46}
+.badge-yellow{background:#fef3c7;color:#92400e}
+.badge-red{background:#fee2e2;color:#991b1b}
+.badge-expired{background:#e5e7eb;color:#374151}
+.card-info{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;font-size:13px;color:#555}
+.card-info dt{font-weight:600;color:#333}
+.card-actions{position:absolute;top:14px;right:14px;display:flex;gap:6px}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;justify-content:center;align-items:center}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;border-radius:16px;padding:28px;width:90%;max-width:480px;max-height:90vh;overflow-y:auto}
+.modal h2{font-size:18px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #e5e7eb}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:4px;color:#374151}
+.form-group input,.form-group select{width:100%;padding:10px 12px;border:1.5px solid #d1d5db;border-radius:8px;font-size:15px}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-actions{display:flex;gap:10px;margin-top:18px}
+.modal-actions .btn{flex:1}
+.empty{text-align:center;padding:60px 20px;color:#9ca3af}
+.empty p{font-size:15px;margin-bottom:8px}
+.count-badge{font-size:12px;color:#6b7280;margin-bottom:12px}
+input[type=file]{display:none}
+@media(max-width:600px){
+ .form-row{grid-template-columns:1fr}
+ .card-info{grid-template-columns:1fr}
+ .actions{flex-direction:column}
+ .btn{width:100%;text-align:center}
+}
+</style>
+<meta name="description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,契約期限アラートダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-22/">
+<meta property="og:title" content="契約期限アラートダッシュボード | 締結済み契約の「その後」を管理するツールセット - kusasyu tools">
+<meta property="og:description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-22/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約期限アラートダッシュボード | 締結済み契約の「その後」を管理するツールセット - kusasyu tools">
+<meta name="twitter:description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "契約期限アラートダッシュボード",
+  "description": "締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-22/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">契約期限アラートダッシュボード</span></div>
+<div class="banner">⚠ 定期的にJSONバックアップを取ってください <span>下のエクスポートボタンから保存できます</span></div>
+<header>
+<h1>📋 契約期限アラートダッシュボード</h1>
+<p>締結済み契約の更新期限・解約通知期限を一覧管理（最大20件）</p>
+</header>
+<div class="container">
+<div class="actions">
+<button class="btn btn-primary" onclick="openModal()">＋ 契約を追加</button>
+<button class="btn btn-export" onclick="exportJSON()">📥 JSONエクスポート</button>
+<button class="btn btn-import" onclick="document.getElementById('importFile').click()">📤 JSONインポート</button>
+<input type="file" id="importFile" accept=".json" onchange="importJSON(event)">
+</div>
+<div class="summary" id="summary"></div>
+<div class="count-badge" id="countBadge"></div>
+<div class="cards" id="cardList"></div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+<div class="modal">
+<h2 id="modalTitle">契約を追加</h2>
+<input type="hidden" id="editIndex" value="-1">
+<div class="form-group"><label>取引先名 *</label><input id="fName" placeholder="例：株式会社〇〇"></div>
+<div class="form-group"><label>契約種別 *</label><select id="fType"><option value="">選択してください</option><option>業務委託契約</option><option>売買契約</option><option>賃貸借契約</option><option>保守契約</option><option>ライセンス契約</option><option>秘密保持契約(NDA)</option><option>リース契約</option><option>その他</option></select></div>
+<div class="form-row">
+<div class="form-group"><label>契約開始日 *</label><input type="date" id="fStart"></div>
+<div class="form-group"><label>契約終了日 *</label><input type="date" id="fEnd"></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>自動更新</label><select id="fAutoRenew"><option value="yes">あり</option><option value="no">なし</option></select></div>
+<div class="form-group"><label>解約通知期限（日前）</label><input type="number" id="fNotice" min="0" max="365" value="30" placeholder="30"></div>
+</div>
+<div class="form-group"><label>メモ</label><input id="fMemo" placeholder="備考があれば入力"></div>
+<div class="modal-actions">
+<button class="btn btn-cancel" onclick="closeModal()">キャンセル</button>
+<button class="btn btn-primary" onclick="saveContract()">保存</button>
+</div>
+</div>
+</div>
+
+<script>
+const STORAGE_KEY='kl_contracts';
+let contracts=load();
+
+function load(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[]}catch(e){return[]}}
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(contracts))}
+
+function daysUntil(dateStr){
+ const d=new Date(dateStr);d.setHours(0,0,0,0);
+ const now=new Date();now.setHours(0,0,0,0);
+ return Math.ceil((d-now)/864e5);
+}
+
+function getStatus(days){
+ if(days<0)return{cls:'expired',badge:'badge-expired',text:'期限切れ'};
+ if(days<30)return{cls:'red',badge:'badge-red',text:'残'+days+'日'};
+ if(days<90)return{cls:'yellow',badge:'badge-yellow',text:'残'+days+'日'};
+ return{cls:'green',badge:'badge-green',text:'残'+days+'日'};
+}
+
+function render(){
+ const sorted=[...contracts].map((c,i)=>({...c,origIdx:i}));
+ sorted.sort((a,b)=>new Date(a.endDate)-new Date(b.endDate));
+ let red=0,yellow=0,green=0;
+ sorted.forEach(c=>{const d=daysUntil(c.endDate);if(d<0||d<30)red++;else if(d<90)yellow++;else green++;});
+
+ document.getElementById('summary').innerHTML=
+  '<div class="summary-card s-total"><div class="num">'+contracts.length+'</div><div class="label">全契約</div></div>'+
+  '<div class="summary-card s-red"><div class="num">'+red+'</div><div class="label">要対応</div></div>'+
+  '<div class="summary-card s-yellow"><div class="num">'+yellow+'</div><div class="label">注意</div></div>'+
+  '<div class="summary-card s-green"><div class="num">'+green+'</div><div class="label">余裕あり</div></div>';
+
+ document.getElementById('countBadge').textContent='登録数: '+contracts.length+' / 20件';
+
+ if(!sorted.length){
+  document.getElementById('cardList').innerHTML='<div class="empty"><p>契約が登録されていません</p><p style="font-size:13px;color:#bbb">「＋ 契約を追加」ボタンから登録してください</p></div>';
+  return;
+ }
+
+ let html='';
+ sorted.forEach(c=>{
+  const days=daysUntil(c.endDate);
+  const s=getStatus(days);
+  const noticeDays=daysUntil(c.endDate)-(c.noticeDays||0);
+  let noticeText='';
+  if(c.autoRenew==='yes'&&c.noticeDays>0){
+   if(noticeDays<0)noticeText='<span style="color:#dc2626;font-weight:700">⚠ 解約通知期限超過</span>';
+   else if(noticeDays<14)noticeText='<span style="color:#d97706;font-weight:600">解約通知まで残'+noticeDays+'日</span>';
+   else noticeText='解約通知まで残'+noticeDays+'日';
+  }
+  html+='<div class="card '+s.cls+'">'+
+   '<div class="card-actions">'+
+   '<button class="btn btn-primary" style="padding:4px 10px;font-size:12px" onclick="editContract('+c.origIdx+')">編集</button>'+
+   '<button class="btn btn-danger" onclick="deleteContract('+c.origIdx+')">削除</button></div>'+
+   '<div class="card-header"><div class="card-title">'+esc(c.name)+'</div>'+
+   '<span class="badge '+s.badge+'">'+s.text+'</span></div>'+
+   '<dl class="card-info">'+
+   '<dt>契約種別</dt><dd>'+esc(c.type)+'</dd>'+
+   '<dt>期間</dt><dd>'+c.startDate+' 〜 '+c.endDate+'</dd>'+
+   '<dt>自動更新</dt><dd>'+(c.autoRenew==='yes'?'あり':'なし')+'</dd>'+
+   (noticeText?'<dt>解約通知</dt><dd>'+noticeText+'</dd>':'')+
+   (c.memo?'<dt>メモ</dt><dd>'+esc(c.memo)+'</dd>':'')+
+   '</dl></div>';
+ });
+ document.getElementById('cardList').innerHTML=html;
+}
+
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+function openModal(idx){
+ document.getElementById('editIndex').value=idx!=null?idx:-1;
+ document.getElementById('modalTitle').textContent=idx!=null?'契約を編集':'契約を追加';
+ if(idx!=null){
+  const c=contracts[idx];
+  document.getElementById('fName').value=c.name;
+  document.getElementById('fType').value=c.type;
+  document.getElementById('fStart').value=c.startDate;
+  document.getElementById('fEnd').value=c.endDate;
+  document.getElementById('fAutoRenew').value=c.autoRenew;
+  document.getElementById('fNotice').value=c.noticeDays||30;
+  document.getElementById('fMemo').value=c.memo||'';
+ }else{
+  ['fName','fMemo'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fType').value='';
+  document.getElementById('fStart').value='';
+  document.getElementById('fEnd').value='';
+  document.getElementById('fAutoRenew').value='yes';
+  document.getElementById('fNotice').value='30';
+ }
+ document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active')}
+function closeModalOutside(e){if(e.target===e.currentTarget)closeModal()}
+
+function saveContract(){
+ const name=document.getElementById('fName').value.trim();
+ const type=document.getElementById('fType').value;
+ const startDate=document.getElementById('fStart').value;
+ const endDate=document.getElementById('fEnd').value;
+ const autoRenew=document.getElementById('fAutoRenew').value;
+ const noticeDays=parseInt(document.getElementById('fNotice').value)||0;
+ const memo=document.getElementById('fMemo').value.trim();
+
+ if(!name||!type||!startDate||!endDate){alert('必須項目を入力してください');return}
+ if(new Date(endDate)<new Date(startDate)){alert('終了日は開始日以降にしてください');return}
+
+ const idx=parseInt(document.getElementById('editIndex').value);
+ const obj={name,type,startDate,endDate,autoRenew,noticeDays,memo};
+
+ if(idx>=0){contracts[idx]=obj}
+ else{
+  if(contracts.length>=20){alert('登録上限（20件）に達しています');return}
+  contracts.push(obj);
+ }
+ save();render();closeModal();
+}
+
+function editContract(idx){openModal(idx)}
+function deleteContract(idx){if(confirm('「'+contracts[idx].name+'」を削除しますか？')){contracts.splice(idx,1);save();render()}}
+
+function exportJSON(){
+ const blob=new Blob([JSON.stringify(contracts,null,2)],{type:'application/json'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ const d=new Date();
+ a.download='contracts_backup_'+d.getFullYear()+(''+(d.getMonth()+1)).padStart(2,'0')+(''+d.getDate()).padStart(2,'0')+'.json';
+ a.click();URL.revokeObjectURL(a.href);
+}
+
+function importJSON(e){
+ const file=e.target.files[0];if(!file)return;
+ const reader=new FileReader();
+ reader.onload=function(ev){
+  try{
+   const data=JSON.parse(ev.target.result);
+   if(!Array.isArray(data)){alert('無効なファイル形式です');return}
+   if(data.length>20){alert('20件を超えるデータは読み込めません');return}
+   if(!confirm('現在のデータを上書きしますか？（'+data.length+'件読み込み）'))return;
+   contracts=data;save();render();
+  }catch(err){alert('JSONの読み込みに失敗しました')}
+ };
+ reader.readAsText(file);
+ e.target.value='';
+}
+
+render();
+</script>
+</body>
+</html>

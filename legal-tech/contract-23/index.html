@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>契約更新・交渉文案ジェネレーター | 締結済み契約の「その後」を管理するツールセット - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.banner{background:#e74c3c;color:#fff;text-align:center;padding:10px 16px;font-size:14px;font-weight:600;position:sticky;top:0;z-index:100}
+.banner span{background:rgba(255,255,255,.2);border-radius:4px;padding:2px 8px;margin-left:6px}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:24px 20px 18px;text-align:center}
+header h1{font-size:22px;margin-bottom:4px}
+header p{font-size:13px;opacity:.8}
+.container{max-width:800px;margin:0 auto;padding:16px}
+.scenario-tabs{display:flex;gap:0;margin-bottom:20px;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.tab{flex:1;padding:14px 8px;text-align:center;font-size:14px;font-weight:600;cursor:pointer;border:none;background:#fff;color:#666;transition:all .2s}
+.tab.active{color:#fff}
+.tab:nth-child(1).active{background:#dc2626}
+.tab:nth-child(2).active{background:#d97706}
+.tab:nth-child(3).active{background:#2563eb}
+.tab:hover:not(.active){background:#f3f4f6}
+.form-section{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px}
+.form-section h2{font-size:16px;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e5e7eb}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:4px;color:#374151}
+.field input,.field textarea,.field select{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;transition:border-color .2s}
+.field input:focus,.field textarea:focus{outline:none;border-color:#2563eb}
+.field textarea{resize:vertical;min-height:60px}
+.field small{color:#9ca3af;font-size:11px;margin-top:2px;display:block}
+.btn-gen{border:none;padding:12px 24px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;width:100%;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;margin-top:4px;transition:opacity .2s}
+.btn-gen:hover{opacity:.85}
+.result-box{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:16px;display:none}
+.result-box h2{font-size:16px;margin-bottom:12px}
+.draft{background:#fafbfc;border:1px solid #e5e7eb;border-radius:8px;padding:16px;font-size:13px;white-space:pre-wrap;line-height:1.8;max-height:400px;overflow-y:auto}
+.copy-row{display:flex;gap:8px;margin-top:12px}
+.btn-copy{background:#059669;color:#fff;padding:10px 20px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;flex:1;transition:opacity .2s}
+.btn-copy:hover{opacity:.85}
+.btn-reset{background:#6b7280;color:#fff;padding:10px 20px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .2s}
+.btn-reset:hover{opacity:.85}
+.copied{background:#047857!important}
+.accordion{margin-top:16px}
+.acc-header{background:#f8f9fa;border:1px solid #e5e7eb;border-radius:8px;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:600;display:flex;justify-content:space-between;align-items:center;color:#4b5563}
+.acc-header:hover{background:#f3f4f6}
+.acc-arrow{transition:transform .2s;font-size:12px}
+.acc-arrow.open{transform:rotate(180deg)}
+.acc-body{display:none;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px;padding:14px 16px;font-size:12px;color:#4b5563;line-height:1.8;background:#fff}
+.acc-body.show{display:block}
+.acc-body strong{color:#1a1a2e}
+.tip{background:#eff6ff;border-left:4px solid #2563eb;padding:12px 14px;border-radius:0 8px 8px 0;font-size:12px;color:#1e40af;margin-bottom:16px}
+footer{text-align:center;padding:20px;font-size:11px;color:#9ca3af}
+@media(max-width:600px){.scenario-tabs{flex-direction:column}.tab{padding:12px}}
+</style>
+<meta name="description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,契約更新・交渉文案ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-23/">
+<meta property="og:title" content="契約更新・交渉文案ジェネレーター | 締結済み契約の「その後」を管理するツールセット - kusasyu tools">
+<meta property="og:description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-23/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約更新・交渉文案ジェネレーター | 締結済み契約の「その後」を管理するツールセット - kusasyu tools">
+<meta name="twitter:description" content="締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "契約更新・交渉文案ジェネレーター",
+  "description": "締結済み契約の「その後」を管理するツールセット。既存のAI契約書レビューツール（LegalOn、LeCHECK等）は締結前のレビューに特化しており、締結後の更新期限管理・解約通知期限・交渉文案生成はカバーしていない。本プロジェクトでは、契約情報を入力すると更新期限を一覧管理できるダッシュボード、値上げ交渉や条",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-23/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">契約更新・交渉文案ジェネレーター</span></div>
+<div class="banner">本ツールは参考文案を生成するものです。重要な交渉は必ず専門家にご相談ください <span>Kusasyu Legal Tech</span></div>
+<header>
+<h1>交渉文案テンプレート自動補完ツール</h1>
+<p>契約期限アラートダッシュボードと連携 ― 値上げ拒否・解約通知・条件変更の3パターン対応</p>
+</header>
+<div class="container">
+<div class="tip">シナリオを選択し、必要事項を入力するだけで、ビジネスメール形式の交渉文案を自動生成します。</div>
+<div class="scenario-tabs">
+<div class="tab active" onclick="selectTab(0)">値上げ拒否</div>
+<div class="tab" onclick="selectTab(1)">解約通知</div>
+<div class="tab" onclick="selectTab(2)">条件変更要求</div>
+</div>
+<div class="form-section">
+<h2 id="formTitle">値上げ拒否の交渉文案</h2>
+<div class="field"><label>取引先名（会社名）</label><input type="text" id="company" placeholder="例：株式会社○○"></div>
+<div class="field"><label>担当者名（先方）</label><input type="text" id="person" placeholder="例：営業部 山田様"></div>
+<div class="field"><label>自社名</label><input type="text" id="myCompany" placeholder="例：株式会社△△"></div>
+<div class="field"><label>自社担当者名・部署</label><input type="text" id="myName" placeholder="例：管理部 佐藤"></div>
+<div class="field"><label>契約名・対象サービス</label><input type="text" id="contract" placeholder="例：業務委託基本契約 / ITサポート保守契約"></div>
+<div class="field"><label id="lbl_detail">値上げの内容（提示された条件）</label><input type="text" id="detail" placeholder="例：月額10万円→15万円（50%増）"></div>
+<div class="field"><label id="lbl_wish">希望条件・こちらの主張</label><textarea id="wish" placeholder="例：現行価格の据え置き、または10%以内の改定を希望"></textarea><small id="lbl_wish_hint">具体的な数値や根拠を書くと、より説得力のある文案になります</small></div>
+<div class="field"><label>契約満了日</label><input type="date" id="deadline"></div>
+<button class="btn-gen" onclick="generate()">文案を生成する</button>
+</div>
+<div class="result-box" id="resultBox">
+<h2>生成された交渉文案</h2>
+<div class="draft" id="draftText"></div>
+<div class="copy-row">
+<button class="btn-copy" id="copyBtn" onclick="copyDraft()">クリップボードにコピー</button>
+<button class="btn-reset" onclick="resetForm()">リセット</button>
+</div>
+<div class="accordion">
+<div class="acc-header" onclick="toggleAcc(this)">法的参考情報（民法・下請法）<span class="acc-arrow">▼</span></div>
+<div class="acc-body" id="legalRef"></div>
+</div>
+</div>
+</div>
+<footer>© 2026 Kusasyu Legal Tech — 交渉文案テンプレート自動補完ツール</footer>
+<script>
+let mode=0;
+const titles=["値上げ拒否の交渉文案","解約通知の交渉文案","条件変更要求の交渉文案"];
+const detailLabels=["値上げの内容（提示された条件）","解約理由・背景","変更したい条件の現状"];
+const detailPH=["例：月額10万円→15万円（50%増）","例：サービス品質の低下、コスト見直し","例：現在の納品リードタイム 14日"];
+const wishLabels=["希望条件・こちらの主張","解約希望日・引継ぎ事項","希望する変更内容"];
+const wishPH=["例：現行価格の据え置き、または10%以内の改定を希望","例：2026年6月末での契約終了を希望","例：リードタイムを7日に短縮、または単価5%減"];
+const wishHints=["具体的な数値や根拠を書くと、より説得力のある文案になります","解約通知期限を契約書で確認してください","優先度の高い条件から記載すると交渉しやすくなります"];
+function selectTab(i){mode=i;document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('active',j===i)});document.getElementById('formTitle').textContent=titles[i];document.getElementById('lbl_detail').textContent=detailLabels[i];document.getElementById('detail').placeholder=detailPH[i];document.getElementById('lbl_wish').textContent=wishLabels[i];document.getElementById('wish').placeholder=wishPH[i];document.getElementById('lbl_wish_hint').textContent=wishHints[i];document.getElementById('resultBox').style.display='none';}
+function v(id){return document.getElementById(id).value.trim();}
+function today(){var d=new Date();return d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日';}
+function fmtDate(s){if(!s)return '○○年○月○日';var p=s.split('-');return p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日';}
+function generate(){
+var co=v('company')||'○○株式会社',pe=v('person')||'ご担当者',my=v('myCompany')||'弊社',mn=v('myName')||'担当者',ct=v('contract')||'対象契約',dt=v('detail'),ws=v('wish'),dl=fmtDate(v('deadline'));
+var txt='',legal='';
+if(mode===0){
+txt=co+'\n'+pe+' 様\n\n平素より大変お世話になっております。\n'+my+' '+mn+'でございます。\n\nこのたびは'+ct+'に関する改定のご提案をいただき、誠にありがとうございます。\n社内にて慎重に検討いたしました結果、以下の通りご相談申し上げます。\n\n【ご提案いただいた内容】\n'+(dt||'（値上げ内容をご入力ください）')+'\n\n【弊社の状況・希望】\n'+(ws||'（希望条件をご入力ください）')+'\n\n貴社との取引関係を今後も良好に継続していきたいと考えておりますが、上記の改定幅は弊社の予算計画上、受け入れが困難な状況でございます。\n\nつきましては、双方にとって合理的な着地点を見出すべく、一度お打ち合わせの機会をいただけますと幸いです。\n\nなお、現行契約の満了日は'+dl+'と認識しております。期限までに合意に至れるよう、早めのご調整をお願い申し上げます。\n\nご多忙のところ恐れ入りますが、ご検討のほどよろしくお願いいたします。\n\n'+today()+'\n'+my+'\n'+mn;
+legal='<strong>民法 第541条（催告による解除）</strong><br>相手方が債務を履行しない場合、相当の期間を定めて催告し、期間内に履行がなければ契約解除が可能です。一方的な値上げは「債務の本旨に従った履行」に該当しない場合があります。<br><br><strong>民法 第1条第2項（信義誠実の原則）</strong><br>権利の行使及び義務の履行は、信義に従い誠実に行わなければなりません。合理的な理由のない大幅な値上げは信義則違反となる可能性があります。<br><br><strong>下請法 第4条第1項第5号（買いたたきの禁止）</strong><br>親事業者が下請事業者に対し、通常支払われる対価に比べ著しく低い下請代金を不当に定めることは禁止されています。逆に、下請事業者からの値上げ要請を一方的に拒否することも問題となり得ます。<br><br><strong>実務ポイント</strong><br>・値上げ拒否の際は「代替案の提示」が交渉を有利に進めます<br>・契約書の価格改定条項（エスカレーション条項）を事前に確認しましょう<br>・書面でのやり取りを残すことで、後日の紛争防止になります';
+}else if(mode===1){
+txt=co+'\n'+pe+' 様\n\n平素より大変お世話になっております。\n'+my+' '+mn+'でございます。\n\n誠に勝手ながら、'+ct+'につきまして、下記の通り解約のお申し入れをさせていただきます。\n\n【解約の背景】\n'+(dt||'（解約理由をご入力ください）')+'\n\n【解約希望日・引継ぎ事項】\n'+(ws||'（解約希望日をご入力ください）')+'\n\n【契約満了日】\n'+dl+'\n\nこれまでのお取引に心より感謝申し上げます。解約に伴う引継ぎ事項がございましたら、誠実に対応いたしますので、お申し付けください。\n\n解約に必要な手続き・書類等がございましたら、ご教示いただけますと幸いです。\n\nご多忙のところ恐れ入りますが、何卒よろしくお願いいたします。\n\n'+today()+'\n'+my+'\n'+mn;
+legal='<strong>民法 第617条（期間の定めのない賃貸借の解約申入れ）</strong><br>期間の定めのない契約は、各当事者がいつでも解約の申入れをすることができます。解約申入れ後、一定の期間経過により契約が終了します。<br><br><strong>民法 第651条（委任の解除）</strong><br>委任契約は、各当事者がいつでも解除できます。ただし、相手方に不利な時期に解除した場合、やむを得ない事由がなければ損害賠償義務が生じます。<br><br><strong>契約書の解約条項について</strong><br>多くの契約書には「解約通知期限」（30日前、3ヶ月前など）が定められています。この期限を過ぎると自動更新される場合があるため、必ず確認してください。<br><br><strong>実務ポイント</strong><br>・解約通知は書面（メール可）で証拠を残しましょう<br>・自動更新条項がある場合、通知期限の管理が極めて重要です<br>・「契約期限アラートダッシュボード」で通知期限を管理できます';
+}else{
+txt=co+'\n'+pe+' 様\n\n平素より大変お世話になっております。\n'+my+' '+mn+'でございます。\n\n'+ct+'につきまして、下記の条件変更をご相談させていただきたく、ご連絡いたしました。\n\n【現状の条件】\n'+(dt||'（現在の条件をご入力ください）')+'\n\n【変更のご希望】\n'+(ws||'（希望する変更内容をご入力ください）')+'\n\n上記の変更をお願いしたい背景として、弊社の事業環境の変化に伴い、より効率的な取引条件の構築が必要となっております。\n\n貴社との取引関係を引き続き大切にしていきたいと考えておりますので、双方にとってより良い条件を模索できればと存じます。\n\n現行契約の満了日は'+dl+'でございますので、更新前に条件を整理できればと考えております。\n\nお忙しいところ恐縮ですが、ご検討のうえ、ご意向をお聞かせいただけますと幸いです。\n\n'+today()+'\n'+my+'\n'+mn;
+legal='<strong>民法 第548条の4（定型約款の変更）</strong><br>定型約款の変更は、相手方の一般の利益に適合するとき、または契約目的に反せず合理的なときに限り認められます。一方的な変更は無効となる可能性があります。<br><br><strong>下請法 第4条第2項第2号（不当な経済上の利益提供要請の禁止）</strong><br>親事業者が下請事業者に対し、不当な条件変更を強いることは禁止されています。対等な立場での交渉が原則です。<br><br><strong>民法 第521条（契約の自由）</strong><br>契約の内容は当事者が自由に定めることができます。条件変更も双方の合意に基づくものであり、一方的な変更は認められません。<br><br><strong>実務ポイント</strong><br>・条件変更は「契約変更覚書」を締結して書面化しましょう<br>・変更前に競合他社の見積もりを取ると交渉材料になります<br>・段階的な変更提案は受け入れられやすい傾向があります';
+}
+document.getElementById('draftText').textContent=txt;
+document.getElementById('legalRef').innerHTML=legal;
+document.getElementById('resultBox').style.display='block';
+document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'start'});
+document.querySelector('.acc-body').classList.remove('show');
+document.querySelector('.acc-arrow').classList.remove('open');
+}
+function copyDraft(){var t=document.getElementById('draftText').textContent;navigator.clipboard.writeText(t).then(function(){var b=document.getElementById('copyBtn');b.textContent='コピーしました！';b.classList.add('copied');setTimeout(function(){b.textContent='クリップボードにコピー';b.classList.remove('copied');},2000);});}
+function toggleAcc(el){el.nextElementSibling.classList.toggle('show');el.querySelector('.acc-arrow').classList.toggle('open');}
+function resetForm(){['company','person','myCompany','myName','contract','detail','wish','deadline'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('resultBox').style.display='none';window.scrollTo({top:0,behavior:'smooth'});}
+</script>
+</body>
+</html>
