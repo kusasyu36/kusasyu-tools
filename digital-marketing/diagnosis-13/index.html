@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AIO対応スコア診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:#fff;padding:32px 24px;border-radius:12px;margin-bottom:24px;text-align:center}
+header h1{font-size:1.5em;margin-bottom:8px}
+header p{font-size:.9em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1.15em;color:#1e3a5f;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+label{display:block;font-size:.88em;font-weight:600;margin-bottom:4px;color:#4a5568}
+input[type=text],select{width:100%;padding:10px 12px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em;margin-bottom:14px;background:#fff}
+input:focus,select:focus{outline:none;border-color:#2d6a9f;box-shadow:0 0 0 3px rgba(45,106,159,.15)}
+.q-item{padding:14px 0;border-bottom:1px solid #edf2f7}
+.q-item:last-child{border-bottom:none}
+.q-text{font-size:.92em;font-weight:600;margin-bottom:8px}
+.q-hint{font-size:.78em;color:#718096;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts label{display:inline-flex;align-items:center;gap:4px;font-weight:400;cursor:pointer;padding:6px 14px;border:2px solid #e2e8f0;border-radius:20px;font-size:.85em;transition:.2s}
+.opts input{display:none}
+.opts label:has(input[value="2"]:checked){background:#2d6a9f;border-color:#2d6a9f;color:#fff}
+.opts label:has(input[value="0"]:checked){background:#e53e3e;border-color:#e53e3e;color:#fff}
+.opts label:has(input[value="1"]:checked){background:#9f7a2d;border-color:#9f7a2d;color:#fff}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;transition:.2s;margin-top:8px}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+#result{display:none}
+.score-circle{width:160px;height:160px;margin:0 auto 16px;position:relative}
+.score-circle svg{transform:rotate(-90deg)}
+.score-circle .val{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.score-circle .val .num{font-size:2.2em;font-weight:800;line-height:1}
+.score-circle .val .mx{font-size:.8em;color:#718096}
+.rank-badge{display:inline-block;padding:6px 24px;border-radius:20px;font-size:1.3em;font-weight:800;color:#fff;margin:8px 0 4px}
+.rank-A{background:#38a169}.rank-B{background:#2d6a9f}.rank-C{background:#d69e2e}.rank-D{background:#e53e3e}
+.rank-msg{font-size:.92em;color:#4a5568;margin-bottom:16px;text-align:center}
+.act-tbl{width:100%;border-collapse:collapse;font-size:.82em;margin-top:12px}
+.act-tbl th{background:#1e3a5f;color:#fff;padding:8px 6px;text-align:left;white-space:nowrap}
+.act-tbl td{padding:8px 6px;border-bottom:1px solid #e2e8f0;vertical-align:top}
+.act-tbl tr:nth-child(even){background:#f7fafc}
+.pri-high{color:#e53e3e;font-weight:700}.pri-mid{color:#d69e2e;font-weight:700}.pri-low{color:#38a169;font-weight:700}
+.bar-bg{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;margin-top:4px}
+.bar-fg{height:100%;border-radius:4px;transition:width .6s}
+.info-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.info-row{grid-template-columns:1fr}.act-tbl{font-size:.75em}}
+.retry{margin-top:16px;text-align:center}
+.retry a{color:#2d6a9f;cursor:pointer;font-weight:600;text-decoration:underline}
+.report-hdr{text-align:center;margin-bottom:20px}
+.cat-score{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:.88em}
+</style>
+<meta name="description" content="ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AIO対応スコア診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-13/">
+<meta property="og:title" content="AIO対応スコア診断ツール - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIO対応スコア診断ツール - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AIO対応スコア診断ツール",
+  "description": "ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-13/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AIO対応スコア診断ツール</span></div>
+<div class="wrap">
+<header>
+<h1>AIO対応スコア診断ツール</h1>
+<p>AI検索エンジン（ChatGPT・Claude・Gemini）に引用される準備度を10項目で診断</p>
+</header>
+<form id="form">
+<div class="card">
+<h2>基本情報</h2>
+<div class="info-row">
+<div><label>会社名</label><input type="text" id="company" placeholder="例：株式会社サンプル"></div>
+<div><label>サイトURL</label><input type="text" id="url" placeholder="例：https://example.co.jp"></div>
+</div>
+<label>業種</label>
+<select id="industry"><option value="">選択してください</option><option>IT・SaaS</option><option>製造業</option><option>人材・HR</option><option>不動産</option><option>金融・保険</option><option>コンサルティング</option><option>EC・小売</option><option>医療・ヘルスケア</option><option>教育</option><option>その他</option></select>
+<label>主要キーワード（カンマ区切り）</label>
+<input type="text" id="keywords" placeholder="例：BtoB マーケティング, リード獲得">
+<label>現在のSEO施策</label>
+<select id="seo"><option value="">選択してください</option><option>内製のみ</option><option>外部委託（月10〜30万円）</option><option>外部委託（月30〜50万円）</option><option>外部委託（月50万円以上）</option><option>特に行っていない</option></select>
+</div>
+<div class="card">
+<h2>AIO対応セルフチェック（10項目）</h2>
+<div id="questions"></div>
+</div>
+<button type="submit" class="btn">診断する</button>
+</form>
+<div id="result"></div>
+</div>
+<script>
+var QS=[
+{q:"主要ページにFAQ（よくある質問）セクションがあり、JSON-LD等で構造化マークアップされている",h:"schema.orgのFAQPageマークアップがHTMLに含まれるか",cat:"構造化データ",act:"主要10ページにFAQ構造化データを追加",pri:"高",ef:"1〜2週間"},
+{q:"自社サービスや業界用語を「〜とは」形式で簡潔に定義するページ・セクションがある",h:"AI検索は定義文を引用しやすい傾向があります",cat:"定義文",act:"主要キーワードの定義ページを作成（1語1ページ）",pri:"高",ef:"2〜3週間"},
+{q:"競合・代替手段との比較表（表形式HTML）を公開している",h:"料金・機能・対応範囲などの比較表があるか",cat:"比較表",act:"競合3社以上との比較表ページを作成",pri:"中",ef:"1〜2週間"},
+{q:"統計データ・調査結果を出典付きで掲載し、引用しやすいフォーマットになっている",h:"数値+出典がセットで記載されているか",cat:"引用適性",act:"自社調査データを出典付きで公開する",pri:"中",ef:"3〜4週間"},
+{q:"ページにメタディスクリプション・title・見出し階層（H1〜H3）が適切に設定されている",h:"基本的なHTMLセマンティクスの確認",cat:"基本SEO",act:"全ページのメタ・見出し階層を監査・修正",pri:"高",ef:"1週間"},
+{q:"コンテンツの著者情報（氏名・専門性・資格等）が明示されている",h:"E-E-A-Tの「経験・専門性」に関わる要素",cat:"E-E-A-T",act:"著者プロフィールと専門性を全記事に明示",pri:"中",ef:"1週間"},
+{q:"主要コンテンツが最終更新日付きで、少なくとも半年以内に更新されている",h:"古い情報はAI検索で引用されにくくなります",cat:"鮮度",act:"主要20ページの情報を最新化し更新日を明記",pri:"高",ef:"2〜3週間"},
+{q:"HowTo（手順）やステップ形式のコンテンツがあり、番号付きリストで構造化されている",h:"手順系コンテンツはAI回答に引用されやすい",cat:"構造化データ",act:"導入手順・使い方をHowToマークアップで公開",pri:"中",ef:"1〜2週間"},
+{q:"サイト内にナレッジベースやヘルプセンター等の体系的な情報ハブがある",h:"トピッククラスター構造の有無",cat:"情報設計",act:"トピック別ナレッジベースを構築",pri:"低",ef:"1〜2ヶ月"},
+{q:"ページの表示速度がモバイルでも良好（Core Web Vitals合格）で、robots.txtでAIクローラーをブロックしていない",h:"GPTBot等のクローラーがアクセス可能か",cat:"技術基盤",act:"robots.txtのAIクローラー設定を確認・修正",pri:"高",ef:"1日"}
+];
+var qWrap=document.getElementById("questions");
+QS.forEach(function(item,i){
+var d=document.createElement("div");d.className="q-item";
+d.innerHTML='<div class="q-text">Q'+(i+1)+'. '+item.q+'</div><div class="q-hint">'+item.h+'</div><div class="opts"><label><input type="radio" name="q'+i+'" value="2"><span>はい</span></label><label><input type="radio" name="q'+i+'" value="0"><span>いいえ</span></label><label><input type="radio" name="q'+i+'" value="1"><span>わからない</span></label></div>';
+qWrap.appendChild(d);
+});
+document.getElementById("form").addEventListener("submit",function(e){
+e.preventDefault();
+var scores=[],total=0,cats={};
+for(var i=0;i<10;i++){
+var r=document.querySelector('input[name="q'+i+'"]:checked');
+if(!r){alert("Q"+(i+1)+"に回答してください");return}
+var v=parseInt(r.value);scores.push(v);total+=v;
+var c=QS[i].cat;if(!cats[c])cats[c]=[];cats[c].push(v);
+}
+var pct=Math.round(total/20*100);
+var rank,rankMsg,color;
+if(pct>=80){rank="A";rankMsg="AI検索への対応が進んでいます。微調整で引用率をさらに高められます。";color="#38a169"}
+else if(pct>=60){rank="B";rankMsg="基盤はできています。構造化データと定義文の強化が次の一手です。";color="#2d6a9f"}
+else if(pct>=35){rank="C";rankMsg="改善余地が大きい状態です。優先度「高」から着手しましょう。";color="#d69e2e"}
+else{rank="D";rankMsg="AI検索対応がほぼ未着手です。基本SEOと構造化データから始めましょう。";color="#e53e3e"}
+var comp=document.getElementById("company").value||"（未入力）";
+var siteUrl=document.getElementById("url").value||"（未入力）";
+var ind=document.getElementById("industry").value||"（未選択）";
+var kw=document.getElementById("keywords").value||"（未入力）";
+var catHtml="";
+for(var c in cats){var s=cats[c].reduce(function(a,b){return a+b},0),m=cats[c].length*2,p=Math.round(s/m*100);
+catHtml+='<div class="cat-score"><span>'+c+'</span><div style="flex:1;margin:0 12px"><div class="bar-bg"><div class="bar-fg" style="width:'+p+'%;background:'+color+'"></div></div></div><span>'+p+'%</span></div>';}
+var actRows="";
+QS.forEach(function(item,i){
+if(scores[i]<2){
+var pc=item.pri==="高"?"pri-high":item.pri==="中"?"pri-mid":"pri-low";
+var st=scores[i]===0?"未対応":"要確認";
+actRows+="<tr><td><span class='"+pc+"'>"+item.pri+"</span></td><td>"+item.act+"</td><td>"+item.cat+"</td><td>"+item.ef+"</td><td>"+st+"</td></tr>";}
+});
+if(!actRows)actRows="<tr><td colspan='5' style='text-align:center;padding:16px'>すべて対応済みです！</td></tr>";
+var R=160,cx=80,cy=80,r=70,C=2*Math.PI*r,off=C*(1-pct/100);
+var html='<div class="card"><div class="report-hdr"><p style="font-size:.85em;color:#718096">診断レポート — '+comp+' ('+siteUrl+')</p><p style="font-size:.8em;color:#a0aec0">業種: '+ind+' / キーワード: '+kw+'</p></div>'
++'<div class="score-circle"><svg width="'+R+'" height="'+R+'"><circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#e2e8f0" stroke-width="12"/><circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="12" stroke-dasharray="'+C+'" stroke-dashoffset="'+off+'" stroke-linecap="round"/></svg><div class="val"><div class="num">'+pct+'</div><div class="mx">/ 100点</div></div></div>'
++'<div style="text-align:center"><span class="rank-badge rank-'+rank+'">ランク '+rank+'</span></div>'
++'<p class="rank-msg">'+rankMsg+'</p>'
++'<h2 style="font-size:1em;margin:20px 0 8px;color:#1e3a5f">カテゴリ別スコア</h2>'+catHtml
++'<h2 style="font-size:1em;margin:20px 0 8px;color:#1e3a5f">改善アクション一覧</h2>'
++'<div style="overflow-x:auto"><table class="act-tbl"><tr><th>優先度</th><th>アクション</th><th>カテゴリ</th><th>想定工数</th><th>現状</th></tr>'+actRows+'</table></div>'
++'<div class="retry"><a onclick="location.reload()">もう一度診断する</a></div></div>';
+document.getElementById("result").innerHTML=html;
+document.getElementById("result").style.display="block";
+document.getElementById("form").style.display="none";
+window.scrollTo({top:0,behavior:"smooth"});
+});
+</script>
+</body>
+</html>

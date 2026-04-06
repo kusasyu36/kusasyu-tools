@@ -2574,6 +2574,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-13",
+    "url": "digital-marketing/diagnosis-13/",
+    "title": "SEOが効かない？AI検索に選ばれる診断ツール",
+    "tool_name": "AIO対応スコア診断ツール",
+    "description": "ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手ができる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-06T02:38:55.170621+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-14",
+    "url": "digital-marketing/diagnosis-14/",
+    "title": "SEOが効かない？AI検索に選ばれる診断ツール",
+    "tool_name": "AI引用される構造化コンテンツ設計シート",
+    "description": "ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手ができる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-06T02:38:55.170621+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "seo-aio",
+    "url": "digital-marketing/seo-aio/",
+    "title": "SEOが効かない？AI検索に選ばれる診断ツール",
+    "tool_name": "SEO担当者のためのAIO移行ガイド",
+    "description": "ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手ができる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-06T02:38:55.170621+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -4301,6 +4340,45 @@
     "quality_score": 6,
     "completed_at": "2026-03-13T15:11:16.139509+00:00",
     "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-11",
+    "url": "legal-tech/tool-11/",
+    "title": "「知らなかった」では済まない、中小企業の法令チェッカー",
+    "tool_name": "中小企業コンプライアンス15項目チェッカー",
+    "description": "法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが、本キットは「契約書以外の日常的な法令遵守」を無料でカバーする。",
+    "quality_score": 6,
+    "completed_at": "2026-04-06T07:33:59.375699+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "template-3",
+    "url": "legal-tech/template-3/",
+    "title": "「知らなかった」では済まない、中小企業の法令チェッカー",
+    "tool_name": "よくある法令違反トップ5_是正テンプレート集",
+    "description": "法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが、本キットは「契約書以外の日常的な法令遵守」を無料でカバーする。",
+    "quality_score": 6,
+    "completed_at": "2026-04-06T07:33:59.375699+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "management-5",
+    "url": "legal-tech/management-5/",
+    "title": "「知らなかった」では済まない、中小企業の法令チェッカー",
+    "tool_name": "コンプライアンス管理台帳",
+    "description": "法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが、本キットは「契約書以外の日常的な法令遵守」を無料でカバーする。",
+    "quality_score": 6,
+    "completed_at": "2026-04-06T07:33:59.375699+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "proptech",

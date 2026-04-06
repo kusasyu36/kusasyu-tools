@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コンプライアンス管理台帳 - kusasyu tools</title>
+<meta name="description" content="法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,コンプライアンス管理台帳">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-5/">
+<meta property="og:title" content="コンプライアンス管理台帳 - kusasyu tools">
+<meta property="og:description" content="法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="コンプライアンス管理台帳 - kusasyu tools">
+<meta name="twitter:description" content="法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "コンプライアンス管理台帳",
+  "description": "法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-06"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>コンプライアンス管理台帳</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>コンプライアンス管理台帳</h1>
+  <p class="project-name">「知らなかった」では済まない、中小企業の法令チェッカー</p>
+  <div class="content">
+<p>=IF(I2&lt;&gt;"","完了",IF(H2="","―",H2-TODAY()))</p>
+<pre><code>
+**動作：**
+- 是正完了日（I列）が入力済み → 「完了」と表示
+- 是正期限（H列）が空欄 → 「―」と表示
+- それ以外 → 期限までの残日数を数値で表示（負の値＝超過）
+
+### 条件付き書式の設定
+
+J列（残日数）に以下3つのルールを上から順に適用する。
+
+| 優先度 | 条件 | 書式 | 意味 |
+|-------|------|------|------|
+| 1 | `=AND(ISNUMBER(J2),J2&lt;0)` | 背景：赤、文字：白太字 | 期限超過 |
+| 2 | `=AND(ISNUMBER(J2),J2&lt;=7)` | 背景：黄、文字：黒太字 | 7日以内に期限到来 |
+| 3 | `=J2=&quot;完了&quot;` | 背景：薄緑、文字：緑 | 是正完了 |
+
+**設定手順：** ホーム → 条件付き書式 → 新しいルール → 「数式を使用して…」を選択し、上記の数式を入力。適用範囲はJ列全体（`$J$2:$J$200`）。
+
+### E列（遵守状況）の色分け
+
+| 値 | 背景色 |
+|----|--------|
+| OK | 薄緑 |
+| NG | 薄赤 |
+| 未確認 | 薄黄 |
+
+**設定：** E列を選択 → 条件付き書式 → セルの値が「OK」→ 薄緑、同様にNG・未確認を設定。
+
+---
+
+## シート①に入れるべき遵守項目（4法域）
+
+### 労働法（15項目の抜粋）
+
+| No. | 条文 | 遵守項目 | 確認ポイント |
+|-----|------|---------|-------------|
+| 1 | 労基法第36条 | 36協定の届出 | 届出済みか、有効期間内か。月45時間・年360時間の上限遵守。特別条項は年6回・月70時間以内か |
+| 2 | 労基法第32条 | 法定労働時間の管理 | 月平均15時間等の実態を把握しているか |
+| 3 | 労基法第89条 | 就業規則の届出 | 常時10人以上の事業場で届出済みか |
+| 4 | 労基法第39条 | 年次有給休暇の取得義務 | 年5日の取得義務を履行しているか |
+| 5 | 労安衛法第66条 | 定期健康診断の実施 | 年1回実施し、結果を報告しているか |
+| 6 | 労基法第108条 | 賃金台帳の整備 | 対象労働者45名分を正確に記録しているか |
+| 7 | 育介法第5条 | 育児・介護休業規程 | 2025年改正に対応しているか |
+
+### 個人情報保護法（10項目の抜粋）
+
+| No. | 条文 | 遵守項目 | 確認ポイント |
+|-----|------|---------|-------------|
+| 8 | 法第23条 | 安全管理措置の整備 | 個人情報取扱規程を制定し周知しているか（管理者：鈴木一郎、担当者：田中次郎） |
+| 9 | 法第21条 | 利用目的の通知・公表 | プライバシーポリシーをWebサイトに掲載しているか |
+| 10 | 法第26条 | 漏えい報告体制 | 1,000人超の漏えい時、個人情報保護委員会への報告体制があるか |
+| 11 | 法第25条 | 従業者の監督 | 秘密保持誓約書を取得し、年1回以上の教育を実施しているか |
+| 12 | 法第27条 | 第三者提供の制限 | 本人同意なき第三者提供をしていないか |
+
+### 下請法（10項目の抜粋）
+
+| No. | 条文 | 遵守項目 | 確認ポイント |
+|-----|------|---------|-------------|
+| 13 | 第3条 | 書面の交付 | 発注時に3条書面を交付しているか |
+| 14 | 第4条1項2号 | 支払期日の遵守 | 受領日から60日以内に支払っているか |
+| 15 | 第4条1項3号 | 代金の減額禁止 | 発注後に一方的な減額をしていないか |
+| 16 | 第4条1項1号 | 受領拒否の禁止 | 正当な理由なく受領を拒否していないか |
+| 17 | 第5条 | 取引記録の保存 | 2年間の書類保存義務を履行しているか |
+
+### 景品表示法（8項目の抜粋）
+
+| No. | 条文 | 遵守項目 | 確認ポイント |
+|-----|------|---------|-------------|
+| 18 | 第5条1号 | 優良誤認表示の禁止 | 品質・性能について実際より著しく優良と示す表示がないか |
+| 19 | 第5条2号 | 有利誤認表示の禁止 | 価格・取引条件を著しく有利と誤認させる表示がないか |
+| 20 | 第26条 | 管理上の措置 | 表示管理担当者の設置、表示根拠資料の保管ができているか |
+| 21 | 景品類告示 | 景品類の制限 | 一般懸賞は取引価額の20倍かつ10万円以内か |
+
+&gt; **ヒント：** 上記は代表的な項目の抜粋。実際のテンプレートには法域ごと10〜15項目、合計約50項目をあらかじめ入力済みで配布する。
+
+---
+
+## シート②：ダッシュボード
+
+以下の集計式をダッシュボードシートに配置する。
+
+</code></pre>
+<p>■ 法域別の遵守率
+=COUNTIFS(遵守項目一覧!B:B,"労働法",遵守項目一覧!E:E,"OK")
+ / COUNTIF(遵守項目一覧!B:B,"労働法")</p>
+<p>■ NG件数
+=COUNTIFS(遵守項目一覧!B:B,"労働法",遵守項目一覧!E:E,"NG")</p>
+<p>■ 期限超過件数（全法域）
+=COUNTIF(遵守項目一覧!J:J,"&lt;0")</p>
+<p>■ 未確認件数（全法域）
+=COUNTIF(遵守項目一覧!E:E,"未確認")</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

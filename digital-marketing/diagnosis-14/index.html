@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI引用される構造化コンテンツ設計シート - kusasyu tools</title>
+<meta name="description" content="ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI引用される構造化コンテンツ設計シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-14/">
+<meta property="og:title" content="AI引用される構造化コンテンツ設計シート - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI引用される構造化コンテンツ設計シート - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI引用される構造化コンテンツ設計シート",
+  "description": "ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用されるかを診断し、引用されやすい構造化コンテンツ（FAQ・定義ページ・比較表）を設計できるツールキット。AIOブースターやDigital Arrow Partnersのような有料サービスに頼る前に、無料で現状把握と改善着手が",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-06"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AI引用される構造化コンテンツ設計シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AI引用される構造化コンテンツ設計シート</h1>
+  <p class="project-name">SEOが効かない？AI検索に選ばれる診断ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>業種</th><th>コンテンツ種別</th><th>ページURL（予定）</th><th>質問文／見出し</th><th>回答文／本文（200文字以内）</th><th>Schema.orgタグ</th><th>HTML構造</th><th>想定引用AI</th><th>AIO対応スコア目安</th><th>優先度</th><th>ステータス</th><th>担当者</th><th>備考</th></tr></thead><tbody><tr><td>BtoB IT</td><td>FAQ</td><td>/faq/seo-ai</td><td>SEOとAIO（AI検索最適化）の違いは何ですか？</td><td>SEOは従来の検索エンジン（Google）での上位表示を目指す施策です。AIOはChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用・参照されることを目指す施策で、構造化データと明確な定義文が重要になります。</td><td>FAQPage</td><td>&lt;details&gt;&lt;summary&gt;Q&lt;/summary&gt;&lt;p&gt;A&lt;/p&gt;&lt;/details&gt;</td><td>ChatGPT／Claude／Gemini</td><td>80〜100点</td><td>高</td><td>未着手</td><td></td><td>AIO対応スコア診断ツールで80点以上が目標</td></tr><tr><td>BtoB IT</td><td>FAQ</td><td>/faq/structured-data</td><td>構造化データを実装するとAI検索にどう影響しますか？</td><td>構造化データ（JSON-LD等）を実装すると、AI検索エンジンがコンテンツの意味を正確に理解できるようになります。FAQPageやHowToなどのスキーマは引用率を平均40〜60%向上させるとされています。</td><td>FAQPage</td><td>&lt;script type="application/ld+json"&gt;</td><td>ChatGPT／Gemini</td><td>60〜80点</td><td>高</td><td>未着手</td><td></td><td>JSON-LD形式を推奨</td></tr><tr><td>BtoB IT</td><td>用語定義</td><td>/glossary/aio</td><td>AIO（AI Search Optimization）とは</td><td>AIOとは、ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用・推薦されるよう最適化する施策の総称です。従来のSEOに加え、明確な定義文・FAQ構造・比較表の整備が求められます。</td><td>DefinedTerm</td><td>&lt;dfn&gt;用語&lt;/dfn&gt;&lt;p&gt;定義文&lt;/p&gt;</td><td>ChatGPT／Claude</td><td>80〜100点</td><td>高</td><td>未着手</td><td></td><td>定義文は「〜とは、〜です。」の形式にする</td></tr><tr><td>BtoB IT</td><td>比較表</td><td>/compare/seo-vs-aio</td><td>SEOとAIOの施策比較</td><td>「対象エンジン」「主要指標」「必要コンテンツ」「費用相場（月額10〜50万円）」「効果測定方法」の5軸で比較。AIOは構造化データとFAQページが必須要素。</td><td>Table</td><td>&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;比較軸&lt;/th&gt;…&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;…&lt;/tbody&gt;&lt;/table&gt;</td><td>Gemini／ChatGPT</td><td>60〜80点</td><td>中</td><td>未着手</td><td></td><td>5軸以上で比較すると引用率が上がる</td></tr><tr><td>製造業</td><td>FAQ</td><td>/faq/iot-manufacturing</td><td>製造業のIoT導入費用の相場はいくらですか？</td><td>中小製造業（従業員50〜500名）のIoT導入費用は、初期費用300〜1500万円＋月額保守10〜50万円が相場です。センサー設置台数・データ基盤の規模・既存設備との連携範囲で大きく変動します。</td><td>FAQPage</td><td>&lt;details&gt;&lt;summary&gt;Q&lt;/summary&gt;&lt;p&gt;A&lt;/p&gt;&lt;/details&gt;</td><td>ChatGPT／Gemini</td><td>60〜80点</td><td>高</td><td>未着手</td><td></td><td>具体的な数値レンジを入れると引用されやすい</td></tr><tr><td>製造業</td><td>用語定義</td><td>/glossary/predictive-maintenance</td><td>予知保全（Predictive Maintenance）とは</td><td>予知保全とは、IoTセンサーやAI分析で設備の異常兆候を事前に検知し、故障前に保全作業を実施する手法です。従来の定期保全と比べ、ダウンタイムを最大50%削減できるとされています。</td><td>DefinedTerm</td><td>&lt;dfn&gt;予知保全&lt;/dfn&gt;&lt;p&gt;定義&lt;/p&gt;</td><td>ChatGPT／Claude</td><td>80〜100点</td><td>中</td><td>未着手</td><td></td><td>「〜とは、〜です。」の定義文パターン必須</td></tr><tr><td>製造業</td><td>比較表</td><td>/compare/maintenance-methods</td><td>保全方式3種比較（事後・定期・予知）</td><td>事後保全・定期保全・予知保全を「コスト」「ダウンタイム」「導入難易度」「ROI回収期間」で比較。予知保全はROI回収12〜18ヶ月、ダウンタイム50%削減が目安。</td><td>Table</td><td>&lt;table&gt;…&lt;/table&gt;</td><td>Gemini／ChatGPT</td><td>60〜80点</td><td>中</td><td>未着手</td><td></td><td>3方式×4軸のマトリクス形式</td></tr><tr><td>士業</td><td>FAQ</td><td>/faq/electronic-contract</td><td>電子契約は法的に有効ですか？</td><td>はい、電子署名法（2001年施行）により、電子署名が付された電子契約は手書き署名・押印と同等の法的効力を持ちます。ただし、立会人型と当事者型で証拠力が異なるため、契約内容に応じた選択が必要です。</td><td>FAQPage</td><td>&lt;details&gt;&lt;summary&gt;Q&lt;/summary&gt;&lt;p&gt;A&lt;/p&gt;&lt;/details&gt;</td><td>ChatGPT／Claude／Gemini</td><td>80〜100点</td><td>高</td><td>未着手</td><td></td><td>法令名・施行年を明記すると信頼性向上</td></tr><tr><td>士業</td><td>用語定義</td><td>/glossary/e-signature-law</td><td>電子署名法とは</td><td>電子署名法（電子署名及び認証業務に関する法律）とは、2001年に施行された法律で、一定の要件を満たす電子署名に手書き署名と同等の法的効力を認めるものです。認定認証業務の基準も規定しています。</td><td>DefinedTerm</td><td>&lt;dfn&gt;電子署名法&lt;/dfn&gt;&lt;p&gt;定義&lt;/p&gt;</td><td>ChatGPT／Claude</td><td>80〜100点</td><td>高</td><td>未着手</td><td></td><td>法律の正式名称と施行年を必ず含める</td></tr><tr><td>士業</td><td>比較表</td><td>/compare/e-contract-services</td><td>電子契約サービス比較（立会人型vs当事者型）</td><td>「法的証拠力」「導入コスト」「本人確認方法」「対応契約種別」で比較。月額1〜5万円の立会人型が中小企業に普及、当事者型は不動産・金融向け。</td><td>Table</td><td>&lt;table&gt;…&lt;/table&gt;</td><td>Gemini／ChatGPT</td><td>60〜80点</td><td>中</td><td>未着手</td><td></td><td>料金レンジを明示する</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `業種,コンテンツ種別,ページURL（予定）,質問文／見出し,回答文／本文（200文字以内）,Schema.orgタグ,HTML構造,想定引用AI,AIO対応スコア目安,優先度,ステータス,担当者,備考
+BtoB IT,FAQ,/faq/seo-ai,SEOとAIO（AI検索最適化）の違いは何ですか？,SEOは従来の検索エンジン（Google）での上位表示を目指す施策です。AIOはChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用・参照されることを目指す施策で、構造化データと明確な定義文が重要になります。,FAQPage,<details><summary>Q</summary><p>A</p></details>,ChatGPT／Claude／Gemini,80〜100点,高,未着手,,AIO対応スコア診断ツールで80点以上が目標
+BtoB IT,FAQ,/faq/structured-data,構造化データを実装するとAI検索にどう影響しますか？,構造化データ（JSON-LD等）を実装すると、AI検索エンジンがコンテンツの意味を正確に理解できるようになります。FAQPageやHowToなどのスキーマは引用率を平均40〜60%向上させるとされています。,FAQPage,<script type="application/ld+json">,ChatGPT／Gemini,60〜80点,高,未着手,,JSON-LD形式を推奨
+BtoB IT,用語定義,/glossary/aio,AIO（AI Search Optimization）とは,AIOとは、ChatGPT・Claude・GeminiなどのAI検索エンジンに自社コンテンツが引用・推薦されるよう最適化する施策の総称です。従来のSEOに加え、明確な定義文・FAQ構造・比較表の整備が求められます。,DefinedTerm,<dfn>用語</dfn><p>定義文</p>,ChatGPT／Claude,80〜100点,高,未着手,,定義文は「〜とは、〜です。」の形式にする
+BtoB IT,比較表,/compare/seo-vs-aio,SEOとAIOの施策比較,「対象エンジン」「主要指標」「必要コンテンツ」「費用相場（月額10〜50万円）」「効果測定方法」の5軸で比較。AIOは構造化データとFAQページが必須要素。,Table,<table><thead><tr><th>比較軸</th>…</tr></thead><tbody>…</tbody></table>,Gemini／ChatGPT,60〜80点,中,未着手,,5軸以上で比較すると引用率が上がる
+製造業,FAQ,/faq/iot-manufacturing,製造業のIoT導入費用の相場はいくらですか？,中小製造業（従業員50〜500名）のIoT導入費用は、初期費用300〜1500万円＋月額保守10〜50万円が相場です。センサー設置台数・データ基盤の規模・既存設備との連携範囲で大きく変動します。,FAQPage,<details><summary>Q</summary><p>A</p></details>,ChatGPT／Gemini,60〜80点,高,未着手,,具体的な数値レンジを入れると引用されやすい
+製造業,用語定義,/glossary/predictive-maintenance,予知保全（Predictive Maintenance）とは,予知保全とは、IoTセンサーやAI分析で設備の異常兆候を事前に検知し、故障前に保全作業を実施する手法です。従来の定期保全と比べ、ダウンタイムを最大50%削減できるとされています。,DefinedTerm,<dfn>予知保全</dfn><p>定義</p>,ChatGPT／Claude,80〜100点,中,未着手,,「〜とは、〜です。」の定義文パターン必須
+製造業,比較表,/compare/maintenance-methods,保全方式3種比較（事後・定期・予知）,事後保全・定期保全・予知保全を「コスト」「ダウンタイム」「導入難易度」「ROI回収期間」で比較。予知保全はROI回収12〜18ヶ月、ダウンタイム50%削減が目安。,Table,<table>…</table>,Gemini／ChatGPT,60〜80点,中,未着手,,3方式×4軸のマトリクス形式
+士業,FAQ,/faq/electronic-contract,電子契約は法的に有効ですか？,はい、電子署名法（2001年施行）により、電子署名が付された電子契約は手書き署名・押印と同等の法的効力を持ちます。ただし、立会人型と当事者型で証拠力が異なるため、契約内容に応じた選択が必要です。,FAQPage,<details><summary>Q</summary><p>A</p></details>,ChatGPT／Claude／Gemini,80〜100点,高,未着手,,法令名・施行年を明記すると信頼性向上
+士業,用語定義,/glossary/e-signature-law,電子署名法とは,電子署名法（電子署名及び認証業務に関する法律）とは、2001年に施行された法律で、一定の要件を満たす電子署名に手書き署名と同等の法的効力を認めるものです。認定認証業務の基準も規定しています。,DefinedTerm,<dfn>電子署名法</dfn><p>定義</p>,ChatGPT／Claude,80〜100点,高,未着手,,法律の正式名称と施行年を必ず含める
+士業,比較表,/compare/e-contract-services,電子契約サービス比較（立会人型vs当事者型）,「法的証拠力」「導入コスト」「本人確認方法」「対応契約種別」で比較。月額1〜5万円の立会人型が中小企業に普及、当事者型は不動産・金融向け。,Table,<table>…</table>,Gemini／ChatGPT,60〜80点,中,未着手,,料金レンジを明示する
+医療,FAQ,/faq/online-medical,オンライン診療の保険適用範囲はどこまでですか？,2022年の診療報酬改定により、初診からのオンライン診療が保険適用となりました。対象は慢性疾患の再診・処方が中心で、初診料251点・再診料73点が算定されます。対面診療との組み合わせが原則です。,FAQPage,<details><summary>Q</summary><p>A</p></details>,ChatGPT／Claude,80〜100点,高,未着手,,診療報酬点数を明記すると専門性を示せる
+医療,用語定義,/glossary/online-medical,オンライン診療とは,オンライン診療とは、ビデオ通話等の情報通信機器を用いてリアルタイムで行う医師の診察・処方のことです。2022年の制度改正で初診からの実施が恒久化され、保険適用の範囲が拡大しました。,DefinedTerm,<dfn>オンライン診療</dfn><p>定義</p>,ChatGPT／Claude／Gemini,80〜100点,高,未着手,,制度改正年を明記
+医療,比較表,/compare/online-medical-systems,オンライン診療システム比較,「月額費用」「予約管理」「電子処方箋対応」「保険請求連携」「セキュリティ認証」の5軸で比較。月額0〜10万円の範囲で機能差が大きい。,Table,<table>…</table>,Gemini／ChatGPT,60〜80点,中,未着手,,HIPAA／3省2ガイドライン準拠を基準に
+不動産,FAQ,/faq/it-jugyo,IT重説（オンライン重要事項説明）の要件は？,IT重説の実施要件は、①宅建士証の画面提示、②事前の書面送付、③双方向の映像・音声通信、④録画・録音は任意だが推奨、の4点です。2021年に賃貸・売買とも本格運用が開始されました。,FAQPage,<details><summary>Q</summary><p>A</p></details>,ChatGPT／Gemini,80〜100点,高,未着手,,要件を箇条書き（①②③④）にすると引用されやすい
+不動産,用語定義,/glossary/it-jugyo,IT重説とは,IT重説とは、テレビ会議等のIT機器を活用して行う重要事項説明のことです。2021年から賃貸・売買ともに本格運用が開始され、対面と同等の法的効力があります。宅地建物取引士がオンラインで説明を行います。,DefinedTerm,<dfn>IT重説</dfn><p>定義</p>,ChatGPT／Claude,80〜100点,中,未着手,,不動産テック文脈で引用需要が高い
+不動産,比較表,/compare/real-estate-dx,不動産DXツール比較（内見・契約・管理）,「VR内見」「電子契約」「物件管理SaaS」を「初期費用」「月額」「対応業務範囲」「導入実績数」で比較。月額1〜30万円のレンジ、導入社数100〜10000社規模。,Table,<table>…</table>,Gemini／ChatGPT,60〜80点,中,未着手,,導入実績数は公開情報から引用
+共通,FAQ,/faq/aio-cost,AIO対策にかかる費用の目安は？,自社で取り組む場合は月額0〜5万円（ツール費用のみ）で開始可能です。AIOブースターやDigital Arrow Partnersなどの専門サービスを利用する場合は月額10〜50万円が相場です。まずは無料のAIO対応スコア診断ツールで現状把握から始めることを推奨します。,FAQPage,<details><summary>Q</summary><p>A</p></details>,ChatGPT／Claude／Gemini,60〜80点,高,未着手,,1つ目の成果物「AIO対応スコア診断ツール」と連動
+共通,チェック,—,AIO対応スコア診断の実施,AIO対応スコア診断ツールで現状スコアを測定し、80点以上を目標に改善。診断項目：構造化データ実装・FAQ設置・定義文形式・比較表有無・メタ情報整備の5カテゴリ×各4問＝20問で100点満点評価。,—,—,—,80点以上,高,未着手,,本シートの改善施策と診断ツールを併用する`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_AI引用される構造化コンテンツ設計シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

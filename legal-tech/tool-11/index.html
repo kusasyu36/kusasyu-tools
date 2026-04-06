@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中小企業コンプライアンス15項目チェッカー - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:20px 0 4px;color:#1a1a2e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:18px}
+.cat{background:#fff;border-radius:12px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07);overflow:hidden}
+.cat-h{padding:12px 16px;color:#fff;font-weight:700;font-size:.95em;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.c0 .cat-h{background:#2563eb}.c1 .cat-h{background:#059669}.c2 .cat-h{background:#d97706}.c3 .cat-h{background:#dc2626}
+.cat-body{padding:8px 16px 12px}
+.item{border-bottom:1px solid #eee;padding:10px 0}
+.item:last-child{border:none}
+.q{font-weight:600;font-size:.9em;margin-bottom:2px}
+.law{font-size:.75em;color:#666;margin-bottom:6px}
+.opts{display:flex;gap:12px;margin:6px 0}
+.opts label{display:flex;align-items:center;gap:4px;font-size:.88em;cursor:pointer;padding:4px 12px;border-radius:6px;border:2px solid #ddd;transition:.2s}
+.opts input{display:none}
+.opts input:checked+span{font-weight:700}
+.opts label:has(input:checked){border-color:#2563eb;background:#eff6ff}
+.opts label.no-sel:has(input:checked){border-color:#dc2626;background:#fef2f2}
+.penalty{font-size:.73em;color:#e11d48;margin-top:2px}
+#result{display:none;background:#fff;border-radius:12px;padding:20px;margin-top:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.score-box{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:16px 0}
+.sc{text-align:center;padding:12px 20px;border-radius:10px;min-width:100px}
+.sc .n{font-size:2em;font-weight:800}.sc .l{font-size:.8em}
+.sg{background:#dcfce7;color:#166534}.sy{background:#fef9c3;color:#854d0e}.sr{background:#fee2e2;color:#991b1b}
+.bar{height:24px;border-radius:12px;background:#e5e7eb;overflow:hidden;margin:10px 0}
+.bar-in{height:100%;border-radius:12px;transition:width .6s}
+.pri{margin-top:14px}
+.pri-item{display:flex;align-items:center;gap:8px;padding:8px;border-radius:8px;margin:4px 0;font-size:.85em}
+.pri-item.risk{background:#fee2e2}.pri-item.warn{background:#fef9c3}
+.pri-num{font-weight:800;font-size:1.1em;min-width:24px}
+btn,.btn{display:block;width:100%;padding:14px;font-size:1em;font-weight:700;color:#fff;background:#2563eb;border:none;border-radius:10px;cursor:pointer;margin-top:10px;transition:.2s}
+.btn:hover{background:#1d4ed8}
+.btn2{background:#6b7280}.btn2:hover{background:#4b5563}
+.note{text-align:center;font-size:.7em;color:#999;margin-top:12px}
+@media(max-width:600px){.wrap{padding:10px}h1{font-size:1.1em}.sc{min-width:80px;padding:10px 14px}}
+</style>
+<meta name="description" content="法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,中小企業コンプライアンス15項目チェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-11/">
+<meta property="og:title" content="中小企業コンプライアンス15項目チェッカー - kusasyu tools">
+<meta property="og:description" content="法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中小企業コンプライアンス15項目チェッカー - kusasyu tools">
+<meta name="twitter:description" content="法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "中小企業コンプライアンス15項目チェッカー",
+  "description": "法務専任者がいない中小企業（30〜300人）向けに、労働法・個人情報保護法・下請法・景表法の遵守状況をセルフチェックできるHTMLツール、よくある違反パターンの是正テンプレート集、継続管理用のコンプライアンス台帳をセットで提供する。既存のLeCHECK・LegalOnは契約書レビューに特化し月額数万円かかるが",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-11/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">中小企業コンプライアンス15項目チェッカー</span></div>
+<div class="wrap">
+<h1>中小企業コンプライアンス<br>15項目チェッカー</h1>
+<p class="sub">4法域×15項目をYes/Noで回答 → 遵守状況を3段階判定</p>
+<div id="form"></div>
+<button class="btn" onclick="check()">診断する</button>
+<div id="result"></div>
+<p class="note">※本ツールは一般的な情報提供であり法的助言ではありません。データは外部送信されません。</p>
+</div>
+<script>
+const D=[
+{cat:"労働法",items:[
+{q:"36協定を労基署に届出していますか？",law:"労基法36条",pen:"6か月以下の懲役又は30万円以下の罰金",w:3},
+{q:"時間外労働を月45時間・年360時間以内で管理していますか？",law:"労基法36条4項（上限規制）",pen:"6か月以下の懲役又は30万円以下の罰金",w:3},
+{q:"年10日以上付与の従業員に年5日の有給を取得させていますか？",law:"労基法39条7項",pen:"30万円以下の罰金（対象者1人につき）",w:3},
+{q:"ハラスメント相談窓口を設置し周知していますか？",law:"労働施策総合推進法30条の2",pen:"助言・指導・勧告・企業名公表",w:2},
+{q:"常時10人以上の事業場で就業規則を届出していますか？",law:"労基法89条",pen:"30万円以下の罰金",w:2}
+]},
+{cat:"個人情報保護法",items:[
+{q:"個人情報の利用目的を本人に明示していますか？",law:"個情法21条",pen:"是正命令違反：1年以下の懲役又は100万円以下の罰金",w:3},
+{q:"個人データの安全管理措置（アクセス制限等）を講じていますか？",law:"個情法23条",pen:"是正命令違反：同上／法人両罰1億円以下",w:3},
+{q:"第三者提供時に本人同意を取得していますか？",law:"個情法27条",pen:"是正命令違反：同上",w:2},
+{q:"個人情報取扱いの責任者を定めていますか？",law:"個情法ガイドライン（組織的安全管理措置）",pen:"行政指導の対象",w:1}
+]},
+{cat:"下請法",items:[
+{q:"下請事業者への発注時に3条書面を交付していますか？",law:"下請法3条",pen:"50万円以下の罰金",w:3},
+{q:"納品後60日以内に下請代金を支払っていますか？",law:"下請法2条の2",pen:"公取委勧告・企業名公表・遅延利息14.6%",w:3},
+{q:"発注後に不当な仕様変更・やり直しを求めていませんか？",law:"下請法4条2項4号",pen:"公取委勧告・企業名公表",w:2}
+]},
+{cat:"景品表示法",items:[
+{q:"商品・サービスの品質を実際より著しく優良に表示していませんか？",law:"景表法5条1号（優良誤認）",pen:"措置命令違反：2年以下の懲役又は300万円以下／課徴金",w:3},
+{q:"価格や取引条件を実際より著しく有利に表示していませんか？",law:"景表法5条2号（有利誤認）",pen:"措置命令違反：同上／課徴金（売上3%）",w:3},
+{q:"景品（おまけ）の上限額を守っていますか？",law:"景表法4条・景品類告示",pen:"措置命令・課徴金",w:1}
+]},
+];
+const CN=["c0","c1","c2","c3"];
+let f=document.getElementById("form");
+D.forEach((c,ci)=>{
+let h=`<div class="cat ${CN[ci]}"><div class="cat-h"><span>${c.cat}（${c.items.length}項目）</span></div><div class="cat-body">`;
+c.items.forEach((it,ii)=>{
+let id=`q${ci}_${ii}`;
+h+=`<div class="item"><div class="q">${it.q}</div><div class="law">根拠：${it.law}</div><div class="opts">
+<label><input type="radio" name="${id}" value="1"><span>はい</span></label>
+<label class="no-sel"><input type="radio" name="${id}" value="0"><span>いいえ</span></label>
+</div><div class="penalty">罰則：${it.pen}</div></div>`;
+});
+h+=`</div></div>`;
+f.insertAdjacentHTML("beforeend",h);
+});
+function check(){
+let green=0,yellow=0,red=0,issues=[];
+let total=0,answered=0;
+D.forEach((c,ci)=>{
+c.items.forEach((it,ii)=>{
+total++;
+let r=document.querySelector(`input[name="q${ci}_${ii}"]:checked`);
+if(!r){issues.push({q:it.q,cat:c.cat,w:it.w,law:it.law,level:"未回答"});yellow++;answered++;return;}
+answered++;
+if(r.value==="1"){green++;}
+else{
+if(it.w>=3){red++;issues.push({q:it.q,cat:c.cat,w:it.w,law:it.law,pen:it.pen,level:"違反リスク"});}
+else{yellow++;issues.push({q:it.q,cat:c.cat,w:it.w,law:it.law,pen:it.pen,level:"要改善"});}
+}
+});
+});
+issues.sort((a,b)=>b.w-a.w);
+let pct=Math.round(green/total*100);
+let col=pct>=80?"#22c55e":pct>=50?"#eab308":"#ef4444";
+let grade=red===0&&yellow===0?"優良":red===0?"概ね良好":red<=2?"要注意":"早急に対応が必要";
+let rd=document.getElementById("result");
+let ph=issues.map((x,i)=>`<div class="pri-item ${x.level==='違反リスク'?'risk':'warn'}"><span class="pri-num">${i+1}</span><div><strong>${x.q}</strong><br><span style="font-size:.78em;color:#666">${x.cat}｜${x.law}｜${x.level}</span></div></div>`).join("");
+rd.innerHTML=`<h2 style="text-align:center;font-size:1.1em">診断結果</h2>
+<div class="bar"><div class="bar-in" style="width:${pct}%;background:${col}"></div></div>
+<p style="text-align:center;font-size:.9em">遵守率 <strong style="font-size:1.4em">${pct}%</strong>（${green}/${total}項目準拠）　総合判定：<strong>${grade}</strong></p>
+<div class="score-box"><div class="sc sg"><div class="n">${green}</div><div class="l">準拠</div></div><div class="sc sy"><div class="n">${yellow}</div><div class="l">要改善</div></div><div class="sc sr"><div class="n">${red}</div><div class="l">違反リスク</div></div></div>
+${issues.length?`<div class="pri"><h3 style="font-size:.95em;margin-bottom:6px">改善優先度ランキング</h3>${ph}</div>`:"<p style='text-align:center;color:#166534;font-weight:700;margin-top:10px'>全項目準拠です。引き続き適切な管理を継続してください。</p>"}
+<button class="btn btn2" onclick="window.print()" style="margin-top:14px">結果を印刷</button>`;
+rd.style.display="block";
+rd.scrollIntoView({behavior:"smooth"});
+}
+</script>
+</body>
+</html>
