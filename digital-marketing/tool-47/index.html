@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>競合コンテンツ差分アナライザー - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.35em;padding:20px 0 6px;color:#1a1a2e}
+.sub{text-align:center;color:#666;font-size:.83em;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1.05em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #4361ee;color:#1a1a2e}
+label.fl{font-weight:600;display:block;margin:10px 0 4px;font-size:.88em}
+textarea{width:100%;height:110px;border:1px solid #d0d0d0;border-radius:6px;padding:10px;font-size:.88em;resize:vertical;font-family:inherit}
+textarea:focus{outline:none;border-color:#4361ee;box-shadow:0 0 0 2px rgba(67,97,238,.15)}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4361ee,#3a56d4);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:14px}
+.btn:hover{opacity:.9}
+#result{display:none}
+table{width:100%;border-collapse:collapse;margin:8px 0}
+th,td{border:1px solid #ddd;padding:7px 10px;text-align:center;font-size:.84em}
+th{background:#4361ee;color:#fff;font-weight:600}
+td:first-child{text-align:left;font-weight:600;background:#f8f9fa}
+.bar-w{margin:6px 0}
+.bar-l{font-size:.8em;margin-bottom:2px;font-weight:600}
+.bar-bg{background:#e9ecef;border-radius:4px;height:24px;position:relative;overflow:hidden}
+.bar-f{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:.75em;color:#fff;font-weight:600;transition:width .5s}
+.c0{background:#4361ee}.c1{background:#f72585}.c2{background:#4cc9f0}
+.gg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.gc h3{font-size:.88em;text-align:center;padding:6px;border-radius:4px;color:#fff;margin-bottom:6px}
+.gc ul{list-style:none;font-size:.82em}
+.gc li{padding:3px 8px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between}
+.gc li span:last-child{font-weight:600;color:#555}
+.go h3{background:#4361ee}.gk h3{background:#f72585}.gs h3{background:#7209b5}
+.chk{margin:6px 0}
+.chk summary{cursor:pointer;font-weight:600;font-size:.9em;padding:8px 12px;background:#f8f9fa;border-radius:6px}
+.chk label{font-weight:normal;display:flex;align-items:center;gap:8px;padding:4px 8px;font-size:.84em}
+.chk input{accent-color:#4361ee;width:16px;height:16px}
+.note{font-size:.78em;color:#888;text-align:center;margin-top:12px}
+select{padding:7px 12px;border-radius:6px;border:1px solid #d0d0d0;font-size:.88em;font-family:inherit}
+.print-btn{background:linear-gradient(135deg,#2d6a4f,#1b4332)}
+.insight{background:#fffbe6;border-left:4px solid #f59e0b;padding:10px 14px;margin:10px 0;border-radius:0 6px 6px 0;font-size:.84em}
+@media print{.np{display:none!important}body{background:#fff}.card{box-shadow:none;break-inside:avoid}}
+@media(max-width:600px){.gg{grid-template-columns:1fr}textarea{height:90px}h1{font-size:1.15em}}
+</style>
+<meta name="description" content="自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,競合コンテンツ差分アナライザー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-47/">
+<meta property="og:title" content="競合コンテンツ差分アナライザー - kusasyu tools">
+<meta property="og:description" content="自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-47/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競合コンテンツ差分アナライザー - kusasyu tools">
+<meta name="twitter:description" content="自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "競合コンテンツ差分アナライザー",
+  "description": "自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-47/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">競合コンテンツ差分アナライザー</span></div>
+<div class="wrap">
+<h1>競合コンテンツ差分アナライザー</h1>
+<p class="sub">自社と競合のテキストを貼るだけ。訴求の差分を即座に可視化します</p>
+
+<div class="card np">
+<h2>テキスト入力</h2>
+<label class="fl">自社ページ本文 *</label>
+<textarea id="t0" placeholder="自社ページの本文テキストを貼り付けてください"></textarea>
+<label class="fl">競合ページ ①  *</label>
+<textarea id="t1" placeholder="競合サイト①の本文テキストを貼り付けてください"></textarea>
+<label class="fl">競合ページ ②（任意）</label>
+<textarea id="t2" placeholder="2社目がある場合に貼り付けてください（空欄OK）"></textarea>
+<button class="btn" onclick="run()">分析を実行する</button>
+</div>
+
+<div id="result">
+<div class="card"><h2>① 定量比較表</h2><div id="tbl"></div><div id="ins1" class="insight"></div></div>
+<div class="card"><h2>② 文字2-gram 頻度 TOP20</h2><p style="font-size:.82em;color:#666;margin-bottom:10px">日本語文字の2文字組み合わせ頻度を比較。自社だけ・競合だけ・共通の3分類で表示します。</p><div id="gram"></div></div>
+<div class="card"><h2>③ テキスト密度チャート</h2><div id="chart"></div></div>
+<div class="card"><h2>④ 業種別 訴求チェックリスト</h2>
+<p style="font-size:.83em;color:#666;margin-bottom:10px">業種を選んで、自社コンテンツに含まれるべき訴求要素をチェックしてください。</p>
+<select id="biz" onchange="showCL()">
+<option value="saas">BtoB SaaS</option><option value="ec">EC・通販</option><option value="pro">士業・専門サービス</option>
+</select>
+<div id="cl"></div>
+</div>
+<button class="btn print-btn np" onclick="window.print()">このレポートを印刷 / PDF保存</button>
+<p class="note">Kusasyu Digital Marketing — 競合コンテンツ差分アナライザー</p>
+</div>
+</div>
+
+<script>
+var CL={
+saas:["導入実績（社数・業種）を明記している","無料トライアルまたはデモのCTAがある","料金プラン・価格を提示している","導入前後の比較データを掲載している","セキュリティ・SLA・稼働率を説明している","API連携・外部サービス連携に言及している","導入ステップを図解で示している","FAQ・よくある質問を設置している","顧客の声・企業ロゴを掲載している","競合製品との差別化を説明している"],
+ec:["送料無料条件を明示している","レビュー・口コミを表示している","返品・交換ポリシーを記載している","期間限定キャンペーンを訴求している","商品スペック表を掲載している","使用シーン・コーディネート提案がある","ランキング・人気商品を強調している","ギフト対応・ラッピングに言及している","決済方法の一覧を表示している","再入荷通知・お気に入り機能がある"],
+pro:["資格・経歴・実績を掲載している","初回無料相談のCTAがある","料金目安・費用感を提示している","対応エリア・アクセスを明記している","解決事例・成功実績を紹介している","専門分野・得意領域を明確化している","手続きの流れを図解で示している","Q&A・不安解消コンテンツがある","メディア掲載・受賞歴を示している","連絡先・問い合わせ導線が明確である"]
+};
+
+function st(t){var ls=t.split(/\n+/).filter(function(l){return l.trim()});var h=ls.filter(function(l){return/^[#＃■●▶▼★☆【〈《\-\―]|^[０-９0-9]+[.．、)\）]|^第[０-９0-9一二三四五六七八九十]/.test(l.trim())}).length;var c=t.replace(/\s/g,'').length;return{chars:c,para:ls.length,heads:h}}
+
+function ng(t){var m={};var c=t.replace(/[\s\n\r\t　、。！？!?,.…・「」『』（）()【】\-\―：:；;／/\\""''0-9０-９a-zA-Zａ-ｚＡ-Ｚ]/g,'');for(var i=0;i<c.length-1;i++){var g=c[i]+c[i+1];if(!m[g])m[g]=0;m[g]++}return m}
+
+function topN(m,n){return Object.keys(m).map(function(k){return[k,m[k]]}).sort(function(a,b){return b[1]-a[1]}).slice(0,n||20)}
+
+function run(){
+var tx=[v('t0'),v('t1'),v('t2')];
+if(!tx[0].trim()||!tx[1].trim()){alert('自社テキストと競合①は必須です');return}
+var h2=tx[2].trim().length>0;
+var nm=['自社','競合①'];if(h2)nm.push('競合②');
+var sr=h2?tx:tx.slice(0,2);
+var ss=sr.map(st);
+
+// Table
+var o='<table><tr><th>指標</th>'+nm.map(function(n){return'<th>'+n+'</th>'}).join('')+'</tr>';
+var rows=[['文字数','chars'],['段落数','para'],['見出し行数','heads']];
+rows.forEach(function(r){o+='<tr><td>'+r[0]+'</td>'+ss.map(function(s){return'<td>'+s[r[1]].toLocaleString()+'</td>'}).join('')+'</tr>'});
+var diffs=ss.slice(1).map(function(s){return ss[0].chars?((s.chars-ss[0].chars)/ss[0].chars*100).toFixed(1):'0'});
+o+='<tr><td>文字数差（対自社）</td><td>—</td>'+diffs.map(function(d){var n=parseFloat(d);return'<td style="color:'+(n>0?'#e63946':'#2d6a4f')+';font-weight:700">'+(n>0?'+':'')+d+'%</td>'}).join('')+'</tr></table>';
+E('tbl').innerHTML=o;
+
+// Insight
+var ins=[];
+if(ss[0].chars<ss[1].chars*0.7)ins.push('自社の文字数が競合①の70%未満です。情報量の不足が懸念されます。');
+if(ss[0].heads<ss[1].heads)ins.push('見出し数が競合より少なく、構成の深さで劣っている可能性があります。');
+if(ss[0].heads===0)ins.push('自社テキストに見出し行が検出されませんでした（#や■で始まる行がありません）。');
+E('ins1').innerHTML=ins.length?'<strong>示唆:</strong> '+ins.join(' '):'';
+E('ins1').style.display=ins.length?'block':'none';
+
+// 2-gram
+var gs=sr.map(ng);
+var ownK={},compK={},shareK={};
+for(var k in gs[0]){
+ var inComp=false;
+ for(var j=1;j<gs.length;j++){if(gs[j][k]){inComp=true;break}}
+ if(inComp)shareK[k]=gs[0][k];else ownK[k]=gs[0][k];
+}
+for(var j=1;j<gs.length;j++){for(var k in gs[j]){if(!gs[0][k]){if(!compK[k])compK[k]=0;compK[k]+=gs[j][k]}}}
+
+function rcol(m,cls,ttl){
+ var t=topN(m);var cnt=Object.keys(m).length;
+ var s='<div class="gc '+cls+'"><h3>'+ttl+'（'+cnt+'種）</h3><ul>';
+ if(!t.length)s+='<li style="color:#999;justify-content:center">該当なし</li>';
+ t.forEach(function(e){s+='<li><span>'+e[0]+'</span><span>'+e[1]+'</span></li>'});
+ return s+'</ul></div>'}
+E('gram').innerHTML='<div class="gg">'+rcol(ownK,'go','自社のみ')+rcol(compK,'gk','競合のみ')+rcol(shareK,'gs','共通')+'</div>';
+
+// Chart
+var mx=Math.max.apply(null,ss.map(function(s){return s.chars}))||1;
+var cl=['c0','c1','c2'];var bc='<strong style="font-size:.88em">総文字数</strong>';
+nm.forEach(function(n,i){var p=(ss[i].chars/mx*100).toFixed(1);
+bc+='<div class="bar-w"><div class="bar-l">'+n+'（'+ss[i].chars.toLocaleString()+'字）</div><div class="bar-bg"><div class="bar-f '+cl[i]+'" style="width:'+p+'%">'+p+'%</div></div></div>'});
+
+var avgs=sr.map(function(t){var ls=t.split(/\n+/).filter(function(l){return l.trim()});return ls.length?(ls.reduce(function(a,l){return a+l.replace(/\s/g,'').length},0)/ls.length).toFixed(1):'0'});
+var mx2=Math.max.apply(null,avgs.map(Number))||1;
+bc+='<div style="margin-top:18px"><strong style="font-size:.88em">段落あたり平均文字数</strong></div>';
+nm.forEach(function(n,i){var p=(avgs[i]/mx2*100).toFixed(1);
+bc+='<div class="bar-w"><div class="bar-l">'+n+'（'+avgs[i]+'字/段落）</div><div class="bar-bg"><div class="bar-f '+cl[i]+'" style="width:'+p+'%">'+avgs[i]+'</div></div></div>'});
+E('chart').innerHTML=bc;
+
+showCL();
+E('result').style.display='block';
+E('result').scrollIntoView({behavior:'smooth'})}
+
+function showCL(){
+var b=v('biz');var items=CL[b]||[];
+var lab=E('biz').options[E('biz').selectedIndex].text;
+var h='<details class="chk" open><summary>'+lab+'（'+items.length+'項目）</summary>';
+items.forEach(function(it,i){h+='<label><input type="checkbox"> '+it+'</label>'});
+h+='</details>';E('cl').innerHTML=h}
+
+function v(id){return document.getElementById(id).value}
+function E(id){return document.getElementById(id)}
+showCL();
+</script>
+</body>
+</html>

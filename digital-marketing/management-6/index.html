@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI記事ファクトリー_—_プロンプト生成＆品質レビューダッシュボード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:12px}
+h1{font-size:1.3em;text-align:center;padding:16px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:16px}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tab{flex:1;padding:10px 6px;text-align:center;background:#e2e8f0;border:none;border-radius:8px 8px 0 0;cursor:pointer;font-size:.85em;font-weight:600;color:#4a5568;min-width:80px}
+.tab.on{background:#4299e1;color:#fff}
+.panel{display:none;background:#fff;border-radius:0 0 12px 12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.panel.on{display:block}
+label{display:block;font-weight:600;font-size:.85em;margin:10px 0 4px;color:#2d3748}
+input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:.95em;font-family:inherit}
+textarea{resize:vertical}
+.btn{display:inline-block;padding:10px 20px;background:#4299e1;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.9em;font-weight:600;margin-top:10px}
+.btn:hover{background:#3182ce}
+.btn.g{background:#48bb78}.btn.g:hover{background:#38a169}
+.btn.r{background:#e53e3e}.btn.r:hover{background:#c53030}
+.btn.y{background:#ed8936}.btn.y:hover{background:#dd6b20}
+.prompt-box{background:#1a202c;color:#e2e8f0;padding:14px;border-radius:8px;font-size:.85em;white-space:pre-wrap;max-height:300px;overflow-y:auto;margin-top:8px;line-height:1.5}
+.review-row{display:flex;align-items:center;gap:8px;padding:10px;border-bottom:1px solid #e2e8f0;flex-wrap:wrap}
+.review-row span{flex:1;font-size:.9em;min-width:120px}
+.rb{display:flex;gap:4px}
+.rb label{margin:0;font-weight:400}
+.rb input{width:auto;margin-right:2px}
+.score-box{text-align:center;padding:20px;margin:12px 0;border-radius:12px;font-size:2em;font-weight:700}
+.guide{background:#fffbeb;border-left:4px solid #ed8936;padding:10px 14px;margin:8px 0;border-radius:0 8px 8px 0;font-size:.85em}
+.hist-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid #e2e8f0;font-size:.88em}
+canvas{width:100%;max-height:220px;margin-top:12px}
+.empty{text-align:center;color:#a0aec0;padding:30px;font-size:.9em}
+@media(max-width:600px){.wrap{padding:8px}.panel{padding:14px}h1{font-size:1.1em}}
+</style>
+<meta name="description" content="マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI記事ファクトリー_—_プロンプト生成＆品質レビューダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-6/">
+<meta property="og:title" content="AI記事ファクトリー_—_プロンプト生成＆品質レビューダッシュボード - kusasyu tools">
+<meta property="og:description" content="マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI記事ファクトリー_—_プロンプト生成＆品質レビューダッシュボード - kusasyu tools">
+<meta name="twitter:description" content="マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI記事ファクトリー_—_プロンプト生成＆品質レビューダッシュボード",
+  "description": "マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI記事ファクトリー_—_プロンプト生成＆品質レビューダッシ</span></div>
+<div class="wrap">
+<h1>AI記事ファクトリー</h1>
+<p class="sub">プロンプト生成 → AI初稿 → 品質レビュー → 履歴管理</p>
+<div class="tabs">
+<button class="tab on" onclick="sw(0)">①設定</button>
+<button class="tab" onclick="sw(1)">②プロンプト</button>
+<button class="tab" onclick="sw(2)">③レビュー</button>
+<button class="tab" onclick="sw(3)">④履歴</button>
+</div>
+
+<div class="panel on" id="p0">
+<label>記事テーマ *</label>
+<input id="theme" placeholder="例：中小企業のDX推進ガイド">
+<label>ターゲット読者</label>
+<input id="target" placeholder="例：従業員50名のIT企業マーケ担当">
+<label>SEOキーワード（カンマ区切り）</label>
+<input id="kw" placeholder="例：DX推進,中小企業,業務効率化">
+<label>希望文字数</label>
+<select id="wc"><option>2000</option><option>3000</option><option selected>4000</option><option>5000</option><option>6000</option></select>
+<label>トーン</label>
+<select id="tone"><option>専門的だが親しみやすい</option><option>カジュアル</option><option>フォーマル</option><option>会話調</option></select>
+<button class="btn" onclick="genPrompt()">プロンプトを生成 →</button>
+</div>
+
+<div class="panel" id="p1">
+<p style="font-size:.85em;color:#718096;margin-bottom:8px">以下をChatGPTやClaudeにコピー＆ペーストしてください</p>
+<div class="prompt-box" id="promptOut">← まず①設定タブで情報を入力してください</div>
+<button class="btn g" onclick="copyP()">📋 プロンプトをコピー</button>
+<span id="copied" style="color:#48bb78;font-size:.85em;margin-left:8px"></span>
+<hr style="margin:20px 0;border:none;border-top:1px solid #e2e8f0">
+<label>AIが生成した初稿をここに貼り付け</label>
+<textarea id="draft" rows="8" placeholder="AIの出力をここにペーストしてください…"></textarea>
+<button class="btn y" onclick="toReview()">レビューを開始 →</button>
+</div>
+
+<div class="panel" id="p2">
+<div id="draftPreview" style="max-height:200px;overflow-y:auto;background:#f7fafc;padding:12px;border-radius:8px;font-size:.85em;margin-bottom:12px;white-space:pre-wrap"></div>
+<div id="checks"></div>
+<button class="btn g" onclick="calcScore()">スコアを算出</button>
+<div id="scoreArea"></div>
+<div id="guideArea"></div>
+<button class="btn" onclick="saveReview()" id="saveBtn" style="display:none">💾 レビュー結果を保存</button>
+</div>
+
+<div class="panel" id="p3">
+<h3 style="font-size:1em;margin-bottom:8px">品質スコア推移</h3>
+<canvas id="chart" height="200"></canvas>
+<h3 style="font-size:1em;margin:16px 0 8px">過去の記事一覧</h3>
+<div id="histList"></div>
+<button class="btn r" onclick="clearHist()" style="margin-top:12px;font-size:.8em">履歴をクリア</button>
+</div>
+</div>
+
+<script>
+const items=[
+{n:"事実確認",g:"数値・統計の出典を確認。固有名詞の正確性を検証。「〜と言われている」等の曖昧表現を排除し、根拠を明示してください。"},
+{n:"ブランドトーン",g:"自社の口調ガイドラインと一致しているか確認。過度にカジュアル／硬すぎる表現を修正。一人称・敬語レベルを統一してください。"},
+{n:"SEO最適化",g:"タイトル・H2にキーワードを含めているか確認。メタディスクリプション相当の要約があるか。内部リンク候補を2〜3箇所追加してください。"},
+{n:"読みやすさ",g:"一文60文字以内を目安に分割。箇条書き・小見出しで視覚的に区切る。専門用語には初出時に括弧で補足説明を入れてください。"},
+{n:"CTA明確さ",g:"記事末に具体的な次のアクション（資料DL・問合せ・関連記事誘導）を1つ明示。ボタンテキストは動詞で始めてください。"},
+{n:"独自性",g:"競合上位5記事と差別化できているか確認。自社事例・独自データ・専門家コメント等、オリジナル要素を1つ以上追加してください。"}
+];
+let curScore=0;
+
+function sw(i){document.querySelectorAll('.tab').forEach((t,j)=>{t.classList.toggle('on',j===i)});document.querySelectorAll('.panel').forEach((p,j)=>{p.classList.toggle('on',j===i)});if(i===3)renderHist()}
+
+function genPrompt(){
+const th=document.getElementById('theme').value.trim();
+if(!th){alert('記事テーマを入力してください');return}
+const tg=document.getElementById('target').value||'一般ビジネスパーソン';
+const kw=document.getElementById('kw').value||'なし';
+const wc=document.getElementById('wc').value;
+const tn=document.getElementById('tone').value;
+const p=`あなたはBtoBコンテンツマーケティングの専門ライターです。以下の条件で記事を執筆してください。
+
+【記事テーマ】${th}
+【ターゲット読者】${tg}
+【SEOキーワード】${kw}
+【文字数】約${wc}文字
+【トーン】${tn}
+
+【構成ルール】
+1. 読者の課題に共感するリード文（150字程度）
+2. H2見出しを3〜5個設け、各セクション内にH3を1〜2個
+3. 具体的な数値・事例を各セクションに1つ以上
+4. 箇条書きを適宜使用し、一文は60文字以内
+5. 記事末にCTA（次のアクション）を明示
+6. SEOキーワードをタイトル・H2に自然に含める
+
+上記ルールに従い、コピペでそのまま公開できる品質の記事を出力してください。`;
+document.getElementById('promptOut').textContent=p;
+sw(1);
+}
+
+function copyP(){
+const t=document.getElementById('promptOut').textContent;
+navigator.clipboard.writeText(t).then(()=>{const c=document.getElementById('copied');c.textContent='コピーしました！';setTimeout(()=>c.textContent='',2000)}).catch(()=>{
+const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+const c=document.getElementById('copied');c.textContent='コピーしました！';setTimeout(()=>c.textContent='',2000)})
+}
+
+function toReview(){
+const d=document.getElementById('draft').value.trim();
+if(!d){alert('AIの初稿を貼り付けてください');return}
+document.getElementById('draftPreview').textContent=d.substring(0,800)+(d.length>800?'…（以下省略）':'');
+let h='';
+items.forEach((it,i)=>{
+h+=`<div class="review-row"><span>${it.n}</span><div class="rb">
+<label><input type="radio" name="c${i}" value="2">○</label>
+<label><input type="radio" name="c${i}" value="1">△</label>
+<label><input type="radio" name="c${i}" value="0">×</label>
+</div></div>`;
+});
+document.getElementById('checks').innerHTML=h;
+document.getElementById('scoreArea').innerHTML='';
+document.getElementById('guideArea').innerHTML='';
+document.getElementById('saveBtn').style.display='none';
+sw(2);
+}
+
+function calcScore(){
+let total=0,cnt=0,fails=[];
+items.forEach((it,i)=>{
+const r=document.querySelector(`input[name="c${i}"]:checked`);
+if(!r){cnt=-1;return}
+const v=parseInt(r.value);total+=v;cnt++;
+if(v===0)fails.push(i);
+});
+if(cnt<0||cnt<items.length){alert('全項目を評価してください');return}
+const pct=Math.round(total/(items.length*2)*100);
+curScore=pct;
+const color=pct>=80?'#48bb78':pct>=50?'#ed8936':'#e53e3e';
+document.getElementById('scoreArea').innerHTML=`<div class="score-box" style="background:${color}20;color:${color}">${pct}<span style="font-size:.4em">点</span></div><p style="text-align:center;font-size:.9em">${pct>=80?'公開OK — 最終確認のみ':pct>=50?'要改善 — 下記ガイダンスを参照':'大幅修正が必要'}</p>`;
+let gh='';
+if(fails.length>0){
+gh='<h3 style="font-size:.95em;margin:12px 0 8px">改善ガイダンス</h3>';
+fails.forEach(i=>{gh+=`<div class="guide"><strong>${items[i].n}：</strong>${items[i].g}</div>`});
+}
+document.getElementById('guideArea').innerHTML=gh;
+document.getElementById('saveBtn').style.display='inline-block';
+}
+
+function saveReview(){
+const th=document.getElementById('theme').value||'無題';
+const hist=JSON.parse(localStorage.getItem('af_hist')||'[]');
+hist.push({theme:th,score:curScore,date:new Date().toLocaleDateString('ja-JP')});
+if(hist.length>50)hist.shift();
+localStorage.setItem('af_hist',JSON.stringify(hist));
+alert('保存しました');
+}
+
+function renderHist(){
+const hist=JSON.parse(localStorage.getItem('af_hist')||'[]');
+const el=document.getElementById('histList');
+if(!hist.length){el.innerHTML='<div class="empty">まだ履歴がありません</div>';drawChart([]);return}
+el.innerHTML=hist.slice().reverse().map(h=>`<div class="hist-item"><span>${h.date} — ${h.theme}</span><span style="font-weight:700;color:${h.score>=80?'#48bb78':h.score>=50?'#ed8936':'#e53e3e'}">${h.score}点</span></div>`).join('');
+drawChart(hist);
+}
+
+function drawChart(data){
+const c=document.getElementById('chart'),ctx=c.getContext('2d');
+c.width=c.offsetWidth*2;c.height=400;ctx.scale(2,2);
+const W=c.offsetWidth,H=200,P=40,gw=W-P*2,gh=H-P*2;
+ctx.clearRect(0,0,W,H);
+ctx.fillStyle='#f7fafc';ctx.fillRect(0,0,W,H);
+ctx.strokeStyle='#e2e8f0';ctx.lineWidth=1;
+for(let i=0;i<=4;i++){
+const y=P+gh-gh*(i*25)/100;
+ctx.beginPath();ctx.moveTo(P,y);ctx.lineTo(P+gw,y);ctx.stroke();
+ctx.fillStyle='#a0aec0';ctx.font='11px sans-serif';ctx.textAlign='right';
+ctx.fillText(i*25,P-6,y+4);
+}
+if(data.length<2)return;
+const n=data.length,step=gw/(n-1);
+ctx.beginPath();ctx.strokeStyle='#4299e1';ctx.lineWidth=2;
+data.forEach((d,i)=>{
+const x=P+i*step,y=P+gh-gh*d.score/100;
+i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+});
+ctx.stroke();
+data.forEach((d,i)=>{
+const x=P+i*step,y=P+gh-gh*d.score/100;
+ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);
+ctx.fillStyle=d.score>=80?'#48bb78':d.score>=50?'#ed8936':'#e53e3e';ctx.fill();
+});
+}
+</script>
+</body>
+</html>

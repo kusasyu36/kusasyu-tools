@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法改正対応トラッキングシート - kusasyu tools</title>
+<meta name="description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法改正対応トラッキングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-18/">
+<meta property="og:title" content="法改正対応トラッキングシート - kusasyu tools">
+<meta property="og:description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-18/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法改正対応トラッキングシート - kusasyu tools">
+<meta name="twitter:description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "法改正対応トラッキングシート",
+  "description": "業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-18/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-07"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>法改正対応トラッキングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>法改正対応トラッキングシート</h1>
+  <p class="project-name">法改正、うちに関係ある？AI影響診断ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>法改正名</th><th>施行日</th><th>対応期限</th><th>担当者</th><th>ステータス</th><th>影響度</th><th>対応工数（時間）</th><th>メモ</th><th>Excel設定ガイド</th></tr></thead><tbody><tr><td>2024年改正個人情報保護法（仮名加工情報の利用拡大）</td><td>2025-04-01</td><td>2025-03-15</td><td>田中 太郎</td><td>完了</td><td>高</td><td>40</td><td>プライバシーポリシー改訂・社内研修実施済み。対応記録は社内Wiki参照。</td><td>---以下はExcel貼付後の条件付き書式設定手順（所要5分）---</td></tr><tr><td>改正電子帳簿保存法（電子取引データ保存義務化）</td><td>2025-01-01</td><td>2024-12-20</td><td>佐藤 花子</td><td>完了</td><td>高</td><td>60</td><td>経理部と連携し電子保存フロー構築完了。スキャナ保存要件も対応済み。</td><td>【手順1】ステータス列（F列）を全選択→ホーム→条件付き書式→新しいルール</td></tr><tr><td>2025年改正不正競争防止法（限定提供データ保護強化）</td><td>2025-06-01</td><td>2025-05-15</td><td>鈴木 一郎</td><td>対応中</td><td>中</td><td>30</td><td>NDA雛形の改訂作業中。技術部門へのヒアリングを5月1日に実施予定。</td><td>【手順2】「セルの値」＝「未着手」→背景色を赤(#FF6B6B)に設定→OK</td></tr><tr><td>改正会社法施行規則（バーチャル株主総会恒久化）</td><td>2025-09-01</td><td>2025-08-15</td><td>山田 美咲</td><td>未着手</td><td>低</td><td>15</td><td>総務部に確認中。当社は非上場のため直接影響は限定的だが規程整備は必要。</td><td>【手順3】同様に「対応中」→黄色(#FFD93D)、「完了」→緑(#6BCB77)を設定</td></tr><tr><td>2025年改正労働基準法（時間外労働上限の中小企業適用拡大）</td><td>2025-10-01</td><td>2025-09-15</td><td>高橋 健二</td><td>未着手</td><td>高</td><td>50</td><td>就業規則・36協定の見直しが必要。社労士との打合せを8月中に設定予定。</td><td>【手順4】影響度列（G列）も同様に「高」→赤背景・「中」→黄背景・「低」→緑背景で設定して完了</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `法改正名,施行日,対応期限,担当者,ステータス,影響度,対応工数（時間）,メモ,Excel設定ガイド
+2024年改正個人情報保護法（仮名加工情報の利用拡大）,2025-04-01,2025-03-15,田中 太郎,完了,高,40,プライバシーポリシー改訂・社内研修実施済み。対応記録は社内Wiki参照。,---以下はExcel貼付後の条件付き書式設定手順（所要5分）---
+改正電子帳簿保存法（電子取引データ保存義務化）,2025-01-01,2024-12-20,佐藤 花子,完了,高,60,経理部と連携し電子保存フロー構築完了。スキャナ保存要件も対応済み。,【手順1】ステータス列（F列）を全選択→ホーム→条件付き書式→新しいルール
+2025年改正不正競争防止法（限定提供データ保護強化）,2025-06-01,2025-05-15,鈴木 一郎,対応中,中,30,NDA雛形の改訂作業中。技術部門へのヒアリングを5月1日に実施予定。,【手順2】「セルの値」＝「未着手」→背景色を赤(#FF6B6B)に設定→OK
+改正会社法施行規則（バーチャル株主総会恒久化）,2025-09-01,2025-08-15,山田 美咲,未着手,低,15,総務部に確認中。当社は非上場のため直接影響は限定的だが規程整備は必要。,【手順3】同様に「対応中」→黄色(#FFD93D)、「完了」→緑(#6BCB77)を設定
+2025年改正労働基準法（時間外労働上限の中小企業適用拡大）,2025-10-01,2025-09-15,高橋 健二,未着手,高,50,就業規則・36協定の見直しが必要。社労士との打合せを8月中に設定予定。,【手順4】影響度列（G列）も同様に「高」→赤背景・「中」→黄背景・「低」→緑背景で設定して完了`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_法改正対応トラッキングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

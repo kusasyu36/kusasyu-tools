@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法改正キャッチアップ自動化ガイド - kusasyu tools</title>
+<meta name="description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法改正キャッチアップ自動化ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-19/">
+<meta property="og:title" content="法改正キャッチアップ自動化ガイド - kusasyu tools">
+<meta property="og:description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-19/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法改正キャッチアップ自動化ガイド - kusasyu tools">
+<meta name="twitter:description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "法改正キャッチアップ自動化ガイド",
+  "description": "業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-19/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-07"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>法改正キャッチアップ自動化ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>法改正キャッチアップ自動化ガイド</h1>
+  <p class="project-name">法改正、うちに関係ある？AI影響診断ツール</p>
+  <div class="content">
+<p>[STEP 0] AI影響診断ツールで自社影響を診断
+    ↓ 結果をコピー
+[STEP 1] Excelトラッキングシートに貼り付け
+    ↓
+[STEP 2] 条件付き書式で視覚管理を設定
+    ↓
+[STEP 3〜5] 4つの無料情報源で法改正を自動収集
+    ↓ 新しい法改正を発見したら
+[繰り返し] 診断ツール → シートに追記 → 管理継続</p>
+<pre><code>
+---
+
+## STEP 1｜診断結果をExcelトラッキングシートに貼り付ける（5分）
+
+AI影響診断ツールの「CSVダウンロード」ボタンで取得したデータをExcelに貼り付けます。シートの列構成は以下のとおりです。
+
+| 列 | 項目 | 入力例 |
+|---|---|---|
+| A | 法改正名 | 2024年改正個人情報保護法（仮名加工情報の利用拡大） |
+| B | 施行日 | 2025-04-01 |
+| C | 対応期限 | 2025-03-15 |
+| D | 担当者 | 田中 太郎 |
+| E | ステータス | 完了 |
+| F | 影響度 | 高 |
+| G | 対応工数（時間） | 40 |
+| H | メモ | プライバシーポリシー改訂・社内研修実施済み。対応記録は社内Wiki参照。 |
+
+**貼り付け手順**: CSVファイルをExcelで開く → A1セルからデータが入っていることを確認 → 「名前を付けて保存」で `.xlsx` 形式に変換。
+
+診断ツールのサンプルデータには以下5件が含まれています。
+
+1. **2024年改正個人情報保護法** ― 影響度：高、工数40時間、担当：田中 太郎（完了）
+2. **改正電子帳簿保存法** ― 影響度：高、工数60時間、担当：佐藤 花子（完了）
+3. **2025年改正不正競争防止法** ― 影響度：中、工数30時間、担当：鈴木 一郎（対応中）
+4. **改正会社法施行規則** ― 影響度：低、工数15時間、担当：山田 美咲（未着手）
+5. **2025年改正労働基準法** ― 影響度：高、工数50時間、担当：高橋 健二（未着手）
+
+---
+
+## STEP 2｜条件付き書式で「対応漏れ」を一目で把握する（5分）
+
+### 2-1. ステータス列の色分け（E列）
+
+| 手順 | 操作 |
+|------|------|
+| **手順1** | ステータス列（E列）を全選択 → ホーム → 条件付き書式 → 新しいルール |
+| **手順2** | 「セルの値」＝「未着手」→ 背景色を **赤（#FF6B6B）** に設定 → OK |
+| **手順3** | 同様に「対応中」→ **黄色（#FFD93D）**、「完了」→ **緑（#6BCB77）** を設定 |
+
+### 2-2. 影響度列の色分け（F列）
+
+| 手順 | 操作 |
+|------|------|
+| **手順4** | 影響度列（F列）も同様に「高」→ **赤背景**・「中」→ **黄背景**・「低」→ **緑背景** で設定して完了 |
+
+### 2-3. 対応期限超過の自動アラート（C列）
+
+| 手順 | 操作 |
+|------|------|
+| **手順5** | C列を全選択 → 条件付き書式 → 新しいルール → 「数式を使用して…」を選択 |
+| **手順6** | 数式欄に `=AND(C2&lt;TODAY(), E2&lt;&gt;&quot;完了&quot;)` と入力 |
+| **手順7** | 書式 → 塗りつぶし → **赤（#FF6B6B）** ＋ フォント → **白・太字** → OK |
+
+これで、**未完了かつ期限超過の行だけが赤く表示**されます。例えば「2025年改正労働基準法」の対応期限2025-09-15を過ぎてもステータスが「未着手」なら、セルが赤くなって警告します。
+
+---
+
+## STEP 3｜官報RSS ― 法令の「公布」を自動受信する（10分）
+
+官報は法令の公布情報が最速で掲載される公式媒体です。
+
+### 設定手順
+
+1. **RSSリーダーを用意する**: 無料の [Inoreader](https://www.inoreader.com/) または [Feedly](https://feedly.com/) にアカウント登録
+2. **官報RSSを登録**: インターネット版官報 `https://kanpou.npb.go.jp/` のRSSフィードURLをリーダーに追加
+3. **キーワードフィルタを設定**: リーダーのフィルタ機能で以下を登録
+
+| フィルタキーワード | 対応する法改正例 |
+|---|---|
+| 個人情報保護 | 2024年改正個人情報保護法 |
+| 労働基準 | 2025年改正労働基準法 |
+| 不正競争防止 | 2025年改正不正競争防止法 |
+| 下請代金 | 下請法関連 |
+| 景品表示 | 景表法関連 |
+
+**ポイント**: 自社の業種に関係するキーワードだけ登録すれば、ノイズを最小限にできます。
+
+---
+
+## STEP 4｜e-Gov法令検索 ― 改正条文の新旧対照を確認する（10分）
+
+法改正の中身を正確に把握するには、条文レベルの確認が不可欠です。
+
+### 活用手順
+
+1. **e-Gov法令検索**（`https://laws.e-gov.go.jp/`）にアクセス
+2. 法令名で検索（例：「労働基準法」）
+3. 「沿革」タブで改正履歴を確認 → 新旧対照表で変更箇所を特定
+4. 影響がある場合、Excelトラッキングシートに新しい行を追加
+
+**活用のコツ**: 官報RSSで法改正の公布を検知 → e-Govで条文を確認 → 影響があればシートに追記、という流れを習慣化しましょう。
+
+---
+
+## STEP 5｜省庁メールマガジン ― 解説付きで法改正を理解する（15分）
+
+省庁のメルマガは、法改正の背景や中小企業向けの解説が付いており、条文だけでは分かりにくいポイントを補完してくれます。
+
+### 登録すべきメルマガ一覧
+
+| 省庁 | メルマガ名 | 主な対象法令 | 登録先 |
+|---|---|---|---|
+| 厚生労働省 | 厚労省人事労務マガジン | 労働基準法・労働安全衛生法 | 厚労省サイトのメルマガ登録ページ |
+| 経済産業省 | 中小企業庁メルマガ | 下請法・不正競争防止法 | 中小企業庁サイト |
+| 個人情報保護委員会 | PPC NEWS | 個人情報保護法 | PPC公式サイト |
+| 消費者庁 | 消費者庁新着情報 | 景品表示法 | 消費者庁サイト |
+| 法務省 | 法務省メールマガジン | 会社法・商業登記法 | 法務省サイト |
+
+**所要時間の目安**: 各メルマガの確認は週1回、合計10分程度です。
+
+---
+
+## STEP 5＋α｜Googleアラート ― 業界特化の情報を自動収集する（10分）
+
+Googleアラートは、指定キーワードに関する新着Web記事をメールで自動通知してくれる無料サービスです。
+
+### 設定手順
+
+1. `https://www.google.co.jp/alerts` にアクセス（Googleアカウントでログイン）
+2. 以下のアラートを作成
+
+| アラート名（検索クエリ） | 目的 |
+|---|---|
+| `&quot;法改正&quot; &quot;中小企業&quot; 2025` | 中小企業向け法改正ニュース全般 |
+| `&quot;個人情報保護法&quot; 改正 施行` | 個人情報保護法の動向 |
+| `&quot;労働基準法&quot; 改正 中小企業` | 労働法改正の影響 |
+| `&quot;下請法&quot; OR &quot;景品表示法&quot; 改正` | 取引・表示規制の改正 |
+| `&quot;電子帳簿保存法&quot; 対応` | 経理関連の法改正 |
+
+3. **配信頻度**: 「1日1回以下」を選択（リアルタイムだとメールが多すぎる）
+4. **ソース**: 「自動」のままでOK
+5. **言語/地域**: 「日本語」「日本」に設定
+
+---
+
+## 週次ルーティン ― 全体を10分で回す運用フロー
+
+セットアップ完了後は、以下の週次ルーティンだけで法改正のキャッチアップが維持できます。
+
+| 曜日 | 作業 | 所要時間 |
+|---|---|---|
+| **月曜** | Googleアラート＋省庁メルマガの受信メールを確認 | 5分 |
+| **月曜** | 新しい法改正があれば診断ツールで影響度を確認 | 3分 |
+| **月曜** | 影響ありならExcelシートに行追加（法改正名・施行日・対応期限・影響度を記入） | 2分 |
+| **金曜** | Excelシートを開き、条件付き書式の赤セル（期限超過）を確認 | 2分 |
+
+**合計: 週12分**で法改正対応の漏れを防止できます。
+
+---
+
+## トラブルシューティング
+
+| 困りごと | 解決策 |
+|---|---|
+| RSSフィードが更新されない | リーダー側の更新間隔を「1時間ごと」に設定。Feedly無料版は1日数回のみ |
+| Googleアラートのメールが多すぎる | クエリに `&quot;中小企業&quot;` を追加して絞り込む。配信頻度を「週1回」に変更 |
+| Excelの条件付き書式が効かない | C列の日付が「文字列」になっている可能性あり。セルの書式を「日付」に変更してからルールを再設定 |
+| どの法改正が自社に関係するか判断できない | AI影響診断ツールに業種・従業員数を入力して再診断。影響度スコアで優先順位を判断 |
+
+---
+
+## まとめ ― 本ガイドで構築できた仕組み
+
+</code></pre>
+<p>┌─────────────────────────────────────────────────┐
+│        法改正キャッチアップ自動化フロー          │
+├─────────────────────────────────────────────────┤
+│                                                 │
+│  情報収集（自動）                                │
+│  ├─ 官報RSS ─────→ 法令公布を即時検知          │
+│  ├─ 省庁メルマガ ─→ 解説付きで理解              │
+│  └─ Googleアラート → 業界ニュースを自動収集     │
+│         ↓                                       │
+│  影響判定（半自動）                              │
+│  └─ AI影響診断ツール → スコア付きで自社影響判定 │
+│         ↓                                       │
+│  管理・対応（Excel）                             │
+│  └─ トラッキングシート                          │
+│     ├─ ステータス色分け（赤/黄/緑）             │
+│     ├─ 影響度色分け（高=赤/中=黄/低=緑）        │
+│     └─ 期限超過アラート（自動で赤表示）          │
+│                                                 │
+└─────────────────────────────────────────────────┘</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

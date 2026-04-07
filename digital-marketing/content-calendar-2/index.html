@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月間コンテンツカレンダー＆制作進捗管理シート - kusasyu tools</title>
+<meta name="description" content="マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,月間コンテンツカレンダー＆制作進捗管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/content-calendar-2/">
+<meta property="og:title" content="月間コンテンツカレンダー＆制作進捗管理シート - kusasyu tools">
+<meta property="og:description" content="マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/content-calendar-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="月間コンテンツカレンダー＆制作進捗管理シート - kusasyu tools">
+<meta name="twitter:description" content="マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "月間コンテンツカレンダー＆制作進捗管理シート",
+  "description": "マーケティング担当者が兼務で月1本しか書けない問題を解決する、AI初稿生成＋構造化レビュー＋公開管理を一画面で完結させるワークフローツール。スイセイのようなBPOに外注せず、社内でAI×人間レビューの制作体制を構築できるセルフサービス型ツール。記事テーマ・ターゲット・キーワードを入力するとAIが初稿を生成し、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/content-calendar-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-07"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>月間コンテンツカレンダー＆制作進捗管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>月間コンテンツカレンダー＆制作進捗管理シート</h1>
+  <p class="project-name">記事が書けない？AI初稿×品質レビュー管理ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>AI記事ファクトリー — 月間コンテンツカレンダー＆制作進捗管理シート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>【1本あたりの所要時間目安】企画(5分) → プロンプト生成(5分) → AI初稿取得(10分) → 品質レビュー(20分) → 修正(10分) → 公開(5分) ＝ 合計 約55分</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【週2本ペースなら月8本・年96本を1人で運用可能】</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 月間カレンダー（2026年4月サンプル）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>No</td><td>月</td><td>週</td><td>公開予定日</td><td>業種パターン</td><td>記事テーマ</td><td>ターゲットKW</td><td>検索Vol目安</td><td>担当者</td><td>ステータス</td><td>企画日</td><td>AI初稿日</td><td>レビュー日</td><td>修正日</td><td>公開日</td></tr><tr><td>1</td><td>4月</td><td>第1週</td><td>2026/04/07</td><td>IT/SaaS</td><td>SaaS導入で失敗しない5つのチェックリスト</td><td>SaaS 導入 失敗</td><td>1300</td><td>山田</td><td>公開済</td><td>2026/03/24</td><td>2026/03/24</td><td>2026/03/25</td><td>2026/03/26</td><td>2026/04/07</td></tr><tr><td>2</td><td>4月</td><td>第1週</td><td>2026/04/09</td><td>製造業BtoB</td><td>製造業の受発注システム選定ガイド2026年版</td><td>受発注システム 製造業 比較</td><td>880</td><td>山田</td><td>公開済</td><td>2026/03/25</td><td>2026/03/25</td><td>2026/03/26</td><td>2026/03/27</td><td>2026/04/09</td></tr><tr><td>3</td><td>4月</td><td>第2週</td><td>2026/04/14</td><td>人材/HR</td><td>採用コスト削減に効くダイレクトリクルーティング入門</td><td>ダイレクトリクルーティング コスト</td><td>720</td><td>山田</td><td>修正中</td><td>2026/04/01</td><td>2026/04/01</td><td>2026/04/02</td><td></td><td></td></tr><tr><td>4</td><td>4月</td><td>第2週</td><td>2026/04/16</td><td>IT/SaaS</td><td>リモートワーク時代のプロジェクト管理ツール比較10選</td><td>プロジェクト管理 ツール 比較</td><td>2400</td><td>山田</td><td>レビュー中</td><td>2026/04/02</td><td>2026/04/03</td><td></td><td></td><td></td></tr><tr><td>5</td><td>4月</td><td>第3週</td><td>2026/04/21</td><td>製造業BtoB</td><td>ISO9001取得の費用と期間を徹底解説</td><td>ISO9001 取得 費用 期間</td><td>1600</td><td>山田</td><td>AI初稿済</td><td>2026/04/07</td><td>2026/04/07</td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"AI記事ファクトリー — 月間コンテンツカレンダー＆制作進捗管理シート",,,,,,,,,,,,,,
+"【1本あたりの所要時間目安】企画(5分) → プロンプト生成(5分) → AI初稿取得(10分) → 品質レビュー(20分) → 修正(10分) → 公開(5分) ＝ 合計 約55分",,,,,,,,,,,,,,
+"【週2本ペースなら月8本・年96本を1人で運用可能】",,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+"■ 月間カレンダー（2026年4月サンプル）",,,,,,,,,,,,,,
+No,月,週,公開予定日,業種パターン,記事テーマ,ターゲットKW,検索Vol目安,担当者,ステータス,企画日,AI初稿日,レビュー日,修正日,公開日
+1,4月,第1週,2026/04/07,IT/SaaS,SaaS導入で失敗しない5つのチェックリスト,SaaS 導入 失敗,1300,山田,公開済,2026/03/24,2026/03/24,2026/03/25,2026/03/26,2026/04/07
+2,4月,第1週,2026/04/09,製造業BtoB,製造業の受発注システム選定ガイド2026年版,受発注システム 製造業 比較,880,山田,公開済,2026/03/25,2026/03/25,2026/03/26,2026/03/27,2026/04/09
+3,4月,第2週,2026/04/14,人材/HR,採用コスト削減に効くダイレクトリクルーティング入門,ダイレクトリクルーティング コスト,720,山田,修正中,2026/04/01,2026/04/01,2026/04/02,,
+4,4月,第2週,2026/04/16,IT/SaaS,リモートワーク時代のプロジェクト管理ツール比較10選,プロジェクト管理 ツール 比較,2400,山田,レビュー中,2026/04/02,2026/04/03,,,
+5,4月,第3週,2026/04/21,製造業BtoB,ISO9001取得の費用と期間を徹底解説,ISO9001 取得 費用 期間,1600,山田,AI初稿済,2026/04/07,2026/04/07,,,
+6,4月,第3週,2026/04/23,人材/HR,中途採用の面接質問テンプレート30選,面接 質問 テンプレート 中途,1900,山田,企画済,2026/04/08,,,,
+7,4月,第4週,2026/04/28,IT/SaaS,BtoB企業のMA導入ROIシミュレーション方法,MA ツール ROI BtoB,590,山田,未着手,,,,,
+8,4月,第4週,2026/04/30,製造業BtoB,製造業DXの補助金活用ガイド2026年版,製造業 DX 補助金 2026,1100,山田,未着手,,,,,
+,,,,,,,,,,,,,,
+"■ ステータス別集計（Excel関数）",,,,,,,,,,,,,,
+ステータス,件数,計算式,,,,,,,,,,,,
+未着手,"=COUNTIF(J7:J14,""未着手"")","← Excelで開いた後、J列=ステータス列に合わせて範囲を調整",,,,,,,,,,,,
+企画済,"=COUNTIF(J7:J14,""企画済"")",,,,,,,,,,,,,,
+AI初稿済,"=COUNTIF(J7:J14,""AI初稿済"")",,,,,,,,,,,,,,
+レビュー中,"=COUNTIF(J7:J14,""レビュー中"")",,,,,,,,,,,,,,
+修正中,"=COUNTIF(J7:J14,""修正中"")",,,,,,,,,,,,,,
+公開済,"=COUNTIF(J7:J14,""公開済"")",,,,,,,,,,,,,,
+合計,"=COUNTA(J7:J14)",,,,,,,,,,,,,,
+完了率,"=COUNTIF(J7:J14,""公開済"")/COUNTA(J7:J14)*100","← パーセント表示",,,,,,,,,,,,
+,,,,,,,,,,,,,,
+"■ 年間テーマ例 — パターン①：IT/SaaS企業（週2本×年96本より抜粋24本）",,,,,,,,,,,,,,
+月,テーマ1,ターゲットKW1,テーマ2,ターゲットKW2,,,,,,,,,,
+1月,SaaS導入で失敗しない5つのチェックリスト,SaaS 導入 失敗,クラウドERPの選び方と主要5製品比較,クラウドERP 比較,,,,,,,,,,
+2月,BtoBマーケティングオートメーション入門ガイド,MA BtoB 入門,リード獲得を倍増させるLP改善チェックリスト,LP 改善 リード獲得,,,,,,,,,,
+3月,中小企業のセキュリティ対策ロードマップ,中小企業 セキュリティ 対策,SaaS解約率を下げるカスタマーサクセス施策,SaaS 解約率 カスタマーサクセス,,,,,,,,,,
+4月,リモートワーク時代のプロジェクト管理ツール比較,プロジェクト管理 ツール 比較,BtoB企業のMA導入ROIシミュレーション,MA ツール ROI BtoB,,,,,,,,,,
+5月,インサイドセールスの立ち上げ手順と成功事例,インサイドセールス 立ち上げ,API連携で業務自動化する方法と事例集,API連携 業務自動化,,,,,,,,,,
+6月,SaaS料金モデルの設計と価格改定の進め方,SaaS 料金 価格改定,ウェビナー集客を成功させる企画と運営の全手順,ウェビナー 集客 BtoB,,,,,,,,,,
+7月,BtoBコンテンツマーケティングのKPI設計,コンテンツマーケティング KPI BtoB,CRM導入で営業成績が上がる理由と選定基準,CRM 導入 営業,,,,,,,,,,
+8月,IT企業のための採用広報コンテンツ戦略,IT企業 採用広報,チャットボット導入の費用対効果と比較,チャットボット 導入 費用,,,,,,,,,,
+9月,BtoBホワイトペーパーの作り方テンプレート付き,ホワイトペーパー 作り方 BtoB,データドリブン経営の始め方と必要ツール,データドリブン 経営 ツール,,,,,,,,,,
+10月,SaaSのオンボーディング設計ベストプラクティス,SaaS オンボーディング,IT導入補助金2026の申請手順まとめ,IT導入補助金 2026 申請,,,,,,,,,,
+11月,BtoB広告運用の予算配分と媒体選定ガイド,BtoB 広告運用 予算,年末商戦に向けたメールマーケティング施策,メールマーケティング 年末,,,,,,,,,,
+12月,来期のマーケ計画に使えるテンプレート集,マーケティング計画 テンプレート,1年のコンテンツ成果を振り返るレポート作成法,コンテンツ 成果レポート,,,,,,,,,,
+,,,,,,,,,,,,,,
+"■ 年間テーマ例 — パターン②：製造業BtoB企業（週2本×年96本より抜粋24本）",,,,,,,,,,,,,,
+月,テーマ1,ターゲットKW1,テーマ2,ターゲットKW2,,,,,,,,,,
+1月,製造業の受発注システム選定ガイド,受発注システム 製造業 比較,工場IoT導入の費用と効果を事例で解説,工場IoT 導入 費用,,,,,,,,,,
+2月,ISO9001取得の費用と期間を徹底解説,ISO9001 取得 費用 期間,製造業の在庫管理を効率化するシステム比較,在庫管理 製造業 システム,,,,,,,,,,
+3月,製造業DXの補助金活用ガイド2026年版,製造業 DX 補助金 2026,品質管理の基本とQC七つ道具の活用法,品質管理 QC七つ道具,,,,,,,,,,
+4月,生産管理システムの選び方と導入ステップ,生産管理システム 選び方,製造業の人手不足対策と自動化事例,製造業 人手不足 自動化,,,,,,,,,,
+5月,図面管理のデジタル化手順とツール比較,図面管理 デジタル化,製造業のBCP策定ガイドとチェックリスト,製造業 BCP 策定,,,,,,,,,,
+6月,協力工場の品質監査チェックリスト,品質監査 チェックリスト 製造業,製造業のカーボンニュートラル対応入門,カーボンニュートラル 製造業,,,,,,,,,,
+7月,原価管理の基本と利益率改善の具体策,原価管理 利益率 改善,製造業のWebサイトリニューアル成功事例,製造業 Webサイト リニューアル,,,,,,,,,,
+8月,3DCAD導入のROIと主要ソフト比較,3DCAD 導入 比較,製造業の技術継承を支えるナレッジ管理,技術継承 ナレッジ管理 製造業,,,,,,,,,,
+9月,製造業の展示会出展を成果につなげるノウハウ,展示会 出展 製造業,RPA導入で製造間接業務を50%削減する方法,RPA 製造業 間接業務,,,,,,,,,,
+10月,射出成形の不良対策トラブルシューティング,射出成形 不良 対策,サプライチェーン可視化ツールの比較と選定,サプライチェーン 可視化 ツール,,,,,,,,,,
+11月,製造業の海外営業を支えるデジタルツール,海外営業 製造業 ツール,IATF16949とISO9001の違いと取得メリット,IATF16949 ISO9001 違い,,,,,,,,,,
+12月,来期の設備投資計画に使えるROI計算テンプレート,設備投資 ROI テンプレート,製造業の年末棚卸を効率化するデジタル手法,棚卸 効率化 製造業,,,,,,,,,,
+,,,,,,,,,,,,,,
+"■ 年間テーマ例 — パターン③：人材/HR企業（週2本×年96本より抜粋24本）",,,,,,,,,,,,,,
+月,テーマ1,ターゲットKW1,テーマ2,ターゲットKW2,,,,,,,,,,
+1月,採用コスト削減に効くダイレクトリクルーティング入門,ダイレクトリクルーティング コスト,中途採用の面接質問テンプレート30選,面接 質問 テンプレート 中途,,,,,,,,,,
+2月,エンジニア採用を成功させるスカウト文面の書き方,エンジニア採用 スカウト 文面,離職率を下げるオンボーディング施策5選,離職率 オンボーディング 施策,,,,,,,,,,
+3月,新卒採用スケジュールと母集団形成の全手順,新卒採用 スケジュール 母集団形成,人事評価制度の見直しポイントと最新トレンド,人事評価制度 見直し,,,,,,,,,,
+4月,内定辞退を防ぐフォロー施策と成功事例,内定辞退 防止 フォロー,タレントマネジメントシステム比較と選定基準,タレントマネジメント 比較,,,,,,,,,,
+5月,リファラル採用の制度設計と社内浸透のコツ,リファラル採用 制度設計,1on1ミーティングの進め方テンプレート付き,1on1 ミーティング 進め方,,,,,,,,,,
+6月,夏インターン企画の設計と集客ノウハウ,インターン 企画 集客,エンゲージメントサーベイの選び方と活用法,エンゲージメントサーベイ 比較,,,,,,,,,,
+7月,ジョブ型雇用導入の手順とメリットデメリット,ジョブ型雇用 導入 メリット,採用動画の作り方と効果を最大化するコツ,採用動画 作り方 効果,,,,,,,,,,
+8月,人事DXの始め方と効果が出る施策5選,人事DX 始め方,副業解禁の就業規則改定と運用ガイド,副業 解禁 就業規則,,,,,,,,,,
+9月,秋採用で優秀人材を獲得するためのポイント,秋採用 中途 ポイント,360度評価の導入手順と失敗しない運用法,360度評価 導入 運用,,,,,,,,,,
+10月,採用ブランディングの成功事例と実践ステップ,採用ブランディング 事例,リスキリング制度の設計と助成金活用法,リスキリング 制度 助成金,,,,,,,,,,
+11月,年末調整の効率化ツール比較と選定ポイント,年末調整 効率化 ツール,外国人採用の在留資格と受入手続きガイド,外国人採用 在留資格 手続き,,,,,,,,,,
+12月,来期の採用計画の立て方と予算策定テンプレート,採用計画 予算 テンプレート,人事部門の1年の成果を経営に報告する方法,人事 成果報告 経営,,,,,,,,,,
+,,,,,,,,,,,,,,
+"■ ステータス定義と所要時間",,,,,,,,,,,,,,
+ステータス,意味,主な作業,所要時間(分),AI記事ファクトリー使用機能,,,,,,,,,,
+未着手,テーマ未決定,—,—,—,,,,,,,,,,
+企画済,テーマ・KW確定,テーマ選定・KW調査,5,—,,,,,,,,,,
+AI初稿済,AI初稿を取得済み,プロンプト生成→AI初稿コピー,15,Step1: プロンプト生成,,,,,,,,,,
+レビュー中,品質チェック実施中,6項目チェックリスト記入,20,Step2: 品質レビュー,,,,,,,,,,
+修正中,指摘事項を反映中,レビュー結果に基づき修正,10,テキストエディタ等,,,,,,,,,,
+公開済,CMS公開完了,CMSへ入稿・公開,5,CMS,,,,,,,,,,
+,,,,,,,,,,,,,,
+"■ 使い方",,,,,,,,,,,,,,
+"1. このCSVをExcelで開き「月間カレンダー」部分をコピーして毎月のシートを作成",,,,,,,,,,,,,,
+"2. 年間テーマ例（業種別3パターン）から自社に合うテーマを選んで公開予定日に配置",,,,,,,,,,,,,,
+"3. AI記事ファクトリーで初稿を生成したらステータスを「AI初稿済」に更新",,,,,,,,,,,,,,
+"4. 品質レビュー6項目（事実確認・ブランドトーン・SEO・読みやすさ・CTA・法的リスク）をクリアしたら「修正中」→「公開済」へ",,,,,,,,,,,,,,
+"5. 兼務担当者1人でも週2本×55分=週110分（約2時間）で運用可能",,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_月間コンテンツカレンダー＆制作進捗管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

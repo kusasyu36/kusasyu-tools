@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法改正インパクト診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1e293b;line-height:1.6;padding:12px;max-width:960px;margin:0 auto}
+h1{font-size:1.2em;text-align:center;padding:12px 0;color:#1e3a5f}
+.c{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+label{display:block;font-weight:700;margin-bottom:4px;font-size:.88em}
+select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:6px;font-size:1em;margin-bottom:10px;background:#fff}
+button{width:100%;padding:12px;border:none;border-radius:6px;font-size:1em;font-weight:700;cursor:pointer}
+.bm{background:#2563eb;color:#fff}.bg{background:#059669;color:#fff;margin-top:8px}
+button:active{transform:scale(.98)}
+#R{display:none}
+.sm{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.bd{padding:5px 14px;border-radius:20px;font-weight:700;font-size:.85em}
+.bh{background:#fee2e2;color:#b91c1c}.bmd{background:#fef9c3;color:#854d0e}.bl{background:#e0f2fe;color:#0369a1}
+table{width:100%;border-collapse:collapse;font-size:.78em;margin-top:8px}
+th,td{padding:6px 4px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:top}
+th{background:#f8fafc;font-size:.72em;color:#64748b;white-space:nowrap}
+.tg{display:inline-block;padding:1px 8px;border-radius:4px;font-size:.78em;font-weight:700;white-space:nowrap}
+.th{background:#fecaca;color:#991b1b}.tm{background:#fde68a;color:#78350f}.tl{background:#bfdbfe;color:#1e40af}.tn{background:#f1f5f9;color:#94a3b8}
+.pen{color:#dc2626;font-size:.8em}
+.nt{font-size:.72em;color:#94a3b8;margin-top:8px}
+@media(max-width:600px){table{font-size:.7em}th,td{padding:4px 2px}}
+</style>
+<meta name="description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法改正インパクト診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-17/">
+<meta property="og:title" content="法改正インパクト診断ツール - kusasyu tools">
+<meta property="og:description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-17/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法改正インパクト診断ツール - kusasyu tools">
+<meta name="twitter:description" content="業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法改正インパクト診断ツール",
+  "description": "業種・従業員数・事業内容を入力すると、直近の主要法改正（労働法・下請法・個人情報保護法・景表法等）が自社にどう影響するかをスコア付きで診断し、期限付きToDoリストを自動生成するHTMLツール。加えて、対応状況を継続管理できるExcel管理シートと、無料で法改正情報を自動収集する仕組みの構築ガイドをセットで提",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-17/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">法改正インパクト診断ツール</span></div>
+<h1>法改正インパクト診断ツール<br><span style="font-size:.65em;color:#64748b">2024〜2026年 主要15法改正の影響度を自動判定</span></h1>
+<div class="c">
+<label>業種</label>
+<select id="I"><option value="">選択してください</option><option value="0">製造業</option><option value="1">IT・情報通信業</option><option value="2">飲食業</option><option value="3">小売業</option><option value="4">建設業</option><option value="5">不動産業</option><option value="6">運輸業</option><option value="7">サービス業</option></select>
+<label>従業員数</label>
+<select id="E"><option value="">選択してください</option><option value="0">50名未満</option><option value="1">50名以上</option></select>
+<button class="bm" onclick="run()">診断する</button>
+</div>
+<div id="R">
+<div class="c">
+<h2 style="font-size:1.05em">診断結果<span id="hd" style="font-size:.75em;color:#64748b;margin-left:8px"></span></h2>
+<div class="sm" id="sm"></div>
+<table><thead><tr><th>法改正名</th><th>施行日</th><th>影響度</th><th>期限</th><th>必要アクション</th><th>罰則</th></tr></thead><tbody id="tb"></tbody></table>
+<button class="bg" onclick="cp()">CSVをクリップボードにコピー</button>
+<p class="nt" id="ms"></p>
+</div>
+</div>
+<script>
+var D=[
+["労働条件明示ルール改正","2024/4/1",0,255,0,"施行済（早急に対応）","雇用契約書・労働条件通知書の記載事項を更新",1],
+["時間外労働上限規制(2024年問題)","2024/4/1",80,141,0,"施行済（早急に対応）","36協定の見直し・労働時間管理体制を整備",1],
+["障害者法定雇用率引上げ(2.5%)","2024/4/1",0,255,1,"施行済（早急に対応）","障害者雇用状況の確認と採用計画を策定",1],
+["社会保険適用拡大(51人以上)","2024/10/1",0,255,1,"施行済（早急に対応）","パート等の社会保険加入要否を確認・届出",1],
+["フリーランス保護法","2024/11/1",130,17,0,"施行済（早急に対応）","業務委託契約書の見直しと書面交付体制を整備",1],
+["育児介護休業法改正","2025/4/1",0,255,0,"2025/3/31","就業規則を改定し従業員へ制度を周知",1],
+["改正景品表示法(確約手続・課徴金強化)","2025/4/1",12,32,0,"2025/3/31","広告・表示内容を総点検しチェック体制を構築",1],
+["電子帳簿保存法(電子取引保存義務化)","2024/1/1",0,255,0,"施行済（早急に対応）","電子取引データの保存ルールと検索要件を整備",1],
+["下請法運用基準改正","2025/4/1",17,2,0,"2025/3/31","発注書・支払条件を見直し60日ルール遵守を確認",1],
+["インボイス経過措置縮小(80%→50%)","2026/10/1",0,255,0,"2026/9/30","免税事業者との取引条件再整理と経理処理を更新",0],
+["個人情報保護法改正(3年見直し)","2026/4/1",130,44,0,"2025/12/31","プライバシーポリシー改定と漏えい報告体制を確認",1],
+["労働安全衛生法改正(化学物質自律管理)","2024/4/1",17,0,0,"施行済（早急に対応）","リスクアセスメント実施とSDS管理体制を構築",1],
+["建設業法改正(担い手確保)","2025/4/1",16,0,0,"2025/3/31","技術者配置基準と契約条件の見直し",1],
+["不正競争防止法改正(デジタル空間対応)","2024/4/1",0,3,0,"施行済（早急に対応）","営業秘密管理規程とデータ管理体制を点検",0],
+["改正プロバイダ責任制限法","2024/10/1",0,130,0,"施行済（早急に対応）","発信者情報開示対応フローの整備",0]
+];
+var IN=["製造業","IT・情報通信業","飲食業","小売業","建設業","不動産業","運輸業","サービス業"];
+var LV=["高","中","低","無関係"];
+var csvData="";
+function lv(h,m,bit,e,ue){
+if(e===1&&ue===0)return 3;
+if(h&bit)return 0;if(m&bit)return 1;
+var rest=255&~h&~m;if(rest&bit&&(h|m))return 2;return 3;
+}
+function run(){
+var iv=document.getElementById("I").value,ev=document.getElementById("E").value;
+if(iv===""||ev===""){alert("業種と従業員数を選択してください");return}
+var bit=1<<parseInt(iv),ue=parseInt(ev);
+var rs=[];
+for(var i=0;i<D.length;i++){
+var d=D[i],l=lv(d[2],d[3],bit,d[4],ue);
+rs.push({n:d[0],dt:d[1],lv:l,dl:d[5],ac:d[6],pn:d[7]});
+}
+rs.sort(function(a,b){return a.lv-b.lv});
+var cnt=[0,0,0,0];rs.forEach(function(r){cnt[r.lv]++});
+var sm=document.getElementById("sm");
+sm.innerHTML="";
+if(cnt[0])sm.innerHTML+='<span class="bd bh">高影響: '+cnt[0]+'件</span>';
+if(cnt[1])sm.innerHTML+='<span class="bd bmd">中影響: '+cnt[1]+'件</span>';
+if(cnt[2])sm.innerHTML+='<span class="bd bl">低影響: '+cnt[2]+'件</span>';
+document.getElementById("hd").textContent="（"+IN[iv]+"・従業員"+["50名未満","50名以上"][ue]+"）";
+var tb=document.getElementById("tb");tb.innerHTML="";
+csvData="法改正名,施行日,対応期限,必要アクション,担当者,ステータス\n";
+rs.forEach(function(r){
+var cls=["th","tm","tl","tn"][r.lv];
+var tr=document.createElement("tr");
+var pn=r.lv<2?(r.pn?'<span class="pen">あり</span>':"なし"):"—";
+var dl=r.lv<2?r.dl:"—";
+var ac=r.lv<2?r.ac:"—";
+tr.innerHTML='<td>'+r.n+'</td><td style="white-space:nowrap">'+r.dt+'</td><td><span class="tg '+cls+'">'+LV[r.lv]+'</span></td><td style="white-space:nowrap">'+dl+'</td><td>'+ac+'</td><td>'+pn+'</td>';
+tb.appendChild(tr);
+if(r.lv<3)csvData+='"'+r.n+'","'+r.dt+'","'+dl+'","'+ac+'","","未着手"\n';
+});
+document.getElementById("R").style.display="block";
+document.getElementById("ms").textContent="";
+document.getElementById("R").scrollIntoView({behavior:"smooth"});
+}
+function cp(){
+if(!csvData)return;
+if(navigator.clipboard){
+navigator.clipboard.writeText(csvData).then(function(){
+document.getElementById("ms").textContent="CSVをコピーしました。Excelに貼り付けて管理シートとしてご利用ください。";
+});
+}else{
+var t=document.createElement("textarea");t.value=csvData;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);
+document.getElementById("ms").textContent="CSVをコピーしました。";
+}
+}
+</script>
+</body>
+</html>

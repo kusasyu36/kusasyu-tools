@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>競合コンテンツ分析の実践ワークフロー - kusasyu tools</title>
+<meta name="description" content="自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,競合コンテンツ分析の実践ワークフロー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-48/">
+<meta property="og:title" content="競合コンテンツ分析の実践ワークフロー - kusasyu tools">
+<meta property="og:description" content="自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-48/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競合コンテンツ分析の実践ワークフロー - kusasyu tools">
+<meta name="twitter:description" content="自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "競合コンテンツ分析の実践ワークフロー",
+  "description": "自社と競合のWebページ本文を貼り付けるだけで、見出し構成・訴求ポイント・キーワード密度・CTA配置を自動比較し、「自社に足りない訴求」「競合だけが使っているキーワード」「構成の弱点」をレポート化するHTMLツール。海外のMarketMuse・Frase.ioが月額$99以上で提供している競合コンテンツ分析を",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-48/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-06"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>競合コンテンツ分析の実践ワークフロー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>競合コンテンツ分析の実践ワークフロー</h1>
+  <p class="project-name">競合の戦略が見えない？コンテンツ差分分析ツール</p>
+  <div class="content">
+<p>========================================
+競合コンテンツ 月次トラッキング
+========================================</p>
+<p>■ 対象月：2026年__月</p>
+<p>■ 分析対象ページ
+  自社URL   ：
+  競合A URL ：
+  競合B URL ：
+  対象KW    ：</p>
+<p>■ ツール分析サマリー（競合コンテンツ差分アナライザーの結果を転記）
+  自社 見出し数  ：H2 <strong><em>個 / H3 </em></strong>個
+  競合A 見出し数 ：H2 <strong><em>個 / H3 </em></strong>個
+  競合B 見出し数 ：H2 <strong><em>個 / H3 </em></strong>個</p>
+<p>自社 文字数  ：<strong><em>文字
+  競合A 文字数 ：</em></strong>文字
+  競合B 文字数 ：___文字</p>
+<p>自社 CTA数  ：<strong><em>箇所
+  競合A CTA数 ：</em></strong>箇所
+  競合B CTA数 ：___箇所</p>
+<p>■ 競合だけが使っているキーワード（TOP5）
+  1.
+  2.
+  3.
+  4.
+  5.</p>
+<p>■ 自社に足りない訴求テーマ
+  ・
+  ・</p>
+<p>■ 今月の改善アクション（最大3つ）
+  □ アクション1：
+    対象ページ：
+    期限      ：
+  □ アクション2：
+    対象ページ：
+    期限      ：
+  □ アクション3：
+    対象ページ：
+    期限      ：</p>
+<p>■ 先月のアクション振り返り
+  アクション  ：
+  実施有無    ：済 / 未
+  効果（数値）：</p>
+<p>========================================</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>
