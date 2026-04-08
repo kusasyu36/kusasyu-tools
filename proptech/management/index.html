@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>追客漏れゼロ管理ダッシュボード | 中小不動産仲介会社向けの反響対応・追客支援ツールキット - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6;font-size:14px}
+.w{max-width:860px;margin:0 auto;padding:12px}
+.warn{background:#fffbeb;border:1px solid #f59e0b;border-radius:8px;padding:8px 12px;font-size:.8em;text-align:center;margin-bottom:10px;color:#92400e}
+header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;border-radius:12px;padding:14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+header h1{font-size:1.15em}
+header h1 small{display:block;font-size:.55em;font-weight:400;opacity:.85}
+.eb{background:#fff;color:#2563eb;border:2px solid #fff;padding:7px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85em;white-space:nowrap}
+.eb:hover{background:#dbeafe}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#1e3a5f;margin-bottom:10px;padding-bottom:5px;border-bottom:2px solid #e2e8f0}
+.r{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+@media(max-width:600px){.r{grid-template-columns:1fr}}
+label{font-size:.8em;font-weight:600;display:block;margin-bottom:2px}
+select,input{width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;font-size:.9em}
+.btn{width:100%;padding:11px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:.95em;font-weight:700;cursor:pointer;margin-top:4px}
+.btn:hover{background:#1d4ed8}
+.st{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+@media(max-width:600px){.st{grid-template-columns:1fr 1fr}}
+.sc{text-align:center;padding:12px 6px;border-radius:10px;background:#f8fafc;border:1px solid #e2e8f0}
+.sc .n{font-size:1.6em;font-weight:800;color:#2563eb}
+.sc .l{font-size:.72em;color:#64748b}
+.fl{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.ft{padding:5px 12px;border:2px solid #2563eb;border-radius:18px;cursor:pointer;font-size:.78em;font-weight:600;background:#fff;color:#2563eb}
+.ft.on{background:#2563eb;color:#fff}
+table{width:100%;border-collapse:collapse;font-size:.82em}
+th{background:#f1f5f9;padding:7px 5px;text-align:left;font-size:.78em;border-bottom:2px solid #e2e8f0;white-space:nowrap}
+td{padding:7px 5px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+tr:hover{background:#f8fafc}
+.bg{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75em;font-weight:700;color:#fff}
+.bg-r{background:#ef4444}.bg-y{background:#f59e0b}.bg-g{background:#22c55e}.bg-b{background:#64748b}
+.act{display:flex;gap:4px}
+.ab{padding:3px 8px;border-radius:5px;border:none;cursor:pointer;font-size:.72em;font-weight:600}
+.ab-d{background:#dbeafe;color:#2563eb}.ab-d:hover{background:#bfdbfe}
+.ab-x{background:#fee2e2;color:#ef4444}.ab-x:hover{background:#fecaca}
+.ab-c{background:#d1fae5;color:#16a34a}.ab-c:hover{background:#bbf7d0}
+.empty{text-align:center;padding:30px;color:#94a3b8}
+</style>
+<meta name="description" content="中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,追客漏れゼロ管理ダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/management/">
+<meta property="og:title" content="追客漏れゼロ管理ダッシュボード | 中小不動産仲介会社向けの反響対応・追客支援ツールキット - kusasyu tools">
+<meta property="og:description" content="中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/management/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="追客漏れゼロ管理ダッシュボード | 中小不動産仲介会社向けの反響対応・追客支援ツールキット - kusasyu tools">
+<meta name="twitter:description" content="中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "追客漏れゼロ管理ダッシュボード",
+  "description": "中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/management/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">追客漏れゼロ管理ダッシュボード</span></div>
+<div class="w">
+<div class="warn">&#9888; データはこのブラウザのみに保存されます。週1回CSVエクスポートを推奨します。</div>
+<header>
+<h1>追客漏れゼロ管理ダッシュボード<small>反響即レス返信文ジェネレーター 連携ツール</small></h1>
+<button class="eb" onclick="csv()">&#128229; CSVエクスポート</button>
+</header>
+<div class="st" id="stats"></div>
+<div class="card">
+<h2>&#128221; リード登録</h2>
+<div class="r">
+<div><label>氏名</label><input id="nm" placeholder="山田太郎"></div>
+<div><label>反響日</label><input id="dt" type="date"></div>
+<div><label>反響元</label><select id="src"><option>SUUMO</option><option>HOME'S</option><option>at home</option><option>自社HP</option><option>電話</option><option>来店</option><option>紹介</option><option>その他</option></select></div>
+</div>
+<div class="r">
+<div><label>物件名・エリア</label><input id="prop" placeholder="○○マンション 3LDK"></div>
+<div><label>予算（万円）</label><input id="bgt" type="number" placeholder="3500"></div>
+<div><label>備考</label><input id="memo" placeholder="週末内見希望"></div>
+</div>
+<button class="btn" onclick="add()">&#10133; 登録</button>
+</div>
+<div class="card">
+<h2>&#128203; リード一覧</h2>
+<div class="fl" id="flt"></div>
+<div style="overflow-x:auto"><table><thead><tr><th>状態</th><th>氏名</th><th>経過</th><th>反響日</th><th>反響元</th><th>物件</th><th>予算</th><th>操作</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="empty" id="emp">リードが登録されていません</div>
+</div>
+</div>
+<script>
+var D=JSON.parse(localStorage.getItem('tl_leads')||'[]');
+var F='all';
+function sv(){localStorage.setItem('tl_leads',JSON.stringify(D))}
+function dd(s){var a=new Date(s),b=new Date();a.setHours(0,0,0,0);b.setHours(0,0,0,0);return Math.floor((b-a)/864e5)}
+function add(){var n=document.getElementById('nm').value.trim(),d=document.getElementById('dt').value,s=document.getElementById('src').value,p=document.getElementById('prop').value.trim(),b=document.getElementById('bgt').value,m=document.getElementById('memo').value.trim();if(!n||!d){alert('氏名と反響日は必須です');return}D.push({id:Date.now(),nm:n,dt:d,src:s,prop:p,bgt:b,memo:m,st:'new'});sv();document.getElementById('nm').value='';document.getElementById('prop').value='';document.getElementById('bgt').value='';document.getElementById('memo').value='';rr()}
+function del(id){if(confirm('削除しますか？')){D=D.filter(function(x){return x.id!==id});sv();rr()}}
+function ch(id,st){D.forEach(function(x){if(x.id===id)x.st=st});sv();rr()}
+function badge(days,st){if(st==='done')return'<span class="bg bg-b">成約</span>';if(st==='lost')return'<span class="bg bg-b">失注</span>';if(st==='responded')return'<span class="bg bg-g">対応済</span>';if(days>=14)return'<span class="bg bg-r">'+days+'日 要対応</span>';if(days>=7)return'<span class="bg bg-y">'+days+'日 注意</span>';if(days>=3)return'<span class="bg bg-y">'+days+'日</span>';return'<span class="bg bg-g">'+days+'日 OK</span>'}
+function rr(){var tb=document.getElementById('tb'),s={total:D.length,active:0,alert:0,done:0};tb.innerHTML='';var fl=D.filter(function(x){if(F==='alert'){var d=dd(x.dt);return(x.st==='new'||x.st==='responded')&&d>=3}if(F!=='all')return x.st===F;return true});D.forEach(function(x){if(x.st==='done')s.done++;if(x.st==='new'||x.st==='responded')s.active++;var d=dd(x.dt);if((x.st==='new'||x.st==='responded')&&d>=3)s.alert++});document.getElementById('stats').innerHTML='<div class="sc"><div class="n">'+s.total+'</div><div class="l">総リード</div></div><div class="sc"><div class="n">'+s.active+'</div><div class="l">対応中</div></div><div class="sc"><div class="n" style="color:#ef4444">'+s.alert+'</div><div class="l">要フォロー</div></div><div class="sc"><div class="n">'+(s.total?Math.round(s.done/s.total*100):0)+'%</div><div class="l">成約率</div></div>';
+var tags=[['all','すべて'],['alert','要フォロー'],['new','未対応'],['responded','対応済'],['done','成約'],['lost','失注']];document.getElementById('flt').innerHTML=tags.map(function(t){return'<div class="ft'+(F===t[0]?' on':'')+'" onclick="F=\''+t[0]+'\';rr()">'+t[1]+'</div>'}).join('');
+if(!fl.length){document.getElementById('emp').style.display='block';return}document.getElementById('emp').style.display='none';
+fl.sort(function(a,b){if(a.st==='new'&&b.st!=='new')return-1;if(a.st!=='new'&&b.st==='new')return 1;return new Date(a.dt)-new Date(b.dt)});
+fl.forEach(function(x){var d=dd(x.dt),tr=document.createElement('tr');var btns='';if(x.st==='new')btns='<button class="ab ab-d" onclick="ch('+x.id+',\'responded\')">対応済</button><button class="ab ab-c" onclick="ch('+x.id+',\'done\')">成約</button><button class="ab ab-x" onclick="del('+x.id+')">削除</button>';else if(x.st==='responded')btns='<button class="ab ab-c" onclick="ch('+x.id+',\'done\')">成約</button><button class="ab ab-x" onclick="ch('+x.id+',\'lost\')">失注</button><button class="ab ab-x" onclick="del('+x.id+')">削除</button>';else btns='<button class="ab ab-x" onclick="del('+x.id+')">削除</button>';tr.innerHTML='<td>'+badge(d,x.st)+'</td><td><b>'+x.nm+'</b></td><td>'+d+'日</td><td>'+x.dt+'</td><td>'+x.src+'</td><td>'+(x.prop||'-')+'</td><td>'+(x.bgt?x.bgt+'万':'-')+'</td><td><div class="act">'+btns+'</div></td>';tb.appendChild(tr)})}
+function csv(){if(!D.length){alert('データがありません');return}var h='氏名,反響日,反響元,物件,予算(万円),ステータス,備考,経過日数\n';var c=D.map(function(x){return[x.nm,x.dt,x.src,'"'+(x.prop||'')+'"',x.bgt||'',x.st,'"'+(x.memo||'')+'"',dd(x.dt)].join(',')}).join('\n');var b=new Blob(['\ufeff'+h+c],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='leads_'+new Date().toISOString().slice(0,10)+'.csv';a.click()}
+document.getElementById('dt').value=new Date().toISOString().slice(0,10);rr()
+</script>
+</body>
+</html>

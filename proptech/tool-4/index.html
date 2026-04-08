@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>反響即レス返信文ジェネレーター＋プロンプト集 | 中小不動産仲介会社向けの反響対応・追客支援ツールキット - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 10px;background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;border-radius:12px;margin-bottom:16px}
+h1 small{display:block;font-size:.6em;font-weight:400;opacity:.85;margin-top:4px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1e3a5f;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+label{font-size:.85em;font-weight:600;display:block;margin-bottom:3px}
+select,input{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:6px;font-size:.95em}
+.btn{width:100%;padding:13px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:6px}
+.btn:hover{background:#1d4ed8}
+.tabs{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}
+.tab{padding:7px 14px;border:2px solid #2563eb;border-radius:20px;cursor:pointer;font-size:.82em;font-weight:600;background:#fff;color:#2563eb;transition:.2s}
+.tab.on{background:#2563eb;color:#fff}
+.out{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;white-space:pre-wrap;font-size:.88em;line-height:1.7;min-height:60px;position:relative}
+.copy{position:absolute;top:8px;right:8px;background:#2563eb;color:#fff;border:none;padding:4px 10px;border-radius:5px;font-size:.75em;cursor:pointer}
+.copy:hover{background:#1d4ed8}
+.note{background:#fffbeb;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:0 8px 8px 0;font-size:.82em;margin-top:12px}
+.plist{counter-reset:p}
+.pi{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;margin-bottom:10px;position:relative}
+.pi h3{font-size:.9em;color:#2563eb;margin-bottom:6px}
+.pi pre{white-space:pre-wrap;font-size:.8em;line-height:1.6;font-family:inherit}
+#result{display:none}
+.badge{display:inline-block;background:#dbeafe;color:#1e40af;font-size:.72em;padding:2px 8px;border-radius:10px;margin-left:6px}
+</style>
+<meta name="description" content="中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,反響即レス返信文ジェネレーター＋プロンプト集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-4/">
+<meta property="og:title" content="反響即レス返信文ジェネレーター＋プロンプト集 | 中小不動産仲介会社向けの反響対応・追客支援ツールキット - kusasyu tools">
+<meta property="og:description" content="中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="反響即レス返信文ジェネレーター＋プロンプト集 | 中小不動産仲介会社向けの反響対応・追客支援ツールキット - kusasyu tools">
+<meta name="twitter:description" content="中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "反響即レス返信文ジェネレーター＋プロンプト集",
+  "description": "中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">反響即レス返信文ジェネレーター＋プロンプト集</span></div>
+<div class="wrap">
+<h1>反響即レス返信文ジェネレーター<small>ワンクリックで返信文3パターン生成 ＋ AI活用プロンプト集</small></h1>
+
+<div class="card">
+<h2>① 反響情報を入力</h2>
+<div class="row">
+<div><label>反響元ポータル</label><select id="portal"><option>SUUMO</option><option>HOME'S</option><option>at home</option><option>自社HP</option><option>飛び込み・電話</option></select></div>
+<div><label>物件種別</label><select id="prop"><option>中古マンション</option><option>中古戸建</option><option>新築戸建</option><option>土地</option><option>賃貸</option></select></div>
+</div>
+<div class="row">
+<div><label>顧客ステータス</label><select id="status"><option>初回問い合わせ</option><option>内見希望</option><option>比較検討中</option><option>長期検討</option><option>休眠（1ヶ月以上）</option></select></div>
+<div><label>予算帯</label><select id="budget"><option>〜2,000万円</option><option>2,000〜3,500万円</option><option>3,500〜5,000万円</option><option>5,000万円〜</option><option>未定・相談中</option></select></div>
+</div>
+<div class="row">
+<div><label>お客様名（任意）</label><input id="name" placeholder="例：田中 様"></div>
+<div><label>物件名・エリア（任意）</label><input id="area" placeholder="例：横浜市港北区 3LDK"></div>
+</div>
+<button class="btn" onclick="gen()">▶ 返信文を生成する</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>② 生成された返信文</h2>
+<div class="tabs" id="modeTabs">
+<div class="tab on" onclick="sw(this,0)">メール版</div>
+<div class="tab" onclick="sw(this,1)">LINE版</div>
+</div>
+<div class="tabs" id="sceneTabs">
+<div class="tab on" onclick="sc(this,0)">初回返信</div>
+<div class="tab" onclick="sc(this,1)">内見案内</div>
+<div class="tab" onclick="sc(this,2)">条件確認</div>
+</div>
+<div class="out" id="out"><button class="copy" onclick="cp()">コピー</button></div>
+<div class="note">⚠ 出力はテンプレートベースです。より個別最適化したい場合は、下記プロンプトをChatGPTやClaudeに貼り付けてご利用ください。</div>
+</div>
+
+<div class="card">
+<h2>③ AI活用プロンプト集<span class="badge">ChatGPT / Claude対応</span></h2>
+<div class="plist" id="prompts"></div>
+</div>
+</div>
+</div>
+
+<script>
+let mode=0,scene=0,D={};
+function $(id){return document.getElementById(id)}
+function sw(el,m){mode=m;$('modeTabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');render()}
+function sc(el,s){scene=s;$('sceneTabs').querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');render()}
+function cp(){let t=$('out').innerText.replace('コピー','').trim();navigator.clipboard.writeText(t).then(()=>{let b=$('out').querySelector('.copy');b.textContent='✓';setTimeout(()=>b.textContent='コピー',1200)})}
+function render(){$('out').firstChild.nextSibling;let tx=D[mode][scene];$('out').innerHTML='<button class="copy" onclick="cp()">コピー</button>'+tx}
+
+function gen(){
+let p=$('portal').value,pr=$('prop').value,st=$('status').value,bd=$('budget').value;
+let nm=$('name').value||'○○ 様',ar=$('area').value||pr;
+let co='株式会社△△不動産　担当：□□';
+
+// メール版
+let e0=`件名：【${p}】${ar}のお問い合わせありがとうございます
+
+${nm}
+
+はじめまして。${p}にて${ar}をご覧いただき、誠にありがとうございます。
+${co}と申します。
+
+ご希望の${pr}（ご予算${bd}）について、いくつかご案内させてください。
+
+■ 現在の状況
+・当該物件は現在ご案内可能です
+・同条件の類似物件も${bd}帯で3件ほどございます
+
+■ 次のステップ
+ご都合のよいタイミングで、以下いずれかの方法でご連絡いただけますと幸いです。
+① このメールへのご返信
+② お電話（000-0000-0000／平日9-19時）
+③ LINE（QRコードを添付しております）
+
+ご質問だけでも大歓迎です。${nm}のお住まい探しを全力でサポートいたします。
+
+${co}
+TEL: 000-0000-0000`;
+
+let e1=`件名：${ar}の内見日程のご案内
+
+${nm}
+
+お問い合わせいただきありがとうございます。${co}です。
+
+${ar}の内見について、以下の日程でご案内が可能です。
+
+■ ご案内可能日
+・○月○日（土）10:00〜 / 14:00〜
+・○月○日（日）10:00〜 / 13:00〜
+・平日ご希望の場合もお気軽にどうぞ
+
+■ 当日の流れ（約60分）
+1. 現地集合 → 物件をじっくりご見学
+2. 周辺環境（スーパー・学校・駅）のご案内
+3. ご質問やご不明点の解消
+
+■ お持ちいただくもの
+・特にございません（手ぶらでOKです）
+
+ご都合のよい日時をお知らせください。
+${nm}にお会いできることを楽しみにしております。
+
+${co}`;
+
+let e2=`件名：ご希望条件の確認とご提案
+
+${nm}
+
+いつもお世話になっております。${co}です。
+
+改めてご希望条件を整理させてください。
+
+■ 現在の条件
+・種別：${pr}
+・ご予算：${bd}
+・エリア：${ar}
+
+■ 確認させていただきたい点
+①間取り・広さのご希望はございますか？
+②ご入居の希望時期はいつ頃でしょうか？
+③その他のこだわり（駐車場・ペット・学区等）
+
+上記をお聞かせいただければ、${nm}にピッタリの物件を厳選してご提案いたします。
+箇条書きやひと言でも結構ですので、お気軽にご返信ください。
+
+${co}`;
+
+// LINE版
+let l0=`${nm}
+${p}からのお問い合わせありがとうございます！${co}です😊
+
+${ar}（${bd}）のお問い合わせですね✨
+
+こちらの物件、現在ご案内可能です！
+同じエリアの類似物件情報もお送りできますので、お気軽にご質問ください💬
+
+▼ ご希望の連絡方法を教えてください
+① このままLINEでやり取り
+② お電話（000-0000-0000）
+③ メール
+
+お待ちしております！`;
+
+let l1=`${nm}
+内見のご希望ありがとうございます！🏠
+
+${ar}のご案内可能日です👇
+
+📅 ○月○日（土）10:00〜 / 14:00〜
+📅 ○月○日（日）10:00〜 / 13:00〜
+※平日もOKです！
+
+⏱ 所要時間：約60分
+📍 現地集合（詳しい場所はお申込後にお送りします）
+👜 手ぶらでOK！
+
+ご都合のよい日時を教えてください😊`;
+
+let l2=`${nm}
+ご条件の確認をさせてください📋
+
+現在のご希望👇
+・${pr}
+・${bd}
+・${ar}
+
+もう少し教えていただけると、ピッタリの物件をご提案できます💡
+
+①間取り・広さの希望は？
+②いつ頃のご入居希望？
+③こだわり（駐車場・ペット・学区等）
+
+ひと言でOKです！お気軽にどうぞ😊`;
+
+D={0:[e0,e1,e2],1:[l0,l1,l2]};
+$('result').style.display='block';
+mode=0;scene=0;
+$('modeTabs').querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===0));
+$('sceneTabs').querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===0));
+render();
+renderPrompts(pr,bd,ar,nm);
+$('result').scrollIntoView({behavior:'smooth'});
+}
+
+function renderPrompts(pr,bd,ar,nm){
+let ps=[
+{t:'初回返信の最適化',d:`あなたは不動産仲介のトップ営業です。以下の反響情報をもとに、初回返信メールを作成してください。\n\n【反響情報】\n・物件種別：${pr}\n・予算：${bd}\n・エリア：${ar}\n・顧客名：${nm}\n\n【条件】\n・丁寧だが堅すぎない文体\n・次のアクション（内見・電話）を促す\n・300文字以内`},
+{t:'内見後フォローメール',d:`不動産営業として、内見後のフォローメールを作成してください。\n\n・物件：${ar}（${pr}）\n・予算：${bd}\n・顧客名：${nm}\n\n【ポイント】\n・内見の感想を聞く質問を入れる\n・他の候補物件を1〜2件提案する\n・決断を急かさず、寄り添うトーン`},
+{t:'条件変更の提案',d:`不動産営業として、お客様に条件変更を提案するメールを作成してください。\n\n・当初条件：${pr}／${bd}／${ar}\n・顧客名：${nm}\n\n【提案方向】\n・エリアを広げる or 築年数を広げる or 間取りを変える\n・具体的なメリットを数字で示す\n・押し付けず「こういう選択肢もあります」というトーン`},
+{t:'長期検討客への追客',d:`不動産営業として、2週間以上返信がないお客様への追客メールを作成してください。\n\n・物件種別：${pr}　予算：${bd}\n・顧客名：${nm}\n\n【条件】\n・しつこくない、自然なきっかけを作る\n・市場動向や新着物件など有益な情報を入れる\n・「お気持ちが変わっていたら教えてください」と逃げ道も用意`},
+{t:'休眠顧客の掘り起こし',d:`不動産営業として、1ヶ月以上連絡が途絶えたお客様への掘り起こしメールを作成してください。\n\n・物件種別：${pr}　予算：${bd}\n・顧客名：${nm}\n\n【条件】\n・「その後いかがですか？」だけにしない\n・市場変化（価格動向・金利変動・新着物件）を理由にする\n・短くカジュアルに、返信ハードルを下げる\n・3行以内の選択肢（はい/まだ検討中/もう決めました）を提示`}
+];
+let h='';
+ps.forEach((p,i)=>{h+=`<div class="pi"><h3>${'❶❷❸❹❺'[i]} ${p.t}</h3><pre>${p.d}</pre><button class="copy" style="position:absolute;top:8px;right:8px;background:#2563eb;color:#fff;border:none;padding:4px 10px;border-radius:5px;font-size:.75em;cursor:pointer" onclick="let t=this.parentElement.querySelector('pre').textContent;navigator.clipboard.writeText(t);this.textContent='✓';setTimeout(()=>this.textContent='コピー',1200)">コピー</button></div>`});
+$('prompts').innerHTML=h;
+}
+</script>
+</body>
+</html>

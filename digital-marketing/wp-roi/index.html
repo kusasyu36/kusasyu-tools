@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WP制作コスト比較＆ROI計算シート（稟議対応版） - kusasyu tools</title>
+<meta name="description" content="製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,WP制作コスト比較＆ROI計算シート（稟議対応版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/wp-roi/">
+<meta property="og:title" content="WP制作コスト比較＆ROI計算シート（稟議対応版） - kusasyu tools">
+<meta property="og:description" content="製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/wp-roi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WP制作コスト比較＆ROI計算シート（稟議対応版） - kusasyu tools">
+<meta name="twitter:description" content="製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WP制作コスト比較＆ROI計算シート（稟議対応版）",
+  "description": "製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/wp-roi/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-08"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>WP制作コスト比較＆ROI計算シート（稟議対応版）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>WP制作コスト比較＆ROI計算シート（稟議対応版）</h1>
+  <p class="project-name">WP外注1本40万？製造業向けAI生成ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>WP制作コスト比較＆ROI計算シート（稟議対応版）</th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>ツール名: BtoB WPドラフト生成プロンプトメーカー</td><td>作成日: 2026/04/08</td><td></td><td>※B列の数値を変更すると全体が自動再計算されます</td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 前提条件（B列に数値を入力）</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>項目</td><td>値</td><td>単位</td><td>備考</td><td></td><td></td><td></td></tr><tr><td>月間WP制作本数</td><td>4</td><td>本/月</td><td>現在または計画の制作ペース</td><td></td><td></td><td></td></tr><tr><td>外注単価（1本あたり）</td><td>400000</td><td>円</td><td>相場：15万〜40万円/本</td><td></td><td></td><td></td></tr><tr><td>外注時レビュー工数（1本あたり）</td><td>8</td><td>時間</td><td>構成確認・修正指示・校正</td><td></td><td></td><td></td></tr><tr><td>外注時 修正往復回数（1本あたり）</td><td>3</td><td>回</td><td>平均的な往復回数</td><td></td><td></td><td></td></tr><tr><td>修正1往復あたり社内工数</td><td>2</td><td>時間</td><td>メール確認+FB作成</td><td></td><td></td><td></td></tr><tr><td>社内人件費単価（時給換算）</td><td>5000</td><td>円/時間</td><td>給与+社保+間接費込み</td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"WP制作コスト比較＆ROI計算シート（稟議対応版）",,,,,,
+"ツール名: BtoB WPドラフト生成プロンプトメーカー","作成日: 2026/04/08",,"※B列の数値を変更すると全体が自動再計算されます",,,
+,,,,,,
+"■ 前提条件（B列に数値を入力）",,,,,,
+"項目","値","単位","備考",,,
+"月間WP制作本数",4,"本/月","現在または計画の制作ペース",,,
+"外注単価（1本あたり）",400000,"円","相場：15万〜40万円/本",,,
+"外注時レビュー工数（1本あたり）",8,"時間","構成確認・修正指示・校正",,,
+"外注時 修正往復回数（1本あたり）",3,"回","平均的な往復回数",,,
+"修正1往復あたり社内工数",2,"時間","メール確認+FB作成",,,
+"社内人件費単価（時給換算）",5000,"円/時間","給与+社保+間接費込み",,,
+"AI内製時 制作工数（1本あたり）",3,"時間","ヒアリング入力+AI生成+編集",,,
+"AI内製時 修正回数（1本あたり）",1,"回","AI生成は修正が少ない",,,
+"AIツール月額費用",0,"円/月","BtoB WPドラフト生成プロンプトメーカー（無料）",,,
+"AI導入初期費用（研修・セットアップ）",50000,"円","初月のみ発生",,,
+,,,,,,
+"■ コスト比較（自動計算）",,,,,,
+"項目","外注（円）","AI内製（円）","削減額（円）","削減率",,
+"制作費（月間）","=B6*B7","=B14","=B19-C19","=IF(B19>0,D19/B19,0)",,
+"社内工数（月間・時間）","=B6*(B8+B9*B10)","=B6*(B12+B13*B10)","=B20-C20","―",,
+"社内人件費（月間）","=B20*B11","=C20*B11","=B21-C21","=IF(B21>0,D21/B21,0)",,
+"月間合計コスト","=B19+B21","=C19+C21","=B22-C22","=IF(B22>0,D22/B22,0)",,
+"年間合計コスト","=B22*12","=C22*12","=B23-C23","=E22",,
+"投資回収期間","","=IF(D22>0,ROUND(B15/D22,1),0)","月","初月から削減効果発現",,
+,,,,,,
+"■ 稟議用サマリー（コピー＆ペースト用）",,,,,,
+"年間外注コスト（現状）","=B23","円",,,,
+"AI内製後の年間コスト","=C23+B15","円","初期費用込み",,,
+"年間コスト削減額","=B27-B28","円",,,,
+"年間工数削減","=D20*12","時間","月間削減時間×12",,,
+"WP1本あたり内製コスト","=IF(B6>0,C22/B6,0)","円","外注比=B7との差額で稟議説明",,,
+,,,,,,
+"■ 月次コスト削減トラッキング（グラフ用データ列付き）",,,,,,
+"月","制作本数","外注相当額（円）","AI内製コスト（円）","月間削減額（円）","累計削減額（円）","累計工数削減(h)"
+"1月目","=B6","=B22","=C22+B15","=C35-D35","=E35","=D20"
+"2月目","=B6","=B22","=C22","=C36-D36","=F35+E36","=G35+D20"
+"3月目","=B6","=B22","=C22","=C37-D37","=F36+E37","=G36+D20"
+"4月目","=B6","=B22","=C22","=C38-D38","=F37+E38","=G37+D20"
+"5月目","=B6","=B22","=C22","=C39-D39","=F38+E39","=G38+D20"
+"6月目","=B6","=B22","=C22","=C40-D40","=F39+E40","=G39+D20"
+"7月目","=B6","=B22","=C22","=C41-D41","=F40+E41","=G40+D20"
+"8月目","=B6","=B22","=C22","=C42-D42","=F41+E42","=G41+D20"
+"9月目","=B6","=B22","=C22","=C43-D43","=F42+E43","=G42+D20"
+"10月目","=B6","=B22","=C22","=C44-D44","=F43+E44","=G43+D20"
+"11月目","=B6","=B22","=C22","=C45-D45","=F44+E45","=G44+D20"
+"12月目","=B6","=B22","=C22","=C46-D46","=F45+E46","=G45+D20"
+,,,,,,
+"■ 制作進捗トラッキング（月4本ペース管理）",,,,,,,
+"No.","WPタイトル","テンプレート型","ステータス","開始日","完了予定日","完了日","担当者"
+1,"精密部品加工の品質管理手法","技術解説型","完了","2026/04/01","2026/04/05","2026/04/04","田中"
+2,"CNC旋盤導入で生産性30%向上した事例","導入事例型","レビュー中","2026/04/06","2026/04/10","","鈴木"
+3,"製造業DXの第一歩：設備IoT化ガイド","課題解決型","AI生成済","2026/04/08","2026/04/12","","田中"
+4,"金属3Dプリンティング技術の最新動向","技術解説型","未着手","2026/04/11","2026/04/15","","鈴木"
+5,"ISO9001対応の文書管理効率化","課題解決型","未着手","2026/04/14","2026/04/18","","田中"
+,,,,,,,,
+"ステータス凡例: 未着手→AI生成済→レビュー中→修正中→完了",,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_WP制作コスト比較＆ROI計算シート（稟議対応版）.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

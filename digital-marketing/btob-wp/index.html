@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BtoB製造業・士業向けWPドラフト生成プロンプトメーカー - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:780px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:18px 0;color:#2d3748}
+.badge{display:inline-block;background:#e53e3e;color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;vertical-align:middle;margin-left:6px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1rem;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #ebf4ff;color:#2b6cb0}
+label{display:block;font-size:.85rem;font-weight:600;margin:10px 0 4px;color:#4a5568}
+select,textarea{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:.9rem;font-family:inherit}
+textarea{min-height:70px;resize:vertical}
+.hint{font-size:.75rem;color:#718096;margin-top:2px}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:.2s}
+.btn-main{background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff}
+.btn-main:hover{opacity:.9}
+.btn-copy{background:#48bb78;color:#fff;margin-top:10px}
+.btn-copy:hover{background:#38a169}
+#output{display:none}
+#promptBox{background:#1a202c;color:#e2e8f0;padding:16px;border-radius:10px;font-size:.82rem;white-space:pre-wrap;max-height:420px;overflow-y:auto;line-height:1.7}
+.kw-box{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.kw{background:#ebf8ff;color:#2b6cb0;padding:3px 10px;border-radius:14px;font-size:.75rem}
+.roi{background:#f0fff4;border-radius:10px;padding:14px;margin-top:14px}
+.roi h3{font-size:.9rem;color:#276749;margin-bottom:6px}
+.roi .num{font-size:1.6rem;font-weight:800;color:#e53e3e}
+.copied{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.8);color:#fff;padding:12px 28px;border-radius:10px;font-size:1rem;z-index:99;animation:fadeout 1.5s forwards}
+@keyframes fadeout{0%,60%{opacity:1}100%{opacity:0}}
+@media(max-width:600px){.row{flex-direction:column;gap:0}h1{font-size:1.1rem}}
+</style>
+<meta name="description" content="製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoB製造業・士業向けWPドラフト生成プロンプトメーカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-wp/">
+<meta property="og:title" content="BtoB製造業・士業向けWPドラフト生成プロンプトメーカー - kusasyu tools">
+<meta property="og:description" content="製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-wp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoB製造業・士業向けWPドラフト生成プロンプトメーカー - kusasyu tools">
+<meta name="twitter:description" content="製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoB製造業・士業向けWPドラフト生成プロンプトメーカー",
+  "description": "製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-wp/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">BtoB製造業・士業向けWPドラフト生成プロンプトメーカー</span></div>
+<div class="wrap">
+<h1>📄 WPドラフト生成プロンプトメーカー<span class="badge">外注コスト削減</span></h1>
+
+<div class="card">
+<h2>① 業種・WPタイプを選択</h2>
+<div class="row">
+<div><label>業種</label><select id="ind"><option value="manufacturing">製造業（産業機器・精密部品）</option><option value="construction">建設・設備</option><option value="medical">医療・ヘルスケア</option><option value="legal">法律・士業</option></select></div>
+<div><label>WPタイプ</label><select id="wpt"><option value="tech">技術解説型</option><option value="case">導入事例型</option><option value="solve">課題解決型</option></select></div>
+</div>
+</div>
+
+<div class="card">
+<h2>② ヒアリング5項目を入力</h2>
+<label>1. 自社の強み・特長</label>
+<textarea id="h1" placeholder="例：創業50年の精密加工技術、公差±0.001mm対応"></textarea>
+<div class="hint">技術力・実績・認証など他社との差別化ポイント</div>
+
+<label>2. 顧客が抱える課題</label>
+<textarea id="h2" placeholder="例：海外調達のリードタイム長期化、品質トラブル増加"></textarea>
+
+<label>3. 導入実績・成果</label>
+<textarea id="h3" placeholder="例：大手自動車メーカー3社に納入、不良率0.01%以下達成"></textarea>
+
+<label>4. 技術的な差別化要素</label>
+<textarea id="h4" placeholder="例：5軸MC加工＋独自CAM最適化で従来比40%工期短縮"></textarea>
+
+<label>5. ターゲット読者像</label>
+<textarea id="h5" placeholder="例：産業機器メーカーの購買・設計部門担当者（30〜50代）"></textarea>
+</div>
+
+<div class="card">
+<h2>③ 外注コスト比較（参考）</h2>
+<div class="row">
+<div><label>年間WP制作予定本数</label><select id="vol"><option value="3">3本</option><option value="6" selected>6本</option><option value="12">12本</option><option value="24">24本</option></select></div>
+<div><label>外注単価（万円/本）</label><select id="cost"><option value="15">15万円</option><option value="25" selected>25万円</option><option value="40">40万円</option></select></div>
+</div>
+</div>
+
+<button class="btn btn-main" onclick="generate()">🚀 プロンプトを生成する</button>
+
+<div id="output" class="card">
+<h2>生成されたプロンプト</h2>
+<div id="promptBox"></div>
+<button class="btn btn-copy" onclick="copyP()">📋 クリップボードにコピー</button>
+<div><label>推奨SEOキーワード（20語）</label><div class="kw-box" id="kwBox"></div></div>
+<div class="roi" id="roiBox"></div>
+</div>
+</div>
+
+<script>
+const KW={
+manufacturing:["精密加工","製造業DX","品質管理","ISO認証","5軸加工","CNC加工","公差管理","検査工程","量産対応","試作開発","金属加工","切削加工","表面処理","図面レス発注","調達コスト削減","リードタイム短縮","不良率低減","工程改善","産業機器部品","BtoB製造"],
+construction:["建設DX","施工管理","BIM活用","安全対策","工期短縮","建設ICT","品質確保","現場効率化","設備工事","省エネ施工","建設コスト","プレハブ工法","鉄骨加工","設計施工一貫","改修工事","建築基準法","耐震補強","ZEB","建設人手不足","アフターサービス"],
+medical:["医療機器","クリニック経営","電子カルテ","医療DX","遠隔診療","診療報酬","患者満足度","院内感染対策","医療安全","ヘルスケアIT","検査機器","手術支援","医療AI","病院経営改善","在宅医療","医療データ","薬事申請","治験管理","看護業務効率化","地域医療連携"],
+legal:["弁護士マーケティング","士業集客","顧問契約","法律事務所DX","契約書自動化","リーガルテック","企業法務","労務管理","税務相談","相続対策","事業承継","コンプライアンス","知的財産","顧問弁護士","助成金申請","就業規則","M&A法務","債権回収","士業ブランディング","法律相談予約"]
+};
+const IND_NAME={manufacturing:"製造業",construction:"建設業",medical:"医療",legal:"法律・士業"};
+const WPT_NAME={tech:"技術解説型",case:"導入事例型",solve:"課題解決型"};
+const WPT_STRUCT={
+tech:"1. 業界の技術トレンドと課題の概要\n2. 従来技術の限界と新技術の必要性\n3. 自社技術の特長と仕組み（図解推奨）\n4. 具体的な性能データ・比較表\n5. 導入時の技術的検討ポイント\n6. まとめとお問い合わせ導線",
+case:"1. クライアント企業の背景と課題\n2. 解決策の選定プロセス\n3. 導入の経緯と実施内容\n4. 定量的な成果（数値で示す）\n5. 担当者の声・評価コメント\n6. 他社への応用可能性とCTA",
+solve:"1. ターゲット読者が直面する業界課題TOP3\n2. 課題を放置した場合のリスク（定量化）\n3. 課題解決の3つのアプローチ比較\n4. 自社ソリューションによる解決の全体像\n5. 期待できるROIと導入ステップ\n6. 無料相談・資料請求への導線"
+};
+
+function generate(){
+ const ind=document.getElementById("ind").value;
+ const wpt=document.getElementById("wpt").value;
+ const h=[1,2,3,4,5].map(i=>document.getElementById("h"+i).value.trim());
+ if(h.some(v=>!v)){alert("5項目すべてを入力してください");return}
+ const kws=KW[ind];
+ const kwStr=kws.join("、");
+ const prompt=`あなたはBtoB${IND_NAME[ind]}に精通したプロのコンテンツライターです。以下の情報を基に、${WPT_NAME[wpt]}ホワイトペーパーの完成度の高いドラフト（約5,000〜8,000字）を作成してください。
+
+【対象業界】${IND_NAME[ind]}
+【WPタイプ】${WPT_NAME[wpt]}
+
+【自社情報】
+■ 強み・特長：${h[0]}
+■ 顧客課題：${h[1]}
+■ 導入実績・成果：${h[2]}
+■ 技術的差別化：${h[3]}
+■ ターゲット読者：${h[4]}
+
+【構成（この順序で執筆）】
+${WPT_STRUCT[wpt]}
+
+【SEO要件】
+以下のキーワードを自然な形で本文に組み込んでください（各キーワード最低1回）：
+${kwStr}
+
+【執筆ルール】
+・読者は${h[4]}を想定し、専門用語には初出時に簡潔な説明を添える
+・各セクション400〜1,200字で構成し、合計5,000〜8,000字に収める
+・数値・データは具体的に記載（概算でも可、出典を明記）
+・箇条書き・表・比較図を活用し視認性を高める
+・最終セクションに明確なCTA（問い合わせ・資料請求）を設置
+・タイトルは30字以内、サブタイトル付きで作成
+・リード文（200字程度）で読者の課題に共感し、読む動機を与える
+
+このプロンプトで生成されるWPは、外注制作（1本15〜40万円相場）と同等品質を目指します。出力はMarkdown形式でお願いします。`;
+
+ document.getElementById("promptBox").textContent=prompt;
+ const kb=document.getElementById("kwBox");
+ kb.innerHTML="";
+ kws.forEach(k=>{const s=document.createElement("span");s.className="kw";s.textContent=k;kb.appendChild(s)});
+ const vol=+document.getElementById("vol").value;
+ const cost=+document.getElementById("cost").value;
+ const total=vol*cost;
+ const saved=Math.round(total*0.85);
+ document.getElementById("roiBox").innerHTML=`<h3>💰 年間コスト削減シミュレーション</h3><p>外注費：${vol}本 × ${cost}万円 = <b>${total}万円/年</b></p><p>AI内製化で約85%削減 → 削減額 <span class="num">▲${saved}万円</span>/年</p><p style="font-size:.8rem;color:#718096;margin-top:6px">※ AI利用料・社内レビュー工数を含めた概算。初稿生成後の専門家レビュー（1〜2時間/本）を推奨。</p>`;
+ document.getElementById("output").style.display="block";
+ document.getElementById("output").scrollIntoView({behavior:"smooth"});
+}
+
+function copyP(){
+ const t=document.getElementById("promptBox").textContent;
+ navigator.clipboard.writeText(t).then(()=>{
+  const d=document.createElement("div");d.className="copied";d.textContent="✓ コピーしました";document.body.appendChild(d);setTimeout(()=>d.remove(),1600);
+ });
+}
+</script>
+</body>
+</html>

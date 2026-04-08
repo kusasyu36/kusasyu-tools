@@ -754,6 +754,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-4",
+    "url": "proptech/tool-4/",
+    "title": "反響が来ても追客できない？AIで成約1.4倍",
+    "tool_name": "反響即レス返信文ジェネレーター＋プロンプト集",
+    "description": "中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使える追客システム。",
+    "quality_score": 10,
+    "completed_at": "2026-04-08T04:13:09.408482+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "management",
+    "url": "proptech/management/",
+    "title": "反響が来ても追客できない？AIで成約1.4倍",
+    "tool_name": "追客漏れゼロ管理ダッシュボード",
+    "description": "中小不動産仲介会社向けの反響対応・追客支援ツールキット。SUUMO等ポータルからの反響情報を入力すると、顧客属性に合わせた最適な返信文をAIが自動生成。さらに追客スケジュールを自動管理し、フォロー漏れをゼロにするダッシュボードを提供。既存SFA（月額10万円超）を導入できない5名以下の仲介会社が、無料で即日使える追客システム。",
+    "quality_score": 10,
+    "completed_at": "2026-04-08T04:13:09.408482+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -2650,6 +2676,32 @@
     "quality_score": 7,
     "completed_at": "2026-04-07T08:47:08.328689+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "btob-wp",
+    "url": "digital-marketing/btob-wp/",
+    "title": "WP外注1本40万？製造業向けAI生成ツール",
+    "tool_name": "BtoB製造業・士業向けWPドラフト生成プロンプトメーカー",
+    "description": "製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で大幅コスト削減を実現する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-08T04:06:49.271854+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "wp-roi",
+    "url": "digital-marketing/wp-roi/",
+    "title": "WP外注1本40万？製造業向けAI生成ツール",
+    "tool_name": "WP制作コスト比較＆ROI計算シート（稟議対応版）",
+    "description": "製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で大幅コスト削減を実現する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-08T04:06:49.271854+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "legal-tech",
