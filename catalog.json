@@ -1651,6 +1651,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "simulator-4",
+    "url": "digital-marketing/simulator-4/",
+    "title": "動画広告費90%カット？AI制作シミュレーター",
+    "tool_name": "動画広告バリエーション設計シミュレーター",
+    "description": "中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAUが報告した「月100万→月10万」のコスト削減を、どのツールでどう実現するかを具体的に設計",
+    "quality_score": 8,
+    "completed_at": "2026-04-09T03:26:26.376588+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "simulator-5",
+    "url": "digital-marketing/simulator-5/",
+    "title": "動画広告費90%カット？AI制作シミュレーター",
+    "tool_name": "AI動画生成ツール比較ダッシュボード",
+    "description": "中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAUが報告した「月100万→月10万」のコスト削減を、どのツールでどう実現するかを具体的に設計",
+    "quality_score": 8,
+    "completed_at": "2026-04-09T03:26:26.376588+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "simulator-6",
+    "url": "digital-marketing/simulator-6/",
+    "title": "動画広告費90%カット？AI制作シミュレーター",
+    "tool_name": "動画広告A_Bテスト効果測定シート",
+    "description": "中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAUが報告した「月100万→月10万」のコスト削減を、どのツールでどう実現するかを具体的に設計",
+    "quality_score": 8,
+    "completed_at": "2026-04-09T03:26:26.376588+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -3443,6 +3482,45 @@
     "quality_score": 7,
     "completed_at": "2026-03-31T15:45:56.124891+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "buildcheck",
+    "url": "proptech/buildcheck/",
+    "title": "この土地、何が建つ？開発可能性を即計算",
+    "tool_name": "土地開発可能性シミュレーター「BuildCheck」",
+    "description": "用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-09T06:40:42.254643+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "guide-4",
+    "url": "proptech/guide-4/",
+    "title": "この土地、何が建つ？開発可能性を即計算",
+    "tool_name": "用途地域×不動産投資_早わかりガイド",
+    "description": "用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-09T06:40:42.254643+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-5",
+    "url": "proptech/tool-5/",
+    "title": "この土地、何が建つ？開発可能性を即計算",
+    "tool_name": "土地候補比較シート",
+    "description": "用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-09T06:40:42.254643+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "digital-marketing",

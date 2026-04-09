@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>動画広告バリエーション設計シミュレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:18px 0 4px;color:#1e3a5f}
+.sub{text-align:center;font-size:.85rem;color:#64748b;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1rem;color:#1e3a5f;border-left:4px solid #3b82f6;padding-left:10px;margin-bottom:14px}
+label{display:block;font-size:.85rem;font-weight:600;margin:10px 0 4px;color:#334155}
+select,input[type=number]{width:100%;padding:9px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:.95rem;background:#fff}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+button{display:block;width:100%;padding:13px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:14px}
+button:hover{opacity:.9}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:10px}
+th,td{border:1px solid #e2e8f0;padding:7px 8px;text-align:center}
+th{background:#eef2ff;color:#1e3a5f;font-weight:700}
+tr:nth-child(even){background:#f8fafc}
+.res-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:10px;padding:18px;margin-top:14px;text-align:center}
+.big-num{font-size:2rem;font-weight:800;color:#dc2626}
+.metrics{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.metric{flex:1;min-width:120px;background:#fff;border-radius:8px;padding:12px;text-align:center}
+.metric .val{font-size:1.3rem;font-weight:800;color:#1e3a5f}
+.metric .lbl{font-size:.75rem;color:#64748b}
+.note{font-size:.75rem;color:#94a3b8;margin-top:10px}
+.bar-wrap{margin-top:8px}
+.bar-label{display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:2px}
+.bar-bg{height:22px;background:#e2e8f0;border-radius:11px;overflow:hidden}
+.bar-fg{height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:11px;transition:width .5s}
+#result{display:none}
+footer{text-align:center;font-size:.72rem;color:#94a3b8;padding:12px 0}
+@media print{body{background:#fff}.card{box-shadow:none;break-inside:avoid}button,.sub{display:none}h1::after{content:" — 稟議添付用";font-size:.8rem}#result{display:block!important}}
+@media(max-width:500px){.row{flex-direction:column}.metrics{flex-direction:column}}
+</style>
+<meta name="description" content="中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,動画広告バリエーション設計シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-4/">
+<meta property="og:title" content="動画広告バリエーション設計シミュレーター - kusasyu tools">
+<meta property="og:description" content="中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="動画広告バリエーション設計シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "動画広告バリエーション設計シミュレーター",
+  "description": "中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">動画広告バリエーション設計シミュレーター</span></div>
+<div class="wrap">
+<h1>動画広告バリエーション設計シミュレーター</h1>
+<p class="sub">元素材1本 → AI量産でコスト最大90%カットを設計</p>
+
+<div class="card">
+<h2>1. 商材・ターゲット設定</h2>
+<div class="row">
+<div><label>商材カテゴリ</label><select id="cat"><option>美容・コスメ</option><option>健康食品・サプリ</option><option>アパレル・ファッション</option><option>食品・飲料</option><option>家電・ガジェット</option><option>インテリア・雑貨</option></select></div>
+<div><label>ターゲット層</label><select id="tgt"><option>20代女性</option><option>30代女性</option><option>40代女性</option><option>20-30代男性</option><option>40-50代男性</option><option>シニア層</option></select></div>
+</div>
+<label>広告プラットフォーム（複数選択可）</label>
+<div class="row" id="pf">
+<div><label><input type="checkbox" value="meta" checked> Meta (Instagram/FB)</label></div>
+<div><label><input type="checkbox" value="yt" checked> YouTube</label></div>
+<div><label><input type="checkbox" value="line"> LINE</label></div>
+<div><label><input type="checkbox" value="yahoo"> Yahoo!</label></div>
+</div>
+</div>
+
+<div class="card">
+<h2>2. コスト条件</h2>
+<div class="row">
+<div><label>制作会社 単価（万円/本）</label><input type="number" id="cExt" value="40" min="1" max="200"></div>
+<div><label>AI制作 単価（万円/本）</label><input type="number" id="cAi" value="2" min="0.5" max="50" step="0.5"></div>
+</div>
+<div class="row">
+<div><label>月間制作本数（目標）</label><input type="number" id="qty" value="10" min="1" max="200"></div>
+</div>
+</div>
+
+<button onclick="calc()">シミュレーション実行</button>
+
+<div id="result">
+<div class="card">
+<h2>3. バリエーションマトリクス</h2>
+<p class="note" id="matInfo"></p>
+<div style="overflow-x:auto"><table id="matTbl"></table></div>
+</div>
+<div class="card">
+<h2>4. コスト削減シミュレーション</h2>
+<div class="res-box">
+<div style="font-size:.85rem;color:#64748b">コスト削減率</div>
+<div class="big-num" id="cutRate"></div>
+<div class="metrics">
+<div class="metric"><div class="val" id="mExt"></div><div class="lbl">制作会社 月額</div></div>
+<div class="metric"><div class="val" id="mAi"></div><div class="lbl">AI制作 月額</div></div>
+<div class="metric"><div class="val" id="mSave"></div><div class="lbl">月間節約額</div></div>
+<div class="metric"><div class="val" id="ySave"></div><div class="lbl">年間節約額</div></div>
+</div>
+</div>
+<div class="bar-wrap" style="margin-top:16px">
+<div class="bar-label"><span>制作会社</span><span id="bExtL"></span></div>
+<div class="bar-bg"><div class="bar-fg" id="bExt" style="width:100%"></div></div>
+</div>
+<div class="bar-wrap">
+<div class="bar-label"><span>AI制作</span><span id="bAiL"></span></div>
+<div class="bar-bg"><div class="bar-fg" id="bAi" style="width:10%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
+</div>
+</div>
+<div class="card">
+<h2>5. 推奨アクション</h2>
+<div id="actions"></div>
+</div>
+</div>
+<footer>© 2026 Kusasyu Digital Marketing｜印刷して稟議書に添付できます</footer>
+</div>
+<script>
+const PF={meta:{name:"Meta (IG/FB)",ratios:["9:16","1:1","4:5"],secs:[6,15,30]},yt:{name:"YouTube",ratios:["16:9","9:16"],secs:[6,15,30,60]},line:{name:"LINE",ratios:["9:16","1:1"],secs:[6,15]},yahoo:{name:"Yahoo!",ratios:["16:9","1:1"],secs:[6,15,30]}};
+const HOOKS={meta:{"20代女性":"UGC風・ストーリーズ映え","30代女性":"ビフォーアフター・時短訴求","40代女性":"品質・安心感訴求","20-30代男性":"機能比較・数値訴求","40-50代男性":"コスパ・実績訴求","シニア層":"わかりやすさ・信頼訴求"},yt:{"20代女性":"冒頭2秒フック・テンポ重視","30代女性":"How-to・レビュー形式","40代女性":"専門家推薦・エビデンス","20-30代男性":"スペック比較・開封","40-50代男性":"課題解決ストーリー","シニア層":"大きな文字・ゆっくり説明"},line:{"20代女性":"スタンプ風・親近感","30代女性":"クーポン訴求・限定感","40代女性":"口コミ・実績数","20-30代男性":"データ・グラフ訴求","40-50代男性":"ビジネス効率化訴求","シニア層":"シンプル・安心"},yahoo:{"20代女性":"トレンド感・SNS話題","30代女性":"ランキング・比較","40代女性":"品質保証・返金保証","20-30代男性":"限定・早い者勝ち","40-50代男性":"ROI・費用対効果","シニア層":"実績・歴史訴求"}};
+function fmt(n){return n>=10000?(n/10000).toFixed(1)+"億":(n>=1?n.toFixed(0)+"万":"—")}
+function calc(){
+const checks=[...document.querySelectorAll('#pf input:checked')].map(e=>e.value);
+if(!checks.length){alert("プラットフォームを1つ以上選択してください");return}
+const tgt=document.getElementById("tgt").value,cat=document.getElementById("cat").value;
+const cExt=+document.getElementById("cExt").value,cAi=+document.getElementById("cAi").value,qty=+document.getElementById("qty").value;
+let rows=[],total=0;
+checks.forEach(k=>{const p=PF[k];p.ratios.forEach(r=>{p.secs.forEach(s=>{rows.push({pf:p.name,ratio:r,sec:s+"秒",hook:(HOOKS[k]||{})[tgt]||"汎用訴求"});total++})})});
+let h="<tr><th>#</th><th>プラットフォーム</th><th>アスペクト比</th><th>尺</th><th>訴求フック</th></tr>";
+rows.forEach((r,i)=>{h+="<tr><td>"+(i+1)+"</td><td>"+r.pf+"</td><td>"+r.ratio+"</td><td>"+r.sec+"</td><td>"+r.hook+"</td></tr>"});
+document.getElementById("matTbl").innerHTML=h;
+document.getElementById("matInfo").textContent="商材: "+cat+" ／ターゲット: "+tgt+" ／生成バリエーション: "+total+"パターン";
+const mE=cExt*qty,mA=cAi*qty,sv=mE-mA,rate=((sv/mE)*100).toFixed(1);
+document.getElementById("cutRate").textContent=rate+"%削減";
+document.getElementById("mExt").textContent=fmt(mE);
+document.getElementById("mAi").textContent=fmt(mA);
+document.getElementById("mSave").textContent=fmt(sv);
+document.getElementById("ySave").textContent=fmt(sv*12);
+document.getElementById("bExtL").textContent=mE+"万円";
+document.getElementById("bAiL").textContent=mA+"万円";
+document.getElementById("bAi").style.width=Math.max(2,(mA/mE)*100)+"%";
+let acts="<ol style='padding-left:18px;font-size:.88rem;line-height:2'>";
+acts+="<li><b>元素材1本を撮影</b>（"+cat+"向け "+tgt+" ターゲット）</li>";
+acts+="<li><b>AIツールで"+total+"バリエーション生成</b>（推定AI制作費: "+mA+"万円/月）</li>";
+acts+="<li><b>A/Bテスト実施</b>→ 2週間で勝ちクリエイティブを特定</li>";
+acts+="<li><b>年間 "+fmt(sv*12)+"円の削減</b>を稟議書に記載して承認を取得</li></ol>";
+document.getElementById("actions").innerHTML=acts;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"})
+}
+</script>
+</body>
+</html>

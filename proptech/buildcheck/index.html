@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>土地開発可能性シミュレーター「BuildCheck」 - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#2b6cb0;font-size:1.4em;margin:8px 0}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#2d3748;border-left:4px solid #3182ce;padding-left:10px;margin-bottom:12px}
+label{display:block;font-size:.88em;color:#4a5568;margin:8px 0 4px}
+select,input{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:1em}
+select:focus,input:focus{outline:none;border-color:#3182ce;box-shadow:0 0 0 3px rgba(49,130,206,.15)}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+button{width:100%;padding:12px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:1.05em;cursor:pointer;margin-top:8px}
+button:hover{background:#2c5282}
+.btn2{background:#718096;font-size:.9em;margin-top:4px}
+.btn2:hover{background:#4a5568}
+#result{display:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.metric{background:#ebf8ff;border-radius:8px;padding:12px;text-align:center}
+.metric .val{font-size:1.4em;font-weight:700;color:#2b6cb0}
+.metric .lbl{font-size:.78em;color:#718096}
+.uses{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tag{border-radius:20px;padding:4px 12px;font-size:.82em}
+.ok{background:#c6f6d5;color:#22543d}
+.ng{background:#fed7d7;color:#9b2c2c;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;font-size:.9em;margin-top:8px}
+th,td{padding:8px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#f7fafc;color:#4a5568}
+td:last-child,th:last-child{text-align:right}
+td:nth-child(2),th:nth-child(2){text-align:right}
+.note{font-size:.78em;color:#a0aec0;margin-top:8px}
+@media(max-width:600px){.row{flex-direction:column;gap:8px}.grid{grid-template-columns:1fr}}
+@media print{button{display:none}.card{box-shadow:none;border:1px solid #ccc}body{background:#fff}}
+</style>
+<meta name="description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,土地開発可能性シミュレーター「BuildCheck」">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/buildcheck/">
+<meta property="og:title" content="土地開発可能性シミュレーター「BuildCheck」 - kusasyu tools">
+<meta property="og:description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/buildcheck/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="土地開発可能性シミュレーター「BuildCheck」 - kusasyu tools">
+<meta name="twitter:description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "土地開発可能性シミュレーター「BuildCheck」",
+  "description": "用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/buildcheck/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">土地開発可能性シミュレーター「BuildCheck」</span></div>
+<div class="wrap">
+<h1>BuildCheck</h1>
+<p class="sub">土地開発可能性シミュレーター ― 用途地域から収益性まで即計算</p>
+<div class="card">
+<h2>基本情報入力</h2>
+<label>用途地域</label>
+<select id="zone" onchange="setDef()"></select>
+<div class="row">
+<div><label>敷地面積（㎡）</label><input id="area" type="number" value="200" min="1"></div>
+<div><label>前面道路幅員（m）</label><input id="road" type="number" value="6" min="2" step="0.1"></div>
+</div>
+<div class="row">
+<div><label>建蔽率（%）</label><input id="bcr" type="number" min="1" max="100"></div>
+<div><label>容積率（%）</label><input id="far" type="number" min="1" max="1500"></div>
+</div>
+<label>想定賃料単価（円/㎡/月）<span id="rh" style="color:#718096;font-size:.82em"></span></label>
+<input id="rent" type="number" min="0">
+<button onclick="calc()">シミュレーション実行</button>
+</div>
+<div id="result">
+<div class="card">
+<h2>建築可能な用途</h2>
+<div id="uses" class="uses"></div>
+</div>
+<div class="card">
+<h2>建築規模</h2>
+<div class="grid" id="met"></div>
+</div>
+<div class="card">
+<h2>収益シミュレーション</h2>
+<table id="ptbl"></table>
+<p class="note">※表面利回り＝年間賃料収入÷建築費×100。賃貸可能面積は延べ床の75%で算出。実際の利回りは諸経費・空室率等により変動します。</p>
+</div>
+<button class="btn2" onclick="window.print()">印刷する</button>
+</div>
+<p class="note" style="text-align:center;margin-top:16px">※本ツールは概算シミュレーションです。実際の建築計画には建築士等の専門家にご相談ください。<br>&copy; Kusasyu PropTech</p>
+</div>
+<script>
+var Z=[
+{n:"第一種低層住居専用地域",b:50,f:100,r:2800,u:[1,1,0,0,0,0,0,0,0,0],m:.4,fl:3},
+{n:"第二種低層住居専用地域",b:50,f:100,r:2900,u:[1,1,1,0,0,0,0,0,0,0],m:.4,fl:3},
+{n:"第一種中高層住居専用地域",b:60,f:200,r:3200,u:[1,1,1,0,1,0,0,0,0,0],m:.4,fl:5},
+{n:"第二種中高層住居専用地域",b:60,f:200,r:3300,u:[1,1,1,0,1,0,0,0,0,0],m:.4,fl:5},
+{n:"第一種住居地域",b:60,f:300,r:3500,u:[1,1,1,0,1,1,0,0,0,0],m:.4,fl:0},
+{n:"第二種住居地域",b:60,f:300,r:3400,u:[1,1,1,1,1,1,0,0,0,1],m:.4,fl:0},
+{n:"準住居地域",b:60,f:300,r:3300,u:[1,1,1,1,1,1,0,0,1,1],m:.4,fl:0},
+{n:"田園住居地域",b:50,f:100,r:2500,u:[1,1,1,0,0,0,0,0,0,0],m:.4,fl:3},
+{n:"近隣商業地域",b:80,f:400,r:4500,u:[1,1,1,1,1,1,0,0,1,1],m:.6,fl:0},
+{n:"商業地域",b:80,f:800,r:5500,u:[1,1,1,1,1,1,0,0,1,1],m:.6,fl:0},
+{n:"準工業地域",b:60,f:300,r:3000,u:[1,1,1,1,1,1,1,0,1,1],m:.6,fl:0},
+{n:"工業地域",b:60,f:300,r:2500,u:[1,1,0,0,1,0,1,1,1,0],m:.6,fl:0},
+{n:"工業専用地域",b:50,f:300,r:2000,u:[0,0,0,0,1,0,1,1,1,0],m:.6,fl:0}
+];
+var U=["戸建住宅","共同住宅","店舗（小規模）","店舗（大規模）","事務所","ホテル・旅館","工場（小規模）","工場（大規模）","倉庫","遊戯施設"];
+var sl=document.getElementById("zone");
+Z.forEach(function(z,i){var o=document.createElement("option");o.value=i;o.textContent=z.n;sl.appendChild(o)});
+function setDef(){var z=Z[sl.value];document.getElementById("bcr").value=z.b;document.getElementById("far").value=z.f;document.getElementById("rent").value=z.r;document.getElementById("rh").textContent="（デフォルト: "+z.r.toLocaleString()+"円）"}
+setDef();
+function fm(v){return Math.floor(v).toLocaleString()}
+function calc(){
+var z=Z[sl.value],S=+document.getElementById("area").value,R=+document.getElementById("road").value,
+bP=+document.getElementById("bcr").value,fP=+document.getElementById("far").value,rn=+document.getElementById("rent").value;
+if(!S||!R){alert("敷地面積と前面道路幅員を入力してください");return}
+var rF=R*z.m*100,eF=Math.min(fP,rF),roadLimited=eF<fP;
+var mBA=S*bP/100,mFA=S*eF/100;
+var fLim=z.fl||99,eFlr=Math.min(fLim,Math.max(1,Math.ceil(mFA/mBA)));
+var aFA=Math.min(mFA,mBA*eFlr);
+var ud=document.getElementById("uses");ud.innerHTML="";
+U.forEach(function(u,i){var t=document.createElement("span");t.className="tag "+(z.u[i]?"ok":"ng");t.textContent=(z.u[i]?"○ ":"× ")+u;ud.appendChild(t)});
+var cW=aFA*220000,cR=aFA*380000;
+document.getElementById("met").innerHTML=[
+["最大建築面積",fm(mBA)+" ㎡"],
+["最大延べ床面積",fm(mFA)+" ㎡"],
+["有効容積率",eF.toFixed(0)+"％"+(roadLimited?" (道路制限適用)":"")],
+["想定階数",eFlr+"階"+(z.fl?" (高さ制限)":"")],
+["概算建築費（木造）","¥"+fm(cW)],
+["概算建築費（RC造）","¥"+fm(cR)]
+].map(function(x){return'<div class="metric"><div class="val">'+x[1]+'</div><div class="lbl">'+x[0]+'</div></div>'}).join("");
+var rFA=aFA*0.75,mR=rFA*rn,yR=mR*12;
+var yW=cW>0?(yR/cW*100).toFixed(2):"—",yC=cR>0?(yR/cR*100).toFixed(2):"—";
+document.getElementById("ptbl").innerHTML="<tr><th>項目</th><th>木造</th><th>RC造</th></tr>"+
+[["概算建築費","¥"+fm(cW),"¥"+fm(cR)],
+["賃貸可能面積（有効率75%）",fm(rFA)+" ㎡",fm(rFA)+" ㎡"],
+["賃料単価",fm(rn)+" 円/㎡/月",fm(rn)+" 円/㎡/月"],
+["月間想定賃料収入","¥"+fm(mR),"¥"+fm(mR)],
+["年間想定賃料収入","¥"+fm(yR),"¥"+fm(yR)],
+["表面利回り",yW+"%",yC+"%"]
+].map(function(r){return"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td></tr>"}).join("");
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"})
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>土地候補比較シート - kusasyu tools</title>
+<meta name="description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,土地候補比較シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-5/">
+<meta property="og:title" content="土地候補比較シート - kusasyu tools">
+<meta property="og:description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="土地候補比較シート - kusasyu tools">
+<meta name="twitter:description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "土地候補比較シート",
+  "description": "用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>土地候補比較シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>土地候補比較シート</h1>
+  <p class="project-name">この土地、何が建つ？開発可能性を即計算</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>候補地No</th><th>物件名</th><th>所在地</th><th>用途地域</th><th>敷地面積（㎡）</th><th>建蔽率（%）</th><th>容積率（%）</th><th>建築可能面積（㎡）</th><th>延床面積上限（㎡）</th><th>想定建築延床（㎡）</th><th>構造</th><th>階数</th><th>概算建築費単価（万円/㎡）</th><th>概算建築費（万円）</th><th>土地取得費（万円）</th><th>総投資額（万円）</th><th>想定戸数</th><th>想定月額賃料/戸（万円）</th><th>年間想定賃料収入（万円）</th><th>空室率想定（%）</th><th>実効年間賃料（万円）</th><th>表面利回り（%）</th><th>実質利回り（%）</th><th>判定</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>○○駅南口土地A</td><td>東京都世田谷区○○1-2-3</td><td>第一種中高層住居専用地域</td><td>320</td><td>60</td><td>200</td><td>192</td><td>640</td><td>580</td><td>RC造</td><td>5</td><td>32</td><td>18560</td><td>28000</td><td>46560</td><td>18</td><td>8.5</td><td>1836</td><td>5</td><td>1744.2</td><td>3.94</td><td>3.75</td><td>△ 要検討</td><td>駅徒歩5分・整形地</td></tr><tr><td>2</td><td>△△駅前土地B</td><td>東京都杉並区△△4-5-6</td><td>近隣商業地域</td><td>250</td><td>80</td><td>300</td><td>200</td><td>750</td><td>700</td><td>RC造</td><td>7</td><td>34</td><td>23800</td><td>35000</td><td>58800</td><td>24</td><td>9.2</td><td>2649.6</td><td>5</td><td>2517.12</td><td>4.50</td><td>4.28</td><td>△ 要検討</td><td>駅徒歩3分・商業隣接</td></tr><tr><td>3</td><td>□□エリア土地C</td><td>東京都練馬区□□7-8-9</td><td>第一種住居地域</td><td>480</td><td>60</td><td>200</td><td>288</td><td>960</td><td>900</td><td>RC造</td><td>5</td><td>30</td><td>27000</td><td>24000</td><td>51000</td><td>30</td><td>7.8</td><td>2808</td><td>5</td><td>2667.6</td><td>5.51</td><td>5.23</td><td>◎ 有望</td><td>駅徒歩8分・広い敷地</td></tr><tr><td>4</td><td>◇◇通り土地D</td><td>東京都板橋区◇◇2-3-4</td><td>第二種住居地域</td><td>400</td><td>60</td><td>200</td><td>240</td><td>800</td><td>750</td><td>S造</td><td>5</td><td>25</td><td>18750</td><td>20000</td><td>38750</td><td>25</td><td>7.0</td><td>2100</td><td>5</td><td>1995</td><td>5.42</td><td>5.15</td><td>◎ 有望</td><td>駅徒歩10分・前面道路広い</td></tr><tr><td>5</td><td>☆☆台土地E</td><td>東京都中野区☆☆5-6-7</td><td>商業地域</td><td>180</td><td>80</td><td>400</td><td>144</td><td>720</td><td>680</td><td>RC造</td><td>8</td><td>36</td><td>24480</td><td>42000</td><td>66480</td><td>22</td><td>10.5</td><td>2772</td><td>5</td><td>2633.4</td><td>4.17</td><td>3.96</td><td>△ 要検討</td><td>駅徒歩2分・狭小地</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td>【凡例】</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td>判定基準:</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td>◎ 有望 = 表面利回り5.0%以上</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td>○ 検討可 = 表面利回り4.5%以上5.0%未満</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `候補地No,物件名,所在地,用途地域,敷地面積（㎡）,建蔽率（%）,容積率（%）,建築可能面積（㎡）,延床面積上限（㎡）,想定建築延床（㎡）,構造,階数,概算建築費単価（万円/㎡）,概算建築費（万円）,土地取得費（万円）,総投資額（万円）,想定戸数,想定月額賃料/戸（万円）,年間想定賃料収入（万円）,空室率想定（%）,実効年間賃料（万円）,表面利回り（%）,実質利回り（%）,判定,備考
+1,○○駅南口土地A,東京都世田谷区○○1-2-3,第一種中高層住居専用地域,320,60,200,192,640,580,RC造,5,32,18560,28000,46560,18,8.5,1836,5,1744.2,3.94,3.75,△ 要検討,駅徒歩5分・整形地
+2,△△駅前土地B,東京都杉並区△△4-5-6,近隣商業地域,250,80,300,200,750,700,RC造,7,34,23800,35000,58800,24,9.2,2649.6,5,2517.12,4.50,4.28,△ 要検討,駅徒歩3分・商業隣接
+3,□□エリア土地C,東京都練馬区□□7-8-9,第一種住居地域,480,60,200,288,960,900,RC造,5,30,27000,24000,51000,30,7.8,2808,5,2667.6,5.51,5.23,◎ 有望,駅徒歩8分・広い敷地
+4,◇◇通り土地D,東京都板橋区◇◇2-3-4,第二種住居地域,400,60,200,240,800,750,S造,5,25,18750,20000,38750,25,7.0,2100,5,1995,5.42,5.15,◎ 有望,駅徒歩10分・前面道路広い
+5,☆☆台土地E,東京都中野区☆☆5-6-7,商業地域,180,80,400,144,720,680,RC造,8,36,24480,42000,66480,22,10.5,2772,5,2633.4,4.17,3.96,△ 要検討,駅徒歩2分・狭小地
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,【凡例】,,,,,,,,,,,,,,,,,,,,
+,,,判定基準:,,,,,,,,,,,,,,,,,,,,
+,,,◎ 有望 = 表面利回り5.0%以上,,,,,,,,,,,,,,,,,,,,
+,,,○ 検討可 = 表面利回り4.5%以上5.0%未満,,,,,,,,,,,,,,,,,,,,
+,,,△ 要検討 = 表面利回り4.0%以上4.5%未満,,,,,,,,,,,,,,,,,,,,
+,,,× 見送り = 表面利回り4.0%未満,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,【計算式メモ（Excel転記時に使用）】,,,,,,,,,,,,,,,,,,,,
+,,,建築可能面積 = 敷地面積 × 建蔽率 ÷ 100,,,,,,,,,,,,,,,,,,,,
+,,,延床面積上限 = 敷地面積 × 容積率 ÷ 100,,,,,,,,,,,,,,,,,,,,
+,,,概算建築費 = 想定建築延床 × 建築費単価,,,,,,,,,,,,,,,,,,,,
+,,,総投資額 = 概算建築費 + 土地取得費,,,,,,,,,,,,,,,,,,,,
+,,,年間想定賃料収入 = 想定戸数 × 月額賃料 × 12,,,,,,,,,,,,,,,,,,,,
+,,,実効年間賃料 = 年間想定賃料収入 ×（1 - 空室率 ÷ 100）,,,,,,,,,,,,,,,,,,,,
+,,,表面利回り = 年間想定賃料収入 ÷ 総投資額 × 100,,,,,,,,,,,,,,,,,,,,
+,,,実質利回り = 実効年間賃料 ÷ 総投資額 × 100,,,,,,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_土地候補比較シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

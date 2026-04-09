@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用途地域×不動産投資_早わかりガイド - kusasyu tools</title>
+<meta name="description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,用途地域×不動産投資_早わかりガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-4/">
+<meta property="og:title" content="用途地域×不動産投資_早わかりガイド - kusasyu tools">
+<meta property="og:description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用途地域×不動産投資_早わかりガイド - kusasyu tools">
+<meta name="twitter:description" content="用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "用途地域×不動産投資_早わかりガイド",
+  "description": "用途地域・敷地面積・建蔽率・容積率を入力するだけで、建築可能な用途一覧・最大建築面積・延べ床面積・概算建築費・想定賃料収入・表面利回りを一括計算するWebツール。13種の用途地域ごとの建築制限ロジックを内蔵し、土地仕入れ検討の初期スクリーニングを数十万円の建築士相談なしで完結させる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/guide-4/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>用途地域×不動産投資_早わかりガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>用途地域×不動産投資_早わかりガイド</h1>
+  <p class="project-name">この土地、何が建つ？開発可能性を即計算</p>
+  <div class="content">
+<h1>用途地域×不動産投資 早わかりガイド</h1>
+<p>不動産投資で「想定していた建物が建てられなかった」という失敗は、用途地域の確認不足が原因です。本ガイドでは13種の用途地域を投資家目線で整理し、利回りに直結する規制値の読み方を解説します。</p>
+<hr />
+<h2>1. 用途地域とは</h2>
+<p>都市計画法で定められた<strong>土地利用のルール</strong>です。住居系8種・商業系2種・工業系3種の計13種があり、建てられる建物の種類・大きさ・高さが決まります。投資判断の第一歩は、対象地の用途地域を確認することです。</p>
+<hr />
+<h2>2. 13種の用途地域一覧と建築可否</h2>
+<h3>住居系（8種）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">用途地域</th>
+<th style="text-align: center;">戸建賃貸</th>
+<th style="text-align: center;">アパート</th>
+<th style="text-align: center;">マンション</th>
+<th style="text-align: center;">店舗</th>
+<th style="text-align: center;">オフィス</th>
+<th style="text-align: left;">投資適性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">第一種低層住居専用</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">△（2階）</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: left;">戸建賃貸向き</td>
+</tr>
+<tr>
+<td style="text-align: left;">第二種低層住居専用</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">△（2階）</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">△（150㎡以下）</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: left;">小規模店舗併用可</td>
+</tr>
+<tr>
+<td style="text-align: left;">第一種中高層住居専用</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">△（500㎡以下）</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: left;">ファミリーマンション</td>
+</tr>
+<tr>
+<td style="text-align: left;">第二種中高層住居専用</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○（1,500㎡以下）</td>
+<td style="text-align: center;">○（同左）</td>
+<td style="text-align: left;">中規模複合開発</td>
+</tr>
+<tr>
+<td style="text-align: left;">第一種住居地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○（3,000㎡以下）</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: left;">住商バランス型</td>
+</tr>
+<tr>
+<td style="text-align: left;">第二種住居地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: left;">ロードサイド商業</td>
+</tr>
+<tr>
+<td style="text-align: left;">準住居地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: left;">幹線道路沿い投資</td>
+</tr>
+<tr>
+<td style="text-align: left;">田園住居地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">△</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">△（農産物直売等）</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: left;">限定的</td>
+</tr>
+</tbody>
+</table>
+<h3>商業系（2種）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">用途地域</th>
+<th style="text-align: center;">マンション</th>
+<th style="text-align: center;">店舗</th>
+<th style="text-align: center;">オフィス</th>
+<th style="text-align: center;">ホテル</th>
+<th style="text-align: center;">風俗施設</th>
+<th style="text-align: left;">投資適性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">近隣商業地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: left;">駅前1棟収益</td>
+</tr>
+<tr>
+<td style="text-align: left;">商業地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: left;">高容積率で最大収益</td>
+</tr>
+</tbody>
+</table>
+<h3>工業系（3種）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">用途地域</th>
+<th style="text-align: center;">住宅</th>
+<th style="text-align: center;">店舗</th>
+<th style="text-align: center;">工場</th>
+<th style="text-align: center;">倉庫</th>
+<th style="text-align: left;">投資適性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">準工業地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: left;">倉庫・物流投資の穴場</td>
+</tr>
+<tr>
+<td style="text-align: left;">工業地域</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">△（制限あり）</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: left;">事業用賃貸</td>
+</tr>
+<tr>
+<td style="text-align: left;">工業専用地域</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">×</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: left;">住宅不可・工場専用</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>投資家の注目ポイント</strong>: 工業専用地域だけが住宅を建てられません。逆に商業地域はほぼ何でも建てられるため、出口戦略の自由度が最も高い地域です。</p>
+</blockquote>
+<hr />
+<h2>3. 利回りに直結する3つの数値</h2>
+<h3>建蔽率（けんぺいりつ）— 土地をどれだけ使えるか</h3>
+<p><strong>計算式</strong>: 建築面積 ÷ 敷地面積 × 100</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">用途地域の例</th>
+<th style="text-align: left;">建蔽率</th>
+<th style="text-align: left;">100㎡の土地なら</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">第一種低層住居専用</td>
+<td style="text-align: left;">40〜60%</td>
+<td style="text-align: left;">最大60㎡の建築面積</td>
+</tr>
+<tr>
+<td style="text-align: left;">商業地域</td>
+<td style="text-align: left;">80%</td>
+<td style="text-align: left;">最大80㎡の建築面積</td>
+</tr>
+</tbody>
+</table>
+<p>角地や防火地域の耐火建築物は<strong>+10%</strong>の緩和があります。</p>
+<h3>容積率（ようせきりつ）— 延床面積の上限</h3>
+<p><strong>計算式</strong>: 延床面積 ÷ 敷地面積 × 100</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">用途地域の例</th>
+<th style="text-align: left;">容積率</th>
+<th style="text-align: left;">100㎡の土地なら</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">第一種低層住居専用</td>
+<td style="text-align: left;">50〜200%</td>
+<td style="text-align: left;">最大200㎡（2階建相当）</td>
+</tr>
+<tr>
+<td style="text-align: left;">商業地域</td>
+<td style="text-align: left;">200〜1300%</td>
+<td style="text-align: left;">最大1,300㎡（13階建相当）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong>: 前面道路幅員による制限があります。幅員4mの道路に接する住居系の土地は「4m × 0.4 = 160%」が上限となり、指定容積率200%でも160%しか使えません。</p>
+<h3>高さ制限 — 建物の天井を決める</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">制限の種類</th>
+<th style="text-align: left;">対象地域</th>
+<th style="text-align: left;">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">絶対高さ制限</td>
+<td style="text-align: left;">低層住居専用・田園住居</td>
+<td style="text-align: left;">10mまたは12m</td>
+</tr>
+<tr>
+<td style="text-align: left;">道路斜線制限</td>
+<td style="text-align: left;">全用途地域</td>
+<td style="text-align: left;">道路から一定角度の斜線内</td>
+</tr>
+<tr>
+<td style="text-align: left;">隣地斜線制限</td>
+<td style="text-align: left;">低層住居専用以外</td>
+<td style="text-align: left;">隣地境界から一定角度</td>
+</tr>
+<tr>
+<td style="text-align: left;">北側斜線制限</td>
+<td style="text-align: left;">住居系の一部</td>
+<td style="text-align: left;">北側隣地への日照確保</td>
+</tr>
+<tr>
+<td style="text-align: left;">日影規制</td>
+<td style="text-align: left;">住居系中心</td>
+<td style="text-align: left;">冬至の日影時間を制限</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 具体シミュレーション</h2>
+<h3>ケースA: 低層住居専用地域での戸建賃貸</h3>
+<ul>
+<li><strong>土地</strong>: 100㎡、建蔽率50%・容積率100%・高さ10m</li>
+<li><strong>建築面積</strong>: 最大50㎡</li>
+<li><strong>延床面積</strong>: 最大100㎡（2階建で各50㎡）</li>
+<li><strong>想定家賃</strong>: 月12万円（郊外ファミリー向け）</li>
+<li><strong>年間収入</strong>: 144万円</li>
+<li><strong>土地+建物</strong>: 3,000万円 → <strong>表面利回り4.8%</strong></li>
+</ul>
+<h3>ケースB: 商業地域でのワンルームマンション</h3>
+<ul>
+<li><strong>土地</strong>: 100㎡、建蔽率80%・容積率400%・前面道路8m</li>
+<li><strong>建築面積</strong>: 最大80㎡</li>
+<li><strong>延床面積</strong>: 最大400㎡（前面道路制限 8m×0.6=480% → 指定400%が適用）</li>
+<li><strong>5階建・16戸（各25㎡）、家賃月7万円/戸</strong></li>
+<li><strong>年間収入</strong>: 1,344万円</li>
+<li><strong>土地+建物</strong>: 1億8,000万円 → <strong>表面利回り7.5%</strong></li>
+</ul>
+<blockquote>
+<p>同じ100㎡の土地でも、用途地域の違いで<strong>年間収入に約9倍の差</strong>が生まれます。</p>
+</blockquote>
+<hr />
+<h2>5. 用途地域の調べ方</h2>
+<ol>
+<li><strong>自治体の都市計画情報サービス</strong>で住所検索（無料）</li>
+<li><strong>法務局の登記情報</strong>で地番確認</li>
+<li><strong>重要事項説明書</strong>で建蔽率・容積率・その他制限を確認</li>
+</ol>
+<p>投資判断の前に、必ず<strong>役所の都市計画課で直接確認</strong>してください。ネット情報は更新が遅れている場合があります。</p>
+<hr />
+<h2>6. 投資戦略別おすすめ用途地域</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">投資戦略</th>
+<th style="text-align: left;">おすすめ地域</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">戸建賃貸（低リスク）</td>
+<td style="text-align: left;">第一種低層住居専用</td>
+<td style="text-align: left;">閑静な住環境で安定需要</td>
+</tr>
+<tr>
+<td style="text-align: left;">1棟アパート</td>
+<td style="text-align: left;">第一種住居〜準住居</td>
+<td style="text-align: left;">容積率と住環境のバランス</td>
+</tr>
+<tr>
+<td style="text-align: left;">1棟マンション</td>
+<td style="text-align: left;">近隣商業・商業</td>
+<td style="text-align: left;">高容積率で戸数を確保</td>
+</tr>
+<tr>
+<td style="text-align: left;">テナントビル</td>
+<td style="text-align: left;">商業地域</td>
+<td style="text-align: left;">用途制限が最も少ない</td>
+</tr>
+<tr>
+<td style="text-align: left;">倉庫・物流施設</td>
+<td style="text-align: left;">準工業地域</td>
+<td style="text-align: left;">地価が安く利回り確保</td>
+</tr>
+<tr>
+<td style="text-align: left;">民泊・ホテル</td>
+<td style="text-align: left;">商業・近隣商業</td>
+<td style="text-align: left;">旅館業の許可が取りやすい</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>まとめ</h2>
+<p>用途地域の理解は不動産投資の基本中の基本です。押さえるべきは3点だけ。</p>
+<ol>
+<li><strong>何が建てられるか</strong>（用途制限）で投資戦略が決まる</li>
+<li><strong>どれだけ建てられるか</strong>（建蔽率・容積率）で収益規模が決まる</li>
+<li><strong>前面道路幅員</strong>が容積率のボトルネックになりやすい</li>
+</ol>
+<p>物件を検討する際は、まず用途地域を確認し、建蔽率・容積率・高さ制限から最大建築可能面積を算出してください。その数字が投資判断のスタートラインです。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

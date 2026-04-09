@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI動画生成ツール比較ダッシュボード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{font-size:1.25rem;text-align:center;padding:16px 0 2px;color:#1e3a5f}
+.sub{text-align:center;font-size:.78rem;color:#64748b;margin-bottom:14px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:.95rem;color:#1e3a5f;border-left:4px solid #3b82f6;padding-left:10px;margin-bottom:12px}
+label{display:block;font-size:.82rem;font-weight:600;margin:8px 0 3px;color:#334155}
+.sl{display:flex;align-items:center;gap:10px}
+.sl input[type=range]{flex:1;accent-color:#3b82f6}
+.sl .sv{min-width:70px;font-weight:700;color:#2563eb;font-size:.95rem;text-align:right}
+.chk{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.chk label{display:flex;align-items:center;gap:4px;font-weight:400;font-size:.8rem;cursor:pointer;background:#f1f5f9;padding:4px 10px;border-radius:16px}
+.chk input{accent-color:#3b82f6}
+table{width:100%;border-collapse:collapse;font-size:.76rem;margin-top:8px;table-layout:fixed}
+th,td{border:1px solid #e2e8f0;padding:6px 5px;text-align:center;word-break:break-all}
+th{background:#eef2ff;color:#1e3a5f;font-weight:700;position:sticky;top:0}
+.y{color:#16a34a;font-weight:700}.n{color:#dc2626}.p{color:#f59e0b;font-weight:600}
+.rank-area{margin-top:14px}
+.ri{display:flex;align-items:center;gap:12px;background:#fff;border-radius:10px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.rn{font-size:1.5rem;font-weight:800;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:linear-gradient(135deg,#3b82f6,#2563eb)}
+.rn.g{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.rn.s{background:linear-gradient(135deg,#94a3b8,#64748b)}
+.rn.b{background:linear-gradient(135deg,#c2855a,#a16836)}
+.rb{flex:1;min-width:0}
+.rna{font-weight:700;font-size:.95rem;color:#1e3a5f}
+.rd{font-size:.75rem;color:#64748b;margin-top:2px}
+.rs{text-align:right;flex-shrink:0}
+.rs .v{font-size:1.4rem;font-weight:800;color:#2563eb}
+.rs .l{font-size:.7rem;color:#94a3b8}
+.bar{height:4px;background:#e2e8f0;border-radius:2px;margin-top:6px}
+.bf{height:100%;border-radius:2px;background:linear-gradient(90deg,#3b82f6,#60a5fa);transition:width .4s}
+.note{font-size:.72rem;color:#94a3b8;margin-top:8px;padding:8px;background:#f8fafc;border-radius:6px;border-left:3px solid #f59e0b}
+.disc{text-align:center;font-size:.7rem;color:#f59e0b;background:#fffbeb;padding:8px;border-radius:6px;margin-bottom:14px}
+.lk{color:#3b82f6;text-decoration:none;font-size:.72rem}
+.lk:hover{text-decoration:underline}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:600px){.ri{flex-wrap:wrap;gap:8px}.rs{width:100%;text-align:left}}
+</style>
+<meta name="description" content="中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI動画生成ツール比較ダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-5/">
+<meta property="og:title" content="AI動画生成ツール比較ダッシュボード - kusasyu tools">
+<meta property="og:description" content="中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI動画生成ツール比較ダッシュボード - kusasyu tools">
+<meta name="twitter:description" content="中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI動画生成ツール比較ダッシュボード",
+  "description": "中小EC・D2Cブランドが動画広告のバリエーション制作をAIで内製化するための実践ツールキット。元素材1本からターゲット別・尺別バリエーションを設計するシミュレーター、AI動画ツールの機能・価格・日本語対応を比較できるダッシュボード、A/Bテスト効果測定用のCSVテンプレートの3点セット。検証結果でVidAU",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI動画生成ツール比較ダッシュボード</span></div>
+<div class="wrap">
+<h1>AI動画生成ツール比較ダッシュボード</h1>
+<p class="sub">8ツールをリアルタイム比較｜2026年4月時点</p>
+<div class="disc">⚠ 掲載料金は2026年4月調査時点の参考値です。最新料金・仕様は必ず各公式サイトでご確認ください。</div>
+
+<div class="card">
+<h2>条件を設定</h2>
+<label>月間制作本数：<span id="cV">10</span>本</label>
+<div class="sl"><input type="range" id="cnt" min="1" max="100" value="10" oninput="U()"><div class="sv" id="cV2">10本</div></div>
+<label>月額予算上限：<span id="bV">50,000</span>円</label>
+<div class="sl"><input type="range" id="bud" min="5000" max="300000" step="5000" value="50000" oninput="U()"><div class="sv" id="bV2">5万円</div></div>
+<label>必須条件（チェックで絞り込み）</label>
+<div class="chk">
+<label><input type="checkbox" id="fJ" onchange="U()">日本語UI必須</label>
+<label><input type="checkbox" id="fY" onchange="U()">Yahoo!広告対応</label>
+<label><input type="checkbox" id="fL" onchange="U()">LINE広告対応</label>
+<label><input type="checkbox" id="f4" onchange="U()">4K出力</label>
+</div>
+</div>
+
+<div class="card">
+<h2>コスト適合ランキング</h2>
+<div class="rank-area" id="rk"></div>
+</div>
+
+<div class="card">
+<h2>全ツール比較一覧</h2>
+<div class="tw">
+<table><thead><tr><th>ツール名</th><th>月額目安</th><th>日本語UI</th><th>解像度</th><th>対応尺</th><th>Yahoo!</th><th>LINE</th><th>公式</th></tr></thead><tbody id="tb"></tbody></table>
+</div>
+<p class="note">※ 月額は最も一般的なプラン基準。為替は1ドル=150円換算。無料枠のあるツールも有料プラン基準で掲載。</p>
+</div>
+</div>
+
+<script>
+var D=[
+{name:"Veo",price:7500,pl:"¥7,500〜",jp:"部分対応",jOk:false,res:"4K",k4:true,dur:"5〜120秒",yh:true,ln:true,url:"https://deepmind.google/technologies/veo/"},
+{name:"Kling",price:1200,pl:"¥1,200〜",jp:"非対応",jOk:false,res:"1080p",k4:false,dur:"5〜60秒",yh:false,ln:false,url:"https://klingai.com/"},
+{name:"Runway",price:1800,pl:"¥1,800〜",jp:"非対応",jOk:false,res:"4K",k4:true,dur:"5〜16秒",yh:true,ln:true,url:"https://runwayml.com/"},
+{name:"Pippit AI",price:3000,pl:"¥3,000〜",jp:"対応",jOk:true,res:"1080p",k4:false,dur:"15〜60秒",yh:true,ln:true,url:"https://www.pippit.com/"},
+{name:"Vista Movie",price:1500,pl:"¥1,500〜",jp:"部分対応",jOk:false,res:"1080p",k4:false,dur:"15〜180秒",yh:true,ln:false,url:"https://create.vista.com/"},
+{name:"VIDEO BRAIN",price:50000,pl:"¥50,000〜",jp:"完全対応",jOk:true,res:"1080p",k4:false,dur:"15〜120秒",yh:true,ln:true,url:"https://video-b.com/"},
+{name:"AD-GEN",price:30000,pl:"¥30,000〜",jp:"完全対応",jOk:true,res:"1080p",k4:false,dur:"6〜60秒",yh:true,ln:true,url:"https://ad-gen.jp/"},
+{name:"Creatify",price:4350,pl:"¥4,350〜",jp:"部分対応",jOk:false,res:"1080p",k4:false,dur:"15〜60秒",yh:true,ln:true,url:"https://creatify.ai/"}
+];
+function jb(t){return t.jp==="完全対応"?'<span class="y">◎</span>':t.jp==="対応"?'<span class="y">○</span>':t.jp==="部分対応"?'<span class="p">△</span>':'<span class="n">✕</span>';}
+function yn(v){return v?'<span class="y">○</span>':'<span class="n">—</span>';}
+(function(){var b=document.getElementById("tb");D.forEach(function(t){b.innerHTML+="<tr><td><b>"+t.name+"</b></td><td>"+t.pl+"</td><td>"+jb(t)+" "+t.jp+"</td><td>"+t.res+"</td><td>"+t.dur+"</td><td>"+yn(t.yh)+"</td><td>"+yn(t.ln)+'</td><td><a class="lk" href="'+t.url+'" target="_blank" rel="noopener">公式↗</a></td></tr>';});})();
+function sc(t,c,b){var mc=t.price,bf=mc<=b?100:Math.max(0,100-((mc-b)/b)*100),cv=mc/Math.max(c,1),ce=Math.max(0,100-cv/10),f=0;if(t.jOk)f+=15;if(t.jp==="完全対応")f+=10;if(t.yh)f+=10;if(t.ln)f+=10;if(t.k4)f+=5;return Math.round(bf*.45+ce*.35+f*.2);}
+function fm(n){return n>=10000?(n/10000)+"万円":n.toLocaleString()+"円";}
+function U(){
+var c=+document.getElementById("cnt").value,b=+document.getElementById("bud").value;
+document.getElementById("cV").textContent=c;document.getElementById("cV2").textContent=c+"本";
+document.getElementById("bV").textContent=b.toLocaleString();document.getElementById("bV2").textContent=fm(b);
+var fJ=document.getElementById("fJ").checked,fY=document.getElementById("fY").checked,fL=document.getElementById("fL").checked,f4=document.getElementById("f4").checked;
+var ls=D.filter(function(t){if(fJ&&!t.jOk)return false;if(fY&&!t.yh)return false;if(fL&&!t.ln)return false;if(f4&&!t.k4)return false;return true;}).map(function(t){return{t:t,s:sc(t,c,b)};}).sort(function(a,b){return b.s-a.s;});
+var a=document.getElementById("rk");
+if(!ls.length){a.innerHTML='<p style="text-align:center;color:#94a3b8;padding:20px">条件に合うツールがありません。フィルターを緩めてください。</p>';return;}
+var h="";ls.forEach(function(it,i){var cl=i===0?"g":i===1?"s":i===2?"b":"",cv=Math.round(it.t.price/Math.max(c,1)),ov=it.t.price>b;
+h+='<div class="ri"><div class="rn '+cl+'">'+(i+1)+'</div><div class="rb"><div class="rna">'+it.t.name+(ov?' <span style="color:#dc2626;font-size:.7rem">※予算超過</span>':"")+'</div><div class="rd">月額'+it.t.pl+' ／ 1本あたり約'+cv.toLocaleString()+'円 ／ '+it.t.jp+' ／ '+it.t.res+'</div><div class="bar"><div class="bf" style="width:'+it.s+'%"></div></div></div><div class="rs"><div class="v">'+it.s+'</div><div class="l">適合スコア</div></div></div>';});
+a.innerHTML=h;}
+U();
+</script>
+</body>
+</html>
