@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>判例比較分析ワークシート - kusasyu tools</title>
+<meta name="description" content="裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,判例比較分析ワークシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-13/">
+<meta property="og:title" content="判例比較分析ワークシート - kusasyu tools">
+<meta property="og:description" content="裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="判例比較分析ワークシート - kusasyu tools">
+<meta name="twitter:description" content="裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "判例比較分析ワークシート",
+  "description": "裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-13/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>判例比較分析ワークシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>判例比較分析ワークシート</h1>
+  <p class="project-name">判例分析、まだ手作業？AI自動構造化エンジン</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>判例ID</th><th>事件番号</th><th>裁判所</th><th>判決日</th><th>法分野タグ</th><th>争点カテゴリ</th><th>争点（issues）</th><th>事実認定（facts）</th><th>判示（holdings）</th><th>結論（conclusion）</th><th>適用法条（laws）</th><th>勝訴敗訴ステータス</th><th>損害賠償額（円）</th><th>重要度ランク</th><th>比較グループ</th><th>メモ</th></tr></thead><tbody><tr><td>C-001</td><td>令和5年(受)第1234号</td><td>最高裁判所</td><td>2024-03-15</td><td>労働法</td><td>解雇の有効性</td><td>整理解雇における4要件（人員削減の必要性・解雇回避努力・人選の合理性・手続の妥当性）の充足性。人選基準の客観性・透明性が中心争点。</td><td>被告会社の売上は前年比40%減少し経営危機にあった。希望退職募集を2回実施したが目標50名に対し応募30名にとどまり整理解雇に踏み切った。原告は勤続15年の正社員で人選基準における評価が最下位とされた。</td><td>4要件のうち人員削減の必要性・解雇回避努力・手続の妥当性は認められるが人選の合理性について評価基準の開示が不十分であり客観性を欠くと判断。整理解雇は無効。</td><td>原告勝訴（解雇無効・地位確認・バックペイ支払命令）</td><td>労働契約法16条;労働基準法20条</td><td>勝訴</td><td>5400000</td><td>A</td><td>整理解雇判例</td><td>最高裁が人選基準の透明性を重視した重要判例。判例テキスト構造化ツールのCSV出力から転記。</td></tr><tr><td>C-002</td><td>令和5年(ネ)第5678号</td><td>東京高等裁判所</td><td>2024-06-22</td><td>労働法</td><td>懲戒処分の相当性</td><td>SNS上の会社批判投稿を理由とする懲戒解雇の有効性。私的領域の表現活動に対する懲戒権の限界が争点。</td><td>原告は個人SNSアカウントで会社の労務管理を批判する投稿を3回行った。投稿内容に虚偽はなく個人の意見表明の範囲であった。就業規則には会社の名誉毀損行為を懲戒事由とする規定があった。</td><td>SNS投稿は私的領域の表現活動であり内容に虚偽がない限り懲戒解雇は社会通念上相当性を欠く。就業規則の適用は限定的に解すべきであり本件投稿は正当な批判の範囲内。</td><td>原告勝訴（懲戒解雇無効・慰謝料認容）</td><td>労働契約法15条;労働契約法16条;憲法21条</td><td>勝訴</td><td>3200000</td><td>A</td><td>懲戒解雇判例</td><td>SNS時代の懲戒権の限界を示すリーディングケース。</td></tr><tr><td>C-003</td><td>令和6年(ワ)第2345号</td><td>大阪地方裁判所</td><td>2024-09-10</td><td>契約法</td><td>契約不適合責任</td><td>中古マンション売買における隠れた瑕疵（雨漏り）について売主の契約不適合責任の範囲。現状有姿条項の免責効果の限界が争点。</td><td>原告は被告から中古マンション（築25年）を4800万円で購入。引渡し後3か月で居室天井から雨漏りが発生。被告は売買契約書に現状有姿条項を設けていたが売却前に雨漏りを認識しながら告知書に記載しなかった。</td><td>現状有姿条項があっても売主が瑕疵を認識しながら告知しなかった場合は信義則上免責されない。被告は修補費用280万円および調査費用を負担すべき。</td><td>原告勝訴（損害賠償認容・修補費用280万円）</td><td>民法562条;民法564条;民法415条</td><td>勝訴</td><td>2800000</td><td>B</td><td>契約不適合判例</td><td>現状有姿条項の限界を示す実務上重要な判例。不動産取引の実務に直接影響。</td></tr><tr><td>C-004</td><td>令和6年(ワ)第6789号</td><td>東京地方裁判所</td><td>2024-11-05</td><td>知的財産法</td><td>著作権侵害</td><td>AI生成画像の著作権侵害の成否。学習データに含まれる著作物との類似性および著作物の本質的特徴の直接感得可能性が争点。</td><td>被告はAI画像生成サービスを運営。利用者が原告のイラスト作品に酷似した画像を生成。原告作品が学習データに含まれていたことは被告も認めた。生成画像は構図・配色・キャラクター造形において原告作品と高度に類似。</td><td>AI生成物であっても既存著作物の表現上の本質的特徴を直接感得できる場合は著作権侵害が成立しうる。本件生成画像は原告作品の創作的表現を再現しており複製権侵害を認定。</td><td>原告勝訴（著作権侵害認定・損害賠償150万円・差止命令）</td><td>著作権法21条;著作権法114条;著作権法2条1項1号</td><td>勝訴</td><td>1500000</td><td>A</td><td>AI著作権判例</td><td>AI生成物の著作権侵害に関する先駆的判例。生成AIサービス事業者の責任範囲を画する。</td></tr><tr><td>C-005</td><td>令和6年(ネ)第10234号</td><td>知的財産高等裁判所</td><td>2025-01-20</td><td>知的財産法</td><td>権利制限規定の適用範囲</td><td>AI学習における著作物利用が著作権法30条の4の権利制限規定の適用を受けるか。営利目的の大規模学習が非享受利用に該当するかが争点。</td><td>被告は商用AI画像生成モデルの学習に原告ら写真家50名の作品合計約10万点を無断使用。被告は著作権法30条の4に基づく適法利用を主張。原告らは営利目的の大規模学習は同条の趣旨を逸脱すると反論。</td><td>著作権法30条の4は情報解析目的の利用を広く許容するが生成物が学習元著作物の表現を出力する蓋然性が高い態様での学習は享受目的利用に該当しうる。本件では出力類似性の立証が不十分として請求棄却。</td><td>原告敗訴（請求棄却・出力類似性の立証不足）</td><td>著作権法30条の4;著作権法21条;著作権法114条</td><td>敗訴</td><td>0</td><td>A</td><td>AI著作権判例</td><td>30条の4の射程を示す重要判例。原告側の出力類似性の立証責任が実務上の課題として浮上。</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `判例ID,事件番号,裁判所,判決日,法分野タグ,争点カテゴリ,争点（issues）,事実認定（facts）,判示（holdings）,結論（conclusion）,適用法条（laws）,勝訴敗訴ステータス,損害賠償額（円）,重要度ランク,比較グループ,メモ
+C-001,令和5年(受)第1234号,最高裁判所,2024-03-15,労働法,解雇の有効性,整理解雇における4要件（人員削減の必要性・解雇回避努力・人選の合理性・手続の妥当性）の充足性。人選基準の客観性・透明性が中心争点。,被告会社の売上は前年比40%減少し経営危機にあった。希望退職募集を2回実施したが目標50名に対し応募30名にとどまり整理解雇に踏み切った。原告は勤続15年の正社員で人選基準における評価が最下位とされた。,4要件のうち人員削減の必要性・解雇回避努力・手続の妥当性は認められるが人選の合理性について評価基準の開示が不十分であり客観性を欠くと判断。整理解雇は無効。,原告勝訴（解雇無効・地位確認・バックペイ支払命令）,労働契約法16条;労働基準法20条,勝訴,5400000,A,整理解雇判例,最高裁が人選基準の透明性を重視した重要判例。判例テキスト構造化ツールのCSV出力から転記。
+C-002,令和5年(ネ)第5678号,東京高等裁判所,2024-06-22,労働法,懲戒処分の相当性,SNS上の会社批判投稿を理由とする懲戒解雇の有効性。私的領域の表現活動に対する懲戒権の限界が争点。,原告は個人SNSアカウントで会社の労務管理を批判する投稿を3回行った。投稿内容に虚偽はなく個人の意見表明の範囲であった。就業規則には会社の名誉毀損行為を懲戒事由とする規定があった。,SNS投稿は私的領域の表現活動であり内容に虚偽がない限り懲戒解雇は社会通念上相当性を欠く。就業規則の適用は限定的に解すべきであり本件投稿は正当な批判の範囲内。,原告勝訴（懲戒解雇無効・慰謝料認容）,労働契約法15条;労働契約法16条;憲法21条,勝訴,3200000,A,懲戒解雇判例,SNS時代の懲戒権の限界を示すリーディングケース。
+C-003,令和6年(ワ)第2345号,大阪地方裁判所,2024-09-10,契約法,契約不適合責任,中古マンション売買における隠れた瑕疵（雨漏り）について売主の契約不適合責任の範囲。現状有姿条項の免責効果の限界が争点。,原告は被告から中古マンション（築25年）を4800万円で購入。引渡し後3か月で居室天井から雨漏りが発生。被告は売買契約書に現状有姿条項を設けていたが売却前に雨漏りを認識しながら告知書に記載しなかった。,現状有姿条項があっても売主が瑕疵を認識しながら告知しなかった場合は信義則上免責されない。被告は修補費用280万円および調査費用を負担すべき。,原告勝訴（損害賠償認容・修補費用280万円）,民法562条;民法564条;民法415条,勝訴,2800000,B,契約不適合判例,現状有姿条項の限界を示す実務上重要な判例。不動産取引の実務に直接影響。
+C-004,令和6年(ワ)第6789号,東京地方裁判所,2024-11-05,知的財産法,著作権侵害,AI生成画像の著作権侵害の成否。学習データに含まれる著作物との類似性および著作物の本質的特徴の直接感得可能性が争点。,被告はAI画像生成サービスを運営。利用者が原告のイラスト作品に酷似した画像を生成。原告作品が学習データに含まれていたことは被告も認めた。生成画像は構図・配色・キャラクター造形において原告作品と高度に類似。,AI生成物であっても既存著作物の表現上の本質的特徴を直接感得できる場合は著作権侵害が成立しうる。本件生成画像は原告作品の創作的表現を再現しており複製権侵害を認定。,原告勝訴（著作権侵害認定・損害賠償150万円・差止命令）,著作権法21条;著作権法114条;著作権法2条1項1号,勝訴,1500000,A,AI著作権判例,AI生成物の著作権侵害に関する先駆的判例。生成AIサービス事業者の責任範囲を画する。
+C-005,令和6年(ネ)第10234号,知的財産高等裁判所,2025-01-20,知的財産法,権利制限規定の適用範囲,AI学習における著作物利用が著作権法30条の4の権利制限規定の適用を受けるか。営利目的の大規模学習が非享受利用に該当するかが争点。,被告は商用AI画像生成モデルの学習に原告ら写真家50名の作品合計約10万点を無断使用。被告は著作権法30条の4に基づく適法利用を主張。原告らは営利目的の大規模学習は同条の趣旨を逸脱すると反論。,著作権法30条の4は情報解析目的の利用を広く許容するが生成物が学習元著作物の表現を出力する蓋然性が高い態様での学習は享受目的利用に該当しうる。本件では出力類似性の立証が不十分として請求棄却。,原告敗訴（請求棄却・出力類似性の立証不足）,著作権法30条の4;著作権法21条;著作権法114条,敗訴,0,A,AI著作権判例,30条の4の射程を示す重要判例。原告側の出力類似性の立証責任が実務上の課題として浮上。`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_判例比較分析ワークシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

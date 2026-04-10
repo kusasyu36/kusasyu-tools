@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ライブコマース台本＆Q&amp;A一括ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;color:#e91e63;margin:12px 0}
+.sub{text-align:center;color:#777;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+label{display:block;font-weight:700;margin:10px 0 4px;font-size:.9em}
+input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:1em}
+textarea{height:70px;resize:vertical}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+button{width:100%;padding:14px;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.btn-main{background:linear-gradient(135deg,#e91e63,#ff5722);color:#fff}
+.btn-sns{background:linear-gradient(135deg,#1da1f2,#667eea);color:#fff}
+button:hover{opacity:.85;transform:translateY(-1px)}
+.out{display:none}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.85em;font-weight:700;background:#eee;border:none}
+.tab.on{background:#e91e63;color:#fff}
+.panel{display:none;white-space:pre-wrap;font-size:.9em;background:#fafafa;padding:16px;border-radius:8px;border:1px solid #eee}
+.panel.on{display:block}
+.qa-item{background:#fff3e0;padding:12px;border-radius:8px;margin-bottom:8px}
+.qa-item b{color:#e65100}
+.sns-box{background:#e8f5e9;padding:16px;border-radius:8px;font-size:.9em;white-space:pre-wrap}
+.copy{background:#4caf50;color:#fff;padding:8px 20px;border:none;border-radius:6px;cursor:pointer;font-size:.85em;width:auto;margin-top:8px}
+.copy:hover{background:#388e3c}
+footer{text-align:center;color:#aaa;font-size:.75em;padding:20px 0}
+@media(max-width:600px){.row{flex-direction:column;gap:8px}}
+</style>
+<meta name="description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ライブコマース台本＆Q&amp;A一括ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-49/">
+<meta property="og:title" content="ライブコマース台本＆Q&amp;A一括ジェネレーター - kusasyu tools">
+<meta property="og:description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-49/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ライブコマース台本＆Q&amp;A一括ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ライブコマース台本＆Q&A一括ジェネレーター",
+  "description": "商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-49/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">ライブコマース台本＆Q&amp;A一括ジェネレーター</span></div>
+<div class="wrap">
+<h1>🎥 ライブコマース台本＆Q&Aジェネレーター</h1>
+<p class="sub">商品情報を入力するだけで台本・Q&A・SNS投稿文を一括生成</p>
+<div class="card">
+<label>商品名 *</label><input id="pName" placeholder="例：オーガニック美容オイル">
+<div class="row">
+<div><label>カテゴリ *</label><select id="pCat"><option value="apparel">アパレル</option><option value="cosme">コスメ</option><option value="food">食品</option><option value="goods">雑貨</option></select></div>
+<div><label>価格（税込）*</label><input id="pPrice" type="number" placeholder="3980"></div>
+</div>
+<label>商品の特徴（3つ程度）*</label><textarea id="pFeat" placeholder="例：100%天然由来成分、無香料、朝晩使える"></textarea>
+<label>ターゲット層</label><input id="pTarget" placeholder="例：乾燥肌に悩む30代女性">
+<button class="btn-main" onclick="generate()">🎬 台本＆Q&Aを生成</button>
+</div>
+<div class="out" id="result">
+<div class="card">
+<h2 style="margin-bottom:12px">📋 生成結果</h2>
+<div class="tabs" id="tabs"></div>
+<div id="panels"></div>
+</div>
+<div class="card">
+<button class="btn-sns" onclick="genSNS()">📱 配信後SNS投稿文を生成</button>
+<div id="snsOut" style="margin-top:12px"></div>
+</div>
+</div>
+<footer>© Kusasyu Digital Marketing｜ライブコマース台本ジェネレーター</footer>
+</div>
+<script>
+const D={
+apparel:{qas:[
+{q:"素材は何ですか？",a:"についてですが、{feat}という特徴があり、肌触りにもこだわっています。詳しくは商品ページにも記載しています！"},
+{q:"サイズ感を教えてください",a:"普段のサイズ感で大丈夫です！迷ったら1つ上のサイズがおすすめ。返品交換も対応しています。"},
+{q:"洗濯方法は？",a:"ネットに入れて弱水流がおすすめです。色落ちしにくい素材を使っているのでご安心ください。"},
+{q:"色展開はありますか？",a:"今回ご紹介のカラー以外にも展開がございます。人気色は早めにチェックしてくださいね！"},
+{q:"返品はできますか？",a:"未使用・タグ付きであれば到着後7日以内で返品可能です！"}],
+demo:"「実際に着てみますね！…どうですか？このシルエット、{feat}なので本当にラクなんです」"},
+cosme:{qas:[
+{q:"敏感肌でも使えますか？",a:"はい！{feat}なので、敏感肌の方にもお使いいただけます。パッチテストもおすすめです。"},
+{q:"成分を教えてください",a:"{feat}を配合しています。パラベン・鉱物油フリーで安心です。"},
+{q:"使用感はどうですか？",a:"ベタつかずスッと馴染みます。朝のメイク前にも使えるテクスチャーです。"},
+{q:"何ヶ月もちますか？",a:"毎日使って約2〜3ヶ月が目安です。コスパも◎ですよ！"},
+{q:"他の化粧品と併用できますか？",a:"はい、お手持ちのスキンケアと組み合わせてお使いいただけます。"}],
+demo:"「手の甲につけてみますね…見てください、この浸透力！{feat}だからこそのテクスチャーです」"},
+food:{qas:[
+{q:"賞味期限はどのくらい？",a:"製造から約6ヶ月です。届いてからも余裕をもってお召し上がりいただけます。"},
+{q:"アレルギー成分は？",a:"詳細は商品ラベルに記載しています。主な特定原材料は商品ページでもご確認いただけます。"},
+{q:"産地はどこですか？",a:"国産素材にこだわっています。{feat}が自慢のポイントです！"},
+{q:"保存方法を教えて",a:"直射日光を避けて常温保存でOKです。開封後は冷蔵庫で保管してくださいね。"},
+{q:"子どもも食べられますか？",a:"はい！お子様にも安心してお召し上がりいただけます。"}],
+demo:"「今から実際に食べてみますね…うん！{feat}で、この味わいは本当にクセになります」"},
+goods:{qas:[
+{q:"素材・材質は？",a:"{feat}を採用しています。耐久性にも優れています。"},
+{q:"サイズを教えてください",a:"日常使いにぴったりのサイズ感です。商品ページに寸法も記載しています。"},
+{q:"ギフトに使えますか？",a:"はい！パッケージもおしゃれなのでプレゼントにもぴったりです。"},
+{q:"お手入れ方法は？",a:"柔らかい布で拭いていただくだけでOKです。特別なケアは不要です。"},
+{q:"保証はありますか？",a:"初期不良は到着後14日以内であれば交換対応いたします！"}],
+demo:"「実際に使ってみますね…ほら、{feat}なので使い心地が全然違います！」"}
+};
+function v(){
+const n=document.getElementById('pName').value.trim(),p=document.getElementById('pPrice').value,f=document.getElementById('pFeat').value.trim();
+if(!n||!p||!f){alert('商品名・価格・特徴を入力してください');return null}
+return{name:n,cat:document.getElementById('pCat').value,price:Number(p).toLocaleString(),feat:f,target:document.getElementById('pTarget').value.trim()||'幅広い層'}
+}
+function s5(d){
+return`【5分版トークスクリプト】
+
+🎬 オープニング（0:00〜0:30）
+「こんにちは！今日は本当におすすめの商品を持ってきました！
+${d.target}の皆さん、これ絶対気になると思います。
+今日ご紹介するのは…『${d.name}』です！」
+
+📦 商品紹介（0:30〜2:00）
+「${d.name}、お値段は${d.price}円です。
+何がすごいかというと…${d.feat}
+ここが他と全然違うんです！${d.target}にぴったりの商品なんですよ。」
+
+🔍 実演パート（2:00〜3:30）
+${D[d.cat].demo.replace('{feat}',d.feat)}
+
+🎯 クロージング（3:30〜5:00）
+「今日のライブ限定で特別価格でお届けします！
+${d.name}、通常${d.price}円のところ、ライブ中のご購入がとってもお得。
+コメント欄に『欲しい』と書いてくださいね！
+リンクは概要欄に貼っておきます。それではまた次のライブで！」`
+}
+function s30(d){
+return`【30分版トークスクリプト】
+
+🎬 オープニング（0:00〜3:00）
+「こんにちは！今日もライブ見に来てくれてありがとうございます！
+初めましての方も常連さんも大歓迎です♪
+コメントで『初めて』って教えてくれると嬉しいです。
+さて！今日は${d.target}に超おすすめのアイテムをじっくりご紹介しますよ。」
+
+💬 悩み共感パート（3:00〜7:00）
+「${d.target}って、日々いろんな悩みがありますよね。
+私も実はずっと同じ悩みを抱えてて…
+そんなときに出会ったのが今日の商品なんです。
+コメントで同じ悩みがある方、ぜひ教えてくださいね！」
+
+📦 商品紹介（7:00〜12:00）
+「では発表します！じゃん！『${d.name}』です！
+お値段${d.price}円。まずスペックからいきますね。
+${d.feat}
+ここがポイントなんです。一つずつ詳しく説明していきますね。」
+
+🔍 実演パート（12:00〜18:00）
+${D[d.cat].demo.replace('{feat}',d.feat)}
+「…すごくないですか？コメントで感想聞かせてください！
+リアルタイムで質問にもお答えしますよ。どんどん聞いてくださいね。」
+
+❓ Q&Aタイム（18:00〜24:00）
+「ここからは皆さんの質問に答えていきます！
+よくある質問をまず紹介しますね。
+${D[d.cat].qas.slice(0,3).map(q=>'Q:'+q.q+'\nA:'+q.a.replace('{feat}',d.feat)).join('\n\n')}」
+
+🎯 クロージング（24:00〜30:00）
+「さあ、そろそろまとめに入ります！
+${d.name}、${d.price}円で${d.feat}。
+今日のライブで紹介した商品、リンクは概要欄にあります！
+ライブ中にコメントで『購入』と書いてくださった方には
+特典もご用意しています。
+最後まで見てくれてありがとうございました！フォローもお忘れなく！」`
+}
+function generate(){
+const d=v();if(!d)return;
+const tabs=[{id:'t5',label:'⏱ 5分版'},{id:'t30',label:'⏱ 30分版'},{id:'tqa',label:'❓ Q&A集'}];
+let th='',ph='';
+tabs.forEach((t,i)=>{
+th+=`<button class="tab${i===0?' on':''}" onclick="sw('${t.id}')">${t.label}</button>`;
+let c='';
+if(t.id==='t5')c=s5(d);
+else if(t.id==='t30')c=s30(d);
+else{c='';D[d.cat].qas.forEach(q=>{c+=`<div class="qa-item"><b>Q: ${q.q}</b><br>A: ${q.a.replace('{feat}',d.feat)}</div>`})}
+ph+=`<div class="panel${i===0?' on':''}" id="${t.id}">${t.id==='tqa'?c:esc(c)}</div>`;
+});
+document.getElementById('tabs').innerHTML=th;
+document.getElementById('panels').innerHTML=ph;
+document.getElementById('snsOut').innerHTML='';
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function esc(s){return s.replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function sw(id){
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+document.getElementById(id).classList.add('on');
+document.querySelectorAll('.tab').forEach(t=>{if(t.textContent.includes(id==='t5'?'5分':id==='t30'?'30分':'Q&A'))t.classList.add('on')});
+event.target.classList.add('on');
+}
+function genSNS(){
+const d=v();if(!d)return;
+const posts=[
+{platform:'X（Twitter）',text:`🔴ライブ配信ありがとうございました！\n\n今日ご紹介した #${d.name} 大好評でした✨\n\n✅${d.feat}\n\n${d.price}円で${d.target}にぴったり！\n見逃した方はアーカイブからチェック👇\n\n#ライブコマース #PR`},
+{platform:'Instagram',text:`📣 ライブ配信ご視聴ありがとうございました！\n\n今日の主役は『${d.name}』💫\n\n${d.feat}\n\nたくさんのコメント・ご質問\n本当にありがとうございました🙏\n\nまだの方はストーリーズのリンクから\nチェックしてくださいね！\n\n#${d.name.replace(/\s/g,'')} #ライブコマース #おすすめ`},
+{platform:'TikTok',text:`今日のライブで紹介した${d.name}🔥\n${d.feat}\n${d.price}円👀\nプロフィールのリンクからチェック！\n#ライブコマース #TikTokMadeMeBuyIt #おすすめ商品`}
+];
+let h='';posts.forEach(p=>{
+h+=`<div class="sns-box" style="margin-bottom:10px"><b>【${p.platform}】</b>\n${p.text}</div><button class="copy" onclick="cp(this)">📋 コピー</button><div style="margin-bottom:16px"></div>`;
+});
+document.getElementById('snsOut').innerHTML=h;
+}
+function cp(btn){
+const txt=btn.previousElementSibling.textContent;
+navigator.clipboard.writeText(txt).then(()=>{btn.textContent='✅ コピーしました';setTimeout(()=>btn.textContent='📋 コピー',2000)});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>判例テキスト構造化ツール（APIキー持込型） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 0 4px;color:#1a1a2e}
+.sub{text-align:center;font-size:.82em;color:#666;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:10px;color:#2d3a8c;border-left:3px solid #2d3a8c;padding-left:8px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.row>*{flex:1;min-width:140px}
+label{display:block;font-size:.8em;color:#555;margin-bottom:3px}
+select,input[type=password],textarea{width:100%;padding:9px 10px;border:1px solid #d0d0d0;border-radius:6px;font-size:.9em;background:#fafafa}
+textarea{height:200px;resize:vertical;font-size:.85em}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#2d3a8c;box-shadow:0 0 0 2px rgba(45,58,140,.12)}
+.btn{display:inline-block;padding:11px 28px;border:none;border-radius:7px;font-size:.95em;cursor:pointer;font-weight:600;transition:opacity .2s}
+.btn-main{background:#2d3a8c;color:#fff;width:100%}
+.btn-main:hover{opacity:.88}
+.btn-main:disabled{background:#999;cursor:not-allowed}
+.btn-csv{background:#0d7c66;color:#fff;margin-top:10px}
+.btn-csv:hover{opacity:.88}
+.notice{background:#f8f9ff;border:1px solid #d8ddf8;border-radius:7px;padding:10px 14px;font-size:.78em;color:#555;margin-bottom:14px;text-align:center}
+.notice b{color:#2d3a8c}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.85em}
+th{background:#2d3a8c;color:#fff;padding:9px 10px;text-align:left;white-space:nowrap;width:110px}
+td{padding:9px 10px;border-bottom:1px solid #e8e8e8;white-space:pre-wrap;vertical-align:top}
+tr:last-child td{border-bottom:none}
+#status{text-align:center;padding:14px;font-size:.9em;color:#666}
+.spin{display:inline-block;width:18px;height:18px;border:2px solid #ccc;border-top-color:#2d3a8c;border-radius:50%;animation:sp .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.err{color:#c0392b;background:#fdf0f0;padding:10px;border-radius:6px;font-size:.85em}
+@media(max-width:600px){.row{flex-direction:column}th{width:90px;font-size:.8em}td{font-size:.82em}.wrap{padding:10px}}
+</style>
+<meta name="description" content="裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,判例テキスト構造化ツール（APIキー持込型）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-12/">
+<meta property="og:title" content="判例テキスト構造化ツール（APIキー持込型） - kusasyu tools">
+<meta property="og:description" content="裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="判例テキスト構造化ツール（APIキー持込型） - kusasyu tools">
+<meta name="twitter:description" content="裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "判例テキスト構造化ツール（APIキー持込型）",
+  "description": "裁判所の判例テキストをAIで自動解析し、争点・事実認定・判示・結論・適用法条の5要素に構造化データとして分解するブラウザツール。弁護士・法務担当者が判例文をペーストするだけで整理された分析結果を取得でき、JSON/CSVエクスポートで自社ワークフローに即統合可能。2025年の判決DB化新法を追い風に、判例デー",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-12/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">判例テキスト構造化ツール（APIキー持込型）</span></div>
+<div class="wrap">
+<h1>判例テキスト構造化ツール</h1>
+<p class="sub">判例文をAIが5要素に自動分解 ― 争点・事実認定・判示・結論・適用法条</p>
+<div class="notice"><b>🔒 プライバシー保護:</b> 入力データはお客様が指定したAIプロバイダ（Claude/OpenAI）にのみ送信されます。本ツールのサーバーには一切保存・送信されません。APIキーはブラウザ内のみで使用されます。</div>
+<div class="card">
+<h2>API設定</h2>
+<div class="row">
+<div><label>AIプロバイダ</label><select id="prov"><option value="claude">Claude (Anthropic)</option><option value="openai">OpenAI</option></select></div>
+<div><label>モデル</label><select id="model"></select></div>
+</div>
+<div><label>APIキー</label><input type="password" id="key" placeholder="sk-... または sk-ant-..."></div>
+</div>
+<div class="card">
+<h2>判例テキスト入力</h2>
+<textarea id="txt" placeholder="裁判所の判例全文をここにペーストしてください...&#10;&#10;例：最判令和○年○月○日　民集○巻○号○頁&#10;主文・事実及び理由を含む全文を貼り付けると精度が向上します。"></textarea>
+<div style="margin-top:12px"><button class="btn btn-main" id="go" onclick="run()">構造化分析を実行</button></div>
+</div>
+<div id="out"></div>
+</div>
+<script>
+const models={claude:["claude-sonnet-4-20250514","claude-haiku-4-20250414"],openai:["gpt-4o","gpt-4o-mini"]};
+const P=document.getElementById("prov"),M=document.getElementById("model");
+function setM(){M.innerHTML="";models[P.value].forEach(m=>{const o=document.createElement("option");o.value=m;o.textContent=m;M.appendChild(o)})}
+P.onchange=setM;setM();
+const PROMPT=`あなたは日本法の判例分析の専門家です。以下の判例テキストを分析し、次の5要素を抽出してください。
+
+必ず以下のJSON形式のみで回答してください（説明文不要）:
+{"issues":"争点（箇条書き）","facts":"事実認定（要約）","holdings":"判示（裁判所の判断の要旨）","conclusion":"結論（主文の要旨）","laws":"適用法条（条文番号を列挙）"}
+
+各要素は日本語で、簡潔かつ正確に記載してください。判例テキストから読み取れない要素は「テキストから特定できず」と記載してください。`;
+
+let result=null;
+async function run(){
+const key=document.getElementById("key").value.trim();
+const txt=document.getElementById("txt").value.trim();
+const out=document.getElementById("out");
+const btn=document.getElementById("go");
+if(!key){out.innerHTML='<div class="err">APIキーを入力してください。</div>';return}
+if(!txt||txt.length<30){out.innerHTML='<div class="err">判例テキストを入力してください（30文字以上）。</div>';return}
+btn.disabled=true;
+out.innerHTML='<div id="status"><span class="spin"></span>AIが判例を分析中です…（数十秒かかる場合があります）</div>';
+try{
+let json;
+if(P.value==="claude"){
+const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},body:JSON.stringify({model:M.value,max_tokens:2048,messages:[{role:"user",content:PROMPT+"\n\n【判例テキスト】\n"+txt}]})});
+if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||"API Error "+r.status)}
+const d=await r.json();json=d.content[0].text;
+}else{
+const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},body:JSON.stringify({model:M.value,max_tokens:2048,messages:[{role:"system",content:PROMPT},{role:"user",content:txt}]})});
+if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error?.message||"API Error "+r.status)}
+const d=await r.json();json=d.choices[0].message.content;
+}
+const m=json.match(/\{[\s\S]*\}/);
+if(!m)throw new Error("AIの応答からJSONを抽出できませんでした。");
+result=JSON.parse(m[0]);
+const labels=[["issues","争点"],["facts","事実認定"],["holdings","判示"],["conclusion","結論"],["laws","適用法条"]];
+let h='<div class="card"><h2>分析結果</h2><table>';
+labels.forEach(([k,l])=>{h+=`<tr><th>${l}</th><td>${esc(result[k]||"—")}</td></tr>`});
+h+='</table><button class="btn btn-csv" onclick="dl()">CSVダウンロード</button></div>';
+out.innerHTML=h;
+}catch(e){out.innerHTML=`<div class="err">エラー: ${esc(e.message)}</div>`}
+btn.disabled=false;
+}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>")}
+function dl(){
+if(!result)return;
+const rows=[["要素","内容"],["争点",result.issues],["事実認定",result.facts],["判示",result.holdings],["結論",result.conclusion],["適用法条",result.laws]];
+const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(",")).join("\n");
+const b=new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"});
+const a=document.createElement("a");a.href=URL.createObjectURL(b);
+a.download="hanrei_analysis_"+new Date().toISOString().slice(0,10)+".csv";a.click();
+}
+</script>
+</body>
+</html>

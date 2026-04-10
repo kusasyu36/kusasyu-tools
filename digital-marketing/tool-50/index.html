@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>配信後SNS投稿文ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;color:#e91e63;margin:12px 0}
+.sub{text-align:center;color:#777;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#e91e63;margin-bottom:10px;border-bottom:2px solid #fce4ec;padding-bottom:6px}
+label{display:block;font-weight:700;margin:10px 0 4px;font-size:.9em}
+input,select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:1em}
+textarea{height:60px;resize:vertical}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+button{width:100%;padding:14px;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+.btn-main{background:linear-gradient(135deg,#1da1f2,#667eea);color:#fff}
+button:hover{opacity:.85;transform:translateY(-1px)}
+.out{display:none}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.85em;font-weight:700;background:#eee;border:none;width:auto}
+.tab.on{background:#e91e63;color:#fff}
+.panel{display:none;white-space:pre-wrap;font-size:.9em;background:#fafafa;padding:16px;border-radius:8px;border:1px solid #eee;margin-bottom:8px}
+.panel.on{display:block}
+.char-count{font-size:.8em;color:#999;text-align:right;margin-top:4px}
+.copy{background:#4caf50;color:#fff;padding:8px 20px;border:none;border-radius:6px;cursor:pointer;font-size:.85em;width:auto;margin-top:4px}
+.copy:hover{background:#388e3c}
+.badge{display:inline-block;background:#e91e63;color:#fff;font-size:.75em;padding:2px 8px;border-radius:10px;margin-left:6px}
+footer{text-align:center;color:#aaa;font-size:.75em;padding:20px 0}
+@media(max-width:600px){.row{flex-direction:column;gap:8px}}
+</style>
+<meta name="description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,配信後SNS投稿文ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-50/">
+<meta property="og:title" content="配信後SNS投稿文ジェネレーター - kusasyu tools">
+<meta property="og:description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-50/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配信後SNS投稿文ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "配信後SNS投稿文ジェネレーター",
+  "description": "商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-50/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">配信後SNS投稿文ジェネレーター</span></div>
+<div class="wrap">
+<h1>📱 配信後SNS投稿文ジェネレーター</h1>
+<p class="sub">ライブ配信の振り返りを入力 → X・Instagram・note・次回告知を一括生成</p>
+
+<div class="card">
+<h2>📦 商品情報（台本ジェネレーターからコピペ可）</h2>
+<label>商品名 <span style="color:#999;font-weight:400">*</span></label>
+<input id="pName" placeholder="例：薬用美白セラムC+">
+<div class="row">
+<div><label>価格</label><input id="pPrice" placeholder="例：3,980円"></div>
+<div><label>カテゴリ</label>
+<select id="pCat"><option>コスメ・美容</option><option>アパレル・ファッション</option><option>食品・グルメ</option><option>雑貨・生活用品</option><option>健康・サプリ</option><option>その他</option></select>
+</div></div>
+<label>商品の一言特徴</label>
+<input id="pFeature" placeholder="例：ビタミンC誘導体×ナイアシンアミド配合">
+</div>
+
+<div class="card">
+<h2>🎬 配信ハイライト</h2>
+<label>配信プラットフォーム</label>
+<select id="lPlatform"><option>TikTok Live</option><option>Instagram Live</option><option>YouTube Live</option></select>
+<label>売れ筋・注目ポイント</label>
+<textarea id="lHighlight" placeholder="例：開始10分で100個完売、リピーター続出"></textarea>
+<label>盛り上がったコメント・反応</label>
+<textarea id="lComment" placeholder="例：「使った翌日から肌が明るくなった」「もう3本目！」"></textarea>
+<div class="row">
+<div><label>特別オファー</label><input id="lOffer" placeholder="例：配信限定20%OFF"></div>
+<div><label>次回配信予定</label><input id="lNext" placeholder="例：4/15（火）20:00"></div>
+</div>
+<label>配信の一言感想</label>
+<input id="lMemo" placeholder="例：たくさんのご参加ありがとうございました！">
+</div>
+
+<button class="btn-main" onclick="gen()">✨ SNS投稿文を一括生成</button>
+
+<div class="out" id="result">
+<div class="card">
+<h2>📝 生成結果</h2>
+<div class="tabs">
+<button class="tab on" onclick="sw(0)">X (Twitter)</button>
+<button class="tab" onclick="sw(1)">Instagram</button>
+<button class="tab" onclick="sw(2)">note</button>
+<button class="tab" onclick="sw(3)">次回告知</button>
+</div>
+<div class="panel on" id="p0"></div>
+<div class="panel" id="p1"></div>
+<div class="panel" id="p2"></div>
+<div class="panel" id="p3"></div>
+<div id="copyArea"></div>
+</div>
+</div>
+
+<footer>配信後SNS投稿文ジェネレーター ｜ ライブコマース台本＆Q&Aジェネレーター連携ツール</footer>
+</div>
+
+<script>
+function sw(i){
+document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('on',j===i)});
+document.querySelectorAll('.panel').forEach(function(p,j){p.classList.toggle('on',j===i)});
+}
+
+function cp(i){
+var el=document.getElementById('p'+i);
+var t=el.textContent;
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){var b=document.getElementById('cb'+i);b.textContent='✅ コピー済み';setTimeout(function(){b.textContent='📋 コピー'},1500)})}
+}
+
+function gen(){
+var name=document.getElementById('pName').value.trim();
+if(!name){alert('商品名を入力してください');return}
+var price=document.getElementById('pPrice').value.trim()||'';
+var cat=document.getElementById('pCat').value;
+var feat=document.getElementById('pFeature').value.trim()||'';
+var plat=document.getElementById('lPlatform').value;
+var hi=document.getElementById('lHighlight').value.trim()||'大好評';
+var cm=document.getElementById('lComment').value.trim()||'';
+var offer=document.getElementById('lOffer').value.trim()||'';
+var next=document.getElementById('lNext').value.trim()||'';
+var memo=document.getElementById('lMemo').value.trim()||'ありがとうございました！';
+
+var priceStr=price?'（'+price+'）':'';
+var offerStr=offer?' '+offer+'':'';
+var nextStr=next?'次回は'+next+'🔥':'';
+
+// --- X (140文字以内) ---
+var xParts=[];
+xParts.push('【'+plat+'ありがとう】');
+xParts.push(name+' '+hi+'✨');
+if(cm){var c1=cm.split(/[、,]/)[0].trim();if(c1.length>20)c1=c1.substring(0,20);xParts.push('「'+c1+'」の声も！')}
+if(offer)xParts.push(offer+'は今だけ🎁');
+if(next)xParts.push(nextStr);
+var xText=xParts.join('\n');
+if(xText.length>140){xText=xParts.slice(0,3).join('\n');if(xText.length>140)xText=xText.substring(0,137)+'...'}
+var xCount=xText.length;
+
+// --- Instagram ---
+var tags=getHashtags(cat,name,plat);
+var igLines=[];
+igLines.push('🎉 '+plat+'ご視聴ありがとうございました！');
+igLines.push('');
+igLines.push('📦 '+name+priceStr);
+if(feat)igLines.push('✅ '+feat);
+igLines.push('');
+igLines.push('🔥 配信ハイライト');
+igLines.push(hi);
+if(cm){igLines.push('');igLines.push('💬 視聴者の声');cm.split(/[、,]/).slice(0,3).forEach(function(c){if(c.trim())igLines.push('「'+c.trim()+'」')})}
+if(offer){igLines.push('');igLines.push('🎁 '+offer)}
+igLines.push('');
+igLines.push(memo);
+if(next){igLines.push('');igLines.push('📅 次回配信：'+next)}
+igLines.push('');
+igLines.push(tags);
+var igText=igLines.join('\n');
+
+// --- note (500字レビュー風) ---
+var nLines=[];
+nLines.push('【配信レポート】'+name+'を'+plat+'でご紹介しました');
+nLines.push('');
+nLines.push('本日の'+plat+'にお越しいただいた皆さま、'+memo);
+nLines.push('');
+nLines.push('今回ご紹介したのは「'+name+'」'+priceStr+'。'+(feat?feat+'が特徴の':'')+'アイテムです。');
+nLines.push('');
+nLines.push('配信では'+hi+'という嬉しい結果に。');
+if(cm){nLines.push('視聴者さんからも'+cm.split(/[、,]/)[0].trim()+'といった感想をいただきました。')}
+if(offer){nLines.push('');nLines.push('今回の'+offer+'もたくさんの方にご利用いただきました。ありがとうございます！')}
+nLines.push('');
+if(next){nLines.push('次回の配信は'+next+'を予定しています。お楽しみに！')}
+nLines.push('');
+nLines.push('商品の詳細はプロフィールのリンクからご確認いただけます。');
+var nText=nLines.join('\n');
+if(nText.length>500){nText=nText.substring(0,497)+'...'}
+var nCount=nText.length;
+
+// --- 次回配信告知 ---
+var aLines=[];
+aLines.push('📢 次回ライブ配信のお知らせ');
+aLines.push('');
+if(next){aLines.push('📅 '+next)}
+aLines.push('📍 '+plat);
+aLines.push('');
+aLines.push('前回の配信では'+name+'が'+hi+'🎉');
+if(cm){aLines.push('「'+cm.split(/[、,]/)[0].trim()+'」など嬉しいお声をたくさんいただきました。')}
+aLines.push('');
+aLines.push('次回も見逃せないアイテム＆特別オファーをご用意予定！');
+aLines.push('フォロー＆通知ONでお待ちください🔔');
+var aText=aLines.join('\n');
+
+document.getElementById('p0').textContent=xText;
+document.getElementById('p1').textContent=igText;
+document.getElementById('p2').textContent=nText;
+document.getElementById('p3').textContent=aText;
+
+var ca=document.getElementById('copyArea');
+ca.innerHTML='';
+var labels=['X','Instagram','note','次回告知'];
+for(var i=0;i<4;i++){
+var b=document.createElement('button');b.className='copy';b.id='cb'+i;b.textContent='📋 '+labels[i]+'をコピー';b.setAttribute('onclick','cp('+i+')');ca.appendChild(b);
+ca.appendChild(document.createTextNode(' '));
+}
+var info=document.createElement('div');
+info.className='char-count';
+info.textContent='X: '+xCount+'文字 ｜ note: '+nCount+'文字';
+ca.appendChild(info);
+
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function getHashtags(cat,name,plat){
+var base=['#ライブコマース','#'+plat.replace(/ /g,''),'#PR'];
+var nm='#'+name.replace(/[\s　+&＆]/g,'');
+var catTags={
+'コスメ・美容':['#コスメ好きさんと繋がりたい','#美容','#スキンケア','#コスメレビュー','#美肌','#今日のコスメ'],
+'アパレル・ファッション':['#ootd','#ファッション','#コーデ','#プチプラコーデ','#着回しコーデ','#今日の服'],
+'食品・グルメ':['#お取り寄せグルメ','#おうちごはん','#食べスタグラム','#グルメ好き','#手土産','#おすすめグルメ'],
+'雑貨・生活用品':['#暮らしを楽しむ','#便利グッズ','#生活雑貨','#シンプルライフ','#おすすめアイテム','#丁寧な暮らし'],
+'健康・サプリ':['#健康生活','#サプリメント','#ヘルスケア','#美容と健康','#セルフケア','#インナーケア'],
+'その他':['#おすすめ','#買ってよかった','#レビュー','#注目アイテム','#トレンド','#話題']
+};
+var ct=catTags[cat]||catTags['その他'];
+var all=[nm].concat(base).concat(ct);
+return all.slice(0,10).join(' ');
+}
+</script>
+</body>
+</html>

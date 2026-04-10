@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ライブコマースKPI管理シート - kusasyu tools</title>
+<meta name="description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ライブコマースKPI管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-8/">
+<meta property="og:title" content="ライブコマースKPI管理シート - kusasyu tools">
+<meta property="og:description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ライブコマースKPI管理シート - kusasyu tools">
+<meta name="twitter:description" content="商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&amp;A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ライブコマースKPI管理シート",
+  "description": "商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-10"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>ライブコマースKPI管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>ライブコマースKPI管理シート</h1>
+  <p class="project-name">ライブ配信で売れない？AI台本生成ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>配信日</th><th>プラットフォーム</th><th>商品名</th><th>商品価格(円)</th><th>配信時間(分)</th><th>総視聴者数</th><th>最大同時接続数</th><th>コメント数</th><th>売上金額(円)</th><th>購入件数</th><th>CVR(%)</th><th>1視聴者あたり売上(円)</th><th>前回比売上(%)</th><th>エンゲージメント率(%)</th><th>改善メモ</th><th>次回重点施策</th></tr></thead><tbody><tr><td>1</td><td>2026/04/01</td><td>TikTok Live</td><td>モイストリペアセラム</td><td>3980</td><td>30</td><td>1250</td><td>380</td><td>420</td><td>119400</td><td>30</td><td>=K2/G2*100</td><td>=J2/G2</td><td>―</td><td>=I2/G2*100</td><td>冒頭の挨拶が長く商品紹介が遅れた</td><td>開始2分以内に商品を見せる</td></tr><tr><td>2</td><td>2026/04/05</td><td>Instagram Live</td><td>オーガニックリップバーム</td><td>1980</td><td>15</td><td>890</td><td>210</td><td>185</td><td>47520</td><td>24</td><td>=K3/G3*100</td><td>=J3/G3</td><td>=J3/J2*100</td><td>=I3/G3*100</td><td>コメント拾いが少なかった</td><td>コメント読み上げを3分おきに入れる</td></tr><tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K4/G4*100,"")</td><td>=IFERROR(J4/G4,"")</td><td>=IFERROR(J4/J3*100,"")</td><td>=IFERROR(I4/G4*100,"")</td><td></td><td></td></tr><tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K5/G5*100,"")</td><td>=IFERROR(J5/G5,"")</td><td>=IFERROR(J5/J4*100,"")</td><td>=IFERROR(I5/G5*100,"")</td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K6/G6*100,"")</td><td>=IFERROR(J6/G6,"")</td><td>=IFERROR(J6/J5*100,"")</td><td>=IFERROR(I6/G6*100,"")</td><td></td><td></td></tr><tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K7/G7*100,"")</td><td>=IFERROR(J7/G7,"")</td><td>=IFERROR(J7/J6*100,"")</td><td>=IFERROR(I7/G7*100,"")</td><td></td><td></td></tr><tr><td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K8/G8*100,"")</td><td>=IFERROR(J8/G8,"")</td><td>=IFERROR(J8/J7*100,"")</td><td>=IFERROR(I8/G8*100,"")</td><td></td><td></td></tr><tr><td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K9/G9*100,"")</td><td>=IFERROR(J9/G9,"")</td><td>=IFERROR(J9/J8*100,"")</td><td>=IFERROR(I9/G9*100,"")</td><td></td><td></td></tr><tr><td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K10/G10*100,"")</td><td>=IFERROR(J10/G10,"")</td><td>=IFERROR(J10/J9*100,"")</td><td>=IFERROR(I10/G10*100,"")</td><td></td><td></td></tr><tr><td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>=IFERROR(K11/G11*100,"")</td><td>=IFERROR(J11/G11,"")</td><td>=IFERROR(J11/J10*100,"")</td><td>=IFERROR(I11/G11*100,"")</td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,配信日,プラットフォーム,商品名,商品価格(円),配信時間(分),総視聴者数,最大同時接続数,コメント数,売上金額(円),購入件数,CVR(%),1視聴者あたり売上(円),前回比売上(%),エンゲージメント率(%),改善メモ,次回重点施策
+1,2026/04/01,TikTok Live,モイストリペアセラム,3980,30,1250,380,420,119400,30,=K2/G2*100,=J2/G2,―,=I2/G2*100,冒頭の挨拶が長く商品紹介が遅れた,開始2分以内に商品を見せる
+2,2026/04/05,Instagram Live,オーガニックリップバーム,1980,15,890,210,185,47520,24,=K3/G3*100,=J3/G3,=J3/J2*100,=I3/G3*100,コメント拾いが少なかった,コメント読み上げを3分おきに入れる
+3,,,,,,,,,,,"=IFERROR(K4/G4*100,"""")","=IFERROR(J4/G4,"""")","=IFERROR(J4/J3*100,"""")","=IFERROR(I4/G4*100,"""")",,
+4,,,,,,,,,,,"=IFERROR(K5/G5*100,"""")","=IFERROR(J5/G5,"""")","=IFERROR(J5/J4*100,"""")","=IFERROR(I5/G5*100,"""")",,
+5,,,,,,,,,,,"=IFERROR(K6/G6*100,"""")","=IFERROR(J6/G6,"""")","=IFERROR(J6/J5*100,"""")","=IFERROR(I6/G6*100,"""")",,
+6,,,,,,,,,,,"=IFERROR(K7/G7*100,"""")","=IFERROR(J7/G7,"""")","=IFERROR(J7/J6*100,"""")","=IFERROR(I7/G7*100,"""")",,
+7,,,,,,,,,,,"=IFERROR(K8/G8*100,"""")","=IFERROR(J8/G8,"""")","=IFERROR(J8/J7*100,"""")","=IFERROR(I8/G8*100,"""")",,
+8,,,,,,,,,,,"=IFERROR(K9/G9*100,"""")","=IFERROR(J9/G9,"""")","=IFERROR(J9/J8*100,"""")","=IFERROR(I9/G9*100,"""")",,
+9,,,,,,,,,,,"=IFERROR(K10/G10*100,"""")","=IFERROR(J10/G10,"""")","=IFERROR(J10/J9*100,"""")","=IFERROR(I10/G10*100,"""")",,
+10,,,,,,,,,,,"=IFERROR(K11/G11*100,"""")","=IFERROR(J11/G11,"""")","=IFERROR(J11/J10*100,"""")","=IFERROR(I11/G11*100,"""")",,
+11,,,,,,,,,,,"=IFERROR(K12/G12*100,"""")","=IFERROR(J12/G12,"""")","=IFERROR(J12/J11*100,"""")","=IFERROR(I12/G12*100,"""")",,
+12,,,,,,,,,,,"=IFERROR(K13/G13*100,"""")","=IFERROR(J13/G13,"""")","=IFERROR(J13/J12*100,"""")","=IFERROR(I13/G13*100,"""")",,
+,,,,,,,,,,,,,,,,
+【月間累計】,,,,,,,,,,,,,,,,
+月,,,,,配信回数,総視聴者数合計,最大同接ベスト,コメント数合計,売上合計(円),購入件数合計,平均CVR(%),平均客単価(円),,平均エンゲージメント率(%),,
+当月合計,,,,,=COUNTA(B2:B13),=SUM(G2:G13),=MAX(H2:H13),=SUM(I2:I13),=SUM(J2:J13),=SUM(K2:K13),"=IFERROR(SUM(K2:K13)/SUM(G2:G13)*100,"""")","=IFERROR(SUM(J2:J13)/SUM(G2:G13),"""")",,"=IFERROR(SUM(I2:I13)/SUM(G2:G13)*100,"""")",,
+,,,,,,,,,,,,,,,,
+【自己ベスト（更新時セルを黄色にハイライト推奨）】,,,,,,,,,,,,,,,,
+指標,ベスト記録,達成メモ,,,,,,,,,,,,,,
+最多視聴者数(人),=MAX(G2:G13),,,,,,,,,,,,,,,
+最高売上(円),=MAX(J2:J13),,,,,,,,,,,,,,,
+最高CVR(%),=MAX(L2:L13),,,,,,,,,,,,,,,
+最高エンゲージメント率(%),=MAX(O2:O13),,,,,,,,,,,,,,,
+最大同時接続数(人),=MAX(H2:H13),,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+【使い方】,,,,,,,,,,,,,,,,
+"1. B〜K列にデータを入力するとL〜O列が自動計算されます",,,,,,,,,,,,,,,,
+"2. 月間累計は行2〜13を自動集計します。行を追加した場合は数式の範囲を更新してください",,,,,,,,,,,,,,,,
+"3. 自己ベスト更新時はExcelの条件付き書式で黄色ハイライトを設定すると見やすくなります",,,,,,,,,,,,,,,,
+"4. 改善メモ・次回重点施策を毎回記入すると配信ごとの成長が可視化できます",,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_ライブコマースKPI管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

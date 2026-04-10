@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>事務所案件ナレッジベース＆類似検索ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Hiragino Sans",sans-serif;background:#f0f2f5;color:#2c3e50;font-size:14px}
+.hd{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:16px 20px;text-align:center}
+.hd h1{font-size:18px;font-weight:700}.hd p{font-size:11px;opacity:.8;margin-top:2px}
+.tabs{display:flex;background:#fff;border-bottom:2px solid #e0e0e0}
+.tab{flex:1;padding:10px;text-align:center;cursor:pointer;font-weight:600;font-size:13px;border-bottom:3px solid transparent;transition:.2s}
+.tab.active{color:#1a237e;border-bottom-color:#1a237e;background:#e8eaf6}
+.tab:hover{background:#f5f5f5}
+.pane{display:none;padding:16px;max-width:900px;margin:0 auto}.pane.active{display:block}
+label{display:block;font-weight:600;margin:10px 0 3px;font-size:13px}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:140px}
+.btn{display:inline-block;padding:8px 18px;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.btn-p{background:#1a237e;color:#fff}.btn-p:hover{background:#283593}
+.btn-s{background:#e8eaf6;color:#1a237e}.btn-s:hover{background:#c5cae9}
+.btn-d{background:#c62828;color:#fff}.btn-d:hover{background:#b71c1c}
+.btn-g{background:#2e7d32;color:#fff}.btn-g:hover{background:#1b5e20}
+.acts{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.card{background:#fff;border-radius:8px;padding:14px;margin:10px 0;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h3{font-size:14px;color:#1a237e;margin-bottom:6px}
+.score-bar{height:8px;background:#e0e0e0;border-radius:4px;margin:6px 0}
+.score-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#1a237e,#42a5f5)}
+.tag{display:inline-block;background:#e8eaf6;color:#1a237e;padding:2px 8px;border-radius:12px;font-size:11px;margin:2px}
+.stat{text-align:center;padding:20px}.stat b{font-size:32px;color:#1a237e}
+.msg{padding:10px;border-radius:6px;margin:8px 0;font-size:13px}
+.msg-ok{background:#e8f5e9;color:#2e7d32}.msg-er{background:#ffebee;color:#c62828}
+#printArea{display:none}
+@media print{body>*:not(#printArea){display:none!important}#printArea{display:block!important;padding:20px}#printArea h2{border-bottom:2px solid #000;padding-bottom:4px;margin-bottom:10px}#printArea dt{font-weight:700;margin-top:8px}#printArea dd{margin-left:16px}}
+@media(max-width:600px){.row{flex-direction:column}.tabs{font-size:12px}}
+.hidden{display:none}
+</style>
+<meta name="description" content="法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,事務所案件ナレッジベース＆類似検索ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/knowledge-base-4/">
+<meta property="og:title" content="事務所案件ナレッジベース＆類似検索ツール - kusasyu tools">
+<meta property="og:description" content="法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/knowledge-base-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事務所案件ナレッジベース＆類似検索ツール - kusasyu tools">
+<meta name="twitter:description" content="法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "事務所案件ナレッジベース＆類似検索ツール",
+  "description": "法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/knowledge-base-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">事務所案件ナレッジベース＆類似検索ツール</span></div>
+<div class="hd"><h1>事務所案件ナレッジベース＆類似検索ツール</h1><p>過去案件の構造化蓄積と類似案件スコアリング検索</p></div>
+<div class="tabs">
+<div class="tab active" onclick="showTab(0)">案件登録</div>
+<div class="tab" onclick="showTab(1)">類似検索</div>
+<div class="tab" onclick="showTab(2)">データ管理</div>
+</div>
+
+<div class="pane active" id="p0">
+<div class="card">
+<h3 id="formTitle">新規案件登録</h3>
+<input type="hidden" id="editId">
+<div class="row">
+<div><label>案件名 *</label><input id="cName" placeholder="例：○○株式会社 契約解除事件"></div>
+<div><label>案件種別</label><select id="cType"><option value="">選択</option><option>契約紛争</option><option>労働紛争</option><option>知的財産</option><option>不動産</option><option>会社法</option><option>債権回収</option><option>損害賠償</option><option>行政事件</option><option>刑事事件</option><option>家事事件</option><option>その他</option></select></div>
+</div>
+<label>事実概要 *</label><textarea id="cFacts" placeholder="事案の概要を記載"></textarea>
+<div class="row">
+<div><label>適用法令コード</label><input id="cLaws" placeholder="民法415,会社法423（カンマ区切り）"></div>
+<div><label>争点タグ</label><input id="cTags" placeholder="債務不履行,損害額,因果関係（カンマ区切り）"></div>
+</div>
+<div class="row">
+<div><label>結果</label><select id="cResult"><option value="">選択</option><option>勝訴</option><option>一部勝訴</option><option>敗訴</option><option>和解</option><option>取下げ</option></select></div>
+<div><label>担当弁護士</label><input id="cLawyer" placeholder="氏名"></div>
+<div><label>案件年度</label><input type="number" id="cYear" placeholder="2026" min="1990" max="2030"></div>
+</div>
+<label>勝因・敗因分析</label><textarea id="cAnalysis" placeholder="勝訴/敗訴の要因分析"></textarea>
+<label>フリーキーワード</label><input id="cKeys" placeholder="重要キーワード（カンマ区切り）">
+<div class="acts">
+<button class="btn btn-p" onclick="saveCase()">登録</button>
+<button class="btn btn-s" onclick="resetForm()">クリア</button>
+<button class="btn btn-s" onclick="printCard()">引継ぎカード出力</button>
+</div>
+</div>
+<div id="regMsg"></div>
+</div>
+
+<div class="pane" id="p1">
+<div class="card">
+<h3>類似案件検索</h3>
+<div class="row">
+<div><label>キーワード</label><input id="sKey" placeholder="検索キーワード（スペース区切り）"></div>
+<div><label>案件種別</label><select id="sType"><option value="">全て</option><option>契約紛争</option><option>労働紛争</option><option>知的財産</option><option>不動産</option><option>会社法</option><option>債権回収</option><option>損害賠償</option><option>行政事件</option><option>刑事事件</option><option>家事事件</option><option>その他</option></select></div>
+</div>
+<div class="row">
+<div><label>適用法令コード</label><input id="sLaw" placeholder="民法415（カンマ区切り）"></div>
+<div><label>争点タグ</label><input id="sTag" placeholder="債務不履行（カンマ区切り）"></div>
+</div>
+<div class="row">
+<div><label>結果フィルタ</label><select id="sResult"><option value="">全て</option><option>勝訴</option><option>一部勝訴</option><option>敗訴</option><option>和解</option><option>取下げ</option></select></div>
+<div style="display:flex;align-items:flex-end"><button class="btn btn-p" onclick="search()" style="width:100%">検索</button></div>
+</div>
+</div>
+<div id="sCount" style="margin:8px 0;font-size:13px;color:#666"></div>
+<div id="results"></div>
+</div>
+
+<div class="pane" id="p2">
+<div class="card">
+<h3>登録状況</h3>
+<div class="row" id="stats" style="text-align:center"></div>
+</div>
+<div class="card">
+<h3>データ管理</h3>
+<div class="acts">
+<button class="btn btn-g" onclick="exportJSON()">JSONエクスポート</button>
+<button class="btn btn-s" onclick="document.getElementById('jsonFile').click()">JSONインポート</button>
+<input type="file" id="jsonFile" accept=".json" class="hidden" onchange="importJSON(event)">
+<button class="btn btn-s" onclick="document.getElementById('csvFile').click()">CSVインポート</button>
+<input type="file" id="csvFile" accept=".csv" class="hidden" onchange="importCSV(event)">
+<button class="btn btn-d" onclick="clearAll()">全データ削除</button>
+</div>
+<div id="mgrMsg"></div>
+<div style="margin-top:12px;font-size:12px;color:#888">
+<b>CSV列名仕様:</b> 案件名,案件種別,事実概要,適用法令コード,争点タグ,結果,担当弁護士,案件年度,勝因敗因分析,フリーキーワード<br>
+タグ・法令コード・キーワードは「|」区切り（Excel対応）
+</div>
+</div>
+</div>
+
+<div id="printArea"></div>
+
+<script>
+const DB='CaseKB',STORE='cases';let db;
+function openDB(){return new Promise((r,j)=>{const q=indexedDB.open(DB,1);q.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains(STORE)){const s=d.createObjectStore(STORE,{keyPath:'id',autoIncrement:true});s.createIndex('type','type');s.createIndex('result','result')}};q.onsuccess=e=>{db=e.target.result;r(db)};q.onerror=e=>j(e)})}
+function tx(mode){return db.transaction(STORE,mode).objectStore(STORE)}
+function getAll(){return new Promise(r=>{tx('readonly').getAll().onsuccess=e=>r(e.target.result)})}
+function put(c){return new Promise(r=>{const req=c.id?tx('readwrite').put(c):tx('readwrite').add(c);req.onsuccess=e=>r(e.target.result)})}
+function del(id){return new Promise(r=>{tx('readwrite').delete(id).onsuccess=()=>r()})}
+function showTab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));document.querySelectorAll('.pane').forEach((p,j)=>p.classList.toggle('active',i===j));if(i===2)loadStats()}
+function v(id){return document.getElementById(id).value.trim()}
+function split(s){return s.split(/[,、，|]/).map(x=>x.trim()).filter(Boolean)}
+function saveCase(){
+const name=v('cName'),facts=v('cFacts');
+if(!name||!facts)return showMsg('regMsg','案件名と事実概要は必須です','er');
+const c={name,type:v('cType'),facts,laws:split(v('cLaws')),tags:split(v('cTags')),result:v('cResult'),lawyer:v('cLawyer'),year:parseInt(v('cYear'))||null,analysis:v('cAnalysis'),keywords:split(v('cKeys')),created:new Date().toISOString()};
+const eid=v('editId');if(eid){c.id=parseInt(eid)}
+put(c).then(()=>{showMsg('regMsg',eid?'更新しました':'登録しました','ok');resetForm()})
+}
+function resetForm(){['cName','cType','cFacts','cLaws','cTags','cResult','cLawyer','cYear','cAnalysis','cKeys','editId'].forEach(id=>{const el=document.getElementById(id);el.value=''});document.getElementById('formTitle').textContent='新規案件登録'}
+function editCase(id){getAll().then(all=>{const c=all.find(x=>x.id===id);if(!c)return;document.getElementById('editId').value=c.id;document.getElementById('cName').value=c.name;document.getElementById('cType').value=c.type||'';document.getElementById('cFacts').value=c.facts;document.getElementById('cLaws').value=(c.laws||[]).join(',');document.getElementById('cTags').value=(c.tags||[]).join(',');document.getElementById('cResult').value=c.result||'';document.getElementById('cLawyer').value=c.lawyer||'';document.getElementById('cYear').value=c.year||'';document.getElementById('cAnalysis').value=c.analysis||'';document.getElementById('cKeys').value=(c.keywords||[]).join(',');document.getElementById('formTitle').textContent='案件編集: '+c.name;showTab(0)})}
+function deleteCase(id){if(confirm('この案件を削除しますか？'))del(id).then(()=>search())}
+function calcScore(c,q){
+let score=0,max=0;
+const W={type:10,law:15,tag:12,key:5};
+if(q.type){max+=W.type;if(c.type===q.type)score+=W.type}
+const cText=[c.name,c.facts,c.analysis||'',(c.keywords||[]).join(' ')].join(' ').toLowerCase();
+if(q.laws.length){max+=q.laws.length*W.law;const cl=(c.laws||[]).map(x=>x.toLowerCase());q.laws.forEach(l=>{const ll=l.toLowerCase();if(cl.some(x=>x===ll))score+=W.law;else if(cText.includes(ll))score+=W.law*0.4})}
+if(q.tags.length){max+=q.tags.length*W.tag;const ct=(c.tags||[]).map(x=>x.toLowerCase());q.tags.forEach(t=>{const tl=t.toLowerCase();if(ct.some(x=>x===tl))score+=W.tag;else if(cText.includes(tl))score+=W.tag*0.3})}
+if(q.keys.length){max+=q.keys.length*W.key;q.keys.forEach(k=>{const kl=k.toLowerCase();const tf=(cText.match(new RegExp(kl.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'))||[]).length;if(tf>0)score+=W.key*Math.min(tf,3)/3*1.2})}
+if(max===0)return q.keys.length===0&&q.laws.length===0&&q.tags.length===0?50:0;
+return Math.min(Math.round(score/max*100),100);
+}
+function search(){
+const q={keys:v('sKey').split(/[\s　]+/).filter(Boolean),type:v('sType'),laws:split(v('sLaw')),tags:split(v('sTag')),result:v('sResult')};
+getAll().then(all=>{
+let res=all;
+if(q.result)res=res.filter(c=>c.result===q.result);
+res=res.map(c=>({...c,score:calcScore(c,q)})).filter(c=>c.score>0||(!q.keys.length&&!q.laws.length&&!q.tags.length&&!q.type));
+res.sort((a,b)=>b.score-a.score);
+const el=document.getElementById('results');
+document.getElementById('sCount').textContent=`${res.length}件ヒット（全${all.length}件中）`;
+if(!res.length){el.innerHTML='<div class="card" style="text-align:center;color:#888">該当する案件がありません</div>';return}
+el.innerHTML=res.slice(0,50).map(c=>`<div class="card">
+<div style="display:flex;justify-content:space-between;align-items:start">
+<h3>${esc(c.name)}</h3>
+<span style="font-size:20px;font-weight:700;color:#1a237e">${c.score}点</span>
+</div>
+<div class="score-bar"><div class="score-fill" style="width:${c.score}%"></div></div>
+<div style="margin:4px 0">${c.type?'<span class="tag">'+esc(c.type)+'</span>':''}${c.result?'<span class="tag">'+esc(c.result)+'</span>':''}${c.year?'<span class="tag">'+c.year+'年</span>':''}${c.lawyer?'<span class="tag">'+esc(c.lawyer)+'</span>':''}</div>
+<div style="font-size:12px;color:#666;margin:4px 0">${esc((c.facts||'').substring(0,120))}${c.facts&&c.facts.length>120?'…':''}</div>
+${(c.laws||[]).length?'<div style="margin:2px 0"><b style="font-size:11px">法令:</b> '+(c.laws||[]).map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div>':''}
+${(c.tags||[]).length?'<div style="margin:2px 0"><b style="font-size:11px">争点:</b> '+(c.tags||[]).map(t=>'<span class="tag">'+esc(t)+'</span>').join('')+'</div>':''}
+<div class="acts"><button class="btn btn-s" onclick="editCase(${c.id})">編集</button><button class="btn btn-d" onclick="deleteCase(${c.id})">削除</button></div>
+</div>`).join('')})}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function showMsg(id,msg,type){const el=document.getElementById(id);el.innerHTML=`<div class="msg msg-${type==='ok'?'ok':'er'}">${msg}</div>`;setTimeout(()=>el.innerHTML='',3000)}
+function loadStats(){getAll().then(all=>{const types={};all.forEach(c=>{types[c.type||'未分類']=(types[c.type||'未分類']||0)+1});const wins=all.filter(c=>c.result==='勝訴'||c.result==='一部勝訴').length;document.getElementById('stats').innerHTML=`<div class="stat"><b>${all.length}</b><br>総案件数</div><div class="stat"><b>${wins}</b><br>勝訴系</div><div class="stat"><b>${Object.keys(types).length}</b><br>案件種別数</div>`})}
+function exportJSON(){getAll().then(all=>{const blob=new Blob([JSON.stringify(all,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='knowledgebase_'+new Date().toISOString().slice(0,10)+'.json';a.click();showMsg('mgrMsg',all.length+'件エクスポートしました','ok')})}
+function importJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const data=JSON.parse(ev.target.result);if(!Array.isArray(data))throw'';let n=0;const add=()=>{if(n>=data.length){showMsg('mgrMsg',n+'件インポート完了','ok');e.target.value='';return}const c={...data[n]};delete c.id;put(c).then(()=>{n++;add()})};add()}catch{showMsg('mgrMsg','JSONの形式が不正です','er')}};r.readAsText(f)}
+function importCSV(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{const lines=ev.target.result.split('\n').filter(Boolean);if(lines.length<2){showMsg('mgrMsg','データがありません','er');return}const hdr=parseCsvLine(lines[0]);const map={};const keys=['name','type','facts','laws','tags','result','lawyer','year','analysis','keywords'];const labels=['案件名','案件種別','事実概要','適用法令コード','争点タグ','結果','担当弁護士','案件年度','勝因敗因分析','フリーキーワード'];hdr.forEach((h,i)=>{const idx=labels.indexOf(h.trim());if(idx>=0)map[keys[idx]]=i});let n=0;const add=(i)=>{if(i>=lines.length){showMsg('mgrMsg',n+'件インポート完了','ok');e.target.value='';return}const cols=parseCsvLine(lines[i]);const c={name:cols[map.name||0]||'',type:cols[map.type||1]||'',facts:cols[map.facts||2]||'',laws:(cols[map.laws||3]||'').split('|').filter(Boolean),tags:(cols[map.tags||4]||'').split('|').filter(Boolean),result:cols[map.result||5]||'',lawyer:cols[map.lawyer||6]||'',year:parseInt(cols[map.year||7])||null,analysis:cols[map.analysis||8]||'',keywords:(cols[map.keywords||9]||'').split('|').filter(Boolean),created:new Date().toISOString()};if(c.name){put(c).then(()=>{n++;add(i+1)})}else add(i+1)};add(1)};r.readAsText(f)}
+function parseCsvLine(line){const res=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"'){if(inQ&&line[i+1]==='"'){cur+='"';i++}else inQ=!inQ}else if(ch===','&&!inQ){res.push(cur);cur=''}else cur+=ch}res.push(cur);return res}
+function printCard(){const name=v('cName');if(!name){showMsg('regMsg','案件名を入力してから出力してください','er');return}
+const el=document.getElementById('printArea');el.innerHTML=`<h2>案件引継ぎカード</h2><dl>
+<dt>案件名</dt><dd>${esc(name)}</dd>
+<dt>案件種別</dt><dd>${esc(v('cType'))||'―'}</dd>
+<dt>担当弁護士</dt><dd>${esc(v('cLawyer'))||'―'}</dd>
+<dt>案件年度</dt><dd>${v('cYear')||'―'}</dd>
+<dt>事実概要</dt><dd>${esc(v('cFacts'))}</dd>
+<dt>適用法令</dt><dd>${esc(v('cLaws'))||'―'}</dd>
+<dt>争点タグ</dt><dd>${esc(v('cTags'))||'―'}</dd>
+<dt>結果</dt><dd>${esc(v('cResult'))||'―'}</dd>
+<dt>勝因・敗因分析</dt><dd>${esc(v('cAnalysis'))||'―'}</dd>
+<dt>キーワード</dt><dd>${esc(v('cKeys'))||'―'}</dd>
+</dl><p style="margin-top:16px;font-size:11px;color:#888">出力日: ${new Date().toLocaleDateString('ja-JP')} ｜ 事務所案件ナレッジベース</p>`;
+window.print()}
+function clearAll(){if(!confirm('全データを削除します。よろしいですか？'))return;const q=indexedDB.deleteDatabase(DB);q.onsuccess=()=>{openDB().then(()=>{showMsg('mgrMsg','全データを削除しました','ok');loadStats()})}}
+openDB().then(()=>{loadStats()});
+</script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>過去案件インデックス台帳 - kusasyu tools</title>
+<meta name="description" content="法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,過去案件インデックス台帳">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-14/">
+<meta property="og:title" content="過去案件インデックス台帳 - kusasyu tools">
+<meta property="og:description" content="法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="過去案件インデックス台帳 - kusasyu tools">
+<meta name="twitter:description" content="法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "過去案件インデックス台帳",
+  "description": "法律事務所が自所の過去案件・準備書面・交渉メモを構造化データとして蓄積し、新規案件の事実関係や適用法令から類似の勝訴パターンを即座にスコア付き検索できるナレッジベースツールを構築する。Caseroが米国で実現した「事務所ドキュメント→知識グラフ検索」モデルを、日本法・日本語に完全対応した形で提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-10"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>過去案件インデックス台帳</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>過去案件インデックス台帳</h1>
+  <p class="project-name">判例調査で1日終わる？事務所ナレッジ即検索</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>案件番号</th><th>依頼者ID</th><th>案件種別</th><th>担当弁護士</th><th>適用法令コード</th><th>争点タグ</th><th>結果</th><th>対応期限</th><th>期限超過フラグ</th><th>登録日</th></tr></thead><tbody><tr><td>2024-0001</td><td>CL-0012</td><td>契約紛争</td><td>山田太郎</td><td>MINPO-415</td><td>債務不履行;損害賠償;契約解除</td><td>勝訴</td><td>2024-06-30</td><td>=IF(H2="","",IF(H2&lt;TODAY(),"★超過","期限内"))</td><td>2024-01-15</td></tr><tr><td>2024-0002</td><td>CL-0045</td><td>労働紛争</td><td>佐藤花子</td><td>ROUDOU-16</td><td>不当解雇;未払残業代</td><td>和解</td><td>2025-03-31</td><td>=IF(H3="","",IF(H3&lt;TODAY(),"★超過","期限内"))</td><td>2024-03-20</td></tr><tr><td>2024-0003</td><td>CL-0078</td><td>知的財産</td><td>鈴木一郎</td><td>TOKKYO-100</td><td>特許侵害;差止請求;損害額算定</td><td>進行中</td><td>2026-12-31</td><td>=IF(H4="","",IF(H4&lt;TODAY(),"★超過","期限内"))</td><td>2024-05-10</td></tr><tr><td>2025-0001</td><td>CL-0023</td><td>企業法務</td><td>山田太郎</td><td>KAISHA-423</td><td>取締役責任;善管注意義務</td><td>勝訴</td><td>2025-09-30</td><td>=IF(H5="","",IF(H5&lt;TODAY(),"★超過","期限内"))</td><td>2025-01-08</td></tr><tr><td>2025-0002</td><td>CL-0091</td><td>損害賠償</td><td>田中裕子</td><td>MINPO-709</td><td>不法行為;逸失利益;過失相殺</td><td>進行中</td><td>2026-06-30</td><td>=IF(H6="","",IF(H6&lt;TODAY(),"★超過","期限内"))</td><td>2025-02-14</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【案件種別別 集計】</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>案件種別</td><td>件数</td><td>勝訴</td><td>敗訴</td><td>和解</td><td>進行中</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>契約紛争</td><td>=COUNTIF(C2:C999,"契約紛争")</td><td>=COUNTIFS(C2:C999,"契約紛争",G2:G999,"勝訴")</td><td>=COUNTIFS(C2:C999,"契約紛争",G2:G999,"敗訴")</td><td>=COUNTIFS(C2:C999,"契約紛争",G2:G999,"和解")</td><td>=COUNTIFS(C2:C999,"契約紛争",G2:G999,"進行中")</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>労働紛争</td><td>=COUNTIF(C2:C999,"労働紛争")</td><td>=COUNTIFS(C2:C999,"労働紛争",G2:G999,"勝訴")</td><td>=COUNTIFS(C2:C999,"労働紛争",G2:G999,"敗訴")</td><td>=COUNTIFS(C2:C999,"労働紛争",G2:G999,"和解")</td><td>=COUNTIFS(C2:C999,"労働紛争",G2:G999,"進行中")</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `案件番号,依頼者ID,案件種別,担当弁護士,適用法令コード,争点タグ,結果,対応期限,期限超過フラグ,登録日
+2024-0001,CL-0012,契約紛争,山田太郎,MINPO-415,債務不履行;損害賠償;契約解除,勝訴,2024-06-30,"=IF(H2="""","""",IF(H2<TODAY(),""★超過"",""期限内""))",2024-01-15
+2024-0002,CL-0045,労働紛争,佐藤花子,ROUDOU-16,不当解雇;未払残業代,和解,2025-03-31,"=IF(H3="""","""",IF(H3<TODAY(),""★超過"",""期限内""))",2024-03-20
+2024-0003,CL-0078,知的財産,鈴木一郎,TOKKYO-100,特許侵害;差止請求;損害額算定,進行中,2026-12-31,"=IF(H4="""","""",IF(H4<TODAY(),""★超過"",""期限内""))",2024-05-10
+2025-0001,CL-0023,企業法務,山田太郎,KAISHA-423,取締役責任;善管注意義務,勝訴,2025-09-30,"=IF(H5="""","""",IF(H5<TODAY(),""★超過"",""期限内""))",2025-01-08
+2025-0002,CL-0091,損害賠償,田中裕子,MINPO-709,不法行為;逸失利益;過失相殺,進行中,2026-06-30,"=IF(H6="""","""",IF(H6<TODAY(),""★超過"",""期限内""))",2025-02-14
+,,,,,,,,,,
+【案件種別別 集計】,,,,,,,,,,
+案件種別,件数,勝訴,敗訴,和解,進行中,,,,,
+契約紛争,"=COUNTIF(C2:C999,""契約紛争"")","=COUNTIFS(C2:C999,""契約紛争"",G2:G999,""勝訴"")","=COUNTIFS(C2:C999,""契約紛争"",G2:G999,""敗訴"")","=COUNTIFS(C2:C999,""契約紛争"",G2:G999,""和解"")","=COUNTIFS(C2:C999,""契約紛争"",G2:G999,""進行中"")",,,,,
+労働紛争,"=COUNTIF(C2:C999,""労働紛争"")","=COUNTIFS(C2:C999,""労働紛争"",G2:G999,""勝訴"")","=COUNTIFS(C2:C999,""労働紛争"",G2:G999,""敗訴"")","=COUNTIFS(C2:C999,""労働紛争"",G2:G999,""和解"")","=COUNTIFS(C2:C999,""労働紛争"",G2:G999,""進行中"")",,,,,
+知的財産,"=COUNTIF(C2:C999,""知的財産"")","=COUNTIFS(C2:C999,""知的財産"",G2:G999,""勝訴"")","=COUNTIFS(C2:C999,""知的財産"",G2:G999,""敗訴"")","=COUNTIFS(C2:C999,""知的財産"",G2:G999,""和解"")","=COUNTIFS(C2:C999,""知的財産"",G2:G999,""進行中"")",,,,,
+企業法務,"=COUNTIF(C2:C999,""企業法務"")","=COUNTIFS(C2:C999,""企業法務"",G2:G999,""勝訴"")","=COUNTIFS(C2:C999,""企業法務"",G2:G999,""敗訴"")","=COUNTIFS(C2:C999,""企業法務"",G2:G999,""和解"")","=COUNTIFS(C2:C999,""企業法務"",G2:G999,""進行中"")",,,,,
+損害賠償,"=COUNTIF(C2:C999,""損害賠償"")","=COUNTIFS(C2:C999,""損害賠償"",G2:G999,""勝訴"")","=COUNTIFS(C2:C999,""損害賠償"",G2:G999,""敗訴"")","=COUNTIFS(C2:C999,""損害賠償"",G2:G999,""和解"")","=COUNTIFS(C2:C999,""損害賠償"",G2:G999,""進行中"")",,,,,
+不動産,"=COUNTIF(C2:C999,""不動産"")","=COUNTIFS(C2:C999,""不動産"",G2:G999,""勝訴"")","=COUNTIFS(C2:C999,""不動産"",G2:G999,""敗訴"")","=COUNTIFS(C2:C999,""不動産"",G2:G999,""和解"")","=COUNTIFS(C2:C999,""不動産"",G2:G999,""進行中"")",,,,,
+債権回収,"=COUNTIF(C2:C999,""債権回収"")","=COUNTIFS(C2:C999,""債権回収"",G2:G999,""勝訴"")","=COUNTIFS(C2:C999,""債権回収"",G2:G999,""敗訴"")","=COUNTIFS(C2:C999,""債権回収"",G2:G999,""和解"")","=COUNTIFS(C2:C999,""債権回収"",G2:G999,""進行中"")",,,,,
+合計,"=SUM(B14:B20)","=SUM(C14:C20)","=SUM(D14:D20)","=SUM(E14:E20)","=SUM(F14:F20)",,,,,
+期限超過件数,"=COUNTIF(I2:I999,""★超過"")",,,,,,,,,
+,,,,,,,,,,
+===== 以下は別シート「記入ルール」としてご利用ください =====,,,,,,,,,,
+,,,,,,,,,,
+【列定義・データ型仕様】,,,,,,,,,,
+列名,データ型,必須,書式・制約,入力例,備考,,,,,
+案件番号,テキスト,必須,YYYY-NNNN（西暦-連番4桁）,2025-0001,年ごとにリセット可。ナレッジベースツールの主キー,,,,,
+依頼者ID,テキスト,必須,CL-NNNN（固定接頭辞+連番4桁）,CL-0012,同一依頼者は同じIDを付与。個人名は記載しない,,,,,
+案件種別,テキスト,必須,下記リストから選択,契約紛争,契約紛争/労働紛争/知的財産/企業法務/損害賠償/不動産/債権回収,,,,,
+担当弁護士,テキスト,必須,氏名フルネーム,山田太郎,主任担当者1名を記載,,,,,
+適用法令コード,テキスト,必須,下記法令コード表から選択,MINPO-415,複数法令はセミコロン区切り,,,,,
+争点タグ,テキスト,必須,自由テキスト。複数はセミコロン区切り,債務不履行;損害賠償,ナレッジベースツール検索キーワードと一致させる,,,,,
+結果,テキスト,必須,勝訴/敗訴/和解/取下げ/進行中,勝訴,5種から選択。判決前は進行中,,,,,
+対応期限,日付,必須,YYYY-MM-DD,2025-09-30,訴訟期日・回答期限等の直近マイルストーン,,,,,
+期限超過フラグ,数式,自動,自動算出（編集不要）,★超過,TODAY()と比較し超過なら★超過を表示,,,,,
+登録日,日付,必須,YYYY-MM-DD,2025-01-08,台帳への初回登録日,,,,,
+,,,,,,,,,,
+【争点タグ記入ルール】,,,,,,,,,,
+項目,説明,,,,,,,,
+区切り文字,セミコロン（;）。カンマ不可（CSV破損防止）,,,,,,,,
+タグ数,1案件あたり2〜5個を推奨,,,,,,,,
+表記統一,同義語は統一する（例：×慰謝料請求 → ○損害賠償）,,,,,,,,
+粒度,「債務不履行」「損害賠償」のように法的争点単位で記載,,,,,,,,
+,,,,,,,,,,
+===== 以下は別シート「主要法令コード一覧」としてご利用ください =====,,,,,,,,,,
+,,,,,,,,,,
+法令コード,法令名,主な条文,よく使う案件種別,,,,,,
+MINPO-415,民法第415条,債務不履行による損害賠償,契約紛争,,,,,,
+MINPO-416,民法第416条,損害賠償の範囲,契約紛争;損害賠償,,,,,,
+MINPO-541,民法第541条,催告による解除,契約紛争,,,,,,
+MINPO-542,民法第542条,催告によらない解除,契約紛争,,,,,,
+MINPO-709,民法第709条,不法行為による損害賠償,損害賠償,,,,,,
+MINPO-710,民法第710条,財産以外の損害の賠償,損害賠償,,,,,,
+MINPO-715,民法第715条,使用者責任,損害賠償;労働紛争,,,,,,
+KAISHA-423,会社法第423条,役員等の株式会社に対する損害賠償責任,企業法務,,,,,,
+KAISHA-429,会社法第429条,役員等の第三者に対する損害賠償責任,企業法務,,,,,,
+KAISHA-831,会社法第831条,株主総会決議取消しの訴え,企業法務,,,,,,
+ROUDOU-16,労働契約法第16条,解雇権濫用法理,労働紛争,,,,,,
+ROUDOU-19,労働契約法第19条,有期労働契約の更新等（雇止め法理）,労働紛争,,,,,,
+ROUDOUKIJUN-37,労働基準法第37条,時間外・休日・深夜の割増賃金,労働紛争,,,,,,
+TOKKYO-100,特許法第100条,差止請求権,知的財産,,,,,,
+TOKKYO-102,特許法第102条,損害の額の推定等,知的財産,,,,,,
+CHOSAKU-112,著作権法第112条,差止請求権,知的財産,,,,,,
+SHAKUCHI-28,借地借家法第28条,建物賃貸借契約の更新拒絶等の要件（正当事由）,不動産,,,,,,
+TAKUCHI-47,宅地建物取引業法第47条,業務に関する禁止事項,不動産,,,,,,
+FUKYOUHOU-4,不正競争防止法第4条,損害賠償,知的財産;企業法務,,,,,,
+MINJISOSHIHOU-248,民事訴訟法第248条,損害額の認定,損害賠償,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_過去案件インデックス台帳.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
