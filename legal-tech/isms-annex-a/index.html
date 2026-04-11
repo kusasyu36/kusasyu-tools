@@ -1,0 +1,341 @@
+HTMLの出力先を確認しました。直接コード出力します。
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISMS_Annex_A_証跡マッピングツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans',sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4rem;padding:20px 0 8px;color:#1a365d}
+.subtitle{text-align:center;color:#718096;font-size:.85rem;margin-bottom:20px}
+.filter-panel{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.filter-panel h2{font-size:.95rem;color:#2d3748;margin-bottom:12px}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.service-label{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;cursor:pointer;border:2px solid #e2e8f0;transition:all .2s;font-size:.88rem;font-weight:500;user-select:none}
+.service-label:hover{border-color:#90cdf4}
+.service-label input{width:18px;height:18px;accent-color:#3182ce}
+.service-label.checked{background:#ebf8ff;border-color:#3182ce}
+.service-label .icon{font-size:1.1rem}
+.stats-bar{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.stat-card{background:#fff;border-radius:10px;padding:12px 18px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;align-items:center;gap:10px}
+.stat-num{font-size:1.5rem;font-weight:700;color:#3182ce}
+.stat-label{font-size:.78rem;color:#718096}
+.search-box{flex:1;min-width:200px}
+.search-box input{width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:.88rem;outline:none;transition:border .2s}
+.search-box input:focus{border-color:#3182ce}
+.category-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.cat-tab{padding:6px 14px;border-radius:20px;font-size:.78rem;cursor:pointer;border:1px solid #e2e8f0;background:#fff;transition:all .2s;font-weight:500}
+.cat-tab.active{background:#3182ce;color:#fff;border-color:#3182ce}
+.cat-tab:hover{border-color:#90cdf4}
+.table-wrap{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.1);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+thead th{background:#edf2f7;padding:12px 14px;text-align:left;font-weight:600;color:#2d3748;position:sticky;top:0;white-space:nowrap;border-bottom:2px solid #cbd5e0}
+tbody td{padding:10px 14px;border-bottom:1px solid #edf2f7;vertical-align:top}
+tbody tr:hover{background:#f7fafc}
+.ctrl-id{font-weight:700;color:#3182ce;white-space:nowrap;min-width:60px}
+.ctrl-name{min-width:200px}
+.evidence-tags{display:flex;flex-wrap:wrap;gap:4px}
+.ev-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:500;white-space:nowrap}
+.ev-log{background:#fef3c7;color:#92400e}
+.ev-config{background:#dbeafe;color:#1e40af}
+.ev-policy{background:#d1fae5;color:#065f46}
+.ev-audit{background:#ede9fe;color:#5b21b6}
+.ev-alert{background:#fce7f3;color:#9d174d}
+.ev-change{background:#ffedd5;color:#9a3412}
+.ev-backup{background:#e0e7ff;color:#3730a3}
+.ev-encrypt{background:#ccfbf1;color:#134e4a}
+.ev-scan{background:#fef2f2;color:#991b1b}
+.ev-repo{background:#f3f4f6;color:#374151}
+.svc-badges{display:flex;flex-wrap:wrap;gap:4px}
+.svc-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:600;white-space:nowrap}
+.svc-aws{background:#ff9900;color:#fff}
+.svc-gcp{background:#4285f4;color:#fff}
+.svc-azure{background:#0078d4;color:#fff}
+.svc-github{background:#24292e;color:#fff}
+.svc-gw{background:#34a853;color:#fff}
+.svc-slack{background:#4a154b;color:#fff}
+.empty-msg{text-align:center;padding:40px;color:#a0aec0;font-size:.95rem}
+.coverage-bar{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden;width:120px}
+.coverage-fill{height:100%;background:#3182ce;border-radius:4px;transition:width .3s}
+@media(max-width:640px){
+ .service-grid{grid-template-columns:1fr 1fr}
+ .stats-bar{flex-direction:column}
+ .stat-card,.search-box{width:100%}
+ table{font-size:.78rem}
+ thead th,tbody td{padding:8px 6px}
+ .ctrl-name{min-width:140px}
+ h1{font-size:1.1rem}
+}
+</style>
+<meta name="description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,ISMS_Annex_A_証跡マッピングツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/isms-annex-a/">
+<meta property="og:title" content="ISMS_Annex_A_証跡マッピングツール - kusasyu tools">
+<meta property="og:description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/isms-annex-a/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ISMS_Annex_A_証跡マッピングツール - kusasyu tools">
+<meta name="twitter:description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ISMS_Annex_A_証跡マッピングツール",
+  "description": "ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/isms-annex-a/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">ISMS_Annex_A_証跡マッピングツール</span></div>
+<div class="container">
+<h1>ISMS Annex A 証跡マッピングツール</h1>
+<p class="subtitle">ISO 27001:2022 附属書A 全93管理策 × クラウドサービス証跡対応表</p>
+
+<div class="filter-panel">
+<h2>使用中のクラウドサービスを選択</h2>
+<div class="service-grid" id="serviceGrid"></div>
+</div>
+
+<div class="stats-bar" id="statsBar">
+<div class="stat-card"><span class="stat-num" id="matchCount">0</span><div><div class="stat-label">該当する管理策</div></div></div>
+<div class="stat-card"><span class="stat-num" id="totalChecked">0</span><div><div class="stat-label">選択サービス数</div></div></div>
+<div class="stat-card"><div><div class="stat-label">カバレッジ（93管理策中）</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><div class="coverage-bar"><div class="coverage-fill" id="coverageFill"></div></div><span id="coveragePct" style="font-size:.85rem;font-weight:600;color:#3182ce">0%</span></div></div></div>
+<div class="search-box"><input type="text" id="searchInput" placeholder="管理策を検索（番号・名前・証跡種類）"></div>
+</div>
+
+<div class="category-tabs" id="categoryTabs"></div>
+
+<div class="table-wrap">
+<table><thead><tr><th>管理策番号</th><th>管理策名</th><th>証跡の種類</th><th>対応サービス</th></tr></thead><tbody id="tbody"></tbody></table>
+<div class="empty-msg" id="emptyMsg" style="display:none">サービスを選択すると、該当する管理策が表示されます</div>
+</div>
+</div>
+
+<script>
+const SERVICES=[
+{id:'aws',name:'AWS',icon:'☁️'},
+{id:'gcp',name:'GCP',icon:'🌐'},
+{id:'azure',name:'Azure',icon:'🔷'},
+{id:'github',name:'GitHub',icon:'🐙'},
+{id:'gw',name:'Google Workspace',icon:'📧'},
+{id:'slack',name:'Slack',icon:'💬'}
+];
+
+const EV_CLASS={
+'アクセスログ':'ev-log','設定スナップショット':'ev-config','ポリシー設定':'ev-policy',
+'監査ログ':'ev-audit','アラート記録':'ev-alert','変更履歴':'ev-change',
+'バックアップ記録':'ev-backup','暗号化設定':'ev-encrypt','脆弱性スキャン':'ev-scan',
+'リポジトリ設定':'ev-repo','通信ログ':'ev-log','イベントログ':'ev-log',
+'ユーザー一覧':'ev-config','権限設定':'ev-config','認証設定':'ev-config',
+'DLP設定':'ev-policy','リソース監視':'ev-audit','ネットワーク設定':'ev-config',
+'メッセージ記録':'ev-log','保持ポリシー':'ev-policy','コンプライアンス設定':'ev-policy',
+'チャンネル設定':'ev-config','セキュリティ設定':'ev-config','ブランチ保護':'ev-repo',
+'CI/CD記録':'ev-change','コードレビュー記録':'ev-repo','MFA設定':'ev-config',
+'SSO設定':'ev-config','WAF設定':'ev-config','暗号化ステータス':'ev-encrypt',
+'キー管理':'ev-encrypt','証明書管理':'ev-encrypt','インベントリ':'ev-config',
+'分類ラベル':'ev-policy','転送設定':'ev-config','トレーニング記録':'ev-audit',
+'インシデント記録':'ev-alert','冗長化設定':'ev-config','時刻同期設定':'ev-config',
+'削除ポリシー':'ev-policy','マスキング設定':'ev-config'
+};
+
+const CATEGORIES=[
+{id:'all',name:'全て'},
+{id:'5',name:'A.5 組織的管理策'},
+{id:'6',name:'A.6 人的管理策'},
+{id:'7',name:'A.7 物理的管理策'},
+{id:'8',name:'A.8 技術的管理策'}
+];
+
+const CONTROLS=[
+{id:'5.1',name:'情報セキュリティのための方針群',ev:['ポリシー設定','設定スナップショット'],svc:['aws','gcp','azure','gw','slack']},
+{id:'5.2',name:'情報セキュリティの役割及び責任',ev:['権限設定','ユーザー一覧'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'5.3',name:'職務の分離',ev:['権限設定','アクセスログ'],svc:['aws','gcp','azure','github']},
+{id:'5.4',name:'経営陣の責任',ev:[],svc:[]},
+{id:'5.5',name:'関係当局との連絡',ev:[],svc:[]},
+{id:'5.6',name:'専門組織との連絡',ev:[],svc:[]},
+{id:'5.7',name:'脅威インテリジェンス',ev:['アラート記録','脆弱性スキャン'],svc:['aws','gcp','azure','github']},
+{id:'5.8',name:'プロジェクトマネジメントにおける情報セキュリティ',ev:['リポジトリ設定'],svc:['github']},
+{id:'5.9',name:'情報及びその他の関連資産の目録',ev:['インベントリ','設定スナップショット'],svc:['aws','gcp','azure']},
+{id:'5.10',name:'情報及びその他の関連資産の利用の許容範囲',ev:['ポリシー設定'],svc:['aws','gcp','azure','gw','slack']},
+{id:'5.11',name:'資産の返却',ev:['ユーザー一覧','アクセスログ'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'5.12',name:'情報の分類',ev:['分類ラベル','ポリシー設定'],svc:['gw']},
+{id:'5.13',name:'情報のラベル付け',ev:['分類ラベル'],svc:['gw']},
+{id:'5.14',name:'情報の転送',ev:['転送設定','通信ログ','暗号化設定'],svc:['aws','gcp','azure','gw','slack']},
+{id:'5.15',name:'アクセス制御',ev:['ポリシー設定','権限設定','アクセスログ'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'5.16',name:'アイデンティティ管理',ev:['ユーザー一覧','SSO設定'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'5.17',name:'認証情報',ev:['認証設定','MFA設定'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'5.18',name:'アクセス権',ev:['権限設定','アクセスログ','監査ログ'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'5.19',name:'供給者関係における情報セキュリティ',ev:['設定スナップショット'],svc:['aws','gcp','azure']},
+{id:'5.20',name:'供給者との合意における情報セキュリティの取扱い',ev:[],svc:[]},
+{id:'5.21',name:'ICTサプライチェーンにおける情報セキュリティの管理',ev:['脆弱性スキャン'],svc:['github']},
+{id:'5.22',name:'供給者のサービス提供の監視、レビュー及び変更管理',ev:['監査ログ','アラート記録'],svc:['aws','gcp','azure']},
+{id:'5.23',name:'クラウドサービスの利用における情報セキュリティ',ev:['設定スナップショット','監査ログ','ポリシー設定'],svc:['aws','gcp','azure']},
+{id:'5.24',name:'情報セキュリティインシデント管理の計画及び準備',ev:['アラート記録','設定スナップショット'],svc:['aws','gcp','azure','slack']},
+{id:'5.25',name:'情報セキュリティ事象の評価及び決定',ev:['監査ログ','アラート記録'],svc:['aws','gcp','azure']},
+{id:'5.26',name:'情報セキュリティインシデントへの対応',ev:['インシデント記録','アラート記録','メッセージ記録'],svc:['aws','gcp','azure','slack']},
+{id:'5.27',name:'情報セキュリティインシデントからの学習',ev:['インシデント記録'],svc:['aws','gcp','azure']},
+{id:'5.28',name:'証拠の収集',ev:['監査ログ','アクセスログ','イベントログ'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'5.29',name:'事業継続についての情報セキュリティ',ev:['冗長化設定','バックアップ記録'],svc:['aws','gcp','azure']},
+{id:'5.30',name:'事業継続のためのICTの備え',ev:['冗長化設定','バックアップ記録','設定スナップショット'],svc:['aws','gcp','azure']},
+{id:'5.31',name:'法令、規制及び契約上の要求事項',ev:['コンプライアンス設定'],svc:['aws','gcp','azure']},
+{id:'5.32',name:'知的財産権',ev:['リポジトリ設定'],svc:['github']},
+{id:'5.33',name:'記録の保護',ev:['保持ポリシー','バックアップ記録'],svc:['aws','gcp','azure','gw','slack']},
+{id:'5.34',name:'プライバシー及びPIIの保護',ev:['ポリシー設定','DLP設定','暗号化設定'],svc:['aws','gcp','azure','gw']},
+{id:'5.35',name:'情報セキュリティの独立したレビュー',ev:['監査ログ'],svc:['aws','gcp','azure']},
+{id:'5.36',name:'情報セキュリティのための方針群、規則及び標準の順守',ev:['設定スナップショット','コンプライアンス設定'],svc:['aws','gcp','azure']},
+{id:'5.37',name:'操作手順書',ev:['変更履歴'],svc:['github']},
+{id:'6.1',name:'選考',ev:[],svc:[]},
+{id:'6.2',name:'雇用条件',ev:[],svc:[]},
+{id:'6.3',name:'情報セキュリティの意識向上、教育及び訓練',ev:['トレーニング記録'],svc:['gw']},
+{id:'6.4',name:'懲戒手続',ev:[],svc:[]},
+{id:'6.5',name:'雇用の終了又は変更後の責任',ev:['ユーザー一覧','アクセスログ'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'6.6',name:'秘密保持契約又は守秘義務契約',ev:[],svc:[]},
+{id:'6.7',name:'リモートワーク',ev:['アクセスログ','認証設定','セキュリティ設定'],svc:['aws','gcp','azure','gw','slack']},
+{id:'6.8',name:'情報セキュリティ事象の報告',ev:['メッセージ記録','アラート記録'],svc:['slack']},
+{id:'7.1',name:'物理的セキュリティ境界',ev:[],svc:[]},
+{id:'7.2',name:'物理的入退',ev:[],svc:[]},
+{id:'7.3',name:'オフィス、部屋及び施設のセキュリティ',ev:[],svc:[]},
+{id:'7.4',name:'物理的セキュリティの監視',ev:[],svc:[]},
+{id:'7.5',name:'物理的及び環境的脅威からの保護',ev:[],svc:[]},
+{id:'7.6',name:'セキュリティを保つべき領域での作業',ev:[],svc:[]},
+{id:'7.7',name:'クリアデスク・クリアスクリーン',ev:['セキュリティ設定'],svc:['gw']},
+{id:'7.8',name:'装置の設置及び保護',ev:[],svc:[]},
+{id:'7.9',name:'構外にある資産のセキュリティ',ev:['アクセスログ'],svc:['aws','gcp','azure']},
+{id:'7.10',name:'記憶媒体',ev:['暗号化設定','削除ポリシー'],svc:['aws','gcp','azure']},
+{id:'7.11',name:'サポートユーティリティ',ev:[],svc:[]},
+{id:'7.12',name:'ケーブル配線のセキュリティ',ev:[],svc:[]},
+{id:'7.13',name:'装置の保守',ev:[],svc:[]},
+{id:'7.14',name:'装置のセキュリティを保った処分又は再利用',ev:['削除ポリシー'],svc:['aws','gcp','azure']},
+{id:'8.1',name:'利用者エンドポイントデバイス',ev:['セキュリティ設定','アクセスログ'],svc:['gw']},
+{id:'8.2',name:'特権的アクセス権',ev:['権限設定','監査ログ','アクセスログ'],svc:['aws','gcp','azure','github']},
+{id:'8.3',name:'情報アクセス制限',ev:['権限設定','ポリシー設定'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'8.4',name:'ソースコードへのアクセス',ev:['リポジトリ設定','アクセスログ','ブランチ保護'],svc:['github']},
+{id:'8.5',name:'セキュリティを保った認証',ev:['認証設定','MFA設定','SSO設定'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'8.6',name:'容量・能力の管理',ev:['リソース監視','アラート記録'],svc:['aws','gcp','azure']},
+{id:'8.7',name:'マルウェアに対する保護',ev:['アラート記録','セキュリティ設定'],svc:['aws','gcp','azure','gw']},
+{id:'8.8',name:'技術的ぜい弱性の管理',ev:['脆弱性スキャン','アラート記録'],svc:['aws','gcp','azure','github']},
+{id:'8.9',name:'構成管理',ev:['設定スナップショット','変更履歴'],svc:['aws','gcp','azure','github']},
+{id:'8.10',name:'情報の削除',ev:['削除ポリシー','監査ログ'],svc:['aws','gcp','azure','gw','slack']},
+{id:'8.11',name:'データマスキング',ev:['マスキング設定'],svc:['aws','gcp','azure']},
+{id:'8.12',name:'データ漏えいの防止',ev:['DLP設定','アラート記録'],svc:['aws','gcp','azure','gw','slack']},
+{id:'8.13',name:'情報のバックアップ',ev:['バックアップ記録','設定スナップショット'],svc:['aws','gcp','azure','github','gw']},
+{id:'8.14',name:'情報処理施設の冗長性',ev:['冗長化設定','設定スナップショット'],svc:['aws','gcp','azure']},
+{id:'8.15',name:'ログ取得',ev:['監査ログ','アクセスログ','イベントログ'],svc:['aws','gcp','azure','github','gw','slack']},
+{id:'8.16',name:'監視活動',ev:['アラート記録','監査ログ','リソース監視'],svc:['aws','gcp','azure','github','slack']},
+{id:'8.17',name:'クロックの同期',ev:['時刻同期設定'],svc:['aws','gcp','azure']},
+{id:'8.18',name:'特権的なユーティリティプログラムの使用',ev:['監査ログ','アクセスログ'],svc:['aws','gcp','azure']},
+{id:'8.19',name:'運用システムに関わるソフトウェアの導入',ev:['変更履歴','CI/CD記録'],svc:['aws','gcp','azure','github']},
+{id:'8.20',name:'ネットワークのセキュリティ',ev:['ネットワーク設定','設定スナップショット'],svc:['aws','gcp','azure']},
+{id:'8.21',name:'ネットワークサービスのセキュリティ',ev:['ネットワーク設定','WAF設定'],svc:['aws','gcp','azure']},
+{id:'8.22',name:'ネットワークの分離',ev:['ネットワーク設定','設定スナップショット'],svc:['aws','gcp','azure']},
+{id:'8.23',name:'ウェブフィルタリング',ev:['セキュリティ設定','ポリシー設定'],svc:['aws','gcp','azure']},
+{id:'8.24',name:'暗号の使用',ev:['暗号化設定','暗号化ステータス','キー管理','証明書管理'],svc:['aws','gcp','azure']},
+{id:'8.25',name:'セキュリティに配慮した開発のライフサイクル',ev:['リポジトリ設定','ブランチ保護','CI/CD記録'],svc:['github']},
+{id:'8.26',name:'アプリケーションのセキュリティの要求事項',ev:['リポジトリ設定','脆弱性スキャン'],svc:['github']},
+{id:'8.27',name:'セキュリティに配慮したシステムアーキテクチャ及びシステム構築の原則',ev:['設定スナップショット','ネットワーク設定'],svc:['aws','gcp','azure']},
+{id:'8.28',name:'セキュリティに配慮したコーディング',ev:['コードレビュー記録','リポジトリ設定'],svc:['github']},
+{id:'8.29',name:'開発及び受入れにおけるセキュリティ試験',ev:['CI/CD記録','脆弱性スキャン'],svc:['github']},
+{id:'8.30',name:'外部委託による開発',ev:['リポジトリ設定','アクセスログ'],svc:['github']},
+{id:'8.31',name:'開発、試験及び運用環境の分離',ev:['設定スナップショット','権限設定'],svc:['aws','gcp','azure','github']},
+{id:'8.32',name:'変更管理',ev:['変更履歴','監査ログ','CI/CD記録'],svc:['aws','gcp','azure','github']},
+{id:'8.33',name:'試験情報',ev:['リポジトリ設定'],svc:['github']},
+{id:'8.34',name:'監査試験中の情報システムの保護',ev:['監査ログ','アクセスログ'],svc:['aws','gcp','azure']}
+];
+
+let checkedServices=new Set();
+let activeCategory='all';
+
+function init(){
+const grid=document.getElementById('serviceGrid');
+SERVICES.forEach(s=>{
+const label=document.createElement('label');
+label.className='service-label';
+label.id='label-'+s.id;
+label.innerHTML=`<input type="checkbox" value="${s.id}"><span class="icon">${s.icon}</span>${s.name}`;
+label.querySelector('input').addEventListener('change',e=>{
+if(e.target.checked){checkedServices.add(s.id);label.classList.add('checked')}
+else{checkedServices.delete(s.id);label.classList.remove('checked')}
+render();
+});
+grid.appendChild(label);
+});
+const tabs=document.getElementById('categoryTabs');
+CATEGORIES.forEach(c=>{
+const t=document.createElement('span');
+t.className='cat-tab'+(c.id==='all'?' active':'');
+t.textContent=c.name;
+t.onclick=()=>{activeCategory=c.id;document.querySelectorAll('.cat-tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');render()};
+tabs.appendChild(t);
+});
+document.getElementById('searchInput').addEventListener('input',render);
+render();
+}
+
+function render(){
+const tbody=document.getElementById('tbody');
+const q=document.getElementById('searchInput').value.toLowerCase();
+tbody.innerHTML='';
+let count=0;
+const filtered=CONTROLS.filter(c=>{
+if(activeCategory!=='all'&&!c.id.startsWith(activeCategory+'.'))return false;
+if(checkedServices.size>0&&!c.svc.some(s=>checkedServices.has(s)))return false;
+if(checkedServices.size===0)return false;
+if(q){
+const hay=(c.id+' '+c.name+' '+c.ev.join(' ')+' '+c.svc.map(s=>SERVICES.find(x=>x.id===s)?.name).join(' ')).toLowerCase();
+if(!hay.includes(q))return false;
+}
+return true;
+});
+filtered.forEach(c=>{
+const tr=document.createElement('tr');
+const visibleSvc=c.svc.filter(s=>checkedServices.size===0||checkedServices.has(s));
+tr.innerHTML=`<td class="ctrl-id">A.${c.id}</td><td class="ctrl-name">${c.name}</td><td><div class="evidence-tags">${c.ev.map(e=>`<span class="ev-tag ${EV_CLASS[e]||'ev-config'}">${e}</span>`).join('')}</div></td><td><div class="svc-badges">${visibleSvc.map(s=>`<span class="svc-badge svc-${s}">${SERVICES.find(x=>x.id===s)?.name}</span>`).join('')}</div></td>`;
+tbody.appendChild(tr);
+count++;
+});
+document.getElementById('matchCount').textContent=count;
+document.getElementById('totalChecked').textContent=checkedServices.size;
+const coveredSet=new Set();
+CONTROLS.forEach(c=>{if(c.svc.some(s=>checkedServices.has(s)))coveredSet.add(c.id)});
+const pct=Math.round(coveredSet.size/93*100);
+document.getElementById('coverageFill').style.width=pct+'%';
+document.getElementById('coveragePct').textContent=pct+'%';
+document.getElementById('emptyMsg').style.display=count===0?'block':'none';
+document.querySelector('table').style.display=count===0?'none':'table';
+}
+
+init();
+</script>
+</body>
+</html>

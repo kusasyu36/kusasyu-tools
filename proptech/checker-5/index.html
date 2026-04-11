@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退去立会チェックリスト＋精算計算シート - kusasyu tools</title>
+<meta name="description" content="賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在し">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,退去立会チェックリスト＋精算計算シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-5/">
+<meta property="og:title" content="退去立会チェックリスト＋精算計算シート - kusasyu tools">
+<meta property="og:description" content="賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在し">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="退去立会チェックリスト＋精算計算シート - kusasyu tools">
+<meta name="twitter:description" content="賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在し">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "退去立会チェックリスト＋精算計算シート",
+  "description": "賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在し",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/checker-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-11"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>退去立会チェックリスト＋精算計算シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>退去立会チェックリスト＋精算計算シート</h1>
+  <p class="project-name">退去修繕費、まだ手計算？AIで即見積もり</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>点検エリア</th><th>点検箇所</th><th>点検項目</th><th>損傷レベル</th><th>経過年数</th><th>耐用年数</th><th>残存価値率(%)</th><th>単価目安(円)</th><th>概算修繕費用(円)</th><th>負担区分</th><th>借主負担額(円)</th><th>貸主負担額(円)</th><th>優先度</th><th>ガイドライン根拠</th><th>備考</th></tr></thead><tbody><tr><td>玄関</td><td>玄関ドア</td><td>傷・凹み</td><td>軽微</td><td>3</td><td>6</td><td>50</td><td>15000</td><td>15000</td><td>借主</td><td>7500</td><td>7500</td><td>中</td><td>通常使用を超える損耗は借主負担（経過年数考慮）</td><td>ドア表面の擦り傷2箇所</td></tr><tr><td>玄関</td><td>玄関床（タイル・CF）</td><td>汚れ・傷</td><td>なし</td><td>3</td><td>6</td><td>50</td><td>0</td><td>0</td><td>－</td><td>0</td><td>0</td><td>－</td><td>損傷なしのため費用発生せず</td><td>良好な状態</td></tr><tr><td>玄関</td><td>下駄箱</td><td>棚板の破損・汚損</td><td>なし</td><td>3</td><td>8</td><td>62</td><td>0</td><td>0</td><td>－</td><td>0</td><td>0</td><td>－</td><td>損傷なしのため費用発生せず</td><td>通常使用の範囲</td></tr><tr><td>玄関</td><td>インターホン</td><td>動作不良・破損</td><td>なし</td><td>3</td><td>6</td><td>50</td><td>0</td><td>0</td><td>－</td><td>0</td><td>0</td><td>－</td><td>設備の経年劣化は貸主負担</td><td>動作確認済</td></tr><tr><td>居室</td><td>壁紙（クロス）</td><td>汚れ・剥がれ・穴</td><td>中程度</td><td>3</td><td>6</td><td>50</td><td>45000</td><td>45000</td><td>借主</td><td>22500</td><td>22500</td><td>高</td><td>画鋲穴は通常使用／釘穴・大穴は借主負担</td><td>リビング南面に直径3cmの穴1箇所</td></tr><tr><td>居室</td><td>天井クロス</td><td>シミ・剥がれ</td><td>なし</td><td>3</td><td>6</td><td>50</td><td>0</td><td>0</td><td>－</td><td>0</td><td>0</td><td>－</td><td>損傷なしのため費用発生せず</td><td>日焼けによる変色は通常損耗</td></tr><tr><td>居室</td><td>フローリング</td><td>傷・凹み・変色</td><td>重度</td><td>3</td><td>建物耐用年数</td><td>100</td><td>80000</td><td>80000</td><td>借主</td><td>80000</td><td>0</td><td>高</td><td>フローリングは経過年数考慮なし（建物耐用年数）</td><td>家具引きずりによる深い傷が広範囲</td></tr><tr><td>居室</td><td>畳</td><td>焼け・汚れ・凹み</td><td>軽微</td><td>3</td><td>6</td><td>50</td><td>6000</td><td>6000</td><td>按分</td><td>3000</td><td>3000</td><td>低</td><td>日焼けは通常損耗／飲みこぼし等は借主負担</td><td>1枚のみ飲み物シミあり</td></tr><tr><td>居室</td><td>襖・障子</td><td>破れ・穴・シミ</td><td>なし</td><td>3</td><td>6</td><td>50</td><td>0</td><td>0</td><td>－</td><td>0</td><td>0</td><td>－</td><td>損傷なしのため費用発生せず</td><td>該当なし（洋室のみ）</td></tr><tr><td>居室</td><td>窓ガラス</td><td>ひび・割れ</td><td>なし</td><td>3</td><td>建物耐用年数</td><td>100</td><td>0</td><td>0</td><td>－</td><td>0</td><td>0</td><td>－</td><td>損傷なしのため費用発生せず</td><td>良好</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `点検エリア,点検箇所,点検項目,損傷レベル,経過年数,耐用年数,残存価値率(%),単価目安(円),概算修繕費用(円),負担区分,借主負担額(円),貸主負担額(円),優先度,ガイドライン根拠,備考
+玄関,玄関ドア,傷・凹み,軽微,3,6,50,15000,15000,借主,7500,7500,中,通常使用を超える損耗は借主負担（経過年数考慮）,ドア表面の擦り傷2箇所
+玄関,玄関床（タイル・CF）,汚れ・傷,なし,3,6,50,0,0,－,0,0,－,損傷なしのため費用発生せず,良好な状態
+玄関,下駄箱,棚板の破損・汚損,なし,3,8,62,0,0,－,0,0,－,損傷なしのため費用発生せず,通常使用の範囲
+玄関,インターホン,動作不良・破損,なし,3,6,50,0,0,－,0,0,－,設備の経年劣化は貸主負担,動作確認済
+居室,壁紙（クロス）,汚れ・剥がれ・穴,中程度,3,6,50,45000,45000,借主,22500,22500,高,画鋲穴は通常使用／釘穴・大穴は借主負担,リビング南面に直径3cmの穴1箇所
+居室,天井クロス,シミ・剥がれ,なし,3,6,50,0,0,－,0,0,－,損傷なしのため費用発生せず,日焼けによる変色は通常損耗
+居室,フローリング,傷・凹み・変色,重度,3,建物耐用年数,100,80000,80000,借主,80000,0,高,フローリングは経過年数考慮なし（建物耐用年数）,家具引きずりによる深い傷が広範囲
+居室,畳,焼け・汚れ・凹み,軽微,3,6,50,6000,6000,按分,3000,3000,低,日焼けは通常損耗／飲みこぼし等は借主負担,1枚のみ飲み物シミあり
+居室,襖・障子,破れ・穴・シミ,なし,3,6,50,0,0,－,0,0,－,損傷なしのため費用発生せず,該当なし（洋室のみ）
+居室,窓ガラス,ひび・割れ,なし,3,建物耐用年数,100,0,0,－,0,0,－,損傷なしのため費用発生せず,良好
+居室,網戸,破れ・歪み,軽微,3,6,50,5000,5000,借主,2500,2500,低,ペット等による破損は借主負担,猫による引っかき破れ1枚
+居室,カーテンレール,曲がり・破損,なし,3,8,62,0,0,－,0,0,－,損傷なしのため費用発生せず,正常
+居室,照明器具,カバー破損・不点灯,なし,3,6,50,0,0,－,0,0,－,電球切れは通常消耗で貸主負担,正常点灯
+居室,コンセント・スイッチ,破損・焦げ,なし,3,6,50,0,0,－,0,0,－,損傷なしのため費用発生せず,正常
+キッチン,キッチン天板,傷・焦げ・サビ,軽微,3,6,50,20000,20000,借主,10000,10000,中,手入れ不足による油汚れ・サビは借主負担,水栓周りに軽度のサビ
+キッチン,シンク,水垢・サビ・凹み,なし,3,6,50,0,0,－,0,0,－,通常の使用による変色は通常損耗,清掃済
+キッチン,コンロ周辺,油汚れ・焦げ付き,中程度,3,6,50,25000,25000,借主,12500,12500,中,清掃で落とせないレベルの油汚れは借主負担,換気扇含む著しい油汚れ
+キッチン,換気扇,油汚れ・動作不良,軽微,3,8,62,8000,8000,按分,3040,4960,低,手入れ不足は借主負担／経年劣化は貸主負担,フィルター交換で対応可能
+キッチン,キッチン床（CF）,汚れ・傷・めくれ,なし,3,6,50,0,0,－,0,0,－,損傷なしのため費用発生せず,良好
+浴室,浴槽,傷・変色・ひび割れ,なし,3,建物耐用年数,100,0,0,－,0,0,－,損傷なしのため費用発生せず,通常使用の水垢のみ
+浴室,壁・天井,カビ・変色・剥がれ,中程度,3,建物耐用年数,100,35000,35000,借主,35000,0,高,手入れ不足によるカビは借主負担（ユニットバスは経過年数考慮なし）,天井・壁面にカビ広範囲
+浴室,床,カビ・ぬめり・割れ,軽微,3,建物耐用年数,100,10000,10000,借主,10000,0,中,手入れ不足による汚損は借主負担,目地のカビ
+浴室,鏡,水垢・曇り・割れ,なし,3,6,50,0,0,－,0,0,－,損傷なしのため費用発生せず,水垢あるが通常損耗の範囲
+浴室,シャワー・水栓,水漏れ・動作不良,なし,3,8,62,0,0,－,0,0,－,経年劣化による水漏れは貸主負担,動作正常
+浴室,排水口,詰まり・汚れ,軽微,3,建物耐用年数,100,5000,5000,借主,5000,0,低,髪の毛等の詰まりは借主負担,軽度の流れ不良
+トイレ,便器,汚れ・傷・ひび割れ,なし,3,建物耐用年数,100,0,0,－,0,0,－,損傷なしのため費用発生せず,清掃済で良好
+トイレ,便座（温水洗浄便座）,動作不良・変色,なし,3,6,50,0,0,－,0,0,－,経年劣化は貸主負担,正常動作
+トイレ,壁・床,汚れ・変色,なし,3,6,50,0,0,－,0,0,－,損傷なしのため費用発生せず,良好
+トイレ,換気扇,動作不良・異音,なし,3,8,62,0,0,－,0,0,－,経年劣化は貸主負担,正常動作
+洗面所,洗面台,傷・割れ・水垢,なし,3,8,62,0,0,－,0,0,－,損傷なしのため費用発生せず,清掃済
+洗面所,洗面所床（CF）,水濡れ・めくれ・傷,軽微,3,6,50,12000,12000,按分,6000,6000,中,水漏れ放置による損傷は借主負担,洗濯機周辺にCFめくれ
+洗面所,洗濯機パン・排水,水漏れ跡・詰まり,なし,3,建物耐用年数,100,0,0,－,0,0,－,損傷なしのため費用発生せず,正常
+バルコニー,手すり・柵,サビ・破損,なし,3,建物耐用年数,100,0,0,－,0,0,－,経年劣化は貸主負担,塗装劣化は通常損耗
+バルコニー,床面,汚れ・ひび割れ,なし,3,建物耐用年数,100,0,0,－,0,0,－,損傷なしのため費用発生せず,良好
+その他,ハウスクリーニング,全体清掃,実施要,3,,,,35000,特約,35000,0,高,特約で借主負担と定めている場合は有効,退去時クリーニング特約あり
+その他,鍵交換,シリンダー交換,実施要,3,,,,15000,貸主,0,15000,中,鍵交換費用は原則貸主負担（ガイドライン）,次入居者のための交換
+その他,エアコン,動作不良・異臭・水漏れ,なし,3,6,50,0,0,－,0,0,－,設備の経年劣化は貸主負担,動作正常・フィルター清掃済
+,,,,,,,,,,,,,,
+【使い方】,,,,,,,,,,,,,,
+1. 損傷レベル欄：なし／軽微／中程度／重度から選択,,,,,,,,,,,,,,
+2. 経過年数欄：入居から退去までの年数を入力,,,,,,,,,,,,,,
+3. 耐用年数：クロス・カーペット・CF＝6年／設備機器＝8年／フローリング・浴室＝建物耐用年数,,,,,,,,,,,,,,
+4. 残存価値率：MAX((耐用年数-経過年数)/耐用年数×100 , 10) ※最低10%残存,,,,,,,,,,,,,,
+5. 借主負担額＝概算修繕費用×残存価値率÷100（借主負担の場合）,,,,,,,,,,,,,,
+6. 本シートは国交省「原状回復をめぐるトラブルとガイドライン（再改訂版）」に準拠,,,,,,,,,,,,,,
+7. 退去修繕AI見積もりシミュレーター（HTML版）と併用すると精算書作成まで一気通貫,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_退去立会チェックリスト＋精算計算シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

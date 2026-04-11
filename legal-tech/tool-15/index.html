@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>主要クラウド5社の証跡自動取得コマンド集 - kusasyu tools</title>
+<meta name="description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,主要クラウド5社の証跡自動取得コマンド集">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-15/">
+<meta property="og:title" content="主要クラウド5社の証跡自動取得コマンド集 - kusasyu tools">
+<meta property="og:description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-15/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="主要クラウド5社の証跡自動取得コマンド集 - kusasyu tools">
+<meta name="twitter:description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "主要クラウド5社の証跡自動取得コマンド集",
+  "description": "ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-15/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-11"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>主要クラウド5社の証跡自動取得コマンド集</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>主要クラウド5社の証跡自動取得コマンド集</h1>
+  <p class="project-name">ISMS審査、まだExcelで証跡集め？</p>
+  <div class="content">
+<h1>過去90日間の管理イベントを取得（A.8.15 ログ取得）</h1>
+<p>aws cloudtrail lookup-events \
+  --start-time "2026-01-01T00:00:00Z" \
+  --end-time "2026-04-11T23:59:59Z" \
+  --output json &gt; cloudtrail_events.json</p>
+<h1>IAMポリシー一覧の取得（A.5.15 アクセス制御）</h1>
+<p>aws iam list-policies --scope Local --output json &gt; iam_policies.json</p>
+<h1>IAMユーザーのMFA状態確認（A.5.17 認証情報）</h1>
+<p>aws iam generate-credential-report
+aws iam get-credential-report --output text \
+  --query 'Content' | base64 -d &gt; credential_report.csv</p>
+<h1>権限変更イベントの抽出（A.5.18 アクセス権）</h1>
+<p>aws cloudtrail lookup-events \
+  --lookup-attributes AttributeKey=EventName,AttributeValue=AttachUserPolicy \
+  --output json &gt; permission_changes.json</p>
+<h1>GuardDutyの検出結果（A.8.16 監視活動）</h1>
+<p>aws guardduty list-findings --detector-id <DETECTOR_ID> \
+  --output json &gt; guardduty_findings.json</p>
+<h1>Inspector脆弱性スキャン結果（A.8.8 技術的脆弱性の管理）</h1>
+<p>aws inspector2 list-findings --output json &gt; inspector_findings.json</p>
+<pre><code>
+---
+
+## 2. GitHub Audit Log
+
+**対応管理策**: A.5.18 / A.8.9 / A.8.8 / A.8.15
+
+### 手動取得ルート
+
+`GitHub &gt; Organization Settings &gt; Logs &gt; Audit log` から期間・アクションを指定してエクスポート。
+
+### 自動取得（GitHub CLI / REST API）
+
+```bash
+# Organization監査ログ取得（A.8.15 ログ取得）
+gh api \
+  -H &quot;Accept: application/vnd.github+json&quot; \
+  &quot;/orgs/{ORG}/audit-log?per_page=100&amp;include=all&amp;after=2026-01-01&quot; \
+  &gt; github_audit_log.json
+
+# リポジトリの権限変更記録（A.5.18 アクセス権）
+gh api &quot;/orgs/{ORG}/audit-log?per_page=100&amp;phrase=action:org.update_member&quot; \
+  &gt; github_permission_changes.json
+
+# Dependabotアラート取得（A.8.8 技術的脆弱性の管理）
+gh api &quot;/repos/{OWNER}/{REPO}/dependabot/alerts?state=open&quot; \
+  &gt; dependabot_alerts.json
+
+# コミット履歴（A.8.9 構成管理）
+gh api &quot;/repos/{OWNER}/{REPO}/commits?since=2026-01-01T00:00:00Z&amp;per_page=100&quot; \
+  &gt; commit_history.json
+</code></pre>
+<hr />
+<h2>3. Google Workspace Reports API</h2>
+<p><strong>対応管理策</strong>: A.5.15 / A.5.17 / A.6.3 / A.8.15</p>
+<h3>手動取得ルート</h3>
+<p><code>Google Admin Console &gt; レポート &gt; 監査と調査 &gt; 管理者ログイベント</code> からCSVエクスポート。教育訓練記録（A.6.3）は <code>Google Admin Console &gt; レポート &gt; アプリレポート &gt; Classroom</code> で確認。</p>
+<h3>自動取得（gcloud CLI / API）</h3>
+<pre><code class="language-bash"># 管理者監査ログ（A.8.15 ログ取得）
+GAM_DATE=&quot;2026-01-01T00:00:00Z&quot;
+curl -s -H &quot;Authorization: Bearer $(gcloud auth print-access-token)&quot; \
+  &quot;https://admin.googleapis.com/admin/reports/v1/activity/users/all/applications/admin?startTime=${GAM_DATE}&quot; \
+  &gt; gws_admin_audit.json
+
+# ログインイベント・MFA状態（A.5.17 認証情報）
+curl -s -H &quot;Authorization: Bearer $(gcloud auth print-access-token)&quot; \
+  &quot;https://admin.googleapis.com/admin/reports/v1/activity/users/all/applications/login?startTime=${GAM_DATE}&quot; \
+  &gt; gws_login_events.json
+
+# ユーザー一覧・権限（A.5.15 アクセス制御）
+curl -s -H &quot;Authorization: Bearer $(gcloud auth print-access-token)&quot; \
+  &quot;https://admin.googleapis.com/admin/directory/v1/users?domain=example.com&amp;maxResults=500&quot; \
+  &gt; gws_users.json
+
+# Driveファイルアクセスログ（A.8.15 ログ取得）
+curl -s -H &quot;Authorization: Bearer $(gcloud auth print-access-token)&quot; \
+  &quot;https://admin.googleapis.com/admin/reports/v1/activity/users/all/applications/drive?startTime=${GAM_DATE}&quot; \
+  &gt; gws_drive_activity.json
+</code></pre>
+<blockquote>
+<p><strong>補足</strong>: Google Workspaceの教育訓練受講履歴（A.6.3、担当: 山田次郎）は、eラーニングツール側のAPIから取得するケースが多い。Workspace単体ではClassroom利用ログが代替証跡となる。</p>
+</blockquote>
+<hr />
+<h2>4. Azure Activity Log</h2>
+<p><strong>対応管理策</strong>: A.5.15 / A.5.18 / A.8.5 / A.8.15 / A.8.16</p>
+<h3>手動取得ルート</h3>
+<p><code>Azure Portal &gt; モニター &gt; アクティビティ ログ</code> からフィルタ指定してCSVダウンロード。</p>
+<h3>自動取得（Azure CLI）</h3>
+<pre><code class="language-bash"># アクティビティログ取得（A.8.15 ログ取得）
+az monitor activity-log list \
+  --start-time &quot;2026-01-01&quot; \
+  --end-time &quot;2026-04-11&quot; \
+  --output json &gt; azure_activity_log.json
+
+# ロール割り当て一覧（A.5.15 アクセス制御）
+az role assignment list --all --output json &gt; azure_role_assignments.json
+
+# ロール変更イベント（A.5.18 アクセス権）
+az monitor activity-log list \
+  --start-time &quot;2026-01-01&quot; \
+  --resource-type &quot;Microsoft.Authorization/roleAssignments&quot; \
+  --output json &gt; azure_role_changes.json
+
+# サインインログ（A.8.5 セキュアな認証）
+az rest --method GET \
+  --url &quot;https://graph.microsoft.com/v1.0/auditLogs/signIns?\$filter=createdDateTime ge 2026-01-01T00:00:00Z&quot; \
+  --output json &gt; azure_signin_logs.json
+
+# Security Centerアラート（A.8.16 監視活動）
+az security alert list --output json &gt; azure_security_alerts.json
+</code></pre>
+<hr />
+<h2>5. Slack Audit Logs</h2>
+<p><strong>対応管理策</strong>: A.5.18 / A.8.15</p>
+<h3>手動取得ルート</h3>
+<p><code>Slack Admin &gt; セキュリティ &gt; アクセスログ</code>（Enterprise Grid限定）。Businessプランではワークスペースの<code>Analytics</code>画面からCSVエクスポート。</p>
+<h3>自動取得（Audit Logs API / Enterprise Grid）</h3>
+<pre><code class="language-bash"># 監査ログ取得（A.8.15 ログ取得）— Enterprise Grid限定
+SLACK_TOKEN=&quot;xoxp-your-token&quot;
+curl -s -H &quot;Authorization: Bearer ${SLACK_TOKEN}&quot; \
+  &quot;https://api.slack.com/audit/v1/logs?oldest=1735689600&amp;limit=1000&quot; \
+  &gt; slack_audit_logs.json
+
+# チャンネルメンバー変更の抽出（A.5.18 アクセス権）
+curl -s -H &quot;Authorization: Bearer ${SLACK_TOKEN}&quot; \
+  &quot;https://api.slack.com/audit/v1/logs?action=user_channel_join&amp;oldest=1735689600&quot; \
+  &gt; slack_channel_changes.json
+
+# Business+プランの場合はSCIM APIでユーザー管理証跡を取得
+curl -s -H &quot;Authorization: Bearer ${SLACK_TOKEN}&quot; \
+  &quot;https://api.slack.com/scim/v1/Users?count=200&quot; \
+  &gt; slack_scim_users.json
+</code></pre>
+<blockquote>
+<p><strong>注意</strong>: Audit Logs APIはEnterprise Gridプラン限定。Business+ではSCIM APIとAnalytics APIが利用可能。</p>
+</blockquote>
+<hr />
+<h2>6. 定期取得パイプラインの構築</h2>
+<h3>方法A: cronによるローカル定期実行</h3>
+<pre><code class="language-bash"># /etc/cron.d/isms-evidence（毎週月曜 9:00 に全証跡取得）
+0 9 * * 1 /opt/isms/collect_all.sh &gt;&gt; /var/log/isms_collect.log 2&gt;&amp;1
+</code></pre>
+<p><code>collect_all.sh</code> の構成例:</p>
+<pre><code class="language-bash">#!/bin/bash
+set -euo pipefail
+DATE=$(date +%Y-%m-%d)
+OUT_DIR=&quot;/opt/isms/evidence/${DATE}&quot;
+mkdir -p &quot;${OUT_DIR}&quot;
+
+# 各サービスの証跡取得
+aws cloudtrail lookup-events --start-time &quot;$(date -d '7 days ago' +%Y-%m-%dT00:00:00Z)&quot; \
+  --output json &gt; &quot;${OUT_DIR}/cloudtrail.json&quot;
+gh api &quot;/orgs/{ORG}/audit-log?per_page=100&quot; &gt; &quot;${OUT_DIR}/github_audit.json&quot;
+az monitor activity-log list --start-time &quot;$(date -d '7 days ago' +%Y-%m-%d)&quot; \
+  --output json &gt; &quot;${OUT_DIR}/azure_activity.json&quot;
+
+# Slack通知
+curl -X POST -H 'Content-type: application/json' \
+  --data &quot;{\&quot;text\&quot;:\&quot;✅ ISMS証跡収集完了: ${DATE}\nファイル数: $(ls ${OUT_DIR} | wc -l)件\&quot;}&quot; \
+  &quot;${SLACK_WEBHOOK_URL}&quot;
+</code></pre>
+<h3>方法B: GitHub Actionsによるクラウド定期実行</h3>
+<p>```yaml</p>
+<h1>.github/workflows/isms-evidence.yml</h1>
+<p>name: ISMS Evidence Collection
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # 毎週月曜 UTC 0:00
+  workflow_dispatch:</p>
+<p>jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4</p>
+<pre><code>  - name: Configure AWS
+    uses: aws-actions/configure-aws-credentials@v4
+    with:
+      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      aws-region: ap-northeast-1
+
+  - name: Collect AWS Evidence
+    run: |
+      mkdir -p evidence
+      aws cloudtrail lookup-events \
+        --start-time "$(date -d '7 days ago' +%Y-%m-%dT00:00:00Z)" \
+        --output json &gt; evidence/cloudtrail.json
+      aws iam get-credential-report --output text \
+        --query 'Content' | base64 -d &gt; evidence/credential_report.csv
+
+  - name: Collect GitHub Audit Log
+    env:
+      GH_TOKEN: ${{ secrets.AUDIT_LOG_TOKEN }}
+    run: |
+      gh api "/orgs/${{ github.repository_owner }}/audit-log?per_page=100" \
+        &gt; evidence/github_audit.json
+
+  - name: Upload Evidence
+    uses: actions/upload-artifact@v4
+    with:
+      name: isms-evidence-${{ github.run_id }}
+      path: evidence/
+      retention-days: 365
+
+  - name: Slack Notification
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+    run: |
+      COUNT=$(ls evidence/ | wc -l)
+      curl -X POST -H 'Content-type: application/json' \
+        --data "{\"text\":\"✅ ISMS証跡を${COUNT}件収集しました（Run: ${{ github.run_id }}）\"}" \
+        "${SLACK_WEBHOOK}"
+</code></pre>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

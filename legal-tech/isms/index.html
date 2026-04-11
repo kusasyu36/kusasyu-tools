@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISMS審査_証跡収集トラッカー - kusasyu tools</title>
+<meta name="description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,ISMS審査_証跡収集トラッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/isms/">
+<meta property="og:title" content="ISMS審査_証跡収集トラッカー - kusasyu tools">
+<meta property="og:description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/isms/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ISMS審査_証跡収集トラッカー - kusasyu tools">
+<meta name="twitter:description" content="ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ISMS審査_証跡収集トラッカー",
+  "description": "ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/isms/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-11"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>ISMS審査_証跡収集トラッカー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>ISMS審査_証跡収集トラッカー</h1>
+  <p class="project-name">ISMS審査、まだExcelで証跡集め？</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管理策番号</th><th>管理策名（日本語）</th><th>必要な証跡の種類</th><th>対応クラウドサービス</th><th>担当者</th><th>収集状態</th><th>期限</th><th>備考</th><th>アラート</th></tr></thead><tbody><tr><td>A.5.1</td><td>情報セキュリティ方針群</td><td>方針文書・承認記録</td><td></td><td></td><td>未着手</td><td></td><td></td><td>=IF(AND(F2="未着手",G2&lt;&gt;"",G2-TODAY()&lt;=3),"⚠要対応","")</td></tr><tr><td>A.5.2</td><td>役割及び責任</td><td>組織図・職務記述書</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.3</td><td>職務の分離</td><td>権限マトリクス</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.4</td><td>経営陣の責任</td><td>経営レビュー議事録</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.5</td><td>関係当局との連絡</td><td>連絡先一覧・通報記録</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.6</td><td>専門組織との連絡</td><td>JPCERT等連携記録</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.7</td><td>脅威インテリジェンス</td><td>脅威情報収集記録</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.8</td><td>プロジェクトのセキュリティ</td><td>リスクアセスメント記録</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.9</td><td>資産目録</td><td>情報資産台帳</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>A.5.10</td><td>資産の利用規定</td><td>利用規程・同意記録</td><td></td><td></td><td>未着手</td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管理策番号,管理策名（日本語）,必要な証跡の種類,対応クラウドサービス,担当者,収集状態,期限,備考,アラート
+A.5.1,情報セキュリティ方針群,方針文書・承認記録,,,未着手,,,"=IF(AND(F2=""未着手"",G2<>"""",G2-TODAY()<=3),""⚠要対応"","""")"
+A.5.2,役割及び責任,組織図・職務記述書,,,未着手,,,
+A.5.3,職務の分離,権限マトリクス,,,未着手,,,
+A.5.4,経営陣の責任,経営レビュー議事録,,,未着手,,,
+A.5.5,関係当局との連絡,連絡先一覧・通報記録,,,未着手,,,
+A.5.6,専門組織との連絡,JPCERT等連携記録,,,未着手,,,
+A.5.7,脅威インテリジェンス,脅威情報収集記録,,,未着手,,,
+A.5.8,プロジェクトのセキュリティ,リスクアセスメント記録,,,未着手,,,
+A.5.9,資産目録,情報資産台帳,,,未着手,,,
+A.5.10,資産の利用規定,利用規程・同意記録,,,未着手,,,
+A.5.11,資産の返却,返却チェックリスト,,,未着手,,,
+A.5.12,情報の分類,分類基準・分類一覧,,,未着手,,,
+A.5.13,情報のラベル付け,ラベル付け手順書,,,未着手,,,
+A.5.14,情報転送,転送ポリシー・暗号化設定,,,未着手,,,
+A.5.15,アクセス制御,IAMポリシー・権限一覧,AWS/Google Workspace,田中太郎,完了,2026-04-08,年次レビュー済,"=IF(AND(F16=""未着手"",G16<>"""",G16-TODAY()<=3),""⚠要対応"","""")"
+A.5.16,識別情報の管理,ID管理台帳・発行記録,,,未着手,,,
+A.5.17,認証情報,パスワードポリシー・MFA設定,Google Workspace,佐藤花子,完了,2026-04-10,MFA全社導入済,"=IF(AND(F18=""未着手"",G18<>"""",G18-TODAY()<=3),""⚠要対応"","""")"
+A.5.18,アクセス権,権限付与・変更・削除記録,,,未着手,,,
+A.5.19,供給者関係のセキュリティ,委託先評価記録,,,未着手,,,
+A.5.20,供給者との合意,契約書・SLA,,,未着手,,,
+A.5.21,ICTサプライチェーン管理,サプライチェーンリスク評価,,,未着手,,,
+A.5.22,供給者サービスの監視,モニタリング記録,,,未着手,,,
+A.5.23,クラウドサービスのセキュリティ,クラウド利用規程・評価記録,,,未着手,,,
+A.5.24,インシデント管理の計画,インシデント対応手順書,,,未着手,,,
+A.5.25,セキュリティ事象の評価,事象評価記録・判定基準,,,未着手,,,
+A.5.26,インシデントへの対応,インシデント対応記録,,,未着手,,,
+A.5.27,インシデントからの学習,事後レビュー報告書,,,未着手,,,
+A.5.28,証拠の収集,証拠保全手順・収集記録,,,未着手,,,
+A.5.29,事業中断時のセキュリティ,BCP・DRP文書,,,未着手,,,
+A.5.30,事業継続のためのICT,DR試験記録・復旧手順,,,未着手,,,
+A.5.31,法的・契約上の要求事項,法令一覧・準拠状況,,,未着手,,,
+A.5.32,知的財産権,ライセンス管理台帳,,,未着手,,,
+A.5.33,記録の保護,記録管理規程・保存期間一覧,,,未着手,,,
+A.5.34,プライバシー・PII保護,プライバシーポリシー・DPIA,,,未着手,,,
+A.5.35,独立したレビュー,内部監査報告書,,,未着手,,,
+A.5.36,方針の順守,順守評価記録,,,未着手,,,
+A.5.37,文書化した操作手順,操作手順書一覧,,,未着手,,,
+A.6.1,選考,採用時セキュリティ確認記録,,,未着手,,,
+A.6.2,雇用条件,雇用契約書・誓約書,,,未着手,,,
+A.6.3,意識向上・教育・訓練,研修記録・受講証明,Google Workspace,山田次郎,収集中,2026-04-18,eラーニング受講履歴出力中,"=IF(AND(F41=""未着手"",G41<>"""",G41-TODAY()<=3),""⚠要対応"","""")"
+A.6.4,懲戒手続,懲戒規程,,,未着手,,,
+A.6.5,雇用終了後の責任,退職時チェックリスト,,,未着手,,,
+A.6.6,秘密保持契約,NDA締結記録,,,未着手,,,
+A.6.7,リモートワーキング,リモートワーク規程・申請記録,,,未着手,,,
+A.6.8,セキュリティ事象の報告,報告手順・報告記録,,,未着手,,,
+A.7.1,物理的セキュリティ境界,入退室管理図・施錠記録,,,未着手,,,
+A.7.2,物理的入退,入退室ログ,,,未着手,,,
+A.7.3,オフィス等のセキュリティ,セキュリティゾーン図,,,未着手,,,
+A.7.4,物理的セキュリティ監視,監視カメラ記録・巡回記録,,,未着手,,,
+A.7.5,環境的脅威からの保護,防災設備点検記録,,,未着手,,,
+A.7.6,セキュリティ領域での作業,作業規則・入室許可記録,,,未着手,,,
+A.7.7,クリアデスク・クリアスクリーン,ポリシー・点検記録,,,未着手,,,
+A.7.8,装置の設置及び保護,設置基準・環境記録,,,未着手,,,
+A.7.9,構外資産のセキュリティ,持出管理台帳,,,未着手,,,
+A.7.10,記憶媒体,媒体管理台帳・廃棄記録,,,未着手,,,
+A.7.11,サポートユーティリティ,UPS点検記録,,,未着手,,,
+A.7.12,ケーブル配線のセキュリティ,配線図・保護記録,,,未着手,,,
+A.7.13,装置の保守,保守契約・保守記録,,,未着手,,,
+A.7.14,装置の処分・再利用,廃棄証明書・データ消去記録,,,未着手,,,
+A.8.1,利用者端末機器,MDM設定・デバイス台帳,,,未着手,,,
+A.8.2,特権的アクセス権,特権ID管理台帳・利用ログ,,,未着手,,,
+A.8.3,情報へのアクセス制限,アクセス権限マトリクス,,,未着手,,,
+A.8.4,ソースコードへのアクセス,リポジトリ権限設定,,,未着手,,,
+A.8.5,セキュアな認証,認証設定・MFA導入状況,,,未着手,,,
+A.8.6,容量・能力の管理,キャパシティ監視記録,,,未着手,,,
+A.8.7,マルウェア対策,ウイルス対策導入状況,,,未着手,,,
+A.8.8,技術的脆弱性の管理,脆弱性スキャン結果,AWS,田中太郎,未着手,2026-04-13,Inspector実行予定,"=IF(AND(F68=""未着手"",G68<>"""",G68-TODAY()<=3),""⚠要対応"","""")"
+A.8.9,構成管理,構成管理台帳・変更記録,,,未着手,,,
+A.8.10,情報の削除,データ削除手順・削除記録,,,未着手,,,
+A.8.11,データマスキング,マスキングポリシー・適用記録,,,未着手,,,
+A.8.12,データ漏えい防止,DLP設定・検知ログ,,,未着手,,,
+A.8.13,情報のバックアップ,バックアップ設定・復元テスト記録,,,未着手,,,
+A.8.14,情報処理施設の冗長性,冗長構成図・切替テスト記録,,,未着手,,,
+A.8.15,ログ取得,ログ取得設定・保存期間設定,AWS,佐藤花子,未着手,2026-04-14,CloudTrail確認必要,"=IF(AND(F75=""未着手"",G75<>"""",G75-TODAY()<=3),""⚠要対応"","""")"
+A.8.16,監視活動,監視設定・アラート記録,,,未着手,,,
+A.8.17,クロックの同期,NTP設定記録,,,未着手,,,
+A.8.18,特権ユーティリティの使用,利用制限設定・利用ログ,,,未着手,,,
+A.8.19,ソフトウェアの導入,導入手順・承認記録,,,未着手,,,
+A.8.20,ネットワークのセキュリティ,FW設定・ネットワーク構成図,,,未着手,,,
+A.8.21,ネットワークサービスのセキュリティ,SLA・セキュリティ設定,,,未着手,,,
+A.8.22,ネットワークの分離,セグメント構成図・ACL設定,,,未着手,,,
+A.8.23,ウェブフィルタリング,フィルタリング設定・ポリシー,,,未着手,,,
+A.8.24,暗号の使用,暗号化ポリシー・証明書管理,,,未着手,,,
+A.8.25,セキュア開発ライフサイクル,SDLC規程・レビュー記録,,,未着手,,,
+A.8.26,アプリセキュリティ要件,セキュリティ要件定義書,,,未着手,,,
+A.8.27,セキュアアーキテクチャ原則,アーキテクチャ基準・レビュー記録,,,未着手,,,
+A.8.28,セキュアコーディング,コーディング規約・静的解析結果,,,未着手,,,
+A.8.29,セキュリティ試験,ペネトレーションテスト報告書,,,未着手,,,
+A.8.30,外部委託開発,委託先評価・契約・検収記録,,,未着手,,,
+A.8.31,環境の分離,環境分離構成図・アクセス制御,,,未着手,,,
+A.8.32,変更管理,変更管理手順・承認記録,,,未着手,,,
+A.8.33,試験情報,テストデータ管理手順,,,未着手,,,
+A.8.34,監査試験中のシステム保護,監査計画・アクセス制限設定,,,未着手,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_ISMS審査_証跡収集トラッカー.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

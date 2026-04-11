@@ -676,6 +676,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "isms-annex-a",
+    "url": "legal-tech/isms-annex-a/",
+    "title": "ISMS審査、まだExcelで証跡集め？",
+    "tool_name": "ISMS_Annex_A_証跡マッピングツール",
+    "description": "ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。",
+    "quality_score": 10,
+    "completed_at": "2026-04-11T07:49:37.175560+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "isms",
+    "url": "legal-tech/isms/",
+    "title": "ISMS審査、まだExcelで証跡集め？",
+    "tool_name": "ISMS審査_証跡収集トラッカー",
+    "description": "ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。",
+    "quality_score": 10,
+    "completed_at": "2026-04-11T07:49:37.175560+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-15",
+    "url": "legal-tech/tool-15/",
+    "title": "ISMS審査、まだExcelで証跡集め？",
+    "tool_name": "主要クラウド5社の証跡自動取得コマンド集",
+    "description": "ISO 27001・ISMS審査で必要な証跡（アクセスログ・変更履歴・脆弱性スキャン結果等）を、使用中のクラウドサービスごとにAnnex A管理策へ自動マッピングし、収集手順を一覧化するツールキット。Vanta（英語・高額）やExcel手作業に代わる、日本語・無料の証跡管理ソリューション。",
+    "quality_score": 10,
+    "completed_at": "2026-04-11T07:49:37.175560+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -2184,6 +2223,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-4",
+    "url": "proptech/simulator-4/",
+    "title": "退去修繕費、まだ手計算？AIで即見積もり",
+    "tool_name": "退去修繕AI見積もりシミュレーター",
+    "description": "賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在しない。アクセス上昇中の「契約書コスト試算」と同じ費用可視化ジャンルで、管理会社の実務に直結",
+    "quality_score": 8,
+    "completed_at": "2026-04-11T01:45:07.128217+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "checker-5",
+    "url": "proptech/checker-5/",
+    "title": "退去修繕費、まだ手計算？AIで即見積もり",
+    "tool_name": "退去立会チェックリスト＋精算計算シート",
+    "description": "賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在しない。アクセス上昇中の「契約書コスト試算」と同じ費用可視化ジャンルで、管理会社の実務に直結",
+    "quality_score": 8,
+    "completed_at": "2026-04-11T01:45:07.128217+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "guide-5",
+    "url": "proptech/guide-5/",
+    "title": "退去修繕費、まだ手計算？AIで即見積もり",
+    "tool_name": "退去精算トラブルゼロ実践ガイド",
+    "description": "賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在しない。アクセス上昇中の「契約書コスト試算」と同じ費用可視化ジャンルで、管理会社の実務に直結",
+    "quality_score": 8,
+    "completed_at": "2026-04-11T01:45:07.128217+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -2844,6 +2922,45 @@
     "description": "製造業・士業など専門性の高い業界向けに、ヒアリング項目を入力するだけでSEO最適化済みホワイトペーパーの構成案・ドラフトを自動生成するHTMLツール。業種別テンプレート3種（技術解説型・導入事例型・課題解決型）と外注コスト削減ROI計算シートをセットで提供。外注相場15〜40万円/本の市場に対し、AI内製化で大幅コスト削減を実現する。",
     "quality_score": 7,
     "completed_at": "2026-04-08T04:06:49.271854+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-51",
+    "url": "digital-marketing/tool-51/",
+    "title": "ショート動画のネタ切れ？業種別シナリオAI生成",
+    "tool_name": "業種別ショート動画シナリオ＆SNS投稿セットジェネレーター",
+    "description": "飲食・美容・士業・不動産など業種を選び、商品やサービス情報を入力するだけで、TikTok/Instagram Reels用の30秒動画シナリオ（セリフ・カット割り・BGM指示付き）と、同テーマのX・Instagram投稿文5本をワンクリックで自動生成するHTMLツール。業種ごとの「バズるパターン」をテンプレート化し、撮影チェックリストと月間カレンダーも併せて提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-10T13:32:58.018939+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "checker-4",
+    "url": "digital-marketing/checker-4/",
+    "title": "ショート動画のネタ切れ？業種別シナリオAI生成",
+    "tool_name": "スマホ1台で撮れる！ショート動画撮影チェックリスト",
+    "description": "飲食・美容・士業・不動産など業種を選び、商品やサービス情報を入力するだけで、TikTok/Instagram Reels用の30秒動画シナリオ（セリフ・カット割り・BGM指示付き）と、同テーマのX・Instagram投稿文5本をワンクリックで自動生成するHTMLツール。業種ごとの「バズるパターン」をテンプレート化し、撮影チェックリストと月間カレンダーも併せて提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-10T13:32:58.018939+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-52",
+    "url": "digital-marketing/tool-52/",
+    "title": "ショート動画のネタ切れ？業種別シナリオAI生成",
+    "tool_name": "月間ショート動画×SNS投稿カレンダー",
+    "description": "飲食・美容・士業・不動産など業種を選び、商品やサービス情報を入力するだけで、TikTok/Instagram Reels用の30秒動画シナリオ（セリフ・カット割り・BGM指示付き）と、同テーマのX・Instagram投稿文5本をワンクリックで自動生成するHTMLツール。業種ごとの「バズるパターン」をテンプレート化し、撮影チェックリストと月間カレンダーも併せて提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-10T13:32:58.018939+00:00",
     "content_type": "csv_template"
   },
   {
