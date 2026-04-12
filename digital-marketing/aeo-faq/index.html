@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AEO最適化FAQテンプレートビルダー - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:20px 0 4px;color:#1e3a5f}
+.sub{text-align:center;color:#64748b;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1e3a5f;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+label{font-weight:600;font-size:.9em;display:block;margin:10px 0 4px}
+input,select,textarea{width:100%;border:2px solid #e2e8f0;border-radius:8px;padding:10px;font-size:.9em;font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#3b82f6}
+textarea{height:70px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:200px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:14px}
+.btn:hover{opacity:.9}
+.tabs{display:flex;gap:4px;margin-bottom:12px}
+.tab{padding:8px 16px;border:none;background:#e2e8f0;border-radius:8px 8px 0 0;cursor:pointer;font-size:.88em;font-weight:600}
+.tab.on{background:#1e3a5f;color:#fff}
+.code{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:.78em;white-space:pre-wrap;word-break:break-all;max-height:420px;overflow:auto;font-family:monospace;line-height:1.5}
+.cp{display:inline-block;padding:6px 14px;background:#10b981;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.82em;margin-top:8px}
+.cp:hover{opacity:.85}
+.faq details{margin-bottom:8px;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden}
+.faq summary{padding:12px;background:#f1f5f9;font-weight:600;cursor:pointer;font-size:.9em}
+.faq p{padding:12px;font-size:.86em}
+.badge{display:inline-block;background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:4px;font-size:.75em;font-weight:600;margin-left:8px}
+.note{background:#fffbeb;border-left:4px solid #f59e0b;padding:10px 14px;border-radius:0 8px 8px 0;font-size:.82em;margin-top:12px;color:#92400e}
+#out{display:none}
+@media(max-width:600px){.row{flex-direction:column}}
+</style>
+<meta name="description" content="ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AEO最適化FAQテンプレートビルダー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/aeo-faq/">
+<meta property="og:title" content="AEO最適化FAQテンプレートビルダー - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/aeo-faq/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AEO最適化FAQテンプレートビルダー - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AEO最適化FAQテンプレートビルダー",
+  "description": "ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/aeo-faq/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AEO最適化FAQテンプレートビルダー</span></div>
+<div class="wrap">
+<h1>AEO最適化FAQテンプレートビルダー</h1>
+<p class="sub">業種×キーワードを入力するだけ。AI検索が引用しやすいFAQ＋JSON-LDを即生成<br>※ 姉妹ツール「AEOスコア診断＆競合比較ツール」で生成後のスコアを検証できます</p>
+<div class="card">
+<h2>基本情報を入力</h2>
+<div class="row"><div>
+<label>業種を選択</label>
+<select id="biz"><option value="0">飲食</option><option value="1">不動産</option><option value="2">士業</option><option value="3">EC</option><option value="4">SaaS</option></select>
+</div><div>
+<label>メインキーワード</label>
+<input id="kw" placeholder="例: 渋谷 イタリアン ランチ">
+</div></div>
+<label>サービス名・屋号</label>
+<input id="sn" placeholder="例: トラットリア○○">
+<label>サービス概要（1〜2文で簡潔に）</label>
+<textarea id="sv" placeholder="例: 渋谷駅徒歩3分の本格イタリアン。自家製生パスタと厳選ワイン200種が自慢です。"></textarea>
+<button class="btn" onclick="gen()">FAQテンプレートを生成（10問）</button>
+</div>
+<div id="out">
+<div class="card">
+<h2>生成結果<span class="badge" id="bg"></span></h2>
+<div class="tabs" id="tb"></div>
+<div id="p0" class="faq"></div>
+<div id="p1" style="display:none"><div class="code" id="c1"></div><button class="cp" onclick="cc(1)">HTMLをコピー</button></div>
+<div id="p2" style="display:none"><div class="code" id="c2"></div><button class="cp" onclick="cc(2)">JSON-LDをコピー</button></div>
+<div class="note">生成されたFAQをページに設置後、「AEOスコア診断＆競合比較ツール」でスコアを測定し、引用されやすさを確認しましょう。数値データ含有率・出典明記の項目で加点されます。</div>
+</div>
+</div>
+</div>
+<script>
+var BZ=["飲食","不動産","士業","EC","SaaS"];
+var D=[
+{ctx:"店舗",pr:"ランチ1,000円〜、ディナー3,500円〜",tm:"ご予約当日からご利用可能",act:"ご来店・ご予約",merit:"①地元食材の仕入れによる鮮度 ②専門シェフによる調理品質 ③リピーター率85%を支える接客力",area:"最寄り駅から徒歩圏内のエリアで営業",cancel:"前日18時まで無料、当日は50%のキャンセル料",pay:"現金・クレジットカード・電子マネー・QRコード決済に対応"},
+{ctx:"物件",pr:"仲介手数料は売買価格の3%＋6万円（税別）が上限",tm:"お問い合わせから最短2週間で契約締結が可能",act:"物件に関するお問い合わせ",merit:"①地域密着30年の相場情報 ②宅建士有資格者が全件担当 ③契約後のアフターサポート無料",area:"対象エリアおよび周辺地域の物件を取り扱い",cancel:"契約前であればキャンセル料は発生しません",pay:"銀行振込・現金でのお支払いに対応"},
+{ctx:"事務所",pr:"初回相談無料、顧問契約は月額3万円〜",tm:"ご契約後、原則翌営業日から対応を開始",act:"無料相談のお申し込み",merit:"①専門資格者が直接対応 ②着手金0円の成功報酬プランあり ③全国対応（オンライン面談可）",area:"全国対応。オンライン面談により来所不要で手続き完了可能",cancel:"委任契約はいつでも解約可能（違約金なし）",pay:"銀行振込・クレジットカード決済に対応"},
+{ctx:"ストア",pr:"商品価格帯1,000円〜10,000円、送料全国一律500円（5,000円以上で無料）",tm:"ご注文確定後、最短翌営業日に発送",act:"商品のご注文",merit:"①厳選された品質管理体制 ②30日間返品保証 ③購入金額の5%をポイント還元",area:"日本全国へ配送対応。離島・一部地域は追加日数あり",cancel:"発送前のキャンセルは無料。発送後は返品送料のみご負担",pay:"クレジットカード・コンビニ決済・代金引換・後払いに対応"},
+{ctx:"サービス",pr:"月額9,800円〜（年払いで20%OFF）。14日間の無料トライアル付き",tm:"アカウント作成後、最短即日で全機能を利用可能",act:"無料トライアルのお申し込み",merit:"①導入企業300社超の実績 ②平均40%の業務工数削減 ③専任カスタマーサクセスが伴走",area:"クラウド型のため、インターネット環境があればどこからでも利用可能",cancel:"月額プランはいつでも解約可能。日割り返金に対応",pay:"クレジットカード・請求書払い（法人のみ）に対応"}
+];
+function Q(bi,kw,sn,sv){var d=D[bi];return[
+{q:kw+"とは何ですか？"+sn+"の特徴を教えてください",a:sn+"は、"+sv+"。"+d.area+"でご利用いただけます。"},
+{q:sn+"の料金・費用はいくらですか？",a:sn+"の料金は"+d.pr+"です。詳しい料金表は公式サイトをご確認ください。"},
+{q:sn+"を利用するメリットは何ですか？",a:sn+"の主なメリットは"+d.merit+"の3点です。"},
+{q:sn+"の利用開始までの流れを教えてください",a:"まず公式サイトから"+d.act+"ください。その後ヒアリングを経て、"+d.tm+"です。"},
+{q:sn+"と他社の違い・選ばれる理由は？",a:sn+"は"+kw+"の領域に特化しており、業界知見に基づく提案力が強みです。"+d.merit.split("③")[1]+"が他社との大きな違いです。"},
+{q:sn+"はどのような方におすすめですか？",a:kw+"に関心がある方、"+d.ctx+"選びで失敗したくない方に最適です。初めての方にも丁寧にご案内しています。"},
+{q:sn+"の対応エリア・利用条件は？",a:d.area+"。年齢制限等の特別な利用条件はありません。詳細は公式サイトのご利用案内をご覧ください。"},
+{q:sn+"のキャンセル・解約のルールは？",a:d.cancel+"。詳しくは利用規約をご確認ください。"},
+{q:sn+"の支払い方法を教えてください",a:d.pay+"。法人の方は別途ご相談ください。"},
+{q:sn+"に問い合わせるにはどうすればよいですか？",a:"公式サイトのお問い合わせフォーム、またはお電話で受け付けています。"+d.act+"前のご質問も歓迎です。通常1営業日以内にご返信します。"}
+]}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function gen(){
+var bi=+document.getElementById("biz").value;
+var kw=document.getElementById("kw").value.trim()||"（キーワード未入力）";
+var sn=document.getElementById("sn").value.trim()||"（サービス名未入力）";
+var sv=document.getElementById("sv").value.trim()||"（概要未入力）";
+var qs=Q(bi,kw,sn,sv),pv="",ht="";
+ht+='<section itemscope itemtype="https://schema.org/FAQPage">\n';
+qs.forEach(function(x,i){
+pv+="<details"+(i<2?" open":"")+"><summary>Q"+(i+1)+". "+esc(x.q)+"</summary><p><strong>A.</strong> "+esc(x.a)+"</p></details>";
+ht+='  <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">\n';
+ht+='    <h3 itemprop="name">'+esc(x.q)+'</h3>\n';
+ht+='    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">\n';
+ht+='      <p itemprop="text">'+esc(x.a)+'</p>\n';
+ht+='    </div>\n  </div>\n'});
+ht+='</section>';
+var jl={"@context":"https://schema.org","@type":"FAQPage","mainEntity":qs.map(function(x){return{"@type":"Question","name":x.q,"acceptedAnswer":{"@type":"Answer","text":x.a}}})};
+document.getElementById("p0").innerHTML=pv;
+document.getElementById("c1").textContent=ht;
+document.getElementById("c2").textContent='<script type="application/ld+json">\n'+JSON.stringify(jl,null,2)+'\n<\/script>';
+document.getElementById("bg").textContent=BZ[bi]+"向け "+qs.length+"問";
+document.getElementById("tb").innerHTML='<button class="tab on" onclick="sw(0,this)">プレビュー</button><button class="tab" onclick="sw(1,this)">HTML</button><button class="tab" onclick="sw(2,this)">JSON-LD</button>';
+document.getElementById("out").style.display="block";
+document.getElementById("out").scrollIntoView({behavior:"smooth"})
+}
+function sw(n,el){for(var i=0;i<3;i++)document.getElementById("p"+i).style.display=i===n?"block":"none";var ts=document.querySelectorAll(".tab");for(var j=0;j<ts.length;j++)ts[j].classList.remove("on");el.classList.add("on")}
+function cc(n){var t=document.getElementById("c"+n).textContent;navigator.clipboard.writeText(t).then(function(){var b=event.target;var orig=b.textContent;b.textContent="コピー完了！";setTimeout(function(){b.textContent=orig},1200)})}
+</script>
+</body>
+</html>

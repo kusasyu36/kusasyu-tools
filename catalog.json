@@ -1833,6 +1833,32 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-15",
+    "url": "digital-marketing/diagnosis-15/",
+    "title": "AI検索に引用されない？AEO対策ツール",
+    "tool_name": "AEOスコア診断＆競合比較ツール",
+    "description": "ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外ではWritesonicが先行しているが日本語・日本市場向けのAEO特化SaaSは存在しない空",
+    "quality_score": 8,
+    "completed_at": "2026-04-11T23:36:11.500281+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "aeo-faq",
+    "url": "digital-marketing/aeo-faq/",
+    "title": "AI検索に引用されない？AEO対策ツール",
+    "tool_name": "AEO最適化FAQテンプレートビルダー",
+    "description": "ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外ではWritesonicが先行しているが日本語・日本市場向けのAEO特化SaaSは存在しない空",
+    "quality_score": 8,
+    "completed_at": "2026-04-11T23:36:11.500281+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",

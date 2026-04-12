@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AEOスコア診断＆競合比較ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:20px 0 4px;color:#1e3a5f}
+.sub{text-align:center;color:#64748b;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1e3a5f;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+label{font-weight:600;font-size:.9em;display:block;margin-bottom:6px}
+textarea{width:100%;height:120px;border:2px solid #e2e8f0;border-radius:8px;padding:10px;font-size:.9em;resize:vertical;font-family:inherit}
+textarea:focus{outline:none;border-color:#3b82f6}
+.row{display:flex;gap:16px;flex-wrap:wrap}
+.row>div{flex:1;min-width:250px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:12px}
+.btn:hover{opacity:.9}
+.btn:active{transform:scale(.98)}
+#result{display:none}
+.score-big{text-align:center;padding:16px}
+.score-big .num{font-size:3em;font-weight:800}
+.score-big .lbl{font-size:.85em;color:#64748b}
+.bar-wrap{margin:6px 0 12px}
+.bar-label{display:flex;justify-content:space-between;font-size:.82em;margin-bottom:3px}
+.bar-bg{height:20px;background:#e2e8f0;border-radius:10px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:10px;transition:width .6s}
+.legend{display:flex;gap:16px;justify-content:center;margin-bottom:12px;font-size:.82em}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tips{list-style:none;counter-reset:t}
+.tips li{counter-increment:t;padding:10px 12px;margin-bottom:8px;background:#f8fafc;border-radius:8px;border-left:4px solid #f59e0b;font-size:.88em}
+.tips li::before{content:counter(t);background:#f59e0b;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:.75em;font-weight:700;margin-right:8px}
+.tips li.ok{border-left-color:#10b981}
+.tips li.ok::before{background:#10b981;content:"✓"}
+.grade{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:.85em;color:#fff}
+@media(max-width:600px){.row{flex-direction:column}.score-big .num{font-size:2.2em}}
+</style>
+<meta name="description" content="ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AEOスコア診断＆競合比較ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-15/">
+<meta property="og:title" content="AEOスコア診断＆競合比較ツール - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-15/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AEOスコア診断＆競合比較ツール - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AEOスコア診断＆競合比較ツール",
+  "description": "ChatGPT・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツが引用されるよう最適化するためのツールセット。既存ページのAEOスコアを診断し、改善点を提示するスコアリングツールと、AI検索が好む構造化FAQ・定義文・数値データを自動生成するコンテンツジェネレーターを提供する。海外では",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-15/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AEOスコア診断＆競合比較ツール</span></div>
+<div class="wrap">
+<h1>AEOスコア診断＆競合比較ツール</h1>
+<p class="sub">AI検索エンジン（ChatGPT・Perplexity・Gemini）に引用されやすい構造かを10項目で診断</p>
+<div class="card">
+<h2>① テキストを貼り付けて診断</h2>
+<div class="row">
+<div><label>自社ページのテキスト</label><textarea id="t1" placeholder="自社ページのテキストをここに貼り付け…"></textarea></div>
+<div><label>競合ページのテキスト（任意）</label><textarea id="t2" placeholder="競合ページのテキストを貼り付けると比較できます"></textarea></div>
+</div>
+<button class="btn" onclick="run()">診断を実行する</button>
+</div>
+<div id="result">
+<div class="card">
+<h2>② 総合スコア</h2>
+<div class="row" id="scoreArea"></div>
+</div>
+<div class="card">
+<h2>③ 項目別スコア比較</h2>
+<div class="legend"><span><i style="background:#3b82f6"></i>自社</span><span><i style="background:#f97316"></i>競合</span></div>
+<div id="bars"></div>
+</div>
+<div class="card">
+<h2>④ 改善アクション（優先順）</h2>
+<ol class="tips" id="tips"></ol>
+</div>
+</div>
+</div>
+<script>
+const C=[
+{n:"簡潔な定義文",w:12,f:t=>{let m=t.match(/[はとを].{0,30}(とは|です|を指します|を意味|の略|のこと)/g);return m?Math.min(m.length*25,100):0},tip:"「〇〇とは△△です」のような簡潔な定義文を冒頭に入れましょう。AI検索はこの形式を最も引用しやすいです。"},
+{n:"FAQ形式の有無",w:11,f:t=>{let m=t.match(/(Q[:：]|質問|よくある|FAQ|？\n|?\n)/gi);return m?Math.min(m.length*20,100):0},tip:"「Q: 〇〇とは？ A: △△です」のようなFAQ形式を追加しましょう。3〜5問が理想的です。"},
+{n:"数値データ含有率",w:10,f:t=>{let s=t.split(/[。.!！\n]+/).filter(x=>x.length>5),n=s.filter(x=>/\d+[%％万億円倍件社名人個kg]/.test(x));return s.length?Math.min(Math.round(n.length/s.length*400),100):0},tip:"具体的な数値（例：導入企業300社、コスト40%削減）を増やしましょう。数値のある文は引用率が2.3倍高いです。"},
+{n:"箇条書き密度",w:9,f:t=>{let l=t.split('\n').filter(x=>x.trim()),b=l.filter(x=>/^[\s]*([-・●▶▸✓☑★①-⑳\d+[.．）\)])/.test(x.trim()));return l.length?Math.min(Math.round(b.length/l.length*300),100):0},tip:"主要なポイントは箇条書き（・や1. 2. 3.）で整理しましょう。AI検索はリスト構造を好みます。"},
+{n:"文の短さ（引用しやすさ）",w:10,f:t=>{let s=t.split(/[。.!！]+/).filter(x=>x.trim().length>3),a=s.length?s.reduce((a,c)=>a+c.length,0)/s.length:80;return a<=40?100:a<=60?80:a<=80?50:a<=100?25:10},tip:"1文を40文字以内に短くしましょう。短い文はAIが引用しやすく、正確に要約されやすいです。"},
+{n:"見出し構造",w:9,f:t=>{let h=t.match(/(^|\n)(#{1,3}\s|【|■|▶|◆|[０-９\d]+[.．])/gm);return h?Math.min(h.length*15,100):0},tip:"明確な見出し（## や【】）で内容を区切りましょう。AI検索は見出しで文脈を把握します。"},
+{n:"構造化データ記述",w:8,f:t=>{let k=["schema","json-ld","itemtype","itemprop","@type","BreadcrumbList","FAQPage","HowTo","Article"];let c=k.filter(x=>t.toLowerCase().includes(x)).length;return Math.min(c*25,100)},tip:"JSON-LDで構造化データ（FAQPage、HowTo等）をマークアップしましょう。AIの文脈理解が向上します。"},
+{n:"専門用語の説明",w:8,f:t=>{let m=t.match(/(とは[、,]|つまり|すなわち|言い換え|具体的には|例えば|略称|英語で)/g);return m?Math.min(m.length*20,100):0},tip:"専門用語には「つまり〇〇」「例えば△△」のような補足説明を添えましょう。"},
+{n:"引用元・出典の明記",w:8,f:t=>{let m=t.match(/(出典|参考|引用|調査|レポート|調べ|によると|発表|公表|統計|白書|総務省|経産省|IDC|Gartner|Statista)/g);return m?Math.min(m.length*20,100):0},tip:"データの出典（例：〇〇調査2025）を明記しましょう。信頼性が高まりAI検索が優先的に引用します。"},
+{n:"要約・まとめの存在",w:5,f:t=>{let m=t.match(/(まとめ|結論|要約|ポイント|要点|総括|以上を踏まえ)/g);return m?Math.min(m.length*35,100):0},tip:"記事の末尾に「まとめ」セクションを追加しましょう。AI検索は要約部分を高頻度で引用します。"}
+];
+function score(t){return C.map(c=>({n:c.n,s:c.f(t),w:c.w,tip:c.tip}))}
+function total(r){let tw=r.reduce((a,c)=>a+c.w,0);return Math.round(r.reduce((a,c)=>a+c.s*c.w,0)/tw)}
+function grade(s){return s>=80?["S","#10b981"]:s>=60?["A","#3b82f6"]:s>=40?["B","#f59e0b"]:s>=20?["C","#f97316"]:["D","#ef4444"]}
+function run(){
+let t1=document.getElementById("t1").value.trim(),t2=document.getElementById("t2").value.trim();
+if(!t1){alert("自社ページのテキストを入力してください");return}
+let r1=score(t1),s1=total(r1),g1=grade(s1);
+let hasComp=t2.length>0,r2=hasComp?score(t2):null,s2=hasComp?total(r2):0,g2=hasComp?grade(s2):null;
+let sa=document.getElementById("scoreArea");
+sa.innerHTML=`<div class="score-big"><div class="num" style="color:${g1[1]}">${s1}<span style="font-size:.35em">/100</span></div><div class="lbl">自社ページ <span class="grade" style="background:${g1[1]}">${g1[0]}ランク</span></div></div>`+(hasComp?`<div class="score-big"><div class="num" style="color:${g2[1]}">${s2}<span style="font-size:.35em">/100</span></div><div class="lbl">競合ページ <span class="grade" style="background:${g2[1]}">${g2[0]}ランク</span></div></div>`:'');
+let bb=document.getElementById("bars");bb.innerHTML='';
+r1.forEach((c,i)=>{
+let d=document.createElement("div");d.className="bar-wrap";
+let v2=hasComp?r2[i].s:0;
+d.innerHTML=`<div class="bar-label"><span>${c.n}（配点${c.w}）</span><span>${c.s}点${hasComp?' / 競合'+v2+'点':''}</span></div><div class="bar-bg"><div class="bar-fill" style="width:${c.s}%;background:#3b82f6;position:absolute"></div>${hasComp?`<div class="bar-fill" style="width:${v2}%;background:rgba(249,115,22,.4);position:absolute"></div>`:''}</div>`;
+bb.appendChild(d)});
+let tips=document.getElementById("tips");tips.innerHTML='';
+let sorted=[...r1].sort((a,b)=>{let da=hasComp?r1.indexOf(a):0,db=hasComp?r1.indexOf(b):0;return(a.s*a.w)-(b.s*b.w)});
+sorted.forEach(c=>{
+let li=document.createElement("li");
+if(c.s>=80){li.className="ok";li.textContent=`${c.n}：${c.s}点 — 良好です。この水準を維持しましょう。`}
+else{li.textContent=`${c.n}：${c.s}点 — ${c.tip}`}
+tips.appendChild(li)});
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"})}
+</script>
+</body>
+</html>
