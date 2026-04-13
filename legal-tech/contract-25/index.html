@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI契約書ドラフター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c}
+.wrap{max-width:720px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+header{background:linear-gradient(135deg,#1e3a5f,#2d5a87);color:#fff;padding:16px 20px;text-align:center}
+header h1{font-size:1.3em}
+header p{font-size:.8em;opacity:.8;margin-top:4px}
+#chat{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:12px 16px;border-radius:16px;font-size:.95em;line-height:1.6;word-break:break-word}
+.bot{background:#fff;align-self:flex-start;border-bottom-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.user{background:#1e3a5f;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+#input-area{padding:12px 16px;background:#fff;border-top:1px solid #e2e8f0;display:flex;gap:8px;flex-wrap:wrap}
+#txt{flex:1;min-width:150px;padding:10px 14px;border:2px solid #cbd5e0;border-radius:24px;font-size:1em;outline:none}
+#txt:focus{border-color:#2d5a87}
+.btn{padding:10px 20px;border:none;border-radius:24px;font-size:.9em;cursor:pointer;font-weight:600;transition:.2s}
+.btn-p{background:#1e3a5f;color:#fff}
+.btn-p:hover{background:#2d5a87}
+.btn-s{background:#e2e8f0;color:#1a202c}
+.btn-s:hover{background:#cbd5e0}
+.choices{display:flex;gap:8px;flex-wrap:wrap;width:100%}
+.choices .btn{flex:1;min-width:100px}
+#result{display:none;padding:16px}
+#result h2{font-size:1.1em;margin-bottom:12px;color:#1e3a5f}
+.toolbar{display:flex;gap:8px;margin-bottom:12px}
+#doc{background:#fff;padding:20px;border-radius:8px;white-space:pre-wrap;font-size:.85em;line-height:1.8;box-shadow:0 1px 3px rgba(0,0,0,.1);max-height:60vh;overflow-y:auto}
+.back{text-align:center;margin-top:12px}
+</style>
+<meta name="description" content="法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,AI契約書ドラフター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-25/">
+<meta property="og:title" content="AI契約書ドラフター - kusasyu tools">
+<meta property="og:description" content="法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-25/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI契約書ドラフター - kusasyu tools">
+<meta name="twitter:description" content="法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI契約書ドラフター",
+  "description": "法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-25/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">AI契約書ドラフター</span></div>
+<div class="wrap">
+<header>
+<h1>AI契約書ドラフター</h1>
+<p>チャットに答えるだけでNDA・業務委託契約書を自動生成</p>
+</header>
+<div id="chat"></div>
+<div id="input-area">
+<input id="txt" placeholder="入力してください…">
+<button class="btn btn-p" onclick="send()">送信</button>
+</div>
+<div id="result">
+<h2 id="rtitle"></h2>
+<div class="toolbar">
+<button class="btn btn-p" onclick="copyDoc()">コピー</button>
+<button class="btn btn-s" onclick="printDoc()">印刷</button>
+</div>
+<div id="doc"></div>
+<div class="back"><button class="btn btn-s" onclick="restart()">最初からやり直す</button></div>
+</div>
+</div>
+<script>
+const C=document.getElementById('chat'),I=document.getElementById('txt'),IA=document.getElementById('input-area'),R=document.getElementById('result'),D=document.getElementById('doc'),RT=document.getElementById('rtitle');
+let step=0,d={};
+const Qs=[
+{q:'作成したい契約書の種類を選んでください。',choices:['秘密保持契約書（NDA）','業務委託契約書']},
+{q:'御社名（甲）を入力してください。',placeholder:'例：株式会社サンプル'},
+{q:'相手方の会社名（乙）を入力してください。',placeholder:'例：合同会社テスト'},
+{q:'御社の業種を選んでください。',choices:['IT・Web系','製造業','サービス業','その他']},
+{q:'取引の概要を簡潔に入力してください。',placeholder:'例：Webシステムの開発委託'},
+{q:'契約期間を選んでください。',choices:['6か月','1年','2年','3年']},
+null
+];
+function addMsg(t,who){const m=document.createElement('div');m.className='msg '+who;m.textContent=t;C.appendChild(m);C.scrollTop=C.scrollHeight}
+function showChoices(arr){const w=document.createElement('div');w.className='choices';arr.forEach(a=>{const b=document.createElement('button');b.className='btn btn-s';b.textContent=a;b.onclick=()=>{w.remove();processAnswer(a)};w.appendChild(b)});IA.prepend(w)}
+function ask(){
+if(step===6){
+if(d.type==='秘密保持契約書（NDA）'){addMsg('秘密情報の範囲を選んでください。','bot');showChoices(['技術情報のみ','営業情報含む','全情報'])}
+else{addMsg('委託料（税別・月額）を入力してください。','bot');I.placeholder='例：500000'}
+return}
+const q=Qs[step];addMsg(q.q,'bot');if(q.choices)showChoices(q.choices);else if(q.placeholder)I.placeholder=q.placeholder;
+}
+function send(){const v=I.value.trim();if(!v)return;I.value='';processAnswer(v)}
+function processAnswer(v){
+addMsg(v,'user');
+switch(step){
+case 0:d.type=v;break;case 1:d.kou=v;break;case 2:d.otsu=v;break;
+case 3:d.industry=v;break;case 4:d.desc=v;break;case 5:d.period=v;break;
+case 6:if(d.type==='秘密保持契約書（NDA）')d.scope=v;else d.fee=v;break;
+}
+step++;if(step<=6)ask();else generate();
+}
+function generate(){
+IA.style.display='none';C.style.display='none';R.style.display='block';
+const today=new Date(),y=today.getFullYear(),m=today.getMonth()+1,day=today.getDate();
+const dateStr=y+'年'+m+'月'+day+'日';
+if(d.type==='秘密保持契約書（NDA）'){
+RT.textContent='秘密保持契約書（NDA）';
+const scopeMap={'技術情報のみ':'製品・サービスに関する技術情報、設計情報、ソースコード、アルゴリズム等の技術的情報','営業情報含む':'技術情報に加え、顧客リスト、価格表、販売計画、財務情報等の営業上の情報','全情報':'文書、口頭、電子データその他媒体を問わず、開示当事者が秘密である旨を明示して開示した一切の情報'};
+D.textContent=`秘密保持契約書
+
+${d.kou}（以下「甲」という）と${d.otsu}（以下「乙」という）は、${d.desc}に関して相互に開示する秘密情報の取扱いについて、以下のとおり契約を締結する。
+
+第1条（秘密情報の定義）
+本契約における「秘密情報」とは、${scopeMap[d.scope]||scopeMap['全情報']}をいう。ただし、次の各号に該当するものを除く。
+(1) 開示時に既に公知であった情報
+(2) 開示後に受領者の責めに帰すべき事由によらず公知となった情報
+(3) 開示前から受領者が正当に保有していた情報
+(4) 正当な権限を有する第三者から秘密保持義務を負わず取得した情報
+(5) 開示された情報によらず独自に開発した情報
+
+第2条（秘密保持義務）
+甲および乙は、相手方から開示された秘密情報を善良な管理者の注意をもって管理し、事前の書面による承諾なく第三者に開示または漏洩してはならない。
+
+第3条（目的外使用の禁止）
+甲および乙は、秘密情報を本取引の目的以外に使用してはならない。
+
+第4条（複製の制限）
+秘密情報の複製は、本取引の目的に必要な範囲に限るものとし、複製物についても本契約の秘密情報として取り扱う。
+
+第5条（情報の返還・廃棄）
+相手方から要求があった場合、または本契約が終了した場合、受領者は秘密情報（複製物を含む）を速やかに返還または廃棄し、その旨を書面で通知する。
+
+第6条（損害賠償）
+甲または乙が本契約に違反し、相手方に損害を与えた場合、違反者は相手方に対し、直接かつ現実に生じた損害を賠償する責任を負う。
+
+第7条（有効期間）
+本契約の有効期間は、本契約締結日から${d.period}間とする。ただし、本契約終了後も第2条から第6条の規定は3年間なお有効に存続する。
+
+第8条（協議解決）
+本契約に定めのない事項または解釈に疑義が生じた場合は、甲乙誠意をもって協議し解決する。
+
+第9条（管轄裁判所）
+本契約に関する紛争は、甲の本店所在地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とする。
+
+本契約の成立を証するため、本書2通を作成し、甲乙記名押印のうえ各1通を保有する。
+
+${dateStr}
+
+甲：${d.kou}
+代表取締役　　　　　　　　　　印
+
+乙：${d.otsu}
+代表取締役　　　　　　　　　　印`;
+}else{
+RT.textContent='業務委託契約書';
+const fee=d.fee||'別途協議';
+const feeNum=parseInt(fee.replace(/[^0-9]/g,''),10);
+const feeStr=feeNum?feeNum.toLocaleString()+'円':fee;
+const taxStr=feeNum?Math.floor(feeNum*0.1).toLocaleString()+'円':'消費税相当額';
+D.textContent=`業務委託契約書
+
+${d.kou}（以下「甲」という）と${d.otsu}（以下「乙」という）は、甲が乙に対し業務を委託することに関して、以下のとおり契約を締結する。
+
+第1条（委託業務の内容）
+甲は乙に対し、以下の業務（以下「本業務」という）を委託し、乙はこれを受託する。
+業務内容：${d.desc}
+業種区分：${d.industry}
+
+第2条（委託料および支払条件）
+1. 甲は乙に対し、本業務の対価として月額${feeStr}（税別）を支払う。
+2. 消費税（${taxStr}）は別途甲が負担する。
+3. 乙は毎月末日に当月分の業務完了報告書を甲に提出し、甲は翌月末日までに乙の指定する銀行口座に振り込む方法で支払う。振込手数料は甲の負担とする。
+
+第3条（契約期間）
+本契約の有効期間は、本契約締結日から${d.period}間とする。期間満了の1か月前までに甲乙いずれからも書面による終了の申し出がない場合は、同条件で1年間自動更新し、以後も同様とする。
+
+第4条（再委託の制限）
+乙は、甲の事前の書面による承諾なく、本業務の全部または一部を第三者に再委託してはならない。
+
+第5条（知的財産権）
+1. 本業務の遂行により生じた著作物その他の知的財産権は、甲が委託料を完済した時点で甲に帰属する。
+2. 乙は甲に対し、当該著作物について著作者人格権を行使しない。
+
+第6条（秘密保持）
+甲および乙は、本契約に関連して知り得た相手方の秘密情報を、契約期間中および終了後3年間、第三者に開示または漏洩してはならない。
+
+第7条（個人情報の取扱い）
+乙は、本業務に関連して甲から取り扱いを委託された個人情報を、個人情報保護法その他関連法令に従い適切に管理する。
+
+第8条（契約解除）
+1. 甲または乙は、相手方が本契約の条項に違反し、14日以上の期間を定めた催告にもかかわらず是正されない場合、本契約を解除できる。
+2. 甲または乙は、相手方が破産手続、民事再生手続、会社更生手続の開始申立てを受け、または自ら申し立てた場合、催告なく本契約を直ちに解除できる。
+
+第9条（損害賠償）
+甲または乙が本契約に違反し相手方に損害を与えた場合、直接かつ現実に生じた損害を賠償する。ただし、賠償額の上限は、損害発生時点から遡って12か月間に甲が乙に支払った委託料の総額とする。
+
+第10条（反社会的勢力の排除）
+甲および乙は、自己が反社会的勢力に該当しないことを表明し保証する。相手方がこれに違反した場合、催告なく直ちに本契約を解除できる。
+
+第11条（協議解決）
+本契約に定めのない事項または解釈に疑義が生じた場合は、甲乙誠意をもって協議し解決する。
+
+第12条（管轄裁判所）
+本契約に関する紛争は、甲の本店所在地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とする。
+
+本契約の成立を証するため、本書2通を作成し、甲乙記名押印のうえ各1通を保有する。
+
+${dateStr}
+
+甲：${d.kou}
+代表取締役　　　　　　　　　　印
+
+乙：${d.otsu}
+代表取締役　　　　　　　　　　印`;
+}}
+function copyDoc(){navigator.clipboard.writeText(D.textContent).then(()=>{alert('クリップボードにコピーしました')})}
+function printDoc(){const w=window.open('','','width=800,height=600');w.document.write('<pre style="font-family:serif;font-size:14px;line-height:2;padding:40px;white-space:pre-wrap">'+D.textContent.replace(/</g,'&lt;')+'</pre>');w.document.close();w.print()}
+function restart(){step=0;d={};C.innerHTML='';C.style.display='flex';IA.style.display='flex';R.style.display='none';I.placeholder='入力してください…';ask()}
+I.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+ask();
+</script>
+</body>
+</html>

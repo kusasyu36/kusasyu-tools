@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>空室リスク診断ダッシュボード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f0f4f8;color:#1e293b;padding:12px;max-width:900px;margin:0 auto}h1{text-align:center;font-size:1.3em;padding:12px 0}.c{background:#fff;border-radius:10px;padding:14px;margin-bottom:12px;box-shadow:0 1px 6px #0001}.r{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}.r>*{flex:1;min-width:130px}label{display:block;font-size:.82em;font-weight:600;margin-bottom:3px;color:#475569}select,input[type=number]{width:100%;padding:7px;border:1px solid #cbd5e1;border-radius:6px;font-size:.95em}.btn{display:block;width:100%;padding:10px;border:none;border-radius:8px;font-size:1em;font-weight:600;cursor:pointer;margin-top:8px}.bm{background:#2563eb;color:#fff}.bs{background:#e2e8f0;color:#334155;font-size:.9em}.ph{font-weight:700;font-size:1em;margin-bottom:8px;color:#1e40af;overflow:auto}.sc{text-align:center;padding:16px;border-radius:10px;color:#fff;margin-bottom:10px}.sn{font-size:2.8em;font-weight:800;line-height:1}.sl{font-size:.85em;margin-top:4px}.bars{display:flex;align-items:flex-end;justify-content:center;gap:20px;height:180px;padding:10px 0}.bw{text-align:center}.br{width:56px;border-radius:6px 6px 0 0;margin:0 auto;transition:height .4s}.bl{font-size:.78em;margin-top:4px;font-weight:600}.ai{display:flex;align-items:center;padding:8px 10px;margin:4px 0;border-radius:6px;background:#f8fafc;border-left:4px solid #2563eb}.ap{font-size:1.1em;font-weight:800;color:#2563eb;margin-right:10px;min-width:20px}.ct{width:100%;border-collapse:collapse;font-size:.82em;margin-top:8px}.ct th,.ct td{padding:5px 7px;border:1px solid #e2e8f0;text-align:center}.ct th{background:#f1f5f9}@media(max-width:600px){.r>*{min-width:100%}.bars{height:140px}}
+</style>
+<meta name="description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,空室リスク診断ダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-4/">
+<meta property="og:title" content="空室リスク診断ダッシュボード - kusasyu tools">
+<meta property="og:description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空室リスク診断ダッシュボード - kusasyu tools">
+<meta name="twitter:description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "空室リスク診断ダッシュボード",
+  "description": "5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">空室リスク診断ダッシュボード</span></div>
+<h1>&#x1F3E0; 空室リスク診断ダッシュボード</h1>
+<div id="fs"></div>
+<button class="btn bs" onclick="addP()" id="ab">＋ 物件を追加（最大3件）</button>
+<button class="btn bm" onclick="run()">&#x1F50D; 診断する</button>
+<div id="res"></div>
+<script>
+var D="東京都,千代田区,95,140,190,240;東京都,中央区,90,135,185,230;東京都,港区,100,150,210,270;東京都,新宿区,85,125,170,210;東京都,渋谷区,90,130,180,230;東京都,豊島区,75,105,140,170;東京都,世田谷区,70,100,135,170;東京都,杉並区,68,95,130,160;東京都,練馬区,60,85,110,140;東京都,足立区,55,75,95,120;東京都,八王子市,45,65,80,100;東京都,町田市,50,70,90,110;神奈川県,横浜市中区,65,95,125,155;神奈川県,横浜市西区,70,100,130,160;神奈川県,川崎市中原区,70,100,130,160;神奈川県,川崎市川崎区,60,85,110,140;神奈川県,相模原市,45,65,85,105;埼玉県,さいたま市大宮区,55,80,105,130;埼玉県,さいたま市浦和区,60,85,110,140;埼玉県,川口市,55,75,100,125;千葉県,千葉市中央区,50,70,95,120;千葉県,船橋市,55,75,100,125;千葉県,市川市,60,80,110,135;大阪府,大阪市北区,65,95,130,160;大阪府,大阪市中央区,65,90,125,155;大阪府,大阪市天王寺区,60,85,120,150;大阪府,大阪市淀川区,55,80,105,130;大阪府,堺市,45,65,85,105;京都府,京都市中京区,55,80,110,140;京都府,京都市下京区,55,75,105,130;兵庫県,神戸市中央区,55,80,110,140;兵庫県,神戸市東灘区,55,75,100,130;兵庫県,西宮市,55,75,105,135;愛知県,名古屋市中区,60,85,115,145;愛知県,名古屋市中村区,55,80,105,130;愛知県,名古屋市千種区,55,80,105,135;福岡県,福岡市中央区,55,80,110,135;福岡県,福岡市博多区,50,75,100,125;福岡県,北九州市小倉北区,40,55,75,95;北海道,札幌市中央区,45,65,85,110;北海道,札幌市北区,35,50,70,90;宮城県,仙台市青葉区,50,70,95,120;広島県,広島市中区,50,70,95,120;新潟県,新潟市中央区,40,55,75,95;静岡県,静岡市葵区,45,60,80,100;静岡県,浜松市中央区,45,60,80,100;岡山県,岡山市北区,40,55,75,95;熊本県,熊本市中央区,40,55,75,95;沖縄県,那覇市,45,60,80,100;長野県,長野市,40,55,70,90".split(";").map(function(s){var a=s.split(",");return{p:a[0],c:a[1],r:[a[2]/10,a[3]/10,a[4]/10,a[5]/10]}});
+var LY=["1K","1LDK","2LDK","3LDK"],PS=[],seen={},F=[];
+D.forEach(function(d){if(!seen[d.p]){seen[d.p]=1;PS.push(d.p)}});
+function mkO(a){return a.map(function(v){return"<option>"+v+"</option>"}).join("")}
+function addP(){if(F.length>=3)return;var id=(F.length?F[F.length-1]:0)+1;F.push(id);var n=F.length,x=n>1?' <span style="cursor:pointer;color:#94a3b8;float:right" onclick="remP('+id+')">&#x2715; 削除</span>':"";document.getElementById("fs").insertAdjacentHTML("beforeend",'<div class="c" id="f'+id+'"><div class="ph">物件'+n+x+'</div><div class="r"><div><label>都道府県</label><select id="pf'+id+'" onchange="uc('+id+')">'+mkO(PS)+'</select></div><div><label>市区町村</label><select id="ct'+id+'"></select></div><div><label>間取り</label><select id="ly'+id+'">'+mkO(LY)+'</select></div></div><div class="r"><div><label>築年数（年）</label><input type="number" id="ag'+id+'" min="0" max="99" value="20"></div><div><label>現行賃料（万円）</label><input type="number" id="rn'+id+'" min="0" step="0.1" value="7"></div><div><label>空室期間（ヶ月）</label><input type="number" id="vc'+id+'" min="0" max="120" value="3"></div></div></div>');uc(id);if(F.length>=3)document.getElementById("ab").style.display="none"}
+function remP(id){document.getElementById("f"+id).remove();F=F.filter(function(x){return x!==id});document.getElementById("ab").style.display=""}
+function uc(id){var p=document.getElementById("pf"+id).value;document.getElementById("ct"+id).innerHTML=mkO(D.filter(function(d){return d.p===p}).map(function(d){return d.c}))}
+function sc(v){return v<=30?"#16a34a":v<=60?"#d97706":"#dc2626"}
+function run(){var R=[];for(var k=0;k<F.length;k++){var id=F[k],el=document.getElementById("f"+id);if(!el)continue;var p=document.getElementById("pf"+id).value,ct=document.getElementById("ct"+id).value,l=document.getElementById("ly"+id).value,age=+document.getElementById("ag"+id).value,rent=+document.getElementById("rn"+id).value,vac=+document.getElementById("vc"+id).value;var d=null;for(var j=0;j<D.length;j++){if(D[j].p===p&&D[j].c===ct){d=D[j];break}}if(!d){alert("物件"+(k+1)+"のエリアデータが見つかりません");return}var mr=d.r[LY.indexOf(l)],dev=rent>mr?(rent-mr)/mr*100:0,s1=Math.min(dev*.8,40),s2=Math.min(age*1.167,35),s3=Math.min(vac*2.5,25),total=Math.round(s1+s2+s3);var acts=[{n:"賃料改定",s:s1,d:"相場"+mr.toFixed(1)+"万円に対し乖離"+dev.toFixed(1)+"%"},{n:"リノベーション",s:s2,d:"築"+age+"年の経年劣化による競争力低下"},{n:"募集条件変更",s:s3,d:"空室"+vac+"ヶ月 - 礼金・ペット可等の見直し"}];acts.sort(function(a,b){return b.s-a.s});R.push({id:id,nm:ct+" "+l,total:total,s1:Math.round(s1),s2:Math.round(s2),s3:Math.round(s3),mr:mr,dev:dev.toFixed(1),acts:acts})}if(!R.length)return;var mx=0;R.forEach(function(x){if(x.total>mx)mx=x.total});var h='<div class="c"><h3 style="margin-bottom:8px">&#x1F4CA; 物件スコア比較</h3><div class="bars">';R.forEach(function(x){var ht=Math.max(x.total/100*160,16);h+='<div class="bw"><div class="br" style="height:'+ht+"px;background:"+sc(x.total)+(R.length>1&&x.total===mx?";box-shadow:0 0 0 3px #fca5a5":"")+'"></div><div class="bl">'+x.nm+"<br><b>"+x.total+"点</b></div></div>"});h+="</div></div>";R.forEach(function(x){var co=sc(x.total),lv=x.total<=30?"低リスク":x.total<=60?"中リスク":"高リスク",hi=R.length>1&&x.total===mx;h+='<div class="c"'+(hi?' style="border:2px solid #ef4444"':'')+'><div class="ph">'+x.nm+(hi?" &#x26A0;&#xFE0F; 最優先改善対象":"")+'</div><div class="sc" style="background:'+co+'"><div class="sn">'+x.total+'</div><div class="sl">空室リスクスコア（'+lv+'）</div></div><div class="r"><div class="c" style="margin:0;padding:8px;text-align:center"><b style="font-size:1.4em;color:'+co+'">'+x.s1+'</b><br><small>賃料乖離 /40</small></div><div class="c" style="margin:0;padding:8px;text-align:center"><b style="font-size:1.4em;color:'+co+'">'+x.s2+'</b><br><small>築年数 /35</small></div><div class="c" style="margin:0;padding:8px;text-align:center"><b style="font-size:1.4em;color:'+co+'">'+x.s3+'</b><br><small>空室期間 /25</small></div></div><p style="font-size:.84em;color:#64748b;margin:6px 0">&#x1F4CD; 周辺相場: '+x.mr.toFixed(1)+"万円 ｜ 乖離率: "+x.dev+'%</p><b>改善アクション（優先順）</b>';x.acts.forEach(function(a,j){h+='<div class="ai"><span class="ap">'+(j+1)+"</span><div><b>"+a.n+"</b><br><span style=\"font-size:.82em;color:#64748b\">"+a.d+"</span></div></div>"});h+="</div>"});h+='<div class="c"><h3 style="margin-bottom:6px">&#x1F4D0; スコア計算根拠</h3><table class="ct"><tr><th>要素</th><th>計算式</th><th>上限</th></tr><tr><td>賃料乖離</td><td>max(現行賃料−相場, 0) ÷ 相場 × 80</td><td>40点</td></tr><tr><td>築年数</td><td>築年数 × 1.167</td><td>35点</td></tr><tr><td>空室期間</td><td>空室月数 × 2.5</td><td>25点</td></tr></table><p style="font-size:.78em;color:#94a3b8;margin-top:6px">※合計100点満点。30点以下＝低リスク（緑）、31〜60点＝中リスク（黄）、61点以上＝高リスク（赤）。主要50都市の平均賃料データ内蔵。</p></div>';document.getElementById("res").innerHTML=h;document.getElementById("res").scrollIntoView({behavior:"smooth"})}
+addP();
+</script>
+</body>
+</html>

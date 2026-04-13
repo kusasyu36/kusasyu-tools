@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ブランドガイドライン1枚シート出力ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;background:#f5f5f0;color:#333;line-height:1.6}
+.wrap{max-width:740px;margin:0 auto;padding:16px}
+h1{font-size:1.25em;text-align:center;padding:16px 0 4px;color:#1a1a2e}
+.sub{text-align:center;font-size:.82em;color:#666;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1em;color:#1a1a2e;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #eee}
+label{display:block;font-weight:bold;font-size:.88em;margin:8px 0 3px}
+input,textarea,select{width:100%;padding:9px;border:1px solid #ccc;border-radius:8px;font-size:.92em;font-family:inherit}
+textarea{height:56px;resize:vertical}
+input[type="color"]{height:42px;padding:2px;cursor:pointer}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1;min-width:100px}
+.row3>*{min-width:80px}
+.btn{display:block;width:100%;padding:13px;border:none;border-radius:10px;font-size:1em;font-weight:bold;cursor:pointer;margin-top:12px;transition:.2s}
+.btn-p{background:#1a1a2e;color:#fff}.btn-p:hover{background:#2d2d5e}
+.btn-s{background:#e8e8e0;color:#333}.btn-s:hover{background:#d8d8d0}
+.btn-print{background:#2e7d32;color:#fff}.btn-print:hover{background:#1b5e20}
+.hidden{display:none}
+.hint{font-size:.78em;color:#999;margin-top:2px}
+#preview-area{margin-top:18px}
+
+/* ===== ガイドラインシート ===== */
+.gl-sheet{background:#fff;border-radius:14px;padding:28px 24px;box-shadow:0 4px 20px rgba(0,0,0,.1);max-width:700px;margin:0 auto}
+.gl-header{text-align:center;border-bottom:3px solid #1a1a2e;padding-bottom:14px;margin-bottom:18px}
+.gl-header h2{font-size:1.5em;letter-spacing:.05em}
+.gl-header p{font-size:.82em;color:#888;margin-top:4px}
+.gl-section{margin-bottom:18px}
+.gl-section h3{font-size:.95em;color:#fff;background:#1a1a2e;display:inline-block;padding:3px 14px;border-radius:4px;margin-bottom:10px}
+.palette{display:flex;gap:10px;margin:8px 0}
+.p-swatch{flex:1;height:64px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.75em;font-weight:bold;text-shadow:0 1px 2px rgba(0,0,0,.4);color:#fff;border:1px solid rgba(0,0,0,.08)}
+.p-swatch .hex{font-size:.85em;margin-top:2px}
+.font-row{display:flex;gap:8px;margin:6px 0;flex-wrap:wrap}
+.font-card{flex:1;min-width:140px;background:#f9f9f6;border-radius:8px;padding:10px;border-left:4px solid #1a1a2e}
+.font-card .use{font-size:.75em;color:#888;margin-bottom:2px}
+.font-card .name{font-size:.95em;font-weight:bold}
+.font-card .sample{font-size:.82em;color:#555;margin-top:4px}
+.tone-box{background:#f0f0ea;border-left:4px solid #1a1a2e;padding:10px 14px;border-radius:0 8px 8px 0;font-size:.88em;margin:6px 0}
+.dodont{display:flex;gap:10px;flex-wrap:wrap}
+.do-col,.dont-col{flex:1;min-width:200px;border-radius:8px;padding:12px;font-size:.85em}
+.do-col{background:#e8f5e9;border:1px solid #a5d6a7}
+.dont-col{background:#ffebee;border:1px solid #ef9a9a}
+.do-col h4{color:#2e7d32;margin-bottom:6px}.dont-col h4{color:#c62828;margin-bottom:6px}
+.do-col li,.dont-col li{margin:3px 0 3px 16px}
+.prompt-card{background:#1a1a2e;color:#e0e0e0;border-radius:8px;padding:12px;margin:6px 0;font-size:.82em;white-space:pre-wrap;line-height:1.5;position:relative}
+.prompt-label{font-size:.72em;color:#aaa;margin-bottom:4px}
+.gl-footer{text-align:center;font-size:.72em;color:#aaa;margin-top:14px;padding-top:10px;border-top:1px solid #eee}
+
+@media print{
+body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.no-print{display:none!important}
+.gl-sheet{box-shadow:none;padding:16px;border-radius:0}
+.p-swatch{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.do-col,.dont-col,.tone-box,.prompt-card{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{size:A4;margin:12mm}
+}
+@media(max-width:500px){
+.wrap{padding:10px}
+.palette{flex-direction:column}
+.dodont{flex-direction:column}
+.font-row{flex-direction:column}
+}
+</style>
+<meta name="description" content="ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ブランドガイドライン1枚シート出力ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-8/">
+<meta property="og:title" content="ブランドガイドライン1枚シート出力ツール - kusasyu tools">
+<meta property="og:description" content="ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ブランドガイドライン1枚シート出力ツール - kusasyu tools">
+<meta name="twitter:description" content="ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ブランドガイドライン1枚シート出力ツール",
+  "description": "ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-8/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">ブランドガイドライン1枚シート出力ツール</span></div>
+<div class="wrap">
+<div class="no-print">
+<h1>ブランドガイドライン 1枚シート出力ツール</h1>
+<p class="sub">AIブランドビジュアル＆プロンプト統合ジェネレーター 連携ツール</p>
+
+<div class="card">
+<h2>1. ブランド基本情報</h2>
+<label>ブランド名 <span style="color:#c00">*</span></label>
+<input type="text" id="brandName" placeholder="例: Sakura Cafe">
+<div class="row" style="margin-top:4px">
+<div><label>業種</label><input type="text" id="industry" placeholder="例: カフェ・飲食"></div>
+<div><label>ターゲット層</label><input type="text" id="target" placeholder="例: 20〜30代女性"></div>
+</div>
+</div>
+
+<div class="card">
+<h2>2. ブランドカラー（3色）</h2>
+<p class="hint">統合ジェネレーターで出力されたカラーコードを設定してください</p>
+<div class="row row3">
+<div>
+<label>メインカラー</label>
+<input type="color" id="c1" value="#1a1a2e">
+<input type="text" id="c1t" value="#1a1a2e" placeholder="#1a1a2e" style="margin-top:4px;font-size:.82em">
+</div>
+<div>
+<label>サブカラー</label>
+<input type="color" id="c2" value="#e2725b">
+<input type="text" id="c2t" value="#e2725b" placeholder="#e2725b" style="margin-top:4px;font-size:.82em">
+</div>
+<div>
+<label>アクセントカラー</label>
+<input type="color" id="c3" value="#f5d76e">
+<input type="text" id="c3t" value="#f5d76e" placeholder="#f5d76e" style="margin-top:4px;font-size:.82em">
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>3. フォント指定</h2>
+<div class="row">
+<div><label>見出し用フォント</label><input type="text" id="fontH" placeholder="例: Noto Serif JP"></div>
+<div><label>本文用フォント</label><input type="text" id="fontB" placeholder="例: Noto Sans JP"></div>
+</div>
+<label>装飾・キャッチ用フォント（任意）</label>
+<input type="text" id="fontA" placeholder="例: Zen Maru Gothic">
+</div>
+
+<div class="card">
+<h2>4. トーン＆マナー指針</h2>
+<label>ブランドトーン</label>
+<select id="toneSelect">
+<option value="">選択してください</option>
+<option value="elegant">上品・洗練</option>
+<option value="warm">温かみ・親しみ</option>
+<option value="professional">信頼・プロフェッショナル</option>
+<option value="pop">明るい・ポップ</option>
+<option value="natural">ナチュラル・オーガニック</option>
+<option value="modern">モダン・先進的</option>
+<option value="japanese">和風・伝統</option>
+<option value="custom">カスタム（自由入力）</option>
+</select>
+<label>トーン補足・キーワード</label>
+<textarea id="toneText" placeholder="例: 落ち着いた高級感の中にも親しみやすさ。金色のアクセントで特別感を演出"></textarea>
+</div>
+
+<div class="card">
+<h2>5. AI画像生成プロンプト</h2>
+<p class="hint">統合ジェネレーターの出力をコピー＆ペースト、または直接入力</p>
+<label>SNS投稿用プロンプト</label>
+<textarea id="promptSNS" placeholder="例: A warm-toned photograph of a latte art..."></textarea>
+<label>バナー・広告用プロンプト</label>
+<textarea id="promptBanner" placeholder="例: Professional banner design with..."></textarea>
+<label>LP・ヒーロー画像用プロンプト</label>
+<textarea id="promptLP" placeholder="例: Hero image for landing page..."></textarea>
+</div>
+
+<button class="btn btn-p" onclick="generate()">ガイドラインを生成する</button>
+</div>
+
+<div id="preview-area" class="hidden">
+<div class="no-print" style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn btn-print" style="flex:1;min-width:160px" onclick="window.print()">印刷 / PDF保存</button>
+<button class="btn btn-s" style="flex:1;min-width:160px" onclick="document.getElementById('preview-area').classList.add('hidden');window.scrollTo(0,0)">入力に戻る</button>
+</div>
+<div class="gl-sheet" id="glSheet"></div>
+</div>
+</div>
+
+<script>
+(function(){
+var cs=['c1','c2','c3'];
+cs.forEach(function(id){
+var picker=document.getElementById(id),txt=document.getElementById(id+'t');
+picker.addEventListener('input',function(){txt.value=picker.value});
+txt.addEventListener('input',function(){
+var v=txt.value.trim();
+if(/^#[0-9a-fA-F]{6}$/.test(v))picker.value=v;
+});
+});
+})();
+
+function lum(hex){var r=parseInt(hex.substr(1,2),16),g=parseInt(hex.substr(3,2),16),b=parseInt(hex.substr(5,2),16);return(r*299+g*587+b*114)/1000}
+function textC(hex){return lum(hex)>140?'#222':'#fff'}
+
+var toneData={
+elegant:{keywords:'洗練・上質・品格',manner:'余白を十分に取り、情報を詰め込みすぎない。写真はトーンを揃えて統一感を持たせる。',doList:['余白を活かしたシンプルなレイアウト','上質な素材感が伝わる写真を使用','統一された配色で高級感を維持'],dontList:['原色や蛍光色を多用する','文字を詰め込みすぎる','安売り感のあるスタンプ装飾']},
+warm:{keywords:'親しみ・安心・ぬくもり',manner:'丸みのあるフォントとやわらかい配色で、手に取りやすい雰囲気をつくる。',doList:['角丸やイラストで柔らかさを出す','暖色系を基調にした配色','人物の笑顔や手書き風要素を活用'],dontList:['鋭角的・攻撃的なデザイン','冷たい印象のモノトーン多用','距離を感じるフォーマルすぎる文体']},
+professional:{keywords:'信頼・実績・堅実',manner:'直線的なグリッドレイアウトで整理された印象を与え、データや実績を明確に示す。',doList:['グリッドに沿った整然としたレイアウト','数値データやグラフで説得力を強化','ネイビーやグレーの落ち着いた配色'],dontList:['派手なアニメーションや装飾','カジュアルすぎるイラスト','根拠のない誇大表現']},
+pop:{keywords:'楽しい・活気・元気',manner:'鮮やかなカラーと大きなタイポグラフィで視線を掴む。遊び心を感じさせるあしらいを入れる。',doList:['ビビッドな色使いでインパクトを出す','大きめのフォントとリズム感あるレイアウト','吹き出しやスタンプなど楽しい装飾'],dontList:['地味で単調な配色','文字ばかりの情報量過多なデザイン','ターゲットに合わない子供っぽさ']},
+natural:{keywords:'自然・オーガニック・健やか',manner:'アースカラーを基調に、植物や自然素材のテクスチャを効果的に使う。',doList:['アースカラー・ベージュ系の柔らかい配色','自然光の写真・ボタニカル要素を活用','シンプルで余白のあるクリーンなレイアウト'],dontList:['人工的な蛍光色・メタリック表現','過度にデジタルな印象のデザイン','情報を詰め込んだ忙しいレイアウト']},
+modern:{keywords:'先進的・革新・テクノロジー',manner:'ダークモードやグラデーション、幾何学模様を活用し、最先端の印象を与える。',doList:['大胆なグラデーションや幾何学パターン','サンセリフ系のスッキリしたフォント','ダークカラーと光のコントラスト'],dontList:['古臭い装飾やクリップアート','手書き風の崩したデザイン','伝統的な和風テイストとの混在']},
+japanese:{keywords:'和・伝統・風情',manner:'縦書き要素や和柄を取り入れ、日本的な余白美を意識した構成にする。',doList:['縦書きテキストや毛筆フォントを効果的に使用','和柄（市松・麻の葉等）をワンポイントに','落ち着いた伝統配色（藍・朱・抹茶等）'],dontList:['洋風テイストとの無秩序な混在','和柄の過剰使用で視認性を損なう','カジュアルすぎるポップ体の乱用']}
+};
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function generate(){
+var name=document.getElementById('brandName').value.trim();
+if(!name){alert('ブランド名を入力してください');return}
+var industry=document.getElementById('industry').value.trim()||'未設定';
+var target=document.getElementById('target').value.trim()||'未設定';
+var c1=document.getElementById('c1').value;
+var c2=document.getElementById('c2').value;
+var c3=document.getElementById('c3').value;
+var fontH=document.getElementById('fontH').value.trim()||'Noto Serif JP';
+var fontB=document.getElementById('fontB').value.trim()||'Noto Sans JP';
+var fontA=document.getElementById('fontA').value.trim()||'—';
+var toneKey=document.getElementById('toneSelect').value;
+var toneCustom=document.getElementById('toneText').value.trim();
+var pSNS=document.getElementById('promptSNS').value.trim();
+var pBanner=document.getElementById('promptBanner').value.trim();
+var pLP=document.getElementById('promptLP').value.trim();
+
+var tone=toneData[toneKey]||null;
+var toneKeywords=tone?tone.keywords:(toneCustom||'カスタム設定');
+var toneManner=tone?tone.manner:(toneCustom||'ブランドの世界観に沿ったデザインを心がけてください。');
+var doList=tone?tone.doList:['ブランドカラーを一貫して使用する','ターゲット層に合わせたビジュアル選定','統一されたフォントとレイアウトルール'];
+var dontList=tone?tone.dontList:['ブランドカラー以外の色を安易に追加','素材サイトの写真をそのまま無加工で使用','レイアウトのルールを無視した自由配置'];
+
+if(toneCustom&&tone){toneManner+='\n【補足】'+toneCustom}
+
+var today=new Date();var ds=today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+
+var h='<div class="gl-header" style="border-bottom-color:'+c1+'">';
+h+='<h2 style="color:'+c1+'">'+esc(name)+'</h2>';
+h+='<p>ブランドガイドライン｜業種: '+esc(industry)+' ｜ターゲット: '+esc(target)+'</p>';
+h+='</div>';
+
+h+='<div class="gl-section"><h3 style="background:'+c1+'">カラーパレット</h3>';
+h+='<div class="palette">';
+h+='<div class="p-swatch" style="background:'+c1+';color:'+textC(c1)+'">メイン<div class="hex">'+c1.toUpperCase()+'</div></div>';
+h+='<div class="p-swatch" style="background:'+c2+';color:'+textC(c2)+'">サブ<div class="hex">'+c2.toUpperCase()+'</div></div>';
+h+='<div class="p-swatch" style="background:'+c3+';color:'+textC(c3)+'">アクセント<div class="hex">'+c3.toUpperCase()+'</div></div>';
+h+='</div>';
+h+='<div style="font-size:.78em;color:#888;margin-top:4px">使用比率目安 — メイン 60% / サブ 30% / アクセント 10%</div>';
+h+='</div>';
+
+h+='<div class="gl-section"><h3 style="background:'+c1+'">フォント用途一覧</h3>';
+h+='<div class="font-row">';
+h+='<div class="font-card" style="border-left-color:'+c1+'"><div class="use">見出し・タイトル</div><div class="name">'+esc(fontH)+'</div><div class="sample">Bold / 24〜32px</div></div>';
+h+='<div class="font-card" style="border-left-color:'+c2+'"><div class="use">本文・説明文</div><div class="name">'+esc(fontB)+'</div><div class="sample">Regular / 14〜16px</div></div>';
+if(fontA!=='—'){h+='<div class="font-card" style="border-left-color:'+c3+'"><div class="use">装飾・キャッチ</div><div class="name">'+esc(fontA)+'</div><div class="sample">Medium / 18〜28px</div></div>'}
+h+='</div></div>';
+
+h+='<div class="gl-section"><h3 style="background:'+c1+'">トーン＆マナー</h3>';
+h+='<div class="tone-box" style="border-left-color:'+c1+'"><strong>キーワード:</strong> '+esc(toneKeywords)+'<br>'+esc(toneManner).replace(/\n/g,'<br>')+'</div>';
+h+='</div>';
+
+h+='<div class="gl-section"><h3 style="background:'+c1+'">デザイン DO / DON\'T</h3>';
+h+='<div class="dodont">';
+h+='<div class="do-col"><h4>DO（推奨）</h4><ul>';
+doList.forEach(function(d){h+='<li>'+esc(d)+'</li>'});
+h+='</ul></div>';
+h+='<div class="dont-col"><h4>DON\'T（禁止）</h4><ul>';
+dontList.forEach(function(d){h+='<li>'+esc(d)+'</li>'});
+h+='</ul></div></div></div>';
+
+if(pSNS||pBanner||pLP){
+h+='<div class="gl-section"><h3 style="background:'+c1+'">AI画像生成プロンプト集</h3>';
+if(pSNS){h+='<div class="prompt-label">SNS投稿用</div><div class="prompt-card">'+esc(pSNS)+'</div>'}
+if(pBanner){h+='<div class="prompt-label">バナー・広告用</div><div class="prompt-card">'+esc(pBanner)+'</div>'}
+if(pLP){h+='<div class="prompt-label">LP・ヒーロー画像用</div><div class="prompt-card">'+esc(pLP)+'</div>'}
+h+='</div>';
+}
+
+h+='<div class="gl-footer">'+esc(name)+' Brand Guidelines ｜作成日: '+ds+'｜AIブランドビジュアル＆プロンプト統合ジェネレーター で作成</div>';
+
+document.getElementById('glSheet').innerHTML=h;
+document.getElementById('preview-area').classList.remove('hidden');
+setTimeout(function(){document.getElementById('preview-area').scrollIntoView({behavior:'smooth'})},100);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>賃貸契約前セルフチェックリスト - kusasyu tools</title>
+<meta name="description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,賃貸契約前セルフチェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-6/">
+<meta property="og:title" content="賃貸契約前セルフチェックリスト - kusasyu tools">
+<meta property="og:description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="賃貸契約前セルフチェックリスト - kusasyu tools">
+<meta name="twitter:description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "賃貸契約前セルフチェックリスト",
+  "description": "賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-13"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>賃貸契約前セルフチェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>賃貸契約前セルフチェックリスト</h1>
+  <p class="project-name">重説の落とし穴、契約前に即発見ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No</th><th>カテゴリ</th><th>チェック項目</th><th>確認ステータス</th><th>重要度</th><th>金額・条件（記入欄）</th><th>備考・不動産屋への質問テンプレート</th></tr></thead><tbody><tr><td>1</td><td>初期費用</td><td>敷金の金額と返還条件</td><td>未確認</td><td>★★★</td><td></td><td>「敷金の返還時期と、差し引かれる費用の内訳を書面で教えてください」</td></tr><tr><td>2</td><td>初期費用</td><td>礼金の有無と金額</td><td>未確認</td><td>★★☆</td><td></td><td>「礼金の減額交渉は可能ですか？近隣相場では礼金なし物件もありますが」</td></tr><tr><td>3</td><td>初期費用</td><td>仲介手数料の金額（上限：賃料1ヶ月分+税）</td><td>未確認</td><td>★★★</td><td></td><td>「仲介手数料は法定上限の賃料1ヶ月分+税ですか？それとも割引がありますか？」</td></tr><tr><td>4</td><td>初期費用</td><td>鍵交換費用の負担先と金額</td><td>未確認</td><td>★★☆</td><td></td><td>「鍵交換費用はいくらですか？前入居者退去時に貸主負担で交換済みではないですか？」</td></tr><tr><td>5</td><td>初期費用</td><td>消毒・クリーニング費用（任意か必須か）</td><td>未確認</td><td>★★★</td><td></td><td>「室内消毒やクリーニング費用は必須ですか？拒否した場合どうなりますか？」</td></tr><tr><td>6</td><td>月額費用</td><td>管理費・共益費の金額と内訳</td><td>未確認</td><td>★★☆</td><td></td><td>「管理費に含まれるサービス（清掃・ゴミ回収・インターネット等）の内訳を教えてください」</td></tr><tr><td>7</td><td>月額費用</td><td>駐車場・駐輪場の料金と空き状況</td><td>未確認</td><td>★☆☆</td><td></td><td>「駐車場・駐輪場の月額料金と、現在の空き状況を教えてください」</td></tr><tr><td>8</td><td>契約期間</td><td>契約期間と更新料の有無・金額</td><td>未確認</td><td>★★★</td><td></td><td>「更新料はいくらですか？更新時に賃料の値上げ交渉が行われる可能性はありますか？」</td></tr><tr><td>9</td><td>契約期間</td><td>解約予告期間（通常1〜2ヶ月前）</td><td>未確認</td><td>★★★</td><td></td><td>「解約予告は何ヶ月前ですか？予告期間が足りない場合の違約金はいくらですか？」</td></tr><tr><td>10</td><td>契約期間</td><td>短期解約違約金（1年未満解約ペナルティ等）</td><td>未確認</td><td>★★★</td><td></td><td>「入居後1年未満で解約した場合、違約金は発生しますか？金額はいくらですか？」</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"No","カテゴリ","チェック項目","確認ステータス","重要度","金額・条件（記入欄）","備考・不動産屋への質問テンプレート"
+"1","初期費用","敷金の金額と返還条件","未確認","★★★","","「敷金の返還時期と、差し引かれる費用の内訳を書面で教えてください」"
+"2","初期費用","礼金の有無と金額","未確認","★★☆","","「礼金の減額交渉は可能ですか？近隣相場では礼金なし物件もありますが」"
+"3","初期費用","仲介手数料の金額（上限：賃料1ヶ月分+税）","未確認","★★★","","「仲介手数料は法定上限の賃料1ヶ月分+税ですか？それとも割引がありますか？」"
+"4","初期費用","鍵交換費用の負担先と金額","未確認","★★☆","","「鍵交換費用はいくらですか？前入居者退去時に貸主負担で交換済みではないですか？」"
+"5","初期費用","消毒・クリーニング費用（任意か必須か）","未確認","★★★","","「室内消毒やクリーニング費用は必須ですか？拒否した場合どうなりますか？」"
+"6","月額費用","管理費・共益費の金額と内訳","未確認","★★☆","","「管理費に含まれるサービス（清掃・ゴミ回収・インターネット等）の内訳を教えてください」"
+"7","月額費用","駐車場・駐輪場の料金と空き状況","未確認","★☆☆","","「駐車場・駐輪場の月額料金と、現在の空き状況を教えてください」"
+"8","契約期間","契約期間と更新料の有無・金額","未確認","★★★","","「更新料はいくらですか？更新時に賃料の値上げ交渉が行われる可能性はありますか？」"
+"9","契約期間","解約予告期間（通常1〜2ヶ月前）","未確認","★★★","","「解約予告は何ヶ月前ですか？予告期間が足りない場合の違約金はいくらですか？」"
+"10","契約期間","短期解約違約金（1年未満解約ペナルティ等）","未確認","★★★","","「入居後1年未満で解約した場合、違約金は発生しますか？金額はいくらですか？」"
+"11","原状回復","原状回復の範囲と特約の内容","未確認","★★★","","「原状回復特約の具体的な範囲を教えてください。国交省ガイドラインと異なる部分はどこですか？」"
+"12","原状回復","ハウスクリーニング費用の借主負担特約","未確認","★★★","","「退去時クリーニング費用の上限額は決まっていますか？金額を契約書に明記してもらえますか？」"
+"13","設備・修繕","設備（エアコン・給湯器等）の修理負担区分","未確認","★★☆","","「備え付けエアコンや給湯器が故障した場合、修理費用は貸主・借主どちらの負担ですか？」"
+"14","設備・修繕","残置物と設備の区別（前入居者の残し物）","未確認","★★☆","","「この設備一覧に載っていない物（照明・エアコン等）は残置物扱いですか？故障時の扱いは？」"
+"15","禁止事項","ペット飼育・楽器演奏・喫煙の制限","未確認","★★☆","","「ペット・楽器・喫煙に関する禁止事項と、違反時のペナルティを具体的に教えてください」"
+"16","禁止事項","又貸し（転貸）・同居人追加の条件","未確認","★☆☆","","「入居後に同居人が増える場合の届出方法と、追加費用の有無を教えてください」"
+"17","物件リスク","ハザードマップの確認（水害・土砂・地震）","未確認","★★★","","「この物件のハザードマップ上の位置づけ（浸水想定区域・土砂災害警戒区域等）を教えてください」"
+"18","物件リスク","アスベスト調査・耐震診断の有無","未確認","★★☆","","「建物のアスベスト調査や耐震診断は実施済みですか？結果の書面はありますか？」"
+"19","生活環境","ゴミ出しルール・ゴミ置き場の場所と管理状態","未確認","★☆☆","","「ゴミ出し可能な曜日・時間帯と、ゴミ置き場の管理体制（清掃頻度等）を教えてください」"
+"20","生活環境","騒音リスク（線路・幹線道路・隣室の防音性能）","未確認","★★☆","","「近隣の騒音源（線路・道路・工場等）と、建物の遮音等級について教えてください」"`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_賃貸契約前セルフチェックリスト.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

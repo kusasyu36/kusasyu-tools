@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説の危険ワード辞典 - kusasyu tools</title>
+<meta name="description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説の危険ワード辞典">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-7/">
+<meta property="og:title" content="重説の危険ワード辞典 - kusasyu tools">
+<meta property="og:description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説の危険ワード辞典 - kusasyu tools">
+<meta name="twitter:description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説の危険ワード辞典",
+  "description": "賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-13"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説の危険ワード辞典</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説の危険ワード辞典</h1>
+  <p class="project-name">重説の落とし穴、契約前に即発見ツール</p>
+  <div class="content">
+<h1>重説の危険ワード辞典 ― 契約書に潜む15の地雷を「つまりこういうこと」で完全攻略</h1>
+<blockquote>
+<p>不動産の重要事項説明書（重説）には、プロでも見落とす"危険ワード"が潜んでいます。本辞典では、賃貸・売買で頻出する要注意キーワードTOP15を、専門知識ゼロでも分かる言葉に翻訳しました。各項目に「よくあるトラブル事例」と「不動産屋にこう聞け」テンプレートを付けています。</p>
+<p><strong>すべてのワードを一括チェックしたい方は → <a href="#scanner">重説スキャナーツール（無料）</a></strong> にテキストを貼り付けるだけで自動検出できます。</p>
+</blockquote>
+<hr />
+<h2>危険度の見方</h2>
+<table>
+<thead>
+<tr>
+<th>表記</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td>数十万円〜数百万円の損失リスク。必ず確認</td>
+</tr>
+<tr>
+<td>★★☆</td>
+<td>数万円〜数十万円の追加負担の可能性</td>
+</tr>
+<tr>
+<td>★☆☆</td>
+<td>生活の質に影響。事前に知っておくと安心</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. 瑕疵担保免責（かしたんぽめんせき）｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 「物件に欠陥があっても売主は責任を取りません」という意味。雨漏り・シロアリ・傾きが見つかっても、修理費は全額あなた持ち。</p>
+<p><strong>よくあるトラブル事例：</strong> 中古マンション購入後に配管の水漏れが発覚。瑕疵担保免責の特約があったため、修繕費80万円を全額自己負担に。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「瑕疵担保免責とありますが、引渡し後に構造や配管の重大な欠陥が見つかった場合、売主は一切対応しないということですか？インスペクション（建物検査）は実施済みですか？」</p>
+</blockquote>
+<hr />
+<h2>2. 現状有姿（げんじょうゆうし）｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 「今のボロボロの状態のまま引き渡します。直しません」。壁の傷も設備の不具合も、そのまま受け取ることになる。</p>
+<p><strong>よくあるトラブル事例：</strong> 現状有姿で引き渡された戸建てで、入居後にエアコンが動かないと判明。「現状有姿なので」と修理を拒否された。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「現状有姿の範囲を具体的に教えてください。設備の動作確認はしてもらえますか？引渡し前に不具合リストを書面でいただけますか？」</p>
+</blockquote>
+<hr />
+<h2>3. 特約事項（とくやくじこう）｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 法律の原則を上書きする「契約だけの特別ルール」。ここに書かれた内容は標準ルールより優先されるため、最も危険なセクション。</p>
+<p><strong>よくあるトラブル事例：</strong> 特約に「退去時、壁紙全面張替え費用は借主負担」と記載。国交省ガイドラインでは通常損耗は貸主負担だが、特約が有効と判断され約15万円請求された。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「特約事項の各項目について、国交省の原状回復ガイドラインと異なる部分はどこですか？一つずつ説明してください」</p>
+</blockquote>
+<hr />
+<h2>4. 原状回復（げんじょうかいふく）｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 退去時に「入居前の状態に戻せ」というルール。ただし普通に暮らしてできた汚れ（通常損耗）は本来、貸主負担。特約で借主負担にされていないか要注意。</p>
+<p><strong>よくあるトラブル事例：</strong> 6年住んだ部屋の退去時、日焼けした畳と壁紙の張替え費用25万円を請求。本来は経年劣化で貸主負担だが、原状回復特約を根拠に請求された。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「原状回復特約の具体的な範囲を教えてください。国交省ガイドラインと異なる部分はどこですか？」（※1つ目の成果物チェック項目No.11参照）</p>
+</blockquote>
+<hr />
+<h2>5. 心理的瑕疵（しんりてきかし）｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 過去に事故・事件・自殺があった物件。「告知事項あり」とだけ書かれて詳細が不明なケースが多い。</p>
+<p><strong>よくあるトラブル事例：</strong> 「告知事項あり」の記載を確認せずに契約。入居後に隣人から「前の住人が室内で亡くなった」と聞かされた。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「告知事項の具体的な内容を教えてください。事件・事故・自死の有無、発生時期、該当する部屋を書面で回答いただけますか？」</p>
+</blockquote>
+<hr />
+<h2>6. 容認事項（ようにんじこう）｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 「この問題を知った上で買います（借ります）」と、あなたが認めたことにされるリスト。署名後は「聞いてない」と言えなくなる。</p>
+<p><strong>よくあるトラブル事例：</strong> 容認事項に「近隣に墓地あり」と記載。見学時は気づかなかったが、バルコニーから墓地が見える立地だった。容認済みのため解約不可。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「容認事項に記載されている各項目について、現地で実際に確認させてください。特に騒音・臭気・眺望への影響を具体的に教えてください」</p>
+</blockquote>
+<hr />
+<h2>7. 短期解約違約金｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 「1年未満で出ていくなら罰金を払え」という条項。賃料1〜2ヶ月分が相場だが、フリーレント付き物件では更に高額になることも。</p>
+<p><strong>よくあるトラブル事例：</strong> 転勤で入居8ヶ月で解約。違約金として賃料2ヶ月分＋フリーレント1ヶ月分の返還、合計約30万円を請求された。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「入居後1年未満で解約した場合、違約金は発生しますか？金額はいくらですか？」（※チェック項目No.10参照）</p>
+</blockquote>
+<hr />
+<h2>8. 解約予告期間｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 退去の何ヶ月前までに通知が必要かを定めたルール。通常1〜2ヶ月前だが、知らずに直前通知すると余分な家賃が発生する。</p>
+<p><strong>よくあるトラブル事例：</strong> 解約予告期間が2ヶ月前だと知らず、1ヶ月前に通知。住んでいない1ヶ月分の家賃を支払うことに。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「解約予告は何ヶ月前ですか？予告期間が足りない場合の違約金はいくらですか？」（※チェック項目No.9参照）</p>
+</blockquote>
+<hr />
+<h2>9. ハウスクリーニング費用特約｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 「どんなにキレイに使っても、退去時のプロ清掃代はあなたが払ってね」という特約。金額が明記されていない場合は要注意。</p>
+<p><strong>よくあるトラブル事例：</strong> 退去時にクリーニング代として8万円を請求。契約書に金額の明記がなく、相場の2倍近い金額だったが交渉の余地が限られた。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「退去時クリーニング費用の上限額は決まっていますか？金額を契約書に明記してもらえますか？」（※チェック項目No.12参照）</p>
+</blockquote>
+<hr />
+<h2>10. 更新料｜★★★</h2>
+<p><strong>つまりこういうこと：</strong> 契約を延長するたびに払う"継続手数料"。2年ごとに賃料1ヶ月分が一般的だが、地域差が大きい。</p>
+<p><strong>よくあるトラブル事例：</strong> 更新料に加え、更新事務手数料0.5ヶ月分と火災保険更新料を同時請求され、合計で賃料約2ヶ月分が一度に出ていった。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「更新料はいくらですか？更新時に賃料の値上げ交渉が行われる可能性はありますか？」（※チェック項目No.8参照）</p>
+</blockquote>
+<hr />
+<h2>11. 敷金償却（しききんしょうきゃく）｜★★☆</h2>
+<p><strong>つまりこういうこと：</strong> 「敷金の一部は最初から返しません」という意味。敷金2ヶ月・償却1ヶ月なら、どんなにキレイに使っても1ヶ月分は戻らない。</p>
+<p><strong>よくあるトラブル事例：</strong> 敷金2ヶ月分を支払い、退去時に全額返還されると思っていたが、契約書の「敷引き1ヶ月」の記載により1ヶ月分が自動的に差し引かれた。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「敷金の返還時期と、差し引かれる費用の内訳を書面で教えてください」（※チェック項目No.1参照）</p>
+</blockquote>
+<hr />
+<h2>12. 設備と残置物の区別｜★★☆</h2>
+<p><strong>つまりこういうこと：</strong> 「設備」は壊れたら大家が直すもの。「残置物」は前の住人の置き土産で、壊れても自己責任。見た目では区別がつかない。</p>
+<p><strong>よくあるトラブル事例：</strong> 入居時にあったエアコンが故障。修理を依頼したら「あれは前入居者の残置物なので対象外」と言われ、自費で買い替え。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「この設備一覧に載っていない物（照明・エアコン等）は残置物扱いですか？故障時の扱いは？」（※チェック項目No.14参照）</p>
+</blockquote>
+<hr />
+<h2>13. 消毒・クリーニング費用（入居時）｜★★☆</h2>
+<p><strong>つまりこういうこと：</strong> 入居前の室内消毒代。法的に支払い義務はなく、断れるケースが多い。にもかかわらず必須であるかのように請求される。</p>
+<p><strong>よくあるトラブル事例：</strong> 初期費用の見積書に「室内消毒代 2万円」が当然のように含まれていた。任意だと知らず支払った。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「室内消毒やクリーニング費用は必須ですか？拒否した場合どうなりますか？」（※チェック項目No.5参照）</p>
+</blockquote>
+<hr />
+<h2>14. ハザードマップ上の位置づけ｜★★☆</h2>
+<p><strong>つまりこういうこと：</strong> 洪水・土砂崩れ・津波のリスクエリアに物件があるかどうか。2020年の法改正で重説への記載が義務化されたが、さらっと流されることが多い。</p>
+<p><strong>よくあるトラブル事例：</strong> 浸水想定区域内の1階物件を購入。豪雨で床上浸水し、火災保険の水災補償に未加入だったため修繕費200万円が自己負担に。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「この物件のハザードマップ上の位置づけ（浸水想定区域・土砂災害警戒区域等）を教えてください」（※チェック項目No.17参照）</p>
+</blockquote>
+<hr />
+<h2>15. 用途制限・再建築不可｜★★☆</h2>
+<p><strong>つまりこういうこと：</strong> 「この土地には新しく建物を建てられません」または「建て替え時に大幅な制限がかかります」。接道義務を満たさない土地でよく見られ、売却時の資産価値に直撃する。</p>
+<p><strong>よくあるトラブル事例：</strong> 格安の中古戸建てを購入。将来の建て替えを計画していたが、接道義務を満たさない「再建築不可」物件だったため建て替え不能。売却しようにも買い手がつかない。</p>
+<p><strong>不動産屋にこう聞け：</strong></p>
+<blockquote>
+<p>「この物件は再建築可能ですか？接道義務は満たしていますか？用途地域と建ぺい率・容積率の制限を書面で教えてください」</p>
+</blockquote>
+<hr />
+<h2>まとめ：危険ワード早見表</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>危険ワード</th>
+<th>危険度</th>
+<th>一言でいうと</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>瑕疵担保免責</td>
+<td>★★★</td>
+<td>欠陥があっても売主は知らんぷり</td>
+</tr>
+<tr>
+<td>2</td>
+<td>現状有姿</td>
+<td>★★★</td>
+<td>ボロボロのまま引き渡し</td>
+</tr>
+<tr>
+<td>3</td>
+<td>特約事項</td>
+<td>★★★</td>
+<td>法律の原則を上書きする裏ルール</td>
+</tr>
+<tr>
+<td>4</td>
+<td>原状回復</td>
+<td>★★★</td>
+<td>退去時の過剰請求の温床</td>
+</tr>
+<tr>
+<td>5</td>
+<td>心理的瑕疵</td>
+<td>★★★</td>
+<td>事故物件の可能性</td>
+</tr>
+<tr>
+<td>6</td>
+<td>容認事項</td>
+<td>★★★</td>
+<td>署名したら「聞いてない」が通じない</td>
+</tr>
+<tr>
+<td>7</td>
+<td>短期解約違約金</td>
+<td>★★★</td>
+<td>早く出たら罰金</td>
+</tr>
+<tr>
+<td>8</td>
+<td>解約予告期間</td>
+<td>★★★</td>
+<td>知らないと余分な家賃が発生</td>
+</tr>
+<tr>
+<td>9</td>
+<td>クリーニング費用特約</td>
+<td>★★★</td>
+<td>キレイに使っても清掃代は自腹</td>
+</tr>
+<tr>
+<td>10</td>
+<td>更新料</td>
+<td>★★★</td>
+<td>住み続けるための定期課金</td>
+</tr>
+<tr>
+<td>11</td>
+<td>敷金償却</td>
+<td>★★☆</td>
+<td>敷金の一部は最初から返ってこない</td>
+</tr>
+<tr>
+<td>12</td>
+<td>設備と残置物</td>
+<td>★★☆</td>
+<td>壊れても直してもらえない物がある</td>
+</tr>
+<tr>
+<td>13</td>
+<td>消毒費用</td>
+<td>★★☆</td>
+<td>断れるのに必須と思わされる</td>
+</tr>
+<tr>
+<td>14</td>
+<td>ハザードマップ</td>
+<td>★★☆</td>
+<td>災害リスクの確認漏れ</td>
+</tr>
+<tr>
+<td>15</td>
+<td>再建築不可</td>
+<td>★★☆</td>
+<td>建て替えも売却もできない</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>今すぐ自分の重説をチェックしよう</h2>
+<p>本辞典の15ワードを<strong>手作業で探すのは大変</strong>です。<strong><a href="#scanner">重説スキャナーツール</a></strong> なら、重説のテキストを貼り付けるだけで危険ワードを自動検出し、該当箇所をハイライト表示します。</p>
+<p>また、チェック漏れを防ぐために <strong>重説チェックリスト（全20項目）</strong> も合わせてご活用ください。敷金の返還条件（No.1）から騒音リスク（No.20）まで、不動産屋への質問テンプレート付きで一つずつ確認できます。</p>
+<p><strong>契約書にハンコを押す前に、3分だけ時間をください。</strong> その3分が、数十万円の損失を防ぎます。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>重説リスクスキャナー【賃貸版】 - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:18px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:18px}
+textarea{width:100%;height:180px;border:2px solid #cbd5e0;border-radius:8px;padding:12px;font-size:14px;resize:vertical}
+.btn{display:block;width:100%;padding:14px;margin:12px 0;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.scan{background:#3182ce;color:#fff}.scan:hover{background:#2b6cb0}
+.pr{background:#fff;color:#3182ce;border:2px solid #3182ce;margin-top:8px}.pr:hover{background:#ebf8ff}
+.reset{background:#e2e8f0;color:#4a5568}.reset:hover{background:#cbd5e0}
+#result{display:none}
+.score-box{text-align:center;padding:20px;border-radius:12px;margin:16px 0}
+.score-box .grade{font-size:3em;font-weight:900}
+.score-box .label{font-size:1em;margin-top:4px}
+.sA{background:#c6f6d5;color:#22543d}.sB{background:#fefcbf;color:#744210}
+.sC{background:#fed7aa;color:#7b341e}.sD{background:#fed7d7;color:#742a2a}
+.stat{display:flex;justify-content:center;gap:20px;margin:10px 0;font-size:.9em;color:#4a5568}
+.card{background:#fff;border-left:4px solid #e53e3e;border-radius:6px;padding:12px 14px;margin:10px 0;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card.mid{border-color:#dd6b20}.card.low{border-color:#d69e2e}
+.kw{font-weight:700;color:#e53e3e;font-size:.95em}
+.card.mid .kw{color:#dd6b20}.card.low .kw{color:#d69e2e}
+.ex{font-size:.85em;color:#4a5568;margin:4px 0 2px;background:#f7fafc;padding:6px 8px;border-radius:4px}
+.exp{font-size:.9em;margin-top:6px}
+.safe{text-align:center;padding:30px;color:#38a169;font-size:1.1em}
+.hl{background:#fff5f5;padding:2px 4px;border-radius:3px;font-weight:600;color:#c53030}
+@media print{.no-print{display:none!important}body{background:#fff}}
+@media(max-width:600px){h1{font-size:1.15em}textarea{height:140px}.grade{font-size:2.5em!important}}
+</style>
+<meta name="description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説リスクスキャナー【賃貸版】">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-5/">
+<meta property="og:title" content="重説リスクスキャナー【賃貸版】 - kusasyu tools">
+<meta property="og:description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説リスクスキャナー【賃貸版】 - kusasyu tools">
+<meta name="twitter:description" content="賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "重説リスクスキャナー【賃貸版】",
+  "description": "賃貸・売買の重要事項説明書のテキストを貼り付けると、危険な条項・隠れコスト・要注意特約をキーワード解析で自動検出し、平易な日本語で解説するWebツール。B2B向け重説AI作成ツール（MeSHLIFE・スカイネット・Paradis）は業者の作成効率化に特化しているが、買主・借主が『この契約の何が危ないか』を知る",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">重説リスクスキャナー【賃貸版】</span></div>
+<div class="wrap">
+<h1>重説リスクスキャナー【賃貸版】</h1>
+<p class="sub">賃貸の重要事項説明書を貼り付けて、隠れたリスクを即発見</p>
+<div class="no-print">
+<textarea id="inp" placeholder="重要事項説明書のテキストをここに貼り付けてください&#10;&#10;例：退去時には借主の負担でハウスクリーニングを行うものとする…"></textarea>
+<button class="btn scan" onclick="scan()">リスクをスキャンする</button>
+</div>
+<div id="result"></div>
+</div>
+<script>
+const RULES=[
+{k:"原状回復",r:3,t:"退去時に高額な原状回復費用を請求される可能性があります。国交省ガイドラインでは通常損耗は貸主負担が原則です。"},
+{k:"クリーニング",r:2,t:"退去時クリーニング代が借主負担の特約です。金額上限が明記されているか確認しましょう。"},
+{k:"違約金",r:3,t:"契約違反時に違約金が発生します。金額や条件が妥当か必ず確認してください。"},
+{k:"短期解約",r:2,t:"入居後すぐに退去すると違約金（家賃1〜2ヶ月分等）がかかる場合があります。"},
+{k:"更新料",r:2,t:"契約更新時に追加費用が発生します。金額と頻度を確認しましょう。"},
+{k:"更新拒絶",r:3,t:"貸主が契約更新を拒否できる条件です。正当事由なしの更新拒絶は借地借家法で制限されています。"},
+{k:"自動更新",r:1,t:"契約が自動的に更新されます。解約したい場合の手続き期限に注意してください。"},
+{k:"敷金",r:2,t:"敷金の返還条件を確認しましょう。償却（返金なし）の割合に注意が必要です。"},
+{k:"償却",r:3,t:"敷金の一部または全額が返金されない「敷引き」の可能性があります。償却額を確認してください。"},
+{k:"退去予告",r:1,t:"退去時に事前通知が必要です。通常1〜2ヶ月前ですが、期間を過ぎると余分な家賃が発生します。"},
+{k:"連帯保証",r:2,t:"連帯保証人は借主と同等の責任を負います。保証会社利用時は二重負担でないか確認を。"},
+{k:"保証会社",r:1,t:"保証会社の利用が必須の場合、初回・更新の保証料を確認しましょう。"},
+{k:"特約",r:2,t:"標準契約にない特別な条件です。借主に不利な内容が含まれていないか要注意です。"},
+{k:"禁止",r:1,t:"禁止事項の範囲を確認してください。ペット・楽器・同居人など生活に影響する制限がないか要確認。"},
+{k:"設備",r:1,t:"設備の修繕責任の所在を確認しましょう。「残置物」扱いだと故障時に貸主は修理しません。"},
+{k:"免責",r:3,t:"貸主が責任を負わない範囲の条項です。設備故障や災害時の対応が不十分になる恐れがあります。"},
+{k:"賠償",r:2,t:"損害賠償の条件です。過大な賠償範囲が設定されていないか確認が必要です。"},
+{k:"修繕",r:2,t:"修繕費用の負担先を確認してください。小修繕が全て借主負担だと出費がかさみます。"},
+{k:"中途解約",r:2,t:"契約期間中の解約条件です。解約不可や高額な違約金が設定されていないか確認を。"},
+{k:"善管注意義務",r:1,t:"借主には物件を丁寧に扱う義務があります。通常の生活での損耗まで問われることはありません。"},
+{k:"鍵交換",r:1,t:"鍵交換費用が借主負担になっている場合があります。費用の相場は1〜2万円程度です。"}
+];
+function scan(){
+const txt=document.getElementById("inp").value.trim();
+if(!txt){alert("重説テキストを貼り付けてください");return}
+let hits=[];
+RULES.forEach(r=>{
+const re=new RegExp(r.k,"g");let m;
+while((m=re.exec(txt))!==null){
+const s=Math.max(0,m.index-30),e=Math.min(txt.length,m.index+r.k.length+30);
+let ctx=txt.substring(s,e).replace(/\n/g," ");
+ctx=ctx.replace(new RegExp(r.k,"g"),'<span class="hl">'+r.k+"</span>");
+if(s>0)ctx="…"+ctx;if(e<txt.length)ctx+="…";
+hits.push({...r,ctx});
+}
+});
+// dedupe by keyword, keep first
+const seen=new Set();hits=hits.filter(h=>{if(seen.has(h.k))return false;seen.add(h.k);return true});
+const el=document.getElementById("result");
+if(!hits.length){el.innerHTML='<div class="safe">&#10003; 主要なリスクキーワードは検出されませんでした。<br><small>※ 全てのリスクを網羅するものではありません</small></div>';el.style.display="block";return}
+let total=hits.reduce((s,h)=>s+h.r,0);
+let g,gc,gl;
+if(total<=4){g="A";gc="sA";gl="低リスク — 大きな問題は見当たりません"}
+else if(total<=8){g="B";gc="sB";gl="やや注意 — いくつか確認すべき点があります"}
+else if(total<=14){g="C";gc="sC";gl="要注意 — 不利な条項が複数見つかりました"}
+else{g="D";gc="sD";gl="高リスク — 契約前に専門家への相談を推奨します"}
+let h3=hits.filter(x=>x.r===3).length,h2=hits.filter(x=>x.r===2).length,h1=hits.filter(x=>x.r===1).length;
+let html='<div class="score-box '+gc+'"><div class="grade">'+g+'</div><div class="label">'+gl+'</div></div>';
+html+='<div class="stat"><span>&#9888; 高 '+h3+'件</span><span>&#9650; 中 '+h2+'件</span><span>&#9679; 低 '+h1+'件</span></div>';
+hits.sort((a,b)=>b.r-a.r);
+hits.forEach(h=>{
+let cl=h.r===3?"card":h.r===2?"card mid":"card low";
+let lv=h.r===3?"&#9888; 高リスク":h.r===2?"&#9650; 中リスク":"&#9679; 低リスク";
+html+='<div class="'+cl+'"><div class="kw">'+lv+'：「'+h.k+'」を検出</div><div class="ex">'+h.ctx+'</div><div class="exp">&#128161; つまりこういうこと → '+h.t+'</div></div>';
+});
+html+='<p style="text-align:center;font-size:.75em;color:#a0aec0;margin-top:16px">※本ツールはキーワード解析による簡易診断です。法的助言ではありません。</p>';
+html+='<div class="no-print"><button class="btn pr" onclick="window.print()">結果を印刷する</button><button class="btn reset" onclick="rs()">やり直す</button></div>';
+el.innerHTML=html;el.style.display="block";el.scrollIntoView({behavior:"smooth"})
+}
+function rs(){document.getElementById("inp").value="";document.getElementById("result").style.display="none"}
+</script>
+</body>
+</html>

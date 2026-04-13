@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>契約書リスクチェッカー - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:0 12px}
+header{background:linear-gradient(135deg,#1e3a5f,#2d5a87);color:#fff;padding:20px;text-align:center}
+header h1{font-size:1.3em}
+header p{font-size:.78em;opacity:.8;margin-top:4px}
+.note{background:#fffbeb;border-left:4px solid #f59e0b;padding:10px 14px;margin:16px 0;font-size:.82em;border-radius:0 6px 6px 0}
+.input-section{margin:16px 0}
+textarea{width:100%;height:200px;padding:12px;border:2px solid #cbd5e0;border-radius:8px;font-size:.9em;resize:vertical;font-family:inherit}
+textarea:focus{border-color:#2d5a87;outline:none}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:10px;transition:.2s}
+.btn-p{background:#1e3a5f;color:#fff}.btn-p:hover{background:#2d5a87}
+.btn-s{background:#e2e8f0;color:#1a202c;margin-top:8px}.btn-s:hover{background:#cbd5e0}
+#result{display:none;margin:16px 0}
+.summary{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.stat{flex:1;min-width:80px;padding:12px;border-radius:8px;text-align:center;color:#fff;font-weight:700}
+.stat span{display:block;font-size:1.8em}
+.s-h{background:#dc2626}.s-m{background:#f59e0b}.s-l{background:#2563eb}.s-ok{background:#16a34a}
+.finding{background:#fff;border-radius:8px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.f-head{padding:12px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.f-head:hover{background:#f7fafc}
+.badge{padding:2px 10px;border-radius:12px;font-size:.75em;font-weight:700;color:#fff;white-space:nowrap}
+.b-h{background:#dc2626}.b-m{background:#f59e0b}.b-l{background:#2563eb}
+.f-name{font-weight:700;font-size:.92em;flex:1}
+.arrow{transition:.2s;font-size:.8em}
+.f-body{display:none;padding:0 16px 14px;font-size:.85em;border-top:1px solid #edf2f7}
+.f-body.open{display:block}
+.arrow.open{transform:rotate(90deg)}
+.matched{background:#fef2f2;border-left:3px solid #dc2626;padding:6px 10px;margin:8px 0;border-radius:0 4px 4px 0;font-size:.88em;word-break:break-all}
+.matched.m{background:#fffbeb;border-color:#f59e0b}.matched.l{background:#eff6ff;border-color:#2563eb}
+.explain{margin:8px 0}.fix{background:#f0fdf4;padding:8px 12px;border-radius:6px;margin-top:6px}
+.fix b{color:#16a34a}
+.no-risk{text-align:center;padding:40px;background:#fff;border-radius:8px}
+.no-risk span{font-size:2em;display:block;margin-bottom:8px}
+footer{text-align:center;padding:20px;font-size:.75em;color:#718096}
+</style>
+<meta name="description" content="法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,契約書リスクチェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-26/">
+<meta property="og:title" content="契約書リスクチェッカー - kusasyu tools">
+<meta property="og:description" content="法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-26/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約書リスクチェッカー - kusasyu tools">
+<meta name="twitter:description" content="法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "契約書リスクチェッカー",
+  "description": "法務担当者がいない中小企業・スタートアップが、チャット形式の質問に答えるだけでNDA・業務委託契約書・利用規約のドラフトを自動生成できるHTMLツール。加えて、取引先から受け取った契約書の危険条項を検出するリスクスキャナーと、契約の更新期限を一元管理する台帳を提供する。海外ではGenie AIが30,000ユ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-26/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">契約書リスクチェッカー</span></div>
+<header>
+<h1>契約書リスクチェッカー</h1>
+<p>AI契約書ドラフター ─ 取引先契約書の危険条項を30項目で自動検出</p>
+</header>
+<div class="wrap">
+<div class="note">本ツールはJavaScriptによるキーワードパターンマッチングで危険条項を検出します。AIによる判断ではありません。検出結果は参考情報であり、<b>重要な契約は必ず弁護士等の専門家にご相談ください。</b></div>
+<div class="input-section">
+<label style="font-weight:700;display:block;margin-bottom:6px">契約書テキストを貼り付けてください</label>
+<textarea id="src" placeholder="取引先から受け取った契約書の全文をここに貼り付けてください..."></textarea>
+<button class="btn btn-p" onclick="scan()">リスクチェック開始（30項目）</button>
+<button class="btn btn-s" onclick="loadSample()">サンプル契約書を読み込む</button>
+</div>
+<div id="result"></div>
+</div>
+<footer>契約書リスクチェッカー — AI契約書ドラフター提供<br>本ツールの検出結果は法的助言ではありません。最終判断は弁護士にご確認ください。</footer>
+<script>
+var P=[
+{n:"損害賠償上限の未設定",r:"h",k:["損害賠償.*(?:上限|制限).*(?:なし|ない|なく|設けない|定めない)","一切の損害を賠償","損害の全額を賠償","損害賠償の額を制限しない","無制限.*賠償"],w:"賠償額に上限がないと、些細な契約違反でも際限なく請求される恐れがあります。",f:"「損害賠償の上限は契約金額（または年間取引額）を上限とする」条項の追加を求めましょう。"},
+{n:"一方的解除権",r:"h",k:["(?:甲|発注者|委託者)は.*(?:いつでも|何時でも|理由.*問わず|任意に|自由に).*(?:解除|解約|終了)","催告.*(?:なし|なく|要せず|することなく).*解除","無催告.*解除","直ちに.*(?:解除|解約)できる"],w:"相手方だけが自由に契約を解除できると、突然取引を打ち切られるリスクがあります。",f:"「双方同条件での解除権」または「解除の30日前書面通知」を追加しましょう。"},
+{n:"知的財産権の包括的帰属",r:"h",k:["(?:一切|全て|すべて|全部)の.*(?:知的財産|著作権|特許|知財).*(?:甲|発注者|委託者)に(?:帰属|移転|譲渡)","著作権法第27条.*28条","著作者人格権.*(?:行使しない|行使せず|不行使)"],w:"成果物だけでなく、過程で生まれた全知財が相手に渡ると自社の技術蓄積がなくなります。",f:"「本業務の成果物に限り帰属」「既存知財は除外」「著作者人格権不行使の削除」を要求しましょう。"},
+{n:"競業避止義務",r:"h",k:["競業(?:避止|禁止)","競合.*(?:事業|業務).*(?:行わない|行ってはならない|禁止|従事しない)","同種.*(?:事業|業務|サービス).*(?:禁止|制限|行わない)"],w:"契約終了後も同業種の事業ができなくなり、本業に支障が出る可能性があります。",f:"「競業避止期間は6か月以内」「地理的範囲を限定」「正当な対価の支払い」を求めましょう。"},
+{n:"無限連帯保証・個人保証",r:"h",k:["連帯保証","個人保証","代表者.*(?:保証|連帯)","連帯して.*(?:責任|賠償|保証)"],w:"会社の債務を個人で無限に保証することになり、最悪の場合個人資産を失います。",f:"保証条項の削除を最優先で求めましょう。やむを得ない場合は「保証上限額の設定」と「保証期間の限定」を。"},
+{n:"瑕疵担保・契約不適合の無期限責任",r:"h",k:["(?:瑕疵|契約不適合).*(?:期間|期限).*(?:なし|ない|なく|制限.*ない|定めない)","永続.*(?:瑕疵|担保|保証)","(?:瑕疵|不適合).*(?:いつまでも|無期限|永久)"],w:"納品後いつまでも無償修正を求められる可能性があり、事業継続の大きなリスクです。",f:"「契約不適合の通知期限は検収後6か月（最長1年）」と明記を求めましょう。"},
+{n:"過大な違約金・損害賠償の予定",r:"h",k:["違約金.*(?:\\d{2,}%|[２-９][０-９]%|[1-9]\\d{2,}万|[１-９][０-９]{2,}万)","賠償.*(?:予定|予め定め).*(?:倍|200%|300%)"],w:"契約違反時に売上規模に見合わない高額を支払わされる恐れがあります。",f:"「違約金は契約金額の10〜20%を上限」など合理的な範囲への修正を求めましょう。"},
+{n:"反社会的勢力排除条項の欠如",r:"h",k:["(?!.*反社)(?!.*暴力団)^[\\s\\S]*$"],w:"反社条項がないと、相手が反社と判明しても契約解除の根拠がなくなります。",f:"反社排除条項（表明保証＋即時解除＋損害賠償免責）の追加を求めましょう。",custom:true},
+{n:"秘密保持義務の残存期間が過長",r:"m",k:["秘密.*(?:保持|守秘).*(?:永久|無期限|期間.*(?:なし|ない|定めない))","(?:5|6|7|8|9|10|５|６|７|８|９|１０)年間.*秘密","契約終了後.*(?:5|6|7|8|9|10)年"],w:"情報管理の義務が長期間残り、業務負担が続きます。IT業界では技術の陳腐化が早く、3年超は過長です。",f:"「秘密保持期間は契約終了後2〜3年」への短縮を求めましょう。"},
+{n:"秘密情報の定義が広すぎる",r:"m",k:["(?:一切|全て|すべて)の(?:情報|資料|データ).*秘密","業務.*(?:関連|関係).*(?:一切|全て|すべて).*秘密","口頭.*(?:含む|含め).*秘密"],w:"何でも秘密情報とされると、自社の通常業務にまで制約がかかります。",f:"「秘密情報は秘密と明示したものに限定」「口頭開示は14日以内に書面確認」に修正を。"},
+{n:"自動更新条項",r:"m",k:["自動.*(?:更新|延長|継続)","(?:申し出|申出|通知).*(?:ない|なき|ないとき).*(?:同一|同条件).*(?:更新|延長|継続)","(?:1|2|１|２)年間.*(?:自動|更新)"],w:"更新拒否の通知を忘れると、望まない条件で契約が続きます。",f:"「更新の30日前までに書面通知で終了可能」を明記し、通知期限をカレンダー管理しましょう。"},
+{n:"準拠法が相手方所在地",r:"m",k:["準拠法.*(?:米国|アメリカ|中国|韓国|シンガポール|香港|英国|イギリス|カリフォルニア|ニューヨーク|デラウェア)","(?:foreign|governing).*law"],w:"海外法が準拠法だと、紛争時に現地弁護士が必要になり莫大なコストがかかります。",f:"「準拠法は日本法」への変更を求めましょう。国際取引でも日本企業同士なら日本法が合理的です。"},
+{n:"管轄裁判所が相手方所在地",r:"m",k:["(?:甲|発注者|委託者)の(?:本店|本社).*(?:所在地|所在).*(?:管轄|裁判所)","(?:東京|大阪|名古屋|福岡|札幌|仙台|横浜|さいたま|千葉|神戸).*(?:地方裁判所|地裁).*(?:専属|合意)"],w:"遠方の裁判所が管轄だと、紛争時の移動コスト・時間が大きな負担になります。",f:"「被告の本店所在地」または「自社に近い裁判所」への変更を求めましょう。"},
+{n:"再委託の無制限許可",r:"m",k:["再委託.*(?:自由|制限.*ない|できる|妨げない)","(?:第三者|下請).*(?:委託|発注).*(?:自由|できる)"],w:"品質管理が行き届かない第三者に作業が回され、情報漏えいリスクも高まります。",f:"「再委託は事前の書面承諾を要する」「再委託先にも同等の義務を課す」条項を求めましょう。"},
+{n:"検収条件の不明確",r:"m",k:["検収.*(?:基準|条件|方法).*(?:甲|発注者|委託者).*(?:定める|判断|決定)","(?:甲|発注者).*(?:合理的.*理由.*なく|理由.*問わず).*(?:不合格|やり直し)"],w:"相手の主観だけで不合格にされ、何度もやり直しを要求される可能性があります。",f:"「検収基準は仕様書に基づく」「検収期間は14日以内」「不合格理由の書面通知」を明記しましょう。"},
+{n:"支払条件が不利",r:"m",k:["(?:支払|払い).*(?:90日|120日|180日|手形|でんさい)","(?:検収|納品).*(?:翌々月|3[ヶか]月|4[ヶか]月).*(?:末|払い)"],w:"支払いサイトが長すぎると資金繰りが悪化し、事業継続が困難になります。",f:"「月末締め翌月末払い（30日サイト）」が標準。60日超は下請法違反の可能性もあります。"},
+{n:"中途解約時の高額違約金",r:"m",k:["(?:中途|途中|期間内).*(?:解約|解除).*(?:残期間|残額|全額|違約)","(?:残存|残り).*(?:期間|契約料).*(?:全額|一括).*(?:支払|払い)"],w:"契約途中で解約すると残期間分を全額請求され、サービス不要でも払い続ける羽目になります。",f:"「中途解約の違約金は残期間の50%以内」または「3か月分を上限」への修正を求めましょう。"},
+{n:"契約上の地位の一方的譲渡",r:"m",k:["(?:甲|発注者|委託者).*(?:地位|権利義務).*(?:譲渡|移転).*できる","(?:事前.*(?:承諾|同意).*(?:不要|要しない|なく)).*(?:譲渡|移転)"],w:"知らない間に契約相手が変わり、想定外の企業と取引させられるリスクがあります。",f:"「地位の譲渡は相手方の事前書面承諾を要する」に変更しましょう。"},
+{n:"不可抗力条項の偏り",r:"l",k:["不可抗力.*(?:甲|発注者|委託者).*(?:のみ|に限り|だけ).*(?:免責|免除)","不可抗力.*(?:乙|受注者|受託者).*(?:含まない|適用.*ない|除く)"],w:"天災等の不可抗力時に一方だけが免責されるのは不公平です。",f:"「双方同条件での不可抗力免責」に修正を。対象事由のリストも確認しましょう。"},
+{n:"通知方法の制限",r:"l",k:["通知.*(?:書留郵便|配達証明).*(?:のみ|限る|に限定)","(?:メール|電子メール|電磁的).*(?:認めない|不可|効力.*ない)"],w:"書留郵便のみだと緊急時の対応が遅れます。",f:"「電子メールまたは書面による通知」を有効な通知方法として追加しましょう。"},
+{n:"権利不行使と権利放棄",r:"l",k:["権利.*(?:行使しない|不行使).*(?:放棄|みなす|みなされ)","(?:一度|一回).*(?:行使しな|放棄).*(?:その後|将来|以後)"],w:"一度権利を行使しなかっただけで、将来の権利まで放棄したとみなされる恐れがあります。",f:"「権利の不行使は放棄とみなさない」条項を追加しましょう。"},
+{n:"遅延損害金の高料率",r:"l",k:["遅延損害金.*(?:年|年率).*(?:1[5-9]|[2-9][0-9]|[１][５-９]|[２-９][０-９]).*%","遅延.*(?:14\\.6|14．6)%"],w:"年14.6%（法定上限）を超える料率は無効になる場合があり、トラブルの原因です。",f:"「年3%（民法法定利率）」または「年14.6%以内」であることを確認しましょう。"},
+{n:"協議条項のみで紛争解決手段なし",r:"l",k:["(?:協議|話し合い).*(?:より|をもって|にて|によって).*(?:解決|処理).*(?:。|$)"],w:"「協議で解決」だけでは、協議が決裂した場合の手段がありません。",f:"「協議不調の場合は○○地方裁判所を管轄裁判所とする」を追加しましょう。",custom:true},
+{n:"完全合意条項",r:"l",k:["完全.*合意","(?:本契約|本書).*(?:全て|すべて|一切).*(?:合意|約束).*(?:構成|含む|優先)","(?:口頭|従前).*(?:合意|約束).*(?:無効|効力.*ない|優先しない)"],w:"契約書以外の口頭約束が全て無効になります。メール等での追加合意も効力を失います。",f:"確認済みの口頭合意があれば契約書に明記するか、「書面による変更合意は有効」と追記しましょう。"},
+{n:"契約変更に相手方の同意のみ必要",r:"l",k:["(?:甲|発注者|委託者).*(?:変更|改定|修正).*できる.*(?:乙|受注者|受託者).*(?:従う|応じる|異議.*(?:ない|なく))"],w:"一方的に契約条件を変更されても異議を唱えられなくなります。",f:"「変更は双方の書面合意による」に修正しましょう。"},
+{n:"第三者への開示義務",r:"l",k:["(?:甲|発注者|委託者).*(?:求め|要求|指示).*(?:第三者|関連会社|グループ).*(?:開示|提供|共有)"],w:"自社の情報が意図しない第三者に共有される可能性があります。",f:"「第三者開示は事前の書面同意を要する」「NDA締結を条件とする」に修正しましょう。"},
+{n:"成果物の利用範囲が無制限",r:"l",k:["(?:成果物|納品物|制作物).*(?:目的.*(?:問わず|制限.*ない)|一切の.*(?:利用|使用).*(?:できる|可能))"],w:"想定外の用途で成果物を使われても対抗できなくなります。",f:"「利用目的は本業務の範囲に限る」「二次利用は別途協議」と明記しましょう。"},
+{n:"権利帰属の時期が不明確",r:"l",k:["(?:知的財産|著作権|権利).*(?:発生.*(?:時|と同時に)|当然に|自動的に).*(?:帰属|移転)"],w:"対価支払い前でも権利が移転してしまい、未払いでも取り戻せなくなります。",f:"「対価の完済をもって権利移転」と支払いと連動させましょう。"},
+{n:"報告義務の過度な負担",r:"l",k:["(?:日報|日次|毎日).*(?:報告|レポート).*(?:義務|しなければ|する)","(?:週次|月次).*(?:報告|レポート).*(?:詳細|全ての|一切の)"],w:"過度な報告義務は本来の業務時間を圧迫します。",f:"「月次報告（進捗・課題の概要）」程度に簡素化を求めましょう。"},
+{n:"合意管轄の定めなし",r:"l",k:["(?!.*管轄)(?!.*裁判所)^[\\s\\S]*$"],w:"管轄裁判所の定めがないと、相手方の所在地で訴訟を起こされる可能性があります。",f:"「○○地方裁判所を第一審の専属的合意管轄裁判所とする」を追加しましょう。",custom:true}
+];
+function scan(){
+var t=document.getElementById("src").value.trim();
+if(!t){alert("契約書テキストを貼り付けてください");return}
+var hs=[],ms=[],ls=[],noAnti=true,noJuris=true,noConsult=true;
+t.replace(/\n/g," ");
+for(var i=0;i<P.length;i++){
+var p=P[i],found=[];
+if(p.custom){
+if(p.n.indexOf("反社")>-1){noAnti=!/反社|暴力団/.test(t);if(!noAnti)continue;found=["（条項が見つかりません）"];}
+else if(p.n.indexOf("合意管轄")>-1){noJuris=!/管轄|裁判所/.test(t);if(!noJuris)continue;found=["（条項が見つかりません）"];}
+else if(p.n.indexOf("協議")>-1){
+var cm=t.match(/協議[^。]{0,30}解決/g);
+if(cm&&!/管轄|裁判所|仲裁/.test(t)){found=cm;}else continue;
+}
+}else{
+for(var j=0;j<p.k.length;j++){
+try{var re=new RegExp(p.k[j],"gi");var m=t.match(re);if(m)found=found.concat(m);}catch(e){}
+}
+}
+if(found.length==0)continue;
+var obj={n:p.n,r:p.r,w:p.w,f:p.f,hits:found.slice(0,3)};
+if(p.r=="h")hs.push(obj);else if(p.r=="m")ms.push(obj);else ls.push(obj);
+}
+var all=hs.concat(ms,ls),el=document.getElementById("result");
+if(all.length==0){
+el.innerHTML='<div class="no-risk"><span>&#10003;</span><b>検出された危険パターンはありません</b><p style="margin-top:8px;color:#718096;font-size:.9em">30項目のパターンチェックで問題は見つかりませんでした。<br>ただし、本ツールで検出できない問題が存在する可能性があります。</p></div>';
+el.style.display="block";return;
+}
+var h='<div class="summary"><div class="stat s-h"><span>'+hs.length+'</span>高リスク</div><div class="stat s-m"><span>'+ms.length+'</span>中リスク</div><div class="stat s-l"><span>'+ls.length+'</span>低リスク</div><div class="stat s-ok"><span>'+(30-all.length)+'</span>問題なし</div></div>';
+for(var i=0;i<all.length;i++){
+var a=all[i],bc=a.r=="h"?"b-h":a.r=="m"?"b-m":"b-l",mc=a.r=="h"?"":a.r=="m"?" m":" l",rl=a.r=="h"?"高":"中";if(a.r=="l")rl="低";
+h+='<div class="finding"><div class="f-head" onclick="tog(this)"><span class="badge '+bc+'">'+rl+'</span><span class="f-name">'+a.n+'</span><span class="arrow">&#9654;</span></div><div class="f-body">';
+for(var j=0;j<a.hits.length;j++) h+='<div class="matched'+mc+'">&#128269; '+esc(a.hits[j])+'</div>';
+h+='<div class="explain">&#9888;&#65039; <b>なぜ危険か：</b>'+a.w+'</div><div class="fix"><b>&#128295; 修正案：</b>'+a.f+'</div></div></div>';
+}
+h+='<div class="note" style="margin-top:16px">&#9888; 本結果はキーワードパターンマッチングによる参考情報です。重要な契約は必ず弁護士にご相談ください。</div>';
+el.innerHTML=h;el.style.display="block";el.scrollIntoView({behavior:"smooth"});
+}
+function tog(el){el.nextElementSibling.classList.toggle("open");el.querySelector(".arrow").classList.toggle("open")}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function loadSample(){document.getElementById("src").value="業務委託基本契約書\n\n第1条（目的）\n甲は乙に対し、以下の業務を委託し、乙はこれを受託する。\n\n第5条（知的財産権）\n本業務により生じた一切の知的財産権（著作権法第27条及び第28条の権利を含む）は、成果物の完成と同時に甲に帰属するものとする。乙は著作者人格権を行使しないものとする。\n\n第7条（秘密保持）\n乙は、本業務に関連して甲から開示された一切の情報及び本業務の遂行過程で知り得た全ての情報を秘密情報として取り扱い、契約終了後も永久にこれを保持するものとする。口頭による開示も含むものとする。\n\n第8条（損害賠償）\n乙が本契約に違反した場合、乙は甲に生じた一切の損害を賠償するものとし、損害賠償の額を制限しないものとする。違約金として契約金額の200%を損害賠償の予定額とする。\n\n第9条（競業避止）\n乙は、本契約期間中及び契約終了後3年間、甲と競合する事業を行ってはならない。\n\n第10条（解除）\n甲は、理由の如何を問わず、催告することなく直ちに本契約を解除できるものとする。乙は中途解約する場合、残存期間の契約料全額を一括して支払うものとする。\n\n第11条（再委託）\n甲は本業務の全部又は一部を自由に第三者に再委託できるものとする。\n\n第12条（検収）\n成果物の検収基準は甲が定めるものとし、甲が合理的理由なく不合格としても乙は異議を述べないものとする。\n\n第13条（支払）\n業務委託料の支払いは、検収完了の翌々月末日に手形にて支払うものとする。\n\n第14条（自動更新）\n本契約の有効期間は1年間とし、期間満了の3ヶ月前までに書面による申し出がない場合、同一条件にて自動的に1年間更新されるものとする。\n\n第15条（連帯保証）\n乙の代表者は、本契約に基づく乙の一切の債務について連帯して保証するものとする。\n\n第16条（協議）\n本契約に定めなき事項は、甲乙協議により解決するものとする。";
+document.getElementById("src").scrollIntoView({behavior:"smooth"});}
+</script>
+</body>
+</html>

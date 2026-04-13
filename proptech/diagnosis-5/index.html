@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件収支＋空室コスト管理シート - kusasyu tools</title>
+<meta name="description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件収支＋空室コスト管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-5/">
+<meta property="og:title" content="物件収支＋空室コスト管理シート - kusasyu tools">
+<meta property="og:description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件収支＋空室コスト管理シート - kusasyu tools">
+<meta name="twitter:description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "物件収支＋空室コスト管理シート",
+  "description": "5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-5/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-12"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>物件収支＋空室コスト管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>物件収支＋空室コスト管理シート</h1>
+  <p class="project-name">空室が埋まらない？AIリスク診断＆改善提案</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管理年月</th><th>物件名</th><th>所在地</th><th>築年数(年)</th><th>間取り</th><th>専有面積(㎡)</th><th>現行賃料(円)</th><th>周辺相場賃料(円)</th><th>相場乖離率(%)</th><th>空室期間(月)</th><th>月額管理費(円)</th><th>月額修繕積立金(円)</th><th>月額ローン返済額(円)</th><th>固定資産税_月額按分(円)</th><th>月額固定費合計(円)</th><th>当月賃料収入(円)</th><th>当月収支(円)</th><th>空室1ヶ月実質コスト(円)</th><th>累計空室損失(円)</th><th>損益分岐値下げ額(円/月)</th><th>損益分岐値下げ率(%)</th><th>空室リスクスコア</th><th>改善優先アクション</th></tr></thead><tbody><tr><td>2026/04</td><td>グランハイツ桜丘201</td><td>東京都世田谷区</td><td>22</td><td>1LDK</td><td>35</td><td>85000</td><td>78000</td><td>=ROUND((G2-H2)/H2*100</td><td>1)</td><td>4</td><td>8500</td><td>6800</td><td>35000</td><td>5200</td><td>=K2+L2+M2+N2</td><td>0</td><td>=P2-O2</td><td>=G2+O2</td><td>=J2*R2</td><td>=ROUND(J2*G2/12</td><td>0)</td><td>=ROUND(T2/G2*100</td><td>1)</td><td>72</td><td>賃料改定</td></tr><tr><td>2026/04</td><td>メゾンドール練馬305</td><td>東京都練馬区</td><td>18</td><td>2DK</td><td>42</td><td>72000</td><td>70000</td><td>=ROUND((G3-H3)/H3*100</td><td>1)</td><td>3</td><td>7200</td><td>5500</td><td>28000</td><td>4800</td><td>=K3+L3+M3+N3</td><td>0</td><td>=P3-O3</td><td>=G3+O3</td><td>=J3*R3</td><td>=ROUND(J3*G3/12</td><td>0)</td><td>=ROUND(T3/G3*100</td><td>1)</td><td>58</td><td>募集条件変更</td></tr><tr><td>2026/04</td><td>リバーサイド川崎102</td><td>神奈川県川崎市</td><td>25</td><td>1K</td><td>22</td><td>58000</td><td>52000</td><td>=ROUND((G4-H4)/H4*100</td><td>1)</td><td>6</td><td>5800</td><td>4500</td><td>22000</td><td>3800</td><td>=K4+L4+M4+N4</td><td>0</td><td>=P4-O4</td><td>=G4+O4</td><td>=J4*R4</td><td>=ROUND(J4*G4/12</td><td>0)</td><td>=ROUND(T4/G4*100</td><td>1)</td><td>85</td><td>賃料改定+リノベ</td></tr><tr><td>2026/04</td><td>サンライズ横浜401</td><td>神奈川県横浜市</td><td>16</td><td>2LDK</td><td>55</td><td>115000</td><td>112000</td><td>=ROUND((G5-H5)/H5*100</td><td>1)</td><td>2</td><td>11500</td><td>8200</td><td>48000</td><td>7500</td><td>=K5+L5+M5+N5</td><td>0</td><td>=P5-O5</td><td>=G5+O5</td><td>=J5*R5</td><td>=ROUND(J5*G5/12</td><td>0)</td><td>=ROUND(T5/G5*100</td><td>1)</td><td>42</td><td>募集条件変更</td></tr><tr><td>2026/04</td><td>コーポ松戸203</td><td>千葉県松戸市</td><td>30</td><td>3DK</td><td>50</td><td>68000</td><td>60000</td><td>=ROUND((G6-H6)/H6*100</td><td>1)</td><td>8</td><td>6800</td><td>5200</td><td>18000</td><td>4200</td><td>=K6+L6+M6+N6</td><td>0</td><td>=P6-O6</td><td>=G6+O6</td><td>=J6*R6</td><td>=ROUND(J6*G6/12</td><td>0)</td><td>=ROUND(T6/G6*100</td><td>1)</td><td>93</td><td>リノベ+賃料改定</td></tr><tr><td>ポートフォリオ合計</td><td></td><td></td><td></td><td></td><td></td><td>=SUM(G2:G6)</td><td></td><td></td><td>=ROUND(AVERAGE(J2:J6)</td><td>1)</td><td>=SUM(K2:K6)</td><td>=SUM(L2:L6)</td><td>=SUM(M2:M6)</td><td>=SUM(N2:N6)</td><td>=SUM(O2:O6)</td><td>=SUM(P2:P6)</td><td>=SUM(Q2:Q6)</td><td></td><td>=SUM(S2:S6)</td><td></td><td></td><td>=ROUND(AVERAGE(V2:V6)</td><td>0)</td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管理年月,物件名,所在地,築年数(年),間取り,専有面積(㎡),現行賃料(円),周辺相場賃料(円),相場乖離率(%),空室期間(月),月額管理費(円),月額修繕積立金(円),月額ローン返済額(円),固定資産税_月額按分(円),月額固定費合計(円),当月賃料収入(円),当月収支(円),空室1ヶ月実質コスト(円),累計空室損失(円),損益分岐値下げ額(円/月),損益分岐値下げ率(%),空室リスクスコア,改善優先アクション
+2026/04,グランハイツ桜丘201,東京都世田谷区,22,1LDK,35,85000,78000,=ROUND((G2-H2)/H2*100,1),4,8500,6800,35000,5200,=K2+L2+M2+N2,0,=P2-O2,=G2+O2,=J2*R2,=ROUND(J2*G2/12,0),=ROUND(T2/G2*100,1),72,賃料改定
+2026/04,メゾンドール練馬305,東京都練馬区,18,2DK,42,72000,70000,=ROUND((G3-H3)/H3*100,1),3,7200,5500,28000,4800,=K3+L3+M3+N3,0,=P3-O3,=G3+O3,=J3*R3,=ROUND(J3*G3/12,0),=ROUND(T3/G3*100,1),58,募集条件変更
+2026/04,リバーサイド川崎102,神奈川県川崎市,25,1K,22,58000,52000,=ROUND((G4-H4)/H4*100,1),6,5800,4500,22000,3800,=K4+L4+M4+N4,0,=P4-O4,=G4+O4,=J4*R4,=ROUND(J4*G4/12,0),=ROUND(T4/G4*100,1),85,賃料改定+リノベ
+2026/04,サンライズ横浜401,神奈川県横浜市,16,2LDK,55,115000,112000,=ROUND((G5-H5)/H5*100,1),2,11500,8200,48000,7500,=K5+L5+M5+N5,0,=P5-O5,=G5+O5,=J5*R5,=ROUND(J5*G5/12,0),=ROUND(T5/G5*100,1),42,募集条件変更
+2026/04,コーポ松戸203,千葉県松戸市,30,3DK,50,68000,60000,=ROUND((G6-H6)/H6*100,1),8,6800,5200,18000,4200,=K6+L6+M6+N6,0,=P6-O6,=G6+O6,=J6*R6,=ROUND(J6*G6/12,0),=ROUND(T6/G6*100,1),93,リノベ+賃料改定
+ポートフォリオ合計,,,,,,=SUM(G2:G6),,,=ROUND(AVERAGE(J2:J6),1),=SUM(K2:K6),=SUM(L2:L6),=SUM(M2:M6),=SUM(N2:N6),=SUM(O2:O6),=SUM(P2:P6),=SUM(Q2:Q6),,=SUM(S2:S6),,,=ROUND(AVERAGE(V2:V6),0),`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_物件収支＋空室コスト管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

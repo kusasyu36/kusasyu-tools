@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>データで決める空室改善アクションガイド - kusasyu tools</title>
+<meta name="description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,データで決める空室改善アクションガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-6/">
+<meta property="og:title" content="データで決める空室改善アクションガイド - kusasyu tools">
+<meta property="og:description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="データで決める空室改善アクションガイド - kusasyu tools">
+<meta name="twitter:description" content="5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "データで決める空室改善アクションガイド",
+  "description": "5〜30戸保有の個人不動産オーナー向けに、物件の住所・築年数・現行賃料・空室期間を入力すると、周辺相場との乖離率・築年数による空室リスクスコア（100点満点）・改善アクションの優先順位（賃料改定/リノベ/募集条件変更）をAIが即座に提示するHTMLダッシュボードツールを作る。加えて、月次で物件収支と空室コスト",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-12"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>データで決める空室改善アクションガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>データで決める空室改善アクションガイド</h1>
+  <p class="project-name">空室が埋まらない？AIリスク診断＆改善提案</p>
+  <div class="content">
+<p>START: 空室が発生している
+  │
+  ▼
+【STEP 1】相場乖離率を確認
+  │
+  ├─ 乖離率 5%以上 ──────────────────┐
+  │  （相場より高い）                  │
+  │                                    ▼
+  │                          【STEP 2】築年数を確認
+  │                            │
+  │                            ├─ 築20年未満 → ★賃料改定
+  │                            │
+  │                            └─ 築20年以上 → ★賃料改定＋リノベ
+  │
+  └─ 乖離率 5%未満 ──────────────────┐
+     （相場並み or 相場以下）          │
+                                       ▼
+                             【STEP 3】空室期間を確認
+                               │
+                               ├─ 3ヶ月以内 → ★募集条件変更
+                               │
+                               └─ 4ヶ月以上 ─┐
+                                               ▼
+                                      築年数を確認
+                                       │
+                                       ├─ 築20年未満 → ★募集条件変更
+                                       │               （広告強化含む）
+                                       └─ 築20年以上 → ★リノベ＋賃料改定</p>
+<pre><code>
+---
+
+## 2. 実際の物件データで見る判断例
+
+以下は月次収支管理シートに登録された5物件の判定結果です。
+
+| 物件名 | 築年数 | 乖離率 | 空室期間 | 累計損失 | 判定結果 |
+|:---|:---:|:---:|:---:|---:|:---|
+| グランハイツ桜丘201 | 22年 | 9.0% | 4ヶ月 | 562,000円 | 賃料改定 |
+| メゾンドール練馬305 | 18年 | 2.9% | 3ヶ月 | 352,500円 | 募集条件変更 |
+| リバーサイド川崎102 | 25年 | 11.5% | 6ヶ月 | 564,600円 | 賃料改定+リノベ |
+| サンライズ横浜401 | 16年 | 2.7% | 2ヶ月 | 380,400円 | 募集条件変更 |
+| コーポ松戸203 | 30年 | 13.3% | 8ヶ月 | 817,600円 | リノベ+賃料改定 |
+
+**空室リスクスコアが高い順**に対策の緊急度が上がります。コーポ松戸203（スコア93）とリバーサイド川崎102（スコア85）は即時対応が必要です。
+
+---
+
+## 3. アクション別 — 費用対効果と実行手順
+
+### アクション①：賃料改定
+
+**対象物件の目安：** 相場乖離率5%以上、かつ設備に大きな劣化がない物件
+
+**費用対効果の計算方法：**
+
+</code></pre>
+<p>損益分岐値下げ額 ＝ 空室期間(月) × 現行賃料 ÷ 12</p>
+<pre><code>
+グランハイツ桜丘201の場合：
+
+- 現行賃料：85,000円 → 周辺相場：78,000円（乖離率9.0%）
+- 空室4ヶ月の累計損失：562,000円
+- 損益分岐値下げ額：28,333円/月（値下げ率33.3%）
+- **相場に合わせた7,000円の値下げで済めば、1ヶ月で入居が決まるだけで年間47万円以上の損失を回避できる**
+
+**費用対効果の目安：**
+
+| 値下げ幅 | 空室短縮効果 | 年間収支への影響 |
+|:---|:---|:---|
+| 3,000〜5,000円/月 | 1〜2ヶ月短縮 | 値下げ損＜空室損失（大幅プラス） |
+| 5,000〜10,000円/月 | 2〜3ヶ月短縮 | 乖離率5%超の物件ならプラス |
+| 10,000円超/月 | 即効性あり | リノベとの比較検討が必要 |
+
+**ポイント：** 「空室1ヶ月の実質コスト」を常に意識してください。グランハイツ桜丘201では月140,500円（賃料＋固定費）が空室のたびに消えています。月5,000円の値下げは年間6万円の減収ですが、空室が1ヶ月早く埋まるだけで14万円の節約になります。
+
+---
+
+### アクション②：リノベーション
+
+**対象物件の目安：** 築20年以上かつ相場乖離率が高い、または空室6ヶ月超の物件
+
+**費用対効果の計算方法：**
+
+</code></pre>
+<p>投資回収期間(月) ＝ リノベ費用 ÷ 賃料アップ見込み額(月)</p>
+<pre><code>
+コーポ松戸203の場合：
+
+- 築30年・空室8ヶ月・累計損失817,600円・リスクスコア93
+- 現行賃料68,000円 → 相場60,000円（乖離率13.3%）
+- 空室1ヶ月の実質コスト：102,200円
+
+**リノベメニュー別の目安：**
+
+| 施工内容 | 費用目安 | 賃料効果 | 回収期間 |
+|:---|---:|:---|:---:|
+| 壁紙・床材の張替え | 15万〜30万円 | 現状維持〜+3,000円 | 即効（空室解消） |
+| 水回り（キッチン・浴室） | 50万〜100万円 | +5,000〜10,000円 | 50〜100ヶ月 |
+| 間取り変更（3DK→2LDK） | 80万〜150万円 | +10,000〜20,000円 | 40〜75ヶ月 |
+| 設備追加（モニター付きインターホン・宅配ボックス等） | 5万〜15万円 | +2,000〜5,000円 | 10〜30ヶ月 |
+
+**ポイント：** コーポ松戸203は空室8ヶ月で既に81万円超の損失が出ています。壁紙・床材の張替え（20万円程度）と賃料を相場の60,000円に改定するだけで、2ヶ月以内に入居が決まれば3ヶ月で投資回収できます。
+
+---
+
+### アクション③：募集条件変更
+
+**対象物件の目安：** 相場乖離率5%未満で空室3ヶ月以内の物件
+
+メゾンドール練馬305（乖離率2.9%、空室3ヶ月、スコア58）やサンライズ横浜401（乖離率2.7%、空室2ヶ月、スコア42）がこのパターンです。賃料は適正なので、「見つけてもらう」「選んでもらう」工夫が必要です。
+
+**改善メニューと費用：**
+
+| 施策 | 費用 | 効果 |
+|:---|---:|:---|
+| 物件写真の撮り直し（プロカメラマン） | 1〜3万円 | 問い合わせ数1.5〜2倍 |
+| 募集サイト追加（SUUMO/HOME'S/at home複数掲載） | 0〜3万円 | 露出増で反響増 |
+| 初期費用の軽減（敷金0・フリーレント1ヶ月） | 実質1ヶ月分 | 成約率大幅向上 |
+| ペット可・楽器相談可への変更 | 0円 | ターゲット層拡大 |
+| 家具・家電付きプラン | 10万〜20万円 | 単身者・転勤者に効果大 |
+
+**ポイント：** サンライズ横浜401は空室2ヶ月で既に380,400円の損失です。フリーレント1ヶ月（115,000円相当）を付けても、3ヶ月目に入居が決まれば差し引き26万円以上の節約です。
+
+---
+
+## 4. 管理会社への依頼テンプレート
+
+### テンプレートA：賃料改定の相談
+
+</code></pre>
+<p>件名：【賃料改定のご相談】○○（物件名）○○号室</p>
+<p>○○管理会社 ご担当者様</p>
+<p>お世話になっております。○○（物件名）オーナーの○○です。</p>
+<p>現在、○○号室が空室○ヶ月となっており、周辺相場を調査した
+ところ、現行賃料（○○円）が相場（○○円）に対して約○%
+上回っていることがわかりました。</p>
+<p>つきましては、以下の改定をご検討いただけますでしょうか。</p>
+<p>■ 改定案
+・現行賃料：○○円 → 改定後：○○円（○○円値下げ）
+・適用時期：次回募集より即時</p>
+<p>■ 判断根拠
+・周辺相場との乖離率：○%
+・空室継続による月額損失：○○円（賃料＋固定費）
+・値下げ損（年間）○○円 ＜ 空室損失（月額）○○円</p>
+<p>ご意見をいただけますと幸いです。
+よろしくお願いいたします。</p>
+<pre><code>
+### テンプレートB：リノベーション提案の依頼
+
+</code></pre>
+<p>件名：【リノベーションのご相談】○○（物件名）○○号室</p>
+<p>○○管理会社 ご担当者様</p>
+<p>お世話になっております。○○（物件名）オーナーの○○です。</p>
+<p>○○号室（築○年）が空室○ヶ月となり、累計損失が○○円に
+達しております。設備の老朽化が空室長期化の要因と考え、
+リノベーションを検討しております。</p>
+<p>■ 検討中の施工内容
+・壁紙、床材の張替え
+・（その他希望する施工内容）</p>
+<p>■ ご依頼事項
+1. 上記施工の概算見積もり（2〜3社比較希望）
+2. 施工後の想定賃料のご意見
+3. 工期の目安</p>
+<p>予算は○○万円程度を想定しております。
+まずはお見積もりからお願いできますでしょうか。</p>
+<pre><code>
+### テンプレートC：募集条件変更の依頼
+
+</code></pre>
+<p>件名：【募集条件変更のご相談】○○（物件名）○○号室</p>
+<p>○○管理会社 ご担当者様</p>
+<p>お世話になっております。○○（物件名）オーナーの○○です。</p>
+<p>○○号室が空室○ヶ月となりました。賃料は相場並み（乖離率
+○%）のため、募集条件の見直しで成約率向上を図りたいと
+考えております。</p>
+<p>■ 変更を検討している条件
+□ 敷金を1ヶ月→0ヶ月に変更
+□ フリーレント1ヶ月を付与
+□ 物件写真のプロ撮影（費用オーナー負担）
+□ 掲載ポータルサイトの追加
+□ ペット可（小型犬・猫、敷金追加条件付き）</p>
+<p>■ 判断根拠
+・空室1ヶ月の実質コスト：○○円
+・上記施策の費用：○○円
+・早期成約による回収見込み：○ヶ月以内</p>
+<p>ご提案・ご助言をいただけますと幸いです。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AIブランドビジュアル＆プロンプト統合ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans',sans-serif;background:#f5f5f0;color:#333;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 0 6px;color:#1a1a2e}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+label{display:block;font-weight:bold;font-size:.9em;margin:10px 0 4px}
+select,input,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:.95em;font-family:inherit}
+textarea{height:60px;resize:vertical}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1;min-width:120px}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:10px;font-size:1em;font-weight:bold;cursor:pointer;margin-top:14px;transition:.2s}
+.btn-p{background:#1a1a2e;color:#fff}.btn-p:hover{background:#2d2d5e}
+.btn-s{background:#e8e8e0;color:#333}.btn-s:hover{background:#d8d8d0}
+.hidden{display:none}
+.colors{display:flex;gap:10px;margin:10px 0}
+.swatch{flex:1;height:70px;border-radius:8px;display:flex;align-items:flex-end;justify-content:center;padding:6px;font-size:.75em;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5);font-weight:bold}
+.font-t{background:#f9f9f6;border-radius:8px;padding:12px;margin:6px 0}
+.font-t span{font-size:.8em;color:#888}
+.tone{background:#f0f0ea;border-left:4px solid #1a1a2e;padding:12px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.9em}
+.prompt-box{background:#1a1a2e;color:#e0e0e0;border-radius:8px;padding:14px;margin:8px 0;font-size:.85em;white-space:pre-wrap;position:relative;line-height:1.5}
+.copy-b{position:absolute;top:8px;right:8px;background:#444;color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:.75em;cursor:pointer}
+.copy-b:hover{background:#666}
+.tag{display:inline-block;background:#eee;border-radius:4px;padding:2px 8px;font-size:.8em;margin:2px}
+h3{font-size:1em;margin:12px 0 6px;color:#1a1a2e}
+.step-h{font-size:1.1em;font-weight:bold;color:#1a1a2e;border-bottom:2px solid #1a1a2e;padding-bottom:4px;margin-bottom:12px}
+</style>
+<meta name="description" content="ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AIブランドビジュアル＆プロンプト統合ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-53/">
+<meta property="og:title" content="AIブランドビジュアル＆プロンプト統合ジェネレーター - kusasyu tools">
+<meta property="og:description" content="ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-53/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIブランドビジュアル＆プロンプト統合ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AIブランドビジュアル＆プロンプト統合ジェネレーター",
+  "description": "ブランドコンセプト・業種・ターゲット層を入力するだけで、ブランドカラー・フォント・トーンを自動設計し、SNS投稿・バナー・LP用のデザイン仕様書とAI画像生成プロンプトを一括出力するツールキット。Recraft・Seelab.ai等の海外AIデザインツールが日本語未対応の隙間を突き、日本語フォント推奨・和テイ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-53/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AIブランドビジュアル＆プロンプト統合ジェネレーター</span></div>
+<div class="wrap">
+<h1>AIブランドビジュアル＆プロンプト<br>統合ジェネレーター</h1>
+<p class="sub">業種とテイストを選ぶだけで、ブランドカラー・フォント・AIプロンプトを一括生成</p>
+<div class="card" id="inputCard">
+<div class="row">
+<div><label>業種</label><select id="ind"><option value="飲食">飲食</option><option value="美容">美容</option><option value="EC">EC</option><option value="士業">士業</option><option value="製造">製造</option></select></div>
+<div><label>テイスト</label><select id="taste"><option value="和モダン">和モダン</option><option value="ナチュラル">ナチュラル</option><option value="スタイリッシュ">スタイリッシュ</option><option value="ポップ">ポップ</option><option value="プロフェッショナル">プロフェッショナル</option></select></div>
+</div>
+<label>ブランドキーワード（自由入力）</label>
+<input id="kw" placeholder="例：こだわりの素材、癒し、信頼と実績">
+<div class="row">
+<div><label>ターゲット層</label><input id="tgt" placeholder="例：30代女性、経営者"></div>
+<div><label>ブランド名（任意）</label><input id="bn" placeholder="例：SAKURA café"></div>
+</div>
+<button class="btn btn-p" onclick="genStep1()">STEP1：ブランド設計を生成</button>
+</div>
+<div class="card hidden" id="s1">
+<div class="step-h">STEP 1｜ブランドビジュアル設計</div>
+<h3>ブランドカラー</h3>
+<div class="colors" id="clrBox"></div>
+<h3>推奨日本語フォント</h3>
+<div id="fontBox"></div>
+<h3>デザイントーン指針</h3>
+<div class="tone" id="toneBox"></div>
+<label>用途を選択</label>
+<select id="usage"><option>Instagram投稿（1080×1080）</option><option>Instagramストーリーズ（1080×1920）</option><option>バナー広告（1200×628）</option><option>LPヘッダー（1440×600）</option></select>
+<button class="btn btn-p" onclick="genStep2()">STEP2：AIプロンプトを生成</button>
+<button class="btn btn-s" onclick="copyAll('s1')">STEP1をコピー</button>
+</div>
+<div class="card hidden" id="s2">
+<div class="step-h">STEP 2｜AI画像生成プロンプト</div>
+<h3>DALL-E 3 向け（3パターン）</h3>
+<div id="dalle"></div>
+<h3>Midjourney 向け（3パターン）</h3>
+<div id="mj"></div>
+<button class="btn btn-s" onclick="copyAll('s2')">STEP2を全てコピー</button>
+</div>
+</div>
+<script>
+const D={
+飲食:{和モダン:{c:['#8B4513','#F5F0E8','#D4A76A'],fh:'筑紫A丸ゴシック',fb:'游明朝',fa:'貂明朝',tone:'温かみと品格を両立。木目や和紙のテクスチャを背景に、余白を活かした配置で高級感を演出。'},ナチュラル:{c:['#6B8E23','#FFF8DC','#A0522D'],fh:'丸フォーク',fb:'游ゴシック',fa:'はんなり明朝',tone:'自然素材・産地直送感を前面に。アースカラー中心、手書き風アクセントで親近感を。'},スタイリッシュ:{c:['#2C2C2C','#F0E68C','#FFFFFF'],fh:'Noto Sans JP Black',fb:'Noto Sans JP',fa:'源柔ゴシック',tone:'モノトーン＋差し色で都会的な印象。写真は引き算の美学、文字はミニマルに。'},ポップ:{c:['#FF6347','#FFD700','#00CED1'],fh:'けいふぉんと',fb:'M PLUS Rounded 1c',fa:'ニコモジ＋',tone:'賑やかで食欲を刺激する配色。吹き出し・スタンプ風装飾で楽しさを全面に。'},プロフェッショナル:{c:['#1B3A4B','#C9B037','#F5F5F5'],fh:'游ゴシック Bold',fb:'游明朝',fa:'Noto Serif JP',tone:'格式と信頼を重視。ネイビー×ゴールドで高級路線。写真はシズル感重視でプロ撮影風に。'}},
+美容:{和モダン:{c:['#C48793','#F8F0E3','#5B4A42'],fh:'しっぽり明朝',fb:'游明朝',fa:'花鶴',tone:'和の繊細さと美意識を反映。淡い桜色に墨色のアクセントで洗練された和美容を表現。'},ナチュラル:{c:['#A8D5BA','#FFF5EE','#D2B48C'],fh:'Zen Maru Gothic',fb:'游ゴシック',fa:'こはるびより',tone:'オーガニック・無添加感。淡い緑×ベージュで清潔感と安心感を両立。'},スタイリッシュ:{c:['#2F2F2F','#E8B4B8','#FFFFFF'],fh:'Noto Sans JP',fb:'游ゴシック Light',fa:'源柔ゴシック',tone:'モード系ビューティー。黒×ピンクで大人の可愛さ。余白多め、文字は細めウェイトで上品に。'},ポップ:{c:['#FF69B4','#87CEEB','#FFFACD'],fh:'コーポレート丸ゴシック',fb:'M PLUS Rounded 1c',fa:'にくまるフォント',tone:'明るく元気な印象。パステルカラーを多用し、若年層に親しみやすいデザイン。'},プロフェッショナル:{c:['#4A4A4A','#B8860B','#FAF0E6'],fh:'游ゴシック Medium',fb:'Noto Serif JP',fa:'游明朝',tone:'医療系の信頼感。ダークグレー×ゴールドで専門性を訴求。データや実績を視覚的に配置。'}},
+EC:{和モダン:{c:['#8B0000','#F5F0E1','#2F4F4F'],fh:'筑紫明朝',fb:'游明朝',fa:'貂明朝',tone:'伝統工芸品・和雑貨向け。深みのある赤と墨色で本物感を演出。'},ナチュラル:{c:['#8FBC8F','#FFFFF0','#DEB887'],fh:'Zen Maru Gothic',fb:'游ゴシック',fa:'丸フォーク',tone:'暮らし系EC向け。ナチュラルな色味で日常に溶け込むデザイン。'},スタイリッシュ:{c:['#1C1C1C','#00BFFF','#F8F8FF'],fh:'Noto Sans JP Bold',fb:'Noto Sans JP',fa:'源柔ゴシック',tone:'ガジェット・アパレル向け。黒×アクセントカラーで購買意欲を刺激。CTAを目立たせる設計。'},ポップ:{c:['#FF4500','#32CD32','#FFD700'],fh:'けいふぉんと',fb:'M PLUS Rounded 1c',fa:'ニコモジ＋',tone:'セール・キャンペーン特化。原色使いで目を引き、価格訴求を最大化。'},プロフェッショナル:{c:['#2C3E50','#E74C3C','#ECF0F1'],fh:'游ゴシック Bold',fb:'Noto Sans JP',fa:'Noto Serif JP',tone:'BtoB-EC・高単価商材向け。信頼と実績を軸にしたレイアウト。数字を大きく配置。'}},
+士業:{和モダン:{c:['#2F4F4F','#F5F0E1','#8B7355'],fh:'しっぽり明朝',fb:'游明朝',fa:'Noto Serif JP',tone:'伝統と格式。和紙テクスチャ背景に毛筆風アクセントで専門家の風格を表現。'},ナチュラル:{c:['#5F9EA0','#F0FFF0','#8B8378'],fh:'Zen Maru Gothic',fb:'游ゴシック',fa:'こはるびより',tone:'親しみやすい相談窓口。柔らかい色で敷居を下げ、安心して相談できる雰囲気を演出。'},スタイリッシュ:{c:['#1A1A2E','#E0E0E0','#4A90D9'],fh:'Noto Sans JP Bold',fb:'Noto Sans JP',fa:'游ゴシック',tone:'先進的な法律事務所。ダーク×ブルーでインテリジェンスを表現。'},ポップ:{c:['#FF8C00','#4682B4','#FFFAF0'],fh:'コーポレート丸ゴシック',fb:'M PLUS Rounded 1c',fa:'丸フォーク',tone:'若年層向け相談サービス。オレンジで気軽さを演出、堅苦しさを排除。'},プロフェッショナル:{c:['#0D1B2A','#C9A227','#F5F5F5'],fh:'游ゴシック Bold',fb:'游明朝',fa:'Noto Serif JP',tone:'権威と信頼の王道デザイン。紺×金で格式を最大化。実績数を大きく配置。'}},
+製造:{和モダン:{c:['#4A4A4A','#F0E6D3','#B87333'],fh:'筑紫明朝',fb:'游明朝',fa:'貂明朝',tone:'職人の技と和の美意識。銅色アクセントで「ものづくり」の重厚感を表現。'},ナチュラル:{c:['#6B8E23','#F5F5DC','#8B7765'],fh:'Zen Maru Gothic',fb:'游ゴシック',fa:'こはるびより',tone:'環境配慮・サステナブル製造。アースカラーでエコ意識を前面に。'},スタイリッシュ:{c:['#1C1C1C','#00D4FF','#F0F0F0'],fh:'Noto Sans JP Black',fb:'Noto Sans JP',fa:'源柔ゴシック',tone:'先端テクノロジー感。黒×シアンで未来的な印象。幾何学模様をアクセントに。'},ポップ:{c:['#FF6600','#0099CC','#FFFFFF'],fh:'コーポレート丸ゴシック',fb:'M PLUS Rounded 1c',fa:'ニコモジ＋',tone:'BtoC製造業の親しみやすさ。工場見学・採用サイト向けに明るくオープンな印象。'},プロフェッショナル:{c:['#0A2239','#53A2BE','#E8E8E8'],fh:'游ゴシック Bold',fb:'Noto Sans JP',fa:'Noto Serif JP',tone:'技術力と信頼性。ダークネイビー×スチールブルーで堅実さ。スペック表を整然と配置。'}}
+};
+const SZ={'Instagram投稿（1080×1080）':'1:1 square','Instagramストーリーズ（1080×1920）':'9:16 vertical','バナー広告（1200×628）':'wide banner 1200x628','LPヘッダー（1440×600）':'wide hero 1440x600'};
+let cur={};
+function genStep1(){
+const ind=document.getElementById('ind').value,t=document.getElementById('taste').value;
+const d=D[ind][t];cur={...d,ind,taste:t,kw:document.getElementById('kw').value||ind,tgt:document.getElementById('tgt').value||'一般消費者',bn:document.getElementById('bn').value||''};
+const cb=document.getElementById('clrBox');
+cb.innerHTML=d.c.map((c,i)=>`<div class="swatch" style="background:${c}">${['メイン','サブ','アクセント'][i]}<br>${c}</div>`).join('');
+document.getElementById('fontBox').innerHTML=[['見出し用',d.fh],['本文用',d.fb],['アクセント用',d.fa]].map(f=>`<div class="font-t"><strong>${f[1]}</strong> <span>— ${f[0]}</span></div>`).join('');
+document.getElementById('toneBox').textContent=d.tone;
+document.getElementById('s1').classList.remove('hidden');
+document.getElementById('s1').scrollIntoView({behavior:'smooth'});
+}
+function genStep2(){
+const u=document.getElementById('usage').value,ar=SZ[u];
+const k=cur.kw,t=cur.taste,ind=cur.ind,c=cur.c,bn=cur.bn?cur.bn+'の':'';
+const styles={和モダン:'Japanese modern wabi-sabi aesthetic, zen minimalism',ナチュラル:'organic natural warm aesthetic, soft earthy tones',スタイリッシュ:'sleek modern minimalist, high contrast editorial',ポップ:'vibrant colorful pop art, energetic playful',プロフェッショナル:'corporate premium luxury, sophisticated elegant'};
+const st=styles[t];
+const dp=[
+`${bn}${ind}ブランドの${u.split('（')[0]}デザイン。${k}をテーマに、${t}テイスト。メインカラー${c[0]}、サブカラー${c[1]}。${ar} format。日本語テキスト配置スペースを確保。高品質、プロフェッショナルなグラフィックデザイン。`,
+`${t}スタイルの${ind}向けビジュアル。「${k}」を表現するイメージ写真風。配色：${c.join(', ')}。${ar}。被写体にフォーカス、背景ボケ、自然光。日本のブランド広告品質。`,
+`${ind}の${u.split('（')[0]}用抽象的ブランドビジュアル。${k}を象徴するモチーフ。${t}の世界観。グラデーション${c[0]}→${c[2]}。${ar}。テキストオーバーレイ用の余白あり。`
+];
+const mp=[
+`${st}, ${ind} brand visual for ${k}, color palette ${c.join(' ')}, ${ar}, Japanese design sensibility, clean layout with text space --ar ${ar.includes('square')?'1:1':ar.includes('vertical')?'9:16':'16:9'} --s 750 --q 2`,
+`editorial photography style, ${ind} industry, ${k} concept, ${t} mood, colors ${c[0]} ${c[2]}, ${ar}, soft natural lighting, shallow depth of field, premium Japanese brand --ar ${ar.includes('square')?'1:1':ar.includes('vertical')?'9:16':'16:9'} --s 600`,
+`abstract ${st}, geometric patterns inspired by ${k}, gradient ${c[0]} to ${c[2]}, ${ar}, negative space for typography, modern Japanese graphic design --ar ${ar.includes('square')?'1:1':ar.includes('vertical')?'9:16':'16:9'} --s 800 --stylize 750`
+];
+document.getElementById('dalle').innerHTML=dp.map((p,i)=>pb('DALL-E #'+(i+1),p)).join('');
+document.getElementById('mj').innerHTML=mp.map((p,i)=>pb('MJ #'+(i+1),p)).join('');
+document.getElementById('s2').classList.remove('hidden');
+document.getElementById('s2').scrollIntoView({behavior:'smooth'});
+}
+function pb(label,txt){return `<div class="prompt-box"><button class="copy-b" onclick="cc(this)">コピー</button><strong>${label}</strong>\n${txt}</div>`}
+function cc(btn){
+const t=btn.parentElement.textContent.replace('コピー','').trim();
+navigator.clipboard.writeText(t).then(()=>{btn.textContent='✓';setTimeout(()=>btn.textContent='コピー',1500)});
+}
+function copyAll(id){
+const el=document.getElementById(id);
+const boxes=el.querySelectorAll('.prompt-box,.tone,.font-t,.swatch');
+let txt='';
+if(id==='s1'){
+txt=`【ブランドカラー】\n${cur.c.map((c,i)=>['メイン','サブ','アクセント'][i]+': '+c).join('\n')}\n\n【フォント】\n見出し: ${cur.fh}\n本文: ${cur.fb}\nアクセント: ${cur.fa}\n\n【トーン】\n${cur.tone}`;
+}else{
+boxes.forEach(b=>txt+=b.textContent.replace('コピー','')+'\n\n');
+}
+navigator.clipboard.writeText(txt.trim()).then(()=>{
+const btn=el.querySelector('.btn-s');btn.textContent='✓ コピーしました';setTimeout(()=>btn.textContent=id==='s1'?'STEP1をコピー':'STEP2を全てコピー',1500);
+});
+}
+</script>
+</body>
+</html>
