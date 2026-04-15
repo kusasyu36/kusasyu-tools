@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>90日コンテンツ×SNS実務管理カレンダー - kusasyu tools</title>
+<meta name="description" content="業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,90日コンテンツ×SNS実務管理カレンダー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-9/">
+<meta property="og:title" content="90日コンテンツ×SNS実務管理カレンダー - kusasyu tools">
+<meta property="og:description" content="業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="90日コンテンツ×SNS実務管理カレンダー - kusasyu tools">
+<meta name="twitter:description" content="業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "90日コンテンツ×SNS実務管理カレンダー",
+  "description": "業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-9/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-14"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>90日コンテンツ×SNS実務管理カレンダー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>90日コンテンツ×SNS実務管理カレンダー</h1>
+  <p class="project-name">コンテンツ戦略が作れない？業種別AI設計ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>業種パターン</th><th>週</th><th>期間</th><th>チャネル</th><th>コンテンツ種別</th><th>コンテンツタイトル／テーマ</th><th>ターゲットキーワード</th><th>担当者</th><th>ステータス</th><th>作成期限</th><th>公開予定日</th><th>公開URL</th><th>PV目標</th><th>実績PV</th><th>備考</th></tr></thead><tbody><tr><td>===【工務店版 記入例】===</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>工務店</td><td>1週目</td><td>2026/4/13-4/19</td><td>ブログ</td><td>SEO記事</td><td>注文住宅の断熱性能を比較｜UA値の目安と選び方ガイド</td><td>注文住宅 断熱 比較</td><td>田中</td><td>公開済</td><td>4/16</td><td>4/18</td><td>https://example.com/blog/001</td><td>300</td><td></td><td>業種別90日コンテンツ戦略ジェネレーターで設計したKWマップ Week1</td></tr><tr><td>工務店</td><td>1週目</td><td>2026/4/13-4/19</td><td>X</td><td>投稿</td><td>断熱等級5と6の違い、実は光熱費で年間○万円の差。→ブログで詳しく解説</td><td>注文住宅 断熱</td><td>田中</td><td>公開済</td><td>4/17</td><td>4/18</td><td></td><td></td><td></td><td>ブログ記事の要約を140字で。リンク付き</td></tr><tr><td>工務店</td><td>1週目</td><td>2026/4/13-4/19</td><td>Instagram</td><td>リール</td><td>【30秒でわかる】断熱等級の選び方</td><td>断熱 リフォーム</td><td>佐藤</td><td>作成中</td><td>4/18</td><td>4/19</td><td></td><td></td><td></td><td>施工写真Before/After使用。Canvaテンプレ利用</td></tr><tr><td>工務店</td><td>1週目</td><td>2026/4/13-4/19</td><td>LINE</td><td>配信</td><td>今月の見学会のお知らせ＋断熱コラム</td><td></td><td>田中</td><td>下書き</td><td>4/17</td><td>4/19</td><td></td><td></td><td></td><td>配信リスト：登録者全員</td></tr><tr><td>工務店</td><td>2週目</td><td>2026/4/20-4/26</td><td>ブログ</td><td>SEO記事</td><td>【2026年版】○○市で使える住宅補助金まとめ</td><td>住宅補助金 ○○市</td><td>田中</td><td>未着手</td><td>4/22</td><td>4/25</td><td></td><td>500</td><td></td><td>地域名を自社商圏に変更して使用</td></tr><tr><td>工務店</td><td>2週目</td><td>2026/4/20-4/26</td><td>X</td><td>投稿</td><td>補助金の申請期限、今年は○月まで。まだ間に合います</td><td>住宅 補助金</td><td>佐藤</td><td>未着手</td><td>4/24</td><td>4/25</td><td></td><td></td><td></td><td>ブログ公開と同日投稿</td></tr><tr><td>工務店</td><td>2週目</td><td>2026/4/20-4/26</td><td>Instagram</td><td>カルーセル</td><td>補助金3種類を図解で比較</td><td>住宅補助金 比較</td><td>佐藤</td><td>未着手</td><td>4/24</td><td>4/26</td><td></td><td></td><td></td><td>5枚スライド。保存されやすい情報系</td></tr><tr><td>工務店</td><td>2週目</td><td>2026/4/20-4/26</td><td>メルマガ</td><td>月次配信</td><td>4月号：補助金速報＋完成見学会レポート</td><td></td><td>田中</td><td>未着手</td><td>4/25</td><td>4/26</td><td></td><td></td><td></td><td>開封率目標25%</td></tr><tr><td>工務店</td><td>3週目</td><td>2026/4/27-5/3</td><td>ブログ</td><td>SEO記事</td><td>平屋と2階建てどっちが安い？坪単価と総額で比較</td><td>平屋 2階建て 比較</td><td>田中</td><td>未着手</td><td>4/29</td><td>5/2</td><td></td><td>400</td><td></td><td>比較記事はCVRが高い傾向</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"業種パターン","週","期間","チャネル","コンテンツ種別","コンテンツタイトル／テーマ","ターゲットキーワード","担当者","ステータス","作成期限","公開予定日","公開URL","PV目標","実績PV","備考"
+"===【工務店版 記入例】===","","","","","","","","","","","","","",""
+"工務店","1週目","2026/4/13-4/19","ブログ","SEO記事","注文住宅の断熱性能を比較｜UA値の目安と選び方ガイド","注文住宅 断熱 比較","田中","公開済","4/16","4/18","https://example.com/blog/001","300","","業種別90日コンテンツ戦略ジェネレーターで設計したKWマップ Week1"
+"工務店","1週目","2026/4/13-4/19","X","投稿","断熱等級5と6の違い、実は光熱費で年間○万円の差。→ブログで詳しく解説","注文住宅 断熱","田中","公開済","4/17","4/18","","","","ブログ記事の要約を140字で。リンク付き"
+"工務店","1週目","2026/4/13-4/19","Instagram","リール","【30秒でわかる】断熱等級の選び方","断熱 リフォーム","佐藤","作成中","4/18","4/19","","","","施工写真Before/After使用。Canvaテンプレ利用"
+"工務店","1週目","2026/4/13-4/19","LINE","配信","今月の見学会のお知らせ＋断熱コラム","","田中","下書き","4/17","4/19","","","","配信リスト：登録者全員"
+"工務店","2週目","2026/4/20-4/26","ブログ","SEO記事","【2026年版】○○市で使える住宅補助金まとめ","住宅補助金 ○○市","田中","未着手","4/22","4/25","","500","","地域名を自社商圏に変更して使用"
+"工務店","2週目","2026/4/20-4/26","X","投稿","補助金の申請期限、今年は○月まで。まだ間に合います","住宅 補助金","佐藤","未着手","4/24","4/25","","","","ブログ公開と同日投稿"
+"工務店","2週目","2026/4/20-4/26","Instagram","カルーセル","補助金3種類を図解で比較","住宅補助金 比較","佐藤","未着手","4/24","4/26","","","","5枚スライド。保存されやすい情報系"
+"工務店","2週目","2026/4/20-4/26","メルマガ","月次配信","4月号：補助金速報＋完成見学会レポート","","田中","未着手","4/25","4/26","","","","開封率目標25%"
+"工務店","3週目","2026/4/27-5/3","ブログ","SEO記事","平屋と2階建てどっちが安い？坪単価と総額で比較","平屋 2階建て 比較","田中","未着手","4/29","5/2","","400","","比較記事はCVRが高い傾向"
+"===【クリニック版 記入例】===","","","","","","","","","","","","","",""
+"クリニック","1週目","2026/4/13-4/19","ブログ","SEO記事","花粉症の薬が効かないときの対処法｜耳鼻科医が解説","花粉症 薬 効かない","院長","公開済","4/15","4/17","https://example.com/blog/001","400","","季節トレンドKW。ジェネレーターのKWマップ参照"
+"クリニック","1週目","2026/4/13-4/19","X","投稿","花粉症の薬、飲むタイミングで効果が変わります。朝食後がベスト→詳しくはブログで","花粉症 薬","受付 山田","公開済","4/16","4/17","","","","医療広告ガイドライン遵守。体験談NG"
+"クリニック","1週目","2026/4/13-4/19","Instagram","投稿","花粉症セルフチェックリスト（図解）","花粉症 チェック","受付 山田","作成中","4/17","4/18","","","","Canvaで図解作成。保存促進テキスト付き"
+"クリニック","1週目","2026/4/13-4/19","LINE","配信","花粉症シーズン到来！早めの受診がおすすめです","","受付 山田","下書き","4/17","4/19","","","","予約導線リンク必須"
+"クリニック","2週目","2026/4/20-4/26","ブログ","SEO記事","【○○市】土曜診療・夜間対応の耳鼻科一覧と選び方","耳鼻科 ○○市 土曜","院長","未着手","4/22","4/24","","600","","地域名KWでMEO連携"
+"クリニック","2週目","2026/4/20-4/26","X","投稿","当院は土曜午前も診療しています。お仕事帰りの方もお気軽に","耳鼻科 土曜","受付 山田","未着手","4/23","4/24","","","","診療時間の案内を兼ねる"
+"クリニック","2週目","2026/4/20-4/26","Instagram","リール","【院内紹介30秒】待合室〜診察室の流れ","","受付 山田","未着手","4/24","4/25","","","","初診不安を解消するコンテンツ"
+"クリニック","3週目","2026/4/27-5/3","ブログ","SEO記事","子どもの中耳炎、繰り返す原因と予防法","子ども 中耳炎 繰り返す","院長","未着手","4/29","5/1","","350","","小児科連携KW"
+"===【士業版 記入例】===","","","","","","","","","","","","","",""
+"士業","1週目","2026/4/13-4/19","ブログ","SEO記事","会社設立の費用はいくら？株式会社vs合同会社を徹底比較","会社設立 費用 比較","所長","公開済","4/15","4/17","https://example.com/blog/001","350","","ジェネレーター設計のピラーページ候補"
+"士業","1週目","2026/4/13-4/19","X","投稿","合同会社の設立費用は約10万円。株式会社の半額以下で作れます→詳しくはブログで","会社設立 費用","事務 鈴木","公開済","4/16","4/17","","","","具体的な金額で引きを作る"
+"士業","1週目","2026/4/13-4/19","Instagram","カルーセル","会社設立3ステップ（図解）","会社設立 手順","事務 鈴木","作成中","4/17","4/18","","","","5枚スライド。最後にCTA（無料相談）"
+"士業","1週目","2026/4/13-4/19","LINE","配信","創業支援キャンペーン：初回相談無料のお知らせ","","事務 鈴木","下書き","4/18","4/19","","","","友だち登録特典として訴求"
+"士業","2週目","2026/4/20-4/26","ブログ","SEO記事","【○○市】税理士の顧問料相場と選び方ガイド","税理士 顧問料 ○○市","所長","未着手","4/22","4/24","","500","","地域名を自社商圏に変更"
+"士業","2週目","2026/4/20-4/26","X","投稿","顧問税理士を選ぶとき、料金だけで決めると失敗します。確認すべき3つのポイント→","税理士 選び方","事務 鈴木","未着手","4/23","4/24","","","","スレッド形式で3ポイント展開"
+"士業","2週目","2026/4/20-4/26","メルマガ","月次配信","4月号：決算後にやるべき3つの節税チェック","","所長","未着手","4/25","4/26","","","","開封率目標30%。件名A/Bテスト実施"
+"士業","3週目","2026/4/27-5/3","ブログ","SEO記事","個人事業主が法人化すべきタイミング｜年収の目安は？","法人化 タイミング 年収","所長","未着手","4/29","5/1","","450","","CVR高めのKW。相談フォームCTA必須"
+"===【空白テンプレート（コピーして使用）】===","","","","","","","","","","","","","",""
+"","4週目","2026/5/4-5/10","ブログ","SEO記事","","","","未着手","","","","","",""
+"","4週目","2026/5/4-5/10","X","投稿","","","","未着手","","","","","",""
+"","4週目","2026/5/4-5/10","Instagram","","","","","未着手","","","","","",""
+"","4週目","2026/5/4-5/10","LINE","配信","","","","未着手","","","","","",""
+"","5週目","2026/5/11-5/17","ブログ","SEO記事","","","","未着手","","","","","",""
+"","5週目","2026/5/11-5/17","X","投稿","","","","未着手","","","","","",""
+"","5週目","2026/5/11-5/17","Instagram","","","","","未着手","","","","","",""
+"","5週目","2026/5/11-5/17","メルマガ","月次配信","","","","未着手","","","","","",""
+"","6週目","2026/5/18-5/24","ブログ","SEO記事","","","","未着手","","","","","",""
+"","6週目","2026/5/18-5/24","X","投稿","","","","未着手","","","","","",""
+"","6週目","2026/5/18-5/24","Instagram","","","","","未着手","","","","","",""
+"","6週目","2026/5/18-5/24","LINE","配信","","","","未着手","","","","","",""
+"","7週目","2026/5/25-5/31","ブログ","SEO記事","","","","未着手","","","","","",""
+"","8週目","2026/6/1-6/7","ブログ","SEO記事","","","","未着手","","","","","",""
+"","9週目","2026/6/8-6/14","ブログ","SEO記事","","","","未着手","","","","","",""
+"","10週目","2026/6/15-6/21","ブログ","SEO記事","","","","未着手","","","","","",""
+"","11週目","2026/6/22-6/28","ブログ","SEO記事","","","","未着手","","","","","",""
+"","12週目","2026/6/29-7/5","ブログ","SEO記事","","","","未着手","","","","","",""
+"","13週目","2026/7/6-7/12","ブログ","SEO記事","","","","未着手","","","","","",""
+"===【使い方】===","","","","","","","","","","","","","",""
+"1. 業種別90日コンテンツ戦略ジェネレーターで戦略を設計","","","","","","","","","","","","","",""
+"2. 上記の記入例を参考に自社の内容を記入","","","","","","","","","","","","","",""
+"3. ステータスは 未着手→作成中→下書き→レビュー中→公開済 の5段階","","","","","","","","","","","","","",""
+"4. 毎週月曜に進捗を確認し遅延があれば担当者を調整","","","","","","","","","","","","","",""
+"5. PV目標と実績を記録し月次で振り返り","","","","","","","","","","","","","",""`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_90日コンテンツ×SNS実務管理カレンダー.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

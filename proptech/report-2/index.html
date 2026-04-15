@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物件情報ヒアリングシート - kusasyu tools</title>
+<meta name="description" content="中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件情報ヒアリングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/report-2/">
+<meta property="og:title" content="物件情報ヒアリングシート - kusasyu tools">
+<meta property="og:description" content="中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/report-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件情報ヒアリングシート - kusasyu tools">
+<meta name="twitter:description" content="中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "物件情報ヒアリングシート",
+  "description": "中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/report-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-15"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>物件情報ヒアリングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>物件情報ヒアリングシート</h1>
+  <p class="project-name">物件情報バラバラ？AIで信頼レポート即生成</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>カテゴリ</th><th>No</th><th>項目名</th><th>説明・記入ガイド</th><th>記入内容</th><th>確認ステータス</th><th>備考</th></tr></thead><tbody><tr><td>登記情報</td><td>1</td><td>物件名称</td><td>正式名称（登記簿表題部の記載通り）</td><td>グランドメゾン目黒</td><td>確認済</td><td>登記簿謄本で確認</td></tr><tr><td>登記情報</td><td>2</td><td>所在地</td><td>住居表示および地番</td><td>東京都目黒区中目黒3-12-5</td><td>確認済</td><td>公図と照合済み</td></tr><tr><td>登記情報</td><td>3</td><td>建物種別</td><td>マンション／戸建／ビル／アパート等</td><td>マンション</td><td>確認済</td><td></td></tr><tr><td>登記情報</td><td>4</td><td>構造</td><td>RC造／SRC造／木造／S造等</td><td>RC造</td><td>確認済</td><td></td></tr><tr><td>登記情報</td><td>5</td><td>築年月</td><td>竣工年月（西暦）</td><td>2001年3月</td><td>確認済</td><td>新耐震基準適合</td></tr><tr><td>登記情報</td><td>6</td><td>延床面積（㎡）</td><td>登記簿記載の面積（壁芯／内法を明記）</td><td>72.5</td><td>未確認</td><td>壁芯面積。内法は未取得</td></tr><tr><td>登記情報</td><td>7</td><td>階数</td><td>地上階数／地下階数</td><td>地上14階・地下1階</td><td>確認済</td><td></td></tr><tr><td>登記情報</td><td>8</td><td>総戸数</td><td>集合住宅の場合の全住戸数</td><td>86</td><td>確認済</td><td>管理組合に確認</td></tr><tr><td>修繕履歴</td><td>9</td><td>大規模修繕実施年</td><td>直近の大規模修繕工事の実施年</td><td>2018年</td><td>確認済</td><td>第1回大規模修繕</td></tr><tr><td>修繕履歴</td><td>10</td><td>外壁塗装・防水工事</td><td>実施年と工事内容</td><td>2018年 外壁塗装・屋上防水</td><td>確認済</td><td>次回2030年予定</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `カテゴリ,No,項目名,説明・記入ガイド,記入内容,確認ステータス,備考
+登記情報,1,物件名称,正式名称（登記簿表題部の記載通り）,グランドメゾン目黒,確認済,登記簿謄本で確認
+登記情報,2,所在地,住居表示および地番,東京都目黒区中目黒3-12-5,確認済,公図と照合済み
+登記情報,3,建物種別,マンション／戸建／ビル／アパート等,マンション,確認済,
+登記情報,4,構造,RC造／SRC造／木造／S造等,RC造,確認済,
+登記情報,5,築年月,竣工年月（西暦）,2001年3月,確認済,新耐震基準適合
+登記情報,6,延床面積（㎡）,登記簿記載の面積（壁芯／内法を明記）,72.5,未確認,壁芯面積。内法は未取得
+登記情報,7,階数,地上階数／地下階数,地上14階・地下1階,確認済,
+登記情報,8,総戸数,集合住宅の場合の全住戸数,86,確認済,管理組合に確認
+修繕履歴,9,大規模修繕実施年,直近の大規模修繕工事の実施年,2018年,確認済,第1回大規模修繕
+修繕履歴,10,外壁塗装・防水工事,実施年と工事内容,2018年 外壁塗装・屋上防水,確認済,次回2030年予定
+修繕履歴,11,屋根・屋上修繕,実施年と工事範囲,,未確認,管理会社に問い合わせ中
+修繕履歴,12,給排水管更新,共用部・専有部の更新状況,未実施,確認済,長期修繕計画では2028年予定
+修繕履歴,13,エレベーター更新,更新・リニューアル実施年,,未確認,
+修繕履歴,14,耐震診断・補強工事,実施有無と結果,不要（新耐震基準）,確認済,2001年竣工のため
+修繕履歴,15,その他修繕（直近5年）,上記以外の修繕工事,2022年 共用廊下LED化,確認済,管理組合総会議事録で確認
+設備状態,16,給湯器,メーカー・設置年・号数,リンナイ 2019年設置 24号,確認済,交換後7年
+設備状態,17,エアコン,台数・設置年・動作状況,3台 2020年設置 全台正常,確認済,
+設備状態,18,キッチン設備,種類・コンロ・食洗機等,システムキッチン IH3口 食洗機付,確認済,
+設備状態,19,浴室設備,ユニットバス・追焚き・乾燥機等,1616UB 追焚き付 浴室乾燥機付,確認済,
+設備状態,20,トイレ設備,温水洗浄便座・タンク式等,TOTO ウォシュレット一体型 2019年交換,確認済,
+設備状態,21,インターホン,モニター付き・オートロック連動等,カラーモニター付 オートロック連動,確認済,
+設備状態,22,防犯設備,防犯カメラ・センサーライト等,エントランス・駐車場に計8台,確認済,録画保存30日
+設備状態,23,宅配ボックス,有無・ボックス数,有 8ボックス,確認済,
+過去トラブル,24,雨漏り・漏水,発生有無・発生時期・修繕状況,無,確認済,売主申告
+過去トラブル,25,シロアリ被害,発生有無・防蟻処理実施状況,無（RC造のため該当低）,確認済,
+過去トラブル,26,地盤沈下・傾き,調査有無・結果,無,確認済,
+過去トラブル,27,近隣トラブル,騒音・境界等のトラブル有無,,未確認,売主に再度ヒアリング予定
+過去トラブル,28,事故・事件歴,告知事項の有無,無,確認済,重要事項説明書に記載なし
+過去トラブル,29,アスベスト使用,調査有無・使用箇所,調査済み 使用なし,確認済,2018年大規模修繕時に調査
+過去トラブル,30,土壌汚染,調査有無・履歴,調査報告書なし 周辺に工場履歴なし,確認済,用途地域は第一種住居地域
+過去トラブル,31,境界確定状況,確定測量済み／未確定,確定測量済み（2015年実施）,確認済,確定測量図あり
+周辺施設,32,最寄り駅・徒歩分数,路線名・駅名・徒歩所要時間,東急東横線 中目黒駅 徒歩8分,確認済,
+周辺施設,33,スーパー・コンビニ,最寄りの店舗名・徒歩分数,ライフ中目黒店 徒歩3分／セブンイレブン 徒歩1分,確認済,
+周辺施設,34,病院・クリニック,最寄りの医療機関・徒歩分数,目黒クリニック 徒歩5分／東京共済病院 徒歩12分,確認済,
+周辺施設,35,学校・保育園,学区の小中学校・最寄り保育園,中目黒小学校 徒歩6分／目黒区立第七中学校 徒歩10分,確認済,
+周辺施設,36,公園・緑地,最寄りの公園・距離,中目黒公園 徒歩4分,確認済,
+周辺施設,37,役所・郵便局,最寄りの公共施設,目黒区役所 徒歩15分／目黒中目黒郵便局 徒歩5分,確認済,
+周辺施設,38,ハザードマップ区域,洪水・土砂・津波等の指定有無,目黒川洪水浸水想定区域（0.5m未満）,確認済,目黒区ハザードマップで確認
+周辺施設,39,嫌悪施設の有無,半径500m以内の嫌悪施設,無,確認済,現地調査で確認済み`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_物件情報ヒアリングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

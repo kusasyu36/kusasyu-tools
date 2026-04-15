@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業種別90日コンテンツ戦略ジェネレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.7}
+.container{max-width:960px;margin:0 auto;padding:16px}
+header{text-align:center;padding:32px 16px 24px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;border-radius:0 0 20px 20px;margin-bottom:24px}
+header h1{font-size:1.5rem;margin-bottom:6px;letter-spacing:.05em}
+header p{font-size:.85rem;opacity:.8}
+.card{background:#fff;border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.card h2{font-size:1.15rem;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #e8ecf1;color:#0f3460}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-weight:600;margin-bottom:8px;font-size:.9rem}
+.radio-group{display:flex;flex-wrap:wrap;gap:8px}
+.radio-group label{display:block;flex:1 1 auto;min-width:120px;font-weight:400;margin-bottom:0}
+.radio-group input[type=radio]{display:none}
+.radio-group .rb{display:block;text-align:center;padding:12px 10px;border:2px solid #dde1e7;border-radius:10px;cursor:pointer;font-size:.85rem;transition:all .2s;background:#fafbfc}
+.radio-group input[type=radio]:checked+.rb{border-color:#0f3460;background:#eaf0fb;color:#0f3460;font-weight:600}
+.radio-group .rb:hover{border-color:#7b8caa;background:#f4f6f9}
+.rb .ico{font-size:1.5rem;display:block;margin-bottom:4px}
+.btn-generate{display:block;width:100%;padding:16px;background:linear-gradient(135deg,#0f3460,#1a5276);color:#fff;border:none;border-radius:12px;font-size:1.05rem;font-weight:700;cursor:pointer;transition:all .25s;letter-spacing:.06em}
+.btn-generate:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(15,52,96,.35)}
+.btn-generate:active{transform:translateY(0)}
+.notice{background:#f8f9fa;border-left:4px solid #7b8caa;padding:12px 16px;border-radius:0 8px 8px 0;font-size:.8rem;color:#555;margin-bottom:18px}
+#result{display:none}
+.section-title{font-size:1.1rem;font-weight:700;color:#0f3460;margin:28px 0 14px;padding-left:12px;border-left:4px solid #0f3460}
+.section-title:first-child{margin-top:0}
+.cluster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:8px}
+.cluster-card{background:linear-gradient(135deg,#f8faff,#eef2fa);border:1px solid #d6deef;border-radius:10px;padding:14px;text-align:center}
+.cluster-card .cc-name{font-weight:700;font-size:.95rem;color:#0f3460;margin-bottom:4px}
+.cluster-card .cc-desc{font-size:.78rem;color:#555}
+.calendar-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-bottom:8px}
+.calendar-table th{background:#0f3460;color:#fff;padding:10px 6px;text-align:center;font-weight:600;font-size:.78rem}
+.calendar-table td{padding:8px 6px;border-bottom:1px solid #e8ecf1;vertical-align:top}
+.calendar-table tr:nth-child(even){background:#fafbfc}
+.wk-label{font-weight:700;color:#0f3460;white-space:nowrap;text-align:center;width:60px}
+.task-tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:.72rem;margin:1px 2px;font-weight:600}
+.tag-seo{background:#e8f5e9;color:#2e7d32}
+.tag-sns{background:#e3f2fd;color:#1565c0}
+.tag-other{background:#fff3e0;color:#e65100}
+.tag-review{background:#fce4ec;color:#c62828}
+.seo-list{list-style:none;counter-reset:seo}
+.seo-list li{counter-increment:seo;padding:12px 14px;border-bottom:1px solid #eee;display:flex;align-items:flex-start;gap:10px}
+.seo-list li:last-child{border-bottom:none}
+.seo-num{background:#0f3460;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.seo-body{flex:1}
+.seo-title{font-weight:700;font-size:.9rem;margin-bottom:2px}
+.seo-kw{font-size:.76rem;color:#777}
+.sns-plan{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.sns-card{border:1px solid #dde1e7;border-radius:10px;padding:14px;text-align:center}
+.sns-card .sn-platform{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.sns-card .sn-freq{font-size:1.3rem;font-weight:700;color:#0f3460}
+.sns-card .sn-detail{font-size:.78rem;color:#555;margin-top:4px}
+.budget-note{display:inline-block;background:#fff8e1;padding:4px 10px;border-radius:6px;font-size:.78rem;color:#8d6e00;margin-bottom:12px}
+.print-area{margin-top:12px;text-align:right}
+.btn-print{padding:10px 24px;background:#fff;border:2px solid #0f3460;color:#0f3460;border-radius:8px;font-weight:600;cursor:pointer;font-size:.88rem}
+.btn-print:hover{background:#0f3460;color:#fff}
+.summary-bar{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.summary-item{flex:1 1 140px;background:#f4f6fb;border-radius:10px;padding:14px;text-align:center}
+.summary-item .si-val{font-size:1.4rem;font-weight:800;color:#0f3460}
+.summary-item .si-label{font-size:.75rem;color:#777}
+@media print{
+body{background:#fff}
+header{background:#0f3460!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+.btn-generate,.btn-print,.notice,#inputSection{display:none!important}
+#result{display:block!important}
+.calendar-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:600px){
+header h1{font-size:1.2rem}
+.radio-group label{min-width:90px}
+.rb .ico{font-size:1.2rem}
+.calendar-table{font-size:.72rem}
+.calendar-table th,.calendar-table td{padding:6px 3px}
+}
+</style>
+<meta name="description" content="業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,業種別90日コンテンツ戦略ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-54/">
+<meta property="og:title" content="業種別90日コンテンツ戦略ジェネレーター - kusasyu tools">
+<meta property="og:description" content="業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-54/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別90日コンテンツ戦略ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "業種別90日コンテンツ戦略ジェネレーター",
+  "description": "業種・地域・月間予算を入力すると、90日間のコンテンツマーケティング戦略（SEO記事構成案・SNS投稿カレンダー・キーワードマップ）をAIが一括生成するHTMLツール。士業・クリニック・工務店など地域密着型ビジネス向けに業種別テンプレートを内蔵し、「何から始めればいいかわからない」を解消する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-54/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">業種別90日コンテンツ戦略ジェネレーター</span></div>
+<header>
+<h1>業種別 90日コンテンツ戦略ジェネレーター</h1>
+<p>業種と予算を選ぶだけで、3ヶ月分の実行計画を即時作成</p>
+</header>
+<div class="container">
+<div id="inputSection">
+<div class="card">
+<h2>Step 1：業種を選択</h2>
+<div class="form-group">
+<div class="radio-group" id="industryGroup">
+<label><input type="radio" name="industry" value="lawyer"><span class="rb"><span class="ico">&#9878;</span>士業</span></label>
+<label><input type="radio" name="industry" value="clinic"><span class="rb"><span class="ico">&#9764;</span>クリニック</span></label>
+<label><input type="radio" name="industry" value="builder"><span class="rb"><span class="ico">&#9962;</span>工務店</span></label>
+<label><input type="radio" name="industry" value="restaurant"><span class="rb"><span class="ico">&#127860;</span>飲食</span></label>
+<label><input type="radio" name="industry" value="ec"><span class="rb"><span class="ico">&#128722;</span>EC</span></label>
+</div>
+</div>
+</div>
+<div class="card">
+<h2>Step 2：月間コンテンツ予算</h2>
+<div class="form-group">
+<div class="radio-group" id="budgetGroup">
+<label><input type="radio" name="budget" value="low"><span class="rb"><span class="ico">&#128176;</span>〜5万円</span></label>
+<label><input type="radio" name="budget" value="mid"><span class="rb"><span class="ico">&#128176;&#128176;</span>5〜15万円</span></label>
+<label><input type="radio" name="budget" value="high"><span class="rb"><span class="ico">&#128176;&#128176;&#128176;</span>15万円〜</span></label>
+</div>
+</div>
+</div>
+<div class="notice">&#9432; 本ツールは業種別の一般的なマーケティング知見に基づくロジックで戦略を生成します。AI（人工知能）による生成ではなく、業種×予算の組み合わせに応じた定型テンプレートです。実際の運用では自社の状況に合わせて調整してください。</div>
+<button class="btn-generate" onclick="generate()">&#9654; 90日戦略を生成する</button>
+</div>
+<div id="result"></div>
+</div>
+<script>
+var DATA={
+lawyer:{
+name:"士業（弁護士・税理士・司法書士等）",
+clusters:[
+{name:"相続・遺言",desc:"遺産分割、遺言書作成、家族信託"},
+{name:"会社設立・創業",desc:"法人設立手続き、届出、助成金"},
+{name:"トラブル解決事例",desc:"債務整理、離婚、労務問題"},
+{name:"税務・届出",desc:"確定申告、インボイス、経費処理"}
+],
+seoThemes:[
+{title:"【完全ガイド】相続手続きの流れと期限一覧",kw:"相続 手続き 流れ"},
+{title:"遺言書の書き方｜自筆証書と公正証書の違い",kw:"遺言書 書き方 種類"},
+{title:"会社設立にかかる費用と期間をプロが解説",kw:"会社設立 費用 期間"},
+{title:"確定申告で見落としがちな控除10選",kw:"確定申告 控除 見落とし"},
+{title:"離婚時の財産分与｜知っておくべき基礎知識",kw:"離婚 財産分与"},
+{title:"インボイス制度が士業に与える影響まとめ",kw:"インボイス 士業 影響"},
+{title:"創業融資を通すための事業計画書の作り方",kw:"創業融資 事業計画書"},
+{title:"相続放棄の手続き｜期限と注意点",kw:"相続放棄 手続き 期限"},
+{title:"顧問契約のメリットとは？料金相場も紹介",kw:"顧問契約 メリット 料金"},
+{title:"家族信託と成年後見の違いをわかりやすく解説",kw:"家族信託 成年後見 違い"},
+{title:"残業代請求の時効は？労働者が知るべきポイント",kw:"残業代請求 時効"},
+{title:"法人化のタイミング｜個人事業主が検討すべき売上目安",kw:"法人化 タイミング 売上"}
+],
+sns:{
+platforms:[
+{name:"X（旧Twitter）",freq:"週3〜5回",days:"火・木・土",detail:"法律豆知識・改正情報を短文で発信"},
+{name:"Instagram",freq:"週1〜2回",days:"水・日",detail:"図解カルーセルで制度解説"},
+{name:"LINE公式",freq:"月2回",days:"第1・第3月曜",detail:"無料相談案内・セミナー告知"}
+]
+},
+weeklyTasks:{
+low:[["SEO記事1本下書き","X投稿2本"],["SEO記事公開・内部リンク調整","X投稿2本"],["事例ページ追加","X投稿2本","LINE配信準備"],["月次振り返り・KPI確認","X投稿2本","LINE配信"]],
+mid:[["SEO記事1本下書き","X投稿3本","Instagram投稿準備"],["SEO記事公開","X投稿3本","Instagram投稿"],["事例ページ追加","X投稿3本","メルマガ原稿"],["月次振り返り・KPI確認","X投稿3本","LINE配信","メルマガ配信"]],
+high:[["SEO記事2本下書き","X投稿5本","Instagram投稿","動画企画"],["SEO記事公開・リライト1本","X投稿5本","Instagram投稿","動画撮影"],["事例2件追加","X投稿5本","Instagram投稿","LP改善"],["月次振り返り・改善施策","X投稿5本","LINE配信","メルマガ配信","広告運用調整"]]
+}
+},
+clinic:{
+name:"クリニック（医科・歯科・美容）",
+clusters:[
+{name:"症状・疾患解説",desc:"頭痛、腰痛、虫歯、肌荒れ等"},
+{name:"治療法・施術紹介",desc:"保険診療・自費診療の違い"},
+{name:"予防・セルフケア",desc:"生活習慣、ストレッチ、歯磨き"},
+{name:"医院案内・安心感",desc:"設備紹介、スタッフ紹介、感染対策"}
+],
+seoThemes:[
+{title:"【症状別】頭痛の種類と受診すべき目安",kw:"頭痛 種類 受診"},
+{title:"歯のホワイトニング｜種類・費用・持続期間を比較",kw:"ホワイトニング 費用 比較"},
+{title:"花粉症の最新治療法｜舌下免疫療法とは",kw:"花粉症 治療 舌下免疫"},
+{title:"インプラントとブリッジの違い｜費用と寿命で比較",kw:"インプラント ブリッジ 違い"},
+{title:"子どもの矯正は何歳から？時期と費用の目安",kw:"子ども 矯正 何歳から"},
+{title:"腰痛を防ぐ正しい座り方｜デスクワーカー必見",kw:"腰痛 座り方 デスクワーク"},
+{title:"美容皮膚科のシミ取り治療｜レーザーの種類と選び方",kw:"シミ取り レーザー 種類"},
+{title:"健康診断の結果の見方｜要精密検査と言われたら",kw:"健康診断 結果 見方"},
+{title:"初めての方へ｜当院の診療の流れと持ち物",kw:"クリニック 初診 流れ"},
+{title:"糖尿病予備軍と言われたら？食事と運動のポイント",kw:"糖尿病予備軍 食事 運動"},
+{title:"睡眠時無呼吸症候群のセルフチェックリスト",kw:"睡眠時無呼吸 チェック"},
+{title:"予防接種スケジュール｜大人が受けるべきワクチン一覧",kw:"予防接種 大人 スケジュール"}
+],
+sns:{
+platforms:[
+{name:"Instagram",freq:"週3〜4回",days:"月・水・金・日",detail:"院内写真・スタッフ紹介・健康Tips"},
+{name:"LINE公式",freq:"週1回",days:"火曜",detail:"予約リマインド・季節の健康情報"},
+{name:"Googleビジネス",freq:"週1回",days:"木曜",detail:"投稿機能で最新情報・キャンペーン告知"}
+]
+},
+weeklyTasks:{
+low:[["SEO記事1本下書き","Instagram投稿2本"],["SEO記事公開","Instagram投稿2本","LINE配信"],["症例写真整理・ページ更新","Instagram投稿2本"],["月次振り返り","Instagram投稿2本","Googleビジネス投稿"]],
+mid:[["SEO記事1本下書き","Instagram投稿3本","LINE原稿"],["SEO記事公開","Instagram投稿3本","LINE配信"],["患者の声ページ更新","Instagram投稿3本","Googleビジネス投稿"],["月次振り返り・改善","Instagram投稿3本","メルマガ原稿"]],
+high:[["SEO記事2本下書き","Instagram投稿4本","YouTube企画"],["SEO記事公開・リライト","Instagram投稿4本","動画撮影編集"],["患者の声・症例追加","Instagram投稿4本","LINE配信","広告調整"],["月次振り返り・LPO","Instagram投稿4本","Googleビジネス投稿","メルマガ配信"]]
+}
+},
+builder:{
+name:"工務店・リフォーム会社",
+clusters:[
+{name:"省エネ・断熱",desc:"断熱等級、光熱費削減、ZEH"},
+{name:"補助金・制度",desc:"こどもエコ、長期優良住宅"},
+{name:"施工事例",desc:"ビフォーアフター、お客様の声"},
+{name:"間取り・設計",desc:"収納、動線、土地選び"}
+],
+seoThemes:[
+{title:"断熱等級4と5の違い｜光熱費にどれだけ差が出る？",kw:"断熱等級 違い 光熱費"},
+{title:"【2026年版】住宅リフォーム補助金一覧と申請方法",kw:"リフォーム 補助金 2026"},
+{title:"注文住宅の費用内訳｜坪単価の落とし穴",kw:"注文住宅 費用 坪単価"},
+{title:"キッチンリフォームの費用相場と工期の目安",kw:"キッチンリフォーム 費用 工期"},
+{title:"失敗しない間取りの考え方｜動線計画3つのコツ",kw:"間取り 動線 コツ"},
+{title:"外壁塗装の時期は？劣化サインと費用目安",kw:"外壁塗装 時期 費用"},
+{title:"ZEH住宅とは？メリットと補助金を徹底解説",kw:"ZEH メリット 補助金"},
+{title:"ローコスト住宅の品質は大丈夫？見極めポイント",kw:"ローコスト住宅 品質"},
+{title:"施工事例｜築30年の戸建てを断熱リノベーション",kw:"断熱リノベーション 事例"},
+{title:"浴室リフォームの選び方｜ユニットバス vs 在来工法",kw:"浴室リフォーム 選び方"},
+{title:"二世帯住宅の間取りパターンと費用の違い",kw:"二世帯住宅 間取り 費用"},
+{title:"家づくりの流れ｜土地探しから引き渡しまで完全ガイド",kw:"家づくり 流れ 完全ガイド"}
+],
+sns:{
+platforms:[
+{name:"Instagram",freq:"週3〜5回",days:"火・木・土・日",detail:"施工写真・ルームツアー・現場レポ"},
+{name:"Pinterest",freq:"週2回",days:"水・土",detail:"施工事例・間取り図をピン"},
+{name:"LINE公式",freq:"月2回",days:"第2・第4土曜",detail:"見学会案内・補助金情報"}
+]
+},
+weeklyTasks:{
+low:[["SEO記事1本下書き","Instagram投稿2本"],["SEO記事公開","Instagram投稿2本","施工写真撮影"],["事例ページ追加","Instagram投稿2本"],["月次振り返り","Instagram投稿2本","LINE配信"]],
+mid:[["SEO記事1本下書き","Instagram投稿3本","Pinterest投稿"],["SEO記事公開","Instagram投稿3本","Pinterest投稿"],["事例ページ追加・お客様の声","Instagram投稿3本","LINE原稿"],["月次振り返り","Instagram投稿3本","LINE配信","メルマガ"]],
+high:[["SEO記事2本下書き","Instagram投稿5本","YouTube動画企画"],["SEO記事公開・リライト","Instagram投稿5本","動画撮影編集"],["事例2件追加","Instagram投稿5本","Pinterest投稿","LP改善"],["月次振り返り・広告調整","Instagram投稿5本","LINE配信","メルマガ配信"]]
+}
+},
+restaurant:{
+name:"飲食店（レストラン・カフェ・居酒屋）",
+clusters:[
+{name:"メニュー・食材",desc:"新メニュー、季節食材、こだわり"},
+{name:"店舗の雰囲気",desc:"内装、スタッフ、イベント"},
+{name:"地域・アクセス",desc:"最寄り駅、周辺情報、テイクアウト"},
+{name:"衛生・安心",desc:"食品衛生、アレルギー対応"}
+],
+seoThemes:[
+{title:"【エリア名】ランチおすすめ｜地元民が通う隠れ家○選",kw:"エリア名 ランチ おすすめ"},
+{title:"歓送迎会に最適な個室のあるお店の選び方",kw:"歓送迎会 個室 おすすめ"},
+{title:"テイクアウトメニュー一覧｜注文方法と受取時間",kw:"店名 テイクアウト メニュー"},
+{title:"旬の食材を使った季節限定メニューのご案内",kw:"季節限定 メニュー"},
+{title:"子連れで楽しめるレストラン｜キッズメニューと設備",kw:"子連れ レストラン キッズ"},
+{title:"誕生日・記念日ディナーの予約ガイド",kw:"誕生日 ディナー 予約"},
+{title:"当店のこだわり｜産地直送の新鮮食材を使う理由",kw:"産地直送 こだわり 食材"},
+{title:"飲み放題コースの内容と予算別おすすめプラン",kw:"飲み放題 コース 予算"},
+{title:"食物アレルギー対応メニューのご案内",kw:"アレルギー対応 メニュー"},
+{title:"貸切パーティーの収容人数と料金プラン",kw:"貸切 パーティー 料金"},
+{title:"ランチタイムの混雑状況と空いている時間帯",kw:"ランチ 混雑 時間帯"},
+{title:"シェフ紹介｜料理への想いとキャリア",kw:"シェフ 紹介 こだわり"}
+],
+sns:{
+platforms:[
+{name:"Instagram",freq:"週5〜7回",days:"毎日推奨",detail:"料理写真・ストーリーズで日替わり紹介"},
+{name:"X（旧Twitter）",freq:"週3〜5回",days:"月・水・金",detail:"本日のおすすめ・空席情報"},
+{name:"Googleビジネス",freq:"週2回",days:"火・金",detail:"営業情報・写真更新・クーポン"}
+]
+},
+weeklyTasks:{
+low:[["メニュー写真撮影・Instagram投稿3本","Googleビジネス更新"],["Instagram投稿3本","X投稿2本"],["SEO記事1本下書き・公開","Instagram投稿3本"],["月次振り返り","Instagram投稿3本","X投稿2本"]],
+mid:[["Instagram投稿5本","X投稿3本","Googleビジネス更新"],["SEO記事1本","Instagram投稿5本","X投稿3本"],["メニュー撮影・Instagram投稿5本","LINE配信準備"],["月次振り返り","Instagram投稿5本","LINE配信","Googleビジネス更新"]],
+high:[["Instagram投稿7本","X投稿5本","動画撮影","Googleビジネス更新"],["SEO記事1本","Instagram投稿7本","X投稿5本","動画編集公開"],["UGCキャンペーン運用","Instagram投稿7本","LINE配信","広告調整"],["月次振り返り・LP改善","Instagram投稿7本","X投稿5本","メルマガ配信"]]
+}
+},
+ec:{
+name:"ECサイト（物販・D2C）",
+clusters:[
+{name:"商品レビュー・比較",desc:"使い方、選び方ガイド"},
+{name:"お客様の声・UGC",desc:"レビュー紹介、活用事例"},
+{name:"セール・キャンペーン",desc:"季節セール、ポイント、クーポン"},
+{name:"ブランドストーリー",desc:"開発秘話、素材へのこだわり"}
+],
+seoThemes:[
+{title:"【2026年版】○○の選び方完全ガイド｜用途別おすすめ",kw:"○○ 選び方 おすすめ"},
+{title:"○○と△△を徹底比較｜違いとおすすめの人",kw:"○○ △△ 比較 違い"},
+{title:"初めての方へ｜○○の正しい使い方とお手入れ方法",kw:"○○ 使い方 お手入れ"},
+{title:"お客様レビューまとめ｜購入者のリアルな声",kw:"商品名 レビュー 口コミ"},
+{title:"ギフトにおすすめ｜予算別セレクション",kw:"ギフト おすすめ 予算別"},
+{title:"セール情報｜期間限定キャンペーンのお知らせ",kw:"ブランド名 セール キャンペーン"},
+{title:"送料無料の条件と最短配送日のご案内",kw:"送料無料 条件 配送"},
+{title:"返品・交換ポリシー｜安心してお買い物いただくために",kw:"返品 交換 ポリシー"},
+{title:"素材へのこだわり｜○○ができるまで",kw:"素材 こだわり 製造工程"},
+{title:"定期購入のメリットと解約方法",kw:"定期購入 メリット 解約"},
+{title:"○○の保管方法｜長持ちさせる5つのコツ",kw:"○○ 保管方法 長持ち"},
+{title:"スタッフの推し商品｜バイヤーが本気で選んだ5品",kw:"おすすめ商品 スタッフ推し"}
+],
+sns:{
+platforms:[
+{name:"Instagram",freq:"週5〜7回",days:"毎日推奨",detail:"商品写真・リール・UGCリポスト"},
+{name:"X（旧Twitter）",freq:"週3〜5回",days:"火・木・土",detail:"新商品告知・セール情報・豆知識"},
+{name:"LINE公式",freq:"週1回",days:"金曜",detail:"クーポン配布・新着情報・再入荷通知"}
+]
+},
+weeklyTasks:{
+low:[["SEO記事1本下書き","Instagram投稿3本"],["SEO記事公開","Instagram投稿3本","X投稿2本"],["商品ページ改善・レビュー整理","Instagram投稿3本"],["月次振り返り","Instagram投稿3本","LINE配信"]],
+mid:[["SEO記事1本","Instagram投稿5本","X投稿3本"],["商品撮影・Instagram投稿5本","X投稿3本","LINE原稿"],["UGCリポスト・レビュー更新","Instagram投稿5本","メルマガ原稿"],["月次振り返り・CRO","Instagram投稿5本","LINE配信","メルマガ配信"]],
+high:[["SEO記事2本","Instagram投稿7本","X投稿5本","動画企画"],["商品撮影・動画制作","Instagram投稿7本","X投稿5本","広告クリエイティブ"],["UGCキャンペーン・LP改善","Instagram投稿7本","LINE配信","広告調整"],["月次振り返り・AB テスト","Instagram投稿7本","X投稿5本","メルマガ配信","リターゲティング調整"]]
+}
+}
+};
+var BUDGET_LABEL={"low":"〜5万円/月","mid":"5〜15万円/月","high":"15万円〜/月"};
+var BUDGET_ARTICLES={"low":"月1本（計3本）","mid":"月2〜3本（計6〜9本）","high":"月4本（計12本）"};
+var BUDGET_SNS_MULT={"low":1,"mid":1.5,"high":2};
+function getTag(t){if(/SEO|記事|下書き|公開|リライト/.test(t))return'<span class="task-tag tag-seo">SEO</span>';if(/Instagram|X投稿|LINE|Pinterest|Googleビジネス|SNS|メルマガ|メール/.test(t))return'<span class="task-tag tag-sns">SNS</span>';if(/振り返り|KPI|改善|調整/.test(t))return'<span class="task-tag tag-review">分析</span>';return'<span class="task-tag tag-other">施策</span>';}
+function generate(){
+var ind=document.querySelector('input[name="industry"]:checked');
+var bud=document.querySelector('input[name="budget"]:checked');
+if(!ind||!bud){alert("業種と予算を両方選択してください。");return;}
+var d=DATA[ind.value],b=bud.value,bl=BUDGET_LABEL[b];
+var totalSEO=b==="low"?3:b==="mid"?9:12;
+var totalSNS=0;
+d.sns.platforms.forEach(function(p){var m=p.freq.match(/(\d+)/);if(m)totalSNS+=parseInt(m[1])*13;});
+var html='';
+html+='<div class="print-area"><button class="btn-print" onclick="window.print()">&#128424; 印刷 / PDF保存</button></div>';
+html+='<div class="card"><div class="section-title">戦略サマリー</div>';
+html+='<div class="summary-bar">';
+html+='<div class="summary-item"><div class="si-val">'+d.name.split("（")[0]+'</div><div class="si-label">業種</div></div>';
+html+='<div class="summary-item"><div class="si-val">'+bl+'</div><div class="si-label">月間予算</div></div>';
+html+='<div class="summary-item"><div class="si-val">90日</div><div class="si-label">計画期間</div></div>';
+html+='<div class="summary-item"><div class="si-val">'+totalSEO+'本</div><div class="si-label">SEO記事</div></div>';
+html+='</div>';
+html+='<p style="font-size:.82rem;color:#555">対象業種: '+d.name+'</p></div>';
+html+='<div class="card"><div class="section-title">注力テーマクラスター</div>';
+html+='<p style="font-size:.82rem;color:#555;margin-bottom:12px">この業種で優先的にコンテンツを展開すべき4つの領域です。</p>';
+html+='<div class="cluster-grid">';
+d.clusters.forEach(function(c){html+='<div class="cluster-card"><div class="cc-name">'+c.name+'</div><div class="cc-desc">'+c.desc+'</div></div>';});
+html+='</div></div>';
+html+='<div class="card"><div class="section-title">SEO記事テーマ案（12本）</div>';
+html+='<div class="budget-note">予算 '+bl+' → 90日で '+totalSEO+' 本公開が目安（'+ BUDGET_ARTICLES[b]+'）</div>';
+html+='<ul class="seo-list">';
+d.seoThemes.forEach(function(s,i){
+var pri=i<totalSEO?"color:#0f3460":"color:#aaa";
+html+='<li style="'+pri+'"><div class="seo-num" style="'+(i>=totalSEO?"background:#bbb":"")+'">'+(i+1)+'</div><div class="seo-body"><div class="seo-title">'+s.title+'</div><div class="seo-kw">KW: '+s.kw+'</div></div></li>';
+});
+html+='</ul>';
+if(totalSEO<12)html+='<p style="font-size:.78rem;color:#999;margin-top:8px">※ グレーの記事は予算増額時に追加で取り組むテーマです。</p>';
+html+='</div>';
+html+='<div class="card"><div class="section-title">SNS運用プラン</div>';
+html+='<div class="sns-plan">';
+d.sns.platforms.forEach(function(p){
+html+='<div class="sns-card"><div class="sn-platform">'+p.name+'</div><div class="sn-freq">'+p.freq+'</div><div class="sn-detail">推奨曜日: '+p.days+'</div><div class="sn-detail">'+p.detail+'</div></div>';
+});
+html+='</div></div>';
+html+='<div class="card"><div class="section-title">90日コンテンツカレンダー（週次ビュー）</div>';
+html+='<div class="budget-note">予算: '+bl+'</div>';
+html+='<div style="overflow-x:auto">';
+html+='<table class="calendar-table"><thead><tr><th>週</th><th>期間</th><th>タスク</th></tr></thead><tbody>';
+var tasks=d.weeklyTasks[b];
+var today=new Date();
+var startDate=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+var dayOfWeek=startDate.getDay();
+var diff=dayOfWeek===0?1:(dayOfWeek===1?0:8-dayOfWeek);
+startDate.setDate(startDate.getDate()+diff);
+for(var w=0;w<13;w++){
+var ws=new Date(startDate);ws.setDate(ws.getDate()+w*7);
+var we=new Date(ws);we.setDate(we.getDate()+6);
+var ml=function(d){return(d.getMonth()+1)+"/"+d.getDate();};
+var monthNum=Math.floor(w/4);if(monthNum>2)monthNum=2;
+var weekInMonth=w%4;
+var t=tasks[weekInMonth];
+var tagHtml=t.map(function(item){return getTag(item)+' '+item;}).join('<br>');
+var bgColor=w%2===0?"":"background:#f8faff";
+html+='<tr style="'+bgColor+'"><td class="wk-label">Week '+(w+1)+'</td><td style="white-space:nowrap;text-align:center;font-size:.8rem">'+ml(ws)+'〜'+ml(we)+'</td><td>'+tagHtml+'</td></tr>';
+}
+html+='</tbody></table></div></div>';
+html+='<div class="card"><div class="section-title">月別マイルストーン</div>';
+var milestones=[
+{month:"1ヶ月目（Week 1〜4）",goal:"基盤構築",detail:"メインKW記事の公開開始、SNSアカウント整備と投稿リズムの確立、Google Analytics・Search Console設定確認"},
+{month:"2ヶ月目（Week 5〜8）",goal:"コンテンツ拡充",detail:"ロングテールKW記事の追加、SNSエンゲージメント率の計測と改善、内部リンク構造の最適化"},
+{month:"3ヶ月目（Week 9〜13）",goal:"効果検証・改善",detail:"検索順位とPVの確認、成果の出た記事のリライト・横展開、次の90日計画の策定"}
+];
+milestones.forEach(function(m){
+html+='<div style="margin-bottom:14px;padding:12px 16px;background:#f8faff;border-radius:10px;border-left:4px solid #0f3460">';
+html+='<strong style="color:#0f3460">'+m.month+'</strong> — '+m.goal;
+html+='<div style="font-size:.8rem;color:#555;margin-top:4px">'+m.detail+'</div></div>';
+});
+html+='</div>';
+html+='<div class="notice" style="margin-top:8px">&#9432; この戦略は業種×予算の組み合わせに基づく定型テンプレートです。具体的な数値目標やKPIは、自社のアクセスデータや商圏に合わせて設定してください。記事テーマの「エリア名」「○○」等は自社の商品・地域名に置き換えてご利用ください。</div>';
+html+='<div class="print-area"><button class="btn-print" onclick="window.print()">&#128424; 印刷 / PDF保存</button></div>';
+var r=document.getElementById("result");
+r.innerHTML=html;
+r.style.display="block";
+r.scrollIntoView({behavior:"smooth",block:"start"});
+}
+</script>
+</body>
+</html>

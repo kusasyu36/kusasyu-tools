@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>物件パスポート・ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans',sans-serif;background:#f0f2f5;color:#1a1a2e}
+.container{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#0f3460;font-size:1.5em;padding:18px 0 4px}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1.1em;color:#0f3460;border-left:4px solid #e94560;padding-left:10px;margin-bottom:14px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 3px;color:#333}
+input[type=text],input[type=number],select,textarea{width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:.9em}
+textarea{height:60px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+.eq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.eq-item{display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;padding:6px 10px;border-radius:6px;font-size:.85em}
+.eq-item select{width:80px;flex-shrink:0}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#0f3460,#e94560);color:#fff;border:none;border-radius:8px;font-size:1.1em;font-weight:700;cursor:pointer;margin-top:10px}
+.btn:hover{opacity:.9}
+.btn2{background:#495057;font-size:.9em;padding:10px;margin-top:8px}
+#report{display:none}
+.rpt-head{text-align:center;padding:20px 0 10px;border-bottom:3px solid #0f3460}
+.rpt-head h2{font-size:1.4em;color:#0f3460}
+.rpt-head p{color:#666;font-size:.8em;margin-top:4px}
+.rpt-section{margin:16px 0}
+.rpt-section h3{font-size:1em;color:#0f3460;border-bottom:2px solid #e94560;padding-bottom:4px;margin-bottom:10px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
+.info-grid dt{font-weight:600;font-size:.85em;color:#555}
+.info-grid dd{font-size:.9em;margin-bottom:6px}
+.score-box{text-align:center;padding:20px;border-radius:10px;margin:10px 0}
+.score-box .num{font-size:3em;font-weight:800}
+.score-box .lbl{font-size:1.1em;font-weight:700;margin-top:4px}
+.bar-wrap{margin:4px 0}
+.bar-label{display:flex;justify-content:space-between;font-size:.8em}
+.bar-bg{height:10px;background:#e9ecef;border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;transition:width .3s}
+.risk-list{list-style:none;padding:0}
+.risk-list li{padding:8px 10px;margin:4px 0;border-radius:6px;font-size:.85em;border-left:4px solid}
+.risk-list li.high{background:#fff5f5;border-color:#e94560}
+.risk-list li.mid{background:#fff8e1;border-color:#f4a261}
+.risk-list li.low{background:#f0fff0;border-color:#2a9d8f}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+table th,table td{border:1px solid #ddd;padding:6px 8px;text-align:left}
+table th{background:#f0f2f5;font-weight:600}
+.stamp{display:inline-block;border:3px solid;border-radius:50%;width:80px;height:80px;line-height:80px;text-align:center;font-weight:900;font-size:.9em;transform:rotate(-15deg);margin:8px}
+@media print{body{background:#fff}.card,.btn,.btn2,#form-area{display:none!important}#report{display:block!important;box-shadow:none}.container{max-width:100%;padding:0}}
+@media(max-width:600px){.info-grid{grid-template-columns:1fr}.row>div{min-width:100%}.eq-grid{grid-template-columns:1fr}}
+</style>
+<meta name="description" content="中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件パスポート・ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/report/">
+<meta property="og:title" content="物件パスポート・ジェネレーター - kusasyu tools">
+<meta property="og:description" content="中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/report/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件パスポート・ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "物件パスポート・ジェネレーター",
+  "description": "中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるよ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/report/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">物件パスポート・ジェネレーター</span></div>
+<div class="container">
+<h1>物件パスポート・ジェネレーター</h1>
+<p class="sub">物件情報を入力するだけで、買主に渡せるプロフェッショナルなレポートを即生成</p>
+<div id="form-area">
+<div class="card"><h2>基本情報</h2>
+<div class="row"><div><label>物件名称</label><input type="text" id="name" placeholder="○○マンション301号室"></div><div><label>所在地</label><input type="text" id="addr" placeholder="東京都渋谷区..."></div></div>
+<div class="row"><div><label>築年数（年）</label><input type="number" id="age" min="0" max="99" value="15"></div><div><label>構造</label><select id="struct"><option>RC造</option><option>SRC造</option><option>S造</option><option>木造</option><option>軽量鉄骨造</option></select></div><div><label>専有面積（㎡）</label><input type="number" id="area" min="1" value="65"></div></div>
+<div class="row"><div><label>階数/所在階</label><input type="text" id="floor" placeholder="5階/3階"></div><div><label>間取り</label><input type="text" id="layout" placeholder="3LDK"></div><div><label>価格（万円）</label><input type="number" id="price" min="0" value="3500"></div></div>
+</div>
+<div class="card"><h2>設備状況（5段階評価）</h2>
+<p style="font-size:.8em;color:#888;margin-bottom:8px">5=優良 4=良好 3=普通 2=やや劣化 1=要交換</p>
+<div class="eq-grid" id="eqGrid"></div>
+</div>
+<div class="card"><h2>修繕履歴</h2>
+<label>過去の修繕内容（1行1件: 年月,内容,費用）</label>
+<textarea id="repair" placeholder="2020年3月,外壁塗装,150万円&#10;2022年8月,給湯器交換,25万円"></textarea>
+</div>
+<div class="card"><h2>周辺環境</h2>
+<div class="row"><div><label>最寄駅（徒歩分）</label><input type="text" id="station" placeholder="渋谷駅 徒歩8分"></div><div><label>スーパー（徒歩分）</label><input type="number" id="super" min="0" value="5"></div></div>
+<div class="row"><div><label>病院（徒歩分）</label><input type="number" id="hospital" min="0" value="10"></div><div><label>学校（徒歩分）</label><input type="number" id="school" min="0" value="7"></div></div>
+<label>その他特記事項</label>
+<textarea id="envNote" placeholder="公園隣接、幹線道路沿い等"></textarea>
+</div>
+<button class="btn" onclick="generate()">物件パスポートを生成</button>
+</div>
+<div id="report" class="card">
+<div class="rpt-head">
+<div style="display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap">
+<div><h2>物件パスポート</h2><p>PROPERTY PASSPORT REPORT</p></div>
+<div id="stampArea"></div>
+</div>
+<p id="rptDate"></p>
+</div>
+<div class="rpt-section"><h3>物件概要</h3><dl class="info-grid" id="rptInfo"></dl></div>
+<div class="rpt-section"><h3>総合リスクスコア</h3><div id="scoreArea"></div></div>
+<div class="rpt-section"><h3>設備評価</h3><div id="eqBars"></div></div>
+<div class="rpt-section"><h3>修繕履歴</h3><div id="rptRepair"></div></div>
+<div class="rpt-section"><h3>周辺環境</h3><div id="rptEnv"></div></div>
+<div class="rpt-section"><h3>改善提案・リスク分析</h3><ul class="risk-list" id="rptRisk"></ul></div>
+<div style="text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid #ddd">
+<p style="font-size:.75em;color:#999">本レポートはAIによる自動分析です。最終判断は専門家にご相談ください。</p>
+<p style="font-size:.75em;color:#999" id="rptFooter"></p>
+</div>
+<button class="btn btn2" onclick="window.print()">印刷 / PDF保存</button>
+<button class="btn btn2" onclick="document.getElementById('report').style.display='none';document.getElementById('form-area').style.display='block'">入力に戻る</button>
+</div>
+</div>
+<script>
+const EQ_ITEMS=["外壁","屋根・防水","給排水管","電気設備","ガス設備","給湯器","キッチン","浴室","トイレ","内装・床"];
+const grid=document.getElementById("eqGrid");
+EQ_ITEMS.forEach((n,i)=>{const d=document.createElement("div");d.className="eq-item";d.innerHTML=`<span>${n}</span><select id="eq${i}"><option value="5">5-優良</option><option value="4">4-良好</option><option value="3" selected>3-普通</option><option value="2">2-劣化</option><option value="1">1-要交換</option></select>`;grid.appendChild(d)});
+function getVal(id){return document.getElementById(id).value}
+function getNum(id){return parseFloat(document.getElementById(id).value)||0}
+function generate(){
+const name=getVal("name")||"未入力",addr=getVal("addr")||"未入力",age=getNum("age"),st=getVal("struct"),area=getNum("area"),floor=getVal("floor")||"-",layout=getVal("layout")||"-",price=getNum("price");
+const eqScores=EQ_ITEMS.map((_,i)=>getNum("eq"+i));
+const eqAvg=eqScores.reduce((a,b)=>a+b,0)/eqScores.length;
+// Risk calculation
+let riskPts=0;
+if(age>40)riskPts+=30;else if(age>25)riskPts+=20;else if(age>15)riskPts+=10;
+const lowEq=eqScores.filter(v=>v<=2).length;
+riskPts+=lowEq*8;
+if(eqAvg<2.5)riskPts+=15;else if(eqAvg<3.5)riskPts+=5;
+const repairs=getVal("repair").trim();
+const repairLines=repairs?repairs.split("\n").filter(l=>l.trim()):[];
+if(repairLines.length===0&&age>10)riskPts+=15;
+if(st==="木造")riskPts+=8;
+if(st==="軽量鉄骨造")riskPts+=5;
+const totalRisk=Math.min(100,Math.max(0,riskPts));
+let grade,gradeColor,gradeBg;
+if(totalRisk<=20){grade="A（低リスク）";gradeColor="#2a9d8f";gradeBg="#e8f8f5"}
+else if(totalRisk<=40){grade="B（やや注意）";gradeColor="#52796f";gradeBg="#eef5ee"}
+else if(totalRisk<=60){grade="C（要確認）";gradeColor="#f4a261";gradeBg="#fff8e1"}
+else if(totalRisk<=80){grade="D（高リスク）";gradeColor="#e76f51";gradeBg="#fef0ec"}
+else{grade="E（要改善）";gradeColor="#e94560";gradeBg="#fff0f3"}
+// Report
+const now=new Date();
+document.getElementById("rptDate").textContent=`発行日: ${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日`;
+document.getElementById("rptFooter").textContent=`Kusasyu PropTech 物件パスポート | ${name}`;
+document.getElementById("stampArea").innerHTML=`<div class="stamp" style="color:${gradeColor};border-color:${gradeColor}">${grade.split("（")[0]}<br>判定</div>`;
+// Info grid
+const infoData=[["物件名称",name],["所在地",addr],["築年数",age+"年"],["構造",st],["専有面積",area+"㎡"],["階数/所在階",floor],["間取り",layout],["価格",price?price.toLocaleString()+"万円":"-"]];
+document.getElementById("rptInfo").innerHTML=infoData.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("");
+// Score
+document.getElementById("scoreArea").innerHTML=`<div class="score-box" style="background:${gradeBg}"><div class="num" style="color:${gradeColor}">${totalRisk}<span style="font-size:.3em">/ 100</span></div><div class="lbl" style="color:${gradeColor}">${grade}</div><p style="font-size:.8em;color:#666;margin-top:8px">スコアが低いほど安全性が高い物件です</p></div>`;
+// Equipment bars
+const colors=["#e94560","#e76f51","#f4a261","#52796f","#2a9d8f"];
+document.getElementById("eqBars").innerHTML=eqScores.map((v,i)=>`<div class="bar-wrap"><div class="bar-label"><span>${EQ_ITEMS[i]}</span><span>${v}/5</span></div><div class="bar-bg"><div class="bar-fill" style="width:${v*20}%;background:${colors[v-1]}"></div></div></div>`).join("");
+// Repairs
+if(repairLines.length){let html="<table><tr><th>時期</th><th>内容</th><th>費用</th></tr>";repairLines.forEach(l=>{const p=l.split(",");html+=`<tr><td>${p[0]||"-"}</td><td>${p[1]||"-"}</td><td>${p[2]||"-"}</td></tr>`});html+="</table>";document.getElementById("rptRepair").innerHTML=html}else{document.getElementById("rptRepair").innerHTML="<p style='color:#999;font-size:.85em'>修繕履歴の登録がありません</p>"}
+// Environment
+const station=getVal("station")||"-",sup=getNum("super"),hos=getNum("hospital"),sch=getNum("school"),envN=getVal("envNote");
+let envH=`<dl class="info-grid"><dt>最寄駅</dt><dd>${station}</dd><dt>スーパー</dt><dd>徒歩${sup}分</dd><dt>病院</dt><dd>徒歩${hos}分</dd><dt>学校</dt><dd>徒歩${sch}分</dd></dl>`;
+if(envN)envH+=`<p style="margin-top:8px;font-size:.85em"><strong>特記:</strong> ${envN.replace(/</g,"&lt;")}</p>`;
+document.getElementById("rptEnv").innerHTML=envH;
+// Risks & suggestions
+const risks=[];
+if(age>30)risks.push({l:"high",t:`築${age}年：大規模修繕や耐震補強の実施状況を確認してください。1981年以前の旧耐震基準の場合は耐震診断を推奨します。`});
+else if(age>20)risks.push({l:"mid",t:`築${age}年：給排水管や防水の経年劣化が進む時期です。直近の修繕実施を確認してください。`});
+eqScores.forEach((v,i)=>{if(v<=1)risks.push({l:"high",t:`${EQ_ITEMS[i]}が「要交換」評価です。早急な交換・修繕を推奨します。`});else if(v===2)risks.push({l:"mid",t:`${EQ_ITEMS[i]}にやや劣化が見られます。今後1〜2年以内の対応を検討してください。`})});
+if(repairLines.length===0&&age>10)risks.push({l:"mid",t:"修繕履歴が未登録です。過去の修繕記録を確認・登録することで買主への信頼性が向上します。"});
+if(age>15&&!repairLines.some(l=>l.includes("外壁")||l.includes("塗装")))risks.push({l:"mid",t:"外壁塗装の修繕記録がありません。築15年以上では外壁メンテナンスの実施確認を推奨します。"});
+if(risks.length===0)risks.push({l:"low",t:"現時点で大きなリスク要因は検出されませんでした。良好な状態です。"});
+const lowItems=eqScores.filter(v=>v>=4).length;
+if(lowItems>=8)risks.push({l:"low",t:`設備${lowItems}/10項目が良好以上の評価です。全体的に良好な物件状態を維持しています。`});
+document.getElementById("rptRisk").innerHTML=risks.map(r=>`<li class="${r.l}">${r.t}</li>`).join("");
+// Show report
+document.getElementById("form-area").style.display="none";
+document.getElementById("report").style.display="block";
+window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

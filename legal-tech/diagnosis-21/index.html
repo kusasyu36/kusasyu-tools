@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>規程運用ギャップチェックシート - kusasyu tools</title>
+<meta name="description" content="社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,規程運用ギャップチェックシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-21/">
+<meta property="og:title" content="規程運用ギャップチェックシート - kusasyu tools">
+<meta property="og:description" content="社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-21/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="規程運用ギャップチェックシート - kusasyu tools">
+<meta name="twitter:description" content="社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "規程運用ギャップチェックシート",
+  "description": "社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-21/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-15"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>規程運用ギャップチェックシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>規程運用ギャップチェックシート</h1>
+  <p class="project-name">コンプライアンス規程、守られてる？実態ギャップ診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>カテゴリID</th><th>カテゴリ名</th><th>チェック項目</th><th>根拠法令・規程条項</th><th>証跡種別</th><th>推奨運用頻度</th><th>規程上の要求レベル</th><th>現場の実施状況</th><th>運用証跡の有無</th><th>ギャップスコア</th><th>ギャップ判定基準</th><th>是正期限目安</th><th>優先度</th><th>担当者</th><th>進捗ステータス</th><th>是正アクション</th><th>改正公益通報者保護法対応</th><th>改正個人情報保護法対応</th><th>不正競争防止法対応</th><th>最終確認日</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>CAT-01</td><td>情報管理・個人情報保護</td><td>個人情報取扱台帳の整備・更新</td><td>個人情報保護法第29条／社内規程第12条</td><td>台帳・管理簿</td><td>四半期</td><td>必須</td><td>一部実施</td><td>有</td><td>35</td><td>「台帳なし=0」「1年以上未更新=30」「四半期更新=80」「月次更新=100」</td><td>30日</td><td>A（最優先）</td><td>法務部 山田</td><td>対応中</td><td>台帳フォーマット統一＋四半期レビュー体制を構築。現行3部門分が未登録のため追加登録を実施する</td><td>-</td><td>○</td><td>-</td><td>2026-04-01</td><td>3部門（営業・マーケ・CS）の台帳が未整備</td></tr><tr><td>2</td><td>CAT-01</td><td>情報管理・個人情報保護</td><td>個人データの安全管理措置（技術的・組織的）</td><td>個人情報保護法第23条／社内規程第15条</td><td>設定画面キャプチャ・アクセスログ</td><td>半期</td><td>必須</td><td>実施済</td><td>有</td><td>75</td><td>「措置なし=0」「物理的のみ=30」「技術的+物理的=60」「全4措置完備=100」</td><td>60日</td><td>B（重要）</td><td>情報システム部 佐藤</td><td>完了</td><td>技術的措置（暗号化・アクセス制御）は実装済。組織的措置の文書化が不足していたため規程別紙に追記</td><td>-</td><td>○</td><td>-</td><td>2026-03-15</td><td>組織的措置のマニュアル文書化が残課題</td></tr><tr><td>3</td><td>CAT-01</td><td>情報管理・個人情報保護</td><td>個人情報漏えい時の報告体制（72時間ルール）</td><td>改正個人情報保護法第26条／社内規程第20条</td><td>報告フロー図・訓練記録</td><td>年次</td><td>必須</td><td>未実施</td><td>無</td><td>10</td><td>「体制なし=0」「フロー図のみ=40」「訓練未実施=60」「年1回訓練実施=100」</td><td>14日</td><td>A（最優先）</td><td>法務部 山田</td><td>未着手</td><td>72時間以内報告フローを策定し全管理職へ周知。年1回のインシデント対応訓練を実施する</td><td>-</td><td>○</td><td>-</td><td></td><td>改正法対応として最優先。個人情報保護委員会への報告義務</td></tr><tr><td>4</td><td>CAT-02</td><td>内部通報・公益通報</td><td>内部通報窓口の設置・周知</td><td>改正公益通報者保護法第11条／社内規程第30条</td><td>窓口設置記録・社内掲示・周知メール</td><td>常時運用＋年次周知</td><td>必須</td><td>一部実施</td><td>有</td><td>50</td><td>「窓口なし=0」「設置のみ周知不足=40」「年1回周知=70」「四半期周知+ポスター=100」</td><td>30日</td><td>A（最優先）</td><td>コンプライアンス室 鈴木</td><td>対応中</td><td>外部窓口（弁護士事務所）は設置済。社内周知が入社時研修のみのため四半期メール配信＋社内ポスターを追加</td><td>○</td><td>-</td><td>-</td><td>2026-03-20</td><td>従業員300名以上は窓口設置義務あり（改正法）</td></tr><tr><td>5</td><td>CAT-02</td><td>内部通報・公益通報</td><td>通報者保護措置（不利益取扱いの禁止）</td><td>改正公益通報者保護法第3条・第5条／社内規程第32条</td><td>保護規程・処分事例記録</td><td>常時</td><td>必須</td><td>一部実施</td><td>無</td><td>25</td><td>「規程なし=0」「規程あり運用なし=30」「管理職研修実施=70」「処分実績+監査=100」</td><td>14日</td><td>A（最優先）</td><td>コンプライアンス室 鈴木</td><td>未着手</td><td>通報者保護規程の制定＋管理職向け研修（不利益取扱い禁止）を四半期で実施。匿名通報の仕組みを導入</td><td>○</td><td>-</td><td>-</td><td></td><td>改正法で刑事罰の対象範囲が拡大</td></tr><tr><td>6</td><td>CAT-02</td><td>内部通報・公益通報</td><td>従事者の守秘義務（従事者指定と研修）</td><td>改正公益通報者保護法第12条／社内規程第33条</td><td>従事者指定書・守秘誓約書・研修記録</td><td>年次</td><td>必須</td><td>未実施</td><td>無</td><td>0</td><td>「指定なし=0」「指定のみ=40」「誓約書あり=60」「研修+誓約=100」</td><td>14日</td><td>A（最優先）</td><td>コンプライアンス室 鈴木</td><td>未着手</td><td>通報対応従事者を正式指定し守秘義務の書面取得＋年次研修を実施する</td><td>○</td><td>-</td><td>-</td><td></td><td>従事者指定は改正法の新義務。違反に30万円以下の罰金</td></tr><tr><td>7</td><td>CAT-03</td><td>ハラスメント防止</td><td>ハラスメント防止方針の策定・周知</td><td>労働施策総合推進法第30条の2／社内規程第40条</td><td>方針文書・周知記録・掲示物</td><td>常時掲示＋年次周知</td><td>必須</td><td>実施済</td><td>有</td><td>80</td><td>「方針なし=0」「文書のみ=40」「掲示+研修=70」「全従業員確認記録=100」</td><td>90日</td><td>C（通常）</td><td>人事部 田中</td><td>完了</td><td>方針策定・社内イントラ掲載済。全社研修も年1回実施。個別確認記録の仕組みを追加検討</td><td>-</td><td>-</td><td>-</td><td>2026-02-01</td><td>パワハラ・セクハラ・マタハラの3類型をカバー</td></tr><tr><td>8</td><td>CAT-03</td><td>ハラスメント防止</td><td>相談窓口の設置と対応フロー</td><td>労働施策総合推進法第30条の2第3項／社内規程第42条</td><td>相談記録・対応フロー図・担当者名簿</td><td>常時運用</td><td>必須</td><td>一部実施</td><td>有</td><td>55</td><td>「窓口なし=0」「内部のみ=40」「内部+外部=70」「フロー整備+訓練=100」</td><td>30日</td><td>B（重要）</td><td>人事部 田中</td><td>対応中</td><td>外部相談窓口を新規契約し内部・外部の2系統体制にする。対応フローのマニュアルを改訂</td><td>-</td><td>-</td><td>-</td><td>2026-03-10</td><td>現在は人事部直通のみ。外部窓口の設置が急務</td></tr><tr><td>9</td><td>CAT-04</td><td>営業秘密・知的財産管理</td><td>営業秘密管理体制の構築</td><td>不正競争防止法第2条第6項／社内規程第50条</td><td>秘密指定台帳・アクセス権限表・施錠記録</td><td>半期</td><td>必須</td><td>一部実施</td><td>有</td><td>45</td><td>「管理体制なし=0」「指定のみ=30」「指定+アクセス制限=60」「3要件充足=100」</td><td>30日</td><td>B（重要）</td><td>法務部 山田</td><td>対応中</td><td>秘密管理性の3要件（秘密指定・アクセス制限・認識可能性）を満たすよう台帳整備＋ラベリングルールを策定</td><td>-</td><td>-</td><td>○</td><td>2026-03-25</td><td>有用性・非公知性は充足。秘密管理性に課題あり</td></tr><tr><td>10</td><td>CAT-04</td><td>営業秘密・知的財産管理</td><td>退職者からの秘密漏えい防止措置</td><td>不正競争防止法第2条／社内規程第52条</td><td>誓約書・退職時チェックリスト・アカウント停止記録</td><td>退職時都度</td><td>必須</td><td>未実施</td><td>無</td><td>15</td><td>「措置なし=0」「誓約書のみ=30」「誓約+アカウント即停止=70」「全措置+モニタリング=100」</td><td>14日</td><td>A（最優先）</td><td>法務部 山田 ＋ 人事部 田中</td><td>未着手</td><td>退職時の秘密保持誓約書テンプレートを作成し人事退職手続きに組み込む。アカウント即日停止フローを構築</td><td>-</td><td>-</td><td>○</td><td></td><td>過去1年で退職者3名に誓約書未取得</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,カテゴリID,カテゴリ名,チェック項目,根拠法令・規程条項,証跡種別,推奨運用頻度,規程上の要求レベル,現場の実施状況,運用証跡の有無,ギャップスコア,ギャップ判定基準,是正期限目安,優先度,担当者,進捗ステータス,是正アクション,改正公益通報者保護法対応,改正個人情報保護法対応,不正競争防止法対応,最終確認日,備考
+1,CAT-01,情報管理・個人情報保護,個人情報取扱台帳の整備・更新,個人情報保護法第29条／社内規程第12条,台帳・管理簿,四半期,必須,一部実施,有,35,「台帳なし=0」「1年以上未更新=30」「四半期更新=80」「月次更新=100」,30日,A（最優先）,法務部 山田,対応中,台帳フォーマット統一＋四半期レビュー体制を構築。現行3部門分が未登録のため追加登録を実施する,-,○,-,2026-04-01,3部門（営業・マーケ・CS）の台帳が未整備
+2,CAT-01,情報管理・個人情報保護,個人データの安全管理措置（技術的・組織的）,個人情報保護法第23条／社内規程第15条,設定画面キャプチャ・アクセスログ,半期,必須,実施済,有,75,「措置なし=0」「物理的のみ=30」「技術的+物理的=60」「全4措置完備=100」,60日,B（重要）,情報システム部 佐藤,完了,技術的措置（暗号化・アクセス制御）は実装済。組織的措置の文書化が不足していたため規程別紙に追記,-,○,-,2026-03-15,組織的措置のマニュアル文書化が残課題
+3,CAT-01,情報管理・個人情報保護,個人情報漏えい時の報告体制（72時間ルール）,改正個人情報保護法第26条／社内規程第20条,報告フロー図・訓練記録,年次,必須,未実施,無,10,「体制なし=0」「フロー図のみ=40」「訓練未実施=60」「年1回訓練実施=100」,14日,A（最優先）,法務部 山田,未着手,72時間以内報告フローを策定し全管理職へ周知。年1回のインシデント対応訓練を実施する,-,○,-,,改正法対応として最優先。個人情報保護委員会への報告義務
+4,CAT-02,内部通報・公益通報,内部通報窓口の設置・周知,改正公益通報者保護法第11条／社内規程第30条,窓口設置記録・社内掲示・周知メール,常時運用＋年次周知,必須,一部実施,有,50,「窓口なし=0」「設置のみ周知不足=40」「年1回周知=70」「四半期周知+ポスター=100」,30日,A（最優先）,コンプライアンス室 鈴木,対応中,外部窓口（弁護士事務所）は設置済。社内周知が入社時研修のみのため四半期メール配信＋社内ポスターを追加,○,-,-,2026-03-20,従業員300名以上は窓口設置義務あり（改正法）
+5,CAT-02,内部通報・公益通報,通報者保護措置（不利益取扱いの禁止）,改正公益通報者保護法第3条・第5条／社内規程第32条,保護規程・処分事例記録,常時,必須,一部実施,無,25,「規程なし=0」「規程あり運用なし=30」「管理職研修実施=70」「処分実績+監査=100」,14日,A（最優先）,コンプライアンス室 鈴木,未着手,通報者保護規程の制定＋管理職向け研修（不利益取扱い禁止）を四半期で実施。匿名通報の仕組みを導入,○,-,-,,改正法で刑事罰の対象範囲が拡大
+6,CAT-02,内部通報・公益通報,従事者の守秘義務（従事者指定と研修）,改正公益通報者保護法第12条／社内規程第33条,従事者指定書・守秘誓約書・研修記録,年次,必須,未実施,無,0,「指定なし=0」「指定のみ=40」「誓約書あり=60」「研修+誓約=100」,14日,A（最優先）,コンプライアンス室 鈴木,未着手,通報対応従事者を正式指定し守秘義務の書面取得＋年次研修を実施する,○,-,-,,従事者指定は改正法の新義務。違反に30万円以下の罰金
+7,CAT-03,ハラスメント防止,ハラスメント防止方針の策定・周知,労働施策総合推進法第30条の2／社内規程第40条,方針文書・周知記録・掲示物,常時掲示＋年次周知,必須,実施済,有,80,「方針なし=0」「文書のみ=40」「掲示+研修=70」「全従業員確認記録=100」,90日,C（通常）,人事部 田中,完了,方針策定・社内イントラ掲載済。全社研修も年1回実施。個別確認記録の仕組みを追加検討,-,-,-,2026-02-01,パワハラ・セクハラ・マタハラの3類型をカバー
+8,CAT-03,ハラスメント防止,相談窓口の設置と対応フロー,労働施策総合推進法第30条の2第3項／社内規程第42条,相談記録・対応フロー図・担当者名簿,常時運用,必須,一部実施,有,55,「窓口なし=0」「内部のみ=40」「内部+外部=70」「フロー整備+訓練=100」,30日,B（重要）,人事部 田中,対応中,外部相談窓口を新規契約し内部・外部の2系統体制にする。対応フローのマニュアルを改訂,-,-,-,2026-03-10,現在は人事部直通のみ。外部窓口の設置が急務
+9,CAT-04,営業秘密・知的財産管理,営業秘密管理体制の構築,不正競争防止法第2条第6項／社内規程第50条,秘密指定台帳・アクセス権限表・施錠記録,半期,必須,一部実施,有,45,「管理体制なし=0」「指定のみ=30」「指定+アクセス制限=60」「3要件充足=100」,30日,B（重要）,法務部 山田,対応中,秘密管理性の3要件（秘密指定・アクセス制限・認識可能性）を満たすよう台帳整備＋ラベリングルールを策定,-,-,○,2026-03-25,有用性・非公知性は充足。秘密管理性に課題あり
+10,CAT-04,営業秘密・知的財産管理,退職者からの秘密漏えい防止措置,不正競争防止法第2条／社内規程第52条,誓約書・退職時チェックリスト・アカウント停止記録,退職時都度,必須,未実施,無,15,「措置なし=0」「誓約書のみ=30」「誓約+アカウント即停止=70」「全措置+モニタリング=100」,14日,A（最優先）,法務部 山田 ＋ 人事部 田中,未着手,退職時の秘密保持誓約書テンプレートを作成し人事退職手続きに組み込む。アカウント即日停止フローを構築,-,-,○,,過去1年で退職者3名に誓約書未取得
+11,CAT-05,反社会的勢力排除,反社チェック体制の整備,政府指針（2007年）／社内規程第60条,チェック記録・データベース契約書・排除条項,取引開始時＋年次,必須,一部実施,有,60,「体制なし=0」「契約書条項のみ=30」「DB照合あり=70」「DB+定期再チェック=100」,60日,B（重要）,総務部 伊藤,対応中,反社DBサービスを契約し新規取引先は全件照合。既存取引先の年次再チェック運用を開始する,-,-,-,2026-02-15,暴排条項は契約書に挿入済。DB照合が未導入
+12,CAT-05,反社会的勢力排除,取引基本契約への暴排条項挿入,各都道府県暴排条例／社内規程第61条,契約書サンプル・挿入率レポート,取引開始時,必須,実施済,有,85,「条項なし=0」「一部契約のみ=40」「新規全件=70」「新規+既存遡及=100」,90日,C（通常）,総務部 伊藤,完了,新規契約は全件挿入済（挿入率100%）。既存契約の遡及挿入を更新タイミングで順次実施中,-,-,-,2026-01-20,既存契約の遡及挿入率は約60%
+,,,,,,,,,,,,,,,,,,,,,[テンプレート行]以下に自社のチェック項目を追加してください
+,CAT-01,情報管理・個人情報保護,,,,,,,,,"「台帳なし=0」「1年以上未更新=30」「四半期更新=80」「月次更新=100」",,,,,,-,○,-,,
+,CAT-02,内部通報・公益通報,,,,,,,,,"「規程なし=0」「規程あり運用なし=30」「管理職研修実施=70」「処分実績+監査=100」",,,,,,,○,-,-,,
+,CAT-03,ハラスメント防止,,,,,,,,,"「方針なし=0」「文書のみ=40」「掲示+研修=70」「全従業員確認記録=100」",,,,,,,-,-,-,,
+,CAT-04,営業秘密・知的財産管理,,,,,,,,,"「管理体制なし=0」「指定のみ=30」「指定+アクセス制限=60」「3要件充足=100」",,,,,,,-,-,○,,
+,CAT-05,反社会的勢力排除,,,,,,,,,"「体制なし=0」「条項なし=30」「DB照合あり=70」「DB+定期再チェック=100」",,,,,,,-,-,-,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_規程運用ギャップチェックシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

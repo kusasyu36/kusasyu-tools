@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>コンプライアンスギャップ診断ダッシュボード - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--c1:#2563eb;--c2:#7c3aed;--c3:#059669;--c4:#d97706;--c5:#dc2626;--bg:#f8fafc;--card:#fff;--border:#e2e8f0;--text:#1e293b;--sub:#64748b;--danger:#ef4444;--warn:#f59e0b;--ok:#22c55e;--info:#3b82f6}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#2563eb);color:#fff;padding:24px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{opacity:.85;font-size:.82em}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:16px;border-bottom:2px solid var(--border)}
+.tab{padding:10px 16px;cursor:pointer;border:none;background:none;font-size:.85em;font-weight:600;color:var(--sub);border-bottom:3px solid transparent;transition:.2s}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--c1);border-bottom-color:var(--c1)}
+.panel{display:none}.panel.active{display:block}
+.card{background:var(--card);border-radius:10px;padding:16px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border)}
+.card h3{font-size:1em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:20px}
+.score-card{background:var(--card);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--border);transition:.2s}
+.score-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.score-card .label{font-size:.8em;color:var(--sub);margin-bottom:6px}
+.score-card .value{font-size:2em;font-weight:800}
+.score-card .bar{height:6px;background:#e2e8f0;border-radius:3px;margin-top:8px;overflow:hidden}
+.score-card .bar-fill{height:100%;border-radius:3px;transition:width .6s}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:768px){.chart-row{grid-template-columns:1fr}.score-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.score-grid{grid-template-columns:1fr}}
+canvas{width:100%;max-width:100%;height:auto}
+.check-table{width:100%;border-collapse:collapse;font-size:.82em}
+.check-table th{background:#f1f5f9;padding:8px 6px;text-align:left;font-weight:600;border-bottom:2px solid var(--border);position:sticky;top:0;z-index:1}
+.check-table td{padding:6px;border-bottom:1px solid var(--border);vertical-align:middle}
+.check-table tr:hover{background:#f8fafc}
+.check-table select,.check-table input[type="date"]{padding:4px 6px;border:1px solid var(--border);border-radius:4px;font-size:.95em;width:100%}
+.check-table input[type="checkbox"]{width:18px;height:18px;cursor:pointer}
+.cat-label{font-size:.7em;padding:2px 8px;border-radius:10px;color:#fff;white-space:nowrap}
+.cat-0{background:var(--c1)}.cat-1{background:var(--c2)}.cat-2{background:var(--c3)}.cat-3{background:var(--c4)}.cat-4{background:var(--c5)}
+.heatmap{display:grid;gap:3px;margin-top:12px}
+.hm-cell{border-radius:4px;padding:6px 4px;font-size:.68em;text-align:center;color:#fff;min-height:34px;display:flex;align-items:center;justify-content:center;cursor:default;position:relative}
+.hm-cell:hover::after{content:attr(data-tip);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#1e293b;color:#fff;padding:4px 8px;border-radius:4px;font-size:11px;white-space:nowrap;z-index:10;pointer-events:none}
+.action-list{list-style:none}
+.action-list li{padding:10px 12px;border-left:4px solid var(--danger);background:#fef2f2;border-radius:0 8px 8px 0;margin-bottom:8px;font-size:.85em}
+.action-list li.med{border-color:var(--warn);background:#fffbeb}
+.action-list li.low{border-color:var(--info);background:#eff6ff}
+.action-list .pri{font-weight:700;margin-right:8px}
+.action-list .deadline{color:var(--sub);font-size:.8em;display:block;margin-top:2px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.75em;margin-top:8px}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+.btn{padding:10px 20px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85em;transition:.2s}
+.btn-primary{background:var(--c1);color:#fff}.btn-primary:hover{opacity:.9}
+.btn-outline{background:none;border:2px solid var(--c1);color:var(--c1)}.btn-outline:hover{background:var(--c1);color:#fff}
+.btn-danger{background:none;border:2px solid var(--danger);color:var(--danger)}.btn-danger:hover{background:var(--danger);color:#fff}
+.btn-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.total-score{font-size:3em;font-weight:900;text-align:center;margin:16px 0}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.filter-bar select,.filter-bar input{padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:.85em}
+.scroll-wrap{max-height:520px;overflow-y:auto}
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:.82em;color:var(--sub)}
+.stat-row b{color:var(--text)}
+@media print{
+body{font-size:11px;background:#fff}
+.tabs,.filter-bar,.btn-group,.no-print{display:none!important}
+.panel{display:block!important}
+.panel[data-p="cat"]{display:none!important}
+.card{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+header{background:#1e3a5f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.score-card,.hm-cell,.cat-label,.badge,.bar-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+<meta name="description" content="社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,コンプライアンスギャップ診断ダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-20/">
+<meta property="og:title" content="コンプライアンスギャップ診断ダッシュボード - kusasyu tools">
+<meta property="og:description" content="社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-20/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="コンプライアンスギャップ診断ダッシュボード - kusasyu tools">
+<meta name="twitter:description" content="社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "コンプライアンスギャップ診断ダッシュボード",
+  "description": "社内コンプライアンス規程のテキストを入力するだけで、チェック項目を自動抽出し、各項目に対する運用証跡の有無・実施状況を入力すると「書面上のルール」と「現場の実態」のギャップをスコアリングするWebダッシュボード。是正アクションの優先順位も自動提案する。Metareal CPが規制収集、Vanta/Sprint",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-20/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">コンプライアンスギャップ診断ダッシュボード</span></div>
+<div class="container">
+<header>
+<h1>コンプライアンスギャップ診断ダッシュボード</h1>
+<p>5大カテゴリ × 63項目の法令対応リアルタイム診断 ｜ 改正公益通報者保護法・改正個人情報保護法対応チェック同梱</p>
+</header>
+<div class="tabs">
+<button class="tab active" data-t="dash" onclick="showTab('dash')">ダッシュボード</button>
+<button class="tab" data-t="cat" onclick="showTab('cat')">チェック項目入力</button>
+<button class="tab" data-t="action" onclick="showTab('action')">是正アクション</button>
+<button class="tab" data-t="report" onclick="showTab('report')">経営報告</button>
+</div>
+
+<div class="panel active" data-p="dash" id="panelDash">
+<div class="stat-row" id="statRow"></div>
+<div class="score-grid" id="scoreGrid"></div>
+<div class="chart-row">
+<div class="card"><h3>レーダーチャート</h3><canvas id="radarCanvas" width="500" height="500"></canvas></div>
+<div class="card"><h3>ヒートマップ（項目別リスク）</h3><div id="heatmap"></div>
+<div class="legend"><span><i style="background:var(--danger)"></i>高リスク(0-39)</span><span><i style="background:var(--warn)"></i>中リスク(40-69)</span><span><i style="background:var(--ok)"></i>低リスク(70-100)</span></div>
+</div>
+</div>
+</div>
+
+<div class="panel" data-p="cat" id="panelCat">
+<div class="filter-bar no-print">
+<label>カテゴリ: <select id="filterCat" onchange="renderTable()"><option value="-1">すべて</option></select></label>
+<label>表示: <select id="filterStatus" onchange="renderTable()"><option value="all">すべて</option><option value="enabled">有効のみ</option><option value="gap">ギャップあり</option></select></label>
+<button class="btn btn-outline" onclick="enableAll()">全項目有効化</button>
+<button class="btn btn-danger" onclick="disableAll()">全項目無効化</button>
+</div>
+<div class="card scroll-wrap"><table class="check-table"><thead><tr><th style="width:30px">有効</th><th style="width:70px">カテゴリ</th><th>チェック項目</th><th style="width:82px">証跡</th><th style="width:100px">運用頻度</th><th style="width:115px">最終確認日</th></tr></thead><tbody id="checkBody"></tbody></table></div>
+<div class="btn-group no-print"><button class="btn btn-primary" onclick="recalc();showTab('dash')">スコア再計算 → ダッシュボード</button></div>
+</div>
+
+<div class="panel" data-p="action" id="panelAction">
+<div class="card"><h3>是正アクション優先順位（スコア下位項目）</h3><ul class="action-list" id="actionList"></ul></div>
+</div>
+
+<div class="panel" data-p="report" id="panelReport">
+<div class="card">
+<h3>経営報告サマリー</h3>
+<p id="reportDate" style="color:var(--sub);font-size:.85em;margin-bottom:12px"></p>
+<div class="total-score" id="reportTotal"></div>
+<p style="text-align:center;color:var(--sub);margin-bottom:16px">総合コンプライアンススコア</p>
+<div class="score-grid" id="reportScores"></div>
+<div id="reportRadarWrap" style="max-width:420px;margin:0 auto"><canvas id="radarCanvas2" width="500" height="500"></canvas></div>
+<div style="margin-top:16px"><h3 style="margin-bottom:8px">主要リスク・要是正事項（上位5件）</h3><ul class="action-list" id="reportActions"></ul></div>
+</div>
+<div class="btn-group no-print"><button class="btn btn-primary" onclick="window.print()">印刷 / PDF出力</button></div>
+</div>
+</div>
+
+<script>
+var CATS=[
+{id:0,name:"情報セキュリティ",color:"#2563eb",items:[
+{t:"情報セキュリティ基本方針の策定・社内周知",law:"ISMS基本方針"},
+{t:"アクセス権限管理規程の整備・定期棚卸し",law:"ISMS管理策"},
+{t:"パスワードポリシーの策定と運用（複雑性・有効期限）",law:"ISMS管理策"},
+{t:"外部記憶媒体（USB等）の利用制限規程",law:"ISMS管理策"},
+{t:"ファイアウォール・IDS/IPSの導入と運用監視",law:"ISMS技術的管理策"},
+{t:"ウイルス対策ソフトの全端末導入・パターン更新",law:"ISMS技術的管理策"},
+{t:"OSおよびソフトウェアのセキュリティパッチ適時適用",law:"ISMS技術的管理策"},
+{t:"情報資産台帳の作成と年次更新",law:"ISMS管理策"},
+{t:"セキュリティインシデント対応手順の策定・訓練",law:"ISMS管理策"},
+{t:"従業員向けセキュリティ教育の定期実施",law:"ISMS教育"},
+{t:"委託先に対するセキュリティ監査の実施",law:"ISMS委託先管理"},
+{t:"BCP/DR（事業継続・災害復旧）計画の策定・テスト",law:"ISMS事業継続"},
+{t:"クラウドサービス利用時のセキュリティ評価",law:"クラウドセキュリティGL"},
+{t:"ログの収集・保管・定期レビュー体制",law:"ISMS管理策"}
+]},
+{id:1,name:"ハラスメント防止",color:"#7c3aed",items:[
+{t:"ハラスメント防止方針の策定・全社周知",law:"労働施策総合推進法"},
+{t:"社内相談窓口の設置と担当者選任",law:"均等法11条"},
+{t:"外部相談窓口（第三者機関）の設置",law:"均等法11条"},
+{t:"相談対応マニュアルの整備",law:"均等法11条指針"},
+{t:"管理職向けハラスメント防止研修の定期実施",law:"労推法30条の2"},
+{t:"全従業員向け啓発・意識向上研修の実施",law:"労推法30条の2"},
+{t:"事実確認・調査手順の文書化と公正な運用",law:"事業主措置義務"},
+{t:"ハラスメント行為に対する懲戒規定の明確化",law:"就業規則"},
+{t:"被害者保護・不利益取扱い禁止規定の整備",law:"均等法11条"},
+{t:"ハラスメント事案の記録保管と再発防止策の実施",law:"事業主措置義務"},
+{t:"パワハラ6類型の具体例を用いた社内周知",law:"労推法施行指針"},
+{t:"SOGIハラ・マタハラ・ケアハラ防止規定の整備",law:"育介法25条"}
+]},
+{id:2,name:"内部通報",color:"#059669",items:[
+{t:"内部通報窓口の設置（社内）",law:"公益通報者保護法"},
+{t:"外部通報窓口（弁護士等第三者）の設置",law:"改正公益通報者保護法"},
+{t:"公益通報者保護規程の策定・届出",law:"改正法11条"},
+{t:"公益通報対応業務従事者の指定・届出",law:"改正法11条1項"},
+{t:"従事者に対する守秘義務規定の整備（罰則含む）",law:"改正法12条"},
+{t:"通報受付から調査完了までの標準処理手順の策定",law:"指針第3"},
+{t:"通報対応フロー図の文書化と関係者への共有",law:"指針第3"},
+{t:"匿名通報の受付・処理体制の整備",law:"指針推奨事項"},
+{t:"通報者への不利益取扱い禁止の明文化",law:"改正法5条"},
+{t:"内部通報制度の全従業員向け周知・教育",law:"指針第4"},
+{t:"是正措置の実施状況の記録・検証体制",law:"指針第3"},
+{t:"内部通報制度の運用状況の定期評価・改善",law:"指針第4"},
+{t:"退職者からの通報受付体制の整備",law:"改正法2条"}
+]},
+{id:3,name:"個人情報保護",color:"#d97706",items:[
+{t:"プライバシーポリシー（個人情報保護方針）の公表",law:"個情法21条"},
+{t:"個人情報取扱規程の策定と定期見直し",law:"個情法"},
+{t:"利用目的の特定・本人への通知または公表",law:"個情法18条"},
+{t:"要配慮個人情報の取得に際する本人同意の取得手続き",law:"個情法20条2項"},
+{t:"第三者提供時の本人同意取得/オプトアウト届出",law:"個情法27条"},
+{t:"個人データの安全管理措置（組織的対策）",law:"個情法23条"},
+{t:"個人データの安全管理措置（技術的対策）",law:"個情法23条"},
+{t:"個人データの安全管理措置（物理的対策）",law:"個情法23条"},
+{t:"従業者に対する必要・適切な監督体制",law:"個情法24条"},
+{t:"委託先に対する必要・適切な監督体制",law:"個情法25条"},
+{t:"漏えい等発生時の個人情報保護委員会への報告体制",law:"改正個情法26条"},
+{t:"漏えい等発生時の本人への通知体制",law:"改正個情法26条"},
+{t:"保有個人データの開示・訂正・利用停止等の請求対応",law:"改正個情法33条"},
+{t:"外国にある第三者への個人データ提供時の措置",law:"改正個情法28条"},
+{t:"個人関連情報の第三者提供に関する規制対応",law:"改正個情法31条"},
+{t:"仮名加工情報・匿名加工情報の取扱規程整備",law:"改正個情法41-44条"}
+]},
+{id:4,name:"反社チェック",color:"#dc2626",items:[
+{t:"反社会的勢力排除の基本方針の策定・公表",law:"政府指針(2007)"},
+{t:"新規取引開始時の反社チェック手順の整備",law:"政府指針"},
+{t:"反社データベースの契約・照会体制の構築",law:"実務慣行"},
+{t:"契約書への暴力団排除条項（暴排条項）の組み込み",law:"各都道府県暴排条例"},
+{t:"既存取引先に対する定期スクリーニングの実施",law:"暴排条例"},
+{t:"役員・従業員の反社該当性確認（入社時・定期）",law:"暴排条例"},
+{t:"反社勢力からの不当要求に対する対応マニュアル整備",law:"不当要求防止責任者制度"},
+{t:"不当要求防止責任者の選任・所轄警察署への届出",law:"暴対法14条"},
+{t:"所轄警察署・暴力追放運動推進センターとの連携体制",law:"暴対法推奨"},
+{t:"反社チェック記録・判定結果の適切な保管・管理",law:"実務慣行"},
+{t:"子会社・関連会社への反社排除方針の展開・徹底",law:"政府指針"}
+]}
+];
+
+var items=[],scores=[0,0,0,0,0];
+
+function init(){
+items=[];
+CATS.forEach(function(c){c.items.forEach(function(it){
+items.push({catId:c.id,catName:c.name,text:it.t,law:it.law,enabled:true,evidence:"none",freq:"none",lastDate:""});
+});});
+var sel=document.getElementById("filterCat");
+CATS.forEach(function(c){var o=document.createElement("option");o.value=c.id;o.textContent=c.name;sel.appendChild(o);});
+renderTable();recalc();
+}
+
+function renderTable(){
+var fc=parseInt(document.getElementById("filterCat").value);
+var fs=document.getElementById("filterStatus").value;
+var tb=document.getElementById("checkBody");tb.innerHTML="";
+items.forEach(function(it,idx){
+if(fc>=0&&it.catId!==fc)return;
+if(fs==="enabled"&&!it.enabled)return;
+if(fs==="gap"&&calcItemScore(it)>=70)return;
+var tr=document.createElement("tr");
+tr.innerHTML='<td><input type="checkbox" '+(it.enabled?"checked":"")+" onchange=\"items["+idx+"].enabled=this.checked;recalc()\"></td>"+
+'<td><span class="cat-label cat-'+it.catId+'">'+it.catName.slice(0,4)+"</span></td>"+
+"<td>"+it.text+'<br><span style="font-size:.7em;color:var(--sub)">'+it.law+"</span></td>"+
+'<td><select onchange="items['+idx+'].evidence=this.value;recalc()">'+
+'<option value="none"'+(it.evidence==="none"?" selected":"")+'>未選択</option><option value="yes"'+(it.evidence==="yes"?" selected":"")+'>あり</option><option value="no"'+(it.evidence==="no"?" selected":"")+">なし</option></select></td>"+
+'<td><select onchange="items['+idx+'].freq=this.value;recalc()">'+
+'<option value="none"'+(it.freq==="none"?" selected":"")+'>未選択</option><option value="monthly"'+(it.freq==="monthly"?" selected":"")+'>毎月</option><option value="quarterly"'+(it.freq==="quarterly"?" selected":"")+'>四半期</option><option value="yearly"'+(it.freq==="yearly"?" selected":"")+'>年1回</option><option value="never"'+(it.freq==="never"?" selected":"")+">未実施</option></select></td>"+
+'<td><input type="date" value="'+it.lastDate+'" onchange="items['+idx+'].lastDate=this.value;recalc()"></td>';
+tb.appendChild(tr);
+});
+}
+
+function calcItemScore(it){
+if(!it.enabled)return -1;
+var s=0;
+if(it.evidence==="yes")s+=40;else if(it.evidence==="no")s+=0;else s+=10;
+if(it.freq==="monthly")s+=35;else if(it.freq==="quarterly")s+=25;else if(it.freq==="yearly")s+=15;else if(it.freq==="never")s+=0;else s+=5;
+if(it.lastDate){var d=new Date(it.lastDate),now=new Date(),diff=(now-d)/86400000;if(diff<=90)s+=25;else if(diff<=180)s+=18;else if(diff<=365)s+=10;else s+=3;}else{s+=5;}
+return s;
+}
+
+function recalc(){
+CATS.forEach(function(c,ci){
+var catItems=items.filter(function(x){return x.catId===ci&&x.enabled;});
+if(catItems.length===0){scores[ci]=0;return;}
+var total=catItems.reduce(function(a,b){return a+calcItemScore(b);},0);
+scores[ci]=Math.round(total/catItems.length);
+});
+renderScoreGrid();drawRadar("radarCanvas");renderHeatmap();renderActions();renderReport();renderStats();
+}
+
+function getColor(s){return s>=70?"var(--ok)":s>=40?"var(--warn)":"var(--danger)";}
+function getHex(s){return s>=70?"#22c55e":s>=40?"#f59e0b":"#ef4444";}
+
+function renderStats(){
+var en=items.filter(function(x){return x.enabled;});
+var hi=en.filter(function(x){return calcItemScore(x)<40;}).length;
+var mid=en.filter(function(x){var s=calcItemScore(x);return s>=40&&s<70;}).length;
+var lo=en.filter(function(x){return calcItemScore(x)>=70;}).length;
+document.getElementById("statRow").innerHTML="有効項目: <b>"+en.length+"</b> / "+items.length+"件　｜　高リスク: <b style='color:var(--danger)'>"+hi+"</b>件　中リスク: <b style='color:var(--warn)'>"+mid+"</b>件　低リスク: <b style='color:var(--ok)'>"+lo+"</b>件";
+}
+
+function renderScoreGrid(){
+var g=document.getElementById("scoreGrid");g.innerHTML="";
+var avg=Math.round(scores.reduce(function(a,b){return a+b;},0)/5);
+var html='<div class="score-card" style="border-top:3px solid var(--c1)"><div class="label">総合スコア</div><div class="value" style="color:'+getColor(avg)+'">'+avg+'</div><div class="bar"><div class="bar-fill" style="width:'+avg+"%;background:"+getColor(avg)+'"></div></div></div>';
+CATS.forEach(function(c,i){
+html+='<div class="score-card" style="border-top:3px solid '+c.color+'"><div class="label">'+c.name+'</div><div class="value" style="color:'+getColor(scores[i])+'">'+scores[i]+'</div><div class="bar"><div class="bar-fill" style="width:'+scores[i]+"%;background:"+getColor(scores[i])+'"></div></div></div>';
+});
+g.innerHTML=html;
+}
+
+function drawRadar(canvasId){
+var cv=document.getElementById(canvasId);if(!cv)return;
+var ctx=cv.getContext("2d");var w=cv.width,h=cv.height,cx=w/2,cy=h/2,r=Math.min(w,h)*0.36;
+ctx.clearRect(0,0,w,h);
+var n=5,angles=[];
+for(var i=0;i<n;i++)angles.push(-Math.PI/2+2*Math.PI*i/n);
+ctx.strokeStyle="#cbd5e1";ctx.lineWidth=1;
+for(var lv=1;lv<=5;lv++){ctx.beginPath();var rr=r*lv/5;for(var j=0;j<n;j++){var x=cx+rr*Math.cos(angles[j]),y=cy+rr*Math.sin(angles[j]);j===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}ctx.closePath();ctx.stroke();
+ctx.fillStyle="#94a3b8";ctx.font="10px sans-serif";ctx.textAlign="right";
+ctx.fillText(lv*20,cx-4,cy-r*lv/5+12);
+}
+for(var i=0;i<n;i++){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+r*Math.cos(angles[i]),cy+r*Math.sin(angles[i]));ctx.strokeStyle="#cbd5e1";ctx.stroke();}
+ctx.beginPath();ctx.fillStyle="rgba(37,99,235,0.18)";ctx.strokeStyle="#2563eb";ctx.lineWidth=2.5;
+for(var i=0;i<n;i++){var v=scores[i]/100*r;var x=cx+v*Math.cos(angles[i]),y=cy+v*Math.sin(angles[i]);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+ctx.closePath();ctx.fill();ctx.stroke();
+for(var i=0;i<n;i++){var v=scores[i]/100*r;var x=cx+v*Math.cos(angles[i]),y=cy+v*Math.sin(angles[i]);ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fillStyle=getHex(scores[i]);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();}
+ctx.textAlign="center";ctx.textBaseline="middle";
+var labels=CATS.map(function(c){return c.name;});
+for(var i=0;i<n;i++){var lx=cx+(r+32)*Math.cos(angles[i]),ly=cy+(r+32)*Math.sin(angles[i]);
+ctx.fillStyle="#1e293b";ctx.font="bold 12px sans-serif";ctx.fillText(labels[i],lx,ly);
+ctx.fillStyle=getHex(scores[i]);ctx.font="bold 13px sans-serif";ctx.fillText(scores[i]+"点",lx,ly+16);}
+}
+
+function renderHeatmap(){
+var hm=document.getElementById("heatmap");hm.innerHTML="";
+var enabled=items.filter(function(x){return x.enabled;});
+var cols=Math.min(10,Math.max(5,Math.ceil(Math.sqrt(enabled.length))));
+hm.style.gridTemplateColumns="repeat("+cols+",1fr)";
+enabled.forEach(function(it){
+var s=calcItemScore(it);
+var bg=getHex(s);
+var d=document.createElement("div");d.className="hm-cell";d.style.background=bg;
+d.setAttribute("data-tip",it.catName+": "+it.text+" ("+s+"点)");
+d.textContent=it.text.slice(0,3);
+hm.appendChild(d);
+});
+}
+
+function renderActions(){
+var al=document.getElementById("actionList");al.innerHTML="";
+var enabled=items.filter(function(x){return x.enabled;}).map(function(x){return {catId:x.catId,catName:x.catName,text:x.text,law:x.law,evidence:x.evidence,freq:x.freq,lastDate:x.lastDate,enabled:x.enabled,score:calcItemScore(x)};}).sort(function(a,b){return a.score-b.score;});
+var top=enabled.slice(0,15);
+if(top.length===0){al.innerHTML="<li class='low'>有効な項目がありません。チェック項目入力タブで項目を有効化してください。</li>";return;}
+top.forEach(function(it,i){
+var pri,cls,deadline;
+if(it.score<30){pri="高";cls="";deadline="2週間以内";}
+else if(it.score<50){pri="中高";cls="";deadline="1ヶ月以内";}
+else if(it.score<70){pri="中";cls="med";deadline="3ヶ月以内";}
+else{pri="低";cls="low";deadline="次回定期レビュー時";}
+var action=suggestAction(it);
+var li=document.createElement("li");li.className=cls;
+li.innerHTML='<span class="pri">#'+(i+1)+" [優先度:"+pri+"]</span>"+it.catName+" — "+it.text+'<br><span style="font-size:.82em">\u2192 '+action+'</span><span class="deadline">対応期限目安: '+deadline+" ｜ 現在スコア: "+it.score+"点 ｜ 根拠法令: "+it.law+"</span>";
+al.appendChild(li);
+});
+}
+
+function suggestAction(it){
+var acts=[];
+if(it.evidence==="no")acts.push("規程・記録等の証跡を早急に整備・保管してください");
+else if(it.evidence==="none")acts.push("証跡の有無を確認し結果を登録してください");
+if(it.freq==="never")acts.push("運用が未実施です。担当者を決めて運用を開始してください");
+else if(it.freq==="none")acts.push("運用頻度を確認・登録してください");
+else if(it.freq==="yearly")acts.push("年1回では不十分な可能性があります。四半期以上への引き上げを検討してください");
+if(!it.lastDate)acts.push("最終確認日が未登録です。直近の確認日を記録してください");
+else{var d=new Date(it.lastDate),diff=(new Date()-d)/86400000;
+if(diff>365)acts.push("最終確認から1年以上経過しています。速やかに再確認を実施してください");
+else if(diff>180)acts.push("最終確認から半年以上経過しています。早期の再確認を推奨します");}
+return acts.length?acts.join("。")+"。":"現行の運用を継続し、定期的な見直しを行ってください。";
+}
+
+function renderReport(){
+var avg=Math.round(scores.reduce(function(a,b){return a+b;},0)/5);
+var today=new Date();
+document.getElementById("reportDate").textContent="診断実施日: "+today.getFullYear()+"年"+(today.getMonth()+1)+"月"+today.getDate()+"日";
+var grade=avg>=80?"A（良好）":avg>=60?"B（概ね対応）":avg>=40?"C（要改善）":"D（緊急対応必要）";
+document.getElementById("reportTotal").innerHTML='<span style="color:'+getColor(avg)+'">'+avg+'</span><span style="font-size:.35em;color:var(--sub)"> / 100　評価: '+grade+"</span>";
+var rg=document.getElementById("reportScores");rg.innerHTML="";
+CATS.forEach(function(c,i){rg.innerHTML+='<div class="score-card" style="border-top:3px solid '+c.color+'"><div class="label">'+c.name+'</div><div class="value" style="color:'+getColor(scores[i])+'">'+scores[i]+'</div><div class="bar"><div class="bar-fill" style="width:'+scores[i]+"%;background:"+getColor(scores[i])+'"></div></div></div>';});
+drawRadar("radarCanvas2");
+var ra=document.getElementById("reportActions");ra.innerHTML="";
+var top5=items.filter(function(x){return x.enabled;}).map(function(x){return {catId:x.catId,catName:x.catName,text:x.text,law:x.law,evidence:x.evidence,freq:x.freq,lastDate:x.lastDate,enabled:x.enabled,score:calcItemScore(x)};}).sort(function(a,b){return a.score-b.score;}).slice(0,5);
+top5.forEach(function(it){
+var li=document.createElement("li");li.className=it.score<40?"":"med";
+li.innerHTML='<span class="pri">['+it.score+"点]</span>"+it.catName+" — "+it.text+'<br><span style="font-size:.82em">\u2192 '+suggestAction(it)+"</span>";
+ra.appendChild(li);
+});
+}
+
+function showTab(t){
+var tabs=document.querySelectorAll(".tab");for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle("active",tabs[i].getAttribute("data-t")===t);
+var panels=document.querySelectorAll(".panel");for(var i=0;i<panels.length;i++)panels[i].classList.toggle("active",panels[i].getAttribute("data-p")===t);
+if(t==="dash")recalc();if(t==="cat")renderTable();
+}
+function enableAll(){items.forEach(function(x){x.enabled=true;});renderTable();recalc();}
+function disableAll(){items.forEach(function(x){x.enabled=false;});renderTable();recalc();}
+
+init();
+</script>
+</body>
+</html>
