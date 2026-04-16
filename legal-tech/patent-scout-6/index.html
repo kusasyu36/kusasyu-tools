@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>スタートアップ知財リスク診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:20px 0 4px;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.05em;color:#2b6cb0;margin-bottom:12px;border-left:4px solid #3182ce;padding-left:8px}
+label{display:block;font-size:.9em;font-weight:600;margin:10px 0 4px}
+select,input,textarea{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:.95em}
+textarea{height:60px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:200px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{padding:5px 12px;border-radius:20px;border:1px solid #3182ce;color:#3182ce;font-size:.8em;cursor:pointer;transition:.2s;user-select:none}
+.chip.on{background:#3182ce;color:#fff}
+.q{margin:10px 0}
+.q span{font-size:.88em}
+.opts{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.opts button{padding:6px 14px;border:1px solid #cbd5e0;border-radius:8px;background:#fff;cursor:pointer;font-size:.85em;transition:.2s}
+.opts button.sel{background:#3182ce;color:#fff;border-color:#3182ce}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{opacity:.9}
+#result{display:none}
+.score-bar{display:flex;align-items:center;margin:6px 0}
+.score-bar .lbl{width:130px;font-size:.82em;flex-shrink:0}
+.score-bar .bar-bg{flex:1;height:22px;background:#e2e8f0;border-radius:6px;overflow:hidden;position:relative}
+.score-bar .bar-fill{height:100%;border-radius:6px;transition:width .6s}
+.score-bar .bar-val{position:absolute;right:6px;top:2px;font-size:.75em;font-weight:700;color:#fff}
+.badge{display:inline-block;padding:2px 10px;border-radius:4px;color:#fff;font-weight:700;font-size:.8em;margin-right:6px}
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:10px}
+.risk-card{border-radius:8px;padding:12px;color:#fff}
+.risk-card h3{font-size:.95em;margin-bottom:4px}
+.risk-card p{font-size:.8em;opacity:.9}
+.act{background:#ebf8ff;border-left:4px solid #3182ce;padding:10px 14px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.88em}
+.footer{text-align:center;color:#a0aec0;font-size:.75em;padding:16px 0}
+canvas{width:100%;max-width:360px;margin:10px auto;display:block}
+</style>
+<meta name="description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,スタートアップ知財リスク診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-6/">
+<meta property="og:title" content="スタートアップ知財リスク診断ツール - kusasyu tools">
+<meta property="og:description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="スタートアップ知財リスク診断ツール - kusasyu tools">
+<meta name="twitter:description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "スタートアップ知財リスク診断ツール",
+  "description": "シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">スタートアップ知財リスク診断ツール</span></div>
+<div class="wrap">
+<h1>スタートアップ知財リスク診断</h1>
+<p class="sub">弁理士に依頼する前に、自社の知財リスクと出願優先度を無料で把握</p>
+
+<div class="card"><h2>1. 基本情報</h2>
+<div class="row"><div><label>会社フェーズ</label><select id="phase"><option value="seed">シード</option><option value="preA">プレシリーズA</option><option value="A">シリーズA</option></select></div>
+<div><label>ビジネスモデル</label><select id="biz"><option value="saas">SaaS / Webサービス</option><option value="hw">ハードウェア / IoT</option><option value="bio">バイオ / ヘルスケア</option><option value="ai">AI / データ分析</option><option value="fin">フィンテック</option><option value="other">その他</option></select></div></div>
+<label>事業概要（1〜2文）</label><textarea id="desc" placeholder="例：画像AIを活用した製造業向け外観検査SaaS"></textarea>
+</div>
+
+<div class="card"><h2>2. 技術領域（該当を選択）</h2>
+<div class="chips" id="techs">
+<span class="chip" data-v="algo">アルゴリズム</span><span class="chip" data-v="ui">UI/UX設計</span><span class="chip" data-v="data">データ処理</span><span class="chip" data-v="hw">ハードウェア構造</span><span class="chip" data-v="chem">化学・素材</span><span class="chip" data-v="bio">バイオ・医療</span><span class="chip" data-v="net">ネットワーク</span><span class="chip" data-v="sec">セキュリティ</span>
+</div>
+<label>技術キーワード（カンマ区切り）</label><input id="kw" placeholder="例：深層学習, エッジ推論, 異常検知">
+</div>
+
+<div class="card"><h2>3. 競合・市場環境</h2>
+<div class="q"><span>同業の競合数は？</span><div class="opts" data-q="comp"><button value="1">0〜2社</button><button value="2">3〜10社</button><button value="3">10社以上</button></div></div>
+<div class="q"><span>大手の参入リスクは？</span><div class="opts" data-q="big"><button value="1">低い</button><button value="2">中程度</button><button value="3">高い</button></div></div>
+<div class="q"><span>技術の模倣しやすさは？</span><div class="opts" data-q="copy"><button value="1">困難</button><button value="2">やや容易</button><button value="3">容易</button></div></div>
+<div class="q"><span>海外展開の予定は？</span><div class="opts" data-q="intl"><button value="0">なし</button><button value="1">検討中</button><button value="2">1年以内</button></div></div>
+</div>
+
+<button class="btn" onclick="diagnose()">診断を実行</button>
+
+<div id="result">
+<div class="card"><h2>診断結果：知財リスクマップ</h2>
+<canvas id="radar" height="320"></canvas>
+<div class="risk-grid" id="riskGrid"></div>
+</div>
+<div class="card"><h2>出願優先度スコアリング</h2><div id="scores"></div></div>
+<div class="card"><h2>推奨アクション</h2><div id="actions"></div></div>
+<div class="card" style="background:#fffbeb;border:1px solid #ecc94b"><h2 style="color:#b7791f;border-color:#ecc94b">免責事項</h2><p style="font-size:.82em;color:#744210">本ツールは一般的な知財戦略の参考情報を提供するものであり、法的助言ではありません。実際の出願は必ず弁理士にご相談ください。診断結果に基づく判断について当社は一切の責任を負いません。</p></div>
+</div>
+
+<div class="footer">© 2026 Kusasyu Legal Tech — スタートアップ知財リスク診断ツール</div>
+</div>
+<script>
+document.querySelectorAll('.chip').forEach(function(c){c.onclick=function(){c.classList.toggle('on')}});
+document.querySelectorAll('.opts').forEach(function(g){g.querySelectorAll('button').forEach(function(b){b.onclick=function(){g.querySelectorAll('button').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel')}})});
+
+function gv(q){var b=document.querySelector('.opts[data-q="'+q+'"] .sel');return b?+b.value:0}
+function getTechs(){return Array.from(document.querySelectorAll('.chip.on')).map(function(c){return c.dataset.v})}
+
+var BIZ_W={saas:{algo:1.3,ui:1.1,data:1.3,hw:.5,chem:.3,bio:.3,net:1,sec:1.2},hw:{algo:.9,ui:.7,data:.7,hw:1.5,chem:1.1,bio:.5,net:.8,sec:.7},bio:{algo:.7,ui:.4,data:.8,hw:.8,chem:1.4,bio:1.5,net:.4,sec:.6},ai:{algo:1.5,ui:.8,data:1.4,hw:.5,chem:.3,bio:.6,net:.9,sec:1.1},fin:{algo:1.2,ui:1,data:1.2,hw:.3,chem:.2,bio:.3,net:1.1,sec:1.4},other:{algo:1,ui:1,data:1,hw:1,chem:1,bio:1,net:1,sec:1}};
+var LABELS={algo:'アルゴリズム特許',ui:'UI/UXデザイン',data:'データ処理方法',hw:'ハードウェア構造',chem:'化学・素材特許',bio:'バイオ・医療特許',net:'通信・ネットワーク',sec:'セキュリティ技術'};
+var CATS=['algo','ui','data','hw','chem','bio','net','sec'];
+var COLORS={A:'#e53e3e',B:'#dd6b20',C:'#38a169'};
+
+function diagnose(){
+ var biz=document.getElementById('biz').value,phase=document.getElementById('phase').value;
+ var techs=getTechs(),kws=document.getElementById('kw').value;
+ var comp=gv('comp'),big=gv('big'),copy=gv('copy'),intl=gv('intl');
+ if(!techs.length){alert('技術領域を1つ以上選択してください');return}
+ var w=BIZ_W[biz],envF=(comp+big+copy)/9,phaseF={seed:.8,preA:1,A:1.2}[phase];
+ var scores={};
+ CATS.forEach(function(c){
+  var base=techs.indexOf(c)>=0?70:20;
+  base*=w[c];base+=envF*25+intl*5;base*=phaseF;
+  scores[c]=Math.min(100,Math.round(base));
+ });
+ var items=CATS.map(function(c){return{id:c,label:LABELS[c],score:scores[c]}}).sort(function(a,b){return b.score-a.score});
+ items.forEach(function(it){it.pri=it.score>=65?'A':it.score>=40?'B':'C'});
+
+ var gH='';
+ items.filter(function(x){return x.score>=30}).forEach(function(it){
+  var bg=it.pri==='A'?'#e53e3e':it.pri==='B'?'#dd6b20':'#38a169';
+  var msg=it.pri==='A'?'早急に出願検討が必要':it.pri==='B'?'中期的に対応を推奨':'現時点では低リスク';
+  gH+='<div class="risk-card" style="background:'+bg+'"><h3><span class="badge" style="background:rgba(0,0,0,.2)">優先度'+it.pri+'</span>'+it.label+'</h3><p>スコア '+it.score+'/100 — '+msg+'</p></div>';
+ });
+ document.getElementById('riskGrid').innerHTML=gH;
+
+ var sH='';
+ items.forEach(function(it){
+  var col=COLORS[it.pri];
+  sH+='<div class="score-bar"><div class="lbl">'+it.label+'</div><div class="bar-bg"><div class="bar-fill" style="width:'+it.score+'%;background:'+col+'"><span class="bar-val">'+it.pri+' '+it.score+'</span></div></div></div>';
+ });
+ document.getElementById('scores').innerHTML=sH;
+
+ drawRadar(scores);
+
+ var aH='';
+ var priA=items.filter(function(x){return x.pri==='A'});
+ if(priA.length){aH+='<div class="act"><strong>【最優先】</strong>'+priA.map(function(x){return x.label}).join('・')+'の出願を3ヶ月以内に検討してください。弁理士への相談時に「'+(kws||'コア技術')+'」を中心にクレーム案を準備しましょう。</div>'}
+ if(intl>=1){aH+='<div class="act"><strong>【海外出願】</strong>PCT出願を活用すれば、優先日から30ヶ月の猶予で各国出願が可能です。国内出願と同時にPCT出願も検討を。</div>'}
+ if(copy>=2){aH+='<div class="act"><strong>【模倣対策】</strong>技術の模倣リスクが高いため、特許に加えて営業秘密管理（秘密情報管理規程の整備）も並行して進めてください。</div>'}
+ if(big>=2){aH+='<div class="act"><strong>【大手参入対策】</strong>大手の参入リスクがあります。防衛的な周辺特許（実装バリエーション）の出願で参入障壁を構築しましょう。</div>'}
+ aH+='<div class="act"><strong>【共通】</strong>発明の新規性喪失の例外適用は公表から1年以内です。プレスリリースやデモ公開前に仮出願を検討してください。</div>';
+ document.getElementById('actions').innerHTML=aH;
+
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function drawRadar(data){
+ var cv=document.getElementById('radar'),ctx=cv.getContext('2d');
+ cv.width=cv.offsetWidth*2;cv.height=640;
+ ctx.scale(2,2);
+ var W=cv.offsetWidth,H=320,cx=W/2,cy=H/2+10,R=Math.min(W,H)/2-40;
+ ctx.clearRect(0,0,W,H);
+ var n=CATS.length;
+ var angles=CATS.map(function(_,i){return Math.PI*2*i/n-Math.PI/2});
+ [.25,.5,.75,1].forEach(function(r){
+  ctx.beginPath();
+  angles.forEach(function(a,i){var x=cx+R*r*Math.cos(a),y=cy+R*r*Math.sin(a);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});
+  ctx.closePath();ctx.strokeStyle='#e2e8f0';ctx.stroke();
+ });
+ ctx.font='11px sans-serif';ctx.fillStyle='#4a5568';ctx.textAlign='center';
+ angles.forEach(function(a,i){
+  ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));ctx.strokeStyle='#e2e8f0';ctx.stroke();
+  var lx=cx+(R+24)*Math.cos(a),ly=cy+(R+24)*Math.sin(a);
+  ctx.fillText(LABELS[CATS[i]].replace('特許',''),lx,ly+4);
+ });
+ ctx.beginPath();
+ angles.forEach(function(a,i){var v=data[CATS[i]]/100,x=cx+R*v*Math.cos(a),y=cy+R*v*Math.sin(a);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});
+ ctx.closePath();ctx.fillStyle='rgba(49,130,206,.2)';ctx.fill();ctx.strokeStyle='#3182ce';ctx.lineWidth=2;ctx.stroke();
+ angles.forEach(function(a,i){var v=data[CATS[i]]/100,x=cx+R*v*Math.cos(a),y=cy+R*v*Math.sin(a);ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle='#3182ce';ctx.fill()});
+}
+</script>
+</body>
+</html>

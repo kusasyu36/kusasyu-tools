@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>商談メモ→顧客カルテ自動変換ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;color:#2b6cb0;margin:12px 0 4px}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+label{font-weight:700;font-size:.95em;display:block;margin-bottom:6px}
+textarea{width:100%;height:180px;border:2px solid #cbd5e0;border-radius:8px;padding:12px;font-size:.95em;resize:vertical;font-family:inherit}
+textarea:focus{outline:none;border-color:#3182ce}
+.row{display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.row input,.row select{flex:1;min-width:120px;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9em}
+.btn{display:block;width:100%;padding:14px;background:#2b6cb0;color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:10px}
+.btn:hover{background:#2c5282}
+.btn2{background:#38a169}.btn2:hover{background:#2f855a}
+.btn3{background:#718096}.btn3:hover{background:#4a5568}
+#result{display:none}
+.karte{border:2px solid #2b6cb0;border-radius:10px;padding:20px;background:#fff}
+.karte h2{text-align:center;color:#2b6cb0;border-bottom:2px solid #2b6cb0;padding-bottom:8px;margin-bottom:12px;font-size:1.15em}
+.karte table{width:100%;border-collapse:collapse;margin-bottom:12px}
+.karte th{background:#ebf4ff;text-align:left;padding:8px 10px;border:1px solid #bee3f8;font-size:.85em;width:28%;white-space:nowrap}
+.karte td{padding:8px 10px;border:1px solid #bee3f8;font-size:.9em}
+.stage-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:.85em;font-weight:700;color:#fff}
+.tag{display:inline-block;background:#ebf4ff;color:#2b6cb0;padding:2px 10px;border-radius:12px;font-size:.82em;margin:2px}
+.concern{background:#fff5f5;color:#c53030}
+.action-box{background:#f0fff4;border-left:4px solid #38a169;padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:6px;font-size:.9em}
+.ts{text-align:right;font-size:.75em;color:#a0aec0;margin-top:8px}
+.acts{margin-top:8px}
+.acts button{margin:4px;padding:8px 16px;border-radius:6px;border:none;font-size:.9em;cursor:pointer;font-weight:600}
+@media print{.no-print{display:none!important}.wrap{padding:0}.karte{border:2px solid #000}}
+@media(max-width:600px){textarea{height:140px}.karte th{width:35%}}
+</style>
+<meta name="description" content="営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,商談メモ→顧客カルテ自動変換ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/converter/">
+<meta property="og:title" content="商談メモ→顧客カルテ自動変換ツール - kusasyu tools">
+<meta property="og:description" content="営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/converter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="商談メモ→顧客カルテ自動変換ツール - kusasyu tools">
+<meta name="twitter:description" content="営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "商談メモ→顧客カルテ自動変換ツール",
+  "description": "営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/converter/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">商談メモ→顧客カルテ自動変換ツール</span></div>
+<div class="wrap">
+<h1>商談メモ → 顧客カルテ自動変換</h1>
+<p class="sub">LINE・メール・電話メモを貼るだけで顧客カルテを自動生成</p>
+<div class="card no-print">
+<label>📋 顧客名（任意）</label>
+<div class="row"><input id="cName" placeholder="山田太郎"><input id="cTel" placeholder="電話番号"><input id="cMail" placeholder="メールアドレス"></div>
+<label>📝 商談メモを貼り付け</label>
+<textarea id="memo" placeholder="例：お客様より電話あり。3LDKの中古マンションを探している。予算は3500万円くらい。品川区か大田区希望。駅徒歩10分以内。来週土曜に内見希望。ローンの審査が通るか心配とのこと。現在は賃貸2LDKに家族4人で住んでいて手狭。築20年以内で探したい。"></textarea>
+<button class="btn" onclick="analyze()">🔍 カルテを自動生成</button>
+</div>
+<div id="result">
+<div class="acts no-print" style="text-align:center;margin-bottom:12px">
+<button class="acts" style="background:#2b6cb0;color:#fff" onclick="window.print()">🖨 印刷</button>
+<button class="acts" style="background:#38a169;color:#fff" onclick="copyKarte()">📋 コピー</button>
+<button class="acts" style="background:#718096;color:#fff" onclick="resetAll()">🔄 リセット</button>
+</div>
+<div class="karte" id="karte"></div>
+</div>
+</div>
+<script>
+const DIC={
+type:{buy:['購入','売買','買いたい','中古','新築','分譲'],rent:['賃貸','借りたい','家賃','管理費込'],mansion:['マンション','タワマン','タワーマンション'],house:['戸建','一戸建て','一軒家','注文住宅'],land:['土地','更地'],office:['事務所','オフィス','テナント','店舗']},
+madori:['1R','1K','1DK','1LDK','2K','2DK','2LDK','3K','3DK','3LDK','4LDK','5LDK','ワンルーム'],
+stage:{initial:['問い合わせ','問合せ','初回','資料請求','初めて','情報収集'],viewing:['内見','内覧','見学','現地','見てき','案内済','下見'],apply:['申込','申し込み','審査','仮審査','本審査','ローン審査'],contract:['契約','重説','重要事項','手付','決済','引渡','引き渡し']},
+concern:['ローン','審査','頭金','予算','価格','高い','心配','不安','迷','悩','騒音','日当たり','治安','学区','通勤','築年数','古い','修繕','管理費','老朽','耐震','ハザード','浸水'],
+area_pref:['東京','大阪','神奈川','千葉','埼玉','愛知','福岡','北海道','京都','兵庫','広島','宮城','静岡','茨城','新潟','長野','岐阜','群馬','栃木','岡山','三重','熊本','鹿児島','沖縄','滋賀','山口','奈良','愛媛','香川','和歌山','佐賀','山梨','福井','徳島','高知','島根','鳥取','秋田','山形','岩手','青森','富山','石川','福島','大分','宮崎','長崎'],
+};
+function analyze(){
+const m=document.getElementById('memo').value;
+if(!m.trim()){alert('メモを入力してください');return}
+const r={};
+// 物件タイプ
+r.types=[];
+for(let k in DIC.type){DIC.type[k].forEach(w=>{if(m.includes(w)&&!r.types.includes(k))r.types.push(k)})}
+// 間取り
+r.madori=DIC.madori.filter(w=>m.includes(w));
+// 予算
+r.budget=[];
+const bp=[/(\d[\d,]*)\s*万円/g,/(\d[\d,.]*)\s*億/g,/家賃\s*(\d[\d,.]*)万/g,/予算[はが]?\s*(\d[\d,.]*)万/g,/(\d[\d,]*)\s*円/g];
+bp.forEach(p=>{let x;while((x=p.exec(m))!==null)r.budget.push(x[0])});
+// エリア
+r.area=[];
+DIC.area_pref.forEach(w=>{if(m.includes(w))r.area.push(w)});
+const ap=/([^\s、。,\.]{1,4}[区市町村郡])/g;let am;
+while((am=ap.exec(m))!==null){if(!r.area.includes(am[1]))r.area.push(am[1])}
+const sp=/([^\s、。]{1,6}[駅線])/g;
+while((am=sp.exec(m))!==null){if(!r.area.includes(am[1]))r.area.push(am[1])}
+// 駅徒歩
+r.walk='';const wm=m.match(/徒歩\s*(\d+)\s*分/);if(wm)r.walk='徒歩'+wm[1]+'分以内';
+// 築年数
+r.age='';const am2=m.match(/築\s*(\d+)\s*年/);if(am2)r.age='築'+am2[1]+'年以内';
+// 検討段階
+r.stage='initial';r.stageLabel='初期問合せ';r.stageColor='#3182ce';
+if(DIC.stage.contract.some(w=>m.includes(w))){r.stage='contract';r.stageLabel='契約手続中';r.stageColor='#38a169'}
+else if(DIC.stage.apply.some(w=>m.includes(w))){r.stage='apply';r.stageLabel='申込検討中';r.stageColor='#d69e2e'}
+else if(DIC.stage.viewing.some(w=>m.includes(w))){r.stage='viewing';r.stageLabel='内見済';r.stageColor='#805ad5'}
+// 懸念
+r.concerns=[];
+DIC.concern.forEach(w=>{if(m.includes(w)){const i=m.indexOf(w);const s=m.substring(Math.max(0,i-15),Math.min(m.length,i+20)).replace(/\n/g,' ');if(!r.concerns.some(c=>c.includes(w)))r.concerns.push(s.trim())}});
+// 家族構成
+r.family='';const fm=m.match(/(家族|夫婦|単身|一人暮らし|お子[様さん]?\d*人?|子供\d*人|ファミリー|\d人家族|\d人暮らし)/);if(fm)r.family=fm[0];
+// 時期
+r.timing='';const tm=m.match(/(来週|今週|今月|来月|再来月|\d+月|年内|年度内|急ぎ|すぐ|至急|\d+日)/);if(tm)r.timing=tm[0];
+// ネクストアクション生成
+r.actions=genActions(r);
+render(r);
+}
+function genActions(r){
+const a=[];
+if(r.stage==='initial'){a.push('📞 ヒアリング電話：希望条件の詳細確認');a.push('📋 条件に合う物件3〜5件をピックアップして資料送付');if(!r.budget.length)a.push('💰 予算・資金計画のヒアリング')}
+if(r.stage==='viewing'){a.push('🏠 内見後フォロー電話（感想・懸念点の確認）');a.push('📊 比較検討用の物件比較表を作成')}
+if(r.stage==='apply'){a.push('📝 申込書類の準備案内');a.push('🏦 ローン事前審査のサポート')}
+if(r.stage==='contract'){a.push('📑 重要事項説明の日程調整');a.push('🔑 引渡しまでのスケジュール共有')}
+if(r.concerns.some(c=>c.match(/ローン|審査|頭金/)))a.push('🏦 提携金融機関での事前審査を提案');
+if(r.concerns.some(c=>c.match(/学区|通勤/)))a.push('🗺 周辺環境・学区情報の資料を準備');
+if(r.timing)a.push('📅 '+r.timing+'に向けたスケジュール提案');
+if(!a.length)a.push('📞 状況確認の連絡（1週間以内）');
+return a;
+}
+function render(r){
+const n=document.getElementById('cName').value||'未入力';
+const t=document.getElementById('cTel').value;
+const ml=document.getElementById('cMail').value;
+const now=new Date();const ds=now.getFullYear()+'/'+(now.getMonth()+1)+'/'+now.getDate()+' '+now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+const typeMap={buy:'売買',rent:'賃貸',mansion:'マンション',house:'戸建',land:'土地',office:'事務所'};
+const types=r.types.map(t=>typeMap[t]||t);
+let h='<h2>📋 顧客カルテ</h2>';
+h+='<table><tr><th>顧客名</th><td>'+esc(n)+'</td></tr>';
+if(t)h+='<tr><th>電話番号</th><td>'+esc(t)+'</td></tr>';
+if(ml)h+='<tr><th>メール</th><td>'+esc(ml)+'</td></tr>';
+h+='<tr><th>検討段階</th><td><span class="stage-badge" style="background:'+r.stageColor+'">'+r.stageLabel+'</span></td></tr>';
+h+='<tr><th>物件タイプ</th><td>'+(types.length?types.map(t=>'<span class="tag">'+t+'</span>').join(''):'<span style="color:#a0aec0">未検出</span>')+'</td></tr>';
+h+='<tr><th>希望間取り</th><td>'+(r.madori.length?r.madori.map(m=>'<span class="tag">'+m+'</span>').join(''):'—')+'</td></tr>';
+h+='<tr><th>予算帯</th><td>'+(r.budget.length?r.budget.join(' / '):'未検出')+'</td></tr>';
+h+='<tr><th>希望エリア</th><td>'+(r.area.length?r.area.map(a=>'<span class="tag">'+a+'</span>').join(''):'未検出')+'</td></tr>';
+if(r.walk)h+='<tr><th>駅徒歩</th><td>'+r.walk+'</td></tr>';
+if(r.age)h+='<tr><th>築年数</th><td>'+r.age+'</td></tr>';
+if(r.family)h+='<tr><th>家族構成</th><td>'+r.family+'</td></tr>';
+if(r.timing)h+='<tr><th>検討時期</th><td>'+r.timing+'</td></tr>';
+h+='<tr><th>懸念事項</th><td>'+(r.concerns.length?r.concerns.map(c=>'<span class="tag concern">'+esc(c)+'</span>').join(''):'特になし')+'</td></tr>';
+h+='</table>';
+h+='<div style="margin-bottom:4px;font-weight:700;font-size:.95em">✅ 推奨ネクストアクション</div>';
+r.actions.forEach(a=>{h+='<div class="action-box">'+esc(a)+'</div>'});
+h+='<p class="ts">作成日時: '+ds+' ｜ Kusasyu PropTech 顧客カルテ自動生成</p>';
+document.getElementById('karte').innerHTML=h;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function copyKarte(){
+const el=document.getElementById('karte');
+const range=document.createRange();range.selectNodeContents(el);
+const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);
+document.execCommand('copy');sel.removeAllRanges();
+alert('カルテをコピーしました');
+}
+function resetAll(){
+document.getElementById('memo').value='';
+document.getElementById('cName').value='';
+document.getElementById('cTel').value='';
+document.getElementById('cMail').value='';
+document.getElementById('result').style.display='none';
+window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

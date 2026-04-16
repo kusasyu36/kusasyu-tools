@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知財ポートフォリオ管理・出願優先度マトリクス - kusasyu tools</title>
+<meta name="description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,知財ポートフォリオ管理・出願優先度マトリクス">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-7/">
+<meta property="og:title" content="知財ポートフォリオ管理・出願優先度マトリクス - kusasyu tools">
+<meta property="og:description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="知財ポートフォリオ管理・出願優先度マトリクス - kusasyu tools">
+<meta name="twitter:description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "知財ポートフォリオ管理・出願優先度マトリクス",
+  "description": "シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-16"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>知財ポートフォリオ管理・出願優先度マトリクス</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>知財ポートフォリオ管理・出願優先度マトリクス</h1>
+  <p class="project-name">弁理士の前に。スタートアップ知財セルフ診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>技術ID</th><th>技術・発明の名称</th><th>カテゴリ</th><th>概要（30字以内）</th><th>事業フェーズ</th><th>公開済みか</th><th>競合の類似技術有無</th><th>事業インパクト（1-5）</th><th>競合リスク（1-5）</th><th>出願コスト目安（万円）</th><th>コスト負担度（1-5）</th><th>優先度スコア</th><th>優先ランク</th><th>出願種別</th><th>想定クレーム方向性</th><th>対応ステータス</th><th>弁理士相談メモ</th><th>更新日</th></tr></thead><tbody><tr><td>IP-001</td><td>多要素トークン認証方式</td><td>SaaS認証技術</td><td>独自トークン生成と多要素認証の組合せ</td><td>シリーズA</td><td>未公開</td><td>あり（2社）</td><td>5</td><td>5</td><td>80</td><td>3</td><td>7.0</td><td>A（最優先）</td><td>特許</td><td>方法クレーム＋システムクレーム</td><td>先行技術調査中</td><td>認証フロー全体のシーケンス図を持参すること</td><td>2026-04-16</td></tr><tr><td>IP-002</td><td>適応型ダッシュボードUI</td><td>UI/UX特許</td><td>ユーザー行動に応じてUI要素が自動再配置</td><td>シード</td><td>未公開</td><td>なし</td><td>3</td><td>2</td><td>60</td><td>2</td><td>3.0</td><td>C（様子見）</td><td>特許</td><td>装置クレーム（表示制御）</td><td>未着手</td><td>UI特許は権利範囲が狭くなりやすい点を相談</td><td>2026-04-16</td></tr><tr><td>IP-003</td><td>リアルタイム異常検知アルゴリズム</td><td>アルゴリズム</td><td>時系列データから異常パターンを即時検出</td><td>シリーズA</td><td>論文公開済み</td><td>あり（1社）</td><td>5</td><td>4</td><td>100</td><td>4</td><td>5.0</td><td>B（早期対応）</td><td>特許</td><td>方法クレーム（処理ステップ）</td><td>新規性調査完了</td><td>論文公開済みのため新規性喪失の例外適用（公開から1年以内か確認）</td><td>2026-04-16</td></tr><tr><td>IP-004</td><td>コンプライアンス自動チェックAPI</td><td>API/サービス</td><td>法令データベースと契約文を自動照合</td><td>シード</td><td>未公開</td><td>なし</td><td>4</td><td>3</td><td>70</td><td>3</td><td>4.3</td><td>B（早期対応）</td><td>特許</td><td>方法クレーム＋プログラムクレーム</td><td>明細書ドラフト作成中</td><td>請求項をAPI単体とシステム全体の2段構成で検討</td><td>2026-04-16</td></tr><tr><td>IP-005</td><td>スタートアップ知財リスク診断ツール</td><td>ブランド/商標</td><td>知財リスク診断・出願優先度を自動スコアリング</td><td>シリーズA</td><td>公開済み（Web）</td><td>なし</td><td>2</td><td>1</td><td>15</td><td>1</td><td>2.0</td><td>C（様子見）</td><td>商標</td><td>サービス名称の商標登録（第42類）</td><td>未着手</td><td>まず商標検索（J-PlatPat）で類似商標がないか確認</td><td>2026-04-16</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `技術ID,技術・発明の名称,カテゴリ,概要（30字以内）,事業フェーズ,公開済みか,競合の類似技術有無,事業インパクト（1-5）,競合リスク（1-5）,出願コスト目安（万円）,コスト負担度（1-5）,優先度スコア,優先ランク,出願種別,想定クレーム方向性,対応ステータス,弁理士相談メモ,更新日
+IP-001,多要素トークン認証方式,SaaS認証技術,独自トークン生成と多要素認証の組合せ,シリーズA,未公開,あり（2社）,5,5,80,3,7.0,A（最優先）,特許,方法クレーム＋システムクレーム,先行技術調査中,認証フロー全体のシーケンス図を持参すること,2026-04-16
+IP-002,適応型ダッシュボードUI,UI/UX特許,ユーザー行動に応じてUI要素が自動再配置,シード,未公開,なし,3,2,60,2,3.0,C（様子見）,特許,装置クレーム（表示制御）,未着手,UI特許は権利範囲が狭くなりやすい点を相談,2026-04-16
+IP-003,リアルタイム異常検知アルゴリズム,アルゴリズム,時系列データから異常パターンを即時検出,シリーズA,論文公開済み,あり（1社）,5,4,100,4,5.0,B（早期対応）,特許,方法クレーム（処理ステップ）,新規性調査完了,論文公開済みのため新規性喪失の例外適用（公開から1年以内か確認）,2026-04-16
+IP-004,コンプライアンス自動チェックAPI,API/サービス,法令データベースと契約文を自動照合,シード,未公開,なし,4,3,70,3,4.3,B（早期対応）,特許,方法クレーム＋プログラムクレーム,明細書ドラフト作成中,請求項をAPI単体とシステム全体の2段構成で検討,2026-04-16
+IP-005,スタートアップ知財リスク診断ツール,ブランド/商標,知財リスク診断・出願優先度を自動スコアリング,シリーズA,公開済み（Web）,なし,2,1,15,1,2.0,C（様子見）,商標,サービス名称の商標登録（第42類）,未着手,まず商標検索（J-PlatPat）で類似商標がないか確認,2026-04-16`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_知財ポートフォリオ管理・出願優先度マトリクス.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

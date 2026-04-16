@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>特許クレーム（請求項）たたき台テンプレート - kusasyu tools</title>
+<meta name="description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,特許クレーム（請求項）たたき台テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-8/">
+<meta property="og:title" content="特許クレーム（請求項）たたき台テンプレート - kusasyu tools">
+<meta property="og:description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="特許クレーム（請求項）たたき台テンプレート - kusasyu tools">
+<meta name="twitter:description" content="シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "特許クレーム（請求項）たたき台テンプレート",
+  "description": "シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/patent-scout-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-16"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>特許クレーム（請求項）たたき台テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>特許クレーム（請求項）たたき台テンプレート</h1>
+  <p class="project-name">弁理士の前に。スタートアップ知財セルフ診断</p>
+  <div class="content">
+<p>【請求項1】
+＜前提部（プリアンブル）＞        ← 発明が属する技術分野を示す
+において、
+＜特徴部（キャラクタライジング部）＞  ← 従来技術と異なる新規な構成を記載する
+ことを特徴とする＜発明のカテゴリ＞。</p>
+<pre><code>
+| 用語 | 意味 | 例 |
+|------|------|----|
+| 前提部 | 発明の前提となる公知の構成 | 「ユーザー端末とサーバーを含む認証システムにおいて」 |
+| 特徴部 | 従来にない新規部分 | 「前記サーバーが多要素トークンを生成し…」 |
+| 発明カテゴリ | 方法／装置／プログラムのいずれか | 「認証方法」「情報処理装置」「プログラム」 |
+
+---
+
+## 業種別テンプレート
+
+---
+
+### A. SaaS（方法クレーム＋システムクレーム）
+
+&gt; 対応台帳: IP-001「多要素トークン認証方式」（出願コスト目安80万円・優先ランクA）、IP-004「コンプライアンス自動チェックAPI」（出願コスト目安70万円・優先ランクB）
+
+#### Step 1 — 発明の名称とカテゴリを決める
+
+| 項目 | 記入欄 |
+|------|--------|
+| 技術ID | [記入例] IP-001 |
+| 発明の名称 | [記入例] 多要素トークン認証方式 |
+| カテゴリ | [記入例] SaaS認証技術 |
+| クレーム種別 | [記入例] 方法クレーム＋システムクレーム |
+
+#### Step 2 — 前提部を書く（公知の構成）
+
+**テンプレート:**
+</code></pre>
+<p>ユーザー端末と、<strong><em>_</em></strong><strong><em>_</em>サーバーとを含む</strong><strong><em>_</em></strong><strong><em>システムにおける</em></strong><strong><em>_</em></strong>__方法であって、</p>
+<pre><code>
+**[記入例]**
+</code></pre>
+<p>ユーザー端末と、認証サーバーとを含むSaaS認証システムにおける多要素認証方法であって、</p>
+<pre><code>
+#### Step 3 — 特徴部を書く（新規な処理ステップ）
+
+**テンプレート（方法クレーム）:**
+</code></pre>
+<p>（a）前記サーバーが、<strong><em>_</em></strong><strong><em>_</em>を受信するステップと、
+（b）前記サーバーが、</strong><strong><em>_</em></strong><strong><em>に基づいて</em></strong><strong><em>_</em></strong>__を生成するステップと、
+（c）前記サーバーが、<strong><em>_</em></strong><strong><em>_</em>を</strong><strong><em>_</em></strong><strong><em>に送信するステップと、
+（d）前記</em></strong><strong><em>_</em></strong>__が、<strong><em>_</em></strong><strong><em>_</em>を検証するステップと、
+を含むことを特徴とする</strong><strong><em>_</em></strong>___方法。</p>
+<pre><code>
+**[記入例] IP-001 多要素トークン認証方式:**
+</code></pre>
+<p>（a）前記認証サーバーが、ユーザー端末から第1認証要素を受信するステップと、
+（b）前記認証サーバーが、前記第1認証要素とデバイス固有情報とに基づいて
+    多要素トークンを生成するステップと、
+（c）前記認証サーバーが、前記多要素トークンを前記ユーザー端末に送信するステップと、
+（d）前記ユーザー端末が、前記多要素トークンを用いてセッションを検証するステップと、
+を含むことを特徴とする多要素トークン認証方法。</p>
+<pre><code>
+#### Step 4 — システムクレーム（装置形式）に変換する
+
+**テンプレート:**
+</code></pre>
+<p><strong><em>_</em></strong><strong><em>_</em>手段と、</strong><strong><em>_</em></strong><strong><em>手段と、</em></strong><strong><em>_</em></strong>__手段とを備えることを特徴とする<strong><em>_</em></strong>_____システム。</p>
+<pre><code>
+**[記入例]**
+</code></pre>
+<p>ユーザー端末から第1認証要素を受信する受信手段と、
+前記第1認証要素とデバイス固有情報とに基づいて多要素トークンを生成するトークン生成手段と、
+前記多要素トークンを前記ユーザー端末に送信する送信手段と、
+を備えることを特徴とする多要素トークン認証システム。</p>
+<pre><code>
+#### SaaS頻出フレーズ集
+
+| 場面 | フレーズ |
+|------|----------|
+| API連携 | 「外部サーバーとAPI通信を介して____________データを取得し」 |
+| データ照合 | 「前記データベースに格納された____________と前記入力データとを照合し」 |
+| 自動処理 | 「所定の条件を満たす場合に____________処理を自動的に実行し」 |
+| マルチテナント | 「テナントごとに分離された____________環境において」 |
+| リアルタイム | 「前記____________をリアルタイムに____________へ反映する」 |
+
+&gt; **IP-004の場合**: 「法令データベースに格納された法令条文と前記契約文とを照合し」のように、API単体クレームとシステム全体クレームの2段構成で検討する（台帳記載の方針どおり）。
+
+---
+
+### B. ハードウェア（装置クレーム）
+
+&gt; 対応台帳: IP-002「適応型ダッシュボードUI」（出願コスト目安60万円・優先ランクC）に準じた装置クレーム例。UI特許は権利範囲が狭くなりやすい点に注意。
+
+#### Step 1 — 発明の名称とカテゴリを決める
+
+| 項目 | 記入欄 |
+|------|--------|
+| 技術ID | [記入例] IP-002 |
+| 発明の名称 | [記入例] 適応型ダッシュボードUI |
+| カテゴリ | [記入例] UI/UX特許 |
+| クレーム種別 | [記入例] 装置クレーム（表示制御） |
+
+#### Step 2 — 前提部を書く
+
+**テンプレート:**
+</code></pre>
+<p><strong><em>_</em></strong><strong><em>_</em>を表示する表示部と、</strong><strong><em>_</em></strong><strong><em>を検出する検出部とを備える</em></strong><strong><em>_</em></strong>__装置において、</p>
+<pre><code>
+**[記入例]**
+</code></pre>
+<p>ダッシュボード画面を表示する表示部と、ユーザーの操作履歴を検出する検出部とを備える情報表示装置において、</p>
+<pre><code>
+#### Step 3 — 特徴部を書く
+
+**テンプレート（装置クレーム）:**
+</code></pre>
+<p>前記検出部が検出した<strong><em>_</em></strong><strong><em>_</em>に基づいて、</strong><strong><em>_</em></strong><strong><em>のUI要素の</em></strong><strong><em>_</em></strong>__を決定する制御部と、
+前記制御部の決定に従って前記UI要素を<strong><em>_</em></strong><strong><em>_</em>する表示更新部と、
+を備えることを特徴とする</strong><strong><em>_</em></strong>___装置。</p>
+<pre><code>
+**[記入例] IP-002 適応型ダッシュボードUI:**
+</code></pre>
+<p>前記検出部が検出したユーザー行動パターンに基づいて、
+ダッシュボード上のUI要素の配置順序および表示サイズを決定する制御部と、
+前記制御部の決定に従って前記UI要素を自動的に再配置する表示更新部と、
+を備えることを特徴とする適応型情報表示装置。</p>
+<pre><code>
+#### Step 4 — 従属クレーム（限定）を追加する
+
+**テンプレート:**
+</code></pre>
+<p>【請求項2】前記<strong><em>_</em></strong><strong><em>_</em>は、さらに</strong><strong><em>_</em></strong><strong><em>を含むことを特徴とする請求項1に記載の</em></strong><strong><em>_</em></strong>__装置。</p>
+<pre><code>
+**[記入例]**
+</code></pre>
+<p>【請求項2】前記制御部は、さらにユーザーの閲覧頻度に応じてUI要素の
+優先度スコアを算出する手段を含むことを特徴とする請求項1に記載の情報表示装置。</p>
+<pre><code>
+#### ハードウェア／UI頻出フレーズ集
+
+| 場面 | フレーズ |
+|------|----------|
+| センサー入力 | 「____________センサーから取得した検出値に基づいて」 |
+| 表示制御 | 「前記表示部に表示される____________の表示態様を変更し」 |
+| フィードバック | 「前記____________の結果をユーザーに通知する通知部」 |
+| 構造限定 | 「前記____________部は、____________と____________とが一体的に形成され」 |
+| 通信モジュール | 「外部機器と____________プロトコルで通信する通信部を備え」 |
+
+---
+
+### C. AI・アルゴリズム（方法クレーム＋プログラムクレーム）
+
+&gt; 対応台帳: IP-003「リアルタイム異常検知アルゴリズム」（出願コスト目安100万円・優先ランクB）。論文公開済みのため新規性喪失の例外適用が必要（公開から1年以内か要確認）。
+
+#### Step 1 — 発明の名称とカテゴリを決める
+
+| 項目 | 記入欄 |
+|------|--------|
+| 技術ID | [記入例] IP-003 |
+| 発明の名称 | [記入例] リアルタイム異常検知アルゴリズム |
+| カテゴリ | [記入例] アルゴリズム |
+| クレーム種別 | [記入例] 方法クレーム（処理ステップ） |
+
+#### Step 2 — 前提部を書く
+
+**テンプレート:**
+</code></pre>
+<p>コンピュータが実行する<strong><em>_</em></strong>_____方法であって、</p>
+<pre><code>
+**[記入例]**
+</code></pre>
+<p>コンピュータが実行する時系列データの異常検知方法であって、</p>
+<pre><code>
+#### Step 3 — 特徴部を書く（処理ステップ）
+
+**テンプレート（方法クレーム）:**
+</code></pre>
+<p>（a）<strong><em>_</em></strong><strong><em>_</em>データを取得するステップと、
+（b）前記データに対して</strong><strong><em>_</em></strong><strong><em>処理を行い、</em></strong><strong><em>_</em></strong>__特徴量を抽出するステップと、
+（c）前記特徴量を<strong><em>_</em></strong><strong><em>_</em>モデルに入力し、</strong><strong><em>_</em></strong><strong><em>を算出するステップと、
+（d）前記</em></strong><strong><em>_</em></strong>__が所定の閾値を超えた場合に<strong><em>_</em></strong><strong><em>_</em>と判定するステップと、
+を含むことを特徴とする</strong><strong><em>_</em></strong>___方法。</p>
+<pre><code>
+**[記入例] IP-003 リアルタイム異常検知アルゴリズム:**
+</code></pre>
+<p>（a）時系列センサーデータをリアルタイムに取得するステップと、
+（b）前記時系列データに対してスライディングウィンドウ処理を行い、
+    統計的特徴量を抽出するステップと、
+（c）前記特徴量を異常検知モデルに入力し、異常スコアを算出するステップと、
+（d）前記異常スコアが所定の閾値を超えた場合に異常パターンと判定するステップと、
+を含むことを特徴とするリアルタイム異常検知方法。</p>
+<pre><code>
+#### Step 4 — プログラムクレームに変換する
+
+**テンプレート:**
+</code></pre>
+<p>コンピュータに、
+<strong><em>_</em></strong><strong><em>_</em>ステップと、</strong><strong><em>_</em></strong><strong><em>ステップと、</em></strong><strong><em>_</em></strong>__ステップと、
+を実行させるためのプログラム。</p>
+<pre><code>
+**[記入例]**
+</code></pre>
+<p>コンピュータに、
+時系列データをリアルタイムに取得するステップと、
+前記時系列データから統計的特徴量を抽出するステップと、
+前記特徴量に基づいて異常スコアを算出し異常パターンを判定するステップと、
+を実行させるための異常検知プログラム。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

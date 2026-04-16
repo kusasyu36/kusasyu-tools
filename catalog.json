@@ -3458,6 +3458,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "patent-scout-6",
+    "url": "legal-tech/patent-scout-6/",
+    "title": "弁理士の前に。スタートアップ知財セルフ診断",
+    "tool_name": "スタートアップ知財リスク診断ツール",
+    "description": "シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-16T03:55:49.078727+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "patent-scout-7",
+    "url": "legal-tech/patent-scout-7/",
+    "title": "弁理士の前に。スタートアップ知財セルフ診断",
+    "tool_name": "知財ポートフォリオ管理・出願優先度マトリクス",
+    "description": "シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-16T03:55:49.078727+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "patent-scout-8",
+    "url": "legal-tech/patent-scout-8/",
+    "title": "弁理士の前に。スタートアップ知財セルフ診断",
+    "tool_name": "特許クレーム（請求項）たたき台テンプレート",
+    "description": "シード〜シリーズAのスタートアップが、弁理士に依頼する前に自社の知財リスクを把握し、出願の優先順位を自力で決められるツールキット。事業内容と技術キーワードを入力するだけで、知財リスク診断・出願優先度スコアリング・クレームのたたき台作成までを無料で完結させる。",
+    "quality_score": 7,
+    "completed_at": "2026-04-16T03:55:49.078727+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -4001,6 +4040,45 @@
     "description": "中小仲介業者が物件の基本情報・修繕履歴・設備状況・周辺環境を入力するだけで、買主・借主に渡せるプロフェッショナルな『物件パスポート』レポートをHTML上で即生成するツール。AIが入力情報からリスクスコアリングと改善提案も自動付与する。情報の非対称性を解消し、中小でも大手並みの信頼性ある物件資料を無料で作れるようにする。",
     "quality_score": 7,
     "completed_at": "2026-04-15T01:57:25.818235+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "converter",
+    "url": "proptech/converter/",
+    "title": "追客メモ、まだ手入力？AIで顧客カルテ自動生成",
+    "tool_name": "商談メモ→顧客カルテ自動変換ツール",
+    "description": "営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実証した『CRMが自ら構築される』コンセプトを、日本の不動産追客フロー（問合せ→内見→申込→",
+    "quality_score": 7,
+    "completed_at": "2026-04-16T01:29:15.206678+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "management-2",
+    "url": "proptech/management-2/",
+    "title": "追客メモ、まだ手入力？AIで顧客カルテ自動生成",
+    "tool_name": "追客アラート付きパイプライン管理シート",
+    "description": "営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実証した『CRMが自ら構築される』コンセプトを、日本の不動産追客フロー（問合せ→内見→申込→",
+    "quality_score": 7,
+    "completed_at": "2026-04-16T01:29:15.206678+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-6",
+    "url": "proptech/tool-6/",
+    "title": "追客メモ、まだ手入力？AIで顧客カルテ自動生成",
+    "tool_name": "追客ステージ別アクション＆メッセージ集",
+    "description": "営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実証した『CRMが自ら構築される』コンセプトを、日本の不動産追客フロー（問合せ→内見→申込→",
+    "quality_score": 7,
+    "completed_at": "2026-04-16T01:29:15.206678+00:00",
     "content_type": "article"
   },
   {
