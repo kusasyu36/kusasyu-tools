@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産商談ロールプレイ・シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#333;line-height:1.7}
+.w{max-width:640px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.25em;color:#1a5276;margin:10px 0}
+.cd{background:#fff;border-radius:12px;padding:18px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.btn{display:block;width:100%;padding:12px 14px;margin:7px 0;border:2px solid #2980b9;border-radius:8px;background:#fff;color:#2c3e50;font-size:.92em;cursor:pointer;text-align:left;transition:.2s}
+.btn:hover{background:#ebf5fb}
+.sb{background:#2980b9;color:#fff;text-align:center;font-size:1em;border:none;border-radius:8px;padding:13px;margin:8px 0;width:100%;cursor:pointer}
+.sb:hover{background:#1a5276}
+.cu{background:#fef9e7;border-left:4px solid #f39c12;padding:11px;margin:10px 0;border-radius:0 8px 8px 0;font-size:.93em}
+.cu::before{content:"🏠 顧客: ";font-weight:bold}
+.bar{height:18px;background:#eee;border-radius:9px;margin:3px 0 10px}
+.fill{height:100%;border-radius:9px;transition:width .5s}
+.ng{background:#fdedec;border-left:4px solid #e74c3c;padding:9px;margin:7px 0;border-radius:0 8px 8px 0;font-size:.88em}
+.ng b{color:#c0392b}
+.tg{display:inline-block;background:#2980b9;color:#fff;padding:2px 9px;border-radius:11px;font-size:.78em;margin:4px 2px}
+.sub{color:#666;text-align:center;font-size:.88em}
+.g{color:#27ae60;font-weight:bold}.m{color:#f39c12;font-weight:bold}.b{color:#e74c3c;font-weight:bold}
+.rs{background:#2980b9;color:#fff;border:none;border-radius:8px;padding:12px 28px;font-size:1em;cursor:pointer;margin:12px auto;display:block}
+.my{background:#ebf5fb;border-left:4px solid #2980b9;padding:10px;margin:10px 0;border-radius:0 8px 8px 0;font-size:.92em}
+.my::before{content:"💬 あなた: ";font-weight:bold;color:#2980b9}
+</style>
+<meta name="description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産商談ロールプレイ・シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-5/">
+<meta property="og:title" content="不動産商談ロールプレイ・シミュレーター - kusasyu tools">
+<meta property="og:description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産商談ロールプレイ・シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産商談ロールプレイ・シミュレーター",
+  "description": "不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産商談ロールプレイ・シミュレーター</span></div>
+<div class="w" id="app"></div>
+<script>
+var S=[
+{name:"初回来店ヒアリング",desc:"30代夫婦が初マイホーム購入で来店。希望条件を引き出しましょう。",who:"佐藤夫婦（30代）",steps:[
+{q:"来店した夫婦への第一声は？",c:"佐藤夫婦がやや緊張した様子で来店しました。",o:[
+{t:"「ご来店ありがとうございます。まずはどんなお住まいをお探しかお聞かせください」",r:"夫: 子供が生まれる予定で、広い家を探していまして…",s:[3,2,3]},
+{t:"「早速ですがご予算は？年収を教えていただければ最適な物件をご紹介します」",r:"夫: え、いきなりですか…年収は700万くらいですが…",s:[1,2,2]},
+{t:"「駅前の新築が出たばかりです！すぐ売れるので今日決めた方がいいですよ」",r:"妻: まだ何も話してないのに…ちょっと怖いです。",s:[0,1,0],ng:"「すぐ売れる」「今日決めた方がいい」は宅建業法47条の威迫・困惑行為に該当するおそれがあります。"}
+]},
+{q:"希望条件を深掘りする質問は？",c:"夫: 子供が生まれるので広い家が欲しいんです。",o:[
+{t:"「おめでとうございます！どんな暮らしが理想ですか？お庭でBBQや通勤利便性など」",r:"妻: 保育園の近くがいいんです。夫は通勤1時間以内希望です。",s:[3,3,3]},
+{t:"「では3LDK以上ですね。エリアはどのあたりをお考えですか？」",r:"夫: まだエリアは絞れてなくて…相場もわからなくて。",s:[2,2,3]},
+{t:"「お子様がいるなら絶対一戸建てですよ。マンションは足音トラブルになります」",r:"妻: マンションも考えてたんですが…",s:[1,1,1],ng:"「絶対一戸建て」は断定的判断の提供（宅建業法47条の2）にあたる可能性。選択肢を狭める表現は避けましょう。"}
+]},
+{q:"予算4,000万円と判明。提案方法は？",c:"夫: 予算は4,000万くらいで考えてます。",o:[
+{t:"「諸費用が物件価格の7〜8%かかるため、物件は3,700万前後でお探しするのが安心です」",r:"夫: 諸費用のことは知りませんでした！ありがとうございます。",s:[3,3,3]},
+{t:"「4,000万あれば結構いい物件ありますよ！まずは見に行きましょう」",r:"妻: もう少し詳しく聞きたいんですが…",s:[1,2,2]},
+{t:"「このエリアでは正直厳しいです。頭金を増やせばローンも通りやすくなりますよ」",r:"夫: そんなこと言われても…。",s:[0,1,1],ng:"「ローンが通りやすい」等の不確実な融資条件の示唆は、重要事項の不実告知（宅建業法47条1号）のリスクがあります。"}
+]}
+]},
+{name:"値下げ価格交渉",desc:"3,980万の中古戸建に対し買主が値下げ要求。売主側仲介として対応。",who:"田中さん（40代男性）",steps:[
+{q:"「3,500万なら買います」への対応は？",c:"田中: 気に入ったけど3,980万は高い。3,500万なら即決します。",o:[
+{t:"「お気持ちはよくわかります。ご希望を売主様にお伝えしますが、査定根拠もご説明してよろしいですか？」",r:"田中: ええ、聞かせてください。",s:[3,3,3]},
+{t:"「480万の値引きは難しいですね。売主さんも譲れないと思います」",r:"田中: そうですか。じゃあ他の物件も見てみます。",s:[1,1,3]},
+{t:"「わかりました、3,500万で話を通しておきます。たぶん大丈夫ですよ」",r:"田中: 本当ですか！お願いします。",s:[1,1,0],ng:"売主の意思確認前に「大丈夫」と回答するのは重要事項の不実告知（宅建業法47条1号）にあたります。"}
+]},
+{q:"再度「3,700万が限界」と言われた対応は？",c:"田中: 根拠はわかったけど、やっぱり3,700万が限界です。",o:[
+{t:"「双方にとって良い着地点を探らせてください。リフォーム補助など条件面の調整もご提案できるかもしれません」",r:"田中: 面白いですね。条件次第では考えます。",s:[3,3,3]},
+{t:"「間をとって3,800万でどうですか？それで手を打ちましょう」",r:"田中: まだ高い気がするけど…。",s:[1,2,2]},
+{t:"「他にも検討中の方がいるので、早く決めないとなくなりますよ」",r:"田中: 本当ですか…？",s:[0,1,0],ng:"架空の競合購入者をほのめかすのは不実告知（宅建業法47条1号）。事実でない情報で判断を急がせてはいけません。"}
+]},
+{q:"売主が3,850万まで可と回答。買主への伝え方は？",c:"（売主から「3,850万が下限」と回答がありました）",o:[
+{t:"「交渉の結果3,850万までお値下げいただけました。当初から130万の譲歩で、立地と状態を考えると良い条件です」",r:"田中: 130万も下がったんですね。前向きに検討します。",s:[3,3,3]},
+{t:"「3,850万が限界だそうです。どうしますか？」",r:"田中: もう少し情報がほしいんですが…",s:[1,1,3]},
+{t:"「3,850万と言ってますが、もう少し粘れば3,800万いけると思います」",r:"田中: お願いします！",s:[1,2,0],ng:"売主の確定意思に反する伝達は信義則違反であり、双方代理的な利益相反行為にあたる可能性があります。"}
+]}
+]},
+{name:"クロージング拒否対応",desc:"購入申込直前で「やっぱり考えたい」と言う顧客への対応。",who:"鈴木さん（35歳女性）",steps:[
+{q:"「もう少し考えたい」への対応は？",c:"鈴木: 気に入ってるんですが…もう少し考えてもいいですか？",o:[
+{t:"「大きな買い物ですから当然です。どの部分が気がかりか教えてください。一緒に整理しましょう」",r:"鈴木: 実はローン返済が本当にやっていけるか不安で。",s:[3,3,3]},
+{t:"「時間はありますが、人気物件なのでいつまでもお待ちできない状況です」",r:"鈴木: そう言われると焦るんですが…",s:[1,1,1],ng:"「いつまでも待てない」と急がせるのは宅建業法47条の2の威迫・困惑に該当するおそれがあります。"},
+{t:"「ここで逃したら二度とこんな物件出ませんよ。今日申し込みましょう！」",r:"鈴木: 逆に引いてしまいます…",s:[0,0,0],ng:"「二度と出ない」は断定的判断の提供、「今日申し込みましょう」は契約の強要。宅建業法47条・47条の2に複数違反のおそれ。"}
+]},
+{q:"ローン返済の不安への対応は？",c:"鈴木: 月々10万超えると生活が苦しくならないか心配で…",o:[
+{t:"「現在の家賃はおいくらですか？住宅ローン控除の税還付もあるので、実質負担を一緒に計算しましょう」",r:"鈴木: 家賃8.5万です。控除があるんですね！詳しく教えてください。",s:[3,3,3]},
+{t:"「頭金を増やすプランや返済期間を延ばすプランも比較してみましょうか」",r:"鈴木: はい、いくつかパターンを見たいです。",s:[2,3,3]},
+{t:"「10万くらいなら皆さん普通に払ってますよ。大丈夫です」",r:"鈴木: 根拠がよくわからないですが…",s:[0,1,1],ng:"根拠なく「大丈夫」と断言するのは断定的判断の提供（宅建業法47条の2）にあたるおそれがあります。"}
+]},
+{q:"不安が解消された鈴木さんへの最終クロージングは？",c:"鈴木: だいぶ安心しました。でもまだ踏ん切りが…",o:[
+{t:"「無理にお決めにならなくて大丈夫です。ただローン仮審査を先に出すと金利優遇枠を確保できます。キャンセルも自由です」",r:"鈴木: 仮審査だけなら…お願いしてもいいですか？",s:[3,3,3]},
+{t:"「週末にご家族と一緒にもう一度内覧されますか？新しい視点が得られますよ」",r:"鈴木: 母と一緒に見たいかもしれません。",s:[3,2,3]},
+{t:"「今決めてくれれば仲介手数料を少しお値引きしますよ」",r:"鈴木: そういうことできるんですか？",s:[0,1,0],ng:"口頭での仲介手数料値引き約束は報酬額の事前説明義務（宅建業法46条）に関わる問題。書面なき変更はトラブルの原因になります。"}
+]}
+]}
+];
+var cur={sc:-1,st:0,sc0:[0,0,0],ngs:[]};
+var app=document.getElementById("app");
+function top(){
+app.innerHTML='<h1>\u{1F3E2} 不動産商談ロールプレイ</h1><p class="sub">シナリオを選んで模擬商談を練習しましょう</p><p class="sub" style="font-size:.78em;margin-bottom:8px">全3シナリオ｜各3ステップ｜宅建業法NGアラート付き</p>'+S.map(function(s,i){return'<div class="cd"><b>'+s.name+'</b><p style="font-size:.88em;color:#555;margin:5px 0">'+s.desc+'</p><span class="tg">'+s.who+'</span><br><button class="sb" onclick="go('+i+')">▶ 開始</button></div>'}).join("")}
+function go(i){cur={sc:i,st:0,sc0:[0,0,0],ngs:[]};step()}
+function step(){var sc=S[cur.sc],p=sc.steps[cur.st];app.innerHTML='<h1>'+sc.name+'</h1><p class="sub">STEP '+(cur.st+1)+'/3 — '+sc.who+'</p><div class="cu">'+p.c+'</div><div class="cd"><b>'+p.q+'</b>'+p.o.map(function(o,i){return'<button class="btn" onclick="pick('+i+')">'+o.t+'</button>'}).join("")+'</div>'}
+function pick(i){var p=S[cur.sc].steps[cur.st],o=p.o[i];cur.sc0[0]+=o.s[0];cur.sc0[1]+=o.s[1];cur.sc0[2]+=o.s[2];if(o.ng)cur.ngs.push({st:cur.st+1,t:o.ng});app.innerHTML='<h1>'+S[cur.sc].name+'</h1><p class="sub">STEP '+(cur.st+1)+'/3</p><div class="my">'+o.t+'</div><div class="cu">'+o.r+'</div><button class="sb" onclick="'+(cur.st<2?"nx()":"res()")+'">'+(cur.st<2?"次のステップへ ▶":"結果を見る 📊")+"</button>"}
+function nx(){cur.st++;step()}
+function res(){var mx=9,lb=["傾聴力","提案力","法令遵守"],cl=["#27ae60","#2980b9","#e74c3c"],h='<h1>\u{1F4CA} 商談結果</h1><div class="cd"><b>'+S[cur.sc].name+" — 総合フィードバック</b>",tt=0;lb.forEach(function(l,i){var p=Math.round(cur.sc0[i]/mx*100);tt+=p;var c=p>=70?"g":p>=40?"m":"b";h+='<p style="margin-top:8px">'+l+': <span class="'+c+'">'+p+'点</span></p><div class="bar"><div class="fill" style="width:'+p+"%;background:"+cl[i]+'"></div></div>'});var av=Math.round(tt/3),rk=av>=90?"S":av>=70?"A":av>=50?"B":av>=30?"C":"D";h+='<p style="text-align:center;font-size:1.2em;margin:10px 0">総合ランク: <b style="font-size:1.4em;color:'+(av>=70?"#27ae60":av>=50?"#f39c12":"#e74c3c")+'">'+rk+"</b></p></div>";if(cur.ngs.length){h+='<div class="cd"><b>\u26A0\uFE0F NG表現アラート（宅建業法）</b>';cur.ngs.forEach(function(n){h+='<div class="ng"><b>STEP'+n.st+":</b> "+n.t+"</div>"});h+="</div>"}else h+='<div class="cd" style="background:#eafaf1"><b>\u2705 法令違反リスクのある発言はありませんでした！</b></div>';h+='<button class="rs" onclick="top()">\u{1F504} トップに戻る</button>';app.innerHTML=h}
+top();
+</script>
+</body>
+</html>

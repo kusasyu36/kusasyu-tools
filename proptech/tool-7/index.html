@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新人営業スキル評価＆練習ログシート - kusasyu tools</title>
+<meta name="description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,新人営業スキル評価＆練習ログシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-7/">
+<meta property="og:title" content="新人営業スキル評価＆練習ログシート - kusasyu tools">
+<meta property="og:description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="新人営業スキル評価＆練習ログシート - kusasyu tools">
+<meta name="twitter:description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "新人営業スキル評価＆練習ログシート",
+  "description": "不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-16"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>新人営業スキル評価＆練習ログシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>新人営業スキル評価＆練習ログシート</h1>
+  <p class="project-name">新人営業、商談で何を言えばいい？AI模擬練習ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th># 新人営業スキル評価＆練習ログシート（不動産NGトーク辞典｜宅建業法チェックリスト 連動用）</th></tr></thead><tbody><tr><td># 使い方: Excelで開き、週次1on1フィードバックに活用してください</td></tr><tr><td># 数式例（Excel手入力用）:</td></tr><tr><td>#   合計スコア列 → =SUM(D2:F2)  ※D列＋E列＋F列</td></tr><tr><td>#   担当者別平均（傾聴） → =AVERAGEIF(B:B</td><td>田中 太郎</td><td>D:D)</td></tr><tr><td>#   全体平均合計 → =AVERAGE(G2:G100)</td></tr><tr><td>#   練習回数カウント → =COUNTIF(B:B</td><td>田中 太郎)</td></tr><tr><td>#   法令遵守が6点未満の回数 → =COUNTIFS(B:B</td><td>田中 太郎</td><td>F:F</td><td>&lt;6)</td></tr><tr><td># シナリオ一覧: S1=初めてマイホームを探す30代夫婦 / S2=投資目的の50代男性 / S3=値下げ交渉してくる買主 / S4=住み替え検討中の60代夫婦 / S5=相続物件を売却したい40代女性</td></tr><tr><td>練習日</td><td>担当者名</td><td>シナリオ名</td><td>傾聴スコア（10点）</td><td>提案スコア（10点）</td><td>法令遵守スコア（10点）</td><td>合計スコア（30点満点）</td><td>NG発言メモ（不動産NGトーク辞典参照）</td><td>改善アクション</td><td>研修責任者コメント</td><td>次回練習予定日</td></tr><tr><td>2026-04-07</td><td>田中 太郎</td><td>S1:初めてマイホームを探す30代夫婦</td><td>6</td><td>5</td><td>4</td><td>15</td><td>「この物件は絶対値上がりします」→断定的判断の提供（宅建業法47条）／「他のお客様も検討中です」→おとり的表現の疑い</td><td>断定表現を避け「過去の傾向では〜」に言い換える練習。NGトーク辞典の重要事項説明カテゴリを復習</td><td>初回にしては顧客ニーズの聞き取りは良い。法令面は辞典で重点復習を</td><td>2026-04-14</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `# 新人営業スキル評価＆練習ログシート（不動産NGトーク辞典｜宅建業法チェックリスト 連動用）
+# 使い方: Excelで開き、週次1on1フィードバックに活用してください
+# 数式例（Excel手入力用）:
+#   合計スコア列 → =SUM(D2:F2)  ※D列＋E列＋F列
+#   担当者別平均（傾聴） → =AVERAGEIF(B:B,"田中 太郎",D:D)
+#   全体平均合計 → =AVERAGE(G2:G100)
+#   練習回数カウント → =COUNTIF(B:B,"田中 太郎")
+#   法令遵守が6点未満の回数 → =COUNTIFS(B:B,"田中 太郎",F:F,"<6")
+# シナリオ一覧: S1=初めてマイホームを探す30代夫婦 / S2=投資目的の50代男性 / S3=値下げ交渉してくる買主 / S4=住み替え検討中の60代夫婦 / S5=相続物件を売却したい40代女性
+練習日,担当者名,シナリオ名,傾聴スコア（10点）,提案スコア（10点）,法令遵守スコア（10点）,合計スコア（30点満点）,NG発言メモ（不動産NGトーク辞典参照）,改善アクション,研修責任者コメント,次回練習予定日
+2026-04-07,田中 太郎,S1:初めてマイホームを探す30代夫婦,6,5,4,15,「この物件は絶対値上がりします」→断定的判断の提供（宅建業法47条）／「他のお客様も検討中です」→おとり的表現の疑い,断定表現を避け「過去の傾向では〜」に言い換える練習。NGトーク辞典の重要事項説明カテゴリを復習,初回にしては顧客ニーズの聞き取りは良い。法令面は辞典で重点復習を,2026-04-14
+2026-04-07,鈴木 花子,S2:投資目的の50代男性,8,7,7,22,「利回り8%は確実です」→将来の利益の断定（景品表示法）,利回りは「想定」「シミュレーション上」と必ず付記する。収支計算書の提示手順を確認,投資家対応の基本トーンは安定している。数値表現の正確さを磨けばさらに良くなる,2026-04-14
+2026-04-08,佐藤 健一,S3:値下げ交渉してくる買主,5,4,6,15,売主の最低希望価格を買主に漏らしかけた→守秘義務違反リスク。「今なら100万円引けます」→売主未承諾の値引き提示,価格交渉は必ず「売主様に確認いたします」を挟む。即答しない練習を繰り返す,交渉場面で焦りが出る傾向。3秒ルール（回答前に3秒考える）を意識させる,2026-04-15
+2026-04-09,山本 美咲,S4:住み替え検討中の60代夫婦,7,6,8,21,「お年を考えるとマンションが安心ですよ」→年齢による誘導的表現。顧客の意思決定を尊重する言い回しに修正が必要,「どのような暮らしをイメージされていますか」とオープン質問で始める練習,傾聴力が高く顧客に寄り添える。提案の幅を広げるため物件知識の強化を,2026-04-16
+2026-04-10,中村 翔太,S5:相続物件を売却したい40代女性,4,5,3,12,「早く売らないと固定資産税がもったいないですよ」→不安を煽る表現。「当社なら買取もできます」→媒介と買取の説明不足（利益相反リスク）,不安煽り表現をNGトーク辞典で確認。媒介契約と買取の違いを顧客に正しく説明できるよう台本作成,法令遵守が最重点課題。来週までにNGトーク辞典の全カテゴリを通読し確認テスト実施,2026-04-17
+2026-04-14,田中 太郎,S1:初めてマイホームを探す30代夫婦,7,6,7,20,「近隣にスーパーができる予定です」→未確定情報の断定。「予定」→「計画が公表されています（出典:〇〇市HP）」に修正,周辺環境の説明では必ず情報ソースを明示する練習,前回比＋5点の大幅改善。法令面の意識が向上。提案力は物件提案ロープレを追加で実施,2026-04-21
+2026-04-14,鈴木 花子,S3:値下げ交渉してくる買主,8,8,8,24,特になし（軽微な改善点:沈黙の間の活用がもう少しできると良い）,クロージング時の沈黙テクニックを練習。「いかがでしょうか」の後に10秒待つ訓練,全項目8点以上で安定。次回はS5の相続シナリオに挑戦させる,2026-04-21`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_新人営業スキル評価＆練習ログシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

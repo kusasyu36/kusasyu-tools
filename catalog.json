@@ -767,6 +767,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-22",
+    "url": "legal-tech/diagnosis-22/",
+    "title": "特許で出遅れない。知財リスク可視化ツール",
+    "tool_name": "知財リスク診断＆アクションプランナー（統合版）",
+    "description": "スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、無料・登録不要・ブラウザ完結のスポット診断形式で提供する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-16T19:51:42.641888+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "risk-5",
+    "url": "legal-tech/risk-5/",
+    "title": "特許で出遅れない。知財リスク可視化ツール",
+    "tool_name": "競合特許ランドスケープ分析シート",
+    "description": "スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、無料・登録不要・ブラウザ完結のスポット診断形式で提供する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-16T19:51:42.641888+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -1818,6 +1844,45 @@
     "quality_score": 9,
     "completed_at": "2026-04-13T08:48:23.728358+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-5",
+    "url": "proptech/simulator-5/",
+    "title": "新人営業、商談で何を言えばいい？AI模擬練習ツール",
+    "tool_name": "不動産商談ロールプレイ・シミュレーター",
+    "description": "不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク改善点・宅建業法上のNG表現アラート・クロージング力スコア）を返す。既存のAI営業ロールプ",
+    "quality_score": 9,
+    "completed_at": "2026-04-16T23:23:21.878965+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "checker-6",
+    "url": "proptech/checker-6/",
+    "title": "新人営業、商談で何を言えばいい？AI模擬練習ツール",
+    "tool_name": "不動産NGトーク辞典＋宅建業法チェックリスト",
+    "description": "不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク改善点・宅建業法上のNG表現アラート・クロージング力スコア）を返す。既存のAI営業ロールプ",
+    "quality_score": 9,
+    "completed_at": "2026-04-16T23:23:21.878965+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-7",
+    "url": "proptech/tool-7/",
+    "title": "新人営業、商談で何を言えばいい？AI模擬練習ツール",
+    "tool_name": "新人営業スキル評価＆練習ログシート",
+    "description": "不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク改善点・宅建業法上のNG表現アラート・クロージング力スコア）を返す。既存のAI営業ロールプ",
+    "quality_score": 9,
+    "completed_at": "2026-04-16T23:23:21.878965+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "digital-marketing",
@@ -3183,6 +3248,45 @@
     "quality_score": 7,
     "completed_at": "2026-04-10T13:32:58.018939+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-55",
+    "url": "digital-marketing/tool-55/",
+    "title": "広告バナーが足りない？AI量産クリエイティブキット",
+    "tool_name": "SNS広告クリエイティブ自動企画ジェネレーター",
+    "description": "D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-18T14:26:31.020938+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-56",
+    "url": "digital-marketing/tool-56/",
+    "title": "広告バナーが足りない？AI量産クリエイティブキット",
+    "tool_name": "クリエイティブABテスト設計＆効果トラッキングシート",
+    "description": "D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-18T14:26:31.020938+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "guide-10",
+    "url": "digital-marketing/guide-10/",
+    "title": "広告バナーが足りない？AI量産クリエイティブキット",
+    "tool_name": "AIクリエイティブ量産ワークフロー実践ガイド",
+    "description": "D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-18T14:26:31.020938+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "legal-tech",

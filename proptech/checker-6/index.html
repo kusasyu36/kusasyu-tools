@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産NGトーク辞典＋宅建業法チェックリスト - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#333;line-height:1.7;padding-bottom:40px}
+.w{max-width:720px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.2em;color:#1a5276;margin:10px 0 4px}
+.sub{text-align:center;font-size:.82em;color:#666;margin-bottom:10px}
+.fl{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:10px 0}
+.fb{padding:7px 14px;border-radius:20px;border:2px solid #2980b9;background:#fff;color:#2980b9;font-size:.82em;cursor:pointer;font-weight:bold;transition:.2s}
+.fb.on{background:#2980b9;color:#fff}
+.fb:hover{opacity:.8}
+.sr{display:flex;gap:8px;margin:10px 0}
+.sr input{flex:1;padding:10px;border:2px solid #ddd;border-radius:8px;font-size:.9em}
+.sr input:focus{outline:none;border-color:#2980b9}
+.st{display:flex;justify-content:space-between;align-items:center;margin:8px 0;font-size:.85em;color:#555}
+.cd{background:#fff;border-radius:10px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.07);overflow:hidden}
+.ch{padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:10px}
+.ch:hover{background:#f7fbff}
+.num{background:#e74c3c;color:#fff;font-size:.75em;font-weight:bold;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ng{color:#c0392b;font-weight:bold;flex:1;font-size:.92em}
+.tg{background:#2980b9;color:#fff;padding:1px 8px;border-radius:10px;font-size:.7em;flex-shrink:0}
+.tg.c1{background:#e74c3c}.tg.c2{background:#e67e22}.tg.c3{background:#8e44ad}.tg.c4{background:#2c3e50}
+.arr{transition:.3s;font-size:.8em;color:#999}
+.arr.open{transform:rotate(90deg)}
+.bd{display:none;padding:0 14px 14px;font-size:.88em}
+.bd.show{display:block}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:8px 0}
+.col{padding:10px;border-radius:8px}
+.col.r{background:#fdedec;border-left:3px solid #e74c3c}
+.col.y{background:#fef9e7;border-left:3px solid #f39c12}
+.col.g{background:#eafaf1;border-left:3px solid #27ae60}
+.col b{display:block;font-size:.78em;margin-bottom:4px}
+.col b.rb{color:#c0392b}.col b.yb{color:#b7950b}.col b.gb{color:#1e8449}
+.lw{background:#eaf2f8;padding:8px 10px;border-radius:6px;margin-top:6px;font-size:.82em;color:#1a5276}
+.pn{color:#c0392b;font-weight:bold;font-size:.82em;margin-top:4px}
+@media(max-width:600px){.row{grid-template-columns:1fr}.fl{gap:4px}.fb{padding:5px 10px;font-size:.78em}}
+</style>
+<meta name="description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産NGトーク辞典＋宅建業法チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-6/">
+<meta property="og:title" content="不動産NGトーク辞典＋宅建業法チェックリスト - kusasyu tools">
+<meta property="og:description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産NGトーク辞典＋宅建業法チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産NGトーク辞典＋宅建業法チェックリスト",
+  "description": "不動産仲介の新人営業担当者が、AIが演じる顧客キャラクターと模擬商談を練習できるインタラクティブWebツール。「初めてマイホームを探す30代夫婦」「投資目的の50代男性」「値下げ交渉してくる買主」など5つのリアルシナリオで、対話形式のロールプレイを体験。各回答に対してAIがリアルタイムにフィードバック（トーク",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/checker-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産NGトーク辞典＋宅建業法チェックリスト</span></div>
+<div class="w">
+<h1>🚫 不動産NGトーク辞典</h1>
+<p class="sub">宅建業法チェックリスト付き｜NG表現20選</p>
+<div class="fl" id="flt"></div>
+<div class="sr"><input type="text" id="sch" placeholder="キーワードで検索…"></div>
+<div class="st"><span id="cnt"></span><span>タップで詳細を展開</span></div>
+<div id="list"></div>
+</div>
+<script>
+var C={c1:"誇大広告",c2:"重説ミス",c3:"おとり物件",c4:"断定的判断"};
+var D=[
+{c:"c1",ng:"「駅徒歩3分の超希少物件です！」",why:"「超希少」「最高」等の最上級表現は、合理的根拠がない限り不当表示に該当",ok:"「駅徒歩3分と利便性の高い立地です」",law:"景品表示法5条1号／不動産公正競争規約18条",pen:"措置命令＋課徴金（売上額の3%）"},
+{c:"c1",ng:"「日当たり最高！眺望抜群！」",why:"「最高」「抜群」は客観的根拠なき優良誤認。季節・時間帯で変わる要素を断定不可",ok:"「南向きで午前中は日差しが入ります」",law:"景品表示法5条1号",pen:"措置命令＋課徴金"},
+{c:"c1",ng:"「完璧なリフォーム済みです」",why:"「完璧」は裏付けのない品質保証表現。瑕疵があれば二重の責任問題に発展",ok:"「2025年にキッチン・浴室をリフォーム済みです」",law:"景品表示法5条1号／宅建業法32条",pen:"業務停止最大1年"},
+{c:"c1",ng:"「このエリアで一番お買い得です」",why:"「一番」は比較広告の要件（客観データ・出典明示）を満たさない限り不当表示",ok:"「周辺相場と比較してご検討いただける価格帯です」",law:"景品表示法5条1号／公正競争規約18条",pen:"措置命令＋課徴金"},
+{c:"c1",ng:"「格安！掘り出し物！今だけ特別価格！」",why:"二重価格表示・有利誤認のおそれ。実際に値引きしていなければ虚偽表示",ok:"「売主様のご事情で、相場を踏まえた価格設定です」",law:"景品表示法5条2号",pen:"措置命令＋課徴金（売上額の3%）"},
+{c:"c2",ng:"「重要事項説明は形式的なものです」",why:"重説の重要性を軽視させる発言は説明義務違反を誘発。買主の理解を妨げる",ok:"「重要事項説明は大切な手続きです。ご不明点は何でもお聞きください」",law:"宅建業法35条（重要事項説明義務）",pen:"業務停止処分／指示処分"},
+{c:"c2",ng:"「ハザードマップは気にしなくて大丈夫です」",why:"水害リスク等の重説記載義務事項を過小評価する発言は説明義務違反",ok:"「ハザードマップではこのエリアの想定浸水深は○mです。詳しくご説明します」",law:"宅建業法35条1項14号／施行規則16条の4の3",pen:"業務停止最大1年"},
+{c:"c2",ng:"「近くにマンション建設計画？聞いてません」",why:"知り得た不利益情報の不告知は47条1号違反。調査義務も問われる",ok:"「周辺の建築計画について、行政に確認してお伝えします」",law:"宅建業法47条1号（不利益事実の不告知）",pen:"2年以下の懲役／300万円以下の罰金"},
+{c:"c2",ng:"「境界は大体この辺りです」",why:"境界の曖昧な説明はトラブルの原因。確定測量の有無を明示する義務がある",ok:"「確定測量図がございます／未確定ですので引渡し前に測量を行います」",law:"宅建業法35条1項（土地の登記記録・境界）",pen:"指示処分／業務停止"},
+{c:"c2",ng:"「契約不適合責任は免除で大丈夫です」",why:"売主が宅建業者の場合、買主に不利な特約は無効（40条）。説明不足も違反に",ok:"「契約不適合責任は引渡しから2年間負います。内容を詳しくご説明します」",law:"宅建業法40条／35条",pen:"指示処分／業務停止"},
+{c:"c3",ng:"「その物件ちょうど決まっちゃって…こちらはどうですか」",why:"架空の客付けで来店誘引し別物件を紹介する典型的おとり行為",ok:"「申し訳ございません、○日に申込が入りました。類似条件でお探ししましょうか」",law:"宅建業法32条／公正競争規約21条",pen:"業務停止最大1年／懲役6月以下"},
+{c:"c3",ng:"「まだ募集中ですよ！（実は成約済み）」",why:"成約済み物件の広告継続は典型的なおとり広告。故意でなくても違反",ok:"「最新の空き状況を確認いたします。少々お待ちください」",law:"宅建業法32条／公正競争規約21条",pen:"業務停止／6月以下の懲役"},
+{c:"c3",ng:"「ネットの写真は参考イメージです」",why:"実物と異なる写真掲載は誤認誘引。写真は原則実物を使用する義務",ok:"「こちらが現況の写真です。ご内見でも確認いただけます」",law:"公正競争規約15条（写真の掲載基準）",pen:"厳重警告／違約金"},
+{c:"c3",ng:"「問い合わせ殺到中なのでお急ぎください」",why:"架空の人気を演出する煽り行為。事実と異なれば虚偽表示に該当",ok:"「○件のお問い合わせをいただいております。ご見学の日程を調整しましょうか」",law:"宅建業法47条の2第3項",pen:"指示処分／業務停止"},
+{c:"c3",ng:"「おとり物件は他社の話。うちは全部本物です」",why:"自社物件でも更新漏れで意図せずおとり化するリスクがある。管理体制の問題",ok:"「当社は広告掲載物件を毎週更新し、成約済みは即日取り下げております」",law:"宅建業法32条",pen:"業務停止最大1年"},
+{c:"c4",ng:"「この物件は絶対値上がりします」",why:"将来の価格上昇の断定は宅建業法で明確に禁止。損害賠償責任も生じうる",ok:"「過去5年の周辺取引価格はこのように推移しています。ご参考までに」",law:"宅建業法47条の2第1項（断定的判断の提供禁止）",pen:"2年以下の懲役／300万円以下の罰金"},
+{c:"c4",ng:"「家賃収入で確実にローン返済できます」",why:"投資収益の確実性を保証する表現は断定的判断の提供に該当",ok:"「想定利回りは○%です。空室リスクも含めたシミュレーションをご案内します」",law:"宅建業法47条の2第1項",pen:"2年以下の懲役／300万円以下の罰金"},
+{c:"c4",ng:"「この地域は絶対に地価が下がりません」",why:"地価の将来予測を断定することは明確な法令違反",ok:"「国土交通省の地価公示によると、直近3年は横ばいで推移しています」",law:"宅建業法47条の2第1項",pen:"2年以下の懲役／300万円以下の罰金"},
+{c:"c4",ng:"「この物件を買わないと損しますよ」",why:"機会損失を煽り判断を急がせる行為は威迫・困惑行為に該当するおそれ",ok:"「ご条件に合う物件ですので、じっくりご検討ください」",law:"宅建業法47条の2第2項・3項",pen:"指示処分／業務停止"},
+{c:"c4",ng:"「家賃は必ず今の水準を維持できます」",why:"家賃相場の将来保証は不可能。断定的判断の提供に該当",ok:"「現在の募集家賃は○万円です。今後の相場変動の可能性もご説明します」",law:"宅建業法47条の2第1項",pen:"2年以下の懲役／300万円以下の罰金"}
+];
+var af="all",el=document.getElementById("list"),fc=document.getElementById("flt"),sc=document.getElementById("sch"),ct=document.getElementById("cnt");
+function init(){var h='<button class="fb on" data-c="all">すべて（20）</button>';for(var k in C){var n=D.filter(function(x){return x.c===k}).length;h+='<button class="fb" data-c="'+k+'">'+C[k]+"（"+n+"）</button>"}fc.innerHTML=h;fc.querySelectorAll(".fb").forEach(function(b){b.onclick=function(){af=this.dataset.c;fc.querySelectorAll(".fb").forEach(function(x){x.classList.remove("on")});this.classList.add("on");render()}});sc.oninput=render;render()}
+function render(){var q=sc.value.toLowerCase(),items=D.filter(function(d){var cm=af==="all"||d.c===af;var sm=!q||d.ng.toLowerCase().indexOf(q)>-1||d.ok.toLowerCase().indexOf(q)>-1||d.why.toLowerCase().indexOf(q)>-1;return cm&&sm}),h="";items.forEach(function(d,i){var cn=d.c;h+='<div class="cd"><div class="ch" onclick="tog(this)"><span class="num">'+(i+1)+'</span><span class="ng">'+d.ng+'</span><span class="tg '+cn+'">'+C[cn]+'</span><span class="arr">▶</span></div><div class="bd"><div class="row"><div class="col r"><b class="rb">❌ NG理由</b>'+d.why+'</div><div class="col y"><b class="yb">📖 根拠法令</b>'+d.law+'</div><div class="col g"><b class="gb">✅ OK言い換え</b>'+d.ok+"</div></div><div class='pn'>⚠ 違反時ペナルティ: "+d.pen+"</div></div></div>"});el.innerHTML=h||'<p style="text-align:center;color:#999;padding:20px">該当する項目がありません</p>';ct.textContent="表示中: "+items.length+"件 / 全20件"}
+function tog(e){var b=e.nextElementSibling,a=e.querySelector(".arr");if(b.classList.contains("show")){b.classList.remove("show");a.classList.remove("open")}else{b.classList.add("show");a.classList.add("open")}}
+init();
+</script>
+</body>
+</html>

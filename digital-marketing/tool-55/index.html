@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SNS広告クリエイティブ自動企画ジェネレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:20px 0 4px;color:#1a1a2e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+label{display:block;font-weight:700;margin-bottom:4px;font-size:.9em}
+input,select,textarea{width:100%;padding:10px;border:1px solid #d0d5dd;border-radius:8px;font-size:.95em;margin-bottom:12px;font-family:inherit}
+textarea{height:70px;resize:vertical}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:200px}
+button{width:100%;padding:14px;background:linear-gradient(135deg,#6c5ce7,#a855f7);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;transition:.2s}
+button:hover{opacity:.9;transform:translateY(-1px)}
+#result{display:none}
+.platform{border-left:4px solid;padding:16px;margin-bottom:16px;border-radius:0 10px 10px 0;background:#fafafa}
+.ig{border-color:#e1306c}
+.tw{border-color:#1da1f2}
+.ln{border-color:#06c755}
+.ptag{display:inline-block;padding:2px 10px;border-radius:20px;color:#fff;font-size:.75em;font-weight:700;margin-bottom:8px}
+.ig .ptag{background:#e1306c}
+.tw .ptag{background:#1da1f2}
+.ln .ptag{background:#06c755}
+.copy-box{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:10px;margin:6px 0;font-size:.9em}
+.copy-box b{color:#6c5ce7}
+.sz{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.sz span{background:#eee;padding:3px 10px;border-radius:6px;font-size:.8em}
+h3{font-size:1em;margin:10px 0 6px;color:#333}
+.cta-list{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.cta-list span{background:#6c5ce7;color:#fff;padding:4px 12px;border-radius:20px;font-size:.82em}
+.dl-btn{display:inline-block;margin-top:12px;padding:10px 24px;background:#1a1a2e;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.9em;width:auto}
+.section-title{font-size:1.05em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #6c5ce7}
+</style>
+<meta name="description" content="D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,SNS広告クリエイティブ自動企画ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-55/">
+<meta property="og:title" content="SNS広告クリエイティブ自動企画ジェネレーター - kusasyu tools">
+<meta property="og:description" content="D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-55/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SNS広告クリエイティブ自動企画ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SNS広告クリエイティブ自動企画ジェネレーター",
+  "description": "D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-55/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">SNS広告クリエイティブ自動企画ジェネレーター</span></div>
+<div class="wrap">
+<h1>SNS広告クリエイティブ 自動企画ジェネレーター</h1>
+<p class="sub">ブランド情報を入力 → Instagram・X・LINE広告の企画書を一括生成</p>
+<div class="card">
+<label>ブランド名 *</label>
+<input id="brand" placeholder="例：MUJI SKIN">
+<div class="row">
+<div><label>業種 *</label>
+<select id="biz"><option value="美容・コスメ">美容・コスメ</option><option value="食品・飲料">食品・飲料</option><option value="アパレル">アパレル</option><option value="健康・サプリ">健康・サプリ</option><option value="家電・ガジェット">家電・ガジェット</option><option value="教育・スクール">教育・スクール</option><option value="SaaS・IT">SaaS・IT</option><option value="その他">その他</option></select></div>
+<div><label>キャンペーン目的 *</label>
+<select id="goal"><option value="認知拡大">認知拡大</option><option value="サイト誘導">サイト誘導</option><option value="購入促進">購入促進</option><option value="LINE友だち追加">LINE友だち追加</option><option value="アプリDL">アプリDL</option></select></div>
+</div>
+<label>商品・サービスの特徴（3つ程度）*</label>
+<textarea id="features" placeholder="例：天然由来成分100%、敏感肌向け、初回50%OFF"></textarea>
+<label>ターゲット像 *</label>
+<input id="target" placeholder="例：30代女性、乾燥肌に悩むワーキングマザー">
+<div class="row">
+<div><label>トーン</label>
+<select id="tone"><option value="信頼・安心">信頼・安心</option><option value="ポップ・カジュアル">ポップ・カジュアル</option><option value="高級・上質">高級・上質</option><option value="エモーショナル">エモーショナル</option></select></div>
+<div><label>価格帯</label>
+<input id="price" placeholder="例：2,980円"></div>
+</div>
+<button onclick="generate()">企画書を自動生成する</button>
+</div>
+<div id="result"></div>
+</div>
+<script>
+function generate(){
+var b=document.getElementById('brand').value.trim(),bz=document.getElementById('biz').value,g=document.getElementById('goal').value,f=document.getElementById('features').value.trim(),t=document.getElementById('target').value.trim(),tn=document.getElementById('tone').value,p=document.getElementById('price').value.trim()||'お問い合わせ';
+if(!b||!f||!t){alert('※ 必須項目を入力してください');return}
+var fs=f.split(/[、,，\n]+/).map(function(x){return x.trim()}).filter(Boolean);
+var f1=fs[0]||'高品質',f2=fs[1]||'こだわり素材',f3=fs[2]||'お得な価格';
+var copies=makeCopies(b,f1,f2,f3,t,g,tn,p,bz);
+var ctas=makeCTAs(g,p);
+var vis=makeVisual(tn,bz);
+var html='<div class="card"><p class="section-title">📋 企画書：'+b+' SNS広告クリエイティブプラン</p><p style="font-size:.85em;color:#666">業種：'+bz+' ／ 目的：'+g+' ／ ターゲット：'+t+'</p></div>';
+var pls=[
+{cls:'ig',name:'Instagram',tag:'Instagram',sizes:['1080×1080（フィード正方形）','1080×1350（フィード縦長・推奨）','1080×1920（ストーリーズ/リール）'],note:'ストーリーズは上下14%にテキスト配置不可。リールは最初1秒で注意を引く構成に。'},
+{cls:'tw',name:'X（Twitter）',tag:'X',sizes:['1200×628（横長・タイムライン最適）','1080×1080（正方形）','800×418（カード型）'],note:'テキスト上限全角63文字。画像内テキスト20%以下推奨。引用RT・リプライで拡散されやすいコピーに。'},
+{cls:'ln',name:'LINE広告',tag:'LINE',sizes:['1080×1080（Smart Channel）','1200×628（タイムライン）','640×100（Small Image）'],note:'LINE VOOMはカルーセルも有効。友だち追加広告はメッセージとの一貫性が重要。'}
+];
+pls.forEach(function(pl,i){
+html+='<div class="platform '+pl.cls+'"><span class="ptag">'+pl.tag+'</span>';
+html+='<h3>推奨サイズ</h3><div class="sz">';
+pl.sizes.forEach(function(s){html+='<span>'+s+'</span>'});
+html+='</div><p style="font-size:.8em;color:#888">💡 '+pl.note+'</p>';
+html+='<h3>広告コピー 3パターン</h3>';
+copies[i].forEach(function(c,j){
+html+='<div class="copy-box"><b>パターン'+(j+1)+'：'+c.type+'</b><br>見出し：'+c.head+'<br>本文：'+c.body+'</div>'});
+html+='<h3>ビジュアルディレクション</h3><p style="font-size:.9em">'+vis[i]+'</p>';
+html+='<h3>CTA案</h3><div class="cta-list">';
+ctas[i].forEach(function(c){html+='<span>'+c+'</span>'});
+html+='</div></div>'});
+html+='<div class="card"><p class="section-title">📊 ABテスト推奨プラン</p><p style="font-size:.9em">① コピーテスト：パターン1 vs パターン2（同一ビジュアル・同一CTA）<br>② ビジュアルテスト：写真メイン vs テキストメイン（同一コピー）<br>③ CTA テスト：2つのCTAを同条件で比較<br><br><b>判定基準：</b>'+g+'目的 → '+(g==='認知拡大'?'CPM・リーチ数':g==='購入促進'?'ROAS・CPA':'CTR・CPC')+'を主要KPIに設定<br><b>最低検証期間：</b>3〜7日間 or 各パターン1,000imp以上</p></div>';
+html+='<button class="dl-btn" onclick="dlText()">📥 テキストで保存</button>';
+document.getElementById('result').innerHTML=html;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'})
+}
+function makeCopies(b,f1,f2,f3,t,g,tn,p,bz){
+var pain=t+'のあなたへ';
+var emo=tn==='高級・上質'?'上質な':'tn==='ポップ・カジュアル'?'もっと楽しく！':'安心の';
+var urgency=g==='購入促進'?'今だけ '+p+'→期間限定特別価格':'まずはチェック';
+var ig=[
+{type:'共感訴求',head:'「まだ'+f1.replace(/[。、]/g,'')+'に出会えてない？」',body:pain+'。'+b+'は'+f1+'×'+f2+'で、毎日が変わる。'+urgency},
+{type:'実績・数字訴求',head:b+'が選ばれる3つの理由',body:'✓ '+f1+' ✓ '+f2+' ✓ '+f3+'。'+bz+'の新定番をあなたも。'},
+{type:'ベネフィット直球',head:emo+f1+'を、'+p+'で。',body:b+'なら'+f2+'だから'+t.split('、')[0]+'にぴったり。詳しくはプロフィールから▶'}
+];
+var tw=[
+{type:'問いかけ型',head:'知ってた？'+f1+'が'+bz+'を変える理由',body:b+'の'+f2+'、試した人から変わってる。'+urgency+' #'+b.replace(/\s/g,'')},
+{type:'箇条書き型',head:'【'+b+'まとめ】',body:'① '+f1+'\n② '+f2+'\n③ '+f3+'\n→ '+p+'で始められます'},
+{type:'口コミ風',head:'「'+f1+'がこんなに違うとは…」',body:t.split('、')[0]+'に人気の'+b+'。'+f3+'だから続けやすい。'}
+];
+var ln=[
+{type:'友だち限定感',head:'【限定】'+b+'からのお知らせ🎁',body:f1+'×'+f2+'の'+b+'。LINE友だちだけの特典あり。'+urgency},
+{type:'シンプル訴求',head:b+'で'+f1+'を実感',body:t+'に選ばれる理由は'+f2+'。まずはお気軽に▶'},
+{type:'キャンペーン型',head:'📣 '+b+' '+(g==='購入促進'?'セール開催中':'キャンペーン実施中'),body:f3+'。今すぐチェック → '+p}
+];
+return[ig,tw,ln]
+}
+function makeCTAs(g,p){
+var base={
+'認知拡大':['詳しく見る','もっと知る','ブランドを見る'],
+'サイト誘導':['公式サイトへ','詳細はこちら','チェックする'],
+'購入促進':['今すぐ購入','カートに入れる','限定価格で購入'],
+'LINE友だち追加':['友だち追加','無料で登録','特典を受け取る'],
+'アプリDL':['無料ダウンロード','アプリを入手','今すぐ始める']
+};
+var c=base[g]||base['サイト誘導'];
+return[c,c.slice(0,2).concat(['リポスト']),c]
+}
+function makeVisual(tn,bz){
+var mood={'信頼・安心':'清潔感のあるホワイト〜ライトブルー基調。明朝体+細ゴシック。余白多め。','ポップ・カジュアル':'ビビッドカラー（黄・ピンク・オレンジ）。丸ゴシック体。あしらい・アイコン多用。','高級・上質':'ブラック×ゴールドまたはダークネイビー基調。セリフ体。写真は暗めトーン統一。','エモーショナル':'ナチュラルトーン。手書き風フォント併用。光やボケを活かした写真。'};
+var m=mood[tn]||mood['信頼・安心'];
+return[
+'【IG】'+m+'フィードは商品メイン写真を中心に。ストーリーズは縦動画or全画面写真+テキストオーバーレイ。文字は画面中央60%に配置。',
+'【X】'+m+'横長画像でタイムライン占有率UP。テキスト面積20%以内。左側に商品、右側にキャッチコピー配置が効果的。',
+'【LINE】'+m+'Smart Channelは小さいためロゴ+一言のシンプル構成。タイムラインはカルーセルで複数訴求。視認性最優先。'
+]
+}
+function dlText(){
+var el=document.getElementById('result');
+var txt=el.innerText||el.textContent;
+var blob=new Blob([txt],{type:'text/plain'});
+var a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='creative_plan.txt';
+a.click()
+}
+</script>
+</body>
+</html>

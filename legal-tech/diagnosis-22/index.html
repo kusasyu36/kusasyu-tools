@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>知財リスク診断＆アクションプランナー（統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:20px}
+.steps{display:flex;gap:4px;margin-bottom:20px;justify-content:center}
+.steps span{padding:6px 14px;border-radius:20px;font-size:.8em;background:#e2e8f0;color:#718096;cursor:pointer}
+.steps span.act{background:#3182ce;color:#fff;font-weight:700}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.1);display:none}
+.card.show{display:block}
+label{display:block;font-weight:600;margin:14px 0 4px;font-size:.9em}
+select,input[type=text]{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:.95em}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.row{grid-template-columns:1fr}}
+.score-group{margin:10px 0}
+.score-group p{font-size:.85em;color:#4a5568;margin-bottom:4px}
+.stars{display:flex;gap:4px}
+.stars button{width:36px;height:36px;border:2px solid #cbd5e0;border-radius:8px;background:#fff;font-size:1em;cursor:pointer}
+.stars button.on{background:#3182ce;color:#fff;border-color:#3182ce}
+.btn{display:inline-block;padding:12px 28px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:1em;cursor:pointer;margin-top:16px;font-weight:600}
+.btn:hover{background:#2b6cb0}
+.btn-out{background:#718096}
+.btn-out:hover{background:#4a5568}
+.result-box{padding:20px;border-radius:10px;text-align:center;margin:16px 0;font-size:1.1em;font-weight:700}
+.r-high{background:#fed7d7;color:#c53030}
+.r-mid{background:#fefcbf;color:#b7791f}
+.r-low{background:#c6f6d5;color:#276749}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88em}
+th,td{border:1px solid #e2e8f0;padding:8px;text-align:left}
+th{background:#edf2f7;font-weight:600}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.8em;margin:2px}
+.tag-y{background:#bee3f8;color:#2a4365}
+.tag-n{background:#e2e8f0;color:#718096}
+.print-head{display:none}
+@media print{
+body{background:#fff}
+.steps,.btn,.no-print{display:none!important}
+.card{display:block!important;box-shadow:none;page-break-inside:avoid;border:1px solid #ccc;margin-bottom:12px}
+.print-head{display:block;text-align:center;border-bottom:2px solid #333;padding-bottom:8px;margin-bottom:12px}
+}
+.meter{height:12px;background:#e2e8f0;border-radius:6px;overflow:hidden;margin:4px 0}
+.meter-bar{height:100%;border-radius:6px;transition:width .3s}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.summary-grid div{background:#f7fafc;padding:10px;border-radius:8px;font-size:.88em}
+.summary-grid div strong{display:block;color:#3182ce}
+</style>
+<meta name="description" content="スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,知財リスク診断＆アクションプランナー（統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-22/">
+<meta property="og:title" content="知財リスク診断＆アクションプランナー（統合版） - kusasyu tools">
+<meta property="og:description" content="スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-22/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="知財リスク診断＆アクションプランナー（統合版） - kusasyu tools">
+<meta name="twitter:description" content="スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "知財リスク診断＆アクションプランナー（統合版）",
+  "description": "スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-22/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">知財リスク診断＆アクションプランナー（統合版）</span></div>
+<div class="wrap">
+<h1>知財リスク診断＆アクションプランナー</h1>
+<p class="sub">スタートアップ向け・無料・登録不要・データ送信なし</p>
+<div class="steps" id="stepNav">
+<span class="act" onclick="go(0)">1.入力</span>
+<span onclick="go(1)">2.診断</span>
+<span onclick="go(2)">3.計画</span>
+<span onclick="go(3)">4.印刷</span>
+</div>
+
+<div class="card show" id="s0">
+<h2>Step 1：技術・事業の基本情報</h2>
+<label>会社名・サービス名</label>
+<input type="text" id="companyName" placeholder="例：株式会社○○ / ○○サービス">
+<div class="row">
+<div><label>技術分野</label>
+<select id="techField"><option value="AI/ML">AI・機械学習</option><option value="SaaS">SaaS・クラウド</option><option value="FinTech">FinTech</option><option value="HealthTech">HealthTech</option><option value="Hardware">ハードウェア・IoT</option><option value="Blockchain">ブロックチェーン</option><option value="Other">その他</option></select></div>
+<div><label>ビジネスモデル</label>
+<select id="bizModel"><option value="B2B SaaS">B2B SaaS</option><option value="B2C App">B2Cアプリ</option><option value="Platform">プラットフォーム</option><option value="D2C">D2C・EC</option><option value="API">API提供</option><option value="License">ライセンス提供</option><option value="Other">その他</option></select></div>
+</div>
+<label>技術・サービスの概要（1〜2文）</label>
+<input type="text" id="techDesc" placeholder="例：画像認識AIで不良品を自動検出するSaaS">
+<div class="row">
+<div><label>競合の特許出願状況</label>
+<select id="compPat"><option value="3">大手が多数出願</option><option value="2">スタートアップが数件出願</option><option value="1">見当たらない／調査未実施</option></select></div>
+<div><label>資金調達ステージ</label>
+<select id="stage"><option value="Pre-seed">プレシード</option><option value="Seed">シード</option><option value="SeriesA">シリーズA</option><option value="SeriesB+">シリーズB以降</option></select></div>
+</div>
+<button class="btn" onclick="runScore()">診断を実行 →</button>
+</div>
+
+<div class="card" id="s1">
+<h2>Step 2：知財リスクスコアリング</h2>
+<p style="font-size:.85em;color:#718096;margin:8px 0">各項目を1〜5で評価してください（5が最もリスク高／重要度高）</p>
+<div id="scoreArea"></div>
+<div id="resultArea"></div>
+<button class="btn btn-out" onclick="go(0)">← 戻る</button>
+<button class="btn" onclick="goPlan()">アクションプランへ →</button>
+</div>
+
+<div class="card" id="s2">
+<h2>Step 3：出願アクションプラン</h2>
+<div id="planArea"></div>
+<button class="btn btn-out" onclick="go(1)">← 戻る</button>
+<button class="btn" onclick="go(3)">印刷用サマリーへ →</button>
+</div>
+
+<div class="card" id="s3">
+<div class="print-head"><h2>知財リスク診断サマリー</h2><p>Kusasyu Legal Tech 作成</p></div>
+<h2 class="no-print">Step 4：弁理士相談用サマリー</h2>
+<div id="printArea"></div>
+<button class="btn no-print" onclick="window.print()">このページを印刷 / PDF保存</button>
+<button class="btn btn-out no-print" onclick="go(2)">← 戻る</button>
+</div>
+</div>
+
+<script>
+const items=[
+{key:'novelty',label:'新規性',desc:'既存技術・特許と比べた独自性'},
+{key:'inventive',label:'進歩性',desc:'容易に思いつかない技術的工夫'},
+{key:'impact',label:'事業インパクト',desc:'売上・競争優位への影響度'},
+{key:'risk',label:'競合リスク',desc:'他社に先行出願されるリスク'},
+{key:'urgency',label:'公開切迫度',desc:'論文発表・製品公開の迫り具合'}
+];
+let scores={};
+const $=id=>document.getElementById(id);
+function go(n){
+document.querySelectorAll('.card').forEach((c,i)=>{c.classList.toggle('show',i===n)});
+document.querySelectorAll('.steps span').forEach((s,i)=>{s.classList.toggle('act',i===n)});
+}
+function buildScoreUI(){
+let h='';
+items.forEach(it=>{
+scores[it.key]=3;
+h+=`<div class="score-group"><p><strong>${it.label}</strong> — ${it.desc}</p><div class="stars" data-key="${it.key}">`;
+for(let i=1;i<=5;i++) h+=`<button onclick="setS('${it.key}',${i})" id="b_${it.key}_${i}">${i}</button>`;
+h+=`</div><div class="meter"><div class="meter-bar" id="m_${it.key}" style="width:60%;background:#3182ce"></div></div></div>`;
+});
+$('scoreArea').innerHTML=h;
+items.forEach(it=>updStars(it.key,3));
+}
+function setS(k,v){scores[k]=v;updStars(k,v);calcResult()}
+function updStars(k,v){for(let i=1;i<=5;i++){const b=$(`b_${k}_${i}`);b.classList.toggle('on',i<=v)}$(`m_${k}`).style.width=(v*20)+'%'}
+function calcResult(){
+const vals=Object.values(scores),sum=vals.reduce((a,b)=>a+b,0),avg=sum/vals.length;
+const comp=+$('compPat').value;
+const total=Math.min(100,Math.round((avg*12)+(comp*10)));
+let lv,cls,act;
+if(total>=65){lv='今すぐ出願を検討すべき';cls='r-high';act='速やかに弁理士に相談し、3ヶ月以内の出願を目指してください。'}
+else if(total>=40){lv='3ヶ月以内に検討推奨';cls='r-mid';act='競合調査を行い、出願の要否を判断しましょう。'}
+else{lv='急ぎではないが記録を推奨';cls='r-low';act='発明ノートを整備し、公開前に再評価しましょう。'}
+$('resultArea').innerHTML=`<div class="result-box ${cls}">${lv}<br><span style="font-size:.7em">総合スコア: ${total}/100</span></div><p style="font-size:.9em">${act}</p>`;
+window._diag={total,lv,cls,scores:{...scores},comp};
+}
+function runScore(){buildScoreUI();calcResult();go(1)}
+function goPlan(){
+const d=window._diag||{total:50,scores:{}};
+const t=d.total;
+const plans=[
+{type:'特許',cond:d.scores.novelty>=3&&d.scores.inventive>=3,cost:'出願30〜50万円＋審査請求15万円',time:t>=65?'1〜3ヶ月以内':'3〜6ヶ月以内',docs:'明細書・特許請求の範囲・図面・要約書',note:'審査請求期限は出願から3年以内'},
+{type:'実用新案',cond:d.scores.novelty>=2&&d.scores.inventive<3,cost:'出願15〜25万円（無審査）',time:'1〜2ヶ月以内',docs:'明細書・実用新案登録請求の範囲・図面・要約書',note:'無審査で登録。権利行使時に技術評価書が必要'},
+{type:'意匠',cond:d.scores.impact>=3,cost:'出願15〜30万円',time:'3ヶ月以内',docs:'意匠登録願・図面（6面図）',note:'UIデザインも保護対象（画像意匠）'},
+{type:'商標',cond:true,cost:'出願5〜15万円（1区分）',time:'サービス公開前',docs:'商標登録願・商標見本',note:'サービス名・ロゴは早期登録推奨'}
+];
+let h='<table><tr><th>出願種別</th><th>推奨度</th><th>概算費用</th><th>目標時期</th></tr>';
+plans.forEach(p=>{
+h+=`<tr><td>${p.type}</td><td><span class="tag ${p.cond?'tag-y':'tag-n'}">${p.cond?'推奨':'任意'}</span></td><td>${p.cost}</td><td>${p.time}</td></tr>`;
+});
+h+='</table><h3 style="margin-top:16px">推奨出願の詳細</h3>';
+plans.filter(p=>p.cond).forEach(p=>{
+h+=`<div style="background:#f7fafc;padding:12px;border-radius:8px;margin:8px 0"><strong>${p.type}</strong><br>必要書類: ${p.docs}<br>備考: ${p.note}</div>`;
+});
+h+=`<h3 style="margin-top:16px">次のアクション（優先順）</h3><ol style="padding-left:20px;font-size:.9em">`;
+if(t>=65) h+='<li>弁理士を探す（スタートアップ支援実績のある事務所を推奨）</li><li>発明の要点を文書化（技術的課題→解決手段→効果）</li><li>J-PlatPatで先行特許を予備調査</li><li>弁理士との初回面談（本診断サマリーを持参）</li>';
+else if(t>=40) h+='<li>J-PlatPatで競合の出願状況を調査</li><li>自社技術の新規性を整理</li><li>出願要否を3ヶ月以内に判断</li>';
+else h+='<li>発明ノートを作成し日付入りで保管</li><li>製品公開・論文発表の前に再度診断を実施</li>';
+h+='</ol>';
+$('planArea').innerHTML=h;
+buildPrint();
+go(2);
+}
+function buildPrint(){
+const d=window._diag||{};
+const name=$('companyName').value||'（未入力）';
+const now=new Date().toLocaleDateString('ja-JP');
+let h=`<div class="summary-grid">
+<div><strong>会社名/サービス名</strong>${name}</div>
+<div><strong>診断日</strong>${now}</div>
+<div><strong>技術分野</strong>${$('techField').value}</div>
+<div><strong>ビジネスモデル</strong>${$('bizModel').value}</div>
+<div><strong>資金調達ステージ</strong>${$('stage').value}</div>
+<div><strong>総合スコア</strong>${d.total}/100</div>
+</div>
+<div class="result-box ${d.cls}" style="font-size:.95em">${d.lv}</div>
+<h3>スコア内訳</h3><table><tr><th>項目</th><th>スコア</th></tr>`;
+items.forEach(it=>{h+=`<tr><td>${it.label}</td><td>${d.scores[it.key]}/5</td></tr>`});
+h+=`</table><h3>技術概要</h3><p style="font-size:.9em">${$('techDesc').value||'（未入力）'}</p>`;
+h+=`<h3>弁理士への相談ポイント</h3><ul style="font-size:.9em;padding-left:20px">
+<li>上記スコアのうち特に高い項目について優先的に保護戦略を相談</li>
+<li>競合の出願状況: ${$('compPat').options[$('compPat').selectedIndex].text}</li>
+<li>出願費用の見積もりと助成金（中小企業等特許出願費用助成）の適用可否</li></ul>`;
+h+=`<p style="margin-top:16px;font-size:.75em;color:#a0aec0">本診断はKusasyu Legal Techが提供する簡易診断です。法的助言ではありません。正式な出願判断は弁理士にご相談ください。</p>`;
+$('printArea').innerHTML=h;
+}
+</script>
+</body>
+</html>

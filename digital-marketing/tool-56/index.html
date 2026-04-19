@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>クリエイティブABテスト設計＆効果トラッキングシート - kusasyu tools</title>
+<meta name="description" content="D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,クリエイティブABテスト設計＆効果トラッキングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-56/">
+<meta property="og:title" content="クリエイティブABテスト設計＆効果トラッキングシート - kusasyu tools">
+<meta property="og:description" content="D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-56/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="クリエイティブABテスト設計＆効果トラッキングシート - kusasyu tools">
+<meta name="twitter:description" content="D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "クリエイティブABテスト設計＆効果トラッキングシート",
+  "description": "D2C・EC企業の「クリエイティブ不足」を解決する3点キット。ブランド情報を入力するだけでInstagram・X・LINE広告用のクリエイティブ企画書を自動生成するHTMLツール、ABテストの設計と効果測定を一元管理するCSVシート、AIデザインツールを日本語ブランドで使いこなすための実践ワークフローガイドを",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-56/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-18"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>クリエイティブABテスト設計＆効果トラッキングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>クリエイティブABテスト設計＆効果トラッキングシート</h1>
+  <p class="project-name">広告バナーが足りない？AI量産クリエイティブキット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>テストID</th><th>テスト名</th><th>テスト週</th><th>媒体</th><th>バリエーション</th><th>テスト変数</th><th>コピー（見出し）</th><th>ビジュアル概要</th><th>CTA文言</th><th>impression</th><th>クリック数</th><th>CTR(%)</th><th>CV数</th><th>CVR(%)</th><th>広告費(円)</th><th>CPA(円)</th><th>客単価(円)</th><th>ROAS(%)</th><th>勝敗判定</th><th>次週アクション</th></tr></thead><tbody><tr><td>T001</td><td>春キャンペーン_コピーAB</td><td>2026/04/13〜04/19</td><td>Instagram</td><td>A</td><td>コピー</td><td>今だけ送料無料！春の新作コレクション</td><td>商品3点フラットレイ（白背景）</td><td>今すぐ購入</td><td>45000</td><td>1350</td><td>=K2/J2*100</td><td>54</td><td>=M2/K2*100</td><td>75000</td><td>=O2/M2</td><td>3500</td><td>=M2*Q2/O2*100</td><td>=IF(P2&lt;=P3,"WIN","LOSE")</td><td>コピーB優勢→B軸でCTA最適化テストへ</td></tr><tr><td>T001</td><td>春キャンペーン_コピーAB</td><td>2026/04/13〜04/19</td><td>Instagram</td><td>B</td><td>コピー</td><td>あなたの春ここから始まる。新作入荷</td><td>商品3点フラットレイ（白背景）</td><td>今すぐ購入</td><td>44000</td><td>1540</td><td>=K3/J3*100</td><td>62</td><td>=M3/K3*100</td><td>75000</td><td>=O3/M3</td><td>3500</td><td>=M3*Q3/O3*100</td><td>=IF(P3&lt;=P2,"WIN","LOSE")</td><td>★勝ち→本配信スケール＋CTA最適化テストへ</td></tr><tr><td>T002</td><td>GW訴求_ビジュアルAB</td><td>2026/04/13〜04/19</td><td>X</td><td>A</td><td>ビジュアル</td><td>GW限定10%OFF 見逃し厳禁</td><td>商品単体カット（白背景）</td><td>詳しく見る</td><td>32000</td><td>640</td><td>=K4/J4*100</td><td>19</td><td>=M4/K4*100</td><td>50000</td><td>=O4/M4</td><td>3500</td><td>=M4*Q4/O4*100</td><td>=IF(P4&lt;=P5,"WIN","LOSE")</td><td>ビジュアルB勝ち→ライフスタイル系で横展開</td></tr><tr><td>T002</td><td>GW訴求_ビジュアルAB</td><td>2026/04/13〜04/19</td><td>X</td><td>B</td><td>ビジュアル</td><td>GW限定10%OFF 見逃し厳禁</td><td>モデル着用ライフスタイルカット</td><td>詳しく見る</td><td>31000</td><td>837</td><td>=K5/J5*100</td><td>28</td><td>=M5/K5*100</td><td>50000</td><td>=O5/M5</td><td>3500</td><td>=M5*Q5/O5*100</td><td>=IF(P5&lt;=P4,"WIN","LOSE")</td><td>★勝ち→モデルカット横展開＋LINE版テスト</td></tr><tr><td>T003</td><td>友だち限定_CTAテスト</td><td>2026/04/13〜04/19</td><td>LINE</td><td>A</td><td>CTA</td><td>今週の人気ランキングTOP5</td><td>カルーセル形式（TOP5商品）</td><td>今すぐチェック</td><td>58000</td><td>1740</td><td>=K6/J6*100</td><td>87</td><td>=M6/K6*100</td><td>90000</td><td>=O6/M6</td><td>3500</td><td>=M6*Q6/O6*100</td><td>=IF(P6&lt;=P7,"WIN","LOSE")</td><td>CTA_B大幅勝ち→クーポン訴求を標準CTAに</td></tr><tr><td>T003</td><td>友だち限定_CTAテスト</td><td>2026/04/13〜04/19</td><td>LINE</td><td>B</td><td>CTA</td><td>今週の人気ランキングTOP5</td><td>カルーセル形式（TOP5商品）</td><td>限定クーポンで購入</td><td>57000</td><td>2166</td><td>=K7/J7*100</td><td>130</td><td>=M7/K7*100</td><td>90000</td><td>=O7/M7</td><td>3500</td><td>=M7*Q7/O7*100</td><td>=IF(P7&lt;=P6,"WIN","LOSE")</td><td>★勝ち→クーポンCTA標準採用＋コピーテストへ</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【週次PDCAサマリー】</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>テスト週</td><td>実施テスト数</td><td>総広告費(円)</td><td>平均CPA(円)</td><td>最優秀バリエーション</td><td>主な学び・気づき</td><td>来週のテスト計画</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>2026/04/13〜04/19</td><td>3</td><td>=SUM(O2:O7)</td><td>=AVERAGE(P2:P7)</td><td>T003-B（LINE_クーポンCTA）</td><td>クーポン訴求CTAがCVR6%超/CPA692円で最高効率。ライフスタイルビジュアルはCTR改善に有効</td><td>勝ちコピー×クーポンCTAの掛け合わせテスト（Instagram）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `テストID,テスト名,テスト週,媒体,バリエーション,テスト変数,コピー（見出し）,ビジュアル概要,CTA文言,impression,クリック数,CTR(%),CV数,CVR(%),広告費(円),CPA(円),客単価(円),ROAS(%),勝敗判定,次週アクション
+T001,春キャンペーン_コピーAB,2026/04/13〜04/19,Instagram,A,コピー,今だけ送料無料！春の新作コレクション,商品3点フラットレイ（白背景）,今すぐ購入,45000,1350,=K2/J2*100,54,=M2/K2*100,75000,=O2/M2,3500,=M2*Q2/O2*100,"=IF(P2<=P3,""WIN"",""LOSE"")",コピーB優勢→B軸でCTA最適化テストへ
+T001,春キャンペーン_コピーAB,2026/04/13〜04/19,Instagram,B,コピー,あなたの春ここから始まる。新作入荷,商品3点フラットレイ（白背景）,今すぐ購入,44000,1540,=K3/J3*100,62,=M3/K3*100,75000,=O3/M3,3500,=M3*Q3/O3*100,"=IF(P3<=P2,""WIN"",""LOSE"")",★勝ち→本配信スケール＋CTA最適化テストへ
+T002,GW訴求_ビジュアルAB,2026/04/13〜04/19,X,A,ビジュアル,GW限定10%OFF 見逃し厳禁,商品単体カット（白背景）,詳しく見る,32000,640,=K4/J4*100,19,=M4/K4*100,50000,=O4/M4,3500,=M4*Q4/O4*100,"=IF(P4<=P5,""WIN"",""LOSE"")",ビジュアルB勝ち→ライフスタイル系で横展開
+T002,GW訴求_ビジュアルAB,2026/04/13〜04/19,X,B,ビジュアル,GW限定10%OFF 見逃し厳禁,モデル着用ライフスタイルカット,詳しく見る,31000,837,=K5/J5*100,28,=M5/K5*100,50000,=O5/M5,3500,=M5*Q5/O5*100,"=IF(P5<=P4,""WIN"",""LOSE"")",★勝ち→モデルカット横展開＋LINE版テスト
+T003,友だち限定_CTAテスト,2026/04/13〜04/19,LINE,A,CTA,今週の人気ランキングTOP5,カルーセル形式（TOP5商品）,今すぐチェック,58000,1740,=K6/J6*100,87,=M6/K6*100,90000,=O6/M6,3500,=M6*Q6/O6*100,"=IF(P6<=P7,""WIN"",""LOSE"")",CTA_B大幅勝ち→クーポン訴求を標準CTAに
+T003,友だち限定_CTAテスト,2026/04/13〜04/19,LINE,B,CTA,今週の人気ランキングTOP5,カルーセル形式（TOP5商品）,限定クーポンで購入,57000,2166,=K7/J7*100,130,=M7/K7*100,90000,=O7/M7,3500,=M7*Q7/O7*100,"=IF(P7<=P6,""WIN"",""LOSE"")",★勝ち→クーポンCTA標準採用＋コピーテストへ
+,,,,,,,,,,,,,,,,,,,
+【週次PDCAサマリー】,,,,,,,,,,,,,,,,,,,
+テスト週,実施テスト数,総広告費(円),平均CPA(円),最優秀バリエーション,主な学び・気づき,来週のテスト計画,,,,,,,,,,,,,
+2026/04/13〜04/19,3,=SUM(O2:O7),=AVERAGE(P2:P7),T003-B（LINE_クーポンCTA）,クーポン訴求CTAがCVR6%超/CPA692円で最高効率。ライフスタイルビジュアルはCTR改善に有効,勝ちコピー×クーポンCTAの掛け合わせテスト（Instagram）,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+【計算式ガイド】,,,,,,,,,,,,,,,,,,,
+指標,計算式,媒体別ベンチマーク,,,,,,,,,,,,,,,,,
+CTR(%),=クリック数÷impression×100,Instagram: 0.5〜1.5% / X: 0.5〜2.0% / LINE: 1.0〜3.0%,,,,,,,,,,,,,,,,,
+CVR(%),=CV数÷クリック数×100,EC平均: 1.0〜5.0%（商材による）,,,,,,,,,,,,,,,,,
+CPA(円),=広告費÷CV数,目標CPA=客単価の30%以下が理想,,,,,,,,,,,,,,,,,
+ROAS(%),=CV数×客単価÷広告費×100,100%超で回収 / 300%超が優良ライン,,,,,,,,,,,,,,,,,
+勝敗判定,"=IF(自行CPA<=相手行CPA,""WIN"",""LOSE"")",CPA基準で低い方をWIN判定,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,
+【使い方ステップ】,,,,,,,,,,,,,,,,,,,
+STEP,内容,,,,,,,,,,,,,,,,,,
+1,SNS広告クリエイティブ自動企画ジェネレーターで企画を作成しテスト変数（コピー/ビジュアル/CTA）を決める,,,,,,,,,,,,,,,,,,
+2,テストIDを採番しバリエーションA/Bの内容を入力する（1テストにつき変数は1つだけ変える）,,,,,,,,,,,,,,,,,,
+3,1週間配信後にimpression・クリック数・CV数・広告費の4項目を入力する（CTR/CVR/CPA/ROASは自動計算）,,,,,,,,,,,,,,,,,,
+4,勝敗判定列を確認し次週アクション欄にPDCAの打ち手を記入する,,,,,,,,,,,,,,,,,,
+5,週次PDCAサマリーに学びと来週計画を記録し勝ちパターンを蓄積していく,,,,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_クリエイティブABテスト設計＆効果トラッキングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

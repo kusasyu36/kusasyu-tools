@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>競合特許ランドスケープ分析シート - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6;padding:12px}
+.wrap{max-width:960px;margin:0 auto}
+h1{text-align:center;font-size:1.25em;padding:14px 0 2px;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.8em;margin-bottom:14px}
+.badge{display:inline-block;background:#3182ce;color:#fff;font-size:.65em;padding:2px 8px;border-radius:10px;vertical-align:middle;margin-left:4px}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.1);margin-bottom:14px}
+.card h2{font-size:1em;color:#2d3748;margin-bottom:10px;border-left:4px solid #3182ce;padding-left:10px}
+.guide-toggle{background:none;border:1px solid #3182ce;color:#3182ce;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:.8em;margin-bottom:10px}
+.guide-toggle:hover{background:#ebf8ff}
+.guide{display:none;background:#ebf8ff;border-radius:8px;padding:14px;font-size:.82em;color:#2a4365;margin-bottom:12px;line-height:1.8}
+.guide.open{display:block}
+.guide ol{padding-left:20px}
+.guide li{margin-bottom:4px}
+.guide code{background:#bee3f8;padding:1px 5px;border-radius:4px;font-size:.9em}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:#fff;border-radius:10px;padding:12px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.stat .num{font-size:1.5em;font-weight:800;color:#3182ce}
+.stat .lbl{font-size:.72em;color:#718096}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.form-row label{font-size:.78em;font-weight:600;color:#4a5568}
+.form-row input,.form-row select{width:100%;padding:7px;border:1px solid #cbd5e0;border-radius:6px;font-size:.85em}
+.score-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+@media(max-width:600px){.score-row{grid-template-columns:1fr}}
+.score-label{font-size:.78em;font-weight:600;color:#4a5568;margin-bottom:2px}
+.stars{display:flex;gap:3px}
+.stars button{width:32px;height:32px;border:2px solid #cbd5e0;border-radius:6px;background:#fff;font-size:.85em;cursor:pointer;font-weight:700;color:#a0aec0}
+.stars button.on{background:#3182ce;color:#fff;border-color:#3182ce}
+.btn{padding:9px 20px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:.88em;cursor:pointer;font-weight:600}
+.btn:hover{background:#2b6cb0}
+.btn-s{padding:5px 12px;font-size:.75em;border-radius:6px}
+.btn-red{background:#e53e3e}.btn-red:hover{background:#c53030}
+.btn-gray{background:#718096}.btn-gray:hover{background:#4a5568}
+.btn-grn{background:#38a169}.btn-grn:hover{background:#2f855a}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:.78em;min-width:700px}
+th{background:#edf2f7;padding:8px 6px;text-align:left;font-weight:700;color:#4a5568;white-space:nowrap;border-bottom:2px solid #cbd5e0}
+td{padding:7px 6px;border-bottom:1px solid #e2e8f0;vertical-align:middle}
+tr:hover{background:#f7fafc}
+.pri-high{background:#fed7d7;color:#c53030;font-weight:700;padding:2px 8px;border-radius:10px;font-size:.8em}
+.pri-mid{background:#fefcbf;color:#b7791f;font-weight:700;padding:2px 8px;border-radius:10px;font-size:.8em}
+.pri-low{background:#c6f6d5;color:#276749;font-weight:700;padding:2px 8px;border-radius:10px;font-size:.8em}
+.threat-bar{height:8px;border-radius:4px;margin-top:2px}
+.act-btns{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.empty{text-align:center;padding:30px;color:#a0aec0;font-size:.9em}
+.footer{text-align:center;color:#a0aec0;font-size:.7em;margin-top:16px;padding-bottom:12px}
+.chart-area{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chart-bar{display:flex;flex-direction:column;align-items:center;gap:2px}
+.chart-bar .bar-fill{width:28px;border-radius:4px 4px 0 0;background:#3182ce;min-height:4px}
+.chart-bar .bar-lbl{font-size:.6em;color:#718096;writing-mode:vertical-rl;max-height:60px;overflow:hidden;text-overflow:ellipsis}
+.chart-bar .bar-val{font-size:.7em;font-weight:700;color:#2d3748}
+.note{font-size:.72em;color:#718096;margin-top:6px}
+</style>
+<meta name="description" content="スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,競合特許ランドスケープ分析シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-5/">
+<meta property="og:title" content="競合特許ランドスケープ分析シート - kusasyu tools">
+<meta property="og:description" content="スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競合特許ランドスケープ分析シート - kusasyu tools">
+<meta name="twitter:description" content="スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "競合特許ランドスケープ分析シート",
+  "description": "スタートアップ創業者・CTOが自社の技術・サービス概要を入力すると、特許出願の必要性・競合リスク・出願緊急度をスコアリングし、具体的なアクションプランまで提示するインタラクティブWebツール群。J-PlatPatでの競合特許調査をガイドする分析シートも付属。既存SaaSが月額数万円のサブスクモデルなのに対し、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">競合特許ランドスケープ分析シート</span></div>
+<div class="wrap">
+<h1>競合特許ランドスケープ分析シート<span class="badge">最大20件</span></h1>
+<p class="sub">知財リスク診断＆アクションプランナー 付属ツール ― J-PlatPat調査結果を記録・スコアリング</p>
+
+<div class="stats" id="stats">
+<div class="stat"><div class="num" id="s-count">5</div><div class="lbl">登録件数</div></div>
+<div class="stat"><div class="num" id="s-high">0</div><div class="lbl">高リスク</div></div>
+<div class="stat"><div class="num" id="s-avg">0</div><div class="lbl">平均脅威</div></div>
+<div class="stat"><div class="num" id="s-max">0</div><div class="lbl">最大脅威</div></div>
+</div>
+
+<div class="card">
+<h2>J-PlatPat 検索ガイド</h2>
+<button class="guide-toggle" id="gToggle" onclick="toggleGuide()">▶ 検索手順を表示</button>
+<div class="guide" id="guide">
+<ol>
+<li><code>j-platpat.inpit.go.jp</code> にアクセス（登録不要・無料）</li>
+<li>上部メニュー「特許・実用新案」→「特許・実用新案検索」を選択</li>
+<li>検索項目で<code>要約+請求の範囲</code>を選び、自社技術のキーワードを入力（例：「画像認識 異常検知」）</li>
+<li>IPC分類が分かれば<code>FI</code>欄に追加すると絞り込み精度UP（例：G06T7/00）</li>
+<li>出願日を直近5年に設定 → 検索実行</li>
+<li>一覧から気になる公報を開き、【請求項1】と【要約】を確認</li>
+<li>自社技術との類似度・事業影響度を下の入力フォームで記録</li>
+</ol>
+<p style="margin-top:8px"><strong>Tip:</strong> キーワードを変えて3〜5回検索すると網羅性が上がります。出願人名でも検索してみましょう。</p>
+</div>
+</div>
+
+<div class="card">
+<h2>脅威スコア分布</h2>
+<div class="chart-area" id="chart"></div>
+<p class="note">棒グラフは脅威スコア（類似度×影響度、最大25）を示します</p>
+</div>
+
+<div class="card">
+<h2>新しい競合特許を追加</h2>
+<div class="form-row">
+<div><label>特許番号 / 公開番号</label><input type="text" id="f-num" placeholder="例: 特開2024-123456"></div>
+<div><label>出願人 / 権利者</label><input type="text" id="f-app" placeholder="例: ○○株式会社"></div>
+<div><label>技術領域</label><select id="f-area">
+<option value="AI/機械学習">AI/機械学習</option>
+<option value="クラウド/SaaS">クラウド/SaaS</option>
+<option value="IoT/センサー">IoT/センサー</option>
+<option value="ブロックチェーン">ブロックチェーン</option>
+<option value="UI/UX手法">UI/UX手法</option>
+<option value="データ処理">データ処理</option>
+<option value="セキュリティ">セキュリティ</option>
+<option value="ハードウェア">ハードウェア</option>
+<option value="その他">その他</option>
+</select></div>
+</div>
+<div class="score-row">
+<div><div class="score-label">自社技術との類似度（1=低 〜 5=高）</div><div class="stars" id="star-sim"></div></div>
+<div><div class="score-label">事業影響度（1=低 〜 5=高）</div><div class="stars" id="star-imp"></div></div>
+</div>
+<div><label style="font-size:.78em;font-weight:600;color:#4a5568">メモ（任意）</label><input type="text" id="f-memo" placeholder="請求項の要点や注意点など"></div>
+<div class="act-btns">
+<button class="btn" onclick="addRow()" id="addBtn">＋ 追加する</button>
+<button class="btn btn-gray btn-s" onclick="loadSample()">サンプル5件を復元</button>
+</div>
+</div>
+
+<div class="card">
+<h2>登録一覧</h2>
+<div class="act-btns" style="margin-bottom:10px">
+<button class="btn btn-grn btn-s" onclick="exportCSV()">CSV エクスポート</button>
+<button class="btn btn-red btn-s" onclick="clearAll()">全件クリア</button>
+<select id="sortSel" onchange="renderTable()" style="padding:5px 8px;border-radius:6px;border:1px solid #cbd5e0;font-size:.78em">
+<option value="threat-desc">脅威スコア 高→低</option>
+<option value="threat-asc">脅威スコア 低→高</option>
+<option value="added">追加順</option>
+</select>
+</div>
+<div class="tbl-wrap">
+<table>
+<thead><tr><th>#</th><th>特許番号</th><th>出願人</th><th>技術領域</th><th>類似度</th><th>影響度</th><th>脅威</th><th>優先度</th><th>操作</th></tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+<div class="empty" id="emptyMsg" style="display:none">データがありません。上のフォームから追加してください。</div>
+</div>
+
+<p class="footer">競合特許ランドスケープ分析シート ― 知財リスク診断＆アクションプランナー 付属ツール<br>本ツールは一般的な情報整理を目的としており、法的助言ではありません。重要な判断は弁理士にご相談ください。</p>
+</div>
+
+<script>
+var data=[];
+var simVal=0,impVal=0;
+
+function initStars(){
+var sc=document.getElementById("star-sim");
+var ic=document.getElementById("star-imp");
+for(var i=1;i<=5;i++){
+(function(v){
+var b1=document.createElement("button");b1.textContent=v;
+b1.onclick=function(){simVal=v;updStars("star-sim",v)};sc.appendChild(b1);
+var b2=document.createElement("button");b2.textContent=v;
+b2.onclick=function(){impVal=v;updStars("star-imp",v)};ic.appendChild(b2);
+})(i);
+}
+}
+function updStars(id,val){
+var btns=document.getElementById(id).querySelectorAll("button");
+for(var i=0;i<btns.length;i++) btns[i].className=i<val?"on":"";
+}
+
+function calcPriority(s){return s>=15?"高":s>=8?"中":"低"}
+function priClass(p){return p==="高"?"pri-high":p==="中"?"pri-mid":"pri-low"}
+function barColor(s){return s>=15?"#e53e3e":s>=8?"#d69e2e":"#38a169"}
+
+function addRow(){
+if(data.length>=20){alert("最大20件まで登録できます。");return}
+var num=document.getElementById("f-num").value.trim();
+var app=document.getElementById("f-app").value.trim();
+var area=document.getElementById("f-area").value;
+var memo=document.getElementById("f-memo").value.trim();
+if(!num){alert("特許番号を入力してください。");return}
+if(simVal===0||impVal===0){alert("類似度と影響度を選択してください。");return}
+data.push({num:num,app:app||"不明",area:area,sim:simVal,imp:impVal,threat:simVal*impVal,pri:calcPriority(simVal*impVal),memo:memo});
+document.getElementById("f-num").value="";document.getElementById("f-app").value="";document.getElementById("f-memo").value="";
+simVal=0;impVal=0;updStars("star-sim",0);updStars("star-imp",0);
+renderTable();
+}
+
+function removeRow(idx){data.splice(idx,1);renderTable()}
+
+function sortData(){
+var s=document.getElementById("sortSel").value;
+var d=data.map(function(r,i){r._i=i;return r});
+if(s==="threat-desc") d.sort(function(a,b){return b.threat-a.threat});
+else if(s==="threat-asc") d.sort(function(a,b){return a.threat-b.threat});
+return d;
+}
+
+function renderTable(){
+var tb=document.getElementById("tbody");tb.innerHTML="";
+var em=document.getElementById("emptyMsg");
+if(data.length===0){em.style.display="block"}else{em.style.display="none"}
+var sorted=sortData();
+for(var i=0;i<sorted.length;i++){
+var r=sorted[i];
+var tr=document.createElement("tr");
+var barW=Math.round(r.threat/25*100);
+tr.innerHTML='<td>'+(i+1)+'</td><td style="font-weight:600;white-space:nowrap">'+esc(r.num)+'</td><td>'+esc(r.app)+'</td><td>'+esc(r.area)+'</td><td style="text-align:center">'+r.sim+'</td><td style="text-align:center">'+r.imp+'</td><td style="text-align:center"><strong>'+r.threat+'</strong><div class="threat-bar" style="width:'+barW+'%;background:'+barColor(r.threat)+'"></div></td><td><span class="'+priClass(r.pri)+'">'+r.pri+'</span></td><td><button class="btn btn-red btn-s" onclick="removeRow('+data.indexOf(r)+')">削除</button></td>';
+tb.appendChild(tr);
+}
+updateStats();renderChart();
+document.getElementById("addBtn").textContent=data.length>=20?"上限到達":"＋ 追加する（"+data.length+"/20）";
+}
+
+function updateStats(){
+var h=0,sum=0,mx=0;
+for(var i=0;i<data.length;i++){
+if(data[i].pri==="高")h++;
+sum+=data[i].threat;
+if(data[i].threat>mx)mx=data[i].threat;
+}
+document.getElementById("s-count").textContent=data.length;
+document.getElementById("s-high").textContent=h;
+document.getElementById("s-avg").textContent=data.length?((sum/data.length).toFixed(1)):"0";
+document.getElementById("s-max").textContent=mx;
+}
+
+function renderChart(){
+var c=document.getElementById("chart");c.innerHTML="";
+if(data.length===0){c.innerHTML='<span style="color:#a0aec0;font-size:.8em">データなし</span>';return}
+var maxH=80;
+for(var i=0;i<data.length;i++){
+var r=data[i];
+var h=Math.max(4,Math.round(r.threat/25*maxH));
+var d=document.createElement("div");d.className="chart-bar";
+d.innerHTML='<div class="bar-val">'+r.threat+'</div><div class="bar-fill" style="height:'+h+'px;background:'+barColor(r.threat)+'"></div><div class="bar-lbl">'+esc(r.num.substring(0,10))+'</div>';
+c.appendChild(d);
+}
+}
+
+function exportCSV(){
+if(data.length===0){alert("エクスポートするデータがありません。");return}
+var lines=["特許番号,出願人,技術領域,類似度,影響度,脅威スコア,優先度,メモ"];
+for(var i=0;i<data.length;i++){
+var r=data[i];
+lines.push('"'+r.num+'","'+r.app+'","'+r.area+'",'+r.sim+','+r.imp+','+r.threat+',"'+r.pri+'","'+(r.memo||"")+'"');
+}
+var blob=new Blob(["\uFEFF"+lines.join("\n")],{type:"text/csv;charset=utf-8;"});
+var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+a.download="patent_landscape_"+new Date().toISOString().slice(0,10)+".csv";
+a.click();
+}
+
+function clearAll(){if(data.length===0)return;if(confirm("全件削除しますか？")){data=[];renderTable()}}
+
+function loadSample(){
+if(data.length>0&&!confirm("現在のデータを上書きしてサンプルを読み込みますか？"))return;
+data=[
+{num:"特開2023-045678",app:"AIビジョン株式会社",area:"AI/機械学習",sim:4,imp:5,threat:20,pri:"高",memo:"画像認識による異常検知手法。請求項1が自社手法と類似"},
+{num:"特開2024-112233",app:"クラウドテック合同会社",area:"クラウド/SaaS",sim:3,imp:4,threat:12,pri:"中",memo:"マルチテナントSaaSの負荷分散方式"},
+{num:"特開2023-098765",app:"データフロー株式会社",area:"データ処理",sim:5,imp:3,threat:15,pri:"高",memo:"リアルタイムETLパイプラインの最適化"},
+{num:"特開2024-001234",app:"セキュアネット株式会社",area:"セキュリティ",sim:2,imp:3,threat:6,pri:"低",memo:"ゼロトラスト認証の改良。直接的な競合は薄い"},
+{num:"特開2024-055555",app:"IoTソリューションズ株式会社",area:"IoT/センサー",sim:3,imp:3,threat:9,pri:"中",memo:"エッジデバイス連携プロトコル"}
+];
+renderTable();
+}
+
+function toggleGuide(){
+var g=document.getElementById("guide");
+var t=document.getElementById("gToggle");
+if(g.className.indexOf("open")>=0){g.className="guide";t.textContent="▶ 検索手順を表示"}
+else{g.className="guide open";t.textContent="▼ 検索手順を閉じる"}
+}
+
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+
+initStars();loadSample();
+</script>
+</body>
+</html>
