@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資物件10年キャッシュフロー予測シート - kusasyu tools</title>
+<meta name="description" content="物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,投資物件10年キャッシュフロー予測シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-8/">
+<meta property="og:title" content="投資物件10年キャッシュフロー予測シート - kusasyu tools">
+<meta property="og:description" content="物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資物件10年キャッシュフロー予測シート - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "投資物件10年キャッシュフロー予測シート",
+  "description": "物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>投資物件10年キャッシュフロー予測シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>投資物件10年キャッシュフロー予測シート</h1>
+  <p class="project-name">投資物件の隠れリスク、4軸で丸見え診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>投資物件10年キャッシュフロー予測シート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>連携元</td><td>投資物件4軸リスク診断ツール</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>作成日</td><td>2026/04/19</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>=== 物件基本情報 ===</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>項目</td><td>物件1</td><td>物件2</td><td>物件3</td><td>物件4</td><td>物件5</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>物件名</td><td>品川区1Kマンション</td><td>横浜市中区1LDK</td><td>大阪市北区1K</td><td>(入力欄)</td><td>(入力欄)</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>エリア</td><td>東京都品川区</td><td>横浜市中区</td><td>大阪市北区</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>築年数(年)</td><td>15</td><td>20</td><td>25</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>購入価格(万円)</td><td>2500</td><td>1800</td><td>1200</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>間取り</td><td>1K</td><td>1LDK</td><td>1K</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `投資物件10年キャッシュフロー予測シート,,,,,,,,,,
+連携元,投資物件4軸リスク診断ツール,,,,,,,,,
+作成日,2026/04/19,,,,,,,,,
+,,,,,,,,,,
+=== 物件基本情報 ===,,,,,,,,,,
+項目,物件1,物件2,物件3,物件4,物件5,,,,,
+物件名,品川区1Kマンション,横浜市中区1LDK,大阪市北区1K,(入力欄),(入力欄),,,,,
+エリア,東京都品川区,横浜市中区,大阪市北区,,,,,,,
+築年数(年),15,20,25,,,,,,,
+購入価格(万円),2500,1800,1200,,,,,,,
+間取り,1K,1LDK,1K,,,,,,,
+想定月額家賃(万円),9.0,7.5,6.0,,,,,,,
+自己資金(万円),750,360,120,,,,,,,
+ローン借入額(万円),1750,1440,1080,,,,,,,
+ローン金利(%),1.5,1.5,1.5,,,,,,,
+ローン期間(年),35,35,35,,,,,,,
+月額ローン返済(万円),5.36,4.42,3.31,,,,,,,
+年間ローン返済(万円),64.3,53.0,39.7,,,,,,,
+月額管理費(万円),1.2,1.0,0.8,,,,,,,
+月額修繕積立金(万円),0.8,1.0,1.2,,,,,,,
+年間固定資産税(万円),8.5,6.0,4.0,,,,,,,
+年間経費合計(万円),96.8,83.0,67.7,,,,,,,
+表面利回り(%),4.32,5.00,6.00,,,,,,,
+家賃年間下落率(%),0.5,0.5,0.5,,,,,,,
+,,,,,,,,,,
+=== 4軸リスクスコア転記欄（診断ツールから転記） ===,,,,,,,,,,
+スコア項目,物件1,物件2,物件3,物件4,物件5,,,,,
+空室リスク(1-100),25,40,55,,,,,,,
+修繕リスク(1-100),35,50,70,,,,,,,
+流動性リスク(1-100),20,35,45,,,,,,,
+金利リスク(1-100),45,45,45,,,,,,,
+総合グレード,B+,B,C+,,,,,,,
+,,,,,,,,,,
+=== 10年キャッシュフロー推移（基本シナリオ: 金利1.5% / 空室率5%） ===,,,,,,,,,,
+物件名,年次,年間家賃(万円),空室損失(万円),有効収入(万円),ローン返済(万円),管理費(万円),修繕積立(万円),固定資産税(万円),年間CF(万円),累計CF(万円)
+品川区1K,1年目,108.0,5.4,102.6,64.3,14.4,9.6,8.5,5.8,5.8
+品川区1K,2年目,107.5,5.4,102.1,64.3,14.4,9.6,8.5,5.3,11.1
+品川区1K,3年目,106.9,5.3,101.6,64.3,14.4,9.6,8.5,4.8,15.9
+品川区1K,4年目,106.4,5.3,101.1,64.3,14.4,9.6,8.5,4.3,20.2
+品川区1K,5年目,105.9,5.3,100.6,64.3,14.4,9.6,8.5,3.8,24.0
+品川区1K,6年目,105.3,5.3,100.0,64.3,14.4,9.6,8.5,3.2,27.2
+品川区1K,7年目,104.8,5.2,99.6,64.3,14.4,9.6,8.5,2.8,30.0
+品川区1K,8年目,104.3,5.2,99.1,64.3,14.4,9.6,8.5,2.3,32.3
+品川区1K,9年目,103.8,5.2,98.6,64.3,14.4,9.6,8.5,1.8,34.1
+品川区1K,10年目,103.2,5.2,98.0,64.3,14.4,9.6,8.5,1.2,35.3
+横浜中区1LDK,1年目,90.0,4.5,85.5,53.0,12.0,12.0,6.0,2.5,2.5
+横浜中区1LDK,2年目,89.6,4.5,85.1,53.0,12.0,12.0,6.0,2.1,4.6
+横浜中区1LDK,3年目,89.1,4.5,84.6,53.0,12.0,12.0,6.0,1.6,6.2
+横浜中区1LDK,4年目,88.7,4.4,84.3,53.0,12.0,12.0,6.0,1.3,7.5
+横浜中区1LDK,5年目,88.2,4.4,83.8,53.0,12.0,12.0,6.0,0.8,8.3
+横浜中区1LDK,6年目,87.8,4.4,83.4,53.0,12.0,12.0,6.0,0.4,8.7
+横浜中区1LDK,7年目,87.3,4.4,82.9,53.0,12.0,12.0,6.0,-0.1,8.6
+横浜中区1LDK,8年目,86.9,4.3,82.6,53.0,12.0,12.0,6.0,-0.4,8.2
+横浜中区1LDK,9年目,86.5,4.3,82.2,53.0,12.0,12.0,6.0,-0.8,7.4
+横浜中区1LDK,10年目,86.0,4.3,81.7,53.0,12.0,12.0,6.0,-1.3,6.1
+大阪北区1K,1年目,72.0,3.6,68.4,39.7,9.6,14.4,4.0,0.7,0.7
+大阪北区1K,2年目,71.6,3.6,68.0,39.7,9.6,14.4,4.0,0.3,1.0
+大阪北区1K,3年目,71.3,3.6,67.7,39.7,9.6,14.4,4.0,0.0,1.0
+大阪北区1K,4年目,70.9,3.5,67.4,39.7,9.6,14.4,4.0,-0.3,0.7
+大阪北区1K,5年目,70.6,3.5,67.1,39.7,9.6,14.4,4.0,-0.6,0.1
+大阪北区1K,6年目,70.2,3.5,66.7,39.7,9.6,14.4,4.0,-1.0,-0.9
+大阪北区1K,7年目,69.9,3.5,66.4,39.7,9.6,14.4,4.0,-1.3,-2.2
+大阪北区1K,8年目,69.5,3.5,66.0,39.7,9.6,14.4,4.0,-1.7,-3.9
+大阪北区1K,9年目,69.2,3.5,65.7,39.7,9.6,14.4,4.0,-2.0,-5.9
+大阪北区1K,10年目,68.8,3.4,65.4,39.7,9.6,14.4,4.0,-2.3,-8.2
+,,,,,,,,,,
+=== 金利×空室率 シナリオ分析（6パターン） ===,,,,,,,,,,
+物件名,シナリオ,金利(%),空室率(%),初年度CF(万円),10年累計CF(万円),年間CF赤字化,累計CF赤字化,,,
+品川区1K,1-ベスト,1.5,5,5.8,35.3,なし,なし,,,
+品川区1K,2-標準,1.5,15,-5.0,-70.3,1年目,1年目,,,
+品川区1K,3-金利上昇,2.5,5,-4.8,-70.7,1年目,1年目,,,
+品川区1K,4-複合悪化,2.5,15,-15.6,-176.3,1年目,1年目,,,
+品川区1K,5-高金利,3.5,5,-16.6,-188.7,1年目,1年目,,,
+品川区1K,6-ワースト,3.5,30,-43.6,-453.9,1年目,1年目,,,
+横浜中区1LDK,1-ベスト,1.5,5,2.5,6.1,7年目,なし,,,
+横浜中区1LDK,2-標準,1.5,15,-6.5,-83.3,1年目,1年目,,,
+横浜中区1LDK,3-金利上昇,2.5,5,-6.1,-79.9,1年目,1年目,,,
+横浜中区1LDK,4-複合悪化,2.5,15,-15.1,-169.3,1年目,1年目,,,
+横浜中区1LDK,5-高金利,3.5,5,-15.9,-177.9,1年目,1年目,,,
+横浜中区1LDK,6-ワースト,3.5,30,-38.4,-398.1,1年目,1年目,,,
+大阪北区1K,1-ベスト,1.5,5,0.7,-8.2,4年目,6年目,,,
+大阪北区1K,2-標準,1.5,15,-6.5,-78.3,1年目,1年目,,,
+大阪北区1K,3-金利上昇,2.5,5,-5.8,-73.1,1年目,1年目,,,
+大阪北区1K,4-複合悪化,2.5,15,-13.0,-143.1,1年目,1年目,,,
+大阪北区1K,5-高金利,3.5,5,-13.2,-147.1,1年目,1年目,,,
+大阪北区1K,6-ワースト,3.5,30,-31.2,-323.5,1年目,1年目,,,
+,,,,,,,,,,
+=== 投資判定サマリー ===,,,,,,,,,,
+物件名,ベスト年間CF(万円),ワースト年間CF(万円),10年ベスト累計(万円),10年ワースト累計(万円),黒字シナリオ数,総合判定,,,,
+品川区1K,5.8,-43.6,35.3,-453.9,1/6,条件付き投資可,,,,
+横浜中区1LDK,2.5,-38.4,6.1,-398.1,1/6,慎重検討,,,,
+大阪北区1K,0.7,-31.2,-8.2,-323.5,0/6,リスク高,,,,
+,,,,,,,,,,
+※ 本シートは「投資物件4軸リスク診断ツール」と連携して使用します,,,,,,,,,,
+※ 4軸リスクスコアは診断ツールの結果をそのまま転記してください,,,,,,,,,,
+※ 前提条件: 全期間固定金利/家賃下落率0.5%年/管理費・修繕積立は定額/大規模修繕の臨時支出は別途考慮要,,,,,,,,,,
+※ 金利シナリオは2026年の日銀利上げ局面を想定した+1%・+2%の上振れケースです,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_投資物件10年キャッシュフロー予測シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

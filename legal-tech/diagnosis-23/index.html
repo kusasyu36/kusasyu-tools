@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ストレスチェック実施規程ジェネレーター＆労務コンプライアンス診断 - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.2em;text-align:center;padding:18px 0;color:#1e40af}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h2{font-size:1em;color:#1e40af;border-bottom:2px solid #dbeafe;padding-bottom:6px;margin-bottom:12px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 4px}
+input,select,textarea{width:100%;padding:8px;border:1px solid #cbd5e1;border-radius:6px;font-size:.9em}
+textarea{resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:140px}
+.chk{display:flex;align-items:center;gap:6px;margin:4px 0}
+.chk input{width:auto}
+button{display:block;width:100%;padding:12px;margin-top:12px;background:#1e40af;color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer}
+button:hover{background:#1e3a8a}
+.btn2{background:#059669}
+.btn2:hover{background:#047857}
+.score{text-align:center;font-size:2.2em;font-weight:800;margin:10px 0}
+.bar{height:18px;border-radius:9px;background:#e2e8f0;overflow:hidden;margin:6px 0}
+.bar>div{height:100%;border-radius:9px;transition:width .5s}
+.risk-h{background:#ef4444}.risk-m{background:#f59e0b}.risk-l{background:#22c55e}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75em;font-weight:700;color:#fff;margin-right:4px}
+.t-r{background:#ef4444}.t-y{background:#f59e0b}.t-g{background:#22c55e}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:8px 0}
+th,td{border:1px solid #e2e8f0;padding:6px;text-align:left}
+th{background:#f1f5f9}
+#result,#genResult{display:none}
+.copy-area{background:#f8fafc;border:1px solid #cbd5e1;border-radius:6px;padding:12px;font-size:.8em;white-space:pre-wrap;max-height:400px;overflow-y:auto;margin:8px 0}
+.note{font-size:.75em;color:#64748b;margin-top:8px}
+</style>
+<meta name="description" content="2028年ストレスチェック50人未満義務化・育児介護休業法改正・テレワーク規程整備など、中小企業が対応すべき労務コンプライアンスをAIで一元診断し、不足する社内規程（ストレスチェック実施規程・テレワーク規程・育児介護休業規程等）をその場で自動生成するWebツール。既存のストレスチェック実施サービス（ストレスチ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,ストレスチェック実施規程ジェネレーター＆労務コンプライアンス診断">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-23/">
+<meta property="og:title" content="ストレスチェック実施規程ジェネレーター＆労務コンプライアンス診断 - kusasyu tools">
+<meta property="og:description" content="2028年ストレスチェック50人未満義務化・育児介護休業法改正・テレワーク規程整備など、中小企業が対応すべき労務コンプライアンスをAIで一元診断し、不足する社内規程（ストレスチェック実施規程・テレワーク規程・育児介護休業規程等）をその場で自動生成するWebツール。既存のストレスチェック実施サービス（ストレスチ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-23/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ストレスチェック実施規程ジェネレーター＆労務コンプライアンス診断 - kusasyu tools">
+<meta name="twitter:description" content="2028年ストレスチェック50人未満義務化・育児介護休業法改正・テレワーク規程整備など、中小企業が対応すべき労務コンプライアンスをAIで一元診断し、不足する社内規程（ストレスチェック実施規程・テレワーク規程・育児介護休業規程等）をその場で自動生成するWebツール。既存のストレスチェック実施サービス（ストレスチ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ストレスチェック実施規程ジェネレーター＆労務コンプライアンス診断",
+  "description": "2028年ストレスチェック50人未満義務化・育児介護休業法改正・テレワーク規程整備など、中小企業が対応すべき労務コンプライアンスをAIで一元診断し、不足する社内規程（ストレスチェック実施規程・テレワーク規程・育児介護休業規程等）をその場で自動生成するWebツール。既存のストレスチェック実施サービス（ストレスチ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-23/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">ストレスチェック実施規程ジェネレーター＆労務コンプライアンス</span></div>
+<div class="wrap">
+<h1>ストレスチェック実施規程ジェネレーター<br>＆ 労務コンプライアンス診断</h1>
+
+<div class="card">
+<h2>STEP1: 企業情報入力</h2>
+<div class="row">
+<div><label>業種</label><select id="biz"><option>IT・通信</option><option>製造業</option><option>小売・飲食</option><option>建設</option><option>医療・福祉</option><option>不動産</option><option>その他サービス</option></select></div>
+<div><label>従業員数</label><input type="number" id="emp" value="30" min="1" max="999"></div>
+</div>
+<label>既存規程の整備状況</label>
+<div class="chk"><input type="checkbox" id="c1"><label for="c1">ストレスチェック実施規程</label></div>
+<div class="chk"><input type="checkbox" id="c2"><label for="c2">テレワーク勤務規程</label></div>
+<div class="chk"><input type="checkbox" id="c3"><label for="c3">育児・介護休業規程</label></div>
+<div class="chk"><input type="checkbox" id="c4"><label for="c4">ハラスメント防止規程</label></div>
+<div class="chk"><input type="checkbox" id="c5"><label for="c5">安全衛生管理規程</label></div>
+<button onclick="diagnose()">コンプライアンス診断を実行</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>診断結果</h2>
+<div id="scoreArea"></div>
+<div class="bar"><div id="bar1"></div></div>
+<table><thead><tr><th>項目</th><th>状態</th><th>期限</th><th>リスク</th></tr></thead><tbody id="tbl"></tbody></table>
+<p class="note">※本診断は一般的な法改正情報に基づく簡易診断です。詳細は社会保険労務士にご相談ください。</p>
+</div>
+</div>
+
+<div class="card">
+<h2>STEP2: ストレスチェック実施規程を生成</h2>
+<div class="row">
+<div><label>会社名（正式名称）</label><input id="co" placeholder="株式会社○○"></div>
+<div><label>代表者名</label><input id="ceo" placeholder="代表取締役 山田太郎"></div>
+</div>
+<div class="row">
+<div><label>産業医氏名</label><input id="doc" placeholder="鈴木一郎"></div>
+<div><label>実施時期</label><select id="period"><option>毎年9月</option><option>毎年10月</option><option>毎年11月</option><option>毎年4月</option><option>毎年6月</option></select></div>
+</div>
+<div class="row">
+<div><label>実施者</label><input id="executor" placeholder="産業医 鈴木一郎" value="産業医"></div>
+<div><label>実施事務従事者</label><input id="staff" placeholder="総務部 佐藤花子"></div>
+</div>
+<label>施行日</label><input type="date" id="enforce" value="2027-04-01">
+<button class="btn2" onclick="generate()">規程全文を生成</button>
+</div>
+
+<div id="genResult">
+<div class="card">
+<h2>生成された規程全文</h2>
+<button onclick="copyText()" style="margin-bottom:8px;width:auto;display:inline-block;padding:8px 20px">クリップボードにコピー</button>
+<div class="copy-area" id="output"></div>
+<p class="note">※生成された規程は雛形です。施行前に社会保険労務士の確認を推奨します。</p>
+</div>
+</div>
+
+<div class="card" style="text-align:center">
+<p style="font-size:.75em;color:#94a3b8">© Kusasyu Legal Tech｜本ツールは情報提供目的であり法的助言ではありません</p>
+</div>
+</div>
+
+<script>
+function diagnose(){
+ var e=+document.getElementById('emp').value,c=[document.getElementById('c1').checked,document.getElementById('c2').checked,document.getElementById('c3').checked,document.getElementById('c4').checked,document.getElementById('c5').checked];
+ var items=[
+  {name:'ストレスチェック実施規程',done:c[0],deadline:e<50?'2028年4月':'施行済',risk:e<50?(c[0]?'低':'高'):(c[0]?'低':'高'),note:e<50?'50人未満義務化':'50人以上は既に義務'},
+  {name:'テレワーク勤務規程',done:c[1],deadline:'早期整備推奨',risk:c[1]?'低':'中',note:'労働時間管理・費用負担の明確化'},
+  {name:'育児・介護休業規程',done:c[2],deadline:'2025年改正対応済か確認',risk:c[2]?'低':'高',note:'個別周知・意向確認義務'},
+  {name:'ハラスメント防止規程',done:c[3],deadline:'施行済',risk:c[3]?'低':'高',note:'2022年全企業義務化済'},
+  {name:'安全衛生管理規程',done:c[4],deadline:'常時必要',risk:c[4]?'低':'中',note:'衛生推進者の選任等'}
+ ];
+ var score=0;items.forEach(function(i){if(i.done)score+=20});
+ var lbl=score>=80?'良好':score>=40?'要改善':'危険';
+ var cls=score>=80?'risk-l':score>=40?'risk-m':'risk-h';
+ document.getElementById('scoreArea').innerHTML='<div class="score" style="color:'+(score>=80?'#22c55e':score>=40?'#f59e0b':'#ef4444')+'">'+score+'<span style="font-size:.4em">/100点</span></div><p style="text-align:center">総合評価: <span class="tag '+(score>=80?'t-g':score>=40?'t-y':'t-r')+'">'+lbl+'</span></p>';
+ document.getElementById('bar1').style.width=score+'%';
+ document.getElementById('bar1').className=cls;
+ var h='';items.forEach(function(i){
+  var t=i.risk==='高'?'t-r':i.risk==='中'?'t-y':'t-g';
+  h+='<tr><td>'+i.name+'</td><td>'+(i.done?'✅ 整備済':'❌ 未整備')+'</td><td>'+i.deadline+'</td><td><span class="tag '+t+'">'+i.risk+'</span> '+i.note+'</td></tr>';
+ });
+ document.getElementById('tbl').innerHTML=h;
+ document.getElementById('result').style.display='block';
+}
+
+function generate(){
+ var co=document.getElementById('co').value||'（会社名）';
+ var ceo=document.getElementById('ceo').value||'（代表者名）';
+ var doc=document.getElementById('doc').value||'（産業医氏名）';
+ var pd=document.getElementById('period').value;
+ var ex=document.getElementById('executor').value||'産業医';
+ var st=document.getElementById('staff').value||'（実施事務従事者）';
+ var dt=document.getElementById('enforce').value||'2027年4月1日';
+ var d=new Date(dt);var ds=d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日';
+
+ var txt=co+' ストレスチェック実施規程\n\n';
+ txt+='第1条（目的）\n本規程は、労働安全衛生法第66条の10及び関連法令に基づき、'+co+'（以下「会社」という）におけるストレスチェック制度の実施に関し、必要な事項を定めることを目的とする。\n\n';
+ txt+='第2条（適用範囲）\n本規程は、会社に勤務する全ての常時使用する労働者に適用する。ただし、契約期間1年未満の者及び週所定労働時間が通常労働者の4分の3未満の者を除く。\n\n';
+ txt+='第3条（実施体制）\n1. 実施者: '+ex+'（'+doc+'）\n2. 実施事務従事者: '+st+'\n3. 実施事務従事者は、検査結果等の個人情報を適切に管理し、守秘義務を負う。\n4. 人事権を有する者は実施事務従事者になることができない。\n\n';
+ txt+='第4条（実施時期及び対象者）\n1. ストレスチェックは'+pd+'に実施する。\n2. 対象者は第2条に定める労働者とする。\n3. 受検は労働者の任意とするが、会社はすべての対象者に受検を勧奨する。\n\n';
+ txt+='第5条（検査項目）\nストレスチェックは、厚生労働省が推奨する「職業性ストレス簡易調査票」（57項目）を使用し、以下の3領域について検査する。\n(1) 仕事のストレス要因に関する項目\n(2) 心身のストレス反応に関する項目\n(3) 周囲のサポートに関する項目\n\n';
+ txt+='第6条（結果の通知及び保存）\n1. 検査結果は実施者から労働者本人に直接通知する。会社には本人の同意なく通知しない。\n2. 結果は実施者が5年間保存する。本人同意を得た結果は会社が5年間保存する。\n\n';
+ txt+='第7条（面接指導）\n1. 高ストレスと評価された労働者が申出をした場合、会社は医師（'+doc+'）による面接指導を実施する。\n2. 申出は結果通知後遅滞なく行うものとし、面接指導は申出後概ね1か月以内に実施する。\n3. 会社は面接指導の結果に基づき、医師の意見を聴取し、必要に応じて就業上の措置を講じる。\n4. 面接指導の申出を理由とする不利益取扱いは行わない。\n\n';
+ txt+='第8条（集団分析）\n会社は、ストレスチェックの結果を部署等の集団ごとに集計・分析し、職場環境の改善に活用する。集団分析の結果は個人が特定されない形で実施者から会社に提供される。\n\n';
+ txt+='第9条（不利益取扱いの禁止）\n会社は、ストレスチェックを受けないこと、結果の提供に同意しないこと、面接指導の申出を行ったこと等を理由として、労働者に対し不利益な取扱いを行わない。\n\n';
+ txt+='第10条（情報管理及びプライバシー保護）\n1. ストレスチェックに関する個人情報は、関係法令及び「労働者の心身の状態に関する情報の適正な取扱いのために事業者が講ずべき措置に関する指針」に基づき適切に管理する。\n2. 実施事務従事者及び関係者は、業務上知り得た情報を正当な理由なく第三者に漏らしてはならない。\n\n';
+ txt+='第11条（改廃）\n本規程の改廃は、衛生委員会（またはそれに準ずる会議体）の審議を経て、'+ceo+'が決定する。\n\n';
+ txt+='附則\n本規程は'+ds+'から施行する。\n\n'+ds+'制定\n'+co+'\n'+ceo;
+
+ document.getElementById('output').textContent=txt;
+ document.getElementById('genResult').style.display='block';
+ document.getElementById('genResult').scrollIntoView({behavior:'smooth'});
+}
+
+function copyText(){
+ var t=document.getElementById('output').textContent;
+ if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){alert('コピーしました');})}
+ else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);alert('コピーしました');}
+}
+</script>
+</body>
+</html>

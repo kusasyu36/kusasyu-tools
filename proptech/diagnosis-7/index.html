@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>投資物件4軸リスク診断ツール（チェックリスト内蔵版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#1a365d;font-size:1.4em;margin:12px 0}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;color:#2d3748;border-left:4px solid #3182ce;padding-left:10px;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+label{font-size:.85em;color:#4a5568;display:block;margin-bottom:2px}
+input,select{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em}
+input:focus,select:focus{outline:none;border-color:#3182ce;box-shadow:0 0 0 2px rgba(49,130,206,.2)}
+.btn{width:100%;padding:12px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:10px;transition:.2s}
+.btn-primary{background:#3182ce;color:#fff}.btn-primary:hover{background:#2c5282}
+.btn-green{background:#38a169;color:#fff}.btn-green:hover{background:#2f855a}
+.btn-sm{width:auto;padding:8px 16px;font-size:.85em;margin:4px}
+#result{display:none}
+.grade-box{text-align:center;padding:16px;border-radius:10px;margin:12px 0}
+.grade-box .grade{font-size:2.5em;font-weight:900}
+.grade-box .glabel{font-size:.9em;margin-top:4px}
+.scores{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.sc{text-align:center;padding:10px;border-radius:8px;background:#f7fafc}
+.sc .sv{font-size:1.5em;font-weight:700}.sc .sl{font-size:.75em;color:#718096}
+.tip{position:relative;display:inline-block;cursor:help;border-bottom:1px dotted #a0aec0}
+.tip .tt{visibility:hidden;background:#2d3748;color:#fff;font-size:.75em;padding:8px;border-radius:6px;position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:220px;z-index:10;line-height:1.4}
+.tip:hover .tt{visibility:visible}
+canvas{display:block;margin:0 auto}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin-top:10px}
+th,td{padding:8px;border:1px solid #e2e8f0;text-align:center}
+th{background:#edf2f7;font-weight:600}
+.ck{display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:.85em;border-bottom:1px solid #f0f0f0}
+.ck input[type=checkbox]{margin-top:4px;width:16px;height:16px;flex-shrink:0}
+.ck.hi{background:#fff5f5;padding:6px 8px;border-radius:6px;border:1px solid #feb2b2}
+.ck .act{color:#e53e3e;font-weight:600;font-size:.78em;display:block;margin-top:2px}
+.comp-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+@media(max-width:600px){.grid2,.scores{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}}
+</style>
+<meta name="description" content="物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,投資物件4軸リスク診断ツール（チェックリスト内蔵版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-7/">
+<meta property="og:title" content="投資物件4軸リスク診断ツール（チェックリスト内蔵版） - kusasyu tools">
+<meta property="og:description" content="物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資物件4軸リスク診断ツール（チェックリスト内蔵版） - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "投資物件4軸リスク診断ツール（チェックリスト内蔵版）",
+  "description": "物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-7/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">投資物件4軸リスク診断ツール（チェックリスト内蔵版）</span></div>
+<div class="wrap">
+<h1>投資物件 4軸リスク診断</h1>
+<p class="sub">空室・修繕・流動性・金利リスクを即時スコアリング</p>
+
+<div class="card">
+<h2>物件情報を入力</h2>
+<div class="grid2">
+<div><label>エリア</label><select id="area"><option value="1">東京23区</option><option value="2">東京市部/横浜/川崎</option><option value="3" selected>政令指定都市</option><option value="4">地方中核市</option><option value="5">その他地方</option></select></div>
+<div><label>築年数</label><input type="number" id="age" value="15" min="0" max="99"></div>
+<div><label>物件価格（万円）</label><input type="number" id="price" value="2500" min="100"></div>
+<div><label>間取り</label><select id="layout"><option value="1R">1R</option><option value="1K" selected>1K</option><option value="1DK">1DK</option><option value="1LDK">1LDK</option><option value="2LDK">2LDK</option><option value="3LDK">3LDK以上</option></select></div>
+<div><label>想定月額家賃（万円）</label><input type="number" id="rent" value="8" min="1" step="0.1"></div>
+<div><label>借入比率（%）</label><input type="number" id="ltv" value="80" min="0" max="100"></div>
+</div>
+<button class="btn btn-primary" onclick="diagnose()">診断する</button>
+<div class="comp-row" style="margin-top:10px">
+<button class="btn-sm btn-green" onclick="addComp()">比較リストに追加</button>
+<span id="compCnt" style="font-size:.8em;color:#718096">（0/3件）</span>
+<button class="btn-sm" style="background:#e2e8f0" onclick="clearComp()">比較リセット</button>
+</div>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>診断結果</h2>
+<div id="gradeBox" class="grade-box"></div>
+<div class="scores" id="scoreCards"></div>
+<canvas id="radar" width="280" height="280"></canvas>
+</div>
+
+<div class="card">
+<h2>金利変動シミュレーション</h2>
+<p style="font-size:.8em;color:#718096;margin-bottom:8px">借入額から35年ローンの月額返済額を試算</p>
+<div id="simTable"></div>
+</div>
+
+<div class="card" id="compCard" style="display:none">
+<h2>物件比較（最大3件）</h2>
+<div id="compTable"></div>
+</div>
+
+<div class="card">
+<h2>リスク対策チェックリスト（20項目）</h2>
+<div id="checklist"></div>
+</div>
+</div>
+</div>
+
+<script>
+const CL=[
+{ax:"空室",items:[
+{t:"最寄り駅から徒歩10分以内か確認した",a:"駅遠物件は空室長期化の主因。バス便は要注意"},
+{t:"周辺の競合物件の空室率を調べた",a:"空室率10%超エリアは家賃下落圧力あり"},
+{t:"間取りがエリア需要に合致しているか検証した",a:"単身エリアのファミリー物件は苦戦しやすい"},
+{t:"エリアの人口動態（転入超過/転出超過）を確認した",a:"転出超過エリアは中長期で空室率上昇"},
+{t:"大学・大企業など需要源の撤退リスクを検討した",a:"単一依存は危険。複数の需要源があるか確認"}]},
+{ax:"修繕",items:[
+{t:"大規模修繕の履歴と次回予定を管理組合に確認した",a:"未実施のまま築20年超は突発出費リスク大"},
+{t:"修繕積立金の残高と月額が長期計画に対し適正か確認した",a:"積立不足は一時金徴収や修繕先送りの原因"},
+{t:"給排水管の更新状況（築25年目安）を確認した",a:"配管劣化は漏水事故につながり、費用も高額"},
+{t:"外壁タイル・屋上防水の状態を目視または報告書で確認した",a:"防水不良は雨漏り→室内被害の連鎖を招く"},
+{t:"エレベーター等の設備更新計画と費用見込みを把握した",a:"EV交換は1基1,000万円超。計画的積立が必須"}]},
+{ax:"流動性",items:[
+{t:"周辺の売買成約事例（直近1年）を調べた",a:"成約が少ないエリアは売却に半年〜1年以上かかる"},
+{t:"仲介会社に想定売却期間をヒアリングした",a:"3ヶ月以内に売れないエリアは流動性リスク高"},
+{t:"購入価格と周辺相場に大きな乖離がないか確認した",a:"相場より高い取得は出口で含み損になりやすい"},
+{t:"管理費・修繕積立金が周辺比で高すぎないか確認した",a:"ランニングコスト高は買い手の敬遠要因"},
+{t:"再建築不可・借地権など法的制約がないか確認した",a:"法的制約は売却価格を大幅に下げる要因"}]},
+{ax:"金利",items:[
+{t:"変動金利と固定金利の差額・切替コストを把握している",a:"変動は低金利だが上昇時の返済増に備えが必要"},
+{t:"金利2%上昇時のキャッシュフローをシミュレーションした",a:"月額返済が家賃を上回るとマイナスCFに転落"},
+{t:"繰上返済に回せる余剰資金（年収の20%以上）がある",a:"余力なしでの変動金利は家計破綻リスクあり"},
+{t:"団信の保障内容（がん特約等）を確認した",a:"保障範囲で実質金利差あり。比較検討を推奨"},
+{t:"借入比率（LTV）を70%以下に抑える計画がある",a:"LTV80%超は金利上昇時のリスクが加速度的に増大"}]}
+];
+
+const TIPS={
+vacancy:"エリア人気度(40%)+築年数劣化(30%)+間取り需給(30%)で算出。駅距離・人口動態を加味",
+repair:"築年数(60%)+価格帯から推定する建物グレード(20%)+表面利回り(20%)で算出",
+liquidity:"エリア取引量(40%)+価格帯の市場流通性(30%)+築年数(30%)で算出",
+interest:"表面利回り(50%)+借入比率LTV(30%)+借入額規模(20%)で算出"
+};
+
+let comps=[];
+
+function v(id){return parseFloat(document.getElementById(id).value)||0}
+function sv(id){return document.getElementById(id).value}
+
+function calcScores(){
+let ar=parseInt(sv("area")),ag=v("age"),pr=v("price"),lo=sv("layout"),re=v("rent"),lt=v("ltv");
+let yld=pr>0?re*12/pr*100:0;
+// Vacancy
+let areaV=[0,2,3,4.5,6.5,8][ar];
+let ageV=Math.min(8,ag/4);
+let loV={"1R":7,"1K":6,"1DK":5,"1LDK":4,"2LDK":3,"3LDK":2}[lo]||5;
+let vacancy=Math.min(10,((areaV*4+ageV*3+loV*3)/10));
+// Repair
+let repair=Math.min(10,ag*0.28+(ag>20?1.5:0)+(yld<5?1:0));
+// Liquidity
+let areaL=[0,1.5,2.5,4,6.5,8.5][ar];
+let prL=pr<1500?2:pr<3000?3:pr<5000?5:pr<7000?7:8.5;
+let agL=Math.min(6,ag/5);
+let liquidity=Math.min(10,(areaL*4+prL*3+agL*3)/10);
+// Interest
+let yldS=yld>8?2:yld>6?3:yld>5?5:yld>4?7:9;
+let ltvS=lt>80?9:lt>70?7:lt>60?5:3;
+let prS=pr>8000?3:pr>5000?2:1;
+let interest=Math.min(10,(yldS*5+ltvS*3+prS*2)/10);
+return{vacancy:+vacancy.toFixed(1),repair:+repair.toFixed(1),liquidity:+liquidity.toFixed(1),interest:+interest.toFixed(1)};
+}
+
+function getGrade(avg){return avg<=3?["A","低リスク — 良好な投資対象","#38a169"]:avg<=5?["B","やや注意 — 条件付きで検討可","#d69e2e"]:avg<=7?["C","要注意 — リスク軽減策が必須","#dd6b20"]:["D","高リスク — 慎重な再検討を推奨","#e53e3e"]}
+
+function diagnose(){
+let s=calcScores();
+let avg=+((s.vacancy+s.repair+s.liquidity+s.interest)/4).toFixed(1);
+let[g,gl,gc]=getGrade(avg);
+document.getElementById("result").style.display="block";
+document.getElementById("gradeBox").innerHTML=`<div style="background:${gc}15;border:2px solid ${gc};border-radius:10px;padding:16px"><div class="grade" style="color:${gc}">${g}</div><div class="glabel">${gl}（平均${avg}）</div></div>`;
+let axes=[["空室",s.vacancy,"vacancy"],["修繕",s.repair,"repair"],["流動性",s.liquidity,"liquidity"],["金利",s.interest,"interest"]];
+document.getElementById("scoreCards").innerHTML=axes.map(([n,v,k])=>{
+let c=v<=3?"#38a169":v<=5?"#d69e2e":v<=7?"#dd6b20":"#e53e3e";
+return`<div class="sc"><div class="sl"><span class="tip">${n}<span class="tt">${TIPS[k]}</span></span></div><div class="sv" style="color:${c}">${v}</div><div class="sl">/10</div></div>`;
+}).join("");
+drawRadar(s);
+simInterest();
+showChecklist(s);
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function drawRadar(s){
+let c=document.getElementById("radar"),x=c.getContext("2d"),W=280,C=140,R=110;
+x.clearRect(0,0,W,W);
+let axes=["空室","修繕","流動性","金利"],vals=[s.vacancy,s.repair,s.liquidity,s.interest];
+// Grid
+for(let r=1;r<=5;r++){
+x.beginPath();
+for(let i=0;i<4;i++){let a=-Math.PI/2+i*Math.PI/2;let d=R*r/5;x.lineTo(C+d*Math.cos(a),C+d*Math.sin(a));}
+x.closePath();x.strokeStyle="#e2e8f0";x.stroke();
+}
+// Axes
+for(let i=0;i<4;i++){let a=-Math.PI/2+i*Math.PI/2;x.beginPath();x.moveTo(C,C);x.lineTo(C+R*Math.cos(a),C+R*Math.sin(a));x.strokeStyle="#cbd5e0";x.stroke();}
+// Labels
+x.font="12px sans-serif";x.fillStyle="#2d3748";x.textAlign="center";
+let lp=[[C,-4],[W-8,C],[C,W-4],[10,C]];
+axes.forEach((n,i)=>{x.textAlign=i===3?"left":i===1?"right":"center";x.fillText(n,lp[i][0],lp[i][1]);});
+// Data
+x.beginPath();
+for(let i=0;i<4;i++){let a=-Math.PI/2+i*Math.PI/2;let d=R*vals[i]/10;x.lineTo(C+d*Math.cos(a),C+d*Math.sin(a));}
+x.closePath();x.fillStyle="rgba(49,130,206,.2)";x.fill();x.strokeStyle="#3182ce";x.lineWidth=2;x.stroke();
+// Dots
+for(let i=0;i<4;i++){let a=-Math.PI/2+i*Math.PI/2;let d=R*vals[i]/10;x.beginPath();x.arc(C+d*Math.cos(a),C+d*Math.sin(a),4,0,Math.PI*2);x.fillStyle="#3182ce";x.fill();}
+// Scale
+x.textAlign="left";x.font="10px sans-serif";x.fillStyle="#a0aec0";
+for(let r=1;r<=5;r++)x.fillText(r*2,C+3,C-R*r/5+4);
+}
+
+function simInterest(){
+let pr=v("price"),lt=v("ltv"),re=v("rent");
+let loan=pr*lt/100;
+let rates=[0.5,1.0,1.5,2.0];
+let h="<table><tr><th>金利</th><th>月額返済</th><th>年間返済</th><th>家賃との差額</th><th>実質利回り</th></tr>";
+rates.forEach(r=>{
+let mr=r/100/12,n=420;
+let mp=mr===0?loan*10000/n:loan*10000*mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1);
+let mm=Math.round(mp);let ym=mm*12;
+let diff=re*10000-mm;
+let ry=pr>0?((re*12-ym/10000)/pr*100).toFixed(2):"—";
+let dc=diff>=0?"#38a169":"#e53e3e";
+h+=`<tr><td>${r.toFixed(1)}%</td><td>${mm.toLocaleString()}円</td><td>${ym.toLocaleString()}円</td><td style="color:${dc};font-weight:600">${diff>=0?"+":""}${diff.toLocaleString()}円</td><td>${ry}%</td></tr>`;
+});
+h+="</table>";
+document.getElementById("simTable").innerHTML=h;
+}
+
+function showChecklist(s){
+let scores={空室:s.vacancy,修繕:s.repair,流動性:s.liquidity,金利:s.interest};
+let html="";
+CL.forEach(cat=>{
+let sc=scores[cat.ax];
+let hi=sc>=6;
+html+=`<h3 style="font-size:.95em;margin:14px 0 6px;color:${hi?"#e53e3e":"#2d3748"}">${cat.ax}リスク（スコア:${sc}/10）${hi?" ⚠ 要対策":""}</h3>`;
+cat.items.forEach(it=>{
+html+=`<div class="ck${hi?" hi":""}"><input type="checkbox"><div><span>${it.t}</span>${hi?`<span class="act">→ ${it.a}</span>`:""}</div></div>`;
+});
+});
+document.getElementById("checklist").innerHTML=html;
+}
+
+function addComp(){
+if(comps.length>=3)return alert("比較は最大3件です");
+let s=calcScores();
+let avg=+((s.vacancy+s.repair+s.liquidity+s.interest)/4).toFixed(1);
+comps.push({name:`物件${comps.length+1}`,area:document.getElementById("area").selectedOptions[0].text,age:v("age"),price:v("price"),layout:sv("layout"),rent:v("rent"),s,avg,grade:getGrade(avg)[0]});
+document.getElementById("compCnt").textContent=`（${comps.length}/3件）`;
+if(comps.length>=2)renderComp();
+}
+
+function renderComp(){
+document.getElementById("compCard").style.display="block";
+let h="<table><tr><th></th>"+comps.map(c=>`<th>${c.name}</th>`).join("")+"</tr>";
+[["エリア","area"],["築年数","age","年"],["価格","price","万円"],["間取り","layout"],["家賃","rent","万円/月"],["空室リスク",null],["修繕リスク",null],["流動性リスク",null],["金利リスク",null],["総合","grade"]].forEach(([label,key,unit])=>{
+h+="<tr><th>"+label+"</th>";
+comps.forEach(c=>{
+if(key==="grade")h+=`<td style="font-weight:700;font-size:1.2em">${c.grade}</td>`;
+else if(!key){let k=label.replace("リスク","").trim();let map={"空室":"vacancy","修繕":"repair","流動性":"liquidity","金利":"interest"};let sv=c.s[map[k]];let cl=sv<=3?"#38a169":sv<=5?"#d69e2e":sv<=7?"#dd6b20":"#e53e3e";h+=`<td style="color:${cl};font-weight:600">${sv}</td>`;}
+else h+=`<td>${c[key]}${unit||""}</td>`;
+});h+="</tr>";});
+h+="</table>";
+document.getElementById("compTable").innerHTML=h;
+}
+
+function clearComp(){comps=[];document.getElementById("compCnt").textContent="（0/3件）";document.getElementById("compCard").style.display="none";}
+</script>
+</body>
+</html>

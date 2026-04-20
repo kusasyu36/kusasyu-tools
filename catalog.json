@@ -793,6 +793,45 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-23",
+    "url": "legal-tech/diagnosis-23/",
+    "title": "迫る法改正。労務規程をAIで一括生成",
+    "tool_name": "ストレスチェック実施規程ジェネレーター＆労務コンプライアンス診断",
+    "description": "2028年ストレスチェック50人未満義務化・育児介護休業法改正・テレワーク規程整備など、中小企業が対応すべき労務コンプライアンスをAIで一元診断し、不足する社内規程（ストレスチェック実施規程・テレワーク規程・育児介護休業規程等）をその場で自動生成するWebツール。既存のストレスチェック実施サービス（ストレスチェッカー等21社以上）の『手前』に位置する規程整備特化ツール。",
+    "quality_score": 10,
+    "completed_at": "2026-04-20T00:11:52.287908+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-16",
+    "url": "legal-tech/tool-16/",
+    "title": "迫る法改正。労務規程をAIで一括生成",
+    "tool_name": "2026-2028年_労務法改正対応カレンダー",
+    "description": "2028年ストレスチェック50人未満義務化・育児介護休業法改正・テレワーク規程整備など、中小企業が対応すべき労務コンプライアンスをAIで一元診断し、不足する社内規程（ストレスチェック実施規程・テレワーク規程・育児介護休業規程等）をその場で自動生成するWebツール。既存のストレスチェック実施サービス（ストレスチェッカー等21社以上）の『手前』に位置する規程整備特化ツール。",
+    "quality_score": 10,
+    "completed_at": "2026-04-20T00:11:52.287908+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "guide-2",
+    "url": "legal-tech/guide-2/",
+    "title": "迫る法改正。労務規程をAIで一括生成",
+    "tool_name": "中小企業の労務規程セルフ整備ガイド（テレワーク規程・育児介護休業規程_重点解説）",
+    "description": "2028年ストレスチェック50人未満義務化・育児介護休業法改正・テレワーク規程整備など、中小企業が対応すべき労務コンプライアンスをAIで一元診断し、不足する社内規程（ストレスチェック実施規程・テレワーク規程・育児介護休業規程等）をその場で自動生成するWebツール。既存のストレスチェック実施サービス（ストレスチェッカー等21社以上）の『手前』に位置する規程整備特化ツール。",
+    "quality_score": 10,
+    "completed_at": "2026-04-20T00:11:52.287908+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -960,6 +999,32 @@
     "quality_score": 10,
     "completed_at": "2026-04-08T04:13:09.408482+00:00",
     "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-7",
+    "url": "proptech/diagnosis-7/",
+    "title": "投資物件の隠れリスク、4軸で丸見え診断",
+    "tool_name": "投資物件4軸リスク診断ツール（チェックリスト内蔵版）",
+    "description": "物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。",
+    "quality_score": 10,
+    "completed_at": "2026-04-20T03:14:05.548877+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-8",
+    "url": "proptech/diagnosis-8/",
+    "title": "投資物件の隠れリスク、4軸で丸見え診断",
+    "tool_name": "投資物件10年キャッシュフロー予測シート",
+    "description": "物件の基本情報（エリア・築年数・価格・間取り・想定家賃）を入力すると、空室リスク・修繕リスク・流動性リスク・金利リスクの4軸でスコアリングし、レーダーチャート付き診断レポートをブラウザ上で即生成するツール。2026年の金利上昇局面を踏まえた金利変動シミュレーション機能と、最大3物件の並列比較機能を搭載。",
+    "quality_score": 10,
+    "completed_at": "2026-04-20T03:14:05.548877+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "digital-marketing",
