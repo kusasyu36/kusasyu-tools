@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PR発信2週間スケジュール管理シート - kusasyu tools</title>
+<meta name="description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,PR発信2週間スケジュール管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-10/">
+<meta property="og:title" content="PR発信2週間スケジュール管理シート - kusasyu tools">
+<meta property="og:description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PR発信2週間スケジュール管理シート - kusasyu tools">
+<meta name="twitter:description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PR発信2週間スケジュール管理シート",
+  "description": "スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-10/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>PR発信2週間スケジュール管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>PR発信2週間スケジュール管理シート</h1>
+  <p class="project-name">広報ゼロでも大丈夫？PR文一括生成ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>```csv</th></tr></thead><tbody><tr><td>日付</td><td>PR公開日からの日数</td><td>フェーズ</td><td>媒体</td><td>最適投稿時間</td><td>投稿種別</td><td>推奨ハッシュタグ</td><td>投稿文下書き</td><td>添付素材</td><td>承認ステータス</td><td>担当者</td><td>エンゲージメント目標</td><td>実績値</td><td>備考</td></tr><tr><td>2026-05-04</td><td>-3</td><td>ティザー</td><td>X</td><td>7:30</td><td>予告ツイート</td><td>#プレスリリース #新サービス #DX</td><td>【予告】5/7に大きな発表があります。私たちが半年間取り組んできた"あるプロジェクト"がついに形になります。続報をお楽しみに！</td><td>ティザー画像A</td><td>未着手</td><td></td><td>いいね50</td><td></td><td>3日前・朝の通勤時間帯に投下</td></tr><tr><td>2026-05-04</td><td>-3</td><td>ティザー</td><td>LinkedIn</td><td>12:00</td><td>予告投稿</td><td>#プレスリリース #ビジネス変革 #DX推進</td><td>【近日発表】弊社が新たな挑戦をお届けします。業界の課題に正面から向き合い、半年間の開発を経てようやくお披露目できる段階になりました。5月7日の正式発表をお待ちください。</td><td>ティザー画像B</td><td>未着手</td><td></td><td>いいね30</td><td></td><td>LinkedInは昼休み時間が最適</td></tr><tr><td>2026-05-04</td><td>-3</td><td>ティザー</td><td>Facebook</td><td>19:00</td><td>予告投稿</td><td>#新サービス #プレスリリース</td><td>【もうすぐ発表です】5月7日、私たちから大切なお知らせがあります。詳細は当日公開しますが、これまでにない新しい価値をお届けできると確信しています。ぜひフォローしてお待ちください！</td><td>ティザー画像B</td><td>未着手</td><td></td><td>リーチ500</td><td></td><td>Facebookは夕方〜夜が高エンゲージメント</td></tr><tr><td>2026-05-05</td><td>-2</td><td>ティザー</td><td>X</td><td>12:00</td><td>カウントダウン</td><td>#あと2日 #新サービス</td><td>発表まであと2日。今回のサービスは「○○業界の△△」を解決します。どんな課題か、皆さんも心当たりがあるはず…？ #あと2日</td><td>カウントダウン画像</td><td>未着手</td><td></td><td>いいね80</td><td></td><td>昼の反応率が高い曜日</td></tr><tr><td>2026-05-05</td><td>-2</td><td>ティザー</td><td>LinkedIn</td><td>8:00</td><td>課題提起投稿</td><td>#業界課題 #DX</td><td>【皆さんもこの課題を感じていませんか？】○○業界では未だに△△が手作業で行われています。この非効率を数値化すると、年間で約XX時間のロス。私たちはこの課題に本気で取り組みました。答えは5/7に。</td><td>なし</td><td>未着手</td><td></td><td>コメント10</td><td></td><td>課題共感型で議論を喚起</td></tr><tr><td>2026-05-06</td><td>-1</td><td>ティザー</td><td>X</td><td>18:00</td><td>前日予告</td><td>#明日発表 #新サービス</td><td>【明日発表】いよいよ明日、正式にお知らせします。○○に悩むすべての方に届けたいサービスです。明日12:00に公開予定。通知ONでお待ちください！</td><td>プロダクト一部画像</td><td>未着手</td><td></td><td>いいね100</td><td></td><td>前日夕方に期待感を最大化</td></tr><tr><td>2026-05-06</td><td>-1</td><td>ティザー</td><td>Facebook</td><td>20:00</td><td>前日予告</td><td>#明日公開 #新サービス</td><td>【明日12:00解禁】半年間準備してきたプロジェクトをいよいよ明日発表します。○○業界で働く方、△△に課題を感じている方はぜひチェックしてください。詳細は明日のこのページで！</td><td>プロダクト一部画像</td><td>未着手</td><td></td><td>シェア20</td><td></td><td>シェア促進の文言を入れる</td></tr><tr><td>2026-05-07</td><td>0</td><td>当日拡散</td><td>X</td><td>12:00</td><td>プレスリリース告知</td><td>#プレスリリース #新サービス #DX #○○業界</td><td>【正式発表】○○業界の△△を解決する新サービス「サービス名」をリリースしました！✅課題Aを自動化 ✅コストを最大XX%削減 ✅導入は最短即日 詳細はこちら→ [URL]</td><td>OGP画像</td><td>未着手</td><td></td><td>いいね200</td><td></td><td>正午に一斉投下・ピン留め必須</td></tr><tr><td>2026-05-07</td><td>0</td><td>当日拡散</td><td>X</td><td>17:00</td><td>補足ツイート</td><td>#サービス名 #導入事例</td><td>午前の発表、大きな反響をいただいています。よくある質問にお答えします。Q:料金は？→月額○○円〜 Q:無料トライアルは？→30日間無料 まずはお気軽にお試しください→[URL]</td><td>料金表画像</td><td>未着手</td><td></td><td>いいね150</td><td></td><td>午前の反響を受けてFAQ型で補足</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `\`\`\`csv
+日付,PR公開日からの日数,フェーズ,媒体,最適投稿時間,投稿種別,推奨ハッシュタグ,投稿文下書き,添付素材,承認ステータス,担当者,エンゲージメント目標,実績値,備考
+2026-05-04,-3,ティザー,X,7:30,予告ツイート,"#プレスリリース #新サービス #DX","【予告】5/7に大きな発表があります。私たちが半年間取り組んできた""あるプロジェクト""がついに形になります。続報をお楽しみに！",ティザー画像A,未着手,,いいね50,,"3日前・朝の通勤時間帯に投下"
+2026-05-04,-3,ティザー,LinkedIn,12:00,予告投稿,"#プレスリリース #ビジネス変革 #DX推進","【近日発表】弊社が新たな挑戦をお届けします。業界の課題に正面から向き合い、半年間の開発を経てようやくお披露目できる段階になりました。5月7日の正式発表をお待ちください。",ティザー画像B,未着手,,いいね30,,"LinkedInは昼休み時間が最適"
+2026-05-04,-3,ティザー,Facebook,19:00,予告投稿,"#新サービス #プレスリリース","【もうすぐ発表です】5月7日、私たちから大切なお知らせがあります。詳細は当日公開しますが、これまでにない新しい価値をお届けできると確信しています。ぜひフォローしてお待ちください！",ティザー画像B,未着手,,リーチ500,,"Facebookは夕方〜夜が高エンゲージメント"
+2026-05-05,-2,ティザー,X,12:00,カウントダウン,"#あと2日 #新サービス","発表まであと2日。今回のサービスは「○○業界の△△」を解決します。どんな課題か、皆さんも心当たりがあるはず…？ #あと2日",カウントダウン画像,未着手,,いいね80,,"昼の反応率が高い曜日"
+2026-05-05,-2,ティザー,LinkedIn,8:00,課題提起投稿,"#業界課題 #DX","【皆さんもこの課題を感じていませんか？】○○業界では未だに△△が手作業で行われています。この非効率を数値化すると、年間で約XX時間のロス。私たちはこの課題に本気で取り組みました。答えは5/7に。",なし,未着手,,コメント10,,"課題共感型で議論を喚起"
+2026-05-06,-1,ティザー,X,18:00,前日予告,"#明日発表 #新サービス","【明日発表】いよいよ明日、正式にお知らせします。○○に悩むすべての方に届けたいサービスです。明日12:00に公開予定。通知ONでお待ちください！",プロダクト一部画像,未着手,,いいね100,,"前日夕方に期待感を最大化"
+2026-05-06,-1,ティザー,Facebook,20:00,前日予告,"#明日公開 #新サービス","【明日12:00解禁】半年間準備してきたプロジェクトをいよいよ明日発表します。○○業界で働く方、△△に課題を感じている方はぜひチェックしてください。詳細は明日のこのページで！",プロダクト一部画像,未着手,,シェア20,,"シェア促進の文言を入れる"
+2026-05-07,0,当日拡散,X,12:00,プレスリリース告知,"#プレスリリース #新サービス #DX #○○業界","【正式発表】○○業界の△△を解決する新サービス「サービス名」をリリースしました！✅課題Aを自動化 ✅コストを最大XX%削減 ✅導入は最短即日 詳細はこちら→ [URL]",OGP画像,未着手,,いいね200,,"正午に一斉投下・ピン留め必須"
+2026-05-07,0,当日拡散,X,17:00,補足ツイート,"#サービス名 #導入事例","午前の発表、大きな反響をいただいています。よくある質問にお答えします。Q:料金は？→月額○○円〜 Q:無料トライアルは？→30日間無料 まずはお気軽にお試しください→[URL]",料金表画像,未着手,,いいね150,,"午前の反響を受けてFAQ型で補足"
+2026-05-07,0,当日拡散,LinkedIn,12:00,プレスリリース本文,"#プレスリリース #新サービス #DX推進 #業務効率化","【プレスリリース】○○業界向け新サービス「サービス名」を本日リリースいたしました。■背景：○○業界では△△の非効率が長年の課題でした。■解決策：AIを活用し、従来XX時間かかっていた作業をYY分に短縮。■実績：β版で既にZ社が導入し、平均XX%の効率改善を実現。詳細・お問い合わせはプロフィールのリンクから。",OGP画像+PDF,未着手,,いいね80,,"長文OK・データを具体的に記載"
+2026-05-07,0,当日拡散,Facebook,12:00,プレスリリース告知,"#新サービス #プレスリリース #○○業界","【新サービスリリースのお知らせ】本日「サービス名」を正式に公開しました。○○業界の△△という課題を、テクノロジーの力で解決します。30日間の無料トライアルも実施中です。ぜひ詳細をご覧ください→[URL]",OGP画像,未着手,,シェア30,,"シェアしやすい簡潔な文面"
+2026-05-08,1,フォローアップ,X,8:00,反響まとめ,"#サービス名 #反響","昨日発表した「サービス名」、おかげさまで大きな反響をいただきました。・プレスリリース閲覧数：X,XXX回 ・お問い合わせ：XX件 ・トライアル申込：XX件 引き続きよろしくお願いします！",反響グラフ画像,未着手,,いいね120,,"数字で反響を可視化"
+2026-05-08,1,フォローアップ,LinkedIn,12:00,代表コメント,"#CEO #ビジョン #サービス名","【代表メッセージ】昨日リリースした「サービス名」に多くの反響をいただきありがとうございます。このサービスに込めた想いと、今後のビジョンについてお話しします。私たちが目指すのは…（200字程度の想いを記載）",代表写真,未着手,,コメント15,,"代表の人柄が伝わる投稿"
+2026-05-09,2,フォローアップ,X,12:00,機能紹介①,"#サービス名 #機能紹介","「サービス名」の注目機能①【自動○○機能】これまで手作業でXX分かかっていた○○が、ワンクリックでYY秒に。デモ動画はこちら→[URL]",機能デモGIF,未着手,,いいね80,,"機能を1つずつ深掘り"
+2026-05-10,3,フォローアップ,Facebook,19:00,ユーザーの声,"#導入事例 #サービス名","【導入企業の声】β版からご利用いただいているA社様「導入前は○○に月XX時間かかっていましたが、今はYY時間で完了。チーム全員が驚いています」事例詳細→[URL]",事例画像,未着手,,シェア25,,"第三者の声で信頼性向上"
+2026-05-12,5,フォローアップ,X,7:30,Tips投稿,"#サービス名 #使い方 #Tips","「サービス名」を使いこなすコツ3選 ①初期設定で○○をONにする ②△△機能と組み合わせる ③週次レポートを自動化する 意外と知られていない便利機能です！",Tips画像,未着手,,いいね60,,"実用的な情報で継続関心を獲得"
+2026-05-12,5,フォローアップ,LinkedIn,12:00,業界考察,"#○○業界 #DXトレンド #サービス名","【業界コラム】○○業界のDX化率はわずかXX%。なぜ遅れているのか？3つの構造的課題と、テクノロジーで突破できるポイントを考察します。（記事リンクまたは本文）",インフォグラフィック,未着手,,コメント20,,"思想的リーダーシップの確立"
+2026-05-14,7,フォローアップ,X,12:00,1週間振り返り,"#サービス名 #1週間","「サービス名」リリースから1週間。数字で振り返ります。📊トライアル申込：XXX件 📊問い合わせ：XX件 📊メディア掲載：X媒体 来週はウェビナーも開催予定。詳細は→[URL]",1週間まとめ画像,未着手,,いいね150,,"節目の数字報告で信頼感"
+2026-05-16,9,フォローアップ,Facebook,19:00,ウェビナー告知,"#ウェビナー #無料 #サービス名","【無料ウェビナー開催】5/21(木)14:00〜「サービス名」の活用法を代表自ら解説します。○○業界の最新トレンドもお話しします。定員50名・先着順。お申し込み→[URL]",ウェビナーバナー,未着手,,リーチ800,,"次のアクションへ誘導"
+2026-05-18,11,フォローアップ,X,18:00,メディア掲載報告,"#メディア掲載 #サービス名","「サービス名」が○○メディアに掲載されました。「△△を変える注目サービス」として紹介いただいています。記事はこちら→[URL]",記事スクリーンショット,未着手,,いいね100,,"第三者メディアの権威を活用"
+2026-05-18,11,フォローアップ,LinkedIn,8:00,データ公開,"#マーケットデータ #○○業界","【データで見る○○業界の現在地】弊社調査による最新データを一部公開します。・市場規模：XX億円（前年比+YY%）・DX導入率：XX% ・課題TOP3：①△△ ②□□ ③○○ 詳細レポートは無料DL→[URL]",データレポート画像,未着手,,いいね50,,"有益データ提供でリード獲得"
+\`\`\``;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_PR発信2週間スケジュール管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>スタートアップPRコンテンツ一括ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.4em;text-align:center;padding:18px 0 8px;color:#1a1a2e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:12px}
+.warn{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px 14px;font-size:.82em;color:#664d03;margin-bottom:16px;text-align:center}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+label{display:block;font-weight:600;font-size:.88em;margin:10px 0 4px}
+input,textarea,select{width:100%;padding:10px;border:1px solid #d0d5dd;border-radius:8px;font-size:.95em;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+button.gen{width:100%;padding:14px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:14px}
+button.gen:hover{opacity:.9}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tabs button{padding:8px 14px;border:1px solid #d0d5dd;background:#fff;border-radius:20px;cursor:pointer;font-size:.82em;font-weight:600;color:#555}
+.tabs button.on{background:#4f46e5;color:#fff;border-color:#4f46e5}
+.out-area{display:none;position:relative}
+.out-area.show{display:block}
+.out-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cnt{font-size:.78em;color:#888}
+.copy-btn{padding:6px 14px;background:#10b981;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.8em;font-weight:600}
+.copy-btn:hover{opacity:.85}
+.out-box{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;white-space:pre-wrap;font-size:.9em;min-height:80px;line-height:1.7}
+#result{display:none}
+@media(max-width:600px){.row{flex-direction:column;gap:0}h1{font-size:1.15em}}
+</style>
+<meta name="description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,スタートアップPRコンテンツ一括ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-57/">
+<meta property="og:title" content="スタートアップPRコンテンツ一括ジェネレーター - kusasyu tools">
+<meta property="og:description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-57/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="スタートアップPRコンテンツ一括ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "スタートアップPRコンテンツ一括ジェネレーター",
+  "description": "スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-57/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">スタートアップPRコンテンツ一括ジェネレーター</span></div>
+<div class="wrap">
+<h1>&#x1F4E2; スタートアップPRコンテンツ一括ジェネレーター</h1>
+<p class="sub">5項目入力するだけで、プレスリリース・SNS投稿・LP・採用コピーを一括生成</p>
+<div class="warn">&#x26A0; テンプレート置換方式で生成しています。固有の数字・日付・社名は必ずご自身でご確認ください。</div>
+
+<div class="card">
+<label>会社名 *</label>
+<input id="co" placeholder="例: 株式会社テックスタート">
+<label>事業概要（1文） *</label>
+<textarea id="biz" placeholder="例: AIを活用した中小企業向け経理自動化SaaSを提供"></textarea>
+<label>発表種別 *</label>
+<select id="type"><option value="funding">資金調達</option><option value="launch">サービスリリース</option><option value="hiring">採用強化</option></select>
+<div class="row">
+<div><label>金額 / サービス名</label><input id="amount" placeholder="例: 3億円 / ProFinance"></div>
+<div><label>日付</label><input id="date" placeholder="例: 2026年5月1日"></div>
+</div>
+<label>強み① *</label>
+<input id="s1" placeholder="例: 業界初のAI自動仕訳機能">
+<label>強み②</label>
+<input id="s2" placeholder="例: 導入企業の経理工数を80%削減">
+<label>強み③</label>
+<input id="s3" placeholder="例: 上場準備にも対応する監査証跡機能">
+<button class="gen" onclick="generate()">&#x1F680; PRコンテンツを一括生成</button>
+</div>
+
+<div id="result" class="card">
+<div class="tabs" id="tabBar"></div>
+<div id="panels"></div>
+</div>
+</div>
+
+<script>
+var TABS=['プレスリリース','X投稿','LinkedIn','LPコピー','採用Why us'];
+
+function v(id){return document.getElementById(id).value.trim()}
+
+function switchTab(i){
+var bs=document.querySelectorAll('.tabs button');
+for(var j=0;j<bs.length;j++) bs[j].className=j===i?'on':'';
+var as=document.querySelectorAll('.out-area');
+for(var j=0;j<as.length;j++) as[j].className=j===i?'out-area show':'out-area';
+}
+
+function copyText(i){
+var t=document.querySelectorAll('.out-box')[i].innerText;
+navigator.clipboard.writeText(t).then(function(){
+var b=document.querySelectorAll('.copy-btn')[i];
+b.textContent='\u2713 コピー済';setTimeout(function(){b.textContent='コピー'},1500);
+});
+}
+
+function generate(){
+var co=v('co'),biz=v('biz'),tp=v('type'),amt=v('amount'),dt=v('date'),s1=v('s1'),s2=v('s2'),s3=v('s3');
+if(!co||!biz||!s1){alert('会社名・事業概要・強み①は必須です');return}
+
+var tpLabel={funding:'資金調達',launch:'サービスリリース',hiring:'採用強化'}[tp];
+var tpVerb={funding:(amt||'\u25CB億円')+'の資金調達を実施',launch:'新サービス\u300C'+(amt||'\u25CB\u25CB')+'\u300Dを'+(dt||'本日')+'より提供開始',hiring:'採用を本格強化、複数ポジションで募集開始'}[tp];
+
+var strengths=[s1,s2,s3].filter(Boolean);
+var sList=strengths.map(function(s,i){return(i+1)+'. '+s}).join('\n');
+
+// プレスリリース（PR TIMES準拠）
+var pr=co+'\u3001'+tpVerb+'\n\u301C'+biz+'\u301C\n\n'+(dt||'202X年X月X日')+'\n'+co+'\n\n'+co+'\uFF08所在地\uFF1A東京都\u25CB\u25CB区、代表取締役\uFF1A\u25CB\u25CB\uFF09は、'+(dt||'本日')+'\u3001'+tpVerb+'したことをお知らせいたします。\n\n\u25A0 '+tpLabel+'の背景と目的\n'+co+'は、'+biz+'しています。'+(tp==='funding'?'今回の資金調達により、プロダクト開発と組織体制の強化を加速してまいります。':tpLabel+'を通じて、さらなる事業成長を目指します。')+'\n\n\u25A0 '+co+'の強み\n'+sList+'\n\n\u25A0 今後の展望\n'+co+'は上記の強みを活かし、更なる成長を目指してまいります。'+(tp==='funding'?'調達資金は主にプロダクト開発・人材採用に充当いたします。':'')+'\n\n\u25A0 会社概要\n会社名\uFF1A'+co+'\n設立\uFF1A202X年X月\n代表者\uFF1A\u25CB\u25CB \u25CB\u25CB\n所在地\uFF1A東京都\u25CB\u25CB区\u25CB\u25CB\nURL\uFF1Ahttps://example.com\n事業内容\uFF1A'+biz+'\n\n\u25A0 本件に関するお問い合わせ\n'+co+' 広報担当\nE-mail\uFF1Apr@example.com';
+
+// X投稿 3パターン
+var x1='\u3010'+tpLabel+'のお知らせ\u3011'+co+'が'+tpVerb+'\uFF01'+s1+'\u3002詳細はプロフィールのリンクから';
+var x2=co+'より'+tpLabel+'のご報告\u3002'+biz+'\u3002'+strengths[0]+'で業界に新風を\u3002#スタートアップ #'+tpLabel;
+var x3=co+'が'+tpVerb+'\u3002\n\u2705'+s1+(s2?'\n\u2705'+s2:'')+'\n今後にご期待ください\uFF01 #PR';
+
+// LinkedIn 3パターン
+var li1='\u3010'+tpLabel+'のご報告\u3011\n\nこの度、'+co+'は'+tpVerb+'いたしました。\n\n'+co+'は'+biz+'しています。\n\n今回の'+tpLabel+'の背景：\n'+sList+'\n\nこれからも邁進してまいります。応援よろしくお願いいたします！\n\n#'+co.replace(/株式会社|Inc\./g,'')+' #'+tpLabel+' #スタートアップ';
+
+var li2=co+'代表の\u25CB\u25CBです。\n\n本日'+tpVerb+'しましたのでご報告です。\n\n創業から\u25CB年、'+biz+'という想いでプロダクトを磨いてきました。\n\n私たちの強み：\n'+strengths.map(function(s){return'\u30FB'+s}).join('\n')+'\n\nこれからも挑戦を続けます。ご関心のある方はお気軽にご連絡ください。';
+
+var li3='\uD83D\uDE80 '+tpLabel+'のお知らせ\n\n'+co+'は'+tpVerb+'しました。\n\n\u3010なぜ今、'+tpLabel+'なのか\u3011\n'+biz+'の市場は急成長しており、'+s1+'という強みを武器に、さらなるスケールを目指します。'+(s2?'\n\n加えて、'+s2+'という実績も出ています。':'')+'\n\n詳しくはコメント欄のリンクをご覧ください。';
+
+// LPコピー + CTA
+var lp='\u3010ヒーローコピー\u3011\n'+s1.replace(/。$/,'')+'\u3002\n'+co+'が、'+biz.replace(/を提供|しています/g,'')+'を変える。\n\n\u3010サブコピー\u3011\n'+strengths.join(' \u00D7 ')+'\n\u2014\u2014 すべてを、ひとつのプロダクトで。\n\n\u3010CTA\u3011\n今すぐ無料で始める \u2192 資料請求・お問い合わせはこちら\n\n\u3010補足キャッチ案\u3011\n\u30FB'+biz.slice(0,15)+'なら、'+co+'\n\u30FB'+s1+'で、未来を先取り';
+
+// 採用 Why us
+var coShort=co.replace(/株式会社/,'');
+var whyus='\u25A0 Why '+coShort+'?\n\n\u3010Mission\u3011\n'+biz+'を通じて、社会に新しい価値を届けること。\n\n\u3010私たちの強み\u3011\n\u2460 '+s1+(s2?'\n\u2461 '+s2:'')+(s3?'\n\u2462 '+s3:'')+'\n\n\u3010働く魅力\u3011\n\u30FB創業期ならではの裁量の大きさ\n\u30FB'+tpLabel+'フェーズで急成長を体感できる環境\n\u30FB少数精鋭チームで、プロダクトに直接インパクトを与えられる\n\n\u3010こんな方を求めています\u3011\n\u30FB'+biz.slice(0,20)+'に共感いただける方\n\u30FB不確実性を楽しみ、自走できる方\n\u30FBチーム全体の成果にコミットできる方\n\n一緒に「当たり前」を変えていきませんか？';
+
+var contents=[pr,'【パターン1】\n'+x1+'\n\n【パターン2】\n'+x2+'\n\n【パターン3】\n'+x3,'【パターン1】\n'+li1+'\n\n【パターン2】\n'+li2+'\n\n【パターン3】\n'+li3,lp,whyus];
+
+var bar=document.getElementById('tabBar');
+var panels=document.getElementById('panels');
+bar.innerHTML='';panels.innerHTML='';
+
+for(var i=0;i<TABS.length;i++){
+bar.innerHTML+='<button class="'+(i===0?'on':'')+'" onclick="switchTab('+i+')">'+TABS[i]+'</button>';
+var c=contents[i];
+var charInfo=c.length+'\u6587\u5B57';
+if(i===1){
+var ps=c.split('\u3010パターン').slice(1);
+charInfo=ps.map(function(p,j){var t=p.replace(/^[0-9\u3011]+\n/,'').trim();return 'P'+(j+1)+':'+t.length+'\u5B57'}).join(' / ');
+}
+panels.innerHTML+='<div class="out-area'+(i===0?' show':'')+'"><div class="out-header"><span class="cnt">'+charInfo+'</span><button class="copy-btn" onclick="copyText('+i+')">コピー</button></div><div class="out-box">'+esc(c)+'</div></div>';
+}
+
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+</script>
+</body>
+</html>

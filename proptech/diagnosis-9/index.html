@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>土地ポテンシャル5軸スコアリングツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1a365d,#2b6cb0);color:#fff;padding:24px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.4em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.1em;color:#2b6cb0;border-left:4px solid #2b6cb0;padding-left:10px;margin-bottom:14px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-weight:600;font-size:.9em;margin-bottom:4px}
+.form-group small{color:#718096;font-size:.78em}
+.form-group a{color:#2b6cb0;font-size:.78em}
+input[type="text"],input[type="number"],select{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em}
+select{background:#fff}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row .form-group{flex:1;min-width:140px}
+.axis-section{border-top:2px solid #e2e8f0;padding-top:14px;margin-top:14px}
+.axis-title{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.axis-title span.num{background:#2b6cb0;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:.8em;font-weight:700}
+.axis-title h3{font-size:1em;color:#2d3748}
+.btn{display:inline-block;padding:12px 32px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.btn-primary{background:#2b6cb0;color:#fff}
+.btn-primary:hover{background:#1a4f8b}
+.btn-secondary{background:#e2e8f0;color:#2d3748;padding:8px 20px;font-size:.85em}
+.btn-secondary:hover{background:#cbd5e0}
+.center{text-align:center}
+#result{display:none}
+.score-big{font-size:3em;font-weight:800;text-align:center;margin:10px 0}
+.score-big.green{color:#38a169}
+.score-big.yellow{color:#d69e2e}
+.score-big.red{color:#e53e3e}
+.verdict{text-align:center;font-size:1.2em;font-weight:700;padding:10px;border-radius:8px;margin:10px 0}
+.verdict.go{background:#c6f6d5;color:#22543d}
+.verdict.check{background:#fefcbf;color:#744210}
+.verdict.skip{background:#fed7d7;color:#742a2a}
+canvas{max-width:320px;margin:10px auto;display:block}
+.axis-scores{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.axis-score-item{display:flex;justify-content:space-between;padding:6px 10px;background:#f7fafc;border-radius:6px;font-size:.9em}
+.bar{height:8px;background:#e2e8f0;border-radius:4px;flex:1;margin-left:10px;position:relative;align-self:center}
+.bar-fill{height:100%;border-radius:4px;transition:.3s}
+.comment-box{background:#f7fafc;border-left:3px solid #2b6cb0;padding:12px;margin:10px 0;font-size:.9em;border-radius:0 6px 6px 0}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin-top:10px}
+th,td{border:1px solid #e2e8f0;padding:6px 8px;text-align:left}
+th{background:#edf2f7}
+@media print{body{background:#fff}.btn,.no-print{display:none!important}.card{box-shadow:none;break-inside:avoid}}
+@media(max-width:600px){.row{flex-direction:column}.axis-scores{grid-template-columns:1fr}.score-big{font-size:2.2em}}
+</style>
+<meta name="description" content="不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,土地ポテンシャル5軸スコアリングツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-9/">
+<meta property="og:title" content="土地ポテンシャル5軸スコアリングツール - kusasyu tools">
+<meta property="og:description" content="不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="土地ポテンシャル5軸スコアリングツール - kusasyu tools">
+<meta name="twitter:description" content="不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "土地ポテンシャル5軸スコアリングツール",
+  "description": "不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-9/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">土地ポテンシャル5軸スコアリングツール</span></div>
+<div class="container">
+<header>
+<h1>土地ポテンシャル 5軸スコアリングツール</h1>
+<p>住所と設問に答えるだけで30秒診断 — 仕入れ候補地の初期スクリーニングに</p>
+</header>
+
+<div class="card">
+<h2>基本情報</h2>
+<div class="row">
+<div class="form-group"><label>住所</label><input type="text" id="addr" placeholder="例：東京都港区六本木1-1-1"></div>
+</div>
+<div class="row">
+<div class="form-group"><label>面積（㎡）</label><input type="number" id="area" placeholder="例：500"></div>
+<div class="form-group"><label>用途地域</label>
+<select id="zone"><option value="">選択してください</option><option value="1r">第一種低層住居専用</option><option value="2r">第二種低層住居専用</option><option value="1m">第一種中高層住居専用</option><option value="2m">第二種中高層住居専用</option><option value="1h">第一種住居</option><option value="2h">第二種住居</option><option value="qr">準住居</option><option value="nc">近隣商業</option><option value="cm">商業</option><option value="qi">準工業</option><option value="in">工業</option><option value="ie">工業専用</option><option value="na">指定なし</option></select></div>
+</div>
+</div>
+
+<div class="card" id="questions">
+<h2>5軸診断（各設問に回答してください）</h2>
+
+<div class="axis-section">
+<div class="axis-title"><span class="num">1</span><h3>浸水リスク</h3></div>
+<div class="form-group"><label>Q1. ハザードマップの浸水想定区域は？</label><small><a href="https://disaportal.gsi.go.jp/" target="_blank">▶ 国交省ハザードマップポータル</a></small>
+<select id="q1_1"><option value="">選択</option><option value="100">浸水想定区域外</option><option value="70">0.5m未満</option><option value="40">0.5〜3m</option><option value="10">3m以上</option></select></div>
+<div class="form-group"><label>Q2. 土砂災害警戒区域に該当するか？</label>
+<select id="q1_2"><option value="">選択</option><option value="100">非該当</option><option value="50">イエローゾーン</option><option value="10">レッドゾーン</option></select></div>
+</div>
+
+<div class="axis-section">
+<div class="axis-title"><span class="num">2</span><h3>地盤強度</h3></div>
+<div class="form-group"><label>Q3. 地盤の種別（地盤サポートマップ等で確認）</label><small><a href="https://supportmap.jp/" target="_blank">▶ 地盤サポートマップ</a></small>
+<select id="q2_1"><option value="">選択</option><option value="100">台地・丘陵地（良好）</option><option value="70">段丘・扇状地</option><option value="40">低地・谷底平野</option><option value="10">埋立地・干拓地</option></select></div>
+<div class="form-group"><label>Q4. 液状化リスク（自治体マップで確認）</label>
+<select id="q2_2"><option value="">選択</option><option value="100">リスク低</option><option value="60">リスク中</option><option value="20">リスク高</option></select></div>
+</div>
+
+<div class="axis-section">
+<div class="axis-title"><span class="num">3</span><h3>日照条件</h3></div>
+<div class="form-group"><label>Q5. 南側の隣接建物の高さは？</label>
+<select id="q3_1"><option value="">選択</option><option value="100">なし or 平屋以下</option><option value="70">2階建て程度</option><option value="40">3〜5階程度</option><option value="10">6階以上</option></select></div>
+<div class="form-group"><label>Q6. 接道方向は？</label>
+<select id="q3_2"><option value="">選択</option><option value="100">南道路</option><option value="80">東 or 西道路</option><option value="50">北道路</option><option value="90">二方向以上（南含む）</option></select></div>
+</div>
+
+<div class="axis-section">
+<div class="axis-title"><span class="num">4</span><h3>周辺人口動態</h3></div>
+<div class="form-group"><label>Q7. 最寄り駅の乗降者数の傾向（5年）</label><small><a href="https://www.e-stat.go.jp/" target="_blank">▶ e-Stat 統計データ</a></small>
+<select id="q4_1"><option value="">選択</option><option value="100">増加傾向</option><option value="60">横ばい</option><option value="30">減少傾向</option></select></div>
+<div class="form-group"><label>Q8. 市区町村の人口増減率（直近5年）</label>
+<select id="q4_2"><option value="">選択</option><option value="100">+3%以上</option><option value="80">0〜+3%</option><option value="50">0〜-3%</option><option value="20">-3%超の減少</option></select></div>
+<div class="form-group"><label>Q9. 最寄り駅までの距離</label>
+<select id="q4_3"><option value="">選択</option><option value="100">徒歩5分以内</option><option value="80">徒歩10分以内</option><option value="50">徒歩15分以内</option><option value="20">徒歩15分超</option></select></div>
+</div>
+
+<div class="axis-section">
+<div class="axis-title"><span class="num">5</span><h3>地価トレンド</h3></div>
+<div class="form-group"><label>Q10. 公示地価の前年比変動率（%）</label><small><a href="https://www.land.mlit.go.jp/landPrice/AriaServlet?MOD=2&TYP=0" target="_blank">▶ 国交省 地価公示</a></small>
+<input type="number" id="q5_1" step="0.1" placeholder="例：2.5（上昇なら正、下落なら負）"></div>
+<div class="form-group"><label>Q11. 周辺の取引価格と比較した印象</label>
+<select id="q5_2"><option value="">選択</option><option value="100">相場より割安</option><option value="60">ほぼ相場通り</option><option value="30">相場より割高</option></select></div>
+</div>
+
+<div class="center" style="margin-top:20px">
+<button class="btn btn-primary" onclick="calc()">診断する</button>
+<button class="btn btn-secondary" onclick="resetForm()" style="margin-left:8px">リセット</button>
+</div>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>診断結果</h2>
+<div id="totalLabel" style="text-align:center;font-size:.9em;color:#718096">総合スコア</div>
+<div id="totalScore" class="score-big">—</div>
+<div id="verdict" class="verdict"></div>
+<canvas id="radar" width="320" height="320"></canvas>
+<div class="axis-scores" id="axisScores"></div>
+<div class="comment-box" id="comment"></div>
+</div>
+<div class="card">
+<h2>デューデリ転記用チェックリスト</h2>
+<table id="checklist"></table>
+</div>
+<div class="center no-print" style="margin-top:16px">
+<button class="btn btn-secondary" onclick="window.print()">印刷 / PDF出力</button>
+</div>
+</div>
+</div>
+
+<script>
+const AXES=["浸水リスク","地盤強度","日照条件","人口動態","地価トレンド"];
+const COLORS=["#e53e3e","#dd6b20","#d69e2e","#38a169","#3182ce"];
+const QS=[[["q1_1",50],["q1_2",50]],[["q2_1",55],["q2_2",45]],[["q3_1",55],["q3_2",45]],[["q4_1",30],["q4_2",35],["q4_3",35]],[["q5_1",-1],["q5_2",50]]];
+
+function gv(id){var e=document.getElementById(id);return e.tagName==="SELECT"?e.value:e.value}
+
+function calcAxis(i){
+var qs=QS[i],total=0,wsum=0;
+for(var j=0;j<qs.length;j++){
+var v=gv(qs[j][0]);
+if(v==="")return null;
+if(i===4&&j===0){
+var r=parseFloat(v);
+var s=r>=5?100:r>=2?80:r>=0?60:r>=-2?35:10;
+total+=s*50;wsum+=50;
+}else{
+total+=parseFloat(v)*qs[j][1];wsum+=qs[j][1];
+}
+}
+return Math.round(total/wsum);
+}
+
+function calc(){
+var scores=[],miss=false;
+for(var i=0;i<5;i++){var s=calcAxis(i);if(s===null){miss=true;scores.push(0)}else scores.push(s)}
+if(miss){alert("全ての設問に回答してください");return}
+var avg=Math.round(scores.reduce((a,b)=>a+b,0)/5);
+document.getElementById("result").style.display="block";
+var el=document.getElementById("totalScore");
+el.textContent=avg+"/100";
+el.className="score-big "+(avg>=70?"green":avg>=45?"yellow":"red");
+var vd=document.getElementById("verdict");
+if(avg>=70){vd.textContent="★ 仕入れ候補 — 詳細調査を推奨";vd.className="verdict go"}
+else if(avg>=45){vd.textContent="▲ 要精査 — リスク項目を重点確認";vd.className="verdict check"}
+else{vd.textContent="✕ スキップ推奨 — 優先度を下げてよい";vd.className="verdict skip"}
+var ah="";
+for(var i=0;i<5;i++){
+var c=scores[i]>=70?"#38a169":scores[i]>=45?"#d69e2e":"#e53e3e";
+ah+='<div class="axis-score-item"><span>'+AXES[i]+'</span><div class="bar"><div class="bar-fill" style="width:'+scores[i]+'%;background:'+c+'"></div></div><span style="min-width:40px;text-align:right;font-weight:700">'+scores[i]+'</span></div>';
+}
+document.getElementById("axisScores").innerHTML=ah;
+drawRadar(scores);
+genComment(scores,avg);
+genChecklist(scores);
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function drawRadar(sc){
+var c=document.getElementById("radar"),ctx=c.getContext("2d");
+var W=c.width,H=c.height,cx=W/2,cy=H/2,R=120;
+ctx.clearRect(0,0,W,H);
+var angles=[];for(var i=0;i<5;i++)angles.push(-Math.PI/2+2*Math.PI*i/5);
+for(var lv=1;lv<=5;lv++){
+ctx.beginPath();
+for(var i=0;i<5;i++){var r=R*lv/5;var x=cx+r*Math.cos(angles[i]);var y=cy+r*Math.sin(angles[i]);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}
+ctx.closePath();ctx.strokeStyle="#e2e8f0";ctx.stroke();
+}
+for(var i=0;i<5;i++){ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(angles[i]),cy+R*Math.sin(angles[i]));ctx.strokeStyle="#e2e8f0";ctx.stroke()}
+ctx.beginPath();
+for(var i=0;i<5;i++){var r=R*sc[i]/100;var x=cx+r*Math.cos(angles[i]);var y=cy+r*Math.sin(angles[i]);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)}
+ctx.closePath();ctx.fillStyle="rgba(43,108,176,.2)";ctx.fill();ctx.strokeStyle="#2b6cb0";ctx.lineWidth=2;ctx.stroke();
+ctx.fillStyle="#1a202c";ctx.font="bold 12px sans-serif";ctx.textAlign="center";
+var labels=AXES;
+for(var i=0;i<5;i++){var r=R+18;var x=cx+r*Math.cos(angles[i]);var y=cy+r*Math.sin(angles[i])+4;ctx.fillText(labels[i],x,y)}
+}
+
+function genComment(sc,avg){
+var z=document.getElementById("zone").value;
+var a=parseFloat(document.getElementById("area").value)||0;
+var lines=[];
+if(sc[0]<45)lines.push("浸水リスクが高い地域です。水害保険料の上昇や開発許可の制約に注意してください。");
+if(sc[1]<45)lines.push("地盤が軟弱な可能性があります。地盤改良費（坪5〜15万円）を見込んでください。");
+if(sc[2]<45)lines.push("日照条件が厳しい立地です。太陽光なら発電効率、住宅なら採光基準への影響を確認してください。");
+if(sc[3]<45)lines.push("人口減少エリアです。賃貸需要・出口戦略（売却）のリスクが高まります。");
+if(sc[4]<45)lines.push("地価が下落傾向または割高です。取得価格の妥当性を再検証してください。");
+if(z==="ie")lines.push("工業専用地域のため住宅建築不可です。用途を確認してください。");
+if(a>0&&a<100&&(z==="cm"||z==="nc"))lines.push("商業系地域で面積が小さいため、容積率を最大活用できるか確認を。");
+if(lines.length===0)lines.push("大きなリスク要因は見当たりません。詳細デューデリジェンスに進みましょう。");
+document.getElementById("comment").innerHTML="<strong>推奨コメント：</strong><br>"+lines.join("<br>");
+}
+
+function genChecklist(sc){
+var items=[
+["浸水リスク","ハザードマップ確認","q1_1"],
+["浸水リスク","土砂災害区域確認","q1_2"],
+["地盤強度","地盤種別確認","q2_1"],
+["地盤強度","液状化リスク確認","q2_2"],
+["日照条件","南側建物高さ","q3_1"],
+["日照条件","接道方向","q3_2"],
+["人口動態","駅乗降者数傾向","q4_1"],
+["人口動態","人口増減率","q4_2"],
+["人口動態","駅距離","q4_3"],
+["地価トレンド","公示地価変動率","q5_1"],
+["地価トレンド","相場比較","q5_2"]
+];
+var h='<tr><th>軸</th><th>チェック項目</th><th>入力値</th><th>判定</th></tr>';
+for(var i=0;i<items.length;i++){
+var el=document.getElementById(items[i][2]);
+var v=el.tagName==="SELECT"?(el.options[el.selectedIndex]||{}).text||"":el.value;
+var n=parseFloat(el.value)||0;
+var mark=n>=70?"○":n>=45?"△":"✕";
+if(items[i][2]==="q5_1"){var r=parseFloat(el.value);mark=r>=2?"○":r>=0?"△":"✕";v=r+"%"}
+h+="<tr><td>"+items[i][0]+"</td><td>"+items[i][1]+"</td><td>"+v+"</td><td style='text-align:center'>"+mark+"</td></tr>";
+}
+document.getElementById("checklist").innerHTML=h;
+}
+
+function resetForm(){
+var els=document.querySelectorAll("select,input[type=number],input[type=text]");
+for(var i=0;i<els.length;i++){els[i].value=""}
+document.getElementById("result").style.display="none";
+window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>

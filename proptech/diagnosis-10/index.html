@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>候補地スクリーニング比較シート - kusasyu tools</title>
+<meta name="description" content="不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,候補地スクリーニング比較シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-10/">
+<meta property="og:title" content="候補地スクリーニング比較シート - kusasyu tools">
+<meta property="og:description" content="不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="候補地スクリーニング比較シート - kusasyu tools">
+<meta name="twitter:description" content="不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "候補地スクリーニング比較シート",
+  "description": "不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPen",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-10/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-21"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>候補地スクリーニング比較シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>候補地スクリーニング比較シート</h1>
+  <p class="project-name">候補地の良し悪し、住所だけで30秒診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>候補地No</th><th>物件名/住所</th><th>面積（㎡）</th><th>用途地域</th><th>浸水リスク（20点）</th><th>地盤強度（20点）</th><th>日照条件（20点）</th><th>周辺人口動態（20点）</th><th>地価トレンド（20点）</th><th>重み_浸水リスク</th><th>重み_地盤強度</th><th>重み_日照条件</th><th>重み_周辺人口動態</th><th>重み_地価トレンド</th><th>加重平均スコア</th><th>順位</th><th>用途タイプ</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>東京都世田谷区玉川3-14-○○</td><td>320</td><td>第一種低層住居専用地域</td><td>16</td><td>18</td><td>14</td><td>19</td><td>17</td><td>1.0</td><td>1.0</td><td>0.8</td><td>1.2</td><td>1.0</td><td>=ROUND((E2*J2+F2*K2+G2*L2+H2*M2+I2*N2)/(J2+K2+L2+M2+N2)*5</td><td>1)</td><td>=RANK(O2</td><td>$O$2:$O$11</td><td>0)</td><td>住宅用地</td><td>駅徒歩8分・人口増加エリア</td></tr><tr><td>2</td><td>茨城県つくば市谷田部○○-1</td><td>4200</td><td>市街化調整区域</td><td>12</td><td>15</td><td>19</td><td>8</td><td>10</td><td>0.6</td><td>0.8</td><td>1.5</td><td>0.5</td><td>0.6</td><td>=ROUND((E3*J3+F3*K3+G3*L3+H3*M3+I3*N3)/(J3+K3+L3+M3+N3)*5</td><td>1)</td><td>=RANK(O3</td><td>$O$2:$O$11</td><td>0)</td><td>太陽光用地</td><td>南向き傾斜・遮蔽物なし</td></tr><tr><td>3</td><td>埼玉県さいたま市大宮区桜木町2-○○</td><td>580</td><td>第一種中高層住居専用地域</td><td>14</td><td>16</td><td>13</td><td>18</td><td>16</td><td>1.0</td><td>1.2</td><td>0.8</td><td>1.3</td><td>1.0</td><td>=ROUND((E4*J4+F4*K4+G4*L4+H4*M4+I4*N4)/(J4+K4+L4+M4+N4)*5</td><td>1)</td><td>=RANK(O4</td><td>$O$2:$O$11</td><td>0)</td><td>アパート用地</td><td>大宮駅徒歩12分・賃貸需要◎</td></tr><tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>=IF(E5=""</td><td></td><td>ROUND((E5*J5+F5*K5+G5*L5+H5*M5+I5*N5)/(J5+K5+L5+M5+N5)*5</td><td>1))</td><td>=IF(O5=""</td><td></td><td>RANK(O5</td><td>$O$2:$O$11</td><td>0))</td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>=IF(E6=""</td><td></td><td>ROUND((E6*J6+F6*K6+G6*L6+H6*M6+I6*N6)/(J6+K6+L6+M6+N6)*5</td><td>1))</td><td>=IF(O6=""</td><td></td><td>RANK(O6</td><td>$O$2:$O$11</td><td>0))</td><td></td><td></td></tr><tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>=IF(E7=""</td><td></td><td>ROUND((E7*J7+F7*K7+G7*L7+H7*M7+I7*N7)/(J7+K7+L7+M7+N7)*5</td><td>1))</td><td>=IF(O7=""</td><td></td><td>RANK(O7</td><td>$O$2:$O$11</td><td>0))</td><td></td><td></td></tr><tr><td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>=IF(E8=""</td><td></td><td>ROUND((E8*J8+F8*K8+G8*L8+H8*M8+I8*N8)/(J8+K8+L8+M8+N8)*5</td><td>1))</td><td>=IF(O8=""</td><td></td><td>RANK(O8</td><td>$O$2:$O$11</td><td>0))</td><td></td><td></td></tr><tr><td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>=IF(E9=""</td><td></td><td>ROUND((E9*J9+F9*K9+G9*L9+H9*M9+I9*N9)/(J9+K9+L9+M9+N9)*5</td><td>1))</td><td>=IF(O9=""</td><td></td><td>RANK(O9</td><td>$O$2:$O$11</td><td>0))</td><td></td><td></td></tr><tr><td>9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>=IF(E10=""</td><td></td><td>ROUND((E10*J10+F10*K10+G10*L10+H10*M10+I10*N10)/(J10+K10+L10+M10+N10)*5</td><td>1))</td><td>=IF(O10=""</td><td></td><td>RANK(O10</td><td>$O$2:$O$11</td><td>0))</td><td></td><td></td></tr><tr><td>10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>1.0</td><td>=IF(E11=""</td><td></td><td>ROUND((E11*J11+F11*K11+G11*L11+H11*M11+I11*N11)/(J11+K11+L11+M11+N11)*5</td><td>1))</td><td>=IF(O11=""</td><td></td><td>RANK(O11</td><td>$O$2:$O$11</td><td>0))</td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `候補地No,物件名/住所,面積（㎡）,用途地域,浸水リスク（20点）,地盤強度（20点）,日照条件（20点）,周辺人口動態（20点）,地価トレンド（20点）,重み_浸水リスク,重み_地盤強度,重み_日照条件,重み_周辺人口動態,重み_地価トレンド,加重平均スコア,順位,用途タイプ,備考
+1,東京都世田谷区玉川3-14-○○,320,第一種低層住居専用地域,16,18,14,19,17,1.0,1.0,0.8,1.2,1.0,=ROUND((E2*J2+F2*K2+G2*L2+H2*M2+I2*N2)/(J2+K2+L2+M2+N2)*5,1),=RANK(O2,$O$2:$O$11,0),住宅用地,駅徒歩8分・人口増加エリア
+2,茨城県つくば市谷田部○○-1,4200,市街化調整区域,12,15,19,8,10,0.6,0.8,1.5,0.5,0.6,=ROUND((E3*J3+F3*K3+G3*L3+H3*M3+I3*N3)/(J3+K3+L3+M3+N3)*5,1),=RANK(O3,$O$2:$O$11,0),太陽光用地,南向き傾斜・遮蔽物なし
+3,埼玉県さいたま市大宮区桜木町2-○○,580,第一種中高層住居専用地域,14,16,13,18,16,1.0,1.2,0.8,1.3,1.0,=ROUND((E4*J4+F4*K4+G4*L4+H4*M4+I4*N4)/(J4+K4+L4+M4+N4)*5,1),=RANK(O4,$O$2:$O$11,0),アパート用地,大宮駅徒歩12分・賃貸需要◎
+4,,,,,,,,,,1.0,1.0,1.0,1.0,1.0,=IF(E5="","",ROUND((E5*J5+F5*K5+G5*L5+H5*M5+I5*N5)/(J5+K5+L5+M5+N5)*5,1)),=IF(O5="","",RANK(O5,$O$2:$O$11,0)),,
+5,,,,,,,,,,1.0,1.0,1.0,1.0,1.0,=IF(E6="","",ROUND((E6*J6+F6*K6+G6*L6+H6*M6+I6*N6)/(J6+K6+L6+M6+N6)*5,1)),=IF(O6="","",RANK(O6,$O$2:$O$11,0)),,
+6,,,,,,,,,,1.0,1.0,1.0,1.0,1.0,=IF(E7="","",ROUND((E7*J7+F7*K7+G7*L7+H7*M7+I7*N7)/(J7+K7+L7+M7+N7)*5,1)),=IF(O7="","",RANK(O7,$O$2:$O$11,0)),,
+7,,,,,,,,,,1.0,1.0,1.0,1.0,1.0,=IF(E8="","",ROUND((E8*J8+F8*K8+G8*L8+H8*M8+I8*N8)/(J8+K8+L8+M8+N8)*5,1)),=IF(O8="","",RANK(O8,$O$2:$O$11,0)),,
+8,,,,,,,,,,1.0,1.0,1.0,1.0,1.0,=IF(E9="","",ROUND((E9*J9+F9*K9+G9*L9+H9*M9+I9*N9)/(J9+K9+L9+M9+N9)*5,1)),=IF(O9="","",RANK(O9,$O$2:$O$11,0)),,
+9,,,,,,,,,,1.0,1.0,1.0,1.0,1.0,=IF(E10="","",ROUND((E10*J10+F10*K10+G10*L10+H10*M10+I10*N10)/(J10+K10+L10+M10+N10)*5,1)),=IF(O10="","",RANK(O10,$O$2:$O$11,0)),,
+10,,,,,,,,,,1.0,1.0,1.0,1.0,1.0,=IF(E11="","",ROUND((E11*J11+F11*K11+G11*L11+H11*M11+I11*N11)/(J11+K11+L11+M11+N11)*5,1)),=IF(O11="","",RANK(O11,$O$2:$O$11,0)),,
+,,,,,,,,,,,,,,,,,
+【使い方】,,,,,,,,,,,,,,,,,
+"1. 「土地ポテンシャル5軸スコアリングツール」で診断した各軸スコア（各20点満点）をE〜I列に転記",,,,,,,,,,,,,,,,,
+"2. 用途に応じてJ〜N列の重みを変更（デフォルト1.0／重視=1.2〜1.5／軽視=0.5〜0.8）",,,,,,,,,,,,,,,,,
+"3. 加重平均スコア（O列）と順位（P列）が自動計算される",,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+【重み設定プリセット例】,,,,,,,,,,,,,,,,,
+用途,浸水リスク,地盤強度,日照条件,周辺人口動態,地価トレンド,,,,,,,,,,,
+住宅用地（標準）,1.0,1.0,0.8,1.2,1.0,,,,,,,,,,,
+太陽光発電用地,0.6,0.8,1.5,0.5,0.6,,,,,,,,,,,
+一棟アパート用地,1.0,1.2,0.8,1.3,1.0,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_候補地スクリーニング比較シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

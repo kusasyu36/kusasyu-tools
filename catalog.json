@@ -832,6 +832,19 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-29",
+    "url": "legal-tech/contract-29/",
+    "title": "契約トラブル6割の現実。法務研修AIクイズ",
+    "tool_name": "業種別・契約トラブル体験クイズ（IT編）",
+    "description": "法務部がない中小企業の担当者向けに、実際の契約トラブル事例をベースにしたシナリオ型クイズ教材をHTML学習コースとして提供する。業種別（IT・不動産・製造）に特化したシナリオで、契約条項の落とし穴を対話的に学べる。ASONEのような統合プラットフォームではなく、法務専任者がいない企業の営業・調達担当が15分で1テーマを学べる軽量な教育コンテンツに特化する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-21T01:31:13.965815+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -1310,6 +1323,45 @@
     "description": "商品情報を入力するだけで、TikTok Live・Instagram Live・YouTubeライブ向けのトークスクリプト（5分・10分・30分版）、視聴者からの想定Q&A集、配信後のSNS投稿文を一括自動生成するHTMLツール。ライブコマースの事前準備を数時間→数分に短縮する。",
     "quality_score": 9,
     "completed_at": "2026-04-10T00:14:02.922263+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-57",
+    "url": "digital-marketing/tool-57/",
+    "title": "広報ゼロでも大丈夫？PR文一括生成ツール",
+    "tool_name": "スタートアップPRコンテンツ一括ジェネレーター",
+    "description": "スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマットに準拠し、各SNSの文字数制限にもリアルタイム対応。NextPressやPR TIMES",
+    "quality_score": 9,
+    "completed_at": "2026-04-20T14:38:23.687394+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "checker-5",
+    "url": "digital-marketing/checker-5/",
+    "title": "広報ゼロでも大丈夫？PR文一括生成ツール",
+    "tool_name": "PR発信チェックリスト＆配信先メディアリスト",
+    "description": "スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマットに準拠し、各SNSの文字数制限にもリアルタイム対応。NextPressやPR TIMES",
+    "quality_score": 9,
+    "completed_at": "2026-04-20T14:38:23.687394+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-10",
+    "url": "digital-marketing/management-10/",
+    "title": "広報ゼロでも大丈夫？PR文一括生成ツール",
+    "tool_name": "PR発信2週間スケジュール管理シート",
+    "description": "スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマットに準拠し、各SNSの文字数制限にもリアルタイム対応。NextPressやPR TIMES",
+    "quality_score": 9,
+    "completed_at": "2026-04-20T14:38:23.687394+00:00",
     "content_type": "csv_template"
   },
   {
@@ -2610,6 +2662,45 @@
     "description": "賃貸物件の退去立会時に、損傷箇所と程度を選択するだけで国交省「原状回復ガイドライン」に基づく貸主・借主の負担区分を自動判定し、修繕概算費用と優先度付きレポートを即時出力するHTMLツール。既存の「写真 de AI 積算」は建設業向け、「カウマエ」は売買向けであり、賃貸管理×退去精算に特化した無料ツールは存在しない。アクセス上昇中の「契約書コスト試算」と同じ費用可視化ジャンルで、管理会社の実務に直結",
     "quality_score": 8,
     "completed_at": "2026-04-11T01:45:07.128217+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-9",
+    "url": "proptech/diagnosis-9/",
+    "title": "候補地の良し悪し、住所だけで30秒診断",
+    "tool_name": "土地ポテンシャル5軸スコアリングツール",
+    "description": "不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPenetrator社のような企業向け有料SaaSとは異なり、無料・即時・ブラウザ完結で『この土",
+    "quality_score": 8,
+    "completed_at": "2026-04-21T03:49:17.899217+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-10",
+    "url": "proptech/diagnosis-10/",
+    "title": "候補地の良し悪し、住所だけで30秒診断",
+    "tool_name": "候補地スクリーニング比較シート",
+    "description": "不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPenetrator社のような企業向け有料SaaSとは異なり、無料・即時・ブラウザ完結で『この土",
+    "quality_score": 8,
+    "completed_at": "2026-04-21T03:49:17.899217+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-11",
+    "url": "proptech/diagnosis-11/",
+    "title": "候補地の良し悪し、住所だけで30秒診断",
+    "tool_name": "土地デューデリ15分チェックリスト",
+    "description": "不動産デベロッパーや太陽光発電用地の仕入れ担当者向けに、土地の住所・面積・用途地域を入力するだけで、浸水リスク・地盤強度・日照条件・周辺人口動態・地価トレンドの5軸でポテンシャルスコアを自動算出するHTML診断ツールを中心に、候補地比較シートとデューデリチェックリストを提供する。SpaceShift社やPenetrator社のような企業向け有料SaaSとは異なり、無料・即時・ブラウザ完結で『この土",
+    "quality_score": 8,
+    "completed_at": "2026-04-21T03:49:17.899217+00:00",
     "content_type": "article"
   },
   {

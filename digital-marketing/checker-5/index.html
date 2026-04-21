@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PR発信チェックリスト＆配信先メディアリスト - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.7}
+.wrap{max-width:880px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:16px 0 4px}
+.sub{text-align:center;color:#666;font-size:.82em;margin-bottom:10px}
+.link{text-align:center;font-size:.78em;color:#4f46e5;margin-bottom:14px}
+.prog-wrap{background:#e5e7eb;border-radius:20px;height:22px;margin-bottom:14px;position:relative;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(90deg,#4f46e5,#7c3aed);border-radius:20px;transition:width .4s}
+.prog-txt{position:absolute;top:0;left:0;right:0;text-align:center;font-size:.75em;font-weight:700;color:#fff;line-height:22px}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px 6px;border:1px solid #d0d5dd;background:#fff;border-radius:10px;cursor:pointer;font-size:.85em;font-weight:700;color:#555}
+.tabs button.on{background:#4f46e5;color:#fff;border-color:#4f46e5}
+.panel{display:none}
+.panel.show{display:block}
+.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.card h2{font-size:.95em;color:#4f46e5;margin-bottom:10px;border-bottom:2px solid #eee;padding-bottom:6px}
+.item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f3f4f6}
+.item:last-child{border-bottom:none}
+.item input[type=checkbox]{width:20px;height:20px;margin-top:2px;accent-color:#4f46e5;flex-shrink:0;cursor:pointer}
+.item label{font-size:.88em;cursor:pointer;flex:1}
+.item label span{display:block;font-size:.78em;color:#888;margin-top:1px}
+.item.done label{color:#aaa;text-decoration:line-through}
+.reset{display:inline-block;padding:8px 18px;background:#ef4444;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.82em;font-weight:600;margin-top:8px}
+.media{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.tag{display:inline-block;padding:3px 10px;border-radius:14px;font-size:.75em;font-weight:600;cursor:pointer;border:1px solid #d0d5dd;background:#fff;color:#555}
+.tag.on{background:#4f46e5;color:#fff;border-color:#4f46e5}
+.mt{margin-top:6px}
+.m-item{padding:12px;border:1px solid #e5e7eb;border-radius:10px;margin-bottom:8px;background:#f9fafb}
+.m-item h3{font-size:.9em;margin-bottom:3px}
+.m-item p{font-size:.8em;color:#555}
+.m-item .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7em;font-weight:600;margin-right:4px;margin-top:4px}
+.b-free{background:#d1fae5;color:#065f46}
+.b-paid{background:#fef3c7;color:#92400e}
+.b-sns{background:#dbeafe;color:#1e40af}
+.b-web{background:#ede9fe;color:#5b21b6}
+.score-box{text-align:center;padding:18px;margin-bottom:14px;border-radius:12px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff}
+.score-box .num{font-size:2.2em;font-weight:800}
+.score-box .msg{font-size:.88em;margin-top:4px}
+.exp{background:#fff3cd;border-radius:8px;padding:8px 12px;font-size:.78em;color:#664d03;margin-top:10px;text-align:center}
+@media(max-width:600px){.row{flex-direction:column}.tabs{flex-wrap:wrap}.tabs button{font-size:.78em;padding:8px 4px}}
+</style>
+<meta name="description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,PR発信チェックリスト＆配信先メディアリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-5/">
+<meta property="og:title" content="PR発信チェックリスト＆配信先メディアリスト - kusasyu tools">
+<meta property="og:description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PR発信チェックリスト＆配信先メディアリスト - kusasyu tools">
+<meta name="twitter:description" content="スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PR発信チェックリスト＆配信先メディアリスト",
+  "description": "スタートアップが資金調達・サービスリリース・採用開始時に必要なPRコンテンツ（プレスリリース本文、X/LinkedIn/Facebook投稿文3パターンずつ、LPヒーローコピー＋CTA、採用ページ用Why usセクション）をWebフォームへの入力だけで一括生成するHTMLツール。PR TIMES推奨フォーマッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/checker-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">PR発信チェックリスト＆配信先メディアリスト</span></div>
+<div class="wrap">
+<h1>PR発信チェックリスト＆配信先メディアリスト</h1>
+<p class="sub">「スタートアップPRコンテンツ一括ジェネレーター」で作成したコンテンツの品質保証ステップ</p>
+<p class="link">生成したプレスリリース・SNS投稿・LPコピー・採用メッセージを公開前に最終確認</p>
+
+<div class="prog-wrap"><div class="prog-bar" id="pbar" style="width:0%"></div><div class="prog-txt" id="ptxt">0 / 20 完了</div></div>
+<div class="score-box" id="scoreBox"><div class="num" id="scoreNum">0%</div><div class="msg" id="scoreMsg">チェックを始めましょう</div></div>
+
+<div class="tabs">
+<button class="on" onclick="tab(0,this)">チェックリスト</button>
+<button onclick="tab(1,this)">配信先メディア</button>
+</div>
+
+<div class="panel show" id="p0">
+<div class="card"><h2>A. 基本情報（5項目）</h2><div id="g0"></div></div>
+<div class="card"><h2>B. 文章品質（5項目）</h2><div id="g1"></div></div>
+<div class="card"><h2>C. 数値・法務（5項目）</h2><div id="g2"></div></div>
+<div class="card"><h2>D. 配信設定・メタ情報（5項目）</h2><div id="g3"></div></div>
+<button class="reset" onclick="resetAll()">全チェックをリセット</button>
+<div class="exp">※ 全20項目を確認してから配信すると、差し戻し・訂正リスクを大幅に低減できます</div>
+</div>
+
+<div class="panel" id="p1">
+<div class="media" id="filters"></div>
+<div id="mlist"></div>
+</div>
+</div>
+
+<script>
+var CK=[
+["会社名・サービス名の表記が統一されている","正式名称・略称・英語表記のブレがないか全文確認"],
+["代表者氏名・肩書きが正確","名刺やHPと完全一致しているか"],
+["問い合わせ先（メール・電話・URL）が記載済み","PR TIMES必須項目。広報窓口が明記されているか"],
+["配信日・リリース日が正しい","曜日と日付の整合、解禁日がある場合は明記"],
+["ロゴ・画像が適切に設定されている","解像度300dpi以上推奨、著作権問題がないか"],
+["タイトルが30文字以内で要点を伝えている","PR TIMES推奨。検索・SNSシェア時の視認性"],
+["リード文（冒頭3行）だけで概要が伝わる","5W1Hのうち最低3つを含むか"],
+["表記揺れがない（全角半角・カタカナ等）","ユーザー/ユーザ、Web/WEB等の統一"],
+["誤字脱字チェック済み","音読またはツールで最終確認"],
+["禁句ワードを使っていない","「業界初」「世界一」等は根拠なしにNG（景表法・薬機法）"],
+["売上・市場規模等の数値に出典がある","「○○調査（2025年）」等の根拠を明記"],
+["調達額・バリュエーション等の数値が正確","投資契約書・タームシートと照合"],
+["商標・特許に関する記載が正しい","®/™マーク、出願中/取得済みの区別"],
+["個人情報・NDA対象情報が含まれていない","投資家名の公開可否、未発表情報の漏洩"],
+["利用規約・免責事項が必要な場合記載済み","キャンペーン・無料トライアル条件等"],
+["各SNS投稿が文字数制限内（X:140字/LinkedIn:3000字/FB:500字目安）","ジェネレーター生成文をそのまま使う場合も再確認"],
+["OGP画像・メタディスクリプションを設定","LP・自社サイト掲載時のSNSシェア表示"],
+["配信カテゴリ・タグが適切に選択されている","PR TIMESのカテゴリ選択で到達率が変わる"],
+["社内承認フロー完了（CEO・法務等）","配信後の取り消しは信用毀損リスク大"],
+["配信タイミングが最適（火〜木 10:00-11:00推奨）","月曜・金曜・祝前日は到達率が低下傾向"]
+];
+var GRP=[[0,5],[5,10],[10,15],[15,20]];
+var saved=JSON.parse(localStorage.getItem("prck")||"[]");
+if(saved.length!==20)saved=Array(20).fill(false);
+
+function render(){
+GRP.forEach(function(r,gi){
+var c=document.getElementById("g"+gi),h="";
+for(var i=r[0];i<r[1];i++){
+var dn=saved[i]?" done":"";
+h+='<div class="item'+dn+'"><input type="checkbox" id="c'+i+'"'+(saved[i]?" checked":"")
++' onchange="toggle('+i+')"><label for="c'+i+'">'+(i+1)+'. '+CK[i][0]+'<span>'+CK[i][1]+'</span></label></div>';
+}
+c.innerHTML=h;
+});
+upd();
+}
+function toggle(i){saved[i]=!saved[i];localStorage.setItem("prck",JSON.stringify(saved));render();}
+function upd(){
+var done=saved.filter(Boolean).length,pct=Math.round(done/20*100);
+document.getElementById("pbar").style.width=pct+"%";
+document.getElementById("ptxt").textContent=done+" / 20 完了";
+document.getElementById("scoreNum").textContent=pct+"%";
+var m=pct===100?"配信準備完了！":pct>=80?"あと少しです":pct>=50?"半分クリア":"チェックを進めましょう";
+document.getElementById("scoreMsg").textContent=m;
+}
+function resetAll(){if(confirm("全チェックをリセットしますか？")){saved=Array(20).fill(false);localStorage.setItem("prck",JSON.stringify(saved));render();}}
+
+var MD=[
+{n:"PR TIMES",cat:["プレスリリース"],cost:"無料〜3万円/件",desc:"国内最大級。スタートアップ向け無料プランあり（審査制）。PR TIMES推奨フォーマット準拠で入稿がスムーズ",t:"paid"},
+{n:"ValuePress!",cat:["プレスリリース"],cost:"無料プランあり",desc:"無料で月1件配信可能。中小・スタートアップに人気",t:"free"},
+{n:"@Press（アットプレス）",cat:["プレスリリース"],cost:"3万円〜/件",desc:"記者への個別配信に強み。取材獲得率が高い",t:"paid"},
+{n:"BRIDGE（ブリッジ）",cat:["Webメディア"],cost:"無料掲載（取材ベース）",desc:"スタートアップ・テック特化メディア。資金調達・サービスローンチの取材実績多数",t:"web"},
+{n:"TechCrunch Japan",cat:["Webメディア"],cost:"無料掲載（取材ベース）",desc:"テック系グローバルメディアの日本版。シリーズA前後の資金調達ニュースに強い",t:"web"},
+{n:"Startup Times",cat:["Webメディア"],cost:"無料掲載",desc:"スタートアップ専門メディア。創業者インタビューやサービス紹介を無料掲載",t:"free"},
+{n:"CNET Japan",cat:["Webメディア"],cost:"無料掲載（取材ベース）",desc:"テクノロジー総合メディア。BtoBサービスのローンチ記事に対応",t:"web"},
+{n:"日本経済新聞（プレスリリース面）",cat:["プレスリリース"],cost:"無料（採否は編集判断）",desc:"日経電子版のプレスリリース掲載。信用度が高くVCへの訴求力も強い",t:"free"},
+{n:"X（旧Twitter）",cat:["SNS"],cost:"無料",desc:"速報性重視。140文字以内。ハッシュタグ例: #スタートアップ #資金調達 #プレスリリース",t:"sns"},
+{n:"LinkedIn",cat:["SNS"],cost:"無料",desc:"ビジネス層・投資家向け。3000字まで投稿可。採用PRにも有効",t:"sns"},
+{n:"Facebook",cat:["SNS"],cost:"無料",desc:"コミュニティ・支援者向け。500字目安。画像付き投稿で反応率向上",t:"sns"},
+{n:"note",cat:["SNS","Webメディア"],cost:"無料",desc:"ストーリー型の長文発信に最適。創業背景・ビジョン記事が拡散しやすい",t:"free"},
+{n:"Wantedly",cat:["採用"],cost:"無料〜有料プランあり",desc:"採用PRに特化。フィード投稿でWhy usセクションの内容を発信可能",t:"free"},
+{n:"Notion（公開ページ）",cat:["LP代替"],cost:"無料",desc:"LP・採用ページをNotionで即公開。初期コストゼロでMVP検証にも使える",t:"free"}
+];
+var CATS=["すべて","プレスリリース","Webメディア","SNS","採用","LP代替"];
+var curCat="すべて";
+
+function renderMedia(){
+var f=document.getElementById("filters"),h="";
+CATS.forEach(function(c){h+='<span class="tag'+(curCat===c?" on":"")+'" onclick="filterM(\''+c+'\')">'+c+'</span>';});
+f.innerHTML=h;
+var ml=document.getElementById("mlist"),mh="";
+MD.forEach(function(m){
+if(curCat!=="すべて"&&m.cat.indexOf(curCat)===-1)return;
+var bc=m.t==="free"?"b-free":m.t==="sns"?"b-sns":m.t==="web"?"b-web":"b-paid";
+var bl=m.t==="free"?"無料":m.t==="sns"?"SNS":m.t==="web"?"メディア":"有料";
+mh+='<div class="m-item"><h3>'+m.n+'</h3><p>'+m.desc+'</p><span class="badge '+bc+'">'+bl+'</span>'
++m.cat.map(function(c){return '<span class="badge b-web">'+c+'</span>';}).join("")
++'<p class="mt" style="font-weight:600;font-size:.78em;color:#4f46e5">💰 '+m.cost+'</p></div>';
+});
+if(!mh)mh='<p style="text-align:center;color:#888;padding:20px">該当するメディアがありません</p>';
+ml.innerHTML=mh;
+}
+function filterM(c){curCat=c;renderMedia();}
+function tab(i,btn){
+document.querySelectorAll(".panel").forEach(function(p){p.classList.remove("show");});
+document.getElementById("p"+i).classList.add("show");
+document.querySelectorAll(".tabs button").forEach(function(b){b.classList.remove("on");});
+btn.classList.add("on");
+}
+render();renderMedia();
+</script>
+</body>
+</html>

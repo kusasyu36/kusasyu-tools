@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>業種別・契約トラブル体験クイズ（IT編） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#2d6a9f);color:#fff;padding:28px 24px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.3em;margin-bottom:6px}
+header p{font-size:.85em;opacity:.85}
+.progress{background:#e2e8f0;border-radius:8px;height:10px;margin-bottom:20px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,#2d6a9f,#38b2ac);transition:width .4s;border-radius:8px}
+.step-label{text-align:center;font-size:.85em;color:#718096;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:16px;display:none}
+.card.active{display:block}
+.card h2{font-size:1.1em;color:#1e3a5f;margin-bottom:12px;border-left:4px solid #2d6a9f;padding-left:10px}
+.scenario{background:#f7fafc;border-radius:8px;padding:16px;margin-bottom:16px;font-size:.93em;border:1px solid #e2e8f0}
+.scenario strong{color:#c53030}
+.opts label{display:block;padding:12px 14px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:.2s;font-size:.93em}
+.opts label:hover{border-color:#2d6a9f;background:#ebf8ff}
+.opts input{margin-right:8px}
+.opts label.correct{border-color:#38a169;background:#f0fff4}
+.opts label.wrong{border-color:#e53e3e;background:#fff5f5}
+.btn{display:inline-block;padding:10px 28px;border:none;border-radius:8px;font-size:.95em;cursor:pointer;transition:.2s;font-weight:bold}
+.btn-primary{background:#2d6a9f;color:#fff}
+.btn-primary:hover{background:#1e3a5f}
+.btn-next{background:#38b2ac;color:#fff;display:none}
+.btn-next:hover{background:#2c9a8f}
+.feedback{display:none;padding:16px;border-radius:8px;margin:16px 0;font-size:.9em}
+.feedback.show{display:block}
+.fb-correct{background:#f0fff4;border:1px solid #9ae6b4}
+.fb-wrong{background:#fff5f5;border:1px solid #feb2b2}
+.checkpoint{background:#ebf8ff;border:1px solid #90cdf4;border-radius:8px;padding:14px;margin-top:12px;font-size:.88em}
+.checkpoint strong{color:#2d6a9f}
+.nav{display:flex;justify-content:space-between;margin-top:12px}
+.score-box{text-align:center;padding:32px}
+.score-box .big{font-size:3em;color:#2d6a9f;font-weight:bold}
+.score-box p{margin:8px 0}
+.tag{display:inline-block;background:#ebf8ff;color:#2d6a9f;font-size:.78em;padding:2px 10px;border-radius:12px;margin-bottom:8px}
+footer{text-align:center;padding:20px;font-size:.78em;color:#a0aec0}
+</style>
+<meta name="description" content="法務部がない中小企業の担当者向けに、実際の契約トラブル事例をベースにしたシナリオ型クイズ教材をHTML学習コースとして提供する。業種別（IT・不動産・製造）に特化したシナリオで、契約条項の落とし穴を対話的に学べる。ASONEのような統合プラットフォームではなく、法務専任者がいない企業の営業・調達担当が15分で">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,業種別・契約トラブル体験クイズ（IT編）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-29/">
+<meta property="og:title" content="業種別・契約トラブル体験クイズ（IT編） - kusasyu tools">
+<meta property="og:description" content="法務部がない中小企業の担当者向けに、実際の契約トラブル事例をベースにしたシナリオ型クイズ教材をHTML学習コースとして提供する。業種別（IT・不動産・製造）に特化したシナリオで、契約条項の落とし穴を対話的に学べる。ASONEのような統合プラットフォームではなく、法務専任者がいない企業の営業・調達担当が15分で">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-29/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別・契約トラブル体験クイズ（IT編） - kusasyu tools">
+<meta name="twitter:description" content="法務部がない中小企業の担当者向けに、実際の契約トラブル事例をベースにしたシナリオ型クイズ教材をHTML学習コースとして提供する。業種別（IT・不動産・製造）に特化したシナリオで、契約条項の落とし穴を対話的に学べる。ASONEのような統合プラットフォームではなく、法務専任者がいない企業の営業・調達担当が15分で">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "業種別・契約トラブル体験クイズ（IT編）",
+  "description": "法務部がない中小企業の担当者向けに、実際の契約トラブル事例をベースにしたシナリオ型クイズ教材をHTML学習コースとして提供する。業種別（IT・不動産・製造）に特化したシナリオで、契約条項の落とし穴を対話的に学べる。ASONEのような統合プラットフォームではなく、法務専任者がいない企業の営業・調達担当が15分で",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-29/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">業種別・契約トラブル体験クイズ（IT編）</span></div>
+<div class="wrap">
+<header>
+<p class="tag">IT業界編｜全5問・約15分</p>
+<h1>契約トラブル体験クイズ</h1>
+<p>営業・調達担当が知っておくべき契約の落とし穴</p>
+</header>
+<div class="progress"><div class="progress-bar" id="pbar" style="width:0%"></div></div>
+<div class="step-label" id="slabel">イントロダクション</div>
+
+<div class="card active" id="s0">
+<h2>はじめに</h2>
+<p>中小企業の契約トラブルの<strong>約6割</strong>は、契約書の条項を正しく理解していれば防げたものです。</p>
+<p style="margin:12px 0">このクイズでは、IT業界で実際に起きた5つのトラブル事例をシナリオ形式で出題します。各問の解説で「契約書のどこを見ればよかったか」を具体的に学べます。</p>
+<div class="checkpoint"><strong>所要時間：</strong>約15分／<strong>対象：</strong>営業・調達・総務の契約実務担当者</div>
+<div class="nav"><span></span><button class="btn btn-primary" onclick="go(1)">クイズを始める</button></div>
+</div>
+
+<div class="card" id="s1">
+<h2>Q1. 瑕疵担保責任（契約不適合責任）の期間</h2>
+<div class="scenario">あなたはIT企業の調達担当です。外部ベンダーにWebシステム開発を500万円で発注しました。納品から<strong>8か月後</strong>に重大なバグが発覚。修正を依頼したところ、ベンダーは「契約書の瑕疵担保期間は<strong>6か月</strong>です」と対応を拒否しました。</div>
+<div class="opts" id="o1">
+<label><input type="radio" name="q1" value="a">民法の規定では1年なので、契約書の6か月は無効。修正を請求できる</label>
+<label><input type="radio" name="q1" value="b">契約書に6か月と明記されていれば、その期間が優先される。今回は請求できない</label>
+<label><input type="radio" name="q1" value="c">瑕疵担保責任は法律で排除できないので、いつでも請求可能</label>
+</div>
+<div class="feedback" id="f1"></div>
+<div class="nav"><button class="btn btn-primary" onclick="check(1,'b')">回答する</button><button class="btn btn-next" id="n1" onclick="go(2)">次の問題へ</button></div>
+</div>
+
+<div class="card" id="s2">
+<h2>Q2. SLA違反と損害賠償上限</h2>
+<div class="scenario">クラウドサービスを月額30万円で契約中。SLAで稼働率99.5%を保証されていましたが、大規模障害で<strong>3日間サービス停止</strong>し、自社に推定<strong>500万円の機会損失</strong>が発生。賠償を請求したところ、ベンダーは「損害賠償上限は<strong>直近12か月の利用料総額（360万円）</strong>」と回答。</div>
+<div class="opts" id="o2">
+<label><input type="radio" name="q2" value="a">SLA違反なので上限条項に関係なく500万円全額を請求できる</label>
+<label><input type="radio" name="q2" value="b">損害賠償上限条項が有効であり、最大360万円までしか請求できない可能性が高い</label>
+<label><input type="radio" name="q2" value="c">間接損害（機会損失）は常に請求できないので、賠償はゼロ</label>
+</div>
+<div class="feedback" id="f2"></div>
+<div class="nav"><button class="btn btn-primary" onclick="check(2,'b')">回答する</button><button class="btn btn-next" id="n2" onclick="go(3)">次の問題へ</button></div>
+</div>
+
+<div class="card" id="s3">
+<h2>Q3. 再委託禁止条項の範囲</h2>
+<div class="scenario">自社システムの保守運用をA社に委託。契約書には<strong>「再委託を禁止する」</strong>と明記。ところが半年後、実際の作業をA社の子会社B社が行っていたことが判明。A社は「グループ会社なので再委託にあたらない」と主張しています。</div>
+<div class="opts" id="o3">
+<label><input type="radio" name="q3" value="a">グループ会社でも契約上は別法人であり、再委託禁止条項に違反する</label>
+<label><input type="radio" name="q3" value="b">子会社は親会社と一体なので、再委託にはあたらない</label>
+<label><input type="radio" name="q3" value="c">再委託禁止条項は努力義務にすぎず、法的拘束力はない</label>
+</div>
+<div class="feedback" id="f3"></div>
+<div class="nav"><button class="btn btn-primary" onclick="check(3,'a')">回答する</button><button class="btn btn-next" id="n3" onclick="go(4)">次の問題へ</button></div>
+</div>
+
+<div class="card" id="s4">
+<h2>Q4. 検収条件と黙示の承認</h2>
+<div class="scenario">システム開発の納品を受け、社内テストを実施中。契約書には<strong>「納品後14日以内に検収通知を行う。期間内に通知がない場合は検収完了とみなす」</strong>と記載。多忙で検証が遅れ、<strong>20日後</strong>にバグを発見して修正を要請しました。</div>
+<div class="opts" id="o4">
+<label><input type="radio" name="q4" value="a">バグがある以上、いつ発見しても修正請求は当然認められる</label>
+<label><input type="radio" name="q4" value="b">14日経過で検収完了とみなされるため、検収不合格の主張は困難。瑕疵担保責任で別途対応を検討する必要がある</label>
+<label><input type="radio" name="q4" value="c">みなし検収条項は消費者保護法で無効なので気にしなくてよい</label>
+</div>
+<div class="feedback" id="f4"></div>
+<div class="nav"><button class="btn btn-primary" onclick="check(4,'b')">回答する</button><button class="btn btn-next" id="n4" onclick="go(5)">次の問題へ</button></div>
+</div>
+
+<div class="card" id="s5">
+<h2>Q5. 成果物の知的財産権の帰属</h2>
+<div class="scenario">外部ベンダーに自社専用の業務アプリを800万円で開発委託。完成後、同業他社がほぼ同じアプリを使っていることが判明。ベンダーに問い合わせると「著作権はベンダーに帰属する契約なので、他社提供は問題ない」との回答。契約書を確認すると、<strong>知的財産権は「乙（ベンダー）に帰属する」</strong>と記載されていました。</div>
+<div class="opts" id="o5">
+<label><input type="radio" name="q5" value="a">発注者が全額負担した以上、著作権は自動的に発注者に帰属する</label>
+<label><input type="radio" name="q5" value="b">契約書通りベンダーに著作権があるため、他社提供を止めるのは難しい。発注時に権利帰属を交渉すべきだった</label>
+<label><input type="radio" name="q5" value="c">ソフトウェアに著作権は発生しないので、誰でも自由に使える</label>
+</div>
+<div class="feedback" id="f5"></div>
+<div class="nav"><button class="btn btn-primary" onclick="check(5,'b')">回答する</button><button class="btn btn-next" id="n5" onclick="go(6)">次の問題へ</button></div>
+</div>
+
+<div class="card" id="s6">
+<h2>学習完了！あなたのスコア</h2>
+<div class="score-box">
+<div class="big" id="score">0/5</div>
+<p id="msg"></p>
+</div>
+<h2 style="margin-top:20px">まとめ：契約書で必ずチェックする5項目</h2>
+<div class="scenario" style="font-size:.88em">
+<ol style="padding-left:18px">
+<li><strong>瑕疵担保期間</strong> ― 民法改正後は「契約不適合責任」。期間を確認し、最低1年を交渉</li>
+<li><strong>損害賠償上限</strong> ― 上限額と「間接損害の免責」有無を必ず確認</li>
+<li><strong>再委託条項</strong> ― 「禁止」か「事前承諾制」か。グループ会社の扱いも明記させる</li>
+<li><strong>検収期間・みなし承認</strong> ― 現実的な検証期間か。短すぎる場合は延長交渉</li>
+<li><strong>知的財産権の帰属</strong> ― 「発注者帰属」か「共有」か。汎用部分と固有部分を分けて規定</li>
+</ol>
+</div>
+<div class="nav"><button class="btn btn-primary" onclick="location.reload()">もう一度挑戦</button></div>
+</div>
+
+<footer>Kusasyu Legal Tech｜契約トラブル体験クイズ IT編<br>本教材は一般的な法的知識の学習を目的としており、個別の法律相談に代わるものではありません。</footer>
+</div>
+
+<script>
+var total=5,correct=0,answered={};
+var explanations={
+1:["正解！","契約書で瑕疵担保期間を短縮することは、BtoB契約では有効です。民法の規定（知ってから1年）は任意規定であり、契約で変更可能。","不正解","民法の瑕疵担保期間は任意規定です。契約書で6か月と定めた場合、その期間が優先されます。","<strong>チェックポイント：</strong>瑕疵担保（契約不適合責任）の期間が記載されているか？ 短すぎないか？ 最低でも1年、重要システムなら2年を交渉しましょう。"],
+2:["正解！","損害賠償上限条項はBtoB契約で広く有効とされます。また多くのクラウド契約では「間接損害・逸失利益の免責」も規定されており、機会損失は請求対象外になることも。","不正解","損害賠償上限条項はBtoB契約で有効です。上限が利用料総額と定められていれば、それを超える請求は困難です。","<strong>チェックポイント：</strong>損害賠償の上限額はいくらか？ 「間接損害・逸失利益を除く」の記載はないか？ 重要サービスなら上限引き上げや免責範囲の限定を交渉。"],
+3:["正解！","法的にはグループ会社でも別法人です。再委託禁止と書かれていれば、子会社への委託も原則として違反。","不正解","グループ会社であっても法的には別法人です。契約書に「再委託を禁止する」と書かれている以上、子会社への再委託も違反となります。","<strong>チェックポイント：</strong>再委託条項の内容は？ 「事前書面承諾」制にして、グループ会社も対象と明記させると安全です。情報セキュリティの観点からも重要。"],
+4:["正解！","みなし検収条項はBtoB契約で有効です。14日間を過ぎると「検収完了」となり、その後の不具合は瑕疵担保責任の問題になります。","不正解","みなし検収条項はBtoB契約で有効です。期間内に通知しなければ検収完了とみなされ、検収不合格の主張は困難になります。","<strong>チェックポイント：</strong>検収期間は現実的か？ みなし承認条項はあるか？ 自社のテスト体制に合わせて期間延長を交渉。最低30日は確保したい。"],
+5:["正解！","著作権法では、受託開発の著作権は原則として「創作した者（ベンダー）」に帰属します。発注者に権利を移転するには契約書への明記が必要です。","不正解","発注費用を全額負担しても、著作権は自動的に発注者に移転しません。契約書に帰属先の明記がなければベンダーに残ります。","<strong>チェックポイント：</strong>知的財産権の帰属先は明記されているか？ 「発注者に帰属」または「共有」の条項を入れる。汎用部分はベンダー、固有部分は発注者と分けるのも現実的。"]
+};
+function go(n){
+ for(var i=0;i<=total+1;i++){var el=document.getElementById('s'+i);if(el)el.classList.remove('active')}
+ document.getElementById('s'+n).classList.add('active');
+ var pct=n<=0?0:n>total?100:Math.round((n/total)*100);
+ document.getElementById('pbar').style.width=pct+'%';
+ var labels=['イントロダクション','Q1／5：瑕疵担保責任','Q2／5：損害賠償上限','Q3／5：再委託禁止','Q4／5：検収条件','Q5／5：知的財産権','結果発表'];
+ document.getElementById('slabel').textContent=labels[n]||'';
+ if(n==total+1){document.getElementById('score').textContent=correct+'/'+total;
+  var m=correct>=4?'素晴らしい！実務に活かせる知識が身についています。':correct>=2?'基本は押さえています。間違えた問題を復習しましょう。':'契約リスクの見落としが多い状態です。解説を読み直して再チャレンジ！';
+  document.getElementById('msg').textContent=m;}
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function check(q,ans){
+ if(answered[q])return;
+ var sel=document.querySelector('input[name="q'+q+'"]:checked');
+ if(!sel){alert('選択肢を選んでください');return}
+ answered[q]=true;
+ var isCorrect=sel.value===ans;
+ if(isCorrect)correct++;
+ var e=explanations[q],fb=document.getElementById('f'+q);
+ fb.innerHTML='<strong>'+(isCorrect?'&#9989; '+e[0]:'&#10060; '+e[2])+'</strong><br>'+(isCorrect?e[1]:e[3])+'<div class="checkpoint" style="margin-top:10px">'+e[4]+'</div>';
+ fb.className='feedback show '+(isCorrect?'fb-correct':'fb-wrong');
+ var labels=document.querySelectorAll('#o'+q+' label');
+ labels.forEach(function(l){var r=l.querySelector('input');l.className=r.value===ans?'correct':'wrong';r.disabled=true});
+ document.getElementById('n'+q).style.display='inline-block';
+ document.querySelector('#s'+q+' .btn-primary').style.display='none';
+}
+</script>
+</body>
+</html>
