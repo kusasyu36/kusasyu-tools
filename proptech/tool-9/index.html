@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>複数候補地_建築制限一括比較シート - kusasyu tools</title>
+<meta name="description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,複数候補地_建築制限一括比較シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-9/">
+<meta property="og:title" content="複数候補地_建築制限一括比較シート - kusasyu tools">
+<meta property="og:description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="複数候補地_建築制限一括比較シート - kusasyu tools">
+<meta name="twitter:description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "複数候補地_建築制限一括比較シート",
+  "description": "用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&A）とは異なり、質問不要で全",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-9/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>複数候補地_建築制限一括比較シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>複数候補地_建築制限一括比較シート</h1>
+  <p class="project-name">土地仕入れの建築制限、20秒で丸わかりチェッカー</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>複数候補地 建築制限一括比較シート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>※「用途地域別 建築制限インスタントチェッカー」のCSVエクスポートデータをE列〜M列に貼り付けてご利用ください</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 重み係数（仕入れ方針に応じてB6〜F6を自由に変更してください）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>実効容積率</td><td>建ぺい率</td><td>高さ余裕</td><td>防火コスト</td><td>開発スコア</td><td>合計</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>重み</td><td>30</td><td>20</td><td>15</td><td>15</td><td>20</td><td>=SUM(B6:F6)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 候補地比較一覧（高さ制限の0は「制限なし」を意味します）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>No.</td><td>候補地名</td><td>住所</td><td>面積(㎡)</td><td>用途地域</td><td>建ぺい率(%)</td><td>容積率(%)</td><td>実効容積率(%)</td><td>高さ制限(m)</td><td>斜線制限</td><td>日影規制</td><td>防火指定</td><td>開発スコア</td><td>加重総合スコア</td><td>順位</td><td>判定</td><td>メモ</td></tr><tr><td>1</td><td>候補A 世田谷区用賀</td><td>東京都世田谷区用賀3-XX</td><td>320</td><td>第一種中高層住居専用地域</td><td>60</td><td>200</td><td>160</td><td>20</td><td>道路+隣地+北側</td><td>4h-2.5h(4m)</td><td>準防火地域</td><td>62</td><td>=ROUND((H10/800*100*$B$6+F10*$C$6+IF(I10=0,100,MIN(I10,60)/60*100)*$D$6+IF(L10="準防火地域",55,IF(L10="防火地域",35,90))*$E$6+M10*$F$6)/$G$6,1)</td><td>=RANK(N10,N$10:N$14)</td><td>=IF(N10&gt;=70,"◎ 有望",IF(N10&gt;=50,"○ 検討","△ 要注意"))</td><td>駅徒歩8分 閑静な住宅街</td></tr><tr><td>2</td><td>候補B 新宿区西新宿</td><td>東京都新宿区西新宿X-XX</td><td>180</td><td>商業地域</td><td>80</td><td>800</td><td>650</td><td>0</td><td>道路+隣地</td><td>対象外</td><td>防火地域</td><td>85</td><td>=ROUND((H11/800*100*$B$6+F11*$C$6+IF(I11=0,100,MIN(I11,60)/60*100)*$D$6+IF(L11="準防火地域",55,IF(L11="防火地域",35,90))*$E$6+M11*$F$6)/$G$6,1)</td><td>=RANK(N11,N$10:N$14)</td><td>=IF(N11&gt;=70,"◎ 有望",IF(N11&gt;=50,"○ 検討","△ 要注意"))</td><td>駅徒歩3分 高層開発向き</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `複数候補地 建築制限一括比較シート,,,,,,,,,,,,,,,,
+※「用途地域別 建築制限インスタントチェッカー」のCSVエクスポートデータをE列〜M列に貼り付けてご利用ください,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+■ 重み係数（仕入れ方針に応じてB6〜F6を自由に変更してください）,,,,,,,,,,,,,,,,
+,実効容積率,建ぺい率,高さ余裕,防火コスト,開発スコア,合計,,,,,,,,,
+重み,30,20,15,15,20,"=SUM(B6:F6)",,,,,,,,,
+,,,,,,,,,,,,,,,,
+■ 候補地比較一覧（高さ制限の0は「制限なし」を意味します）,,,,,,,,,,,,,,,,
+No.,候補地名,住所,面積(㎡),用途地域,建ぺい率(%),容積率(%),実効容積率(%),高さ制限(m),斜線制限,日影規制,防火指定,開発スコア,加重総合スコア,順位,判定,メモ
+1,候補A 世田谷区用賀,東京都世田谷区用賀3-XX,320,第一種中高層住居専用地域,60,200,160,20,"道路+隣地+北側","4h-2.5h(4m)",準防火地域,62,"=ROUND((H10/800*100*$B$6+F10*$C$6+IF(I10=0,100,MIN(I10,60)/60*100)*$D$6+IF(L10=""準防火地域"",55,IF(L10=""防火地域"",35,90))*$E$6+M10*$F$6)/$G$6,1)","=RANK(N10,N$10:N$14)","=IF(N10>=70,""◎ 有望"",IF(N10>=50,""○ 検討"",""△ 要注意""))",駅徒歩8分 閑静な住宅街
+2,候補B 新宿区西新宿,東京都新宿区西新宿X-XX,180,商業地域,80,800,650,0,"道路+隣地",対象外,防火地域,85,"=ROUND((H11/800*100*$B$6+F11*$C$6+IF(I11=0,100,MIN(I11,60)/60*100)*$D$6+IF(L11=""準防火地域"",55,IF(L11=""防火地域"",35,90))*$E$6+M11*$F$6)/$G$6,1)","=RANK(N11,N$10:N$14)","=IF(N11>=70,""◎ 有望"",IF(N11>=50,""○ 検討"",""△ 要注意""))",駅徒歩3分 高層開発向き
+3,候補C 杉並区荻窪,東京都杉並区荻窪X-XX,420,第一種低層住居専用地域,50,100,80,10,"道路+北側","3h-2h(1.5m)",指定なし,38,"=ROUND((H12/800*100*$B$6+F12*$C$6+IF(I12=0,100,MIN(I12,60)/60*100)*$D$6+IF(L12=""準防火地域"",55,IF(L12=""防火地域"",35,90))*$E$6+M12*$F$6)/$G$6,1)","=RANK(N12,N$10:N$14)","=IF(N12>=70,""◎ 有望"",IF(N12>=50,""○ 検討"",""△ 要注意""))",広い敷地 戸建て分譲向き
+4,候補D 中野区中野,東京都中野区中野X-XX,250,近隣商業地域,80,300,280,0,"道路+隣地",なし,準防火地域,72,"=ROUND((H13/800*100*$B$6+F13*$C$6+IF(I13=0,100,MIN(I13,60)/60*100)*$D$6+IF(L13=""準防火地域"",55,IF(L13=""防火地域"",35,90))*$E$6+M13*$F$6)/$G$6,1)","=RANK(N13,N$10:N$14)","=IF(N13>=70,""◎ 有望"",IF(N13>=50,""○ 検討"",""△ 要注意""))",商店街沿い 店舗併用可
+5,候補E 練馬区大泉,東京都練馬区大泉学園X-XX,380,第一種住居地域,60,300,240,0,"道路+隣地+北側","4h-2.5h(4m)",準防火地域,65,"=ROUND((H14/800*100*$B$6+F14*$C$6+IF(I14=0,100,MIN(I14,60)/60*100)*$D$6+IF(L14=""準防火地域"",55,IF(L14=""防火地域"",35,90))*$E$6+M14*$F$6)/$G$6,1)","=RANK(N14,N$10:N$14)","=IF(N14>=70,""◎ 有望"",IF(N14>=50,""○ 検討"",""△ 要注意""))",ファミリー層需要あり
+,,,,,,,,,,,,,,,,
+■ スコア算出ルール,,,,,,,,,,,,,,,,
+"実効容積率: 実効容積率÷800×100で正規化（0〜100点、商業地域800%を上限基準）",,,,,,,,,,,,,,,,
+"建ぺい率: 建ぺい率の値をそのままスコア化（50〜80点の範囲）",,,,,,,,,,,,,,,,
+"高さ余裕: 0(制限なし)=100点、制限あり=MIN(高さ,60m)÷60×100",,,,,,,,,,,,,,,,
+"防火コスト: 指定なし=90点、準防火地域=55点、防火地域=35点（建築コスト逆相関）",,,,,,,,,,,,,,,,
+"開発スコア: 用途地域別 建築制限インスタントチェッカーの出力値をそのまま使用（0〜100点）",,,,,,,,,,,,,,,,
+"判定基準: 70点以上=◎有望、50〜69点=○検討、50点未満=△要注意",,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+■ 重み係数カスタマイズ例（B6〜F6に入力）,,,,,,,,,,,,,,,,
+"マンション開発重視: 実効容積率=40, 建ぺい率=10, 高さ余裕=25, 防火コスト=5, 開発スコア=20",,,,,,,,,,,,,,,,
+"戸建て分譲重視: 実効容積率=10, 建ぺい率=30, 高さ余裕=5, 防火コスト=25, 開発スコア=30",,,,,,,,,,,,,,,,
+"商業施設開発: 実効容積率=35, 建ぺい率=25, 高さ余裕=15, 防火コスト=5, 開発スコア=20",,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+■ 使い方,,,,,,,,,,,,,,,,
+"1. 用途地域別 建築制限インスタントチェッカーで各候補地を診断しCSVエクスポート",,,,,,,,,,,,,,,,
+"2. エクスポートデータを本シートのE列〜M列に貼り付け（No.・候補地名・住所・面積は手入力）",,,,,,,,,,,,,,,,
+"3. N列の加重総合スコアとP列の判定が自動算出される",,,,,,,,,,,,,,,,
+"4. 仕入れ方針に応じてB6〜F6の重み係数を調整し、優先順位を再計算",,,,,,,,,,,,,,,,
+"5. 仕入れ会議の優先順位付け資料としてそのまま印刷・共有可能",,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_複数候補地_建築制限一括比較シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

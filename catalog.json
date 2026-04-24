@@ -325,6 +325,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "sns-instagram-reels",
+    "url": "digital-marketing/sns-instagram-reels/",
+    "title": "動画広告が間に合わない？AI自動量産ツール",
+    "tool_name": "SNS縦型動画広告ストーリーボード自動設計ツール（Instagram_Reels特化）",
+    "description": "SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピー・CTA配置）を複数パターン生成。配信後のパフォーマンスデータをCSVで読み込み、どのク",
+    "quality_score": 10,
+    "completed_at": "2026-04-23T12:33:25.134736+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-58",
+    "url": "digital-marketing/tool-58/",
+    "title": "動画広告が間に合わない？AI自動量産ツール",
+    "tool_name": "クリエイティブA_Bテスト統計分析ダッシュボード",
+    "description": "SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピー・CTA配置）を複数パターン生成。配信後のパフォーマンスデータをCSVで読み込み、どのク",
+    "quality_score": 10,
+    "completed_at": "2026-04-23T12:33:25.134736+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -2000,6 +2026,45 @@
     "quality_score": 9,
     "completed_at": "2026-04-16T23:23:21.878965+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-8",
+    "url": "proptech/tool-8/",
+    "title": "土地仕入れの建築制限、20秒で丸わかりチェッカー",
+    "tool_name": "用途地域別_建築制限インスタントチェッカー",
+    "description": "用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&A）とは異なり、質問不要で全制限を網羅的にレポート出力する即時チェッカー。",
+    "quality_score": 9,
+    "completed_at": "2026-04-24T02:32:23.844737+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-9",
+    "url": "proptech/tool-9/",
+    "title": "土地仕入れの建築制限、20秒で丸わかりチェッカー",
+    "tool_name": "複数候補地_建築制限一括比較シート",
+    "description": "用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&A）とは異なり、質問不要で全制限を網羅的にレポート出力する即時チェッカー。",
+    "quality_score": 9,
+    "completed_at": "2026-04-24T02:32:23.844737+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "guide-6",
+    "url": "proptech/guide-6/",
+    "title": "土地仕入れの建築制限、20秒で丸わかりチェッカー",
+    "tool_name": "用途地域13種の建築制限_完全早見ガイド",
+    "description": "用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&A）とは異なり、質問不要で全制限を網羅的にレポート出力する即時チェッカー。",
+    "quality_score": 9,
+    "completed_at": "2026-04-24T02:32:23.844737+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "digital-marketing",
@@ -3755,6 +3820,32 @@
     "quality_score": 7,
     "completed_at": "2026-04-16T03:55:49.078727+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-30",
+    "url": "legal-tech/contract-30/",
+    "title": "契約書をゼロから。業種別AIドラフター",
+    "tool_name": "IT業務委託_契約書ドラフトジェネレーター",
+    "description": "法務部を持たない中小企業が、業種（建設・飲食・IT）と契約種別を選び、15問以内の質問ウィザードに答えるだけで、業法準拠の契約書ドラフトを自動生成するブラウザツール。生成結果には危険条項ハイライトとリスクスコアを表示。LegalOn等の月額数万円サービスと同等の起草機能を無料で提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-23T15:03:03.577034+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-31",
+    "url": "legal-tech/contract-31/",
+    "title": "契約書をゼロから。業種別AIドラフター",
+    "tool_name": "業種別_契約必須条項チェックリスト（建設・飲食・IT）",
+    "description": "法務部を持たない中小企業が、業種（建設・飲食・IT）と契約種別を選び、15問以内の質問ウィザードに答えるだけで、業法準拠の契約書ドラフトを自動生成するブラウザツール。生成結果には危険条項ハイライトとリスクスコアを表示。LegalOn等の月額数万円サービスと同等の起草機能を無料で提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-23T15:03:03.577034+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "proptech",

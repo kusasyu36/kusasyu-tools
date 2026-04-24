@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SNS縦型動画広告ストーリーボード自動設計ツール（Instagram_Reels特化） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:14px/1.6 system-ui,sans-serif;background:#0d0d1a;color:#e0e0e0;padding:16px}
+.wrap{max-width:960px;margin:0 auto}
+h1{font-size:20px;text-align:center;padding:20px 0 4px;background:linear-gradient(90deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;font-size:11px;color:#888;margin-bottom:20px}
+.form{background:#161628;border-radius:12px;padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-size:12px;color:#aaa;display:block;margin-bottom:4px}
+select{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#1e1e36;color:#fff;font-size:14px}
+.btn{grid-column:1/-1;padding:14px;border:none;border-radius:8px;background:linear-gradient(135deg,#f09433,#dc2743);color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:4px}
+.btn:hover{opacity:.9}
+#out{margin-top:24px}
+.pair{margin-bottom:24px}
+.pair-title{font-size:16px;font-weight:700;margin-bottom:12px;padding:8px 12px;border-radius:8px;background:#1a1a30}
+.pair-title span{font-size:12px;color:#aaa;margin-left:8px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#161628;border-radius:12px;padding:16px;border:1px solid #252540}
+.card h3{font-size:14px;margin-bottom:10px;color:#f09433}
+.scene{margin-bottom:10px;padding:10px;background:#1e1e36;border-radius:8px;border-left:3px solid #dc2743}
+.scene .time{font-size:11px;color:#dc2743;font-weight:700}
+.scene .type{font-size:11px;color:#888;margin-left:6px}
+.scene .txt{margin-top:4px;font-size:13px}
+.meta{margin-top:12px;padding-top:10px;border-top:1px solid #252540}
+.meta dt{font-size:11px;color:#888;margin-top:6px}
+.meta dd{font-size:12px;color:#ccc;margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.tags span{background:#252540;padding:2px 8px;border-radius:12px;font-size:11px;color:#aaa}
+.note{text-align:center;font-size:11px;color:#555;margin-top:20px}
+@media(max-width:640px){.form,.cards{grid-template-columns:1fr}.card{padding:12px}}
+</style>
+<meta name="description" content="SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,SNS縦型動画広告ストーリーボード自動設計ツール（Instagram_Reels特化）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sns-instagram-reels/">
+<meta property="og:title" content="SNS縦型動画広告ストーリーボード自動設計ツール（Instagram_Reels特化） - kusasyu tools">
+<meta property="og:description" content="SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sns-instagram-reels/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SNS縦型動画広告ストーリーボード自動設計ツール（Instagram_Reels特化） - kusasyu tools">
+<meta name="twitter:description" content="SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SNS縦型動画広告ストーリーボード自動設計ツール（Instagram_Reels特化）",
+  "description": "SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sns-instagram-reels/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">SNS縦型動画広告ストーリーボード自動設計ツール（Insta</span></div>
+<div class="wrap">
+<h1>ストーリーボード自動設計ツール</h1>
+<p class="sub">Instagram Reels 縦型（9:16）特化 ｜ 15秒 &amp; 30秒 × 2パターン自動生成</p>
+<div class="form">
+<div><label>業種</label><select id="ind" onchange="updCat()"><option>EC</option><option>美容</option><option>食品</option></select></div>
+<div><label>商品カテゴリ</label><select id="cat"></select></div>
+<div><label>ターゲット年代</label><select id="age"><option>20代</option><option>30代</option><option>40代</option><option>50代以上</option></select></div>
+<div><label>訴求軸</label><select id="ap"><option>価格訴求</option><option>品質訴求</option><option>共感訴求</option></select></div>
+<button class="btn" onclick="gen()">ストーリーボードを自動生成</button>
+</div>
+<div id="out"></div>
+<p class="note">※ TikTok / LINE VOOM 対応は今後のアップデートで追加予定</p>
+</div>
+<script>
+const cats={EC:['アパレル','コスメ','雑貨','食品・飲料','家電'],美容:['スキンケア','ヘアケア','メイク','エステ','サプリ'],食品:['健康食品','スイーツ','飲料','冷凍食品','調味料']};
+function updCat(){const s=document.getElementById('cat');s.innerHTML='';cats[document.getElementById('ind').value].forEach(c=>{const o=document.createElement('option');o.textContent=c;s.appendChild(o)})}
+updCat();
+const H={価格訴求:{A:['まだ定価で買ってるの？','今だけ、この価格。'],B:['知らなきゃ損する価格の話','コスパ最強、見つけた。']},品質訴求:{A:['プロが選ぶ理由がある。','本物は、ここが違う。'],B:['なぜリピート率92％？','一度使うと戻れない。']},共感訴求:{A:['その悩み、私も同じでした。','「変わりたい」に応えます。'],B:['もう頑張らなくていい。','あなたの毎日に寄り添う。']}};
+const F={EC:{A:['厳選素材×自社開発の品質','累計10万個突破の実力'],B:['SNSで話題沸騰中','ユーザー満足度97％']},美容:{A:['サロン級の仕上がりを自宅で','美容のプロ100名が推薦'],B:['忙しい朝でもたった30秒','続けるほど実感する変化']},食品:{A:['国産原料100％のこだわり','管理栄養士が監修'],B:['家族みんなが笑顔になる味','毎日続けられる手軽さ']}};
+const CTA={価格訴求:{A:'今すぐ限定価格をチェック →',B:'お得な初回セットを見る →'},品質訴求:{A:'詳細をプロフィールから →',B:'こだわりの全成分を見る →'},共感訴求:{A:'あなたに合うタイプ診断 →',B:'体験者の声をもっと見る →'}};
+const BGM={EC:{20:'Lo-Fi / チル系ビート',30:'アコースティックポップ',40:'ピアノ＋ストリングス',50:'ジャズ / ボサノバ'},美容:{20:'K-POP風エレクトロ',30:'R&B / ソウル系',40:'アンビエント / ヒーリング',50:'クラシカル・ピアノ'},食品:{20:'ポップ / アップテンポ',30:'カフェミュージック',40:'アコースティックギター',50:'オーケストラ / 和風'}};
+function mkTags(ind,cat,ap){
+const base=['#Reels','#リール','#PR','#おすすめ','#インスタ'];
+const iT={EC:['#ネットショッピング','#通販','#お買い物'],美容:['#美容','#ビューティー','#コスメ好き'],食品:['#グルメ','#フード','#おうちごはん']};
+const aT={価格訴求:['#コスパ最強','#お得情報'],品質訴求:['#本物志向','#こだわり'],共感訴求:['#共感','#あるある']};
+const r=[...base,...iT[ind],...aT[ap],'#'+cat.replace(/[・/]/g,'')];
+return r.slice(0,10);
+}
+function gen(){
+const ind=document.getElementById('ind').value;
+const cat=document.getElementById('cat').value;
+const age=document.getElementById('age').value.replace('代以上','');
+const ap=document.getElementById('ap').value;
+const bgm=BGM[ind][age]||BGM[ind]['30'];
+const tags=mkTags(ind,cat,ap);
+const tagH=tags.map(t=>'<span>'+t+'</span>').join('');
+function s15(p){
+const h=H[ap][p];const f=F[ind][p];const c=CTA[ap][p];
+return[
+{time:'0:00–0:05',type:'フック',txt:'テロップ（中央大文字）：「'+h[0]+'」\n'+cat+'のビジュアルをズームイン'},
+{time:'0:05–0:10',type:'特徴提示',txt:'「'+f[0]+'」\n商品を手に取るシーン／使用感カット'},
+{time:'0:10–0:15',type:'CTA',txt:'「'+c+'」\nプロフィールリンク誘導＋ブランドロゴ'}
+];}
+function s30(p){
+const h=H[ap][p];const f=F[ind][p];const c=CTA[ap][p];
+const pain={価格訴求:'「高すぎて手が出ない…」共感テキスト＋ため息カット',品質訴求:'「何を選べばいいかわからない…」悩み顔カット',共感訴求:'「毎日忙しくて自分のこと後回し…」日常シーン'};
+const proof={価格訴求:'比較表で価格メリットを視覚化（他社A → 当社）',品質訴求:'受賞歴・メディア掲載ロゴ＋「専門家も推薦」テロップ',共感訴求:'ユーザーレビュー3件をスワイプ風テロップで表示'};
+return[
+{time:'0:00–0:06',type:'フック',txt:'テロップ（画面中央）：「'+h[0]+'」\n目を引く'+cat+'のクローズアップ'},
+{time:'0:06–0:12',type:'課題提起',txt:pain[ap]},
+{time:'0:12–0:20',type:'解決提示',txt:'「'+f[0]+'」＋「'+f[1]+'」\n'+cat+'の使用デモ・ビフォーアフター'},
+{time:'0:20–0:25',type:'証拠・実績',txt:proof[ap]},
+{time:'0:25–0:30',type:'CTA',txt:'「'+c+'」\nスワイプアップ風アニメーション＋ブランドロゴ'}
+];}
+function renderCard(title,scenes){
+let sh=scenes.map(s=>`<div class="scene"><span class="time">${s.time}</span><span class="type">${s.type}</span><div class="txt">${s.txt.replace(/\n/g,'<br>')}</div></div>`).join('');
+return`<div class="card"><h3>${title}</h3>${sh}<div class="meta"><dt>推奨BGM</dt><dd>${bgm}</dd><dt>推奨ハッシュタグ（10個）</dt><dd><div class="tags">${tagH}</div></dd></div></div>`;
+}
+let html='';
+html+=`<div class="pair"><div class="pair-title">15秒版<span>Instagram Reels ショート</span></div><div class="cards">`;
+html+=renderCard('パターンA — ダイレクト訴求型',s15('A'));
+html+=renderCard('パターンB — 共感ストーリー型',s15('B'));
+html+=`</div></div>`;
+html+=`<div class="pair"><div class="pair-title">30秒版<span>Instagram Reels スタンダード</span></div><div class="cards">`;
+html+=renderCard('パターンA — ダイレクト訴求型',s30('A'));
+html+=renderCard('パターンB — 共感ストーリー型',s30('B'));
+html+=`</div></div>`;
+document.getElementById('out').innerHTML=html;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>用途地域別_建築制限インスタントチェッカー - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Hiragino Sans',sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7}
+.w{max-width:820px;margin:0 auto;padding:16px}
+.warn{background:#fffbeb;border-left:4px solid #f59e0b;padding:10px 14px;font-size:12px;margin-bottom:16px;border-radius:0 6px 6px 0;color:#92400e}
+h1{font-size:19px;text-align:center;padding:18px 0 6px;color:#1e3a5f;letter-spacing:.5px}
+.sub{text-align:center;font-size:12px;color:#64748b;margin-bottom:16px}
+.c{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.c h2{font-size:15px;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0;color:#334155}
+label{display:block;font-weight:600;font-size:13px;margin-bottom:3px;color:#475569}
+select,input[type=number]{width:100%;padding:10px 12px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:15px;margin-bottom:10px;background:#f8fafc;transition:border .2s}
+select:focus,input:focus{outline:none;border-color:#3b82f6;background:#fff}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{display:block;width:100%;padding:13px;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:transform .1s,box-shadow .2s}
+.btn:active{transform:scale(.98)}
+.bp{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;box-shadow:0 2px 8px rgba(37,99,235,.3)}
+.bp:hover{box-shadow:0 4px 12px rgba(37,99,235,.4)}
+.bg{background:linear-gradient(135deg,#059669,#047857);color:#fff;margin-top:12px;box-shadow:0 2px 8px rgba(5,150,105,.3)}
+#R{display:none}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 10px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#f1f5f9;font-weight:600;color:#475569;width:40%}
+td{color:#1e293b}
+.ok{color:#16a34a;font-weight:700}
+.ng{color:#dc2626;font-weight:700}
+.cd{color:#d97706;font-weight:700}
+.sc{text-align:center;padding:20px 0}
+.sb{display:inline-flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;font-size:40px;font-weight:800;color:#fff;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.s1{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.s2{background:linear-gradient(135deg,#f97316,#ea580c)}
+.s3{background:linear-gradient(135deg,#eab308,#ca8a04)}
+.s4{background:linear-gradient(135deg,#22c55e,#16a34a)}
+.s5{background:linear-gradient(135deg,#3b82f6,#2563eb)}
+.sl{font-size:14px;color:#475569;margin-top:10px}
+.bar{height:7px;background:#e2e8f0;border-radius:4px;margin-top:4px;overflow:hidden}
+.bf{height:100%;border-radius:4px;transition:width .5s}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-right:4px}
+.hi{background:#dbeafe;color:#1e40af}
+.mid{background:#fef3c7;color:#92400e}
+.lo{background:#fee2e2;color:#991b1b}
+@media(max-width:600px){.g2{grid-template-columns:1fr}th{width:35%}}
+</style>
+<meta name="description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,用途地域別_建築制限インスタントチェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-8/">
+<meta property="og:title" content="用途地域別_建築制限インスタントチェッカー - kusasyu tools">
+<meta property="og:description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用途地域別_建築制限インスタントチェッカー - kusasyu tools">
+<meta name="twitter:description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "用途地域別_建築制限インスタントチェッカー",
+  "description": "用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&A）とは異なり、質問不要で全",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-8/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">用途地域別_建築制限インスタントチェッカー</span></div>
+<div class="w">
+<h1>&#x1F3D7; 建築制限インスタントチェッカー</h1>
+<p class="sub">用途地域を選ぶだけ。建築制限を20秒で網羅チェック</p>
+<div class="warn">&#x26A0; 建築基準法の標準値に基づく<b>初期スクリーニング専用</b>ツールです。自治体条例・地区計画・特定行政庁の指定値は別途ご確認ください。実際の開発にあたっては必ず所管行政庁への事前確認を行ってください。</div>
+
+<div class="c">
+<h2>&#x1F4CD; 条件入力</h2>
+<label for="zn">用途地域</label>
+<select id="zn"><option value="">-- 用途地域を選択 --</option></select>
+<div class="g2">
+<div><label for="ar">敷地面積（&#x33A1;）</label><input type="number" id="ar" value="200" min="1" step="0.01"></div>
+<div><label for="rd">前面道路幅員（m）</label><input type="number" id="rd" value="6" min="2" max="50" step="0.1"></div>
+</div>
+<button class="btn bp" onclick="run()">&#x1F50D; チェック開始</button>
+</div>
+
+<div id="R">
+<div class="c"><h2>&#x1F4CA; 基本制限値</h2><table><tbody id="t1"></tbody></table></div>
+<div class="c"><h2>&#x1F4D0; 斜線制限・日影・防火</h2><table><tbody id="t2"></tbody></table></div>
+<div class="c"><h2>&#x1F3E2; 建築可能用途</h2><div id="t3"></div></div>
+<div class="c"><h2>&#x1F4D0; 面積シミュレーション</h2><table><tbody id="t4"></tbody></table></div>
+<div class="c">
+<h2>&#x2B50; 開発ポテンシャルスコア</h2>
+<div class="sc"><div class="sb" id="sd"></div><p class="sl" id="st"></p></div>
+<div id="sm"></div>
+</div>
+<button class="btn bg" onclick="csv()">&#x1F4E5; CSVエクスポート（比較シート用）</button>
+</div>
+</div>
+
+<script>
+var Z=[
+{n:"第一種低層住居専用地域",b:60,f:100,h:10,rs:1.25,rm:.4,as:"-（高さ制限で規定）",ns:"5m＋1.25勾配",sh:"1.5m測定面／3h-2h",fp:"法22条区域",u:"1102000100"},
+{n:"第二種低層住居専用地域",b:60,f:150,h:10,rs:1.25,rm:.4,as:"-（高さ制限で規定）",ns:"5m＋1.25勾配",sh:"1.5m測定面／3h-2h",fp:"法22条区域",u:"1122000100"},
+{n:"第一種中高層住居専用地域",b:60,f:200,h:0,rs:1.25,rm:.4,as:"20m＋1.25勾配",ns:"10m＋1.25勾配",sh:"4m測定面／3h-2h",fp:"法22条区域",u:"1121010100"},
+{n:"第二種中高層住居専用地域",b:60,f:200,h:0,rs:1.25,rm:.4,as:"20m＋1.25勾配",ns:"10m＋1.25勾配",sh:"4m測定面／3h-2h",fp:"法22条区域",u:"1112010100"},
+{n:"第一種住居地域",b:60,f:200,h:0,rs:1.25,rm:.4,as:"20m＋1.25勾配",ns:"-",sh:"4m測定面／4h-2.5h",fp:"法22条区域",u:"1111010100"},
+{n:"第二種住居地域",b:60,f:200,h:0,rs:1.25,rm:.4,as:"20m＋1.25勾配",ns:"-",sh:"4m測定面／4h-2.5h",fp:"準防火地域",u:"1111110101"},
+{n:"田園住居地域",b:60,f:100,h:10,rs:1.25,rm:.4,as:"-（高さ制限で規定）",ns:"5m＋1.25勾配",sh:"1.5m測定面／3h-2h",fp:"法22条区域",u:"1122000100"},
+{n:"準住居地域",b:60,f:200,h:0,rs:1.25,rm:.4,as:"20m＋1.25勾配",ns:"-",sh:"4m測定面／4h-2.5h",fp:"準防火地域",u:"1111110111"},
+{n:"近隣商業地域",b:80,f:300,h:0,rs:1.5,rm:.6,as:"31m＋2.5勾配",ns:"-",sh:"条例による",fp:"準防火地域",u:"1111110121"},
+{n:"商業地域",b:80,f:400,h:0,rs:1.5,rm:.6,as:"31m＋2.5勾配",ns:"-",sh:"原則なし",fp:"防火地域",u:"1111110121"},
+{n:"準工業地域",b:60,f:200,h:0,rs:1.5,rm:.6,as:"31m＋2.5勾配",ns:"-",sh:"4m測定面／4h-2.5h",fp:"法22条区域",u:"1111111111"},
+{n:"工業地域",b:60,f:200,h:0,rs:1.5,rm:.6,as:"31m＋2.5勾配",ns:"-",sh:"条例による",fp:"法22条区域",u:"1111100110"},
+{n:"工業専用地域",b:60,f:200,h:0,rs:1.5,rm:.6,as:"31m＋2.5勾配",ns:"-",sh:"条例による",fp:"法22条区域",u:"0001000110"}
+];
+var UN=["住宅","共同住宅","店舗","事務所","ホテル・旅館","病院","学校","工場","倉庫","遊戯施設"];
+var UL=["&#x2705;","&#x274C;","&#x26A0;&#xFE0F; 条件付"];
+var sel=document.getElementById("zn");
+Z.forEach(function(z,i){var o=document.createElement("option");o.value=i;o.textContent=z.n;sel.appendChild(o)});
+var LD=null;
+
+function rw(t,a,b){var r=t.insertRow();var c1=r.insertCell();c1.innerHTML=a;r.insertCell().innerHTML=b}
+
+function run(){
+var zi=sel.value;if(zi==="")return alert("用途地域を選択してください");
+var z=Z[zi],ar=+document.getElementById("ar").value,rd=+document.getElementById("rd").value;
+if(!ar||ar<=0)return alert("敷地面積を正の数で入力してください");
+if(!rd||rd<2)return alert("前面道路幅員を2m以上で入力してください");
+
+var rf=rd*z.rm*100,ef=Math.min(z.f,rf);
+var ba=Math.floor(ar*z.b/100*100)/100,fa=Math.floor(ar*ef/100*100)/100;
+var ml=z.rm===.4?"4/10（住居系）":"6/10（商業・工業系）";
+
+document.getElementById("R").style.display="block";
+["t1","t2","t4"].forEach(function(id){document.getElementById(id).innerHTML=""});
+
+var t1=document.getElementById("t1");
+rw(t1,"用途地域","<b>"+z.n+"</b>");
+rw(t1,"建ぺい率","<b>"+z.b+"%</b>");
+rw(t1,"指定容積率",z.f+"%");
+rw(t1,"道路幅制限容積率",rf.toFixed(0)+"%<span style='font-size:11px;color:#64748b'> （幅員"+rd+"m &times; "+ml+"）</span>");
+var efTag=ef===z.f?"<span class='tag hi'>指定値適用</span>":"<span class='tag mid'>道路幅で制限</span>";
+rw(t1,"<b>実効容積率</b>","<b style='font-size:17px'>"+ef+"%</b> "+efTag);
+rw(t1,"高さ制限",z.h?("<b>"+z.h+"m</b>"):"なし（斜線制限で規定）");
+
+var t2=document.getElementById("t2");
+rw(t2,"道路斜線","勾配 "+z.rs+"（境界から "+rd+"m &times; "+z.rs+" = "+(rd*z.rs).toFixed(1)+"m）");
+rw(t2,"隣地斜線",z.as);
+rw(t2,"北側斜線",z.ns);
+rw(t2,"日影規制",z.sh);
+rw(t2,"防火指定","<b>"+z.fp+"</b>");
+
+var t3=document.getElementById("t3"),ht="<table><tbody>";
+UN.forEach(function(nm,i){
+var v=+z.u[i],cls=v===1?"ok":v===0?"ng":"cd";
+ht+="<tr><th>"+nm+"</th><td class='"+cls+"'>"+UL[v]+"</td></tr>"});
+ht+="</tbody></table>";t3.innerHTML=ht;
+
+var t4=document.getElementById("t4");
+rw(t4,"敷地面積",ar.toLocaleString()+" &#x33A1;");
+rw(t4,"建築面積上限","<b>"+ba.toLocaleString()+" &#x33A1;</b>（敷地 &times; "+z.b+"%）");
+rw(t4,"延床面積上限","<b>"+fa.toLocaleString()+" &#x33A1;</b>（敷地 &times; "+ef+"%）");
+var fl=z.h?Math.floor(z.h/3):Math.min(Math.floor(fa/ba),30);
+var flTxt=z.h?(fl+"階程度（高さ"+z.h+"m &divide; 階高3m）"):(fl+"階程度（容積率から推定／斜線制限要確認）");
+rw(t4,"想定階数目安",flTxt);
+
+var uc=0;for(var i=0;i<10;i++)if(z.u[i]==="1")uc++;
+var raw=Math.min(ef/10,40)+(uc*3)+(z.h>0?5:20);
+var sc=raw<=20?1:raw<=35?2:raw<=50?3:raw<=65?4:5;
+var sLbl=["","開発余地：極めて限定的","開発余地：限定的","開発余地：標準的","開発余地：良好","開発余地：非常に良好"];
+document.getElementById("sd").className="sb s"+sc;
+document.getElementById("sd").textContent=sc;
+document.getElementById("st").textContent=sLbl[sc];
+
+var bars="<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;margin-top:12px'>";
+var farP=Math.min(ef/8,100),useP=uc*10,htP=z.h?30:100;
+bars+="<div>容積率活用度<div class='bar'><div class='bf' style='width:"+farP+"%;background:#3b82f6'></div></div></div>";
+bars+="<div>用途柔軟性<div class='bar'><div class='bf' style='width:"+useP+"%;background:#22c55e'></div></div></div>";
+bars+="<div>高さ自由度<div class='bar'><div class='bf' style='width:"+htP+"%;background:#f59e0b'></div></div></div>";
+bars+="<div>総合<div class='bar'><div class='bf' style='width:"+(sc*20)+"%;background:#8b5cf6'></div></div></div></div>";
+document.getElementById("sm").innerHTML=bars;
+
+LD={zone:z.n,area:ar,road:rd,bcr:z.b,far:z.f,roadFar:rf.toFixed(0),effFar:ef,height:z.h||"なし",
+roadSlope:z.rs,adjSlope:z.as,northSlope:z.ns,shadow:z.sh,fire:z.fp,bArea:ba,fArea:fa,floors:fl,score:sc,
+uses:UN.map(function(nm,i){return nm+":"+["○","×","△"][+z.u[i]]}).join("／")};
+document.getElementById("R").scrollIntoView({behavior:"smooth"})
+}
+
+function csv(){
+if(!LD)return;var d=LD;
+var h="用途地域,敷地面積(㎡),前面道路幅員(m),建ぺい率(%),指定容積率(%),道路幅制限容積率(%),実効容積率(%),高さ制限,道路斜線勾配,隣地斜線,北側斜線,日影規制,防火指定,建築面積上限(㎡),延床面積上限(㎡),想定階数,スコア(5段階),建築可能用途";
+var v=[d.zone,d.area,d.road,d.bcr,d.far,d.roadFar,d.effFar,d.height,d.roadSlope,'"'+d.adjSlope+'"','"'+d.northSlope+'"','"'+d.shadow+'"',d.fire,d.bArea,d.fArea,d.floors,d.score+"/5",'"'+d.uses+'"'].join(",");
+var b=new Blob(["\uFEFF"+h+"\n"+v+"\n"],{type:"text/csv;charset=utf-8"});
+var a=document.createElement("a");a.href=URL.createObjectURL(b);
+a.download="建築制限チェック_"+d.zone+"_"+new Date().toISOString().slice(0,10)+".csv";a.click()}
+</script>
+</body>
+</html>

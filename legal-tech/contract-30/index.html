@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IT業務委託_契約書ドラフトジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0;color:#2d3748;border-bottom:3px solid #3182ce}
+.sub{text-align:center;color:#718096;font-size:.85em;margin:6px 0 18px}
+.step{display:none;background:#fff;border-radius:10px;padding:20px;margin:10px 0;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.step.active{display:block}
+.step h2{font-size:1.05em;color:#2b6cb0;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid #e2e8f0}
+label{display:block;font-weight:600;margin:10px 0 4px;font-size:.9em}
+input[type=text],input[type=number],input[type=date],select,textarea{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em;margin-bottom:4px}
+textarea{height:70px;resize:vertical}
+.radios label{display:inline-block;padding:8px 16px;margin:4px;border:2px solid #cbd5e0;border-radius:6px;cursor:pointer;font-weight:400}
+.radios input:checked+span{color:#2b6cb0;font-weight:700}
+.radios label:has(input:checked){border-color:#3182ce;background:#ebf8ff}
+.radios input{display:none}
+.nav{display:flex;justify-content:space-between;margin-top:14px}
+.btn{padding:10px 24px;border:none;border-radius:6px;font-size:.95em;cursor:pointer;font-weight:600}
+.btn-p{background:#3182ce;color:#fff}.btn-p:hover{background:#2c5282}
+.btn-s{background:#e2e8f0;color:#4a5568}.btn-s:hover{background:#cbd5e0}
+.btn-g{background:#38a169;color:#fff;width:100%;padding:14px;font-size:1.05em}.btn-g:hover{background:#2f855a}
+.progress{background:#e2e8f0;border-radius:99px;height:8px;margin:12px 0}
+.progress-bar{height:100%;background:#3182ce;border-radius:99px;transition:width .3s}
+#result{display:none}
+.risk-score{text-align:center;padding:16px;border-radius:10px;margin:12px 0;font-size:1.1em;font-weight:700}
+.risk-low{background:#c6f6d5;color:#22543d}
+.risk-mid{background:#fefcbf;color:#744210}
+.risk-high{background:#fed7d7;color:#9b2c2c}
+.contract-box{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:18px;white-space:pre-wrap;font-size:.88em;line-height:1.9;max-height:70vh;overflow-y:auto}
+.warn{background:#fff5f5;border-left:4px solid #e53e3e;padding:8px 12px;margin:4px 0;border-radius:0 6px 6px 0;font-size:.82em;color:#c53030}
+.copy-btn{margin:10px 0;padding:12px;width:100%;background:#2d3748;color:#fff;border:none;border-radius:6px;font-size:1em;cursor:pointer;font-weight:600}
+.copy-btn:hover{background:#1a202c}
+.tip{font-size:.8em;color:#718096;margin-top:2px}
+.badge{display:inline-block;font-size:.7em;background:#bee3f8;color:#2a4365;padding:2px 8px;border-radius:99px;margin-left:6px}
+@media(max-width:600px){.wrap{padding:10px}h1{font-size:1.1em}.btn{padding:8px 16px}}
+</style>
+<meta name="description" content="法務部を持たない中小企業が、業種（建設・飲食・IT）と契約種別を選び、15問以内の質問ウィザードに答えるだけで、業法準拠の契約書ドラフトを自動生成するブラウザツール。生成結果には危険条項ハイライトとリスクスコアを表示。LegalOn等の月額数万円サービスと同等の起草機能を無料で提供する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,IT業務委託_契約書ドラフトジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-30/">
+<meta property="og:title" content="IT業務委託_契約書ドラフトジェネレーター - kusasyu tools">
+<meta property="og:description" content="法務部を持たない中小企業が、業種（建設・飲食・IT）と契約種別を選び、15問以内の質問ウィザードに答えるだけで、業法準拠の契約書ドラフトを自動生成するブラウザツール。生成結果には危険条項ハイライトとリスクスコアを表示。LegalOn等の月額数万円サービスと同等の起草機能を無料で提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-30/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IT業務委託_契約書ドラフトジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="法務部を持たない中小企業が、業種（建設・飲食・IT）と契約種別を選び、15問以内の質問ウィザードに答えるだけで、業法準拠の契約書ドラフトを自動生成するブラウザツール。生成結果には危険条項ハイライトとリスクスコアを表示。LegalOn等の月額数万円サービスと同等の起草機能を無料で提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IT業務委託_契約書ドラフトジェネレーター",
+  "description": "法務部を持たない中小企業が、業種（建設・飲食・IT）と契約種別を選び、15問以内の質問ウィザードに答えるだけで、業法準拠の契約書ドラフトを自動生成するブラウザツール。生成結果には危険条項ハイライトとリスクスコアを表示。LegalOn等の月額数万円サービスと同等の起草機能を無料で提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-30/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">IT業務委託_契約書ドラフトジェネレーター</span></div>
+<div class="wrap">
+<h1>IT業務委託 契約書ドラフトジェネレーター</h1>
+<p class="sub">10問に答えるだけで業法準拠の契約書を自動生成<span class="badge">無料</span></p>
+<div class="progress"><div class="progress-bar" id="pb" style="width:10%"></div></div>
+<div id="steps">
+<div class="step active" data-s="0">
+<h2>Q1. 契約類型</h2>
+<p class="tip">成果物の納品がある場合は「請負」、稼働時間ベースは「準委任」</p>
+<div class="radios"><label><input type="radio" name="ctype" value="準委任" checked><span>準委任契約</span></label><label><input type="radio" name="ctype" value="請負"><span>請負契約</span></label></div>
+</div>
+<div class="step" data-s="1">
+<h2>Q2. 委託業務の内容</h2>
+<textarea id="q_work" placeholder="例：Webアプリケーションの設計・開発・テスト">Webアプリケーションの設計・開発・テスト</textarea>
+</div>
+<div class="step" data-s="2">
+<h2>Q3. 報酬額（税別・月額/総額）</h2>
+<label>金額（円）</label><input type="number" id="q_price" value="500000" min="0">
+<div class="radios" style="margin-top:6px"><label><input type="radio" name="punit" value="月額" checked><span>月額</span></label><label><input type="radio" name="punit" value="総額"><span>総額</span></label></div>
+</div>
+<div class="step" data-s="3">
+<h2>Q4. 支払条件</h2>
+<select id="q_pay"><option>月末締め翌月末払い</option><option>月末締め翌々月末払い</option><option>納品検収後30日以内</option><option>納品検収後60日以内</option></select>
+</div>
+<div class="step" data-s="4">
+<h2>Q5. 契約期間</h2>
+<label>開始日</label><input type="date" id="q_from">
+<label>終了日</label><input type="date" id="q_to">
+</div>
+<div class="step" data-s="5">
+<h2>Q6. 納品物・成果物</h2>
+<textarea id="q_deliv" placeholder="例：ソースコード一式、設計書、テスト報告書">ソースコード一式、設計書、テスト報告書</textarea>
+</div>
+<div class="step" data-s="6">
+<h2>Q7. 著作権の帰属</h2>
+<div class="radios"><label><input type="radio" name="copy" value="甲"><span>甲（発注者）に帰属</span></label><label><input type="radio" name="copy" value="乙" checked><span>乙（受注者）に帰属し甲に利用許諾</span></label><label><input type="radio" name="copy" value="共有"><span>甲乙共有</span></label></div>
+</div>
+<div class="step" data-s="7">
+<h2>Q8. 秘密保持期間</h2>
+<select id="q_nda"><option value="1">契約終了後1年</option><option value="2">契約終了後2年</option><option value="3" selected>契約終了後3年</option><option value="5">契約終了後5年</option></select>
+</div>
+<div class="step" data-s="8">
+<h2>Q9. 瑕疵担保（契約不適合）責任期間</h2>
+<select id="q_warranty"><option value="3">検収後3ヶ月</option><option value="6" selected>検収後6ヶ月</option><option value="12">検収後1年</option><option value="0">無制限</option></select>
+</div>
+<div class="step" data-s="9">
+<h2>Q10. 損害賠償の上限</h2>
+<select id="q_dmg"><option value="fee">報酬額を上限</option><option value="direct">直接損害に限定（報酬額上限）</option><option value="none">上限なし</option></select>
+</div>
+</div>
+<div class="nav">
+<button class="btn btn-s" id="prevBtn" onclick="go(-1)" style="visibility:hidden">戻る</button>
+<button class="btn btn-p" id="nextBtn" onclick="go(1)">次へ</button>
+</div>
+<div id="genWrap" style="display:none"><button class="btn btn-g" onclick="generate()">契約書を生成する</button></div>
+<div id="result">
+<div class="risk-score" id="riskBox"></div>
+<div id="warnings"></div>
+<button class="copy-btn" onclick="copyDraft()">契約書テキストをコピー</button>
+<div class="contract-box" id="draft"></div>
+<button class="copy-btn" onclick="copyDraft()">契約書テキストをコピー</button>
+</div>
+</div>
+<script>
+let cur=0;const total=10;
+const today=new Date(),y=today.getFullYear(),m=String(today.getMonth()+1).padStart(2,'0'),d=String(today.getDate()).padStart(2,'0');
+document.getElementById('q_from').value=`${y}-${m}-${d}`;
+const ed=new Date(today);ed.setFullYear(ed.getFullYear()+1);
+document.getElementById('q_to').value=`${ed.getFullYear()}-${String(ed.getMonth()+1).padStart(2,'0')}-${String(ed.getDate()).padStart(2,'0')}`;
+function go(d){const steps=document.querySelectorAll('.step');steps[cur].classList.remove('active');cur+=d;steps[cur].classList.add('active');document.getElementById('pb').style.width=((cur+1)/total*100)+'%';document.getElementById('prevBtn').style.visibility=cur===0?'hidden':'visible';document.getElementById('nextBtn').style.display=cur===total-1?'none':'inline-block';document.getElementById('genWrap').style.display=cur===total-1?'block':'none';}
+function v(name){const r=document.querySelector(`input[name="${name}"]:checked`);return r?r.value:'';}
+function generate(){
+const ct=v('ctype'),work=document.getElementById('q_work').value||'業務委託業務',
+price=parseInt(document.getElementById('q_price').value)||0,
+punit=v('punit'),pay=document.getElementById('q_pay').value,
+dfrom=document.getElementById('q_from').value,dto=document.getElementById('q_to').value,
+deliv=document.getElementById('q_deliv').value||'成果物一式',
+copy=v('copy'),nda=document.getElementById('q_nda').value,
+warr=document.getElementById('q_warranty').value,
+dmg=document.getElementById('q_dmg').value;
+let risks=[],score=0;
+if(price<200000&&punit==='月額'){risks.push('報酬額が月額20万円未満です。下請法上の「買いたたき」に該当するおそれがあります（下請法第4条第1項第5号）。市場相場を確認してください。');score+=30;}
+if(pay.includes('翌々月')||pay.includes('60日')){risks.push('支払サイトが60日を超えています。下請法では受領日から60日以内の支払いが義務付けられています（下請法第4条第1項第2号）。');score+=25;}
+if(copy==='甲'){risks.push('著作権を甲に全面譲渡する設定です。乙に著作者人格権の不行使特約を含むと、受注者に極めて不利です。利用許諾方式への変更を検討してください。');score+=20;}
+if(warr==='0'){risks.push('瑕疵担保責任期間が無制限です。受注者に過大なリスクが生じます。民法改正後の標準は「知った時から1年」です。');score+=25;}
+if(dmg==='none'){risks.push('損害賠償上限が設定されていません。報酬額を上限とするのが業界標準です。');score+=20;}
+if(ct==='準委任'&&deliv.length>5){risks.push('準委任契約で詳細な納品物を定義しています。成果完成義務がない準委任の性質と矛盾する可能性があります。');}
+const fmtP=price.toLocaleString();
+const copyText=copy==='甲'?'本契約に基づき乙が作成した成果物の著作権（著作権法第27条及び第28条の権利を含む）は、報酬の支払い完了をもって甲に移転する。':copy==='乙'?'本契約に基づき乙が作成した成果物の著作権は乙に帰属する。甲は本契約の目的の範囲内で当該成果物を使用する権利を有する。':'本契約に基づき乙が作成した成果物の著作権は甲乙の共有とし、持分は均等とする。';
+const warrText=warr==='0'?'瑕疵担保責任の期間に制限を設けない':warr==='3'?'検収完了後3ヶ月間':warr==='6'?'検収完了後6ヶ月間':'検収完了後1年間';
+const dmgText=dmg==='fee'?'本契約に関し甲又は乙が相手方に損害を与えた場合、その賠償額は本契約に基づく報酬総額を上限とする。':dmg==='direct'?'損害賠償の範囲は直接かつ現実に生じた通常損害に限り、報酬総額を上限とする。逸失利益は含まない。':'本契約に関し甲又は乙が相手方に損害を与えた場合、その一切の損害を賠償する。';
+const fD=dfrom.replace(/-/g,'/'),tD=dto.replace(/-/g,'/');
+const draft=`${ct}契約書
+
+甲（委託者）：＿＿＿＿＿＿＿（以下「甲」という）
+乙（受託者）：＿＿＿＿＿＿＿（以下「乙」という）
+
+甲と乙は、以下のとおり${ct}契約（以下「本契約」という）を締結する。
+
+第1条（目的）
+甲は乙に対し、以下の業務（以下「本業務」という）を委託し、乙はこれを受託する。
+
+第2条（業務内容）
+${work}
+
+第3条（契約期間）
+本契約の有効期間は${fD}から${tD}までとする。
+ただし、期間満了の30日前までに甲乙いずれからも書面による解約の申入れがないときは、同一条件でさらに1年間更新されるものとし、以降も同様とする。
+
+第4条（報酬）
+甲は乙に対し、本業務の対価として${punit}${fmtP}円（税別）を支払う。
+支払条件：${pay}
+
+第5条（${ct==='請負'?'納品及び検収':'業務報告'}）
+${ct==='請負'?`乙は以下の納品物を甲に納品するものとする。\n納品物：${deliv}\n甲は納品後10営業日以内に検収を行い、合否を乙に通知する。甲が期間内に通知しない場合、検収に合格したものとみなす。`:`乙は毎月末日までに当月の業務報告書を甲に提出する。報告書には稼働時間及び業務内容を記載する。`}
+
+第6条（著作権）
+${copyText}
+
+第7条（秘密保持）
+甲及び乙は、本契約に関連して知り得た相手方の技術上又は営業上の秘密情報を、相手方の書面による承諾なく第三者に開示又は漏洩してはならない。この義務は本契約終了後${nda}年間存続する。
+
+第8条（${ct==='請負'?'契約不適合責任':'善管注意義務'}）
+${ct==='請負'?`納品物に契約不適合がある場合、乙は${warrText}、無償で修補又は代替物の引渡しを行う。`:`乙は善良なる管理者の注意をもって本業務を遂行する。`}
+
+第9条（損害賠償）
+${dmgText}
+
+第10条（再委託の禁止）
+乙は甲の書面による事前承諾なく、本業務の全部又は一部を第三者に再委託してはならない。
+
+第11条（反社会的勢力の排除）
+甲及び乙は、自ら又はその役員が反社会的勢力に該当しないことを表明し、将来にわたっても該当しないことを保証する。
+
+第12条（解除）
+甲又は乙は、相手方が本契約に違反し、14日以上の期間を定めた催告後もなお是正されない場合、本契約を解除できる。
+
+第13条（協議事項）
+本契約に定めのない事項又は疑義が生じた場合は、甲乙誠意をもって協議し解決する。
+
+第14条（管轄裁判所）
+本契約に関する紛争は、甲の本店所在地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とする。
+
+本契約締結の証として、本書2通を作成し、甲乙記名押印の上各1通を保有する。
+
+${y}年　　月　　日
+
+甲：
+住所：
+氏名：　　　　　　　　　　　　　　印
+
+乙：
+住所：
+氏名：　　　　　　　　　　　　　　印`;
+let lv='low',lt='リスク低';
+if(score>=50){lv='high';lt='リスク高';}else if(score>=20){lv='mid';lt='リスク中';}
+document.getElementById('riskBox').className='risk-score risk-'+lv;
+document.getElementById('riskBox').innerHTML=`リスクスコア：${score}点／100点（${lt}）`;
+let whtml='';risks.forEach(r=>{whtml+=`<div class="warn">⚠ ${r}</div>`;});
+document.getElementById('warnings').innerHTML=whtml;
+document.getElementById('draft').textContent=draft;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function copyDraft(){const t=document.getElementById('draft').textContent;navigator.clipboard.writeText(t).then(()=>{const b=event.target;b.textContent='コピーしました！';setTimeout(()=>{b.textContent='契約書テキストをコピー';},1500);});}
+</script>
+</body>
+</html>

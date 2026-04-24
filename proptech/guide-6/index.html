@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用途地域13種の建築制限_完全早見ガイド - kusasyu tools</title>
+<meta name="description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,用途地域13種の建築制限_完全早見ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-6/">
+<meta property="og:title" content="用途地域13種の建築制限_完全早見ガイド - kusasyu tools">
+<meta property="og:description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用途地域13種の建築制限_完全早見ガイド - kusasyu tools">
+<meta name="twitter:description" content="用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&amp;A）とは異なり、質問不要で全">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "用途地域13種の建築制限_完全早見ガイド",
+  "description": "用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&A）とは異なり、質問不要で全",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/guide-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>用途地域13種の建築制限_完全早見ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>用途地域13種の建築制限_完全早見ガイド</h1>
+  <p class="project-name">土地仕入れの建築制限、20秒で丸わかりチェッカー</p>
+  <div class="content">
+<h1>用途地域13種の建築制限 完全早見ガイド</h1>
+<blockquote>
+<p><strong>本記事の位置づけ</strong>：当社の「用途地域判定ツール」で判定結果が出た後、具体的に何が建てられるのかを確認するための補完資料です。ツールで地域種別を特定 → 本ガイドで詳細制限を確認、という流れでご活用ください。</p>
+</blockquote>
+<hr />
+<h2>1. 用途地域13種 一覧と基本数値</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>用途地域</th>
+<th>建ぺい率</th>
+<th>容積率</th>
+<th>高さ制限</th>
+<th>主な街のイメージ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>第一種低層住居専用</td>
+<td>30〜60%</td>
+<td>50〜200%</td>
+<td>10m or 12m</td>
+<td>閑静な戸建て住宅街</td>
+</tr>
+<tr>
+<td>2</td>
+<td>第二種低層住居専用</td>
+<td>30〜60%</td>
+<td>50〜200%</td>
+<td>10m or 12m</td>
+<td>小規模店舗が混在する住宅街</td>
+</tr>
+<tr>
+<td>3</td>
+<td>第一種中高層住居専用</td>
+<td>30〜60%</td>
+<td>100〜500%</td>
+<td>なし（斜線制限あり）</td>
+<td>マンション中心の住宅地</td>
+</tr>
+<tr>
+<td>4</td>
+<td>第二種中高層住居専用</td>
+<td>30〜60%</td>
+<td>100〜500%</td>
+<td>なし</td>
+<td>中規模店舗もある住宅地</td>
+</tr>
+<tr>
+<td>5</td>
+<td>第一種住居地域</td>
+<td>50〜80%</td>
+<td>100〜500%</td>
+<td>なし</td>
+<td>幹線道路沿いの住宅地</td>
+</tr>
+<tr>
+<td>6</td>
+<td>第二種住居地域</td>
+<td>50〜80%</td>
+<td>100〜500%</td>
+<td>なし</td>
+<td>パチンコ店等もある住宅地</td>
+</tr>
+<tr>
+<td>7</td>
+<td>準住居地域</td>
+<td>50〜80%</td>
+<td>100〜500%</td>
+<td>なし</td>
+<td>幹線道路沿い・車関連施設</td>
+</tr>
+<tr>
+<td>8</td>
+<td>田園住居地域</td>
+<td>30〜60%</td>
+<td>50〜200%</td>
+<td>10m or 12m</td>
+<td>農地と住宅の共存エリア</td>
+</tr>
+<tr>
+<td>9</td>
+<td>近隣商業地域</td>
+<td>60〜80%</td>
+<td>100〜500%</td>
+<td>なし</td>
+<td>駅前商店街</td>
+</tr>
+<tr>
+<td>10</td>
+<td>商業地域</td>
+<td>80%</td>
+<td>200〜1300%</td>
+<td>なし</td>
+<td>都心の繁華街・オフィス街</td>
+</tr>
+<tr>
+<td>11</td>
+<td>準工業地域</td>
+<td>50〜80%</td>
+<td>100〜500%</td>
+<td>なし</td>
+<td>町工場と住宅の混在エリア</td>
+</tr>
+<tr>
+<td>12</td>
+<td>工業地域</td>
+<td>50〜60%</td>
+<td>100〜400%</td>
+<td>なし</td>
+<td>工場中心だが住宅も可</td>
+</tr>
+<tr>
+<td>13</td>
+<td>工業専用地域</td>
+<td>30〜60%</td>
+<td>100〜400%</td>
+<td>なし</td>
+<td>工場のみ。住宅不可</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 建てられるもの・建てられないもの 早見表</h2>
+<p><strong>凡例：○＝建築可　△＝条件付き可　×＝不可</strong></p>
+<table>
+<thead>
+<tr>
+<th>建物用途</th>
+<th>1低</th>
+<th>2低</th>
+<th>1中</th>
+<th>2中</th>
+<th>1住</th>
+<th>2住</th>
+<th>準住</th>
+<th>田園</th>
+<th>近商</th>
+<th>商業</th>
+<th>準工</th>
+<th>工業</th>
+<th>工専</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>戸建住宅</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+</tr>
+<tr>
+<td>共同住宅</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+</tr>
+<tr>
+<td>小規模店舗（150㎡以下）</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>△</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+</tr>
+<tr>
+<td>中規模店舗（500㎡超）</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+</tr>
+<tr>
+<td>大型商業施設（1万㎡超）</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>△</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>事務所</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>△</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>ホテル・旅館</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>△</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>カラオケ・パチンコ</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>病院</td>
+<td>×</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>小中学校</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>大学・専門学校</td>
+<td>×</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+</tr>
+<tr>
+<td>工場（50㎡以下）</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>△</td>
+<td>△</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>工場（危険性大）</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>倉庫業倉庫</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>○</td>
+<td>×</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>よくある誤解</strong>：「工業地域には住宅が建てられない」→ 実は建築可能。住宅が建てられないのは「工業<strong>専用</strong>地域」だけです。</p>
+</blockquote>
+<hr />
+<h2>3. 実務の落とし穴 4選</h2>
+<h3>落とし穴①：日影規制の「対象外」条件</h3>
+<p>日影規制は全ての用途地域に一律適用されるわけではありません。</p>
+<ul>
+<li><strong>商業地域・工業地域・工業専用地域</strong>は原則として日影規制の対象外</li>
+<li>ただし、これらの地域内の建物が<strong>隣接する住居系地域に影を落とす場合</strong>は規制がかかる</li>
+<li>第一種・第二種低層住居専用地域では<strong>軒高7m超または3階建て以上</strong>が規制対象</li>
+</ul>
+<p><strong>実務ポイント</strong>：商業地域の案件でも、敷地の北側に住居系地域が隣接していれば日影規制の検討が必須です。</p>
+<h3>落とし穴②：角地緩和の適用条件</h3>
+<p>「角地なら建ぺい率+10%」は自動適用ではありません。</p>
+<ul>
+<li>各特定行政庁が条例で<strong>角地の定義（2辺の道路幅員・角度等）を個別に規定</strong></li>
+<li>東京23区でも区ごとに条件が異なる</li>
+<li>建ぺい率80%の防火地域内の耐火建築物は<strong>さらに+10%</strong>で、角地と合わせると<strong>100%（制限なし）</strong>になるケースも</li>
+</ul>
+<p><strong>確認先</strong>：敷地所在地の特定行政庁（市区町村の建築指導課）に必ず事前相談してください。</p>
+<h3>落とし穴③：前面道路幅員による容積率ダウン</h3>
+<p>都市計画で「容積率300%」と指定されていても、前面道路の幅員が狭いと<strong>実際に使える容積率が下がります</strong>。</p>
+<p><strong>計算式</strong>：前面道路幅員（m）× 法定乗数</p>
+<table>
+<thead>
+<tr>
+<th>用途地域の分類</th>
+<th>法定乗数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>住居系（1低〜準住・田園）</td>
+<td>4/10（0.4）</td>
+</tr>
+<tr>
+<td>その他（近商〜工専）</td>
+<td>6/10（0.6）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>具体例</strong>：第一種住居地域、指定容積率300%、前面道路幅員6mの場合</p>
+<ul>
+<li>道路幅員による容積率：6m × 0.4 = <strong>240%</strong></li>
+<li>指定容積率：300%</li>
+<li>適用される容積率：<strong>240%</strong>（小さい方を採用）</li>
+</ul>
+<p>この「道路容積率」の存在を知らずに事業計画を立て、延床面積が想定より大幅に縮小するケースは頻発しています。</p>
+<h3>落とし穴④：地区計画による上乗せ規制</h3>
+<p>用途地域の制限に加え、<strong>地区計画</strong>によって追加の規制がかかっている場合があります。</p>
+<ul>
+<li>建物の<strong>用途・高さ・壁面後退・色彩・屋根形状</strong>まで細かく制限されるケースがある</li>
+<li>用途地域上は建築可能でも、地区計画で禁止されている建物用途がある</li>
+<li>地区計画は都市計画図には表示されないことが多い</li>
+</ul>
+<p><strong>確認先</strong>：
+1. 市区町村の<strong>都市計画課</strong>で地区計画の有無を確認
+2. 該当する場合は<strong>地区計画の「地区整備計画」</strong>の内容を取り寄せる
+3. 自治体のWebサイトで公開されている場合もあるが、<strong>最新版かどうか必ず窓口に確認</strong></p>
+<hr />
+<h2>4. 用途地域の調べ方</h2>
+<ol>
+<li><strong>自治体の都市計画情報サービス</strong>（Web公開マップ）で概要を確認</li>
+<li><strong>当社の用途地域判定ツール</strong>で地域種別を素早く特定</li>
+<li><strong>本ガイドの早見表</strong>で建築可否と制限値を確認</li>
+<li><strong>役所の建築指導課</strong>で地区計画・条例等の上乗せ規制を最終確認</li>
+</ol>
+<blockquote>
+<p>不動産取引・建築計画の際は、Web情報だけで判断せず、必ず管轄の行政窓口で最終確認を行ってください。用途地域の境界線上に位置する敷地や、都市計画変更の予定がある地域では特に注意が必要です。</p>
+</blockquote>
+<hr />
+<p><strong>Kusasyu PropTech</strong> — 不動産実務を、もっとシンプルに。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

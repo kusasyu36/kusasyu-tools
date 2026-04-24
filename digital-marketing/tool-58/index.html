@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>クリエイティブA_Bテスト統計分析ダッシュボード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:13px/1.6 system-ui,sans-serif;background:#0d0d1a;color:#e0e0e0;padding:12px}
+.w{max-width:1000px;margin:0 auto}
+h1{font-size:18px;text-align:center;padding:16px 0 2px;background:linear-gradient(90deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;font-size:10px;color:#888;margin-bottom:16px}
+.link{text-align:center;font-size:10px;color:#666;margin-bottom:12px}
+.box{background:#161628;border-radius:10px;padding:16px;margin-bottom:14px}
+.box h2{font-size:14px;margin-bottom:10px;color:#f09433}
+label{font-size:11px;color:#aaa;display:block;margin-bottom:3px}
+input[type=file]{width:100%;padding:8px;background:#1e1e36;border:1px solid #333;border-radius:6px;color:#ccc;font-size:12px;margin-bottom:8px}
+.btn{padding:10px 20px;border:none;border-radius:6px;background:linear-gradient(135deg,#f09433,#dc2743);color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin-right:6px;margin-bottom:6px}
+.btn:hover{opacity:.85}
+.btn2{background:#2a2a4a;border:1px solid #444}
+.btn2:hover{background:#3a3a5a}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+th,td{padding:6px 8px;border:1px solid #252540;text-align:center}
+th{background:#1a1a30;color:#aaa;font-size:10px}
+.win{color:#4caf50;font-weight:700}
+.lose{color:#ef5350;font-weight:700}
+.draw{color:#ffa726}
+.warn{background:#2a2000;border:1px solid #665500;border-radius:6px;padding:8px;margin:8px 0;font-size:11px;color:#ffcc00}
+.sig{color:#4caf50}
+.nsig{color:#ef5350}
+canvas{width:100%;height:220px;display:block;margin:8px 0;border-radius:6px}
+.hm{display:grid;gap:2px;margin:8px 0}
+.hm div{padding:6px 4px;border-radius:4px;text-align:center;font-size:10px;font-weight:700}
+.diag{background:#1a1a30;border-radius:6px;padding:10px;margin:6px 0;border-left:3px solid #dc2743;font-size:12px}
+.diag b{color:#f09433}
+.flex{display:flex;gap:8px;flex-wrap:wrap}
+.half{flex:1;min-width:280px}
+#res{display:none}
+.fmt{background:#1e1e36;border-radius:6px;padding:10px;font-size:11px;color:#aaa;margin:8px 0;font-family:monospace;white-space:pre-wrap}
+@media(max-width:600px){.flex{flex-direction:column}.half{min-width:100%}}
+</style>
+<meta name="description" content="SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,クリエイティブA_Bテスト統計分析ダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-58/">
+<meta property="og:title" content="クリエイティブA_Bテスト統計分析ダッシュボード - kusasyu tools">
+<meta property="og:description" content="SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-58/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="クリエイティブA_Bテスト統計分析ダッシュボード - kusasyu tools">
+<meta name="twitter:description" content="SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "クリエイティブA_Bテスト統計分析ダッシュボード",
+  "description": "SNS縦型動画広告（Instagram Reels/TikTok/LINE VOOM）のクリエイティブ構成をAIで自動生成し、ターゲット属性別にA/Bテスト用バリエーションを一括出力するツールキット。ブランドガイドライン・商品情報・ターゲットを入力すると、15秒/30秒の動画ストーリーボード（シーン構成・コピ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-58/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">クリエイティブA_Bテスト統計分析ダッシュボード</span></div>
+<div class="w">
+<h1>クリエイティブA/Bテスト 統計分析ダッシュボード</h1>
+<p class="sub">「SNS縦型動画広告 ストーリーボード自動設計ツール」連携対応</p>
+<p class="link">ストーリーボード番号（SB-XX）で生成パターンと紐付け可能</p>
+
+<div class="box">
+<h2>CSVデータ読み込み</h2>
+<label>広告プラットフォームからエクスポートしたCSVを選択</label>
+<input type="file" id="csvFile" accept=".csv">
+<div class="fmt">creative_id,segment,impressions,clicks,conversions,cost
+SB-01-A,F25-34,12000,480,24,96000
+SB-01-B,F25-34,11500,345,15,92000
+...</div>
+<button class="btn btn2" onclick="loadSample()">サンプルデータで試す</button>
+<button class="btn" onclick="analyze()">分析実行</button>
+</div>
+
+<div id="res">
+<div class="flex">
+<div class="half box">
+<h2>クリエイティブ別パフォーマンス</h2>
+<canvas id="barChart"></canvas>
+<div id="barLegend" style="font-size:10px;color:#aaa;text-align:center"></div>
+</div>
+<div class="half box">
+<h2>セグメント×クリエイティブ ヒートマップ（CVR%）</h2>
+<div id="heatmap"></div>
+</div>
+</div>
+
+<div class="box">
+<h2>統計的有意差検定（カイ二乗検定）</h2>
+<div id="chiRes"></div>
+</div>
+
+<div class="box">
+<h2>セグメント別ROI・WIN/LOSE判定</h2>
+<table><thead><tr><th>セグメント</th><th>クリエイティブ</th><th>CTR%</th><th>CVR%</th><th>CPA</th><th>ROI指数</th><th>判定</th></tr></thead><tbody id="roiBody"></tbody></table>
+</div>
+
+<div class="box">
+<h2>パターン診断（ルールベース）</h2>
+<div id="diagBox"></div>
+</div>
+
+<div class="box" style="text-align:center">
+<button class="btn" onclick="exportCSV()">分析結果をCSVエクスポート</button>
+</div>
+</div>
+</div>
+
+<script>
+var D=[],R=[];
+function loadSample(){
+var csv=`creative_id,segment,impressions,clicks,conversions,cost
+SB-01-A,F25-34,12000,480,24,96000
+SB-01-B,F25-34,11500,345,15,92000
+SB-01-A,M25-34,9800,392,18,78400
+SB-01-B,M25-34,10200,357,12,81600
+SB-02-A,F25-34,13000,650,35,104000
+SB-02-B,F25-34,12800,512,22,102400
+SB-02-A,M25-34,8500,340,14,68000
+SB-02-B,M25-34,8800,264,9,70400
+SB-01-A,F35-44,7500,300,16,60000
+SB-01-B,F35-44,7200,216,8,57600
+SB-02-A,F35-44,8000,400,20,64000
+SB-02-B,F35-44,7800,312,13,62400`;
+D=parseCSV(csv);analyze();}
+
+document.getElementById('csvFile').onchange=function(e){
+var r=new FileReader();
+r.onload=function(ev){D=parseCSV(ev.target.result);};
+r.readAsText(e.target.files[0]);};
+
+function parseCSV(t){
+var lines=t.trim().split('\n'),h=lines[0].split(','),res=[];
+for(var i=1;i<lines.length;i++){var v=lines[i].split(','),o={};
+for(var j=0;j<h.length;j++)o[h[j].trim()]=v[j]?v[j].trim():'';
+if(o.impressions)res.push({id:o.creative_id||'',seg:o.segment||'',imp:+o.impressions||0,clk:+o.clicks||0,cv:+o.conversions||0,cost:+o.cost||0});}
+return res;}
+
+function analyze(){
+if(!D.length){alert('CSVデータを読み込んでください');return;}
+document.getElementById('res').style.display='block';
+R=[];
+var ids=[...new Set(D.map(d=>d.id))],segs=[...new Set(D.map(d=>d.seg))];
+var agg={};
+D.forEach(d=>{var k=d.id;if(!agg[k])agg[k]={imp:0,clk:0,cv:0,cost:0};agg[k].imp+=d.imp;agg[k].clk+=d.clk;agg[k].cv+=d.cv;agg[k].cost+=d.cost;});
+drawBar(ids,agg);drawHeat(ids,segs);chiTest(ids,segs);roiTable(ids,segs);diagnose(ids,segs);}
+
+function drawBar(ids,agg){
+var c=document.getElementById('barChart'),ctx=c.getContext('2d');
+c.width=c.offsetWidth;c.height=220;
+ctx.clearRect(0,0,c.width,c.height);
+var n=ids.length,bw=Math.min(60,((c.width-80)/n-20)/2),maxCTR=0,maxCVR=0;
+var data=ids.map(id=>{var a=agg[id],ctr=a.imp?a.clk/a.imp*100:0,cvr=a.clk?a.cv/a.clk*100:0;
+if(ctr>maxCTR)maxCTR=ctr;if(cvr>maxCVR)maxCVR=cvr;return{id,ctr,cvr};});
+maxCTR=Math.ceil(maxCTR*1.3)||1;maxCVR=Math.ceil(maxCVR*1.3)||1;
+var h=170,left=50,gap=(c.width-left-20)/n;
+ctx.fillStyle='#aaa';ctx.font='10px sans-serif';
+for(var i=0;i<=4;i++){var y=20+h-h*(i/4);ctx.fillText((maxCTR*i/4).toFixed(1)+'%',2,y+3);ctx.strokeStyle='#252540';ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(c.width-10,y);ctx.stroke();}
+data.forEach((d,i)=>{var x=left+gap*i+gap/2;
+var h1=d.ctr/maxCTR*h,h2=d.cvr/maxCTR*h;
+ctx.fillStyle='#f09433';ctx.fillRect(x-bw-1,20+h-h1,bw,h1);
+ctx.fillStyle='#dc2743';ctx.fillRect(x+1,20+h-h2,bw,h2);
+ctx.fillStyle='#ccc';ctx.font='10px sans-serif';ctx.textAlign='center';
+ctx.fillText(d.id,x,20+h+14);});
+document.getElementById('barLegend').innerHTML='<span style="color:#f09433">■ CTR%</span>　<span style="color:#dc2743">■ CVR%</span>';}
+
+function drawHeat(ids,segs){
+var el=document.getElementById('heatmap');el.innerHTML='';
+var cols=ids.length+1;el.style.gridTemplateColumns='80px repeat('+(cols-1)+',1fr)';
+el.innerHTML+='<div style="background:#1a1a30"></div>';
+ids.forEach(id=>{el.innerHTML+='<div style="background:#1a1a30;font-size:10px;color:#aaa">'+id+'</div>';});
+segs.forEach(seg=>{el.innerHTML+='<div style="background:#1a1a30;font-size:10px;color:#aaa">'+seg+'</div>';
+ids.forEach(id=>{var r=D.filter(d=>d.id===id&&d.seg===seg);
+var clk=r.reduce((s,d)=>s+d.clk,0),cv=r.reduce((s,d)=>s+d.cv,0);
+var cvr=clk?cv/clk*100:0;var g=Math.min(255,Math.round(cvr*35));
+el.innerHTML+='<div style="background:rgba('+g+','+(g>100?200:80)+',50,0.7)">'+cvr.toFixed(1)+'%</div>';});});}
+
+function chiTest(ids,segs){
+var el=document.getElementById('chiRes');el.innerHTML='';
+var pairs=[];
+for(var i=0;i<ids.length;i++)for(var j=i+1;j<ids.length;j++)pairs.push([ids[i],ids[j]]);
+pairs.forEach(p=>{
+segs.forEach(seg=>{
+var a=D.filter(d=>d.id===p[0]&&d.seg===seg),b=D.filter(d=>d.id===p[1]&&d.seg===seg);
+var aClk=a.reduce((s,d)=>s+d.clk,0),aImp=a.reduce((s,d)=>s+d.imp,0);
+var bClk=b.reduce((s,d)=>s+d.clk,0),bImp=b.reduce((s,d)=>s+d.imp,0);
+var aNc=aImp-aClk,bNc=bImp-bClk,T=aImp+bImp,tc=aClk+bClk,tn=aNc+bNc;
+if(T<100){el.innerHTML+='<div class="warn">⚠ '+p[0]+' vs '+p[1]+'（'+seg+'）: サンプルサイズ不足（n='+T+'）。最低1,000以上を推奨</div>';return;}
+var e=[tc*aImp/T,tn*aImp/T,tc*bImp/T,tn*bImp/T];
+var o=[aClk,aNc,bClk,bNc];
+var chi=o.reduce((s,v,i)=>s+Math.pow(v-e[i],2)/e[i],0);
+var sig=chi>3.841;
+var ctrA=(aImp?aClk/aImp*100:0).toFixed(2),ctrB=(bImp?bClk/bImp*100:0).toFixed(2);
+el.innerHTML+='<div style="margin:4px 0;font-size:12px"><b>'+p[0]+' vs '+p[1]+'</b>（'+seg+'）CTR '+ctrA+'% vs '+ctrB+'% ― χ²='+chi.toFixed(2)+' → <span class="'+(sig?'sig':'nsig')+'">'+(sig?'有意差あり（p<0.05）✓':'有意差なし（p≥0.05）')+'</span>'+(T<1000?' <span style="color:#ffcc00">⚠ n='+T+'</span>':'')+'</div>';});});}
+
+function roiTable(ids,segs){
+var tb=document.getElementById('roiBody');tb.innerHTML='';R=[];
+segs.forEach(seg=>{var best={roi:-1,id:''};
+var rows=ids.map(id=>{
+var r=D.filter(d=>d.id===id&&d.seg===seg);
+var imp=r.reduce((s,d)=>s+d.imp,0),clk=r.reduce((s,d)=>s+d.clk,0),cv=r.reduce((s,d)=>s+d.cv,0),cost=r.reduce((s,d)=>s+d.cost,0);
+var ctr=imp?clk/imp*100:0,cvr=clk?cv/clk*100:0,cpa=cv?cost/cv:0,roi=cost?cv/cost*100000:0;
+if(roi>best.roi){best.roi=roi;best.id=id;}
+return{id,seg,ctr,cvr,cpa,roi};});
+rows.forEach(r=>{r.judge=r.id===best.id?'WIN':'LOSE';if(rows.length<2)r.judge='-';
+if(rows.filter(x=>x.roi===r.roi).length>1&&r.judge==='WIN')r.judge='DRAW';
+R.push(r);
+tb.innerHTML+='<tr><td>'+r.seg+'</td><td>'+r.id+'</td><td>'+r.ctr.toFixed(2)+'</td><td>'+r.cvr.toFixed(2)+'</td><td>¥'+Math.round(r.cpa).toLocaleString()+'</td><td>'+r.roi.toFixed(1)+'</td><td class="'+(r.judge==='WIN'?'win':r.judge==='LOSE'?'lose':'draw')+'">'+r.judge+'</td></tr>';});});}
+
+function diagnose(ids,segs){
+var el=document.getElementById('diagBox');el.innerHTML='';var tips=[];
+segs.forEach(seg=>{
+var rows=R.filter(r=>r.seg===seg);if(rows.length<2)return;
+rows.sort((a,b)=>b.roi-a.roi);var top=rows[0],btm=rows[rows.length-1];
+var ctrDiff=top.ctr-btm.ctr,cvrDiff=top.cvr-btm.cvr;
+if(ctrDiff>1)tips.push({seg,msg:'<b>'+top.id+'</b>のCTRが'+ctrDiff.toFixed(1)+'pt優位 → フック（冒頭1-2秒）の訴求力が高い。'+btm.id+'は冒頭コピーの見直しを推奨'});
+if(cvrDiff>1)tips.push({seg,msg:'<b>'+top.id+'</b>のCVRが'+cvrDiff.toFixed(1)+'pt優位 → CTA配置・オファー設計が効果的。'+btm.id+'はCTAの文言・位置を変更してリテスト推奨'});
+if(ctrDiff<=1&&cvrDiff<=1)tips.push({seg,msg:seg+'セグメントでは有意な差が小さい。テスト期間延長またはクリエイティブの差分を拡大して再テスト推奨'});
+if(top.cpa>0&&btm.cpa>0&&top.cpa<btm.cpa*0.7)tips.push({seg,msg:'<b>'+top.id+'</b>のCPAが30%以上低い → このパターンに予算を集中配分し、'+btm.id+'は停止を検討'});});
+if(!tips.length)tips.push({seg:'-',msg:'診断に十分なデータがありません。複数クリエイティブ×セグメントのデータを投入してください'});
+tips.forEach(t=>{el.innerHTML+='<div class="diag">【'+t.seg+'】'+t.msg+'</div>';});}
+
+function exportCSV(){
+if(!R.length){alert('先に分析を実行してください');return;}
+var csv='セグメント,クリエイティブID,CTR%,CVR%,CPA,ROI指数,判定\n';
+R.forEach(r=>{csv+=r.seg+','+r.id+','+r.ctr.toFixed(2)+','+r.cvr.toFixed(2)+','+Math.round(r.cpa)+','+r.roi.toFixed(1)+','+r.judge+'\n';});
+var blob=new Blob(['\uFEFF'+csv],{type:'text/csv'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+a.download='ab_test_analysis_'+new Date().toISOString().slice(0,10)+'.csv';a.click();}
+</script>
+</body>
+</html>
