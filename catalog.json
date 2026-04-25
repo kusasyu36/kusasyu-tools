@@ -1391,6 +1391,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-16",
+    "url": "digital-marketing/diagnosis-16/",
+    "title": "AI検索で見つからない？AIO最適化ツール",
+    "tool_name": "AIO対応度スコアリング診断ツール",
+    "description": "ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレーター、対応状況を一覧管理するCSVシートの3点セット。Semrushのような高額分析ツー",
+    "quality_score": 9,
+    "completed_at": "2026-04-25T02:15:06.109805+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "faq-howto",
+    "url": "digital-marketing/faq-howto/",
+    "title": "AI検索で見つからない？AIO最適化ツール",
+    "tool_name": "FAQ_HowTo構造化データジェネレーター",
+    "description": "ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレーター、対応状況を一覧管理するCSVシートの3点セット。Semrushのような高額分析ツー",
+    "quality_score": 9,
+    "completed_at": "2026-04-25T02:15:06.109805+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-11",
+    "url": "digital-marketing/management-11/",
+    "title": "AI検索で見つからない？AIO最適化ツール",
+    "tool_name": "AIO対応コンテンツ管理シート",
+    "description": "ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレーター、対応状況を一覧管理するCSVシートの3点セット。Semrushのような高額分析ツー",
+    "quality_score": 9,
+    "completed_at": "2026-04-25T02:15:06.109805+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIO対応コンテンツ管理シート - kusasyu tools</title>
+<meta name="description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AIO対応コンテンツ管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-11/">
+<meta property="og:title" content="AIO対応コンテンツ管理シート - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIO対応コンテンツ管理シート - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIO対応コンテンツ管理シート",
+  "description": "ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-11/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-25"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AIO対応コンテンツ管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AIO対応コンテンツ管理シート</h1>
+  <p class="project-name">AI検索で見つからない？AIO最適化ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th># AIO対応コンテンツ管理シート ― FAQ/HowTo構造化データジェネレーター｜AIO最適化ツール</th></tr></thead><tbody><tr><td># 【運用フロー】月初→新規URL追加・AIO診断ツールで5軸スコアリング / 月中→FAQ/HowTo構造化データジェネレーターでJSON-LD生成・コンテンツ改善実施 / 月末→再スコアリング・集計エリアで進捗確認・改善レビュー会議</td></tr><tr><td># 【スコア基準】5軸各0〜20点（合計0〜100点）: 60点未満＝要改善（赤） / 60〜79点＝合格（黄） / 80点以上＝AI検索引用可能性高（緑）</td></tr><tr><td># 【月次レビュー手順】(1)全ページを診断ツールで再スコアリングし軸1〜5を更新 (2)集計エリアの対応完了率・平均スコアを前月と比較 (3)60点未満ページに最高優先度を設定 (4)構造化データ未対応ページをジェネレーターで一括対応 (5)スコア80点以上のページでChatGPT・Perplexity・Google AI Overviewでの引用有無を実機確認し備考に記録</td></tr><tr></tr><tr><td>No.</td><td>URL</td><td>ページタイトル</td><td>対象キーワード</td><td>AIOスコア合計</td><td>軸1:Q&amp;A構造(0-20)</td><td>軸2:構造化データ(0-20)</td><td>軸3:引用適性(0-20)</td><td>軸4:E-E-A-T(0-20)</td><td>軸5:鮮度(0-20)</td><td>構造化データ有無</td><td>構造化データ種別</td><td>対応ステータス</td><td>優先度</td><td>担当者</td><td>対応期限</td><td>備考</td></tr><tr><td>1</td><td>https://example.com/crm-comparison</td><td>CRM比較2026年最新版</td><td>CRM 比較 おすすめ</td><td>=F7+G7+H7+I7+J7</td><td>16</td><td>12</td><td>18</td><td>14</td><td>12</td><td>あり</td><td>FAQPage</td><td>対応中</td><td>高</td><td>田中</td><td>2026-05-15</td><td>FAQ構造化データ追加済み。HowToスキーマも追加予定。Perplexityで部分引用を確認</td></tr><tr><td>2</td><td>https://example.com/ma-guide</td><td>MAツール導入ガイド</td><td>MA ツール 選び方</td><td>=F8+G8+H8+I8+J8</td><td>8</td><td>0</td><td>14</td><td>15</td><td>8</td><td>なし</td><td></td><td>未着手</td><td>最高</td><td>佐藤</td><td>2026-05-01</td><td>Q&amp;A形式への書き換え＋FAQ構造化データ追加が急務。ジェネレーターでJSON-LD生成予定</td></tr><tr><td>3</td><td>https://example.com/email-deliverability</td><td>メール到達率改善の方法</td><td>メール 到達率 上げる</td><td>=F9+G9+H9+I9+J9</td><td>18</td><td>18</td><td>17</td><td>16</td><td>14</td><td>あり</td><td>FAQPage,HowTo</td><td>完了</td><td>中</td><td>田中</td><td>2026-04-30</td><td>AIOスコア80点超達成。ChatGPTで引用確認済み。Google AI Overviewにも表示</td></tr><tr></tr><tr><td>--- 集計エリア（Excel・Googleスプレッドシートで自動計算されます） ---</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"# AIO対応コンテンツ管理シート ― FAQ/HowTo構造化データジェネレーター｜AIO最適化ツール"
+"# 【運用フロー】月初→新規URL追加・AIO診断ツールで5軸スコアリング / 月中→FAQ/HowTo構造化データジェネレーターでJSON-LD生成・コンテンツ改善実施 / 月末→再スコアリング・集計エリアで進捗確認・改善レビュー会議"
+"# 【スコア基準】5軸各0〜20点（合計0〜100点）: 60点未満＝要改善（赤） / 60〜79点＝合格（黄） / 80点以上＝AI検索引用可能性高（緑）"
+"# 【月次レビュー手順】(1)全ページを診断ツールで再スコアリングし軸1〜5を更新 (2)集計エリアの対応完了率・平均スコアを前月と比較 (3)60点未満ページに最高優先度を設定 (4)構造化データ未対応ページをジェネレーターで一括対応 (5)スコア80点以上のページでChatGPT・Perplexity・Google AI Overviewでの引用有無を実機確認し備考に記録"
+
+No.,URL,ページタイトル,対象キーワード,AIOスコア合計,軸1:Q&A構造(0-20),軸2:構造化データ(0-20),軸3:引用適性(0-20),軸4:E-E-A-T(0-20),軸5:鮮度(0-20),構造化データ有無,構造化データ種別,対応ステータス,優先度,担当者,対応期限,備考
+1,https://example.com/crm-comparison,CRM比較2026年最新版,CRM 比較 おすすめ,=F7+G7+H7+I7+J7,16,12,18,14,12,あり,FAQPage,対応中,高,田中,2026-05-15,"FAQ構造化データ追加済み。HowToスキーマも追加予定。Perplexityで部分引用を確認"
+2,https://example.com/ma-guide,MAツール導入ガイド,MA ツール 選び方,=F8+G8+H8+I8+J8,8,0,14,15,8,なし,,未着手,最高,佐藤,2026-05-01,"Q&A形式への書き換え＋FAQ構造化データ追加が急務。ジェネレーターでJSON-LD生成予定"
+3,https://example.com/email-deliverability,メール到達率改善の方法,メール 到達率 上げる,=F9+G9+H9+I9+J9,18,18,17,16,14,あり,"FAQPage,HowTo",完了,中,田中,2026-04-30,"AIOスコア80点超達成。ChatGPTで引用確認済み。Google AI Overviewにも表示"
+
+"--- 集計エリア（Excel・Googleスプレッドシートで自動計算されます） ---"
+総ページ数,=COUNTA(A7:A506)
+対応完了数,"=COUNTIF(M7:M506,""完了"")"
+"対応完了率(%)","=IF(COUNTA(A7:A506)>0,ROUND(COUNTIF(M7:M506,""完了"")/COUNTA(A7:A506)*100,1),0)"
+未着手数,"=COUNTIF(M7:M506,""未着手"")"
+対応中数,"=COUNTIF(M7:M506,""対応中"")"
+平均AIOスコア,"=IF(COUNT(E7:E506)>0,ROUND(AVERAGE(E7:E506),1),0)"
+"80点以上（AI引用可能性高）","=COUNTIF(E7:E506,"">=80"")"
+"60点未満（要改善）","=COUNTIF(E7:E506,""<60"")"
+構造化データ未対応数,"=COUNTIF(K7:K506,""なし"")"
+"最高優先の未完了数","=COUNTIFS(N7:N506,""最高"",M7:M506,""<>完了"")"
+
+"--- 入力ルール ---"
+"No.: 通し番号（1から連番で記入）"
+"URL: 対象ページの完全なURL"
+"ページタイトル: titleタグまたはh1の内容"
+"対象キーワード: AI検索で引用されたい検索クエリ（スペース区切り）"
+"AIOスコア合計: 数式で自動計算（5軸の合計）。新しい行を追加したら数式=F行+G行+H行+I行+J行をコピー"
+"軸1 Q&A構造: ページ内にQ&A形式の記述があるか（0〜20点）"
+"軸2 構造化データ: FAQPage/HowToのJSON-LDが実装されているか（0〜20点）"
+"軸3 引用適性: 簡潔で引用しやすい文章構成か（0〜20点）"
+"軸4 E-E-A-T: 専門性・経験・権威性・信頼性が示されているか（0〜20点）"
+"軸5 鮮度: 最終更新日が直近か・最新情報が反映されているか（0〜20点）"
+"構造化データ有無: あり / なし"
+"構造化データ種別: FAQPage / HowTo / FAQPage,HowTo / 空欄"
+"対応ステータス: 未着手 / 対応中 / 完了（この3つのみ使用。集計数式が連動）"
+"優先度: 最高 / 高 / 中 / 低"
+"担当者: 対応担当者の氏名"
+"対応期限: YYYY-MM-DD形式で記入"
+"備考: 改善内容のメモ・AI検索での引用確認結果・次回アクションなど自由記述"`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_AIO対応コンテンツ管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

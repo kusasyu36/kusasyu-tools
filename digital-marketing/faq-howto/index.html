@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ_HowTo構造化データジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{font-size:1.35em;text-align:center;padding:16px 0 4px;color:#1e3a5f}
+.sub{text-align:center;color:#64748b;font-size:.82em;margin-bottom:18px}
+.tabs{display:flex;gap:0;margin-bottom:18px;border-bottom:2px solid #cbd5e1}
+.tab{flex:1;text-align:center;padding:10px;font-weight:700;font-size:.95em;cursor:pointer;border-bottom:3px solid transparent;color:#64748b;transition:.2s}
+.tab.active{color:#2563eb;border-bottom-color:#2563eb}
+.tab:hover{color:#1e3a5f}
+.panel{display:none}.panel.active{display:block}
+.qa-item{background:#fff;border-radius:8px;padding:14px;margin-bottom:12px;border-left:4px solid #2563eb;position:relative}
+.qa-item.howto{border-left-color:#7c3aed}
+.qa-num{font-weight:800;color:#2563eb;font-size:.85em;margin-bottom:6px}
+.qa-item.howto .qa-num{color:#7c3aed}
+label{display:block;font-size:.82em;font-weight:600;color:#475569;margin:6px 0 3px}
+input[type=text],textarea{width:100%;border:1.5px solid #cbd5e1;border-radius:6px;padding:8px 10px;font-size:.9em;font-family:inherit}
+textarea{height:60px;resize:vertical}
+input[type=text]:focus,textarea:focus{outline:none;border-color:#2563eb}
+.add-btn{display:inline-block;padding:8px 18px;margin:8px 4px;background:#e0e7ff;color:#2563eb;border:none;border-radius:6px;font-size:.85em;font-weight:700;cursor:pointer}
+.add-btn:hover{background:#c7d2fe}
+.remove-btn{position:absolute;top:10px;right:10px;background:#fee2e2;color:#dc2626;border:none;border-radius:4px;padding:2px 8px;font-size:.75em;cursor:pointer}
+.remove-btn:hover{background:#fecaca}
+.gen-btn{display:block;width:100%;padding:14px;margin:16px 0;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer}
+.gen-btn:hover{opacity:.9}
+.output-area{display:none}
+.out-header{display:flex;justify-content:space-between;align-items:center;margin:10px 0 6px}
+.out-header h2{font-size:1em;color:#1e3a5f}
+.copy-btn{background:#16a34a;color:#fff;border:none;border-radius:5px;padding:6px 14px;font-size:.8em;font-weight:600;cursor:pointer}
+.copy-btn:hover{background:#15803d}
+.copy-btn.copied{background:#64748b}
+.code-box{background:#1e293b;color:#e2e8f0;border-radius:8px;padding:14px;font-size:.78em;font-family:'SF Mono',Consolas,monospace;white-space:pre-wrap;word-break:break-all;max-height:320px;overflow-y:auto;line-height:1.5}
+.preview-area{display:none}
+.preview-card{background:#fff;border-radius:8px;padding:16px;margin:10px 0;border:1px solid #e2e8f0}
+.goog-title{color:#1a0dab;font-size:1.1em;font-weight:400;margin-bottom:2px;text-decoration:underline}
+.goog-url{color:#006621;font-size:.82em;margin-bottom:6px}
+.goog-desc{color:#4d5156;font-size:.85em;margin-bottom:10px}
+.goog-faq{border-top:1px solid #e2e8f0;padding-top:8px}
+.goog-q{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f1f5f9;cursor:pointer;font-size:.88em;font-weight:600;color:#1a202c}
+.goog-q:hover{color:#2563eb}
+.goog-arrow{font-size:.7em;color:#64748b;transition:.2s}
+.goog-q.open .goog-arrow{transform:rotate(180deg)}
+.goog-a{display:none;padding:4px 0 10px;font-size:.83em;color:#4d5156;border-bottom:1px solid #f1f5f9}
+.goog-a.open{display:block}
+.goog-howto-step{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:.85em}
+.step-num{min-width:26px;height:26px;background:#7c3aed;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75em;font-weight:700}
+.step-text b{color:#1e3a5f}
+.meta-form{background:#fff;border-radius:8px;padding:14px;margin-bottom:14px;border:1px solid #e2e8f0}
+.meta-form h3{font-size:.9em;color:#1e3a5f;margin-bottom:8px}
+.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px;margin:10px 0;font-size:.82em;color:#1e40af}
+.badge{display:inline-block;background:#dbeafe;color:#2563eb;font-size:.7em;padding:2px 8px;border-radius:10px;font-weight:600;margin-left:6px}
+.badge.howto{background:#ede9fe;color:#7c3aed}
+.count{text-align:right;font-size:.78em;color:#94a3b8;margin-bottom:4px}
+.valid{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:10px;margin:10px 0}
+.valid h3{font-size:.88em;color:#166534;margin-bottom:4px}
+.valid p{font-size:.8em;color:#15803d}
+.err{background:#fef2f2;border:1px solid #fca5a5;border-radius:6px;padding:10px;margin:10px 0;font-size:.82em;color:#dc2626}
+@media(max-width:600px){
+.wrap{padding:10px}
+h1{font-size:1.15em}
+.code-box{font-size:.7em;padding:10px}
+}
+</style>
+<meta name="description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,FAQ_HowTo構造化データジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/faq-howto/">
+<meta property="og:title" content="FAQ_HowTo構造化データジェネレーター - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/faq-howto/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FAQ_HowTo構造化データジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "FAQ_HowTo構造化データジェネレーター",
+  "description": "ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/faq-howto/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">FAQ_HowTo構造化データジェネレーター</span></div>
+<div class="wrap">
+<h1>FAQ/HowTo 構造化データジェネレーター</h1>
+<p class="sub">質問と回答を入力するだけでJSON-LDを自動生成。AI検索・Googleリッチリザルト対応</p>
+
+<div class="tabs">
+<div class="tab active" onclick="switchTab('faq')">FAQPage<span class="badge">よくある質問</span></div>
+<div class="tab" onclick="switchTab('howto')">HowTo<span class="badge howto">手順ガイド</span></div>
+</div>
+
+<!-- FAQ Panel -->
+<div class="panel active" id="panel-faq">
+<div class="meta-form">
+<h3>ページ情報（任意）</h3>
+<label>ページURL</label>
+<input type="text" id="faq-url" placeholder="https://example.com/faq">
+<label>ページタイトル</label>
+<input type="text" id="faq-title" placeholder="よくあるご質問 - サービス名">
+</div>
+<div class="info-box">Q&Aペアを入力してください（最大10件）。Googleリッチリザルト・ChatGPT・Perplexity等のAI検索で引用されやすい構造化データを生成します。</div>
+<div id="faq-list"></div>
+<div class="count" id="faq-count">0 / 10 件</div>
+<button class="add-btn" onclick="addFAQ()">＋ 質問を追加</button>
+<button class="gen-btn" onclick="generateFAQ()">JSON-LDを生成する</button>
+</div>
+
+<!-- HowTo Panel -->
+<div class="panel" id="panel-howto">
+<div class="meta-form">
+<h3>HowTo 基本情報</h3>
+<label>タイトル（例：WordPressにFAQ構造化データを追加する方法）</label>
+<input type="text" id="howto-name" placeholder="○○の方法・手順">
+<label>説明文</label>
+<textarea id="howto-desc" style="height:50px" placeholder="この手順ガイドの概要を1〜2文で"></textarea>
+<label>所要時間（任意・例：PT30M＝30分）</label>
+<input type="text" id="howto-time" placeholder="PT30M">
+</div>
+<div class="info-box">手順ステップを入力してください（最大10件）。HowToスキーマはGoogleの「ステップ表示」やAI検索での手順引用に効果的です。</div>
+<div id="howto-list"></div>
+<div class="count" id="howto-count">0 / 10 件</div>
+<button class="add-btn" onclick="addHowTo()">＋ ステップを追加</button>
+<button class="gen-btn" onclick="generateHowTo()">JSON-LDを生成する</button>
+</div>
+
+<!-- Output -->
+<div class="output-area" id="output">
+<div class="valid" id="valid-msg">
+<h3>✓ 構造化データを生成しました</h3>
+<p id="valid-text"></p>
+</div>
+<div class="out-header">
+<h2>生成されたJSON-LD</h2>
+<button class="copy-btn" id="copy-code" onclick="copyCode()">コピー</button>
+</div>
+<div class="code-box" id="code-output"></div>
+<div class="info-box" style="margin-top:12px">HTMLの&lt;head&gt;内、または&lt;/body&gt;直前に&lt;script type="application/ld+json"&gt;タグごと貼り付けてください。</div>
+</div>
+
+<!-- Preview -->
+<div class="preview-area" id="preview">
+<div class="out-header">
+<h2>Googleリッチリザルト プレビュー（モック）</h2>
+</div>
+<div class="preview-card" id="preview-card"></div>
+</div>
+</div>
+
+<script>
+var mode='faq',faqData=[],howtoData=[];
+
+function switchTab(m){
+mode=m;
+document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',i===(m==='faq'?0:1))});
+document.getElementById('panel-faq').classList.toggle('active',m==='faq');
+document.getElementById('panel-howto').classList.toggle('active',m==='howto');
+document.getElementById('output').style.display='none';
+document.getElementById('preview').style.display='none';
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function addFAQ(){
+if(faqData.length>=10)return;
+var id=Date.now();
+faqData.push({id:id,q:'',a:''});
+renderFAQ();
+}
+
+function removeFAQ(id){
+faqData=faqData.filter(function(x){return x.id!==id});
+renderFAQ();
+}
+
+function renderFAQ(){
+var c=document.getElementById('faq-list'),h='';
+faqData.forEach(function(item,i){
+h+='<div class="qa-item"><div class="qa-num">Q'+(i+1)+'</div>';
+if(faqData.length>1)h+='<button class="remove-btn" onclick="removeFAQ('+item.id+')">削除</button>';
+h+='<label>質問</label><input type="text" value="'+esc(item.q)+'" oninput="faqData['+i+'].q=this.value" placeholder="例：返品はできますか？">';
+h+='<label>回答</label><textarea oninput="faqData['+i+'].a=this.value" placeholder="例：商品到着後14日以内であれば返品可能です。">'+esc(item.a)+'</textarea></div>';
+});
+c.innerHTML=h;
+document.getElementById('faq-count').textContent=faqData.length+' / 10 件';
+}
+
+function addHowTo(){
+if(howtoData.length>=10)return;
+var id=Date.now();
+howtoData.push({id:id,name:'',text:''});
+renderHowTo();
+}
+
+function removeHowTo(id){
+howtoData=howtoData.filter(function(x){return x.id!==id});
+renderHowTo();
+}
+
+function renderHowTo(){
+var c=document.getElementById('howto-list'),h='';
+howtoData.forEach(function(item,i){
+h+='<div class="qa-item howto"><div class="qa-num">ステップ '+(i+1)+'</div>';
+if(howtoData.length>1)h+='<button class="remove-btn" onclick="removeHowTo('+item.id+')">削除</button>';
+h+='<label>ステップ名</label><input type="text" value="'+esc(item.name)+'" oninput="howtoData['+i+'].name=this.value" placeholder="例：管理画面にログインする">';
+h+='<label>手順の詳細</label><textarea oninput="howtoData['+i+'].text=this.value" placeholder="例：ブラウザでhttps://example.com/adminを開き、IDとパスワードを入力します。">'+esc(item.text)+'</textarea></div>';
+});
+c.innerHTML=h;
+document.getElementById('howto-count').textContent=howtoData.length+' / 10 件';
+}
+
+function generateFAQ(){
+var valid=faqData.filter(function(x){return x.q.trim()&&x.a.trim()});
+if(valid.length===0){showErr('質問と回答を1件以上入力してください。');return}
+var ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":valid.map(function(x){return{"@type":"Question","name":x.q.trim(),"acceptedAnswer":{"@type":"Answer","text":x.a.trim()}}})};
+showOutput(ld,valid.length+'件のFAQPage構造化データを生成しました。Googleリッチリザルト・AI検索の両方に対応しています。');
+showFAQPreview(valid);
+}
+
+function generateHowTo(){
+var valid=howtoData.filter(function(x){return x.name.trim()&&x.text.trim()});
+var name=document.getElementById('howto-name').value.trim();
+if(!name){showErr('HowToのタイトルを入力してください。');return}
+if(valid.length===0){showErr('ステップを1件以上入力してください。');return}
+var ld={"@context":"https://schema.org","@type":"HowTo","name":name};
+var desc=document.getElementById('howto-desc').value.trim();
+if(desc)ld.description=desc;
+var time=document.getElementById('howto-time').value.trim();
+if(time)ld.totalTime=time;
+ld.step=valid.map(function(x,i){return{"@type":"HowToStep","position":i+1,"name":x.name.trim(),"text":x.text.trim()}});
+showOutput(ld,valid.length+'ステップのHowTo構造化データを生成しました。');
+showHowToPreview(name,desc,valid);
+}
+
+function showOutput(ld,msg){
+var json=JSON.stringify(ld,null,2);
+var tag='<script type="application/ld+json">\n'+json+'\n<\/script>';
+document.getElementById('code-output').textContent=tag;
+document.getElementById('valid-text').textContent=msg;
+document.getElementById('output').style.display='block';
+document.getElementById('copy-code').textContent='コピー';
+document.getElementById('copy-code').classList.remove('copied');
+var el=document.getElementById('output');
+el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function showErr(msg){
+var o=document.getElementById('output');
+o.style.display='block';
+o.innerHTML='<div class="err">'+msg+'</div>';
+document.getElementById('preview').style.display='none';
+}
+
+function copyCode(){
+var text=document.getElementById('code-output').textContent;
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){
+var b=document.getElementById('copy-code');b.textContent='コピーしました';b.classList.add('copied');
+});
+}else{
+var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+var b=document.getElementById('copy-code');b.textContent='コピーしました';b.classList.add('copied');
+}
+}
+
+function showFAQPreview(items){
+var url=document.getElementById('faq-url').value.trim()||'https://example.com/faq';
+var title=document.getElementById('faq-title').value.trim()||'よくあるご質問';
+var h='<div class="goog-title">'+esc(title)+'</div>';
+h+='<div class="goog-url">'+esc(url)+'</div>';
+h+='<div class="goog-desc">このページではよくあるご質問にお答えしています。</div>';
+h+='<div class="goog-faq">';
+items.forEach(function(x,i){
+h+='<div class="goog-q" onclick="toggleA('+i+')"><span>'+esc(x.q)+'</span><span class="goog-arrow" id="arrow-'+i+'">▼</span></div>';
+h+='<div class="goog-a" id="ans-'+i+'">'+esc(x.a)+'</div>';
+});
+h+='</div>';
+document.getElementById('preview-card').innerHTML=h;
+document.getElementById('preview').style.display='block';
+}
+
+function showHowToPreview(name,desc,items){
+var h='<div class="goog-title">'+esc(name)+'</div>';
+h+='<div class="goog-url">https://example.com/how-to</div>';
+if(desc)h+='<div class="goog-desc">'+esc(desc)+'</div>';
+h+='<div style="margin-top:8px">';
+items.forEach(function(x,i){
+h+='<div class="goog-howto-step"><div class="step-num">'+(i+1)+'</div><div class="step-text"><b>'+esc(x.name)+'</b><br><span style="color:#4d5156;font-size:.92em">'+esc(x.text)+'</span></div></div>';
+});
+h+='</div>';
+document.getElementById('preview-card').innerHTML=h;
+document.getElementById('preview').style.display='block';
+}
+
+function toggleA(i){
+var a=document.getElementById('ans-'+i);
+var ar=document.getElementById('arrow-'+i);
+var q=ar.parentElement;
+var open=a.classList.contains('open');
+a.classList.toggle('open');q.classList.toggle('open');
+ar.textContent=open?'▼':'▲';
+}
+
+// Initialize with 2 FAQ items
+addFAQ();addFAQ();
+addHowTo();addHowTo();
+</script>
+</body>
+</html>

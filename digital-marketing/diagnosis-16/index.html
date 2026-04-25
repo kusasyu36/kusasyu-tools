@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIO対応度スコアリング診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.4em;text-align:center;padding:18px 0;color:#1e3a5f}
+.sub{text-align:center;color:#64748b;font-size:.85em;margin-bottom:20px}
+textarea{width:100%;height:220px;border:2px solid #cbd5e1;border-radius:8px;padding:12px;font-size:.95em;resize:vertical}
+.btn{display:block;width:100%;padding:14px;margin:14px 0;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;border:none;border-radius:8px;font-size:1.1em;font-weight:700;cursor:pointer}
+.btn:hover{opacity:.9}
+#result{display:none}
+.total{text-align:center;margin:20px 0}
+.score-num{font-size:3em;font-weight:800}
+.score-label{font-size:.9em;color:#64748b}
+.bar-wrap{margin:18px 0}
+.bar-head{display:flex;justify-content:space-between;font-weight:700;font-size:.95em;margin-bottom:4px}
+.bar-bg{height:22px;background:#e2e8f0;border-radius:11px;overflow:hidden}
+.bar-fill{height:100%;border-radius:11px;transition:width .6s}
+.detail{background:#fff;border-radius:8px;padding:14px;margin:10px 0;border-left:4px solid #2563eb}
+.detail h3{font-size:1em;margin-bottom:6px;color:#1e3a5f}
+.detail p{font-size:.85em;color:#475569;margin-bottom:6px}
+.tip{background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:10px;margin-top:8px;font-size:.85em;position:relative}
+.tip-title{font-weight:700;color:#166534;margin-bottom:4px}
+.copy-btn{position:absolute;top:8px;right:8px;background:#16a34a;color:#fff;border:none;border-radius:4px;padding:3px 10px;font-size:.75em;cursor:pointer}
+.copy-btn:hover{background:#15803d}
+.grade-s{color:#16a34a}.grade-a{color:#2563eb}.grade-b{color:#d97706}.grade-c{color:#dc2626}
+.meter{display:flex;gap:4px;margin:16px auto;justify-content:center}
+.meter span{width:28px;height:8px;border-radius:4px;background:#e2e8f0}
+.c1{background:#2563eb}.c2{background:#7c3aed}.c3{background:#16a34a}.c4{background:#d97706}.c5{background:#dc2626}
+footer{text-align:center;color:#94a3b8;font-size:.75em;margin-top:24px;padding:12px 0}
+</style>
+<meta name="description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AIO対応度スコアリング診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-16/">
+<meta property="og:title" content="AIO対応度スコアリング診断ツール - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-16/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIO対応度スコアリング診断ツール - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&amp;A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AIO対応度スコアリング診断ツール",
+  "description": "ChatGPT・Perplexity・Google AI Overview等の生成AI検索に自社コンテンツが引用されるよう最適化するツールセット。既存記事のAIO対応度を5軸でスコアリングし改善点を提示する診断ツール、Q&A構造のFAQ/HowTo構造化データ（JSON-LD）をワンクリックで生成するジェネレ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-16/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AIO対応度スコアリング診断ツール</span></div>
+<div class="wrap">
+<h1>AIO対応度スコアリング診断</h1>
+<p class="sub">記事テキストを貼り付けて、AI検索に引用されやすいかを5軸で診断</p>
+<textarea id="inp" placeholder="ここに記事のテキスト（またはHTML）を貼り付けてください&#10;&#10;※ Markdown形式・HTML形式・プレーンテキストいずれも対応"></textarea>
+<button class="btn" onclick="analyze()">診断を実行する</button>
+<div id="result"></div>
+<footer>© Kusasyu Digital Marketing — AIO Optimization Tool</footer>
+</div>
+<script>
+function analyze(){
+var t=document.getElementById('inp').value.trim();
+if(!t){alert('テキストを入力してください');return}
+var scores=calcScores(t);
+render(scores);
+}
+function calcScores(t){
+var r=[];
+var len=t.length;
+// 1) Q&A構造
+var qs=(t.match(/[？?]/g)||[]).length;
+var qaP=(t.match(/(Q[:：]|A[:：]|質問|回答|答え)/g)||[]).length;
+var heads=(t.match(/(^|\n)(#{1,4}\s|<h[1-6])/g)||[]).length;
+var lists=(t.match(/(^|\n)\s*[-・*]\s|(\n\s*\d+[.．)）])/g)||[]).length;
+var s1=Math.min(20,Math.floor(qs*2.5)+Math.floor(qaP*3)+Math.min(5,heads)+Math.min(4,Math.floor(lists/2)));
+var e1=[];
+if(qs<3)e1.push('質問文（？）が'+qs+'個と少ない（推奨: 5個以上）');
+if(qaP<2)e1.push('Q&Aパターンが不足');
+if(heads<3)e1.push('見出し階層が'+heads+'段と浅い');
+r.push({name:'Q&A構造',score:s1,max:20,color:'#2563eb',ev:e1,tip:genTip(0,s1)});
+
+// 2) 権威性シグナル
+var nums=(t.match(/\d+[%％万億兆件社人回倍]/g)||[]).length;
+var cite=(t.match(/(出典|参考|調査|レポート|according|データ|統計)/gi)||[]).length;
+var expert=(t.match(/(専門家|教授|研究|博士|監修|公式)/g)||[]).length;
+var years=(t.match(/20[1-3]\d年/g)||[]).length;
+var s2=Math.min(20,Math.floor(nums*1.5)+cite*3+expert*3+years*2);
+var e2=[];
+if(nums<3)e2.push('具体的数値が'+nums+'個（推奨: 5個以上）');
+if(cite<1)e2.push('出典・参考元の明記がない');
+if(years<1)e2.push('年次情報がなく鮮度が不明');
+r.push({name:'権威性シグナル',score:s2,max:20,color:'#7c3aed',ev:e2,tip:genTip(1,s2)});
+
+// 3) 構造化データ
+var jld=(t.match(/(json-ld|schema\.org|FAQPage|HowTo|itemtype|itemprop)/gi)||[]).length;
+var meta=(t.match(/(meta\s+(name|property)=|og:|twitter:)/gi)||[]).length;
+var alt=(t.match(/alt\s*=\s*["'][^"']+/gi)||[]).length;
+var s3=Math.min(20,jld*6+meta*3+Math.min(4,alt));
+var e3=[];
+if(jld<1)e3.push('JSON-LD / schema.orgマークアップが未検出');
+if(meta<2)e3.push('metaタグ（OGP等）が不足');
+r.push({name:'構造化データ',score:s3,max:20,color:'#16a34a',ev:e3,tip:genTip(2,s3)});
+
+// 4) 引用されやすさ
+var defs=(t.match(/(とは[、。？]|です[。]|を指します|意味します)/g)||[]).length;
+var sents=t.split(/[。.!！\n]/).filter(function(x){return x.trim().length>5});
+var short=sents.filter(function(x){return x.length<=80}).length;
+var shortR=sents.length?short/sents.length:0;
+var bul=(t.match(/(^|\n)\s*[-・*•]\s/g)||[]).length;
+var s4=Math.min(20,defs*3+Math.floor(shortR*10)+Math.min(5,Math.floor(bul/2)));
+var e4=[];
+if(defs<2)e4.push('定義文（〜とは）が'+defs+'個（推奨: 3個以上）');
+if(shortR<0.4)e4.push('文の'+Math.floor((1-shortR)*100)+'%が80字超で冗長');
+r.push({name:'引用されやすさ',score:s4,max:20,color:'#d97706',ev:e4,tip:genTip(3,s4)});
+
+// 5) トピック専門性
+var depth=0;
+if(t.match(/(####|<h4)/))depth=4;else if(t.match(/(###|<h3)/))depth=3;else if(t.match(/(##|<h2)/))depth=2;
+var lenS=Math.min(6,Math.floor(len/500));
+var uniq=new Set(t.replace(/[^\u3040-\u9fff\w]/g,' ').split(/\s+/).filter(function(w){return w.length>3}));
+var richS=Math.min(6,Math.floor(uniq.size/30));
+var s5=Math.min(20,depth*2+lenS+richS+heads);
+var e5=[];
+if(len<1000)e5.push('文字数'+len+'字は少ない（推奨: 2000字以上）');
+if(depth<3)e5.push('見出し深度がH'+depth+'まで（推奨: H3以上）');
+r.push({name:'トピック専門性',score:s5,max:20,color:'#dc2626',ev:e5,tip:genTip(4,s5)});
+
+return r;
+}
+function genTip(axis,sc){
+var tips=[
+['## よくある質問\n\n### Q. ○○とは何ですか？\nA. ○○とは、△△のことです。具体的には□□で、◇◇な場面で使われます。','記事冒頭に「この記事でわかること」リストを追加し、各見出しを疑問文（〜とは？ 〜の方法は？）に書き換えましょう。'],
+['> ○○調査（2026年）によると、市場規模は前年比XX%増の○○億円に達しています。\n> 出典: ○○研究所「レポート名」2026年版','数値データには必ず出典元・調査年を併記。「〇〇によると」の一文を各セクションに1つ追加しましょう。'],
+['<script type="application/ld+json">\n{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"質問文","acceptedAnswer":{"@type":"Answer","text":"回答文"}}]}\n</script>','FAQ構造化データ（JSON-LD）を記事HTMLの<head>内に追加。当社のジェネレーターツールで自動生成できます。'],
+['○○とは、△△を実現するための□□です。\n主な特徴は以下の3点です。\n- 特徴1: 簡潔な説明\n- 特徴2: 簡潔な説明\n- 特徴3: 簡潔な説明','定義文は40字以内で完結させ、直後に箇条書きで補足。AI検索が「引用しやすい一文」を作りましょう。'],
+['この記事は○○分野の専門知識を持つ△△（肩書き）が監修しています。\n最終更新: 2026年4月','記事の網羅性を高めるため、関連サブトピック（原因・対策・事例・比較）を見出しとして追加しましょう。']
+];
+return {text:tips[axis][sc>=14?1:0],template:tips[axis][0]};
+}
+function render(scores){
+var total=scores.reduce(function(a,b){return a+b.score},0);
+var gc='grade-c',gl='要改善';
+if(total>=80){gc='grade-s';gl='優秀'}
+else if(total>=60){gc='grade-a';gl='良好'}
+else if(total>=40){gc='grade-b';gl='あと一歩'}
+var h='<div class="total"><div class="score-num '+gc+'">'+total+'<span style="font-size:.4em">/100</span></div>';
+h+='<div class="score-label">総合評価: <strong class="'+gc+'">'+gl+'</strong></div>';
+h+='<div class="meter">';
+for(var i=0;i<10;i++)h+='<span style="background:'+(i<total/10?'#2563eb':'#e2e8f0')+'"></span>';
+h+='</div></div>';
+scores.forEach(function(s,i){
+var pct=Math.round(s.score/s.max*100);
+h+='<div class="bar-wrap"><div class="bar-head"><span>'+s.name+'</span><span style="color:'+s.color+'">'+s.score+'/'+s.max+'</span></div>';
+h+='<div class="bar-bg"><div class="bar-fill" style="width:'+pct+'%;background:'+s.color+'"></div></div></div>';
+h+='<div class="detail"><h3>'+s.name+' — 判定根拠</h3>';
+if(s.ev.length)s.ev.forEach(function(e){h+='<p>⚠ '+e+'</p>'});
+else h+='<p>✓ 良好な状態です</p>';
+if(s.score<16){
+h+='<div class="tip" id="tip'+i+'"><div class="tip-title">改善テンプレート</div>';
+h+='<pre style="white-space:pre-wrap;font-size:.82em;margin-top:4px">'+esc(s.tip.template)+'</pre>';
+h+='<button class="copy-btn" onclick="copyTip('+i+')">コピー</button></div>';
+}
+h+='<p style="margin-top:6px;font-size:.83em;color:#334155">💡 '+s.tip.text+'</p></div>';
+});
+h+='<button class="btn" style="background:#475569;margin-top:20px" onclick="exportCSV()">診断結果をCSVダウンロード</button>';
+var el=document.getElementById('result');
+el.innerHTML=h;el.style.display='block';
+el.scrollIntoView({behavior:'smooth'});
+window._scores=scores;window._total=total;
+}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function copyTip(i){
+var el=document.querySelector('#tip'+i+' pre');
+if(el){navigator.clipboard.writeText(el.textContent).then(function(){
+var b=document.querySelector('#tip'+i+' .copy-btn');b.textContent='✓ コピー済';
+setTimeout(function(){b.textContent='コピー'},1500);
+})}
+}
+function exportCSV(){
+var s=window._scores;if(!s)return;
+var csv='\ufeff軸,スコア,満点,判定\n';
+s.forEach(function(x){csv+=x.name+','+x.score+','+x.max+','+(x.ev.join(' / ')||'良好')+'\n'});
+csv+='合計,'+window._total+',100,\n';
+var a=document.createElement('a');
+a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+a.download='aio_diagnosis.csv';a.click();
+}
+</script>
+</body>
+</html>
