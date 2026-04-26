@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>売る×貸す×持つ_3択キャッシュフロー比較シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#333;padding:12px;max-width:860px;margin:0 auto;font-size:14px}
+h1{font-size:1.15em;text-align:center;margin:0 0 14px;color:#1a237e;line-height:1.5}
+.c{background:#fff;border-radius:8px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}
+@media(max-width:560px){.g{grid-template-columns:1fr}h1{font-size:1.05em}}
+label{font-size:.82em;display:block;margin-top:4px;color:#555}
+input{width:100%;padding:5px 8px;border:1px solid #cdd;border-radius:4px;font-size:.95em}
+input:focus{outline:none;border-color:#42a5f5}
+.run{background:#1565c0;color:#fff;border:none;width:100%;padding:10px;border-radius:6px;font-size:1.05em;cursor:pointer;margin-top:10px}
+.run:hover{background:#0d47a1}
+.rb{display:inline-block;padding:5px 14px;border:2px solid #ccc;border-radius:20px;cursor:pointer;font-size:.85em;margin:2px;background:#fff;transition:.2s}
+.rb.on{border-color:#1565c0;background:#e3f2fd;color:#1565c0;font-weight:bold}
+.sc{text-align:center;margin:8px 0}
+.bw{display:flex;align-items:center;margin:6px 0}
+.bl{width:100px;font-size:.82em;flex-shrink:0;text-align:right;padding-right:8px}
+.b{height:30px;border-radius:4px;display:flex;align-items:center;padding:0 10px;color:#fff;font-weight:bold;font-size:.85em;min-width:60px;transition:width .4s}
+.b1{background:linear-gradient(135deg,#e53935,#ef5350)}
+.b2{background:linear-gradient(135deg,#1e88e5,#42a5f5)}
+.b3{background:linear-gradient(135deg,#43a047,#66bb6a)}
+.best{margin-top:10px;padding:10px;background:#fff8e1;border-left:4px solid #ffc107;border-radius:4px;font-size:.92em}
+table{width:100%;border-collapse:collapse;font-size:.8em;margin-top:6px}
+th,td{border:1px solid #e0e0e0;padding:3px 5px;text-align:right}
+th{background:#f5f5f5;font-weight:600}
+.note{font-size:.72em;color:#999;margin-top:8px;line-height:1.5}
+.sm{font-size:.85em;color:#666}
+.val{font-size:1.15em;font-weight:bold;margin-top:4px}
+.v1{color:#e53935}.v2{color:#1e88e5}.v3{color:#43a047}
+</style><meta name="description" content="物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,売る×貸す×持つ_3択キャッシュフロー比較シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-6/">
+<meta property="og:title" content="売る×貸す×持つ_3択キャッシュフロー比較シミュレーター - kusasyu tools">
+<meta property="og:description" content="物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="売る×貸す×持つ_3択キャッシュフロー比較シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "売る×貸す×持つ_3択キャッシュフロー比較シミュレーター",
+  "description": "物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-6/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">売る×貸す×持つ_3択キャッシュフロー比較シミュレーター</span></div>
+<h1>売る × 貸す × 持つ<br>3択キャッシュフロー比較シミュレーター</h1>
+<div class="c"><b>物件情報</b><div class="g">
+<div><label>想定売却額（万円）</label><input id="sp" type="number" value="3000"></div>
+<div><label>想定月額賃料（万円）</label><input id="mr" type="number" value="12" step="0.1"></div>
+<div><label>築年数（年）</label><input id="age" type="number" value="15"></div>
+<div><label>取得価格（万円）※不明なら0</label><input id="ap" type="number" value="3500"></div>
+</div></div>
+<div class="c"><b>ローン・経費条件</b><div class="g">
+<div><label>ローン残債（万円）</label><input id="lb" type="number" value="1500"></div>
+<div><label>残返済期間（年）</label><input id="ly" type="number" value="15"></div>
+<div><label>現行金利（%）</label><input id="ir" type="number" value="1.5" step="0.1"></div>
+<div><label>空室率（%）</label><input id="vr" type="number" value="10"></div>
+<div><label>管理費+修繕積立金（万円/月）</label><input id="me" type="number" value="2.5" step="0.1"></div>
+<div><label>固定資産税（万円/年）</label><input id="pt" type="number" value="12"></div>
+</div></div>
+<div class="sc"><b>金利シナリオ</b><br>
+<span class="rb on" onclick="sr(0)">現行金利</span>
+<span class="rb" onclick="sr(1)">＋1%</span>
+<span class="rb" onclick="sr(2)">＋2%</span></div>
+<button class="run" onclick="calc()">▶ シミュレーション実行</button>
+<div id="R"></div>
+<script>
+var ra=0;
+function sr(v){ra=v;document.querySelectorAll('.rb').forEach(function(b,i){b.className=i===v?'rb on':'rb'});calc()}
+function gv(id){return parseFloat(document.getElementById(id).value)||0}
+function mpay(b,r,y){if(b<=0||y<=0)return 0;if(r===0)return b/(y*12);var m=r/1200,n=y*12;return b*m*Math.pow(1+m,n)/(Math.pow(1+m,n)-1)}
+function remB(b,r,y,mo){if(b<=0)return 0;var p=mpay(b,r,y),m=r/1200,v=b;for(var i=0;i<mo;i++){if(v<=0)return 0;v-=(p-v*m);if(v<0)v=0}return v}
+function f(v){return(v>=0?'+':'')+v.toFixed(0)}
+function calc(){
+var sp=gv('sp'),mr=gv('mr'),age=gv('age'),ap=gv('ap')||sp*0.05,
+lb=gv('lb'),ly=gv('ly'),ir=gv('ir')+ra,vr=gv('vr'),me=gv('me'),pt=gv('pt');
+var bk=sp*0.033+6,tc=bk+sp*0.005;
+var gn=sp-ap-tc,cg=gn>0?gn*(age>5?.20315:.3963):0;
+var n1=sp-lb-tc-cg;
+var mo=mpay(lb,ir,ly),tm=ly*12,cf=[],cum=0;
+for(var y=1;y<=5;y++){
+var gr=mr*12*(1-vr/100),ex=me*12+pt;
+var mm=Math.max(0,Math.min(12,tm-(y-1)*12)),yl=mo*mm;
+var tx=gr-ex,it=tx>0?tx*.3:0;
+var nt=gr-ex-yl-it;cum+=nt;
+cf.push({y:y,gr:gr,ex:ex,yl:yl,it:it,nt:nt,cm:cum})}
+var sp5=sp*Math.pow(.985,5),rb5=remB(lb,ir,ly,60);
+var tc5=(sp5*.033+6)+sp5*.005;
+var gn5=sp5-ap-tc5,cg5=gn5>0?gn5*((age+5)>5?.20315:.3963):0;
+var sn5=sp5-rb5-tc5-cg5,t2=cum+sn5,t3=cum;
+var mx=Math.max(Math.abs(n1),Math.abs(t2),Math.abs(t3),1);
+function br(v,c,l){var w=Math.max(Math.abs(v)/mx*100,8);
+return'<div class="bw"><span class="bl">'+l+'</span><div class="b '+c+'" style="width:'+w+'%">'+f(v)+'万円</div></div>'}
+var os=[{n:'① 即売却',v:n1},{n:'② 賃貸→売却',v:t2},{n:'③ 保有継続',v:t3}];
+os.sort(function(a,b){return b.v-a.v});
+var h='<div class="c"><b>5年間トータル手取り比較</b>';
+h+=br(n1,'b1','① 即売却');h+=br(t2,'b2','② 賃貸→売却');h+=br(t3,'b3','③ 保有継続');
+h+='<div class="best">▶ 最有利プラン：<b>'+os[0].n+'</b>（'+f(os[0].v)+'万円）</div></div>';
+h+='<div class="c"><b>① 今すぐ売却</b><div class="g"><div class="sm">売却額 '+sp.toFixed(0)+'万</div><div class="sm">諸費用 '+tc.toFixed(0)+'万</div><div class="sm">譲渡税 '+cg.toFixed(0)+'万</div><div class="sm">残債返済 '+lb.toFixed(0)+'万</div></div><div class="val v1">手取り：'+f(n1)+'万円</div></div>';
+var gi=cf.reduce(function(s,r){return s+r.gr},0),ge=cf.reduce(function(s,r){return s+r.ex+r.yl+r.it},0);
+h+='<div class="c"><b>② 賃貸5年 → 売却</b><div class="g"><div class="sm">賃料収入計 '+gi.toFixed(0)+'万</div><div class="sm">経費+返済計 '+ge.toFixed(0)+'万</div><div class="sm">5年後売却額 '+sp5.toFixed(0)+'万</div><div class="sm">5年後残債 '+rb5.toFixed(0)+'万</div></div><div class="val v2">トータル：'+f(t2)+'万円</div></div>';
+h+='<div class="c"><b>③ 保有継続（売却なし）</b><div class="val v3">5年累計CF：'+f(t3)+'万円</div><div class="sm">含み資産 約'+sp5.toFixed(0)+'万（残債差引 純資産'+(sp5-rb5).toFixed(0)+'万）</div></div>';
+h+='<div class="c"><b>年次キャッシュフロー詳細（賃貸ベース・単位:万円）</b><table><tr><th>年</th><th>賃料収入</th><th>経費</th><th>返済額</th><th>所得税</th><th>年間CF</th><th>累計CF</th></tr>';
+for(var i=0;i<cf.length;i++){var r=cf[i];h+='<tr><td>'+r.y+'年目</td><td>'+r.gr.toFixed(1)+'</td><td>'+r.ex.toFixed(1)+'</td><td>'+r.yl.toFixed(1)+'</td><td>'+r.it.toFixed(1)+'</td><td style="color:'+(r.nt>=0?'#1e88e5':'#e53935')+'">'+r.nt.toFixed(1)+'</td><td>'+r.cm.toFixed(1)+'</td></tr>'}
+h+='</table><div class="note">※適用金利 '+ir.toFixed(1)+'%（現行'+gv('ir').toFixed(1)+'% ＋ '+ra+'%）で試算。譲渡所得税: 長期20.3%/短期39.6%、不動産所得税: 概算30%。売却額は年1.5%下落を想定。取得価格0円の場合は売却額の5%を概算取得費として計算。本ツールは簡易試算であり、実際の税額・諸費用は税理士・不動産会社にご確認ください。</div></div>';
+document.getElementById('R').innerHTML=h}
+calc();
+</script></body></html>

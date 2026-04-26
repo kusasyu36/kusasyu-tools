@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法改正インパクト診断ツール（タスク出力付き） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:18px 0;color:#1e3a5f}
+.sub{text-align:center;color:#64748b;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1e3a5f;margin-bottom:12px;border-left:4px solid #3b82f6;padding-left:10px}
+label{display:block;font-weight:600;margin-bottom:6px;font-size:.9em}
+select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font-size:1em;margin-bottom:12px;background:#fff}
+.chks{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chks label{font-weight:400;background:#e2e8f0;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:.85em;transition:.2s}
+.chks input{display:none}
+.chks input:checked+span{background:#3b82f6;color:#fff;border-radius:20px;padding:6px 14px;margin:-6px -14px}
+.chks label:has(input:checked){background:#3b82f6;color:#fff}
+button{background:#3b82f6;color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:1em;cursor:pointer;font-weight:600;transition:.2s}
+button:hover{background:#2563eb}
+.btn2{background:#059669;margin-left:8px}
+.btn2:hover{background:#047857}
+.btns{text-align:center;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82em;margin-top:10px}
+th,td{padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#f1f5f9;font-weight:600;color:#475569;position:sticky;top:0}
+.hi{color:#dc2626;font-weight:700}.mi{color:#d97706;font-weight:700}.lo{color:#16a34a;font-weight:700}
+.badge{display:inline-block;padding:2px 10px;border-radius:10px;font-size:.78em;font-weight:600}
+.badge.h{background:#fee2e2;color:#dc2626}.badge.m{background:#fef3c7;color:#d97706}.badge.l{background:#dcfce7;color:#16a34a}
+#result{display:none}
+.summary{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.sbox{flex:1;min-width:100px;text-align:center;padding:14px;border-radius:10px;background:#f8fafc}
+.sbox .num{font-size:1.8em;font-weight:700}
+.empty{text-align:center;padding:30px;color:#94a3b8}
+@media(max-width:600px){.chks{gap:6px}table{font-size:.75em}th,td{padding:5px 3px}}
+</style>
+<meta name="description" content="業種と保有契約タイプを選ぶだけで、直近の重要法改正が自社の契約書・社内規程にどう影響するかをAIが診断。対応が必要な条項を具体的にリストアップし、対応タスクの優先順位と期限まで自動生成するツールキット。法務部がない中小企業でも法改正対応の抜け漏れをゼロにする。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法改正インパクト診断ツール（タスク出力付き）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-24/">
+<meta property="og:title" content="法改正インパクト診断ツール（タスク出力付き） - kusasyu tools">
+<meta property="og:description" content="業種と保有契約タイプを選ぶだけで、直近の重要法改正が自社の契約書・社内規程にどう影響するかをAIが診断。対応が必要な条項を具体的にリストアップし、対応タスクの優先順位と期限まで自動生成するツールキット。法務部がない中小企業でも法改正対応の抜け漏れをゼロにする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-24/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法改正インパクト診断ツール（タスク出力付き） - kusasyu tools">
+<meta name="twitter:description" content="業種と保有契約タイプを選ぶだけで、直近の重要法改正が自社の契約書・社内規程にどう影響するかをAIが診断。対応が必要な条項を具体的にリストアップし、対応タスクの優先順位と期限まで自動生成するツールキット。法務部がない中小企業でも法改正対応の抜け漏れをゼロにする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法改正インパクト診断ツール（タスク出力付き）",
+  "description": "業種と保有契約タイプを選ぶだけで、直近の重要法改正が自社の契約書・社内規程にどう影響するかをAIが診断。対応が必要な条項を具体的にリストアップし、対応タスクの優先順位と期限まで自動生成するツールキット。法務部がない中小企業でも法改正対応の抜け漏れをゼロにする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-24/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">法改正インパクト診断ツール（タスク出力付き）</span></div>
+<div class="wrap">
+<h1>法改正インパクト診断ツール</h1>
+<p class="sub">業種と保有契約を選ぶだけ — 対応タスクをCSVで即出力</p>
+<div class="card"><h2>① 業種を選択</h2>
+<select id="biz"><option value="">選択してください</option><option value="IT">IT・通信</option><option value="小売">小売・EC</option><option value="建設">建設・不動産</option><option value="飲食">飲食・サービス</option><option value="製造">製造</option></select></div>
+<div class="card"><h2>② 保有する契約タイプ（複数可）</h2>
+<div class="chks" id="ct">
+<label><input type="checkbox" value="業務委託"><span>業務委託</span></label>
+<label><input type="checkbox" value="雇用"><span>雇用契約</span></label>
+<label><input type="checkbox" value="賃貸借"><span>賃貸借</span></label>
+<label><input type="checkbox" value="売買"><span>売買契約</span></label>
+<label><input type="checkbox" value="NDA"><span>NDA</span></label>
+</div></div>
+<div class="btns"><button onclick="run()">診断する</button></div>
+<div id="result" class="card">
+<h2>③ 診断結果</h2>
+<div class="summary" id="sum"></div>
+<div style="overflow-x:auto"><table><thead><tr><th>法改正</th><th>施行</th><th>影響度</th><th>対象契約</th><th>対応すべき条項</th><th>推奨期限</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="btns" style="margin-top:16px"><button class="btn2" onclick="csv()">対応タスクをCSVで出力</button></div>
+</div>
+</div>
+<script>
+const D=[
+{id:1,name:"フリーランス保護新法",date:"2024-11",biz:["IT","製造","建設"],ct:["業務委託"],imp:{IT:"高",製造:"高",建設:"高",小売:"中",飲食:"中"},clause:"報酬支払期日（60日以内）、契約条件の書面明示義務、ハラスメント対策条項",task:"業務委託契約書の報酬支払条項・書面交付条項の改定"},
+{id:2,name:"改正電子帳簿保存法（完全義務化）",date:"2024-01",biz:["IT","小売","製造","建設","飲食"],ct:["売買","業務委託","賃貸借"],imp:{IT:"高",小売:"高",製造:"高",建設:"中",飲食:"中"},clause:"電子取引データの保存要件、検索機能確保、タイムスタンプ要件",task:"取引書類の電子保存規程整備・契約書の電子交付条項追加"},
+{id:3,name:"育児介護休業法改正",date:"2025-04",biz:["IT","小売","製造","建設","飲食"],ct:["雇用"],imp:{IT:"高",小売:"高",製造:"高",建設:"高",飲食:"高"},clause:"育児休業取得状況公表義務、柔軟な働き方措置、テレワーク努力義務",task:"就業規則・育児介護休業規程の改定、社員への周知"},
+{id:4,name:"改正下請法（運用基準強化）",date:"2024-11",biz:["製造","建設","IT"],ct:["業務委託","売買"],imp:{製造:"高",建設:"高",IT:"中",小売:"低",飲食:"低"},clause:"買いたたき禁止の明確化、支払遅延の厳格化、発注書面の記載事項",task:"発注書・基本契約書の支払条件・価格決定条項の見直し"},
+{id:5,name:"個人情報保護法改正（2025年見直し）",date:"2025-06",biz:["IT","小売","飲食","製造","建設"],ct:["NDA","業務委託","売買"],imp:{IT:"高",小売:"高",飲食:"中",製造:"中",建設:"低"},clause:"個人データ漏えい報告義務、越境移転規制、個人関連情報の第三者提供",task:"プライバシーポリシー改定、NDAの秘密情報定義見直し"},
+{id:6,name:"改正労働基準法（裁量労働制見直し）",date:"2024-04",biz:["IT","製造","建設"],ct:["雇用"],imp:{IT:"高",製造:"中",建設:"中",小売:"低",飲食:"低"},clause:"裁量労働制の本人同意要件、健康確保措置の義務化",task:"雇用契約書の労働時間条項・裁量労働協定の改定"},
+{id:7,name:"改正消費者契約法",date:"2025-06",biz:["小売","飲食","IT"],ct:["売買","業務委託"],imp:{小売:"高",飲食:"高",IT:"中",製造:"低",建設:"低"},clause:"免責条項の無効範囲拡大、契約取消権の拡充、努力義務の強化",task:"利用規約・売買契約の免責条項・キャンセル条項の見直し"},
+{id:8,name:"改正建設業法（担い手確保）",date:"2025-04",biz:["建設"],ct:["業務委託","賃貸借"],imp:{建設:"高",製造:"低",IT:"低",小売:"低",飲食:"低"},clause:"労務費の適切な確保、資材高騰時の契約変更、工期設定の適正化",task:"建設請負契約の工期・価格変動条項・安全管理条項の改定"}
+];
+function run(){
+const biz=document.getElementById("biz").value;
+const cts=[...document.querySelectorAll("#ct input:checked")].map(e=>e.value);
+if(!biz||!cts.length){alert("業種と契約タイプを選択してください");return}
+const hits=[];
+D.forEach(d=>{
+const match=cts.filter(c=>d.ct.includes(c));
+if(match.length&&d.imp[biz]&&d.imp[biz]!=="なし"){
+hits.push({...d,matchCt:match,level:d.imp[biz]||"低"});
+}});
+hits.sort((a,b)=>{const o={高:0,中:1,低:2};return o[a.level]-o[b.level]});
+const tb=document.getElementById("tb");tb.innerHTML="";
+if(!hits.length){tb.innerHTML='<tr><td colspan="6" class="empty">該当する法改正はありません</td></tr>';}
+else hits.forEach(h=>{
+const cls=h.level==="高"?"h":h.level==="中"?"m":"l";
+tb.innerHTML+=`<tr><td>${h.name}</td><td>${h.date}</td><td><span class="badge ${cls}">${h.level}</span></td><td>${h.matchCt.join("、")}</td><td style="font-size:.8em">${h.clause}</td><td>${deadLine(h.date)}</td></tr>`;
+});
+const hc=hits.filter(h=>h.level==="高").length,mc=hits.filter(h=>h.level==="中").length,lc=hits.filter(h=>h.level==="低").length;
+document.getElementById("sum").innerHTML=`<div class="sbox"><div class="num">${hits.length}</div>該当法改正</div><div class="sbox"><div class="num hi">${hc}</div>影響度 高</div><div class="sbox"><div class="num mi">${mc}</div>影響度 中</div><div class="sbox"><div class="num lo">${lc}</div>影響度 低</div>`;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+window._hits=hits;window._biz=biz;
+}
+function deadLine(d){const p=d.split("-");let m=parseInt(p[1])-2;let y=parseInt(p[0]);if(m<1){m+=12;y--;}return y+"-"+String(m).padStart(2,"0")+"末"}
+function csv(){
+const h=window._hits;if(!h||!h.length){alert("先に診断を実行してください");return}
+const BOM="\uFEFF";
+let c="改正名,影響度,対象契約,対応すべき条項,対応タスク,影響文書,推奨期限,担当者,進捗\n";
+h.forEach(r=>{
+const docs=r.matchCt.map(t=>t+"契約書").join("／");
+c+=`"${r.name}","${r.level}","${r.matchCt.join("・")}","${r.clause}","${r.task}","${docs}","${deadLine(r.date)}","",未着手\n`;
+});
+const blob=new Blob([BOM+c],{type:"text/csv"});
+const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+a.download="法改正対応タスク_"+window._biz+".csv";a.click();
+}
+</script>
+</body>
+</html>

@@ -1066,6 +1066,32 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-6",
+    "url": "proptech/simulator-6/",
+    "title": "売るか貸すか迷う不動産、5年収支で即比較",
+    "tool_name": "売る×貸す×持つ_3択キャッシュフロー比較シミュレーター",
+    "description": "物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-26T11:57:22.197977+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-10",
+    "url": "proptech/tool-10/",
+    "title": "売るか貸すか迷う不動産、5年収支で即比較",
+    "tool_name": "複数物件_売却vs賃貸_5年収支_横並び比較表",
+    "description": "物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-26T11:57:22.197977+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -1636,6 +1662,32 @@
     "quality_score": 9,
     "completed_at": "2026-04-15T04:04:58.612468+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-24",
+    "url": "legal-tech/diagnosis-24/",
+    "title": "法改正、自社に影響ある？AI対応チェッカー",
+    "tool_name": "法改正インパクト診断ツール（タスク出力付き）",
+    "description": "業種と保有契約タイプを選ぶだけで、直近の重要法改正が自社の契約書・社内規程にどう影響するかをAIが診断。対応が必要な条項を具体的にリストアップし、対応タスクの優先順位と期限まで自動生成するツールキット。法務部がない中小企業でも法改正対応の抜け漏れをゼロにする。",
+    "quality_score": 9,
+    "completed_at": "2026-04-26T09:05:14.140352+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "guide-3",
+    "url": "legal-tech/guide-3/",
+    "title": "法改正、自社に影響ある？AI対応チェッカー",
+    "tool_name": "中小企業のための法改正対応3ステップガイド",
+    "description": "業種と保有契約タイプを選ぶだけで、直近の重要法改正が自社の契約書・社内規程にどう影響するかをAIが診断。対応が必要な条項を具体的にリストアップし、対応タスクの優先順位と期限まで自動生成するツールキット。法務部がない中小企業でも法改正対応の抜け漏れをゼロにする。",
+    "quality_score": 9,
+    "completed_at": "2026-04-26T09:05:14.140352+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "proptech",

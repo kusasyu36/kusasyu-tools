@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>複数物件_売却vs賃貸_5年収支_横並び比較表 - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#333;padding:12px;max-width:1100px;margin:0 auto;font-size:14px}
+h1{font-size:1.15em;text-align:center;margin:0 0 6px;color:#1a237e;line-height:1.5}
+.sub{text-align:center;font-size:.78em;color:#777;margin-bottom:12px}
+.c{background:#fff;border-radius:8px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
+label{font-size:.8em;display:block;margin-top:3px;color:#555}
+input{width:100%;padding:5px 8px;border:1px solid #cdd;border-radius:4px;font-size:.92em}
+input:focus{outline:none;border-color:#42a5f5}
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.ph span{font-weight:bold;color:#1a237e;font-size:.95em}
+.btn{background:#1565c0;color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:.9em;cursor:pointer}
+.btn:hover{background:#0d47a1}
+.btn.del{background:#e53935;padding:4px 10px;font-size:.78em}
+.btn.del:hover{background:#c62828}
+.btn.add{background:#43a047;margin-top:8px}
+.btn.add:hover{background:#2e7d32}
+.common{margin-bottom:8px}
+.common .g{grid-template-columns:1fr 1fr 1fr 1fr}
+.rt{overflow-x:auto;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:.82em;min-width:600px}
+th,td{border:1px solid #dde;padding:6px 8px;text-align:right;white-space:nowrap}
+th{background:#e8eaf6;color:#1a237e;font-weight:bold;text-align:center}
+td:first-child,th:first-child{text-align:left;background:#fafafa;font-weight:bold;position:sticky;left:0;z-index:1}
+th:first-child{background:#e8eaf6}
+.hi{background:#e3f2fd !important}
+.best-row td{background:#fff8e1}
+.tag{display:inline-block;background:#1565c0;color:#fff;font-size:.72em;padding:1px 7px;border-radius:10px;margin-left:4px}
+.tg{background:#e53935}
+.tg2{background:#43a047}
+.note{font-size:.75em;color:#888;margin-top:8px;line-height:1.6}
+.empty{text-align:center;padding:30px;color:#999;font-size:.9em}
+@media(max-width:600px){.g{grid-template-columns:1fr}.common .g{grid-template-columns:1fr 1fr}h1{font-size:1.05em}table{font-size:.75em}}
+</style>
+<meta name="description" content="物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,複数物件_売却vs賃貸_5年収支_横並び比較表">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-10/">
+<meta property="og:title" content="複数物件_売却vs賃貸_5年収支_横並び比較表 - kusasyu tools">
+<meta property="og:description" content="物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="複数物件_売却vs賃貸_5年収支_横並び比較表 - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "複数物件_売却vs賃貸_5年収支_横並び比較表",
+  "description": "物件の基本情報と条件を入力すると、「今すぐ売却」「賃貸に出して5年後売却」「保有継続」の3パターンの手取り額・累計キャッシュフローを自動試算するHTMLツール。金利上昇・空室率・修繕費・税金を加味し、不動産オーナーの売却vs賃貸の意思決定を数字で支援する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-10/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">複数物件_売却vs賃貸_5年収支_横並び比較表</span></div>
+<h1>複数物件 売却vs賃貸 5年収支 横並び比較表</h1>
+<p class="sub">最大5物件を入力 → 売却手取額・年間純収益・利回り・5年累計CFを即比較</p>
+
+<div class="c common">
+<label style="font-weight:bold;margin:0 0 4px;color:#1a237e">共通条件</label>
+<div class="g">
+<div><label>譲渡税率（%）</label><input id="taxR" type="number" value="20.315" step="0.1"></div>
+<div><label>想定空室率（%）</label><input id="vacR" type="number" value="5" step="1"></div>
+<div><label>年間価格下落率（%）</label><input id="decR" type="number" value="1.5" step="0.1"></div>
+<div><label>5年間修繕積立（万円）</label><input id="repC" type="number" value="50" step="10"></div>
+</div>
+</div>
+
+<div id="props"></div>
+<div style="text-align:center"><button class="btn add" onclick="addP()">＋ 物件を追加</button></div>
+
+<div class="c" style="margin-top:10px">
+<div class="ph"><span>比較結果</span></div>
+<div id="result"><div class="empty">物件情報を入力すると自動で比較表が表示されます</div></div>
+<p class="note">※仲介手数料＝売却額×3%＋6万円（税別）で概算。譲渡税は取得費不明のため売却益＝売却額×5%控除で概算。<br>※5年累計CF（賃貸後売却）＝賃料純収益×5年×(1−空室率)−修繕費＋5年後売却手取額−ローン残債</p>
+</div>
+
+<script>
+let pc=0,ps=[];
+function addP(){if(ps.length>=5)return alert('最大5物件です');pc++;let id=pc;let o={id};ps.push(o);render();}
+function delP(id){ps=ps.filter(p=>p.id!==id);render();}
+function render(){
+let c=document.getElementById('props');c.innerHTML='';
+ps.forEach((p,i)=>{
+let d=document.createElement('div');d.className='c';
+d.innerHTML=`<div class="ph"><span>物件${i+1}</span><button class="btn del" onclick="delP(${p.id})">✕ 削除</button></div>
+<div class="g">
+<div><label>物件名</label><input data-id="${p.id}" data-f="name" value="${p.name||'物件'+(i+1)}" oninput="upd(this)"></div>
+<div><label>売却想定額（万円）</label><input type="number" data-id="${p.id}" data-f="sale" value="${p.sale||3000}" oninput="upd(this)"></div>
+<div><label>年間賃料収入（万円）</label><input type="number" data-id="${p.id}" data-f="rent" value="${p.rent||180}" oninput="upd(this)"></div>
+<div><label>年間経費（万円）</label><input type="number" data-id="${p.id}" data-f="cost" value="${p.cost||30}" oninput="upd(this)"></div>
+<div><label>ローン残債（万円）</label><input type="number" data-id="${p.id}" data-f="loan" value="${p.loan||1000}" oninput="upd(this)"></div>
+<div><label>取得価格（万円・不明は0）</label><input type="number" data-id="${p.id}" data-f="acq" value="${p.acq||0}" oninput="upd(this)"></div>
+</div>`;
+c.appendChild(d);
+if(p.name===undefined){p.name='物件'+(i+1);p.sale=3000;p.rent=180;p.cost=30;p.loan=1000;p.acq=0;}
+});
+calc();
+}
+function upd(el){
+let id=+el.dataset.id,f=el.dataset.f,p=ps.find(x=>x.id===id);
+if(!p)return;p[f]=f==='name'?el.value:+el.value;calc();
+}
+function n(v){return v.toLocaleString('ja-JP',{maximumFractionDigits:1});}
+function calc(){
+if(!ps.length){document.getElementById('result').innerHTML='<div class="empty">物件情報を入力すると自動で比較表が表示されます</div>';return;}
+let taxR=+document.getElementById('taxR').value/100;
+let vacR=+document.getElementById('vacR').value/100;
+let decR=+document.getElementById('decR').value/100;
+let repC=+document.getElementById('repC').value;
+let rows=[];
+ps.forEach(p=>{
+let s=p.sale,r=p.rent,co=p.cost,lo=p.loan,ac=p.acq;
+// 仲介手数料
+let fee=s*0.03+6;
+// 売却手取（即売却）
+let gain=ac>0?(s-ac):(s*0.95);
+let tax1=Math.max(gain*taxR,0);
+let net1=s-fee-tax1-lo;
+// 年間純収益
+let netInc=r-co;
+// 税引後利回り
+let yld=s>0?(netInc*(1-0.2))/s*100:0;
+// 5年賃貸後売却
+let s5=s*Math.pow(1-decR,5);
+let fee5=s5*0.03+6;
+let gain5=ac>0?(s5-ac):(s5*0.95);
+let tax5=Math.max(gain5*taxR,0);
+let rentCF=netInc*5*(1-vacR)-repC;
+let net5=rentCF+s5-fee5-tax5-lo;
+// 5年保有継続（売却しない）
+let holdCF=netInc*5*(1-vacR)-repC;
+rows.push({name:p.name,sale:s,net1,netInc,yld,rentCF,s5,net5,holdCF,loan:lo});
+});
+// 最良判定
+let bestIdx=-1,bestVal=-Infinity;
+rows.forEach((r,i)=>{let mx=Math.max(r.net1,r.net5);if(mx>bestVal){bestVal=mx;bestIdx=i;}});
+
+let h=`<div class="rt"><table><tr><th style="min-width:140px">項目</th>`;
+rows.forEach((r,i)=>h+=`<th>${r.name}${i===bestIdx?'<span class="tag tg2">最有利</span>':''}</th>`);
+h+=`</tr>`;
+let items=[
+['売却想定額',rows.map(r=>n(r.sale)+'万円')],
+['ローン残債',rows.map(r=>n(r.loan)+'万円')],
+['─── 即売却 ───',null],
+['売却手取額',rows.map(r=>n(r.net1)+'万円'),true],
+['─── 賃貸運用 ───',null],
+['年間純収益',rows.map(r=>n(r.netInc)+'万円')],
+['税引後利回り',rows.map(r=>r.yld.toFixed(2)+'%')],
+['5年累計CF（賃料）',rows.map(r=>n(r.rentCF)+'万円')],
+['─── 賃貸5年後売却 ───',null],
+['5年後想定売却額',rows.map(r=>n(r.s5)+'万円')],
+['総手取額（賃貸+売却）',rows.map(r=>n(r.net5)+'万円'),true],
+['─── 保有継続（売却なし）───',null],
+['5年累計CF',rows.map(r=>n(r.holdCF)+'万円')],
+];
+items.forEach(it=>{
+if(!it[1]){h+=`<tr><td colspan="${rows.length+1}" style="background:#f5f5f5;text-align:center;font-weight:bold;color:#1a237e">${it[0]}</td></tr>`;return;}
+h+=`<tr${it[2]?' class="best-row"':''}><td>${it[0]}</td>`;
+if(it[2]){
+let vals=it[1].map(v=>parseFloat(v.replace(/,/g,'')));
+let mx=Math.max(...vals);
+it[1].forEach((v,i)=>h+=`<td${vals[i]===mx?' class="hi"':''} style="font-size:1.05em;font-weight:bold">${v}</td>`);
+}else{it[1].forEach(v=>h+=`<td>${v}</td>`);}
+h+=`</tr>`;
+});
+h+=`</table></div>`;
+// 判定
+let rec=rows.map((r,i)=>{
+let best=r.net1>=r.net5?'即売却':'賃貸5年後売却';
+let diff=Math.abs(r.net1-r.net5);
+return `<b>${r.name}</b>：${best}が有利（差額 ${n(diff)}万円）`;
+}).join('<br>');
+h+=`<div style="margin-top:10px;padding:10px;background:#fff8e1;border-left:4px solid #ffc107;border-radius:4px;font-size:.88em"><b>判定</b><br>${rec}</div>`;
+document.getElementById('result').innerHTML=h;
+}
+addP();addP();
+document.querySelectorAll('.common input').forEach(el=>el.addEventListener('input',calc));
+</script>
+</body></html>
