@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>法務ナレッジ抽出プロンプトジェネレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#2d5a87);color:#fff;padding:24px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.25em;margin-bottom:4px}
+header p{font-size:.82em;opacity:.85}
+.badge{display:inline-block;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:12px;font-size:.72em;margin-top:6px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#1e3a5f;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #ebf4ff}
+.step-bar{display:flex;gap:4px;margin-bottom:16px}
+.step-item{flex:1;text-align:center;padding:8px 4px;border-radius:8px;font-size:.75em;font-weight:600;background:#e2e8f0;color:#718096;transition:.3s}
+.step-item.active{background:#1e3a5f;color:#fff}
+.step-item.done{background:#38a169;color:#fff}
+textarea{width:100%;min-height:180px;border:2px solid #e2e8f0;border-radius:8px;padding:12px;font-size:.9em;font-family:inherit;resize:vertical;transition:.2s}
+textarea:focus{outline:none;border-color:#2d5a87}
+.hint{font-size:.78em;color:#718096;margin-top:6px}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.type-btn{padding:12px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;text-align:center;transition:.2s;font-size:.85em}
+.type-btn:hover{border-color:#2d5a87;background:#f7fafc}
+.type-btn.selected{border-color:#1e3a5f;background:#ebf4ff;font-weight:700;color:#1e3a5f}
+.type-icon{font-size:1.4em;display:block;margin-bottom:4px}
+.ai-select{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.ai-btn{padding:8px 16px;border:2px solid #e2e8f0;border-radius:20px;background:#fff;cursor:pointer;font-size:.82em;transition:.2s}
+.ai-btn:hover{border-color:#2d5a87}
+.ai-btn.selected{border-color:#1e3a5f;background:#1e3a5f;color:#fff;font-weight:600}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.btn-primary{background:#1e3a5f;color:#fff}.btn-primary:hover{background:#2d5a87}
+.btn-sm{display:inline-block;width:auto;padding:8px 18px;font-size:.85em;border-radius:8px}
+.btn-copy{background:#38a169;color:#fff}.btn-copy:hover{background:#2f855a}
+.btn-csv{background:#2d5a87;color:#fff}.btn-csv:hover{background:#1e3a5f}
+.btn-reset{background:#e2e8f0;color:#1a202c;margin-top:10px}.btn-reset:hover{background:#cbd5e1}
+.output-box{background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;font-size:.85em;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow-y:auto;margin-bottom:10px;line-height:1.7}
+.csv-box{background:#fffbeb;border:1px solid #f6e05e;border-radius:8px;padding:14px;font-size:.82em;white-space:pre-wrap;word-break:break-all;max-height:200px;overflow-y:auto;margin-bottom:10px;line-height:1.5}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75em;font-weight:600;margin-right:4px}
+.tag-type{background:#ebf4ff;color:#1e3a5f}
+.tag-ai{background:#f0fff4;color:#276749}
+.detect-result{padding:10px 14px;border-radius:8px;margin:10px 0;font-size:.88em;font-weight:600}
+.detect-ok{background:#f0fff4;border:1px solid #9ae6b4;color:#276749}
+.detect-manual{background:#fffbeb;border:1px solid #f6e05e;color:#975a16}
+.copied{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#38a169;color:#fff;padding:10px 24px;border-radius:8px;font-weight:600;font-size:.9em;z-index:999;animation:fadeOut 2s forwards}
+@keyframes fadeOut{0%,60%{opacity:1}100%{opacity:0}}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hidden{display:none}
+.info-box{background:#ebf4ff;border-radius:8px;padding:12px;font-size:.82em;color:#1e3a5f;margin-bottom:12px}
+.counter{text-align:right;font-size:.75em;color:#a0aec0;margin-top:2px}
+@media(max-width:480px){.type-grid{grid-template-columns:1fr 1fr}.ai-select{flex-direction:column}.actions{flex-direction:column}.actions .btn-sm{width:100%;text-align:center}}
+</style>
+<meta name="description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務ナレッジ抽出プロンプトジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-17/">
+<meta property="og:title" content="法務ナレッジ抽出プロンプトジェネレーター - kusasyu tools">
+<meta property="og:description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-17/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務ナレッジ抽出プロンプトジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務ナレッジ抽出プロンプトジェネレーター",
+  "description": "法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-17/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">法務ナレッジ抽出プロンプトジェネレーター</span></div>
+<div class="wrap">
+<header>
+<h1>法務ナレッジ抽出プロンプトジェネレーター</h1>
+<p>文書を貼り付けるだけで、AI用の最適化プロンプトを自動生成</p>
+<span class="badge">法務ナレッジ属人化リスク診断ツール 連携キット</span>
+</header>
+
+<div class="step-bar" id="stepBar">
+<div class="step-item active" data-s="1">1. 文書入力</div>
+<div class="step-item" data-s="2">2. 種別・AI選択</div>
+<div class="step-item" data-s="3">3. プロンプト生成</div>
+</div>
+
+<!-- Step 1 -->
+<div id="s1">
+<div class="card">
+<h2>文書を貼り付けてください</h2>
+<div class="info-box">契約レビューメモ・法律相談記録・社内メール・議事録など、法務関連の文書をそのまま貼り付けてください。APIキー不要・データは外部送信されません。</div>
+<textarea id="docInput" placeholder="ここに文書を貼り付け&#10;&#10;例：&#10;【契約レビューメモ】&#10;件名：業務委託契約書（株式会社○○）&#10;レビュー日：2026年4月25日&#10;担当：法務部 山田太郎&#10;&#10;■主要論点&#10;・第5条（秘密保持）の範囲が広すぎる…"></textarea>
+<div class="counter"><span id="charCount">0</span>文字</div>
+<div class="hint">※ 機密情報のマスキングは入力前にご自身で実施してください</div>
+</div>
+<button class="btn btn-primary" onclick="goStep2()">次へ：文書種別を判定</button>
+</div>
+
+<!-- Step 2 -->
+<div id="s2" class="hidden">
+<div class="card">
+<h2>文書種別</h2>
+<div id="detectMsg"></div>
+<div class="type-grid" id="typeGrid">
+<div class="type-btn" data-t="contract" onclick="selType(this)"><span class="type-icon">&#128221;</span>契約レビューメモ</div>
+<div class="type-btn" data-t="consult" onclick="selType(this)"><span class="type-icon">&#9878;</span>法律相談記録</div>
+<div class="type-btn" data-t="email" onclick="selType(this)"><span class="type-icon">&#9993;</span>社内メール</div>
+<div class="type-btn" data-t="minutes" onclick="selType(this)"><span class="type-icon">&#128196;</span>議事録</div>
+</div>
+</div>
+<div class="card">
+<h2>出力先AIを選択</h2>
+<div class="ai-select" id="aiSelect">
+<div class="ai-btn selected" data-ai="claude" onclick="selAI(this)">Claude.ai</div>
+<div class="ai-btn" data-ai="chatgpt" onclick="selAI(this)">ChatGPT</div>
+<div class="ai-btn" data-ai="copilot" onclick="selAI(this)">Copilot</div>
+</div>
+</div>
+<button class="btn btn-primary" onclick="goStep3()">プロンプトを生成</button>
+<button class="btn btn-reset" onclick="backStep1()">戻る</button>
+</div>
+
+<!-- Step 3 -->
+<div id="s3" class="hidden">
+<div class="card">
+<h2>生成プロンプト</h2>
+<div style="margin-bottom:8px"><span class="tag tag-type" id="tagType"></span><span class="tag tag-ai" id="tagAI"></span></div>
+<div class="output-box" id="promptOut"></div>
+<div class="actions">
+<button class="btn btn-sm btn-copy" onclick="copyText('promptOut','プロンプトをコピーしました')">プロンプトをコピー</button>
+</div>
+</div>
+<div class="card">
+<h2>CSV貼り付け用フォーマット</h2>
+<p style="font-size:.82em;color:#718096;margin-bottom:8px">AIの回答を得た後、以下のCSVヘッダーに沿ってナレッジ台帳に転記できます。</p>
+<div class="csv-box" id="csvOut"></div>
+<div class="actions">
+<button class="btn btn-sm btn-csv" onclick="copyText('csvOut','CSVフォーマットをコピーしました')">CSVフォーマットをコピー</button>
+</div>
+</div>
+<button class="btn btn-primary" onclick="resetAll()">新しい文書を分析する</button>
+</div>
+</div>
+
+<script>
+var selectedType='',selectedAI='claude',docText='';
+var typeLabels={contract:'契約レビューメモ',consult:'法律相談記録',email:'社内メール',minutes:'議事録'};
+var aiLabels={claude:'Claude.ai',chatgpt:'ChatGPT',copilot:'Copilot'};
+
+document.getElementById('docInput').addEventListener('input',function(){
+document.getElementById('charCount').textContent=this.value.length;
+});
+
+function setStep(n){
+var items=document.querySelectorAll('.step-item');
+items.forEach(function(el){
+var s=parseInt(el.getAttribute('data-s'));
+el.className='step-item'+(s<n?' done':'')+(s===n?' active':'');
+});
+}
+
+function detectType(txt){
+var t=txt.toLowerCase();
+var scores={contract:0,consult:0,email:0,minutes:0};
+var kw={
+contract:['契約','レビュー','条項','甲','乙','委託','秘密保持','nda','損害賠償','解除','期間','自動更新','覚書','基本契約','個別契約','瑕疵','免責','知的財産','競業避止','準拠法'],
+consult:['相談','質問','回答','見解','法的リスク','助言','アドバイス','判例','法令','コンプライアンス','照会','問い合わせ','法務相談','リーガル','意見書','鑑定'],
+email:['メール','件名','送信','受信','cc','re:','fw:','お疲れ様','お世話になっ','ご確認','添付','転送','返信','各位','関係者'],
+minutes:['議事録','出席者','決定事項','アクションアイテム','次回','検討事項','報告','審議','承認','会議','定例','ミーティング','mtg','決議','持ち越し']
+};
+for(var k in kw){kw[k].forEach(function(w){if(t.indexOf(w)>=0)scores[k]+=1;})}
+var best='',max=0;
+for(var k in scores){if(scores[k]>max){max=scores[k];best=k;}}
+return max>=2?{type:best,confidence:'auto'}:{type:'',confidence:'none'};
+}
+
+function selType(el){
+document.querySelectorAll('.type-btn').forEach(function(b){b.classList.remove('selected');});
+el.classList.add('selected');
+selectedType=el.getAttribute('data-t');
+}
+
+function selAI(el){
+document.querySelectorAll('.ai-btn').forEach(function(b){b.classList.remove('selected');});
+el.classList.add('selected');
+selectedAI=el.getAttribute('data-ai');
+}
+
+function goStep2(){
+docText=document.getElementById('docInput').value.trim();
+if(!docText){alert('文書を貼り付けてください。');return;}
+if(docText.length<20){alert('文書が短すぎます。20文字以上の文書を貼り付けてください。');return;}
+var det=detectType(docText);
+var msgEl=document.getElementById('detectMsg');
+if(det.confidence==='auto'){
+msgEl.innerHTML='<div class="detect-ok">自動判定：「'+typeLabels[det.type]+'」と判定しました。変更も可能です。</div>';
+document.querySelectorAll('.type-btn').forEach(function(b){
+b.classList.remove('selected');
+if(b.getAttribute('data-t')===det.type)b.classList.add('selected');
+});
+selectedType=det.type;
+}else{
+msgEl.innerHTML='<div class="detect-manual">自動判定できませんでした。文書種別を手動で選択してください。</div>';
+selectedType='';
+}
+document.getElementById('s1').classList.add('hidden');
+document.getElementById('s2').classList.remove('hidden');
+setStep(2);
+}
+
+function backStep1(){
+document.getElementById('s2').classList.add('hidden');
+document.getElementById('s1').classList.remove('hidden');
+setStep(1);
+}
+
+function buildPrompt(type,ai,text){
+var sysHint={claude:'以下の指示に従い、法務ナレッジとして構造化してください。',chatgpt:'あなたは法務ナレッジ管理の専門家です。以下の指示に従い出力してください。',copilot:'法務ナレッジ管理の専門家として、以下の文書を分析してください。'};
+var typeInst={
+contract:'この文書は「契約レビューメモ」です。契約条項の論点・リスク・修正提案に注目して分析してください。',
+consult:'この文書は「法律相談記録」です。相談内容・法的論点・回答の根拠に注目して分析してください。',
+email:'この文書は「社内メール」です。法務判断・指示内容・背景事情に注目して分析してください。',
+minutes:'この文書は「議事録」です。決定事項・法的検討事項・アクションアイテムに注目して分析してください。'
+};
+var extract='以下の5項目を抽出し、それぞれ箇条書きで出力してください。\n\n';
+extract+='【1. 論点（Issues）】\nこの文書で扱われている法的論点・ビジネス上の争点を列挙してください。\n\n';
+extract+='【2. 判断基準（Criteria）】\n各論点に対してどのような基準で判断すべきか、過去の実務慣行や法的原則を踏まえて記述してください。\n\n';
+extract+='【3. 注意事項（Precautions）】\n見落としやすいリスク、交渉上の注意点、社内承認フローで確認すべき点を記述してください。\n\n';
+extract+='【4. 関連法令（Related Laws）】\n関連する法律・政省令・ガイドラインを正式名称で列挙してください。該当条文番号があれば併記してください。\n\n';
+extract+='【5. リスク評価（Risk Assessment）】\n各論点のリスクレベル（高・中・低）と、その根拠を簡潔に記述してください。\n\n';
+var fmt='出力形式：各項目を【】で囲んだ見出しの下に箇条書きで記述してください。推測や一般論ではなく、貼り付けた文書の内容に基づいて回答してください。';
+var snippet=text.length>2000?text.substring(0,2000)+'…（以下省略）':text;
+var p=sysHint[ai]+'\n\n'+typeInst[type]+'\n\n'+extract+fmt+'\n\n---\n以下が対象文書です：\n---\n'+snippet;
+return p;
+}
+
+function buildCSV(type){
+var now=new Date();var ds=now.getFullYear()+'/'+('0'+(now.getMonth()+1)).slice(-2)+'/'+('0'+now.getDate()).slice(-2);
+var header='登録日,文書種別,タイトル,論点,判断基準,注意事項,関連法令,リスク評価,担当者,備考';
+var row=ds+','+typeLabels[type]+',（文書タイトルを入力）,（AIの回答から転記）,（AIの回答から転記）,（AIの回答から転記）,（AIの回答から転記）,（AIの回答から転記）,（担当者名）,（補足事項）';
+return header+'\n'+row;
+}
+
+function goStep3(){
+if(!selectedType){alert('文書種別を選択してください。');return;}
+var prompt=buildPrompt(selectedType,selectedAI,docText);
+document.getElementById('promptOut').textContent=prompt;
+document.getElementById('csvOut').textContent=buildCSV(selectedType);
+document.getElementById('tagType').textContent=typeLabels[selectedType];
+document.getElementById('tagAI').textContent=aiLabels[selectedAI];
+document.getElementById('s2').classList.add('hidden');
+document.getElementById('s3').classList.remove('hidden');
+setStep(3);
+}
+
+function copyText(elId,msg){
+var text=document.getElementById(elId).textContent;
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){showToast(msg);});
+}else{
+var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast(msg);
+}
+}
+
+function showToast(msg){
+var d=document.createElement('div');d.className='copied';d.textContent=msg;document.body.appendChild(d);
+setTimeout(function(){d.remove();},2200);
+}
+
+function resetAll(){
+docText='';selectedType='';selectedAI='claude';
+document.getElementById('docInput').value='';
+document.getElementById('charCount').textContent='0';
+document.querySelectorAll('.type-btn').forEach(function(b){b.classList.remove('selected');});
+document.querySelectorAll('.ai-btn').forEach(function(b){b.classList.remove('selected');if(b.getAttribute('data-ai')==='claude')b.classList.add('selected');});
+document.getElementById('s3').classList.add('hidden');
+document.getElementById('s1').classList.remove('hidden');
+setStep(1);
+}
+</script>
+</body>
+</html>

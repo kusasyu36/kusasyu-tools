@@ -871,6 +871,45 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-25",
+    "url": "legal-tech/diagnosis-25/",
+    "title": "法務の属人化を解消。ナレッジ自動蓄積キット",
+    "tool_name": "法務ナレッジ属人化リスク診断ツール",
+    "description": "法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。",
+    "quality_score": 10,
+    "completed_at": "2026-04-27T11:48:04.806271+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-17",
+    "url": "legal-tech/tool-17/",
+    "title": "法務の属人化を解消。ナレッジ自動蓄積キット",
+    "tool_name": "法務ナレッジ抽出プロンプトジェネレーター",
+    "description": "法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。",
+    "quality_score": 10,
+    "completed_at": "2026-04-27T11:48:04.806271+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "template-4",
+    "url": "legal-tech/template-4/",
+    "title": "法務の属人化を解消。ナレッジ自動蓄積キット",
+    "tool_name": "法務ナレッジ台帳テンプレート",
+    "description": "法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。",
+    "quality_score": 10,
+    "completed_at": "2026-04-27T11:48:04.806271+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -2390,6 +2429,32 @@
     "quality_score": 8,
     "completed_at": "2026-04-11T23:36:11.500281+00:00",
     "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-59",
+    "url": "digital-marketing/tool-59/",
+    "title": "SNS投稿が続かない？AI年間カレンダー生成ツール",
+    "tool_name": "SNS月間カレンダー自動生成ツール",
+    "description": "業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/Excelでの管理にも対応。",
+    "quality_score": 8,
+    "completed_at": "2026-04-27T05:01:42.556423+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-12",
+    "url": "digital-marketing/management-12/",
+    "title": "SNS投稿が続かない？AI年間カレンダー生成ツール",
+    "tool_name": "SNS投稿管理＆効果測定シート",
+    "description": "業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/Excelでの管理にも対応。",
+    "quality_score": 8,
+    "completed_at": "2026-04-27T05:01:42.556423+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "legal-tech",

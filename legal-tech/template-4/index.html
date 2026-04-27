@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法務ナレッジ台帳テンプレート - kusasyu tools</title>
+<meta name="description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務ナレッジ台帳テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/template-4/">
+<meta property="og:title" content="法務ナレッジ台帳テンプレート - kusasyu tools">
+<meta property="og:description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/template-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務ナレッジ台帳テンプレート - kusasyu tools">
+<meta name="twitter:description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "法務ナレッジ台帳テンプレート",
+  "description": "法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/template-4/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-27"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>法務ナレッジ台帳テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>法務ナレッジ台帳テンプレート</h1>
+  <p class="project-name">法務の属人化を解消。ナレッジ自動蓄積キット</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管理番号</th><th>登録日</th><th>最終更新日</th><th>カテゴリ</th><th>サブカテゴリ</th><th>タイトル</th><th>ナレッジ概要</th><th>担当者</th><th>関連法令</th><th>参照頻度(1-5)</th><th>影響範囲(1-5)</th><th>緊急度(1-5)</th><th>重要度スコア【自動計算】</th><th>重要度ランク【自動計算】</th><th>同カテゴリ件数【自動計算】</th><th>関連文書</th><th>ステータス</th></tr></thead><tbody><tr><td>KN-001</td><td>2026-01-15</td><td>2026-04-10</td><td>契約</td><td>NDA</td><td>NDA秘密情報定義の注意点</td><td>取引先NDAレビュー時に秘密情報の定義範囲が広すぎると自社負担が過大になる。「書面で秘密と明示したもの」に限定する修正を推奨。過去3件で相手方応諾実績あり。</td><td>佐藤太郎</td><td>不正競争防止法第2条</td><td>5</td><td>4</td><td>3</td><td>=IF(AND(J2&gt;=1,K2&gt;=1,L2&gt;=1),ROUND(J2*0.3+K2*0.4+L2*0.3,1),"要入力")</td><td>=IF(M2="要入力","−",IF(M2&gt;=4,"S",IF(M2&gt;=3,"A",IF(M2&gt;=2,"B","C"))))</td><td>=COUNTIF($D$2:$D$100,D2)</td><td>NDA雛形v3.docx</td><td>有効</td></tr><tr><td>KN-002</td><td>2026-02-03</td><td>2026-04-15</td><td>労務</td><td>就業規則</td><td>テレワーク規程改定のポイント</td><td>改正労働基準法に対応したテレワーク規程改定要点。みなし労働時間制の適用要件厳格化に伴い業務開始・終了の報告義務を明文化する必要あり。厚労省ガイドライン準拠。</td><td>鈴木花子</td><td>労働基準法第38条の2</td><td>4</td><td>5</td><td>4</td><td>=IF(AND(J3&gt;=1,K3&gt;=1,L3&gt;=1),ROUND(J3*0.3+K3*0.4+L3*0.3,1),"要入力")</td><td>=IF(M3="要入力","−",IF(M3&gt;=4,"S",IF(M3&gt;=3,"A",IF(M3&gt;=2,"B","C"))))</td><td>=COUNTIF($D$2:$D$100,D3)</td><td>就業規則改定案v2.docx</td><td>有効</td></tr><tr><td>KN-003</td><td>2026-02-20</td><td>2026-03-28</td><td>知財</td><td>特許</td><td>共同研究成果の特許出願判断基準</td><td>共同研究契約における特許出願判断の社内基準。出願費用負担割合・実施権範囲・発明者認定の3点を契約前に確認。費用は持分比率に応じ按分が原則。</td><td>田中一郎</td><td>特許法第73条</td><td>3</td><td>3</td><td>2</td><td>=IF(AND(J4&gt;=1,K4&gt;=1,L4&gt;=1),ROUND(J4*0.3+K4*0.4+L4*0.3,1),"要入力")</td><td>=IF(M4="要入力","−",IF(M4&gt;=4,"S",IF(M4&gt;=3,"A",IF(M4&gt;=2,"B","C"))))</td><td>=COUNTIF($D$2:$D$100,D4)</td><td>共同研究契約書ひな形.docx</td><td>有効</td></tr><tr><td>KN-004</td><td>2026-03-10</td><td>2026-04-20</td><td>コンプライアンス</td><td>個人情報</td><td>個人データ漏洩時の初動対応手順</td><td>個人情報保護委員会への報告義務（2022年改正で義務化）。発覚から3〜5日以内の速報＋30日以内の確報が必要。社内連絡フロー・外部弁護士連絡先・プレスリリース雛形を整備済み。</td><td>佐藤太郎</td><td>個人情報保護法第26条</td><td>5</td><td>5</td><td>5</td><td>=IF(AND(J5&gt;=1,K5&gt;=1,L5&gt;=1),ROUND(J5*0.3+K5*0.4+L5*0.3,1),"要入力")</td><td>=IF(M5="要入力","−",IF(M5&gt;=4,"S",IF(M5&gt;=3,"A",IF(M5&gt;=2,"B","C"))))</td><td>=COUNTIF($D$2:$D$100,D5)</td><td>漏洩対応マニュアルv4.pdf</td><td>有効</td></tr><tr><td>KN-005</td><td>2026-04-01</td><td>2026-04-25</td><td>契約</td><td>SaaS利用規約</td><td>SaaS契約データ取扱い条項チェックリスト</td><td>クラウドサービス利用契約時の必須確認4項目。データ所有権・解約時データ返還・サーバー所在地・再委託先。法務ナレッジ抽出プロンプトジェネレーターで抽出した過去事例も参照。</td><td>鈴木花子</td><td>民法第656条</td><td>4</td><td>4</td><td>3</td><td>=IF(AND(J6&gt;=1,K6&gt;=1,L6&gt;=1),ROUND(J6*0.3+K6*0.4+L6*0.3,1),"要入力")</td><td>=IF(M6="要入力","−",IF(M6&gt;=4,"S",IF(M6&gt;=3,"A",IF(M6&gt;=2,"B","C"))))</td><td>=COUNTIF($D$2:$D$100,D6)</td><td>SaaSチェックリスト.xlsx</td><td>有効</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【関数説明】</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>M列: 重要度スコア＝参照頻度×0.3＋影響範囲×0.4＋緊急度×0.3（加重平均。影響範囲を最重視。未入力時は「要入力」表示）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>N列: 重要度ランク＝スコア4.0以上→S／3.0以上→A／2.0以上→B／2.0未満→C（IF関数で自動判定）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>O列: 同カテゴリ件数＝COUNTIF関数で同一カテゴリのナレッジ登録数を自動集計（偏り把握に活用）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管理番号,登録日,最終更新日,カテゴリ,サブカテゴリ,タイトル,ナレッジ概要,担当者,関連法令,参照頻度(1-5),影響範囲(1-5),緊急度(1-5),重要度スコア【自動計算】,重要度ランク【自動計算】,同カテゴリ件数【自動計算】,関連文書,ステータス
+KN-001,2026-01-15,2026-04-10,契約,NDA,NDA秘密情報定義の注意点,"取引先NDAレビュー時に秘密情報の定義範囲が広すぎると自社負担が過大になる。「書面で秘密と明示したもの」に限定する修正を推奨。過去3件で相手方応諾実績あり。",佐藤太郎,不正競争防止法第2条,5,4,3,"=IF(AND(J2>=1,K2>=1,L2>=1),ROUND(J2*0.3+K2*0.4+L2*0.3,1),""要入力"")","=IF(M2=""要入力"",""−"",IF(M2>=4,""S"",IF(M2>=3,""A"",IF(M2>=2,""B"",""C""))))","=COUNTIF($D$2:$D$100,D2)",NDA雛形v3.docx,有効
+KN-002,2026-02-03,2026-04-15,労務,就業規則,テレワーク規程改定のポイント,"改正労働基準法に対応したテレワーク規程改定要点。みなし労働時間制の適用要件厳格化に伴い業務開始・終了の報告義務を明文化する必要あり。厚労省ガイドライン準拠。",鈴木花子,労働基準法第38条の2,4,5,4,"=IF(AND(J3>=1,K3>=1,L3>=1),ROUND(J3*0.3+K3*0.4+L3*0.3,1),""要入力"")","=IF(M3=""要入力"",""−"",IF(M3>=4,""S"",IF(M3>=3,""A"",IF(M3>=2,""B"",""C""))))","=COUNTIF($D$2:$D$100,D3)",就業規則改定案v2.docx,有効
+KN-003,2026-02-20,2026-03-28,知財,特許,共同研究成果の特許出願判断基準,"共同研究契約における特許出願判断の社内基準。出願費用負担割合・実施権範囲・発明者認定の3点を契約前に確認。費用は持分比率に応じ按分が原則。",田中一郎,特許法第73条,3,3,2,"=IF(AND(J4>=1,K4>=1,L4>=1),ROUND(J4*0.3+K4*0.4+L4*0.3,1),""要入力"")","=IF(M4=""要入力"",""−"",IF(M4>=4,""S"",IF(M4>=3,""A"",IF(M4>=2,""B"",""C""))))","=COUNTIF($D$2:$D$100,D4)",共同研究契約書ひな形.docx,有効
+KN-004,2026-03-10,2026-04-20,コンプライアンス,個人情報,個人データ漏洩時の初動対応手順,"個人情報保護委員会への報告義務（2022年改正で義務化）。発覚から3〜5日以内の速報＋30日以内の確報が必要。社内連絡フロー・外部弁護士連絡先・プレスリリース雛形を整備済み。",佐藤太郎,個人情報保護法第26条,5,5,5,"=IF(AND(J5>=1,K5>=1,L5>=1),ROUND(J5*0.3+K5*0.4+L5*0.3,1),""要入力"")","=IF(M5=""要入力"",""−"",IF(M5>=4,""S"",IF(M5>=3,""A"",IF(M5>=2,""B"",""C""))))","=COUNTIF($D$2:$D$100,D5)",漏洩対応マニュアルv4.pdf,有効
+KN-005,2026-04-01,2026-04-25,契約,SaaS利用規約,SaaS契約データ取扱い条項チェックリスト,"クラウドサービス利用契約時の必須確認4項目。データ所有権・解約時データ返還・サーバー所在地・再委託先。法務ナレッジ抽出プロンプトジェネレーターで抽出した過去事例も参照。",鈴木花子,民法第656条,4,4,3,"=IF(AND(J6>=1,K6>=1,L6>=1),ROUND(J6*0.3+K6*0.4+L6*0.3,1),""要入力"")","=IF(M6=""要入力"",""−"",IF(M6>=4,""S"",IF(M6>=3,""A"",IF(M6>=2,""B"",""C""))))","=COUNTIF($D$2:$D$100,D6)",SaaSチェックリスト.xlsx,有効
+,,,,,,,,,,,,,,,,
+【関数説明】,,,,,,,,,,,,,,,,
+"M列: 重要度スコア＝参照頻度×0.3＋影響範囲×0.4＋緊急度×0.3（加重平均。影響範囲を最重視。未入力時は「要入力」表示）",,,,,,,,,,,,,,,,
+"N列: 重要度ランク＝スコア4.0以上→S／3.0以上→A／2.0以上→B／2.0未満→C（IF関数で自動判定）",,,,,,,,,,,,,,,,
+"O列: 同カテゴリ件数＝COUNTIF関数で同一カテゴリのナレッジ登録数を自動集計（偏り把握に活用）",,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+【使い方】,,,,,,,,,,,,,,,,
+"1. 7行目以降にナレッジを追加し、M・N・O列の関数を下方向にコピーしてください",,,,,,,,,,,,,,,,
+"2. カテゴリは「契約」「労務」「知財」「コンプライアンス」の4種を推奨（必要に応じ追加可）",,,,,,,,,,,,,,,,
+"3. 参照頻度・影響範囲・緊急度は各1〜5の整数で入力（5が最高）",,,,,,,,,,,,,,,,
+"4. Excelのフィルタ機能でカテゴリ・ランク・担当者ごとの絞り込み検索が可能です",,,,,,,,,,,,,,,,
+"5. 法務ナレッジ抽出プロンプトジェネレーターと連携し、抽出結果をこの台帳に転記して一元管理してください",,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_法務ナレッジ台帳テンプレート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

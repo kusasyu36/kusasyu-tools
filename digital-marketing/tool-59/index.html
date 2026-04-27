@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SNS月間カレンダー自動生成ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;color:#1a73e8;margin:12px 0 4px}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:16px}
+.form{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:16px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.field{flex:1;min-width:140px}
+.field label{display:block;font-size:.8em;font-weight:700;margin-bottom:4px;color:#555}
+.field select,.field input{width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:8px;font-size:.95em}
+.btn{display:inline-block;padding:10px 28px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;color:#fff;background:#1a73e8;transition:.2s}
+.btn:hover{background:#1558b0}
+.btn-s{padding:8px 16px;font-size:.85em;background:#34a853}
+.btn-s:hover{background:#2d8f47}
+.btn-nav{background:#5f6368}
+.btn-nav:hover{background:#444}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.month-label{font-size:1.1em;font-weight:700;min-width:120px;text-align:center}
+#result{display:none}
+.card{background:#fff;border-radius:10px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid #1a73e8}
+.card.event{border-left-color:#ea4335}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.card-date{font-weight:700;color:#1a73e8;font-size:.95em}
+.card-time{background:#e8f0fe;color:#1a73e8;padding:2px 8px;border-radius:12px;font-size:.75em;font-weight:700}
+.card-body{font-size:.9em;margin-bottom:6px;white-space:pre-wrap}
+.card-tags{font-size:.8em;color:#1a73e8;margin-bottom:4px}
+.card-img{font-size:.78em;color:#888;background:#f8f8f8;padding:6px 8px;border-radius:6px}
+.card-img b{color:#555}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.stat{background:#fff;border-radius:8px;padding:10px 16px;flex:1;min-width:100px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.stat-n{font-size:1.4em;font-weight:700;color:#1a73e8}
+.stat-l{font-size:.75em;color:#666}
+@media(max-width:600px){.row{flex-direction:column}.actions{flex-direction:column;align-items:stretch}.month-label{text-align:center}}
+</style>
+<meta name="description" content="業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,SNS月間カレンダー自動生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-59/">
+<meta property="og:title" content="SNS月間カレンダー自動生成ツール - kusasyu tools">
+<meta property="og:description" content="業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-59/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SNS月間カレンダー自動生成ツール - kusasyu tools">
+<meta name="twitter:description" content="業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SNS月間カレンダー自動生成ツール",
+  "description": "業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-59/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">SNS月間カレンダー自動生成ツール</span></div>
+<div class="wrap">
+<h1>SNS月間カレンダー自動生成ツール</h1>
+<p class="sub">業種とSNSを選ぶだけ。1ヶ月分の投稿計画を30秒で作成</p>
+<div class="form">
+<div class="row">
+<div class="field"><label>業種</label><select id="biz"><option value="food">飲食店</option><option value="beauty">美容サロン</option><option value="pro">士業事務所</option><option value="ec">ECサイト</option><option value="hotel">宿泊施設</option></select></div>
+<div class="field"><label>SNS</label><select id="sns"><option value="ig">Instagram</option><option value="x">X（旧Twitter）</option><option value="fb">Facebook</option></select></div>
+<div class="field"><label>年</label><select id="yr"></select></div>
+<div class="field"><label>月</label><select id="mo"></select></div>
+</div>
+<div class="row"><div class="field"><label>商品・サービス名（任意）</label><input id="prod" placeholder="例：自家製パスタ、小顔矯正"></div></div>
+<button class="btn" onclick="gen()">カレンダーを生成</button>
+</div>
+<div id="result">
+<div class="stats"><div class="stat"><div class="stat-n" id="s-total">0</div><div class="stat-l">投稿数</div></div><div class="stat"><div class="stat-n" id="s-ev">0</div><div class="stat-l">イベント連動</div></div><div class="stat"><div class="stat-n" id="s-week">0</div><div class="stat-l">週あたり</div></div></div>
+<div class="actions">
+<button class="btn btn-nav" onclick="mv(-1)">◀ 前月</button>
+<div class="month-label" id="ml"></div>
+<button class="btn btn-nav" onclick="mv(1)">翌月 ▶</button>
+<button class="btn btn-s" onclick="csv()">CSVダウンロード</button>
+</div>
+<div id="cards"></div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const YR=$('yr'),MO=$('mo');
+const now=new Date();
+for(let y=now.getFullYear();y<=now.getFullYear()+1;y++){let o=document.createElement('option');o.value=y;o.textContent=y+'年';YR.appendChild(o)}
+for(let m=1;m<=12;m++){let o=document.createElement('option');o.value=m;o.textContent=m+'月';MO.appendChild(o)}
+MO.value=now.getMonth()+1;
+
+const EV={1:[{d:1,n:'元日'},{d:13,n:'成人の日'},{d:15,n:'小正月'}],2:[{d:3,n:'節分'},{d:14,n:'バレンタインデー'},{d:23,n:'天皇誕生日'}],3:[{d:3,n:'ひな祭り'},{d:14,n:'ホワイトデー'},{d:20,n:'春分の日'}],4:[{d:1,n:'新年度スタート'},{d:29,n:'昭和の日'}],5:[{d:3,n:'憲法記念日'},{d:5,n:'こどもの日'},{d:12,n:'母の日'}],6:[{d:1,n:'衣替え'},{d:16,n:'父の日'},{d:21,n:'夏至'}],7:[{d:7,n:'七夕'},{d:20,n:'海の日'},{d:25,n:'土用丑の日'}],8:[{d:11,n:'山の日'},{d:13,n:'お盆'},{d:31,n:'夏の終わり'}],9:[{d:1,n:'防災の日'},{d:15,n:'敬老の日'},{d:23,n:'秋分の日'}],10:[{d:1,n:'衣替え'},{d:14,n:'スポーツの日'},{d:31,n:'ハロウィン'}],11:[{d:3,n:'文化の日'},{d:15,n:'七五三'},{d:23,n:'勤労感謝の日'}],12:[{d:22,n:'冬至'},{d:24,n:'クリスマスイブ'},{d:31,n:'大晦日'}]};
+
+const TM={ig:['12:00','18:00','19:30','21:00'],x:['7:30','12:00','18:00','21:30'],fb:['9:00','11:30','13:00','15:00']};
+
+const BIZ={
+food:{
+tp:['本日のおすすめ','季節の限定メニュー','食材へのこだわり','お客様の声','スタッフ紹介','厨房の裏側','テイクアウト情報','ランチタイム案内','ディナー特別コース','週末限定メニュー','ドリンク紹介','常連さんの人気メニューTOP3','開店準備の様子','仕入れレポート'],
+tg:['グルメ','ランチ','ディナー','おいしい','地元グルメ','飲食店','レストラン','カフェ','テイクアウト','食べスタグラム'],
+img:'料理写真 美しい盛り付け レストラン'},
+beauty:{
+tp:['今月の人気メニュー','ビフォーアフター紹介','ホームケアのコツ','スタッフの技術紹介','お客様の声','サロン内装紹介','トレンドスタイル提案','季節のケア方法','新メニュー告知','予約空き情報','使用アイテム紹介','施術のこだわり','お得なセット提案','リピーター様限定情報'],
+tg:['美容','サロン','ビューティー','ヘアスタイル','ネイル','エステ','美肌','トレンド','セルフケア','美容師'],
+img:'美容サロン 施術風景 清潔感のある空間'},
+pro:{
+tp:['知っておきたい法律知識','よくある相談事例','セミナー・相談会案内','業界ニュース解説','Q&A形式で解説','事務所の日常','お客様の声','手続きの流れ紹介','季節の届出・申請情報','専門家コラム','チーム紹介','無料相談のご案内','判例・事例紹介','用語解説シリーズ'],
+tg:['士業','弁護士','税理士','司法書士','行政書士','法律相談','税務','相続','起業','経営'],
+img:'プロフェッショナル オフィス 信頼感のあるビジネスシーン'},
+ec:{
+tp:['新商品入荷','お客様レビュー紹介','使い方アイデア','コーディネート提案','期間限定セール','ランキングTOP3','スタッフ愛用品','生産背景ストーリー','再入荷のお知らせ','ギフト提案','サイズ感レビュー','梱包のこだわり','開発秘話','まとめ買い提案'],
+tg:['通販','ネットショップ','EC','新商品','セール','おすすめ','ギフト','プレゼント','レビュー','お買い物'],
+img:'商品写真 おしゃれなフラットレイ ECサイト向け'},
+hotel:{
+tp:['客室紹介','周辺観光スポット','朝食メニュー','季節の景色','宿泊プラン案内','アクティビティ情報','お客様の声','館内施設紹介','料理長おすすめ','地元食材紹介','記念日プラン','スタッフおすすめ散歩道','夕食コース紹介','リピーター特典紹介'],
+tg:['宿泊','ホテル','旅館','温泉','観光','旅行','宿','絶景','おもてなし','週末旅行'],
+img:'宿泊施設 美しい客室 観光地の風景'}
+};
+
+const FMT=['についてご紹介します！','の魅力をお届け✨','をチェック👀','はいかがですか？','で皆さまをお待ちしております','のご案内です📢','についてお話しします','、ぜひお試しください！'];
+
+let posts=[];
+
+function gen(){
+const biz=$('biz').value,sns=$('sns').value,y=+$('yr').value,m=+$('mo').value,prod=$('prod').value;
+const B=BIZ[biz],times=TM[sns],evs=EV[m]||[];
+const days=new Date(y,m,0).getDate();
+const dow=['日','月','火','水','木','金','土'];
+const postDays=[];
+for(let d=1;d<=days;d++){const w=new Date(y,m-1,d).getDay();if(w===1||w===3||w===5||w===0)postDays.push(d)}
+
+posts=[];let evUsed=0;
+postDays.forEach((d,i)=>{
+const ev=evs.find(e=>Math.abs(e.d-d)<=1);
+const tp=B.tp[i%B.tp.length];
+const dayStr=y+'/'+String(m).padStart(2,'0')+'/'+String(d).padStart(2,'0');
+const wn=dow[new Date(y,m-1,d).getDay()];
+const time=times[i%times.length];
+const fmt=FMT[i%FMT.length];
+let body='';
+if(ev){
+body=`【${ev.n}特別企画】\n${prod||'当店'}の${tp}${fmt}\n${ev.n}にちなんだ特別な内容をお届けします。\nぜひチェックしてくださいね！`;
+evUsed++;
+}else{
+body=`${prod||''}${prod?' — ':''}${tp}${fmt}\n${sns==='x'?'':'詳しくはプロフィールのリンクから！\n'}お気軽にお問い合わせください。`;
+}
+const tags='#'+B.tg.slice(0,5).concat([m+'月',ev?ev.n:dow[new Date(y,m-1,d).getDay()]+'曜投稿']).join(' #');
+const imgP=`${B.img} ${tp} ${ev?ev.n+'テーマ':''}${m}月 明るく魅力的な構図 SNS投稿用正方形`;
+posts.push({date:dayStr,day:wn,time,body,tags,imgP,isEv:!!ev});
+});
+
+$('s-total').textContent=posts.length;
+$('s-ev').textContent=evUsed;
+$('s-week').textContent=4;
+$('ml').textContent=y+'年'+m+'月';
+renderCards();
+$('result').style.display='block';
+$('result').scrollIntoView({behavior:'smooth'});
+}
+
+function renderCards(){
+$('cards').innerHTML=posts.map(p=>`<div class="card${p.isEv?' event':''}"><div class="card-head"><span class="card-date">${p.date}（${p.day}）</span><span class="card-time">${p.time}</span></div><div class="card-body">${esc(p.body)}</div><div class="card-tags">${esc(p.tags)}</div><div class="card-img"><b>画像プロンプト:</b> ${esc(p.imgP)}</div></div>`).join('');
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function mv(dir){
+let m=+$('mo').value+dir,y=+$('yr').value;
+if(m>12){m=1;y++}if(m<1){m=12;y--}
+$('mo').value=m;$('yr').value=y;
+gen();
+}
+
+function csv(){
+if(!posts.length)return;
+const h='日付,曜日,投稿時間,本文,ハッシュタグ,画像プロンプト,イベント連動\n';
+const rows=posts.map(p=>[p.date,p.day,p.time,'"'+p.body.replace(/"/g,'""')+'"','"'+p.tags+'"','"'+p.imgP+'"',p.isEv?'○':''].join(',')).join('\n');
+const bom='\uFEFF';
+const blob=new Blob([bom+h+rows],{type:'text/csv'});
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='sns_calendar_'+$('yr').value+'_'+$('mo').value+'.csv';
+a.click();
+}
+</script>
+</body>
+</html>

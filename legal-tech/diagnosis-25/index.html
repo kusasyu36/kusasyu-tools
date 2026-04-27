@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>法務ナレッジ属人化リスク診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#2d5a87);color:#fff;padding:24px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.3em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.q-num{display:inline-block;background:#1e3a5f;color:#fff;border-radius:50%;width:28px;height:28px;text-align:center;line-height:28px;font-size:.8em;font-weight:700;margin-right:8px}
+.q-text{font-weight:600;font-size:.95em;margin-bottom:12px}
+.opts label{display:block;padding:8px 12px;margin:4px 0;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;font-size:.88em;transition:.2s}
+.opts label:hover{border-color:#2d5a87;background:#f7fafc}
+.opts input{display:none}
+.opts input:checked+span{color:#1e3a5f;font-weight:600}
+.opts input:checked~span{color:#1e3a5f}
+label:has(input:checked){border-color:#1e3a5f;background:#ebf4ff}
+.prog{background:#e2e8f0;border-radius:8px;height:8px;margin-bottom:16px;overflow:hidden}
+.prog-bar{height:100%;background:linear-gradient(90deg,#1e3a5f,#3b82f6);border-radius:8px;transition:width .4s}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.btn-primary{background:#1e3a5f;color:#fff}.btn-primary:hover{background:#2d5a87}
+.btn-secondary{background:#e2e8f0;color:#1a202c;margin-top:8px}.btn-secondary:hover{background:#cbd5e1}
+#result{display:none}
+.score-circle{width:140px;height:140px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;color:#fff;font-size:2em;font-weight:700}
+.score-circle small{font-size:.35em;font-weight:400}
+.lv{font-size:1.1em;text-align:center;font-weight:700;margin-bottom:16px}
+.bar-wrap{margin:8px 0}
+.bar-label{font-size:.82em;display:flex;justify-content:space-between;margin-bottom:2px}
+.bar-bg{background:#e2e8f0;border-radius:6px;height:14px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width .6s}
+.measures h3{font-size:.95em;margin:12px 0 6px;color:#1e3a5f}
+.measures li{font-size:.88em;margin:4px 0 4px 16px}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75em;color:#fff;margin-right:4px}
+@media(max-width:600px){header h1{font-size:1.1em}.wrap{padding:10px}}
+</style>
+<meta name="description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務ナレッジ属人化リスク診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-25/">
+<meta property="og:title" content="法務ナレッジ属人化リスク診断ツール - kusasyu tools">
+<meta property="og:description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-25/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務ナレッジ属人化リスク診断ツール - kusasyu tools">
+<meta name="twitter:description" content="法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務ナレッジ属人化リスク診断ツール",
+  "description": "法務担当者の日常業務（契約レビューメモ・法律相談記録・社内メール）から自動的にナレッジを抽出・蓄積し、新任者や他部署が即座に検索できる仕組みを構築するツールキット。属人化リスク診断HTML、文書からのナレッジ自動抽出Pythonスクリプト、ナレッジ台帳CSV の3点セットで、高額SaaSなしに自社運用できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-25/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">法務ナレッジ属人化リスク診断ツール</span></div>
+<div class="wrap">
+<header>
+<h1>法務ナレッジ属人化リスク診断</h1>
+<p>10問の診断で自社の法務ナレッジ属人化レベルを可視化</p>
+</header>
+<div id="progress" class="prog"><div class="prog-bar" id="pbar" style="width:0%"></div></div>
+<div id="quiz"></div>
+<div id="result"></div>
+</div>
+<script>
+const Q=[
+{q:"契約レビューの判断基準やチェックポイントは文書化されていますか？",o:["詳細なマニュアルあり","簡易メモ程度あり","口頭で共有","特定の人の頭の中のみ"],s:[0,1,2,3],c:"doc"},
+{q:"法律相談の対応記録はどのように管理されていますか？",o:["データベースで一元管理","Excelやスプレッドシート","個人のメモやメール","記録していない"],s:[0,1,2,3],c:"doc"},
+{q:"法務担当者が突然退職した場合、業務はどうなりますか？",o:["引継ぎ資料で対応可能","一時的に混乱するが復旧可能","大幅に停滞する","何が進行中か把握不能"],s:[0,1,2,3],c:"risk"},
+{q:"過去の類似案件の対応履歴を検索できますか？",o:["キーワードで即座に検索可能","ファイル名で探せばある","担当者に聞かないと不明","そもそも記録がない"],s:[0,1,2,3],c:"search"},
+{q:"法改正情報の収集・共有はどのように行っていますか？",o:["定期的に全員に共有","担当者が個別に収集","外部セミナー頼み","特に追っていない"],s:[0,1,2,3],c:"doc"},
+{q:"他部署から法務に同じ質問が繰り返されることはありますか？",o:["FAQで自己解決できる","たまに重複がある","頻繁に同じ質問が来る","ほぼ毎回同じ説明をしている"],s:[0,1,2,3],c:"search"},
+{q:"契約書のひな形・テンプレートの管理状況は？",o:["最新版が共有フォルダで管理","あるが更新が不定期","個人PCに散在","ひな形が統一されていない"],s:[0,1,2,3],c:"doc"},
+{q:"法務部門の業務量やタスク状況を上長は把握できていますか？",o:["タスク管理ツールで可視化","定例会議で共有","聞けばわかる","把握できていない"],s:[0,1,2,3],c:"risk"},
+{q:"新任の法務担当者が戦力化するまでの期間は？",o:["1ヶ月以内","3ヶ月程度","半年以上","1年以上かかる"],s:[0,1,2,3],c:"risk"},
+{q:"社外弁護士とのやり取りや助言内容は蓄積されていますか？",o:["案件ごとにDBに記録","メールを保存している","担当者個人が管理","蓄積していない"],s:[0,1,2,3],c:"search"}
+];
+let cur=0,ans=[];
+const $=id=>document.getElementById(id);
+function render(){
+if(cur>=Q.length){showResult();return}
+let q=Q[cur],h=`<div class="card"><div class="q-text"><span class="q-num">${cur+1}</span>${q.q}</div><div class="opts">`;
+q.o.forEach((o,i)=>{h+=`<label><input type="radio" name="a" value="${i}"><span>${o}</span></label>`});
+h+=`</div></div><button class="btn btn-primary" id="nb" onclick="next()" disabled>次へ</button>`;
+if(cur>0)h+=`<button class="btn btn-secondary" onclick="cur--;render()">戻る</button>`;
+$("quiz").innerHTML=h;
+$("pbar").style.width=(cur/Q.length*100)+"%";
+$("quiz").querySelectorAll("input").forEach(r=>r.addEventListener("change",()=>{$("nb").disabled=false}));
+if(ans[cur]!==undefined){let radios=$("quiz").querySelectorAll("input");radios[ans[cur]].checked=true;$("nb").disabled=false}
+}
+function next(){
+let v=$("quiz").querySelector("input:checked");
+if(!v)return;ans[cur]=+v.value;cur++;render();
+}
+function showResult(){
+$("quiz").style.display="none";$("pbar").style.width="100%";
+let total=0,cats={doc:0,risk:0,search:0},cnt={doc:0,risk:0,search:0};
+Q.forEach((q,i)=>{let s=q.s[ans[i]];total+=s;cats[q.c]+=s;cnt[q.c]++});
+let mx=30,pct=Math.round(total/mx*100);
+let docPct=Math.round(cats.doc/(cnt.doc*3)*100),riskPct=Math.round(cats.risk/(cnt.risk*3)*100),srchPct=Math.round(cats.search/(cnt.search*3)*100);
+let lv,lvC,lvT,measures;
+if(pct<=20){lv=1;lvC="#22c55e";lvT="レベル1：良好（属人化リスク低）";measures=["現状の文書化運用を維持し、更新頻度のルールを明文化する","年1回の棚卸しで陳腐化したナレッジを整理する","他部署向けFAQを定期的に見直し最新化する"]}
+else if(pct<=40){lv=2;lvC="#84cc16";lvT="レベル2：軽度（一部に属人化あり）";measures=["契約レビューチェックリストを作成し共有フォルダに配置する","法律相談記録のテンプレートを導入し記録漏れを防止する","月次で未文書化業務の洗い出しミーティングを実施する"]}
+else if(pct<=60){lv=3;lvC="#eab308";lvT="レベル3：中度（属人化が進行中）";measures=["主要担当者の業務を棚卸しし、引継ぎ資料を優先的に作成する","ナレッジ台帳（CSV/Excel）を導入し検索可能な状態にする","週次15分の「ナレッジ共有タイム」を法務ミーティングに組み込む"]}
+else if(pct<=80){lv=4;lvC="#f97316";lvT="レベル4：高度（早急な対策が必要）";measures=["退職・異動リスクの高い担当者から緊急ヒアリングを実施する","全契約書ひな形を統一フォルダに集約しバージョン管理を開始する","過去の法律相談・外部弁護士助言をデータベース化する"]}
+else{lv=5;lvC="#ef4444";lvT="レベル5：危険（ナレッジ消失の危機）";measures=["経営層にリスク報告し、ナレッジ移管プロジェクトを立ち上げる","担当者ごとの暗黙知を録画・録音インタビューで即座に記録する","外部の法務BPOを一時的に活用し業務継続体制を確保する"]}
+let h=`<div class="card" style="text-align:center"><h2 style="margin-bottom:12px">診断結果</h2>
+<div class="score-circle" style="background:${lvC}"><span>${total}</span><small>/ ${mx}点</small></div>
+<div class="lv" style="color:${lvC}">${lvT}</div></div>
+<div class="card"><h3 style="font-size:.95em;margin-bottom:10px">カテゴリ別評価</h3>`;
+[["文書化率",docPct,"#3b82f6"],["退職・異動リスク",riskPct,"#f97316"],["検索可能性",srchPct,"#8b5cf6"]].forEach(b=>{
+h+=`<div class="bar-wrap"><div class="bar-label"><span>${b[0]}</span><span style="color:${b[2]};font-weight:700">${b[1]}%</span></div><div class="bar-bg"><div class="bar-fill" style="width:${b[1]}%;background:${b[2]}"></div></div></div>`});
+h+=`<p style="font-size:.78em;color:#64748b;margin-top:8px">※数値が高いほどリスクが高いことを示します</p></div>
+<div class="card measures"><h3 style="font-size:1em;color:#1e3a5f;margin-bottom:8px">優先対策 TOP 3</h3><ol>`;
+measures.forEach(m=>{h+=`<li>${m}</li>`});
+h+=`</ol></div><button class="btn btn-primary" onclick="location.reload()">もう一度診断する</button>`;
+$("result").innerHTML=h;$("result").style.display="block";
+}
+render();
+</script>
+</body>
+</html>

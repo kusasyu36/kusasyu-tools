@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNS投稿管理＆効果測定シート - kusasyu tools</title>
+<meta name="description" content="業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,SNS投稿管理＆効果測定シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-12/">
+<meta property="og:title" content="SNS投稿管理＆効果測定シート - kusasyu tools">
+<meta property="og:description" content="業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SNS投稿管理＆効果測定シート - kusasyu tools">
+<meta name="twitter:description" content="業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SNS投稿管理＆効果測定シート",
+  "description": "業種・商品・ターゲットを入力すると、12ヶ月分のSNS投稿カレンダーをAIが自動生成するHTMLツール。各投稿に本文・ハッシュタグ・最適投稿時間・画像生成プロンプトをセットで出力。飲食・美容・士業・ECなど業種別テンプレートを内蔵し、季節イベントも自動反映。CSVエクスポートでGoogleスプレッドシート/E",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-12/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-27"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>SNS投稿管理＆効果測定シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>SNS投稿管理＆効果測定シート</h1>
+  <p class="project-name">SNS投稿が続かない？AI年間カレンダー生成ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>投稿日</th><th>曜日</th><th>月</th><th>プラットフォーム</th><th>投稿カテゴリ</th><th>投稿本文</th><th>ハッシュタグ</th><th>最適投稿時間</th><th>画像生成プロンプト</th><th>ステータス</th><th>いいね数</th><th>コメント数</th><th>保存数</th><th>リーチ数</th><th>エンゲージメント率(%)</th><th>備考</th></tr></thead><tbody><tr><td>2026-05-01</td><td>金</td><td>5</td><td>Instagram</td><td>季節イベント</td><td>5月になりました！GW限定メニューをご用意しております。ぜひお立ち寄りください🌿</td><td>#GW #ゴールデンウィーク #期間限定 #ランチ</td><td>12:00</td><td>カフェの店内にGW限定メニューのポスターが飾られた明るい写真風イラスト</td><td>投稿済</td><td>48</td><td>5</td><td>12</td><td>820</td><td>=IFERROR((K2+L2+M2)/N2*100,0)</td><td>SNS月間カレンダー自動生成ツールより出力</td></tr><tr><td>2026-05-05</td><td>火</td><td>5</td><td>X（Twitter）</td><td>季節イベント</td><td>こどもの日🎏お子様連れ大歓迎！本日キッズドリンク無料です。家族でのんびりお過ごしください。</td><td>#こどもの日 #子連れ歓迎 #キッズ無料 #カフェ</td><td>11:30</td><td>こどもの日の装飾がされた温かみのあるカフェの店頭イメージ</td><td>投稿済</td><td>35</td><td>3</td><td>0</td><td>610</td><td>=IFERROR((K3+L3+M3)/N3*100,0)</td><td></td></tr><tr><td>2026-05-10</td><td>日</td><td>5</td><td>Instagram</td><td>商品紹介</td><td>当店人気No.1のスペシャルティラテ☕ 豆は毎週届く新鮮なシングルオリジンを使用。一杯ずつ丁寧にお淹れします。</td><td>#スペシャルティコーヒー #ラテ #コーヒー好き #こだわりの一杯</td><td>18:00</td><td>美しいラテアートが描かれたコーヒーカップを真上から撮影した構図</td><td>承認済</td><td>0</td><td>0</td><td>0</td><td>0</td><td>=IFERROR((K4+L4+M4)/N4*100,0)</td><td>来週投稿予定</td></tr><tr><td>2026-05-15</td><td>金</td><td>5</td><td>Instagram</td><td>お客様の声</td><td>『また来たくなるお店です』——常連のお客様からいただいた嬉しいお言葉。スタッフ一同の励みになります！</td><td>#口コミ #お客様の声 #ありがとうございます #常連様</td><td>19:00</td><td>温かみのある手書き風の感謝メッセージカードのイラスト</td><td>下書き</td><td>0</td><td>0</td><td>0</td><td>0</td><td>=IFERROR((K5+L5+M5)/N5*100,0)</td><td>本文要修正</td></tr><tr><td>2026-05-20</td><td>水</td><td>5</td><td>X（Twitter）</td><td>ノウハウ・Tips</td><td>SNS投稿が続かない…そんな悩みありませんか？コツは「月初に1ヶ月分まとめて作る」こと。当店もAIカレンダーツールで月30投稿を継続中！</td><td>#SNS運用 #中小企業 #マーケティング #投稿のコツ</td><td>12:30</td><td>デスクの上にカレンダーとスマートフォンが置かれたフラットレイ写真風</td><td>下書き</td><td>0</td><td>0</td><td>0</td><td>0</td><td>=IFERROR((K6+L6+M6)/N6*100,0)</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>月別集計</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>集計月</td><td>投稿予定数</td><td>投稿済数</td><td>達成率(%)</td><td>いいね合計</td><td>コメント合計</td><td>保存合計</td><td>リーチ合計</td><td>平均エンゲージメント率(%)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>5</td><td>=COUNTIF(C2:C6,5)</td><td>=COUNTIFS(C2:C6,5,J2:J6,"投稿済")</td><td>=IFERROR(S10/R10*100,0)</td><td>=SUMPRODUCT((C2:C6=5)*K2:K6)</td><td>=SUMPRODUCT((C2:C6=5)*L2:L6)</td><td>=SUMPRODUCT((C2:C6=5)*M2:M6)</td><td>=SUMPRODUCT((C2:C6=5)*N2:N6)</td><td>=IFERROR((U10+V10+W10)/X10*100,0)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>6</td><td>0</td><td>0</td><td>=IFERROR(S11/R11*100,0)</td><td>0</td><td>0</td><td>0</td><td>0</td><td>=IFERROR((U11+V11+W11)/X11*100,0)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `投稿日,曜日,月,プラットフォーム,投稿カテゴリ,投稿本文,ハッシュタグ,最適投稿時間,画像生成プロンプト,ステータス,いいね数,コメント数,保存数,リーチ数,エンゲージメント率(%),備考
+2026-05-01,金,5,Instagram,季節イベント,"5月になりました！GW限定メニューをご用意しております。ぜひお立ち寄りください🌿",#GW #ゴールデンウィーク #期間限定 #ランチ,12:00,カフェの店内にGW限定メニューのポスターが飾られた明るい写真風イラスト,投稿済,48,5,12,820,"=IFERROR((K2+L2+M2)/N2*100,0)",SNS月間カレンダー自動生成ツールより出力
+2026-05-05,火,5,X（Twitter）,季節イベント,"こどもの日🎏お子様連れ大歓迎！本日キッズドリンク無料です。家族でのんびりお過ごしください。",#こどもの日 #子連れ歓迎 #キッズ無料 #カフェ,11:30,こどもの日の装飾がされた温かみのあるカフェの店頭イメージ,投稿済,35,3,0,610,"=IFERROR((K3+L3+M3)/N3*100,0)",
+2026-05-10,日,5,Instagram,商品紹介,"当店人気No.1のスペシャルティラテ☕ 豆は毎週届く新鮮なシングルオリジンを使用。一杯ずつ丁寧にお淹れします。",#スペシャルティコーヒー #ラテ #コーヒー好き #こだわりの一杯,18:00,美しいラテアートが描かれたコーヒーカップを真上から撮影した構図,承認済,0,0,0,0,"=IFERROR((K4+L4+M4)/N4*100,0)",来週投稿予定
+2026-05-15,金,5,Instagram,お客様の声,"『また来たくなるお店です』——常連のお客様からいただいた嬉しいお言葉。スタッフ一同の励みになります！",#口コミ #お客様の声 #ありがとうございます #常連様,19:00,温かみのある手書き風の感謝メッセージカードのイラスト,下書き,0,0,0,0,"=IFERROR((K5+L5+M5)/N5*100,0)",本文要修正
+2026-05-20,水,5,X（Twitter）,ノウハウ・Tips,"SNS投稿が続かない…そんな悩みありませんか？コツは「月初に1ヶ月分まとめて作る」こと。当店もAIカレンダーツールで月30投稿を継続中！",#SNS運用 #中小企業 #マーケティング #投稿のコツ,12:30,デスクの上にカレンダーとスマートフォンが置かれたフラットレイ写真風,下書き,0,0,0,0,"=IFERROR((K6+L6+M6)/N6*100,0)",
+,,,,,,,,,,,,,,,
+月別集計,,,,,,,,,,,,,,,
+集計月,投稿予定数,投稿済数,達成率(%),いいね合計,コメント合計,保存合計,リーチ合計,平均エンゲージメント率(%),,,,,,,
+5,"=COUNTIF(C2:C6,5)","=COUNTIFS(C2:C6,5,J2:J6,""投稿済"")","=IFERROR(S10/R10*100,0)","=SUMPRODUCT((C2:C6=5)*K2:K6)","=SUMPRODUCT((C2:C6=5)*L2:L6)","=SUMPRODUCT((C2:C6=5)*M2:M6)","=SUMPRODUCT((C2:C6=5)*N2:N6)","=IFERROR((U10+V10+W10)/X10*100,0)",,,,,,,
+6,0,0,"=IFERROR(S11/R11*100,0)",0,0,0,0,"=IFERROR((U11+V11+W11)/X11*100,0)",,,,,,,
+7,0,0,"=IFERROR(S12/R12*100,0)",0,0,0,0,"=IFERROR((U12+V12+W12)/X12*100,0)",,,,,,,
+8,0,0,"=IFERROR(S13/R13*100,0)",0,0,0,0,"=IFERROR((U13+V13+W13)/X13*100,0)",,,,,,,
+9,0,0,"=IFERROR(S14/R14*100,0)",0,0,0,0,"=IFERROR((U14+V14+W14)/X14*100,0)",,,,,,,
+10,0,0,"=IFERROR(S15/R15*100,0)",0,0,0,0,"=IFERROR((U15+V15+W15)/X15*100,0)",,,,,,,
+11,0,0,"=IFERROR(S16/R16*100,0)",0,0,0,0,"=IFERROR((U16+V16+W16)/X16*100,0)",,,,,,,
+12,0,0,"=IFERROR(S17/R17*100,0)",0,0,0,0,"=IFERROR((U17+V17+W17)/X17*100,0)",,,,,,,
+1,0,0,"=IFERROR(S18/R18*100,0)",0,0,0,0,"=IFERROR((U18+V18+W18)/X18*100,0)",,,,,,,
+2,0,0,"=IFERROR(S19/R19*100,0)",0,0,0,0,"=IFERROR((U19+V19+W19)/X19*100,0)",,,,,,,
+3,0,0,"=IFERROR(S20/R20*100,0)",0,0,0,0,"=IFERROR((U20+V20+W20)/X20*100,0)",,,,,,,
+4,0,0,"=IFERROR(S21/R21*100,0)",0,0,0,0,"=IFERROR((U21+V21+W21)/X21*100,0)",,,,,,,
+,,,,,,,,,,,,,,,,
+使い方,,,,,,,,,,,,,,,,
+1. SNS月間カレンダー自動生成ツールでカレンダーを生成しCSVエクスポート,,,,,,,,,,,,,,,,
+2. エクスポートしたデータをこのシートのA2行以降に貼り付け（列構造は統一済み）,,,,,,,,,,,,,,,,
+3. 投稿前にステータスを「下書き→承認済」に変更,,,,,,,,,,,,,,,,
+4. 投稿後にステータスを「投稿済」にしていいね数・コメント数・保存数・リーチ数を記入,,,,,,,,,,,,,,,,
+5. エンゲージメント率(O列)と月別集計が自動計算されます,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+ステータス区分: 下書き / 承認済 / 投稿済 / スキップ,,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_SNS投稿管理＆効果測定シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
