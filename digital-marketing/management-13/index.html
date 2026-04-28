@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNS週次投稿カレンダー管理シート - kusasyu tools</title>
+<meta name="description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,SNS週次投稿カレンダー管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-13/">
+<meta property="og:title" content="SNS週次投稿カレンダー管理シート - kusasyu tools">
+<meta property="og:description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SNS週次投稿カレンダー管理シート - kusasyu tools">
+<meta name="twitter:description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SNS週次投稿カレンダー管理シート",
+  "description": "WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-13/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>SNS週次投稿カレンダー管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>SNS週次投稿カレンダー管理シート</h1>
+  <p class="project-name">SNS外注が高い？ブランド解析AI一括生成ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>日付</th><th>曜日</th><th>SNS種別</th><th>業種</th><th>投稿文</th><th>ハッシュタグ</th><th>画像メモ</th><th>ステータス</th><th>文字数</th><th>X用140文字チェック</th></tr></thead><tbody><tr><td>2026-04-28</td><td>月</td><td>X</td><td>飲食</td><td>春キャベツのペペロンチーノ始めました🌿旬の甘みをシンプルに。ランチ11:30〜数量限定です</td><td>#ランチ #パスタ #旬の味 #限定メニュー</td><td>パスタの俯瞰写真</td><td>投稿完了</td><td>=LEN(E2)</td><td>=IF(AND(C2="X",I2&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-04-29</td><td>火</td><td>Instagram</td><td>美容</td><td>【GW限定】ヘッドスパ60分コースが20%OFF✨日頃の疲れをリセットしませんか？ご予約はプロフリンクから</td><td>#ヘッドスパ #GW限定 #リラックス #美容サロン</td><td>施術中の雰囲気カット</td><td>承認済み</td><td>=LEN(E3)</td><td>=IF(AND(C3="X",I3&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-04-30</td><td>水</td><td>LinkedIn</td><td>士業</td><td>5月は労働保険の年度更新時期です。申告期限は7月10日ですが早めの準備が安心です。無料相談を受付中。</td><td>#社労士 #労働保険 #年度更新 #中小企業支援</td><td>オフィスでの相談風景</td><td>下書き</td><td>=LEN(E4)</td><td>=IF(AND(C4="X",I4&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-05-02</td><td>金</td><td>note</td><td>飲食</td><td>【店主コラム】地元農家から直接仕入れる理由。15年前の創業から変わらない食への想いを綴りました。</td><td>#地産地消 #農家直送 #食のこだわり #店主の想い</td><td>農家訪問の集合写真</td><td>下書き</td><td>=LEN(E5)</td><td>=IF(AND(C5="X",I5&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-05-05</td><td>月</td><td>X</td><td>士業</td><td>【確定申告お忘れの方へ】期限後でも申告可能です。延滞税を最小限に抑えるポイントをご相談ください📞</td><td>#確定申告 #税理士 #無料相談 #延滞税</td><td>なし（テキストのみ）</td><td>投稿完了</td><td>=LEN(E6)</td><td>=IF(AND(C6="X",I6&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-05-06</td><td>火</td><td>Instagram</td><td>飲食</td><td>こどもの日特別🎏お子様プレート780円（税込）鯉のぼりハンバーグと旗付きオムライス！5/3〜5/5限定</td><td>#こどもの日 #お子様プレート #家族ごはん #GW</td><td>プレート完成写真</td><td>投稿完了</td><td>=LEN(E7)</td><td>=IF(AND(C7="X",I7&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-05-07</td><td>水</td><td>X</td><td>美容</td><td>梅雨前の縮毛矯正ご予約増加中✂️うねり・広がりが気になる方は5月中がおすすめ。自然なストレートで毎朝が楽に</td><td>#縮毛矯正 #梅雨対策 #ヘアケア #美容室</td><td>ビフォーアフター写真（許可済み）</td><td>承認済み</td><td>=LEN(E8)</td><td>=IF(AND(C8="X",I8&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-05-09</td><td>金</td><td>LinkedIn</td><td>士業</td><td>顧問契約のあり方が変化。月1回の訪問からチャットでの随時相談へ。デジタル顧問サービスの取り組みを紹介します。</td><td>#顧問契約 #士業DX #チャット相談 #デジタル化</td><td>オンライン相談イメージ</td><td>下書き</td><td>=LEN(E9)</td><td>=IF(AND(C9="X",I9&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-05-12</td><td>月</td><td>LinkedIn</td><td>美容</td><td>美容師の育成プログラムを体系化し離職率40%→12%に改善。サロン経営の人材定着の取り組みを共有します。</td><td>#美容師育成 #人材定着 #サロン経営 #働き方改革</td><td>スタッフ研修の写真</td><td>下書き</td><td>=LEN(E10)</td><td>=IF(AND(C10="X",I10&gt;140),"⚠超過","OK")</td></tr><tr><td>2026-05-13</td><td>火</td><td>note</td><td>士業</td><td>【わかりやすく解説】インボイス制度から2年。免税事業者が今知るべき3つのポイントをまとめました。</td><td>#インボイス制度 #免税事業者 #税務知識 #解説</td><td>解説図スクリーンショット</td><td>下書き</td><td>=LEN(E11)</td><td>=IF(AND(C11="X",I11&gt;140),"⚠超過","OK")</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `日付,曜日,SNS種別,業種,投稿文,ハッシュタグ,画像メモ,ステータス,文字数,X用140文字チェック
+2026-04-28,月,X,飲食,"春キャベツのペペロンチーノ始めました🌿旬の甘みをシンプルに。ランチ11:30〜数量限定です","#ランチ #パスタ #旬の味 #限定メニュー","パスタの俯瞰写真",投稿完了,=LEN(E2),"=IF(AND(C2=""X"",I2>140),""⚠超過"",""OK"")"
+2026-04-29,火,Instagram,美容,"【GW限定】ヘッドスパ60分コースが20%OFF✨日頃の疲れをリセットしませんか？ご予約はプロフリンクから","#ヘッドスパ #GW限定 #リラックス #美容サロン","施術中の雰囲気カット",承認済み,=LEN(E3),"=IF(AND(C3=""X"",I3>140),""⚠超過"",""OK"")"
+2026-04-30,水,LinkedIn,士業,"5月は労働保険の年度更新時期です。申告期限は7月10日ですが早めの準備が安心です。無料相談を受付中。","#社労士 #労働保険 #年度更新 #中小企業支援","オフィスでの相談風景",下書き,=LEN(E4),"=IF(AND(C4=""X"",I4>140),""⚠超過"",""OK"")"
+2026-05-02,金,note,飲食,"【店主コラム】地元農家から直接仕入れる理由。15年前の創業から変わらない食への想いを綴りました。","#地産地消 #農家直送 #食のこだわり #店主の想い","農家訪問の集合写真",下書き,=LEN(E5),"=IF(AND(C5=""X"",I5>140),""⚠超過"",""OK"")"
+2026-05-05,月,X,士業,"【確定申告お忘れの方へ】期限後でも申告可能です。延滞税を最小限に抑えるポイントをご相談ください📞","#確定申告 #税理士 #無料相談 #延滞税","なし（テキストのみ）",投稿完了,=LEN(E6),"=IF(AND(C6=""X"",I6>140),""⚠超過"",""OK"")"
+2026-05-06,火,Instagram,飲食,"こどもの日特別🎏お子様プレート780円（税込）鯉のぼりハンバーグと旗付きオムライス！5/3〜5/5限定","#こどもの日 #お子様プレート #家族ごはん #GW","プレート完成写真",投稿完了,=LEN(E7),"=IF(AND(C7=""X"",I7>140),""⚠超過"",""OK"")"
+2026-05-07,水,X,美容,"梅雨前の縮毛矯正ご予約増加中✂️うねり・広がりが気になる方は5月中がおすすめ。自然なストレートで毎朝が楽に","#縮毛矯正 #梅雨対策 #ヘアケア #美容室","ビフォーアフター写真（許可済み）",承認済み,=LEN(E8),"=IF(AND(C8=""X"",I8>140),""⚠超過"",""OK"")"
+2026-05-09,金,LinkedIn,士業,"顧問契約のあり方が変化。月1回の訪問からチャットでの随時相談へ。デジタル顧問サービスの取り組みを紹介します。","#顧問契約 #士業DX #チャット相談 #デジタル化","オンライン相談イメージ",下書き,=LEN(E9),"=IF(AND(C9=""X"",I9>140),""⚠超過"",""OK"")"
+2026-05-12,月,LinkedIn,美容,"美容師の育成プログラムを体系化し離職率40%→12%に改善。サロン経営の人材定着の取り組みを共有します。","#美容師育成 #人材定着 #サロン経営 #働き方改革","スタッフ研修の写真",下書き,=LEN(E10),"=IF(AND(C10=""X"",I10>140),""⚠超過"",""OK"")"
+2026-05-13,火,note,士業,"【わかりやすく解説】インボイス制度から2年。免税事業者が今知るべき3つのポイントをまとめました。","#インボイス制度 #免税事業者 #税務知識 #解説","解説図スクリーンショット",下書き,=LEN(E11),"=IF(AND(C11=""X"",I11>140),""⚠超過"",""OK"")"
+2026-05-14,水,X,飲食,"新メニュー「だし巻きサンド」🥚ふわふわ出汁巻き卵×カリカリトースト。テイクアウトもOKです！","#新メニュー #だし巻きサンド #テイクアウト","断面写真",投稿完了,=LEN(E12),"=IF(AND(C12=""X"",I12>140),""⚠超過"",""OK"")"
+2026-05-16,金,Instagram,美容,"【before→after】パーソナルカラー診断×カラーリング💇‍♀️イエベ春のお客様にピンクベージュで顔色が明るく✨","#パーソナルカラー #ヘアカラー #ビフォーアフター #カラー","ビフォーアフター比較写真",承認済み,=LEN(E13),"=IF(AND(C13=""X"",I13>140),""⚠超過"",""OK"")"
+2026-05-19,月,Instagram,飲食,"☀️テラス席はじめました！ペット同伴OK🐕風が心地よい季節にワンちゃんと一緒にランチいかがですか？","#テラス席 #ペット同伴OK #犬連れランチ #カフェ","テラス席とワンちゃんの写真",下書き,=LEN(E14),"=IF(AND(C14=""X"",I14>140),""⚠超過"",""OK"")"
+2026-05-20,火,X,美容,"6月の予約受付スタート✂️梅雨時期はカット＋トリートメントセットが人気。早めのご予約がおすすめです！","#予約受付 #梅雨ヘアケア #トリートメント","なし",下書き,=LEN(E15),"=IF(AND(C15=""X"",I15>140),""⚠超過"",""OK"")"
+2026-05-21,水,X,士業,"会社設立を検討中の方へ。合同会社なら登録免許税6万円＋定款認証不要で約10万円から設立可能です。一方で株式会社は登録免許税15万円＋定款認証約5万円＋その他費用で約25万円が目安。設立後の届出や社会保険もサポート。無料相談は初回60分無料👇","#会社設立 #合同会社 #株式会社 #起業 #無料相談","比較表カード画像",承認済み,=LEN(E16),"=IF(AND(C16=""X"",I16>140),""⚠超過"",""OK"")"
+2026-05-23,金,note,飲食,"【レシピ公開】人気No.1自家製ドレッシング。材料4つで誰でも作れます。お店の味をご家庭でもどうぞ。","#レシピ公開 #自家製ドレッシング #おうちごはん","材料のフラットレイ写真",下書き,=LEN(E17),"=IF(AND(C17=""X"",I17>140),""⚠超過"",""OK"")"
+,,,,,,,,,,
+=== 月間集計 ===,,,,,,,,,,
+投稿数合計,,=COUNTA(A2:A17),,,,,,,,
+,,,,,,,,,,
+【SNS別件数】,,件数,,,,,,,,
+X,,"=COUNTIF(C2:C17,""X"")",,,,,,,,
+Instagram,,"=COUNTIF(C2:C17,""Instagram"")",,,,,,,,
+LinkedIn,,"=COUNTIF(C2:C17,""LinkedIn"")",,,,,,,,
+note,,"=COUNTIF(C2:C17,""note"")",,,,,,,,
+,,,,,,,,,,
+【ステータス別件数】,,件数,,,,,,,,
+下書き,,"=COUNTIF(H2:H17,""下書き"")",,,,,,,,
+承認済み,,"=COUNTIF(H2:H17,""承認済み"")",,,,,,,,
+投稿完了,,"=COUNTIF(H2:H17,""投稿完了"")",,,,,,,,
+,,,,,,,,,,
+【業種別件数】,,件数,,,,,,,,
+飲食,,"=COUNTIF(D2:D17,""飲食"")",,,,,,,,
+美容,,"=COUNTIF(D2:D17,""美容"")",,,,,,,,
+士業,,"=COUNTIF(D2:D17,""士業"")",,,,,,,,
+,,,,,,,,,,
+※ブランド設定&SNS投稿一括生成ツールで生成した投稿文をこのシートに貼り付けて週次管理できます,,,,,,,,,,
+※X用140文字チェック欄: SNS種別がXかつ文字数140超で「⚠超過」と自動表示されます,,,,,,,,,,
+※行を追加する場合はI列・J列の数式を下方向にコピーしてください,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_SNS週次投稿カレンダー管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

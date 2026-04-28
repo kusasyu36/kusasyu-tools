@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポータル別SEOキーワード＆テンプレート管理シート - kusasyu tools</title>
+<meta name="description" content="物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,ポータル別SEOキーワード＆テンプレート管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/management-3/">
+<meta property="og:title" content="ポータル別SEOキーワード＆テンプレート管理シート - kusasyu tools">
+<meta property="og:description" content="物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/management-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ポータル別SEOキーワード＆テンプレート管理シート - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ポータル別SEOキーワード＆テンプレート管理シート",
+  "description": "物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/management-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-04-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>ポータル別SEOキーワード＆テンプレート管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>ポータル別SEOキーワード＆テンプレート管理シート</h1>
+  <p class="project-name">物件説明文、まだ手書き？AIで即生成</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>区分</th><th>ポータルサイト</th><th>物件タイプ</th><th>推奨文字数_下限</th><th>推奨文字数_上限</th><th>SEOキーワード_主要</th><th>SEOキーワード_補助</th><th>説明文テンプレート</th><th>物件ID</th><th>物件名</th><th>所在地</th><th>ステータス</th><th>SEOスコア</th><th>担当者</th><th>更新日</th><th>備考</th></tr></thead><tbody><tr><td>キーワード集</td><td>SUUMO</td><td>マンション</td><td>200</td><td>500</td><td>駅徒歩5分以内/南向き/リノベーション済/角部屋/眺望良好</td><td>オートロック/宅配ボックス/ペット相談可/食洗機付/床暖房</td><td>【物件名】は◯◯駅徒歩◯分の好立地。◯LDK◯◯向き住戸で◯◯・◯◯完備。築◯年◯◯済みの快適住空間。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>SUUMO: 冒頭50文字に駅名・徒歩分数を必ず含める</td></tr><tr><td>キーワード集</td><td>SUUMO</td><td>戸建</td><td>200</td><td>500</td><td>新築/庭付き/駐車場2台/4LDK以上/リフォーム済</td><td>太陽光発電/床暖房/食洗機/ウォークインクローゼット/高気密高断熱</td><td>閑静な住宅街に佇む◯LDK。駐車場◯台付き◯◯小学校区。◯◯設備で快適な暮らしを実現。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>学区情報は反響率+15%（当社実績）</td></tr><tr><td>キーワード集</td><td>SUUMO</td><td>土地</td><td>150</td><td>400</td><td>建築条件なし/整形地/南道路/◯坪/更地渡し</td><td>角地/2方向接道/地盤調査済/上下水道引込済/用途地域</td><td>◯◯駅徒歩◯分の整形地◯坪。建築条件なしでお好きなハウスメーカーで建築可能。◯◯学区。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>坪単価を明記すると反響率向上</td></tr><tr><td>キーワード集</td><td>SUUMO</td><td>事務所</td><td>200</td><td>500</td><td>駅徒歩3分以内/OAフロア/24時間利用可/個別空調/光回線</td><td>エレベーター/機械警備/男女別トイレ/給湯室/会議室共用</td><td>◯◯駅徒歩◯分のオフィス。◯◯㎡のOAフロア・個別空調完備。◯◯年竣工の管理良好ビル。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>事務所は坪単価（税別）表記が基本</td></tr><tr><td>キーワード集</td><td>HOME'S</td><td>マンション</td><td>300</td><td>600</td><td>駅近/リノベ/ペット可/タワーマンション/低層マンション</td><td>ディスポーザー/トランクルーム/コンシェルジュ/免震構造/複層ガラス</td><td>◯◯エリアの◯LDK。◯◯駅◯分の利便性と◯◯の住環境を両立。◯◯・◯◯など充実設備。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>HOME'S: 物件特徴3つ以上記載で検索上位表示</td></tr><tr><td>キーワード集</td><td>HOME'S</td><td>戸建</td><td>300</td><td>600</td><td>注文住宅/中古一戸建て/平屋/二世帯/ガレージ付</td><td>全室南向き/吹抜リビング/パントリー/シューズクローク/外構付</td><td>◯◯の邸宅◯LDK+◯◯で◯◯㎡のゆとり。◯◯小・◯◯中学区で◯◯公園徒歩◯分。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>HOME'S: 間取り図+写真10枚以上で反響2倍</td></tr><tr><td>キーワード集</td><td>HOME'S</td><td>土地</td><td>200</td><td>500</td><td>売地/宅地/分譲地/旗竿地/高台</td><td>開発許可済/セットバック不要/都市ガス/公営水道/側溝整備済</td><td>◯◯エリアの売地◯坪。◯◯線◯◯駅◯分。都市ガス・公営水道引込済で建築コスト削減。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>HOME'S: 価格帯検索が多く端数価格が有効</td></tr><tr><td>キーワード集</td><td>HOME'S</td><td>事務所</td><td>300</td><td>600</td><td>居抜き/ワンフロア/天井高2.7m以上/大型ビル/レンタルオフィス</td><td>来客用駐車場/有人管理/非常用発電/1フロア1テナント/リフレッシュスペース</td><td>◯◯駅至近のオフィスビル◯階。◯◯㎡ワンフロアで天井高◯mの開放感。管理良好。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>HOME'S: 周辺環境（飲食・コンビニ）記載が有効</td></tr><tr><td>キーワード集</td><td>At Home</td><td>マンション</td><td>200</td><td>400</td><td>即入居可/フルリノベ/最上階/メゾネット/ルーフバルコニー</td><td>浴室乾燥機/追焚機能/ウォシュレット/モニター付インターホン/防犯カメラ</td><td>◯◯マンション◯階◯LDK。◯◯駅◯分で即入居可。◯◯済みで新築同様の住まい。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>At Home: 即入居可・価格変更の反響率が高い</td></tr><tr><td>キーワード集</td><td>At Home</td><td>戸建</td><td>200</td><td>400</td><td>オール電化/長期優良住宅/耐震等級3/ZEH/スマートハウス</td><td>EV充電設備/宅配ポスト/防犯ガラス/浄水器一体型/IHクッキングヒーター</td><td>◯◯の◯LDK戸建。耐震等級◯の◯◯仕様で安心。◯◯駅◯分で◯◯商業施設◯m。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>At Home: 安全・安心キーワードの反響率が高い</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `区分,ポータルサイト,物件タイプ,推奨文字数_下限,推奨文字数_上限,SEOキーワード_主要,SEOキーワード_補助,説明文テンプレート,物件ID,物件名,所在地,ステータス,SEOスコア,担当者,更新日,備考
+キーワード集,SUUMO,マンション,200,500,"駅徒歩5分以内/南向き/リノベーション済/角部屋/眺望良好","オートロック/宅配ボックス/ペット相談可/食洗機付/床暖房","【物件名】は◯◯駅徒歩◯分の好立地。◯LDK◯◯向き住戸で◯◯・◯◯完備。築◯年◯◯済みの快適住空間。",,,,,,,,"SUUMO: 冒頭50文字に駅名・徒歩分数を必ず含める"
+キーワード集,SUUMO,戸建,200,500,"新築/庭付き/駐車場2台/4LDK以上/リフォーム済","太陽光発電/床暖房/食洗機/ウォークインクローゼット/高気密高断熱","閑静な住宅街に佇む◯LDK。駐車場◯台付き◯◯小学校区。◯◯設備で快適な暮らしを実現。",,,,,,,,"学区情報は反響率+15%（当社実績）"
+キーワード集,SUUMO,土地,150,400,"建築条件なし/整形地/南道路/◯坪/更地渡し","角地/2方向接道/地盤調査済/上下水道引込済/用途地域","◯◯駅徒歩◯分の整形地◯坪。建築条件なしでお好きなハウスメーカーで建築可能。◯◯学区。",,,,,,,,"坪単価を明記すると反響率向上"
+キーワード集,SUUMO,事務所,200,500,"駅徒歩3分以内/OAフロア/24時間利用可/個別空調/光回線","エレベーター/機械警備/男女別トイレ/給湯室/会議室共用","◯◯駅徒歩◯分のオフィス。◯◯㎡のOAフロア・個別空調完備。◯◯年竣工の管理良好ビル。",,,,,,,,"事務所は坪単価（税別）表記が基本"
+キーワード集,HOME'S,マンション,300,600,"駅近/リノベ/ペット可/タワーマンション/低層マンション","ディスポーザー/トランクルーム/コンシェルジュ/免震構造/複層ガラス","◯◯エリアの◯LDK。◯◯駅◯分の利便性と◯◯の住環境を両立。◯◯・◯◯など充実設備。",,,,,,,,"HOME'S: 物件特徴3つ以上記載で検索上位表示"
+キーワード集,HOME'S,戸建,300,600,"注文住宅/中古一戸建て/平屋/二世帯/ガレージ付","全室南向き/吹抜リビング/パントリー/シューズクローク/外構付","◯◯の邸宅◯LDK+◯◯で◯◯㎡のゆとり。◯◯小・◯◯中学区で◯◯公園徒歩◯分。",,,,,,,,"HOME'S: 間取り図+写真10枚以上で反響2倍"
+キーワード集,HOME'S,土地,200,500,"売地/宅地/分譲地/旗竿地/高台","開発許可済/セットバック不要/都市ガス/公営水道/側溝整備済","◯◯エリアの売地◯坪。◯◯線◯◯駅◯分。都市ガス・公営水道引込済で建築コスト削減。",,,,,,,,"HOME'S: 価格帯検索が多く端数価格が有効"
+キーワード集,HOME'S,事務所,300,600,"居抜き/ワンフロア/天井高2.7m以上/大型ビル/レンタルオフィス","来客用駐車場/有人管理/非常用発電/1フロア1テナント/リフレッシュスペース","◯◯駅至近のオフィスビル◯階。◯◯㎡ワンフロアで天井高◯mの開放感。管理良好。",,,,,,,,"HOME'S: 周辺環境（飲食・コンビニ）記載が有効"
+キーワード集,At Home,マンション,200,400,"即入居可/フルリノベ/最上階/メゾネット/ルーフバルコニー","浴室乾燥機/追焚機能/ウォシュレット/モニター付インターホン/防犯カメラ","◯◯マンション◯階◯LDK。◯◯駅◯分で即入居可。◯◯済みで新築同様の住まい。",,,,,,,,"At Home: 即入居可・価格変更の反響率が高い"
+キーワード集,At Home,戸建,200,400,"オール電化/長期優良住宅/耐震等級3/ZEH/スマートハウス","EV充電設備/宅配ポスト/防犯ガラス/浄水器一体型/IHクッキングヒーター","◯◯の◯LDK戸建。耐震等級◯の◯◯仕様で安心。◯◯駅◯分で◯◯商業施設◯m。",,,,,,,,"At Home: 安全・安心キーワードの反響率が高い"
+キーワード集,At Home,土地,150,350,"仲介手数料不要/現況更地/測量済/分筆可/傾斜なし","通学路安全/ハザードマップ域外/日当たり良好/眺望あり/閑静","◯◯の◯坪売地。測量済・現況更地で即建築可。◯◯学区でハザードマップ域外の安心立地。",,,,,,,,"At Home: 安全関連ワード（ハザード等）が効果的"
+キーワード集,At Home,事務所,200,400,"初期費用安/フリーレント/保証金1ヶ月/スモールオフィス/SOHO可","インターネット無料/家具付/短期契約可/バーチャルオフィス併設/郵便受付","◯◯駅◯分で初期費用を抑えたオフィス。◯◯㎡でフリーレント◯ヶ月付。SOHO利用相談可。",,,,,,,,"At Home: 初期費用・フリーレント訴求が効果的"
+運用管理,SUUMO,マンション,,,,,,"P-001",グランシティ目黒,東京都目黒区目黒3丁目,作成済,85,山田,2026-04-25,"反響12件/月。リノベ訴求をジェネレーターで再生成済み"
+運用管理,HOME'S,マンション,,,,,,"P-001",グランシティ目黒,東京都目黒区目黒3丁目,要改善,62,山田,2026-04-20,"写真不足。ジェネレーターの設備キーワード追加が必要"
+運用管理,SUUMO,戸建,,,,,,"P-002",プラウドシーズン世田谷,東京都世田谷区成城6丁目,作成済,91,佐藤,2026-04-24,"学区情報追加で反響率+20%。SEOスコア高"
+運用管理,At Home,戸建,,,,,,"P-002",プラウドシーズン世田谷,東京都世田谷区成城6丁目,未作成,0,佐藤,,"At Home未掲載。ジェネレーターで説明文作成予定"
+運用管理,SUUMO,土地,,,,,,"P-003",武蔵野台売地,東京都府中市武蔵台2丁目,作成済,78,山田,2026-04-22,"坪単価追記済み。建築条件なし訴求で反響8件/月"`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_ポータル別SEOキーワード＆テンプレート管理シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

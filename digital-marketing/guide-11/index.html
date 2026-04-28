@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4SNSプラットフォーム別ブランド発信攻略ガイド - kusasyu tools</title>
+<meta name="description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,4SNSプラットフォーム別ブランド発信攻略ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-11/">
+<meta property="og:title" content="4SNSプラットフォーム別ブランド発信攻略ガイド - kusasyu tools">
+<meta property="og:description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4SNSプラットフォーム別ブランド発信攻略ガイド - kusasyu tools">
+<meta name="twitter:description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "4SNSプラットフォーム別ブランド発信攻略ガイド",
+  "description": "WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-11/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-04-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>4SNSプラットフォーム別ブランド発信攻略ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>4SNSプラットフォーム別ブランド発信攻略ガイド</h1>
+  <p class="project-name">SNS外注が高い？ブランド解析AI一括生成ツール</p>
+  <div class="content">
+<h1>4SNSプラットフォーム別ブランド発信攻略ガイド</h1>
+<p><strong>〜 飲食・美容・士業の広報兼任者がすぐ実践できる運用マニュアル 〜</strong></p>
+<hr />
+<h2>はじめに：なぜ「プラットフォーム別」の戦略が必要なのか</h2>
+<p>「とりあえず全SNSに同じ文章を投稿」——これが中小企業のSNS運用で最も多い失敗パターンです。X・Instagram・LinkedIn・noteはそれぞれユーザー層・アルゴリズム・文化が異なります。本ガイドでは、投稿カレンダー（CSV形式：<code>日付,曜日,SNS種別,業種,投稿文,ハッシュタグ,画像メモ,ステータス,文字数,X用140文字チェック</code>）と連動し、業種別に最適な発信方法を解説します。</p>
+<hr />
+<h2>1. X（旧Twitter）攻略</h2>
+<h3>基本スペック</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>推奨値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>投稿頻度</td>
+<td>週3〜5回</td>
+</tr>
+<tr>
+<td>文字数上限</td>
+<td><strong>140文字</strong>（日本語。投稿カレンダーの<code>X用140文字チェック</code>列で自動判定）</td>
+</tr>
+<tr>
+<td>画像推奨サイズ</td>
+<td>1200×675px（16:9）</td>
+</tr>
+<tr>
+<td>最適投稿時間</td>
+<td>平日7:00〜8:30 / 12:00〜13:00 / 20:00〜22:00</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別の文体ルール</h3>
+<p><strong>飲食店</strong> — タメ口＋絵文字で親近感を出す。メニュー名と限定感を冒頭に置く。</p>
+<blockquote>
+<p>例：「春キャベツのペペロンチーノ始めました🌿旬の甘みをシンプルに。ランチ11:30〜数量限定です」</p>
+<p>例：「新メニュー「だし巻きサンド」🥚ふわふわ出汁巻き卵×カリカリトースト。テイクアウトもOKです！」</p>
+</blockquote>
+<p><strong>美容サロン</strong> — 季節の悩みに寄り添う提案型。ビフォーアフターの示唆で興味を引く。</p>
+<blockquote>
+<p>例：「梅雨前の縮毛矯正ご予約増加中✂️うねり・広がりが気になる方は5月中がおすすめ。自然なストレートで毎朝が楽に」</p>
+</blockquote>
+<p><strong>士業事務所</strong> — 敬語ベース＋専門知識を簡潔に。相談誘導で締める。</p>
+<blockquote>
+<p>例：「【確定申告お忘れの方へ】期限後でも申告可能です。延滞税を最小限に抑えるポイントをご相談ください📞」</p>
+</blockquote>
+<h3>ハッシュタグ戦略</h3>
+<ul>
+<li>付与数：<strong>2〜4個</strong>（多すぎるとスパム感が出る）</li>
+<li>飲食例：<code>#ランチ #パスタ #旬の味 #限定メニュー</code></li>
+<li>美容例：<code>#縮毛矯正 #梅雨対策 #ヘアケア #美容室</code></li>
+<li>士業例：<code>#確定申告 #税理士 #無料相談 #延滞税</code></li>
+<li>大カテゴリ（検索用）＋小カテゴリ（専門性）を混ぜるのがコツ</li>
+</ul>
+<hr />
+<h2>2. Instagram攻略</h2>
+<h3>基本スペック</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>推奨値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>投稿頻度</td>
+<td>週2〜3回（フィード）＋ストーリーズ毎日</td>
+</tr>
+<tr>
+<td>キャプション目安</td>
+<td>300〜500文字（改行多め）</td>
+</tr>
+<tr>
+<td>画像推奨サイズ</td>
+<td>1080×1080px（正方形）または1080×1350px（縦長4:5）</td>
+</tr>
+<tr>
+<td>リール推奨</td>
+<td>1080×1920px（9:16）、15〜30秒</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別の文体ルール</h3>
+<p><strong>飲食店</strong> — 視覚優先。料理写真のインパクトが9割。キャプションは補足程度でOK。</p>
+<blockquote>
+<p>例：「こどもの日特別🎏お子様プレート780円（税込）鯉のぼりハンバーグと旗付きオムライス！5/3〜5/5限定」<br />
+画像メモ：プレート完成写真</p>
+</blockquote>
+<p><strong>美容サロン</strong> — ビフォーアフター・施術プロセスが最強コンテンツ。許可済みの写真を活用。</p>
+<blockquote>
+<p>例：「【GW限定】ヘッドスパ60分コースが20%OFF✨日頃の疲れをリセットしませんか？ご予約はプロフリンクから」<br />
+画像メモ：施術中の雰囲気カット</p>
+</blockquote>
+<p><strong>士業事務所</strong> — 図解・チェックリスト画像で専門知識をビジュアル化。カルーセル投稿が有効。</p>
+<h3>ハッシュタグ戦略</h3>
+<ul>
+<li>付与数：<strong>10〜15個</strong>（Xより多くてOK。ただし30個上限は避ける）</li>
+<li>飲食例：<code>#こどもの日 #お子様プレート #家族ごはん #GW</code> ＋地域タグ</li>
+<li>美容例：<code>#ヘッドスパ #GW限定 #リラックス #美容サロン</code> ＋施術名タグ</li>
+<li>士業はInstagramとの相性が低いため、図解コンテンツに絞って週1回で十分</li>
+</ul>
+<hr />
+<h2>3. LinkedIn攻略</h2>
+<h3>基本スペック</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>推奨値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>投稿頻度</td>
+<td>週1〜2回</td>
+</tr>
+<tr>
+<td>文字数目安</td>
+<td>500〜1,000文字（長文OK）</td>
+</tr>
+<tr>
+<td>画像推奨サイズ</td>
+<td>1200×627px（横長）</td>
+</tr>
+<tr>
+<td>最適投稿時間</td>
+<td>平日8:00〜10:00 / 火〜木が高エンゲージメント</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別の文体ルール</h3>
+<p><strong>飲食店</strong> — 経営視点・仕入れ哲学・地域連携などのストーリーを発信。</p>
+<p><strong>美容サロン</strong> — 人材育成・経営改善の取り組みが刺さる。</p>
+<blockquote>
+<p>例：「美容師の育成プログラムを体系化し離職率40%→12%に改善。サロン経営の人材定着の取り組みを共有します。」</p>
+</blockquote>
+<p><strong>士業事務所</strong> — 制度変更の解説やDXの取り組みで専門性をアピール。</p>
+<blockquote>
+<p>例：「5月は労働保険の年度更新時期です。申告期限は7月10日ですが早めの準備が安心です。無料相談を受付中。」</p>
+<p>例：「顧問契約のあり方が変化。月1回の訪問からチャットでの随時相談へ。デジタル顧問サービスの取り組みを紹介します。」</p>
+</blockquote>
+<h3>ハッシュタグ戦略</h3>
+<ul>
+<li>付与数：<strong>3〜5個</strong>（ビジネス文脈に合うもの）</li>
+<li>美容例：<code>#美容師育成 #人材定着 #サロン経営 #働き方改革</code></li>
+<li>士業例：<code>#社労士 #労働保険 #年度更新 #中小企業支援</code>、<code>#顧問契約 #士業DX #チャット相談 #デジタル化</code></li>
+</ul>
+<hr />
+<h2>4. note攻略</h2>
+<h3>基本スペック</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>推奨値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>投稿頻度</td>
+<td>週1回（質重視）</td>
+</tr>
+<tr>
+<td>文字数目安</td>
+<td>1,500〜3,000文字</td>
+</tr>
+<tr>
+<td>見出し画像推奨サイズ</td>
+<td>1280×670px</td>
+</tr>
+<tr>
+<td>最適投稿曜日</td>
+<td>火〜金の午前中</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別の文体ルール</h3>
+<p><strong>飲食店</strong> — 店主の想い・仕入れストーリー・創業秘話でファンを育てる。</p>
+<blockquote>
+<p>例：「【店主コラム】地元農家から直接仕入れる理由。15年前の創業から変わらない食への想いを綴りました。」</p>
+</blockquote>
+<p><strong>美容サロン</strong> — ヘアケア知識・美容トレンド解説で専門家ポジションを確立。</p>
+<p><strong>士業事務所</strong> — 制度解説の長文コンテンツでSEO流入も狙える。</p>
+<blockquote>
+<p>例：「【わかりやすく解説】インボイス制度から2年。免税事業者が今知るべき3つのポイントをまとめました。」</p>
+</blockquote>
+<h3>ハッシュタグ戦略</h3>
+<ul>
+<li>付与数：<strong>3〜5個</strong>（note内検索用）</li>
+<li>飲食例：<code>#地産地消 #農家直送 #食のこだわり #店主の想い</code></li>
+<li>士業例：<code>#インボイス制度 #免税事業者 #税務知識 #解説</code></li>
+</ul>
+<hr />
+<h2>5. 4プラットフォーム比較一覧</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>X</th>
+<th>Instagram</th>
+<th>LinkedIn</th>
+<th>note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字数</td>
+<td><strong>140文字</strong></td>
+<td>300〜500文字</td>
+<td>500〜1,000文字</td>
+<td>1,500〜3,000文字</td>
+</tr>
+<tr>
+<td>頻度</td>
+<td>週3〜5回</td>
+<td>週2〜3回</td>
+<td>週1〜2回</td>
+<td>週1回</td>
+</tr>
+<tr>
+<td>強み</td>
+<td>速報性・拡散</td>
+<td>ビジュアル訴求</td>
+<td>BtoB信頼構築</td>
+<td>SEO・ファン育成</td>
+</tr>
+<tr>
+<td>飲食との相性</td>
+<td>◎</td>
+<td>◎</td>
+<td>△</td>
+<td>○</td>
+</tr>
+<tr>
+<td>美容との相性</td>
+<td>○</td>
+<td>◎</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>士業との相性</td>
+<td>○</td>
+<td>△</td>
+<td>◎</td>
+<td>◎</td>
+</tr>
+<tr>
+<td>文体</td>
+<td>タメ口OK</td>
+<td>カジュアル敬語</td>
+<td>ビジネス敬語</td>
+<td>丁寧語</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. SNS運用ツール選定ガイド</h2>
+<p>中小企業の広報兼任者がツールを選ぶ際、3つのタイプを理解しておくと失敗しません。</p>
+<h3>タイプ別比較</h3>
+<table>
+<thead>
+<tr>
+<th>タイプ</th>
+<th>特徴</th>
+<th>向いている企業</th>
+<th>代表的な機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>自動生成型</strong></td>
+<td>URLやブランド情報から投稿文を自動生成</td>
+<td>リソースが少なく文章作成に時間をかけられない企業</td>
+<td>ブランド解析、4SNS一括生成、CSV投稿カレンダー出力</td>
+</tr>
+<tr>
+<td><strong>スケジュール管理型</strong></td>
+<td>事前に作成した投稿を予約・一括管理</td>
+<td>投稿文は自社で書けるが配信管理を効率化したい企業</td>
+<td>予約投稿、カレンダーUI、承認フロー</td>
+</tr>
+<tr>
+<td><strong>分析型</strong></td>
+<td>エンゲージメントやフォロワー推移を可視化</td>
+<td>既に運用中でPDCAを回したい企業</td>
+<td>レポート自動生成、競合分析、最適時間提案</td>
+</tr>
+</tbody>
+</table>
+<h3>選定のポイント</h3>
+<ul>
+<li><strong>「何を書けばいいかわからない」</strong> → 自動生成型を優先。投稿カレンダー（<code>日付,曜日,SNS種別,業種,投稿文,ハッシュタグ,画像メモ,ステータス,文字数,X用140文字チェック</code>の構成）でCSV出力できるものが週次管理に便利</li>
+<li><strong>「書けるけど管理が大変」</strong> → スケジュール管理型で予約投稿を自動化</li>
+<li><strong>「効果が見えない」</strong> → 分析型でデータに基づく改善サイクルを構築</li>
+<li>理想は自動生成型で下書きを作り、スケジュール管理型で配信、分析型で振り返る<strong>3段階の組み合わせ</strong></li>
+</ul>
+<hr />
+<h2>7. 今日から使える実践チェックリスト5項目</h2>
+<p>広報兼任者が毎週月曜日に確認する5つのチェック項目です。</p>
+<h3>☐ 1. 今週の投稿カレンダーは埋まっているか</h3>
+<p>投稿カレンダーCSVの「ステータス」列を確認。「下書き」のまま残っている投稿を「承認済み」に変更し、投稿予定日に備える。</p>
+<h3>☐ 2. X投稿は140文字以内に収まっているか</h3>
+<p><code>X用140文字チェック</code>列が「⚠超過」になっていないか確認。超過している場合は文末の修飾語や繰り返し表現を削って調整する。</p>
+<h3>☐ 3. 画像素材は準備できているか</h3>
+<p>「画像メモ」列の内容を確認し、撮影・素材選定が完了しているかチェック。特にInstagram投稿は画像なしでは成立しない。「パスタの俯瞰写真」「ビフォーアフター写真（許可済み）」など具体的な指示をメモに残しておく。</p>
+<h3>☐ 4. プラットフォーム別の文体になっているか</h3>
+<p>同じネタでもXはタメ口＋140文字、LinkedInはビジネス敬語＋500文字以上と、プラットフォームごとに書き分けられているか確認。全SNS同一文章のコピペ投稿は避ける。</p>
+<h3>☐ 5. 先週の投稿で反応が良かったものを1つ記録したか</h3>
+<p>「いいね」「リポスト」「保存」が多かった投稿を1つ選び、なぜ反応が良かったかをメモ。この蓄積が3ヶ月後のコンテンツ戦略の土台になる。</p>
+<hr />
+<h2>まとめ：業種×プラットフォームの最適解</h2>
+<table>
+<thead>
+<tr>
+<th>業種</th>
+<th>最優先SNS</th>
+<th>次点</th>
+<th>投稿の軸</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>飲食店</td>
+<td>X・Instagram</td>
+<td>note</td>
+<td>メニュー速報＋料理ビジュアル＋店主ストーリー</td>
+</tr>
+<tr>
+<td>美容サロン</td>
+<td>Instagram</td>
+<td>X・LinkedIn</td>
+<td>ビフォーアフター＋季節提案＋経営発信</td>
+</tr>
+<tr>
+<td>士業事務所</td>
+<td>LinkedIn・note</td>
+<td>X</td>
+<td>制度解説＋専門性アピール＋無料相談誘導</td>
+</tr>
+</tbody>
+</table>
+<p>全プラットフォームを均等に運用する必要はありません。自社の業種と相性の良いSNSに週の7割のリソースを集中し、残り3割で補助的にほかのプラットフォームを運用するのが、広報兼任者にとって現実的な戦略です。投稿カレンダーCSVで週次の計画を可視化し、チェックリスト5項目で毎週の品質を担保する——この仕組みを回すだけで、外注なしでもブランド一貫性のあるSNS発信は実現できます。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

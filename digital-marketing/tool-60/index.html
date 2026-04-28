@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ブランド設定&amp;SNS投稿一括生成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.7}
+.w{max-width:700px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.2em;padding:14px 0}
+.steps{display:flex;gap:6px;margin-bottom:14px}
+.steps span{flex:1;text-align:center;padding:7px 4px;background:#e2e8f0;border-radius:8px;font-size:.8em;font-weight:600;transition:.3s}
+.steps span.on{background:#6366f1;color:#fff}
+.c{background:#fff;border-radius:14px;padding:20px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+label{display:block;font-weight:700;font-size:.88em;margin:10px 0 4px}
+select,textarea{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:.95em;font-family:inherit}
+textarea{height:72px;resize:none}
+.tg{display:flex;gap:6px;margin:6px 0}
+.tg button{flex:1;padding:10px 4px;border:2px solid #cbd5e1;border-radius:8px;background:#fff;cursor:pointer;font-size:.82em;font-weight:600;transition:.2s}
+.tg button.on{border-color:#6366f1;background:#eef2ff;color:#6366f1}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:14px}
+.btn:disabled{opacity:.4;cursor:default}
+.p{background:#fff;border-radius:12px;padding:16px;margin:10px 0;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.p h3{font-size:.92em;margin-bottom:6px;color:#6366f1}
+.p .t{background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:8px;font-size:.88em;white-space:pre-wrap;word-break:break-all;line-height:1.7}
+.m{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.cnt{font-size:.78em;color:#94a3b8}
+.cnt.ov{color:#ef4444;font-weight:700}
+.cp{padding:5px 14px;background:#6366f1;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.8em}
+.cp.ok{background:#22c55e}
+.dl{width:100%;padding:12px;background:#22c55e;color:#fff;border:none;border-radius:10px;font-size:.95em;font-weight:700;cursor:pointer;margin-top:8px}
+.sub{text-align:right;font-size:.78em;color:#94a3b8;margin-top:2px}
+.hide{display:none}
+.note{text-align:center;font-size:.75em;color:#94a3b8;margin-top:16px}
+</style>
+<meta name="description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ブランド設定&amp;SNS投稿一括生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-60/">
+<meta property="og:title" content="ブランド設定&amp;SNS投稿一括生成ツール - kusasyu tools">
+<meta property="og:description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-60/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ブランド設定&amp;SNS投稿一括生成ツール - kusasyu tools">
+<meta name="twitter:description" content="WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ブランド設定&SNS投稿一括生成ツール",
+  "description": "WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-60/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">ブランド設定&amp;SNS投稿一括生成ツール</span></div>
+<div class="w">
+<h1>📱 ブランド設定 & SNS投稿一括生成</h1>
+<div class="steps" id="stp"><span>① 業種</span><span>② トーン</span><span>③ 告知</span></div>
+<div class="c">
+<label>業種を選択</label>
+<select id="biz" onchange="ck()"><option value="">-- 選択してください --</option><option>飲食店</option><option>美容サロン</option><option>士業事務所</option><option>ITスタートアップ</option></select>
+<label>ブランドトーン</label>
+<div class="tg"><button onclick="selT(this)" data-v="casual">カジュアル</button><button onclick="selT(this)" data-v="formal">フォーマル</button><button onclick="selT(this)" data-v="expert">親しみやすい専門家</button></div>
+<label>今週の告知内容（100文字以内）</label>
+<textarea id="msg" maxlength="100" oninput="ck()" placeholder="例：春の新メニュー「桜エビのパスタ」を今週から提供開始します"></textarea>
+<div class="sub"><span id="cc">0</span>/100文字</div>
+<button class="btn" id="go" disabled onclick="gen()">投稿文を一括生成する</button>
+</div>
+<div id="res" class="hide"></div>
+<p class="note">バックエンド不要・全処理ブラウザ完結</p>
+</div>
+<script>
+var T='',P=[];
+var D={
+'飲食店':{e:'🍽️',h:['飲食店','グルメ','新メニュー','ランチ','ディナー','フード','食べ歩き','料理','美食','おいしい']},
+'美容サロン':{e:'💇',h:['美容','サロン','ヘアスタイル','ビューティー','トリートメント','ヘアケア','スキンケア','ネイル','美肌','おしゃれ']},
+'士業事務所':{e:'⚖️',h:['士業','法律相談','税務','専門家','経営サポート','ビジネス法務','起業支援','コンサル','実務','問題解決']},
+'ITスタートアップ':{e:'💻',h:['IT','テック','DX推進','スタートアップ','SaaS','イノベーション','プロダクト開発','テクノロジー','デジタル化','効率化']}
+};
+function selT(el){document.querySelectorAll('.tg button').forEach(function(b){b.classList.remove('on')});el.classList.add('on');T=el.dataset.v;ck()}
+function ck(){
+var b=document.getElementById('biz').value,m=document.getElementById('msg');
+document.getElementById('cc').textContent=m.value.length;
+document.getElementById('go').disabled=!(b&&T&&m.value.length>0);
+var s=document.querySelectorAll('#stp span');
+s[0].className=b?'on':'';s[1].className=T?'on':'';s[2].className=m.value?'on':'';
+}
+function cl(s){return Array.from(s).length}
+function trim(s,n){if(cl(s)<=n)return s;return Array.from(s).slice(0,n-1).join('')+'…'}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function gen(){
+var biz=document.getElementById('biz').value,msg=document.getElementById('msg').value,d=D[biz];
+P=[];
+var tags3=d.h.slice(0,3).map(function(x){return '#'+x}).join(' ');
+var tags10=d.h.map(function(x){return '#'+x}).join(' ');
+var xb,ib,lb,nb;
+if(T==='casual'){
+xb=d.e+' '+msg+'！要チェック✨';
+ib=d.e+' '+msg+'！\n\nみんなに届けたいこの想い。\n気になったらプロフィールのリンクから🔗\nいいね・保存してくれたら嬉しいです😊\n\n'+tags10;
+lb='【お知らせ】'+msg+'\n\n'+biz+'として日々お客様と向き合う中で気づいたことを発信しています。同じ業界の方、ぜひつながりましょう！コメントお待ちしています。';
+nb='こんにちは！'+biz+'の中の人です。\n\n今日は「'+msg+'」についてお話しします。\n\n日々の現場で感じるリアルな声をお届けしたくて、この記事を書きました。読んでくれたらきっと役に立つはず！最後まで読んでいただけたら嬉しいです。';
+}else if(T==='formal'){
+xb=msg+'。詳細はプロフィールURLをご確認ください。';
+ib=msg+'\n\n'+biz+'として、皆さまにお届けしたい情報です。\n詳細はプロフィールのリンクよりご確認いただけます。\n\n'+tags10;
+lb='【ご報告】'+msg+'\n\n'+biz+'として、業界の皆さまに価値ある情報をお届けしてまいります。ご関心をお持ちの方は、お気軽にお問い合わせくださいませ。';
+nb=biz+'より、皆さまにお伝えしたいことがございます。\n\n'+msg+'\n\n本記事では、この取り組みの背景と詳細についてご説明いたします。業界関係者の方にもご参考になれば幸いです。';
+}else{
+xb=msg+'。ぜひご覧くださいね'+d.e;
+ib=d.e+' '+msg+'\n\nプロの視点からお届けします。\n気になる方はプロフィールのリンクをチェック！\n\n'+tags10;
+lb='【'+biz+'より】'+msg+'\n\n現場の知見を活かし、業界に貢献できる情報を発信します。ご質問やご意見がありましたら、お気軽にコメントください。';
+nb=biz+'の現場から、ひとつお知らせがあります。\n\n'+msg+'\n\nこの記事では、専門家の視点から背景や意義をわかりやすくお伝えします。ぜひ最後までお付き合いください。';
+}
+var maxX=140-cl(tags3)-1;
+xb=trim(xb,maxX);
+var xFull=xb+'\n'+tags3;
+lb=trim(lb,300);nb=trim(nb,300);
+P=[
+{n:'𝕏（Twitter）',txt:xFull,lim:140},
+{n:'📸 Instagram',txt:ib,lim:null},
+{n:'💼 LinkedIn',txt:lb,lim:300},
+{n:'📝 note',txt:nb,lim:300}
+];
+var h='';
+P.forEach(function(p,i){
+var len=cl(p.txt);var ov=p.lim&&len>p.lim;
+h+='<div class="p"><h3>'+p.n+'</h3><div class="t">'+esc(p.txt)+'</div><div class="m"><span class="cnt'+(ov?' ov':'')+'">'+len+'文字'+(p.lim?(' / '+p.lim+'文字上限'):'')+'</span><button class="cp" onclick="cpy(this,'+i+')">コピー</button></div></div>';
+});
+h+='<button class="dl" onclick="csv()">📥 CSV投稿カレンダーをダウンロード</button>';
+var r=document.getElementById('res');r.innerHTML=h;r.classList.remove('hide');
+r.scrollIntoView({behavior:'smooth'});
+}
+function cpy(el,i){
+var t=P[i].txt;
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){ok(el)})}
+else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);ok(el)}
+}
+function ok(el){el.textContent='✓ コピー済';el.classList.add('ok');setTimeout(function(){el.textContent='コピー';el.classList.remove('ok')},1500)}
+function csv(){
+var biz=document.getElementById('biz').value,now=new Date(),days=['月','火','水','木'];
+var rows='プラットフォーム,投稿予定日,投稿文,文字数,ステータス\r\n';
+P.forEach(function(p,i){
+var d=new Date(now);d.setDate(d.getDate()+i);
+var ds=d.getFullYear()+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+('0'+d.getDate()).slice(-2)+'('+days[i]+')';
+rows+='"'+p.n.replace(/"/g,'""')+'","'+ds+'","'+p.txt.replace(/"/g,'""').replace(/\n/g,' ')+'",'+cl(p.txt)+',未投稿\r\n';
+});
+var blob=new Blob(['\uFEFF'+rows],{type:'text/csv;charset=utf-8'});
+var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sns_calendar_'+biz+'.csv';a.click();
+}
+</script>
+</body>
+</html>

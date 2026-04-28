@@ -351,6 +351,45 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-60",
+    "url": "digital-marketing/tool-60/",
+    "title": "SNS外注が高い？ブランド解析AI一括生成ツール",
+    "tool_name": "ブランド設定&SNS投稿一括生成ツール",
+    "description": "WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週次管理でき、運用代行なしでブランド一貫性のあるSNS発信を実現する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-28T07:16:24.049190+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-13",
+    "url": "digital-marketing/management-13/",
+    "title": "SNS外注が高い？ブランド解析AI一括生成ツール",
+    "tool_name": "SNS週次投稿カレンダー管理シート",
+    "description": "WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週次管理でき、運用代行なしでブランド一貫性のあるSNS発信を実現する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-28T07:16:24.049190+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "guide-11",
+    "url": "digital-marketing/guide-11/",
+    "title": "SNS外注が高い？ブランド解析AI一括生成ツール",
+    "tool_name": "4SNSプラットフォーム別ブランド発信攻略ガイド",
+    "description": "WebサイトのURLを入力するだけで、ブランドのカラー・トーン・ターゲット層を自動解析し、X・Instagram・LinkedIn・note向けの投稿文を一括生成するHTMLツール。日本語SNS文化（Xの140文字制限、敬語/タメ口の使い分け、ハッシュタグ慣習）に完全最適化。生成結果はCSV投稿カレンダーで週次管理でき、運用代行なしでブランド一貫性のあるSNS発信を実現する。",
+    "quality_score": 10,
+    "completed_at": "2026-04-28T07:16:24.049190+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -4586,6 +4625,45 @@
     "description": "営業担当者がLINE・メール・電話メモのテキストを貼り付けるだけで、顧客の興味物件・予算帯・検討段階・懸念事項を自動抽出し、印刷可能な顧客カルテを生成するHTMLツールを中核に、追客パイプライン管理シートとステージ別アクションテンプレートを提供する。Lightfield（Product Hunt週間1位）が実証した『CRMが自ら構築される』コンセプトを、日本の不動産追客フロー（問合せ→内見→申込→",
     "quality_score": 7,
     "completed_at": "2026-04-16T01:29:15.206678+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-11",
+    "url": "proptech/tool-11/",
+    "title": "物件説明文、まだ手書き？AIで即生成",
+    "tool_name": "ポータル別・物件説明文ジェネレーター",
+    "description": "物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート管理シート（CSV）と、反響率を上げる説明文ライティングの実践ガイドを提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-28T01:49:11.664281+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "management-3",
+    "url": "proptech/management-3/",
+    "title": "物件説明文、まだ手書き？AIで即生成",
+    "tool_name": "ポータル別SEOキーワード＆テンプレート管理シート",
+    "description": "物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート管理シート（CSV）と、反響率を上げる説明文ライティングの実践ガイドを提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-28T01:49:11.664281+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "guide-7",
+    "url": "proptech/guide-7/",
+    "title": "物件説明文、まだ手書き？AIで即生成",
+    "tool_name": "反響が増える物件説明文の書き方・実践ガイド",
+    "description": "物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート管理シート（CSV）と、反響率を上げる説明文ライティングの実践ガイドを提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-04-28T01:49:11.664281+00:00",
     "content_type": "article"
   },
   {

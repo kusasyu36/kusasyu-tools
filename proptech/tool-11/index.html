@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ポータル別・物件説明文ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#2b6cb0}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#2b6cb0;margin-bottom:12px;border-left:4px solid #3182ce;padding-left:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.82em;font-weight:600;margin-bottom:2px;color:#4a5568}
+input,select{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.92em}
+.chk-group{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chk-group label{font-weight:400;font-size:.82em;background:#edf2f7;padding:4px 10px;border-radius:14px;cursor:pointer;display:flex;align-items:center;gap:4px}
+.chk-group input:checked+span{color:#2b6cb0;font-weight:600}
+.btn{display:block;width:100%;padding:12px;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{opacity:.9}
+.tabs{display:flex;gap:4px;margin-bottom:0}
+.tab{padding:8px 16px;border:none;background:#e2e8f0;border-radius:8px 8px 0 0;cursor:pointer;font-size:.85em;font-weight:600}
+.tab.act{background:#2b6cb0;color:#fff}
+.out-box{background:#f7fafc;border:1px solid #e2e8f0;border-radius:0 8px 8px 8px;padding:14px;min-height:120px;position:relative}
+.out-box textarea{width:100%;min-height:160px;border:1px solid #e2e8f0;border-radius:6px;padding:10px;font-size:.88em;line-height:1.7;resize:vertical}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:.8em}
+.cnt{color:#718096}.cnt.over{color:#e53e3e;font-weight:700}
+.copy-btn{padding:6px 14px;background:#38a169;color:#fff;border:none;border-radius:6px;font-size:.82em;cursor:pointer}
+.copy-btn:hover{background:#2f855a}
+.kw-list{font-size:.78em;color:#718096;margin-top:6px}
+.badge{display:inline-block;background:#ebf8ff;color:#2b6cb0;font-size:.72em;padding:2px 8px;border-radius:10px;margin:1px}
+#result{display:none}
+</style>
+<meta name="description" content="物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,ポータル別・物件説明文ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-11/">
+<meta property="og:title" content="ポータル別・物件説明文ジェネレーター - kusasyu tools">
+<meta property="og:description" content="物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ポータル別・物件説明文ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ポータル別・物件説明文ジェネレーター",
+  "description": "物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-11/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">ポータル別・物件説明文ジェネレーター</span></div>
+<div class="wrap">
+<h1>ポータル別・物件説明文ジェネレーター</h1>
+<p class="sub">SUUMO・HOME'S・At Home に最適化した説明文を自動生成</p>
+<div class="card">
+<h2>物件情報を入力</h2>
+<div class="grid">
+<div><label>物件タイプ</label><select id="type"><option value="マンション">マンション</option><option value="アパート">アパート</option><option value="戸建て">戸建て</option><option value="土地">土地</option></select></div>
+<div><label>取引種別</label><select id="deal"><option value="賃貸">賃貸</option><option value="売買">売買</option></select></div>
+<div><label>間取り</label><select id="layout"><option>1R</option><option>1K</option><option>1DK</option><option>1LDK</option><option>2K</option><option>2DK</option><option>2LDK</option><option>3LDK</option><option>4LDK</option></select></div>
+<div><label>専有面積（㎡）</label><input id="area" type="number" value="45" min="10" max="500"></div>
+<div><label>築年数</label><input id="age" type="number" value="10" min="0" max="80"></div>
+<div><label>階数/所在階</label><input id="floor" type="text" value="5階/10階建" placeholder="例: 5階/10階建"></div>
+<div><label>最寄駅</label><input id="station" type="text" value="渋谷駅" placeholder="例: 渋谷駅"></div>
+<div><label>駅徒歩（分）</label><input id="walk" type="number" value="7" min="1" max="60"></div>
+<div><label>賃料/価格</label><input id="price" type="text" value="12.5万円" placeholder="例: 12.5万円 or 3,980万円"></div>
+<div><label>所在地</label><input id="addr" type="text" value="東京都渋谷区" placeholder="例: 東京都渋谷区"></div>
+</div>
+<div style="margin-top:10px"><label>設備・特徴（複数選択可）</label>
+<div class="chk-group" id="equips"></div></div>
+<div style="margin-top:10px"><label>アピールポイント（自由記入）</label><input id="appeal" type="text" placeholder="例: 南向きで日当たり良好、ペット相談可"></div>
+<button class="btn" onclick="generate()">説明文を生成する</button>
+</div>
+<div id="result" class="card">
+<h2>生成結果</h2>
+<div class="tabs" id="tabs"></div>
+<div class="out-box" id="outbox"></div>
+</div>
+</div>
+<script>
+var EQ=['オートロック','宅配ボックス','浴室乾燥機','追い焚き','独立洗面台','ウォークインクローゼット','システムキッチン','ペット可','駐車場あり','バス・トイレ別','エアコン','インターネット無料','床暖房','ディスポーザー','24時間ゴミ出し可'];
+var eqDiv=document.getElementById('equips');
+EQ.forEach(function(e){eqDiv.innerHTML+='<label><input type="checkbox" value="'+e+'"><span>'+e+'</span></label>';});
+var PORTALS=[
+{name:'SUUMO',limit:1000,color:'#e53e3e',style:'lifestyle'},
+{name:"HOME'S",limit:800,color:'#dd6b20',style:'spec'},
+{name:'At Home',limit:600,color:'#38a169',style:'concise'}
+];
+var curTab=0;var texts=['','',''];var kws=[[],[],[]];
+function v(id){return document.getElementById(id).value.trim();}
+function getEq(){var r=[];document.querySelectorAll('#equips input:checked').forEach(function(c){r.push(c.value);});return r;}
+function seoKw(type,deal,eq){
+var base=deal==='賃貸'?['初期費用','即入居可','敷金礼金','仲介手数料']:['住宅ローン','資産価値','リノベーション','新生活'];
+var m={'マンション':['眺望','管理体制','共用施設'],'アパート':['家賃','コスパ','更新料'],'戸建て':['庭付き','駐車場','注文住宅'],'土地':['建築条件','容積率','整形地']};
+var r=base.concat(m[type]||[]);
+if(eq.indexOf('ペット可')>=0)r.push('ペット可物件');
+if(eq.indexOf('オートロック')>=0)r.push('セキュリティ充実');
+return r;
+}
+function ageLabel(a){return a===0?'新築':a<=5?'築浅':a<=15?'築'+a+'年':'築'+a+'年（リフォーム相談可）';}
+function walkLabel(w){return w<=5?'駅近徒歩'+w+'分':w<=10?'徒歩'+w+'分（通勤便利）':'徒歩'+w+'分';}
+function genText(p,pi,d){
+var type=d.type,layout=d.layout,area=d.area,age=d.age,station=d.station,walk=d.walk,price=d.price,addr=d.addr,floor=d.floor,eq=d.eq,appeal=d.appeal,deal=d.deal;
+var al=ageLabel(age),wl=walkLabel(walk);
+var eqStr=eq.length?eq.join('・'):'充実設備';
+var kwList=seoKw(type,deal,eq);
+kws[pi]=kwList;
+var lines=[];
+if(p.style==='lifestyle'){
+lines.push('【'+addr+'・'+station+wl+'】'+layout+' '+type+'｜'+price);
+lines.push('');
+lines.push(''+station+'から'+wl+'の好立地に佇む'+al+'の'+type+'です。'+area+'㎡の'+layout+'は、ゆとりある生活空間を実現します。');
+if(eq.length>2)lines.push(''+eqStr+'など、暮らしを豊かにする設備が整っています。');
+else if(eq.length>0)lines.push(''+eqStr+'を完備。快適な毎日をサポートします。');
+lines.push('所在階は'+floor+'。'+addr+'エリアならではの'+( deal==='賃貸'?'利便性と住環境のバランス':'資産価値と住み心地')+'が魅力です。');
+if(appeal)lines.push('▼おすすめポイント：'+appeal);
+lines.push('');
+lines.push(deal==='賃貸'?'お気軽にお問い合わせください。内見随時受付中です。':'詳細資料のご請求・内見のご予約はお気軽にどうぞ。');
+}else if(p.style==='spec'){
+lines.push('■'+type+'／'+layout+'／'+area+'㎡／'+al);
+lines.push('■'+addr+' '+station+' 徒歩'+walk+'分');
+lines.push('■'+price+'（'+deal+'）');
+lines.push('');
+lines.push('【物件概要】');
+lines.push(station+'徒歩'+walk+'分、'+floor+'の'+type+'。'+area+'㎡の'+layout+'で'+(area>=60?'ファミリー':'単身〜2人暮らし')+'に最適です。');
+lines.push('');
+if(eq.length){lines.push('【設備】');lines.push(eqStr);lines.push('');}
+if(appeal){lines.push('【特徴】');lines.push(appeal);lines.push('');}
+lines.push(deal==='賃貸'?'※初期費用・入居時期等、お気軽にご相談ください。':'※住宅ローン相談・内見予約受付中。');
+}else{
+lines.push(addr+'｜'+station+'徒歩'+walk+'分の'+layout+' '+type);
+lines.push(al+'・'+area+'㎡・'+floor+'・'+price);
+if(eq.length)lines.push('設備：'+eqStr);
+if(appeal)lines.push('特長：'+appeal);
+lines.push(deal==='賃貸'?'内見受付中。お問い合わせはお気軽に。':'資料請求・内見予約受付中。');
+}
+return lines.join('\n');
+}
+function generate(){
+var d={type:v('type'),deal:v('deal'),layout:v('layout'),area:v('area'),age:parseInt(v('age')),station:v('station'),walk:parseInt(v('walk')),price:v('price'),addr:v('addr'),floor:v('floor'),eq:getEq(),appeal:v('appeal')};
+texts=[];kws=[[],[],[]];
+PORTALS.forEach(function(p,i){texts.push(genText(p,i,d));});
+curTab=0;renderTabs();renderOut();
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function renderTabs(){
+var h='';PORTALS.forEach(function(p,i){h+='<button class="tab'+(i===curTab?' act':'')+'" style="'+(i===curTab?'background:'+p.color+';color:#fff':'')+'" onclick="switchTab('+i+')">'+p.name+'<br><span style="font-size:.7em">（'+p.limit+'字）</span></button>';});
+document.getElementById('tabs').innerHTML=h;
+}
+function switchTab(i){curTab=i;renderTabs();renderOut();}
+function renderOut(){
+var p=PORTALS[curTab],t=texts[curTab],len=t.length;
+var over=len>p.limit;
+var h='<textarea id="ta" oninput="onEdit()">'+t.replace(/</g,'&lt;')+'</textarea>';
+h+='<div class="meta"><span class="cnt'+(over?' over':'')+'">'+len+' / '+p.limit+'文字'+(over?' ⚠ 超過':'')+'</span>';
+h+='<button class="copy-btn" onclick="copyText()">コピー</button></div>';
+h+='<div class="kw-list">挿入キーワード：';
+kws[curTab].forEach(function(k){h+='<span class="badge">'+k+'</span>';});
+h+='</div>';
+document.getElementById('outbox').innerHTML=h;
+}
+function onEdit(){var ta=document.getElementById('ta');texts[curTab]=ta.value;var p=PORTALS[curTab],len=ta.value.length,over=len>p.limit;
+var cnt=document.querySelector('.cnt');cnt.textContent=len+' / '+p.limit+'文字'+(over?' ⚠ 超過':'');cnt.className='cnt'+(over?' over':'');}
+function copyText(){var ta=document.getElementById('ta');ta.select();document.execCommand('copy');var b=document.querySelector('.copy-btn');b.textContent='コピー済み！';setTimeout(function(){b.textContent='コピー';},1500);}
+</script>
+</body>
+</html>
