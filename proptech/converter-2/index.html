@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>物件データ正規化・ポータル変換チェッカー - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.3em;padding:16px 0;color:#1a1a2e}
+.subtitle{text-align:center;color:#666;font-size:.85em;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #4361ee;color:#4361ee}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column}
+.field label{font-size:.75em;font-weight:600;color:#555;margin-bottom:2px}
+.field input,.field select,.field textarea{padding:7px 8px;border:1.5px solid #ddd;border-radius:6px;font-size:.9em;transition:border .2s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#4361ee;outline:none}
+.field.miss input,.field.miss select,.field.miss textarea{border-color:#e63946;background:#fff5f5}
+.field.miss label{color:#e63946}
+.full{grid-column:1/-1}
+.btn{padding:8px 18px;border:none;border-radius:6px;cursor:pointer;font-size:.85em;font-weight:600;transition:background .2s}
+.btn-p{background:#4361ee;color:#fff}.btn-p:hover{background:#3a56d4}
+.btn-s{background:#e9ecef;color:#333}.btn-s:hover{background:#dee2e6}
+.btn-g{background:#2d6a4f;color:#fff}.btn-g:hover{background:#245a42}
+.csv-area{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.tab{padding:6px 14px;border:2px solid #ddd;border-radius:6px 6px 0 0;cursor:pointer;font-size:.8em;font-weight:600;background:#f8f9fa}
+.tab.active{border-color:#4361ee;background:#4361ee;color:#fff}
+.badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:.75em;margin-left:4px;color:#fff}
+.badge-g{background:#2d6a4f}.badge-y{background:#e9c46a;color:#333}.badge-r{background:#e63946}
+.portal-out{display:none;white-space:pre-wrap;background:#f8f9fa;border:1px solid #ddd;border-radius:6px;padding:12px;font-size:.82em;min-height:100px;max-height:300px;overflow-y:auto}
+.portal-out.active{display:block}
+.alert-box{background:#fff5f5;border:1px solid #e63946;border-radius:6px;padding:10px;margin-bottom:10px;font-size:.8em;color:#e63946}
+.meter{height:8px;background:#e9ecef;border-radius:4px;overflow:hidden;margin:6px 0}
+.meter-fill{height:100%;border-radius:4px;transition:width .4s}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:10px}
+.summary-item{text-align:center;padding:10px;border-radius:8px;background:#f8f9fa}
+.summary-item .num{font-size:1.5em;font-weight:700}
+.summary-item .lbl{font-size:.7em;color:#666}
+.copied{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#2d6a4f;color:#fff;padding:8px 20px;border-radius:6px;font-size:.85em;z-index:99;animation:fadeout 1.5s forwards}
+@keyframes fadeout{0%,60%{opacity:1}100%{opacity:0}}
+</style>
+<meta name="description" content="中小不動産会社がREINS・SUUMO・アットホーム等に物件を掲載する際の二重入力を解消するツールセット。物件情報を1フォーマットに入力すれば、各ポータルの必須項目チェック・フォーマット変換・不足項目アラートを自動で行うHTMLツールと、物件データを一元管理するExcelマスターシートを提供する。不動産オープ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件データ正規化・ポータル変換チェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/converter-2/">
+<meta property="og:title" content="物件データ正規化・ポータル変換チェッカー - kusasyu tools">
+<meta property="og:description" content="中小不動産会社がREINS・SUUMO・アットホーム等に物件を掲載する際の二重入力を解消するツールセット。物件情報を1フォーマットに入力すれば、各ポータルの必須項目チェック・フォーマット変換・不足項目アラートを自動で行うHTMLツールと、物件データを一元管理するExcelマスターシートを提供する。不動産オープ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/converter-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件データ正規化・ポータル変換チェッカー - kusasyu tools">
+<meta name="twitter:description" content="中小不動産会社がREINS・SUUMO・アットホーム等に物件を掲載する際の二重入力を解消するツールセット。物件情報を1フォーマットに入力すれば、各ポータルの必須項目チェック・フォーマット変換・不足項目アラートを自動で行うHTMLツールと、物件データを一元管理するExcelマスターシートを提供する。不動産オープ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "物件データ正規化・ポータル変換チェッカー",
+  "description": "中小不動産会社がREINS・SUUMO・アットホーム等に物件を掲載する際の二重入力を解消するツールセット。物件情報を1フォーマットに入力すれば、各ポータルの必須項目チェック・フォーマット変換・不足項目アラートを自動で行うHTMLツールと、物件データを一元管理するExcelマスターシートを提供する。不動産オープ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/converter-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">物件データ正規化・ポータル変換チェッカー</span></div>
+<div class="wrap">
+<h1>物件データ正規化・ポータル変換チェッカー</h1>
+<p class="subtitle">1回入力で REINS・SUUMO・アットホーム・HOMES の必須項目を自動チェック</p>
+<div class="card">
+<h2>CSV インポート</h2>
+<div class="csv-area">
+<input type="file" id="csvFile" accept=".csv">
+<button class="btn btn-s" onclick="importCSV()">CSVを読み込む</button>
+<span id="csvMsg" style="font-size:.8em;color:#2d6a4f"></span>
+</div>
+</div>
+<div class="card">
+<h2>物件基本情報</h2>
+<div class="grid" id="formBasic"></div>
+</div>
+<div class="card">
+<h2>建物・土地情報</h2>
+<div class="grid" id="formBuilding"></div>
+</div>
+<div class="card">
+<h2>設備・その他</h2>
+<div class="grid" id="formExtra"></div>
+</div>
+<div style="text-align:center;margin:12px 0">
+<button class="btn btn-p" onclick="checkAll()">ポータル判定を実行</button>
+<button class="btn btn-s" onclick="resetForm()" style="margin-left:8px">リセット</button>
+</div>
+<div id="resultArea" style="display:none">
+<div class="card">
+<h2>充足率サマリー</h2>
+<div class="summary" id="summaryGrid"></div>
+</div>
+<div class="card">
+<h2>ポータル別 出力</h2>
+<div class="tabs" id="portalTabs"></div>
+<div id="alertBox" class="alert-box" style="display:none"></div>
+<div id="portalOutputs"></div>
+<button class="btn btn-g" onclick="copyOutput()" style="margin-top:8px">表示中のテキストをコピー</button>
+</div>
+</div>
+</div>
+<script>
+const F=[
+{s:'formBasic',fields:[
+{id:'prop_type',l:'物件種別',t:'select',o:['','マンション','一戸建て','土地','事業用']},
+{id:'deal_type',l:'取引態様',t:'select',o:['','仲介','売主','代理','媒介']},
+{id:'prop_name',l:'物件名称',t:'text'},{id:'price',l:'価格（万円）',t:'number'},
+{id:'pref',l:'都道府県',t:'text'},{id:'city',l:'市区町村',t:'text'},
+{id:'address',l:'町名番地',t:'text'},{id:'transport',l:'交通（最寄駅・徒歩分）',t:'text'},
+{id:'madori',l:'間取り',t:'select',o:['','1R','1K','1DK','1LDK','2K','2DK','2LDK','3K','3DK','3LDK','4LDK','5LDK以上']},
+{id:'exclusive',l:'専有面積（㎡）',t:'number'},{id:'land_area',l:'土地面積（㎡）',t:'number'},
+{id:'build_area',l:'建物面積（㎡）',t:'number'}]},
+{s:'formBuilding',fields:[
+{id:'built_date',l:'築年月（例:2005-03）',t:'text'},{id:'structure',l:'構造',t:'select',o:['','RC造','SRC造','S造','木造','軽量鉄骨']},
+{id:'floors',l:'階建',t:'number'},{id:'floor_loc',l:'所在階',t:'number'},
+{id:'direction',l:'向き',t:'select',o:['','北','北東','東','南東','南','南西','西','北西']},
+{id:'parking',l:'駐車場',t:'select',o:['','有','無','空無']},
+{id:'balcony',l:'バルコニー面積（㎡）',t:'number'},{id:'total_units',l:'総戸数',t:'number'},
+{id:'mgmt_type',l:'管理形態',t:'select',o:['','全部委託','一部委託','自主管理']},
+{id:'mgmt_fee',l:'管理費（円/月）',t:'number'},{id:'repair_fee',l:'修繕積立金（円/月）',t:'number'},
+{id:'land_right',l:'土地権利',t:'select',o:['','所有権','借地権','定期借地権']}]},
+{s:'formExtra',fields:[
+{id:'zoning',l:'用途地域',t:'text'},{id:'coverage',l:'建ぺい率（%）',t:'number'},
+{id:'far',l:'容積率（%）',t:'number'},{id:'delivery',l:'引渡時期',t:'text'},
+{id:'status',l:'現況',t:'select',o:['','空室','居住中','賃貸中','建築中']},
+{id:'equip',l:'設備（カンマ区切り）',t:'text',f:1},
+{id:'remarks',l:'備考',t:'textarea',f:1}]}
+];
+const PORTALS={
+REINS:{name:'REINS',req:['prop_type','deal_type','price','pref','city','address','transport','madori','exclusive','built_date','structure','land_right']},
+SUUMO:{name:'SUUMO',req:['prop_type','deal_type','prop_name','price','pref','city','address','transport','madori','exclusive','built_date','structure','floors','direction','parking','mgmt_fee','repair_fee']},
+athome:{name:'アットホーム',req:['prop_type','deal_type','price','pref','city','address','transport','madori','exclusive','built_date','structure','direction','parking','delivery','status']},
+homes:{name:'HOMES',req:['HOMES','prop_type','deal_type','prop_name','price','pref','city','address','transport','madori','exclusive','built_date','structure','floors','floor_loc','direction','balcony','total_units','mgmt_fee','equip'].filter(x=>x!=='HOMES')}
+};
+let activeTab='REINS';
+function init(){F.forEach(s=>{const c=document.getElementById(s.s);s.fields.forEach(f=>{const d=document.createElement('div');d.className='field'+(f.f?' full':'');d.id='wrap_'+f.id;let inp;
+if(f.t==='select'){inp=document.createElement('select');inp.id=f.id;f.o.forEach(o=>{const op=document.createElement('option');op.value=o;op.textContent=o||'-- 選択 --';inp.appendChild(op)})}
+else if(f.t==='textarea'){inp=document.createElement('textarea');inp.id=f.id;inp.rows=2}
+else{inp=document.createElement('input');inp.type=f.t||'text';inp.id=f.id}
+const lb=document.createElement('label');lb.textContent=f.l;lb.htmlFor=f.id;
+d.appendChild(lb);d.appendChild(inp);c.appendChild(d)})})}
+function gv(id){const e=document.getElementById(id);return e?e.value.trim():''}
+function allFields(){const a=[];F.forEach(s=>s.fields.forEach(f=>a.push(f)));return a}
+function importCSV(){const file=document.getElementById('csvFile').files[0];if(!file)return;
+const r=new FileReader();r.onload=function(e){const lines=e.target.result.split('\n').filter(l=>l.trim());if(lines.length<2){document.getElementById('csvMsg').textContent='データ行がありません';return}
+const hdr=lines[0].split(',').map(h=>h.trim().replace(/"/g,''));const vals=lines[1].split(',').map(v=>v.trim().replace(/"/g,''));
+hdr.forEach((h,i)=>{const el=document.getElementById(h);if(el&&vals[i]!==undefined)el.value=vals[i]});
+document.getElementById('csvMsg').textContent='✓ '+hdr.length+'項目を読み込みました'};r.readAsText(file,'UTF-8')}
+function checkAll(){
+const res={};const allF=allFields();const idToLabel={};allF.forEach(f=>idToLabel[f.id]=f.l);
+allF.forEach(f=>{document.getElementById('wrap_'+f.id).classList.remove('miss')});
+Object.keys(PORTALS).forEach(k=>{const p=PORTALS[k];let filled=0;const missing=[];
+p.req.forEach(r=>{if(gv(r)){filled++}else{missing.push(idToLabel[r]||r)}});
+res[k]={name:p.name,total:p.req.length,filled,rate:Math.round(filled/p.req.length*100),missing,req:p.req}});
+renderSummary(res);renderTabs(res);document.getElementById('resultArea').style.display='block';
+highlightMissing(res[activeTab]);document.getElementById('resultArea').scrollIntoView({behavior:'smooth'})}
+function renderSummary(res){const g=document.getElementById('summaryGrid');g.innerHTML='';
+Object.keys(res).forEach(k=>{const r=res[k];const col=r.rate>=100?'#2d6a4f':r.rate>=70?'#e9c46a':'#e63946';
+g.innerHTML+=`<div class="summary-item"><div class="num" style="color:${col}">${r.rate}%</div><div class="lbl">${r.name}（${r.filled}/${r.total}）</div><div class="meter"><div class="meter-fill" style="width:${r.rate}%;background:${col}"></div></div></div>`})}
+function renderTabs(res){const t=document.getElementById('portalTabs');const o=document.getElementById('portalOutputs');
+t.innerHTML='';o.innerHTML='';
+Object.keys(res).forEach(k=>{const r=res[k];const bc=r.rate>=100?'badge-g':r.rate>=70?'badge-y':'badge-r';
+const tb=document.createElement('div');tb.className='tab'+(k===activeTab?' active':'');tb.innerHTML=r.name+`<span class="badge ${bc}">${r.rate}%</span>`;
+tb.onclick=()=>{activeTab=k;document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));tb.classList.add('active');
+document.querySelectorAll('.portal-out').forEach(x=>x.classList.remove('active'));document.getElementById('out_'+k).classList.add('active');
+highlightMissing(res[k]);showAlert(res[k])};t.appendChild(tb);
+const od=document.createElement('div');od.className='portal-out'+(k===activeTab?' active':'');od.id='out_'+k;od.textContent=genOutput(k,r);o.appendChild(od)});
+showAlert(res[activeTab])}
+function showAlert(r){const ab=document.getElementById('alertBox');if(r.missing.length){ab.style.display='block';ab.innerHTML='<b>⚠ '+r.name+' 不足項目（'+r.missing.length+'件）:</b> '+r.missing.join('、')}else{ab.style.display='block';ab.innerHTML='<b>✓ '+r.name+'：全必須項目が入力済みです</b>';ab.style.background='#f0fff4';ab.style.borderColor='#2d6a4f';ab.style.color='#2d6a4f'}}
+function highlightMissing(r){const allF=allFields();allF.forEach(f=>document.getElementById('wrap_'+f.id).classList.remove('miss'));r.req.forEach(id=>{if(!gv(id)){const w=document.getElementById('wrap_'+id);if(w)w.classList.add('miss')}})}
+function genOutput(k,r){const v=id=>gv(id)||'（未入力）';const eq=gv('equip')?gv('equip').split(/[,、]/).map(s=>s.trim()).filter(Boolean):[];
+let t='';
+if(k==='REINS'){t=`【REINS登録用データ】\n物件種別: ${v('prop_type')}\n取引態様: ${v('deal_type')}\n価格: ${v('price')}万円\n所在地: ${v('pref')}${v('city')}${v('address')}\n交通: ${v('transport')}\n間取り: ${v('madori')} / 専有面積: ${v('exclusive')}㎡\n築年月: ${v('built_date')}\n構造: ${v('structure')}\n土地権利: ${v('land_right')}\n用途地域: ${v('zoning')}\n建ぺい率: ${v('coverage')}% / 容積率: ${v('far')}%\n備考: ${v('remarks')}`}
+else if(k==='SUUMO'){t=`【SUUMO掲載用】\n◆ ${v('prop_name')}\n${v('prop_type')} / ${v('deal_type')}\n価格: ${v('price')}万円\n所在地: ${v('pref')}${v('city')}${v('address')}\n交通: ${v('transport')}\n間取り: ${v('madori')} / ${v('exclusive')}㎡\n築年月: ${v('built_date')} / ${v('structure')} / ${v('floors')}階建\n向き: ${v('direction')} / 駐車場: ${v('parking')}\n管理費: ${v('mgmt_fee')}円/月 / 修繕積立金: ${v('repair_fee')}円/月\n\n◆ 設備\n${eq.length?eq.map(e=>'・'+e).join('\n'):'（未入力）'}\n\n◆ 備考\n${v('remarks')}`}
+else if(k==='athome'){t=`【アットホーム掲載用】\n物件種別: ${v('prop_type')} / 取引態様: ${v('deal_type')}\n物件名: ${v('prop_name')}\n価格: ${v('price')}万円\n\n■ 所在地・交通\n${v('pref')}${v('city')}${v('address')}\n${v('transport')}\n\n■ 建物概要\n間取り: ${v('madori')} / 面積: ${v('exclusive')}㎡\n築年月: ${v('built_date')} / 構造: ${v('structure')}\n向き: ${v('direction')} / 駐車場: ${v('parking')}\n\n■ 引渡・現況\n引渡時期: ${v('delivery')} / 現況: ${v('status')}\n\n■ 設備\n${eq.length?eq.join('／'):'（未入力）'}`}
+else{t=`【HOMES掲載用データ】\n━━━━━━━━━━━━━━━━━━\n${v('prop_name')}（${v('prop_type')}）\n━━━━━━━━━━━━━━━━━━\n価格: ${v('price')}万円\n取引態様: ${v('deal_type')}\n\n▼ 所在地\n${v('pref')}${v('city')}${v('address')}\n${v('transport')}\n\n▼ 建物情報\n間取り: ${v('madori')} / 専有面積: ${v('exclusive')}㎡\n築年月: ${v('built_date')} / 構造: ${v('structure')}\n${v('floors')}階建 / ${v('floor_loc')}階\n向き: ${v('direction')} / バルコニー: ${v('balcony')}㎡\n総戸数: ${v('total_units')}戸\n管理費: ${v('mgmt_fee')}円/月\n\n▼ 設備・特徴\n${eq.length?eq.join(' | '):'（未入力）'}`}
+return t}
+function copyOutput(){const el=document.querySelector('.portal-out.active');if(!el)return;
+navigator.clipboard.writeText(el.textContent).then(()=>{const d=document.createElement('div');d.className='copied';d.textContent='コピーしました';document.body.appendChild(d);setTimeout(()=>d.remove(),1600)})}
+function resetForm(){allFields().forEach(f=>{const e=document.getElementById(f.id);if(e){e.value='';document.getElementById('wrap_'+f.id).classList.remove('miss')}});
+document.getElementById('resultArea').style.display='none';document.getElementById('csvMsg').textContent=''}
+init();
+</script>
+</body>
+</html>

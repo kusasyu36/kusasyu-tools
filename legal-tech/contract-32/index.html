@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>製造業の契約リスク診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#1a3a5c}
+.sub{text-align:center;font-size:.85em;color:#666;margin-bottom:18px}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:2px}
+.tab{flex:1;min-width:100px;padding:10px 4px;text-align:center;background:#fff;border:2px solid #d0d7de;border-bottom:none;border-radius:8px 8px 0 0;cursor:pointer;font-size:.8em;font-weight:600;color:#555;transition:.2s}
+.tab.active{background:#1a3a5c;color:#fff;border-color:#1a3a5c}
+.tab .icon{font-size:1.3em;display:block}
+.panel{background:#fff;border-radius:0 0 10px 10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08);display:none}
+.panel.active{display:block}
+.q{margin-bottom:14px;padding:12px;background:#f8f9fb;border-radius:8px}
+.q p{font-size:.95em;font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px}
+.opts label{flex:1;text-align:center;padding:8px;border:2px solid #d0d7de;border-radius:6px;cursor:pointer;font-weight:600;transition:.2s}
+.opts input{display:none}
+.opts input:checked+span{display:inline}
+.opts label.yes.sel{background:#e8f5e9;border-color:#43a047;color:#2e7d32}
+.opts label.no.sel{background:#fbe9e7;border-color:#e53935;color:#c62828}
+.result{margin-top:16px;padding:16px;border-radius:8px;display:none}
+.result.show{display:block}
+.rank{font-size:2em;font-weight:800;text-align:center;width:52px;height:52px;line-height:52px;border-radius:50%;display:inline-block;margin-right:10px;color:#fff}
+.rA{background:#43a047}.rB{background:#fb8c00}.rC{background:#e53935}
+.msg{font-size:.93em;margin:8px 0}
+.tip{font-size:.85em;background:#fff8e1;padding:10px;border-radius:6px;margin-top:8px;border-left:4px solid #fb8c00}
+.lawyer{font-size:.85em;background:#fce4ec;padding:10px;border-radius:6px;margin-top:8px;border-left:4px solid #e53935}
+.summary{margin-top:20px;background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.summary h2{font-size:1.1em;margin-bottom:12px;color:#1a3a5c}
+.srow{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #eee}
+.srow:last-child{border:none}
+.sname{flex:1;font-weight:600;font-size:.9em}
+.srank{font-size:1.1em;font-weight:800;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;color:#fff;font-size:.95em}
+.bar{flex:2;height:14px;background:#eee;border-radius:7px;margin:0 10px;overflow:hidden}
+.bar div{height:100%;border-radius:7px;transition:width .4s}
+.total{text-align:center;margin-top:14px;padding:12px;border-radius:8px;font-weight:700}
+.footer{text-align:center;font-size:.75em;color:#999;margin-top:16px;padding:10px}
+@media(max-width:600px){.tab{min-width:60px;font-size:.7em;padding:8px 2px}.tab .icon{font-size:1.1em}}
+</style>
+<meta name="description" content="法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,製造業の契約リスク診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-32/">
+<meta property="og:title" content="製造業の契約リスク診断ツール - kusasyu tools">
+<meta property="og:description" content="法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-32/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="製造業の契約リスク診断ツール - kusasyu tools">
+<meta name="twitter:description" content="法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "製造業の契約リスク診断ツール",
+  "description": "法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-32/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">製造業の契約リスク診断ツール</span></div>
+<div class="wrap">
+<h1>製造業の契約リスク診断ツール</h1>
+<p class="sub">取引先の契約書、YES/NOで答えるだけでリスクを可視化</p>
+<div class="tabs" id="tabs"></div>
+<div id="panels"></div>
+<div class="summary" id="summary" style="display:none">
+<h2>総合診断結果</h2>
+<div id="slist"></div>
+<div id="total" class="total"></div>
+</div>
+<div class="footer">© Kusasyu Legal Tech｜本ツールは法的助言ではありません。重要な契約は弁護士にご相談ください。</div>
+</div>
+<script>
+const D=[
+{name:"製造物責任",icon:"⚠️",qs:[
+{t:"製品に欠陥があった場合の賠償上限額は定められていますか？",safe:1,
+bad:"賠償上限がないと、1件の事故で売上を超える請求を受ける恐れがあります",
+tip:"賠償上限額を契約金額の100%以内に設定するよう交渉しましょう"},
+{t:"PL保険（製造物責任保険）に加入していますか？",safe:1,
+bad:"PL保険未加入だと、製品事故の損害を全額自社で負担することになります",
+tip:"年間保険料は売上の0.1〜0.3%程度。加入を最優先で検討してください"},
+{t:"取引先が御社の製品を改造した場合の免責条項はありますか？",safe:1,
+bad:"改造後の事故まで責任を負わされ、想定外の賠償リスクが発生します",
+tip:"『改造・不正使用時は免責』の条項追加を交渉しましょう"}
+]},
+{name:"納期ペナルティ",icon:"📅",qs:[
+{t:"納期遅延のペナルティに上限額は設定されていますか？",safe:1,
+bad:"上限なしだと遅延が長引くほど際限なくペナルティが膨らみます",
+tip:"ペナルティ上限を契約金額の10〜20%に設定する交渉をしましょう"},
+{t:"天災・パンデミック等の不可抗力条項（免責）はありますか？",safe:1,
+bad:"地震やパンデミックによる遅延でもペナルティを請求される恐れがあります",
+tip:"不可抗力の定義と免責範囲を具体的に明記するよう求めましょう"},
+{t:"遅延時に協議・猶予期間の規定はありますか？",safe:1,
+bad:"即座にペナルティが発生し、交渉の余地なく支払いを求められます",
+tip:"遅延発生時に30日程度の協議期間を設ける条項を提案しましょう"}
+]},
+{name:"原材料価格",icon:"💰",qs:[
+{t:"原材料の価格高騰時に価格改定（値上げ交渉）できる条項はありますか？",safe:1,
+bad:"原材料が高騰しても値上げ交渉できず、赤字で納品し続けることになります",
+tip:"原材料価格が10%以上変動時は価格再協議できる条項を入れましょう"},
+{t:"長期契約の場合、価格見直し時期は定められていますか？",safe:1,
+bad:"何年も価格据え置きのまま、コスト上昇分を全て自社が吸収させられます",
+tip:"少なくとも年1回の価格見直し条項を設定しましょう"}
+]},
+{name:"品質保証",icon:"🔍",qs:[
+{t:"品質保証の期間に明確な期限はありますか？",safe:1,
+bad:"保証期限がないと、何年後でも無償修理・交換を求められる恐れがあります",
+tip:"業界標準の保証期間（通常1〜2年）を明記するよう交渉しましょう"},
+{t:"受入検査後の合格判定で品質責任が移転する規定はありますか？",safe:1,
+bad:"検査合格後も品質責任を負い続け、半永久的にクレーム対応が必要です",
+tip:"受入検査合格をもって品質責任移転とする条項を入れましょう"},
+{t:"品質不良時の対応方法（修理・交換・返金）は明記されていますか？",safe:1,
+bad:"対応方法が曖昧だと、取引先に最も高額な方法を一方的に選ばれます",
+tip:"対応は修理優先とし、修理不能時のみ交換とする順序を明記しましょう"}
+]},
+{name:"知財帰属",icon:"💡",qs:[
+{t:"共同開発の成果物の知的財産権の帰属先は明記されていますか？",safe:1,
+bad:"帰属が曖昧だと、自社の技術を取引先に独占使用される恐れがあります",
+tip:"共同開発成果は共有とし、各自の従来技術は留保する条項を入れましょう"},
+{t:"御社が持ち込んだ既存技術（ノウハウ）は保護されていますか？",safe:1,
+bad:"自社の既存ノウハウまで取引先に渡り、競合に技術流出する恐れがあります",
+tip:"既存技術の定義と権利留保を契約に明記しましょう"},
+{t:"契約終了後の技術利用制限は規定されていますか？",safe:1,
+bad:"取引終了後も自社技術を無制限に使われ、競合製品に転用される恐れがあります",
+tip:"契約終了後は相手方の技術利用を禁止または制限する条項を入れましょう"}
+]}
+];
+const state=D.map(d=>d.qs.map(()=>-1));
+let curTab=0;
+const $=s=>document.querySelector(s);
+function init(){
+const tabs=$("#tabs"),panels=$("#panels");
+D.forEach((d,i)=>{
+const t=document.createElement("div");
+t.className="tab"+(i===0?" active":"");
+t.innerHTML=`<span class="icon">${d.icon}</span>${d.name}`;
+t.onclick=()=>switchTab(i);
+tabs.appendChild(t);
+const p=document.createElement("div");
+p.className="panel"+(i===0?" active":"");
+p.id="p"+i;
+let h="";
+d.qs.forEach((q,j)=>{
+h+=`<div class="q"><p>Q${j+1}. ${q.t}</p><div class="opts">
+<label class="yes" id="y${i}_${j}" onclick="ans(${i},${j},1)"><span>はい</span></label>
+<label class="no" id="n${i}_${j}" onclick="ans(${i},${j},0)"><span>いいえ</span></label>
+</div></div>`;
+});
+h+=`<div class="result" id="r${i}"></div>`;
+p.innerHTML=h;
+panels.appendChild(p);
+});
+}
+function switchTab(i){
+curTab=i;
+document.querySelectorAll(".tab").forEach((t,j)=>t.className="tab"+(j===i?" active":""));
+document.querySelectorAll(".panel").forEach((p,j)=>p.className="panel"+(j===i?" active":""));
+}
+function ans(i,j,v){
+state[i][j]=v;
+const y=document.getElementById("y"+i+"_"+j),n=document.getElementById("n"+i+"_"+j);
+y.className="yes"+(v===1?" sel":"");
+n.className="no"+(v===0?" sel":"");
+calc(i);
+}
+function calc(i){
+const s=state[i],d=D[i],r=document.getElementById("r"+i);
+if(s.includes(-1)){r.className="result";return;}
+const risk=s.filter(v=>v===0).length;
+const total=s.length;
+const pct=risk/total;
+let rank,cls,bg;
+if(pct<=0.33){rank="A";cls="rA";bg="#e8f5e9";}
+else if(pct<=0.66){rank="B";cls="rB";bg="#fff3e0";}
+else{rank="C";cls="rC";bg="#fbe9e7";}
+let html=`<div style="display:flex;align-items:center"><span class="rank ${cls}">${rank}</span>
+<strong style="font-size:1.1em">${rank==="A"?"低リスク":rank==="B"?"中リスク":"高リスク"}</strong></div>`;
+s.forEach((v,j)=>{
+if(v===0){
+html+=`<p class="msg">⚠ ${d.qs[j].bad}</p><div class="tip">📌 ${d.qs[j].tip}</div>`;
+}
+});
+if(rank==="C")html+=`<div class="lawyer">🔴 弁護士への相談を強く推奨します。このまま契約すると大きな損失につながる可能性があります。</div>`;
+else if(rank==="B")html+=`<div class="tip">🟡 可能であれば弁護士に確認してから契約しましょう。</div>`;
+r.innerHTML=html;r.className="result show";r.style.background=bg;
+updateSummary();
+}
+function updateSummary(){
+const sm=$("#summary"),sl=$("#slist"),tl=$("#total");
+const results=D.map((d,i)=>{
+const s=state[i];
+if(s.includes(-1))return null;
+const risk=s.filter(v=>v===0).length/s.length;
+let rank=risk<=0.33?"A":risk<=0.66?"B":"C";
+return{name:d.name,rank,risk};
+});
+if(results.some(r=>r===null)){sm.style.display="none";return;}
+sm.style.display="block";
+const colors={A:"#43a047",B:"#fb8c00",C:"#e53935"};
+let h="",cCount=0;
+results.forEach(r=>{
+if(r.rank==="C")cCount++;
+h+=`<div class="srow"><span class="sname">${r.name}</span>
+<div class="bar"><div style="width:${r.risk*100}%;background:${colors[r.rank]}"></div></div>
+<span class="srank" style="background:${colors[r.rank]}">${r.rank}</span></div>`;
+});
+sl.innerHTML=h;
+if(cCount>=2){tl.style.background="#fbe9e7";tl.innerHTML="🔴 複数の高リスク項目があります。契約前に必ず弁護士にご相談ください。";}
+else if(cCount===1){tl.style.background="#fff3e0";tl.innerHTML="🟡 高リスク項目があります。該当箇所の条項見直しを交渉しましょう。";}
+else{tl.style.background="#e8f5e9";tl.innerHTML="🟢 大きなリスクは見当たりません。念のため重要条項は再確認しましょう。";}
+}
+init();
+</script>
+</body>
+</html>

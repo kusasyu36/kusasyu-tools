@@ -1170,6 +1170,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "converter-2",
+    "url": "proptech/converter-2/",
+    "title": "物件入力は1回だけ。ポータル一括変換ツール",
+    "tool_name": "物件データ正規化・ポータル変換チェッカー",
+    "description": "中小不動産会社がREINS・SUUMO・アットホーム等に物件を掲載する際の二重入力を解消するツールセット。物件情報を1フォーマットに入力すれば、各ポータルの必須項目チェック・フォーマット変換・不足項目アラートを自動で行うHTMLツールと、物件データを一元管理するExcelマスターシートを提供する。不動産オープンID構想に先行し、業界標準フォーマットへの対応も組み込む。",
+    "quality_score": 10,
+    "completed_at": "2026-04-30T07:21:29.821752+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "management-4",
+    "url": "proptech/management-4/",
+    "title": "物件入力は1回だけ。ポータル一括変換ツール",
+    "tool_name": "物件データ統一管理マスターシート",
+    "description": "中小不動産会社がREINS・SUUMO・アットホーム等に物件を掲載する際の二重入力を解消するツールセット。物件情報を1フォーマットに入力すれば、各ポータルの必須項目チェック・フォーマット変換・不足項目アラートを自動で行うHTMLツールと、物件データを一元管理するExcelマスターシートを提供する。不動産オープンID構想に先行し、業界標準フォーマットへの対応も組み込む。",
+    "quality_score": 10,
+    "completed_at": "2026-04-30T07:21:29.821752+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -4041,6 +4067,45 @@
     "quality_score": 7,
     "completed_at": "2026-04-23T15:03:03.577034+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-32",
+    "url": "legal-tech/contract-32/",
+    "title": "法務部がない製造業向け。契約リスク自動診断",
+    "tool_name": "製造業の契約リスク診断ツール",
+    "description": "法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存19製品が法務部向け・月額数万〜十数万円であるのに対し、法律用語を一切使わず『この条文は、あ",
+    "quality_score": 7,
+    "completed_at": "2026-04-30T05:05:22.566430+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "excel",
+    "url": "legal-tech/excel/",
+    "title": "法務部がない製造業向け。契約リスク自動診断",
+    "tool_name": "製造業の契約チェックリスト（Excel対応）",
+    "description": "法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存19製品が法務部向け・月額数万〜十数万円であるのに対し、法律用語を一切使わず『この条文は、あ",
+    "quality_score": 7,
+    "completed_at": "2026-04-30T05:05:22.566430+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-33",
+    "url": "legal-tech/contract-33/",
+    "title": "法務部がない製造業向け。契約リスク自動診断",
+    "tool_name": "製造業の契約トラブル事例集と交渉フレーズ集",
+    "description": "法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存19製品が法務部向け・月額数万〜十数万円であるのに対し、法律用語を一切使わず『この条文は、あ",
+    "quality_score": 7,
+    "completed_at": "2026-04-30T05:05:22.566430+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "proptech",

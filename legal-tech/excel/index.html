@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>製造業の契約チェックリスト（Excel対応） - kusasyu tools</title>
+<meta name="description" content="法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,製造業の契約チェックリスト（Excel対応）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/excel/">
+<meta property="og:title" content="製造業の契約チェックリスト（Excel対応） - kusasyu tools">
+<meta property="og:description" content="法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/excel/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="製造業の契約チェックリスト（Excel対応） - kusasyu tools">
+<meta name="twitter:description" content="法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "製造業の契約チェックリスト（Excel対応）",
+  "description": "法務部を持たない中小製造業の調達・営業担当者が、取引先から届いた契約書の条文をコピペまたは選択式で入力すると、製造業特有のリスク（製造物責任・納期遅延ペナルティ・原材料価格変動・品質保証・知財帰属）を平易な日本語で解説し、危険度スコアとともに可視化するHTMLツールを中心に構成。LegalForce等の既存1",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/excel/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-04-30"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>製造業の契約チェックリスト（Excel対応）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>製造業の契約チェックリスト（Excel対応）</h1>
+  <p class="project-name">法務部がない製造業向け。契約リスク自動診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>カテゴリ</th><th>チェック項目</th><th>確認内容</th><th>この条項がない場合のリスク</th><th>影響度(1-5)</th><th>発生可能性(1-5)</th><th>リスクスコア</th><th>リスク判定</th><th>対応ステータス</th><th>担当者</th><th>対応期限</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>品質保証</td><td>検査基準の明記</td><td>受入検査の方法・基準値・合否判定が定められているか</td><td>基準が曖昧で不良品受入や過剰返品が発生し紛争化する</td><td>5</td><td>4</td><td>=F2*G2</td><td>=IF(H2&gt;=15,"高",IF(H2&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>2</td><td>品質保証</td><td>不良品対応条項</td><td>不良発見時の通知期限・代品納入・費用負担が規定されているか</td><td>不良対応の費用負担を巡り協議が長期化する</td><td>5</td><td>4</td><td>=F3*G3</td><td>=IF(H3&gt;=15,"高",IF(H3&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>3</td><td>品質保証</td><td>品質保証期間</td><td>引渡し後の保証期間と保証範囲が明示されているか</td><td>保証期間の認識差で無償修理の範囲が争いになる</td><td>4</td><td>3</td><td>=F4*G4</td><td>=IF(H4&gt;=15,"高",IF(H4&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>4</td><td>品質保証</td><td>仕様変更手続</td><td>仕様変更時の書面合意・費用再計算ルールがあるか</td><td>口頭変更が横行し追加費用を請求できなくなる</td><td>4</td><td>4</td><td>=F5*G5</td><td>=IF(H5&gt;=15,"高",IF(H5&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>5</td><td>品質保証</td><td>原材料・部品指定</td><td>使用材料や部品の指定・変更制限が定められているか</td><td>無断で安価材料に切替えられ製品品質が低下する</td><td>4</td><td>3</td><td>=F6*G6</td><td>=IF(H6&gt;=15,"高",IF(H6&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>6</td><td>品質保証</td><td>トレーサビリティ</td><td>ロット管理・製造記録の保存義務が規定されているか</td><td>リコール時に原因ロット特定ができず被害が拡大する</td><td>5</td><td>3</td><td>=F7*G7</td><td>=IF(H7&gt;=15,"高",IF(H7&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>7</td><td>納期</td><td>納期の明確化</td><td>具体的な納入日・数量・納入場所が特定されているか</td><td>納期認識のズレで生産ライン停止リスクが生じる</td><td>5</td><td>3</td><td>=F8*G8</td><td>=IF(H8&gt;=15,"高",IF(H8&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>8</td><td>納期</td><td>納期遅延ペナルティ</td><td>遅延時の違約金・損害賠償の算定方法があるか</td><td>遅延されても損害を回収する根拠がなくなる</td><td>4</td><td>4</td><td>=F9*G9</td><td>=IF(H9&gt;=15,"高",IF(H9&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>9</td><td>納期</td><td>分納・前倒し納入</td><td>分納条件や前倒し納入の可否が定められているか</td><td>予定外の大量納入で倉庫費用が発生する</td><td>3</td><td>3</td><td>=F10*G10</td><td>=IF(H10&gt;=15,"高",IF(H10&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr><tr><td>10</td><td>納期</td><td>不可抗力条項</td><td>天災・疫病等による納期延長の条件が規定されているか</td><td>災害時に債務不履行として損害賠償請求される</td><td>4</td><td>3</td><td>=F11*G11</td><td>=IF(H11&gt;=15,"高",IF(H11&gt;=8,"中","低"))</td><td>未着手</td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,カテゴリ,チェック項目,確認内容,この条項がない場合のリスク,影響度(1-5),発生可能性(1-5),リスクスコア,リスク判定,対応ステータス,担当者,対応期限,備考
+1,品質保証,検査基準の明記,"受入検査の方法・基準値・合否判定が定められているか","基準が曖昧で不良品受入や過剰返品が発生し紛争化する",5,4,=F2*G2,"=IF(H2>=15,""高"",IF(H2>=8,""中"",""低""))",未着手,,,
+2,品質保証,不良品対応条項,"不良発見時の通知期限・代品納入・費用負担が規定されているか","不良対応の費用負担を巡り協議が長期化する",5,4,=F3*G3,"=IF(H3>=15,""高"",IF(H3>=8,""中"",""低""))",未着手,,,
+3,品質保証,品質保証期間,"引渡し後の保証期間と保証範囲が明示されているか","保証期間の認識差で無償修理の範囲が争いになる",4,3,=F4*G4,"=IF(H4>=15,""高"",IF(H4>=8,""中"",""低""))",未着手,,,
+4,品質保証,仕様変更手続,"仕様変更時の書面合意・費用再計算ルールがあるか","口頭変更が横行し追加費用を請求できなくなる",4,4,=F5*G5,"=IF(H5>=15,""高"",IF(H5>=8,""中"",""低""))",未着手,,,
+5,品質保証,原材料・部品指定,"使用材料や部品の指定・変更制限が定められているか","無断で安価材料に切替えられ製品品質が低下する",4,3,=F6*G6,"=IF(H6>=15,""高"",IF(H6>=8,""中"",""低""))",未着手,,,
+6,品質保証,トレーサビリティ,"ロット管理・製造記録の保存義務が規定されているか","リコール時に原因ロット特定ができず被害が拡大する",5,3,=F7*G7,"=IF(H7>=15,""高"",IF(H7>=8,""中"",""低""))",未着手,,,
+7,納期,納期の明確化,"具体的な納入日・数量・納入場所が特定されているか","納期認識のズレで生産ライン停止リスクが生じる",5,3,=F8*G8,"=IF(H8>=15,""高"",IF(H8>=8,""中"",""低""))",未着手,,,
+8,納期,納期遅延ペナルティ,"遅延時の違約金・損害賠償の算定方法があるか","遅延されても損害を回収する根拠がなくなる",4,4,=F9*G9,"=IF(H9>=15,""高"",IF(H9>=8,""中"",""低""))",未着手,,,
+9,納期,分納・前倒し納入,"分納条件や前倒し納入の可否が定められているか","予定外の大量納入で倉庫費用が発生する",3,3,=F10*G10,"=IF(H10>=15,""高"",IF(H10>=8,""中"",""低""))",未着手,,,
+10,納期,不可抗力条項,"天災・疫病等による納期延長の条件が規定されているか","災害時に債務不履行として損害賠償請求される",4,3,=F11*G11,"=IF(H11>=15,""高"",IF(H11>=8,""中"",""低""))",未着手,,,
+11,納期,検収期間・方法,"納品後の検収期限と検収完了の定義があるか","検収が無期限に延び代金回収が遅延する",4,4,=F12*G12,"=IF(H12>=15,""高"",IF(H12>=8,""中"",""低""))",未着手,,,
+12,納期,発注変更・キャンセル,"発注後の数量変更・キャンセル条件が定められているか","一方的キャンセルで材料費・加工費が回収不能になる",5,3,=F13*G13,"=IF(H13>=15,""高"",IF(H13>=8,""中"",""低""))",未着手,,,
+13,PL法,製造物責任の分担,"PL事故発生時の責任分担が明記されているか","欠陥製品事故の全責任を一方が負うリスクがある",5,3,=F14*G14,"=IF(H14>=15,""高"",IF(H14>=8,""中"",""低""))",未着手,,,
+14,PL法,リコール費用負担,"リコール発生時の費用分担ルールがあるか","リコール費用の全額を負担させられる恐れがある",5,3,=F15*G15,"=IF(H15>=15,""高"",IF(H15>=8,""中"",""低""))",未着手,,,
+15,PL法,PL保険の付保義務,"PL保険加入義務と補償額の下限が規定されているか","事故発生時に相手方が無保険で賠償原資がない",5,3,=F16*G16,"=IF(H16>=15,""高"",IF(H16>=8,""中"",""低""))",未着手,,,
+16,PL法,警告表示・取扱説明,"製品の警告表示・説明書作成の責任分担があるか","表示不備で指示・警告上の欠陥を問われる",4,3,=F17*G17,"=IF(H17>=15,""高"",IF(H17>=8,""中"",""低""))",未着手,,,
+17,PL法,事故報告義務,"PL事故発生時の相互通知義務・期限があるか","事故情報の共有遅延で被害拡大と行政処分を受ける",4,3,=F18*G18,"=IF(H18>=15,""高"",IF(H18>=8,""中"",""低""))",未着手,,,
+18,PL法,設計・製造記録保存,"設計図面・製造記録の保存期間が規定されているか","PL訴訟で製造過程の立証ができず敗訴する",4,3,=F19*G19,"=IF(H19>=15,""高"",IF(H19>=8,""中"",""低""))",未着手,,,
+19,下請法,書面交付義務(3条書面),"発注時に品名・数量・代金・納期等を書面交付しているか","下請法違反で公取委から勧告・公表される",5,4,=F20*G20,"=IF(H20>=15,""高"",IF(H20>=8,""中"",""低""))",未着手,,,
+20,下請法,支払期日(60日ルール),"受領日から60日以内の支払期日が設定されているか","60日超の支払遅延で遅延利息14.6%が発生する",5,4,=F21*G21,"=IF(H21>=15,""高"",IF(H21>=8,""中"",""低""))",未着手,,,
+21,下請法,不当な返品禁止,"受入後の不当返品禁止が明記されているか","下請事業者に不合理な返品を強いて法令違反になる",4,3,=F22*G22,"=IF(H22>=15,""高"",IF(H22>=8,""中"",""低""))",未着手,,,
+22,下請法,買いたたき禁止,"通常対価に比べ著しく低い代金設定がないか","買いたたきとして公取委の調査対象になる",4,3,=F23*G23,"=IF(H23>=15,""高"",IF(H23>=8,""中"",""低""))",未着手,,,
+23,下請法,有償支給原材料の決済,"有償支給材の代金決済時期が適正に設定されているか","早期決済で下請事業者の資金繰りを圧迫し違反となる",3,3,=F24*G24,"=IF(H24>=15,""高"",IF(H24>=8,""中"",""低""))",未着手,,,
+24,下請法,減額・割引の禁止,"合意なき代金減額や協賛金強制がないか","代金減額として下請法4条1項3号違反になる",4,3,=F25*G25,"=IF(H25>=15,""高"",IF(H25>=8,""中"",""低""))",未着手,,,
+25,知財,知的財産権の帰属,"共同開発成果物のIP帰属が明確に定められているか","成果物の権利帰属で紛争が発生し事業化が止まる",5,4,=F26*G26,"=IF(H26>=15,""高"",IF(H26>=8,""中"",""低""))",未着手,,,
+26,知財,秘密保持義務,"技術情報・図面の秘密保持範囲と期間が規定されているか","自社ノウハウが競合他社に流出する",5,4,=F27*G27,"=IF(H27>=15,""高"",IF(H27>=8,""中"",""低""))",未着手,,,
+27,知財,第三者知財侵害の補償,"納入品が第三者特許を侵害した場合の補償義務があるか","特許侵害訴訟の費用と損害を全額自社負担になる",5,3,=F28*G28,"=IF(H28>=15,""高"",IF(H28>=8,""中"",""低""))",未着手,,,
+28,知財,技術資料の返還・廃棄,"契約終了時の図面・データ返還義務が規定されているか","契約終了後も技術情報が相手方に残り流用される",4,3,=F29*G29,"=IF(H29>=15,""高"",IF(H29>=8,""中"",""低""))",未着手,,,
+29,知財,競業避止義務,"契約期間中・終了後の競合取引制限があるか","自社技術を使った競合製品を製造される恐れがある",4,3,=F30*G30,"=IF(H30>=15,""高"",IF(H30>=8,""中"",""低""))",未着手,,,
+30,知財,ライセンス条件,"特許・ノウハウのライセンス範囲と対価が明確か","ライセンス範囲の解釈差で使用料紛争が発生する",4,3,=F31*G31,"=IF(H31>=15,""高"",IF(H31>=8,""中"",""低""))",未着手,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_製造業の契約チェックリスト（Excel対応）.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
