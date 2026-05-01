@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>競合分析から記事戦略を立てる実践ガイド - kusasyu tools</title>
+<meta name="description" content="競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,競合分析から記事戦略を立てる実践ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-12/">
+<meta property="og:title" content="競合分析から記事戦略を立てる実践ガイド - kusasyu tools">
+<meta property="og:description" content="競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競合分析から記事戦略を立てる実践ガイド - kusasyu tools">
+<meta name="twitter:description" content="競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "競合分析から記事戦略を立てる実践ガイド",
+  "description": "競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-12/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-05-01"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>競合分析から記事戦略を立てる実践ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>競合分析から記事戦略を立てる実践ガイド</h1>
+  <p class="project-name">競合に勝てない？コンテンツ差分AI分析ツール</p>
+  <div class="content">
+<p>手順1. 競合記事をブラウザで開く
+手順2. 記事本文をCtrl+A（全選択）→ Ctrl+C（コピー）
+手順3. ダッシュボードの「競合テキスト」欄に貼り付け
+手順4. 同様に自社の対応記事を「自社テキスト」欄に貼り付け
+手順5.「分析」ボタンをクリック</p>
+<pre><code>
+&gt; **Tips：** ヘッダー・フッター・サイドバーのテキストが混入しても、ダッシュボードはナビゲーション的な短文を自動で除外します。ただし、コメント欄は手動で除いてからコピーしてください。
+
+### 1-4. 自社に対応記事がない場合
+
+自社テキスト欄を**空欄のまま**分析を実行します。この場合、文字数差分率は最大値（40点）として計算され、優先度スコアが高く出ます。これは正しい挙動です。「自社にまだ記事がない＝対策が急務」という意味だからです。
+
+---
+
+## ステップ② ダッシュボードで差分を読み取るポイント
+
+### 2-1. 優先度スコア（100点満点）の読み方
+
+ダッシュボードが出力する優先度スコアは、以下の数式で算出されます。
+
+</code></pre>
+<p>=ROUND(
+  (MAX(F2-G2, 0) / MAX(F2, 1)) * 40
+  + (100 - H2) * 0.3
+  + J2 * 10,
+0)</p>
+<pre><code>
+**3つの要素と重み付け：**
+
+| 要素 | 配点 | 意味 | 実務での解釈 |
+|---|---|---|---|
+| 文字数差分率 | 40点満点 | 自社記事が競合より短いほど高得点 | 情報量で負けている度合い |
+| キーワード非重複率 | 30点満点 | `(100 - 重複率%) × 0.3` | カバーできていないキーワードの多さ |
+| 更新頻度スコア | 30点満点 | `更新頻度スコア × 10`（最大3） | 競合が積極的に更新しているかの脅威度 |
+
+### 2-2. サンプルデータで解釈を練習する
+
+以下は架空の3記事の分析結果です。読み方を確認しましょう。
+
+| 記事 | 文字数差分率 | KW非重複率 | 更新頻度 | 合計スコア | 判定 |
+|---|---|---|---|---|---|
+| 「BtoB営業DX入門」 | 32点 | 21点 | 30点 | **83点** | 高 |
+| 「リード獲得の基本」 | 16点 | 18点 | 20点 | **54点** | 中 |
+| 「展示会レポート2025」 | 4点 | 6点 | 0点 | **10点** | 低 |
+
+**解釈例：**
+
+- **83点（高）：** 競合記事が自社より大幅に長く、カバーしているキーワードも異なり、かつ30日以内に更新されている。**最優先でリライトまたは新規執筆が必要。**
+- **54点（中）：** 一定の差はあるが緊急性は低い。**次の四半期の記事企画に入れる。**
+- **10点（低）：** 自社記事がすでに十分な内容量とキーワードカバレッジを持ち、競合も更新を止めている。**現状維持で問題なし。**
+
+### 2-3. 更新頻度スコアの基準
+
+ダッシュボード内部では以下のロジックで更新頻度を判定しています。
+
+</code></pre>
+<p>=IF(TODAY()-I2&lt;=30, 3, IF(TODAY()-I2&lt;=90, 2, IF(TODAY()-I2&lt;=180, 1, 0)))</p>
+<pre><code>
+| 最終更新からの日数 | スコア | 意味 |
+|---|---|---|
+| 30日以内 | 3（×10＝30点） | 高頻度 — 競合が積極投資中 |
+| 31〜90日 | 2（×10＝20点） | 中頻度 — 定期更新あり |
+| 91〜180日 | 1（×10＝10点） | 低頻度 — 更新ペース鈍化 |
+| 181日以上 | 0（×10＝0点） | 放置 — 脅威度低い |
+
+### 2-4. 優先度ランクの判定基準
+
+</code></pre>
+<p>=IF(M2&gt;=70, "高", IF(M2&gt;=40, "中", "低"))</p>
+<pre><code>
+| ランク | スコア範囲 | 条件付き書式の色 | 対応方針 |
+|---|---|---|---|
+| **高** | 70点以上 | 赤（#FFCDD2） | 今月中に対策記事を企画・着手 |
+| **中** | 40〜69点 | 黄（#FFF9C4） | 次四半期の記事計画に組み込む |
+| **低** | 39点以下 | 緑（#C8E6C9） | 現状維持、半年後に再チェック |
+
+---
+
+## ステップ③ Excelシートへの記録と月次レビュー
+
+### 3-1. シート①「競合記事マスタ」への転記
+
+ダッシュボードの分析結果を、以下の列構成のExcelシートに転記します。
+
+| 転記する項目 | Excel列 | 転記元 |
+|---|---|---|
+| 競合記事URL | A列 | ブラウザからコピー |
+| 競合記事タイトル | B列 | ダッシュボードの結果画面 |
+| 競合文字数 | F列 | ダッシュボードの「文字数」 |
+| 自社文字数 | G列 | ダッシュボードの「文字数」 |
+| キーワード重複率 | H列 | ダッシュボードの「KW重複率」 |
+| 競合最終更新日 | I列 | 記事ページから目視確認 |
+
+**M列（優先度スコア）とN列（ランク）は数式が自動計算します。** 手入力は不要です。
+
+### 3-2. シート②「自社カバレッジ」の更新
+
+ダッシュボードの「カバレッジ」タブに表示されるトピック一覧をA列に転記し、自社・競合各社の記事有無を○×で記入します。
+
+G列の**競合カバー率**は自動計算されます。
+
+</code></pre>
+<p>=COUNTIF(D2:F2,"○") / COUNTA(D2:F2) * 100</p>
+<pre><code>
+H列の**ギャップ判定**も自動です。
+
+</code></pre>
+<p>=IF(AND(B2="×", G2&gt;=67), "★要対策", IF(AND(B2="×", G2&gt;=33), "△検討", "—"))</p>
+<pre><code>
+- **★要対策：** 自社未対応で、競合3社中2社以上がカバー → 即対応
+- **△検討：** 自社未対応で、競合3社中1社以上がカバー → 企画候補に入れる
+
+### 3-3. シート③「月次サマリー」に1行追加
+
+毎月末に以下の項目を1行追加します。
+
+| 記入項目 | 確認方法 |
+|---|---|
+| 競合記事総数（B列） | シート①の行数をカウント |
+| 優先度「高」の件数（C列） | シート①のN列で「高」をCOUNTIF |
+| 優先度「中」の件数（D列） | 同様にCOUNTIF |
+| 新規追加された競合記事数（E列） | 今月シート①に追加した行数 |
+| 自社で対応完了した件数（F列） | 今月公開・リライトした記事数 |
+| ギャップ率（G列） | シート②の★要対策数 ÷ 全トピック数 |
+| 先月比コメント（H列） | 改善点・課題を自由記述 |
+
+&gt; **経営報告のコツ：** G列（ギャップ率）の推移を折れ線グラフにすると、改善の進捗を経営層にも報告できます。「先月18%→今月12%に改善」のように一目で伝わります。
+
+### 3-4. 月次運用フロー（所要30分）
+
+</code></pre>
+<p>Step 1. ダッシュボードで分析を実行（10分）
+    ↓
+Step 2. シート①に結果を転記、赤い行を特定（10分）
+    ↓
+Step 3. シート②の○×を更新（5分）
+    ↓
+Step 4. シート③に1行追加（3分）
+    ↓
+Step 5. 赤 → 黄の順に記事企画を決定（2分）</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

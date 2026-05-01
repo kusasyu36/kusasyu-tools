@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>競合コンテンツ定量比較ダッシュボード - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#1a237e;font-size:1.4em;margin:12px 0}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:16px}
+.input-area{background:#fff;border-radius:8px;padding:16px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+label{font-weight:bold;font-size:.9em;display:block;margin:8px 0 4px}
+textarea{width:100%;height:120px;border:1px solid #ccc;border-radius:4px;padding:8px;font-size:.85em;resize:vertical}
+.sm{height:80px}
+input[type=text]{width:100%;border:1px solid #ccc;border-radius:4px;padding:6px 8px;font-size:.85em}
+.btn{display:block;width:100%;padding:12px;background:#1a237e;color:#fff;border:none;border-radius:6px;font-size:1em;cursor:pointer;margin:12px 0}
+.btn:hover{background:#283593}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin:12px 0}
+.tab{padding:8px 14px;border:none;background:#ddd;border-radius:4px 4px 0 0;cursor:pointer;font-size:.85em}
+.tab.active{background:#1a237e;color:#fff}
+.panel{display:none;background:#fff;border-radius:0 0 8px 8px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.panel.show{display:block}
+table{width:100%;border-collapse:collapse;font-size:.82em;margin:8px 0}
+th,td{border:1px solid #ddd;padding:6px 8px;text-align:center}
+th{background:#e8eaf6}
+.o{color:#2e7d32;font-weight:bold}.x{color:#c62828}
+canvas{width:100%;max-width:500px;display:block;margin:12px auto}
+.legend{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-size:.8em;margin:8px 0}
+.leg-item{display:flex;align-items:center;gap:4px}
+.leg-box{width:14px;height:14px;border-radius:2px}
+.hm-row{display:flex;align-items:center;margin:2px 0;font-size:.82em}
+.hm-label{width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;padding-right:8px;flex-shrink:0}
+.hm-bar{height:22px;border-radius:2px;min-width:2px;display:flex;align-items:center;padding:0 4px;color:#fff;font-size:.75em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.card{background:#f5f5f5;border-radius:6px;padding:12px}
+.card h3{font-size:.9em;color:#1a237e;margin-bottom:6px}
+.heading-list{font-size:.82em;padding-left:16px}
+.heading-list li{margin:2px 0;list-style:none}
+.h1t{color:#1a237e;font-weight:bold}.h2t{color:#303f9f;margin-left:12px}.h3t{color:#5c6bc0;margin-left:24px}
+#result{display:none}
+.note{margin-top:8px;padding:10px;border-radius:4px;font-size:.85em}
+</style>
+<meta name="description" content="競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,競合コンテンツ定量比較ダッシュボード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-61/">
+<meta property="og:title" content="競合コンテンツ定量比較ダッシュボード - kusasyu tools">
+<meta property="og:description" content="競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-61/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競合コンテンツ定量比較ダッシュボード - kusasyu tools">
+<meta name="twitter:description" content="競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "競合コンテンツ定量比較ダッシュボード",
+  "description": "競合サイトの記事テキストを貼り付けるだけで、見出し構造・キーワード頻度・コンテンツカバレッジ・トーンを自動比較分析し、自社が優先して書くべきトピックリストと差別化ポイント提案を生成するHTMLダッシュボード。Ahrefsのような高額SaaSを使わず、マーケ担当1人でも競合コンテンツ戦略を可視化できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-61/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">競合コンテンツ定量比較ダッシュボード</span></div>
+<div class="wrap">
+<h1>競合コンテンツ定量比較ダッシュボード</h1>
+<p class="sub">競合記事と自社記事を貼り付けて、コンテンツの差分を定量的に可視化（外部API不要）</p>
+<div class="input-area">
+<label>自社記事テキスト</label>
+<textarea id="own" placeholder="自社記事の本文を貼り付け（見出しは行頭に # ## ### で記述）"></textarea>
+<label>チェックキーワード（カンマ区切り）</label>
+<input type="text" id="kws" placeholder="例: SEO対策, コンテンツマーケティング, リード獲得">
+<label>競合記事</label>
+<div id="comps"></div>
+<div style="display:flex;gap:8px;margin:8px 0;align-items:center"><button onclick="addComp()" style="padding:4px 12px;font-size:.8em;border:1px solid #1a237e;background:#fff;color:#1a237e;border-radius:4px;cursor:pointer">＋ 競合記事を追加</button><span id="compCnt" style="font-size:.8em;color:#666">0/5件</span></div>
+<button class="btn" onclick="analyze()">分析を実行</button>
+</div>
+<div id="result">
+<div class="tabs" id="tabs"></div>
+<div id="panels"></div>
+</div>
+</div>
+<script>
+let compN=0;
+function addComp(){if(compN>=5)return;compN++;document.getElementById('compCnt').textContent=compN+'/5件';
+let d=document.createElement('div');d.style.marginTop='8px';
+d.innerHTML='<label style="font-size:.82em">競合'+compN+'</label><textarea class="sm comp-ta" placeholder="競合記事'+compN+'のテキストを貼り付け"></textarea>';
+document.getElementById('comps').appendChild(d)}
+addComp();
+const STOP='は|が|の|を|に|へ|と|で|も|か|や|し|て|な|よ|ね|さ|わ|ら|り|る|れ|ろ|た|だ|い|う|え|お|する|いる|ある|なる|できる|ない|です|ます|この|その|あの|それ|これ|こと|もの|ため|など|ほど|よう|から|まで|より|けど|ので|のに|たり|ながら|として|について|における|に対して|によって|ところ|という|ている|れる|られる|せる|させる|された|という|ような|ように|される|している|これら|それら|どの|どれ|ここ|そこ|いつ|だれ|なに|なぜ|どう|amp|nbsp|その他|それぞれ|つまり|または|および|しかし|ただし|なお|また|さらに|そして|一方|ただ|ほか|あり|おり|なく|なり|得る|行う|行っ|持つ|用い|見る|考え|思い|知り|言え|取り|受け|使い|使っ|作り|出す|入れ|含む|向け|基づ|始め|必要|可能|場合|問題|結果|方法|理由|目的|意味|状況|状態|程度|部分|全体|以上|以下|以外|以内|前後|中心|対象|関連|関係|特徴|機能|効果|影響|評価|分析|比較|検討|確認|説明|提供|実現|実施|実行|利用|活用|対応|改善|解決|設定|選択|作成|構成|構築|開発|運用|管理|処理|制御|変換|取得|表示|入力|出力'.split('|');
+function tokenize(t){let s=t.replace(/[、。！？…・「」『』【】（）()\[\]{}<>，．,.!?\-—―─:：;；\/\\~〜\n\r\t]/g,' ');
+let ws=s.split(/\s+/).filter(w=>w.length>=2&&!STOP.includes(w)&&!/^[\d\s]+$/.test(w)&&!/^[a-zA-Z]$/.test(w));
+let m={};ws.forEach(w=>{let k=w.replace(/ー+$/,'');if(k.length>=2)m[k]=(m[k]||0)+1});return m}
+function getHeadings(t){let lines=t.split('\n'),h=[];
+lines.forEach(l=>{let m=l.match(/^(#{1,3})\s+(.+)/);if(m)h.push({lv:m[1].length,text:m[2].trim()})});return h}
+function stats(t){let lines=t.split('\n').filter(l=>l.trim());
+let sents=t.split(/[。！？!?]+/).filter(s=>s.trim().length>0);
+let lists=lines.filter(l=>/^[\-*・●▶◆☑✓✔\d]+[.)）]\s/.test(l.trim())||/^[-*・]/.test(l.trim()));
+let pars=t.split(/\n\s*\n/).filter(p=>p.trim());
+let chars=t.replace(/\s/g,'').length;
+let avgSent=sents.length?Math.round(sents.reduce((a,s)=>a+s.replace(/\s/g,'').length,0)/sents.length):0;
+return{chars,pars:pars.length,sents:sents.length,avgSent,lists:lists.length,listRate:lines.length?Math.round(lists.length/lines.length*100):0}}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function analyze(){
+let ownTxt=document.getElementById('own').value.trim();
+if(!ownTxt){alert('自社記事を入力してください');return}
+let kwInput=document.getElementById('kws').value.trim();
+let checkKws=kwInput?kwInput.split(/[,、，]/).map(k=>k.trim()).filter(k=>k):[];
+let compTas=document.querySelectorAll('.comp-ta');
+let articles=[{name:'自社',text:ownTxt}];
+compTas.forEach((ta,i)=>{let v=ta.value.trim();if(v)articles.push({name:'競合'+(i+1),text:v})});
+if(articles.length<2){alert('競合記事を1つ以上入力してください');return}
+articles.forEach(a=>{a.tokens=tokenize(a.text);a.headings=getHeadings(a.text);a.stats=stats(a.text)});
+let tabNames=['見出し構造','キーワード分析','定量指標','カバレッジ','ポジショニング'];
+let tabsEl=document.getElementById('tabs'),panelsEl=document.getElementById('panels');
+tabsEl.innerHTML='';panelsEl.innerHTML='';
+tabNames.forEach((n,i)=>{let b=document.createElement('button');b.className='tab'+(i===0?' active':'');b.textContent=n;
+b.onclick=()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));document.querySelectorAll('.panel')[i].classList.add('show')};
+tabsEl.appendChild(b);let p=document.createElement('div');p.className='panel'+(i===0?' show':'');panelsEl.appendChild(p)});
+let P=document.querySelectorAll('.panel');
+// 1:Headings
+let h='<div class="grid">';
+articles.forEach(a=>{h+='<div class="card"><h3>'+a.name+'</h3>';
+let c=[0,0,0];a.headings.forEach(x=>c[x.lv-1]++);
+h+='<div style="font-size:.8em;color:#666;margin-bottom:4px">H1:'+c[0]+' H2:'+c[1]+' H3:'+c[2]+'</div><ul class="heading-list">';
+a.headings.forEach(x=>{let cl=['h1t','h2t','h3t'][x.lv-1];h+='<li class="'+cl+'">'+'　'.repeat(x.lv-1)+'H'+x.lv+': '+esc(x.text)+'</li>'});
+h+='</ul></div>'});h+='</div>';
+let ownH=new Set(articles[0].headings.map(x=>x.text));
+let miss=[];articles.slice(1).forEach(a=>a.headings.forEach(x=>{if(!ownH.has(x.text)&&!miss.includes(x.text))miss.push(x.text)}));
+if(miss.length)h+='<div class="note" style="background:#fff3e0"><strong>自社に不足している見出しトピック:</strong><ul style="margin-top:4px;padding-left:16px">'+miss.map(m=>'<li>'+esc(m)+'</li>').join('')+'</ul></div>';
+P[0].innerHTML=h;
+// 2:Keywords
+let ownKw=articles[0].tokens,allCKw={};
+articles.slice(1).forEach(a=>{for(let k in a.tokens)allCKw[k]=(allCKw[k]||0)+a.tokens[k]});
+let onlyO=[],comm=[],onlyC=[];
+for(let k in ownKw){if(allCKw[k])comm.push({w:k,own:ownKw[k],comp:allCKw[k]});else onlyO.push({w:k,c:ownKw[k]})}
+for(let k in allCKw){if(!ownKw[k])onlyC.push({w:k,c:allCKw[k]})}
+onlyO.sort((a,b)=>b.c-a.c);comm.sort((a,b)=>(b.own+b.comp)-(a.own+a.comp));onlyC.sort((a,b)=>b.c-a.c);
+let mxF=Math.max(...onlyO.slice(0,8).map(k=>k.c),...comm.slice(0,8).map(k=>k.own+k.comp),...onlyC.slice(0,8).map(k=>k.c),1);
+function bar(items,color,lim){let s='';items.slice(0,lim).forEach(k=>{let v=k.c||k.own||0;let w=Math.max(v/mxF*100,5);
+s+='<div class="hm-row"><div class="hm-label">'+esc(k.w)+'</div><div class="hm-bar" style="background:'+color+';width:'+w+'%">'+v+'</div></div>'});return s}
+let h2='<div class="legend"><div class="leg-item"><div class="leg-box" style="background:#2e7d32"></div>自社のみ</div><div class="leg-item"><div class="leg-box" style="background:#1565c0"></div>共通</div><div class="leg-item"><div class="leg-box" style="background:#c62828"></div>競合のみ</div></div>';
+h2+='<h4 style="font-size:.85em;margin:8px 0 4px;color:#2e7d32">自社のみ（差別化キーワード）</h4>'+bar(onlyO,'#2e7d32',8);
+h2+='<h4 style="font-size:.85em;margin:8px 0 4px;color:#1565c0">共通キーワード</h4>';
+comm.slice(0,8).forEach(k=>{let w1=Math.max(k.own/mxF*100,3),w2=Math.max(k.comp/mxF*100,3);
+h2+='<div class="hm-row"><div class="hm-label">'+esc(k.w)+'</div><div class="hm-bar" style="background:#1565c0;width:'+w1+'%">自'+k.own+'</div><div class="hm-bar" style="background:#5c6bc0;width:'+w2+'%;margin-left:2px">競'+k.comp+'</div></div>'});
+h2+='<h4 style="font-size:.85em;margin:8px 0 4px;color:#c62828">競合のみ（要対策キーワード）</h4>'+bar(onlyC,'#c62828',8);
+P[1].innerHTML=h2;
+// 3:Metrics
+let h3='<table><tr><th>指標</th>';articles.forEach(a=>h3+='<th>'+a.name+'</th>');h3+='</tr>';
+[['文字数','chars'],['段落数','pars'],['文数','sents'],['平均文長(字)','avgSent'],['リスト行数','lists'],['リスト使用率','listRate']].forEach(([lb,ky])=>{
+h3+='<tr><td>'+lb+'</td>';let vs=articles.map(a=>a.stats[ky]);let mx=Math.max(...vs);
+articles.forEach(a=>{let v=a.stats[ky];let s=ky==='listRate'?v+'%':v.toLocaleString();
+h3+='<td'+(v===mx?' style="background:#e8f5e9;font-weight:bold"':'')+'>'+s+'</td>'});h3+='</tr>'});h3+='</table>';
+let oc=articles[0].stats.chars,ac=Math.round(articles.slice(1).reduce((s,a)=>s+a.stats.chars,0)/(articles.length-1)),df=oc-ac;
+h3+='<div class="note" style="background:'+(df>=0?'#e8f5e9':'#ffebee')+'">'+(df>=0?'自社は競合平均より<strong>'+df.toLocaleString()+'文字多い</strong>（十分なボリューム）':'自社は競合平均より<strong>'+Math.abs(df).toLocaleString()+'文字少ない</strong>（増強推奨）')+'</div>';
+P[2].innerHTML=h3;
+// 4:Coverage
+if(checkKws.length){let h4='<table><tr><th>キーワード</th>';articles.forEach(a=>h4+='<th>'+a.name+'</th>');h4+='</tr>';
+checkKws.forEach(kw=>{h4+='<tr><td style="text-align:left">'+esc(kw)+'</td>';
+articles.forEach(a=>{let f=a.text.includes(kw);h4+='<td class="'+(f?'o':'x')+'">'+(f?'◯':'✕')+'</td>'});h4+='</tr>'});h4+='</table>';
+let cv=checkKws.filter(k=>articles[0].text.includes(k)).length;
+h4+='<div style="margin-top:8px;font-size:.85em">自社カバー率: <strong>'+cv+'/'+checkKws.length+'</strong> ('+Math.round(cv/checkKws.length*100)+'%)</div>';
+P[3].innerHTML=h4}else{P[3].innerHTML='<p style="color:#666;font-size:.9em">チェックキーワードを入力すると、記事別のカバレッジを表示します。</p>'}
+// 5:Scatter
+let cvs=document.createElement('canvas');cvs.width=500;cvs.height=400;P[4].appendChild(cvs);
+let cx=cvs.getContext('2d');
+let pts=articles.map(a=>{let tk=Object.keys(a.tokens).length,uq=0;
+for(let k in a.tokens){let u=true;articles.forEach(b=>{if(b!==a&&b.tokens[k])u=false});if(u)uq++}
+return{name:a.name,x:a.stats.chars,y:tk?Math.round(uq/tk*100):0}});
+let xM=Math.max(...pts.map(p=>p.x))*1.2||1000,yM=Math.max(...pts.map(p=>p.y))*1.2||100;
+let pd=50,W=cvs.width-pd*2,H=cvs.height-pd*2;
+cx.fillStyle='#f5f7fa';cx.fillRect(0,0,cvs.width,cvs.height);cx.strokeStyle='#ccc';cx.lineWidth=1;
+for(let i=0;i<=4;i++){let yy=pd+H-H*(i/4);cx.beginPath();cx.moveTo(pd,yy);cx.lineTo(pd+W,yy);cx.stroke();
+cx.fillStyle='#999';cx.font='11px sans-serif';cx.textAlign='right';cx.fillText(Math.round(yM*i/4)+'%',pd-4,yy+4)}
+for(let i=0;i<=4;i++){let xx=pd+W*(i/4);cx.beginPath();cx.moveTo(xx,pd);cx.lineTo(xx,pd+H);cx.stroke();
+cx.fillStyle='#999';cx.textAlign='center';cx.fillText(Math.round(xM*i/4),xx,pd+H+16)}
+cx.fillStyle='#666';cx.font='12px sans-serif';cx.textAlign='center';cx.fillText('文字数',pd+W/2,cvs.height-4);
+cx.save();cx.translate(12,pd+H/2);cx.rotate(-Math.PI/2);cx.fillText('独自キーワード率',0,0);cx.restore();
+let cols=['#1a237e','#c62828','#2e7d32','#f57f17','#6a1b9a','#00695c'];
+pts.forEach((p,i)=>{let px=pd+(p.x/xM)*W,py=pd+H-(p.y/yM)*H;
+cx.fillStyle=cols[i%6];cx.beginPath();cx.arc(px,py,7,0,Math.PI*2);cx.fill();
+cx.fillStyle='#333';cx.font='12px sans-serif';cx.textAlign='left';cx.fillText(p.name+'('+p.y+'%)',px+10,py+4)});
+let lg='<div class="legend" style="margin-top:8px">';
+pts.forEach((p,i)=>{lg+='<div class="leg-item"><div class="leg-box" style="background:'+cols[i%6]+'"></div>'+p.name+': '+p.x.toLocaleString()+'字 / 独自率'+p.y+'%</div>'});
+lg+='</div><div class="note" style="background:#e8eaf6"><strong>読み方:</strong> 右上ほど「ボリュームが多く独自性も高い」理想的なポジション。左下は改善余地あり。</div>';
+P[4].insertAdjacentHTML('beforeend',lg);
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>
