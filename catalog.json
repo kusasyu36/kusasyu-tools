@@ -390,6 +390,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "html-ga4",
+    "url": "digital-marketing/html-ga4/",
+    "title": "送った資料、見られてる？閲覧追跡HTML変換ツール",
+    "tool_name": "営業資料インタラクティブHTML変換ツール（GA4トラッキング内蔵版）",
+    "description": "営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）が自動埋込され、閲覧者の関心度をホットスコアとして数値化。営業担当は送付後に「どのスライド",
+    "quality_score": 10,
+    "completed_at": "2026-05-03T08:54:50.679867+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "converter",
+    "url": "digital-marketing/converter/",
+    "title": "送った資料、見られてる？閲覧追跡HTML変換ツール",
+    "tool_name": "GA4閲覧データ読み解きガイド＆ホットスコア判定シート",
+    "description": "営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）が自動埋込され、閲覧者の関心度をホットスコアとして数値化。営業担当は送付後に「どのスライド",
+    "quality_score": 10,
+    "completed_at": "2026-05-03T08:54:50.679867+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "converter-2",
+    "url": "digital-marketing/converter-2/",
+    "title": "送った資料、見られてる？閲覧追跡HTML変換ツール",
+    "tool_name": "インタラクティブ営業資料_運用ガイド",
+    "description": "営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）が自動埋込され、閲覧者の関心度をホットスコアとして数値化。営業担当は送付後に「どのスライド",
+    "quality_score": 10,
+    "completed_at": "2026-05-03T08:54:50.679867+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -1193,6 +1232,45 @@
     "description": "中小不動産会社がREINS・SUUMO・アットホーム等に物件を掲載する際の二重入力を解消するツールセット。物件情報を1フォーマットに入力すれば、各ポータルの必須項目チェック・フォーマット変換・不足項目アラートを自動で行うHTMLツールと、物件データを一元管理するExcelマスターシートを提供する。不動産オープンID構想に先行し、業界標準フォーマットへの対応も組み込む。",
     "quality_score": 10,
     "completed_at": "2026-04-30T07:21:29.821752+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-12",
+    "url": "proptech/diagnosis-12/",
+    "title": "その物件、本当に儲かる？投資リスク即診断",
+    "tool_name": "不動産投資スコア即診断ツール",
+    "description": "物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。",
+    "quality_score": 10,
+    "completed_at": "2026-05-03T06:35:32.909845+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-13",
+    "url": "proptech/diagnosis-13/",
+    "title": "その物件、本当に儲かる？投資リスク即診断",
+    "tool_name": "物件比較＆ポートフォリオ管理シート",
+    "description": "物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。",
+    "quality_score": 10,
+    "completed_at": "2026-05-03T06:35:32.909845+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-14",
+    "url": "proptech/diagnosis-14/",
+    "title": "その物件、本当に儲かる？投資リスク即診断",
+    "tool_name": "不動産投資、プロが最初に見る5つの数字",
+    "description": "物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。",
+    "quality_score": 10,
+    "completed_at": "2026-05-03T06:35:32.909845+00:00",
     "content_type": "article"
   },
   {

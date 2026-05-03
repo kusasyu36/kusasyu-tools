@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GA4閲覧データ読み解きガイド＆ホットスコア判定シート - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.15em;text-align:center;padding:16px 0 2px;color:#1a1a2e}
+.sub{text-align:center;font-size:.78em;color:#888;margin-bottom:14px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.tabs{display:flex;gap:0;border-bottom:2px solid #e5e7eb;margin-bottom:14px}
+.tab{flex:1;text-align:center;padding:10px 4px;cursor:pointer;font-size:.82em;font-weight:700;color:#888;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s}
+.tab.on{color:#4f46e5;border-bottom-color:#4f46e5}
+.tp{display:none}.tp.on{display:block}
+h2{font-size:.95em;color:#4f46e5;margin-bottom:10px;border-left:4px solid #4f46e5;padding-left:8px}
+h3{font-size:.85em;color:#333;margin:12px 0 6px}
+.ev{display:flex;align-items:center;gap:10px;background:#f8f9fa;border-radius:8px;padding:10px 12px;margin-bottom:8px;border-left:4px solid #7c3aed}
+.ev b{font-size:.82em;color:#4f46e5;min-width:140px}
+.ev span{font-size:.8em;color:#555}
+.fig{background:#1e1e2e;color:#cdd6f4;border-radius:8px;padding:14px;font-family:monospace;font-size:.72em;margin:10px 0;overflow-x:auto;white-space:pre;line-height:1.5}
+.note{background:#fffbeb;border:1px solid #fbbf24;border-radius:6px;padding:10px;font-size:.78em;color:#92400e;margin:10px 0}
+label{display:block;font-weight:700;font-size:.82em;margin-bottom:4px;color:#333}
+input[type=number]{width:100%;border:1px solid #d0d5dd;border-radius:6px;padding:9px;font-size:.95em}
+.hint{font-size:.72em;color:#999;margin-top:2px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:10px 0}
+.btn{display:block;width:100%;padding:12px;border:none;border-radius:8px;font-size:.95em;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,#4f46e5,#7c3aed);transition:opacity .2s;margin-top:10px}
+.btn:hover{opacity:.85}
+.btn2{background:linear-gradient(135deg,#f59e0b,#f97316)}
+.result{margin-top:14px;display:none}
+.score-ring{width:120px;height:120px;margin:0 auto 10px;position:relative}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .val{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8em;font-weight:900}
+.judge{text-align:center;padding:12px;border-radius:8px;font-weight:700;font-size:1em;margin:8px 0}
+.j1{background:#dcfce7;color:#166534;border:2px solid #22c55e}
+.j2{background:#fef9c3;color:#854d0e;border:2px solid #eab308}
+.j3{background:#fee2e2;color:#991b1b;border:2px solid #ef4444}
+.act{font-size:.8em;color:#555;margin-top:8px;padding:10px;background:#f8f9fa;border-radius:6px}
+.act li{margin:3px 0}
+.bar{height:8px;border-radius:4px;margin:6px 0 12px;background:#e5e7eb}
+.bar div{height:100%;border-radius:4px;transition:width .5s}
+table{width:100%;border-collapse:collapse;font-size:.78em;margin:8px 0}
+th,td{padding:6px 8px;border:1px solid #e5e7eb;text-align:left}
+th{background:#f8f9fa;font-weight:700;color:#4f46e5}
+@media(max-width:500px){.row3{grid-template-columns:1fr}.tab{font-size:.72em;padding:8px 2px}}
+</style>
+<meta name="description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,GA4閲覧データ読み解きガイド＆ホットスコア判定シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter/">
+<meta property="og:title" content="GA4閲覧データ読み解きガイド＆ホットスコア判定シート - kusasyu tools">
+<meta property="og:description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GA4閲覧データ読み解きガイド＆ホットスコア判定シート - kusasyu tools">
+<meta name="twitter:description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GA4閲覧データ読み解きガイド＆ホットスコア判定シート",
+  "description": "営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">GA4閲覧データ読み解きガイド＆ホットスコア判定シート</span></div>
+<div class="wrap">
+<h1>GA4閲覧データ読み解きガイド<br>＆ホットスコア判定シート</h1>
+<p class="sub">「営業資料インタラクティブHTML変換ツール」で生成した資料の閲覧分析</p>
+
+<div class="tabs">
+<div class="tab on" onclick="sw(0)">📊 GA4設定</div>
+<div class="tab" onclick="sw(1)">📈 指標の読み方</div>
+<div class="tab" onclick="sw(2)">🔥 ホットスコア判定</div>
+</div>
+
+<div class="tp on" id="p0">
+<div class="card">
+<h2>自動埋込されるGA4イベント一覧</h2>
+<p style="font-size:.8em;color:#666;margin-bottom:10px">変換ツールが生成するHTMLには以下のイベントが自動で埋め込まれます。</p>
+<div class="ev"><b>section_view</b><span>各セクション（タブ・スライド）の表示を検知</span></div>
+<div class="ev"><b>section_time</b><span>セクション滞在時間（秒）を送信</span></div>
+<div class="ev"><b>element_click</b><span>アコーディオン・リンク・CTAのクリックを記録</span></div>
+<div class="ev"><b>scroll_depth</b><span>25%/50%/75%/100%のスクロール到達を送信</span></div>
+<div class="ev"><b>hot_score</b><span>閲覧終了時にホットスコア（自動計算値）を送信</span></div>
+<h3>GA4管理画面での確認場所</h3>
+<div class="fig">GA4 管理画面
+├─ レポート ＞ エンゲージメント ＞ イベント
+│   └─ section_view / section_time / element_click を確認
+├─ 探索 ＞ 自由形式レポート（カスタム分析）
+│   └─ ディメンション: event_name, section_id
+│   └─ 指標: event_count, engagement_time
+└─ リアルタイム
+    └─ 送付直後の閲覧状況をリアルタイム確認</div>
+<div class="note">💡 GA4のMeasurement IDはツール生成時に設定欄で入力します。未設定の場合はコンソールにログのみ出力されます。</div>
+</div>
+</div>
+
+<div class="tp" id="p1">
+<div class="card">
+<h2>3つの重要指標と読み方</h2>
+<table>
+<tr><th>指標</th><th>GA4での見方</th><th>良い目安</th><th>要注意</th></tr>
+<tr><td><b>滞在時間</b></td><td>section_timeの合計値</td><td>60秒以上</td><td>15秒未満</td></tr>
+<tr><td><b>到達セクション数</b></td><td>section_viewのユニーク数</td><td>全体の70%以上</td><td>30%未満</td></tr>
+<tr><td><b>クリック数</b></td><td>element_clickの合計</td><td>3回以上</td><td>0回</td></tr>
+</table>
+<h3>スコア配分の考え方</h3>
+<p style="font-size:.8em;color:#555;margin:6px 0">ホットスコアは<b>滞在時間50点 ＋ 到達率30点 ＋ クリック20点</b>の100点満点で算出します。</p>
+<div style="font-size:.8em;margin:8px 0">
+<b>滞在時間（50点満点）</b>
+<div class="bar"><div style="width:50%;background:#4f46e5"></div></div>
+<b>到達セクション率（30点満点）</b>
+<div class="bar"><div style="width:30%;background:#7c3aed"></div></div>
+<b>クリック数（20点満点）</b>
+<div class="bar"><div style="width:20%;background:#ec4899"></div></div>
+</div>
+<h3>判定基準</h3>
+<table>
+<tr><th>スコア</th><th>判定</th><th>推奨アクション</th></tr>
+<tr><td><b>70〜100</b></td><td style="color:#166534">🟢 今すぐフォロー</td><td>24時間以内に電話 or メール</td></tr>
+<tr><td><b>40〜69</b></td><td style="color:#854d0e">🟡 1週間後フォロー</td><td>追加資料を添えて再送</td></tr>
+<tr><td><b>0〜39</b></td><td style="color:#991b1b">🔴 資料改善を検討</td><td>構成・訴求内容を見直す</td></tr>
+</table>
+</div>
+</div>
+
+<div class="tp" id="p2">
+<div class="card">
+<h2>ホットスコア判定シート</h2>
+<p style="font-size:.8em;color:#666;margin-bottom:10px">GA4から数値を転記して即時判定できます。</p>
+<div class="row3">
+<div><label>滞在時間（秒）</label><input type="number" id="i1" min="0" placeholder="例: 85"><div class="hint">section_time合計</div></div>
+<div><label>到達セクション数</label><input type="number" id="i2" min="0" placeholder="例: 5"><div class="hint">section_viewユニーク</div></div>
+<div><label>クリック数</label><input type="number" id="i3" min="0" placeholder="例: 4"><div class="hint">element_click合計</div></div>
+</div>
+<div class="row3" style="margin-top:2px">
+<div><label>総セクション数</label><input type="number" id="i4" min="1" value="7"><div class="hint">資料の総セクション数</div></div>
+<div></div><div></div>
+</div>
+<button class="btn" onclick="calc()">ホットスコアを判定する</button>
+<button class="btn btn2" onclick="demo()">デモデータで体験</button>
+<div class="result" id="res">
+<div class="score-ring">
+<svg width="120" height="120"><circle cx="60" cy="60" r="52" fill="none" stroke="#e5e7eb" stroke-width="10"/><circle id="ring" cx="60" cy="60" r="52" fill="none" stroke="#4f46e5" stroke-width="10" stroke-dasharray="326.7" stroke-dashoffset="326.7" stroke-linecap="round"/></svg>
+<div class="val" id="sv">0</div>
+</div>
+<div id="jd" class="judge"></div>
+<div style="font-size:.8em;margin:8px 0"><b>内訳</b></div>
+<div id="bd"></div>
+<div class="act" id="ac"></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+function sw(n){document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('on',i===n)});document.querySelectorAll('.tp').forEach((p,i)=>{p.classList.toggle('on',i===n)})}
+function demo(){document.getElementById('i1').value=85;document.getElementById('i2').value=5;document.getElementById('i3').value=4;document.getElementById('i4').value=7;calc()}
+function calc(){
+const t=Math.max(0,+document.getElementById('i1').value||0),s=Math.max(0,+document.getElementById('i2').value||0),c=Math.max(0,+document.getElementById('i3').value||0),tot=Math.max(1,+document.getElementById('i4').value||7);
+const ts=Math.min(50,t/120*50),ss=Math.min(30,(s/tot)*30),cs=Math.min(20,c/5*20),sc=Math.round(ts+ss+cs);
+document.getElementById('res').style.display='block';
+const r=document.getElementById('ring'),of=326.7-(326.7*sc/100);
+r.style.transition='stroke-dashoffset .8s';r.setAttribute('stroke-dashoffset',of);
+r.setAttribute('stroke',sc>=70?'#22c55e':sc>=40?'#eab308':'#ef4444');
+document.getElementById('sv').textContent=sc;
+const jd=document.getElementById('jd');
+if(sc>=70){jd.className='judge j1';jd.innerHTML='🟢 今すぐフォロー'}
+else if(sc>=40){jd.className='judge j2';jd.innerHTML='🟡 1週間後フォロー'}
+else{jd.className='judge j3';jd.innerHTML='🔴 資料改善を検討'}
+document.getElementById('bd').innerHTML=bar('滞在時間',ts,50,'#4f46e5')+bar('到達セクション率',ss,30,'#7c3aed')+bar('クリック数',cs,20,'#ec4899');
+const acts=sc>=70?['<li>24時間以内に電話またはメールでフォロー</li>','<li>関心の高かったセクションに触れると効果的</li>','<li>商談日程の提案を含めましょう</li>']:sc>=40?['<li>1週間以内に追加資料を添えてフォロー</li>','<li>到達していないセクションの要約を送付</li>','<li>別角度の事例資料を添えると有効</li>']:['<li>資料の構成・訴求ポイントを見直しましょう</li>','<li>冒頭3セクションのインパクトを強化</li>','<li>CTA（行動喚起）の配置を改善しましょう</li>'];
+document.getElementById('ac').innerHTML='<b>推奨アクション</b><ul>'+acts.join('')+'</ul>'}
+function bar(l,v,mx,c){return'<div style="font-size:.78em;display:flex;justify-content:space-between"><span>'+l+'</span><span>'+Math.round(v)+'/'+mx+'</span></div><div class="bar"><div style="width:'+v/mx*100+'%;background:'+c+'"></div></div>'}
+</script>
+</body>
+</html>

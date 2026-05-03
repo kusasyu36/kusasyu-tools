@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>営業資料インタラクティブHTML変換ツール（GA4トラッキング内蔵版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{font-size:1.2em;text-align:center;padding:18px 0 4px;color:#1a1a2e}
+.sub{text-align:center;font-size:.82em;color:#666;margin-bottom:18px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+label{display:block;font-weight:700;font-size:.85em;margin-bottom:6px;color:#333}
+textarea{width:100%;border:1px solid #d0d5dd;border-radius:6px;padding:10px;font-size:.9em;resize:vertical;font-family:inherit}
+select,input[type=text]{width:100%;border:1px solid #d0d5dd;border-radius:6px;padding:8px 10px;font-size:.9em}
+.row{display:flex;gap:12px;margin-top:10px}
+.row>div{flex:1}
+.hint{font-size:.75em;color:#888;margin-top:3px}
+.btn{display:block;width:100%;padding:13px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:10px;color:#fff;background:linear-gradient(135deg,#4f46e5,#7c3aed);transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn2{background:linear-gradient(135deg,#059669,#10b981)}
+.tabs{display:flex;gap:0;margin-bottom:12px;border-bottom:2px solid #e5e7eb}
+.tab{padding:8px 16px;cursor:pointer;font-size:.85em;font-weight:600;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s}
+.tab.on{color:#4f46e5;border-bottom-color:#4f46e5}
+.tpanel{display:none}
+.tpanel.on{display:block}
+#preview{border:1px solid #d0d5dd;border-radius:6px;min-height:200px;background:#fafafa}
+#preview iframe{width:100%;min-height:400px;border:none;border-radius:6px}
+#code{width:100%;min-height:180px;font-family:monospace;font-size:.78em;background:#1e1e2e;color:#cdd6f4;border:none;border-radius:6px;padding:12px}
+.copy{position:absolute;top:8px;right:8px;background:#4f46e5;color:#fff;border:none;border-radius:5px;padding:5px 12px;font-size:.78em;cursor:pointer}
+.rel{position:relative}
+.score{display:inline-block;background:#4f46e5;color:#fff;border-radius:20px;padding:4px 14px;font-size:.85em;margin-top:6px}
+@media(max-width:600px){.row{flex-direction:column;gap:8px}}
+</style>
+<meta name="description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,営業資料インタラクティブHTML変換ツール（GA4トラッキング内蔵版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/html-ga4/">
+<meta property="og:title" content="営業資料インタラクティブHTML変換ツール（GA4トラッキング内蔵版） - kusasyu tools">
+<meta property="og:description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/html-ga4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="営業資料インタラクティブHTML変換ツール（GA4トラッキング内蔵版） - kusasyu tools">
+<meta name="twitter:description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "営業資料インタラクティブHTML変換ツール（GA4トラッキング内蔵版）",
+  "description": "営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/html-ga4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">営業資料インタラクティブHTML変換ツール（GA4トラッキン</span></div>
+<div class="wrap">
+<h1>営業資料インタラクティブHTML変換ツール</h1>
+<p class="sub">テキストを貼り付けるだけ → 閲覧追跡付きHTML営業資料を自動生成</p>
+<div class="card">
+<label>1. 資料テキストを貼り付け（空行でセクション分割）</label>
+<textarea id="src" rows="10" placeholder="例：&#10;■ 会社概要&#10;当社は2010年創業の...&#10;&#10;■ サービス紹介&#10;主力サービスは...&#10;&#10;■ 導入事例&#10;A社では導入後30%の..."></textarea>
+<div class="hint">※ 空行で区切るとセクションが分かれます。「■」付き行はセクション見出しになります</div>
+</div>
+<div class="card">
+<div class="row">
+<div><label>2. 業種テンプレート</label>
+<select id="tpl"><option value="saas">SaaS・IT</option><option value="mfg">製造業</option><option value="re">不動産</option></select></div>
+<div><label>3. 表示モード</label>
+<select id="mode"><option value="tab">タブ切替</option><option value="acc">アコーディオン</option></select></div>
+</div>
+<div style="margin-top:10px"><label>4. GA4 Measurement ID（任意）</label>
+<input type="text" id="ga4" placeholder="G-XXXXXXXXXX（空欄ならトラッキングなし）">
+<div class="hint">GA4を設定すると各セクション滞在時間・クリック・スクロール深度を自動計測します</div></div>
+<button class="btn" onclick="generate()">HTML営業資料を生成</button>
+</div>
+<div class="card" id="outCard" style="display:none">
+<div class="tabs"><div class="tab on" onclick="sw(0)">プレビュー</div><div class="tab" onclick="sw(1)">HTMLコード</div></div>
+<div class="tpanel on" id="p0"><div id="preview"></div></div>
+<div class="tpanel rel" id="p1"><button class="copy" onclick="cp()">コピー</button><textarea id="code" readonly></textarea></div>
+<button class="btn btn2" onclick="dl()" style="margin-top:12px">HTMLファイルをダウンロード</button>
+</div>
+</div>
+<script>
+const TH={saas:['#4f46e5','#7c3aed','#ede9fe'],mfg:['#0369a1','#0ea5e9','#e0f2fe'],re:['#b45309','#f59e0b','#fef3c7']};
+const TN={saas:'SaaS・IT',mfg:'製造業',re:'不動産'};
+function parse(t){var s=t.split(/\n\s*\n/).filter(x=>x.trim());return s.map((b,i)=>{var l=b.trim().split('\n'),h='セクション '+(i+1),c=[];if(/^[■●▼▲【]/.test(l[0])){h=l[0].replace(/^[■●▼▲【】\s]+/,'').replace(/】$/,'');c=l.slice(1)}else{c=l}return{title:h,body:c.join('\n').trim()}})}
+function ga4Code(id){if(!id)return '';return `<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"><\/script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${id}');var _oT={},_sD=0;document.addEventListener('scroll',function(){var d=Math.round(100*window.scrollY/(document.body.scrollHeight-window.innerHeight));if(d>_sD+10){_sD=d;gtag('event','scroll_depth',{depth:d})}});document.addEventListener('click',function(e){var t=e.target.closest('[data-sec]');if(t)gtag('event','section_click',{section:t.dataset.sec})});new IntersectionObserver(function(es){es.forEach(function(e){var s=e.target.dataset.sec;if(e.isIntersecting){_oT[s]=Date.now()}else if(_oT[s]){gtag('event','section_view',{section:s,duration:Math.round((Date.now()-_oT[s])/1000)});delete _oT[s]}})},{threshold:.5}).observe&&document.querySelectorAll('[data-sec]').forEach(function(el){new IntersectionObserver(function(es){es.forEach(function(e){var s=e.target.dataset.sec;if(e.isIntersecting){_oT[s]=Date.now()}else if(_oT[s]){gtag('event','section_view',{section:s,duration:Math.round((Date.now()-_oT[s])/1000)});delete _oT[s]}})},{threshold:.3}).observe(el)})<\/script>`}
+function buildTab(secs,c,ga){var h='';secs.forEach((s,i)=>{h+=`<div style="display:inline-block;padding:10px 20px;cursor:pointer;font-weight:700;border-bottom:3px solid ${i===0?c[0]:'transparent'};color:${i===0?c[0]:'#666'}" data-sec="${s.title}" onclick="var ts=this.parentElement.children;var ps=this.parentElement.nextElementSibling.children;for(var j=0;j<ts.length;j++){ts[j].style.borderBottomColor=j==Array.from(ts).indexOf(this)?'${c[0]}':'transparent';ts[j].style.color=j==Array.from(ts).indexOf(this)?'${c[0]}':'#666';ps[j].style.display=j==Array.from(ts).indexOf(this)?'block':'none'}">${s.title}</div>`});var p='';secs.forEach((s,i)=>{p+=`<div data-sec="${s.title}" style="display:${i===0?'block':'none'};padding:20px;animation:fi .5s"><p style="line-height:1.8;white-space:pre-wrap">${esc(s.body)}</p></div>`});return wrap(c,ga,`<div style="border-bottom:2px solid #e5e7eb;margin-bottom:0">${h}</div><div>${p}</div>`)}
+function buildAcc(secs,c,ga){var h='';secs.forEach((s,i)=>{h+=`<div data-sec="${s.title}" style="border:1px solid #e5e7eb;border-radius:8px;margin-bottom:8px;overflow:hidden"><div style="padding:14px 18px;background:${c[2]};cursor:pointer;font-weight:700;display:flex;justify-content:space-between;align-items:center" onclick="var b=this.nextElementSibling;var o=b.style.maxHeight!=='0px';b.style.maxHeight=o?'0px':b.scrollHeight+'px';this.querySelector('span').textContent=o?'+':'−'">${esc(s.title)}<span style="font-size:1.2em">${i===0?'−':'+'}</span></div><div style="max-height:${i===0?'500px':'0px'};overflow:hidden;transition:max-height .3s;padding:0 18px"><div style="padding:14px 0;line-height:1.8;white-space:pre-wrap">${esc(s.body)}</div></div></div>`});return wrap(c,ga,h)}
+function wrap(c,ga,inner){return `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>営業資料</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f8f9fa;color:#1a1a2e}@keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.wrap{max-width:800px;margin:0 auto;padding:20px}.hdr{background:linear-gradient(135deg,${c[0]},${c[1]});color:#fff;padding:30px;border-radius:12px;margin-bottom:20px;text-align:center}.body{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06)}</style>${ga}</head><body><div class="wrap"><div class="hdr"><h1 style="font-size:1.4em">営業資料</h1><p style="font-size:.85em;margin-top:6px;opacity:.85">インタラクティブ閲覧版</p></div><div class="body" style="animation:fi .5s">${inner}</div><p style="text-align:center;margin-top:16px;font-size:.75em;color:#999">Powered by Kusasyu Digital Marketing</p></div></body></html>`}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+var lastHtml='';
+function generate(){var t=document.getElementById('src').value.trim();if(!t){alert('テキストを貼り付けてください');return}var secs=parse(t);if(secs.length<1){alert('セクションが見つかりません');return}var tpl=document.getElementById('tpl').value;var mode=document.getElementById('mode').value;var c=TH[tpl];var gid=document.getElementById('ga4').value.trim();var ga=ga4Code(gid.match(/^G-/)?gid:'');lastHtml=mode==='tab'?buildTab(secs,c,ga):buildAcc(secs,c,ga);document.getElementById('outCard').style.display='block';var pv=document.getElementById('preview');pv.innerHTML='<iframe></iframe>';var fr=pv.querySelector('iframe');var d=fr.contentDocument||fr.contentWindow.document;d.open();d.write(lastHtml);d.close();document.getElementById('code').value=lastHtml;sw(0)}
+function sw(n){document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',i===n));document.querySelectorAll('.tpanel').forEach((p,i)=>p.classList.toggle('on',i===n))}
+function cp(){var c=document.getElementById('code');c.select();document.execCommand('copy');var b=document.querySelector('.copy');b.textContent='コピー済み!';setTimeout(()=>b.textContent='コピー',1500)}
+function dl(){if(!lastHtml)return;var b=new Blob([lastHtml],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sales_material.html';a.click()}
+</script>
+</body>
+</html>

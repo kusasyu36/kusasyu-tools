@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産投資スコア即診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#2b6cb0;border-bottom:2px solid #bee3f8;padding-bottom:6px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+label{font-size:.85em;font-weight:600;color:#4a5568;display:block;margin-bottom:2px}
+input,select{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.95em}
+input:focus,select:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 2px rgba(66,153,225,.3)}
+.unit{font-size:.78em;color:#a0aec0;margin-top:1px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#3182ce);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{background:linear-gradient(135deg,#2c5282,#2b6cb0)}
+#result{display:none}
+.metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:560px){.metrics{grid-template-columns:1fr 1fr}}
+.metric{text-align:center;padding:14px 8px;border-radius:10px;background:#f7fafc}
+.metric .val{font-size:1.5em;font-weight:800}
+.metric .lbl{font-size:.75em;color:#718096;margin-top:2px}
+.grade-box{text-align:center;padding:20px;margin:14px 0;border-radius:12px}
+.grade-box .g{font-size:3em;font-weight:900}
+.grade-box .gt{font-size:.9em;margin-top:4px}
+.bar-wrap{margin:8px 0}
+.bar-label{display:flex;justify-content:space-between;font-size:.8em;color:#4a5568}
+.bar-bg{height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden;margin-top:3px}
+.bar-fill{height:100%;border-radius:5px;transition:width .5s}
+.note{font-size:.75em;color:#a0aec0;margin-top:12px;padding:8px;background:#f7fafc;border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin-top:10px}
+th,td{padding:6px 8px;border-bottom:1px solid #e2e8f0;text-align:right}
+th{background:#f7fafc;text-align:left;font-weight:600}
+.pos{color:#38a169}.neg{color:#e53e3e}
+@media print{body{background:#fff}.btn,.card h2{break-after:avoid}.wrap{max-width:100%}}
+</style>
+<meta name="description" content="物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産投資スコア即診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-12/">
+<meta property="og:title" content="不動産投資スコア即診断ツール - kusasyu tools">
+<meta property="og:description" content="物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産投資スコア即診断ツール - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産投資スコア即診断ツール",
+  "description": "物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-12/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産投資スコア即診断ツール</span></div>
+<div class="wrap">
+<h1>不動産投資スコア即診断ツール</h1>
+<p class="sub">物件情報を入力するだけで投資判定を即座に算出</p>
+
+<div class="card">
+<h2>物件情報</h2>
+<div class="grid">
+<div><label>物件価格</label><input id="price" type="number" value="2500" step="10"><div class="unit">万円</div></div>
+<div><label>専有面積</label><input id="area" type="number" value="25" step="0.1"><div class="unit">㎡</div></div>
+<div><label>築年数</label><input id="age" type="number" value="15" step="1"><div class="unit">年</div></div>
+<div><label>最寄駅（徒歩）</label><input id="dist" type="number" value="7" step="1"><div class="unit">分</div></div>
+<div><label>想定月額家賃</label><input id="rent" type="number" value="8.5" step="0.1"><div class="unit">万円</div></div>
+<div><label>管理費＋修繕積立金</label><input id="mgmt" type="number" value="1.5" step="0.1"><div class="unit">万円/月</div></div>
+<div><label>エリア区分</label>
+<select id="areaType"><option value="1">政令市中心部</option><option value="2" selected>地方中核市</option><option value="3">郊外</option></select></div>
+</div>
+</div>
+
+<div class="card">
+<h2>ローン条件</h2>
+<div class="grid">
+<div><label>借入金利（年）</label><input id="rate" type="number" value="1.8" step="0.1"><div class="unit">%</div></div>
+<div><label>借入期間</label><input id="term" type="number" value="35" step="1"><div class="unit">年</div></div>
+<div><label>頭金</label><input id="down" type="number" value="500" step="10"><div class="unit">万円</div></div>
+</div>
+</div>
+
+<button class="btn" onclick="calc()">診断する</button>
+
+<div id="result">
+<div class="card">
+<h2>総合投資判定</h2>
+<div id="gradeBox" class="grade-box"></div>
+<div class="metrics" id="metrics"></div>
+</div>
+<div class="card">
+<h2>リスク分析</h2>
+<div id="bars"></div>
+<div class="note">※空室リスクスコアはエリア区分・築年数・駅距離の加重平均による概算値です。実際の空室率は周辺相場・物件固有条件により変動します。投資判断は専門家への相談を推奨します。</div>
+</div>
+<div class="card">
+<h2>収支シミュレーション</h2>
+<table id="cfTable"></table>
+</div>
+</div>
+</div>
+
+<script>
+function v(id){return parseFloat(document.getElementById(id).value)||0}
+function fmt(n){return n>=1e4?(n/1e4).toFixed(1)+'億':n>=1?n.toFixed(1)+'万':Math.round(n*1e4).toLocaleString()+'円'}
+
+function calc(){
+ var P=v('price'),A=v('area'),AG=v('age'),D=v('dist'),R=v('rent'),MG=v('mgmt'),AT=v('areaType'),
+     RT=v('rate'),TM=v('term'),DN=v('down');
+ if(P<=0||R<=0){alert('価格と家賃を入力してください');return}
+
+ var annRent=R*12, annMgmt=MG*12;
+ // 固定資産税概算（価格の0.7%）
+ var tax=P*0.007;
+ // 空室リスクスコア算出
+ var aS=AT, agS=AG<=10?1:AG<=20?2:AG<=30?3:4, dS=D<=5?1:D<=10?2:D<=15?3:4;
+ var vacScore=Math.min(10,Math.round((aS*0.4+agS*0.3+dS*0.3)*2.5));
+ var vacRate=vacScore*0.02;// スコア1→2%, 10→20%
+
+ var annVacLoss=annRent*vacRate;
+ var annExp=annMgmt+tax+annVacLoss;
+ var grossY=(annRent/P)*100;
+ var netY=((annRent-annExp)/P)*100;
+
+ // ローン計算
+ var loan=P-DN, monthPay=0, annLoan=0;
+ if(loan>0&&RT>0&&TM>0){
+  var mr=RT/100/12, n=TM*12;
+  monthPay=loan*mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1);
+  annLoan=monthPay*12;
+ }else if(loan>0){annLoan=loan/TM}
+
+ var annCF=annRent-annExp-annLoan;
+ var recoverY=annCF>0?Math.round(P/annCF*10)/10:999;
+
+ // 総合スコア算出（100点満点）
+ var sY=Math.min(30,netY*5);// 実質利回り6%→30点
+ var sCF=annCF>0?Math.min(25,annCF/P*100*5):0;
+ var sR=recoverY<=15?25:recoverY<=25?15:recoverY<=35?8:0;
+ var sV=Math.max(0,(10-vacScore)*2);// 空室低→高得点
+ var total=Math.round(sY+sCF+sR+sV);
+
+ var grade,gCol,gBg;
+ if(total>=80){grade='S';gCol='#276749';gBg='#c6f6d5'}
+ else if(total>=65){grade='A';gCol='#2b6cb0';gBg='#bee3f8'}
+ else if(total>=50){grade='B';gCol='#975a16';gBg='#fefcbf'}
+ else if(total>=35){grade='C';gCol='#c05621';gBg='#feebc8'}
+ else{grade='D';gCol='#c53030';gBg='#fed7d7'}
+
+ var msgs={S:'非常に優良な投資案件です',A:'良好な投資案件です',B:'標準的な投資案件です',C:'リスクに注意が必要です',D:'投資は慎重に再検討してください'};
+
+ document.getElementById('gradeBox').innerHTML='<div class="g" style="color:'+gCol+'">'+grade+'</div><div class="gt" style="color:'+gCol+'">'+msgs[grade]+'（'+total+'点/100点）</div>';
+ document.getElementById('gradeBox').style.background=gBg;
+
+ var mets=[
+  {l:'表面利回り',v:grossY.toFixed(2)+'%',c:grossY>=5?'pos':'neg'},
+  {l:'実質利回り',v:netY.toFixed(2)+'%',c:netY>=3?'pos':'neg'},
+  {l:'年間CF',v:(annCF>=0?'+':'')+annCF.toFixed(1)+'万',c:annCF>=0?'pos':'neg'},
+  {l:'回収年数',v:recoverY>=999?'−':recoverY+'年',c:recoverY<=25?'pos':'neg'},
+  {l:'月額ローン',v:monthPay.toFixed(2)+'万',c:''},
+  {l:'空室リスク',v:vacScore+'/10',c:vacScore<=4?'pos':'neg'}
+ ];
+ document.getElementById('metrics').innerHTML=mets.map(function(m){return '<div class="metric"><div class="val '+m.c+'">'+m.v+'</div><div class="lbl">'+m.l+'</div></div>'}).join('');
+
+ // リスクバー
+ var bars=[
+  {l:'空室リスク',v:vacScore*10,c:vacScore<=3?'#38a169':vacScore<=6?'#d69e2e':'#e53e3e'},
+  {l:'利回り安全性',v:Math.min(100,netY*15),c:netY>=4?'#38a169':netY>=2?'#d69e2e':'#e53e3e'},
+  {l:'キャッシュフロー',v:Math.min(100,Math.max(0,(annCF+10)/20*100)),c:annCF>=5?'#38a169':annCF>=0?'#d69e2e':'#e53e3e'}
+ ];
+ document.getElementById('bars').innerHTML=bars.map(function(b){return '<div class="bar-wrap"><div class="bar-label"><span>'+b.l+'</span><span>'+Math.round(b.v)+'%</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+b.v+'%;background:'+b.c+'"></div></div></div>'}).join('');
+
+ // 収支表（5年分）
+ var rows='<tr><th>年</th><th>家賃収入</th><th>経費</th><th>ローン返済</th><th>CF</th><th>累計CF</th></tr>';
+ var cumCF=0;
+ for(var y=1;y<=5;y++){
+  var r2=annRent*(1-0.005*(y-1));// 年0.5%家賃下落
+  var e2=annExp*(1+0.003*(y-1));
+  var cf2=r2-e2-annLoan; cumCF+=cf2;
+  rows+='<tr><td>'+y+'年目</td><td>'+r2.toFixed(1)+'</td><td>'+e2.toFixed(1)+'</td><td>'+annLoan.toFixed(1)+'</td><td class="'+(cf2>=0?'pos':'neg')+'">'+cf2.toFixed(1)+'</td><td class="'+(cumCF>=0?'pos':'neg')+'">'+cumCF.toFixed(1)+'</td></tr>';
+ }
+ document.getElementById('cfTable').innerHTML=rows;
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産投資、プロが最初に見る5つの数字 - kusasyu tools</title>
+<meta name="description" content="物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産投資、プロが最初に見る5つの数字">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-14/">
+<meta property="og:title" content="不動産投資、プロが最初に見る5つの数字 - kusasyu tools">
+<meta property="og:description" content="物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産投資、プロが最初に見る5つの数字 - kusasyu tools">
+<meta name="twitter:description" content="物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産投資、プロが最初に見る5つの数字",
+  "description": "物件の基本情報（価格・面積・築年数・駅距離・想定家賃・管理費等）を入力するだけで、表面利回り・実質利回り・年間キャッシュフロー・投資回収年数・空室リスク・総合投資スコアを即座に算出するHTMLツール。複数物件を横並び比較できるExcel管理シートと、投資判断の要点を解説するガイド記事をセットで提供。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-05-03"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産投資、プロが最初に見る5つの数字</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産投資、プロが最初に見る5つの数字</h1>
+  <p class="project-name">その物件、本当に儲かる？投資リスク即診断</p>
+  <div class="content">
+<h1>不動産投資、プロが最初に見る5つの数字</h1>
+<p><strong>「利回り8%！」という広告を見て、すぐに電話していませんか？</strong></p>
+<p>不動産投資のプロは、物件資料を受け取ったとき、まず5つの数字を自分で計算します。営業マンが強調する数字と、自分で出した数字が合わなければ、その物件には手を出しません。</p>
+<p>この記事では、その「プロの5つの数字」を初心者向けに解説します。電卓ひとつで計算でき、不動産会社の営業トークに対する<strong>セカンドオピニオン</strong>として使えます。</p>
+<hr />
+<h2>数字①：表面利回り — なぜ「罠」なのか</h2>
+<h3>計算式</h3>
+<blockquote>
+<p><strong>表面利回り（%）＝ 年間家賃収入 ÷ 物件価格 × 100</strong></p>
+</blockquote>
+<h3>具体例</h3>
+<ul>
+<li>物件価格：3,000万円</li>
+<li>月額家賃：20万円（年間240万円）</li>
+<li><strong>表面利回り＝ 240万 ÷ 3,000万 × 100 ＝ 8.0%</strong></li>
+</ul>
+<h3>ここが罠</h3>
+<p>表面利回りには<strong>経費が一切入っていません</strong>。管理費、修繕積立金、固定資産税、火災保険、空室期間の家賃ゼロ——これらを無視して「8%」と言っているのです。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th style="text-align: center;">表面利回りに含まれるか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>管理費・修繕積立金</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>固定資産税・都市計画税</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>管理委託料</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>火災保険・地震保険</td>
+<td style="text-align: center;">✕</td>
+</tr>
+<tr>
+<td>空室による収入減</td>
+<td style="text-align: center;">✕</td>
+</tr>
+</tbody>
+</table>
+<p><strong>チェックポイント：</strong> 営業マンが「利回り○%」と言ったら、「それは表面ですか？実質ですか？」と必ず聞いてください。答えに詰まる営業マンからは買わないほうが安全です。</p>
+<hr />
+<h2>数字②：実質利回り — プロが本当に見る数字</h2>
+<h3>計算式</h3>
+<blockquote>
+<p><strong>実質利回り（%）＝（年間家賃収入 − 年間経費）÷（物件価格 ＋ 購入時諸費用）× 100</strong></p>
+</blockquote>
+<h3>具体例（数字①と同じ物件で計算）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th style="text-align: right;">金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年間家賃収入</td>
+<td style="text-align: right;">240万円</td>
+</tr>
+<tr>
+<td>管理費・修繕積立金</td>
+<td style="text-align: right;">−36万円</td>
+</tr>
+<tr>
+<td>管理委託料（家賃の5%）</td>
+<td style="text-align: right;">−12万円</td>
+</tr>
+<tr>
+<td>固定資産税・都市計画税</td>
+<td style="text-align: right;">−15万円</td>
+</tr>
+<tr>
+<td>火災保険</td>
+<td style="text-align: right;">−3万円</td>
+</tr>
+<tr>
+<td><strong>年間経費 合計</strong></td>
+<td style="text-align: right;"><strong>−66万円</strong></td>
+</tr>
+<tr>
+<td><strong>年間手取り収入</strong></td>
+<td style="text-align: right;"><strong>174万円</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th style="text-align: right;">金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件価格</td>
+<td style="text-align: right;">3,000万円</td>
+</tr>
+<tr>
+<td>購入時諸費用（価格の約7%）</td>
+<td style="text-align: right;">210万円</td>
+</tr>
+<tr>
+<td><strong>総投資額</strong></td>
+<td style="text-align: right;"><strong>3,210万円</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>実質利回り ＝ 174万 ÷ 3,210万 × 100 ＝ 約5.4%</strong></p>
+</blockquote>
+<p>表面利回り8.0%が、実質では<strong>5.4%</strong>に下がりました。この差の2.6ポイントが「見えないコスト」です。</p>
+<p><strong>チェックポイント：</strong> 実質利回りが4%を下回る物件は、ローン金利次第で赤字になる危険性が高いです。</p>
+<hr />
+<h2>数字③：キャッシュフロー損益分岐点 — 毎月の通帳がマイナスにならないか</h2>
+<h3>計算式</h3>
+<blockquote>
+<p><strong>月間キャッシュフロー ＝ 月額家賃 − 月額経費 − 月額ローン返済額</strong></p>
+<p>損益分岐点は、この値が<strong>ゼロになる家賃水準</strong>です。</p>
+</blockquote>
+<h3>具体例</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th style="text-align: right;">月額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>家賃収入</td>
+<td style="text-align: right;">20.0万円</td>
+</tr>
+<tr>
+<td>経費（66万÷12）</td>
+<td style="text-align: right;">−5.5万円</td>
+</tr>
+<tr>
+<td>ローン返済（2,400万借入・金利1.8%・35年）</td>
+<td style="text-align: right;">−7.7万円</td>
+</tr>
+<tr>
+<td><strong>月間キャッシュフロー</strong></td>
+<td style="text-align: right;"><strong>+6.8万円</strong></td>
+</tr>
+</tbody>
+</table>
+<p>この物件の<strong>損益分岐家賃</strong>は：</p>
+<blockquote>
+<p>5.5万＋7.7万 ＝ <strong>13.2万円</strong></p>
+</blockquote>
+<p>つまり、家賃が20万円から13.2万円（約34%下落）まで下がると、毎月の収支がゼロになります。</p>
+<h3>安全度の目安</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">家賃下落耐性</th>
+<th style="text-align: center;">判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">30%以上</td>
+<td style="text-align: center;">安全圏</td>
+</tr>
+<tr>
+<td style="text-align: center;">20〜30%</td>
+<td style="text-align: center;">注意</td>
+</tr>
+<tr>
+<td style="text-align: center;">20%未満</td>
+<td style="text-align: center;">危険</td>
+</tr>
+</tbody>
+</table>
+<p>この物件は34%の下落に耐えられるので、<strong>安全圏</strong>です。</p>
+<p><strong>チェックポイント：</strong> 変動金利の場合、金利が1%上がったら返済額がいくら増えるかも計算しておきましょう。上の例では金利が2.8%になると月額返済が約9.0万円に増え、耐性が27%に低下します。</p>
+<hr />
+<h2>数字④：空室率 — 「満室想定」を信じない</h2>
+<h3>計算式</h3>
+<blockquote>
+<p><strong>空室率（%）＝ 年間の空室月数 ÷ 12 × 100</strong>（1室の場合）</p>
+<p><strong>実効家賃収入 ＝ 年間家賃 ×（1 − 空室率 ÷ 100）</strong></p>
+</blockquote>
+<h3>具体例</h3>
+<p>入居者が退去し、次の入居者が決まるまで平均2ヶ月かかり、3年に1回退去が発生する場合：</p>
+<blockquote>
+<p>空室月数 ＝ 2ヶ月 ÷ 3年 ＝ 年間0.67ヶ月
+<strong>空室率 ＝ 0.67 ÷ 12 × 100 ＝ 約5.6%</strong></p>
+</blockquote>
+<p>年間家賃240万円に空室率を反映すると：</p>
+<blockquote>
+<p><strong>実効家賃収入 ＝ 240万 ×（1 − 0.056）＝ 約226.6万円</strong></p>
+</blockquote>
+<h3>エリア別の空室率目安</h3>
+<table>
+<thead>
+<tr>
+<th>エリア</th>
+<th style="text-align: center;">空室率の相場</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>東京23区・駅徒歩5分以内</td>
+<td style="text-align: center;">3〜5%</td>
+</tr>
+<tr>
+<td>地方都市・駅徒歩10分以内</td>
+<td style="text-align: center;">8〜12%</td>
+</tr>
+<tr>
+<td>郊外・駅徒歩15分超</td>
+<td style="text-align: center;">15〜25%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>チェックポイント：</strong> 営業マンの利回り計算が「満室想定」なら、上の空室率を自分で差し引いて再計算してください。特に地方物件では空室率15%で計算するのがプロの常識です。</p>
+<hr />
+<h2>数字⑤：出口戦略（売却想定価格）— 買う前に「売る値段」を考える</h2>
+<h3>計算式</h3>
+<blockquote>
+<p><strong>売却想定価格 ＝ その時点の年間家賃収入 ÷ 想定キャップレート × 100</strong></p>
+</blockquote>
+<p>キャップレート（還元利回り）とは、「その地域・その築年数の物件が、だいたい何%の利回りで売買されているか」の相場観です。</p>
+<h3>具体例（10年後に売却する場合）</h3>
+<table>
+<thead>
+<tr>
+<th>前提</th>
+<th style="text-align: right;">数値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10年後の想定家賃（年1%下落）</td>
+<td style="text-align: right;">月18.1万円（年217万円）</td>
+</tr>
+<tr>
+<td>10年後の想定キャップレート</td>
+<td style="text-align: right;">7.0%</td>
+</tr>
+<tr>
+<td><strong>売却想定価格</strong></td>
+<td style="text-align: right;"><strong>217万 ÷ 0.07 ＝ 約3,100万円</strong></td>
+</tr>
+</tbody>
+</table>
+<p>10年間のキャッシュフロー合計（月6.8万×12ヶ月×10年）＝ <strong>約816万円</strong></p>
+<p><strong>トータル収支：</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th style="text-align: right;">金額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>売却想定価格</td>
+<td style="text-align: right;">3,100万円</td>
+</tr>
+<tr>
+<td>10年間のキャッシュフロー</td>
+<td style="text-align: right;">+816万円</td>
+</tr>
+<tr>
+<td>10年後のローン残債</td>
+<td style="text-align: right;">−1,870万円</td>
+</tr>
+<tr>
+<td>初期投資（頭金600万＋諸費用210万）</td>
+<td style="text-align: right;">−810万円</td>
+</tr>
+<tr>
+<td><strong>純利益</strong></td>
+<td style="text-align: right;"><strong>約1,236万円</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>チェックポイント：</strong> キャップレートを甘く見積もると売却想定が膨らみます。同じエリア・同じ築年数の成約事例をポータルサイトで必ず確認してください。自分で調べた数字が最も信頼できます。</p>
+<hr />
+<h2>まとめ：5つの数字チェックシート</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>数字</th>
+<th style="text-align: right;">この物件の結果</th>
+<th>判定基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>表面利回り</td>
+<td style="text-align: right;">8.0%</td>
+<td>参考値。これだけで判断しない</td>
+</tr>
+<tr>
+<td>②</td>
+<td>実質利回り</td>
+<td style="text-align: right;">5.4%</td>
+<td>4%以上なら検討圏内</td>
+</tr>
+<tr>
+<td>③</td>
+<td>損益分岐（家賃下落耐性）</td>
+<td style="text-align: right;">34%</td>
+<td>30%以上で安全圏</td>
+</tr>
+<tr>
+<td>④</td>
+<td>空室率を加味した実効収入</td>
+<td style="text-align: right;">226.6万円</td>
+<td>エリア相場で逆算</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>10年後売却の純利益</td>
+<td style="text-align: right;">1,236万円</td>
+<td>プラスなら出口あり</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>自分で計算してみよう</h2>
+<p>この5つの数字を、検討中の物件に当てはめて計算するのが最も重要です。</p>
+<p><strong><a href="https://kusasyu-proptech.com/tools/">不動産投資シミュレーター（無料ツール）</a></strong> を使えば、物件価格・家賃・経費を入力するだけで、5つの数字が自動算出されます。</p>
+<p>計算結果はダウンロードボタンからExcel形式で保存できるので、銀行への融資相談や税理士への確認にそのまま使えます。</p>
+<p><strong>営業マンの数字を鵜呑みにせず、自分の電卓で確かめる。</strong> それが不動産投資で失敗しない最初の一歩です。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

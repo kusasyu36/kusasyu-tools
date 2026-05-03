@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>インタラクティブ営業資料_運用ガイド - kusasyu tools</title>
+<meta name="description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,インタラクティブ営業資料_運用ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-2/">
+<meta property="og:title" content="インタラクティブ営業資料_運用ガイド - kusasyu tools">
+<meta property="og:description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="インタラクティブ営業資料_運用ガイド - kusasyu tools">
+<meta name="twitter:description" content="営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "インタラクティブ営業資料_運用ガイド",
+  "description": "営業担当が持っている既存のPDF・PowerPoint資料のテキストを貼り付けるだけで、タブ切替・アコーディオン展開・スクロールアニメーション付きのインタラクティブHTML営業資料に変換するブラウザツール。さらに、生成したHTMLには閲覧トラッキングコード（各セクション滞在時間・クリック箇所・スクロール深度）",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-05-03"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>インタラクティブ営業資料_運用ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>インタラクティブ営業資料_運用ガイド</h1>
+  <p class="project-name">送った資料、見られてる？閲覧追跡HTML変換ツール</p>
+  <div class="content">
+<h1>インタラクティブ営業資料 運用ガイド — 静的PDFを"見える化"資料に変える実践マニュアル</h1>
+<p><strong>対象読者:</strong> BtoB営業部門・セールスイネーブルメント担当（SaaS・製造・不動産）
+<strong>前提ツール:</strong> 閲覧追跡HTML変換ツール＋GA4閲覧データ読み解きガイド＆ホットスコア判定シート</p>
+<hr />
+<h2>1. なぜ静的PDFからインタラクティブHTMLへ移行すべきか</h2>
+<p>営業資料をPDFで送付した場合、把握できる情報は「メールを開封したかどうか」だけだ。一方、インタラクティブHTML資料に変換すれば次のデータが自動で取得できる。</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>PDF</th>
+<th>インタラクティブHTML＋GA4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>開封確認</td>
+<td>メールツール依存</td>
+<td>○（page_view）</td>
+</tr>
+<tr>
+<td>各セクション滞在時間</td>
+<td>不可</td>
+<td>○（section_view イベント）</td>
+</tr>
+<tr>
+<td>スクロール深度</td>
+<td>不可</td>
+<td>○（scroll_depth イベント）</td>
+</tr>
+<tr>
+<td>クリック箇所</td>
+<td>不可</td>
+<td>○（element_click イベント）</td>
+</tr>
+<tr>
+<td>タブ切替・アコーディオン展開</td>
+<td>—</td>
+<td>○（tab_switch / accordion_open イベント）</td>
+</tr>
+<tr>
+<td>ホットスコア算出</td>
+<td>不可</td>
+<td>○（自動計算）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>ポイント:</strong> 「GA4閲覧データ読み解きガイド＆ホットスコア判定シート」で定義されている5つのGA4イベント（<code>section_view</code> / <code>scroll_depth</code> / <code>element_click</code> / <code>tab_switch</code> / <code>accordion_open</code>）がHTML資料に自動埋込される。追加のタグ設定は不要。</p>
+</blockquote>
+<hr />
+<h2>2. PDF → インタラクティブHTML 移行手順（5ステップ）</h2>
+<h3>Step 1：既存資料のテキストを抽出する</h3>
+<p>PDF・PowerPointを開き、スライドごとにテキストをコピーする。画像が重要な場合はURLまたはBase64で準備しておく。</p>
+<h3>Step 2：変換ツールにテキストを貼り付ける</h3>
+<p>閲覧追跡HTML変換ツールの入力欄に、スライド区切り（空行）を挟んでテキストを貼り付ける。ツールが自動で以下を付与する。</p>
+<ul>
+<li><strong>タブ切替UI</strong>（スライド単位のナビゲーション）</li>
+<li><strong>アコーディオン展開</strong>（FAQ・仕様詳細など折りたたみ可能な要素）</li>
+<li><strong>スクロールアニメーション</strong>（フェードイン表示で視線誘導）</li>
+<li><strong>GA4トラッキングコード</strong>（gtag.js による5イベント自動送信）</li>
+</ul>
+<h3>Step 3：GA4 測定IDを設定する</h3>
+<p>生成されたHTMLの <code>&lt;head&gt;</code> 内に GA4 測定ID（<code>G-XXXXXXXXXX</code>）を入力する欄がある。自社のGA4プロパティの測定IDを貼り付ける。</p>
+<h3>Step 4：HTMLファイルをホスティングする</h3>
+<p>生成されたHTMLを自社ドメインまたは静的ホスティング（Netlify・Vercel・S3など）にアップロードし、URLを取得する。</p>
+<h3>Step 5：URLをメールで送付する</h3>
+<p>従来のPDF添付の代わりに、HTMLのURLを本文に記載して送付する。閲覧者がリンクをクリックした瞬間からGA4にデータが蓄積される。</p>
+<hr />
+<h2>3. GA4での閲覧データ確認方法</h2>
+<h3>3-1. リアルタイムレポートで即時確認</h3>
+<p>GA4 の「レポート → リアルタイム」を開くと、資料送付直後にリンクが開かれたかを即座に確認できる。イベント名 <code>section_view</code> が表示されれば閲覧開始の証拠となる。</p>
+<h3>3-2. 探索レポートでセクション別分析</h3>
+<p>「探索」で自由形式レポートを作成し、以下のディメンション・指標を設定する。</p>
+<table>
+<thead>
+<tr>
+<th>設定箇所</th>
+<th>値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ディメンション</td>
+<td><code>event_name</code>、<code>section_id</code>（カスタムパラメータ）</td>
+</tr>
+<tr>
+<td>指標</td>
+<td><code>event_count</code>、<code>engagement_time_msec</code></td>
+</tr>
+<tr>
+<td>フィルタ</td>
+<td><code>event_name</code> = <code>section_view</code></td>
+</tr>
+</tbody>
+</table>
+<p>これにより「どのセクション（スライド）が何回・何秒見られたか」を一覧で把握できる。</p>
+<h3>3-3. ホットスコア判定シートとの連携</h3>
+<p>「GA4閲覧データ読み解きガイド＆ホットスコア判定シート」の計算シートに、GA4から取得した3つの数値を入力する。</p>
+<ol>
+<li><strong>合計滞在時間（秒）</strong> — <code>section_view</code> の <code>engagement_time_msec</code> 合計 ÷ 1000</li>
+<li><strong>最大スクロール深度（%）</strong> — <code>scroll_depth</code> イベントの <code>percent</code> パラメータ最大値</li>
+<li><strong>クリック回数</strong> — <code>element_click</code> イベントの <code>event_count</code> 合計</li>
+</ol>
+<p>シートが自動でホットスコア（0〜100）を算出し、ランク判定（HOT / WARM / COLD）を返す。</p>
+<hr />
+<h2>4. ホットスコアに基づくフォロータイミング判断基準</h2>
+<table>
+<thead>
+<tr>
+<th>ランク</th>
+<th>スコア</th>
+<th>閲覧行動の特徴</th>
+<th>推奨アクション</th>
+<th>フォロー期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HOT</strong></td>
+<td>70〜100</td>
+<td>滞在60秒超・スクロール80%超・複数クリック</td>
+<td>電話 or 個別デモ提案</td>
+<td><strong>24時間以内</strong></td>
+</tr>
+<tr>
+<td><strong>WARM</strong></td>
+<td>40〜69</td>
+<td>滞在30〜60秒・スクロール50〜80%・1〜2クリック</td>
+<td>課題ヒアリングメール</td>
+<td><strong>3営業日以内</strong></td>
+</tr>
+<tr>
+<td><strong>COLD</strong></td>
+<td>0〜39</td>
+<td>滞在30秒未満・スクロール50%未満・クリックなし</td>
+<td>別切り口の資料を再送</td>
+<td>1〜2週間後に再アプローチ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>運用のコツ:</strong></p>
+<ul>
+<li>HOTが出たら「〇〇のセクションをじっくりご覧いただいたようですが、ご質問ありませんか？」と具体的に触れるとアポ率が上がる</li>
+<li>COLDでも「開封はしている」ため、件名やファーストビューの改善で次回WARM以上に引き上げられる</li>
+<li>同一資料を複数回閲覧している場合、スコアに関わらず関心が高い。優先的にフォローする</li>
+</ul>
+<hr />
+<h2>5. 競合サービスとの機能比較表</h2>
+<p>閲覧追跡HTML変換ツールの位置づけを整理するため、代表的な競合（ReDeck・Plus AI）と比較する。</p>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>閲覧追跡HTML変換ツール</th>
+<th>ReDeck</th>
+<th>Plus AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>テキスト貼付だけで変換</td>
+<td>○</td>
+<td>△（テンプレ選択が必要）</td>
+<td>△（PowerPointアドイン）</td>
+</tr>
+<tr>
+<td>タブ切替UI</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+</tr>
+<tr>
+<td>アコーディオン展開</td>
+<td>○</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>スクロールアニメーション</td>
+<td>○</td>
+<td>○</td>
+<td>×</td>
+</tr>
+<tr>
+<td><strong>GA4連携（自動埋込）</strong></td>
+<td><strong>○</strong></td>
+<td><strong>×</strong></td>
+<td><strong>×</strong></td>
+</tr>
+<tr>
+<td>セクション別滞在時間</td>
+<td>○（GA4経由）</td>
+<td>○（独自ダッシュボード）</td>
+<td>×</td>
+</tr>
+<tr>
+<td>クリック箇所トラッキング</td>
+<td>○（GA4経由）</td>
+<td>○（独自）</td>
+<td>×</td>
+</tr>
+<tr>
+<td>ホットスコア算出</td>
+<td>○（判定シート付属）</td>
+<td>△（有料プラン）</td>
+<td>×</td>
+</tr>
+<tr>
+<td>データ保管場所</td>
+<td>自社GA4（自社管理）</td>
+<td>ReDeck社サーバー</td>
+<td>—</td>
+</tr>
+<tr>
+<td>月額コスト</td>
+<td>無料（GA4無料枠）</td>
+<td>$29〜/ユーザー</td>
+<td>$10〜/ユーザー</td>
+</tr>
+</tbody>
+</table>
+<p><strong>差別化ポイント:</strong> GA4連携により、閲覧データが自社のGoogleアナリティクス内に蓄積される。外部SaaSにデータを預ける必要がなく、既存のGA4レポートやBigQuery連携とそのまま統合できる点が最大の違い。</p>
+<hr />
+<h2>6. 業種別 構成パターン例 3種</h2>
+<h3>パターン① SaaS（クラウドサービス提案資料）</h3>
+<table>
+<thead>
+<tr>
+<th>セクション</th>
+<th>UI要素</th>
+<th>トラッキング狙い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 課題提起</td>
+<td>スクロールアニメーション</td>
+<td>離脱ポイント特定</td>
+</tr>
+<tr>
+<td>2. 機能概要</td>
+<td><strong>タブ切替</strong>（機能A/B/C）</td>
+<td>どの機能に関心があるか</td>
+</tr>
+<tr>
+<td>3. 料金プラン</td>
+<td><strong>アコーディオン</strong>（プラン別詳細）</td>
+<td>検討中のプラン特定</td>
+</tr>
+<tr>
+<td>4. 導入事例</td>
+<td>タブ切替（業種別）</td>
+<td>自社に近い事例の関心度</td>
+</tr>
+<tr>
+<td>5. CTA（デモ予約）</td>
+<td>ボタンクリック</td>
+<td>コンバージョン計測</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SaaSの勘所:</strong> タブ切替で機能別の関心度を測定し、フォロー電話で「〇〇機能について詳しくご説明しましょうか」と切り出す。</p>
+<h3>パターン② 製造業（製品カタログ型資料）</h3>
+<table>
+<thead>
+<tr>
+<th>セクション</th>
+<th>UI要素</th>
+<th>トラッキング狙い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 製品ラインナップ</td>
+<td><strong>タブ切替</strong>（製品群別）</td>
+<td>興味のある製品群</td>
+</tr>
+<tr>
+<td>2. スペック比較</td>
+<td>横スクロール表</td>
+<td>どのスペック行を見たか</td>
+</tr>
+<tr>
+<td>3. 導入実績・品質認証</td>
+<td>アコーディオン（認証別）</td>
+<td>品質への関心度</td>
+</tr>
+<tr>
+<td>4. 納期・MOQ</td>
+<td>アコーディオン</td>
+<td>発注検討の本気度</td>
+</tr>
+<tr>
+<td>5. 見積依頼フォーム</td>
+<td>ボタンクリック</td>
+<td>コンバージョン計測</td>
+</tr>
+</tbody>
+</table>
+<p><strong>製造業の勘所:</strong> 「納期・MOQ」セクションの滞在時間が長い場合、発注を具体的に検討している確率が高い。即座に見積提示する。</p>
+<h3>パターン③ 不動産（物件提案資料）</h3>
+<table>
+<thead>
+<tr>
+<th>セクション</th>
+<th>UI要素</th>
+<th>トラッキング狙い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. エリア概況</td>
+<td>スクロールアニメーション</td>
+<td>関心エリアの確認</td>
+</tr>
+<tr>
+<td>2. 物件一覧</td>
+<td><strong>タブ切替</strong>（物件A/B/C）</td>
+<td>本命物件の特定</td>
+</tr>
+<tr>
+<td>3. 間取り・設備</td>
+<td>アコーディオン（各物件詳細）</td>
+<td>深掘り物件の判定</td>
+</tr>
+<tr>
+<td>4. 賃料・初期費用</td>
+<td>アコーディオン</td>
+<td>予算感との照合</td>
+</tr>
+<tr>
+<td>5. 内見予約</td>
+<td>ボタンクリック</td>
+<td>コンバージョン計測</td>
+</tr>
+</tbody>
+</table>
+<p><strong>不動産の勘所:</strong> 物件タブの切替回数で「比較検討中」か「本命1件」かを判別できる。1件だけ長時間閲覧している場合はその物件で内見提案する。</p>
+<hr />
+<h2>7. 閲覧データから商談化率を改善した想定シナリオ</h2>
+<h3>シナリオ：SaaS企業 営業チーム（8名）の改善事例</h3>
+<p><strong>Before（PDF運用時）</strong></p>
+<ul>
+<li>月間の資料送付数：200件</li>
+<li>送付後のフォロー：全件に一律メール → 反応があった案件だけ電話</li>
+<li>資料送付→商談化率：<strong>8%</strong>（16件/月）</li>
+<li>課題：「資料を見たのか見てないのか分からない」「フォローの優先順位が付けられない」</li>
+</ul>
+<p><strong>After（インタラクティブHTML＋ホットスコア運用）</strong></p>
+<table>
+<thead>
+<tr>
+<th>ステップ</th>
+<th>施策内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 資料をHTML化</td>
+<td>既存PDF 3種（サービス概要・料金・事例集）をHTML変換ツールで変換</td>
+</tr>
+<tr>
+<td>2. GA4設定</td>
+<td>測定IDを埋込、探索レポートを作成（所要30分）</td>
+</tr>
+<tr>
+<td>3. 送付→翌日にスコア確認</td>
+<td>ホットスコア判定シートで全送付先をHOT/WARM/COLDに分類</td>
+</tr>
+<tr>
+<td>4. HOTに即架電</td>
+<td>「料金プランのセクションをご覧いただいたようですが」と具体的に切り出し</td>
+</tr>
+<tr>
+<td>5. WARMに個別メール</td>
+<td>閲覧したセクションに応じた追加資料を送付</td>
+</tr>
+<tr>
+<td>6. COLDは資料改善</td>
+<td>離脱ポイントを分析し、ファーストビューを改善して再送</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結果（3か月後の想定値）</strong></p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>Before</th>
+<th>After</th>
+<th>改善幅</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>資料送付→商談化率</td>
+<td>8%</td>
+<td><strong>14%</strong></td>
+<td>+6pt</td>
+</tr>
+<tr>
+<td>月間商談数</td>
+<td>16件</td>
+<td><strong>28件</strong></td>
+<td>+75%</td>
+</tr>
+<tr>
+<td>HOT案件のアポ獲得率</td>
+<td>—（判別不可）</td>
+<td><strong>42%</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>フォロー工数</td>
+<td>全件一律対応</td>
+<td>HOT/WARM優先で <strong>40%削減</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>平均リードタイム</td>
+<td>14営業日</td>
+<td><strong>9営業日</strong></td>
+<td>-36%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>改善のメカニズム:</strong></p>
+<ol>
+<li><strong>フォローの精度向上</strong> — HOT案件（全体の約15〜20%）に集中することで、電話1本あたりのアポ率が向上</li>
+<li><strong>会話の質向上</strong> — 「どのセクションを見たか」を把握した上で話すため、顧客が「分かってくれている」と感じる</li>
+<li><strong>資料自体の改善サイクル</strong> — スクロール深度やタブ切替データから離脱ポイントを特定し、構成を継続改善</li>
+</ol>
+<hr />
+<h2>8. 運用開始チェックリスト</h2>
+<ul>
+<li>[ ] GA4プロパティを作成し、測定IDを取得した</li>
+<li>[ ] 主力営業資料（1〜3種）のテキストを抽出した</li>
+<li>[ ] HTML変換ツールで資料を変換し、測定IDを埋め込んだ</li>
+<li>[ ] 生成HTMLを自社ドメインまたは静的ホスティングにデプロイした</li>
+<li>[ ] GA4の探索レポートを作成し、5イベントが計測されることをテスト確認した</li>
+<li>[ ] ホットスコア判定シートの使い方を営業チームに共有した</li>
+<li>[ ] HOT/WARM/COLDのフォロールールを営業会議で合意した</li>
+<li>[ ] 週次で閲覧データを振り返り、資料構成を改善するサイクルを設定した</li>
+</ul>
+<hr />
+<p><strong>まとめ:</strong> 「送った資料、見られてる？」という営業現場の最大の不安は、インタラクティブHTML変換＋GA4トラッキング＋ホットスコア判定の3点セットで解消できる。まずは主力資料1種類から変換を始め、ホットスコアに基づくフォローを1か月試すだけで、商談化率の変化を実感できるはずだ。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>
