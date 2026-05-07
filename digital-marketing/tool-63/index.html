@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商談フェーズ別コンテンツ設計マップ - kusasyu tools</title>
+<meta name="description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,商談フェーズ別コンテンツ設計マップ">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-63/">
+<meta property="og:title" content="商談フェーズ別コンテンツ設計マップ - kusasyu tools">
+<meta property="og:description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-63/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="商談フェーズ別コンテンツ設計マップ - kusasyu tools">
+<meta name="twitter:description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "商談フェーズ別コンテンツ設計マップ",
+  "description": "BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-63/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-05-06"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>商談フェーズ別コンテンツ設計マップ</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>商談フェーズ別コンテンツ設計マップ</h1>
+  <p class="project-name">商談前に負けてない？BtoB比較コンテンツ生成ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>フェーズ</th><th>フェーズ順</th><th>コンテンツ種別</th><th>コンテンツタイトル</th><th>概要・目的</th><th>優先度</th><th>制作ステータス</th><th>担当部門</th><th>担当者</th><th>制作開始日</th><th>公開予定日</th><th>公開日</th><th>公開URL</th><th>効果測定KPI</th><th>KPI目標値</th><th>KPI実績値</th><th>達成率(%)</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>認知</td><td>1</td><td>ブログ記事</td><td>「商談前に負けてない？」BtoB比較検討フェーズで選ばれる企業の3つの共通点</td><td>検索流入で課題認知を獲得。BtoB購買行動の67%が営業接触前に完了する事実を訴求</td><td>高</td><td>公開済</td><td>マーケティング</td><td>田中</td><td>2026-03-01</td><td>2026-03-15</td><td>2026-03-14</td><td>https://example.com/blog/btob-comparison-phase</td><td>月間オーガニック流入数</td><td>800</td><td>620</td><td>77.5</td><td>メインキーワード「BtoB 比較検討」で15位</td></tr><tr><td>2</td><td>認知</td><td>1</td><td>ホワイトペーパー</td><td>BtoB購買プロセス実態調査2026——営業が知らない「Web比較検討」の全貌</td><td>リード獲得用。調査データを基に比較検討フェーズの重要性を啓蒙</td><td>高</td><td>公開済</td><td>マーケティング</td><td>田中</td><td>2026-02-15</td><td>2026-03-10</td><td>2026-03-10</td><td>https://example.com/wp/btob-buying-process-2026</td><td>ダウンロード数</td><td>200</td><td>145</td><td>72.5</td><td>Facebook広告との連動で獲得効率向上</td></tr><tr><td>3</td><td>認知</td><td>1</td><td>SNS投稿シリーズ</td><td>LinkedIn連載「営業DX最前線」（全4回）</td><td>認知拡大とフォロワー獲得。比較コンテンツの重要性を啓蒙する連載</td><td>中</td><td>制作中</td><td>マーケティング</td><td>山田</td><td>2026-04-10</td><td>2026-05-01</td><td></td><td></td><td> インプレッション数</td><td>5000</td><td>0</td><td>0</td><td>第2回まで公開済</td></tr><tr><td>4</td><td>興味</td><td>2</td><td>比較表</td><td>競合比較コンテンツ生成ツール vs ナレッジワーク vs 手動制作 機能比較表</td><td>自社ツールの「コンテンツ生成」優位性を競合と比較。ナレッジワーク等の既存ツールが資料管理に留まる点を可視化</td><td>高</td><td>公開済</td><td>マーケティング</td><td>鈴木</td><td>2026-03-05</td><td>2026-03-20</td><td>2026-03-19</td><td>https://example.com/compare/vs-knowledgework</td><td>ページ滞在時間(秒)</td><td>120</td><td>98</td><td>81.7</td><td>CVR改善のためCTA配置をA/Bテスト中</td></tr><tr><td>5</td><td>興味</td><td>2</td><td>事例記事</td><td>導入事例：製造業A社が比較コンテンツ整備で商談化率を32%改善</td><td>興味喚起。実企業の成果数値で信頼性を担保</td><td>高</td><td>公開済</td><td>営業企画</td><td>佐藤</td><td>2026-03-10</td><td>2026-04-01</td><td>2026-03-31</td><td>https://example.com/case/manufacturing-a</td><td>事例ページ経由リード数</td><td>30</td><td>22</td><td>73.3</td><td>動画版も制作検討中</td></tr><tr><td>6</td><td>興味</td><td>2</td><td>ウェビナー資料</td><td>60分でわかる「比較検討フェーズ攻略法」セミナー資料</td><td>オンラインセミナー用スライド。競合比較コンテンツ生成ツールのデモを含む</td><td>中</td><td>完了</td><td>マーケティング</td><td>田中</td><td>2026-04-01</td><td>2026-04-20</td><td>2026-04-18</td><td>https://example.com/webinar/comparison-strategy</td><td>セミナー申込数</td><td>100</td><td>78</td><td>78.0</td><td>次回開催は6月予定</td></tr><tr><td>7</td><td>比較</td><td>3</td><td>比較ランディングページ</td><td>競合比較コンテンツ生成ツール——3ステップで競合比較LPを自動生成</td><td>ツールの中核機能を訴求するLP。製品情報と競合情報を入力するだけで比較LPを即座に生成できる点を強調</td><td>高</td><td>公開済</td><td>マーケティング</td><td>鈴木</td><td>2026-02-20</td><td>2026-03-15</td><td>2026-03-14</td><td>https://example.com/lp/comparison-generator</td><td>LP経由の無料トライアル申込数</td><td>50</td><td>38</td><td>76.0</td><td>月額費用48万円プランへの誘導を強化</td></tr><tr><td>8</td><td>比較</td><td>3</td><td>ROIシミュレーター</td><td>BtoB導入ROI試算シミュレーター｜競合比較コンテンツ生成ツール</td><td>導入効果を数値で可視化。営業人数・商談単価・受注率を入力しROIを自動算出</td><td>高</td><td>公開済</td><td>営業企画</td><td>佐藤</td><td>2026-03-01</td><td>2026-03-20</td><td>2026-03-18</td><td>https://example.com/tools/roi-simulator</td><td>シミュレーター利用完了数</td><td>300</td><td>215</td><td>71.7</td><td>月額48万円プランの投資回収期間を自動表示</td></tr><tr><td>9</td><td>比較</td><td>3</td><td>FAQ</td><td>競合比較コンテンツ生成ツール よくある質問30選</td><td>導入検討時の疑問を網羅的に解消。料金・機能・連携・セキュリティの4カテゴリ</td><td>中</td><td>レビュー中</td><td>マーケティング</td><td>山田</td><td>2026-04-15</td><td>2026-05-10</td><td></td><td></td><td>FAQ経由の問合せ削減率(%)</td><td>20</td><td>0</td><td>0</td><td>カスタマーサポートと共同制作</td></tr><tr><td>10</td><td>比較</td><td>3</td><td>競合別比較ページ</td><td>競合比較コンテンツ生成ツール vs Salesforce Sales Cloud 比較ガイド</td><td>個別競合との詳細比較。CRM連携・コンテンツ生成・価格面での差別化ポイントを整理</td><td>中</td><td>制作中</td><td>マーケティング</td><td>鈴木</td><td>2026-04-20</td><td>2026-05-15</td><td></td><td></td><td>指名検索経由流入数</td><td>150</td><td>0</td><td>0</td><td>Salesforce比較の検索ボリュームが月間1200</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,フェーズ,フェーズ順,コンテンツ種別,コンテンツタイトル,概要・目的,優先度,制作ステータス,担当部門,担当者,制作開始日,公開予定日,公開日,公開URL,効果測定KPI,KPI目標値,KPI実績値,達成率(%),備考
+1,認知,1,ブログ記事,"「商談前に負けてない？」BtoB比較検討フェーズで選ばれる企業の3つの共通点",検索流入で課題認知を獲得。BtoB購買行動の67%が営業接触前に完了する事実を訴求,高,公開済,マーケティング,田中,2026-03-01,2026-03-15,2026-03-14,https://example.com/blog/btob-comparison-phase,月間オーガニック流入数,800,620,77.5,メインキーワード「BtoB 比較検討」で15位
+2,認知,1,ホワイトペーパー,"BtoB購買プロセス実態調査2026——営業が知らない「Web比較検討」の全貌",リード獲得用。調査データを基に比較検討フェーズの重要性を啓蒙,高,公開済,マーケティング,田中,2026-02-15,2026-03-10,2026-03-10,https://example.com/wp/btob-buying-process-2026,ダウンロード数,200,145,72.5,Facebook広告との連動で獲得効率向上
+3,認知,1,SNS投稿シリーズ,LinkedIn連載「営業DX最前線」（全4回）,認知拡大とフォロワー獲得。比較コンテンツの重要性を啓蒙する連載,中,制作中,マーケティング,山田,2026-04-10,2026-05-01,,, インプレッション数,5000,0,0,第2回まで公開済
+4,興味,2,比較表,"競合比較コンテンツ生成ツール vs ナレッジワーク vs 手動制作 機能比較表",自社ツールの「コンテンツ生成」優位性を競合と比較。ナレッジワーク等の既存ツールが資料管理に留まる点を可視化,高,公開済,マーケティング,鈴木,2026-03-05,2026-03-20,2026-03-19,https://example.com/compare/vs-knowledgework,ページ滞在時間(秒),120,98,81.7,CVR改善のためCTA配置をA/Bテスト中
+5,興味,2,事例記事,"導入事例：製造業A社が比較コンテンツ整備で商談化率を32%改善",興味喚起。実企業の成果数値で信頼性を担保,高,公開済,営業企画,佐藤,2026-03-10,2026-04-01,2026-03-31,https://example.com/case/manufacturing-a,事例ページ経由リード数,30,22,73.3,動画版も制作検討中
+6,興味,2,ウェビナー資料,"60分でわかる「比較検討フェーズ攻略法」セミナー資料",オンラインセミナー用スライド。競合比較コンテンツ生成ツールのデモを含む,中,完了,マーケティング,田中,2026-04-01,2026-04-20,2026-04-18,https://example.com/webinar/comparison-strategy,セミナー申込数,100,78,78.0,次回開催は6月予定
+7,比較,3,比較ランディングページ,"競合比較コンテンツ生成ツール——3ステップで競合比較LPを自動生成",ツールの中核機能を訴求するLP。製品情報と競合情報を入力するだけで比較LPを即座に生成できる点を強調,高,公開済,マーケティング,鈴木,2026-02-20,2026-03-15,2026-03-14,https://example.com/lp/comparison-generator,LP経由の無料トライアル申込数,50,38,76.0,月額費用48万円プランへの誘導を強化
+8,比較,3,ROIシミュレーター,"BtoB導入ROI試算シミュレーター｜競合比較コンテンツ生成ツール",導入効果を数値で可視化。営業人数・商談単価・受注率を入力しROIを自動算出,高,公開済,営業企画,佐藤,2026-03-01,2026-03-20,2026-03-18,https://example.com/tools/roi-simulator,シミュレーター利用完了数,300,215,71.7,月額48万円プランの投資回収期間を自動表示
+9,比較,3,FAQ,"競合比較コンテンツ生成ツール よくある質問30選",導入検討時の疑問を網羅的に解消。料金・機能・連携・セキュリティの4カテゴリ,中,レビュー中,マーケティング,山田,2026-04-15,2026-05-10,,,FAQ経由の問合せ削減率(%),20,0,0,カスタマーサポートと共同制作
+10,比較,3,競合別比較ページ,"競合比較コンテンツ生成ツール vs Salesforce Sales Cloud 比較ガイド",個別競合との詳細比較。CRM連携・コンテンツ生成・価格面での差別化ポイントを整理,中,制作中,マーケティング,鈴木,2026-04-20,2026-05-15,,,指名検索経由流入数,150,0,0,Salesforce比較の検索ボリュームが月間1200
+11,検討,4,提案書テンプレート,"競合比較コンテンツ生成ツール 導入提案書——稟議用カスタマイズ対応版",稟議通過を支援する提案書。導入効果・費用対効果・競合優位性を網羅,高,完了,営業企画,佐藤,2026-03-15,2026-04-05,2026-04-04,https://example.com/docs/proposal-template,提案書ダウンロード後の商談化率(%),40,35,87.5,営業チームからのフィードバックを反映済
+12,検討,4,事例動画,"導入企業インタビュー：IT企業B社「比較コンテンツで営業工数を月40時間削減」",動画コンテンツで検討後押し。担当者の生の声で信頼性を強化,高,制作中,マーケティング,山田,2026-04-25,2026-05-20,,,動画視聴完了率(%),50,0,0,撮影完了・編集中。月額48万円の投資対効果を担当者が語る
+13,検討,4,セキュリティチェックシート,"競合比較コンテンツ生成ツール セキュリティ・コンプライアンス対応表",情シス向け。ISMS・SOC2対応状況とデータ取扱いポリシーを一覧化,中,未着手,営業企画,佐藤,2026-05-10,2026-06-01,,,チェックシート経由の検討進行率(%),60,0,0,法務部門と連携して作成予定
+14,決裁,5,ROI報告書テンプレート,"導入効果レポート雛形——経営層向けROI報告書",決裁者向け。投資回収期間・年間コスト削減額・売上貢献額を1枚に集約,高,レビュー中,営業企画,佐藤,2026-04-10,2026-05-05,,,報告書利用企業の受注率(%),55,0,0,月額48万円×12ヶ月=年間576万円の投資に対するリターンを明示
+15,決裁,5,競合乗換えガイド,"他社ツールからの移行ガイド——データ移行・オンボーディング完全マニュアル",乗換えハードルを下げる。移行手順と導入後30日間のサポート体制を明記,中,未着手,営業企画,鈴木,2026-05-15,2026-06-15,,,ガイド経由の乗換え問合せ数,15,0,0,ナレッジワーク・手動運用からの移行パターンを網羅
+16,決裁,5,契約・導入フロー資料,"競合比較コンテンツ生成ツール ご契約〜運用開始ガイド",契約手続きから初期設定・運用開始までの全ステップを図解。意思決定の最終障壁を除去,中,未着手,営業企画,佐藤,2026-05-20,2026-06-20,,,資料閲覧後の契約締結率(%),30,0,0,電子契約対応。最短5営業日で運用開始可能`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_商談フェーズ別コンテンツ設計マップ.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

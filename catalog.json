@@ -3848,6 +3848,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-62",
+    "url": "digital-marketing/tool-62/",
+    "title": "商談前に負けてない？BtoB比較コンテンツ生成ツール",
+    "tool_name": "競合比較ランディングページ自動生成ツール",
+    "description": "BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化する。",
+    "quality_score": 7,
+    "completed_at": "2026-05-06T12:31:14.135804+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "btob-roi-2",
+    "url": "digital-marketing/btob-roi-2/",
+    "title": "商談前に負けてない？BtoB比較コンテンツ生成ツール",
+    "tool_name": "BtoB導入ROI試算シミュレーター",
+    "description": "BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化する。",
+    "quality_score": 7,
+    "completed_at": "2026-05-06T12:31:14.135804+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-63",
+    "url": "digital-marketing/tool-63/",
+    "title": "商談前に負けてない？BtoB比較コンテンツ生成ツール",
+    "tool_name": "商談フェーズ別コンテンツ設計マップ",
+    "description": "BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化する。",
+    "quality_score": 7,
+    "completed_at": "2026-05-06T12:31:14.135804+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",

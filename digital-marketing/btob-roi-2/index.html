@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BtoB導入ROI試算シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:20px}
+h1{text-align:center;padding:24px 0 6px;font-size:1.4em;color:#3a0ca3}
+.sub{text-align:center;color:#666;margin-bottom:24px;font-size:.85em}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1em;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #4361ee;color:#4361ee}
+label{display:block;font-size:.82em;font-weight:600;margin:8px 0 3px;color:#333}
+select,input[type=number]{width:100%;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:.92em}
+.row{display:flex;gap:12px}
+.row>*{flex:1}
+.btn{background:linear-gradient(135deg,#4361ee,#3a0ca3);color:#fff;border:none;padding:14px;border-radius:10px;width:100%;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:12px}
+.btn:hover{opacity:.9}
+#result{display:none}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:18px}
+.metric{background:#f8f9ff;border-radius:10px;padding:16px;text-align:center;border:1px solid #e0e4f7}
+.metric .val{font-size:1.6em;font-weight:800;color:#4361ee}
+.metric .lbl{font-size:.75em;color:#666;margin-top:2px}
+canvas{width:100%;max-width:100%;margin:10px 0}
+.note{font-size:.72em;color:#999;margin-top:8px}
+.print-btn{background:#28a745;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:.85em;margin-top:10px}
+@media print{body{background:#fff}.btn,.print-btn{display:none}.card{box-shadow:none;border:1px solid #ddd}}
+@media(max-width:600px){.row{flex-direction:column;gap:6px}.metrics{grid-template-columns:1fr 1fr}}
+</style>
+<meta name="description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,BtoB導入ROI試算シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-roi-2/">
+<meta property="og:title" content="BtoB導入ROI試算シミュレーター - kusasyu tools">
+<meta property="og:description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-roi-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BtoB導入ROI試算シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BtoB導入ROI試算シミュレーター",
+  "description": "BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/btob-roi-2/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">BtoB導入ROI試算シミュレーター</span></div>
+<div class="wrap">
+<h1>BtoB導入ROI試算シミュレーター</h1>
+<p class="sub">競合比較コンテンツ生成ツール導入による投資対効果を即座に試算</p>
+<div class="card">
+<h2>貴社の情報を入力</h2>
+<div class="row">
+<div><label>業種</label><select id="ind"><option value="saas">SaaS・IT</option><option value="mfg">製造業</option><option value="cons">コンサルティング</option><option value="fin">金融・保険</option><option value="other">その他</option></select></div>
+<div><label>従業員数</label><select id="emp"><option value="50">50〜100名</option><option value="100">101〜200名</option><option value="200">201〜300名</option><option value="300">301〜500名</option></select></div>
+</div>
+<label>営業担当者数</label>
+<input type="number" id="sales" value="10" min="1" max="200">
+<label>月間商談数（全社）</label>
+<input type="number" id="deals" value="40" min="1" max="500">
+<label>現在の主な課題</label>
+<select id="issue"><option value="lose">比較検討段階で競合に負けることが多い</option><option value="time">提案資料作成に時間がかかりすぎる</option><option value="info">競合情報が属人化している</option><option value="roi">導入効果を定量的に示せない</option></select>
+<label>平均受注単価（万円/件）</label>
+<input type="number" id="price" value="300" min="10" max="10000">
+<button class="btn" onclick="calc()">ROIを試算する</button>
+</div>
+<div id="result">
+<div class="card">
+<h2>試算結果サマリー</h2>
+<div class="metrics">
+<div class="metric"><div class="val" id="r1">-</div><div class="lbl">年間コスト削減額</div></div>
+<div class="metric"><div class="val" id="r2">-</div><div class="lbl">月間工数削減</div></div>
+<div class="metric"><div class="val" id="r3">-</div><div class="lbl">ROI倍率</div></div>
+<div class="metric"><div class="val" id="r4">-</div><div class="lbl">投資回収期間</div></div>
+</div>
+<p class="note">※試算値は業界平均データに基づく概算です。実際の効果は導入環境により異なります。</p>
+</div>
+<div class="card">
+<h2>効果内訳（棒グラフ）</h2>
+<canvas id="bar" height="200"></canvas>
+</div>
+<div class="card">
+<h2>コスト構成比（円グラフ）</h2>
+<canvas id="pie" height="220"></canvas>
+</div>
+<div class="card">
+<h2>導入効果の詳細</h2>
+<div id="detail"></div>
+</div>
+<button class="print-btn" onclick="window.print()">📄 稟議用に印刷する</button>
+</div>
+</div>
+<script>
+function calc(){
+var ind=document.getElementById('ind').value,emp=+document.getElementById('emp').value,sales=+document.getElementById('sales').value,deals=+document.getElementById('deals').value,issue=document.getElementById('issue').value,price=+document.getElementById('price').value;
+var im={saas:1.2,mfg:1.0,cons:1.1,fin:1.15,other:0.95};
+var em=emp<=100?0.8:emp<=200?1.0:emp<=300?1.2:1.4;
+var isM={lose:1.3,time:1.1,info:1.0,roi:1.2};
+var base=im[ind]*em*isM[issue];
+var hourSave=sales*4.5*base;
+var winUp=Math.round(3.2*base*10)/10;
+var addDeals=Math.round(deals*12*(winUp/100));
+var revGain=addDeals*price;
+var costSave=Math.round(hourSave*12*4500/10000);
+var totalBenefit=costSave+revGain;
+var toolCost=Math.round(sales*1.5*12);
+var roi=Math.round(totalBenefit/toolCost*10)/10;
+var payback=Math.round(toolCost/totalBenefit*12*10)/10;
+document.getElementById('r1').textContent=costSave+'万円';
+document.getElementById('r2').textContent=Math.round(hourSave)+'時間';
+document.getElementById('r3').textContent=roi+'倍';
+document.getElementById('r4').textContent=payback+'ヶ月';
+document.getElementById('result').style.display='block';
+document.getElementById('detail').innerHTML='<p style="font-size:.85em;line-height:1.8">・受注率向上: +'+winUp+'%（年間'+addDeals+'件の追加受注）<br>・追加売上見込: '+revGain+'万円/年<br>・資料作成工数削減: 月'+Math.round(hourSave)+'時間（1人あたり月'+Math.round(hourSave/sales*10)/10+'時間）<br>・人件費換算削減: '+costSave+'万円/年<br>・ツール投資額: '+toolCost+'万円/年<br>・純利益効果: '+(totalBenefit-toolCost)+'万円/年</p>';
+drawBar(costSave,revGain,toolCost);drawPie(costSave,revGain,toolCost);
+}
+function drawBar(cs,rg,tc){
+var c=document.getElementById('bar'),x=c.getContext('2d');
+c.width=c.offsetWidth;c.height=200;
+var d=[{l:'工数削減効果',v:cs,c:'#4361ee'},{l:'売上増加効果',v:rg,c:'#3a0ca3'},{l:'ツール費用',v:tc,c:'#e74c3c'}];
+var mx=Math.max(cs,rg,tc);
+var bw=c.width/4,gap=20,startX=40;
+x.clearRect(0,0,c.width,c.height);
+x.font='11px sans-serif';x.textAlign='center';
+for(var i=0;i<d.length;i++){
+var h=(d[i].v/mx)*(c.height-60);
+var bx=startX+i*(bw+gap);
+x.fillStyle=d[i].c;
+x.fillRect(bx,c.height-30-h,bw,h);
+x.fillStyle='#333';
+x.fillText(d[i].l,bx+bw/2,c.height-12);
+x.fillText(d[i].v+'万円',bx+bw/2,c.height-36-h);
+}}
+function drawPie(cs,rg,tc){
+var c=document.getElementById('pie'),x=c.getContext('2d');
+c.width=c.offsetWidth;c.height=220;
+var total=cs+rg+tc;
+var d=[{l:'工数削減 '+Math.round(cs/total*100)+'%',v:cs,c:'#4361ee'},{l:'売上増加 '+Math.round(rg/total*100)+'%',v:rg,c:'#3a0ca3'},{l:'ツール費用 '+Math.round(tc/total*100)+'%',v:tc,c:'#e74c3c'}];
+var cx=c.width/2-60,cy=110,r=80,sa=-Math.PI/2;
+x.clearRect(0,0,c.width,c.height);
+for(var i=0;i<d.length;i++){
+var sl=d[i].v/total*Math.PI*2;
+x.beginPath();x.moveTo(cx,cy);x.arc(cx,cy,r,sa,sa+sl);x.closePath();x.fillStyle=d[i].c;x.fill();
+sa+=sl;
+}
+x.font='12px sans-serif';x.textAlign='left';
+for(var i=0;i<d.length;i++){
+var ly=50+i*28;
+x.fillStyle=d[i].c;x.fillRect(c.width/2+20,ly,14,14);
+x.fillStyle='#333';x.fillText(d[i].l,c.width/2+40,ly+12);
+}}
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>競合比較ランディングページ自動生成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:20px}
+h1{text-align:center;padding:30px 0 10px;font-size:1.5em}
+.sub{text-align:center;color:#666;margin-bottom:30px;font-size:.9em}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #4361ee;color:#4361ee}
+label{display:block;font-size:.85em;font-weight:600;margin:10px 0 4px;color:#333}
+input,select{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:.95em;font-family:inherit}
+.row{display:flex;gap:12px}
+.row>*{flex:1}
+.comp{border:1px dashed #ccc;border-radius:8px;padding:16px;margin:10px 0;position:relative}
+.comp .del{position:absolute;top:8px;right:10px;background:none;border:none;color:#e74c3c;cursor:pointer;font-size:1.2em;width:auto;padding:0}
+.add-btn{background:none;border:2px dashed #4361ee;color:#4361ee;padding:10px;border-radius:8px;width:100%;cursor:pointer;font-size:.9em}
+.gen-btn{background:linear-gradient(135deg,#4361ee,#3a0ca3);color:#fff;border:none;padding:16px;border-radius:10px;width:100%;font-size:1.1em;font-weight:700;cursor:pointer;margin:10px 0}
+.gen-btn:hover{opacity:.9}
+.tabs{display:flex}
+.tab{padding:10px 20px;border:none;background:#e9ecef;cursor:pointer;font-size:.9em;font-weight:600}
+.tab:first-child{border-radius:8px 0 0 0}
+.tab:last-child{border-radius:0 8px 0 0}
+.tab.act{background:#4361ee;color:#fff}
+.out{border:1px solid #ddd;border-radius:0 0 8px 8px;min-height:200px;padding:16px;background:#fff;display:none}
+.out.act{display:block}
+#code{white-space:pre-wrap;word-break:break-all;font-family:monospace;font-size:.8em;background:#f8f9fa;max-height:500px;overflow:auto}
+.copy{background:#27ae60;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-weight:600;margin:10px 0}
+.hid{display:none}
+@media(max-width:600px){.row{flex-direction:column;gap:4px}.wrap{padding:12px}h1{font-size:1.2em}}
+</style>
+<meta name="description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,競合比較ランディングページ自動生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-62/">
+<meta property="og:title" content="競合比較ランディングページ自動生成ツール - kusasyu tools">
+<meta property="og:description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-62/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="競合比較ランディングページ自動生成ツール - kusasyu tools">
+<meta name="twitter:description" content="BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "競合比較ランディングページ自動生成ツール",
+  "description": "BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-62/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">競合比較ランディングページ自動生成ツール</span></div>
+<div class="wrap">
+<h1>競合比較LP自動生成ツール</h1>
+<p class="sub">製品情報と競合情報を入力するだけで、SEO対応の比較ページHTMLを即座に生成</p>
+<div class="card">
+<h2>業種テンプレート</h2>
+<select id="tmpl" onchange="applyT()">
+<option value="">選択してください（任意）</option>
+<option value="saas">SaaS</option>
+<option value="mfg">製造業</option>
+<option value="it">ITサービス</option>
+</select>
+</div>
+<div class="card">
+<h2>自社製品情報</h2>
+<label>製品名</label><input id="pN" placeholder="例：CloudCRM Pro">
+<label>キャッチコピー</label><input id="pT" placeholder="例：中小企業に最適なCRM">
+<div class="row">
+<div><label>価格帯</label><input id="pP" placeholder="月額5,000円〜"></div>
+<div><label>カテゴリ</label><input id="pC" placeholder="例：CRMツール"></div>
+</div>
+<label>強み①</label><input id="s1" placeholder="例：導入3日で運用開始">
+<label>強み②</label><input id="s2" placeholder="例：業界最安値クラス">
+<label>強み③</label><input id="s3" placeholder="例：専任サポート無料">
+<label>主要機能（カンマ区切り）</label><input id="pF" placeholder="顧客管理,案件管理,レポート,API連携">
+</div>
+<div class="card">
+<h2>競合製品情報</h2>
+<div id="cL"></div>
+<button class="add-btn" onclick="addC()">＋ 競合を追加（最大3社）</button>
+</div>
+<button class="gen-btn" onclick="gen()">比較ページHTMLを生成</button>
+<div id="res" class="card hid">
+<h2>生成結果</h2>
+<div class="tabs">
+<button class="tab act" onclick="sTab('prev',this)">プレビュー</button>
+<button class="tab" onclick="sTab('code',this)">HTMLコード</button>
+</div>
+<div id="prev" class="out act"></div>
+<div id="code" class="out"></div>
+<button class="copy" onclick="cpCode()">HTMLコードをコピー</button>
+</div>
+</div>
+<script>
+var ci=0;
+var TP={saas:{pN:'CloudSuite',pT:'業務効率を改善するSaaS',pC:'SaaSツール',pP:'月額10,000円〜',s1:'初期費用ゼロ',s2:'99.9%稼働率保証',s3:'API連携100種以上',pF:'ダッシュボード,ワークフロー,レポート,API連携,SSO',cn:'競合SaaS A',cp:'月額15,000円〜',cf:'基本機能,レポート',cw:'カスタマイズ性が低い'},mfg:{pN:'FactoryNavi',pT:'製造現場のDXを加速',pC:'製造業向けソリューション',pP:'月額30,000円〜',s1:'IoTセンサー連携',s2:'リアルタイム稼働監視',s3:'導入実績200工場',pF:'稼働監視,品質管理,在庫管理,帳票出力,IoT連携',cn:'競合製造システム A',cp:'月額50,000円〜',cf:'稼働監視,帳票',cw:'IoT対応が限定的'},it:{pN:'DevFlow',pT:'開発チームの生産性を最大化',pC:'ITサービス管理',pP:'月額8,000円〜',s1:'CI/CD統合',s2:'チーム分析機能',s3:'オンボーディング支援',pF:'プロジェクト管理,コードレビュー,CI/CD,監視,Wiki',cn:'競合ITツール A',cp:'月額12,000円〜',cf:'プロジェクト管理,Wiki',cw:'CI/CD非対応'}};
+function applyT(){var t=TP[document.getElementById('tmpl').value];if(!t)return;['pN','pT','pC','pP','s1','s2','s3','pF'].forEach(function(k){document.getElementById(k).value=t[k]});document.getElementById('cL').innerHTML='';ci=0;addC();var c=document.querySelector('.comp');c.querySelector('.cn').value=t.cn;c.querySelector('.cp').value=t.cp;c.querySelector('.cf').value=t.cf;c.querySelector('.cw').value=t.cw}
+function addC(){if(document.querySelectorAll('.comp').length>=3)return alert('最大3社まで');ci++;document.getElementById('cL').insertAdjacentHTML('beforeend','<div class="comp" id="c'+ci+'"><button class="del" onclick="this.parentElement.remove()">✕</button><label>競合製品名</label><input class="cn" placeholder="競合製品名"><div class="row"><div><label>価格帯</label><input class="cp" placeholder="月額○円〜"></div><div><label>主な機能</label><input class="cf" placeholder="カンマ区切り"></div></div><label>弱み・課題</label><input class="cw" placeholder="例：サポートが有料"></div>')}
+function g(id){return document.getElementById(id).value.trim()}
+function e(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function gen(){var pn=g('pN'),pt=g('pT'),pc=g('pC'),pp=g('pP'),ss=[g('s1'),g('s2'),g('s3')].filter(Boolean),pf=g('pF').split(',').map(function(s){return s.trim()}).filter(Boolean);if(!pn){alert('製品名を入力してください');return}var cs=[];document.querySelectorAll('.comp').forEach(function(el){var o={n:el.querySelector('.cn').value.trim(),p:el.querySelector('.cp').value.trim(),f:el.querySelector('.cf').value.split(',').map(function(s){return s.trim()}).filter(Boolean),w:el.querySelector('.cw').value.trim()};if(o.n)cs.push(o)});if(!cs.length){alert('競合を1社以上入力してください');return}var af=[];pf.forEach(function(f){if(af.indexOf(f)<0)af.push(f)});cs.forEach(function(c){c.f.forEach(function(f){if(af.indexOf(f)<0)af.push(f)})});var tt=e(pn)+'と'+cs.map(function(c){return e(c.n)}).join('・')+'を徹底比較【2026年最新版】';var ds=e(pc)+'の主要製品を機能・価格・サポートで徹底比較。'+e(pn)+'の強みと選定ポイントを解説。';var cth=cs.map(function(c){return'<th style="background:#f8f9fa;color:#333">'+e(c.n)+'</th>'}).join('');var ctp=cs.map(function(c){return'<td>'+(e(c.p)||'-')+'</td>'}).join('');var fr=af.map(function(f){var r='<tr><td style="font-weight:600">'+e(f)+'</td><td style="color:#27ae60;font-weight:700">'+(pf.indexOf(f)>=0?'✓':'−')+'</td>';cs.forEach(function(c){r+='<td>'+(c.f.indexOf(f)>=0?'✓':'−')+'</td>'});return r+'</tr>'}).join('');var pr=ss.map(function(s){return'<li>'+e(s)+'</li>'}).join('');var cw=cs.map(function(c){return c.w?'<li><strong>'+e(c.n)+':</strong> '+e(c.w)+'</li>':''}).join('');var ck=['導入コスト（初期費用＋月額）','必要機能の充足度','サポート体制と対応速度','既存システムとの連携性','セキュリティと導入実績'].map(function(i){return'<li><label><input type="checkbox"> '+i+'</label></li>'}).join('');var h='<!DOCTYPE html>\n<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+tt+'</title><meta name="description" content="'+ds+'"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,sans-serif;color:#333;line-height:1.8;background:#fff}.mx{max-width:800px;margin:0 auto;padding:20px}h1{font-size:1.5em;margin:30px 0 10px;color:#1a1a2e}h2{font-size:1.15em;margin:24px 0 12px;color:#4361ee;border-left:4px solid #4361ee;padding-left:10px}.ds{color:#666;margin-bottom:24px}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{border:1px solid #ddd;padding:10px;text-align:center;font-size:.9em}th{background:#4361ee;color:#fff}.ps{background:#eaf7ee;padding:16px;border-radius:8px;margin:12px 0}.wk{background:#fef3e7;padding:16px;border-radius:8px;margin:12px 0}ul{padding-left:20px}li{margin:6px 0}.ck{background:#f0f2f5;padding:16px;border-radius:8px;margin:16px 0}.ct{text-align:center;background:linear-gradient(135deg,#4361ee,#3a0ca3);color:#fff;padding:30px;border-radius:12px;margin:30px 0}.ct a{display:inline-block;background:#fff;color:#4361ee;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:700;margin-top:12px}footer{text-align:center;color:#999;font-size:.8em;padding:20px}</style></head><body><div class="mx"><h1>'+tt+'</h1><p class="ds">'+ds+'</p><h2>機能比較表</h2><table><tr><th>機能</th><th style="background:#27ae60">'+e(pn)+'</th>'+cth+'</tr><tr><td style="font-weight:600">価格帯</td><td style="color:#27ae60;font-weight:700">'+e(pp)+'</td>'+ctp+'</tr>'+fr+'</table><h2>'+e(pn)+'が選ばれる理由</h2><div class="ps"><ul>'+pr+'</ul></div><h2>他社製品の注意点</h2><div class="wk"><ul>'+cw+'</ul></div><h2>製品選定チェックリスト</h2><div class="ck"><ul style="list-style:none;padding:0">'+ck+'</ul></div><div class="ct"><h2 style="color:#fff;border:none;padding:0;margin:0">まずは無料で'+e(pn)+'を試す</h2><p style="margin:8px 0">'+e(pt)+'</p><a href="#">無料トライアルはこちら</a></div><footer>&copy; 2026 '+e(pn)+' | '+e(pc)+'比較ガイド</footer></div></body></html>';document.getElementById('prev').innerHTML='<iframe style="width:100%;height:500px;border:1px solid #ddd;border-radius:4px" srcdoc="'+h.replace(/"/g,'&quot;')+'"></iframe>';document.getElementById('code').textContent=h;document.getElementById('res').classList.remove('hid');document.getElementById('res').scrollIntoView({behavior:'smooth'})}
+function sTab(id,b){document.querySelectorAll('.out').forEach(function(e){e.classList.remove('act')});document.getElementById(id).classList.add('act');document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('act')});b.classList.add('act')}
+function cpCode(){var c=document.getElementById('code').textContent;if(navigator.clipboard){navigator.clipboard.writeText(c).then(function(){var b=document.querySelector('.copy');b.textContent='コピーしました！';setTimeout(function(){b.textContent='HTMLコードをコピー'},2e3)})}else{var ta=document.createElement('textarea');ta.value=c;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();alert('コピーしました')}}
+addC();
+</script>
+</body>
+</html>
