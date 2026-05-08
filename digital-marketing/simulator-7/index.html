@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI接客タイミング最適化シミュレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.85em;color:#718096;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+label{display:block;font-weight:600;font-size:.88em;margin-bottom:4px;color:#4a5568}
+input,select{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:1em;margin-bottom:14px}
+input:focus,select:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 3px rgba(66,153,225,.2)}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+button{width:100%;padding:14px;background:linear-gradient(135deg,#4299e1,#667eea);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;transition:transform .15s}
+button:hover{transform:translateY(-1px)}
+#result{display:none}
+.patterns{display:flex;gap:10px;flex-wrap:wrap}
+.pat{flex:1;min-width:200px;border-radius:10px;padding:16px;text-align:center}
+.pat h3{font-size:.95em;margin-bottom:8px}
+.pat .val{font-size:2em;font-weight:800;line-height:1.2}
+.pat .unit{font-size:.75em;color:#4a5568}
+.pat .detail{font-size:.78em;color:#4a5568;margin-top:8px;text-align:left}
+.p1{background:#ebf8ff;border:2px solid #4299e1}
+.p2{background:#f0fff4;border:2px solid #48bb78}
+.p3{background:#fff5f5;border:2px solid #fc8181}
+.p1 .val{color:#2b6cb0}.p2 .val{color:#276749}.p3 .val{color:#c53030}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin-top:10px}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid #e2e8f0}
+th{background:#edf2f7;font-weight:700;font-size:.8em;color:#4a5568}
+.hl{background:#fffff0;font-weight:700}
+.rec{display:inline-block;background:#48bb78;color:#fff;font-size:.7em;padding:2px 8px;border-radius:10px;margin-left:4px}
+.demo-wrap{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.demo-box{flex:1;min-width:220px;background:#f7fafc;border-radius:10px;padding:14px;position:relative;height:180px;overflow:hidden}
+.demo-box h4{font-size:.82em;color:#718096;margin-bottom:8px}
+.page-mock{width:100%;height:110px;background:#edf2f7;border-radius:6px;position:relative;overflow:hidden}
+.mock-line{height:6px;background:#cbd5e0;border-radius:3px;margin:8px 10px}
+.popup-old{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#e53e3e;color:#fff;padding:8px 14px;border-radius:6px;font-size:.7em;font-weight:700;opacity:0;white-space:nowrap}
+.chat-new{position:absolute;bottom:8px;right:8px;background:#4299e1;color:#fff;padding:6px 12px;border-radius:12px 12px 2px 12px;font-size:.68em;font-weight:600;opacity:0;white-space:nowrap}
+.scroll-bar{position:absolute;right:3px;top:0;width:4px;height:30px;background:#a0aec0;border-radius:2px;opacity:0}
+.run .popup-old{animation:popIn .3s .5s both}
+.run .scroll-bar{animation:scrollD 2s .3s both}
+.run .chat-new{animation:chatIn .4s 2.2s both}
+@keyframes popIn{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@keyframes scrollD{0%{opacity:0;top:0}30%{opacity:.8;top:10px}100%{opacity:.8;top:70px}}
+@keyframes chatIn{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+.tag-b{color:#e53e3e;font-weight:700;font-size:.78em}.tag-a{color:#4299e1;font-weight:700;font-size:.78em}
+.score-bar{height:8px;border-radius:4px;margin:4px 0 2px;transition:width .8s}
+@media(max-width:600px){.row,.patterns,.demo-wrap{flex-direction:column}.pat{min-width:auto}}
+</style>
+<meta name="description" content="EC事業者向けに、訪問者の行動データ（滞在時間・スクロール深度・離脱意図）に基づいたAIチャット接客の最適タイミングを診断・設計・計測するツールキット。既存Web接客ツール28製品の多くがポップアップ型で全員に同じ表示をする中、行動解析に基づいて一人ひとりに最適なタイミングでAIチャットが声をかける接客の設計">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI接客タイミング最適化シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-7/">
+<meta property="og:title" content="AI接客タイミング最適化シミュレーター - kusasyu tools">
+<meta property="og:description" content="EC事業者向けに、訪問者の行動データ（滞在時間・スクロール深度・離脱意図）に基づいたAIチャット接客の最適タイミングを診断・設計・計測するツールキット。既存Web接客ツール28製品の多くがポップアップ型で全員に同じ表示をする中、行動解析に基づいて一人ひとりに最適なタイミングでAIチャットが声をかける接客の設計">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI接客タイミング最適化シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="EC事業者向けに、訪問者の行動データ（滞在時間・スクロール深度・離脱意図）に基づいたAIチャット接客の最適タイミングを診断・設計・計測するツールキット。既存Web接客ツール28製品の多くがポップアップ型で全員に同じ表示をする中、行動解析に基づいて一人ひとりに最適なタイミングでAIチャットが声をかける接客の設計">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI接客タイミング最適化シミュレーター",
+  "description": "EC事業者向けに、訪問者の行動データ（滞在時間・スクロール深度・離脱意図）に基づいたAIチャット接客の最適タイミングを診断・設計・計測するツールキット。既存Web接客ツール28製品の多くがポップアップ型で全員に同じ表示をする中、行動解析に基づいて一人ひとりに最適なタイミングでAIチャットが声をかける接客の設計",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-7/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI接客タイミング最適化シミュレーター</span></div>
+<div class="wrap">
+<h1>AI接客タイミング最適化シミュレーター</h1>
+<p class="sub">行動データから最適なAIチャット介入タイミングを算出</p>
+<div class="card">
+<div class="row">
+<div><label>平均滞在時間（秒）</label><input type="number" id="dur" value="150" min="10" max="600"></div>
+<div><label>直帰率（%）</label><input type="number" id="br" value="45" min="5" max="95"></div>
+</div>
+<div class="row">
+<div><label>平均商品単価（円）</label><input type="number" id="price" value="5000" min="100" max="500000"></div>
+<div><label>業種</label><select id="ind"><option value="apparel">アパレル</option><option value="cosme">コスメ</option><option value="food">食品</option></select></div>
+</div>
+<button onclick="calc()">最適タイミングを診断する</button>
+</div>
+<div id="result">
+<div class="card"><h2 style="font-size:1.05em;margin-bottom:10px">推奨タイミング 3パターン</h2><div class="patterns" id="pats"></div></div>
+<div class="card"><h2 style="font-size:1.05em;margin-bottom:6px">業種別ベンチマーク比較</h2><div id="bench"></div></div>
+<div class="card"><h2 style="font-size:1.05em;margin-bottom:6px">接客体験 Before / After デモ</h2>
+<p style="font-size:.8em;color:#718096">ボタンを押すと比較アニメーションが再生されます</p>
+<button onclick="runDemo()" style="width:auto;padding:8px 20px;margin:8px 0;font-size:.85em">▶ 再生</button>
+<div class="demo-wrap">
+<div class="demo-box" id="demoOld"><h4 class="tag-b">Before：全員一律ポップアップ</h4><div class="page-mock"><div class="mock-line"></div><div class="mock-line" style="width:60%"></div><div class="mock-line"></div><div class="mock-line" style="width:80%"></div><div class="popup-old">🔔 今だけ10%OFF！</div></div></div>
+<div class="demo-box" id="demoNew"><h4 class="tag-a">After：行動閾値トリガー</h4><div class="page-mock"><div class="mock-line"></div><div class="mock-line" style="width:60%"></div><div class="mock-line"></div><div class="mock-line" style="width:80%"></div><div class="scroll-bar"></div><div class="chat-new">💬 サイズ選びでお悩みですか？</div></div></div>
+</div></div>
+<div class="card" id="advice"></div>
+</div>
+</div>
+<script>
+const BM={apparel:{name:'アパレル',dur:150,br:45,cvr:2.5,price:5000},cosme:{name:'コスメ',dur:180,br:40,cvr:3.0,price:3500},food:{name:'食品',dur:105,br:50,cvr:4.0,price:2000}};
+function calc(){
+const dur=+document.getElementById('dur').value,br=+document.getElementById('br').value,price=+document.getElementById('price').value,ind=document.getElementById('ind').value;
+if(dur<10||br<5||br>95||price<100){alert('入力値を確認してください');return}
+const bm=BM[ind],priceF=Math.min(Math.max(price/10000,.1),5),brF=br/50,durF=dur/150;
+const p1t=Math.round(dur*(.1+.05*(1-1/priceF))*brF),p1s=Math.round(15+10*brF),p2t=Math.round(dur*(.4+.1*(priceF-.5))),p2s=Math.round(40+10*(priceF>.5?1:0)),p3t=Math.round(dur*(.75+.1*priceF)),p3s=Math.round(65+10*(priceF>1?1:0));
+const patterns=[
+{name:'早期介入型',cls:'p1',time:p1t,scroll:p1s,desc:'高直帰率サイト向け。訪問直後に軽い声かけで離脱を防止。',use:'直帰率50%超・衝動買い商材',expect:'直帰率 -8〜15%'},
+{name:'中間検討型',cls:'p2',time:p2t,scroll:p2s,desc:'商品閲覧中の検討層にアプローチ。比較・疑問解消を支援。',use:'標準的なEC・比較検討商材',expect:'CVR +0.3〜0.8pt'},
+{name:'離脱直前型',cls:'p3',time:p3t,scroll:p3s,desc:'離脱シグナル検知後に介入。カート放棄・ページ離脱を抑制。',use:'高単価商材・カート放棄対策',expect:'離脱率 -10〜20%'}
+];
+let ph='';
+patterns.forEach(p=>{ph+=`<div class="pat ${p.cls}"><h3>${p.name}</h3><div class="val">${p.time}<span class="unit">秒</span></div><div style="font-size:.82em;margin:4px 0">スクロール深度 <b>${p.scroll}%</b></div><div class="detail"><b>適用:</b> ${p.use}<br><b>期待効果:</b> ${p.expect}</div></div>`});
+document.getElementById('pats').innerHTML=ph;
+let rec=br>=50?'早期介入型':price>=8000?'離脱直前型':'中間検討型';
+let th='<table><tr><th>指標</th><th>あなたのEC</th><th>'+bm.name+'平均</th><th>差分</th></tr>';
+const rows=[['滞在時間',dur+'秒',bm.dur+'秒',(dur-bm.dur>0?'+':'')+(dur-bm.dur)+'秒'],['直帰率',br+'%',bm.br+'%',(br-bm.br>0?'+':'')+(br-bm.br)+'pt'],['商品単価',price.toLocaleString()+'円',bm.price.toLocaleString()+'円',(price-bm.price>0?'+':'')+(price-bm.price).toLocaleString()+'円']];
+rows.forEach(r=>{const d=parseFloat(r[3]);const c=r[0]==='直帰率'?(d>5?'#e53e3e':d<-5?'#38a169':'#718096'):(d>0?'#38a169':d<0?'#e53e3e':'#718096');th+=`<tr><td>${r[0]}</td><td class="hl">${r[1]}</td><td>${r[2]}</td><td style="color:${c};font-weight:700">${r[3]}</td></tr>`});
+th+='</table>';
+document.getElementById('bench').innerHTML=th;
+let adv=`<h2 style="font-size:1.05em;margin-bottom:8px">総合診断</h2><p style="font-size:.9em"><b>推奨パターン：${rec}</b><span class="rec">BEST</span></p><p style="font-size:.82em;color:#4a5568;margin-top:6px">`;
+if(rec==='早期介入型')adv+=`直帰率${br}%は${bm.name}平均${bm.br}%より高めです。訪問${p1t}秒・スクロール${p1s}%到達時点での早期声かけが効果的です。まず「何かお探しですか？」等の軽い接触から始めましょう。`;
+else if(rec==='離脱直前型')adv+=`商品単価${price.toLocaleString()}円は検討時間が長い傾向です。じっくり閲覧後の${p3t}秒・スクロール${p3s}%時点で「ご不明点はありますか？」と介入することで、離脱直前の背中押しになります。`;
+else adv+=`バランスの取れたEC指標です。閲覧${p2t}秒・スクロール${p2s}%到達の中間地点で「サイズ選びのご相談」等の具体的提案が有効です。`;
+adv+='</p>';
+const lift=rec==='早期介入型'?[8,15,'直帰率低下']:rec==='離脱直前型'?[10,20,'離脱率低下']:[3,8,'CVR向上'];
+adv+=`<div style="margin-top:10px"><span style="font-size:.8em;color:#718096">期待改善幅（${lift[2]}）</span><div style="background:#edf2f7;border-radius:4px;height:8px;margin-top:4px;position:relative"><div class="score-bar" style="width:${lift[0]*4}%;background:linear-gradient(90deg,#48bb78,#4299e1);position:absolute"></div></div><span style="font-size:.78em;font-weight:700;color:#2d3748">${lift[0]}% 〜 ${lift[1]}%</span></div>`;
+document.getElementById('advice').innerHTML=adv;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function runDemo(){
+['demoOld','demoNew'].forEach(id=>{const e=document.getElementById(id).querySelector('.page-mock');e.classList.remove('run');void e.offsetWidth;e.classList.add('run')});
+}
+</script>
+</body>
+</html>

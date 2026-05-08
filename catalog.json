@@ -429,6 +429,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-64",
+    "url": "digital-marketing/tool-64/",
+    "title": "EC転換率が上がらない？行動トリガー設計ツール",
+    "tool_name": "EC行動トリガーシナリオ設計ツール",
+    "description": "ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。",
+    "quality_score": 10,
+    "completed_at": "2026-05-07T22:56:55.337239+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-65",
+    "url": "digital-marketing/tool-65/",
+    "title": "EC転換率が上がらない？行動トリガー設計ツール",
+    "tool_name": "トリガーシナリオ効果測定シート",
+    "description": "ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。",
+    "quality_score": 10,
+    "completed_at": "2026-05-07T22:56:55.337239+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "guide-13",
+    "url": "digital-marketing/guide-13/",
+    "title": "EC転換率が上がらない？行動トリガー設計ツール",
+    "tool_name": "無料ポップアップツール別・行動トリガー実装ガイド",
+    "description": "ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。",
+    "quality_score": 10,
+    "completed_at": "2026-05-07T22:56:55.337239+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -2598,6 +2637,45 @@
     "quality_score": 8,
     "completed_at": "2026-04-27T05:01:42.556423+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "simulator-7",
+    "url": "digital-marketing/simulator-7/",
+    "title": "ポップアップが嫌われる？EC向けAI接客タイミング診断",
+    "tool_name": "AI接客タイミング最適化シミュレーター",
+    "description": "EC事業者向けに、訪問者の行動データ（滞在時間・スクロール深度・離脱意図）に基づいたAIチャット接客の最適タイミングを診断・設計・計測するツールキット。既存Web接客ツール28製品の多くがポップアップ型で全員に同じ表示をする中、行動解析に基づいて一人ひとりに最適なタイミングでAIチャットが声をかける接客の設計を支援する。米国Rep AIが実証した行動ベーストリガー×AIチャットモデルを、日本語の接",
+    "quality_score": 8,
+    "completed_at": "2026-05-08T11:04:07.652140+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-17",
+    "url": "digital-marketing/diagnosis-17/",
+    "title": "ポップアップが嫌われる？EC向けAI接客タイミング診断",
+    "tool_name": "AIチャット接客シナリオ設計テンプレート",
+    "description": "EC事業者向けに、訪問者の行動データ（滞在時間・スクロール深度・離脱意図）に基づいたAIチャット接客の最適タイミングを診断・設計・計測するツールキット。既存Web接客ツール28製品の多くがポップアップ型で全員に同じ表示をする中、行動解析に基づいて一人ひとりに最適なタイミングでAIチャットが声をかける接客の設計を支援する。米国Rep AIが実証した行動ベーストリガー×AIチャットモデルを、日本語の接",
+    "quality_score": 8,
+    "completed_at": "2026-05-08T11:04:07.652140+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-18",
+    "url": "digital-marketing/diagnosis-18/",
+    "title": "ポップアップが嫌われる？EC向けAI接客タイミング診断",
+    "tool_name": "行動解析AIチャット接客_設計・ツール選定ガイド",
+    "description": "EC事業者向けに、訪問者の行動データ（滞在時間・スクロール深度・離脱意図）に基づいたAIチャット接客の最適タイミングを診断・設計・計測するツールキット。既存Web接客ツール28製品の多くがポップアップ型で全員に同じ表示をする中、行動解析に基づいて一人ひとりに最適なタイミングでAIチャットが声をかける接客の設計を支援する。米国Rep AIが実証した行動ベーストリガー×AIチャットモデルを、日本語の接",
+    "quality_score": 8,
+    "completed_at": "2026-05-08T11:04:07.652140+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "legal-tech",

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無料ポップアップツール別・行動トリガー実装ガイド - kusasyu tools</title>
+<meta name="description" content="ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,無料ポップアップツール別・行動トリガー実装ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-13/">
+<meta property="og:title" content="無料ポップアップツール別・行動トリガー実装ガイド - kusasyu tools">
+<meta property="og:description" content="ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="無料ポップアップツール別・行動トリガー実装ガイド - kusasyu tools">
+<meta name="twitter:description" content="ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "無料ポップアップツール別・行動トリガー実装ガイド",
+  "description": "ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-13/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-05-07"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>無料ポップアップツール別・行動トリガー実装ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>無料ポップアップツール別・行動トリガー実装ガイド</h1>
+  <p class="project-name">EC転換率が上がらない？行動トリガー設計ツール</p>
+  <div class="content">
+<h1>無料ポップアップツール別・行動トリガー実装ガイド</h1>
+<h2>このガイドの位置づけ</h2>
+<p>本ガイドは「行動トリガー設計ツール」で生成したシナリオを、実際のポップアップツールに実装するための手順書である。</p>
+<table>
+<thead>
+<tr>
+<th>役割</th>
+<th>担当</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>シナリオ設計（トリガー条件・CTA文言・表示タイミング）</td>
+<td>行動トリガー設計ツール</td>
+</tr>
+<tr>
+<td>実装手順（ツールの設定画面でどこに何を入力するか）</td>
+<td><strong>本ガイド</strong></td>
+</tr>
+</tbody>
+</table>
+<p>設計ツールで生成済みのシナリオID（TRG-H001、TRG-C001、TRG-E001など）をそのまま各ツールのキャンペーン名に使用することで、効果測定CSVとの突合が容易になる。</p>
+<h3>対応する無料・低価格ツール</h3>
+<table>
+<thead>
+<tr>
+<th>ツール名</th>
+<th>無料枠</th>
+<th>特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Privy</strong></td>
+<td>月5,000PVまで無料</td>
+<td>カート放棄トリガーが無料枠で使える</td>
+</tr>
+<tr>
+<td><strong>OptiMonk</strong></td>
+<td>月15,000PVまで無料</td>
+<td>スクロール・滞在時間トリガー対応</td>
+</tr>
+<tr>
+<td><strong>Promolayer</strong></td>
+<td>月10,000表示まで無料</td>
+<td>日本語UI・国産ツール</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>場面1：カート放棄（TRG-H001）</h2>
+<h3>なぜこのタイミングが機能するか</h3>
+<p>カートに商品を入れた訪問者は「購買意図の表明」を済ませた状態にある。行動経済学の「保有効果（Endowment Effect）」により、カートに入れた時点で心理的に"自分のもの"と認知し始める。離脱しようとする瞬間に介入すると、「せっかく選んだのに手放すのか」という損失回避バイアスが働き、完了率が上がる。TRG-H001（カート放棄_購入催促ポップアップ）のA/Bテストでは、表示回数1,250回に対しCV数12件（平均注文単価4,980円・健康食品カテゴリ）という結果が出ており、介入なしとの差が明確に現れるトリガーである。</p>
+<h3>ツール別の設定手順</h3>
+<p><strong>Privy の場合</strong></p>
+<ol>
+<li>ダッシュボード → <strong>Create New Campaign</strong> → 「Exit Intent」を選択</li>
+<li><strong>Trigger Settings</strong> で以下を入力</li>
+<li>Trigger Type：<code>Exit Intent</code></li>
+<li>Show on pages：<code>/cart</code>（カートページURL）</li>
+<li>Frequency：<code>Once per session</code></li>
+<li><strong>Design</strong> タブで設計ツールが生成したCTA文言をそのまま貼り付け</li>
+<li>Campaign Name に <code>TRG-H001_A</code> または <code>TRG-H001_B</code> と入力（テストパターン識別用）</li>
+</ol>
+<p><strong>OptiMonk の場合</strong></p>
+<ol>
+<li><strong>Campaigns</strong> → <strong>New Campaign</strong> → テンプレート「Cart Abandonment」選択</li>
+<li><strong>Who to show</strong> → Page targeting → Contains <code>/cart</code></li>
+<li><strong>When to show</strong> → Trigger：<code>On exit intent</code> を選択</li>
+<li>A/Bテスト設定：<strong>Add Variant</strong> でパターンBを追加し、設計ツールの各パターン文言を入力</li>
+</ol>
+<p><strong>Promolayer の場合</strong></p>
+<ol>
+<li><strong>新規キャンペーン</strong> → ポップアップ種別「離脱防止」</li>
+<li>表示条件 → ページURL <code>/cart</code> を含む → 離脱検知ON</li>
+<li>テキスト欄に設計ツールの生成文言を入力</li>
+<li>キャンペーン名に <code>TRG-H001</code> を設定</li>
+</ol>
+<hr />
+<h2>場面2：長時間滞在／スクロール深度（TRG-C001）</h2>
+<h3>なぜこのタイミングが機能するか</h3>
+<p>商品ページでスクロール深度70%以上に達したユーザーは、価格・成分・仕様といった詳細情報まで読み込んでおり、「情報収集フェーズ」から「比較検討フェーズ」に移行している。社会的証明（Social Proof）理論によると、この段階で第三者のレビューや購入実績を提示すると「自分だけでなく他者も選んでいる」という安心感が意思決定の後押しになる。TRG-C001（スクロール70%_レビュー訴求）では、コスメカテゴリで表示回数2,100回・CV数22件（平均注文単価3,800円）とCTRが高く、情報を深く読んだユーザーほどレビュー訴求への反応が良いことが確認されている。</p>
+<h3>ツール別の設定手順</h3>
+<p><strong>Privy の場合</strong></p>
+<ol>
+<li><strong>Create New Campaign</strong> → 「Scroll Box」タイプを選択</li>
+<li>Trigger Settings</li>
+<li>Trigger Type：<code>Scroll percentage</code></li>
+<li>Scroll depth：<code>70%</code></li>
+<li>Show on pages：商品詳細ページのURL群（<code>/products/*</code>）</li>
+<li>テキストに設計ツールのレビュー訴求メッセージを貼り付け</li>
+<li>Campaign Name：<code>TRG-C001_A</code></li>
+</ol>
+<p><strong>OptiMonk の場合</strong></p>
+<ol>
+<li><strong>New Campaign</strong> → 「Nano bar」または「Popup」を選択</li>
+<li><strong>When to show</strong> → Trigger：<code>After scrolling down</code> → 値を <code>70%</code> に設定</li>
+<li><strong>Who to show</strong> → Page targeting：<code>/products/</code> を含むURL</li>
+<li>表示頻度：<code>Maximum 1 per session</code>に設定（過剰表示を防止）</li>
+</ol>
+<p><strong>Promolayer の場合</strong></p>
+<ol>
+<li><strong>新規キャンペーン</strong> → 表示トリガー「スクロール率」</li>
+<li>スクロール率を <code>70%</code> に設定</li>
+<li>表示ページ：商品詳細ページを指定</li>
+<li>キャンペーン名：<code>TRG-C001</code></li>
+</ol>
+<blockquote>
+<p><strong>補足</strong>：滞在時間トリガー（例：60秒以上）も同じ心理的根拠で機能する。OptiMonkでは <strong>When to show</strong> → <code>After X seconds</code> で秒数指定が可能。スクロール深度と併用する場合は「OR条件」で設定し、いずれか早い方で発火させる。</p>
+</blockquote>
+<hr />
+<h2>場面3：比較閲覧（複数商品ページ遷移）</h2>
+<h3>なぜこのタイミングが機能するか</h3>
+<p>複数の商品ページを行き来するユーザーは「選択のパラドックス」に陥りやすい。選択肢が多いほど意思決定が困難になり、結果として「何も買わない」を選んでしまう。この段階で「人気No.1」「この商品が一番選ばれています」といったデフォルト選択肢を提示すると、ヒューリスティック（簡便な判断規則）として機能し、意思決定コストが下がる。設計ツールで生成した比較閲覧シナリオのCTA文言は、この心理的負荷の軽減を狙って設計されている。</p>
+<h3>ツール別の設定手順</h3>
+<p><strong>OptiMonk の場合</strong>（ページビュー数トリガー対応）</p>
+<ol>
+<li><strong>New Campaign</strong> → Popup テンプレートを選択</li>
+<li><strong>Who to show</strong> → Visitor behavior → <code>Number of visited pages</code> → <code>3 pages or more</code> に設定</li>
+<li>Page targeting：商品カテゴリページ（<code>/products/</code> 配下）</li>
+<li>設計ツールの比較閲覧用CTA文言（例：「迷ったらこちら！今月の人気ランキング」）を入力</li>
+</ol>
+<p><strong>Privy の場合</strong></p>
+<p>Privyには直接的なページビュー数トリガーがないため、以下の代替設定を使用する。</p>
+<ol>
+<li><strong>Create New Campaign</strong> → 「Bar」タイプ選択</li>
+<li>Trigger：<code>Timer</code> → <code>15 seconds</code>（複数ページ閲覧に要する平均時間）</li>
+<li>Show on pages：カテゴリ一覧ページのURLを指定</li>
+<li>この設定は近似値であり、正確なページ遷移回数による制御にはOptiMonkを推奨</li>
+</ol>
+<p><strong>Promolayer の場合</strong></p>
+<ol>
+<li><strong>新規キャンペーン</strong> → 表示条件「訪問ページ数」</li>
+<li>ページ数を <code>3</code> 以上に設定</li>
+<li>設計ツールの生成文言を入力</li>
+</ol>
+<hr />
+<h2>場面4：再訪問／初回訪問（TRG-E001）</h2>
+<h3>なぜこのタイミングが機能するか</h3>
+<p>再訪問ユーザーは「単純接触効果（Mere Exposure Effect）」により、初回訪問時よりもブランドへの好意度が上がっている。さらに、前回の閲覧履歴をリマインドすることで「中断した行動の完了欲求（ツァイガルニク効果）」が発動する。TRG-E001（再訪問_閲覧履歴リマインド）では、家電カテゴリで表示回数520回・CV数6件（平均注文単価15,800円）と、高単価商材で特に効果が大きい。一方、初回訪問者には「ウェルカムオファー」として初回限定特典を提示し、損失回避（今だけの機会を逃す恐怖）で初回購入のハードルを下げる。</p>
+<h3>ツール別の設定手順</h3>
+<p><strong>再訪問トリガー（TRG-E001対応）</strong></p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>設定場所</th>
+<th>入力値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OptiMonk</td>
+<td>Who to show → Visitor type</td>
+<td><code>Returning visitors</code> を選択</td>
+</tr>
+<tr>
+<td>Privy</td>
+<td>Trigger → Audience</td>
+<td><code>Has visited before</code> にチェック</td>
+</tr>
+<tr>
+<td>Promolayer</td>
+<td>表示条件 → 訪問回数</td>
+<td><code>2回目以降</code> を選択</td>
+</tr>
+</tbody>
+</table>
+<p>いずれのツールでも、キャンペーン名に <code>TRG-E001</code> を入力し、設計ツールで生成した「前回ご覧いただいた商品はまだ在庫がございます」等のリマインド文言をそのまま使用する。</p>
+<p><strong>初回訪問トリガー</strong></p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>設定場所</th>
+<th>入力値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OptiMonk</td>
+<td>Who to show → Visitor type</td>
+<td><code>New visitors</code> を選択</td>
+</tr>
+<tr>
+<td>Privy</td>
+<td>Trigger → Audience</td>
+<td><code>First-time visitors</code> にチェック</td>
+</tr>
+<tr>
+<td>Promolayer</td>
+<td>表示条件 → 訪問回数</td>
+<td><code>初回</code> を選択</td>
+</tr>
+</tbody>
+</table>
+<p>初回訪問用のシナリオは設計ツールで「初回訪問」トリガー種別を選択して生成し、ウェルカムクーポンや送料無料オファーの文言をここに入力する。</p>
+<hr />
+<h2>実装チェックリスト</h2>
+<p>すべてのシナリオを実装する際に、以下を確認する。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>チェック項目</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>キャンペーン名にシナリオID（TRG-H001等）を含めたか</td>
+<td>効果測定CSVとの突合に必須</td>
+</tr>
+<tr>
+<td>2</td>
+<td>A/Bパターンを別キャンペーンとして作成したか</td>
+<td>パターンA・Bの比較検証のため</td>
+</tr>
+<tr>
+<td>3</td>
+<td>表示頻度を「1セッション1回」に制限したか</td>
+<td>過剰表示はUX悪化と離脱率上昇を招く</td>
+</tr>
+<tr>
+<td>4</td>
+<td>モバイル表示を確認したか</td>
+<td>EC訪問の70%以上がスマートフォン経由</td>
+</tr>
+<tr>
+<td>5</td>
+<td>CTA文言は設計ツールの出力をそのまま使用したか</td>
+<td>独自に改変するとA/Bテストの統制が崩れる</td>
+</tr>
+</tbody>
+</table>
+<h2>効果測定との連携</h2>
+<p>実装後の効果測定は、設計ツールが出力するCSVテンプレート（計測週・シナリオID・表示回数・CTR・CVR・売上貢献額・ROI等を含む）に各ツールのレポート数値を転記する。例えばTRG-H001のパターンAであれば、Privyのダッシュボードから表示回数・クリック数・CV数を取得し、CSVの該当行に入力することで、前週CVRとの変化率や次アクション判定（継続／改善／停止）が自動算出される。</p>
+<p><strong>ツール→設計ツールCSVへの転記対応表</strong></p>
+<table>
+<thead>
+<tr>
+<th>CSVカラム</th>
+<th>Privy</th>
+<th>OptiMonk</th>
+<th>Promolayer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表示回数</td>
+<td>Views</td>
+<td>Impressions</td>
+<td>表示数</td>
+</tr>
+<tr>
+<td>クリック数</td>
+<td>Clicks</td>
+<td>Clicks</td>
+<td>クリック数</td>
+</tr>
+<tr>
+<td>CV数</td>
+<td>Signups</td>
+<td>Conversions</td>
+<td>コンバージョン数</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>まとめ</h2>
+<p>行動トリガーの効果は「シナリオの質 × 実装の正確さ」で決まる。設計ツールで心理学的根拠に基づいたシナリオを生成し、本ガイドの手順で無料ツールに正しく実装すれば、月商500万〜5,000万円規模のEC運営でも大手が使う自動化ロジックと同等の介入施策を1〜3名体制で運用できる。まずはカート放棄（TRG-H001）から実装し、効果を確認した上でスクロール深度（TRG-C001）、再訪問（TRG-E001）へと展開することを推奨する。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

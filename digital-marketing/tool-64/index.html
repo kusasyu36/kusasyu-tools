@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EC行動トリガーシナリオ設計ツール - kusasyu tools</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--primary:#2563eb;--primary-dark:#1d4ed8;--accent:#f59e0b;--bg:#f1f5f9;--card:#fff;--text:#1e293b;--sub:#64748b;--border:#e2e8f0;--success:#10b981;--danger:#ef4444;--radius:10px;--shadow:0 2px 12px rgba(0,0,0,.08)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh}
+.header{background:linear-gradient(135deg,#1e3a5f 0%,#2563eb 50%,#7c3aed 100%);color:#fff;padding:28px 20px;text-align:center}
+.header h1{font-size:clamp(1.2rem,3.5vw,1.7rem);font-weight:800;margin-bottom:6px;letter-spacing:.02em}
+.header p{font-size:.85rem;opacity:.85}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
+.card h2{font-size:1.05rem;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:8px}
+.card h2 .icon{font-size:1.2rem}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-weight:600;font-size:.88rem;margin-bottom:8px;color:var(--text)}
+.form-group .hint{font-size:.78rem;color:var(--sub);margin-bottom:6px}
+.radio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.radio-card{position:relative}
+.radio-card input{position:absolute;opacity:0;width:0;height:0}
+.radio-card .label-box{display:flex;flex-direction:column;align-items:center;padding:12px 8px;border:2px solid var(--border);border-radius:8px;cursor:pointer;transition:all .2s;text-align:center;font-size:.82rem;font-weight:600;gap:4px;min-height:64px;justify-content:center}
+.radio-card .label-box .sub{font-size:.7rem;font-weight:400;color:var(--sub)}
+.radio-card input:checked+.label-box{border-color:var(--primary);background:#eff6ff;color:var(--primary)}
+.radio-card .label-box:hover{border-color:#93c5fd;background:#f8fafc}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:12px 28px;border:none;border-radius:8px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .15s}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn-secondary{background:#e2e8f0;color:var(--text)}
+.btn-secondary:hover{background:#cbd5e1}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:#d97706}
+.btn-danger{background:var(--danger);color:#fff;padding:6px 14px;font-size:.78rem}
+.btn-danger:hover{background:#dc2626}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.scenario-list{margin-top:20px}
+.scenario-item{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:14px;position:relative}
+.scenario-item h3{font-size:.95rem;font-weight:700;color:var(--primary);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.scenario-grid{grid-template-columns:1fr}}
+.scenario-field{padding:10px;background:#fff;border-radius:6px;border:1px solid var(--border)}
+.scenario-field .field-label{font-size:.72rem;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.scenario-field .field-value{font-size:.85rem;font-weight:500}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:600;margin-right:4px}
+.tag-cat{background:#dbeafe;color:#1e40af}
+.tag-trg{background:#fef3c7;color:#92400e}
+.tag-prd{background:#d1fae5;color:#065f46}
+.tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:16px}
+.tab-btn{padding:10px 20px;border:none;background:none;font-size:.85rem;font-weight:600;color:var(--sub);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.output-box{background:#1e293b;color:#e2e8f0;padding:16px;border-radius:8px;font-family:"SF Mono",Consolas,monospace;font-size:.78rem;line-height:1.8;white-space:pre-wrap;word-break:break-all;max-height:500px;overflow-y:auto;position:relative}
+.copy-btn{position:absolute;top:8px;right:8px;padding:5px 12px;background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600}
+.copy-btn:hover{background:rgba(255,255,255,.3)}
+.copy-btn.copied{background:var(--success)}
+.counter{text-align:center;margin-top:10px;font-size:.82rem;color:var(--sub);font-weight:600}
+.empty-state{text-align:center;padding:40px 20px;color:var(--sub)}
+.empty-state .icon{font-size:2.5rem;margin-bottom:10px}
+.empty-state p{font-size:.88rem}
+.matrix-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;padding:3px 12px;border-radius:20px;font-size:.72rem;font-weight:700}
+.score-bar{height:6px;background:#e2e8f0;border-radius:3px;margin-top:6px;overflow:hidden}
+.score-bar .fill{height:100%;border-radius:3px;transition:width .4s}
+.fill-high{background:var(--success);width:85%}
+.fill-mid{background:var(--accent);width:60%}
+.fill-low{background:var(--danger);width:35%}
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+@media(max-width:600px){.summary-grid{grid-template-columns:1fr}}
+.summary-card{padding:14px;border-radius:8px;text-align:center}
+.summary-card .num{font-size:1.5rem;font-weight:800}
+.summary-card .lbl{font-size:.72rem;color:var(--sub);font-weight:600}
+.sc-blue{background:#eff6ff;color:#1e40af}
+.sc-amber{background:#fffbeb;color:#92400e}
+.sc-green{background:#ecfdf5;color:#065f46}
+</style>
+<meta name="description" content="ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,EC行動トリガーシナリオ設計ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-64/">
+<meta property="og:title" content="EC行動トリガーシナリオ設計ツール - kusasyu tools">
+<meta property="og:description" content="ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-64/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EC行動トリガーシナリオ設計ツール - kusasyu tools">
+<meta name="twitter:description" content="ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EC行動トリガーシナリオ設計ツール",
+  "description": "ECサイト訪問者の行動（滞在時間・スクロール深度・カート放棄・再訪問）に応じた介入シナリオを設計し、表示メッセージ・CTA文言を含む完成スクリプトを生成するHTMLツール。「いつ・誰に・何を表示するか」を可視化し、どのポップアップツールにもそのまま転用できる行動トリガーシナリオを即座に作成できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-64/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">EC行動トリガーシナリオ設計ツール</span></div>
+
+<div class="header">
+<h1>EC行動トリガーシナリオ設計ツール</h1>
+<p>カテゴリ × 行動トリガー × 商品特性 — 60パターンから最適シナリオを即時生成</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2><span class="icon">①</span> 商品カテゴリを選択</h2>
+<div class="form-group">
+<div class="hint">販売する商品のカテゴリを選んでください</div>
+<div class="radio-grid" id="categoryGrid"></div>
+</div>
+</div>
+
+<div class="card">
+<h2><span class="icon">②</span> 行動トリガーを選択</h2>
+<div class="form-group">
+<div class="hint">ユーザーのどの行動をきっかけにシナリオを発火させますか？</div>
+<div class="radio-grid" id="triggerGrid"></div>
+</div>
+</div>
+
+<div class="card">
+<h2><span class="icon">③</span> 商品特性を選択</h2>
+<div class="form-group">
+<div class="hint">商材の販売形態に最も近いものを選んでください</div>
+<div class="radio-grid" id="productGrid"></div>
+</div>
+</div>
+
+<div class="actions">
+<button class="btn btn-primary" onclick="addScenario()">＋ シナリオを追加</button>
+<button class="btn btn-secondary" onclick="resetForm()">リセット</button>
+</div>
+<div class="counter" id="counter">作成済み: 0 / 5 パターン</div>
+
+<div id="scenarioListWrap">
+<div class="card" id="scenarioCard" style="display:none">
+<h2><span class="icon">📋</span> 作成済みシナリオ一覧</h2>
+<div class="summary-grid" id="summaryGrid"></div>
+<div class="scenario-list" id="scenarioList"></div>
+<div class="actions">
+<button class="btn btn-accent" onclick="generateOutput()">出力を生成</button>
+<button class="btn btn-danger" onclick="clearAll()">すべて削除</button>
+</div>
+</div>
+</div>
+
+<div class="card" id="outputCard" style="display:none">
+<h2><span class="icon">📤</span> シナリオ出力</h2>
+<div class="tab-bar">
+<button class="tab-btn active" onclick="switchTab('text',this)">テキスト形式</button>
+<button class="tab-btn" onclick="switchTab('json',this)">JSON形式</button>
+</div>
+<div class="tab-content active" id="tab-text">
+<div style="position:relative">
+<div class="output-box" id="outputText"></div>
+<button class="copy-btn" onclick="copyOutput('outputText',this)">コピー</button>
+</div>
+</div>
+<div class="tab-content" id="tab-json">
+<div style="position:relative">
+<div class="output-box" id="outputJson"></div>
+<button class="copy-btn" onclick="copyOutput('outputJson',this)">コピー</button>
+</div>
+</div>
+</div>
+
+<div id="emptyState" class="card">
+<div class="empty-state">
+<div class="icon">🎯</div>
+<p>3つの軸を選択して「シナリオを追加」を押してください<br>最大5パターンまで作成できます</p>
+</div>
+</div>
+</div>
+
+<script>
+var CATEGORIES=[
+{id:"health",name:"健康食品",sub:"サプリ・健康飲料等"},
+{id:"cosmetic",name:"コスメ",sub:"化粧品・スキンケア等"},
+{id:"electronics",name:"家電",sub:"デジタル機器・生活家電等"}
+];
+var TRIGGERS=[
+{id:"dwell",name:"滞在秒数",sub:"一定時間ページに滞在"},
+{id:"scroll",name:"スクロール率",sub:"ページの一定割合まで閲覧"},
+{id:"cart_abandon",name:"カート放棄",sub:"カートに入れて離脱"},
+{id:"revisit",name:"再訪問",sub:"一度離脱後に再来訪"},
+{id:"compare",name:"比較閲覧",sub:"複数商品を閲覧"}
+];
+var PRODUCTS=[
+{id:"subscription",name:"定期購入型",sub:"リピート前提の商材"},
+{id:"high_ticket",name:"単品高額型",sub:"高単価・検討期間長め"},
+{id:"consumable",name:"低価格消耗品",sub:"気軽に買える日用品"},
+{id:"comparison",name:"比較検討型",sub:"類似品が多い商材"}
+];
+
+var MATRIX={};
+function mk(c,t,p){return c+"_"+t+"_"+p}
+function defM(c,t,p,obj){MATRIX[mk(c,t,p)]=obj}
+
+defM("health","dwell","subscription",{timing:"30秒滞在後",delay:30,condition:"商品詳細ページで30秒以上滞在",message:"定期コースなら初回50%OFF。今なら送料無料でお届けします。",cta:"定期コースを見る",urgency:"中",cvr_expect:"3.2%"});
+defM("health","dwell","high_ticket",{timing:"45秒滞在後",delay:45,condition:"高額健康食品ページで45秒以上滞在",message:"専門スタッフが最適なプランをご提案します。まずは無料相談から。",cta:"無料相談を予約",urgency:"低",cvr_expect:"1.8%"});
+defM("health","dwell","consumable",{timing:"15秒滞在後",delay:15,condition:"低価格健康食品ページで15秒以上滞在",message:"今だけお試しセット980円。気軽に始めてみませんか？",cta:"お試しセットを購入",urgency:"高",cvr_expect:"5.1%"});
+defM("health","dwell","comparison",{timing:"40秒滞在後",delay:40,condition:"健康食品ページで40秒以上滞在（比較検討中）",message:"あなたの悩みに合う商品を3つに絞りました。比較表をご覧ください。",cta:"比較表を見る",urgency:"中",cvr_expect:"2.9%"});
+
+defM("health","scroll","subscription",{timing:"スクロール70%到達時",delay:0,condition:"商品LPの70%までスクロール",message:"ここまで読んだ方限定！定期便初回は特別価格でお届けします。",cta:"特別価格で始める",urgency:"高",cvr_expect:"4.0%"});
+defM("health","scroll","high_ticket",{timing:"スクロール60%到達時",delay:0,condition:"高額商品LPの60%までスクロール",message:"品質の理由をご納得いただけましたか？まずはサンプルをお試しください。",cta:"サンプルを申込む",urgency:"中",cvr_expect:"2.2%"});
+defM("health","scroll","consumable",{timing:"スクロール50%到達時",delay:0,condition:"消耗品LPの50%までスクロール",message:"まとめ買いで1個あたり20%お得に。在庫残りわずかです。",cta:"まとめ買いセットを見る",urgency:"高",cvr_expect:"4.5%"});
+defM("health","scroll","comparison",{timing:"スクロール65%到達時",delay:0,condition:"比較検討商品LPの65%までスクロール",message:"迷っているあなたへ。購入者の92%が選んだ人気No.1はこちらです。",cta:"人気No.1を見る",urgency:"中",cvr_expect:"3.5%"});
+
+defM("health","cart_abandon","subscription",{timing:"カート離脱後15分",delay:900,condition:"定期購入商品をカートに入れて離脱",message:"カートの商品、まだお取り置き中です。定期コースなら毎回15%OFFで届きます。",cta:"カートに戻る",urgency:"高",cvr_expect:"8.5%"});
+defM("health","cart_abandon","high_ticket",{timing:"カート離脱後30分",delay:1800,condition:"高額健康食品をカートに入れて離脱",message:"ご検討中の商品について、専門相談を受け付けています。30日間返金保証付きです。",cta:"相談する／購入に進む",urgency:"中",cvr_expect:"5.2%"});
+defM("health","cart_abandon","consumable",{timing:"カート離脱後10分",delay:600,condition:"低価格健康食品をカートに入れて離脱",message:"お忘れではありませんか？今なら送料無料キャンペーン中です。",cta:"今すぐ購入する",urgency:"高",cvr_expect:"9.8%"});
+defM("health","cart_abandon","comparison",{timing:"カート離脱後20分",delay:1200,condition:"比較検討中の健康食品をカートに入れて離脱",message:"まだ迷っていますか？購入者レビュー平均4.6の実力をご確認ください。",cta:"レビューを読む",urgency:"中",cvr_expect:"6.1%"});
+
+defM("health","revisit","subscription",{timing:"再訪問時即時",delay:0,condition:"過去に閲覧した定期購入商品ページへの再訪問",message:"おかえりなさい。前回ご覧の商品、定期便お申込みで初月無料です。",cta:"初月無料で試す",urgency:"高",cvr_expect:"6.8%"});
+defM("health","revisit","high_ticket",{timing:"再訪問時即時",delay:0,condition:"高額健康食品への再訪問",message:"再度ご検討ありがとうございます。期間限定で分割払い手数料無料キャンペーン中です。",cta:"分割払いで購入",urgency:"中",cvr_expect:"3.5%"});
+defM("health","revisit","consumable",{timing:"再訪問時即時",delay:0,condition:"低価格消耗品への再訪問",message:"リピーター様特別価格をご用意しました。通常より10%OFFでご購入いただけます。",cta:"特別価格で購入",urgency:"高",cvr_expect:"7.2%"});
+defM("health","revisit","comparison",{timing:"再訪問後5秒",delay:5,condition:"比較検討中商品への再訪問",message:"前回ご覧の3商品を成分・価格で比較しました。最適な1つが見つかります。",cta:"比較結果を見る",urgency:"中",cvr_expect:"4.4%"});
+
+defM("health","compare","subscription",{timing:"3商品目の閲覧時",delay:0,condition:"健康食品カテゴリで3商品以上を比較閲覧",message:"定期購入なら、どの商品も初回半額。今比較中の商品を並べて確認できます。",cta:"比較表を表示",urgency:"中",cvr_expect:"3.8%"});
+defM("health","compare","high_ticket",{timing:"2商品目の閲覧時",delay:0,condition:"高額健康食品を2商品以上閲覧",message:"高額商品選びのポイントをプロが解説。無料のオンライン相談も実施中です。",cta:"選び方ガイドを読む",urgency:"低",cvr_expect:"2.0%"});
+defM("health","compare","consumable",{timing:"3商品目の閲覧時",delay:0,condition:"低価格健康食品を3商品以上比較",message:"人気TOP3お試しセットが登場。3つ全部試して、お気に入りを見つけてください。",cta:"お試しセットを見る",urgency:"高",cvr_expect:"5.5%"});
+defM("health","compare","comparison",{timing:"2商品目の閲覧後10秒",delay:10,condition:"比較検討型健康食品を2商品以上閲覧",message:"成分・価格・口コミを一覧比較。あなたの悩み別おすすめランキングはこちら。",cta:"ランキングを見る",urgency:"中",cvr_expect:"4.1%"});
+
+defM("cosmetic","dwell","subscription",{timing:"25秒滞在後",delay:25,condition:"コスメ定期便ページで25秒以上滞在",message:"毎月届く美容定期便、初回67%OFFで始められます。いつでも解約OK。",cta:"定期便を始める",urgency:"高",cvr_expect:"4.1%"});
+defM("cosmetic","dwell","high_ticket",{timing:"40秒滞在後",delay:40,condition:"高級コスメページで40秒以上滞在",message:"パーソナル肌診断であなた専用の処方を。まずは無料のスキンチェックから。",cta:"無料肌診断を受ける",urgency:"低",cvr_expect:"2.5%"});
+defM("cosmetic","dwell","consumable",{timing:"15秒滞在後",delay:15,condition:"プチプラコスメページで15秒以上滞在",message:"SNSで話題のアイテム、3点まとめ買いで送料無料！",cta:"まとめ買いする",urgency:"高",cvr_expect:"5.8%"});
+defM("cosmetic","dwell","comparison",{timing:"35秒滞在後",delay:35,condition:"コスメ比較ページで35秒以上滞在",message:"肌タイプ別おすすめ診断で、あなたに合う1本が見つかります。",cta:"診断スタート",urgency:"中",cvr_expect:"3.4%"});
+
+defM("cosmetic","scroll","subscription",{timing:"スクロール65%到達時",delay:0,condition:"コスメ定期便LPの65%までスクロール",message:"定期便だけの限定サイズ＆非売品サンプル付き。今月の締切まであと3日。",cta:"今月分を申込む",urgency:"高",cvr_expect:"4.8%"});
+defM("cosmetic","scroll","high_ticket",{timing:"スクロール55%到達時",delay:0,condition:"高級コスメLPの55%までスクロール",message:"30日間の全額返金保証。肌に合わなければ全額お返しします。",cta:"安心して試す",urgency:"中",cvr_expect:"2.8%"});
+defM("cosmetic","scroll","consumable",{timing:"スクロール45%到達時",delay:0,condition:"プチプラコスメLPの45%までスクロール",message:"本日限定タイムセール実施中。残り在庫わずかです。",cta:"タイムセールを見る",urgency:"高",cvr_expect:"6.2%"});
+defM("cosmetic","scroll","comparison",{timing:"スクロール60%到達時",delay:0,condition:"コスメ比較LPの60%までスクロール",message:"美容部員が選ぶベストコスメTOP3。あなたの肌質に合うのはどれ？",cta:"TOP3を見る",urgency:"中",cvr_expect:"3.9%"});
+
+defM("cosmetic","cart_abandon","subscription",{timing:"カート離脱後15分",delay:900,condition:"コスメ定期便をカートに入れて離脱",message:"定期便のカート、まだお取り置き中です。今なら初回ポーチ付き。",cta:"カートに戻る",urgency:"高",cvr_expect:"9.0%"});
+defM("cosmetic","cart_abandon","high_ticket",{timing:"カート離脱後25分",delay:1500,condition:"高級コスメをカートに入れて離脱",message:"カートの商品に無料ギフトラッピングをお付けできます。特別な一品を、大切に。",cta:"ギフト対応で購入",urgency:"中",cvr_expect:"4.8%"});
+defM("cosmetic","cart_abandon","consumable",{timing:"カート離脱後10分",delay:600,condition:"プチプラコスメをカートに入れて離脱",message:"カートの商品＋もう1点追加で20%OFFクーポン適用できます！",cta:"もう1点追加する",urgency:"高",cvr_expect:"10.5%"});
+defM("cosmetic","cart_abandon","comparison",{timing:"カート離脱後20分",delay:1200,condition:"比較中コスメをカートに入れて離脱",message:"気になる商品のミニサイズセットもご用意。まず試してから決めませんか？",cta:"ミニサイズを見る",urgency:"中",cvr_expect:"5.8%"});
+
+defM("cosmetic","revisit","subscription",{timing:"再訪問時即時",delay:0,condition:"コスメ定期便への再訪問",message:"おかえりなさい！リピーター限定で次回定期便にサンプル3点追加プレゼント中。",cta:"定期便を申込む",urgency:"高",cvr_expect:"7.5%"});
+defM("cosmetic","revisit","high_ticket",{timing:"再訪問後3秒",delay:3,condition:"高級コスメへの再訪問",message:"前回ご覧のアイテム、本日限りの特別クーポンをご用意しました。",cta:"クーポンを使う",urgency:"高",cvr_expect:"4.2%"});
+defM("cosmetic","revisit","consumable",{timing:"再訪問時即時",delay:0,condition:"プチプラコスメへの再訪問",message:"リピーター感謝SALE。前回の購入履歴からおすすめをピックアップしました。",cta:"おすすめを見る",urgency:"高",cvr_expect:"8.0%"});
+defM("cosmetic","revisit","comparison",{timing:"再訪問後5秒",delay:5,condition:"比較検討コスメへの再訪問",message:"前回比較した商品のクチコミが新たに12件追加されました。",cta:"最新クチコミを見る",urgency:"中",cvr_expect:"4.9%"});
+
+defM("cosmetic","compare","subscription",{timing:"3商品目の閲覧時",delay:0,condition:"コスメ定期便を3商品以上比較",message:"全部試せるトライアルBOXが登場。定期便選びの前にまずお試し。",cta:"トライアルBOXを見る",urgency:"高",cvr_expect:"5.2%"});
+defM("cosmetic","compare","high_ticket",{timing:"2商品目の閲覧時",delay:0,condition:"高級コスメを2商品以上比較",message:"オンラインカウンセリングで最適な1本をご提案。予約は無料です。",cta:"カウンセリング予約",urgency:"低",cvr_expect:"2.3%"});
+defM("cosmetic","compare","consumable",{timing:"3商品目の閲覧時",delay:0,condition:"プチプラコスメを3商品以上比較",message:"迷ったら全部！3点まとめ買いセットが断然お得です。",cta:"セットを購入",urgency:"高",cvr_expect:"6.0%"});
+defM("cosmetic","compare","comparison",{timing:"2商品目の閲覧後8秒",delay:8,condition:"比較検討コスメを2商品以上比較",message:"成分・テクスチャ・コスパを徹底比較した一覧表をご用意しました。",cta:"比較表をダウンロード",urgency:"中",cvr_expect:"4.3%"});
+
+defM("electronics","dwell","subscription",{timing:"35秒滞在後",delay:35,condition:"家電サブスクページで35秒以上滞在",message:"月額レンタルなら初期費用0円。最新モデルを気軽にお試しできます。",cta:"月額プランを見る",urgency:"中",cvr_expect:"2.8%"});
+defM("electronics","dwell","high_ticket",{timing:"50秒滞在後",delay:50,condition:"高額家電ページで50秒以上滞在",message:"36回払い金利0%キャンペーン実施中。月々の負担を抑えてお求めいただけます。",cta:"分割シミュレーション",urgency:"中",cvr_expect:"2.1%"});
+defM("electronics","dwell","consumable",{timing:"20秒滞在後",delay:20,condition:"消耗品家電ページで20秒以上滞在",message:"まとめ買い割引実施中。定期的に届く自動補充プランもあります。",cta:"まとめ買いプランを見る",urgency:"高",cvr_expect:"4.5%"});
+defM("electronics","dwell","comparison",{timing:"45秒滞在後",delay:45,condition:"家電比較ページで45秒以上滞在",message:"スペック比較表で違いが一目瞭然。用途別のおすすめもご案内します。",cta:"スペック比較を見る",urgency:"中",cvr_expect:"3.0%"});
+
+defM("electronics","scroll","subscription",{timing:"スクロール60%到達時",delay:0,condition:"家電サブスクLPの60%までスクロール",message:"サブスクなら常に最新機種へ無料アップグレード。縛りなし、いつでも解約OK。",cta:"サブスクを始める",urgency:"中",cvr_expect:"3.2%"});
+defM("electronics","scroll","high_ticket",{timing:"スクロール50%到達時",delay:0,condition:"高額家電LPの50%までスクロール",message:"購入者限定の5年延長保証が無料。万が一の故障も安心です。",cta:"延長保証付きで購入",urgency:"中",cvr_expect:"2.5%"});
+defM("electronics","scroll","consumable",{timing:"スクロール40%到達時",delay:0,condition:"消耗品家電LPの40%までスクロール",message:"今なら予備パーツ1セット無料プレゼント。すぐに届きます。",cta:"無料特典付きで購入",urgency:"高",cvr_expect:"5.0%"});
+defM("electronics","scroll","comparison",{timing:"スクロール55%到達時",delay:0,condition:"家電比較LPの55%までスクロール",message:"家電のプロが選ぶ今月のベストバイ。用途別に3機種を厳選しました。",cta:"ベストバイを見る",urgency:"中",cvr_expect:"3.5%"});
+
+defM("electronics","cart_abandon","subscription",{timing:"カート離脱後20分",delay:1200,condition:"家電サブスクをカートに入れて離脱",message:"レンタル中の商品は全て保険付き。故障・破損も追加費用なしで対応します。",cta:"安心のサブスクを申込む",urgency:"中",cvr_expect:"6.0%"});
+defM("electronics","cart_abandon","high_ticket",{timing:"カート離脱後40分",delay:2400,condition:"高額家電をカートに入れて離脱",message:"カートの商品に下取りプログラムが適用可能。最大30%の値引きが受けられます。",cta:"下取り価格を確認",urgency:"中",cvr_expect:"4.5%"});
+defM("electronics","cart_abandon","consumable",{timing:"カート離脱後10分",delay:600,condition:"消耗品家電をカートに入れて離脱",message:"まもなくカートが期限切れになります。在庫確保は先着順です。",cta:"今すぐ購入する",urgency:"高",cvr_expect:"8.8%"});
+defM("electronics","cart_abandon","comparison",{timing:"カート離脱後25分",delay:1500,condition:"比較検討中の家電をカートに入れて離脱",message:"カート内の商品と他機種の最終比較をご用意しました。決め手が見つかります。",cta:"最終比較を見る",urgency:"中",cvr_expect:"5.5%"});
+
+defM("electronics","revisit","subscription",{timing:"再訪問時即時",delay:0,condition:"家電サブスクへの再訪問",message:"前回ご検討のプラン、今月中のお申込みで初月50%OFFを適用できます。",cta:"50%OFFで始める",urgency:"高",cvr_expect:"5.5%"});
+defM("electronics","revisit","high_ticket",{timing:"再訪問後5秒",delay:5,condition:"高額家電への再訪問",message:"前回ご覧のモデルの在庫が残りわずかになりました。価格は現行が最安です。",cta:"在庫を確認する",urgency:"高",cvr_expect:"3.8%"});
+defM("electronics","revisit","consumable",{timing:"再訪問時即時",delay:0,condition:"消耗品家電への再訪問",message:"前回の閲覧から新しいクーポンが発行されています。今すぐご利用いただけます。",cta:"クーポンを使って購入",urgency:"高",cvr_expect:"7.0%"});
+defM("electronics","revisit","comparison",{timing:"再訪問後3秒",delay:3,condition:"比較検討家電への再訪問",message:"前回比較した商品の価格が変動しました。最新の比較情報をお届けします。",cta:"最新価格で比較",urgency:"中",cvr_expect:"4.0%"});
+
+defM("electronics","compare","subscription",{timing:"2商品目の閲覧時",delay:0,condition:"家電サブスクを2商品以上比較",message:"複数のサブスクプランを月額費用・機能で一覧比較できます。",cta:"プラン比較表を見る",urgency:"中",cvr_expect:"3.5%"});
+defM("electronics","compare","high_ticket",{timing:"2商品目の閲覧時",delay:0,condition:"高額家電を2商品以上比較",message:"専門スタッフによるチャット相談で、用途に最適な1台をご提案します。",cta:"チャットで相談",urgency:"低",cvr_expect:"1.9%"});
+defM("electronics","compare","consumable",{timing:"3商品目の閲覧時",delay:0,condition:"消耗品家電を3商品以上比較",message:"人気ランキングTOP3のお試しセット、期間限定で販売中です。",cta:"お試しセットを購入",urgency:"高",cvr_expect:"5.3%"});
+defM("electronics","compare","comparison",{timing:"2商品目の閲覧後15秒",delay:15,condition:"比較検討型家電を2商品以上比較",message:"閲覧中の商品を全スペックで並列比較。違いをハイライト表示します。",cta:"詳細比較を開く",urgency:"中",cvr_expect:"3.8%"});
+
+var scenarios=[];
+var selectedCat=null,selectedTrg=null,selectedPrd=null;
+
+function buildRadios(containerId,items,group){
+var c=document.getElementById(containerId);
+items.forEach(function(item){
+var d=document.createElement("label");
+d.className="radio-card";
+d.innerHTML='<input type="radio" name="'+group+'" value="'+item.id+'">'+'<div class="label-box">'+item.name+'<span class="sub">'+item.sub+'</span></div>';
+d.querySelector("input").addEventListener("change",function(){
+if(group==="category")selectedCat=item.id;
+if(group==="trigger")selectedTrg=item.id;
+if(group==="product")selectedPrd=item.id;
+});
+c.appendChild(d);
+});
+}
+
+buildRadios("categoryGrid",CATEGORIES,"category");
+buildRadios("triggerGrid",TRIGGERS,"trigger");
+buildRadios("productGrid",PRODUCTS,"product");
+
+function findName(arr,id){for(var i=0;i<arr.length;i++){if(arr[i].id===id)return arr[i].name}return id}
+
+function addScenario(){
+if(!selectedCat||!selectedTrg||!selectedPrd){alert("3つの軸をすべて選択してください。");return}
+if(scenarios.length>=5){alert("最大5パターンまでです。不要なシナリオを削除してから追加してください。");return}
+var key=mk(selectedCat,selectedTrg,selectedPrd);
+var tpl=MATRIX[key];
+if(!tpl){alert("テンプレートが見つかりません。");return}
+var dup=scenarios.some(function(s){return s.key===key});
+if(dup){alert("同じ組み合わせのシナリオが既に追加されています。");return}
+scenarios.push({key:key,cat:selectedCat,trg:selectedTrg,prd:selectedPrd,catName:findName(CATEGORIES,selectedCat),trgName:findName(TRIGGERS,selectedTrg),prdName:findName(PRODUCTS,selectedPrd),data:tpl});
+renderScenarios();
+}
+
+function removeScenario(idx){scenarios.splice(idx,1);renderScenarios();document.getElementById("outputCard").style.display="none"}
+
+function clearAll(){scenarios=[];renderScenarios();document.getElementById("outputCard").style.display="none"}
+
+function resetForm(){
+selectedCat=null;selectedTrg=null;selectedPrd=null;
+document.querySelectorAll('input[type=radio]').forEach(function(r){r.checked=false});
+}
+
+function renderScenarios(){
+var list=document.getElementById("scenarioList");
+var card=document.getElementById("scenarioCard");
+var empty=document.getElementById("emptyState");
+document.getElementById("counter").textContent="作成済み: "+scenarios.length+" / 5 パターン";
+if(scenarios.length===0){card.style.display="none";empty.style.display="block";return}
+card.style.display="block";empty.style.display="none";
+
+var sg=document.getElementById("summaryGrid");
+sg.innerHTML='<div class="summary-card sc-blue"><div class="num">'+scenarios.length+'</div><div class="lbl">作成シナリオ数</div></div>'+'<div class="summary-card sc-amber"><div class="num">'+countUnique("cat")+'</div><div class="lbl">カテゴリ種別</div></div>'+'<div class="summary-card sc-green"><div class="num">'+countUnique("trg")+'</div><div class="lbl">トリガー種別</div></div>';
+
+var html="";
+scenarios.forEach(function(s,i){
+var d=s.data;
+var urgencyClass=d.urgency==="高"?"fill-high":d.urgency==="中"?"fill-mid":"fill-low";
+html+='<div class="scenario-item"><h3><span>シナリオ #'+(i+1)+'</span><button class="btn btn-danger" onclick="removeScenario('+i+')">削除</button></h3>';
+html+='<div style="margin-bottom:10px"><span class="tag tag-cat">'+s.catName+'</span><span class="tag tag-trg">'+s.trgName+'</span><span class="tag tag-prd">'+s.prdName+'</span><span class="matrix-badge">'+s.key+'</span></div>';
+html+='<div class="scenario-grid">';
+html+='<div class="scenario-field"><div class="field-label">介入タイミング</div><div class="field-value">'+d.timing+'</div></div>';
+html+='<div class="scenario-field"><div class="field-label">表示条件</div><div class="field-value">'+d.condition+'</div></div>';
+html+='<div class="scenario-field"><div class="field-label">表示メッセージ</div><div class="field-value">'+d.message+'</div></div>';
+html+='<div class="scenario-field"><div class="field-label">CTA文言</div><div class="field-value" style="color:var(--primary);font-weight:700">'+d.cta+'</div></div>';
+html+='<div class="scenario-field"><div class="field-label">緊急度</div><div class="field-value">'+d.urgency+'<div class="score-bar"><div class="fill '+urgencyClass+'"></div></div></div></div>';
+html+='<div class="scenario-field"><div class="field-label">期待CVR</div><div class="field-value">'+d.cvr_expect+'</div></div>';
+html+='</div></div>';
+});
+list.innerHTML=html;
+}
+
+function countUnique(prop){var s=new Set();scenarios.forEach(function(sc){s.add(sc[prop])});return s.size}
+
+function generateOutput(){
+if(scenarios.length===0){alert("シナリオを1つ以上追加してください。");return}
+var oc=document.getElementById("outputCard");oc.style.display="block";
+
+var txt="";
+txt+="========================================\n";
+txt+="EC行動トリガーシナリオ設定書\n";
+txt+="生成日: "+new Date().toLocaleDateString("ja-JP")+"\n";
+txt+="シナリオ数: "+scenarios.length+"件\n";
+txt+="========================================\n\n";
+scenarios.forEach(function(s,i){
+var d=s.data;
+txt+="--- シナリオ #"+(i+1)+" ---\n";
+txt+="カテゴリ: "+s.catName+"\n";
+txt+="トリガー: "+s.trgName+"\n";
+txt+="商品特性: "+s.prdName+"\n";
+txt+="介入タイミング: "+d.timing+"\n";
+txt+="遅延秒数: "+d.delay+"秒\n";
+txt+="表示条件: "+d.condition+"\n";
+txt+="メッセージ: "+d.message+"\n";
+txt+="CTA: "+d.cta+"\n";
+txt+="緊急度: "+d.urgency+"\n";
+txt+="期待CVR: "+d.cvr_expect+"\n\n";
+});
+txt+="========================================\n";
+txt+="※ ポップアップツール設定画面にそのまま貼り付け可能\n";
+
+document.getElementById("outputText").textContent=txt;
+
+var jsonArr=scenarios.map(function(s,i){
+var d=s.data;
+return{
+scenario_id:i+1,
+category:{id:s.cat,name:s.catName},
+trigger:{id:s.trg,name:s.trgName},
+product_type:{id:s.prd,name:s.prdName},
+config:{
+timing:d.timing,
+delay_seconds:d.delay,
+display_condition:d.condition,
+message:d.message,
+cta_text:d.cta,
+urgency:d.urgency,
+expected_cvr:d.cvr_expect
+}
+};
+});
+var jsonObj={generated_at:new Date().toISOString(),total_scenarios:scenarios.length,scenarios:jsonArr};
+document.getElementById("outputJson").textContent=JSON.stringify(jsonObj,null,2);
+
+oc.scrollIntoView({behavior:"smooth"});
+}
+
+function switchTab(tab,el){
+document.querySelectorAll(".tab-btn").forEach(function(b){b.classList.remove("active")});
+document.querySelectorAll(".tab-content").forEach(function(c){c.classList.remove("active")});
+document.getElementById("tab-"+tab).classList.add("active");
+el.classList.add("active");
+}
+
+function copyOutput(id,btn){
+var text=document.getElementById(id).textContent;
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){
+btn.textContent="コピー完了！";btn.classList.add("copied");
+setTimeout(function(){btn.textContent="コピー";btn.classList.remove("copied")},1500);
+});
+}else{
+var ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);
+btn.textContent="コピー完了！";btn.classList.add("copied");
+setTimeout(function(){btn.textContent="コピー";btn.classList.remove("copied")},1500);
+}
+}
+</script>
+</body>
+</html>
