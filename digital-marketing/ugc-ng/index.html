@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UGC変換プロンプトジェネレーター＋ブランドNGチェッカー - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Hiragino Sans",system-ui,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.7;min-height:100vh}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.15rem;text-align:center;padding:20px 16px 8px;color:#1a1a2e;font-weight:700}
+.sub{text-align:center;font-size:.78rem;color:#666;margin-bottom:18px}
+nav{display:flex;gap:4px;margin-bottom:20px;background:#fff;border-radius:12px;padding:4px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+nav button{flex:1;padding:10px 6px;border:none;background:transparent;border-radius:10px;font-size:.82rem;cursor:pointer;font-weight:600;color:#666;transition:.2s}
+nav button.on{background:#1a1a2e;color:#fff}
+.tab{display:none}.tab.on{display:block}
+.card{background:#fff;border-radius:14px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.card h2{font-size:.92rem;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #eee}
+label{display:block;font-size:.8rem;font-weight:600;margin:10px 0 4px;color:#444}
+input[type=text],textarea,select{width:100%;padding:9px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:.85rem;font-family:inherit;transition:.2s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#4a6cf7}
+textarea{resize:vertical;min-height:60px}
+.tone-wrap{display:flex;align-items:center;gap:12px}
+.tone-wrap input[type=range]{flex:1;accent-color:#4a6cf7}
+.tone-label{font-size:.75rem;color:#666;min-width:80px;text-align:right}
+.btn{padding:10px 20px;border:none;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s}
+.btn:active{transform:scale(.97)}
+.btn-p{background:#4a6cf7;color:#fff}.btn-s{background:#e8ecf7;color:#4a6cf7}.btn-d{background:#f0f0f0;color:#555}.btn-w{background:#ff6b6b;color:#fff}
+.btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.result-box{background:#f8f9fb;border:1.5px solid #e0e4ed;border-radius:10px;padding:14px;margin-top:12px;font-size:.83rem;white-space:pre-wrap;word-break:break-all;max-height:400px;overflow-y:auto;position:relative}
+.copy-btn{position:absolute;top:8px;right:8px;padding:5px 12px;background:#4a6cf7;color:#fff;border:none;border-radius:6px;font-size:.72rem;cursor:pointer}
+.copy-btn.done{background:#27ae60}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:600;margin:2px}
+.tag-r{background:#ffe0e0;color:#c0392b}.tag-y{background:#fff3cd;color:#856404}.tag-b{background:#d4edfc;color:#1a5276}
+.hl-r{background:#ffd6d6;border-radius:3px;padding:0 2px}.hl-y{background:#fff3cd;border-radius:3px;padding:0 2px}.hl-b{background:#d4edfc;border-radius:3px;padding:0 2px}
+.disclaimer{background:#fff8e1;border-left:4px solid #ffc107;padding:10px 14px;margin-top:12px;font-size:.75rem;border-radius:0 8px 8px 0;color:#6d5c00}
+.score{display:flex;gap:10px;margin:10px 0;flex-wrap:wrap}
+.score-item{flex:1;min-width:80px;text-align:center;padding:10px;background:#f8f9fb;border-radius:10px}
+.score-item .num{font-size:1.5rem;font-weight:700;color:#4a6cf7}
+.score-item .lbl{font-size:.7rem;color:#888}
+.cnt{font-size:.78rem;color:#666;margin-top:6px}
+.purpose-btns{display:flex;gap:6px;margin-bottom:12px}
+.purpose-btns button{flex:1;padding:10px;border:2px solid #ddd;background:#fff;border-radius:8px;font-size:.8rem;cursor:pointer;font-weight:600;transition:.2s}
+.purpose-btns button.sel{border-color:#4a6cf7;background:#eef1ff;color:#4a6cf7}
+.hidden{display:none}
+@media(max-width:600px){.wrap{padding:10px}h1{font-size:1rem}.card{padding:14px}}
+</style>
+<meta name="description" content="SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,UGC変換プロンプトジェネレーター＋ブランドNGチェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ugc-ng/">
+<meta property="og:title" content="UGC変換プロンプトジェネレーター＋ブランドNGチェッカー - kusasyu tools">
+<meta property="og:description" content="SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ugc-ng/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UGC変換プロンプトジェネレーター＋ブランドNGチェッカー - kusasyu tools">
+<meta name="twitter:description" content="SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UGC変換プロンプトジェネレーター＋ブランドNGチェッカー",
+  "description": "SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ugc-ng/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">UGC変換プロンプトジェネレーター＋ブランドNGチェッカー</span></div>
+<h1>UGC変換プロンプトジェネレーター＋ブランドNGチェッカー</h1>
+<p class="sub">顧客の声をブランドガイドラインに沿ったコンテンツへ変換</p>
+<div class="wrap">
+<nav id="nav"></nav>
+<div class="tab on" id="t0">
+<div class="card"><h2>基本設定</h2>
+<label>ブランド名</label><input type="text" id="bname" placeholder="例：NATURAL BEAUTY">
+<label>業種</label><select id="industry"><option value="cosmetics">コスメ・美容</option><option value="food">食品・飲料</option><option value="apparel">アパレル・ファッション</option><option value="other">その他</option></select>
+<label>顧客呼称</label><input type="text" id="honorific" value="お客様" placeholder="例：お客様、ユーザー様">
+<label>トーン（1:フォーマル ⇔ 5:カジュアル）</label>
+<div class="tone-wrap"><input type="range" id="tone" min="1" max="5" value="3"><span class="tone-label" id="toneL">3 - バランス型</span></div>
+</div>
+<div class="card"><h2>表現ルール</h2>
+<label>推奨表現（改行区切り）</label><textarea id="goodWords" rows="3" placeholder="自然由来&#10;やさしい使い心地&#10;こだわりの素材"></textarea>
+<label>NG表現（改行区切り）</label><textarea id="ngWords" rows="3" placeholder="絶対&#10;完璧&#10;No.1"></textarea>
+</div>
+<div class="card"><h2>データ管理</h2>
+<div class="btns"><button class="btn btn-s" onclick="exportJSON()">JSON エクスポート</button><button class="btn btn-d" onclick="document.getElementById('imp').click()">JSON インポート</button><input type="file" id="imp" accept=".json" class="hidden" onchange="importJSON(event)"></div>
+</div></div>
+<div class="tab" id="t1">
+<div class="card"><h2>用途を選択</h2>
+<div class="purpose-btns"><button onclick="selPur(0,this)" class="sel">SNS投稿文</button><button onclick="selPur(1,this)">広告コピー</button><button onclick="selPur(2,this)">事例紹介文</button></div>
+<label>変換元UGC（口コミ・レビュー等を貼り付け）</label>
+<textarea id="srcUgc" rows="5" placeholder="例：このクリーム使い始めて2週間、肌の調子がすごく良くなりました！べたつかないし、朝のメイクのりも全然違う。友達にもすすめたいです。"></textarea>
+<div class="btns"><button class="btn btn-p" onclick="genPrompt()">プロンプトを生成</button></div></div>
+<div id="promptResult" class="hidden"><div class="card"><h2>生成プロンプト <span class="tag tag-b" id="purTag">SNS投稿文</span></h2>
+<div class="result-box" id="promptOut"><button class="copy-btn" onclick="copyText('promptOut',this)">コピー</button></div></div></div>
+</div>
+<div class="tab" id="t2">
+<div class="card"><h2>NGチェック対象テキスト</h2>
+<textarea id="checkText" rows="6" placeholder="チェックしたいUGCまたは変換後コンテンツを貼り付け"></textarea>
+<div class="btns"><button class="btn btn-w" onclick="runCheck()">NGチェック実行</button></div></div>
+<div id="checkResult" class="hidden"><div class="card"><h2>チェック結果</h2>
+<div class="score" id="scores"></div><div id="checkDetail"></div>
+<div class="result-box" id="hlOut"></div>
+<div class="disclaimer">⚠ 本チェック結果はルールベースの簡易判定です。法的判断・最終確認は必ず人間（法務・薬事担当者）が行ってください。<strong>要人間確認</strong></div></div></div>
+</div></div>
+<script>
+var tabs=["ブランド設定","プロンプト生成","NGチェック"],curPur=0,purNames=["SNS投稿文","広告コピー","事例紹介文"],toneNames=["1 - 敬語・丁寧","2 - やや丁寧","3 - バランス型","4 - やや親しみ","5 - フレンドリー"];
+(function(){var nav=document.getElementById("nav");tabs.forEach(function(t,i){var b=document.createElement("button");b.textContent=t;if(i===0)b.className="on";b.onclick=function(){switchTab(i)};nav.appendChild(b)});document.getElementById("tone").oninput=function(e){document.getElementById("toneL").textContent=toneNames[e.target.value-1]}})();
+function switchTab(i){document.querySelectorAll(".tab").forEach(function(t,j){t.classList.toggle("on",i===j)});document.querySelectorAll("nav button").forEach(function(b,j){b.classList.toggle("on",i===j)})}
+function selPur(i,el){curPur=i;document.querySelectorAll(".purpose-btns button").forEach(function(b){b.classList.remove("sel")});el.classList.add("sel")}
+function getConf(){return{brand:document.getElementById("bname").value||"\uFF08\u672A\u8A2D\u5B9A\uFF09",industry:document.getElementById("industry").value,honorific:document.getElementById("honorific").value||"\u304A\u5BA2\u69D8",tone:+document.getElementById("tone").value,good:document.getElementById("goodWords").value.split("\n").filter(function(s){return s.trim()}),ng:document.getElementById("ngWords").value.split("\n").filter(function(s){return s.trim()})}}
+function indLabel(v){return{cosmetics:"\u30B3\u30B9\u30E1\u30FB\u7F8E\u5BB9",food:"\u98DF\u54C1\u30FB\u98F2\u6599",apparel:"\u30A2\u30D1\u30EC\u30EB",other:"\u4E00\u822C"}[v]}
+function genPrompt(){var c=getConf(),ugc=document.getElementById("srcUgc").value.trim();if(!ugc){alert("UGCテキストを入力してください");return}
+var td=toneNames[c.tone-1],ng=c.ng.length?"\n- 以下のNG表現は絶対に使用しないこと："+c.ng.join("、"):"",gd=c.good.length?"\n- 以下の推奨表現を自然に取り入れること："+c.good.join("、"):"";
+var rw={cosmetics:"\n- 薬機法に抵触する効能効果の断定表現（治る・消える・若返る等）は避け「～な印象に」「～をサポート」等の表現に置換",food:"\n- 健康増進法・景品表示法に留意し「痩せる」「病気が治る」等の断定表現は不可",apparel:"",other:""}[c.industry];
+var fm=["【出力形式】SNS投稿文（Instagram/X向け）\n- 文字数：100〜200文字\n- ハッシュタグ3〜5個を末尾に付与\n- 絵文字は控えめに（0〜2個）\n- CTA（行動喚起）を自然に含める","【出力形式】広告コピー\n- キャッチコピー（20文字以内）×1案\n- ボディコピー（80〜120文字）×1案\n- CTA文言（15文字以内）×1案\n- 顧客の実体験に基づく説得力を維持しつつ広告として洗練させる","【出力形式】事例紹介文\n- 見出し（30文字以内）\n- 導入（課題 50文字程度）\n- 体験内容（具体的エピソード 100〜150文字）\n- 成果/変化（50文字程度）\n- 第三者視点の客観的トーンで記述"];
+var p="あなたはD2Cブランドのコンテンツライターです。以下のガイドラインとUGCに基づき"+purNames[curPur]+"を作成してください。\n\n【ブランドガイドライン】\n- ブランド名："+c.brand+"\n- 業種："+indLabel(c.industry)+"\n- トーン："+td+"\n- 顧客呼称：「"+c.honorific+"」を使用"+gd+ng+rw+"\n\n"+fm[curPur]+"\n\n【元UGC（顧客の声）】\n"+ugc+"\n\n【注意事項】\n- UGCの体験談要素は活かしつつブランドトーンに合わせて調整\n- 誇張や事実と異なる表現を加えない\n- 日本語でそのまま使える完成度にすること";
+document.getElementById("promptOut").innerHTML='<button class="copy-btn" onclick="copyText(\'promptOut\',this)">コピー</button>'+escH(p);
+document.getElementById("purTag").textContent=purNames[curPur];document.getElementById("promptResult").classList.remove("hidden")}
+var yakki=["治る","治す","治った","効く","効果がある","改善する","改善された","予防する","万能","完治","根治","シミが消え","シワがなくなる","シワが消え","痩せる","痩せた","若返","アンチエイジング","デトックス","毒素を排出","細胞が活性","免疫力が上がる","血液サラサラ","脂肪が燃焼"];
+var stR=["マジで最高","神すぎ","絶対買うべき","人生変わった","世界が変わった","全人類に勧めたい","使わない理由がない","買わないと損"];
+function runCheck(){var text=document.getElementById("checkText").value.trim();if(!text){alert("テキストを入力してください");return}
+var c=getConf(),h=escH(text),f={ng:[],yk:[],st:[]};
+c.ng.forEach(function(w){if(w&&text.indexOf(w)>=0)f.ng.push(w)});yakki.forEach(function(w){if(text.indexOf(w)>=0)f.yk.push(w)});stR.forEach(function(w){if(text.indexOf(w)>=0)f.st.push(w)});
+f.ng.forEach(function(w){h=h.split(escH(w)).join('<span class="hl-r">'+escH(w)+"</span>")});f.yk.forEach(function(w){h=h.split(escH(w)).join('<span class="hl-y">'+escH(w)+"</span>")});f.st.forEach(function(w){h=h.split(escH(w)).join('<span class="hl-b">'+escH(w)+"</span>")});
+var tot=f.ng.length+f.yk.length+f.st.length,sc=Math.max(0,100-tot*15);
+document.getElementById("scores").innerHTML='<div class="score-item"><div class="num">'+sc+'</div><div class="lbl">安全スコア</div></div><div class="score-item"><div class="num">'+f.ng.length+'</div><div class="lbl">NG表現</div></div><div class="score-item"><div class="num">'+f.yk.length+'</div><div class="lbl">法規制リスク</div></div><div class="score-item"><div class="num">'+f.st.length+'</div><div class="lbl">ステマリスク</div></div>';
+var d="";if(f.ng.length)d+='<p class="cnt"><span class="tag tag-r">NG表現</span> '+f.ng.map(function(w){return"\u300C"+w+"\u300D"}).join(" ")+"</p>";
+if(f.yk.length)d+='<p class="cnt"><span class="tag tag-y">法規制</span> '+f.yk.map(function(w){return"\u300C"+w+"\u300D"}).join(" ")+" → 薬機法・景表法に抵触の可能性</p>";
+if(f.st.length)d+='<p class="cnt"><span class="tag tag-b">ステマ</span> '+f.st.map(function(w){return"\u300C"+w+"\u300D"}).join(" ")+"（PR表記の確認を推奨）</p>";
+if(!tot)d='<p class="cnt" style="color:#27ae60;font-weight:600">✓ 問題は検出されませんでした</p>';
+document.getElementById("checkDetail").innerHTML=d;document.getElementById("hlOut").innerHTML=h;document.getElementById("checkResult").classList.remove("hidden")}
+function copyText(id,btn){var el=document.getElementById(id),t=(el.innerText||el.textContent).replace(/^コピー(済)?/,"").trim();if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){btn.textContent="コピー済";btn.classList.add("done");setTimeout(function(){btn.textContent="コピー";btn.classList.remove("done")},1500)});else{var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");document.body.removeChild(a);btn.textContent="コピー済"}}
+function exportJSON(){var c=getConf(),b=new Blob([JSON.stringify(c,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="brand-settings.json";a.click();URL.revokeObjectURL(a.href)}
+function importJSON(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(ev){try{var c=JSON.parse(ev.target.result);document.getElementById("bname").value=c.brand||"";document.getElementById("industry").value=c.industry||"other";document.getElementById("honorific").value=c.honorific||"お客様";document.getElementById("tone").value=c.tone||3;document.getElementById("toneL").textContent=toneNames[(c.tone||3)-1];document.getElementById("goodWords").value=(c.good||[]).join("\n");document.getElementById("ngWords").value=(c.ng||[]).join("\n");alert("インポート完了")}catch(x){alert("JSON読み込み失敗")}};r.readAsText(f)}
+function escH(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+</script>
+</body>
+</html>

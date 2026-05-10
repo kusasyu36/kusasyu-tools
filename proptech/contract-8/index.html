@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>商業リース条項_横断比較ツール（最重要8条項×3物件） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;font-size:14px}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px 20px;text-align:center}
+.header h1{font-size:18px;margin-bottom:4px}
+.header p{font-size:12px;opacity:.8}
+.container{max-width:1100px;margin:0 auto;padding:12px}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tab{padding:8px 16px;background:#fff;border:2px solid #ddd;border-radius:8px 8px 0 0;cursor:pointer;font-weight:600;font-size:13px}
+.tab.active{background:#1a1a2e;color:#fff;border-color:#1a1a2e}
+.tab.cmp{background:#e8f5e9;border-color:#4caf50;color:#2e7d32}
+.tab.cmp.active{background:#2e7d32;color:#fff}
+.panel{display:none;background:#fff;border-radius:0 8px 8px 8px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.panel.active{display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.field label{display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:3px}
+.field input,.field select{width:100%;padding:7px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px}
+.field{margin-bottom:10px}
+.section{background:#f8f9fa;border-radius:8px;padding:12px;margin-bottom:12px}
+.section h3{font-size:13px;color:#1a1a2e;margin-bottom:8px;border-left:3px solid #1a1a2e;padding-left:8px}
+.section.acct h3{border-left-color:#ff9800;color:#e65100}
+.actions{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.btn{padding:8px 18px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-p{background:#1a1a2e;color:#fff}
+.btn-s{background:#e3f2fd;color:#1565c0}
+.btn-d{background:#fff3e0;color:#e65100}
+.btn-x{background:#e8f5e9;color:#2e7d32}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:8px 10px;border:1px solid #e0e0e0;text-align:left}
+th{background:#1a1a2e;color:#fff;font-size:11px;white-space:nowrap}
+td.risk{background:#ffebee;color:#c62828;font-weight:700}
+.legend{font-size:11px;color:#888;margin-top:8px}
+.risk-badge{display:inline-block;background:#c62828;color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;margin-left:4px}
+.empty{text-align:center;padding:40px;color:#999}
+</style>
+<meta name="description" content="数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,商業リース条項_横断比較ツール（最重要8条項×3物件）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-8/">
+<meta property="og:title" content="商業リース条項_横断比較ツール（最重要8条項×3物件） - kusasyu tools">
+<meta property="og:description" content="数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="商業リース条項_横断比較ツール（最重要8条項×3物件） - kusasyu tools">
+<meta name="twitter:description" content="数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "商業リース条項_横断比較ツール（最重要8条項×3物件）",
+  "description": "数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-8/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">商業リース条項_横断比較ツール（最重要8条項×3物件）</span></div>
+<div class="header">
+<h1>商業リース条項 横断比較ツール</h1>
+<p>最重要8条項 × 最大3物件 ｜ IFRS16/ASC842対応 ｜ リスク自動検出</p>
+</div>
+<div class="container">
+<div class="tabs" id="tabs">
+<div class="tab active" onclick="showTab(0)">物件A</div>
+<div class="tab" onclick="showTab(1)">物件B</div>
+<div class="tab" onclick="showTab(2)">物件C</div>
+<div class="tab cmp" onclick="showTab(3)">比較表</div>
+</div>
+<div id="panels"></div>
+<div class="actions">
+<button class="btn btn-p" onclick="saveData()">保存</button>
+<button class="btn btn-s" onclick="loadData()">復元</button>
+<button class="btn btn-d" onclick="clearAll()">全削除</button>
+<button class="btn btn-x" onclick="exportCSV()">CSV出力</button>
+</div>
+</div>
+<script>
+const F=['name','rent','revRate','revType','penalty','restore','restoreNote','term','renewType','renewNote','deposit','leaseLiab','rouAsset','leaseMo'];
+const L=['物件名','月額賃料(万円)','賃料改定率(%/年)','改定方式','解約違約金(月数)','原状回復費(万円)','原状回復条件','契約期間(年)','更新方式','更新条件メモ','敷金(月数)','リース負債(万円)','使用権資産(万円)','リース期間(月)'];
+const K='leaseCompV2';
+function init(){
+let h='';
+for(let i=0;i<3;i++){
+h+=`<div class="panel${i===0?' active':''}" id="p${i}">
+<div class="section"><h3>基本情報・賃料</h3><div class="grid">
+<div class="field"><label>${L[0]}</label><input id="f${i}_0" placeholder="例：渋谷スクエアビル"></div>
+<div class="field"><label>${L[1]}</label><input type="number" id="f${i}_1" placeholder="0"></div>
+<div class="field"><label>${L[2]}</label><input type="number" step="0.1" id="f${i}_2" placeholder="0"></div>
+<div class="field"><label>${L[3]}</label><select id="f${i}_3"><option>CPI連動</option><option>固定率</option><option>協議</option><option>据置</option></select></div>
+</div></div>
+<div class="section"><h3>解約・原状回復</h3><div class="grid">
+<div class="field"><label>${L[4]}</label><input type="number" id="f${i}_4" placeholder="0"></div>
+<div class="field"><label>${L[5]}</label><input type="number" id="f${i}_5" placeholder="0"></div>
+<div class="field"><label>${L[6]}</label><input id="f${i}_6" placeholder="例：スケルトン返し"></div>
+</div></div>
+<div class="section"><h3>契約期間・更新・敷金</h3><div class="grid">
+<div class="field"><label>${L[7]}</label><input type="number" id="f${i}_7" placeholder="0"></div>
+<div class="field"><label>${L[8]}</label><select id="f${i}_8"><option>自動更新</option><option>合意更新</option><option>定期借家</option></select></div>
+<div class="field"><label>${L[9]}</label><input id="f${i}_9" placeholder="例：6ヶ月前通知"></div>
+<div class="field"><label>${L[10]}</label><input type="number" id="f${i}_10" placeholder="0"></div>
+</div></div>
+<div class="section acct"><h3>会計基準（IFRS16/ASC842）</h3><div class="grid">
+<div class="field"><label>${L[11]}</label><input type="number" id="f${i}_11" placeholder="0"></div>
+<div class="field"><label>${L[12]}</label><input type="number" id="f${i}_12" placeholder="0"></div>
+<div class="field"><label>${L[13]}</label><input type="number" id="f${i}_13" placeholder="0"></div>
+</div></div></div>`;
+}
+h+=`<div class="panel" id="p3"><div id="cmpResult"></div></div>`;
+document.getElementById('panels').innerHTML=h;
+loadData();
+}
+function showTab(n){
+document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+if(n===3)renderCompare();
+}
+function getVals(i){
+let o={};
+F.forEach((k,j)=>{let e=document.getElementById('f'+i+'_'+j);o[k]=e?e.value:'';});
+return o;
+}
+function setVals(i,o){
+F.forEach((k,j)=>{let e=document.getElementById('f'+i+'_'+j);if(e&&o[k]!==undefined)e.value=o[k];});
+}
+function saveData(){
+let d=[];for(let i=0;i<3;i++)d.push(getVals(i));
+localStorage.setItem(K,JSON.stringify(d));
+alert('保存しました');
+}
+function loadData(){
+let s=localStorage.getItem(K);
+if(s){let d=JSON.parse(s);d.forEach((o,i)=>setVals(i,o));}
+}
+function clearAll(){
+if(!confirm('全データを削除しますか？'))return;
+localStorage.removeItem(K);
+F.forEach((_,j)=>{for(let i=0;i<3;i++){let e=document.getElementById('f'+i+'_'+j);if(e)e.value='';}});
+}
+function renderCompare(){
+let ds=[];for(let i=0;i<3;i++)ds.push(getVals(i));
+let any=ds.some(d=>d.name.trim());
+if(!any){document.getElementById('cmpResult').innerHTML='<div class="empty">物件データを入力してください</div>';return;}
+let rows=[
+['物件名','name',0],['月額賃料(万円)','rent',0],['賃料改定率(%/年)','revRate',1],
+['改定方式','revType',0],['解約違約金(月数)','penalty',2],['原状回復費(万円)','restore',0],
+['原状回復条件','restoreNote',0],['契約期間(年)','term',0],['更新方式','renewType',0],
+['更新条件','renewNote',0],['敷金(月数)','deposit',0],
+['リース負債(万円)','leaseLiab',0],['使用権資産(万円)','rouAsset',0],['リース期間(月)','leaseMo',0]
+];
+let h='<table><tr><th>条項</th>';
+ds.forEach((d,i)=>{h+=`<th>${d.name||'物件'+'ABC'[i]}</th>`;});
+h+='</tr>';
+rows.forEach(r=>{
+h+='<tr><td><b>'+r[0]+'</b></td>';
+ds.forEach(d=>{
+let v=d[r[1]]||'-';let cls='';
+if(r[2]===1&&parseFloat(v)>3)cls='risk';
+if(r[2]===2&&parseFloat(v)>12)cls='risk';
+let badge='';
+if(cls==='risk')badge=r[2]===1?' <span class="risk-badge">改定率高</span>':' <span class="risk-badge">違約金高</span>';
+h+=`<td class="${cls}">${v}${badge}</td>`;
+});
+h+='</tr>';
+});
+h+='<tr style="background:#e3f2fd"><td><b>年間賃料(万円)</b></td>';
+ds.forEach(d=>{let r=parseFloat(d.rent)||0;h+=`<td>${(r*12).toLocaleString()}</td>`;});
+h+='</tr><tr style="background:#e3f2fd"><td><b>総賃料(万円)</b></td>';
+ds.forEach(d=>{let r=parseFloat(d.rent)||0,t=parseFloat(d.term)||0;h+=`<td>${(r*12*t).toLocaleString()}</td>`;});
+h+='</tr></table>';
+h+='<p class="legend">リスク条件：賃料改定率 3%超 / 解約違約金 12ヶ月超 → 赤ハイライト表示</p>';
+let risks=[];
+ds.forEach((d,i)=>{
+let nm=d.name||'物件'+'ABC'[i];
+if(parseFloat(d.revRate)>3)risks.push(nm+'：改定率'+d.revRate+'%');
+if(parseFloat(d.penalty)>12)risks.push(nm+'：違約金'+d.penalty+'ヶ月');
+});
+if(risks.length){
+h+='<div style="margin-top:12px;padding:10px;background:#fff3e0;border-radius:6px;font-size:12px"><b>リスク検出：</b><ul style="margin:4px 0 0 16px">';
+risks.forEach(r=>h+='<li>'+r+'</li>');
+h+='</ul></div>';
+}
+document.getElementById('cmpResult').innerHTML=h;
+}
+function exportCSV(){
+let ds=[];for(let i=0;i<3;i++)ds.push(getVals(i));
+let head=['条項'].concat(ds.map((d,i)=>d.name||'物件'+'ABC'[i]));
+let csv=[head.join(',')];
+L.forEach((l,j)=>{
+let row=['"'+l+'"'];
+ds.forEach(d=>{row.push('"'+(d[F[j]]||'')+'"');});
+csv.push(row.join(','));
+});
+let blob=new Blob(['\uFEFF'+csv.join('\n')],{type:'text/csv'});
+let a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='lease_compare_'+new Date().toISOString().slice(0,10)+'.csv';
+a.click();
+}
+init();
+</script>
+</body>
+</html>

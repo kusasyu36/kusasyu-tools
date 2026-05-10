@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UGCテキスト品質スコアリング＆選別ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Hiragino Sans",system-ui,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.7}
+.w{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.15rem;text-align:center;padding:18px 0 4px;font-weight:700}
+.sub{text-align:center;font-size:.78rem;color:#666;margin-bottom:16px}
+.c{background:#fff;border-radius:14px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.c h2{font-size:.92rem;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #eee}
+textarea{width:100%;min-height:180px;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:.85rem;font-family:inherit;resize:vertical}
+textarea:focus{outline:none;border-color:#4a6cf7}
+.hint{font-size:.75rem;color:#888;margin-top:4px}
+.btns{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.btn{padding:10px 20px;border:none;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.15s}
+.btn:active{transform:scale(.97)}
+.bp{background:#4a6cf7;color:#fff}.bs{background:#e8ecf7;color:#4a6cf7}.bd{background:#f0f0f0;color:#555}
+#res{display:none}
+.summ{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:14px}
+.sk{text-align:center;padding:14px 8px;border-radius:10px;background:#f8f9fb}
+.sk .n{font-size:1.6rem;font-weight:700;color:#4a6cf7}
+.sk .l{font-size:.72rem;color:#888}
+.ri{border:1.5px solid #eee;border-radius:12px;padding:16px;margin-bottom:10px;transition:.2s}
+.ri:hover{border-color:#4a6cf7}
+.rh{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.rank{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0}
+.r1{background:#f5a623}.r2{background:#8e8e93}.r3{background:#a0522d}.rx{background:#ccc}
+.sc{font-size:1.1rem;font-weight:700;color:#4a6cf7;margin-left:auto}
+.ugct{font-size:.82rem;color:#444;background:#f8f9fb;padding:8px 12px;border-radius:6px;margin-bottom:8px;word-break:break-all}
+.bars{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.bar{flex:1;min-width:100px}
+.bar .bl{font-size:.7rem;color:#888;display:flex;justify-content:space-between}
+.bt{height:6px;background:#eee;border-radius:3px;overflow:hidden;margin-top:2px}
+.bf{height:100%;border-radius:3px;transition:.4s}
+.reason{font-size:.78rem;color:#555;margin-bottom:4px;padding-left:8px;border-left:2px solid #4a6cf7}
+.tpl{font-size:.78rem;color:#e67e22;background:#fef9f0;padding:8px 12px;border-radius:6px;margin-top:6px}
+.disc{font-size:.7rem;color:#999;text-align:center;padding:16px;border-top:1px solid #eee;margin-top:10px}
+.tag{display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:10px;font-weight:600}
+.tg{background:#e6f9ee;color:#27ae60}.ty{background:#fff8e6;color:#e67e22}.tr{background:#fde8e8;color:#e74c3c}
+@media(max-width:600px){.w{padding:10px}textarea{min-height:140px}.bars{flex-direction:column}}
+</style>
+<meta name="description" content="SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,UGCテキスト品質スコアリング＆選別ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-3/">
+<meta property="og:title" content="UGCテキスト品質スコアリング＆選別ツール - kusasyu tools">
+<meta property="og:description" content="SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UGCテキスト品質スコアリング＆選別ツール - kusasyu tools">
+<meta name="twitter:description" content="SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UGCテキスト品質スコアリング＆選別ツール",
+  "description": "SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">UGCテキスト品質スコアリング＆選別ツール</span></div>
+<div class="w">
+<h1>UGCテキスト品質スコアリング＆選別ツール</h1>
+<p class="sub">UGC変換プロンプトジェネレーター＋ブランドNGチェッカー 連携用 ｜ 広告利用に適したUGCを自動選別</p>
+<div class="c">
+<h2>UGCテキスト入力（最大20件）</h2>
+<textarea id="inp" placeholder="UGCテキストを貼り付けてください。&#10;複数件は「---」（ハイフン3つ）で区切ります。&#10;&#10;例：&#10;このクリーム、3ヶ月使ったら肌が変わりました！&#10;---&#10;いい感じです。おすすめ。"></textarea>
+<p class="hint">※「---」で区切って複数件を一括評価。具体性・感情強度・信頼性の3軸でスコアリングします。</p>
+<div class="btns">
+<button class="btn bp" onclick="analyze()">スコアリング実行</button>
+<button class="btn bs" onclick="loadSample()">サンプルで試す</button>
+<button class="btn bd" onclick="reset()">クリア</button>
+</div>
+</div>
+<div id="res">
+<div class="c"><h2>スコアリング結果（広告利用推奨順）</h2>
+<div class="summ" id="summ"></div>
+<div id="list"></div>
+</div>
+</div>
+<p class="disc">※ 本スコアはルールベースの自動判定による目安であり、広告利用の最終判断は利用者の責任において行ってください。画像品質評価は本ツールの対象外です。<br>Kusasyu Digital Marketing</p>
+</div>
+<script>
+const SAMPLE=`このクリーム、使い始めて3ヶ月経ちましたが、以前使っていたものと比べて肌のハリが全然違います！朝のメイクのノリも最高で、もう手放せません。本当におすすめです！\n---\nいい商品だと思います。\n---\n私は毎朝このプロテインを飲んでいます。2ヶ月で体重が3kg減りました。以前のプロテインはまずくて続かなかったけど、これはチョコ味で本当においしい！ジムのトレーナーにも褒められました。\n---\nまあまあかな。可もなく不可もなく。\n---\n友達に勧められて買ってみました。サイズはMを選びましたが、デザインは超かわいくて通勤にもデートにも使えそう！色違いも欲しいです。\n---\n届きました。ありがとうございます。`;
+function loadSample(){document.getElementById('inp').value=SAMPLE;analyze()}
+function reset(){document.getElementById('inp').value='';document.getElementById('res').style.display='none'}
+function sSpec(t){let s=0;if(/\d/.test(t))s+=22;if(/(\d+[日週月年ヶか]|半年|数ヶ月)/.test(t))s+=25;if(/(商品|製品|サイズ|カラー|色|ml|g|cm|kg|個|本|枚|杯|着|足)/.test(t))s+=20;if(/(効果|結果|変化|改善|実感|違い|肌|髪|体重)/.test(t))s+=18;if(t.length>60)s+=10;return Math.min(s,100)}
+function sEmo(t){let s=0;const em=t.match(/(本当に|めちゃくちゃ|すごく|とても|かなり|マジで|超|最高|素晴らしい|感動|大好き|絶対|間違いない|神|やばい|ヤバい|ハマ|手放せ|おすすめ|オススメ)/g);const ex=t.match(/[！!]/g);s+=Math.min((em?em.length:0)*14,42);s+=Math.min((ex?ex.length:0)*10,25);if(/(一番|最も|No\.?1|過去最高|人生で)/.test(t))s+=18;if(/(おすすめ|オススメ|推し|教えたい|広めたい)/.test(t))s+=15;return Math.min(s,100)}
+function sTr(t){let s=0;if(/(使って|購入|買って|試して|注文|届い|着て|食べ|飲ん|塗っ|使い始め|通い|利用)/.test(t))s+=25;if(/(以前|前は|比べ|比較|他の|今まで|これまで|乗り換え|違って|変わっ)/.test(t))s+=22;if(/(\d+[日週月年ヶか]|半年|数ヶ月|毎日|毎週|毎朝|毎晩)/.test(t))s+=20;if(/(仕事|通勤|旅行|デート|普段|日常|朝|夜|自宅|オフィス|ジム)/.test(t))s+=15;if(/(私|僕|自分|わたし)/.test(t))s+=8;if(t.length>80)s+=5;return Math.min(s,100)}
+function expl(sp,em,tr){const r=[];r.push(sp>=60?'具体的な数値や商品情報が含まれており、説得力があります':sp>=30?'一部具体情報がありますが、数値や使用期間を加えるとより効果的です':'具体的な数値・商品名・使用期間の記述がなく、訴求力が弱い可能性があります');r.push(em>=60?'感情表現が豊かで、広告素材としてのインパクトがあります':em>=30?'感情表現はありますが、より具体的な感想で訴求力が高まります':'感情表現が少なく、読者の共感を得にくい可能性があります');r.push(tr>=60?'実体験に基づく記述があり、信頼性の高い内容です':tr>=30?'体験記述はありますが、使用状況や比較を加えると信頼性が向上します':'体験の詳細や比較がなく、信頼性の裏付けが不足しています');return r}
+function impv(sp,em,tr){const t=[];if(sp<50)t.push('「具体的にどのくらいの期間お使いですか？特にお気に入りのポイントや数値的な変化があれば教えてください」');if(em<50)t.push('「この商品への率直なお気持ちを教えてください。周りの方にもおすすめしたいポイントはありますか？」');if(tr<50)t.push('「以前お使いだった商品と比べて、どんな違いがありましたか？どんな場面でお使いですか？」');return t}
+function bc(v){return v>=70?'#27ae60':v>=40?'#e67e22':'#e74c3c'}
+function tg(v){return v>=70?'<span class="tag tg">広告利用推奨</span>':v>=40?'<span class="tag ty">条件付き利用可</span>':'<span class="tag tr">改善が必要</span>'}
+function analyze(){const raw=document.getElementById('inp').value.trim();if(!raw){alert('UGCテキストを入力してください');return}
+let items=raw.split(/\n*---\n*/).map(s=>s.trim()).filter(s=>s);if(items.length>20){items=items.slice(0,20);alert('最大20件までのため、先頭20件を評価します')}
+if(!items.length){alert('有効なUGCが見つかりません');return}
+const res=items.map((t,i)=>{const sp=sSpec(t),em=sEmo(t),tr=sTr(t),total=Math.round((sp+em+tr)/3);return{i,text:t,sp,em,tr,total}});
+res.sort((a,b)=>b.total-a.total);
+const avg=Math.round(res.reduce((s,r)=>s+r.total,0)/res.length);
+const hi=res.filter(r=>r.total>=70).length;
+const lo=res.filter(r=>r.total<40).length;
+document.getElementById('summ').innerHTML=`<div class="sk"><div class="n">${items.length}</div><div class="l">評価件数</div></div><div class="sk"><div class="n">${avg}</div><div class="l">平均スコア</div></div><div class="sk"><div class="n" style="color:#27ae60">${hi}</div><div class="l">推奨UGC</div></div><div class="sk"><div class="n" style="color:#e74c3c">${lo}</div><div class="l">要改善</div></div>`;
+let h='';res.forEach((r,idx)=>{const rc=idx===0?'r1':idx===1?'r2':idx===2?'r3':'rx';const reasons=expl(r.sp,r.em,r.tr);const tpls=impv(r.sp,r.em,r.tr);
+h+=`<div class="ri"><div class="rh"><div class="rank ${rc}">${idx+1}</div><div>${tg(r.total)}</div><div class="sc">${r.total}<span style="font-size:.7rem;color:#888"> /100</span></div></div>
+<div class="ugct">${r.text.replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>
+<div class="bars"><div class="bar"><div class="bl"><span>具体性</span><span>${r.sp}</span></div><div class="bt"><div class="bf" style="width:${r.sp}%;background:${bc(r.sp)}"></div></div></div>
+<div class="bar"><div class="bl"><span>感情強度</span><span>${r.em}</span></div><div class="bt"><div class="bf" style="width:${r.em}%;background:${bc(r.em)}"></div></div></div>
+<div class="bar"><div class="bl"><span>信頼性</span><span>${r.tr}</span></div><div class="bt"><div class="bf" style="width:${r.tr}%;background:${bc(r.tr)}"></div></div></div></div>`;
+reasons.forEach(re=>{h+=`<div class="reason">${re}</div>`});
+if(tpls.length){h+=`<div class="tpl"><b>品質改善依頼テンプレート：</b><br>`;tpls.forEach(tp=>{h+=tp+'<br>'});h+=`</div>`}
+h+=`</div>`});
+document.getElementById('list').innerHTML=h;document.getElementById('res').style.display='block';document.getElementById('res').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

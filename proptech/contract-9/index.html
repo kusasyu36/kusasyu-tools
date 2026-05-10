@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型） - kusasyu tools</title>
+<meta name="description" content="数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-9/">
+<meta property="og:title" content="新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型） - kusasyu tools">
+<meta property="og:description" content="数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型） - kusasyu tools">
+<meta name="twitter:description" content="数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型）",
+  "description": "数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-9/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-05-10"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型）</h1>
+  <p class="project-name">リース契約書100ページ、重要条項だけ即比較</p>
+  <div class="content">
+<p>物件ID,物件名,契約番号,テナント名,契約開始日,契約終了日,リース期間_月,短期リース除外,少額リース除外,移行対象</p>
+<pre><code>
+| 列名 | 型 | 記入例 |
+|------|----|--------|
+| 物件ID | TEXT | `PROP-001` |
+| 物件名 | TEXT | `渋谷スクエアビル` |
+| 契約番号 | TEXT | `LSE-2024-0012` |
+| テナント名 | TEXT | `株式会社ABCリテール` |
+| 契約開始日 | DATE | `2024-04-01` |
+| 契約終了日 | DATE | `2029-03-31` |
+| リース期間_月 | INT | `60` |
+| 短期リース除外 | BOOL | `FALSE` |
+| 少額リース除外 | BOOL | `FALSE` |
+| 移行対象 | BOOL | `TRUE` |
+
+---
+
+## ステップ2：重要条項の抽出と構造化
+
+### 目的
+移行対象契約から12重要条項を抽出し、横断比較ツールへ登録する。
+
+### チェックリスト
+
+| # | タスク | 抽出元 | 担当 | 期限目安 | 完了 |
+|---|--------|--------|------|----------|------|
+| 2-1 | 賃料・共益費・変動賃料を抽出 | 契約書 賃料条項 | [記入例: 資産管理部 鈴木] | [記入例: 第3週] | ☐ |
+| 2-2 | 賃料改定条件（CPI連動・固定率等）を記録 | 契約書 賃料改定条項 | [記入例: 資産管理部 鈴木] | [記入例: 第3週] | ☐ |
+| 2-3 | 解約条項・中途解約違約金を記録 | 契約書 解約条項 | [記入例: 法務部 佐藤] | [記入例: 第3週] | ☐ |
+| 2-4 | 原状回復義務・費用見積を記録 | 契約書 原状回復条項・見積書 | [記入例: 施設部 山田] | [記入例: 第4週] | ☐ |
+| 2-5 | 優先交渉権・更新オプションを記録 | 契約書 更新条項 | [記入例: 法務部 佐藤] | [記入例: 第4週] | ☐ |
+| 2-6 | 敷金・保証金・インセンティブを記録 | 契約書 保証金条項 | [記入例: 経理部 高橋] | [記入例: 第4週] | ☐ |
+| 2-7 | 横断比較ツールでCSV出力し内容を検証 | ツール出力 | [記入例: 資産管理部 部長] | [記入例: 第5週] | ☐ |
+
+### CSV列定義（ステップ2出力 ─ ステップ1列＋以下を追加）
+
+</code></pre>
+<p>月額賃料_税抜,共益費_税抜,変動賃料区分,賃料改定条件,改定頻度_年,解約予告期間_月,解約違約金_円,原状回復費用見積_円,優先交渉権,更新オプション,更新時賃料条件,敷金_円,保証金_円,インセンティブ_円,フリーレント_月</p>
+<pre><code>
+| 列名 | 型 | 記入例 |
+|------|----|--------|
+| 月額賃料_税抜 | INT | `1500000` |
+| 共益費_税抜 | INT | `300000` |
+| 変動賃料区分 | TEXT | `売上歩合3%` |
+| 賃料改定条件 | TEXT | `CPI連動` |
+| 改定頻度_年 | INT | `2` |
+| 解約予告期間_月 | INT | `6` |
+| 解約違約金_円 | INT | `9000000` |
+| 原状回復費用見積_円 | INT | `5000000` |
+| 優先交渉権 | TEXT | `あり（同条件優先）` |
+| 更新オプション | TEXT | `あり（2年×2回）` |
+| 更新時賃料条件 | TEXT | `市場賃料の95%` |
+| 敷金_円 | INT | `9000000` |
+| 保証金_円 | INT | `0` |
+| インセンティブ_円 | INT | `3000000` |
+| フリーレント_月 | INT | `3` |
+
+---
+
+## ステップ3：割引率の決定と支払スケジュール作成
+
+### 目的
+リース負債の現在価値計算に必要な割引率を決定し、支払スケジュールを確定する。
+
+### チェックリスト
+
+| # | タスク | 抽出元 | 担当 | 期限目安 | 完了 |
+|---|--------|--------|------|----------|------|
+| 3-1 | 契約ごとの計算利子率を確認（明示の場合） | 契約書・覚書 | [記入例: 経理部 高橋] | [記入例: 第5週] | ☐ |
+| 3-2 | 追加借入利子率（IBR）を算定 | 取引銀行見積・社債利回り | [記入例: 財務部 中村] | [記入例: 第5週] | ☐ |
+| 3-3 | 適用割引率を契約ごとに決定 | 3-1,3-2の結果 | [記入例: 経理部 部長承認] | [記入例: 第6週] | ☐ |
+| 3-4 | 月次支払スケジュールを作成 | 賃料・改定条件 | [記入例: 経理部 高橋] | [記入例: 第6週] | ☐ |
+| 3-5 | 監査法人へ割引率の事前相談 | 算定根拠資料 | [記入例: 経理部 部長] | [記入例: 第7週] | ☐ |
+
+### CSV列定義（ステップ3出力）
+
+</code></pre>
+<p>物件ID,契約番号,適用割引率_%,割引率根拠,支払回数,支払頻度,支払月額_1期,支払月額_改定後,改定適用開始月,年間支払総額,支払スケジュールJSON</p>
+<pre><code>
+| 列名 | 型 | 記入例 |
+|------|----|--------|
+| 適用割引率_% | DECIMAL | `2.5` |
+| 割引率根拠 | TEXT | `IBR（みずほ銀行5年固定）` |
+| 支払回数 | INT | `60` |
+| 支払頻度 | TEXT | `月次` |
+| 支払月額_1期 | INT | `1800000` |
+| 支払月額_改定後 | INT | `1854000` |
+| 改定適用開始月 | INT | `25` |
+| 年間支払総額 | INT | `21600000` |
+| 支払スケジュールJSON | TEXT | `[{&quot;month&quot;:1,&quot;amount&quot;:1800000},...]` |
+
+---
+
+## ステップ4：使用権資産・リース負債の算定
+
+### 目的
+移行基準日時点の使用権資産とリース負債を契約ごとに算定する。
+
+### チェックリスト
+
+| # | タスク | 抽出元 | 担当 | 期限目安 | 完了 |
+|---|--------|--------|------|----------|------|
+| 4-1 | リース負債＝将来支払の現在価値を計算 | ステップ3 CSV | [記入例: 経理部 高橋] | [記入例: 第7週] | ☐ |
+| 4-2 | 使用権資産＝リース負債＋初期直接コスト＋前払リース料−インセンティブを計算 | ステップ2・3 CSV | [記入例: 経理部 高橋] | [記入例: 第8週] | ☐ |
+| 4-3 | 原状回復引当金を見積・加算 | ステップ2 CSV（原状回復費用見積） | [記入例: 施設部 山田] | [記入例: 第8週] | ☐ |
+| 4-4 | 減価償却スケジュールを作成 | 使用権資産・リース期間 | [記入例: 経理部 高橋] | [記入例: 第9週] | ☐ |
+| 4-5 | 算定結果を監査法人へ提出・レビュー依頼 | 全CSV結合 | [記入例: 経理部 部長] | [記入例: 第9週] | ☐ |
+
+### CSV列定義（ステップ4出力）
+
+</code></pre>
+<p>物件ID,契約番号,リース負債_円,使用権資産_円,初期直接コスト_円,前払リース料_円,原状回復引当金_円,減価償却方法,年間償却額_円,移行基準日,移行方式</p>
+<pre><code>
+| 列名 | 型 | 記入例 |
+|------|----|--------|
+| リース負債_円 | INT | `85234000` |
+| 使用権資産_円 | INT | `83234000` |
+| 初期直接コスト_円 | INT | `500000` |
+| 前払リース料_円 | INT | `1800000` |
+| 原状回復引当金_円 | INT | `5000000` |
+| 減価償却方法 | TEXT | `定額法` |
+| 年間償却額_円 | INT | `16646800` |
+| 移行基準日 | DATE | `2027-04-01` |
+| 移行方式 | TEXT | `修正遡及アプローチ` |
+
+---
+
+## ステップ5：移行仕訳・開示・運用体制の確立
+
+### 目的
+移行日の仕訳を起票し、開示注記を準備し、継続運用体制を構築する。
+
+### チェックリスト
+
+| # | タスク | 抽出元 | 担当 | 期限目安 | 完了 |
+|---|--------|--------|------|----------|------|
+| 5-1 | 移行仕訳（使用権資産／リース負債）を起票 | ステップ4 CSV | [記入例: 経理部 高橋] | [記入例: 第10週] | ☐ |
+| 5-2 | 利益剰余金への累積影響額を算定 | ステップ4 CSV | [記入例: 経理部 高橋] | [記入例: 第10週] | ☐ |
+| 5-3 | 開示注記ドラフトを作成 | 全ステップCSV | [記入例: 経理部 部長] | [記入例: 第11週] | ☐ |
+| 5-4 | 商業リース条項 横断比較ツールを継続運用フローに組込み | ツール運用マニュアル | [記入例: 資産管理部 鈴木] | [記入例: 第12週] | ☐ |
+| 5-5 | 四半期レビュー体制（再測定トリガー管理）を確立 | 社内規程 | [記入例: 経理部 部長] | [記入例: 第12週] | ☐ |
+| 5-6 | 監査法人最終レビュー・承認取得 | 全成果物 | [記入例: CFO] | [記入例: 第13週] | ☐ |
+
+### CSV列定義（ステップ5出力 ─ 最終統合ファイル）
+
+</code></pre>
+<p>物件ID,物件名,契約番号,テナント名,契約開始日,契約終了日,リース期間_月,月額賃料_税抜,適用割引率_%,リース負債_円,使用権資産_円,年間償却額_円,移行方式,移行仕訳済,開示注記済</p>
+<pre><code>
+| 列名 | 型 | 記入例 |
+|------|----|--------|
+| 移行仕訳済 | BOOL | `TRUE` |
+| 開示注記済 | BOOL | `FALSE` |
+
+&gt; 他の列はステップ1〜4と同一定義。全列を結合した最終CSVを会計チームへ連携してください。
+
+---
+
+## CSV連携ワークフロー
+
+</code></pre>
+<p>商業リース条項 横断比較ツール
+        │
+        │ CSV出力（12条項＋会計項目）
+        ▼
+  ステップ1-2 CSV ─→ 条項抽出・構造化完了
+        │
+        │ 割引率・スケジュール追加
+        ▼
+  ステップ3 CSV ─→ 財務部レビュー
+        │
+        │ 現在価値計算
+        ▼
+  ステップ4 CSV ─→ 監査法人レビュー
+        │
+        │ 仕訳・開示追加
+        ▼
+  ステップ5 最終CSV ─→ 会計システム取込み</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1677,6 +1677,58 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-66",
+    "url": "digital-marketing/tool-66/",
+    "title": "AI文章が全部同じ？ブランドボイス再現ツール",
+    "tool_name": "ブランドボイス分析・プロンプト生成_統合ツール",
+    "description": "企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツールセットを構築する。",
+    "quality_score": 9,
+    "completed_at": "2026-05-09T12:38:30.816737+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "guide-14",
+    "url": "digital-marketing/guide-14/",
+    "title": "AI文章が全部同じ？ブランドボイス再現ツール",
+    "tool_name": "ブランドボイス定義ガイドライン_テンプレート",
+    "description": "企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツールセットを構築する。",
+    "quality_score": 9,
+    "completed_at": "2026-05-09T12:38:30.816737+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ugc-ng",
+    "url": "digital-marketing/ugc-ng/",
+    "title": "顧客の声が広告素材に変わらない？UGC自動変換ツール",
+    "tool_name": "UGC変換プロンプトジェネレーター＋ブランドNGチェッカー",
+    "description": "SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通貫で実行する。既存17製品が『収集・表示・分析』に留まる中、『変換・品質保証』というラスト",
+    "quality_score": 9,
+    "completed_at": "2026-05-10T09:50:07.748429+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "converter-3",
+    "url": "digital-marketing/converter-3/",
+    "title": "顧客の声が広告素材に変わらない？UGC自動変換ツール",
+    "tool_name": "UGCテキスト品質スコアリング＆選別ツール",
+    "description": "SNSの口コミ・レビュー・アンケート回答などの顧客UGCを貼り付けるだけで、ブランドガイドライン（トーン・配色・NG表現）に沿ったSNS投稿文・広告コピー・事例紹介文に自動変換するHTMLツール。入力UGCの品質スコアリング（信頼性・感情強度・具体性）を行い、変換後コンテンツのブランド整合性チェックまで一気通貫で実行する。既存17製品が『収集・表示・分析』に留まる中、『変換・品質保証』というラスト",
+    "quality_score": 9,
+    "completed_at": "2026-05-10T09:50:07.748429+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -4963,6 +5015,32 @@
     "description": "物件の基本情報（間取り・築年数・最寄駅・設備）を入力するだけで、SUUMO・HOME'S・At Homeの各ポータルに最適化された物件説明文を自動生成するHTMLツール。ポータルごとの文字数制限・推奨構成を内蔵し、反響率が高いSEOキーワードを自動挿入する。加えて、ポータル別のSEOキーワード集＆テンプレート管理シート（CSV）と、反響率を上げる説明文ライティングの実践ガイドを提供する。",
     "quality_score": 7,
     "completed_at": "2026-04-28T01:49:11.664281+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-8",
+    "url": "proptech/contract-8/",
+    "title": "リース契約書100ページ、重要条項だけ即比較",
+    "tool_name": "商業リース条項_横断比較ツール（最重要8条項×3物件）",
+    "description": "数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域を、中小デベロッパーが自社で完結できるようにする。",
+    "quality_score": 7,
+    "completed_at": "2026-05-10T04:46:44.392110+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-9",
+    "url": "proptech/contract-9/",
+    "title": "リース契約書100ページ、重要条項だけ即比較",
+    "tool_name": "新リース会計基準_移行準備キット（チェックリスト＋CSVテンプレート定義一体型）",
+    "description": "数十〜数百ページの商業不動産リース契約書から、賃料改定・解約違約金・原状回復・優先交渉権など重要12条項を構造化データとして入力・管理し、複数物件のリース条件を横断比較できるツールキット。新リース会計基準（IFRS16/ASC842）移行に必要なデータ項目も網羅し、KPMGのコンサル型ツールKLASが担う領域を、中小デベロッパーが自社で完結できるようにする。",
+    "quality_score": 7,
+    "completed_at": "2026-05-10T04:46:44.392110+00:00",
     "content_type": "article"
   },
   {

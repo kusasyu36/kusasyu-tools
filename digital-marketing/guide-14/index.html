@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブランドボイス定義ガイドライン_テンプレート - kusasyu tools</title>
+<meta name="description" content="企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ブランドボイス定義ガイドライン_テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-14/">
+<meta property="og:title" content="ブランドボイス定義ガイドライン_テンプレート - kusasyu tools">
+<meta property="og:description" content="企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ブランドボイス定義ガイドライン_テンプレート - kusasyu tools">
+<meta name="twitter:description" content="企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ブランドボイス定義ガイドライン_テンプレート",
+  "description": "企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/guide-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-05-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>ブランドボイス定義ガイドライン_テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>ブランドボイス定義ガイドライン_テンプレート</h1>
+  <p class="project-name">AI文章が全部同じ？ブランドボイス再現ツール</p>
+  <div class="content">
+<h1>ブランドボイス定義ガイドライン</h1>
+<blockquote>
+<p><strong>本テンプレートの使い方</strong>
+1. 「ブランドボイス分析・プロンプト生成ツール」の <strong>Step2（プロファイル分析結果）</strong> の数値・キーワードを各欄に転記する
+2. 自社固有の推奨表現・禁止表現を追記し、チーム内でレビューする
+3. 完成版を外注ライター・新任担当者へのブリーフィング資料として配布する</p>
+<p><strong>更新頻度</strong>: 四半期に1回、または大きなリブランディング時に見直す</p>
+</blockquote>
+<hr />
+<h2>1. 基本情報</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>企業名</td>
+<td>[記入例: 株式会社テクノブリッジ]</td>
+</tr>
+<tr>
+<td>ブランド名</td>
+<td>[記入例: TechnoBridge]</td>
+</tr>
+<tr>
+<td>作成日</td>
+<td>[記入例: 2026-05-09]</td>
+</tr>
+<tr>
+<td>作成者</td>
+<td>[記入例: マーケティング部 山田太郎]</td>
+</tr>
+<tr>
+<td>最終更新日</td>
+<td>[　]</td>
+</tr>
+<tr>
+<td>対象チャネル</td>
+<td>[記入例: コーポレートブログ / メルマガ / X(Twitter) / LinkedIn]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>活用シーン</strong>: 外注先への初回ブリーフィング時に、まずこのページを共有する。</p>
+<hr />
+<h2>2. ブランドボイス 5軸スコア</h2>
+<p>「ブランドボイス分析・プロンプト生成ツール」のStep2出力から各スコア（1〜10）を転記する。</p>
+<h3>軸①：フォーマリティ（形式性）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スコア（1=カジュアル ↔ 10=フォーマル）</td>
+<td>[記入例: 6]</td>
+</tr>
+<tr>
+<td>現状の特徴</td>
+<td>[記入例: です・ます調を基本としつつ、見出しや箇条書きでは体言止めを許容]</td>
+</tr>
+<tr>
+<td>目指す方向</td>
+<td>[記入例: 現状維持。堅すぎず、砕けすぎないバランスを保つ]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>活用シーン</strong>: ライターが「ですます調／である調」を迷ったとき、このスコアで即判断する。</p>
+<h3>軸②：テクニカリティ（専門性）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スコア（1=平易 ↔ 10=高度専門）</td>
+<td>[記入例: 5]</td>
+</tr>
+<tr>
+<td>現状の特徴</td>
+<td>[記入例: 業界用語は初出時に括弧で補足。略語は極力展開する]</td>
+</tr>
+<tr>
+<td>目指す方向</td>
+<td>[記入例: 意思決定者が斜め読みで要点を掴めるレベル]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>活用シーン</strong>: 新製品ブログで専門用語を使うかどうかの判断基準。</p>
+<h3>軸③：エモーショナリティ（感情表現度）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スコア（1=抑制的 ↔ 10=感情豊か）</td>
+<td>[記入例: 4]</td>
+</tr>
+<tr>
+<td>現状の特徴</td>
+<td>[記入例: 数値・事実ベースの訴求が中心。感嘆符は見出しのみ使用可]</td>
+</tr>
+<tr>
+<td>目指す方向</td>
+<td>[記入例: 事例紹介時のみ、成果の喜びを控えめに表現する]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>活用シーン</strong>: SNS投稿で絵文字や感嘆符をどこまで使うかの判断。</p>
+<h3>軸④：ユニークネス（独自性）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スコア（1=汎用的 ↔ 10=強い個性）</td>
+<td>[記入例: 7]</td>
+</tr>
+<tr>
+<td>現状の特徴</td>
+<td>[記入例: 自社造語「〇〇メソッド」を軸に据え、事例を交えた語り口]</td>
+</tr>
+<tr>
+<td>目指す方向</td>
+<td>[記入例: 独自フレームワーク名を積極活用し、想起率を高める]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>活用シーン</strong>: 競合との差別化ポイントをコンテンツにどう反映するかの指針。</p>
+<h3>軸⑤：アクショナビリティ（行動喚起力）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>記入欄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スコア（1=情報提供型 ↔ 10=強い行動喚起）</td>
+<td>[記入例: 6]</td>
+</tr>
+<tr>
+<td>現状の特徴</td>
+<td>[記入例: 記事末尾にCTAを1つ配置。本文中の売り込みは避ける]</td>
+</tr>
+<tr>
+<td>目指す方向</td>
+<td>[記入例: 読者が次にとるべきステップを必ず明示する]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>活用シーン</strong>: メルマガのCTA文言のトーン決定に使用。</p>
+<hr />
+<h2>3. 推奨表現リスト（10例）</h2>
+<p>ツールのStep2出力から転記し、自社固有の表現を追加する。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>推奨表現</th>
+<th>使用場面</th>
+<th>理由・効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[記入例: 〜を実現します]</td>
+<td>ブログ・LP</td>
+<td>能動的で信頼感を与える</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[記入例: 具体的には〜]</td>
+<td>解説記事</td>
+<td>抽象論から具体論への転換を明示</td>
+</tr>
+<tr>
+<td>3</td>
+<td>[記入例: 〇〇メソッドでは〜]</td>
+<td>全チャネル</td>
+<td>自社独自フレームワークの想起</td>
+</tr>
+<tr>
+<td>4</td>
+<td>[記入例: 実際に△△社では〜]</td>
+<td>事例紹介</td>
+<td>第三者の実績で説得力を担保</td>
+</tr>
+<tr>
+<td>5</td>
+<td>[記入例: まず取り組むべきは〜]</td>
+<td>メルマガ</td>
+<td>読者の次の行動を具体化</td>
+</tr>
+<tr>
+<td>6</td>
+<td>[記入例: データが示すように〜]</td>
+<td>ブログ</td>
+<td>エビデンスベースの信頼性</td>
+</tr>
+<tr>
+<td>7</td>
+<td>[記入例: ポイントは3つあります]</td>
+<td>全チャネル</td>
+<td>構造化された読みやすさ</td>
+</tr>
+<tr>
+<td>8</td>
+<td>[記入例: 〜という課題はありませんか？]</td>
+<td>メルマガ冒頭</td>
+<td>読者の課題を言語化し共感を得る</td>
+</tr>
+<tr>
+<td>9</td>
+<td>[記入例: 〜の観点から整理すると]</td>
+<td>ホワイトペーパー</td>
+<td>論理的な展開を示す</td>
+</tr>
+<tr>
+<td>10</td>
+<td>[記入例: 次のステップとして〜]</td>
+<td>CTA周辺</td>
+<td>自然な行動喚起</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 禁止表現リスト（10例）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>禁止表現</th>
+<th>理由</th>
+<th>代替表現</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[記入例: 絶対に成果が出ます]</td>
+<td>誇大表現・景表法リスク</td>
+<td>「成果につながる可能性が高い」</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[記入例: ぶっちゃけ]</td>
+<td>カジュアルすぎる</td>
+<td>「率直に申し上げると」</td>
+</tr>
+<tr>
+<td>3</td>
+<td>[記入例: 業界No.1]</td>
+<td>根拠なき最上級表現</td>
+<td>「多くのお客様に選ばれている」</td>
+</tr>
+<tr>
+<td>4</td>
+<td>[記入例: ヤバい/すごい]</td>
+<td>曖昧かつ口語的</td>
+<td>具体的な数値や事実で表現</td>
+</tr>
+<tr>
+<td>5</td>
+<td>[記入例: させていただきます]</td>
+<td>過剰敬語</td>
+<td>「いたします」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>[記入例: 他社はダメですが〜]</td>
+<td>競合比較の直接否定</td>
+<td>「当社の強みは〜」</td>
+</tr>
+<tr>
+<td>7</td>
+<td>[記入例: 簡単です/誰でもできます]</td>
+<td>読者を軽視する印象</td>
+<td>「シンプルなステップで始められます」</td>
+</tr>
+<tr>
+<td>8</td>
+<td>[記入例: 革命的/画期的]</td>
+<td>実態と乖離するリスク</td>
+<td>「新しいアプローチ」</td>
+</tr>
+<tr>
+<td>9</td>
+<td>[記入例: !!! (感嘆符の連続)]</td>
+<td>品位を損なう</td>
+<td>感嘆符は1つまで、見出し限定</td>
+</tr>
+<tr>
+<td>10</td>
+<td>[記入例: ご存知の通り〜]</td>
+<td>読者が知らない前提を押し付ける</td>
+<td>「〜という背景があります」</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 文末パターン集</h2>
+<p>チャネル別に許容する文末パターンを定義する。</p>
+<h3>ブログ記事</h3>
+<table>
+<thead>
+<tr>
+<th>パターン</th>
+<th>使用可否</th>
+<th>例文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>〜です。</td>
+<td>◎ 基本</td>
+<td>[記入例: 重要なポイントです。]</td>
+</tr>
+<tr>
+<td>〜ます。</td>
+<td>◎ 基本</td>
+<td>[記入例: 成果が向上します。]</td>
+</tr>
+<tr>
+<td>〜でしょう。</td>
+<td>○ 許容</td>
+<td>[記入例: 効果が期待できるでしょう。]</td>
+</tr>
+<tr>
+<td>〜ください。</td>
+<td>○ CTA時</td>
+<td>[記入例: ぜひお試しください。]</td>
+</tr>
+<tr>
+<td>〜だ。/〜である。</td>
+<td>△ 見出し・箇条書きのみ</td>
+<td>[記入例: 導入時の注意点は以下の通りである。]</td>
+</tr>
+<tr>
+<td>体言止め</td>
+<td>△ 見出し・箇条書きのみ</td>
+<td>[記入例: 業務効率の最大化。]</td>
+</tr>
+</tbody>
+</table>
+<h3>メールマガジン</h3>
+<table>
+<thead>
+<tr>
+<th>パターン</th>
+<th>使用可否</th>
+<th>例文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>〜です。</td>
+<td>◎ 基本</td>
+<td>[記入例: 本日のテーマです。]</td>
+</tr>
+<tr>
+<td>〜ませんか？</td>
+<td>◎ 冒頭</td>
+<td>[記入例: こんな課題はありませんか？]</td>
+</tr>
+<tr>
+<td>〜しましょう。</td>
+<td>○ 提案時</td>
+<td>[記入例: 一緒に考えてみましょう。]</td>
+</tr>
+</tbody>
+</table>
+<h3>SNS投稿</h3>
+<table>
+<thead>
+<tr>
+<th>パターン</th>
+<th>使用可否</th>
+<th>例文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>体言止め</td>
+<td>◎ 基本</td>
+<td>[記入例: BtoB企業のブランド戦略。]</td>
+</tr>
+<tr>
+<td>〜です！</td>
+<td>○ 1投稿1回まで</td>
+<td>[記入例: 新記事を公開しました！]</td>
+</tr>
+<tr>
+<td>〜してみて。</td>
+<td>× 禁止</td>
+<td>カジュアルすぎるため不可</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. 業界用語辞書</h2>
+<p>自社が扱う専門用語の表記・説明を統一する。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>用語</th>
+<th>正式表記</th>
+<th>初出時の補足説明</th>
+<th>使用可否</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>[記入例: CTA]</td>
+<td>CTA（Call To Action）</td>
+<td>読者に具体的な行動を促すボタンやリンク</td>
+<td>◎ 補足付きで使用</td>
+</tr>
+<tr>
+<td>2</td>
+<td>[記入例: LTV]</td>
+<td>LTV（Life Time Value）</td>
+<td>顧客が取引期間全体でもたらす累計利益</td>
+<td>◎ 補足付きで使用</td>
+</tr>
+<tr>
+<td>3</td>
+<td>[記入例: MA]</td>
+<td>MA（Marketing Automation）</td>
+<td>マーケティング活動を自動化するツール・仕組み</td>
+<td>◎ 補足付きで使用</td>
+</tr>
+<tr>
+<td>4</td>
+<td>[記入例: ファネル]</td>
+<td>ファネル</td>
+<td>見込み客が購買に至るまでの段階的プロセス</td>
+<td>○ そのまま使用可</td>
+</tr>
+<tr>
+<td>5</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+<tr>
+<td>6</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+<tr>
+<td>10</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. チャネル別カスタマイズ早見表</h2>
+<p>5軸スコアをチャネルごとに微調整する場合のガイド。</p>
+<table>
+<thead>
+<tr>
+<th>軸</th>
+<th>ブログ</th>
+<th>メルマガ</th>
+<th>SNS</th>
+<th>ホワイトペーパー</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フォーマリティ</td>
+<td>[記入例: 6]</td>
+<td>[記入例: 5]</td>
+<td>[記入例: 4]</td>
+<td>[記入例: 8]</td>
+</tr>
+<tr>
+<td>テクニカリティ</td>
+<td>[記入例: 5]</td>
+<td>[記入例: 4]</td>
+<td>[記入例: 3]</td>
+<td>[記入例: 7]</td>
+</tr>
+<tr>
+<td>エモーショナリティ</td>
+<td>[記入例: 4]</td>
+<td>[記入例: 5]</td>
+<td>[記入例: 6]</td>
+<td>[記入例: 2]</td>
+</tr>
+<tr>
+<td>ユニークネス</td>
+<td>[記入例: 7]</td>
+<td>[記入例: 7]</td>
+<td>[記入例: 7]</td>
+<td>[記入例: 6]</td>
+</tr>
+<tr>
+<td>アクショナビリティ</td>
+<td>[記入例: 6]</td>
+<td>[記入例: 8]</td>
+<td>[記入例: 5]</td>
+<td>[記入例: 4]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>活用シーン</strong>: 同じテーマでブログとSNSの両方を書く際、トーン調整の数値的な根拠として参照する。</p>
+<hr />
+<h2>8. ブリーフィングチェックリスト</h2>
+<p>外注ライター・新任担当者に本ガイドラインを渡す際、以下を確認する。</p>
+<ul>
+<li>[ ] 5軸スコアの全数値が記入済みである</li>
+<li>[ ] 推奨表現10項目・禁止表現10項目が自社に合わせて更新済みである</li>
+<li>[ ] 文末パターンを対象チャネルに合わせて確認した</li>
+<li>[ ] 業界用語辞書に自社固有の用語を5件以上登録した</li>
+<li>[ ] チャネル別カスタマイズ早見表を記入した</li>
+<li>[ ] 「ブランドボイス分析・プロンプト生成ツール」のStep2出力を転記済みである</li>
+<li>[ ] 本ガイドラインの最終更新日を記入した</li>
+</ul>
+<hr />
+<h2>改訂履歴</h2>
+<table>
+<thead>
+<tr>
+<th>日付</th>
+<th>版</th>
+<th>変更内容</th>
+<th>変更者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[記入例: 2026-05-09]</td>
+<td>v1.0</td>
+<td>初版作成</td>
+<td>[記入例: 山田太郎]</td>
+</tr>
+<tr>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+<tr>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+<td>[　]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本テンプレートは「ブランドボイス分析・プロンプト生成ツール」と連携して使用します。ツールのStep2分析結果を各セクションに転記し、チーム全員で共有してください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

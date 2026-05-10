@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ブランドボイス分析・プロンプト生成_統合ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6}
+.w{max-width:860px;margin:0 auto;padding:12px}
+h1{text-align:center;font-size:1.2em;padding:16px 0 4px;color:#1a365d}
+.note{text-align:center;font-size:.72em;color:#a0aec0;margin-bottom:14px}
+.tabs{display:flex;gap:3px}
+.tab{flex:1;padding:10px 2px;text-align:center;background:#e2e8f0;border:none;border-radius:8px 8px 0 0;cursor:pointer;font-size:.78em;font-weight:700;color:#718096;transition:all .2s}
+.tab.on{background:#fff;color:#2b6cb0;box-shadow:0 -2px 6px rgba(0,0,0,.06)}
+.pnl{display:none;background:#fff;padding:20px;border-radius:0 0 10px 10px;box-shadow:0 4px 12px rgba(0,0,0,.07)}
+.pnl.on{display:block}
+textarea{width:100%;min-height:80px;padding:10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.88em;resize:vertical;margin-bottom:6px;font-family:inherit}
+button{padding:9px 18px;border:none;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:700;transition:background .2s}
+.bp{background:#2b6cb0;color:#fff}.bp:hover{background:#2c5282}
+.bs{background:#e2e8f0;color:#4a5568}.bs:hover{background:#cbd5e0}
+select{padding:8px 12px;border:1px solid #cbd5e0;border-radius:6px;font-size:.88em;background:#fff}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.si{background:#f7fafc;padding:10px 12px;border-radius:6px;border-left:4px solid #2b6cb0}
+.si .v{font-size:1.3em;font-weight:700;color:#2b6cb0}
+.si .l{font-size:.75em;color:#a0aec0}
+.si .n{font-size:.88em;font-weight:600}
+canvas{display:block;margin:0 auto}
+.po{background:#1a202c;color:#e2e8f0;padding:14px;border-radius:8px;font-size:.82em;white-space:pre-wrap;word-break:break-all;max-height:280px;overflow-y:auto;margin:10px 0}
+.d{padding:8px 12px;margin:4px 0;border-radius:6px;font-size:.88em}
+.dw{background:#fff5f5;border-left:4px solid #e53e3e}
+.dok{background:#f0fff4;border-left:4px solid #38a169}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+label{font-size:.85em;font-weight:600}
+.sub{font-size:.82em;color:#718096;margin-bottom:10px}
+.txlbl{font-size:.78em;color:#718096;margin:6px 0 2px}
+@media(max-width:600px){.sg{grid-template-columns:1fr}.tab{font-size:.68em;padding:8px 2px}}
+</style>
+<meta name="description" content="企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ブランドボイス分析・プロンプト生成_統合ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-66/">
+<meta property="og:title" content="ブランドボイス分析・プロンプト生成_統合ツール - kusasyu tools">
+<meta property="og:description" content="企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-66/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ブランドボイス分析・プロンプト生成_統合ツール - kusasyu tools">
+<meta name="twitter:description" content="企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ブランドボイス分析・プロンプト生成_統合ツール",
+  "description": "企業の既存コンテンツ（ブログ・メルマガ・SNS投稿）を貼り付けるだけで、その企業固有の文体・トーン・語彙パターンを5軸で数値化し『ブランドボイスプロファイル』として可視化。抽出したプロファイルを元に、AIコンテンツ生成用のシステムプロンプトを自動生成し、新規コンテンツのブランド一貫性をスコアリングできるツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-66/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">ブランドボイス分析・プロンプト生成_統合ツール</span></div>
+<div class="w">
+<h1>ブランドボイス分析・プロンプト生成ツール</h1>
+<p class="note">※ スコアはルールベース（正規表現・辞書照合）による近似値です。参考指標としてご活用ください。</p>
+<div class="tabs" id="tabs"></div>
+<div class="pnl on" id="p0">
+<p class="sub"><strong>既存コンテンツを貼り付けてください（3〜5本推奨）</strong></p>
+<div id="ins"></div>
+<div class="row"><button class="bs" onclick="addIn()">＋ 追加</button><button class="bp" onclick="analyze()">5軸分析を実行</button></div>
+<p id="err" style="color:#e53e3e;font-size:.82em;margin-top:6px"></p>
+</div>
+<div class="pnl" id="p1">
+<canvas id="cv" width="300" height="300"></canvas>
+<div class="sg" id="sl"></div>
+</div>
+<div class="pnl" id="p2">
+<div class="row">
+<label>AI</label><select id="selAI"><option>Claude</option><option>ChatGPT</option><option>Gemini</option></select>
+<label>用途</label><select id="selUse"><option>ブログ</option><option>メルマガ</option><option>SNS</option><option>LP</option></select>
+<button class="bp" onclick="genP()">プロンプト生成</button><button class="bs" id="cpb" style="display:none" onclick="cpP()">コピー</button>
+</div>
+<div class="po" id="pout" style="display:none"></div>
+</div>
+<div class="pnl" id="p3">
+<p class="sub"><strong>新規コンテンツを貼り付けてブランド一貫性をチェック</strong></p>
+<textarea id="newTx" placeholder="チェックしたいコンテンツをここに貼り付け..."></textarea>
+<button class="bp" onclick="chk()">一貫性チェック</button>
+<div id="cr" style="margin-top:12px"></div>
+</div>
+</div>
+<script>
+const TABS=['Step1 分析','Step2 プロファイル','Step3 プロンプト生成','Step4 チェック'];
+const AX=['フォーマリティ','文のリズム','専門性','温度感','語彙レベル'];
+const KE=/(?:です|ます|ございま|いたしま|くださ[いる]|いただ[きくけ]|存じ|申し上|承り)/g;
+const CA=/(?:だね|だよ|じゃん|だぜ|だろう|かな$|よね|だわ|っす)/g;
+const IND=['ROI','KPI','CV','CTA','SEO','PV','MAU','LTV','CAC','ROAS','CVR','CTR','CPC','MQL','SQL','SFA','CRM','ABM','NPS','SaaS','DX','BtoB','B2B','ファネル','リード','ナーチャリング','セグメント','ペルソナ','カスタマージャーニー','コンバージョン','エンゲージメント','インサイト','ブランディング','オートメーション','アナリティクス','KGI','オンボーディング','MA','UI','UX','API'];
+const EMO=['！','!','嬉し','楽し','素晴らし','最高','すごい','ぜひ','おすすめ','感動','安心','期待','ワクワク','魅力','画期的','革新','感謝','ありがとう','注目'];
+const LBL=[['カジュアル','バランス型','フォーマル'],['短文中心','標準的','長文中心'],['一般向け','やや専門的','高専門性'],['クール','ニュートラル','ウォーム'],['シンプル','標準的','豊富']];
+let prof=null;
+function init(){
+  let tb=document.getElementById('tabs');
+  TABS.forEach((t,i)=>{let b=document.createElement('button');b.className='tab'+(i===0?' on':'');b.textContent=t;b.onclick=()=>showTab(i);tb.appendChild(b);});
+  for(let i=0;i<3;i++)addIn();
+}
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.className='tab'+(i===n?' on':''));
+  for(let i=0;i<4;i++)document.getElementById('p'+i).className='pnl'+(i===n?' on':'');
+}
+function addIn(){
+  let d=document.getElementById('ins'),c=d.children.length+1;
+  if(c>5)return;
+  let p=document.createElement('div');
+  p.innerHTML='<p class="txlbl">コンテンツ '+c+'</p><textarea placeholder="既存コンテンツを貼り付け..."></textarea>';
+  d.appendChild(p);
+}
+function sc(t){
+  if(!t.trim())return null;
+  let km=(t.match(KE)||[]).length,cm=(t.match(CA)||[]).length;
+  let formality=km+cm>0?Math.min(100,Math.round(km/(km+cm)*100)):50;
+  let ss=t.split(/[。！？!?\n]+/).filter(s=>s.trim().length>2);
+  let al=ss.length>0?ss.reduce((a,s)=>a+s.length,0)/ss.length:30;
+  let cd=(t.match(/[、,]/g)||[]).length/(ss.length||1);
+  let rhythm=Math.min(100,Math.round(Math.min(al,80)/80*75+Math.min(cd,3)/3*25));
+  let up=t.toUpperCase();
+  let ec=IND.reduce((c,k)=>c+(up.includes(k.toUpperCase())?1:0),0);
+  let expertise=Math.min(100,Math.round(ec/Math.max(t.length/500,1)*25));
+  let em=EMO.reduce((c,e)=>c+(t.split(e).length-1),0);
+  let temperature=Math.min(100,Math.round(em/Math.max(ss.length,1)*35));
+  let ch=t.replace(/[\s\n\r]/g,''),bg=new Set(),tb=0;
+  for(let i=0;i<ch.length-1;i++){bg.add(ch[i]+ch[i+1]);tb++;}
+  let vocabLevel=tb>0?Math.min(100,Math.round(bg.size/tb*120)):50;
+  return[formality,rhythm,expertise,temperature,vocabLevel];
+}
+function avg(arr){
+  let r=[0,0,0,0,0],n=arr.length;
+  arr.forEach(a=>a.forEach((v,i)=>r[i]+=v));
+  return r.map(v=>Math.round(v/n));
+}
+function analyze(){
+  let txs=Array.from(document.querySelectorAll('#ins textarea')).map(t=>t.value).filter(t=>t.trim().length>20);
+  if(txs.length<1){document.getElementById('err').textContent='テキストを1つ以上入力してください（各20文字以上）';return;}
+  document.getElementById('err').textContent='';
+  let scores=txs.map(sc).filter(Boolean);
+  if(!scores.length)return;
+  prof=avg(scores);
+  drawRadar(prof);
+  renderScores(prof);
+  showTab(1);
+}
+function lbl(i,v){return LBL[i][v<=30?0:v<=65?1:2];}
+function renderScores(s){
+  let h='';
+  s.forEach((v,i)=>{h+='<div class="si"><div class="n">'+AX[i]+'</div><div class="v">'+v+'<span style="font-size:.5em">/100</span></div><div class="l">'+lbl(i,v)+'</div></div>';});
+  document.getElementById('sl').innerHTML=h;
+}
+function drawRadar(s){
+  let cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+  let W=cv.width,H=cv.height,cx=W/2,cy=H/2,R=100;
+  ctx.clearRect(0,0,W,H);
+  let ang=i=>Math.PI/2+i*2*Math.PI/5;
+  // grid
+  for(let r=1;r<=4;r++){
+    ctx.beginPath();
+    for(let i=0;i<=5;i++){let a=-ang(i%5);ctx.lineTo(cx+R*r/4*Math.cos(a),cy-R*r/4*Math.sin(a));}
+    ctx.closePath();ctx.strokeStyle='#e2e8f0';ctx.lineWidth=1;ctx.stroke();
+  }
+  // axes
+  for(let i=0;i<5;i++){
+    let a=-ang(i);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+R*Math.cos(a),cy-R*Math.sin(a));ctx.strokeStyle='#cbd5e0';ctx.stroke();
+    let lx=cx+(R+28)*Math.cos(a),ly=cy-(R+28)*Math.sin(a);
+    ctx.fillStyle='#4a5568';ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(AX[i],lx,ly);
+  }
+  // data
+  ctx.beginPath();
+  s.forEach((v,i)=>{let a=-ang(i),r=v/100*R;let m=i===0?'moveTo':'lineTo';ctx[m](cx+r*Math.cos(a),cy-r*Math.sin(a));});
+  ctx.closePath();ctx.fillStyle='rgba(43,108,176,.18)';ctx.fill();ctx.strokeStyle='#2b6cb0';ctx.lineWidth=2.5;ctx.stroke();
+  s.forEach((v,i)=>{let a=-ang(i),r=v/100*R;ctx.beginPath();ctx.arc(cx+r*Math.cos(a),cy-r*Math.sin(a),4,0,Math.PI*2);ctx.fillStyle='#2b6cb0';ctx.fill();});
+}
+function genP(){
+  if(!prof){document.getElementById('pout').style.display='block';document.getElementById('pout').textContent='先にStep1で分析を実行してください。';return;}
+  let ai=document.getElementById('selAI').value,use=document.getElementById('selUse').value;
+  let fDesc=lbl(0,prof[0]),rDesc=lbl(1,prof[1]),eDesc=lbl(2,prof[2]),tDesc=lbl(3,prof[3]),vDesc=lbl(4,prof[4]);
+  let tone=prof[0]>65?'丁寧語（です・ます調）を基本とし、格式のある表現を使用してください':'prof[0]>30?'です・ます調をベースにしつつ、適度に親しみやすい表現を混ぜてください':'フランクで親しみやすい文体を使い、読者との距離を近く保ってください';
+  if(prof[0]>30&&prof[0]<=65)tone='です・ます調をベースにしつつ、適度に親しみやすい表現を混ぜてください';
+  let len=prof[1]>65?'1文は60〜80文字程度のやや長めの文を中心に、読点を効果的に使って構成してください':prof[1]>30?'1文は30〜50文字程度の標準的な長さで、テンポよく読める構成にしてください':'1文は20〜35文字の短文中心で、歯切れよくリズミカルに構成してください';
+  let exp=prof[2]>65?'業界専門用語を積極的に使用し、読者の専門知識を前提とした記述をしてください':prof[2]>30?'専門用語は使いつつも初出時は簡単な補足を添えてください':'専門用語は避け、誰にでもわかる平易な言葉で説明してください';
+  let tmp=prof[3]>65?'感嘆符や感情表現を積極的に使い、熱量のある文章にしてください':prof[3]>30?'適度な熱量を持ちつつ、落ち着いたトーンを保ってください':'感情表現は控えめに、客観的で冷静なトーンを維持してください';
+  let uc={'ブログ':'SEOを意識した見出し構成でh2/h3を使い、2000〜3000文字程度の記事','メルマガ':'件名・リード・本文・CTAの構成で800〜1200文字程度のメール','SNS':'140文字以内で要点を凝縮し、ハッシュタグを2〜3個付けた投稿','LP':'ファーストビュー→課題提起→解決策→証拠→CTAの流れで構成したランディングページコピー'}[use];
+  let pre={'Claude':'あなたは企業のコンテンツライターです。以下のブランドボイスガイドラインに厳密に従って','ChatGPT':'あなたは企業のコンテンツライターとして振る舞ってください。以下のブランドボイスガイドラインに従い','Gemini':'あなたは企業コンテンツ制作の専門家です。次のブランドボイスガイドラインを遵守して'}[ai];
+  let p=`${pre}、${uc}を作成してください。
+
+【ブランドボイスプロファイル】
+フォーマリティ: ${prof[0]}/100（${fDesc}）
+文のリズム: ${prof[1]}/100（${rDesc}）
+専門性: ${prof[2]}/100（${eDesc}）
+温度感: ${prof[3]}/100（${tDesc}）
+語彙レベル: ${prof[4]}/100（${vDesc}）
+
+【文体ルール】
+・トーン: ${tone}
+・文長: ${len}
+・専門性: ${exp}
+・温度感: ${tmp}
+・語彙: 表現の多様性を${prof[4]>65?'高く':'標準的に'}保ち、同じ言い回しの繰り返しを避けてください。
+
+このプロファイルから逸脱しないよう注意し、一貫したブランドボイスで執筆してください。`;
+  document.getElementById('pout').style.display='block';
+  document.getElementById('pout').textContent=p;
+  document.getElementById('cpb').style.display='inline-block';
+}
+function cpP(){
+  let t=document.getElementById('pout').textContent;
+  navigator.clipboard.writeText(t).then(()=>{let b=document.getElementById('cpb');b.textContent='コピー済み';setTimeout(()=>b.textContent='コピー',1500);});
+}
+function chk(){
+  if(!prof){document.getElementById('cr').innerHTML='<div class="d dw">先にStep1で分析を実行してください。</div>';return;}
+  let t=document.getElementById('newTx').value;
+  if(t.trim().length<20){document.getElementById('cr').innerHTML='<div class="d dw">20文字以上のテキストを入力してください。</div>';return;}
+  let ns=sc(t);if(!ns)return;
+  let h='<div class="sg">';
+  ns.forEach((v,i)=>{h+='<div class="si"><div class="n">'+AX[i]+'</div><div class="v">'+v+' <span style="font-size:.5em;color:#a0aec0">基準:'+prof[i]+'</span></div><div class="l">'+lbl(i,v)+'</div></div>';});
+  h+='</div><h3 style="font-size:.95em;margin:12px 0 8px">乖離レポート</h3>';
+  let any=false;
+  ns.forEach((v,i)=>{
+    let diff=v-prof[i],abs=Math.abs(diff);
+    if(abs>15){
+      any=true;
+      let dir=diff>0?'高い':'低い';
+      let tip={'0':diff>0?'敬語表現が基準より多めです。カジュアルな表現を増やすことを検討してください。':'カジュアルな表現が目立ちます。です・ます調を増やすことを検討してください。','1':diff>0?'文が長めです。文を分割してリズムを調整してください。':'文が短めです。情報量を増やし、読点を活用してください。','2':diff>0?'専門用語が多めです。読者層に合わせて平易な表現も検討してください。':'専門用語が少なめです。ターゲットに応じて業界用語を適度に使用してください。','3':diff>0?'感情表現が多めです。客観的な表現を増やしてトーンを調整してください。':'感情表現が少なめです。読者の共感を引く表現を追加してください。','4':diff>0?'語彙が豊富すぎる可能性があります。一貫した用語選択を心がけてください。':'表現が単調になっています。同義語や言い換えを活用してください。'}[i];
+      h+='<div class="d dw"><strong>'+AX[i]+'</strong>：基準より<strong>'+abs+'pt '+dir+'</strong>（'+v+' vs 基準'+prof[i]+'）<br>'+tip+'</div>';
+    } else {
+      h+='<div class="d dok"><strong>'+AX[i]+'</strong>：基準と一致（差 '+abs+'pt）</div>';
+    }
+  });
+  if(!any)h+='<div class="d dok" style="font-weight:bold">すべての軸でブランドボイスとの一貫性が保たれています。</div>';
+  let total=Math.round(100-ns.reduce((s,v,i)=>s+Math.abs(v-prof[i]),0)/5);
+  h='<div style="text-align:center;margin:12px 0"><span style="font-size:2em;font-weight:700;color:'+(total>=70?'#38a169':total>=50?'#d69e2e':'#e53e3e')+'">'+total+'</span><span style="font-size:.9em;color:#718096">/100 ブランド一貫性スコア</span></div>'+h;
+  document.getElementById('cr').innerHTML=h;
+}
+init();
+</script>
+</body>
+</html>
