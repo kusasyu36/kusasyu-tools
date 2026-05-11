@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>契約交渉ロールプレイ・シミュレーター（NDA秘密保持期間_交渉編） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh}
+#app{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.2em;text-align:center;padding:14px 0;color:#1a1a2e}
+.card{background:#fff;border-radius:12px;padding:18px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.badge{display:inline-block;background:#1a1a2e;color:#fff;font-size:.72em;padding:2px 10px;border-radius:20px}
+.opp{background:#e8edf3;border-radius:10px;padding:12px;margin:10px 0;border-left:4px solid #1a1a2e}
+.opp::before{content:'取引先担当者';font-size:.72em;color:#666;display:block;margin-bottom:4px}
+.btn{display:block;width:100%;padding:12px 14px;margin:7px 0;background:#fff;border:2px solid #d0d5dd;border-radius:8px;font-size:.92em;cursor:pointer;text-align:left;transition:.2s;line-height:1.5}
+.btn:hover{border-color:#1a1a2e;background:#f8f9fc}
+.type-btn{text-align:center;padding:16px;border-color:#1a1a2e}
+.type-btn:hover{background:#1a1a2e;color:#fff}
+.sb{text-align:center;padding:20px}
+.sn{font-size:3em;font-weight:bold}
+.sl{font-size:.85em;color:#666}
+.fi{padding:12px 0;border-bottom:1px solid #eee}
+.fi:last-child{border:none}
+.g{color:#1b7a3d}.o{color:#b8860b}.b{color:#c0392b}
+.ph{background:#f0f6ff;padding:10px 12px;border-radius:6px;margin:8px 0 2px;font-size:.85em;border-left:3px solid #3498db;line-height:1.5}
+.rk{font-size:1.1em;margin:6px 0}
+.rst{background:#1a1a2e;color:#fff;border:none;padding:14px 32px;border-radius:8px;font-size:1em;cursor:pointer;margin:16px auto;display:block}
+.rst:hover{background:#2d2d4e}
+.nr{font-style:italic;color:#555;font-size:.88em;margin-bottom:8px}
+.hd{display:flex;justify-content:space-between;align-items:center;margin:6px 0 2px}
+.tip{font-size:.82em;line-height:1.7;padding-left:18px}
+.tip li{margin:3px 0}
+</style><meta name="description" content="AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,契約交渉ロールプレイ・シミュレーター（NDA秘密保持期間_交渉編）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-34/">
+<meta property="og:title" content="契約交渉ロールプレイ・シミュレーター（NDA秘密保持期間_交渉編） - kusasyu tools">
+<meta property="og:description" content="AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-34/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="契約交渉ロールプレイ・シミュレーター（NDA秘密保持期間_交渉編） - kusasyu tools">
+<meta name="twitter:description" content="AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "契約交渉ロールプレイ・シミュレーター（NDA秘密保持期間_交渉編）",
+  "description": "AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-34/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">契約交渉ロールプレイ・シミュレーター（NDA秘密保持期間_交</span></div><div id="app"></div>
+<script>
+var T=[
+[
+'あなたは中小IT企業の営業担当。取引先から届いたNDAの秘密保持期間（5年）について交渉を始めます。',
+['「秘密保持期間は5年です。当社の標準契約ですので変更はお受けしかねます」',
+'「NDAの保持期間は5年で設定しております。ご確認いただけますか」',
+'「保持期間は一応5年としていますが、何かご意見があればどうぞ」'],
+[
+['「5年は長すぎます。2年に短縮してください」',20,'o',
+'意思表示としては明確ですが、根拠なく数字を要求すると「なぜ2年なのか」と問い返され不利になります。',
+'「業界標準や情報の性質を踏まえ、2〜3年が妥当と考えます」と根拠から入る方が効果的です'],
+['「同業界のNDAでは2〜3年が標準的です。3年をベースにご検討いただけませんか」',35,'g',
+'業界慣行という客観的根拠を提示し、実現可能な3年から提案。交渉セオリーに沿った模範的な切り出しです。',
+'「経産省のモデル契約書でも2〜3年が推奨されています」と公的資料に言及するとさらに説得力が増します'],
+['「御社のご提示条件で問題ございません」',5,'b',
+'交渉を放棄しています。5年間の不利な条件がそのまま確定し、自社のビジネス柔軟性を損ないます。',
+'条件に違和感があれば必ず伝えましょう。「少しご相談したい点があります」だけでも交渉の入口になります']
+]
+],
+[
+'相手が反論してきました。ここからが交渉の本番です。',
+['「5年は当社のリスク管理上の最低ラインです。短縮は認められません」',
+'「5年にはそれなりの理由があります。御社の技術情報を守るためでもあるのですが」',
+'「3年ですか。理由次第では検討の余地はあるかもしれません」'],
+[
+['「それは不公平です。もっと柔軟に対応してください」',5,'b',
+'感情的な反論は交渉を硬直させます。相手の立場を否定せず、論理的に代替案を提示すべきです。',
+'「御社の懸念は理解します。では、対象情報の範囲を限定することで期間短縮を検討いただけませんか」'],
+['「情報の性質に応じた二段階案はいかがですか。営業秘密は3年、技術情報は陳腐化が早いため2年に」',35,'g',
+'相手のリスク懸念に配慮しつつ、情報分類という合理的な基準で代替案を提示。Win-Winの構造です。',
+'「情報をA類（コア営業秘密）とB類（技術・実装情報）に分類し、それぞれ適切な期間を設定しませんか」'],
+['「では間を取って3年ではいかがでしょうか」',20,'o',
+'妥協案としては妥当ですが、根拠なき折半は相手に「もう少し押せる」と思わせ追加譲歩を求められやすくなります。',
+'数字には必ず理由を添えましょう。「技術の世代交代サイクルが2〜3年のため」など具体的根拠が重要です']
+]
+],
+[
+'交渉は最終局面です。合意に向けた最後の提案を選んでください。',
+['「3年は検討しますが、他の条件で御社に譲歩いただく必要があります」',
+'「3年の方向で進めましょう。最終条件を詰めさせてください」',
+'「3年で問題ありません。修正版をお送りしますね」'],
+[
+['「3年で合意とし、技術情報は2年、残存義務と除外情報の定義も明記しましょう」',30,'g',
+'最終条件を具体化し、残存義務や除外規定にも言及する包括的な提案です。後のトラブルを防ぎます。',
+'「本日の合意内容を議事録にまとめ、修正案を3営業日以内にお送りします」と期限設定も忘れずに'],
+['「わかりました。やはり5年のままで結構です」',0,'b',
+'最終局面での全面撤退は交渉の全てを無駄にします。ここまで来たら粘るべきです。',
+'合意できない場合は「社内で再検討し、来週改めてご連絡します」と再交渉の余地を残しましょう'],
+['「一旦持ち帰り、書面で修正案をお送りしてもよいですか」',20,'o',
+'慎重な姿勢は良いですが、口頭で方向性の合意を得てから持ち帰る方が効率的です。',
+'「3年をベースとする方向でよろしいでしょうか。詳細条件は書面にて調整させてください」']
+]
+]
+];
+var TN=['強気タイプ','普通タイプ','柔軟タイプ'];
+var TD=['一切の譲歩を拒む圧力型。大企業の法務部門に多い','論理的に条件を主張する標準型。対等な取引先に多い','対話重視で柔軟に対応する協調型。長期関係を重視する相手'];
+var st={s:0,tp:0,tn:0,ch:[],sc:[]};
+
+function R(){
+var a=document.getElementById('app');
+if(st.s===0){
+a.innerHTML='<h1>NDA秘密保持期間<br>交渉シミュレーター</h1>'+
+'<div class="card"><p style="font-size:.88em;line-height:1.7">あなたは従業員30名のIT企業の営業担当者です。大手取引先から届いたNDAの秘密保持期間は<b>5年</b>。会社の方針として<b>2〜3年への短縮</b>を目指して交渉に臨みます。</p><p style="font-size:.88em;line-height:1.7;margin-top:8px">全3ターン、各3択で交渉を進めてください。<br>まず取引先担当者のタイプを選びましょう。</p></div>'+
+[0,1,2].map(function(i){return '<button class="btn type-btn" onclick="P('+i+')"><b>'+TN[i]+'</b><br><span style="font-size:.82em;color:#666">'+TD[i]+'</span></button>'}).join('');
+}else if(st.s===1){
+var t=T[st.tn],cs=t[2];
+a.innerHTML='<h1>NDA交渉シミュレーター</h1>'+
+'<div class="hd"><span class="badge">Turn '+(st.tn+1)+' / 3</span><span class="badge">'+TN[st.tp]+'</span></div>'+
+'<div class="card"><p class="nr">'+t[0]+'</p><div class="opp">'+t[1][st.tp]+'</div>'+
+'<p style="margin:10px 0 4px;font-weight:bold;font-size:.88em">あなたの応答：</p>'+
+cs.map(function(c,i){return '<button class="btn" onclick="C('+i+')">'+String.fromCharCode(65+i)+'．'+c[0]+'</button>'}).join('')+'</div>';
+}else{
+var total=st.sc.reduce(function(a,b){return a+b},0);
+var rank=total>=80?'S（交渉のプロ級）':total>=60?'A（実務で通用する）':total>=40?'B（改善の余地あり）':total>=20?'C（基礎学習を推奨）':'D（要トレーニング）';
+var rc=total>=80?'#1b7a3d':total>=60?'#1a6fb5':total>=40?'#b8860b':'#c0392b';
+var fb='';
+st.ch.forEach(function(ci,ti){
+var c=T[ti][2][ci];
+var lbl=c[2]==='g'?'◎ 最適な選択':c[2]==='o'?'○ 悪くないが改善余地あり':'× 改善が必要';
+var cls=c[2]==='g'?'g':c[2]==='o'?'o':'b';
+fb+='<div class="fi"><b>Turn '+(ti+1)+'</b>：'+c[0]+'<br>'+
+'<span class="'+cls+'">'+lbl+'</span>（'+c[1]+'点）<br>'+
+'<span style="font-size:.85em;line-height:1.6;display:inline-block;margin-top:4px">'+c[3]+'</span>'+
+'<div class="ph">この場面で使えるフレーズ：<br>'+c[4]+'</div></div>';
+});
+a.innerHTML='<h1>交渉結果レポート</h1>'+
+'<div class="card sb"><div class="sl">'+TN[st.tp]+'との交渉結果</div>'+
+'<div class="sn" style="color:'+rc+'">'+total+'<span style="font-size:.35em"> / 100点</span></div>'+
+'<div class="rk" style="color:'+rc+'">ランク：'+rank+'</div></div>'+
+'<div class="card"><h2 style="font-size:1em;margin-bottom:8px">各ターンのフィードバック</h2>'+fb+'</div>'+
+'<div class="card"><h2 style="font-size:1em;margin-bottom:8px">NDA交渉 5つの鉄則</h2>'+
+'<ul class="tip"><li><b>根拠を示す</b>：業界慣行・公的ガイドラインで主張を裏付ける</li>'+
+'<li><b>共感→提案</b>：相手の懸念に理解を示してから代替案を出す</li>'+
+'<li><b>情報を分類</b>：秘密情報の性質に応じた段階的期間設定が有効</li>'+
+'<li><b>書面化</b>：口頭合意は必ず書面に落とし、期限を設定する</li>'+
+'<li><b>撤退ラインを決める</b>：事前に譲歩の限界を設定し、超えたら持ち帰る</li></ul></div>'+
+'<button class="rst" onclick="X()">もう一度挑戦する</button>'+
+'<p style="text-align:center;font-size:.75em;color:#999;margin-top:8px">Kusasyu Legal Tech - NDA交渉トレーニングツール</p>';
+}
+}
+function P(i){st.tp=i;st.s=1;st.tn=0;st.ch=[];st.sc=[];R()}
+function C(i){var c=T[st.tn][2][i];st.ch.push(i);st.sc.push(c[1]);st.tn++;if(st.tn>=3)st.s=2;R()}
+function X(){st={s:0,tp:0,tn:0,ch:[],sc:[]};R()}
+R();
+</script></body></html>

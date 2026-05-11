@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>物件キャッシュフローシミュレーター（3シナリオ比較） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;text-align:center}
+.header h1{font-size:1.4em;font-weight:700}
+.header p{font-size:.85em;opacity:.8;margin-top:4px}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:20px;margin-bottom:16px}
+.card h2{font-size:1.1em;color:#0f3460;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8ecf1}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-group{display:flex;flex-direction:column}
+.form-group label{font-size:.8em;font-weight:600;color:#555;margin-bottom:3px}
+.form-group input,.form-group select{padding:8px 10px;border:1px solid #d0d5dd;border-radius:6px;font-size:.95em;transition:border .2s}
+.form-group input:focus{outline:none;border-color:#0f3460;box-shadow:0 0 0 2px rgba(15,52,96,.15)}
+.slider-section{margin-top:16px}
+.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.slider-row label{font-size:.8em;font-weight:600;color:#555;min-width:90px}
+.slider-row input[type=range]{flex:1;min-width:120px;accent-color:#0f3460}
+.slider-val{font-size:.9em;font-weight:700;color:#0f3460;min-width:50px;text-align:right}
+.btn{padding:10px 24px;border:none;border-radius:6px;font-size:.95em;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:#0f3460;color:#fff}
+.btn-primary:hover{background:#1a4a7a}
+.btn-secondary{background:#e8ecf1;color:#0f3460}
+.btn-secondary:hover{background:#d0d5dd}
+.btn-group{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.scenario{border-radius:10px;padding:16px;border:2px solid transparent}
+.scenario.optimistic{background:#eafaf1;border-color:#27ae60}
+.scenario.base{background:#eaf0fa;border-color:#2980b9}
+.scenario.pessimistic{background:#fdf2f2;border-color:#e74c3c}
+.scenario h3{font-size:1em;margin-bottom:10px;text-align:center}
+.scenario .tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.75em;color:#fff;margin-bottom:8px}
+.optimistic .tag{background:#27ae60}
+.base .tag{background:#2980b9}
+.pessimistic .tag{background:#e74c3c}
+.metric{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.06);font-size:.85em}
+.metric .val{font-weight:700}
+.cf-table{width:100%;border-collapse:collapse;font-size:.78em;margin-top:10px}
+.cf-table th,.cf-table td{padding:5px 6px;text-align:right;border-bottom:1px solid #e8ecf1}
+.cf-table th{background:#f7f8fa;font-weight:600;position:sticky;top:0}
+.cf-table td:first-child,.cf-table th:first-child{text-align:center}
+.cf-scroll{max-height:260px;overflow-y:auto;border:1px solid #e8ecf1;border-radius:6px}
+.positive{color:#27ae60}
+.negative{color:#e74c3c}
+.summary-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.summary-item{text-align:center;padding:12px 8px;background:#f7f8fa;border-radius:8px}
+.summary-item .num{font-size:1.4em;font-weight:800;color:#0f3460}
+.summary-item .lbl{font-size:.75em;color:#777}
+.irr-area{margin-top:12px;padding:12px;background:#fffbea;border:1px solid #f0c040;border-radius:8px;display:none}
+.irr-area h4{font-size:.9em;color:#8a6d0b;margin-bottom:6px}
+.chart-area{position:relative;height:200px;margin-top:12px;background:#fafbfc;border-radius:8px;border:1px solid #e8ecf1;overflow:hidden}
+.bar-group{position:absolute;bottom:30px;display:flex;align-items:flex-end;gap:2px}
+.bar{border-radius:3px 3px 0 0;min-width:6px;transition:height .3s}
+.bar.b-opt{background:#27ae60}
+.bar.b-base{background:#2980b9}
+.bar.b-pes{background:#e74c3c}
+.chart-label{position:absolute;bottom:4px;font-size:.65em;color:#888;text-align:center}
+.chart-legend{display:flex;gap:14px;justify-content:center;margin-top:6px;font-size:.75em}
+.chart-legend span::before{content:'';display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.leg-opt::before{background:#27ae60}
+.leg-base::before{background:#2980b9}
+.leg-pes::before{background:#e74c3c}
+#results{display:none}
+@media(max-width:768px){
+.form-grid{grid-template-columns:1fr}
+.scenarios{grid-template-columns:1fr}
+.summary-bar{grid-template-columns:1fr}
+.header h1{font-size:1.1em}
+}
+@media print{
+body{background:#fff;font-size:11px}
+.header{padding:10px;background:#0f3460 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.btn,.btn-group,.slider-section{display:none !important}
+.card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}
+.scenarios{grid-template-columns:repeat(3,1fr) !important}
+#results{display:block !important}
+.scenario{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+<meta name="description" content="物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件キャッシュフローシミュレーター（3シナリオ比較）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-7/">
+<meta property="og:title" content="物件キャッシュフローシミュレーター（3シナリオ比較） - kusasyu tools">
+<meta property="og:description" content="物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件キャッシュフローシミュレーター（3シナリオ比較） - kusasyu tools">
+<meta name="twitter:description" content="物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "物件キャッシュフローシミュレーター（3シナリオ比較）",
+  "description": "物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-7/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">物件キャッシュフローシミュレーター（3シナリオ比較）</span></div>
+<div class="header">
+<h1>物件キャッシュフローシミュレーター</h1>
+<p>3シナリオ比較 ─ 楽観 / 基本 / 悲観</p>
+</div>
+<div class="container">
+<div class="card">
+<h2>物件情報・ローン条件</h2>
+<div class="form-grid">
+<div class="form-group"><label>物件価格（万円）</label><input type="number" id="price" value="3000" min="100"></div>
+<div class="form-group"><label>想定月額家賃（万円）</label><input type="number" id="rent" value="15" min="1" step="0.1"></div>
+<div class="form-group"><label>管理費・修繕積立金（万円/月）</label><input type="number" id="mgmt" value="1.5" min="0" step="0.1"></div>
+<div class="form-group"><label>固定資産税等（万円/年）</label><input type="number" id="tax" value="15" min="0" step="0.5"></div>
+<div class="form-group"><label>自己資金（万円）</label><input type="number" id="equity" value="600" min="0"></div>
+<div class="form-group"><label>ローン期間（年）</label><input type="number" id="term" value="35" min="1" max="45"></div>
+</div>
+<div class="slider-section">
+<h2 style="margin-top:12px">シナリオ調整スライダー</h2>
+<div class="slider-row"><label>基本空室率</label><input type="range" id="vacBase" min="0" max="30" value="5"><span class="slider-val" id="vacBaseV">5%</span></div>
+<div class="slider-row"><label>基本修繕費率</label><input type="range" id="repBase" min="0" max="20" value="5"><span class="slider-val" id="repBaseV">5%</span></div>
+<div class="slider-row"><label>基本金利</label><input type="range" id="rateBase" min="0" max="80" value="15"><span class="slider-val" id="rateBaseV">1.5%</span></div>
+</div>
+<div class="btn-group">
+<button class="btn btn-primary" onclick="calc()">シミュレーション実行</button>
+<button class="btn btn-secondary" onclick="window.print()">印刷</button>
+</div>
+</div>
+<div id="results">
+<div class="card">
+<h2>基本指標サマリー（基本シナリオ）</h2>
+<div class="summary-bar">
+<div class="summary-item"><div class="num" id="sGross">-</div><div class="lbl">表面利回り</div></div>
+<div class="summary-item"><div class="num" id="sNet">-</div><div class="lbl">実質利回り</div></div>
+<div class="summary-item"><div class="num" id="sCCR">-</div><div class="lbl">CCR</div></div>
+</div>
+</div>
+<div class="card">
+<h2>3シナリオ比較</h2>
+<div class="scenarios" id="scenarioArea"></div>
+</div>
+<div class="card">
+<h2>10年間キャッシュフロー推移</h2>
+<div class="chart-legend"><span class="leg-opt">楽観</span><span class="leg-base">基本</span><span class="leg-pes">悲観</span></div>
+<div class="chart-area" id="chart"></div>
+<div class="cf-scroll" id="cfTableWrap"></div>
+</div>
+<div class="card">
+<div class="btn-group"><button class="btn btn-secondary" onclick="toggleIRR()">詳細を表示（IRR等）</button></div>
+<div class="irr-area" id="irrArea"></div>
+</div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>{if(Math.abs(n)>=10000)return (n/10000).toFixed(1)+'億';return n.toFixed(1)+'万'};
+const pct=n=>n.toFixed(2)+'%';
+
+['vacBase','repBase','rateBase'].forEach(id=>{
+$(id).addEventListener('input',()=>{
+if(id==='rateBase') $(id+'V').textContent=($(id).value/10).toFixed(1)+'%';
+else $(id+'V').textContent=$(id).value+'%';
+});
+});
+
+function pmt(rate,nper,pv){
+if(rate===0)return pv/nper;
+const r=rate;const q=Math.pow(1+r,nper);
+return pv*r*q/(q-1);
+}
+
+function calcIRR(cashflows,guess){
+let r=guess||0.1;
+for(let i=0;i<100;i++){
+let npv=0,dnpv=0;
+for(let t=0;t<cashflows.length;t++){
+npv+=cashflows[t]/Math.pow(1+r,t);
+dnpv-=t*cashflows[t]/Math.pow(1+r,t+1);
+}
+if(Math.abs(dnpv)<1e-10)break;
+const nr=r-npv/dnpv;
+if(Math.abs(nr-r)<1e-7){r=nr;break;}
+r=nr;
+}
+return isFinite(r)?r:NaN;
+}
+
+function runScenario(p,rent,mgmt,tax,equity,term,vac,rep,rate){
+const loan=p-equity;
+const annualRent=rent*12;
+const grossYield=annualRent/p*100;
+const monthlyPmt=loan>0?pmt(rate/100/12,term*12,loan):0;
+const annualPmt=monthlyPmt*12;
+const cfs=[];
+let cumCF=0;
+const balances=[];
+let bal=loan;
+for(let y=1;y<=10;y++){
+const effRent=annualRent*(1-vac/100);
+const repCost=annualRent*(rep/100);
+const noi=effRent-mgmt*12-tax-repCost;
+const cf=noi-annualPmt;
+const intPaid=bal*(rate/100);
+const princPaid=annualPmt-intPaid;
+bal=Math.max(0,bal-princPaid);
+cumCF+=cf;
+cfs.push({y,effRent,repCost,noi,annualPmt,cf,cumCF,bal});
+balances.push(bal);
+}
+const noi1=cfs[0].noi;
+const netYield=noi1/p*100;
+const cf1=cfs[0].cf;
+const ccr=equity>0?cf1/equity*100:0;
+const irrFlows=[-equity,...cfs.map(c=>c.cf)];
+const irr=calcIRR(irrFlows,0.05)*100;
+return{grossYield,netYield,ccr,irr,cfs,annualPmt,loan};
+}
+
+function calc(){
+const p=+$('price').value;const rent=+$('rent').value;const mgmt=+$('mgmt').value;
+const tax=+$('tax').value;const equity=+$('equity').value;const term=+$('term').value;
+const vB=+$('vacBase').value;const rB=+$('repBase').value;const iB=+$('rateBase').value/10;
+
+const scenarios=[
+{name:'楽観',cls:'optimistic',vac:Math.max(0,vB-3),rep:Math.max(0,rB-2),rate:Math.max(0.1,iB-0.5)},
+{name:'基本',cls:'base',vac:vB,rep:rB,rate:iB},
+{name:'悲観',cls:'pessimistic',vac:vB+5,rep:rB+3,rate:iB+1.0}
+];
+
+const results=scenarios.map(s=>{
+const r=runScenario(p,rent,mgmt,tax,equity,term,s.vac,s.rep,s.rate);
+return{...s,...r};
+});
+
+$('sGross').textContent=pct(results[1].grossYield);
+$('sNet').textContent=pct(results[1].netYield);
+$('sCCR').textContent=pct(results[1].ccr);
+
+let sa='';
+results.forEach(r=>{
+sa+=`<div class="scenario ${r.cls}"><h3><span class="tag">${r.name}</span></h3>
+<div class="metric"><span>空室率</span><span class="val">${r.vac.toFixed(1)}%</span></div>
+<div class="metric"><span>修繕費率</span><span class="val">${r.rep.toFixed(1)}%</span></div>
+<div class="metric"><span>金利</span><span class="val">${r.rate.toFixed(2)}%</span></div>
+<div class="metric"><span>表面利回り</span><span class="val">${pct(r.grossYield)}</span></div>
+<div class="metric"><span>実質利回り</span><span class="val">${pct(r.netYield)}</span></div>
+<div class="metric"><span>CCR</span><span class="val ${r.ccr>=0?'positive':'negative'}">${pct(r.ccr)}</span></div>
+<div class="metric"><span>年間CF(1年目)</span><span class="val ${r.cfs[0].cf>=0?'positive':'negative'}">${r.cfs[0].cf.toFixed(1)}万</span></div>
+<div class="metric"><span>10年累計CF</span><span class="val ${r.cfs[9].cumCF>=0?'positive':'negative'}">${fmt(r.cfs[9].cumCF)}</span></div>
+</div>`;
+});
+$('scenarioArea').innerHTML=sa;
+
+// CF table
+let tb=`<table class="cf-table"><thead><tr><th>年</th><th>楽観CF</th><th>基本CF</th><th>悲観CF</th><th>楽観累計</th><th>基本累計</th><th>悲観累計</th></tr></thead><tbody>`;
+for(let y=0;y<10;y++){
+tb+=`<tr><td>${y+1}</td>`;
+results.forEach(r=>{const c=r.cfs[y];tb+=`<td class="${c.cf>=0?'positive':'negative'}">${c.cf.toFixed(1)}</td>`;});
+results.forEach(r=>{const c=r.cfs[y];tb+=`<td class="${c.cumCF>=0?'positive':'negative'}">${c.cumCF.toFixed(1)}</td>`;});
+tb+=`</tr>`;
+}
+tb+=`</tbody></table>`;
+$('cfTableWrap').innerHTML=tb;
+
+// Chart
+drawChart(results);
+
+// IRR
+let irHTML=`<h4>詳細指標（IRR等）</h4>`;
+results.forEach(r=>{
+irHTML+=`<div class="metric"><span>${r.name} IRR</span><span class="val ${r.irr>=0?'positive':'negative'}">${isNaN(r.irr)?'算出不可':pct(r.irr)}</span></div>`;
+irHTML+=`<div class="metric"><span>${r.name} ローン返済額/年</span><span class="val">${r.annualPmt.toFixed(1)}万</span></div>`;
+});
+irHTML+=`<div class="metric"><span>借入額</span><span class="val">${fmt(results[0].loan)}</span></div>`;
+$('irrArea').innerHTML=irHTML;
+$('irrArea').style.display='none';
+
+$('results').style.display='block';
+$('results').scrollIntoView({behavior:'smooth'});
+}
+
+function drawChart(results){
+const ca=$('chart');ca.innerHTML='';
+const W=ca.clientWidth;const H=ca.clientHeight;
+const allCF=results.flatMap(r=>r.cfs.map(c=>c.cf));
+const maxV=Math.max(...allCF.map(Math.abs),1);
+const chartH=H-40;const mid=chartH*0.6;
+const gw=(W-40)/10;
+
+for(let y=0;y<10;y++){
+const x=20+y*gw;
+const vals=[results[0].cfs[y].cf,results[1].cfs[y].cf,results[2].cfs[y].cf];
+const bw=Math.max(4,gw/4-1);
+vals.forEach((v,i)=>{
+const bar=document.createElement('div');bar.className='bar b-'+['opt','base','pes'][i];
+const h=Math.abs(v)/maxV*mid;
+bar.style.height=h+'px';bar.style.width=bw+'px';
+if(v>=0){bar.style.bottom=(H-mid-10)+'px';}
+else{bar.style.bottom=(H-mid-10-h)+'px';}
+bar.style.left=(x+i*bw+i)+'px';bar.style.position='absolute';
+bar.title=`${['楽観','基本','悲観'][i]} ${y+1}年: ${v.toFixed(1)}万`;
+ca.appendChild(bar);
+});
+const lbl=document.createElement('div');lbl.className='chart-label';
+lbl.textContent=(y+1)+'年';lbl.style.left=x+'px';lbl.style.width=gw+'px';
+ca.appendChild(lbl);
+}
+const line=document.createElement('div');
+line.style.cssText=`position:absolute;left:10px;right:10px;bottom:${H-mid-10}px;height:1px;background:#aaa;`;
+ca.appendChild(line);
+}
+
+function toggleIRR(){
+const a=$('irrArea');a.style.display=a.style.display==='none'?'block':'none';
+}
+
+calc();
+</script>
+</body>
+</html>

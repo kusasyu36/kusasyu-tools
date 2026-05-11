@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート） - kusasyu tools</title>
+<meta name="description" content="物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/excel/">
+<meta property="og:title" content="投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート） - kusasyu tools">
+<meta property="og:description" content="物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/excel/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート） - kusasyu tools">
+<meta name="twitter:description" content="物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート）",
+  "description": "物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/excel/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-05-11"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート）</h1>
+  <p class="project-name">投資物件の収支、3シナリオで即比較</p>
+  <div class="content">
+<pre><code>    ┃ 物件A  ┃ 物件B  ┃ 物件C  ┃ 物件D  ┃ 物件E  ┃
+</code></pre>
+<p>━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━┫
+物件名    ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃
+所在地    ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃
+構造/築年  ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃ 手入力  ┃
+━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━┫
+物件価格   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃
+諸費用    ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃
+自己資金   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃
+借入額    ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃
+━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━┫
+満室想定収入 ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃
+空室率    ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃
+年間運営費  ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃
+年間返済額  ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃ 入力   ┃
+━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━╋━━━━━━━┫
+表面利回り  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃
+実質利回り  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃
+CCR     ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃
+月次CF   ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃
+年間CF   ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃
+判定     ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃ =自動  ┃</p>
+<pre><code>
+### 組み込み数式の一覧
+
+| セル項目 | 数式ロジック |
+|---------|------------|
+| 借入額 | `= 物件価格 + 諸費用 − 自己資金` |
+| 表面利回り | `= 満室想定収入 ÷ 物件価格 × 100` |
+| 実質利回り | `= (満室想定収入 ×(1−空室率) − 年間運営費) ÷ (物件価格+諸費用) × 100` |
+| CCR（自己資金回収率） | `= 年間CF ÷ 自己資金 × 100` |
+| 月次CF | `= (満室想定収入×(1−空室率) − 年間運営費 − 年間返済額) ÷ 12` |
+| 年間CF | `= 月次CF × 12` |
+| 判定 | `=IF(実質利回り≧6%,&quot;◎&quot;,IF(実質利回り≧4%,&quot;○&quot;,&quot;△&quot;))` |
+
+### サマリーエリア（シート下部に自動集計）
+
+- **総投資額** = 全物件の（物件価格+諸費用）合計
+- **総自己資金** = 全物件の自己資金合計
+- **加重平均利回り** = Σ(各物件の実質利回り × 各物件の投資額) ÷ 総投資額
+- **月次収支サマリー** = 全物件の月次CFの合計
+- **年間CF合計** = 月次収支サマリー × 12
+
+&gt; **使い方のコツ**: 物件キャッシュフローシミュレーターの「基本シナリオ」の数値をそのまま転記すると効率的です。楽観/悲観の比較はシミュレーター側で行い、比較シートには基本シナリオを記録してください。
+
+---
+
+## シート②：投資判断チェックリスト
+
+物件購入前に確認すべき項目を**6カテゴリ・全30項目**で網羅します。各項目の横にチェック欄（☐）を設け、確認済みなら「✓」を入力します。
+
+### カテゴリ一覧と主な項目
+
+**A. 収支・利回り（6項目）**
+
+- ☐ 表面利回りが周辺相場と乖離していないか
+- ☐ 実質利回り4%以上を確保できるか
+- ☐ 空室率を保守的（15〜20%）に見積もっても黒字か
+- ☐ 修繕積立金・管理費の値上げリスクを織り込んだか
+- ☐ 金利上昇（+1%）でもCFがプラスを維持できるか
+- ☐ 物件キャッシュフローシミュレーターの悲観シナリオで赤字にならないか
+
+**B. 物件・建物（6項目）**
+
+- ☐ 現地を実際に内見・外観確認したか
+- ☐ 建物診断（インスペクション）の要否を判断したか
+- ☐ 修繕履歴・大規模修繕計画を確認したか
+- ☐ 設備（給排水・電気・エレベーター等）の状態を確認したか
+- ☐ 耐震基準（旧耐震/新耐震）を確認したか
+- ☐ アスベスト・境界問題などの瑕疵リスクを確認したか
+
+**C. 立地・市場（5項目）**
+
+- ☐ 最寄り駅からの距離・周辺施設を現地確認したか
+- ☐ 人口動態（増減傾向）を自治体データで確認したか
+- ☐ 周辺の賃料相場をポータルサイトで調査したか
+- ☐ 競合物件（築年数・設備・賃料）を把握したか
+- ☐ ハザードマップで災害リスクを確認したか
+
+**D. 法務・契約（5項目）**
+
+- ☐ 登記簿謄本で権利関係を確認したか
+- ☐ 用途地域・建ぺい率・容積率を確認したか
+- ☐ 既存入居者の賃貸借契約内容を確認したか
+- ☐ 管理会社の契約条件（手数料率・解約条件）を確認したか
+- ☐ 売買契約書のドラフトを専門家にレビューさせたか
+
+**E. 資金計画（5項目）**
+
+- ☐ 融資の事前審査を通過しているか
+- ☐ 金利タイプ（固定/変動）と返済期間を決定したか
+- ☐ 諸費用（物件価格の7〜10%）を見積もったか
+- ☐ 手元に6ヶ月分以上の運転資金を確保できるか
+- ☐ 将来の追加投資に影響しない資金配分か
+
+**F. 出口戦略（3項目）**
+
+- ☐ 5年後・10年後の想定売却価格を試算したか
+- ☐ 長期保有と中期売却のどちらが有利か検討したか
+- ☐ 売却時の譲渡所得税（短期/長期）を把握しているか
+
+### 判定基準
+
+| チェック数 | 判定 | 推奨アクション |
+|-----------|------|--------------|
+| 27〜30項目 | ◎ 購入検討可 | 最終交渉・買付申込に進める |
+| 20〜26項目 | ○ 条件付き | 未確認項目を解消してから判断 |
+| 19項目以下 | △ 要再検討 | 情報不足のため購入判断は保留 |
+
+---
+
+## シート③：1枚レポートシート
+
+A4用紙1枚（横向き）に収まるレイアウトで、投資判断の根拠を1目でまとめます。
+
+### レイアウト構成
+
+</code></pre>
+<p>┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃           投資分析レポート                        ┃
+┃  作成日: <strong><em>_    作成者: </em></strong><em>    対象物件: <strong><em>_     ┃
+┣━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┫
+┃ ■ 物件概要            ┃ ■ 収支サマリー              ┃
+┃ 所在地:               ┃ 表面利回り:    </em></strong></em>%        ┃
+┃ 構造/築年:             ┃ 実質利回り:    <strong><em>_%        ┃
+┃ 物件価格:      </em></strong><em>万円  ┃ CCR:         <strong><em>_%        ┃
+┃ 間取り/戸数:            ┃ 月次CF:      </em></strong>_万円      ┃
+┃ 最寄り駅:              ┃ 年間CF:      <strong><em>_万円      ┃
+┃                      ┃ 10年累計CF:   </em></strong>_万円      ┃
+┣━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫
+┃ ■ 資金計画            ┃ ■ シナリオ比較              ┃
+┃ 自己資金:      <strong><em>_万円  ┃        楽観  基本  悲観    ┃
+┃ 借入額:        </em></strong>_万円  ┃ 実質利回り  <strong>% </strong>% __%   ┃
+┃ 金利:          <strong><em>_%   ┃ 月次CF   </em>_万 </strong>万 __万   ┃
+┃ 返済期間:       <strong><em>_年   ┃ 10年累計  </em>_万 </strong>万 __万   ┃
+┃ 月次返済額:     <strong><em>_万円  ┃                          ┃
+┣━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━┫
+┃ ■ チェック結果: </em></strong></em>/30項目確認済  判定: ◎○△        ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃ ■ 投資判断メモ（自由記入欄）                         ┃
+┃                                                  ┃
+┃                                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛</p>
+<pre><code>
+### 記入方法
+
+1. **物件概要・資金計画** → 物件資料から手入力
+2. **収支サマリー・シナリオ比較** → 物件キャッシュフローシミュレーターの計算結果を転記
+3. **チェック結果** → シート②の確認済み数をカウントして記入
+4. **投資判断メモ** → 購入理由・懸念点・交渉ポイントなどを自由に記載
+
+---
+
+## テンプレートの活用フロー
+
+</code></pre>
+<p>物件キャッシュフロー         Excel テンプレート
+シミュレーター
+                    ┌─→ ①比較シートに基本シナリオを転記
+                    │     → 最大5物件を横並び比較
+  楽観/基本/悲観    ─┤
+  3シナリオ計算      │ ┌─→ ②チェックリストで購入前点検
+                    │ │     → 30項目を順次確認
+  10年CF推移       ─┤ │
+                    │ │ ┌─→ ③1枚レポートに要点集約
+                    └─┘ │     → 銀行面談・パートナー説明に活用
+                        └─</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

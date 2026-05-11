@@ -1963,6 +1963,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-34",
+    "url": "legal-tech/contract-34/",
+    "title": "契約交渉が苦手？AIで練習してから本番へ",
+    "tool_name": "契約交渉ロールプレイ・シミュレーター（NDA秘密保持期間_交渉編）",
+    "description": "AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」といったフィードバックをスコア付きで表示する。",
+    "quality_score": 9,
+    "completed_at": "2026-05-10T12:59:48.079136+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-35",
+    "url": "legal-tech/contract-35/",
+    "title": "契約交渉が苦手？AIで練習してから本番へ",
+    "tool_name": "交渉力セルフ診断チェックリスト",
+    "description": "AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」といったフィードバックをスコア付きで表示する。",
+    "quality_score": 9,
+    "completed_at": "2026-05-10T12:59:48.079136+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -2428,6 +2454,32 @@
     "description": "用途地域を選択するだけで、建ぺい率・容積率・高さ制限・斜線制限・日影規制・防火指定・建築可能用途を一覧表示し、開発ポテンシャルを即時スコアリングするHTMLツール。複数候補地の横並び比較CSVシートと、用途地域全13種の早見ガイドをセットで提供。mign社ordiq（チャット型Q&A）とは異なり、質問不要で全制限を網羅的にレポート出力する即時チェッカー。",
     "quality_score": 9,
     "completed_at": "2026-04-24T02:32:23.844737+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-7",
+    "url": "proptech/simulator-7/",
+    "title": "投資物件の収支、3シナリオで即比較",
+    "tool_name": "物件キャッシュフローシミュレーター（3シナリオ比較）",
+    "description": "物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポートひな形をセットで提供する。",
+    "quality_score": 9,
+    "completed_at": "2026-05-11T04:19:49.718623+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "excel",
+    "url": "proptech/excel/",
+    "title": "投資物件の収支、3シナリオで即比較",
+    "tool_name": "投資判断Excelテンプレート（ポートフォリオ比較＋チェックリスト＋1枚レポート）",
+    "description": "物件情報を入力するだけで、表面利回り・実質利回り・CCR・IRR・10年間キャッシュフローを自動計算し、楽観/基本/悲観の3シナリオを横並びで比較できるHTMLツール。DealCheck（米国で数十万ユーザー）の日本版コンセプトで、自作Excelから脱却させる。複数物件のポートフォリオ比較シートと投資判断レポートひな形をセットで提供する。",
+    "quality_score": 9,
+    "completed_at": "2026-05-11T04:19:49.718623+00:00",
     "content_type": "article"
   },
   {

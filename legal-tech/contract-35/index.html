@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>交渉力セルフ診断チェックリスト - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;min-height:100vh}
+#app{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:1.15em;text-align:center;padding:14px 0;color:#1a1a2e}
+.sub{text-align:center;font-size:.78em;color:#666;margin:-8px 0 10px}
+.card{background:#fff;border-radius:12px;padding:18px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.badge{display:inline-block;background:#1a1a2e;color:#fff;font-size:.72em;padding:2px 10px;border-radius:20px}
+.prog{background:#e5e7eb;border-radius:8px;height:8px;margin:10px 0}
+.prog-bar{height:100%;background:#1a1a2e;border-radius:8px;transition:width .4s}
+.qn{font-size:.95em;font-weight:bold;margin:10px 0 8px;line-height:1.6}
+.btn{display:block;width:100%;padding:11px 14px;margin:6px 0;background:#fff;border:2px solid #d0d5dd;border-radius:8px;font-size:.9em;cursor:pointer;text-align:left;transition:.2s;line-height:1.5}
+.btn:hover{border-color:#1a1a2e;background:#f8f9fc}
+.btn.sel{border-color:#1a1a2e;background:#eef1f8}
+.sb{text-align:center;padding:14px 0}
+.sn{font-size:3em;font-weight:bold}
+.sl{font-size:.82em;color:#666;margin-top:2px}
+.rank{font-size:1.3em;margin:6px 0}
+.g{color:#1b7a3d}.o{color:#b8860b}.b{color:#c0392b}.bl{color:#3498db}
+.ax{display:flex;gap:8px;margin:10px 0}
+.ax-item{flex:1;text-align:center;padding:10px 4px;background:#f8f9fc;border-radius:8px}
+.ax-item .lbl{font-size:.72em;color:#666}
+.ax-item .val{font-size:1.5em;font-weight:bold;margin:4px 0}
+.ax-item .mx{font-size:.68em;color:#999}
+.bar-wrap{margin:8px 0}
+.bar-lbl{display:flex;justify-content:space-between;font-size:.78em;margin-bottom:3px}
+.bar-bg{background:#e5e7eb;border-radius:6px;height:14px;position:relative}
+.bar-fg{height:100%;border-radius:6px;transition:width .6s}
+.act{padding:12px;border-left:3px solid #3498db;background:#f0f6ff;border-radius:0 8px 8px 0;margin:8px 0;font-size:.88em;line-height:1.6}
+.act b{display:block;margin-bottom:2px}
+.rst{background:#1a1a2e;color:#fff;border:none;padding:13px 32px;border-radius:8px;font-size:.95em;cursor:pointer;margin:10px auto;display:block}
+.rst:hover{background:#2d2d4e}
+.cta{display:block;text-align:center;background:#3498db;color:#fff;padding:14px;border-radius:8px;text-decoration:none;font-size:.95em;margin:10px 0}
+.cta:hover{background:#2980b9}
+.hide{display:none}
+</style><meta name="description" content="AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,交渉力セルフ診断チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-35/">
+<meta property="og:title" content="交渉力セルフ診断チェックリスト - kusasyu tools">
+<meta property="og:description" content="AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-35/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="交渉力セルフ診断チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "交渉力セルフ診断チェックリスト",
+  "description": "AIが取引先の担当者役を演じ、中小企業の経営者・営業担当がテキストで契約交渉を疑似体験できるブラウザツール。NDA の不利条項修正、納期遅延ペナルティの減額交渉、支払条件の変更要求など、中小企業が実際に直面する交渉シナリオを分岐型で再現。交渉終了後に「この譲歩は不要だった」「ここで法的根拠を示すべきだった」と",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-35/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">交渉力セルフ診断チェックリスト</span></div><div id="app">
+<h1>交渉力セルフ診断チェックリスト</h1>
+<p class="sub">10問の質問で契約交渉力を3軸で診断します（所要時間：約3分）</p>
+<div id="quiz"></div>
+<div id="result" class="hide"></div>
+</div>
+<script>
+var Q=[
+{q:"取引先から契約書を提示されたとき、どう対応していますか？",c:"準備",o:[
+{t:"全条項を読み、不明点をリスト化してから回答する",s:4},
+{t:"重要そうな箇所だけ確認して回答する",s:3},
+{t:"ざっと目を通す程度で返事をする",s:2},
+{t:"ほぼ読まずにサインすることが多い",s:1}]},
+{q:"NDAの秘密保持期間が「永久」と記載されていた場合、どう判断しますか？",c:"法的",o:[
+{t:"業界標準（3〜5年）を根拠に修正を提案する",s:4},
+{t:"長すぎると感じるが、具体的な対案が出せない",s:3},
+{t:"相手が大手なら仕方ないと思う",s:2},
+{t:"特に気にならない",s:1}]},
+{q:"交渉中に相手から「他社はこの条件で合意している」と言われたら？",c:"心理",o:[
+{t:"自社の事情は異なると伝え、条件を再提示する",s:4},
+{t:"本当か確認したいが、その場では言えない",s:3},
+{t:"焦りを感じて譲歩しがち",s:2},
+{t:"それなら合わせるしかないと思う",s:1}]},
+{q:"契約交渉の前に、どの程度準備をしていますか？",c:"準備",o:[
+{t:"譲れる点・譲れない点を整理し、代替案も用意する",s:4},
+{t:"要望は決めるが、代替案までは考えない",s:3},
+{t:"相手の出方を見てから考える",s:2},
+{t:"特に準備はしない",s:1}]},
+{q:"損害賠償の上限条項について、どの程度理解していますか？",c:"法的",o:[
+{t:"契約金額との関係や免責事由を理解している",s:4},
+{t:"上限を設定すべきとは知っているが詳細は曖昧",s:3},
+{t:"聞いたことはあるが自分では判断できない",s:2},
+{t:"考えたことがない",s:1}]},
+{q:"不利な条項に気づいたが、相手は大手企業。どうしますか？",c:"心理",o:[
+{t:"企業規模に関係なく修正を依頼する",s:4},
+{t:"やんわり要望は伝えるが、断られたら引く",s:3},
+{t:"関係を壊したくないので黙って受け入れる",s:2},
+{t:"大手相手には交渉できないと思っている",s:1}]},
+{q:"過去の契約書や交渉記録を管理していますか？",c:"準備",o:[
+{t:"データベース化し、類似案件の条件を比較できる",s:4},
+{t:"ファイルに保存しているが検索しにくい",s:3},
+{t:"担当者個人が保管している程度",s:2},
+{t:"ほぼ管理していない",s:1}]},
+{q:"納期遅延ペナルティとして契約金額の20%と提示された場合は？",c:"法的",o:[
+{t:"業界相場（5〜10%）を示し減額交渉する",s:4},
+{t:"高いと感じるが妥当な水準がわからない",s:3},
+{t:"ペナルティ条項自体をあまり気にしない",s:2},
+{t:"提示された条件をそのまま受け入れる",s:1}]},
+{q:"交渉が平行線になったとき、あなたの対応は？",c:"心理",o:[
+{t:"論点を整理し、互いに譲歩できるポイントを探る",s:4},
+{t:"一旦持ち帰って社内で相談する",s:3},
+{t:"早く終わらせたくて大幅に譲歩する",s:2},
+{t:"相手の条件を丸のみする",s:1}]},
+{q:"契約交渉後、結果を振り返る機会はありますか？",c:"準備",o:[
+{t:"毎回振り返り、改善点を次回に活かしている",s:4},
+{t:"大きな案件のみ振り返る",s:3},
+{t:"振り返りたいが時間がない",s:2},
+{t:"振り返りはしない",s:1}]}
+];
+var cur=0,ans=[];
+function render(){
+var el=document.getElementById("quiz"),h="";
+if(cur<Q.length){
+var p=Math.round((cur/Q.length)*100);
+h+='<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="badge">Q'+(cur+1)+' / '+Q.length+'</span><span style="font-size:.78em;color:#666">'+p+'%</span></div>';
+h+='<div class="prog"><div class="prog-bar" style="width:'+p+'%"></div></div>';
+h+='<p class="qn">'+Q[cur].q+'</p>';
+for(var i=0;i<Q[cur].o.length;i++){
+h+='<button class="btn" onclick="pick('+i+')">'+Q[cur].o[i].t+'</button>';}
+h+='</div>';
+}
+el.innerHTML=h;
+}
+function pick(i){ans.push({c:Q[cur].c,s:Q[cur].o[i].s});cur++;if(cur<Q.length){render();}else{showResult();}}
+function showResult(){
+document.getElementById("quiz").classList.add("hide");
+var r=document.getElementById("result");r.classList.remove("hide");
+var sc={準備:0,法的:0,心理:0},mx={準備:16,法的:12,心理:12},total=0;
+for(var i=0;i<ans.length;i++){sc[ans[i].c]+=ans[i].s;total+=ans[i].s;}
+var pct=Math.round((total/40)*100);
+var rank,rc;
+if(total>=34){rank="S";rc="g";}
+else if(total>=27){rank="A";rc="g";}
+else if(total>=20){rank="B";rc="o";}
+else if(total>=13){rank="C";rc="b";}
+else{rank="D";rc="b";}
+var labels={準備:"交渉準備力",法的:"法的知識",心理:"心理的耐性"};
+var colors={準備:"#3498db",法的:"#27ae60",心理:"#e67e22"};
+var h='<div class="card"><div class="sb"><p class="sl">あなたの交渉力スコア</p><p class="sn '+rc+'">'+total+' <span style="font-size:.4em">/ 40</span></p>';
+h+='<p class="rank '+rc+'">ランク：'+rank+'</p></div></div>';
+h+='<div class="card"><p style="font-weight:bold;margin-bottom:8px">3軸スコア</p><div class="ax">';
+for(var k in sc){
+var p2=Math.round((sc[k]/mx[k])*100);
+var c2=p2>=75?"g":p2>=50?"o":"b";
+h+='<div class="ax-item"><span class="lbl">'+labels[k]+'</span><p class="val '+c2+'">'+sc[k]+'</p><span class="mx">/ '+mx[k]+'</span></div>';}
+h+='</div>';
+for(var k2 in sc){
+var p3=Math.round((sc[k2]/mx[k2])*100);
+h+='<div class="bar-wrap"><div class="bar-lbl"><span>'+labels[k2]+'</span><span>'+p3+'%</span></div><div class="bar-bg"><div class="bar-fg" style="width:'+p3+'%;background:'+colors[k2]+'"></div></div></div>';}
+h+='</div>';
+h+='<div class="card"><p style="font-weight:bold;margin-bottom:10px">改善アクション</p>';
+var acts=[],sorted=[];
+for(var k3 in sc)sorted.push({k:k3,r:sc[k3]/mx[k3]});
+sorted.sort(function(a,b){return a.r-b.r;});
+var tips={
+準備:[
+"交渉前チェックシートを作成し、①譲歩可能な条件 ②絶対に譲れない条件 ③代替案の3点を毎回整理してから交渉に臨みましょう。",
+"過去の契約書をスプレッドシートで管理し、条件（支払サイト・ペナルティ率・保持期間）を比較できる状態にしましょう。"],
+法的:[
+"NDA秘密保持期間の業界標準は3〜5年です。「永久」や「10年」は修正交渉の対象になると認識しましょう。",
+"損害賠償上限は契約金額の100%以内が目安です。納期遅延ペナルティは5〜10%が相場と覚えておきましょう。"],
+心理:[
+"「他社はこの条件で…」は典型的な交渉テクニックです。自社の事情を冷静に伝える練習をしましょう。",
+"大手企業でも条件交渉は可能です。修正依頼は関係悪化ではなく、ビジネス上の正当な行為と捉えましょう。"]
+};
+var cnt=0;
+for(var s=0;s<sorted.length&&cnt<3;s++){
+var key=sorted[s].k;
+if(sorted[s].r<0.75){
+h+='<div class="act"><b>'+labels[key]+'を強化</b>'+tips[key][0]+'</div>';
+cnt++;
+if(cnt<3&&tips[key][1]){h+='<div class="act"><b>'+labels[key]+'・追加</b>'+tips[key][1]+'</div>';cnt++;}
+}}
+if(cnt===0)h+='<div class="act"><b>優秀です！</b>現在の水準を維持しつつ、実践的な交渉シミュレーションで更にスキルを磨きましょう。</div>';
+h+='</div>';
+h+='<div class="card" style="text-align:center"><p style="font-size:.92em;margin-bottom:10px;line-height:1.6">診断結果を踏まえて、AIと実践的な<br>交渉シミュレーションを体験しませんか？</p>';
+h+='<a class="cta" href="./nda-simulator.html">NDA秘密保持期間 交渉シミュレーターを試す →</a>';
+h+='<p style="font-size:.72em;color:#999;margin-top:8px">AIが取引先担当者を演じ、NDA交渉を疑似体験できます</p></div>';
+h+='<button class="rst" onclick="reset()">もう一度診断する</button>';
+r.innerHTML=h;
+}
+function reset(){cur=0;ans=[];document.getElementById("result").classList.add("hide");document.getElementById("quiz").classList.remove("hide");render();}
+render();
+</script></body></html>
