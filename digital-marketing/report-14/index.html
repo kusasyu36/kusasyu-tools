@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>国内4大広告プラットフォーム統一データ収集シート - kusasyu tools</title>
+<meta name="description" content="Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,国内4大広告プラットフォーム統一データ収集シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-14/">
+<meta property="og:title" content="国内4大広告プラットフォーム統一データ収集シート - kusasyu tools">
+<meta property="og:description" content="Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="国内4大広告プラットフォーム統一データ収集シート - kusasyu tools">
+<meta name="twitter:description" content="Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "国内4大広告プラットフォーム統一データ収集シート",
+  "description": "Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-05-12"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>国内4大広告プラットフォーム統一データ収集シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>国内4大広告プラットフォーム統一データ収集シート</h1>
+  <p class="project-name">レポート作成に月3日？広告データ自動ナラティブ化ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>レポート対象月</th><th>期間区分</th><th>プラットフォーム</th><th>キャンペーン名</th><th>インプレッション数</th><th>クリック数</th><th>広告費用（円）</th><th>CV数</th><th>CV値・売上（円）</th><th>CTR（%）</th><th>CVR（%）</th><th>CPA（円）</th><th>ROAS（%）</th><th>固有指標名</th><th>固有指標値</th><th>ツール入力_platform</th><th>ツール入力_impressions</th><th>ツール入力_clicks</th><th>ツール入力_cost</th><th>ツール入力_conversions</th><th>ツール入力_revenue</th></tr></thead><tbody><tr><td>2026年5月</td><td>当月</td><td>Google広告</td><td>ブランド検索</td><td>450000</td><td>18000</td><td>850000</td><td>120</td><td>3600000</td><td>=F2/E2*100</td><td>=H2/F2*100</td><td>=G2/H2</td><td>=I2/G2*100</td><td>品質スコア</td><td>7.2</td><td>google</td><td>=E2</td><td>=F2</td><td>=G2</td><td>=H2</td><td>=I2</td></tr><tr><td>2026年5月</td><td>当月</td><td>Yahoo!広告</td><td>リスティング主力</td><td>280000</td><td>9800</td><td>520000</td><td>72</td><td>2160000</td><td>=F3/E3*100</td><td>=H3/F3*100</td><td>=G3/H3</td><td>=I3/G3*100</td><td>インプレッションシェア</td><td>42.5</td><td>yahoo</td><td>=E3</td><td>=F3</td><td>=G3</td><td>=H3</td><td>=I3</td></tr><tr><td>2026年5月</td><td>当月</td><td>META広告</td><td>リード獲得</td><td>620000</td><td>12400</td><td>680000</td><td>95</td><td>2850000</td><td>=F4/E4*100</td><td>=H4/F4*100</td><td>=G4/H4</td><td>=I4/G4*100</td><td>リーチ</td><td>310000</td><td>meta</td><td>=E4</td><td>=F4</td><td>=G4</td><td>=H4</td><td>=I4</td></tr><tr><td>2026年5月</td><td>当月</td><td>LINE広告</td><td>友だち追加CP</td><td>350000</td><td>7000</td><td>420000</td><td>56</td><td>1680000</td><td>=F5/E5*100</td><td>=H5/F5*100</td><td>=G5/H5</td><td>=I5/G5*100</td><td>友だち追加数</td><td>1250</td><td>line</td><td>=E5</td><td>=F5</td><td>=G5</td><td>=H5</td><td>=I5</td></tr><tr><td>2026年4月</td><td>前月</td><td>Google広告</td><td>ブランド検索</td><td>420000</td><td>16500</td><td>800000</td><td>105</td><td>3150000</td><td>=F6/E6*100</td><td>=H6/F6*100</td><td>=G6/H6</td><td>=I6/G6*100</td><td>品質スコア</td><td>6.8</td><td>google</td><td>=E6</td><td>=F6</td><td>=G6</td><td>=H6</td><td>=I6</td></tr><tr><td>2026年4月</td><td>前月</td><td>Yahoo!広告</td><td>リスティング主力</td><td>260000</td><td>9200</td><td>490000</td><td>65</td><td>1950000</td><td>=F7/E7*100</td><td>=H7/F7*100</td><td>=G7/H7</td><td>=I7/G7*100</td><td>インプレッションシェア</td><td>38.2</td><td>yahoo</td><td>=E7</td><td>=F7</td><td>=G7</td><td>=H7</td><td>=I7</td></tr><tr><td>2026年4月</td><td>前月</td><td>META広告</td><td>リード獲得</td><td>580000</td><td>11600</td><td>640000</td><td>88</td><td>2640000</td><td>=F8/E8*100</td><td>=H8/F8*100</td><td>=G8/H8</td><td>=I8/G8*100</td><td>リーチ</td><td>285000</td><td>meta</td><td>=E8</td><td>=F8</td><td>=G8</td><td>=H8</td><td>=I8</td></tr><tr><td>2026年4月</td><td>前月</td><td>LINE広告</td><td>友だち追加CP</td><td>320000</td><td>6400</td><td>380000</td><td>48</td><td>1440000</td><td>=F9/E9*100</td><td>=H9/F9*100</td><td>=G9/H9</td><td>=I9/G9*100</td><td>友だち追加数</td><td>980</td><td>line</td><td>=E9</td><td>=F9</td><td>=G9</td><td>=H9</td><td>=I9</td></tr><tr><td></td><td>当月合計</td><td>全プラットフォーム</td><td></td><td>=SUM(E2:E5)</td><td>=SUM(F2:F5)</td><td>=SUM(G2:G5)</td><td>=SUM(H2:H5)</td><td>=SUM(I2:I5)</td><td>=F10/E10*100</td><td>=H10/F10*100</td><td>=G10/H10</td><td>=I10/G10*100</td><td></td><td></td><td>total</td><td>=E10</td><td>=F10</td><td>=G10</td><td>=H10</td><td>=I10</td></tr><tr><td></td><td>前月合計</td><td>全プラットフォーム</td><td></td><td>=SUM(E6:E9)</td><td>=SUM(F6:F9)</td><td>=SUM(G6:G9)</td><td>=SUM(H6:H9)</td><td>=SUM(I6:I9)</td><td>=F11/E11*100</td><td>=H11/F11*100</td><td>=G11/H11</td><td>=I11/G11*100</td><td></td><td></td><td>total</td><td>=E11</td><td>=F11</td><td>=G11</td><td>=H11</td><td>=I11</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `レポート対象月,期間区分,プラットフォーム,キャンペーン名,インプレッション数,クリック数,広告費用（円）,CV数,CV値・売上（円）,CTR（%）,CVR（%）,CPA（円）,ROAS（%）,固有指標名,固有指標値,ツール入力_platform,ツール入力_impressions,ツール入力_clicks,ツール入力_cost,ツール入力_conversions,ツール入力_revenue
+2026年5月,当月,Google広告,ブランド検索,450000,18000,850000,120,3600000,=F2/E2*100,=H2/F2*100,=G2/H2,=I2/G2*100,品質スコア,7.2,google,=E2,=F2,=G2,=H2,=I2
+2026年5月,当月,Yahoo!広告,リスティング主力,280000,9800,520000,72,2160000,=F3/E3*100,=H3/F3*100,=G3/H3,=I3/G3*100,インプレッションシェア,42.5,yahoo,=E3,=F3,=G3,=H3,=I3
+2026年5月,当月,META広告,リード獲得,620000,12400,680000,95,2850000,=F4/E4*100,=H4/F4*100,=G4/H4,=I4/G4*100,リーチ,310000,meta,=E4,=F4,=G4,=H4,=I4
+2026年5月,当月,LINE広告,友だち追加CP,350000,7000,420000,56,1680000,=F5/E5*100,=H5/F5*100,=G5/H5,=I5/G5*100,友だち追加数,1250,line,=E5,=F5,=G5,=H5,=I5
+2026年4月,前月,Google広告,ブランド検索,420000,16500,800000,105,3150000,=F6/E6*100,=H6/F6*100,=G6/H6,=I6/G6*100,品質スコア,6.8,google,=E6,=F6,=G6,=H6,=I6
+2026年4月,前月,Yahoo!広告,リスティング主力,260000,9200,490000,65,1950000,=F7/E7*100,=H7/F7*100,=G7/H7,=I7/G7*100,インプレッションシェア,38.2,yahoo,=E7,=F7,=G7,=H7,=I7
+2026年4月,前月,META広告,リード獲得,580000,11600,640000,88,2640000,=F8/E8*100,=H8/F8*100,=G8/H8,=I8/G8*100,リーチ,285000,meta,=E8,=F8,=G8,=H8,=I8
+2026年4月,前月,LINE広告,友だち追加CP,320000,6400,380000,48,1440000,=F9/E9*100,=H9/F9*100,=G9/H9,=I9/G9*100,友だち追加数,980,line,=E9,=F9,=G9,=H9,=I9
+,当月合計,全プラットフォーム,,=SUM(E2:E5),=SUM(F2:F5),=SUM(G2:G5),=SUM(H2:H5),=SUM(I2:I5),=F10/E10*100,=H10/F10*100,=G10/H10,=I10/G10*100,,,total,=E10,=F10,=G10,=H10,=I10
+,前月合計,全プラットフォーム,,=SUM(E6:E9),=SUM(F6:F9),=SUM(G6:G9),=SUM(H6:H9),=SUM(I6:I9),=F11/E11*100,=H11/F11*100,=G11/H11,=I11/G11*100,,,total,=E11,=F11,=G11,=H11,=I11
+,前月比,増減率,,=(E10-E11)/E11*100,=(F10-F11)/F11*100,=(G10-G11)/G11*100,=(H10-H11)/H11*100,=(I10-I11)/I11*100,=J10-J11,=K10-K11,=(L10-L11)/L11*100,=M10-M11,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+【プラットフォーム指標マッピング表】,,,,,,,,,,,,,,,,,,,,
+プラットフォーム,管理画面の指標名,→,統一KPI名
+Google広告,表示回数,→,インプレッション数
+Google広告,クリック数,→,クリック数
+Google広告,費用,→,広告費用（円）
+Google広告,コンバージョン,→,CV数
+Google広告,コンバージョン値,→,CV値・売上（円）
+Yahoo!広告,インプレッション数,→,インプレッション数
+Yahoo!広告,クリック数,→,クリック数
+Yahoo!広告,コスト,→,広告費用（円）
+Yahoo!広告,コンバージョン数,→,CV数
+Yahoo!広告,コンバージョンの価値,→,CV値・売上（円）
+META広告,インプレッション,→,インプレッション数
+META広告,リンクのクリック,→,クリック数
+META広告,消化金額,→,広告費用（円）
+META広告,結果,→,CV数
+META広告,コンバージョン値,→,CV値・売上（円）
+LINE広告,インプレッション,→,インプレッション数
+LINE広告,クリック数,→,クリック数
+LINE広告,消費金額,→,広告費用（円）
+LINE広告,コンバージョン,→,CV数
+LINE広告,コンバージョンの売上金額,→,CV値・売上（円）
+,,,,,,,,,,,,,,,,,,,,
+【使い方】,,,,,,,,,,,,,,,,,,,,
+手順,説明
+1,各プラットフォーム管理画面からCSVをダウンロードし上記マッピング表を参照してE〜I列にデータを入力
+2,J〜M列（CTR・CVR・CPA・ROAS）は数式で自動計算される
+3,P〜U列（ツール入力列）をコピーして広告ナラティブレポート生成ツールのCSV入力欄に貼り付け
+4,当月・前月の両方を入力すると12行目に前月比が自動算出される`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_国内4大広告プラットフォーム統一データ収集シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

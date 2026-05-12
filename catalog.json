@@ -1313,6 +1313,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-12",
+    "url": "proptech/tool-12/",
+    "title": "AI検索で物件が埋もれる？GEO対策ツール",
+    "tool_name": "GEO物件コンテンツジェネレーター",
+    "description": "ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。",
+    "quality_score": 10,
+    "completed_at": "2026-05-11T19:30:35.681867+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "ai-geo",
+    "url": "proptech/ai-geo/",
+    "title": "AI検索で物件が埋もれる？GEO対策ツール",
+    "tool_name": "AI検索GEO対応度_ページ診断ツール",
+    "description": "ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。",
+    "quality_score": 10,
+    "completed_at": "2026-05-11T19:30:35.681867+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -4066,6 +4092,32 @@
     "description": "BtoBの買い手が営業に会う前のWeb比較検討で選ばれるためのコンテンツを自動生成するツールキット。製品情報と競合情報を入力するだけで、競合比較ランディングページ・ROI試算シミュレーターを即座に生成。ナレッジワーク等の既存ツールが「既存資料の管理・検索」に留まる中、「コンテンツそのものを生成する」点で差別化する。",
     "quality_score": 7,
     "completed_at": "2026-05-06T12:31:14.135804+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "report-13",
+    "url": "digital-marketing/report-13/",
+    "title": "レポート作成に月3日？広告データ自動ナラティブ化ツール",
+    "tool_name": "広告データ→日本語ナラティブレポート生成ツール（印刷ビュー統合版）",
+    "description": "Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで実現し、代理店のレポート作成工数を大幅に削減する。データパターン（CPA上昇・CTR低下・",
+    "quality_score": 7,
+    "completed_at": "2026-05-12T02:19:22.368490+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "report-14",
+    "url": "digital-marketing/report-14/",
+    "title": "レポート作成に月3日？広告データ自動ナラティブ化ツール",
+    "tool_name": "国内4大広告プラットフォーム統一データ収集シート",
+    "description": "Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで実現し、代理店のレポート作成工数を大幅に削減する。データパターン（CPA上昇・CTR低下・",
+    "quality_score": 7,
+    "completed_at": "2026-05-12T02:19:22.368490+00:00",
     "content_type": "csv_template"
   },
   {

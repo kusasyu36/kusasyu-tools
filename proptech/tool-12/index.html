@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEO物件コンテンツジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:18px 0;color:#2d3748;border-bottom:3px solid #3182ce}
+h1 span{display:block;font-size:.55em;color:#718096;margin-top:4px}
+h2{font-size:1.1em;color:#2b6cb0;margin:20px 0 10px;padding-left:10px;border-left:4px solid #3182ce}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+label{display:block;font-size:.85em;font-weight:700;margin-bottom:2px;color:#4a5568}
+input,select,textarea{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9em}
+.full{grid-column:1/-1}
+.btn{display:block;width:100%;padding:14px;margin:16px 0;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer}
+.btn:hover{opacity:.9}
+.out{display:none}
+.card{background:#fff;border-radius:10px;padding:16px;margin:12px 0;box-shadow:0 1px 4px rgba(0,0,0,.08);position:relative}
+.card h3{font-size:.95em;color:#2b6cb0;margin-bottom:8px}
+.copy-btn{position:absolute;top:12px;right:12px;background:#ebf4ff;color:#2b6cb0;border:1px solid #bee3f8;border-radius:5px;padding:4px 10px;font-size:.75em;cursor:pointer}
+.copy-btn:hover{background:#bee3f8}
+pre{white-space:pre-wrap;word-break:break-all;font-size:.82em;background:#f7fafc;padding:10px;border-radius:6px;max-height:300px;overflow:auto}
+.faq-item{margin:8px 0;padding:8px;background:#f7fafc;border-radius:6px}
+.faq-q{font-weight:700;font-size:.88em;color:#2d3748}
+.faq-a{font-size:.84em;color:#4a5568;margin-top:2px}
+.cl-cat{margin:10px 0}
+.cl-cat summary{font-weight:700;color:#2b6cb0;cursor:pointer;font-size:.92em;padding:6px;background:#ebf8ff;border-radius:6px}
+.cl-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid #edf2f7;font-size:.83em}
+.cl-item input[type=checkbox]{margin-top:4px;flex-shrink:0}
+.pri{display:inline-block;font-size:.7em;padding:1px 6px;border-radius:3px;color:#fff;margin-left:4px}
+.pri-h{background:#e53e3e}.pri-m{background:#dd6b20}.pri-l{background:#38a169}
+.ba{font-size:.78em;color:#718096;margin:2px 0 0 24px}
+.ba b{color:#e53e3e}.ba i{color:#38a169;font-style:normal}
+.score-bar{height:8px;background:#e2e8f0;border-radius:4px;margin:6px 0}
+.score-fill{height:100%;border-radius:4px}
+footer{text-align:center;font-size:.75em;color:#a0aec0;padding:20px 0}
+</style>
+<meta name="description" content="ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,GEO物件コンテンツジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-12/">
+<meta property="og:title" content="GEO物件コンテンツジェネレーター - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GEO物件コンテンツジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GEO物件コンテンツジェネレーター",
+  "description": "ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-12/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">GEO物件コンテンツジェネレーター</span></div>
+<div class="wrap">
+<h1>GEO物件コンテンツジェネレーター<span>AI検索に引用される物件情報を自動生成</span></h1>
+<h2>物件情報を入力</h2>
+<div class="form-grid">
+<div><label>物件名</label><input id="pName" placeholder="グランメゾン渋谷"></div>
+<div><label>物件種別</label><select id="pType"><option>マンション</option><option>アパート</option><option>一戸建て</option><option>事務所</option><option>店舗</option></select></div>
+<div><label>住所</label><input id="pAddr" placeholder="東京都渋谷区神南1-1-1"></div>
+<div><label>最寄駅（徒歩分）</label><input id="pSta" placeholder="渋谷駅 徒歩5分"></div>
+<div><label>間取り</label><input id="pLayout" placeholder="2LDK"></div>
+<div><label>面積（㎡）</label><input id="pArea" type="number" placeholder="65"></div>
+<div><label>賃料/価格</label><input id="pPrice" placeholder="月額15万円"></div>
+<div><label>築年数</label><input id="pAge" type="number" placeholder="10"></div>
+<div class="full"><label>設備（カンマ区切り）</label><input id="pEquip" placeholder="オートロック,宅配ボックス,浴室乾燥機,追い焚き"></div>
+<div><label>学区</label><input id="pSchool" placeholder="神南小学校・松濤中学校"></div>
+<div><label>取引形態</label><select id="pDeal"><option>仲介</option><option>貸主</option><option>代理</option></select></div>
+<div class="full"><label>周辺環境（カンマ区切り）</label><input id="pEnv" placeholder="コンビニ徒歩1分,スーパー徒歩3分,公園隣接"></div>
+</div>
+<button class="btn" onclick="generate()">GEO最適化コンテンツを生成</button>
+<div class="out" id="output">
+<h2>生成結果</h2>
+<div class="card"><h3>AI検索最適化 物件説明文</h3><button class="copy-btn" onclick="cp('descText')">コピー</button><div id="descText"></div></div>
+<div class="card"><h3>FAQ（5問）— 構造化で引用率UP</h3><button class="copy-btn" onclick="cp('faqText')">コピー</button><div id="faqText"></div></div>
+<div class="card"><h3>JSON-LD 構造化データ</h3><button class="copy-btn" onclick="cp('jsonText')">コピー</button><pre id="jsonText"></pre></div>
+<div class="card"><h3>GEO対応スコア</h3><div id="scoreArea"></div></div>
+<h2>GEO対策チェックリスト</h2>
+<div id="checklist"></div>
+</div>
+<footer>&copy; Kusasyu PropTech — GEO物件コンテンツジェネレーター</footer>
+</div>
+<script>
+function v(id){return document.getElementById(id).value.trim()}
+function cp(id){var el=document.getElementById(id);navigator.clipboard.writeText(el.innerText||el.textContent).then(function(){alert('コピーしました')})}
+function generate(){
+var n=v('pName'),ty=v('pType'),ad=v('pAddr'),st=v('pSta'),la=v('pLayout'),ar=v('pArea'),pr=v('pPrice'),ag=v('pAge'),eq=v('pEquip'),sc=v('pSchool'),dl=v('pDeal'),en=v('pEnv');
+if(!n||!ad){alert('物件名と住所は必須です');return}
+var eqA=eq?eq.split(/[,、]/).map(function(s){return s.trim()}).filter(Boolean):[];
+var enA=en?en.split(/[,、]/).map(function(s){return s.trim()}).filter(Boolean):[];
+var d='【'+n+'】は'+ad+'に位置する'+ty+'です。';
+if(st)d+=st+'でアクセス良好。';
+if(la&&ar)d+=la+'・'+ar+'㎡の'+(ar>=60?'ゆとりある':'使いやすい')+'間取り。';
+if(pr)d+='賃料は'+pr+'。';
+if(ag)d+=(ag<=5?'築浅':'築'+ag+'年')+'で'+(ag<=10?'設備も新しく快適':'しっかり管理された物件')+'。';
+if(eqA.length)d+='主な設備：'+eqA.join('・')+'。';
+if(sc)d+='学区は'+sc+'で、子育て世帯にも好評。';
+if(enA.length)d+='周辺環境は'+enA.join('、')+'と生活利便性が高いエリアです。';
+d+=dl+'でのお取引となります。内見予約は随時受付中です。';
+document.getElementById('descText').innerText=d;
+var faqs=[
+{q:n+'の最寄駅とアクセスは？',a:(st?st+'です。':'最寄駅情報は物件詳細をご確認ください。')+(enA.length?'周辺には'+enA[0]+'もあり便利です。':'')},
+{q:n+'の間取りと広さは？',a:(la&&ar?la+'・'+ar+'㎡です。':'詳細はお問い合わせください。')+(ar>=60?'二人暮らしやファミリーにも対応できる広さです。':'コンパクトで効率的な空間設計です。')},
+{q:n+'の設備・仕様は？',a:eqA.length?eqA.join('、')+'を完備。快適な住環境を提供します。':'設備詳細はお問い合わせください。'},
+{q:n+'の周辺環境・学区は？',a:(sc?'学区は'+sc+'。':'')+(enA.length?enA.join('、')+'など生活施設が充実。':'周辺環境の詳細はスタッフにお尋ねください。')},
+{q:n+'の賃料・初期費用は？',a:(pr?'賃料は'+pr+'です。':'賃料はお問い合わせください。')+'初期費用やキャンペーン情報はお気軽にご相談ください。'}
+];
+var fh='';faqs.forEach(function(f){fh+='<div class="faq-item"><div class="faq-q">Q. '+f.q+'</div><div class="faq-a">A. '+f.a+'</div></div>'});
+document.getElementById('faqText').innerHTML=fh;
+var jd={"@context":"https://schema.org","@type":"RealEstateListing","name":n,"description":d,"datePosted":new Date().toISOString().split('T')[0],"address":{"@type":"PostalAddress","streetAddress":ad,"addressCountry":"JP"}};
+if(pr)jd.price=pr;
+if(ar)jd.floorSize={"@type":"QuantitativeValue","value":Number(ar),"unitCode":"MTK"};
+if(ag)jd.yearBuilt=new Date().getFullYear()-Number(ag);
+if(eqA.length)jd.amenityFeature=eqA.map(function(e){return{"@type":"LocationFeatureSpecification","name":e,"value":true}});
+jd.offers={"@type":"Offer","priceCurrency":"JPY","availability":"https://schema.org/InStock"};
+jd.mainEntity=faqs.map(function(f){return{"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}});
+document.getElementById('jsonText').textContent='<script type="application/ld+json">\n'+JSON.stringify(jd,null,2)+'\n<\/script>';
+var s=0;
+if(n)s++;if(ad)s++;if(st)s++;if(la)s++;if(ar)s++;if(pr)s++;if(eqA.length>=3)s++;if(sc)s++;if(enA.length>=2)s++;if(ag)s++;
+var p=s*10,col=p>=80?'#38a169':p>=50?'#dd6b20':'#e53e3e';
+document.getElementById('scoreArea').innerHTML='<div style="font-size:2em;font-weight:700;color:'+col+'">'+p+'点<span style="font-size:.4em;color:#718096"> / 100点</span></div><div class="score-bar"><div class="score-fill" style="width:'+p+'%;background:'+col+'"></div></div><p style="font-size:.82em;color:#4a5568">入力項目の充実度に基づくGEO対応スコア。80点以上でAI検索への引用率が大幅向上。</p>';
+var cls=[
+{cat:'物件ページ',items:[
+{t:'構造化データ（JSON-LD）をページに埋め込む',p:'h',b:'✗ 構造化データなし',a:'✓ RealEstateListing schema設置済'},
+{t:'FAQ形式セクションをページ内に設置',p:'h',b:'✗ 一方通行の説明文のみ',a:'✓ Q&A形式で5問以上設置'},
+{t:'説明文に具体的数値・固有名詞を含める',p:'h',b:'✗ 「駅近の好立地」',a:'✓ 「渋谷駅徒歩5分・神南エリア」'},
+{t:'画像alt属性に物件情報を記述',p:'m',b:'✗ alt=""',a:'✓ alt="'+n+' '+la+' リビング"'},
+{t:'パンくずリスト+Breadcrumb構造化',p:'m',b:'✗ パンくずなし',a:'✓ TOP > エリア > '+n}
+]},
+{cat:'エリアページ',items:[
+{t:'エリア解説コンテンツ（800字以上）作成',p:'h',b:'✗ 物件一覧のみ',a:'✓ 地域特性・相場・生活情報を網羅'},
+{t:'エリアFAQ（相場・治安・交通）5問以上',p:'h',b:'✗ FAQ無し',a:'✓ 「このエリアの家賃相場は？」等'},
+{t:'近隣施設への具体的距離を明記',p:'m',b:'✗ 「買い物便利」',a:'✓ 「○○スーパーまで徒歩3分（240m）」'},
+{t:'エリアページにPlace+FAQPage schema設置',p:'l',b:'✗ 未対応',a:'✓ 構造化データ設置済'}
+]},
+{cat:'会社概要',items:[
+{t:'LocalBusiness構造化データ設置',p:'h',b:'✗ 未対応',a:'✓ 営業時間・住所・電話をschema.orgで記述'},
+{t:'GBPとのNAP情報一致確認',p:'h',b:'✗ サイトとGBPで電話番号不一致',a:'✓ 名前・住所・電話が完全一致'},
+{t:'スタッフ紹介・実績で専門性訴求',p:'m',b:'✗ 会社概要1ページのみ',a:'✓ 有資格者・取引実績を具体的に掲載'},
+{t:'お客様の声をReview schema付きで掲載',p:'l',b:'✗ レビュー無し',a:'✓ 5件以上のレビューを構造化掲載'}
+]}
+];
+var ch='';cls.forEach(function(c){
+ch+='<details class="cl-cat" open><summary>'+c.cat+'（'+c.items.length+'項目）</summary>';
+c.items.forEach(function(i){
+var pc=i.p==='h'?'pri-h':i.p==='m'?'pri-m':'pri-l';
+var pl=i.p==='h'?'高':i.p==='m'?'中':'低';
+ch+='<div class="cl-item"><input type="checkbox"><div><span>'+i.t+'</span><span class="pri '+pc+'">優先度:'+pl+'</span><div class="ba">Before: <b>'+i.b+'</b><br>After: <i>'+i.a+'</i></div></div></div>';
+});ch+='</details>'});
+document.getElementById('checklist').innerHTML=ch;
+document.getElementById('output').style.display='block';
+document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

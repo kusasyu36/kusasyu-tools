@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI検索GEO対応度_ページ診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.35em;padding:18px 0;color:#2d3748;border-bottom:3px solid #3182ce}
+h1 span{display:block;font-size:.52em;color:#718096;margin-top:4px}
+h2{font-size:1.05em;color:#2b6cb0;margin:18px 0 8px;padding-left:10px;border-left:4px solid #3182ce}
+textarea{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.85em;font-family:monospace;resize:vertical}
+.btn{display:block;width:100%;padding:14px;margin:14px 0;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer}
+.btn:hover{opacity:.88}
+.btn-s{display:inline-block;width:auto;padding:10px 28px;margin:10px 4px;font-size:.95em;border-radius:8px;border:none;font-weight:700;cursor:pointer;color:#fff}
+.btn-gen{background:linear-gradient(135deg,#38a169,#2f855a)}
+.btn-gen:hover{opacity:.88}
+.btn-reset{background:#a0aec0}
+.btn-reset:hover{opacity:.88}
+.out{display:none}
+.card{background:#fff;border-radius:10px;padding:16px;margin:10px 0;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.grade-box{text-align:center;padding:20px;border-radius:12px;margin:12px 0}
+.grade-box .letter{font-size:3.2em;font-weight:900;line-height:1}
+.grade-box .sub{font-size:.85em;margin-top:4px}
+.ga{background:#c6f6d5;color:#22543d}.gb{background:#fefcbf;color:#744210}
+.gc{background:#feebc8;color:#7b341e}.gd{background:#fed7d7;color:#822727}
+table{width:100%;border-collapse:collapse;font-size:.88em}
+th,td{padding:8px 6px;border-bottom:1px solid #e2e8f0;text-align:left}
+th{background:#ebf4ff;color:#2b6cb0;font-size:.82em}
+td:nth-child(1){width:28%;font-weight:700}
+td:nth-child(2){width:10%;text-align:center;font-size:1.3em}
+.mark-o{color:#38a169}.mark-t{color:#d69e2e}.mark-x{color:#e53e3e}
+.act{font-size:.84em;color:#4a5568;background:#f7fafc;padding:10px;border-radius:6px;margin:6px 0}
+.act b{color:#2b6cb0}
+.score-bar{height:8px;background:#e2e8f0;border-radius:4px;margin:4px 0}
+.score-fill{height:100%;border-radius:4px;transition:width .5s}
+.sf-h{background:#38a169}.sf-m{background:#d69e2e}.sf-l{background:#e53e3e}
+.note{font-size:.78em;color:#a0aec0;text-align:center;margin-top:20px}
+@media(max-width:600px){h1{font-size:1.15em}.grade-box .letter{font-size:2.5em}table{font-size:.8em}}
+</style>
+<meta name="description" content="ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,AI検索GEO対応度_ページ診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/ai-geo/">
+<meta property="og:title" content="AI検索GEO対応度_ページ診断ツール - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/ai-geo/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI検索GEO対応度_ページ診断ツール - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI検索GEO対応度_ページ診断ツール",
+  "description": "ChatGPT・Gemini等の生成AI検索で自社物件が引用されるよう、物件情報を入力するだけでGEO最適化コンテンツ（物件説明文・FAQ・JSON-LD構造化データ）を自動生成するツールキット。既存の物件掲載文のGEO対応度をスコア診断し、改善ポイントを具体的に提示する機能も搭載。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/ai-geo/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">AI検索GEO対応度_ページ診断ツール</span></div>
+<div class="wrap">
+<h1>AI検索GEO対応度 ページ診断ツール<span>物件掲載ページのHTML を貼るだけで GEO 最適化スコアを即時診断</span></h1>
+
+<h2>① HTMLソースを貼り付け</h2>
+<p style="font-size:.82em;color:#718096;margin-bottom:6px">物件掲載ページの「ページのソースを表示」からHTMLをコピーしてください</p>
+<textarea id="src" rows="12" placeholder="<!DOCTYPE html>&#10;<html>&#10;...ここにHTMLソースを貼り付け..."></textarea>
+<button class="btn" onclick="run()">診断を実行する</button>
+
+<div id="out" class="out">
+<h2>② 診断結果</h2>
+<div id="gradeArea"></div>
+<div class="card"><table><thead><tr><th>診断項目</th><th>判定</th><th>詳細</th></tr></thead><tbody id="tbl"></tbody></table></div>
+<div class="card"><h3 style="font-size:.95em;color:#2b6cb0;margin-bottom:8px">改善アクション</h3><div id="acts"></div></div>
+<div style="text-align:center;margin:18px 0">
+<button class="btn-s btn-gen" onclick="toGen()">GEO物件コンテンツジェネレーターで改善する →</button>
+<button class="btn-s btn-reset" onclick="reset()">別のページを診断</button>
+</div>
+</div>
+<p class="note">本ツールは「GEO物件コンテンツジェネレーター」と連携し、診断結果に基づく最適化コンテンツを自動生成します。</p>
+</div>
+<script>
+function run(){
+var s=document.getElementById('src').value.trim();
+if(!s){alert('HTMLソースを貼り付けてください');return}
+var r=[];
+// 1: JSON-LD
+var ld=/<script[^>]+type\s*=\s*['"]application\/ld\+json['"]/i.test(s);
+var ldC=0;if(ld){var m=s.match(/application\/ld\+json/gi);ldC=m?m.length:0}
+r.push({name:'JSON-LD構造化データ',mark:ld?'○':'✕',cls:ld?'mark-o':'mark-x',score:ld?100:0,
+detail:ld?ldC+'件の構造化データを検出':'構造化データが見つかりません',
+action:ld?'検出済みです。RealEstateListing / FAQPage スキーマが含まれているか内容も確認しましょう。':
+'<b>最優先：</b>JSON-LD構造化データを追加してください。GEO物件コンテンツジェネレーターで自動生成できます。'});
+// 2: FAQ
+var faqP=[/Q[\.\s\d]*[:：]/i,/[\?？]\s*\n/,/<(dt|summary)[^>]*>/i,/よくある質問/,/FAQ/i,/質問と回答/];
+var faqHit=0;faqP.forEach(function(p){if(p.test(s))faqHit++});
+var fM=faqHit>=2?'○':faqHit===1?'△':'✕';
+r.push({name:'FAQ記法',mark:fM,cls:fM==='○'?'mark-o':fM==='△'?'mark-t':'mark-x',score:faqHit>=2?100:faqHit===1?50:0,
+detail:faqHit+'個のFAQパターンを検出',
+action:fM==='○'?'FAQ構造が確認できました。FAQPage スキーマも併せて実装すると効果的です。':
+'<b>推奨：</b>「Q. 〇〇は？」「A. 〇〇です。」形式のFAQセクションを追加しましょう。物件固有の疑問（初期費用・ペット可否・周辺施設等）を5問以上掲載が目安です。'});
+// 3: エリア情報
+var area=[/駅/g,/分/g,/線/g,/丁目/g,/区/g,/市/g,/町/g,/番地/g,/学区/g,/小学校/g,/中学校/g,/公園/g,/商店街/g,/スーパー/g,/コンビニ/g,/病院/g,/徒歩/g];
+var aC=0;area.forEach(function(p){var mm=s.match(p);if(mm)aC+=mm.length});
+var aM=aC>=15?'○':aC>=5?'△':'✕';
+r.push({name:'エリア固有情報の密度',mark:aM,cls:aM==='○'?'mark-o':aM==='△'?'mark-t':'mark-x',score:Math.min(100,Math.round(aC/15*100)),
+detail:'エリア関連キーワード '+aC+'件検出',
+action:aM==='○'?'エリア情報が充実しています。さらに「〇〇駅から徒歩△分」等の具体表現を増やすとAI引用率が上がります。':
+'<b>重要：</b>最寄駅・路線名・学区名・周辺施設（スーパー、病院、公園等）を具体的な固有名詞で記載してください。AI検索はローカル情報の具体性を重視します。'});
+// 4: 数値データ
+var nums=[/\d+[\.\d]*\s*㎡/g,/\d+[\.\d]*\s*m²/g,/\d+[\.\d]*\s*万円/g,/\d+[\.\d]*\s*円/g,/築\s*\d+/g,/\d+階/g,/\d+戸/g,/\d+LDK/gi,/\d+DK/gi,/\d+K/g,/\d+[\.\d]*\s*%/g];
+var nC=0;nums.forEach(function(p){var mm=s.match(p);if(mm)nC+=mm.length});
+var nM=nC>=10?'○':nC>=4?'△':'✕';
+r.push({name:'数値データの具体性',mark:nM,cls:nM==='○'?'mark-o':nM==='△'?'mark-t':'mark-x',score:Math.min(100,Math.round(nC/10*100)),
+detail:'数値データ '+nC+'件検出',
+action:nM==='○'?'数値データが豊富です。比較しやすい相場情報（エリア平均賃料等）も加えると差別化できます。':
+'<b>改善：</b>面積（㎡）、賃料（万円）、築年数、管理費、敷金・礼金等の数値を明記してください。AIは曖昧な表現より具体的な数値を優先的に引用します。'});
+// 5: 文章量
+var text=s.replace(/<style[\s\S]*?<\/style>/gi,'').replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<[^>]+>/g,'').replace(/\s+/g,'');
+var tLen=text.length;
+var tM=tLen>=800?'○':tLen>=300?'△':'✕';
+r.push({name:'文章量と具体性',mark:tM,cls:tM==='○'?'mark-o':tM==='△'?'mark-t':'mark-x',score:Math.min(100,Math.round(tLen/800*100)),
+detail:'テキスト約'+tLen+'文字（タグ除外）',
+action:tM==='○'?'十分な文章量です。物件の強み・暮らしのイメージを含む説明文になっているか内容面も確認しましょう。':
+'<b>必須：</b>物件説明文を800文字以上に拡充してください。設備の魅力、暮らしのイメージ、周辺環境の具体的な描写を追加しましょう。GEO物件コンテンツジェネレーターで最適化された説明文を自動生成できます。'});
+// Grade
+var total=0;r.forEach(function(x){total+=x.score});
+var avg=Math.round(total/r.length);
+var gl,gc;
+if(avg>=80){gl='A';gc='ga'}else if(avg>=55){gl='B';gc='gb'}else if(avg>=30){gl='C';gc='gc'}else{gl='D';gc='gd'}
+var gLabels={A:'GEO対応度が高い — AI検索での引用が期待できます',B:'基本対応済み — あと少しの改善で大きく伸びます',C:'要改善 — AI検索で埋もれるリスクがあります',D:'未対応 — 早急なGEO最適化が必要です'};
+document.getElementById('gradeArea').innerHTML='<div class="grade-box '+gc+'"><div class="letter">'+gl+'</div><div class="sub">総合スコア '+avg+'/100 — '+gLabels[gl]+'</div><div class="score-bar"><div class="score-fill '+(avg>=60?'sf-h':avg>=35?'sf-m':'sf-l')+'" style="width:'+avg+'%"></div></div></div>';
+var tb='';r.forEach(function(x){tb+='<tr><td>'+x.name+'</td><td class="'+x.cls+'">'+x.mark+'</td><td>'+x.detail+'</td></tr>'});
+document.getElementById('tbl').innerHTML=tb;
+var ac='';r.forEach(function(x){ac+='<div class="act">▸ <b>'+x.name+'：</b>'+x.action+'</div>'});
+document.getElementById('acts').innerHTML=ac;
+document.getElementById('out').style.display='block';
+document.getElementById('out').scrollIntoView({behavior:'smooth'});
+}
+function reset(){document.getElementById('src').value='';document.getElementById('out').style.display='none';window.scrollTo({top:0,behavior:'smooth'})}
+function toGen(){alert('GEO物件コンテンツジェネレーターへ遷移します。\n（実際の運用では同一ドメイン内のジェネレーターページにリダイレクトされます）')}
+</script>
+</body>
+</html>

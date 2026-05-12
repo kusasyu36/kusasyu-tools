@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>広告データ→日本語ナラティブレポート生成ツール（印刷ビュー統合版） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,sans-serif;background:#f4f6f9;color:#333}.w{max-width:900px;margin:0 auto;padding:12px}h1{font-size:17px;text-align:center;padding:14px 0;color:#1a56db}.tabs{display:flex;gap:4px;margin-bottom:10px;flex-wrap:wrap}.tabs button{flex:1;padding:9px 2px;border:2px solid #ddd;background:#fff;border-radius:7px 7px 0 0;cursor:pointer;font-size:12px;font-weight:700}.tabs button.on{border-color:#1a56db;background:#e8f0fe;color:#1a56db}.c{background:#fff;border-radius:8px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.08)}.md{display:flex;gap:6px;margin-bottom:10px}.md button{padding:5px 14px;border:1px solid #ccc;background:#fff;border-radius:4px;cursor:pointer;font-size:12px}.md button.on{background:#1a56db;color:#fff;border-color:#1a56db}.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gr label{display:block;font-size:11px;color:#666;margin-bottom:2px}.gr input{width:100%;padding:7px;border:1px solid #ddd;border-radius:4px;font-size:13px}textarea{width:100%;height:80px;padding:7px;border:1px solid #ddd;border-radius:4px;font-size:11px;font-family:monospace}.b{display:inline-block;padding:9px 20px;background:#1a56db;color:#fff;border:none;border-radius:6px;font-size:13px;cursor:pointer;margin:3px}.b:hover{opacity:.85}.b2{background:#16a34a}.b3{background:#666}.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin:10px 0}.ki{text-align:center;padding:10px;border-radius:7px;background:#f8f9fa}.ki .v{font-size:20px;font-weight:700}.ki .r{font-size:12px;margin-top:3px}.good{color:#16a34a}.bad{color:#dc2626}.flat{color:#888}.bw{display:flex;align-items:end;gap:6px;height:110px;margin:10px 0;padding:8px;background:#fafafa;border-radius:7px}.bg{flex:1;text-align:center}.bp{display:flex;gap:2px;justify-content:center;align-items:end;height:90px}.br{width:18px;border-radius:3px 3px 0 0;min-height:2px}.br.p{background:#bbb}.br.q{background:#1a56db}.bl{font-size:9px;margin-top:3px;color:#888}.nar{background:#f0f4ff;border-left:4px solid #1a56db;padding:14px;border-radius:0 7px 7px 0;margin:10px 0;line-height:1.9;white-space:pre-wrap;font-size:13px}.lg{font-size:10px;color:#999;margin:4px 0}#R,#P{display:none}.rh{text-align:center;border-bottom:2px solid #333;padding-bottom:10px;margin-bottom:14px}@media print{.np{display:none!important}body{background:#fff}.c{box-shadow:none;break-inside:avoid}}@media(max-width:600px){.gr{grid-template-columns:1fr}.kr{grid-template-columns:1fr 1fr}}
+</style>
+<meta name="description" content="Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,広告データ→日本語ナラティブレポート生成ツール（印刷ビュー統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-13/">
+<meta property="og:title" content="広告データ→日本語ナラティブレポート生成ツール（印刷ビュー統合版） - kusasyu tools">
+<meta property="og:description" content="Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="広告データ→日本語ナラティブレポート生成ツール（印刷ビュー統合版） - kusasyu tools">
+<meta name="twitter:description" content="Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "広告データ→日本語ナラティブレポート生成ツール（印刷ビュー統合版）",
+  "description": "Google広告・Yahoo!広告・META広告・LINE広告のデータをCSVまたは手入力で投入すると、前月比分析・KPIサマリー・改善提案を含む日本語ナラティブレポート文章をアルゴリズムでリアルタイム生成するHTMLツール。Looker Studioではできない「数字→日本語ストーリー」変換をブラウザだけで",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/report-13/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">広告データ→日本語ナラティブレポート生成ツール（印刷ビュー統</span></div>
+<div class="w">
+<h1>&#128202; 広告データ ナラティブレポート生成ツール</h1>
+<div class="c np" id="IN">
+<div class="tabs" id="pt"></div>
+<div class="md" id="mm"></div>
+<div id="man"><p style="font-size:12px;font-weight:700;margin-bottom:6px">&#9632; 当月データ</p><div class="gr" id="cu"></div><p style="font-size:12px;font-weight:700;margin:10px 0 6px">&#9632; 前月データ</p><div class="gr" id="pr"></div></div>
+<div id="ca" style="display:none"><p style="font-size:11px;margin-bottom:3px">CSV: 表示回数,クリック数,CV数,費用,売上（1行目:当月 2行目:前月）</p><textarea id="csv" placeholder="100000,5000,200,500000,2000000&#10;90000,4000,180,450000,1800000"></textarea></div>
+<div style="text-align:center;margin-top:10px"><button class="b" onclick="gen()">レポート生成</button><button class="b b3" onclick="res()">リセット</button></div>
+</div>
+<div id="R">
+<div class="c"><h2 style="font-size:15px;margin-bottom:6px">&#128200; KPIサマリー <span id="pn" style="color:#1a56db"></span></h2><div class="kr" id="kp"></div><div class="lg">&#9632; <span style="color:#bbb">前月</span> &#9632; <span style="color:#1a56db">当月</span></div><div class="bw" id="ch"></div></div>
+<div class="c"><h2 style="font-size:15px;margin-bottom:6px">&#128221; ナラティブレポート</h2><div class="nar" id="na"></div><div style="margin-top:8px" class="np"><button class="b b2" onclick="cp()">&#128203; コピー</button><button class="b" onclick="showR()">&#128424; 印刷ビュー</button><button class="b b3" onclick="document.getElementById('R').style.display='none';document.getElementById('IN').style.display=''">← 戻る</button></div></div>
+</div>
+<div id="P">
+<div class="c"><div class="rh"><h2 id="rt" style="font-size:17px"></h2><p style="color:#666;font-size:12px" id="rd"></p></div>
+<h3 style="font-size:13px;margin-bottom:6px">&#9632; エグゼクティブサマリー</h3><div id="rs" style="line-height:1.8;margin-bottom:14px;font-size:13px"></div>
+<h3 style="font-size:13px;margin-bottom:6px">&#9632; KPI実績</h3><div class="kr" id="rk"></div><div class="bw" id="rc"></div>
+<h3 style="font-size:13px;margin:14px 0 6px">&#9632; 詳細分析</h3><div style="line-height:1.8;white-space:pre-wrap;font-size:13px" id="rn"></div>
+<h3 style="font-size:13px;margin:14px 0 6px">&#9632; 次月アクションプラン</h3><div id="ra" style="line-height:1.8;font-size:13px;white-space:pre-wrap"></div></div>
+<div class="np" style="text-align:center;margin:10px 0"><button class="b" onclick="window.print()">&#128424; PDF出力</button><button class="b b3" onclick="hideR()">← 戻る</button></div>
+</div>
+</div>
+<script>
+const PF=['Google広告','Yahoo!広告','META広告','LINE広告'],F=['imp','cl','cv','co','rv'],FL=['表示回数','クリック数','CV数','費用(円)','売上(円)'];
+let cp_=0,mo=0,lN='',lA='',lS='';
+(function(){const t=document.getElementById('pt');PF.forEach((p,i)=>{const b=document.createElement('button');b.textContent=p;b.className=i?'':'on';b.onclick=()=>{cp_=i;[...t.children].forEach((x,j)=>x.className=j===i?'on':'')};t.appendChild(b)});
+const m=document.getElementById('mm');['手入力','CSV貼付'].forEach((l,i)=>{const b=document.createElement('button');b.textContent=l;b.className=i?'':'on';b.onclick=()=>{mo=i;[...m.children].forEach((x,j)=>x.className=j===i?'on':'');document.getElementById('man').style.display=i?'none':'';document.getElementById('ca').style.display=i?'':'none'};m.appendChild(b)});
+['cu','pr'].forEach(id=>{const g=document.getElementById(id);F.forEach((f,i)=>{const d=document.createElement('div');d.innerHTML='<label>'+FL[i]+'</label><input type="number" id="'+id+'_'+f+'" placeholder="0">';g.appendChild(d)})})})();
+function gv(){let c={},p={};if(!mo){F.forEach(f=>{c[f]=+(document.getElementById('cu_'+f).value)||0;p[f]=+(document.getElementById('pr_'+f).value)||0})}else{const ls=document.getElementById('csv').value.trim().split('\n');if(ls.length<2)return alert('CSVは2行必要です'),null;const ps=s=>s.split(',').map(Number);const a=ps(ls[0]),b=ps(ls[1]);F.forEach((f,i)=>{c[f]=a[i]||0;p[f]=b[i]||0})}return{c,p}}
+function calc(d){const r={},ch=(a,b)=>b?((a-b)/b*100):0;r.ctr_c=d.c.cl/d.c.imp*100||0;r.ctr_p=d.p.cl/d.p.imp*100||0;r.cvr_c=d.c.cv/d.c.cl*100||0;r.cvr_p=d.p.cv/d.p.cl*100||0;r.cpa_c=d.c.co/d.c.cv||0;r.cpa_p=d.p.co/d.p.cv||0;r.roas_c=d.c.rv/d.c.co*100||0;r.roas_p=d.p.rv/d.p.co*100||0;r.ctr_r=ch(r.ctr_c,r.ctr_p);r.cvr_r=ch(r.cvr_c,r.cvr_p);r.cpa_r=ch(r.cpa_c,r.cpa_p);r.roas_r=ch(r.roas_c,r.roas_p);return r}
+function badge(v,inv){const g=inv?v<0:v>0;const cls=Math.abs(v)<3?'flat':g?'good':'bad';return'<span class="'+cls+'">'+(v>0?'+':'')+v.toFixed(1)+'%</span>'}
+function rKPI(r,t){t.innerHTML=[{l:'CTR',v:r.ctr_c.toFixed(2)+'%',r:r.ctr_r,i:0},{l:'CVR',v:r.cvr_c.toFixed(2)+'%',r:r.cvr_r,i:0},{l:'CPA',v:'¥'+Math.round(r.cpa_c).toLocaleString(),r:r.cpa_r,i:1},{l:'ROAS',v:r.roas_c.toFixed(0)+'%',r:r.roas_r,i:0}].map(k=>'<div class="ki"><div style="font-size:10px;color:#888">'+k.l+'</div><div class="v">'+k.v+'</div><div class="r">前月比 '+badge(k.r,k.i)+'</div></div>').join('')}
+function rCH(r,t){t.innerHTML=[{l:'CTR',c:r.ctr_c,p:r.ctr_p},{l:'CVR',c:r.cvr_c,p:r.cvr_p},{l:'CPA(千)',c:r.cpa_c/1e3,p:r.cpa_p/1e3},{l:'ROAS',c:r.roas_c,p:r.roas_p}].map(k=>{const mx=Math.max(k.c,k.p,.01);return'<div class="bg"><div class="bp"><div class="br p" style="height:'+Math.max(k.p/mx*85,2)+'px"></div><div class="br q" style="height:'+Math.max(k.c/mx*85,2)+'px"></div></div><div class="bl">'+k.l+'</div></div>'}).join('')}
+const T={cpa:{up:['CPAが前月比{r}上昇し獲得効率が悪化',['クリック単価上昇による広告費増加','CVR低下に伴う獲得効率悪化','競合の入札強化による市場競争激化'],['低効率キーワードの停止・入札引下げ','LP改善によるCVR向上施策','除外設定見直しで無駄クリック削減']],dn:['CPAが前月比{r}改善し獲得効率が向上',['CVR改善による効率的なCV獲得','入札最適化・自動入札の学習進行','季節需要の高まり'],['好調要因を特定し他キャンペーンへ横展開','改善維持しつつ予算増額を検討','成功クリエイティブの分析と展開']]},ctr:{up:['CTRが前月比{r}向上し広告訴求力が強化',['広告文・クリエイティブ改善の効果','ターゲティング精度の向上','競合出稿減による相対的な露出向上'],['高CTR広告の要素分析と横展開','CTR向上をCVRにも繋げるLP最適化','好調セグメントの拡張']],dn:['CTRが前月比{r}低下し訴求力に課題',['クリエイティブの疲弊','競合の訴求強化','ターゲティングのズレ'],['広告文・バナーの刷新','オーディエンス見直し','広告フォーマット最適化']]},cvr:{up:['CVRが前月比{r}改善しサイト転換効率が向上',['LP改善施策の効果','流入トラフィック品質の向上','訴求とLPの一貫性向上'],['成功LP改善パターンの横展開','高CVRセグメントへの予算集中','フォーム最適化の継続']],dn:['CVRが前月比{r}低下し転換効率に課題',['LP体験の劣化','トラフィック品質低下','競合オファー強化'],['LP速度・モバイルUX改善','ヒートマップ分析でボトルネック特定','CTA改善テスト実施']]},roas:{up:['ROASが前月比{r}改善し投資収益性が向上',['高単価商品のCV増加','CPA改善による効率向上','LTV向上施策の効果'],['好調キャンペーンへ予算再配分','高収益商品の露出強化','成功パターンの他媒体展開']],dn:['ROASが前月比{r}悪化し収益性に課題',['低単価商品へのCV偏り','CPA上昇による効率悪化','セール終了・季節要因'],['商品別ROAS分析と見直し','高ROAS商品への予算シフト','クロスセル施策の強化']]}};
+function genN(r){let txt='',acts=[],sp=[];
+[{k:'cpa',r:r.cpa_r,inv:1},{k:'ctr',r:r.ctr_r},{k:'cvr',r:r.cvr_r},{k:'roas',r:r.roas_r}].forEach(p=>{
+const v=p.r,abs=Math.abs(v);if(abs<10){sp.push(p.k.toUpperCase()+'は横ばい');return}
+const dir=v>0?'up':'dn',t=T[p.k][dir],sev=abs>=30?'大幅':'',rs=sev+(v>0?'+':'')+v.toFixed(1)+'%';
+const isG=p.inv?v<0:v>0;
+txt+='【'+p.k.toUpperCase()+'】\n'+t[0].replace('{r}',rs)+'しています。\n考えられる要因:\n'+t[1].map((f,i)=>' '+(i+1)+'. '+f).join('\n')+'\n\n';
+acts.push(...t[2]);sp.push(p.k.toUpperCase()+'が'+rs+(isG?'で改善':'で悪化'))});
+if(!txt)txt='主要KPIに大きな変動はありません。現行施策を継続し小規模テストで改善機会を探ることを推奨します。\n';
+lS=sp.join('、')+'。';lN=txt;lA=acts.length?acts.map((a,i)=>(i+1)+'. '+a).join('\n'):'現行施策の継続を推奨';return txt}
+function gen(){const d=gv();if(!d)return;const r=calc(d);document.getElementById('pn').textContent='【'+PF[cp_]+'】';rKPI(r,document.getElementById('kp'));rCH(r,document.getElementById('ch'));const t=genN(r);document.getElementById('na').textContent=t+'\n推奨アクション:\n'+lA;document.getElementById('R').style.display='';document.getElementById('R').scrollIntoView({behavior:'smooth'})}
+function cp(){navigator.clipboard.writeText(document.getElementById('na').textContent).then(()=>alert('コピーしました'))}
+function showR(){document.getElementById('rt').textContent=PF[cp_]+' 月次パフォーマンスレポート';const n=new Date();document.getElementById('rd').textContent=n.getFullYear()+'年'+(n.getMonth()+1)+'月度';document.getElementById('rs').textContent=lS;document.getElementById('rk').innerHTML=document.getElementById('kp').innerHTML;document.getElementById('rc').innerHTML=document.getElementById('ch').innerHTML;document.getElementById('rn').textContent=lN;document.getElementById('ra').textContent=lA;document.getElementById('R').style.display='none';document.getElementById('IN').style.display='none';document.getElementById('P').style.display=''}
+function hideR(){document.getElementById('P').style.display='none';document.getElementById('R').style.display='';document.getElementById('IN').style.display=''}
+function res(){F.forEach(f=>{['cu_','pr_'].forEach(p=>{const e=document.getElementById(p+f);if(e)e.value=''})});document.getElementById('csv').value='';document.getElementById('R').style.display='none'}
+</script>
+</body>
+</html>
