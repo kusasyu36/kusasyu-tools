@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>物件リスクスコアリング＆レポートツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#333;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#1a365d;font-size:1.4em;margin:12px 0}
+.subtitle{text-align:center;color:#666;font-size:.85em;margin-bottom:20px}
+.section{background:#fff;border-radius:8px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.section h2{font-size:1em;color:#2c5282;border-bottom:2px solid #e2e8f0;padding-bottom:6px;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.8em;color:#555;margin-bottom:2px}
+input,select{width:100%;padding:8px;border:1px solid #d1d5db;border-radius:4px;font-size:.9em}
+.btn{display:block;width:100%;padding:12px;border:none;border-radius:6px;font-size:1em;font-weight:bold;cursor:pointer;margin-top:8px}
+.btn-primary{background:#2c5282;color:#fff}
+.btn-report{background:#38a169;color:#fff}
+.btn:hover{opacity:.9}
+#result{display:none}
+.score-box{text-align:center;padding:20px}
+.score-num{font-size:3em;font-weight:bold}
+.score-label{font-size:1.1em;margin-top:4px}
+.green{color:#38a169}.yellow{color:#d69e2e}.red{color:#e53e3e}
+.cat-bar{display:flex;align-items:center;margin:6px 0;font-size:.85em}
+.cat-name{width:60px;font-weight:bold}
+.cat-track{flex:1;height:18px;background:#e2e8f0;border-radius:9px;margin:0 8px;overflow:hidden}
+.cat-fill{height:100%;border-radius:9px;transition:width .5s}
+.cat-score{width:50px;text-align:right}
+.flags{margin-top:12px}
+.flag{padding:8px;margin:4px 0;border-radius:4px;font-size:.82em;border-left:4px solid}
+.flag-red{background:#fff5f5;border-color:#e53e3e}
+.flag-yellow{background:#fffff0;border-color:#d69e2e}
+.flag-green{background:#f0fff4;border-color:#38a169}
+.recommend{text-align:center;padding:12px;border-radius:6px;font-size:1em;font-weight:bold;margin-top:12px}
+#report{display:none}
+@media print{body{background:#fff}#inputArea,.btn{display:none}#report{display:block!important}#result{display:none!important}}
+.report-content{padding:20px;font-size:.85em}
+.report-content h2{margin:12px 0 6px;font-size:1.1em}
+.report-content table{width:100%;border-collapse:collapse;margin:8px 0}
+.report-content td,.report-content th{border:1px solid #ccc;padding:6px;text-align:left;font-size:.85em}
+</style>
+<meta name="description" content="投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,物件リスクスコアリング＆レポートツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-15/">
+<meta property="og:title" content="物件リスクスコアリング＆レポートツール - kusasyu tools">
+<meta property="og:description" content="投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-15/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="物件リスクスコアリング＆レポートツール - kusasyu tools">
+<meta name="twitter:description" content="投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "物件リスクスコアリング＆レポートツール",
+  "description": "投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-15/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">物件リスクスコアリング＆レポートツール</span></div>
+<div class="container">
+<h1>物件リスクスコアリング＆レポートツール</h1>
+<p class="subtitle">5カテゴリ100点満点で投資適格性を即時診断</p>
+<div id="inputArea">
+<div class="section"><h2>物件基本情報</h2><div class="grid">
+<div><label>物件名</label><input id="name" placeholder="○○マンション"></div>
+<div><label>所在地</label><input id="location" placeholder="東京都○○区"></div>
+<div><label>築年数</label><input id="age" type="number" min="0" max="99" placeholder="年"></div>
+<div><label>構造</label><select id="structure"><option value="rc">RC造</option><option value="src">SRC造</option><option value="s">S造</option><option value="wood">木造</option></select></div>
+</div></div>
+<div class="section"><h2>登記簿情報（権利関係）</h2><div class="grid">
+<div><label>所有権移転回数</label><input id="transfers" type="number" min="0" max="50" placeholder="回"></div>
+<div><label>抵当権設定件数</label><input id="mortgages" type="number" min="0" max="20" placeholder="件"></div>
+<div><label>地目</label><select id="landuse"><option value="residential">宅地</option><option value="field">田・畑</option><option value="forest">山林</option><option value="other">その他</option></select></div>
+<div><label>差押・仮登記の有無</label><select id="seizure"><option value="0">なし</option><option value="1">あり</option></select></div>
+</div></div>
+<div class="section"><h2>レントロール（収益情報）</h2><div class="grid">
+<div><label>総戸数</label><input id="units" type="number" min="1" max="500" placeholder="戸"></div>
+<div><label>空室数</label><input id="vacancy" type="number" min="0" max="500" placeholder="戸"></div>
+<div><label>月額賃料合計（万円）</label><input id="rent" type="number" min="0" placeholder="万円"></div>
+<div><label>想定満室賃料合計（万円）</label><input id="fullrent" type="number" min="0" placeholder="万円"></div>
+</div></div>
+<div class="section"><h2>修繕履歴</h2><div class="grid">
+<div><label>大規模修繕 最終実施年</label><input id="majorRepair" type="number" min="1970" max="2026" placeholder="西暦"></div>
+<div><label>外壁工事 最終年</label><input id="wallRepair" type="number" min="1970" max="2026" placeholder="西暦"></div>
+<div><label>屋上防水 最終年</label><input id="roofRepair" type="number" min="1970" max="2026" placeholder="西暦"></div>
+<div><label>給排水設備 最終年</label><input id="pipeRepair" type="number" min="1970" max="2026" placeholder="西暦"></div>
+</div></div>
+<button class="btn btn-primary" onclick="diagnose()">リスク診断を実行</button>
+</div>
+<div id="result">
+<div class="section"><div class="score-box"><div id="scoreNum" class="score-num"></div><div id="scoreLabel" class="score-label"></div></div>
+<div id="catBars"></div></div>
+<div class="section"><h2>リスクフラグ一覧</h2><div id="flags"></div></div>
+<div class="section"><div id="recommendation" class="recommend"></div></div>
+<button class="btn btn-primary" onclick="document.getElementById('result').style.display='none';document.getElementById('inputArea').style.display='block'">入力に戻る</button>
+<button class="btn btn-report" onclick="generateReport()">レポート生成（印刷用）</button>
+</div>
+<div id="report"></div>
+</div>
+<script>
+const Y=2026;
+let lastResult=null;
+function v(id){return document.getElementById(id).value}
+function n(id){return Number(v(id))||0}
+function diagnose(){
+const flags=[];let scores={rights:25,building:25,revenue:20,management:15,market:15};
+// Rights
+const tr=n('transfers'),mt=n('mortgages'),lu=v('landuse'),sz=n('seizure');
+if(sz==1){scores.rights-=15;flags.push({cat:'権利',level:'red',text:'差押・仮登記あり：法的紛争リスクが極めて高い'});}
+if(mt>=3){scores.rights-=8;flags.push({cat:'権利',level:'red',text:'抵当権'+mt+'件：過剰担保。債務超過の可能性'});}else if(mt>=2){scores.rights-=4;flags.push({cat:'権利',level:'yellow',text:'抵当権'+mt+'件：複数金融機関の担保設定あり'});}
+if(tr>=5){scores.rights-=6;flags.push({cat:'権利',level:'yellow',text:'所有権移転'+tr+'回：短期転売繰返しの履歴'});}else if(tr>=3){scores.rights-=3;flags.push({cat:'権利',level:'yellow',text:'所有権移転'+tr+'回：やや多い移転履歴'});}
+if(lu!='residential'){scores.rights-=5;flags.push({cat:'権利',level:'yellow',text:'地目が宅地以外：用途制限・転用リスクあり'});}
+// Building
+const age=n('age'),st=v('structure');
+if(st=='wood'&&age>=30){scores.building-=12;flags.push({cat:'建物',level:'red',text:'木造築'+age+'年：耐用年数超過。融資困難の可能性大'});}else if(age>=40){scores.building-=10;flags.push({cat:'建物',level:'red',text:'築'+age+'年：大規模修繕・建替え検討時期'});}else if(age>=25){scores.building-=5;flags.push({cat:'建物',level:'yellow',text:'築'+age+'年：設備更新時期に注意'});}
+if(st=='wood'){scores.building-=5;flags.push({cat:'建物',level:'yellow',text:'木造：耐用年数22年。融資期間に制約'});}
+if(st=='wood'&&age<22)scores.building+=3;
+// Revenue
+const units=n('units'),vac=n('vacancy'),rent=n('rent'),full=n('fullrent');
+const occRate=units>0?(units-vac)/units:0;
+if(occRate<0.7){scores.revenue-=12;flags.push({cat:'収益',level:'red',text:'稼働率'+Math.round(occRate*100)+'%：深刻な空室問題'});}else if(occRate<0.85){scores.revenue-=6;flags.push({cat:'収益',level:'yellow',text:'稼働率'+Math.round(occRate*100)+'%：空室率が高め'});}
+if(full>0&&rent>0){const lr=rent/full;if(lr<0.7){scores.revenue-=8;flags.push({cat:'収益',level:'red',text:'賃料乖離大：想定満室比'+Math.round(lr*100)+'%'});}}
+// Management
+const mr=n('majorRepair'),wr=n('wallRepair'),rr=n('roofRepair'),pr=n('pipeRepair');
+const mGap=mr?Y-mr:99,wGap=wr?Y-wr:99,rGap=rr?Y-rr:99,pGap=pr?Y-pr:99;
+if(mGap>15){scores.management-=8;flags.push({cat:'管理',level:'red',text:'大規模修繕未実施'+mGap+'年：修繕積立金不足リスク'});}else if(mGap>12){scores.management-=4;flags.push({cat:'管理',level:'yellow',text:'大規模修繕から'+mGap+'年経過：次回修繕計画を確認'});}
+if(rGap>12){scores.management-=4;flags.push({cat:'管理',level:'yellow',text:'屋上防水'+rGap+'年未施工：漏水リスク'});}
+if(pGap>20){scores.management-=5;flags.push({cat:'管理',level:'red',text:'給排水設備'+pGap+'年未更新：漏水・詰まりリスク高'});}
+// Market
+if(age>=35){scores.market-=6;flags.push({cat:'市場',level:'yellow',text:'築古物件：出口戦略（売却）の流動性低下'});}
+if(st=='wood'&&age>=20){scores.market-=5;flags.push({cat:'市場',level:'yellow',text:'木造築古：融資付けが困難で買手限定'});}
+if(occRate>=0.95&&age<15)flags.push({cat:'市場',level:'green',text:'高稼働＋築浅：市場競争力が高い'});
+// Clamp
+Object.keys(scores).forEach(k=>{if(scores[k]<0)scores[k]=0;});
+const total=scores.rights+scores.building+scores.revenue+scores.management+scores.market;
+const color=total>=75?'green':total>=50?'yellow':'red';
+const label=total>=75?'投資推奨':total>=50?'条件付き検討':'見送り推奨';
+lastResult={scores,total,color,label,flags,name:v('name'),location:v('location'),age,structure:v('structure')};
+render(lastResult);
+}
+function render(r){
+document.getElementById('inputArea').style.display='none';
+document.getElementById('result').style.display='block';
+document.getElementById('scoreNum').className='score-num '+r.color;
+document.getElementById('scoreNum').textContent=r.total+' / 100';
+document.getElementById('scoreLabel').className='score-label '+r.color;
+document.getElementById('scoreLabel').textContent=r.label;
+const cats=[{k:'rights',n:'権利',m:25},{k:'building',n:'建物',m:25},{k:'revenue',n:'収益',m:20},{k:'management',n:'管理',m:15},{k:'market',n:'市場',m:15}];
+let bh='';cats.forEach(c=>{const pct=Math.round(r.scores[c.k]/c.m*100);const cl=pct>=75?'#38a169':pct>=50?'#d69e2e':'#e53e3e';bh+=`<div class="cat-bar"><span class="cat-name">${c.n}</span><div class="cat-track"><div class="cat-fill" style="width:${pct}%;background:${cl}"></div></div><span class="cat-score">${r.scores[c.k]}/${c.m}</span></div>`;});
+document.getElementById('catBars').innerHTML=bh;
+let fh='';r.flags.forEach(f=>{fh+=`<div class="flag flag-${f.level}"><strong>[${f.cat}]</strong> ${f.text}</div>`;});
+document.getElementById('flags').innerHTML=fh||'<div class="flag flag-green">重大なリスクフラグは検出されませんでした</div>';
+const rec=r.total>=75?'✅ 購入推奨 — リスクが低く投資適格性が高い物件です':r.total>=50?'⚠️ 条件付き検討 — 指摘事項の解消を確認後に判断してください':'❌ 見送り推奨 — 重大リスクが複数検出されています';
+document.getElementById('recommendation').className='recommend '+(r.total>=75?'flag-green':r.total>=50?'flag-yellow':'flag-red');
+document.getElementById('recommendation').textContent=rec;
+}
+function generateReport(){
+if(!lastResult)return;const r=lastResult;
+const stMap={rc:'RC造',src:'SRC造',s:'S造',wood:'木造'};
+let fl='';r.flags.forEach(f=>{fl+=`<tr><td>${f.cat}</td><td style="color:${f.level=='red'?'#e53e3e':f.level=='yellow'?'#d69e2e':'#38a169'}">${f.level=='red'?'高':f.level=='yellow'?'中':'低'}</td><td>${f.text}</td></tr>`;});
+const actions=r.total>=75?'特段の追加調査なく購入検討可。通常DD実施後に融資申込へ進む。':r.total>=50?'指摘フラグの解消確認を優先。修繕見積取得、権利関係の司法書士確認、レントロール実態調査を推奨。':'重大リスク複数検出。購入見送りまたは大幅指値交渉が必要。リスク許容度を再確認のこと。';
+const html=`<div class="report-content"><h1 style="text-align:center;border-bottom:2px solid #333;padding-bottom:8px">投資物件リスク診断レポート</h1><p style="text-align:right;font-size:.8em">作成日: ${Y}-05-16 | Kusasyu PropTech</p><h2>物件概要</h2><table><tr><th>物件名</th><td>${r.name||'未入力'}</td><th>所在地</th><td>${r.location||'未入力'}</td></tr><tr><th>築年数</th><td>${r.age}年</td><th>構造</th><td>${stMap[r.structure]}</td></tr></table><h2>総合スコア: ${r.total} / 100 点（${r.label}）</h2><table><tr><th>カテゴリ</th><th>得点</th><th>配点</th><th>充足率</th></tr><tr><td>権利</td><td>${r.scores.rights}</td><td>25</td><td>${Math.round(r.scores.rights/25*100)}%</td></tr><tr><td>建物</td><td>${r.scores.building}</td><td>25</td><td>${Math.round(r.scores.building/25*100)}%</td></tr><tr><td>収益</td><td>${r.scores.revenue}</td><td>20</td><td>${Math.round(r.scores.revenue/20*100)}%</td></tr><tr><td>管理</td><td>${r.scores.management}</td><td>15</td><td>${Math.round(r.scores.management/15*100)}%</td></tr><tr><td>市場</td><td>${r.scores.market}</td><td>15</td><td>${Math.round(r.scores.market/15*100)}%</td></tr></table><h2>検出リスクフラグ</h2><table><tr><th>カテゴリ</th><th>重度</th><th>内容</th></tr>${fl||'<tr><td colspan="3">重大フラグなし</td></tr>'}</table><h2>推奨アクション</h2><p>${actions}</p><p style="margin-top:20px;font-size:.75em;color:#666;border-top:1px solid #ccc;padding-top:8px">本レポートは入力情報に基づく簡易診断であり、専門家による正式なデューデリジェンスを代替するものではありません。投資判断は自己責任で行ってください。</p></div>`;
+document.getElementById('report').innerHTML=html;
+document.getElementById('report').style.display='block';
+document.getElementById('result').style.display='none';
+setTimeout(()=>window.print(),300);
+}
+</script>
+</body>
+</html>

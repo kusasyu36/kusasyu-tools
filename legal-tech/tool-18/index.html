@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法務判断ナレッジ記録・検索ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--pri:#1a365d;--acc:#2b6cb0;--bg:#f7fafc;--card:#fff;--border:#e2e8f0;--danger:#e53e3e;--success:#38a169;--warn:#d69e2e}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:var(--bg);color:#2d3748;line-height:1.6}
+header{background:var(--pri);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+header h1{font-size:16px;font-weight:700}
+.hdr-actions{display:flex;gap:6px;flex-wrap:wrap}
+.hdr-actions button{padding:6px 14px;border:1px solid rgba(255,255,255,.4);border-radius:6px;background:transparent;color:#fff;font-size:13px;cursor:pointer;white-space:nowrap}
+.hdr-actions button:hover{background:rgba(255,255,255,.15)}
+.hdr-actions .btn-export{background:var(--success);border-color:var(--success);font-weight:700}
+.container{max-width:900px;margin:0 auto;padding:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+.stat .n{font-size:22px;font-weight:700;color:var(--acc)}
+.stat .l{font-size:11px;color:#718096}
+.search-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.search-bar input,.search-bar select{padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;flex:1;min-width:140px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+.panel h2{font-size:15px;color:var(--pri);margin-bottom:12px;border-bottom:2px solid var(--acc);padding-bottom:4px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid .full{grid-column:1/-1}
+label{display:block;font-size:12px;font-weight:600;color:#4a5568;margin-bottom:3px}
+input[type=text],input[type=date],select,textarea{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+.btn{padding:8px 20px;border:none;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-primary{background:var(--acc);color:#fff}
+.btn-sm{font-size:12px;padding:4px 12px;background:#edf2f7;border:1px solid var(--border);border-radius:4px;cursor:pointer}
+.record{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px}
+.record .title{font-weight:700;font-size:15px;color:var(--pri)}
+.record .meta{font-size:12px;color:#718096;margin:4px 0}
+.record .body{font-size:13px;margin-top:6px}
+.record .body dt{font-weight:600;color:#4a5568;margin-top:6px}
+.record .body dd{margin-left:0;color:#2d3748}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;margin-right:4px}
+.tag-high{background:#fed7d7;color:#c53030}
+.tag-mid{background:#fefcbf;color:#975a16}
+.tag-low{background:#c6f6d5;color:#276749}
+.record-actions{margin-top:8px;display:flex;gap:6px}
+.empty{text-align:center;color:#a0aec0;padding:30px;font-size:14px}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal{background:#fff;border-radius:12px;padding:24px;max-width:440px;width:100%;text-align:center}
+.modal h3{margin-bottom:12px;color:var(--pri)}
+.modal p{font-size:13px;color:#4a5568;margin-bottom:16px}
+.modal .btn{margin:0 4px}
+.hidden{display:none}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}header h1{font-size:14px}}
+</style>
+<meta name="description" content="法務担当者1〜5名の中堅企業向けに、日々の法務判断（契約レビューの理由、相談対応の結論、リスク判断の根拠）をブラウザ上で構造化して記録・検索できるナレッジ蓄積ツールと、異動・退職時の引き継ぎを漏れなく行うためのテンプレートを提供する。LegalOn（月額数十万円〜）やGVA manage（エンタープライズ向け">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務判断ナレッジ記録・検索ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-18/">
+<meta property="og:title" content="法務判断ナレッジ記録・検索ツール - kusasyu tools">
+<meta property="og:description" content="法務担当者1〜5名の中堅企業向けに、日々の法務判断（契約レビューの理由、相談対応の結論、リスク判断の根拠）をブラウザ上で構造化して記録・検索できるナレッジ蓄積ツールと、異動・退職時の引き継ぎを漏れなく行うためのテンプレートを提供する。LegalOn（月額数十万円〜）やGVA manage（エンタープライズ向け">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-18/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務判断ナレッジ記録・検索ツール - kusasyu tools">
+<meta name="twitter:description" content="法務担当者1〜5名の中堅企業向けに、日々の法務判断（契約レビューの理由、相談対応の結論、リスク判断の根拠）をブラウザ上で構造化して記録・検索できるナレッジ蓄積ツールと、異動・退職時の引き継ぎを漏れなく行うためのテンプレートを提供する。LegalOn（月額数十万円〜）やGVA manage（エンタープライズ向け">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務判断ナレッジ記録・検索ツール",
+  "description": "法務担当者1〜5名の中堅企業向けに、日々の法務判断（契約レビューの理由、相談対応の結論、リスク判断の根拠）をブラウザ上で構造化して記録・検索できるナレッジ蓄積ツールと、異動・退職時の引き継ぎを漏れなく行うためのテンプレートを提供する。LegalOn（月額数十万円〜）やGVA manage（エンタープライズ向け",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-18/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">法務判断ナレッジ記録・検索ツール</span></div>
+<header>
+<h1>法務判断ナレッジベース</h1>
+<div class="hdr-actions">
+<button class="btn-export" onclick="exportJSON()">引き継ぎエクスポート</button>
+<button onclick="document.getElementById('importFile').click()">インポート</button>
+<input type="file" id="importFile" accept=".json" class="hidden" onchange="importJSON(event)">
+</div>
+</header>
+<div class="container">
+<div class="stats">
+<div class="stat"><div class="n" id="stTotal">0</div><div class="l">総記録数</div></div>
+<div class="stat"><div class="n" id="stHigh">0</div><div class="l">高リスク</div></div>
+<div class="stat"><div class="n" id="stMonth">0</div><div class="l">今月の記録</div></div>
+</div>
+<div class="search-bar">
+<input type="text" id="searchQ" placeholder="キーワード検索（案件名・論点・結論）" oninput="renderList()">
+<select id="filterRisk" onchange="renderList()"><option value="">全リスク</option><option value="高">高リスク</option><option value="中">中リスク</option><option value="低">低リスク</option></select>
+</div>
+<div class="panel" id="formPanel">
+<h2 id="formTitle">新規記録</h2>
+<div class="form-grid">
+<div><label>案件名 *</label><input type="text" id="fName"></div>
+<div><label>日付 *</label><input type="date" id="fDate"></div>
+<div class="full"><label>論点 *</label><textarea id="fIssue" rows="2"></textarea></div>
+<div class="full"><label>結論 *</label><textarea id="fConc" rows="2"></textarea></div>
+<div class="full"><label>根拠</label><textarea id="fBasis" rows="2"></textarea></div>
+<div><label>リスク分類 *</label><select id="fRisk"><option value="低">低</option><option value="中">中</option><option value="高">高</option></select></div>
+<div style="display:flex;align-items:end;gap:6px">
+<button class="btn btn-primary" onclick="saveRecord()">保存</button>
+<button class="btn-sm" onclick="resetForm()">クリア</button>
+</div>
+</div>
+</div>
+<div id="list"></div>
+</div>
+<div id="modal" class="modal-overlay hidden">
+<div class="modal">
+<h3 id="modalTitle"></h3>
+<p id="modalMsg"></p>
+<button class="btn btn-primary" onclick="modalOk()">OK</button>
+<button class="btn btn-sm" onclick="closeModal()">キャンセル</button>
+</div>
+</div>
+<script>
+const SK='legalKB_records';
+let records=JSON.parse(localStorage.getItem(SK)||'[]');
+let editId=null,modalCb=null;
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function save(){localStorage.setItem(SK,JSON.stringify(records))}
+function resetForm(){editId=null;document.getElementById('formTitle').textContent='新規記録';['fName','fIssue','fConc','fBasis'].forEach(i=>document.getElementById(i).value='');document.getElementById('fDate').value=new Date().toISOString().slice(0,10);document.getElementById('fRisk').value='低'}
+function saveRecord(){
+const n=document.getElementById('fName').value.trim(),d=document.getElementById('fDate').value,
+is=document.getElementById('fIssue').value.trim(),co=document.getElementById('fConc').value.trim(),
+ba=document.getElementById('fBasis').value.trim(),ri=document.getElementById('fRisk').value;
+if(!n||!d||!is||!co){alert('案件名・日付・論点・結論は必須です');return}
+if(editId){const r=records.find(x=>x.id===editId);if(r){r.name=n;r.date=d;r.issue=is;r.conclusion=co;r.basis=ba;r.risk=ri;r.updated=new Date().toISOString()}}
+else{records.unshift({id:uid(),name:n,date:d,issue:is,conclusion:co,basis:ba,risk:ri,created:new Date().toISOString()})}
+save();resetForm();renderList();updateStats()}
+function editRecord(id){const r=records.find(x=>x.id===id);if(!r)return;editId=id;
+document.getElementById('formTitle').textContent='編集中: '+r.name;
+document.getElementById('fName').value=r.name;document.getElementById('fDate').value=r.date;
+document.getElementById('fIssue').value=r.issue;document.getElementById('fConc').value=r.conclusion;
+document.getElementById('fBasis').value=r.basis||'';document.getElementById('fRisk').value=r.risk;
+document.getElementById('formPanel').scrollIntoView({behavior:'smooth'})}
+function deleteRecord(id){showModal('削除確認','この記録を削除しますか？元に戻せません。',()=>{records=records.filter(x=>x.id!==id);save();renderList();updateStats()})}
+function tagClass(r){return r==='高'?'tag-high':r==='中'?'tag-mid':'tag-low'}
+function renderList(){
+const q=document.getElementById('searchQ').value.toLowerCase(),rf=document.getElementById('filterRisk').value;
+const filtered=records.filter(r=>{
+if(rf&&r.risk!==rf)return false;
+if(q&&![r.name,r.issue,r.conclusion,r.basis||''].some(s=>s.toLowerCase().includes(q)))return false;
+return true});
+const el=document.getElementById('list');
+if(!filtered.length){el.innerHTML='<div class="empty">記録がありません。上のフォームから法務判断を記録しましょう。</div>';return}
+el.innerHTML=filtered.map(r=>`<div class="record">
+<div class="title">${esc(r.name)} <span class="tag ${tagClass(r.risk)}">${r.risk}リスク</span></div>
+<div class="meta">${r.date}</div>
+<div class="body"><dt>論点</dt><dd>${esc(r.issue)}</dd><dt>結論</dt><dd>${esc(r.conclusion)}</dd>${r.basis?`<dt>根拠</dt><dd>${esc(r.basis)}</dd>`:''}</div>
+<div class="record-actions"><button class="btn-sm" onclick="editRecord('${r.id}')">編集</button><button class="btn-sm" onclick="deleteRecord('${r.id}')">削除</button></div></div>`).join('')}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function updateStats(){
+document.getElementById('stTotal').textContent=records.length;
+document.getElementById('stHigh').textContent=records.filter(r=>r.risk==='高').length;
+const ym=new Date().toISOString().slice(0,7);
+document.getElementById('stMonth').textContent=records.filter(r=>r.date&&r.date.startsWith(ym)).length}
+function exportJSON(){
+if(!records.length){alert('エクスポートする記録がありません');return}
+const blob=new Blob([JSON.stringify({version:1,exported:new Date().toISOString(),count:records.length,records},null,2)],{type:'application/json'});
+const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+a.download='法務ナレッジ_引き継ぎ_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
+function importJSON(e){const file=e.target.files[0];if(!file)return;
+const reader=new FileReader();reader.onload=function(ev){
+try{const data=JSON.parse(ev.target.result);const imp=data.records||data;
+if(!Array.isArray(imp))throw new Error();
+const ids=new Set(records.map(r=>r.id));let added=0;
+imp.forEach(r=>{if(r.name&&r.issue&&!ids.has(r.id)){records.unshift(r);ids.add(r.id);added++}});
+save();renderList();updateStats();alert(added+'件の記録をインポートしました（重複除外済み）')}
+catch(err){alert('ファイル形式が正しくありません')}};reader.readAsText(file);e.target.value=''}
+function showModal(t,m,cb){document.getElementById('modalTitle').textContent=t;document.getElementById('modalMsg').textContent=m;modalCb=cb;document.getElementById('modal').classList.remove('hidden')}
+function closeModal(){document.getElementById('modal').classList.add('hidden');modalCb=null}
+function modalOk(){if(modalCb)modalCb();closeModal()}
+resetForm();renderList();updateStats();
+</script>
+</body>
+</html>

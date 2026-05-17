@@ -1339,6 +1339,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-15",
+    "url": "proptech/diagnosis-15/",
+    "title": "投資物件リスク、買う前に即スコア診断",
+    "tool_name": "物件リスクスコアリング＆レポートツール",
+    "description": "投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。",
+    "quality_score": 10,
+    "completed_at": "2026-05-17T00:12:11.726115+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "dd45",
+    "url": "proptech/dd45/",
+    "title": "投資物件リスク、買う前に即スコア診断",
+    "tool_name": "DD45項目チェックリスト",
+    "description": "投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。",
+    "quality_score": 10,
+    "completed_at": "2026-05-17T00:12:11.726115+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -2013,6 +2039,32 @@
     "quality_score": 9,
     "completed_at": "2026-05-10T12:59:48.079136+00:00",
     "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-18",
+    "url": "legal-tech/tool-18/",
+    "title": "法務ナレッジ、退職で消えてませんか？",
+    "tool_name": "法務判断ナレッジ記録・検索ツール",
+    "description": "法務担当者1〜5名の中堅企業向けに、日々の法務判断（契約レビューの理由、相談対応の結論、リスク判断の根拠）をブラウザ上で構造化して記録・検索できるナレッジ蓄積ツールと、異動・退職時の引き継ぎを漏れなく行うためのテンプレートを提供する。LegalOn（月額数十万円〜）やGVA manage（エンタープライズ向け）が手の届かない中小法務チームが、無料で即日使い始められる「法務の記憶装置」。",
+    "quality_score": 9,
+    "completed_at": "2026-05-17T06:25:13.118421+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "checker-4",
+    "url": "legal-tech/checker-4/",
+    "title": "法務ナレッジ、退職で消えてませんか？",
+    "tool_name": "法務引き継ぎ完全チェックリスト",
+    "description": "法務担当者1〜5名の中堅企業向けに、日々の法務判断（契約レビューの理由、相談対応の結論、リスク判断の根拠）をブラウザ上で構造化して記録・検索できるナレッジ蓄積ツールと、異動・退職時の引き継ぎを漏れなく行うためのテンプレートを提供する。LegalOn（月額数十万円〜）やGVA manage（エンタープライズ向け）が手の届かない中小法務チームが、無料で即日使い始められる「法務の記憶装置」。",
+    "quality_score": 9,
+    "completed_at": "2026-05-17T06:25:13.118421+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "proptech",
@@ -5952,6 +6004,45 @@
     "quality_score": 6,
     "completed_at": "2026-04-14T03:30:56.399088+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-19",
+    "url": "digital-marketing/diagnosis-19/",
+    "title": "記事が埋もれてない？コンテンツ再活用診断ツール",
+    "tool_name": "コンテンツ再活用診断＆プランナー",
+    "description": "中小企業のマーケ担当が既存コンテンツ（ブログ記事・事例・ホワイトペーパー等）のタイトル・本文・ターゲットを入力すると、Twitter/X・Instagram・note・LINE・メルマガ・YouTube台本など最大8チャネルへの再活用適合度スコア・推定リーチ倍率・制作工数を自動判定するHTMLツール。チャネル別の変換テンプレートと棚卸し管理表をセットで提供し、『書いて終わり』のコンテンツを複数チャ",
+    "quality_score": 6,
+    "completed_at": "2026-05-16T13:47:41.809471+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-20",
+    "url": "digital-marketing/diagnosis-20/",
+    "title": "記事が埋もれてない？コンテンツ再活用診断ツール",
+    "tool_name": "チャネル別リパーパス変換テンプレート集",
+    "description": "中小企業のマーケ担当が既存コンテンツ（ブログ記事・事例・ホワイトペーパー等）のタイトル・本文・ターゲットを入力すると、Twitter/X・Instagram・note・LINE・メルマガ・YouTube台本など最大8チャネルへの再活用適合度スコア・推定リーチ倍率・制作工数を自動判定するHTMLツール。チャネル別の変換テンプレートと棚卸し管理表をセットで提供し、『書いて終わり』のコンテンツを複数チャ",
+    "quality_score": 6,
+    "completed_at": "2026-05-16T13:47:41.809471+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-21",
+    "url": "digital-marketing/diagnosis-21/",
+    "title": "記事が埋もれてない？コンテンツ再活用診断ツール",
+    "tool_name": "コンテンツ棚卸し＆再活用トラッカー",
+    "description": "中小企業のマーケ担当が既存コンテンツ（ブログ記事・事例・ホワイトペーパー等）のタイトル・本文・ターゲットを入力すると、Twitter/X・Instagram・note・LINE・メルマガ・YouTube台本など最大8チャネルへの再活用適合度スコア・推定リーチ倍率・制作工数を自動判定するHTMLツール。チャネル別の変換テンプレートと棚卸し管理表をセットで提供し、『書いて終わり』のコンテンツを複数チャ",
+    "quality_score": 6,
+    "completed_at": "2026-05-16T13:47:41.809471+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "legal-tech",

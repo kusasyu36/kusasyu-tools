@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DD45項目チェックリスト - kusasyu tools</title>
+<meta name="description" content="投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,DD45項目チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/dd45/">
+<meta property="og:title" content="DD45項目チェックリスト - kusasyu tools">
+<meta property="og:description" content="投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/dd45/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DD45項目チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DD45項目チェックリスト",
+  "description": "投資物件の登記簿情報・レントロール・修繕履歴・建物スペックを入力すると、5カテゴリ（権利・建物・収益・管理・市場）でリスクフラグを自動検出し、100点満点の投資適格スコアを算出するWebツール。加えて、チェック漏れを防ぐDD項目管理シートと、融資相談に持っていける投資判断レポート生成機能を提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/dd45/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-05-17"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>DD45項目チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>DD45項目チェックリスト</h1>
+  <p class="project-name">投資物件リスク、買う前に即スコア診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>カテゴリ</th><th>チェック項目</th><th>判定基準</th><th>物件1_ステータス</th><th>物件1_備考</th><th>物件1_エビデンス</th><th>物件2_ステータス</th><th>物件2_備考</th><th>物件2_エビデンス</th></tr></thead><tbody><tr><td></td><td></td><td></td><td>【ステータス凡例】確認済＝問題なし／要注意＝リスクあり（黄色）／未確認＝未調査（赤）</td><td>東京都新宿区 区分マンション 2LDK</td><td></td><td>登記簿謄本取得日: 2024/11/20</td><td>埼玉県さいたま市 一棟アパート 木造2階8戸</td><td></td><td>登記簿謄本取得日: 2024/12/05</td></tr><tr><td>1</td><td>登記簿</td><td>所有権者確認</td><td>売主と登記名義人が一致していること</td><td>確認済</td><td>売主＝登記名義人一致</td><td>登記簿謄本</td><td>確認済</td><td>法人名義・代表者確認済</td><td>登記簿謄本</td></tr><tr><td>2</td><td>登記簿</td><td>差押・仮処分の有無</td><td>乙区に差押・仮処分登記がないこと</td><td>確認済</td><td>差押なし</td><td>登記簿乙区</td><td>要注意</td><td>過去に仮差押あり（抹消済）</td><td>登記簿乙区・閉鎖謄本</td></tr><tr><td>3</td><td>登記簿</td><td>抵当権設定状況</td><td>残債額と売買価格のバランスが適正</td><td>確認済</td><td>残債1200万・売出2480万</td><td>登記簿乙区・売主ヒアリング</td><td>確認済</td><td>残債4800万・売出6500万</td><td>登記簿乙区</td></tr><tr><td>4</td><td>登記簿</td><td>根抵当権の有無</td><td>根抵当権がある場合は抹消条件を確認</td><td>確認済</td><td>根抵当権なし</td><td>登記簿乙区</td><td>要注意</td><td>根抵当権設定あり・決済時抹消条件付</td><td>売買契約書ドラフト</td></tr><tr><td>5</td><td>登記簿</td><td>地上権・賃借権の有無</td><td>敷地に第三者の権利が設定されていないこと</td><td>確認済</td><td>設定なし</td><td>登記簿甲区・乙区</td><td>確認済</td><td>設定なし</td><td>登記簿甲区・乙区</td></tr><tr><td>6</td><td>登記簿</td><td>所有権移転回数</td><td>短期間での頻繁な転売（3年以内2回以上）は要注意</td><td>確認済</td><td>前所有者5年保有</td><td>登記簿甲区</td><td>要注意</td><td>3年間で2回移転</td><td>登記簿甲区</td></tr><tr><td>7</td><td>登記簿</td><td>共有名義の有無</td><td>共有の場合は全員の売却同意が必要</td><td>確認済</td><td>単独所有</td><td>登記簿甲区</td><td>確認済</td><td>法人単独所有</td><td>登記簿甲区</td></tr><tr><td>8</td><td>登記簿</td><td>信託登記の有無</td><td>信託受益権売買でないことの確認</td><td>確認済</td><td>信託登記なし</td><td>登記簿甲区</td><td>確認済</td><td>信託登記なし</td><td>登記簿甲区</td></tr><tr><td>9</td><td>登記簿</td><td>建物表題部の面積整合</td><td>登記面積と実測・パンフ面積の差が5%以内</td><td>確認済</td><td>登記58.2㎡・実測58.0㎡</td><td>登記簿表題部・間取図</td><td>確認済</td><td>登記面積と建築確認一致</td><td>登記簿表題部・建築確認</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,カテゴリ,チェック項目,判定基準,物件1_ステータス,物件1_備考,物件1_エビデンス,物件2_ステータス,物件2_備考,物件2_エビデンス
+,,,"【ステータス凡例】確認済＝問題なし／要注意＝リスクあり（黄色）／未確認＝未調査（赤）",東京都新宿区 区分マンション 2LDK,,登記簿謄本取得日: 2024/11/20,埼玉県さいたま市 一棟アパート 木造2階8戸,,登記簿謄本取得日: 2024/12/05
+1,登記簿,所有権者確認,売主と登記名義人が一致していること,確認済,売主＝登記名義人一致,登記簿謄本,確認済,法人名義・代表者確認済,登記簿謄本
+2,登記簿,差押・仮処分の有無,乙区に差押・仮処分登記がないこと,確認済,差押なし,登記簿乙区,要注意,過去に仮差押あり（抹消済）,登記簿乙区・閉鎖謄本
+3,登記簿,抵当権設定状況,残債額と売買価格のバランスが適正,確認済,残債1200万・売出2480万,登記簿乙区・売主ヒアリング,確認済,残債4800万・売出6500万,登記簿乙区
+4,登記簿,根抵当権の有無,根抵当権がある場合は抹消条件を確認,確認済,根抵当権なし,登記簿乙区,要注意,根抵当権設定あり・決済時抹消条件付,売買契約書ドラフト
+5,登記簿,地上権・賃借権の有無,敷地に第三者の権利が設定されていないこと,確認済,設定なし,登記簿甲区・乙区,確認済,設定なし,登記簿甲区・乙区
+6,登記簿,所有権移転回数,短期間での頻繁な転売（3年以内2回以上）は要注意,確認済,前所有者5年保有,登記簿甲区,要注意,3年間で2回移転,登記簿甲区
+7,登記簿,共有名義の有無,共有の場合は全員の売却同意が必要,確認済,単独所有,登記簿甲区,確認済,法人単独所有,登記簿甲区
+8,登記簿,信託登記の有無,信託受益権売買でないことの確認,確認済,信託登記なし,登記簿甲区,確認済,信託登記なし,登記簿甲区
+9,登記簿,建物表題部の面積整合,登記面積と実測・パンフ面積の差が5%以内,確認済,登記58.2㎡・実測58.0㎡,登記簿表題部・間取図,確認済,登記面積と建築確認一致,登記簿表題部・建築確認
+10,登記簿,地目確認,宅地であること（田・畑は農地転用が必要）,確認済,地目：宅地,登記簿表題部,確認済,地目：宅地,登記簿表題部
+11,登記簿,敷地権割合確認,管理規約の持分と登記が一致,確認済,敷地権割合12543/985421,登記簿・管理規約,確認済,土地持分100%,登記簿表題部
+12,登記簿,登記原因の確認,売買・相続・贈与等の原因に不自然さがないこと,確認済,前回原因：売買,登記簿甲区,確認済,前回原因：売買,登記簿甲区
+13,登記簿,前所有者の保有期間,1年未満の短期転売は要注意,確認済,前所有者5年2ヶ月保有,登記簿甲区,要注意,前所有者1年3ヶ月,登記簿甲区
+14,登記簿,仮登記の有無,仮登記がある場合は本登記リスクを確認,確認済,仮登記なし,登記簿甲区・乙区,確認済,仮登記なし,登記簿甲区・乙区
+15,登記簿,買戻特約の有無,買戻特約が残存していないこと,確認済,特約なし,登記簿乙区,確認済,特約なし,登記簿乙区
+16,建物,築年数・構造確認,築年数と構造種別（RC/S/木造）の確認,確認済,築18年・RC造,登記簿・建築確認,確認済,築25年・木造,登記簿・建築確認
+17,建物,耐震基準適合,1981年6月以降の新耐震基準に適合,確認済,2006年築・新耐震適合,建築確認通知書,要注意,2001年築だが耐震診断未実施,未取得
+18,建物,大規模修繕履歴,計画的な修繕が実施されていること,確認済,2020年大規模修繕実施済,修繕履歴・長期修繕計画,未確認,修繕履歴の提出依頼中,未取得
+19,建物,外壁・屋根状態,目視でクラック・剥離・雨漏り跡がないこと,確認済,外壁タイル良好・クラックなし,現地調査写真,要注意,外壁モルタルに一部クラックあり,現地調査写真
+20,建物,給排水管状態,築20年超は管内カメラ調査推奨,確認済,2020年修繕時に更新済,修繕記録,未確認,排水管調査未実施,未取得
+21,建物,エレベーター有無・点検状況,法定点検が実施されていること,確認済,エレベーターなし（5階建・階段のみ）,現地確認,確認済,エレベーターなし（2階建）,現地確認
+22,建物,消防設備点検,直近の点検報告書で不備指摘がないこと,確認済,2024年9月点検済・指摘なし,消防設備点検報告書,未確認,点検報告書未取得,未取得
+23,建物,アスベスト調査,2006年以前の建物は調査推奨,確認済,2006年築・アスベスト不使用,設計図書,要注意,2001年築・調査未実施,未取得
+24,建物,建蔽率・容積率適合,既存不適格でないことの確認,確認済,建蔽率60%/容積率200%以内,建築確認・用途地域図,確認済,建蔽率50%/容積率100%以内,建築確認・用途地域図
+25,建物,検査済証の有無,検査済証があること（融資審査に影響）,確認済,検査済証あり,検査済証コピー,要注意,検査済証紛失・台帳記載証明で代替,台帳記載証明
+26,収益,現行賃料と相場比較,周辺相場との乖離が±10%以内,確認済,現行12.5万/相場12.0万（+4%）,レントロール・SUUMO調査,要注意,現行4.2万平均/相場3.5万（+20%乖離）,レントロール・HOME'S調査
+27,収益,空室率,空室率が20%以下であること,確認済,満室稼働中,レントロール,要注意,8戸中2戸空室（25%）,レントロール
+28,収益,レントロール整合性,各戸の賃料・契約日・更新日に矛盾がないこと,確認済,全戸契約書と一致確認,レントロール・賃貸借契約書,未確認,一部契約書未取得,レントロール
+29,収益,滞納状況,滞納者がいないこと（3ヶ月以上は要注意）,確認済,滞納なし,管理会社報告書,要注意,1戸2ヶ月滞納中,管理会社報告書
+30,収益,賃貸借契約内容確認,普通借家/定期借家の確認・特約事項,確認済,普通借家・更新料1ヶ月,賃貸借契約書,確認済,普通借家・更新料0.5ヶ月,賃貸借契約書
+31,収益,更新料・礼金設定,エリア相場に合った設定であること,確認済,更新料1ヶ月・礼金1ヶ月,賃貸借契約書,確認済,更新料0.5ヶ月・礼金0,賃貸借契約書
+32,収益,原状回復費用実績,過去3年の退去時費用が1戸あたり適正範囲内,確認済,平均15万円/戸（2LDK相応）,管理会社報告書,未確認,退去実績データ未取得,未取得
+33,収益,管理費・修繕積立金,周辺相場と比較し異常な高低がないこと,確認済,管理費12500円・修繕積立金8900円,管理規約・重要事項説明書,確認済,自主管理・修繕積立なし（要計上）,ヒアリング
+34,収益,固定資産税・都市計画税,直近の税額通知書で実額を確認,確認済,年額98000円,固定資産税納税通知書,確認済,年額385000円,固定資産税納税通知書
+35,収益,表面利回り・実質利回り,表面利回りと実質利回りの差が2%以内が理想,確認済,表面6.0%・実質4.8%（差1.2%）,収支シミュレーション,要注意,表面7.7%・実質5.0%（差2.7%）,収支シミュレーション
+36,法務,建築基準法適合,違法建築・既存不適格でないこと,確認済,適法建築物,建築確認・検査済証,要注意,検査済証なし・適法性確認中,台帳記載証明
+37,法務,都市計画法の用途地域確認,投資用途に適した用途地域であること,確認済,商業地域・共同住宅可,都市計画図,確認済,第一種住居地域・共同住宅可,都市計画図
+38,法務,借地借家法リスク,立退き困難テナント・定期借家切替の可否,確認済,全戸普通借家・長期入居者なし,賃貸借契約書,要注意,1戸に15年長期入居者あり,賃貸借契約書
+39,法務,契約不適合責任条件,免責範囲と期間の確認（個人売主は3ヶ月が一般的）,未確認,契約書ドラフト待ち,未取得,確認済,契約不適合責任3ヶ月,売買契約書ドラフト
+40,法務,反社会的勢力排除確認,売主・入居者に反社該当者がいないこと,確認済,売主：個人・反社非該当確認済,反社チェック結果,確認済,売主法人・反社非該当確認済,反社チェック結果
+41,環境,ハザードマップ確認,洪水・土砂・津波・液状化リスクの確認,確認済,洪水浸水想定区域外,ハザードマップポータル,要注意,河川浸水想定0.5-3m区域,ハザードマップポータル
+42,環境,土壌汚染リスク,過去の土地利用履歴に工場・ガソリンスタンド等がないこと,確認済,住宅地として30年以上利用,旧住宅地図・土地利用履歴,確認済,従前農地・汚染リスク低,土地利用履歴
+43,環境,周辺嫌悪施設,墓地・火葬場・廃棄物処理場等が近隣にないこと,確認済,半径500m以内に嫌悪施設なし,現地調査・Google Map,確認済,嫌悪施設なし,現地調査・Google Map
+44,環境,接道状況,建築基準法上の道路に2m以上接道していること,確認済,公道6m幅に8m接道,公図・道路台帳,確認済,公道4m幅に10m接道,公図・道路台帳
+45,環境,再建築可否,現行法で再建築が可能であること,確認済,再建築可,建築確認・接道確認,確認済,再建築可,建築確認・接道確認
+,,,,,,,,,,
+,,"【集計】",確認済,要注意,未確認,,確認済,要注意,未確認
+,,物件1合計,38,5,2,,,,
+,,物件2合計,,,,,,28,11,6
+,,,,,,,,,,
+,,"【使い方】",,,,,,,,
+,,"1. H列以降に物件3以降の列を追加して横並び比較が可能",,,,,,,,
+,,"2. ステータス欄は「確認済」「要注意」「未確認」のいずれかを入力",,,,,,,,
+,,"3. Excel条件付き書式：要注意＝黄色背景／未確認＝赤背景に設定推奨",,,,,,,,
+,,"4. 本シートは「物件リスクスコアリング＆レポートツール」のDD項目管理用テンプレートです",,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_DD45項目チェックリスト.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
