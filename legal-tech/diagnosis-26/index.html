@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>スタートアップ法的義務診断ツール（スコープ最適化版） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6;padding:12px;max-width:960px;margin:0 auto}h1{font-size:1.25em;text-align:center;padding:14px 0;color:#2d3748}.card{background:#fff;border-radius:8px;padding:14px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1)}label{display:block;font-weight:700;margin:8px 0 3px;font-size:.88em}input,select{width:100%;padding:7px;border:1px solid #cbd5e0;border-radius:4px;font-size:1em}button{background:#3182ce;color:#fff;border:none;padding:9px 18px;border-radius:4px;cursor:pointer;font-size:.95em;margin:3px}button:hover{opacity:.85}.bc{background:#38a169}.warn{background:#fefcbf;border-left:4px solid #d69e2e;padding:7px 10px;margin:10px 0;font-size:.82em}table{width:100%;border-collapse:collapse;font-size:.82em}th,td{padding:5px 6px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:top}th{background:#edf2f7;font-size:.78em;white-space:nowrap}.p1{color:#c53030;font-weight:700}.p2{color:#c05621;font-weight:700}.p3{color:#2b6cb0;font-weight:700}.dn{text-decoration:line-through;opacity:.5}input[type=checkbox]{width:auto}.ft{text-align:center;font-size:.72em;color:#718096;margin-top:20px;padding:14px;border-top:1px solid #e2e8f0}.sts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0}.st{background:#ebf8ff;padding:6px 14px;border-radius:20px;font-size:.88em;font-weight:700}@media(max-width:600px){table{font-size:.72em}th,td{padding:3px}}
+</style>
+<meta name="description" content="専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,スタートアップ法的義務診断ツール（スコープ最適化版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-26/">
+<meta property="og:title" content="スタートアップ法的義務診断ツール（スコープ最適化版） - kusasyu tools">
+<meta property="og:description" content="専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-26/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="スタートアップ法的義務診断ツール（スコープ最適化版） - kusasyu tools">
+<meta name="twitter:description" content="専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "スタートアップ法的義務診断ツール（スコープ最適化版）",
+  "description": "専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-26/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">スタートアップ法的義務診断ツール（スコープ最適化版）</span></div>
+<h1>スタートアップ法的義務診断ツール</h1>
+<div class="card">
+<label>会社設立日</label><input type="date" id="fd">
+<label>現在の従業員数</label><input type="number" id="emp" min="0" max="999" value="5">
+<label>主な業種</label>
+<select id="ind"><option value="saas">SaaS・IT系</option><option value="fin">金融・フィンテック系</option><option value="health">ヘルスケア・医療系</option><option value="other">その他</option></select>
+<div style="text-align:center;margin-top:12px"><button onclick="run()">診断する</button></div>
+</div>
+<div id="R"></div>
+<div class="ft">
+<p>データ基準日：2026年4月1日時点施行法令 ｜ 対象法令：会社法・法人税法・地方税法・所得税法・労働基準法・労働安全衛生法・雇用保険法・健康保険法・厚生年金保険法・個人情報保護法・電気通信事業法・資金決済法・医薬品医療機器等法</p>
+<p style="margin-top:6px"><strong>【免責事項】</strong>本ツールは一般的な法的義務の概要を情報提供するものであり、法的助言ではありません。具体的な対応は弁護士・税理士・社会保険労務士等の専門家にご確認ください。法改正等により最新の内容と異なる場合があります。</p>
+<p style="margin-top:4px">© 2026 Kusasyu Legal Tech</p>
+</div>
+<script>
+var D=[
+["法人設立届出書（税務署）","法人税法148条","設立届出書＋定款写し・登記事項証明書を提出","設立から2ヶ月以内","所轄税務署","届出義務違反で過料",1,0,999,"a",2],
+["法人設立届出書（都道府県）","地方税法321条の8","事業開始等申告書を提出","設立から1ヶ月以内（東京は15日）","都道府県税事務所","届出義務違反",1,0,999,"a",1],
+["青色申告承認申請書","法人税法122条","青色申告承認申請書を提出","設立から3ヶ月以内※期限厳守","所轄税務署","欠損金繰越等の特典喪失",1,0,999,"a",3],
+["給与支払事務所の開設届","所得税法230条","届出書を提出","従業員雇用から1ヶ月以内","所轄税務署","届出義務違反で過料",1,1,999,"a",0],
+["健康保険・厚生年金 新規適用届","健保法/厚年法","新規適用届＋被保険者資格取得届を提出","事実発生から5日以内","管轄年金事務所","6月以下の懲役又は50万円以下の罰金",1,1,999,"a",0],
+["労働保険 関係成立届","労働保険徴収法4条","成立届＋概算保険料申告書を提出","雇用日から10日以内","所轄労働基準監督署","6月以下の懲役又は30万円以下の罰金",1,1,999,"a",0],
+["雇用保険 適用事業所設置届","雇用保険法7条","設置届＋被保険者資格取得届を提出","雇用日から10日以内","管轄ハローワーク","6月以下の懲役又は30万円以下の罰金",1,1,999,"a",0],
+["36協定の届出","労働基準法36条","時間外・休日労働に関する協定を届出","時間外労働をさせる前（毎年更新）","所轄労働基準監督署","6月以下の懲役又は30万円以下の罰金",1,1,999,"a",0],
+["就業規則の作成・届出","労働基準法89条","就業規則を作成し届出（意見書添付）","常時10人以上使用時","所轄労働基準監督署","30万円以下の罰金",2,10,999,"a",0],
+["衛生管理者の選任届","労働安全衛生法12条","衛生管理者を選任し届出","常時50人以上使用時","所轄労働基準監督署","50万円以下の罰金",3,50,999,"a",0],
+["ストレスチェックの実施","労働安全衛生法66条の10","年1回ストレスチェックを実施・報告","常時50人以上使用時（毎年）","所轄労働基準監督署","50万円以下の罰金",3,50,999,"a",0],
+["決算公告","会社法440条","貸借対照表を公告","定時株主総会終了後 遅滞なく（毎年）","官報・電子公告等","100万円以下の過料",2,0,999,"a",0],
+["定時株主総会の開催","会社法296条","計算書類承認・役員選任等","事業年度終了後3ヶ月以内（毎年）","社内（議事録保存必須）","決議取消リスク・100万円以下の過料",1,0,999,"a",0],
+["役員変更登記","会社法915条","就任・退任・重任の登記申請","変更から2週間以内","管轄法務局","100万円以下の過料",2,0,999,"a",0],
+["個人情報保護方針の策定・公表","個人情報保護法21条","利用目的の特定・公表、安全管理措置の実施","個人情報取扱開始時","自社HP等で公表","是正命令違反で1年以下の懲役又は100万円以下の罰金",1,0,999,"a",0],
+["電気通信事業の届出","電気通信事業法16条","電気通信事業届出書を提出","事業開始前","総務省 総合通信局","6月以下の懲役又は50万円以下の罰金",1,0,999,"saas",0],
+["資金移動業の登録","資金決済法37条","資金移動業者の登録申請","事業開始前","管轄財務局","3年以下の懲役又は300万円以下の罰金（無登録営業）",1,0,999,"fin",0],
+["医療機器製造販売業の許可","医薬品医療機器等法23条の2","製造販売業許可を取得","事業開始前","都道府県知事（薬務課）","3年以下の懲役又は300万円以下の罰金",1,0,999,"health",0]
+];
+function run(){
+var fd=document.getElementById("fd").value,emp=parseInt(document.getElementById("emp").value)||0,ind=document.getElementById("ind").value;
+if(!fd){alert("設立日を入力してください");return}
+var now=new Date(),f=new Date(fd),mo=Math.round((now-f)/(2592e6)),sv=JSON.parse(localStorage.getItem("ldc")||"{}");
+var fl=D.filter(function(o){
+if(emp<o[7]||emp>o[8])return false;
+if(o[9]!=="a"&&o[9]!==ind)return false;
+if(o[10]>0&&mo>o[10]+6)return false;
+return true;
+});
+fl.sort(function(a,b){return a[6]-b[6]});
+var dn=fl.filter(function(_,i){return sv["c"+i]}).length;
+var h='<div class="card"><div class="warn">⚠ チェック状態はブラウザのlocalStorageに保存されます。ブラウザデータ削除・シークレットモードでは消失します。CSVエクスポートによるバックアップを推奨します。</div>';
+h+='<div class="sts"><div class="st">対象義務: '+fl.length+'件</div><div class="st">対応済: '+dn+'件</div><div class="st">未対応: '+(fl.length-dn)+'件</div></div>';
+h+='<div style="text-align:right;margin:8px 0"><button class="bc" onclick="csv()">CSVエクスポート</button></div>';
+h+='<table><tr><th>✓</th><th>優先</th><th>義務名</th><th>根拠法</th><th>何を</th><th>いつまでに</th><th>届出先</th><th>怠った場合</th></tr>';
+fl.forEach(function(o,i){
+var ck=sv["c"+i]?" checked":"",cl=sv["c"+i]?" dn":"",pc=o[6]===1?"p1":o[6]===2?"p2":"p3",pl=o[6]===1?"高":o[6]===2?"中":"低";
+h+='<tr class="'+cl+'"><td><input type=checkbox'+ck+' onchange="tg('+i+',this.checked)"></td><td class="'+pc+'">'+pl+'</td><td><b>'+o[0]+'</b></td><td>'+o[1]+'</td><td>'+o[2]+'</td><td>'+o[3]+'</td><td>'+o[4]+'</td><td>'+o[5]+'</td></tr>';
+});
+h+='</table></div>';
+document.getElementById("R").innerHTML=h;
+}
+function tg(i,v){var s=JSON.parse(localStorage.getItem("ldc")||"{}");if(v)s["c"+i]=1;else delete s["c"+i];localStorage.setItem("ldc",JSON.stringify(s));run();}
+function csv(){
+var rs=document.querySelectorAll("table tr"),c="チェック,優先度,義務名,根拠法,何を,いつまでに,届出先,怠った場合\n";
+for(var i=1;i<rs.length;i++){var td=rs[i].querySelectorAll("td");
+c+='"'+(td[0].querySelector("input").checked?"対応済":"未対応")+'","'+td[1].textContent+'","'+td[2].textContent+'","'+td[3].textContent+'","'+td[4].textContent+'","'+td[5].textContent+'","'+td[6].textContent+'","'+td[7].textContent+'"\n';}
+var b=new Blob(["\uFEFF"+c],{type:"text/csv"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="legal_obligations_"+new Date().toISOString().slice(0,10)+".csv";a.click();
+}
+</script>
+</body>
+</html>

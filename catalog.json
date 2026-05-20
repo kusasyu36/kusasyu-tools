@@ -1781,6 +1781,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "converter-4",
+    "url": "digital-marketing/converter-4/",
+    "title": "SNS投稿が追いつかない？一括変換ツール",
+    "tool_name": "マルチSNS一括フォーマッター（仕様ガイド統合版）",
+    "description": "ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせたテンプレート出力、リアルタイム文字数カウント、投稿管理トラッカーを含む。実務者がn8nで",
+    "quality_score": 9,
+    "completed_at": "2026-05-19T21:13:31.484918+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-14",
+    "url": "digital-marketing/management-14/",
+    "title": "SNS投稿が追いつかない？一括変換ツール",
+    "tool_name": "7プラットフォーム投稿管理トラッカー",
+    "description": "ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせたテンプレート出力、リアルタイム文字数カウント、投稿管理トラッカーを含む。実務者がn8nで",
+    "quality_score": 9,
+    "completed_at": "2026-05-19T21:13:31.484918+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -2064,6 +2090,32 @@
     "description": "法務担当者1〜5名の中堅企業向けに、日々の法務判断（契約レビューの理由、相談対応の結論、リスク判断の根拠）をブラウザ上で構造化して記録・検索できるナレッジ蓄積ツールと、異動・退職時の引き継ぎを漏れなく行うためのテンプレートを提供する。LegalOn（月額数十万円〜）やGVA manage（エンタープライズ向け）が手の届かない中小法務チームが、無料で即日使い始められる「法務の記憶装置」。",
     "quality_score": 9,
     "completed_at": "2026-05-17T06:25:13.118421+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-26",
+    "url": "legal-tech/diagnosis-26/",
+    "title": "法的義務の抜け漏れ、放置してませんか？",
+    "tool_name": "スタートアップ法的義務診断ツール（スコープ最適化版）",
+    "description": "専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは空白地帯。会社設立日・従業員数・業種を入力するだけで「今すぐ対応すべき届出」「次の期限」「",
+    "quality_score": 9,
+    "completed_at": "2026-05-20T03:33:30.855699+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "guide-4",
+    "url": "legal-tech/guide-4/",
+    "title": "法的義務の抜け漏れ、放置してませんか？",
+    "tool_name": "スタートアップ法的義務クイックガイド",
+    "description": "専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは空白地帯。会社設立日・従業員数・業種を入力するだけで「今すぐ対応すべき届出」「次の期限」「",
+    "quality_score": 9,
+    "completed_at": "2026-05-20T03:33:30.855699+00:00",
     "content_type": "article"
   },
   {

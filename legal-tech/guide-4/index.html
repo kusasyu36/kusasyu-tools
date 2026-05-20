@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スタートアップ法的義務クイックガイド - kusasyu tools</title>
+<meta name="description" content="専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,スタートアップ法的義務クイックガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/guide-4/">
+<meta property="og:title" content="スタートアップ法的義務クイックガイド - kusasyu tools">
+<meta property="og:description" content="専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/guide-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="スタートアップ法的義務クイックガイド - kusasyu tools">
+<meta name="twitter:description" content="専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "スタートアップ法的義務クイックガイド",
+  "description": "専任法務がいないスタートアップ向けに、会社法・労働基準法・個人情報保護法等の法的義務を会社のステージ・業種から自動診断し、期限付き義務リストを生成するインタラクティブツール。海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長中だが、日本の法令に対応したサービスは",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/guide-4/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-05-20"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>スタートアップ法的義務クイックガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>スタートアップ法的義務クイックガイド</h1>
+  <p class="project-name">法的義務の抜け漏れ、放置してませんか？</p>
+  <div class="content">
+<h1>スタートアップ法的義務クイックガイド――設立から資金調達まで、期限付き義務の完全チェックリスト</h1>
+<blockquote>
+<p>「届出を忘れていた」では済まされない。スタートアップが直面する法的義務を時系列で整理し、抜け漏れゼロを目指すための実務ガイド。</p>
+</blockquote>
+<hr />
+<h2>なぜスタートアップに法的義務の管理が必要なのか</h2>
+<p>専任法務がいない従業員50名以下の企業では、<strong>経営者やCFOが法務を兼務</strong>しているケースがほとんどだ。しかし会社法・労働基準法・個人情報保護法をはじめとする法令は、設立直後から容赦なく期限付きの義務を課してくる。</p>
+<p>海外ではVanta・Sprinto・Drata・Lexaclawがコンプライアンス自動追跡で急成長しているが、<strong>日本の法令に特化したサービスは空白地帯</strong>のままだ。本記事では、設立〜シリーズAの各ステージで発生する法的義務を網羅し、「何を」「いつまでに」「どこに」「怠るとどうなるか」を一覧化する。</p>
+<hr />
+<h2>ステージ1：会社設立直後（設立日〜1ヶ月以内）</h2>
+<p>設立登記が完了した瞬間から、複数の届出義務が同時に発生する。最初の1ヶ月が最も密度が高い。</p>
+<table>
+<thead>
+<tr>
+<th>義務</th>
+<th>期限</th>
+<th>届出先</th>
+<th>怠った場合のリスク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>法人設立届出書</strong></td>
+<td>設立日から2ヶ月以内</td>
+<td>税務署</td>
+<td>青色申告の承認が遅れ、欠損金の繰越控除が使えない</td>
+</tr>
+<tr>
+<td><strong>青色申告の承認申請書</strong></td>
+<td>設立日から3ヶ月以内 or 最初の事業年度終了日のいずれか早い方</td>
+<td>税務署</td>
+<td>白色申告となり最大10年の欠損金繰越控除を喪失</td>
+</tr>
+<tr>
+<td><strong>給与支払事務所等の開設届出書</strong></td>
+<td>開設日から1ヶ月以内</td>
+<td>税務署</td>
+<td>源泉徴収義務の不履行で不納付加算税（10%）</td>
+</tr>
+<tr>
+<td><strong>法人設立届出書（地方税）</strong></td>
+<td>設立日から15日〜2ヶ月以内（自治体による）</td>
+<td>都道府県税事務所・市区町村</td>
+<td>法人住民税均等割の申告漏れ</td>
+</tr>
+<tr>
+<td><strong>健康保険・厚生年金保険 新規適用届</strong></td>
+<td>事実発生から5日以内</td>
+<td>年金事務所</td>
+<td>2年間遡及して保険料を徴収される</td>
+</tr>
+<tr>
+<td><strong>労働保険 保険関係成立届</strong></td>
+<td>従業員雇用日の翌日から10日以内</td>
+<td>労働基準監督署</td>
+<td>労災発生時に費用徴収（最大40%上乗せ）</td>
+</tr>
+<tr>
+<td><strong>雇用保険 適用事業所設置届</strong></td>
+<td>設置日の翌日から10日以内</td>
+<td>ハローワーク</td>
+<td>従業員が雇用保険の給付を受けられない</td>
+</tr>
+</tbody>
+</table>
+<h3>見落としやすいポイント</h3>
+<ul>
+<li><strong>社会保険は役員1名でも加入義務あり</strong>。「従業員がいないから」は通用しない</li>
+<li>源泉所得税の納期の特例承認申請書を出さないと、給与支払いの翌月10日が毎月の納付期限になる</li>
+</ul>
+<hr />
+<h2>ステージ2：事業開始〜従業員10名前後</h2>
+<p>プロダクト開発が進み、採用が始まるフェーズ。労務関連の義務が一気に増える。</p>
+<table>
+<thead>
+<tr>
+<th>義務</th>
+<th>期限</th>
+<th>届出先</th>
+<th>怠った場合のリスク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>36協定（時間外・休日労働に関する協定届）</strong></td>
+<td>時間外労働をさせる前</td>
+<td>労働基準監督署</td>
+<td>6ヶ月以下の懲役又は30万円以下の罰金（労基法119条）</td>
+</tr>
+<tr>
+<td><strong>就業規則の作成・届出</strong></td>
+<td>常時10人以上で義務化</td>
+<td>労働基準監督署</td>
+<td>30万円以下の罰金（労基法120条）</td>
+</tr>
+<tr>
+<td><strong>プライバシーポリシーの公表</strong></td>
+<td>個人情報取得開始前</td>
+<td>公表義務（届出不要）</td>
+<td>個人情報保護委員会による勧告・命令、最大1億円の罰金</td>
+</tr>
+<tr>
+<td><strong>利用規約の整備</strong></td>
+<td>サービス提供開始前</td>
+<td>─</td>
+<td>契約関係の不明確化、利用者とのトラブル</td>
+</tr>
+<tr>
+<td><strong>反社会的勢力排除条項の整備</strong></td>
+<td>取引開始前</td>
+<td>─</td>
+<td>銀行口座凍結、取引先からの契約解除</td>
+</tr>
+<tr>
+<td><strong>定款変更登記（目的追加等）</strong></td>
+<td>変更決議日から2週間以内</td>
+<td>法務局</td>
+<td>登記懈怠で100万円以下の過料（会社法976条）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>ステージ3：資金調達フェーズ（シード〜シリーズA）</h2>
+<p>投資家のデューデリジェンスに耐えうるコンプライアンス体制が必須となる。</p>
+<table>
+<thead>
+<tr>
+<th>義務</th>
+<th>期限</th>
+<th>届出先</th>
+<th>怠った場合のリスク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>株式発行に伴う変更登記</strong></td>
+<td>払込期日から2週間以内</td>
+<td>法務局</td>
+<td>100万円以下の過料、登記簿と実態の不一致</td>
+</tr>
+<tr>
+<td><strong>株主名簿の整備</strong></td>
+<td>随時更新</td>
+<td>社内管理</td>
+<td>株主総会決議の瑕疵、次回調達への悪影響</td>
+</tr>
+<tr>
+<td><strong>取締役会・株主総会の議事録作成</strong></td>
+<td>開催後遅滞なく</td>
+<td>社内保管（10年間）</td>
+<td>決議の無効主張リスク、DD時の指摘事項化</td>
+</tr>
+<tr>
+<td><strong>決算公告</strong></td>
+<td>定時株主総会後遅滞なく</td>
+<td>官報・電子公告等</td>
+<td>100万円以下の過料（会社法976条）</td>
+</tr>
+<tr>
+<td><strong>事業報告書の作成</strong></td>
+<td>毎事業年度</td>
+<td>社内保管</td>
+<td>取締役の善管注意義務違反のリスク</td>
+</tr>
+</tbody>
+</table>
+<h3>業種別の追加義務</h3>
+<table>
+<thead>
+<tr>
+<th>業種</th>
+<th>追加で必要な対応</th>
+<th>根拠法令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SaaS・IT系</strong></td>
+<td>電気通信事業届出、特定電気通信役務提供者の対応</td>
+<td>電気通信事業法</td>
+</tr>
+<tr>
+<td><strong>フィンテック系</strong></td>
+<td>資金移動業登録、前払式支払手段発行届出、犯収法に基づくKYC体制</td>
+<td>資金決済法・犯罪収益移転防止法</td>
+</tr>
+<tr>
+<td><strong>ヘルスケア系</strong></td>
+<td>医療機器製造販売業許可、薬機法に基づく広告規制対応</td>
+<td>医薬品医療機器等法</td>
+</tr>
+<tr>
+<td><strong>人材系</strong></td>
+<td>有料職業紹介事業許可、労働者派遣事業許可</td>
+<td>職業安定法・労働者派遣法</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>実際にあったスタートアップの失敗事例</h2>
+<h3>事例1：登記変更の放置で100万円の過料</h3>
+<p>あるSaaSスタートアップは、本店移転と取締役変更の登記を半年以上放置していた。法務局から過料の通知が届き、代表取締役個人に対して<strong>過料50万円</strong>が科された。さらに投資家のDD時に登記簿と実態の不一致が発覚し、調達スケジュールが2ヶ月遅延した。</p>
+<p><strong>教訓：</strong> 登記変更の期限は「決議日から2週間」。定款変更・役員変更・本店移転のいずれも同様で、放置するほどリスクが膨らむ。</p>
+<h3>事例2：36協定未締結のまま深夜残業</h3>
+<p>シード期のフィンテックスタートアップでは、エンジニアの長時間労働が常態化していた。しかし36協定を締結・届出していなかったため、<strong>労働基準監督署の臨検で是正勧告</strong>を受けた。これが業界内で噂になり、採用にも悪影響を及ぼした。</p>
+<p><strong>教訓：</strong> 36協定は「残業をさせる前に」届出が必要。1人でも時間外労働があるなら、年度開始前に毎年更新すること。</p>
+<h3>事例3：プライバシーポリシー未整備でサービス停止危機</h3>
+<p>ヘルスケア系スタートアップが、要配慮個人情報（健康データ）を取り扱いながらプライバシーポリシーを整備していなかった。ユーザーからの苦情を契機に<strong>個人情報保護委員会から行政指導</strong>を受け、サービスの一時停止を余儀なくされた。</p>
+<p><strong>教訓：</strong> 個人情報保護法は2022年改正で罰則が大幅強化（法人への罰金最大1億円）。特に要配慮個人情報を扱う場合は、本人同意の取得プロセスも含めた設計が必須。</p>
+<hr />
+<h2>年間カレンダー：忘れがちな定期義務</h2>
+<p>毎年繰り返し発生する義務も見落としやすい。以下を年間スケジュールに組み込んでおくべきだ。</p>
+<table>
+<thead>
+<tr>
+<th>時期</th>
+<th>義務</th>
+<th>届出先</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>毎年・年度開始前</strong></td>
+<td>36協定の更新届出</td>
+<td>労働基準監督署</td>
+</tr>
+<tr>
+<td><strong>毎年6月</strong></td>
+<td>労働保険の年度更新（概算・確定保険料申告）</td>
+<td>労働基準監督署</td>
+</tr>
+<tr>
+<td><strong>毎年7月</strong></td>
+<td>社会保険の算定基礎届</td>
+<td>年金事務所</td>
+</tr>
+<tr>
+<td><strong>毎年7月</strong></td>
+<td>源泉所得税の納期の特例（1〜6月分）</td>
+<td>税務署</td>
+</tr>
+<tr>
+<td><strong>決算後2ヶ月以内</strong></td>
+<td>法人税・消費税・地方税の確定申告</td>
+<td>税務署・都道府県税事務所・市区町村</td>
+</tr>
+<tr>
+<td><strong>決算後3ヶ月以内</strong></td>
+<td>定時株主総会の開催</td>
+<td>─</td>
+</tr>
+<tr>
+<td><strong>株主総会後遅滞なく</strong></td>
+<td>決算公告</td>
+<td>官報等</td>
+</tr>
+<tr>
+<td><strong>随時（変更発生時）</strong></td>
+<td>登記変更（2週間以内）</td>
+<td>法務局</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>対応優先度の判断基準</h2>
+<p>すべてを同時に対応するのは現実的ではない。以下の基準で優先度をつけよう。</p>
+<table>
+<thead>
+<tr>
+<th>優先度</th>
+<th>基準</th>
+<th>具体例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>最優先（即日対応）</strong></td>
+<td>罰則あり＋期限が迫っている</td>
+<td>36協定、社会保険届出、登記変更</td>
+</tr>
+<tr>
+<td><strong>高（1週間以内）</strong></td>
+<td>罰則あり＋期限に余裕がある</td>
+<td>税務届出、就業規則、決算申告</td>
+</tr>
+<tr>
+<td><strong>中（1ヶ月以内）</strong></td>
+<td>罰則なし＋事業への影響大</td>
+<td>プライバシーポリシー、利用規約</td>
+</tr>
+<tr>
+<td><strong>通常（計画的に）</strong></td>
+<td>体制整備系</td>
+<td>議事録管理、株主名簿、社内規程</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>まとめ：3つのアクション</h2>
+<ol>
+<li><strong>現状を把握する</strong> ── 自社の設立日・従業員数・業種から、今どの義務が発生しているかを確認する</li>
+<li><strong>期限を可視化する</strong> ── 義務ごとの期限をカレンダーに登録し、1ヶ月前にアラートを設定する</li>
+<li><strong>定期的に見直す</strong> ── 従業員数の増加や新規事業の開始で義務は増える。四半期ごとに棚卸しする</li>
+</ol>
+<hr />
+<h2>自社の法的義務を30秒で診断する</h2>
+<p>本記事の内容を一つひとつ確認するのは大変だ。<strong><a href="/">スタートアップ法的義務診断ツール</a></strong> を使えば、会社設立日・従業員数・業種を入力するだけで、<strong>今すぐ対応すべき届出・次の期限・対応ステータス</strong>を自動で一覧化できる。結果はCSVエクスポートにも対応しているので、そのまま社内の管理台帳として活用してほしい。</p>
+<blockquote>
+<p>法的義務の抜け漏れ、放置してませんか？<br />
+まずは診断ツールで現状を確認しよう。</p>
+</blockquote>
+<hr />
+<p><em>本記事は2026年5月時点の法令に基づいて作成しています。法令改正により内容が変更される場合があります。個別の法的判断については弁護士等の専門家にご相談ください。</em></p>
+<p><em>© Kusasyu Legal Tech</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

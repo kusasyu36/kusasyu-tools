@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>マルチSNS一括フォーマッター（仕様ガイド統合版） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:18px 0 4px;color:#1a1a2e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:18px}
+.input-section{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.input-section h2{font-size:1em;margin-bottom:12px;color:#4361ee}
+label{display:block;font-size:.85em;font-weight:600;margin:10px 0 4px;color:#333}
+input[type=text],textarea{width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:.9em;font-family:inherit;transition:border .2s}
+input:focus,textarea:focus{outline:none;border-color:#4361ee}
+textarea{resize:vertical;min-height:80px}
+.btn-gen{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4361ee,#3a0ca3);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:14px;transition:opacity .2s}
+.btn-gen:hover{opacity:.9}
+.btn-gen:active{transform:scale(.98)}
+#output{display:none}
+.plat{background:#fff;border-radius:12px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.08);overflow:hidden}
+.plat-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;user-select:none}
+.plat-header h3{font-size:.95em;display:flex;align-items:center;gap:8px}
+.plat-badge{font-size:.7em;padding:2px 8px;border-radius:20px;color:#fff;font-weight:600}
+.plat-body{padding:0 16px 14px}
+.plat-body textarea{background:#f8f9fa;min-height:100px;font-size:.85em}
+.char-info{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:.78em}
+.char-count{color:#666}
+.char-warn{color:#e63946;font-weight:700}
+.copy-btn{padding:5px 14px;background:#4361ee;color:#fff;border:none;border-radius:6px;font-size:.78em;cursor:pointer;transition:background .2s}
+.copy-btn:hover{background:#3a0ca3}
+.copy-btn.copied{background:#2d6a4f}
+.spec-toggle{font-size:.78em;color:#4361ee;cursor:pointer;margin-top:8px;display:inline-block;user-select:none}
+.spec-panel{display:none;background:#f0f2f5;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:.78em;line-height:1.7;color:#555}
+.spec-panel.open{display:block}
+.tracker{background:#fff;border-radius:12px;padding:16px;margin-top:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.tracker h2{font-size:1em;color:#4361ee;margin-bottom:10px}
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.t-item{text-align:center;padding:10px;border-radius:8px;font-size:.75em;font-weight:600;border:2px solid #ddd;transition:all .2s;cursor:pointer}
+.t-item.done{border-color:#2d6a4f;background:#d8f3dc;color:#2d6a4f}
+.t-item.pending{border-color:#e9ecef;color:#999}
+@media(max-width:600px){.wrap{padding:10px}.tracker-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+<meta name="description" content="ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,マルチSNS一括フォーマッター（仕様ガイド統合版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-4/">
+<meta property="og:title" content="マルチSNS一括フォーマッター（仕様ガイド統合版） - kusasyu tools">
+<meta property="og:description" content="ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="マルチSNS一括フォーマッター（仕様ガイド統合版） - kusasyu tools">
+<meta name="twitter:description" content="ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "マルチSNS一括フォーマッター（仕様ガイド統合版）",
+  "description": "ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-4/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">マルチSNS一括フォーマッター（仕様ガイド統合版）</span></div>
+<div class="wrap">
+<h1>マルチSNS 一括フォーマッター</h1>
+<p class="sub">入力1回 → 7プラットフォーム分の投稿を自動生成</p>
+<div class="input-section">
+<h2>&#9998; 元コンテンツを入力</h2>
+<label>タイトル</label>
+<input type="text" id="inTitle" placeholder="例：売上を2倍にしたSNS運用術">
+<label>要約（1〜2文）</label>
+<input type="text" id="inSummary" placeholder="例：少人数チームでもSNS運用を効率化できる方法を解説">
+<label>本文（ポイントを箇条書きでもOK）</label>
+<textarea id="inBody" rows="4" placeholder="例：1. 投稿を一括作成する&#10;2. プラットフォームごとにトーンを変える&#10;3. 分析データで改善サイクルを回す"></textarea>
+<label>CTA（行動喚起）</label>
+<input type="text" id="inCta" placeholder="例：詳しくはプロフィールのリンクから">
+<label>URL</label>
+<input type="text" id="inUrl" placeholder="https://example.com/article">
+<button class="btn-gen" onclick="generate()">&#9889; 7プラットフォーム分を一括生成</button>
+</div>
+<div id="output"></div>
+<div class="tracker" id="tracker" style="display:none">
+<h2>&#128203; 投稿管理トラッカー</h2>
+<div class="tracker-grid" id="trackerGrid"></div>
+</div>
+</div>
+<script>
+var P=[
+{id:'x',name:'X（Twitter）',color:'#1da1f2',limit:140,spec:'文字数上限：140文字（URLは23文字換算）\n推奨画像：1200×675px（16:9）\nハッシュタグ：2〜3個推奨（多すぎるとリーチ低下）\nNG：外部リンク連投はインプレッション激減。画像付きが効果的'},
+{id:'ig',name:'Instagram',color:'#e1306c',limit:2200,spec:'キャプション上限：2,200文字\n推奨画像：1080×1080px / 1080×1350px\nハッシュタグ：最大30個（10〜15個が最適）\nNG：キャプション内リンクはタップ不可。プロフURLへ誘導が基本'},
+{id:'line',name:'LINE公式',color:'#06c755',limit:500,spec:'プッシュ通知プレビュー：最初の約100文字\nメッセージ上限：500文字/吹き出し\n推奨画像：1040×1040px\nNG：長文は離脱率上昇。短文+リッチメニュー誘導が効果的'},
+{id:'tt',name:'TikTok',color:'#010101',limit:150,spec:'キャプション上限：150文字（日本）\n推奨動画：1080×1920px（9:16）\nハッシュタグ：3〜5個\nNG：売り込み感の強いCTAは非表示リスク。自然な語りかけが有効'},
+{id:'note',name:'note',color:'#41c9b4',limit:0,spec:'タイトル上限：100文字\n本文上限：なし（推奨3,000〜5,000文字）\n推奨画像：1280×670px\nNG：過度な煽りタイトルはnote文化に合わない。共感・学び訴求が有効'},
+{id:'mail',name:'メルマガ',color:'#f77f00',limit:0,spec:'件名：30文字前後が開封率最高（スマホ表示15〜20文字）\nプリヘッダー：40〜90文字\n本文：600文字前後が完読率高い\nNG：件名に【】多用・絵文字過多は迷惑メール判定リスク'},
+{id:'yt',name:'YouTube概要欄',color:'#ff0000',limit:5000,spec:'説明文上限：5,000文字\n「もっと見る」前に表示：約100〜120文字\nタグ上限：500文字（合計）\nNG：関係ないタグ乱用はペナルティ対象。最初の2行にキーワードを含める'}
+];
+function tr(s,n){return s.length>n?s.slice(0,n-1)+'…':s}
+function cas(s){return s.replace(/です。/g,'だよ！').replace(/ます。/g,'るよ！').replace(/ください/g,'してね')}
+function pol(s){return s.replace(/だよ！/g,'です。').replace(/るよ！/g,'ます。').replace(/してね/g,'ください')}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function generate(){
+var t=document.getElementById('inTitle').value.trim(),s=document.getElementById('inSummary').value.trim(),b=document.getElementById('inBody').value.trim(),c=document.getElementById('inCta').value.trim(),u=document.getElementById('inUrl').value.trim();
+if(!t){alert('タイトルを入力してください');return}
+var r={};
+r.x=cas(tr(s||t,80))+'\n\n'+(u||'')+'\n\n#SNS運用 #マーケティング #業務効率化';
+var em=['✨','📌','💡','🔥','👇'],ig=em[0]+' '+t+'\n\n'+em[1]+' '+s+'\n\n';
+if(b)b.split('\n').forEach(function(l,i){if(l.trim())ig+=em[(i+2)%5]+' '+l.trim()+'\n'});
+ig+='\n'+em[4]+' '+(c||'詳しくはプロフィールのリンクから！')+'\n\n#SNS運用 #マーケティング #中小企業 #業務効率化 #デジタルマーケティング #インスタ運用 #SNS集客 #コンテンツマーケティング #マーケター #ビジネス成長';
+r.ig=ig;
+r.line='【お知らせ】\n'+tr(t,40)+'\n\n'+pol(tr(s||b,200))+'\n\n▼ 詳しくはこちら\n'+(u||'（リンク）')+'\n\n'+(c?pol(c):'ぜひご確認ください。');
+r.tt='🔥 '+tr(t,30)+'\n\n'+tr(s||b,60)+'\n\n'+(c||'続きはプロフのリンクから👆')+'\n\n#sns運用 #マーケティング #仕事効率化';
+var nt='＜タイトル案3パターン＞\n① 【保存版】'+t+'\n② 「'+tr(t,20)+'」を実践してわかったこと\n③ なぜ今、'+tr(t,25)+'が必要なのか\n\n--- リード文 ---\n「SNS投稿、毎回ゼロから作るの大変じゃないですか？」\n\n実はこの悩み、多くのマーケターが抱えています。\n'+(s||'')+'\n\nこの記事では、'+t+'について詳しく解説します。\n\n';
+if(b)nt+='--- 本文 ---\n'+b+'\n\n';
+nt+='--- まとめ ---\n'+(c||'ぜひ実践してみてください。')+(u?'\n\n▼ 関連リンク\n'+u:'');
+r.note=nt;
+var ml='【件名】'+tr(t,30)+'\n【プリヘッダー】'+tr(s||t,80)+'\n\n━━━━━━━━━━━━━━━\n'+t+'\n━━━━━━━━━━━━━━━\n\n'+(s?s+'\n\n':'')+(b?b+'\n\n':'')+'▼ '+(c||'詳細はこちら')+'\n'+(u||'（リンク）')+'\n\n━━━━━━━━━━━━━━━\n※ 配信停止は下記リンクから';
+r.mail=ml;
+var yt=t+'\n\n'+(s?s+'\n\n':'')+(b?b+'\n\n':'')+'━━━━━━━━━━━━━━━\n🔗 関連リンク\n'+(u||'（リンク）')+'\n\n━━━━━━━━━━━━━━━\n📌 タグ\nSNS運用,マーケティング,業務効率化,中小企業,デジタルマーケティング';
+r.yt=yt;
+renderOut(r);
+}
+
+function renderOut(r){
+var o=document.getElementById('output');o.style.display='block';
+o.innerHTML='<h2 style="font-size:1.1em;margin-bottom:14px">&#128196; 生成結果</h2>';
+P.forEach(function(p){
+var v=r[p.id]||'',l=v.length,ov=p.limit>0&&l>p.limit,d=document.createElement('div');d.className='plat';
+d.innerHTML='<div class="plat-header" onclick="togB(this)"><h3><span class="plat-badge" style="background:'+p.color+'">'+p.name+'</span></h3><span style="font-size:.8em;color:#999">▼</span></div><div class="plat-body"><textarea id="out_'+p.id+'" oninput="upCnt(\''+p.id+'\','+p.limit+')">'+esc(v)+'</textarea><div class="char-info"><span id="cnt_'+p.id+'" class="'+(ov?'char-warn':'char-count')+'">'+l+'文字'+(p.limit>0?' / '+p.limit+'文字':'')+(ov?' ⚠ 超過！':'')+'</span><button class="copy-btn" onclick="cp(\''+p.id+'\',this)">コピー</button></div><span class="spec-toggle" onclick="togS(this)">ℹ 仕様を表示</span><div class="spec-panel">'+esc(p.spec).replace(/\n/g,'<br>')+'</div></div>';
+o.appendChild(d);
+});
+renderTk();o.scrollIntoView({behavior:'smooth'});
+}
+function togB(e){var b=e.parentElement.querySelector('.plat-body');b.style.display=b.style.display==='none'?'':'none'}
+function togS(e){e.nextElementSibling.classList.toggle('open')}
+function upCnt(id,lim){
+var ta=document.getElementById('out_'+id),cn=document.getElementById('cnt_'+id),l=ta.value.length,ov=lim>0&&l>lim;
+cn.className=ov?'char-warn':'char-count';cn.textContent=l+'文字'+(lim>0?' / '+lim+'文字':'')+(ov?' ⚠ 超過！':'');
+}
+function cp(id,btn){
+var ta=document.getElementById('out_'+id);
+if(navigator.clipboard){navigator.clipboard.writeText(ta.value).then(function(){btn.textContent='✓ コピー済';btn.classList.add('copied');setTimeout(function(){btn.textContent='コピー';btn.classList.remove('copied')},1500)})}
+else{ta.select();document.execCommand('copy');btn.textContent='✓ コピー済'}
+}
+function renderTk(){
+var tk=document.getElementById('tracker');tk.style.display='block';
+var g=document.getElementById('trackerGrid');g.innerHTML='';
+P.forEach(function(p){var d=document.createElement('div');d.className='t-item pending';d.textContent=p.name;
+d.onclick=function(){this.classList.toggle('done');this.classList.toggle('pending')};g.appendChild(d)});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7プラットフォーム投稿管理トラッカー - kusasyu tools</title>
+<meta name="description" content="ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,7プラットフォーム投稿管理トラッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-14/">
+<meta property="og:title" content="7プラットフォーム投稿管理トラッカー - kusasyu tools">
+<meta property="og:description" content="ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="7プラットフォーム投稿管理トラッカー - kusasyu tools">
+<meta name="twitter:description" content="ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "7プラットフォーム投稿管理トラッカー",
+  "description": "ブログ記事や商品説明文の要素（タイトル・要約・本文・CTA・URL）を入力すると、X・Instagram・LINE公式・TikTok・note・メルマガ・YouTube概要欄の7プラットフォーム向けに投稿フォーマットを一括生成するツールセット。各プラットフォームの文字数制限・ハッシュタグルール・トーンに合わせ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/management-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-05-19"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>7プラットフォーム投稿管理トラッカー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>7プラットフォーム投稿管理トラッカー</h1>
+  <p class="project-name">SNS投稿が追いつかない？一括変換ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>マルチSNS一括フォーマッター — 7プラットフォーム投稿管理トラッカー</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>Excelで開き、D列（ステータス）にデータの入力規則で「未着手/下書き/予約済/公開済/配信済」のプルダウンを設定してください</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ セクション1: 投稿管理トラッカー</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>記事ID</td><td>記事タイトル</td><td>プラットフォーム</td><td>ステータス</td><td>公開予定日</td><td>公開日時</td><td>いいね</td><td>シェア・RT・保存</td><td>クリック・PV</td><td>備考</td><td>完了チェック</td></tr><tr><td>001</td><td>夏のEC売上を伸ばす5施策</td><td>X</td><td>公開済</td><td>2026-05-19</td><td>2026-05-19 12:00</td><td>45</td><td>12</td><td>89</td><td>反応良好</td><td>✓</td></tr><tr><td>001</td><td>夏のEC売上を伸ばす5施策</td><td>Instagram</td><td>公開済</td><td>2026-05-19</td><td>2026-05-19 18:00</td><td>120</td><td>34</td><td>56</td><td>リール連動</td><td>✓</td></tr><tr><td>001</td><td>夏のEC売上を伸ばす5施策</td><td>LINE公式</td><td>配信済</td><td>2026-05-20</td><td>2026-05-20 11:30</td><td>0</td><td>0</td><td>210</td><td>開封率32%</td><td>✓</td></tr><tr><td>001</td><td>夏のEC売上を伸ばす5施策</td><td>TikTok</td><td>下書き</td><td>2026-05-21</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>001</td><td>夏のEC売上を伸ばす5施策</td><td>note</td><td>公開済</td><td>2026-05-20</td><td>2026-05-20 08:00</td><td>38</td><td>5</td><td>180</td><td></td><td>✓</td></tr><tr><td>001</td><td>夏のEC売上を伸ばす5施策</td><td>メルマガ</td><td>配信済</td><td>2026-05-20</td><td>2026-05-20 10:00</td><td>0</td><td>0</td><td>145</td><td>開封率28%</td><td>✓</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `マルチSNS一括フォーマッター — 7プラットフォーム投稿管理トラッカー,,,,,,,,,,
+"Excelで開き、D列（ステータス）にデータの入力規則で「未着手/下書き/予約済/公開済/配信済」のプルダウンを設定してください",,,,,,,,,,
+,,,,,,,,,,
+■ セクション1: 投稿管理トラッカー,,,,,,,,,,
+記事ID,記事タイトル,プラットフォーム,ステータス,公開予定日,公開日時,いいね,シェア・RT・保存,クリック・PV,備考,完了チェック
+001,夏のEC売上を伸ばす5施策,X,公開済,2026-05-19,2026-05-19 12:00,45,12,89,反応良好,✓
+001,夏のEC売上を伸ばす5施策,Instagram,公開済,2026-05-19,2026-05-19 18:00,120,34,56,リール連動,✓
+001,夏のEC売上を伸ばす5施策,LINE公式,配信済,2026-05-20,2026-05-20 11:30,0,0,210,開封率32%,✓
+001,夏のEC売上を伸ばす5施策,TikTok,下書き,2026-05-21,,,,,,
+001,夏のEC売上を伸ばす5施策,note,公開済,2026-05-20,2026-05-20 08:00,38,5,180,,✓
+001,夏のEC売上を伸ばす5施策,メルマガ,配信済,2026-05-20,2026-05-20 10:00,0,0,145,開封率28%,✓
+001,夏のEC売上を伸ばす5施策,YouTube概要欄,未着手,2026-05-25,,,,,動画編集待ち,
+002,SNS運用の始め方完全ガイド,X,予約済,2026-05-22,,,,,,
+002,SNS運用の始め方完全ガイド,Instagram,下書き,2026-05-22,,,,,カルーセル10枚,
+002,SNS運用の始め方完全ガイド,LINE公式,未着手,2026-05-23,,,,,,
+002,SNS運用の始め方完全ガイド,TikTok,未着手,2026-05-24,,,,,,
+002,SNS運用の始め方完全ガイド,note,下書き,2026-05-22,,,,,長文版作成中,
+002,SNS運用の始め方完全ガイド,メルマガ,未着手,2026-05-23,,,,,,
+002,SNS運用の始め方完全ガイド,YouTube概要欄,未着手,2026-05-26,,,,,,
+003,リピート率を上げるメール術,X,公開済,2026-05-18,2026-05-18 12:30,32,8,67,,✓
+003,リピート率を上げるメール術,Instagram,公開済,2026-05-18,2026-05-18 19:00,95,28,43,ストーリーズ連動,✓
+003,リピート率を上げるメール術,LINE公式,配信済,2026-05-19,2026-05-19 11:00,0,0,185,開封率35%,✓
+003,リピート率を上げるメール術,TikTok,公開済,2026-05-19,2026-05-19 20:00,210,45,0,再生1200,✓
+003,リピート率を上げるメール術,note,公開済,2026-05-19,2026-05-19 07:30,22,3,95,,✓
+003,リピート率を上げるメール術,メルマガ,配信済,2026-05-19,2026-05-19 09:00,0,0,132,開封率30%,✓
+003,リピート率を上げるメール術,YouTube概要欄,公開済,2026-05-20,2026-05-20 17:00,18,2,320,再生890,✓
+,,,,,,,,,,
+■ セクション2: 曜日×時間帯 最適投稿タイミング早見表,,,,,,,,,,
+曜日,X,Instagram,LINE公式,TikTok,note,メルマガ,YouTube概要欄,,,
+月,12:00-13:00,18:00-20:00,11:00-12:00,20:00-22:00,07:00-08:00,10:00-11:00,17:00-19:00,,,
+火,12:00-13:00,18:00-20:00,11:00-12:00,20:00-22:00,07:00-08:00,10:00-11:00,17:00-19:00,,,
+水,12:00-13:00,18:00-20:00,11:00-12:00,20:00-22:00,07:00-08:00,10:00-11:00,17:00-19:00,,,
+木,12:00-13:00,18:00-20:00,11:00-12:00,21:00-23:00,07:00-08:00,10:00-11:00,17:00-19:00,,,
+金,12:00-13:00,20:00-22:00,11:00-12:00,21:00-23:00,07:00-08:00,08:00-09:00,17:00-19:00,,,
+土,10:00-11:00,11:00-13:00,10:00-11:00,15:00-17:00,09:00-10:00,配信非推奨,12:00-14:00,,,
+日,10:00-11:00,11:00-13:00,10:00-11:00,15:00-17:00,09:00-10:00,配信非推奨,12:00-14:00,,,
+,,,,,,,,,,
+■ セクション3: 月次プラットフォーム別パフォーマンス比較（2026年5月）,,,,,,,,,,
+プラットフォーム,公開・配信数,いいね合計,シェア合計,クリック・PV合計,平均いいね,平均シェア,平均クリック,,,
+X,"=COUNTIFS($C$6:$C$26,A40,$F$6:$F$26,""<>"")","=SUMIF($C$6:$C$26,A40,$G$6:$G$26)","=SUMIF($C$6:$C$26,A40,$H$6:$H$26)","=SUMIF($C$6:$C$26,A40,$I$6:$I$26)","=IFERROR(C40/B40,0)","=IFERROR(D40/B40,0)","=IFERROR(E40/B40,0)",,,
+Instagram,"=COUNTIFS($C$6:$C$26,A41,$F$6:$F$26,""<>"")","=SUMIF($C$6:$C$26,A41,$G$6:$G$26)","=SUMIF($C$6:$C$26,A41,$H$6:$H$26)","=SUMIF($C$6:$C$26,A41,$I$6:$I$26)","=IFERROR(C41/B41,0)","=IFERROR(D41/B41,0)","=IFERROR(E41/B41,0)",,,
+LINE公式,"=COUNTIFS($C$6:$C$26,A42,$F$6:$F$26,""<>"")","=SUMIF($C$6:$C$26,A42,$G$6:$G$26)","=SUMIF($C$6:$C$26,A42,$H$6:$H$26)","=SUMIF($C$6:$C$26,A42,$I$6:$I$26)","=IFERROR(C42/B42,0)","=IFERROR(D42/B42,0)","=IFERROR(E42/B42,0)",,,
+TikTok,"=COUNTIFS($C$6:$C$26,A43,$F$6:$F$26,""<>"")","=SUMIF($C$6:$C$26,A43,$G$6:$G$26)","=SUMIF($C$6:$C$26,A43,$H$6:$H$26)","=SUMIF($C$6:$C$26,A43,$I$6:$I$26)","=IFERROR(C43/B43,0)","=IFERROR(D43/B43,0)","=IFERROR(E43/B43,0)",,,
+note,"=COUNTIFS($C$6:$C$26,A44,$F$6:$F$26,""<>"")","=SUMIF($C$6:$C$26,A44,$G$6:$G$26)","=SUMIF($C$6:$C$26,A44,$H$6:$H$26)","=SUMIF($C$6:$C$26,A44,$I$6:$I$26)","=IFERROR(C44/B44,0)","=IFERROR(D44/B44,0)","=IFERROR(E44/B44,0)",,,
+メルマガ,"=COUNTIFS($C$6:$C$26,A45,$F$6:$F$26,""<>"")","=SUMIF($C$6:$C$26,A45,$G$6:$G$26)","=SUMIF($C$6:$C$26,A45,$H$6:$H$26)","=SUMIF($C$6:$C$26,A45,$I$6:$I$26)","=IFERROR(C45/B45,0)","=IFERROR(D45/B45,0)","=IFERROR(E45/B45,0)",,,
+YouTube概要欄,"=COUNTIFS($C$6:$C$26,A46,$F$6:$F$26,""<>"")","=SUMIF($C$6:$C$26,A46,$G$6:$G$26)","=SUMIF($C$6:$C$26,A46,$H$6:$H$26)","=SUMIF($C$6:$C$26,A46,$I$6:$I$26)","=IFERROR(C46/B46,0)","=IFERROR(D46/B46,0)","=IFERROR(E46/B46,0)",,,
+合計,"=SUM(B40:B46)","=SUM(C40:C46)","=SUM(D40:D46)","=SUM(E40:E46)","=IFERROR(C47/B47,0)","=IFERROR(D47/B47,0)","=IFERROR(E47/B47,0)",,,
+,,,,,,,,,,
+■ セクション4: 投稿漏れ防止チェックリスト,,,,,,,,,,
+No,チェック項目,対象,確認タイミング,チェック,,,,,,
+1,元記事URLとリンク先が正しく遷移するか,全プラットフォーム,投稿前,□,,,,,,
+2,ハッシュタグが各PFの上限数以内か,X・Instagram・TikTok,投稿前,□,,,,,,
+3,画像・動画サイズが各PF推奨仕様に合っているか,Instagram・TikTok・YouTube,投稿前,□,,,,,,
+4,文字数がマルチSNS一括フォーマッターの制限値以内か,全プラットフォーム,投稿前,□,,,,,,
+5,投稿予約日時がセクション2の推奨時間帯に入っているか,全プラットフォーム,予約設定時,□,,,,,,
+6,1記事につき全7PF分の行が管理トラッカーに登録済みか,セクション1,記事登録時,□,,,,,,
+7,公開後24時間以内にエンゲージメント数値を記録したか,全プラットフォーム,公開翌日,□,,,,,,
+8,未着手・下書きのまま公開予定日を過ぎた投稿がないか,セクション1,毎週月曜,□,,,,,,
+9,月末にセクション3のパフォーマンス比較を確認したか,セクション3,月末,□,,,,,,
+10,高エンゲージ投稿のパターンを翌月の計画に反映したか,セクション3,月初,□,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_7プラットフォーム投稿管理トラッカー.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
