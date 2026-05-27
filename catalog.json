@@ -468,6 +468,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-22",
+    "url": "digital-marketing/diagnosis-22/",
+    "title": "AI引用ゼロ脱出！AEO診断＆JSON-LD生成ツール",
+    "tool_name": "AEOスコア診断ツール（修正版）",
+    "description": "BtoB企業のWebコンテンツがChatGPT・Perplexity・Geminiに引用されやすいかを自動診断し、引用率を高める構造化データ（JSON-LD）をノーコードで生成するツールセット。過去のAEO変換ツール（品質3点・途中切断で失敗）とは異なり、『テキスト変換』ではなく『診断スコアリング＋コード生成＋改善追跡』の3分離アプローチで確実に完成させる。",
+    "quality_score": 10,
+    "completed_at": "2026-05-27T06:40:38.442415+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "faq-howto-json-ld-2",
+    "url": "digital-marketing/faq-howto-json-ld-2/",
+    "title": "AI引用ゼロ脱出！AEO診断＆JSON-LD生成ツール",
+    "tool_name": "FAQ・HowTo_JSON-LDジェネレーター",
+    "description": "BtoB企業のWebコンテンツがChatGPT・Perplexity・Geminiに引用されやすいかを自動診断し、引用率を高める構造化データ（JSON-LD）をノーコードで生成するツールセット。過去のAEO変換ツール（品質3点・途中切断で失敗）とは異なり、『テキスト変換』ではなく『診断スコアリング＋コード生成＋改善追跡』の3分離アプローチで確実に完成させる。",
+    "quality_score": 10,
+    "completed_at": "2026-05-27T06:40:38.442415+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",

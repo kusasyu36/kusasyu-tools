@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEOスコア診断ツール（修正版） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;line-height:1.6}
+.container{max-width:820px;margin:0 auto;padding:20px}
+h1{text-align:center;font-size:1.6rem;margin:20px 0 6px;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;font-size:.85rem;margin-bottom:24px}
+.card{background:#1e293b;border-radius:12px;padding:24px;margin-bottom:20px;border:1px solid #334155}
+label{display:block;font-weight:600;margin-bottom:8px;color:#cbd5e1;font-size:.9rem}
+.url-input{width:100%;padding:10px 14px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:.9rem;margin-bottom:14px}
+.url-input:focus{outline:none;border-color:#60a5fa;box-shadow:0 0 0 3px rgba(96,165,250,.2)}
+textarea{width:100%;min-height:200px;padding:14px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-family:'Courier New',monospace;font-size:.8rem;resize:vertical}
+textarea:focus{outline:none;border-color:#60a5fa;box-shadow:0 0 0 3px rgba(96,165,250,.2)}
+.btn-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.btn{padding:12px 28px;border:none;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;flex:1}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(59,130,246,.4)}
+.btn-secondary{background:#334155;color:#cbd5e1;padding:12px 20px}
+.btn-secondary:hover{background:#475569}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+#result{display:none}
+.score-circle{width:160px;height:160px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 20px;position:relative}
+.score-circle::before{content:'';position:absolute;inset:0;border-radius:50%;padding:4px;background:conic-gradient(var(--score-color) calc(var(--score-pct)*3.6deg),#334155 0);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.score-num{font-size:2.8rem;font-weight:800;line-height:1}
+.score-label{font-size:.75rem;color:#94a3b8;margin-top:2px}
+.grade{text-align:center;font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.grade-desc{text-align:center;color:#94a3b8;font-size:.85rem;margin-bottom:24px}
+.item-grid{display:flex;flex-direction:column;gap:10px}
+.item-row{display:flex;align-items:flex-start;gap:14px;padding:14px;border-radius:8px;background:#0f172a;border:1px solid #334155;transition:border-color .2s}
+.item-row.pass{border-left:3px solid #22c55e}
+.item-row.fail{border-left:3px solid #ef4444}
+.item-row.partial{border-left:3px solid #f59e0b}
+.item-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;margin-top:2px}
+.item-row.pass .item-icon{background:rgba(34,197,94,.15);color:#22c55e}
+.item-row.fail .item-icon{background:rgba(239,68,68,.15);color:#ef4444}
+.item-row.partial .item-icon{background:rgba(245,158,11,.15);color:#f59e0b}
+.item-body{flex:1;min-width:0}
+.item-title{font-weight:600;font-size:.9rem;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center}
+.item-pts{font-size:.75rem;color:#94a3b8;white-space:nowrap;margin-left:8px}
+.item-detail{font-size:.8rem;color:#94a3b8;margin-bottom:4px}
+.item-reason{font-size:.75rem;color:#64748b;font-style:italic;margin-bottom:4px;padding-left:10px;border-left:2px solid #334155}
+.item-hint{font-size:.8rem;color:#f59e0b;margin-top:4px}
+.history-section{margin-top:10px}
+.history-section h3{font-size:1rem;margin-bottom:14px;color:#cbd5e1}
+.history-empty{color:#64748b;font-size:.85rem;text-align:center;padding:20px}
+.history-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.history-table th{text-align:left;padding:8px 10px;color:#94a3b8;border-bottom:1px solid #334155;font-weight:600}
+.history-table td{padding:8px 10px;border-bottom:1px solid #1e293b;color:#cbd5e1}
+.history-table tr:hover td{background:rgba(96,165,250,.05)}
+.score-badge{display:inline-block;padding:2px 10px;border-radius:12px;font-weight:700;font-size:.8rem}
+.trend-indicator{font-size:.85rem;margin-left:6px}
+.btn-clear-hist{background:transparent;border:1px solid #475569;color:#94a3b8;padding:6px 14px;border-radius:6px;font-size:.75rem;cursor:pointer;float:right;margin-bottom:10px}
+.btn-clear-hist:hover{border-color:#ef4444;color:#ef4444}
+.summary-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.summary-item{text-align:center;padding:12px;background:#0f172a;border-radius:8px}
+.summary-item .val{font-size:1.4rem;font-weight:700}
+.summary-item .lbl{font-size:.7rem;color:#94a3b8;margin-top:2px}
+@media(max-width:600px){
+  .container{padding:14px}
+  h1{font-size:1.3rem}
+  .card{padding:16px}
+  .score-circle{width:130px;height:130px}
+  .score-num{font-size:2.2rem}
+  .summary-bar{grid-template-columns:1fr}
+  .item-title{flex-direction:column;align-items:flex-start;gap:2px}
+  .btn-row{flex-direction:column}
+  .btn{width:100%;text-align:center}
+}
+</style>
+<meta name="description" content="BtoB企業のWebコンテンツがChatGPT・Perplexity・Geminiに引用されやすいかを自動診断し、引用率を高める構造化データ（JSON-LD）をノーコードで生成するツールセット。過去のAEO変換ツール（品質3点・途中切断で失敗）とは異なり、『テキスト変換』ではなく『診断スコアリング＋コード生成">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AEOスコア診断ツール（修正版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-22/">
+<meta property="og:title" content="AEOスコア診断ツール（修正版） - kusasyu tools">
+<meta property="og:description" content="BtoB企業のWebコンテンツがChatGPT・Perplexity・Geminiに引用されやすいかを自動診断し、引用率を高める構造化データ（JSON-LD）をノーコードで生成するツールセット。過去のAEO変換ツール（品質3点・途中切断で失敗）とは異なり、『テキスト変換』ではなく『診断スコアリング＋コード生成">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-22/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AEOスコア診断ツール（修正版） - kusasyu tools">
+<meta name="twitter:description" content="BtoB企業のWebコンテンツがChatGPT・Perplexity・Geminiに引用されやすいかを自動診断し、引用率を高める構造化データ（JSON-LD）をノーコードで生成するツールセット。過去のAEO変換ツール（品質3点・途中切断で失敗）とは異なり、『テキスト変換』ではなく『診断スコアリング＋コード生成">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AEOスコア診断ツール（修正版）",
+  "description": "BtoB企業のWebコンテンツがChatGPT・Perplexity・Geminiに引用されやすいかを自動診断し、引用率を高める構造化データ（JSON-LD）をノーコードで生成するツールセット。過去のAEO変換ツール（品質3点・途中切断で失敗）とは異なり、『テキスト変換』ではなく『診断スコアリング＋コード生成",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-22/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AEOスコア診断ツール（修正版）</span></div>
+<div class="container">
+<h1>AEO スコア診断ツール</h1>
+<p class="subtitle">AI検索エンジン最適化（Answer Engine Optimization）の引用されやすさを8項目で診断</p>
+
+<div class="card">
+<label for="pageUrl">対象ページURL（記録用・任意）</label>
+<input type="text" id="pageUrl" class="url-input" placeholder="https://example.com/page">
+<label for="htmlInput">HTMLソースを貼り付け（Ctrl+U → 全選択コピー）</label>
+<textarea id="htmlInput" placeholder="<!DOCTYPE html>&#10;<html>&#10;  ここにHTMLソースを貼り付けてください...&#10;</html>"></textarea>
+<div class="btn-row">
+<button class="btn btn-primary" id="analyzeBtn" onclick="analyze()">診断する</button>
+<button class="btn btn-secondary" onclick="clearForm()">クリア</button>
+</div>
+</div>
+
+<div id="result">
+<div class="card">
+<div class="score-circle" id="scoreCircle">
+<span class="score-num" id="scoreNum">0</span>
+<span class="score-label">/ 100</span>
+</div>
+<div class="grade" id="gradeText"></div>
+<div class="grade-desc" id="gradeDesc"></div>
+<div class="summary-bar" id="summaryBar"></div>
+</div>
+<div class="card">
+<h3 style="margin-bottom:14px;font-size:1rem;">項目別スコア</h3>
+<div class="item-grid" id="itemGrid"></div>
+</div>
+</div>
+
+<div class="card history-section">
+<button class="btn-clear-hist" onclick="clearHistory()">履歴クリア</button>
+<h3>改善推移トラッキング（直近5回）</h3>
+<div id="historyArea"></div>
+</div>
+</div>
+
+<script>
+var CRITERIA = [
+  {
+    id: 'faq_howto',
+    name: 'FAQ/HowToスキーマ',
+    weight: 15,
+    reason: 'AI検索はFAQPageやHowTo構造化データを質問-回答ペアとして直接引用しやすい',
+    check: function(doc, html) {
+      var hasFAQ = /FAQPage/i.test(html);
+      var hasHowTo = /HowTo["'\s,}]/i.test(html) && /@type/i.test(html);
+      if (hasFAQ && hasHowTo) return { score: 15, status: 'pass', detail: 'FAQPage・HowToスキーマ両方検出', hint: '' };
+      if (hasFAQ || hasHowTo) return { score: 10, status: 'partial', detail: (hasFAQ ? 'FAQPage' : 'HowTo') + 'スキーマを検出', hint: '未実装の方（' + (hasFAQ ? 'HowTo' : 'FAQPage') + '）も追加すると満点' };
+      return { score: 0, status: 'fail', detail: 'FAQ/HowToスキーマ未検出', hint: 'JSON-LDで@type: "FAQPage"または"HowTo"を追加してください' };
+    }
+  },
+  {
+    id: 'heading_hierarchy',
+    name: '見出し階層の適切さ',
+    weight: 15,
+    reason: '正しいH1→H2→H3の階層構造はAIがコンテンツの論理構成を理解する手がかりになる',
+    check: function(doc, html) {
+      var parser = new DOMParser();
+      var d = parser.parseFromString(html, 'text/html');
+      var headings = d.querySelectorAll('h1,h2,h3,h4,h5,h6');
+      if (headings.length === 0) return { score: 0, status: 'fail', detail: '見出しタグが1つも検出されない', hint: 'H1〜H3を使い、階層的に情報を整理してください' };
+      var h1Count = d.querySelectorAll('h1').length;
+      var levels = [];
+      headings.forEach(function(h) { levels.push(parseInt(h.tagName[1])); });
+      var skipJump = false;
+      for (var i = 1; i < levels.length; i++) {
+        if (levels[i] - levels[i-1] > 1) { skipJump = true; break; }
+      }
+      var pts = 15;
+      var issues = [];
+      if (h1Count === 0) { pts -= 5; issues.push('H1が未使用'); }
+      else if (h1Count > 1) { pts -= 3; issues.push('H1が' + h1Count + '個（推奨は1個）'); }
+      if (skipJump) { pts -= 5; issues.push('階層スキップあり（例:H2→H4）'); }
+      if (headings.length < 3) { pts -= 3; issues.push('見出し数が少ない（' + headings.length + '個）'); }
+      pts = Math.max(0, pts);
+      var st = pts >= 13 ? 'pass' : pts >= 7 ? 'partial' : 'fail';
+      return { score: pts, status: st, detail: '見出し' + headings.length + '個検出' + (issues.length ? '。問題: ' + issues.join(', ') : '。階層構造は適切'), hint: issues.length ? issues.map(function(i){return i + 'を修正'}).join('。') : '' };
+    }
+  },
+  {
+    id: 'list_usage',
+    name: '箇条書き使用率',
+    weight: 12,
+    reason: 'AI検索は箇条書き・番号付きリストをスニペットとしてそのまま引用する傾向が強い',
+    check: function(doc, html) {
+      var parser = new DOMParser();
+      var d = parser.parseFromString(html, 'text/html');
+      var uls = d.querySelectorAll('ul');
+      var ols = d.querySelectorAll('ol');
+      var lis = d.querySelectorAll('li');
+      var total = uls.length + ols.length;
+      if (total === 0) return { score: 0, status: 'fail', detail: '箇条書き（ul/ol）未使用', hint: '重要なポイントをul/olリストで構造化してください' };
+      var pts = Math.min(12, total * 2 + (lis.length >= 5 ? 4 : 0));
+      var st = pts >= 10 ? 'pass' : pts >= 6 ? 'partial' : 'fail';
+      return { score: pts, status: st, detail: 'ul:' + uls.length + '個, ol:' + ols.length + '個, li:' + lis.length + '個検出', hint: pts < 12 ? 'リストを増やし、手順や要点を構造化すると改善' : '' };
+    }
+  },
+  {
+    id: 'numeric_data',
+    name: '数値データ含有率',
+    weight: 12,
+    reason: '具体的な数値・統計データを含むコンテンツはAIが「信頼性の高い情報源」として優先引用する',
+    check: function(doc, html) {
+      var parser = new DOMParser();
+      var d = parser.parseFromString(html, 'text/html');
+      var body = d.body ? d.body.textContent : '';
+      var nums = body.match(/\d[\d,.]*\s*(%|円|ドル|万|億|件|人|倍|kg|km|m²|回|年|時間|分|秒|個|社|種|位|点)/g) || [];
+      var yearPattern = body.match(/(19|20)\d{2}年/g) || [];
+      var totalNums = nums.length + yearPattern.length;
+      if (totalNums === 0) return { score: 0, status: 'fail', detail: '単位付き数値データ未検出', hint: '具体的な数値（○○%、○○万円、○○年）を追加してください' };
+      var pts = Math.min(12, totalNums >= 8 ? 12 : totalNums >= 4 ? 8 : 4);
+      var st = pts >= 10 ? 'pass' : pts >= 6 ? 'partial' : 'fail';
+      return { score: pts, status: st, detail: '単位付き数値' + totalNums + '個検出', hint: pts < 12 ? '統計データや年号などの数値情報を増やすと引用されやすくなる' : '' };
+    }
+  },
+  {
+    id: 'sentence_length',
+    name: '回答文の平均文長',
+    weight: 12,
+    reason: 'AI引用に最適な文は40〜80文字程度。長すぎると要約され、短すぎると情報不足と判定される',
+    check: function(doc, html) {
+      var parser = new DOMParser();
+      var d = parser.parseFromString(html, 'text/html');
+      var body = d.body ? d.body.textContent : '';
+      body = body.replace(/\s+/g, ' ').trim();
+      var sentences = body.split(/[。！？!?]+/).filter(function(s) { return s.trim().length > 5; });
+      if (sentences.length === 0) return { score: 0, status: 'fail', detail: '有効な文が検出できません', hint: 'テキストコンテンツを追加してください' };
+      var totalLen = 0;
+      sentences.forEach(function(s) { totalLen += s.trim().length; });
+      var avg = Math.round(totalLen / sentences.length);
+      var pts;
+      if (avg >= 30 && avg <= 90) pts = 12;
+      else if (avg >= 20 && avg <= 120) pts = 8;
+      else pts = 4;
+      var st = pts >= 10 ? 'pass' : pts >= 6 ? 'partial' : 'fail';
+      var advice = '';
+      if (avg > 90) advice = '文が長め（平均' + avg + '文字）。40〜80文字を目安に分割すると改善';
+      else if (avg < 30) advice = '文が短め（平均' + avg + '文字）。情報量を増やし40〜80文字を目安に';
+      return { score: pts, status: st, detail: '平均文長: ' + avg + '文字（' + sentences.length + '文解析）', hint: advice };
+    }
+  },
+  {
+    id: 'meta_description',
+    name: 'meta description',
+    weight: 10,
+    reason: 'meta descriptionはAIがページ内容を高速に把握する要約文として参照される',
+    check: function(doc, html) {
+      var parser = new DOMParser();
+      var d = parser.parseFromString(html, 'text/html');
+      var meta = d.querySelector('meta[name="description"]');
+      if (!meta) return { score: 0, status: 'fail', detail: 'meta descriptionが未設定', hint: '<meta name="description" content="...">を追加（80〜160文字推奨）' };
+      var content = (meta.getAttribute('content') || '').trim();
+      if (content.length === 0) return { score: 2, status: 'fail', detail: 'meta descriptionが空', hint: '80〜160文字で簡潔な要約を記述してください' };
+      var len = content.length;
+      var pts;
+      if (len >= 70 && len <= 160) pts = 10;
+      else if (len >= 40 && len <= 200) pts = 7;
+      else pts = 4;
+      var st = pts >= 9 ? 'pass' : pts >= 6 ? 'partial' : 'fail';
+      return { score: pts, status: st, detail: 'meta description検出（' + len + '文字）', hint: pts < 10 ? '推奨は80〜160文字。現在' + len + '文字' : '' };
+    }
+  },
+  {
+    id: 'definition_pattern',
+    name: '定義文パターン',
+    weight: 12,
+    reason: '「〜とは」「〜です」型の定義文はAIが直接回答として抽出・引用しやすい黄金パターン',
+    check: function(doc, html) {
+      var parser = new DOMParser();
+      var d = parser.parseFromString(html, 'text/html');
+      var body = d.body ? d.body.textContent : '';
+      var patterns = [
+        /[^\s]{2,}とは[、,]?[^。]{5,}[。]/g,
+        /[^\s]{2,}(です|ます|である|でした|でしょう)[。]/g,
+        /[^\s]{2,}を指し(ます|ている)/g,
+        /[^\s]{2,}の(定義|意味|概要|特徴)は/g
+      ];
+      var totalMatches = 0;
+      patterns.forEach(function(p) {
+        var m = body.match(p);
+        if (m) totalMatches += m.length;
+      });
+      var tohaCount = (body.match(/とは/g) || []).length;
+      if (totalMatches === 0 && tohaCount === 0) return { score: 0, status: 'fail', detail: '定義文パターン未検出', hint: '「〇〇とは、〜です。」の形式で重要概念を定義してください' };
+      var pts = Math.min(12, (tohaCount >= 2 ? 6 : tohaCount >= 1 ? 3 : 0) + Math.min(6, totalMatches));
+      var st = pts >= 10 ? 'pass' : pts >= 6 ? 'partial' : 'fail';
+      return { score: pts, status: st, detail: '「とは」' + tohaCount + '回, 定義文パターン' + totalMatches + '個検出', hint: pts < 12 ? '主要キーワードに「〇〇とは〜です」の定義文を追加すると改善' : '' };
+    }
+  },
+  {
+    id: 'schema_org',
+    name: '構造化マークアップ（schema.org）',
+    weight: 12,
+    reason: 'schema.orgマークアップはAIがエンティティと関係性を機械的に理解するための標準的な手段',
+    check: function(doc, html) {
+      var hasJsonLd = (html.match(/application\/ld\+json/gi) || []).length;
+      var hasMicrodata = /itemscope/i.test(html) && /itemtype/i.test(html);
+      var hasRdfa = /typeof\s*=\s*["']/i.test(html) && /vocab\s*=\s*["'].*schema\.org/i.test(html);
+      var schemaTypes = html.match(/@type["'\s:]*["'\s]*(\w+)/g) || [];
+      var uniqueTypes = [];
+      schemaTypes.forEach(function(t) {
+        var clean = t.replace(/@type["'\s:]*["'\s]*/,'');
+        if (uniqueTypes.indexOf(clean) === -1) uniqueTypes.push(clean);
+      });
+      var methods = 0;
+      if (hasJsonLd) methods++;
+      if (hasMicrodata) methods++;
+      if (hasRdfa) methods++;
+      if (methods === 0) return { score: 0, status: 'fail', detail: 'schema.org構造化マークアップ未検出', hint: 'JSON-LD形式でArticle, WebPage等のスキーマを追加してください' };
+      var pts = Math.min(12, hasJsonLd * 5 + uniqueTypes.length * 2 + (hasMicrodata ? 3 : 0));
+      pts = Math.min(12, Math.max(pts, methods * 4));
+      var st = pts >= 10 ? 'pass' : pts >= 6 ? 'partial' : 'fail';
+      return { score: pts, status: st, detail: 'JSON-LD:' + hasJsonLd + '個' + (hasMicrodata ? ', Microdata有' : '') + (hasRdfa ? ', RDFa有' : '') + '（タイプ: ' + (uniqueTypes.length ? uniqueTypes.slice(0,4).join(', ') : 'なし') + '）', hint: pts < 12 ? 'Article, BreadcrumbList等の追加スキーマでさらに強化可能' : '' };
+    }
+  }
+];
+
+function analyze() {
+  var html = document.getElementById('htmlInput').value.trim();
+  if (!html) { alert('HTMLソースを貼り付けてください'); return; }
+  if (html.length < 50) { alert('有効なHTMLソースを貼り付けてください（内容が短すぎます）'); return; }
+
+  var totalScore = 0;
+  var passCount = 0;
+  var failCount = 0;
+  var results = [];
+
+  CRITERIA.forEach(function(c) {
+    var r = c.check(null, html);
+    totalScore += r.score;
+    if (r.status === 'pass') passCount++;
+    else if (r.status === 'fail') failCount++;
+    results.push({ id: c.id, name: c.name, weight: c.weight, reason: c.reason, result: r });
+  });
+
+  totalScore = Math.min(100, totalScore);
+  renderResult(totalScore, passCount, failCount, results);
+  saveHistory(totalScore);
+  renderHistory();
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderResult(score, passCount, failCount, results) {
+  var color;
+  if (score >= 80) color = '#22c55e';
+  else if (score >= 60) color = '#f59e0b';
+  else if (score >= 40) color = '#f97316';
+  else color = '#ef4444';
+
+  var circle = document.getElementById('scoreCircle');
+  circle.style.setProperty('--score-color', color);
+  circle.style.setProperty('--score-pct', score);
+  document.getElementById('scoreNum').textContent = score;
+  document.getElementById('scoreNum').style.color = color;
+
+  var grade, desc;
+  if (score >= 85) { grade = 'S ランク — AI引用優等生'; desc = 'AIが引用しやすい構造が十分に整っています。細部を磨いてさらに強化しましょう。'; }
+  else if (score >= 70) { grade = 'A ランク — 優良'; desc = '基本構造は良好です。不足項目を補えばS評価に到達できます。'; }
+  else if (score >= 50) { grade = 'B ランク — 改善余地あり'; desc = 'いくつかの重要項目が欠落しています。下記の赤・黄項目を優先的に対応してください。'; }
+  else if (score >= 30) { grade = 'C ランク — 要改善'; desc = 'AI引用に必要な基本構造が不足しています。構造化データと見出し整理から始めましょう。'; }
+  else { grade = 'D ランク — 大幅改善が必要'; desc = 'AEO対策がほぼ未実施です。FAQ スキーマ追加と見出し構造の整理を最優先で行ってください。'; }
+
+  document.getElementById('gradeText').textContent = grade;
+  document.getElementById('gradeText').style.color = color;
+  document.getElementById('gradeDesc').textContent = desc;
+
+  var partialCount = results.length - passCount - failCount;
+  document.getElementById('summaryBar').innerHTML =
+    '<div class="summary-item"><div class="val" style="color:#22c55e">' + passCount + '</div><div class="lbl">合格</div></div>' +
+    '<div class="summary-item"><div class="val" style="color:#f59e0b">' + partialCount + '</div><div class="lbl">部分合格</div></div>' +
+    '<div class="summary-item"><div class="val" style="color:#ef4444">' + failCount + '</div><div class="lbl">不合格</div></div>';
+
+  var grid = document.getElementById('itemGrid');
+  grid.innerHTML = '';
+  results.forEach(function(r) {
+    var icon = r.result.status === 'pass' ? '✓' : r.result.status === 'partial' ? '△' : '✗';
+    var row = document.createElement('div');
+    row.className = 'item-row ' + r.result.status;
+    row.innerHTML =
+      '<div class="item-icon">' + icon + '</div>' +
+      '<div class="item-body">' +
+        '<div class="item-title"><span>' + r.name + '</span><span class="item-pts">' + r.result.score + ' / ' + r.weight + '点</span></div>' +
+        '<div class="item-detail">' + r.result.detail + '</div>' +
+        '<div class="item-reason">根拠: ' + r.reason + '</div>' +
+        (r.result.hint ? '<div class="item-hint">💡 ' + r.result.hint + '</div>' : '') +
+      '</div>';
+    grid.appendChild(row);
+  });
+}
+
+function saveHistory(score) {
+  var url = document.getElementById('pageUrl').value.trim() || '（URL未入力）';
+  var history = JSON.parse(localStorage.getItem('aeo_history') || '[]');
+  var now = new Date();
+  var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0') + ' ' + String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  history.unshift({ url: url, score: score, date: dateStr });
+  if (history.length > 5) history = history.slice(0, 5);
+  localStorage.setItem('aeo_history', JSON.stringify(history));
+}
+
+function renderHistory() {
+  var area = document.getElementById('historyArea');
+  var history = JSON.parse(localStorage.getItem('aeo_history') || '[]');
+  if (history.length === 0) {
+    area.innerHTML = '<div class="history-empty">まだ診断履歴がありません。上のフォームからHTMLを診断してください。</div>';
+    return;
+  }
+  var html = '<table class="history-table"><thead><tr><th>#</th><th>日時</th><th>URL</th><th>スコア</th><th>推移</th></tr></thead><tbody>';
+  history.forEach(function(h, i) {
+    var color = h.score >= 80 ? '#22c55e' : h.score >= 60 ? '#f59e0b' : h.score >= 40 ? '#f97316' : '#ef4444';
+    var trend = '';
+    if (i < history.length - 1) {
+      var diff = h.score - history[i+1].score;
+      if (diff > 0) trend = '<span class="trend-indicator" style="color:#22c55e">▲+' + diff + '</span>';
+      else if (diff < 0) trend = '<span class="trend-indicator" style="color:#ef4444">▼' + diff + '</span>';
+      else trend = '<span class="trend-indicator" style="color:#94a3b8">→ 0</span>';
+    }
+    var shortUrl = h.url.length > 35 ? h.url.substring(0,35) + '…' : h.url;
+    html += '<tr><td>' + (i+1) + '</td><td>' + h.date + '</td><td title="' + h.url.replace(/"/g,'&quot;') + '">' + shortUrl + '</td><td><span class="score-badge" style="background:' + color + '22;color:' + color + '">' + h.score + '点</span></td><td>' + trend + '</td></tr>';
+  });
+  html += '</tbody></table>';
+  area.innerHTML = html;
+}
+
+function clearForm() {
+  document.getElementById('htmlInput').value = '';
+  document.getElementById('pageUrl').value = '';
+  document.getElementById('result').style.display = 'none';
+}
+
+function clearHistory() {
+  if (confirm('診断履歴をすべて削除しますか？')) {
+    localStorage.removeItem('aeo_history');
+    renderHistory();
+  }
+}
+
+renderHistory();
+</script>
+</body>
+</html>
