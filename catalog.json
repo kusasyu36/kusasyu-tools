@@ -2639,6 +2639,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-8",
+    "url": "proptech/simulator-8/",
+    "title": "空室が埋まらない？AI写真で反響を増やす",
+    "tool_name": "空室ステージング投資対効果シミュレーター",
+    "description": "空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。",
+    "quality_score": 9,
+    "completed_at": "2026-05-28T07:33:40.627318+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "virtual-staging-4",
+    "url": "proptech/virtual-staging-4/",
+    "title": "空室が埋まらない？AI写真で反響を増やす",
+    "tool_name": "AIバーチャルステージング実践ガイド",
+    "description": "空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。",
+    "quality_score": 9,
+    "completed_at": "2026-05-28T07:33:40.627318+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-13",
+    "url": "proptech/tool-13/",
+    "title": "空室が埋まらない？AI写真で反響を増やす",
+    "tool_name": "ステージング効果測定シート",
+    "description": "空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。",
+    "quality_score": 9,
+    "completed_at": "2026-05-28T07:33:40.627318+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ステージング効果測定シート - kusasyu tools</title>
+<meta name="description" content="空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,ステージング効果測定シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-13/">
+<meta property="og:title" content="ステージング効果測定シート - kusasyu tools">
+<meta property="og:description" content="空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ステージング効果測定シート - kusasyu tools">
+<meta name="twitter:description" content="空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ステージング効果測定シート",
+  "description": "空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-13/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-05-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>ステージング効果測定シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>ステージング効果測定シート</h1>
+  <p class="project-name">空室が埋まらない？AI写真で反響を増やす</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>記録月</th><th>物件名</th><th>間取り</th><th>ステージングスタイル</th><th>月額賃料(円)</th><th>ステージング前_月間PV</th><th>ステージング後_月間PV</th><th>PV増加率(%)</th><th>ステージング前_問い合わせ数</th><th>ステージング後_問い合わせ数</th><th>問い合わせ増加率(%)</th><th>ステージング前_空室日数</th><th>ステージング後_空室日数</th><th>短縮日数</th><th>ステージングコスト(円)</th><th>空室短縮による回収額(円)</th><th>ROI(%)</th></tr></thead><tbody><tr><td>2026/05</td><td>コーポ桜201</td><td>ワンルーム20㎡</td><td>Modern Japanese minimal</td><td>65000</td><td>120</td><td>295</td><td>=((G2-F2)/F2)*100</td><td>1</td><td>4</td><td>=((J2-I2)/I2)*100</td><td>45</td><td>18</td><td>=L2-M2</td><td>3000</td><td>=(N2/30)*E2</td><td>=((P2-O2)/O2)*100</td></tr><tr><td>2026/05</td><td>メゾン緑が丘3F</td><td>2LDK 62㎡</td><td>Scandinavian warm</td><td>128000</td><td>85</td><td>210</td><td>=((G3-F3)/F3)*100</td><td>2</td><td>6</td><td>=((J3-I3)/I3)*100</td><td>60</td><td>28</td><td>=L3-M3</td><td>5000</td><td>=(N3/30)*E3</td><td>=((P3-O3)/O3)*100</td></tr><tr><td>2026/05</td><td>旧田中邸</td><td>和室6畳+DK</td><td>Japandi</td><td>55000</td><td>40</td><td>115</td><td>=((G4-F4)/F4)*100</td><td>1</td><td>3</td><td>=((J4-I4)/I4)*100</td><td>90</td><td>40</td><td>=L4-M4</td><td>3000</td><td>=(N4/30)*E4</td><td>=((P4-O4)/O4)*100</td></tr><tr><td>2026/05</td><td>グランハイツ北棟105</td><td>3LDK 72㎡</td><td>Scandinavian warm</td><td>145000</td><td>150</td><td>320</td><td>=((G5-F5)/F5)*100</td><td>3</td><td>7</td><td>=((J5-I5)/I5)*100</td><td>35</td><td>15</td><td>=L5-M5</td><td>5000</td><td>=(N5/30)*E5</td><td>=((P5-O5)/O5)*100</td></tr><tr><td>2026/05</td><td>フローラ南町302</td><td>ワンルーム20㎡</td><td>Modern Japanese minimal</td><td>58000</td><td>95</td><td>230</td><td>=((G6-F6)/F6)*100</td><td>1</td><td>3</td><td>=((J6-I6)/I6)*100</td><td>50</td><td>22</td><td>=L6-M6</td><td>3000</td><td>=(N6/30)*E6</td><td>=((P6-O6)/O6)*100</td></tr><tr><td>2026/05 月次集計</td><td>全5物件</td><td>―</td><td>―</td><td>=AVERAGE(E2:E6)</td><td>=SUM(F2:F6)</td><td>=SUM(G2:G6)</td><td>=((G7-F7)/F7)*100</td><td>=SUM(I2:I6)</td><td>=SUM(J2:J6)</td><td>=((J7-I7)/I7)*100</td><td>=AVERAGE(L2:L6)</td><td>=AVERAGE(M2:M6)</td><td>=AVERAGE(N2:N6)</td><td>=SUM(O2:O6)</td><td>=SUM(P2:P6)</td><td>=((P7-O7)/O7)*100</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `記録月,物件名,間取り,ステージングスタイル,月額賃料(円),ステージング前_月間PV,ステージング後_月間PV,PV増加率(%),ステージング前_問い合わせ数,ステージング後_問い合わせ数,問い合わせ増加率(%),ステージング前_空室日数,ステージング後_空室日数,短縮日数,ステージングコスト(円),空室短縮による回収額(円),ROI(%)
+2026/05,コーポ桜201,ワンルーム20㎡,Modern Japanese minimal,65000,120,295,=((G2-F2)/F2)*100,1,4,=((J2-I2)/I2)*100,45,18,=L2-M2,3000,=(N2/30)*E2,=((P2-O2)/O2)*100
+2026/05,メゾン緑が丘3F,2LDK 62㎡,Scandinavian warm,128000,85,210,=((G3-F3)/F3)*100,2,6,=((J3-I3)/I3)*100,60,28,=L3-M3,5000,=(N3/30)*E3,=((P3-O3)/O3)*100
+2026/05,旧田中邸,和室6畳+DK,Japandi,55000,40,115,=((G4-F4)/F4)*100,1,3,=((J4-I4)/I4)*100,90,40,=L4-M4,3000,=(N4/30)*E4,=((P4-O4)/O4)*100
+2026/05,グランハイツ北棟105,3LDK 72㎡,Scandinavian warm,145000,150,320,=((G5-F5)/F5)*100,3,7,=((J5-I5)/I5)*100,35,15,=L5-M5,5000,=(N5/30)*E5,=((P5-O5)/O5)*100
+2026/05,フローラ南町302,ワンルーム20㎡,Modern Japanese minimal,58000,95,230,=((G6-F6)/F6)*100,1,3,=((J6-I6)/I6)*100,50,22,=L6-M6,3000,=(N6/30)*E6,=((P6-O6)/O6)*100
+2026/05 月次集計,全5物件,―,―,=AVERAGE(E2:E6),=SUM(F2:F6),=SUM(G2:G6),=((G7-F7)/F7)*100,=SUM(I2:I6),=SUM(J2:J6),=((J7-I7)/I7)*100,=AVERAGE(L2:L6),=AVERAGE(M2:M6),=AVERAGE(N2:N6),=SUM(O2:O6),=SUM(P2:P6),=((P7-O7)/O7)*100`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_ステージング効果測定シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

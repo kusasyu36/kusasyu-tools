@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIバーチャルステージング実践ガイド - kusasyu tools</title>
+<meta name="description" content="空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,AIバーチャルステージング実践ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/virtual-staging-4/">
+<meta property="og:title" content="AIバーチャルステージング実践ガイド - kusasyu tools">
+<meta property="og:description" content="空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/virtual-staging-4/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIバーチャルステージング実践ガイド - kusasyu tools">
+<meta name="twitter:description" content="空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIバーチャルステージング実践ガイド",
+  "description": "空室物件のがらんとした写真をAIで仮想ステージング（家具・インテリア配置）し、ポータルサイトでの反響数を改善するための実践ツールキット。ROI計算ツールで導入判断の数字を出し、実践ガイドで今日からAIステージングを試せるようにし、効果測定シートで結果をオーナーに報告できるようにする。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/virtual-staging-4/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-05-28"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>AIバーチャルステージング実践ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>AIバーチャルステージング実践ガイド</h1>
+  <p class="project-name">空室が埋まらない？AI写真で反響を増やす</p>
+  <div class="content">
+<h1>AIバーチャルステージング実践ガイド — 5ステップで空室写真を"売れる画像"に変える</h1>
+<h2>なぜ今、AIステージングなのか</h2>
+<p>従来のホームステージングは1部屋あたり15〜30万円、準備に1〜2週間かかっていた。AIステージングなら<strong>1枚あたり500〜3,000円、最短10分</strong>で完了する。米国NARの調査では、ステージング済み物件は未実施物件より成約日数が平均73%短縮されたと報告されている。日本でも空室写真の「生活感のなさ」が内見率低下の主因とされており、AIステージングは費用対効果の高い打ち手になる。</p>
+<hr />
+<h2>5ステップ実践フロー</h2>
+<h3>Step 1：空室写真を撮影する</h3>
+<p>AIの精度は元画像の品質に直結する。以下を守ること。</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>推奨設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>画角</td>
+<td>広角レンズ（16〜24mm相当）</td>
+</tr>
+<tr>
+<td>高さ</td>
+<td>床から100〜120cmの位置で撮影</td>
+</tr>
+<tr>
+<td>明るさ</td>
+<td>全照明ON＋日中の自然光</td>
+</tr>
+<tr>
+<td>解像度</td>
+<td>長辺4,000px以上（後工程で縮小）</td>
+</tr>
+<tr>
+<td>構図</td>
+<td>部屋の角から対角線方向に撮影し、2面以上の壁を入れる</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NG例：</strong> 魚眼の歪みが強い写真、逆光で窓が白飛びした写真、床面積の半分以上が映っていない写真。</p>
+<h3>Step 2：AIツールに画像をアップロードする</h3>
+<p>代表的なツールの比較は以下の通り。</p>
+<table>
+<thead>
+<tr>
+<th>ツール</th>
+<th>月額目安</th>
+<th>特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RoomGPT</td>
+<td>無料〜$29</td>
+<td>手軽さ重視。日本語UIなし</td>
+</tr>
+<tr>
+<td>Virtual Staging AI</td>
+<td>$16〜$40</td>
+<td>スタイル指定が豊富</td>
+</tr>
+<tr>
+<td>REimagineHome</td>
+<td>$29〜$69</td>
+<td>和室対応のプロンプトが通りやすい</td>
+</tr>
+<tr>
+<td>Stable Diffusion（自前）</td>
+<td>GPU費用のみ</td>
+<td>カスタマイズ自由。技術力が必要</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 3：物件タイプ別にプロンプト（生成指示）を入力する</h3>
+<p>ここが成果を分ける最重要ステップ。以下にコピペで使えるテンプレートを示す。</p>
+<h4>ワンルーム・1K（単身者向け）</h4>
+<pre><code>Modern Japanese studio apartment, 20sqm.
+Place a compact sofa bed in light gray, a slim wooden desk with a
+desk lamp, and a wall-mounted TV. Use warm neutral tones.
+Keep the floor visible to emphasize space. Natural daylight from window.
+</code></pre>
+<p><strong>ポイント：</strong> 家具は3点以内に絞る。面積が小さいため、詰め込むと逆効果になる。</p>
+<h4>ファミリー向け（2LDK〜3LDK）</h4>
+<pre><code>Japanese family living-dining room, 16 tatami (approx 26sqm).
+Place an L-shaped sofa in beige, a 6-person dining table in oak,
+a kids' play mat in the corner, and a potted plant by the window.
+Bright and airy atmosphere with white curtains.
+</code></pre>
+<p><strong>ポイント：</strong> ダイニングテーブルの人数で家族像を暗示する。子育て世帯を意識するならキッズアイテムを1点加える。</p>
+<h4>和室（畳あり）</h4>
+<pre><code>Traditional Japanese-style room with tatami flooring, 6-jo (approx 10sqm).
+Place a low chabudai table in walnut, two zabuton cushions in indigo,
+and a simple flower arrangement (ikebana) on the tokonoma alcove.
+Soft natural light. Do NOT replace tatami with wood flooring.
+</code></pre>
+<p><strong>ポイント：</strong> 「Do NOT replace tatami」を明記しないと、AIが勝手にフローリングに変換するケースが多い。和室の良さを活かす指示が重要。</p>
+<h3>Step 4：生成画像を検品・補正する</h3>
+<p>AIの出力をそのまま使うのは危険。以下のチェックリストで確認する。</p>
+<ul>
+<li>[ ] <strong>家具の脚が床に接地しているか</strong>（浮遊していないか）</li>
+<li>[ ] <strong>窓・ドアの位置が元写真と一致しているか</strong></li>
+<li>[ ] <strong>壁のコンセントやスイッチが消えていないか</strong></li>
+<li>[ ] <strong>現実に存在しない家具（6本脚の椅子等）がないか</strong></li>
+<li>[ ] <strong>畳・フローリングの素材が元写真と同じか</strong></li>
+<li>[ ] <strong>光源の方向が統一されているか</strong>（影の向きが矛盾していないか）</li>
+</ul>
+<p>不自然な箇所はインペイント（部分再生成）で修正するか、Photoshopで手動補正する。</p>
+<h3>Step 5：ポータルサイト向けに画像を書き出す</h3>
+<h4>SUUMO・アットホーム向け画像サイズ最適化</h4>
+<table>
+<thead>
+<tr>
+<th>ポータル</th>
+<th>推奨サイズ</th>
+<th>アスペクト比</th>
+<th>ファイル形式</th>
+<th>上限容量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUUMO</td>
+<td>1024×768px</td>
+<td>4:3</td>
+<td>JPEG</td>
+<td>5MB</td>
+</tr>
+<tr>
+<td>アットホーム</td>
+<td>1200×900px</td>
+<td>4:3</td>
+<td>JPEG</td>
+<td>3MB</td>
+</tr>
+<tr>
+<td>LIFULL HOME'S</td>
+<td>1280×960px</td>
+<td>4:3</td>
+<td>JPEG</td>
+<td>10MB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>共通の最適化手順：</strong></p>
+<ol>
+<li>長辺を1280pxにリサイズ（4:3にトリミング）</li>
+<li>JPEG品質80〜85%で書き出し（容量と画質のバランス最適）</li>
+<li>ファイル名に物件名・部屋番号を含める（例：<code>minato_101_LDK_staged.jpg</code>）</li>
+<li>EXIF情報を削除する（個人情報・GPS座標の漏洩防止）</li>
+</ol>
+<p><strong>注意：</strong> ステージング画像であることを物件説明欄に必ず明記すること。「※画像はAIによるイメージです」の一文がないと、景品表示法・不動産公正競争規約に抵触するリスクがある。</p>
+<hr />
+<h2>やりがちな失敗3パターンと対策</h2>
+<h3>失敗1：家具を詰め込みすぎて部屋が狭く見える</h3>
+<p><strong>原因：</strong> 広い部屋に見せようと大型家具を多数配置してしまう。</p>
+<p><strong>対策：</strong> 家具は実際の部屋に置く量の<strong>7割</strong>を目安にする。20平米以下なら家具3点以内、40平米以上でも6点以内に抑える。床面が30%以上見えている状態をキープすること。</p>
+<h3>失敗2：物件の欠点をAIで"消して"しまう</h3>
+<p><strong>原因：</strong> 壁のシミ、天井の染み、設備の古さをAIで除去してしまう。</p>
+<p><strong>対策：</strong> ステージングは「家具の追加」に留め、<strong>建物の構造・設備・損傷を改変しない</strong>。内見時にギャップが生まれるとクレーム・契約キャンセルに直結する。宅建業法上の説明義務違反にもなり得る。</p>
+<h3>失敗3：全部屋を同じスタイルで生成してしまう</h3>
+<p><strong>原因：</strong> 効率を優先して同一プロンプトを使い回す。</p>
+<p><strong>対策：</strong> LDK・寝室・子供部屋はそれぞれ用途に合った家具構成にする。同一物件内でも部屋ごとに「誰がどう使うか」のストーリーを変えることで、内見予約率が向上する。以下に部屋別の家具構成例を示す。</p>
+<table>
+<thead>
+<tr>
+<th>部屋</th>
+<th>主要家具</th>
+<th>演出意図</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LDK</td>
+<td>ソファ＋ダイニングセット＋観葉植物</td>
+<td>家族団らんの場面</td>
+</tr>
+<tr>
+<td>主寝室</td>
+<td>ダブルベッド＋サイドテーブル＋間接照明</td>
+<td>落ち着いた休息空間</td>
+</tr>
+<tr>
+<td>子供部屋</td>
+<td>学習机＋本棚＋ラグ</td>
+<td>成長を見守る空間</td>
+</tr>
+<tr>
+<td>和室</td>
+<td>座卓＋座布団＋生花</td>
+<td>客間・趣味の空間</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>運用コストの目安</h2>
+<table>
+<thead>
+<tr>
+<th>月間処理枚数</th>
+<th>ツール利用料</th>
+<th>撮影外注費</th>
+<th>合計月額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10枚（小規模）</td>
+<td>約3,000円</td>
+<td>自社対応0円</td>
+<td>約3,000円</td>
+</tr>
+<tr>
+<td>50枚（中規模）</td>
+<td>約8,000円</td>
+<td>約15,000円</td>
+<td>約23,000円</td>
+</tr>
+<tr>
+<td>200枚（大規模）</td>
+<td>約25,000円</td>
+<td>約50,000円</td>
+<td>約75,000円</td>
+</tr>
+</tbody>
+</table>
+<p>従来のホームステージング（1部屋20万円×月5件＝100万円）と比較すると、大規模運用でも<strong>90%以上のコスト削減</strong>になる。</p>
+<hr />
+<h2>まとめ：明日から始める3つのアクション</h2>
+<ol>
+<li><strong>まず1枚やってみる</strong> — 手持ちの空室写真をRoomGPT（無料枠）にアップロードし、本記事のプロンプトをコピペして生成する</li>
+<li><strong>検品チェックリストを印刷する</strong> — Step 4のリストをデスクに貼り、全画像を必ずダブルチェックしてから掲載する</li>
+<li><strong>「AIイメージ」の注記テンプレートを用意する</strong> — 物件説明文の末尾に入れる定型文を社内で統一し、法的リスクをゼロにする</li>
+</ol>
+<p>AIステージングは「使うかどうか」ではなく「どう使いこなすか」のフェーズに入っている。まずは1枚、試してみてほしい。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>
