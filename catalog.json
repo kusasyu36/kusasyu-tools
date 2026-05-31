@@ -1053,6 +1053,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "checker-5",
+    "url": "legal-tech/checker-5/",
+    "title": "M&AのDD、担当者で品質がバラつく？",
+    "tool_name": "DD統合ダッシュボード（ヒートマップ・サマリー・チェックリスト一体型）",
+    "description": "M&Aデューデリジェンスの品質を均一化するツールキット。契約書テキストから10カテゴリのリスクを自動スコアリングするHTMLツール、発見事項をヒートマップとエグゼクティブサマリーに変換するダッシュボード、業種別DDチェックリスト管理シートの3点セット。ベテランでなくても見落としを防げる仕組みを提供する。",
+    "quality_score": 10,
+    "completed_at": "2026-05-29T00:04:44.554385+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "risk-6",
+    "url": "legal-tech/risk-6/",
+    "title": "海外M&AのDD、国ごとの勘所を把握できていますか？",
+    "tool_name": "クロスボーダーDD_国別リスクチェッカー（フェーズ対応版）",
+    "description": "クロスボーダーM&Aのデューデリジェンスで、取引相手国ごとの法的リスク重点項目を即座に把握し、多言語の発見事項を一元管理するための実務ツールキット。国別の外資規制・管轄リスク・日本側対応事項を体系化する。",
+    "quality_score": 10,
+    "completed_at": "2026-05-31T10:43:43.449557+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-19",
+    "url": "legal-tech/tool-19/",
+    "title": "海外M&AのDD、国ごとの勘所を把握できていますか？",
+    "tool_name": "多言語DD発見事項トラッカー",
+    "description": "クロスボーダーM&Aのデューデリジェンスで、取引相手国ごとの法的リスク重点項目を即座に把握し、多言語の発見事項を一元管理するための実務ツールキット。国別の外資規制・管轄リスク・日本側対応事項を体系化する。",
+    "quality_score": 10,
+    "completed_at": "2026-05-31T10:43:43.449557+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -1389,6 +1428,32 @@
     "quality_score": 10,
     "completed_at": "2026-05-17T00:12:11.726115+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-9",
+    "url": "proptech/simulator-9/",
+    "title": "住宅購入の隠れコスト、全部まとめて即試算",
+    "tool_name": "住宅購入トータルコスト・ローン一括シミュレーター",
+    "description": "住宅購入時に物件価格以外にかかる隠れコスト（仲介手数料・登記費用・ローン諸費用・税金・保険・修繕積立基金等）を全額自動計算するシミュレーターを中心に、ローンタイプ別の総返済額比較ツール、契約前チェックリストの3点セットを提供する。米国Zownが実証した『購入コストの完全可視化』を日本の法制度（宅建業法の仲介手数料上限・不動産取得税・固定資産税精算の商慣行）に完全対応させた消費者向け無料ツール。既存",
+    "quality_score": 10,
+    "completed_at": "2026-05-29T05:26:22.630089+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "checker-7",
+    "url": "proptech/checker-7/",
+    "title": "住宅購入の隠れコスト、全部まとめて即試算",
+    "tool_name": "住宅購入「見落としコスト」チェックリスト",
+    "description": "住宅購入時に物件価格以外にかかる隠れコスト（仲介手数料・登記費用・ローン諸費用・税金・保険・修繕積立基金等）を全額自動計算するシミュレーターを中心に、ローンタイプ別の総返済額比較ツール、契約前チェックリストの3点セットを提供する。米国Zownが実証した『購入コストの完全可視化』を日本の法制度（宅建業法の仲介手数料上限・不動産取得税・固定資産税精算の商慣行）に完全対応させた消費者向け無料ツール。既存",
+    "quality_score": 10,
+    "completed_at": "2026-05-29T05:26:22.630089+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "digital-marketing",
@@ -6160,6 +6225,45 @@
     "quality_score": 6,
     "completed_at": "2026-05-16T13:47:41.809471+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ugc-ai",
+    "url": "digital-marketing/ugc-ai/",
+    "title": "口コミが埋もれてる？UGC→公式コンテンツ変換ツール",
+    "tool_name": "UGC→AI変換プロンプト生成ツール",
+    "description": "SNS上の口コミ・レビュー・ユーザー投稿をペーストし、ブランドトーン（カジュアル/フォーマル/親しみ系）と配信チャンネル（Instagram/X/LP/メルマガ）を選ぶだけで、元の声を活かしつつ公式発信用に最適化されたコンテンツを複数バリエーション生成するHTMLツール。感情分析・キーフレーズ抽出も同時に行い、どのUGCが公式活用に適しているか判断できる。さらに投稿者への許諾申請メール文面の自動生",
+    "quality_score": 6,
+    "completed_at": "2026-05-29T02:19:02.794257+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "content-converter",
+    "url": "digital-marketing/content-converter/",
+    "title": "口コミが埋もれてる？UGC→公式コンテンツ変換ツール",
+    "tool_name": "UGC許諾申請テンプレート＆管理シート",
+    "description": "SNS上の口コミ・レビュー・ユーザー投稿をペーストし、ブランドトーン（カジュアル/フォーマル/親しみ系）と配信チャンネル（Instagram/X/LP/メルマガ）を選ぶだけで、元の声を活かしつつ公式発信用に最適化されたコンテンツを複数バリエーション生成するHTMLツール。感情分析・キーフレーズ抽出も同時に行い、どのUGCが公式活用に適しているか判断できる。さらに投稿者への許諾申請メール文面の自動生",
+    "quality_score": 6,
+    "completed_at": "2026-05-29T02:19:02.794257+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "content-converter-2",
+    "url": "digital-marketing/content-converter-2/",
+    "title": "口コミが埋もれてる？UGC→公式コンテンツ変換ツール",
+    "tool_name": "UGC共創マーケティング実践ガイド",
+    "description": "SNS上の口コミ・レビュー・ユーザー投稿をペーストし、ブランドトーン（カジュアル/フォーマル/親しみ系）と配信チャンネル（Instagram/X/LP/メルマガ）を選ぶだけで、元の声を活かしつつ公式発信用に最適化されたコンテンツを複数バリエーション生成するHTMLツール。感情分析・キーフレーズ抽出も同時に行い、どのUGCが公式活用に適しているか判断できる。さらに投稿者への許諾申請メール文面の自動生",
+    "quality_score": 6,
+    "completed_at": "2026-05-29T02:19:02.794257+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "legal-tech",

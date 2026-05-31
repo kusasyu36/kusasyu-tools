@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>住宅購入「見落としコスト」チェックリスト - kusasyu tools</title>
+<meta name="description" content="住宅購入時に物件価格以外にかかる隠れコスト（仲介手数料・登記費用・ローン諸費用・税金・保険・修繕積立基金等）を全額自動計算するシミュレーターを中心に、ローンタイプ別の総返済額比較ツール、契約前チェックリストの3点セットを提供する。米国Zownが実証した『購入コストの完全可視化』を日本の法制度（宅建業法の仲介手">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,住宅購入「見落としコスト」チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-7/">
+<meta property="og:title" content="住宅購入「見落としコスト」チェックリスト - kusasyu tools">
+<meta property="og:description" content="住宅購入時に物件価格以外にかかる隠れコスト（仲介手数料・登記費用・ローン諸費用・税金・保険・修繕積立基金等）を全額自動計算するシミュレーターを中心に、ローンタイプ別の総返済額比較ツール、契約前チェックリストの3点セットを提供する。米国Zownが実証した『購入コストの完全可視化』を日本の法制度（宅建業法の仲介手">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="住宅購入「見落としコスト」チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="住宅購入時に物件価格以外にかかる隠れコスト（仲介手数料・登記費用・ローン諸費用・税金・保険・修繕積立基金等）を全額自動計算するシミュレーターを中心に、ローンタイプ別の総返済額比較ツール、契約前チェックリストの3点セットを提供する。米国Zownが実証した『購入コストの完全可視化』を日本の法制度（宅建業法の仲介手">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "住宅購入「見落としコスト」チェックリスト",
+  "description": "住宅購入時に物件価格以外にかかる隠れコスト（仲介手数料・登記費用・ローン諸費用・税金・保険・修繕積立基金等）を全額自動計算するシミュレーターを中心に、ローンタイプ別の総返済額比較ツール、契約前チェックリストの3点セットを提供する。米国Zownが実証した『購入コストの完全可視化』を日本の法制度（宅建業法の仲介手",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/checker-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-05-29"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>住宅購入「見落としコスト」チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>住宅購入「見落としコスト」チェックリスト</h1>
+  <p class="project-name">住宅購入の隠れコスト、全部まとめて即試算</p>
+  <div class="content">
+<h1>住宅購入「見落としコスト」チェックリスト</h1>
+<p><strong>対応ツール：住宅購入トータルコスト・ローン一括シミュレーター</strong></p>
+<hr />
+<h2>使い方</h2>
+<ol>
+<li>本チェックリストは <strong>契約前・決済時・入居後</strong> の3フェーズ・全20項目で構成されています</li>
+<li>各項目の「自分の試算欄」に、上記シミュレーターで算出した金額または不動産会社から提示された金額を記入してください</li>
+<li>不動産会社との打合せ時に本リストを持参し、<strong>説明されていない費用がないか</strong> を1項目ずつ確認してください</li>
+<li>☑ 欄にチェックを入れながら進めると、漏れを防げます</li>
+</ol>
+<blockquote>
+<p><strong>記入のルール</strong>：金額が未確定の場合は「相場目安」の範囲内で仮入力し、確定後に上書きしてください。</p>
+</blockquote>
+<hr />
+<h2>フェーズ1：契約前に確認する費用（項目1〜8）</h2>
+<h3>☐ 項目1｜仲介手数料</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>物件価格×3%＋6万円＋消費税（法定上限／宅建業法46条）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>売主直売物件なら不要。仲介手数料割引キャンペーンの有無を確認</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>媒介契約書、重要事項説明書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 4,000万円の物件→1,386,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目2｜手付金</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>物件価格の5〜10%（売買代金に充当）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>交渉で5%に抑えられるケースあり。手付解除期日を必ず確認</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>売買契約書（手付金条項）</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 4,000万円の物件→2,000,000円（5%）</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目3｜印紙税（売買契約書）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>1,000万円超〜5,000万円以下：10,000円</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>電子契約対応の場合は非課税（要確認）</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>売買契約書原本</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 10,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目4｜住宅ローン事務手数料</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>定額型：33,000〜55,000円／定率型：借入額×2.2%</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>定額型と定率型で総額が大きく変わる。シミュレーターで比較を推奨</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>金銭消費貸借契約書、ローン商品説明書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 3,500万円借入・定率型→770,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目5｜ローン保証料</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>一括前払い：借入額×約2%／金利上乗せ型：+0.2%程度</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>ネット銀行は保証料無料の商品あり（代わりに事務手数料が高い場合も）</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>保証委託契約書、ローン条件通知書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 3,500万円借入→約700,000円（一括前払い）</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目6｜印紙税（金銭消費貸借契約書）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>1,000万円超〜5,000万円以下：20,000円</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>電子契約対応の金融機関なら非課税</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>金銭消費貸借契約書原本</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 20,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目7｜火災保険料・地震保険料</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>火災保険：5年で10〜20万円／地震保険：5年で5〜10万円</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>複数社で見積比較。不要な特約を外す。耐火構造なら割安</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>保険証券、重要事項説明書（保険）</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 火災100,000円＋地震50,000円＝150,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目8｜団体信用生命保険料（団信）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>一般団信：金利に含まれ0円／がん特約付き：+0.1〜0.3%</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>既加入の生命保険と保障重複がないか確認し、不要なら一般団信で十分</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>団信申込書兼告知書、ローン商品説明書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 一般団信→0円（金利込み）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>フェーズ2：決済時に発生する費用（項目9〜15）</h2>
+<h3>☐ 項目9｜登録免許税（所有権移転）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>土地：固定資産税評価額×1.5%／建物：同×0.3%（軽減税率適用時）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>住宅用家屋証明書を取得して軽減税率を必ず適用する</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>固定資産評価証明書、住宅用家屋証明書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 評価額2,000万円の建物→60,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目10｜登録免許税（抵当権設定）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>借入額×0.1%（軽減税率適用時。本則0.4%）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>軽減税率適用要件（床面積50㎡以上等）を事前確認</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>抵当権設定契約書、住宅用家屋証明書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 3,500万円借入→35,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目11｜司法書士報酬</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>80,000〜120,000円（所有権移転＋抵当権設定の合計）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>金融機関指定でない場合は相見積もりを取る</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>司法書士の見積書・請求書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 100,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目12｜固定資産税・都市計画税精算金</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>引渡日〜年度末の日割り額（年額10〜20万円の日割り）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>起算日（1/1 or 4/1）を確認。引渡時期で金額が変動する</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>固定資産税納税通知書、精算書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 年額150,000円・7月引渡→約75,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目13｜管理費・修繕積立金精算金（マンションの場合）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>引渡日〜月末の日割り額（月額15,000〜30,000円の日割り）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>精算方法（日割り or 月割り）を契約前に確認</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>管理規約、重要事項調査報告書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 月額25,000円・15日引渡→約12,500円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目14｜修繕積立基金（マンション新築の場合）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>200,000〜800,000円（一括払い）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>新築マンション購入時に必須。値引き交渉の対象外が多い</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>重要事項説明書（修繕積立基金の記載）</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 400,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目15｜不動産取得税</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>（固定資産税評価額−控除額）×3%。新築は最大1,200万円控除</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>軽減措置の申告を忘れず行う（入居後に都道府県税事務所へ）</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>不動産取得税納税通知書、軽減申告書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 評価額2,000万円−控除1,200万円→240,000円</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>フェーズ3：入居後にかかる費用（項目16〜20）</h2>
+<h3>☐ 項目16｜引越し費用</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>単身50,000〜80,000円／家族（2〜4人）100,000〜250,000円</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>繁忙期（3〜4月）を避ける。3社以上で相見積もり</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>引越し見積書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 家族4人・近距離→150,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目17｜リフォーム・ハウスクリーニング費用</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>クリーニング：30,000〜80,000円／リフォーム：内容により数十万〜数百万円</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>中古購入時はインスペクション結果を基に優先順位をつける</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>リフォーム見積書、インスペクション報告書</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] クリーニングのみ→50,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目18｜家具・家電・カーテン購入費</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>500,000〜1,500,000円（新生活一式）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>入居前に採寸して計画的に購入。エアコン工事は引越し前に手配</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>（なし：自己管理）</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] エアコン2台＋カーテン→400,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目19｜固定資産税・都市計画税（翌年以降の年額）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>年額100,000〜200,000円（新築軽減適用後）</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>新築住宅は当初3〜5年間の軽減措置あり。終了後の増額を想定しておく</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>固定資産税納税通知書（翌年届く）</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>＿＿＿＿＿＿＿＿円／年　[記入例] 120,000円／年</td>
+</tr>
+</tbody>
+</table>
+<h3>☐ 項目20｜住宅ローン返済額（月額・総額）</h3>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相場目安</strong></td>
+<td>シミュレーターの「ローン比較」セクションで算出した月額・総返済額を転記</td>
+</tr>
+<tr>
+<td><strong>節約のコツ</strong></td>
+<td>変動・固定・期間固定をシミュレーターで比較し最適プランを選択</td>
+</tr>
+<tr>
+<td><strong>確認書類</strong></td>
+<td>ローン契約書（金銭消費貸借契約書）、返済予定表</td>
+</tr>
+<tr>
+<td><strong>自分の試算欄</strong></td>
+<td>月額＿＿＿＿＿＿円　総額＿＿＿＿＿＿円　[記入例] 月額96,000円・総額40,320,000円</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>費用総額まとめ</h2>
+<table>
+<thead>
+<tr>
+<th>フェーズ</th>
+<th>合計額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フェーズ1：契約前</td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 2,926,000円</td>
+</tr>
+<tr>
+<td>フェーズ2：決済時</td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 922,500円</td>
+</tr>
+<tr>
+<td>フェーズ3：入居後</td>
+<td>＿＿＿＿＿＿＿＿円　[記入例] 720,000円</td>
+</tr>
+<tr>
+<td><strong>諸費用合計（ローン総額除く）</strong></td>
+<td><strong>＿＿＿＿＿＿＿＿円</strong>　[記入例] <strong>4,568,500円</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>目安</strong>：諸費用合計は物件価格の <strong>6〜10%</strong> が一般的です。上記記入例は物件価格4,000万円のケースで約11.4%（家具家電含む）です。</p>
+</blockquote>
+<hr />
+<h2>打合せ時の確認メモ</h2>
+<ul>
+<li>不動産会社名：＿＿＿＿＿＿＿＿＿＿＿＿</li>
+<li>担当者名：＿＿＿＿＿＿＿＿＿＿＿＿</li>
+<li>打合せ日：＿＿＿＿年＿＿月＿＿日</li>
+<li>説明されなかった費用項目（項目番号で記入）：＿＿＿＿＿＿＿＿</li>
+<li>追加で確認が必要な事項：＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</li>
+</ul>
+<hr />
+<p><em>本チェックリストは「住宅購入トータルコスト・ローン一括シミュレーター」と併用することで、見落としゼロの資金計画が可能になります。シミュレーターで算出した金額を各項目の試算欄に転記してご活用ください。</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UGC→AI変換プロンプト生成ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:18px 0 4px;color:#2d3748}
+.sub{text-align:center;font-size:.82rem;color:#718096;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:.95rem;color:#4a5568;margin-bottom:10px;border-left:3px solid #667eea;padding-left:8px}
+textarea{width:100%;height:120px;border:1px solid #cbd5e0;border-radius:8px;padding:10px;font-size:.9rem;resize:vertical}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.opts label{cursor:pointer}
+.opts input{display:none}
+.opts span{display:inline-block;padding:7px 14px;border:2px solid #e2e8f0;border-radius:20px;font-size:.82rem;transition:.2s}
+.opts input:checked+span{border-color:#667eea;background:#ebf0ff;color:#4c51bf;font-weight:600}
+.btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:10px;transition:.2s}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.meter{display:flex;align-items:center;gap:10px;margin:6px 0}
+.bar{flex:1;height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden}
+.bar div{height:100%;border-radius:5px;transition:width .4s}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.tag{padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:600}
+.tag.pos{background:#c6f6d5;color:#276749}.tag.neg{background:#fed7d7;color:#9b2c2c}.tag.warn{background:#fefcbf;color:#975a16}
+.risk-item{padding:6px 0;font-size:.85rem;border-bottom:1px solid #f0f0f0}
+.risk-item:last-child{border:none}
+.prompt-box{position:relative;background:#f7fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-top:8px;font-size:.85rem;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow-y:auto}
+.copy{position:absolute;top:8px;right:8px;padding:5px 12px;background:#667eea;color:#fff;border:none;border-radius:6px;font-size:.75rem;cursor:pointer}
+.copy:hover{background:#5a67d8}
+.hidden{display:none}
+.score-label{font-weight:700;font-size:.95rem}
+@media(max-width:600px){.wrap{padding:10px}textarea{height:100px}.opts span{padding:5px 10px;font-size:.78rem}}
+</style>
+<meta name="description" content="SNS上の口コミ・レビュー・ユーザー投稿をペーストし、ブランドトーン（カジュアル/フォーマル/親しみ系）と配信チャンネル（Instagram/X/LP/メルマガ）を選ぶだけで、元の声を活かしつつ公式発信用に最適化されたコンテンツを複数バリエーション生成するHTMLツール。感情分析・キーフレーズ抽出も同時に行い">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,UGC→AI変換プロンプト生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ugc-ai/">
+<meta property="og:title" content="UGC→AI変換プロンプト生成ツール - kusasyu tools">
+<meta property="og:description" content="SNS上の口コミ・レビュー・ユーザー投稿をペーストし、ブランドトーン（カジュアル/フォーマル/親しみ系）と配信チャンネル（Instagram/X/LP/メルマガ）を選ぶだけで、元の声を活かしつつ公式発信用に最適化されたコンテンツを複数バリエーション生成するHTMLツール。感情分析・キーフレーズ抽出も同時に行い">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ugc-ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UGC→AI変換プロンプト生成ツール - kusasyu tools">
+<meta name="twitter:description" content="SNS上の口コミ・レビュー・ユーザー投稿をペーストし、ブランドトーン（カジュアル/フォーマル/親しみ系）と配信チャンネル（Instagram/X/LP/メルマガ）を選ぶだけで、元の声を活かしつつ公式発信用に最適化されたコンテンツを複数バリエーション生成するHTMLツール。感情分析・キーフレーズ抽出も同時に行い">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UGC→AI変換プロンプト生成ツール",
+  "description": "SNS上の口コミ・レビュー・ユーザー投稿をペーストし、ブランドトーン（カジュアル/フォーマル/親しみ系）と配信チャンネル（Instagram/X/LP/メルマガ）を選ぶだけで、元の声を活かしつつ公式発信用に最適化されたコンテンツを複数バリエーション生成するHTMLツール。感情分析・キーフレーズ抽出も同時に行い",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ugc-ai/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">UGC→AI変換プロンプト生成ツール</span></div>
+<div class="wrap">
+<h1>UGC → AI変換プロンプト生成ツール</h1>
+<p class="sub">口コミ・レビューを公式コンテンツに変換するプロンプトを即時生成</p>
+
+<div class="card">
+<h2>① UGCテキストを入力</h2>
+<textarea id="ugc" placeholder="口コミ・レビュー・SNS投稿をここにペースト...&#10;例：「このスキンケア使い始めて2週間、肌のトーンが明るくなった気がする！友達にも勧めたい✨」"></textarea>
+</div>
+
+<div class="card">
+<h2>② ブランドトーン</h2>
+<div class="opts" id="tone">
+<label><input type="radio" name="tone" value="casual" checked><span>カジュアル</span></label>
+<label><input type="radio" name="tone" value="formal"><span>フォーマル</span></label>
+<label><input type="radio" name="tone" value="friendly"><span>親しみ系</span></label>
+</div>
+</div>
+
+<div class="card">
+<h2>③ 配信チャンネル</h2>
+<div class="opts" id="ch">
+<label><input type="radio" name="ch" value="instagram" checked><span>Instagram</span></label>
+<label><input type="radio" name="ch" value="x"><span>X (Twitter)</span></label>
+<label><input type="radio" name="ch" value="lp"><span>LP</span></label>
+<label><input type="radio" name="ch" value="mail"><span>メルマガ</span></label>
+</div>
+</div>
+
+<button class="btn" id="gen" onclick="generate()">プロンプトを生成する</button>
+
+<div id="result" class="hidden">
+<div class="card">
+<h2>📊 感情分析</h2>
+<div class="meter"><span class="score-label" id="sLabel"></span><div class="bar"><div id="sBar"></div></div></div>
+<div class="tags" id="kwTags"></div>
+</div>
+
+<div class="card">
+<h2>⚠️ リスクチェック</h2>
+<div id="risks"></div>
+</div>
+
+<div class="card">
+<h2>🤖 生成プロンプト</h2>
+<p style="font-size:.8rem;color:#718096;margin-bottom:6px">ChatGPT / Claude にそのまま貼り付けてください</p>
+<div class="prompt-box"><button class="copy" onclick="copyP()">コピー</button><span id="pOut"></span></div>
+</div>
+</div>
+</div>
+
+<script>
+const POS=["最高","おすすめ","気に入","リピ","感動","嬉しい","便利","助かる","良い","いい","好き","満足","素晴らしい","使いやすい","綺麗","きれい","美味しい","楽しい","幸せ","神","優秀","コスパ","愛用","ハマ","すごい","買ってよかった","期待以上"];
+const NEG=["残念","微妙","がっかり","悪い","ダメ","壊れ","不満","最悪","期待外れ","高い","遅い","合わない","使いにくい","イマイチ"];
+const RISK_NAME=/[一-龥ぁ-んァ-ヶ]{1,4}(さん|ちゃん|くん|氏)|@[a-zA-Z0-9_]+/g;
+const RISK_PLACE=/[一-龥ぁ-んァ-ヶ]{2,6}(店|支店|病院|学校|会社|センター)/g;
+const RISK_COPY=/(著作|引用|転載|写真|画像|動画)/g;
+
+function val(name){return document.querySelector('input[name="'+name+'"]:checked').value}
+
+function analyze(t){
+ let ps=[],ns=[],sc=50;
+ POS.forEach(w=>{if(t.includes(w)){ps.push(w);sc+=6}});
+ NEG.forEach(w=>{if(t.includes(w)){ns.push(w);sc-=8}});
+ return{score:Math.max(0,Math.min(100,sc)),pos:ps,neg:ns}
+}
+
+function checkRisk(t){
+ let r=[];
+ let nm=t.match(RISK_NAME);if(nm)r.push("🔴 個人特定リスク：「"+[...new Set(nm)].join("」「")+"」が含まれています。匿名化を推奨");
+ let pl=t.match(RISK_PLACE);if(pl)r.push("🟡 場所特定：「"+[...new Set(pl)].join("」「")+"」→ 一般化を検討");
+ if(RISK_COPY.test(t))r.push("🟡 著作権関連ワード検出：画像・動画の二次利用には投稿者許諾が必要");
+ if(t.length>300)r.push("🟡 長文UGC：要約時に元の意図が変わるリスクあり。原文ニュアンスを確認");
+ if(r.length===0)r.push("🟢 明確なリスク要因は検出されませんでした");
+ return r;
+}
+
+function generate(){
+ const t=document.getElementById("ugc").value.trim();
+ if(!t){alert("UGCテキストを入力してください");return}
+ const tone=val("tone"),ch=val("ch");
+ const a=analyze(t),risks=checkRisk(t);
+
+ const toneMap={casual:"カジュアル（絵文字OK・話し言葉）",formal:"フォーマル（丁寧語・信頼感重視）",friendly:"親しみ系（共感ベース・温かみ）"};
+ const chMap={instagram:{n:"Instagram投稿",r:"・キャプション2,200字以内\n・改行を活用し視認性確保\n・ハッシュタグ5〜10個提案\n・CTA（保存・シェア誘導）を末尾に"},x:{n:"X（Twitter）ポスト",r:"・140字版と280字版の2パターン\n・フック重視の冒頭\n・関連ハッシュタグ2〜3個"},lp:{n:"ランディングページ掲載用",r:"・見出し＋本文（150字以内）の構成\n・社会的証明としての説得力を強調\n・★評価があれば視覚的に表現"},mail:{n:"メルマガ本文",r:"・件名案を2つ提示\n・本文は300字以内\n・パーソナルな語りかけ調\n・CTA（商品リンク誘導）を明確に"}};
+ const ci=chMap[ch];
+
+ const prompt=`あなたはD2Cブランドのコンテンツライターです。以下のUGC（ユーザー口コミ）を、ブランド公式コンテンツとして最適化してください。
+
+【元のUGC】
+${t}
+
+【変換条件】
+■ ブランドトーン：${toneMap[tone]}
+■ 配信チャンネル：${ci.n}
+■ チャンネル要件：
+${ci.r}
+
+【指示】
+1. 元の口コミの感情・体験を活かしつつ、上記トーンとチャンネル要件に合わせて3バリエーション作成
+2. 各バリエーションに「訴求軸」ラベルを付与（例：体験共感型 / 効果訴求型 / 推薦型）
+3. 個人を特定できる情報は除去し「ご愛用者の声」等に置換
+4. 薬機法・景品表示法に抵触しうる表現（「治る」「確実に」等）は避ける
+5. 元UGCの引用部分は「」で明示し、それ以外はブランド発信として再構成
+
+出力形式：
+---
+【バリエーション1：（訴求軸）】
+（本文）
+
+【バリエーション2：（訴求軸）】
+（本文）
+
+【バリエーション3：（訴求軸）】
+（本文）
+---`;
+
+ // Display
+ document.getElementById("result").classList.remove("hidden");
+ const col=a.score>=60?"#48bb78":a.score>=40?"#ecc94b":"#f56565";
+ document.getElementById("sLabel").textContent=(a.score>=60?"ポジティブ":a.score>=40?"中立":"ネガティブ")+"（"+a.score+"/100）";
+ const bar=document.getElementById("sBar");bar.style.width=a.score+"%";bar.style.background=col;
+ const tags=document.getElementById("kwTags");tags.innerHTML="";
+ a.pos.forEach(w=>{tags.innerHTML+='<span class="tag pos">'+w+'</span>'});
+ a.neg.forEach(w=>{tags.innerHTML+='<span class="tag neg">'+w+'</span>'});
+
+ const rd=document.getElementById("risks");rd.innerHTML="";
+ risks.forEach(r=>{rd.innerHTML+='<div class="risk-item">'+r+'</div>'});
+
+ document.getElementById("pOut").textContent=prompt;
+ document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function copyP(){
+ const t=document.getElementById("pOut").textContent;
+ navigator.clipboard.writeText(t).then(()=>{
+  const b=document.querySelector(".copy");b.textContent="✓ コピー済";setTimeout(()=>{b.textContent="コピー"},1500);
+ }).catch(()=>{
+  const ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);
+  const b=document.querySelector(".copy");b.textContent="✓ コピー済";setTimeout(()=>{b.textContent="コピー"},1500);
+ });
+}
+</script>
+</body>
+</html>

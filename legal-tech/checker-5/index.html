@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DD統合ダッシュボード（ヒートマップ・サマリー・チェックリスト一体型） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6;font-size:14px}
+.w{max-width:1080px;margin:0 auto;padding:10px}
+h1{text-align:center;padding:14px 0 2px;font-size:1.3em}
+.sub{text-align:center;color:#666;font-size:.8em;margin-bottom:12px}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.tabs button{flex:1;min-width:120px;padding:8px;border:none;border-radius:8px 8px 0 0;background:#ddd;cursor:pointer;font-size:.85em;font-weight:700}
+.tabs button.on{background:#1a56db;color:#fff}
+.pnl{display:none;background:#fff;border-radius:0 0 10px 10px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.pnl.on{display:block}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.toolbar button{padding:5px 12px;border:1px solid #ccc;border-radius:6px;background:#fff;cursor:pointer;font-size:.8em}
+.toolbar button:hover{background:#e8f0fe}
+.toolbar .pr{background:#1a56db;color:#fff;border-color:#1a56db}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.col{flex:1;min-width:280px}
+.card{background:#f8f9fa;border-radius:8px;padding:12px;margin-bottom:12px}
+.card h3{font-size:.9em;margin-bottom:8px;color:#1a56db}
+.hmap{width:100%;border-collapse:collapse;font-size:.8em}
+.hmap th,.hmap td{border:1px solid #e5e7eb;padding:6px 8px;text-align:center}
+.hmap th{background:#f1f5f9;font-weight:600}
+.hc{width:28px;height:28px;border-radius:4px;margin:0 auto;color:#fff;font-weight:700;font-size:.75em;display:flex;align-items:center;justify-content:center}
+.h0{background:#e5e7eb;color:#666}.h1{background:#86efac;color:#064e3b}.h2{background:#fbbf24;color:#78350f}.h3{background:#f87171}.h4{background:#dc2626}
+.field{margin-bottom:8px}
+.field label{display:block;font-size:.8em;font-weight:600;margin-bottom:2px}
+.field select,.field input,.field textarea{width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;font-size:.85em}
+.field textarea{height:50px;resize:vertical}
+.btn{padding:7px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.82em;font-weight:600}
+.btn-p{background:#1a56db;color:#fff}.btn-p:hover{background:#1444b0}
+.btn-d{background:#dc2626;color:#fff}.btn-d:hover{background:#b91c1c}
+.rlist{max-height:260px;overflow-y:auto}
+.ri{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-bottom:1px solid #f0f0f0;font-size:.82em}
+.ri:hover{background:#f8f9fa}
+.badge{padding:1px 8px;border-radius:10px;font-size:.75em;color:#fff;font-weight:600}
+.bg-h{background:#dc2626}.bg-m{background:#f59e0b}.bg-l{background:#16a34a}.bg-n{background:#9ca3af}
+.sum{background:#fffbeb;border-left:3px solid #f59e0b;padding:10px 12px;margin-bottom:10px;border-radius:0 6px 6px 0;font-size:.83em}
+.prog{height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;margin-top:4px}
+.prog-bar{height:100%;border-radius:4px;transition:width .3s}
+.stabs{display:flex;gap:4px;margin-bottom:10px}
+.stabs button{padding:4px 10px;border:1px solid #ccc;border-radius:4px;background:#fff;cursor:pointer;font-size:.78em}
+.stabs button.on{background:#1a56db;color:#fff;border-color:#1a56db}
+.cl-sec{margin-bottom:10px}
+.cl-sec summary{font-weight:600;font-size:.85em;cursor:pointer;padding:6px;background:#f1f5f9;border-radius:4px}
+.cl-item{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:.8em;border-bottom:1px solid #f5f5f5}
+.cl-item input[type=checkbox]{accent-color:#1a56db}
+.cl-item select{padding:2px 4px;font-size:.78em;border:1px solid #d1d5db;border-radius:4px;width:70px}
+.cl-item input[type=text]{padding:2px 6px;font-size:.78em;border:1px solid #d1d5db;border-radius:4px;width:80px}
+.cl-item .itxt{flex:1}
+.pstat{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.ps{flex:1;min-width:140px;background:#f8f9fa;border-radius:6px;padding:8px;text-align:center}
+.ps .num{font-size:1.4em;font-weight:700;color:#1a56db}
+.ps .lbl{font-size:.75em;color:#666}
+@media print{.tabs,.toolbar,.stabs,button,.field select,.field input,.field textarea,input[type=file]{display:none!important}.pnl{display:block!important;box-shadow:none;break-inside:avoid}body{background:#fff;font-size:12px}.w{max-width:100%}.hc{print-color-adjust:exact;-webkit-print-color-adjust:exact}.badge,.bg-h,.bg-m,.bg-l,.sum,.prog-bar{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+@media(max-width:600px){.row{flex-direction:column}.col{min-width:100%}h1{font-size:1.1em}.cl-item{flex-wrap:wrap}}
+</style>
+<meta name="description" content="M&amp;Aデューデリジェンスの品質を均一化するツールキット。契約書テキストから10カテゴリのリスクを自動スコアリングするHTMLツール、発見事項をヒートマップとエグゼクティブサマリーに変換するダッシュボード、業種別DDチェックリスト管理シートの3点セット。ベテランでなくても見落としを防げる仕組みを提供する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,DD統合ダッシュボード（ヒートマップ・サマリー・チェックリスト一体型）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-5/">
+<meta property="og:title" content="DD統合ダッシュボード（ヒートマップ・サマリー・チェックリスト一体型） - kusasyu tools">
+<meta property="og:description" content="M&amp;Aデューデリジェンスの品質を均一化するツールキット。契約書テキストから10カテゴリのリスクを自動スコアリングするHTMLツール、発見事項をヒートマップとエグゼクティブサマリーに変換するダッシュボード、業種別DDチェックリスト管理シートの3点セット。ベテランでなくても見落としを防げる仕組みを提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DD統合ダッシュボード（ヒートマップ・サマリー・チェックリスト一体型） - kusasyu tools">
+<meta name="twitter:description" content="M&amp;Aデューデリジェンスの品質を均一化するツールキット。契約書テキストから10カテゴリのリスクを自動スコアリングするHTMLツール、発見事項をヒートマップとエグゼクティブサマリーに変換するダッシュボード、業種別DDチェックリスト管理シートの3点セット。ベテランでなくても見落としを防げる仕組みを提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DD統合ダッシュボード（ヒートマップ・サマリー・チェックリスト一体型）",
+  "description": "M&Aデューデリジェンスの品質を均一化するツールキット。契約書テキストから10カテゴリのリスクを自動スコアリングするHTMLツール、発見事項をヒートマップとエグゼクティブサマリーに変換するダッシュボード、業種別DDチェックリスト管理シートの3点セット。ベテランでなくても見落としを防げる仕組みを提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/checker-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">DD統合ダッシュボード（ヒートマップ・サマリー・チェックリス</span></div>
+<div class="w">
+<h1>DD統合ダッシュボード</h1>
+<p class="sub">M&Aデューデリジェンス｜ヒートマップ・サマリー・チェックリスト一体型（DD契約条項リスク評価ツール連携対応）</p>
+<div class="toolbar">
+<button onclick="exportJSON()" class="pr">JSON保存</button>
+<button onclick="document.getElementById('fileIn').click()">JSON読込</button>
+<button onclick="importTool1()">ツール1 JSON取込</button>
+<button onclick="window.print()">印刷用出力</button>
+<button onclick="clearAll()" style="color:#dc2626">全クリア</button>
+<input type="file" id="fileIn" accept=".json" style="display:none" onchange="loadJSON(event)">
+<input type="file" id="t1In" accept=".json" style="display:none" onchange="loadTool1(event)">
+</div>
+<div class="tabs">
+<button class="on" onclick="showTab(0)">ダッシュボード</button>
+<button onclick="showTab(1)">リスク入力</button>
+<button onclick="showTab(2)">業種別チェックリスト</button>
+</div>
+<div class="pnl on" id="p0">
+<div class="pstat" id="stats"></div>
+<div class="row">
+<div class="col"><div class="card"><h3>リスクヒートマップ</h3><table class="hmap" id="hmap"></table></div></div>
+<div class="col"><div class="card"><h3>重要リスク Top5 エグゼクティブサマリー</h3><div id="summary"></div></div></div>
+</div>
+<div class="card"><h3>領域別リスク一覧</h3><div class="rlist" id="riskList"></div></div>
+</div>
+<div class="pnl" id="p1">
+<div class="card">
+<h3>DD発見事項の登録</h3>
+<div class="row">
+<div class="col">
+<div class="field"><label>領域</label><select id="rDom"><option value="法務">法務</option><option value="財務">財務</option><option value="税務">税務</option><option value="労務">労務</option><option value="許認可">許認可</option></select></div>
+<div class="field"><label>重要度</label><select id="rSev"><option value="3">高（重大リスク）</option><option value="2">中（要対応）</option><option value="1">低（要確認）</option></select></div>
+</div>
+<div class="col">
+<div class="field"><label>発見事項</label><textarea id="rDesc" placeholder="リスクの概要を記入"></textarea></div>
+<div class="field"><label>推奨対応</label><input id="rAct" placeholder="対応策を記入"></div>
+</div>
+</div>
+<button class="btn btn-p" onclick="addRisk()" style="margin-top:6px">登録</button>
+</div>
+<div class="card"><h3>登録済みリスク</h3><div class="rlist" id="riskEdit"></div></div>
+</div>
+<div class="pnl" id="p2">
+<div class="stabs" id="indTabs"></div>
+<div id="clArea"></div>
+</div>
+</div>
+<script>
+const DOMS=['法務','財務','税務','労務','許認可'];
+const SEVL={3:{l:'高',c:'bg-h'},2:{l:'中',c:'bg-m'},1:{l:'低',c:'bg-l'}};
+let risks=[],checklists={};
+const CL_DATA={
+'製造業':{
+'法務':['知的財産権(特許・商標)の帰属確認','製造物責任(PL法)リスク評価','環境規制・排出基準の遵守状況','取引基本契約書の不利条項','下請法違反リスクの確認','秘密保持契約(NDA)の網羅性','ライセンス契約の継続性','競業避止義務の範囲','保証条項・免責条項の妥当性','紛争解決条項の確認'],
+'財務':['在庫評価方法と実態乖離','設備投資計画と減価償却','原価計算の正確性','売掛金回収サイトの分析','簿外債務の有無','運転資金の適正水準','設備稼働率と収益性','補助金・助成金の返還リスク','為替リスクのヘッジ状況','キャッシュフロー予測の妥当性'],
+'税務':['移転価格税制リスク','研究開発税制の適用状況','設備投資減税の活用','消費税の処理適正性','固定資産税の評価額確認','税務調査の指摘履歴','繰越欠損金の利用計画','グループ通算制度の影響','源泉徴収の処理確認','国際取引の課税リスク'],
+'労務':['労働安全衛生法の遵守','残業時間と36協定の整合性','技能実習生の管理体制','就業規則の法令適合性','未払残業代リスク','ハラスメント防止体制','有給休暇取得率の確認','退職金規程と引当金','労働組合との協定内容','社会保険の適用漏れ'],
+'許認可':['工場設置許可の有効性','消防法関連の届出状況','産業廃棄物処理の許可','建築基準法の適合確認','危険物取扱の資格管理','ISO認証の維持状況','輸出管理(該非判定)','食品衛生関連許可','計量法の遵守状況','各種届出の更新期限']},
+'IT':{
+'法務':['SaaS利用規約の権利関係','OSSライセンス違反リスク','個人情報保護法対応状況','知的財産権の帰属(開発委託)','SLA条項の履行可能性','データ移行時の権利関係','API利用契約の制限事項','競業避止・引抜防止条項','第三者ソフトウェアの権利処理','サイバーセキュリティ契約責任'],
+'財務':['ARR/MRR成長率の検証','ソフトウェア開発費の資産計上','顧客獲得コスト(CAC)分析','チャーンレートの推移確認','サーバー費用の将来予測','売上認識基準の適正性','研究開発費の妥当性','ストックオプション費用','未消化の前受収益','フリーキャッシュフロー分析'],
+'税務':['ソフトウェア償却の適正性','研究開発税制の適用','電子取引データ保存法対応','消費税のリバースチャージ','海外子会社との移転価格','税務上の繰延資産処理','仮想通貨関連の税務','クラウド費用の損金算入','外形標準課税の影響','インボイス制度対応状況'],
+'労務':['裁量労働制の適法運用','SES契約と偽装請負リスク','リモートワーク規程整備','エンジニア競業避止の有効性','フリーランス活用の法的整理','深夜勤務(障害対応)の管理','メンタルヘルス対策','副業・兼業規程の整備','外国人エンジニアの在留資格','退職時の知的財産取扱い'],
+'許認可':['電気通信事業届出の有無','Pマーク/ISMS認証維持','資金決済法対応(該当時)','古物営業許可(該当時)','医療機器プログラム該当性','個人情報保護委員会届出','GDPR等海外規制対応','暗号資産交換業登録','特定電子メール法対応','各種認証の有効期限管理']},
+'小売業':{
+'法務':['フランチャイズ契約の適正性','景品表示法違反リスク','消費者契約法の遵守','テナント賃貸借契約条件','PB商品の製造委託契約','電子商取引の特商法対応','ポイント制度の法的整理','商標権の保護状況','返品・交換ポリシーの適法性','広告表現の法的リスク'],
+'財務':['在庫回転率と滞留在庫','店舗別損益の把握','既存店売上高の推移','出店計画と投資回収','ロス率(廃棄・万引)分析','季節変動と資金繰り','仕入先集中リスク','EC売上比率と成長性','設備投資(改装)計画','リース債務の把握'],
+'税務':['軽減税率の処理適正性','ポイント引当金の税務','棚卸資産の評価方法','固定資産(内装)の償却','インボイス制度対応','免税販売の手続確認','消費税の簡易課税判定','交際費の損金算入','海外仕入の関税処理','電子帳簿保存法対応'],
+'労務':['パート・アルバイト管理体制','同一労働同一賃金対応','シフト管理と労働時間','最低賃金の遵守確認','外国人従業員の管理','年次有給休暇の管理','労災事故の発生状況','雇用契約書の整備','教育研修体制の確認','退職率と人材確保策'],
+'許認可':['食品衛生法の許可状況','酒類販売免許の確認','たばこ販売許可の確認','医薬品販売業の許可','古物営業許可の確認','消防法の防火管理','食品表示法の遵守','計量法の遵守状況','各自治体の条例対応','営業許可の更新管理']}
+};
+const INDUSTRIES=Object.keys(CL_DATA);
+let curInd=0;
+function initCL(){INDUSTRIES.forEach(ind=>{if(!checklists[ind]){checklists[ind]={};DOMS.forEach(d=>{checklists[ind][d]=CL_DATA[ind][d].map(t=>({text:t,done:false,risk:'未',who:''}))})}})}
+initCL();
+function showTab(n){document.querySelectorAll('.pnl').forEach((p,i)=>{p.classList.toggle('on',i===n)});document.querySelectorAll('.tabs button').forEach((b,i)=>{b.classList.toggle('on',i===n)});if(n===0)render();if(n===2)renderCL()}
+function addRisk(){const d=document.getElementById('rDom').value,s=+document.getElementById('rSev').value,desc=document.getElementById('rDesc').value.trim(),act=document.getElementById('rAct').value.trim();if(!desc){alert('発見事項を入力してください');return}risks.push({domain:d,severity:s,description:desc,action:act,id:Date.now()});document.getElementById('rDesc').value='';document.getElementById('rAct').value='';render();renderEdit()}
+function delRisk(id){risks=risks.filter(r=>r.id!==id);render();renderEdit()}
+function render(){renderHmap();renderSummary();renderRiskList();renderStats()}
+function renderHmap(){const t=document.getElementById('hmap');let h='<tr><th>領域</th><th>高</th><th>中</th><th>低</th><th>件数</th></tr>';DOMS.forEach(d=>{const rs=risks.filter(r=>r.domain===d);const c=[3,2,1].map(s=>rs.filter(r=>r.severity===s).length);const tot=rs.length;h+=`<tr><td style="font-weight:600;text-align:left">${d}</td>${c.map((n,i)=>`<td><div class="hc h${n>2?4:n>0?3-i:0}">${n||'-'}</div></td>`).join('')}<td><strong>${tot}</strong></td></tr>`});t.innerHTML=h}
+function renderSummary(){const el=document.getElementById('summary');const sorted=[...risks].sort((a,b)=>b.severity-a.severity).slice(0,5);if(!sorted.length){el.innerHTML='<p style="color:#666;font-size:.85em">リスクが未登録です。「リスク入力」タブから発見事項を登録してください。</p>';return}let h='';sorted.forEach((r,i)=>{h+=`<div class="sum"><strong>${i+1}. [${r.domain}] ${SEVL[r.severity].l}リスク</strong><br>${r.description}${r.action?'<br><span style="color:#065f46">→ '+r.action+'</span>':''}</div>`});el.innerHTML=h}
+function renderRiskList(){const el=document.getElementById('riskList');if(!risks.length){el.innerHTML='<p style="color:#999;font-size:.85em;padding:8px">登録なし</p>';return}el.innerHTML=risks.map(r=>`<div class="ri"><span><span class="badge ${SEVL[r.severity].c}">${SEVL[r.severity].l}</span> [${r.domain}] ${r.description}</span></div>`).join('')}
+function renderEdit(){const el=document.getElementById('riskEdit');if(!risks.length){el.innerHTML='<p style="color:#999;font-size:.85em;padding:8px">登録なし</p>';return}el.innerHTML=risks.map(r=>`<div class="ri"><span><span class="badge ${SEVL[r.severity].c}">${SEVL[r.severity].l}</span> [${r.domain}] ${r.description}</span><button class="btn btn-d" style="padding:2px 8px;font-size:.75em" onclick="delRisk(${r.id})">削除</button></div>`).join('')}
+function renderStats(){const el=document.getElementById('stats');const tot=risks.length,hi=risks.filter(r=>r.severity===3).length;let clDone=0,clTot=0;INDUSTRIES.forEach(ind=>DOMS.forEach(d=>{const items=checklists[ind]?.[d]||[];clTot+=items.length;clDone+=items.filter(i=>i.done).length}));const pct=clTot?Math.round(clDone/clTot*100):0;const col=pct>=80?'#16a34a':pct>=50?'#f59e0b':'#dc2626';el.innerHTML=`<div class="ps"><div class="num">${tot}</div><div class="lbl">発見事項合計</div></div><div class="ps"><div class="num" style="color:#dc2626">${hi}</div><div class="lbl">高リスク件数</div></div><div class="ps"><div class="num" style="color:${col}">${pct}%</div><div class="lbl">チェックリスト進捗</div><div class="prog"><div class="prog-bar" style="width:${pct}%;background:${col}"></div></div></div><div class="ps"><div class="num">${DOMS.filter(d=>risks.some(r=>r.domain===d)).length}/5</div><div class="lbl">調査済み領域</div></div>`}
+function renderCL(){const tabEl=document.getElementById('indTabs');tabEl.innerHTML=INDUSTRIES.map((ind,i)=>`<button class="${i===curInd?'on':''}" onclick="curInd=${i};renderCL()">${ind}</button>`).join('');const area=document.getElementById('clArea');const ind=INDUSTRIES[curInd];let h='';DOMS.forEach(d=>{const items=checklists[ind][d];const done=items.filter(i=>i.done).length;const pct=Math.round(done/items.length*100);h+=`<details class="cl-sec" open><summary>${d}（${done}/${items.length} 完了 ${pct}%）</summary>`;items.forEach((it,idx)=>{h+=`<div class="cl-item"><input type="checkbox" ${it.done?'checked':''} onchange="toggleCL('${ind}','${d}',${idx},this.checked)"><span class="itxt">${it.text}</span><select onchange="setCLRisk('${ind}','${d}',${idx},this.value)"><option${it.risk==='未'?' selected':''}>未</option><option${it.risk==='低'?' selected':''}>低</option><option${it.risk==='中'?' selected':''}>中</option><option${it.risk==='高'?' selected':''}>高</option></select><input type="text" placeholder="担当者" value="${it.who}" onchange="setCLWho('${ind}','${d}',${idx},this.value)"></div>`});h+='</details>'});area.innerHTML=h}
+function toggleCL(ind,d,i,v){checklists[ind][d][i].done=v;renderCL();renderStats()}
+function setCLRisk(ind,d,i,v){checklists[ind][d][i].risk=v}
+function setCLWho(ind,d,i,v){checklists[ind][d][i].who=v}
+function exportJSON(){const data=JSON.stringify({risks,checklists,exportDate:new Date().toISOString(),tool:'DD統合ダッシュボード'},null,2);const blob=new Blob([data],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dd-dashboard-'+new Date().toISOString().slice(0,10)+'.json';a.click()}
+function loadJSON(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.risks)risks=d.risks;if(d.checklists)checklists=d.checklists;initCL();render();renderEdit();renderCL();alert('読込完了: リスク'+risks.length+'件')}catch(err){alert('JSONの読込に失敗: '+err.message)}};r.readAsText(f);e.target.value=''}
+function importTool1(){document.getElementById('t1In').click()}
+function loadTool1(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.categories){const domMap={'チェンジ・オブ・コントロール':'法務','表明保証':'法務','補償・損害賠償':'法務','競業避止':'法務','秘密保持':'法務','知的財産':'法務','契約解除':'法務','支払条件':'財務','価格調整':'財務','雇用・労務':'労務'};d.categories.forEach(cat=>{const dom=domMap[cat.name]||'法務';if(cat.score!==undefined&&cat.score>=50){risks.push({domain:dom,severity:cat.score>=80?3:cat.score>=50?2:1,description:'['+cat.name+'] リスクスコア: '+cat.score+'点',action:cat.details||'',id:Date.now()+Math.random()*1000|0})}});render();renderEdit();alert('ツール1データ取込完了: '+risks.length+'件')}else{alert('DD契約条項リスク評価ツールのJSON形式ではありません')}}catch(err){alert('読込失敗: '+err.message)}};r.readAsText(f);e.target.value=''}
+function clearAll(){if(!confirm('全データをクリアしますか？'))return;risks=[];checklists={};initCL();render();renderEdit();renderCL()}
+render();renderEdit();
+</script>
+</body>
+</html>

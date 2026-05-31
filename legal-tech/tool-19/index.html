@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多言語DD発見事項トラッカー - kusasyu tools</title>
+<meta name="description" content="クロスボーダーM&amp;Aのデューデリジェンスで、取引相手国ごとの法的リスク重点項目を即座に把握し、多言語の発見事項を一元管理するための実務ツールキット。国別の外資規制・管轄リスク・日本側対応事項を体系化する。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,多言語DD発見事項トラッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-19/">
+<meta property="og:title" content="多言語DD発見事項トラッカー - kusasyu tools">
+<meta property="og:description" content="クロスボーダーM&amp;Aのデューデリジェンスで、取引相手国ごとの法的リスク重点項目を即座に把握し、多言語の発見事項を一元管理するための実務ツールキット。国別の外資規制・管轄リスク・日本側対応事項を体系化する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-19/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多言語DD発見事項トラッカー - kusasyu tools">
+<meta name="twitter:description" content="クロスボーダーM&amp;Aのデューデリジェンスで、取引相手国ごとの法的リスク重点項目を即座に把握し、多言語の発見事項を一元管理するための実務ツールキット。国別の外資規制・管轄リスク・日本側対応事項を体系化する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "多言語DD発見事項トラッカー",
+  "description": "クロスボーダーM&Aのデューデリジェンスで、取引相手国ごとの法的リスク重点項目を即座に把握し、多言語の発見事項を一元管理するための実務ツールキット。国別の外資規制・管轄リスク・日本側対応事項を体系化する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-19/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-05-31"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>多言語DD発見事項トラッカー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>多言語DD発見事項トラッカー</h1>
+  <p class="project-name">海外M&amp;AのDD、国ごとの勘所を把握できていますか？</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>対象国/Country</th><th>DD区分/DD Category</th><th>条項カテゴリ/Clause Category</th><th>条項名（日本語）</th><th>Clause Title (EN)</th><th>条項テキスト概要（日本語）</th><th>Clause Text Summary (EN)</th><th>リスクレベル/Risk Level</th><th>対応ステータス/Status</th><th>担当者/Assignee</th><th>期限/Deadline</th><th>関連法令/Applicable Law</th><th>日本側対応事項/JP Action Items</th><th>備考/Notes</th></tr></thead><tbody><tr><td>1</td><td>米国/USA</td><td>法務DD/Legal DD</td><td>CoC条項/Change of Control</td><td>SPA第8条 支配権変更</td><td>SPA Art.8 Change of Control</td><td>主要顧客契約3件にCoC条項あり。買収完了前に各取引先からの書面同意取得が必要。未取得時は契約解除リスクが発生する。</td><td>3 key customer contracts contain CoC clauses. Written consent from each counterparty required before closing. Non-compliance triggers termination rights.</td><td>高/High</td><td>対応中/In Progress</td><td>田中太郎/T.Tanaka</td><td>2026-07-15</td><td>Hart-Scott-Rodino Act; UCC</td><td>競争法届出（公取委への事前相談）と並行して同意取得交渉を進める</td><td>取引先A社は同意取得済。B社・C社は交渉中</td></tr><tr><td>2</td><td>中国/China</td><td>法務DD/Legal DD</td><td>外資規制届出/Foreign Investment Filing</td><td>外商投資ネガティブリスト該当性確認</td><td>Negative List Screening under FIL</td><td>対象事業が2024年版外商投資ネガティブリスト制限類に該当。商務部（MOFCOM）への事前届出および安全審査が必要。</td><td>Target business falls under restricted category of 2024 Negative List. MOFCOM pre-filing and national security review required.</td><td>高/High</td><td>未着手/Not Started</td><td>鈴木花子/H.Suzuki</td><td>2026-06-30</td><td>外商投資法; 外商投資安全審査弁法</td><td>日本側で経産省への事前相談および外為法に基づく届出が必要</td><td>安全審査の標準審査期間は60〜90営業日。早期着手が必須</td></tr><tr><td>3</td><td>ドイツ/Germany</td><td>法務DD/Legal DD</td><td>表明保証/Reps &amp; Warranties</td><td>SPA第5条 知的財産に関する表明保証</td><td>SPA Art.5 IP Representations &amp; Warranties</td><td>対象会社保有の特許12件・商標8件の有効性および第三者権利侵害の不存在を表明保証。うち2件の特許で異議申立手続が進行中。</td><td>Seller represents validity of 12 patents and 8 trademarks with no third-party infringement. 2 patents currently under opposition proceedings.</td><td>中/Medium</td><td>確認中/Under Review</td><td>佐藤一郎/I.Sato</td><td>2026-07-31</td><td>BGB（ドイツ民法典）; PatG（特許法）</td><td>IP補償条項の上限額（Cap）について日本側法務と方針協議が必要</td><td>異議申立中の2件は特別補償（Specific Indemnity）対象に含める方針</td></tr><tr><td>4</td><td>インド/India</td><td>法務DD/Legal DD</td><td>外資規制届出/Foreign Investment Filing</td><td>FDIポリシー自動承認ルート確認</td><td>FDI Policy Automatic Route Verification</td><td>対象業種は自動承認ルート該当だが外資出資比率上限74%。既存株主との合弁契約にドラッグアロング条項があり条件精査が必要。</td><td>Sector eligible for automatic route but FDI cap at 74%. Existing JV agreement contains drag-along clause requiring detailed review.</td><td>中/Medium</td><td>対応中/In Progress</td><td>高橋美咲/M.Takahashi</td><td>2026-07-20</td><td>FEMA 1999; Companies Act 2013; FDI Policy 2020</td><td>財務省への事前届出は不要（自動ルート）。日銀への事後報告は必要</td><td>RBI事後届出（FC-GPR）の期限は30日以内。期限管理を徹底</td></tr><tr><td>5</td><td>英国/UK</td><td>法務DD/Legal DD</td><td>CoC条項/Change of Control</td><td>主要サプライヤー契約CoC条項</td><td>Key Supplier CoC Provisions</td><td>上位5社の供給契約中2件にCoC条項あり。通知義務のみで事前同意は不要。ただしNSIA（国家安全保障投資法）届出対象の可能性あり。</td><td>2 of top 5 supplier contracts contain CoC clauses with notification-only obligation. Potential mandatory NSIA filing requirement identified.</td><td>低/Low</td><td>確認中/Under Review</td><td>田中太郎/T.Tanaka</td><td>2026-08-15</td><td>National Security and Investment Act 2021; Companies Act 2006</td><td>英国ISU（投資安全保障ユニット）への任意事前相談を推奨。日本側は外為法の該当性も確認</td><td>Brexit後の独自規制体系に移行済。EU規制との差分に注意</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>[データ入力規則 — Excelドロップダウン設定用/Data Validation Reference]</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>リスクレベル/Risk Level選択肢:</td><td>高/High</td><td>中/Medium</td><td>低/Low</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>対応ステータス/Status選択肢:</td><td>未着手/Not Started</td><td>対応中/In Progress</td><td>確認中/Under Review</td><td>対応完了/Completed</td><td>保留/On Hold</td><td>対象外/N/A</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>DD区分/DD Category選択肢:</td><td>法務DD/Legal DD</td><td>財務DD/Financial DD</td><td>税務DD/Tax DD</td><td>人事DD/HR DD</td><td>環境DD/Environmental DD</td><td>IT DD/IT DD</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,対象国/Country,DD区分/DD Category,条項カテゴリ/Clause Category,条項名（日本語）,Clause Title (EN),条項テキスト概要（日本語）,Clause Text Summary (EN),リスクレベル/Risk Level,対応ステータス/Status,担当者/Assignee,期限/Deadline,関連法令/Applicable Law,日本側対応事項/JP Action Items,備考/Notes
+1,米国/USA,法務DD/Legal DD,CoC条項/Change of Control,SPA第8条 支配権変更,SPA Art.8 Change of Control,"主要顧客契約3件にCoC条項あり。買収完了前に各取引先からの書面同意取得が必要。未取得時は契約解除リスクが発生する。","3 key customer contracts contain CoC clauses. Written consent from each counterparty required before closing. Non-compliance triggers termination rights.",高/High,対応中/In Progress,田中太郎/T.Tanaka,2026-07-15,Hart-Scott-Rodino Act; UCC,競争法届出（公取委への事前相談）と並行して同意取得交渉を進める,取引先A社は同意取得済。B社・C社は交渉中
+2,中国/China,法務DD/Legal DD,外資規制届出/Foreign Investment Filing,外商投資ネガティブリスト該当性確認,Negative List Screening under FIL,"対象事業が2024年版外商投資ネガティブリスト制限類に該当。商務部（MOFCOM）への事前届出および安全審査が必要。","Target business falls under restricted category of 2024 Negative List. MOFCOM pre-filing and national security review required.",高/High,未着手/Not Started,鈴木花子/H.Suzuki,2026-06-30,外商投資法; 外商投資安全審査弁法,日本側で経産省への事前相談および外為法に基づく届出が必要,安全審査の標準審査期間は60〜90営業日。早期着手が必須
+3,ドイツ/Germany,法務DD/Legal DD,表明保証/Reps & Warranties,SPA第5条 知的財産に関する表明保証,SPA Art.5 IP Representations & Warranties,"対象会社保有の特許12件・商標8件の有効性および第三者権利侵害の不存在を表明保証。うち2件の特許で異議申立手続が進行中。","Seller represents validity of 12 patents and 8 trademarks with no third-party infringement. 2 patents currently under opposition proceedings.",中/Medium,確認中/Under Review,佐藤一郎/I.Sato,2026-07-31,BGB（ドイツ民法典）; PatG（特許法）,IP補償条項の上限額（Cap）について日本側法務と方針協議が必要,異議申立中の2件は特別補償（Specific Indemnity）対象に含める方針
+4,インド/India,法務DD/Legal DD,外資規制届出/Foreign Investment Filing,FDIポリシー自動承認ルート確認,FDI Policy Automatic Route Verification,"対象業種は自動承認ルート該当だが外資出資比率上限74%。既存株主との合弁契約にドラッグアロング条項があり条件精査が必要。","Sector eligible for automatic route but FDI cap at 74%. Existing JV agreement contains drag-along clause requiring detailed review.",中/Medium,対応中/In Progress,高橋美咲/M.Takahashi,2026-07-20,FEMA 1999; Companies Act 2013; FDI Policy 2020,財務省への事前届出は不要（自動ルート）。日銀への事後報告は必要,RBI事後届出（FC-GPR）の期限は30日以内。期限管理を徹底
+5,英国/UK,法務DD/Legal DD,CoC条項/Change of Control,主要サプライヤー契約CoC条項,Key Supplier CoC Provisions,"上位5社の供給契約中2件にCoC条項あり。通知義務のみで事前同意は不要。ただしNSIA（国家安全保障投資法）届出対象の可能性あり。","2 of top 5 supplier contracts contain CoC clauses with notification-only obligation. Potential mandatory NSIA filing requirement identified.",低/Low,確認中/Under Review,田中太郎/T.Tanaka,2026-08-15,National Security and Investment Act 2021; Companies Act 2006,英国ISU（投資安全保障ユニット）への任意事前相談を推奨。日本側は外為法の該当性も確認,Brexit後の独自規制体系に移行済。EU規制との差分に注意
+,,,,,,,,,,,,,,
+[データ入力規則 — Excelドロップダウン設定用/Data Validation Reference],,,,,,,,,,,,,,
+リスクレベル/Risk Level選択肢:,高/High,中/Medium,低/Low,,,,,,,,,,
+対応ステータス/Status選択肢:,未着手/Not Started,対応中/In Progress,確認中/Under Review,対応完了/Completed,保留/On Hold,対象外/N/A,,,,,,,
+DD区分/DD Category選択肢:,法務DD/Legal DD,財務DD/Financial DD,税務DD/Tax DD,人事DD/HR DD,環境DD/Environmental DD,IT DD/IT DD,,,,,,,
+条項カテゴリ/Clause Category選択肢:,CoC条項/Change of Control,外資規制届出/Foreign Investment Filing,表明保証/Reps & Warranties,補償条項/Indemnification,競業避止/Non-Compete,秘密保持/Confidentiality,,,,,,,
+,,,,,,,,,,,,,,
+[Excel設定手順/Setup Instructions],,,,,,,,,,,,,,
+"手順1: 本CSVをExcelで開き、I列（リスクレベル）のデータ範囲を選択 → データタブ → データの入力規則 → 入力値の種類「リスト」→ 元の値に「高/High,中/Medium,低/Low」を入力",,,,,,,,,,,,,,
+"手順2: J列（対応ステータス）も同様にドロップダウンリストを設定（上記の選択肢を使用）",,,,,,,,,,,,,,
+"手順3: 条件付き書式でI列を色分け — 高/High→赤背景、中/Medium→黄背景、低/Low→緑背景に設定すると視認性が向上",,,,,,,,,,,,,,
+"手順4: 1行目を選択しフィルター機能を有効化。国別・リスクレベル別・ステータス別の絞り込みが可能になる",,,,,,,,,,,,,,
+"手順5: 本トラッカーは「クロスボーダーDD 国別リスクチェッカー」と併用し、国別リスク概要の確認後に詳細発見事項を本シートに記録する運用を推奨",,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_多言語DD発見事項トラッカー.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
