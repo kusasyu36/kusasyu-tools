@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EC商品SNS投稿テンプレートジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:18px 0 4px;color:#1a1a2e}
+.sub{text-align:center;font-size:.78em;color:#666;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+label{display:block;font-weight:600;font-size:.85em;margin:10px 0 4px}
+input[type=text],input[type=number],select,textarea{width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:.95em;background:#fafafa}
+textarea{height:60px;resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>*{flex:1;min-width:140px}
+.chip-group{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.chip{padding:6px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;cursor:pointer;font-size:.82em;transition:.2s}
+.chip.on{background:#4361ee;color:#fff;border-color:#4361ee}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4361ee,#3a0ca3);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:14px;transition:.2s}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.tabs{display:flex;gap:0;margin-bottom:0}
+.tab{flex:1;padding:10px;text-align:center;cursor:pointer;font-weight:600;font-size:.85em;border:none;background:#e9ecef;color:#555;transition:.2s}
+.tab:first-child{border-radius:10px 0 0 0}
+.tab:last-child{border-radius:0 10px 0 0}
+.tab.on{background:#4361ee;color:#fff}
+.out-box{background:#f8f9fa;border:1.5px solid #e0e0e0;border-radius:0 0 10px 10px;padding:16px;min-height:120px;white-space:pre-wrap;font-size:.9em;line-height:1.7;position:relative}
+.copy-btn{position:absolute;top:8px;right:8px;padding:6px 14px;background:#4361ee;color:#fff;border:none;border-radius:6px;font-size:.78em;cursor:pointer}
+.copy-btn.done{background:#2dc653}
+.badge{display:inline-block;background:#e8f5e9;color:#2e7d32;font-size:.72em;padding:2px 8px;border-radius:10px;margin-left:6px}
+#result{display:none}
+.note{font-size:.72em;color:#888;margin-top:4px}
+.toggle{display:flex;align-items:center;gap:8px;margin-top:6px}
+.toggle input{display:none}
+.sw{width:44px;height:24px;background:#ccc;border-radius:12px;position:relative;cursor:pointer;transition:.3s}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.sw{background:#4361ee}
+.toggle input:checked+.sw::after{left:23px}
+</style>
+<meta name="description" content="EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,EC商品SNS投稿テンプレートジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-sns/">
+<meta property="og:title" content="EC商品SNS投稿テンプレートジェネレーター - kusasyu tools">
+<meta property="og:description" content="EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-sns/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EC商品SNS投稿テンプレートジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EC商品SNS投稿テンプレートジェネレーター",
+  "description": "EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-sns/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">EC商品SNS投稿テンプレートジェネレーター</span></div>
+<div class="wrap">
+<h1>EC商品 SNS投稿ジェネレーター</h1>
+<p class="sub">商品情報を入れるだけ。Instagram・X・TikTok投稿を一括生成<br>日本EC市場に最適化されたテンプレートエンジン搭載</p>
+
+<div class="card">
+<label>商品名 <span style="color:#e63946">*</span></label>
+<input type="text" id="pName" placeholder="例：オーガニックコットンTシャツ">
+<div class="row">
+<div><label>価格（税込）</label><input type="number" id="pPrice" placeholder="3980"></div>
+<div><label>業種カテゴリ</label>
+<select id="pCat"><option value="apparel">アパレル</option><option value="food">食品</option><option value="goods">雑貨</option><option value="beauty">美容</option><option value="interior">インテリア</option></select></div>
+</div>
+<label>商品の特徴（2〜3個推奨）</label>
+<textarea id="pFeat" placeholder="例：100%オーガニックコットン、ゆったりシルエット、全5色展開"></textarea>
+<label>ターゲット層</label>
+<input type="text" id="pTarget" placeholder="例：30代女性、ナチュラル志向のママ">
+
+<label>投稿タイプ</label>
+<div class="chip-group" id="postType">
+<div class="chip on" data-v="new">新商品紹介</div>
+<div class="chip" data-v="sale">セール告知</div>
+<div class="chip" data-v="review">レビュー紹介</div>
+<div class="chip" data-v="behind">舞台裏</div>
+</div>
+
+<label>絵文字トーン</label>
+<div class="toggle"><span style="font-size:.85em">ビジネス</span><input type="checkbox" id="emojiMode" checked><label class="sw" for="emojiMode"></label><span style="font-size:.85em">カジュアル</span></div>
+
+<button class="btn" onclick="generate()">投稿を一括生成する</button>
+</div>
+
+<div id="result">
+<div class="card" style="padding:0;overflow:hidden">
+<div class="tabs">
+<div class="tab on" onclick="switchTab(0)">Instagram</div>
+<div class="tab" onclick="switchTab(1)">X (Twitter)</div>
+<div class="tab" onclick="switchTab(2)">TikTok</div>
+</div>
+<div class="out-box" id="outBox"><button class="copy-btn" onclick="copyText()">コピー</button><span id="outText"></span></div>
+</div>
+<p class="note">※ テンプレートエンジンによる自動生成です。必要に応じて微調整してください。</p>
+</div>
+</div>
+
+<script>
+const HT={
+apparel:{base:['#ファッション','#コーデ','#今日のコーデ','#プチプラ','#大人カジュアル','#着回し','#ootd','#新作','#トレンド','#シンプルコーデ','#ママコーデ','#お洒落さんと繋がりたい','#購入品','#通販','#ネットショップ'],season:{spring:['#春コーデ','#春服','#春ファッション','#花柄'],summer:['#夏コーデ','#涼しい','#夏服','#リネン'],autumn:['#秋コーデ','#秋色','#秋服','#ニット'],winter:['#冬コーデ','#防寒','#冬服','#暖かい']}},
+food:{base:['#お取り寄せ','#お取り寄せグルメ','#おうちごはん','#手土産','#ギフト','#美味しい','#グルメ','#foodstagram','#スイーツ','#おやつ時間','#ご褒美','#期間限定','#数量限定','#通販グルメ','#食べてみて'],season:{spring:['#春スイーツ','#桜','#お花見','#新生活'],summer:['#夏ギフト','#お中元','#冷たいスイーツ','#夏バテ対策'],autumn:['#秋の味覚','#ハロウィン','#芋栗','#食欲の秋'],winter:['#冬ギフト','#お歳暮','#クリスマス','#バレンタイン']}},
+goods:{base:['#雑貨','#暮らしを楽しむ','#丁寧な暮らし','#日用品','#便利グッズ','#買ってよかった','#生活雑貨','#おすすめ','#シンプルライフ','#プレゼント','#新生活','#インテリア雑貨','#文房具','#こだわり','#ネットショップ'],season:{spring:['#新生活準備','#入学祝い','#母の日','#春の模様替え'],summer:['#夏の暮らし','#涼感グッズ','#アウトドア','#父の日'],autumn:['#秋の暮らし','#読書の秋','#ハンドメイド','#敬老の日'],winter:['#冬支度','#クリスマスプレゼント','#年末年始','#福袋']}},
+beauty:{base:['#美容','#スキンケア','#コスメ','#メイク','#美肌','#自分磨き','#ビューティー','#ナチュラルコスメ','#オーガニック','#コスメ好き','#購入品','#リピ買い','#美容好きな人と繋がりたい','#今日のメイク','#時短美容'],season:{spring:['#春メイク','#花粉対策','#UV対策','#新色'],summer:['#夏コスメ','#日焼け止め','#崩れにくい','#夏メイク'],autumn:['#秋コスメ','#秋色メイク','#乾燥対策','#保湿'],winter:['#冬スキンケア','#乾燥ケア','#クリスマスコフレ','#ベスコス']}},
+interior:{base:['#インテリア','#模様替え','#部屋づくり','#暮らし','#マイホーム','#ルームツアー','#収納','#シンプルインテリア','#北欧インテリア','#おうち時間','#居心地のいい部屋','#インテリアコーディネート','#家具','#照明','#ネットショップ'],season:{spring:['#春インテリア','#新生活','#一人暮らし','#桜色'],summer:['#夏インテリア','#涼しげ','#グリーンのある暮らし','#ラグ'],autumn:['#秋インテリア','#あたたかみ','#キャンドル','#ブランケット'],winter:['#冬インテリア','#クリスマスインテリア','#こたつ','#あったかグッズ']}}
+};
+function getSeason(){const m=new Date().getMonth();if(m>=2&&m<=4)return'spring';if(m>=5&&m<=7)return'summer';if(m>=8&&m<=10)return'autumn';return'winter';}
+const SN={spring:'春',summer:'夏',autumn:'秋',winter:'冬'};
+let activeTab=0,outputs=['','',''];
+document.querySelectorAll('.chip').forEach(c=>c.onclick=function(){this.parentNode.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));this.classList.add('on')});
+function switchTab(i){activeTab=i;document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('on',j===i));document.getElementById('outText').textContent=outputs[i];document.querySelector('.copy-btn').textContent='コピー';document.querySelector('.copy-btn').classList.remove('done')}
+function copyText(){navigator.clipboard.writeText(outputs[activeTab]).then(()=>{const b=document.querySelector('.copy-btn');b.textContent='コピー済み!';b.classList.add('done');setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},2000)})}
+function getType(){return document.querySelector('.chip.on').dataset.v}
+function generate(){
+const nm=document.getElementById('pName').value.trim();
+if(!nm){alert('商品名を入力してください');return}
+const pr=document.getElementById('pPrice').value||'---';
+const cat=document.getElementById('pCat').value;
+const feat=document.getElementById('pFeat').value.trim()||'こだわりの品質';
+const tgt=document.getElementById('pTarget').value.trim()||'大切な方';
+const type=getType();
+const casual=document.getElementById('emojiMode').checked;
+const ssn=getSeason();
+const feats=feat.split(/[、,，\n]/).map(s=>s.trim()).filter(Boolean);
+const f1=feats[0]||'',f2=feats[1]||'',f3=feats[2]||'';
+const e=casual?{star:'✨',point:'👉',heart:'💕',fire:'🔥',check:'✅',gift:'🎁',eye:'👀',new:'🆕',sale:'🏷️',cam:'📸',sp:'🌟',mg:'🔍',wave:'👋',click:'🛒',party:'🎉'}:{star:'◆',point:'▶',heart:'―',fire:'◆',check:'✓',gift:'■',eye:'▶',new:'【NEW】',sale:'【SALE】',sp:'◆',mg:'▶',wave:'',click:'▶',party:'◆'};
+// Instagram
+let igCap='';
+const TIG={
+new:`${e.new} 新商品のご紹介 ${e.star}\n\n${e.point}${nm}\n¥${Number(pr).toLocaleString()}（税込）\n\n${f1}が特徴の${nm}が登場しました。\n\n${e.check} ${f1}\n${f2?e.check+' '+f2+'\n':''}${f3?e.check+' '+f3+'\n':''}\n${tgt}にぴったりの一品です。\n\nプロフィールのリンクからショップへ ${e.click}\n`,
+sale:`${e.sale} SALE開催中 ${e.fire}\n\n${nm}がお買い得！\n¥${Number(pr).toLocaleString()}（税込）\n\n${f1}で人気の${nm}を\nこの機会にぜひお試しください。\n\n${e.point} 数量限定・なくなり次第終了\n${e.point} プロフィールのリンクからどうぞ\n`,
+review:`${e.heart} お客様の声をご紹介 ${e.mg}\n\n「${f1}がとても気に入りました！」\n\n${nm}（¥${Number(pr).toLocaleString()}）をお使いの\nお客様から嬉しいレビューをいただきました。\n\n${f2?'「'+f2+'も良い」とのお声も。\n':''}\n${tgt}の方に選ばれています ${e.sp}\n`,
+behind:`${e.cam} 制作の裏側をお見せします ${e.wave}\n\n${nm}ができるまで。\n\n${f1}にこだわって作っています。\n${f2?f2+'も大切にしているポイントです。\n':''}\n${tgt}に届けたい想いを込めて。\nこれからも丁寧にお届けします ${e.heart}\n`
+};
+igCap=TIG[type]||TIG.new;
+const htData=HT[cat]||HT.goods;
+let tags=[...htData.base];
+if(htData.season[ssn])tags.push(...htData.season[ssn]);
+tags.push('#'+nm.replace(/\s/g,''));
+tags=tags.slice(0,25);
+igCap+='\n'+tags.join(' ');
+outputs[0]=igCap;
+
+// X
+const TX={
+new:`${e.new}${nm} 新登場！\n${f1}${f2?'・'+f2:''}。${tgt}におすすめ。\n¥${Number(pr).toLocaleString()}${e.point}詳細はプロフィールから`,
+sale:`${e.sale}${nm}がセール中${e.fire}\n${f1}で人気のアイテムがお買い得。¥${Number(pr).toLocaleString()}\n${e.point}お早めにチェック`,
+review:`${e.sp}${nm} レビュー紹介\n「${f1}が良い！」とご好評${e.heart}\n¥${Number(pr).toLocaleString()}${e.point}詳細はプロフへ`,
+behind:`${e.cam}${nm}の裏側\n${f1}へのこだわり、ちょっとだけお見せします。\n${tgt}に届けたい想い${e.point}プロフへ`
+};
+let xPost=TX[type]||TX.new;
+const xTags=tags.slice(0,3).join(' ');
+if((xPost+'\n'+xTags).length<=140)xPost+='\n'+xTags;
+if(xPost.length>140)xPost=xPost.substring(0,137)+'...';
+outputs[1]=xPost+'\n\n（'+xPost.length+'文字）';
+
+// TikTok
+const TT={
+new:`${e.eye} まだ知らないの？\n${tgt}がハマってる${nm}を紹介します！\n\n${e.check} ${f1}\n${f2?e.check+' '+f2+'\n':''}${f3?e.check+' '+f3+'\n':''}\n¥${Number(pr).toLocaleString()}で手に入る${SN[ssn]}の推しアイテム ${e.fire}\n\n${e.point} 気になったらプロフのリンクへ！\n保存して後で見返してね ${e.heart}`,
+sale:`${e.fire} 見逃したら絶対後悔する！\n${nm}がセール価格に ${e.sale}\n\n${f1}で話題のアイテムが今だけお得！\n¥${Number(pr).toLocaleString()}\n\n${e.point} リンクはプロフへ！\nフォローして最新セール情報をチェック ${e.sp}`,
+review:`${e.sp} 正直レビュー！${nm}\n買ってよかった？ぶっちゃけます。\n\n結論：${f1}が最高すぎる。\n${f2?f2+'もポイント高い。\n':''}\n¥${Number(pr).toLocaleString()}の価値ある？→ある！\n\n${e.point} 詳しくはプロフのリンクから！`,
+behind:`${e.cam} これ知ってた？\n${nm}のこだわり、裏側見せます。\n\n${f1}って実はすごく手間がかかるんです。\n${f2?f2+'にもこだわってます。\n':''}\n${tgt}に届けたい想い。\n\n${e.point} フォローで応援してくれると嬉しいです！`
+};
+outputs[2]=TT[type]||TT.new;
+const ttTags=tags.slice(0,8).join(' ');
+outputs[2]+='\n\n'+ttTags;
+
+document.getElementById('result').style.display='block';
+switchTab(0);
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

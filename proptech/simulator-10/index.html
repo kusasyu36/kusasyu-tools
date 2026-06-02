@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>空き家シェア所有コストシミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.header{background:linear-gradient(135deg,#1e3a5f,#2d6a4f);color:#fff;padding:24px 16px;text-align:center}
+.header h1{font-size:clamp(18px,4vw,26px);margin-bottom:4px}
+.header p{font-size:13px;opacity:.85}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:16px;color:#1e3a5f;border-left:4px solid #2d6a4f;padding-left:10px;margin-bottom:16px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:13px;font-weight:600;color:#4a5568}
+.fg input,.fg select{padding:10px;border:1.5px solid #cbd5e0;border-radius:8px;font-size:15px;transition:border .2s}
+.fg input:focus,.fg select:focus{outline:none;border-color:#2d6a4f}
+.unit{font-size:12px;color:#718096}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2d6a4f,#38a169);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;margin-top:16px;transition:opacity .2s}
+.btn:hover{opacity:.9}
+#result{display:none}
+.metric{text-align:center;padding:16px;background:#f7fafc;border-radius:10px;margin-bottom:8px}
+.metric .val{font-size:28px;font-weight:800;color:#2d6a4f}
+.metric .lbl{font-size:12px;color:#718096;margin-top:2px}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.metrics-grid{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:12px}
+th,td{padding:8px 6px;text-align:right;border-bottom:1px solid #e2e8f0}
+th{background:#f7fafc;color:#4a5568;font-size:12px}
+td:first-child,th:first-child{text-align:left}
+.save{color:#2d6a4f;font-weight:700}
+canvas{width:100%;height:280px;margin-top:12px}
+.tag{display:inline-block;background:#ebf8ff;color:#2b6cb0;font-size:11px;padding:2px 8px;border-radius:4px;margin:2px}
+.footer{text-align:center;padding:20px;font-size:11px;color:#a0aec0}
+</style>
+<meta name="description" content="空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,空き家シェア所有コストシミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-10/">
+<meta property="og:title" content="空き家シェア所有コストシミュレーター - kusasyu tools">
+<meta property="og:description" content="空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="空き家シェア所有コストシミュレーター - kusasyu tools">
+<meta name="twitter:description" content="空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "空き家シェア所有コストシミュレーター",
+  "description": "空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-10/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">空き家シェア所有コストシミュレーター</span></div>
+<div class="header">
+<h1>空き家シェア所有コストシミュレーター</h1>
+<p>フラクショナルオーナーシップで別荘を賢く持つ</p>
+</div>
+<div class="wrap">
+<div class="card">
+<h2>物件情報を入力</h2>
+<div class="form-grid">
+<div class="fg">
+<label>物件価格 <span class="unit">（万円）</span></label>
+<input type="number" id="price" value="2000" min="100" max="50000" step="100">
+</div>
+<div class="fg">
+<label>持分割合</label>
+<select id="share">
+<option value="2">1/2（2名共有）</option>
+<option value="4" selected>1/4（4名共有）</option>
+<option value="6">1/6（6名共有）</option>
+<option value="8">1/8（8名共有）</option>
+</select>
+</div>
+<div class="fg">
+<label>年間利用日数 <span class="unit">（日）</span></label>
+<input type="number" id="days" value="30" min="1" max="365">
+</div>
+<div class="fg">
+<label>地域</label>
+<select id="region">
+<option value="karuizawa">軽井沢</option>
+<option value="hakone">箱根</option>
+<option value="atami">熱海</option>
+<option value="nasu">那須</option>
+<option value="shonan">湘南</option>
+<option value="other">その他</option>
+</select>
+</div>
+</div>
+<button class="btn" onclick="calc()">シミュレーション実行</button>
+</div>
+<div id="result">
+<div class="card">
+<h2>あなたのシェア所有コスト</h2>
+<div class="metrics-grid">
+<div class="metric"><div class="val" id="myCost">-</div><div class="lbl">年間コスト（あなたの負担）</div></div>
+<div class="metric"><div class="val" id="perNight">-</div><div class="lbl">1泊あたり実質コスト</div></div>
+<div class="metric"><div class="val" id="saving">-</div><div class="lbl">単独所有との年間差額</div></div>
+<div class="metric"><div class="val" id="saving10">-</div><div class="lbl">10年間の節約総額</div></div>
+</div>
+</div>
+<div class="card">
+<h2>年間コスト内訳比較</h2>
+<table>
+<tr><th>項目</th><th>単独所有</th><th>シェア所有</th><th>削減額</th></tr>
+<tbody id="breakdown"></tbody>
+<tfoot id="totalRow"></tfoot>
+</table>
+</div>
+<div class="card">
+<h2>10年間 累計コスト推移</h2>
+<canvas id="chart" height="280"></canvas>
+<div style="margin-top:8px;font-size:12px;color:#718096;display:flex;gap:16px;justify-content:center">
+<span>&#9632; <span style="color:#e53e3e">単独所有</span></span>
+<span>&#9632; <span style="color:#2d6a4f">シェア所有</span></span>
+</div>
+</div>
+<div class="card">
+<h2>投資判断サマリー</h2>
+<div id="summary"></div>
+</div>
+</div>
+</div>
+<div class="footer">© Kusasyu PropTech｜本シミュレーションは概算です。実際の費用は物件により異なります。</div>
+<script>
+const REGION_DATA={
+karuizawa:{name:"軽井沢",mgmt:30000,repair:0.008,taxRatio:0.65},
+hakone:{name:"箱根",mgmt:25000,repair:0.007,taxRatio:0.6},
+atami:{name:"熱海",mgmt:22000,repair:0.007,taxRatio:0.55},
+nasu:{name:"那須",mgmt:20000,repair:0.006,taxRatio:0.5},
+shonan:{name:"湘南",mgmt:28000,repair:0.008,taxRatio:0.6},
+other:{name:"その他",mgmt:20000,repair:0.006,taxRatio:0.5}
+};
+const TAX_RATE=0.014;
+const INF=0.015;
+function fmt(n){return Math.round(n).toLocaleString()}
+function calc(){
+const P=parseInt(document.getElementById("price").value)*10000;
+const S=parseInt(document.getElementById("share").value);
+const D=parseInt(document.getElementById("days").value);
+const R=REGION_DATA[document.getElementById("region").value];
+const assessed=P*R.taxRatio;
+const tax=assessed*TAX_RATE;
+const mgmt=R.mgmt*12;
+const repair=P*R.repair;
+const insurance=Math.max(P*0.002,30000);
+const soloTotal=tax+mgmt+repair+insurance;
+const sTax=tax/S,sMgmt=mgmt/S,sRepair=repair/S,sIns=insurance/S;
+const platformFee=P/S*0.01;
+const shareTotal=sTax+sMgmt+sRepair+sIns+platformFee;
+document.getElementById("myCost").textContent="¥"+fmt(shareTotal);
+document.getElementById("perNight").textContent="¥"+fmt(shareTotal/D);
+const diff=soloTotal-shareTotal;
+document.getElementById("saving").textContent="¥"+fmt(diff);
+let solo10=0,share10=0;
+for(let i=0;i<10;i++){const m=Math.pow(1+INF,i);solo10+=soloTotal*m;share10+=shareTotal*m;}
+document.getElementById("saving10").textContent="¥"+fmt(solo10-share10);
+const items=[["固定資産税",tax,sTax],["管理費",mgmt,sMgmt],["修繕積立金",repair,sRepair],["火災保険料",insurance,sIns],["プラットフォーム利用料",0,platformFee]];
+let tb="";
+items.forEach(r=>{tb+=`<tr><td>${r[0]}</td><td>¥${fmt(r[1])}</td><td>¥${fmt(r[2])}</td><td class="save">-¥${fmt(r[1]-r[2])}</td></tr>`;});
+document.getElementById("breakdown").innerHTML=tb;
+document.getElementById("totalRow").innerHTML=`<tr style="font-weight:700"><td>合計</td><td>¥${fmt(soloTotal)}</td><td>¥${fmt(shareTotal)}</td><td class="save">-¥${fmt(diff)}</td></tr>`;
+drawChart(soloTotal,shareTotal);
+const hotelCost=D*15000;
+const yieldRate=((soloTotal-shareTotal)/(P/S)*100).toFixed(1);
+let sm=`<p style="margin-bottom:10px"><span class="tag">${R.name}</span> <span class="tag">1/${S}持分</span> <span class="tag">年${D}日利用</span></p>`;
+sm+=`<p style="font-size:14px;margin-bottom:8px"><b>初期投資額（持分購入費）:</b> ¥${fmt(P/S)}（物件価格 ¥${fmt(P)} の 1/${S}）</p>`;
+sm+=`<p style="font-size:14px;margin-bottom:8px"><b>ホテル利用との比較:</b> 年${D}泊×15,000円 = ¥${fmt(hotelCost)} → シェア所有なら ¥${fmt(shareTotal)}`;
+sm+=shareTotal<hotelCost?`<span style="color:#2d6a4f;font-weight:700"> （年間¥${fmt(hotelCost-shareTotal)}お得）</span>`:`<span style="color:#e53e3e"> （ホテルの方が¥${fmt(shareTotal-hotelCost)}安い）</span>`;
+sm+=`</p><p style="font-size:14px;margin-bottom:8px"><b>実質利回り換算:</b> ${yieldRate}%（単独所有との維持費差÷持分投資額）</p>`;
+sm+=`<p style="font-size:13px;color:#718096;margin-top:12px">※ 固定資産税率1.4%、評価額は市場価格の${Math.round(R.taxRatio*100)}%で計算。管理費は${R.name}エリア相場（月額¥${fmt(R.mgmt)}）を適用。年${INF*100}%のインフレ率で10年推計。</p>`;
+document.getElementById("summary").innerHTML=sm;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function drawChart(solo,share){
+const c=document.getElementById("chart");
+const ctx=c.getContext("2d");
+const dpr=window.devicePixelRatio||1;
+const W=c.offsetWidth,H=280;
+c.width=W*dpr;c.height=H*dpr;
+ctx.scale(dpr,dpr);
+c.style.width=W+"px";c.style.height=H+"px";
+const pad={t:20,r:20,b:36,l:70};
+const gw=W-pad.l-pad.r,gh=H-pad.t-pad.b;
+let soloD=[],shareD=[],s1=0,s2=0;
+for(let i=0;i<=10;i++){
+if(i>0){s1+=solo*Math.pow(1+INF,i-1);s2+=share*Math.pow(1+INF,i-1);}
+soloD.push(s1);shareD.push(s2);
+}
+const maxV=soloD[10]*1.1;
+ctx.clearRect(0,0,W,H);
+ctx.fillStyle="#f7fafc";ctx.fillRect(pad.l,pad.t,gw,gh);
+ctx.strokeStyle="#e2e8f0";ctx.lineWidth=1;
+ctx.fillStyle="#a0aec0";ctx.font="11px sans-serif";ctx.textAlign="right";
+for(let i=0;i<=5;i++){
+const y=pad.t+gh-gh*(i/5);
+ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+gw,y);ctx.stroke();
+ctx.fillText(fmt(maxV*(i/5)/10000)+"万",pad.l-6,y+4);
+}
+ctx.textAlign="center";
+for(let i=0;i<=10;i++){ctx.fillText(i+"年",pad.l+gw*(i/10),H-pad.b+16);}
+function drawLine(data,color){
+ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.beginPath();
+data.forEach((v,i)=>{const x=pad.l+gw*(i/10),y=pad.t+gh-gh*(v/maxV);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+ctx.stroke();
+data.forEach((v,i)=>{const x=pad.l+gw*(i/10),y=pad.t+gh-gh*(v/maxV);
+ctx.fillStyle="#fff";ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();
+ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fill();});
+}
+drawLine(soloD,"#e53e3e");drawLine(shareD,"#2d6a4f");
+const gap=soloD[10]-shareD[10];
+const mx=pad.l+gw*0.65,my=pad.t+30;
+ctx.fillStyle="rgba(45,106,79,.12)";ctx.beginPath();ctx.arc(mx+50,my+10,32,0,Math.PI*2);ctx.fill();
+ctx.fillStyle="#2d6a4f";ctx.font="bold 13px sans-serif";ctx.textAlign="center";
+ctx.fillText("10年で",mx+50,my+4);ctx.fillText("¥"+fmt(gap),mx+50,my+20);ctx.fillText("お得",mx+50,my+34);
+}
+window.addEventListener("resize",()=>{if(document.getElementById("result").style.display==="block")calc();});
+</script>
+</body>
+</html>

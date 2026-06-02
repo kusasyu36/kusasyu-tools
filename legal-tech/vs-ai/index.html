@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>顧問弁護士_vs_AI法務_コスト乗り換えシミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.25em;color:#2d3748;margin:16px 0 4px}
+.sub{text-align:center;color:#718096;font-size:.8em;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:.95em;color:#2b6cb0;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #ebf8ff}
+label{display:block;font-size:.85em;font-weight:700;color:#4a5568;margin:10px 0 4px}
+label:first-child{margin-top:0}
+input[type=number],select{width:100%;padding:10px 12px;border:2px solid #e2e8f0;border-radius:8px;font-size:.95em;transition:.2s;background:#f7fafc}
+input:focus,select:focus{outline:none;border-color:#4299e1;background:#fff}
+.unit{display:flex;align-items:center;gap:6px}
+.unit input{flex:1}
+.unit span{font-size:.82em;color:#718096;white-space:nowrap}
+.ref{background:#fffbeb;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:.78em;color:#744210}
+.ref b{color:#d69e2e}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:6px;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(66,153,225,.4)}
+#R{display:none}
+.badge{display:inline-block;font-size:.92em;font-weight:800;padding:8px 20px;border-radius:24px;color:#fff;margin:6px 0 10px}
+.bg{background:#38a169}.by{background:#d69e2e}.br{background:#e53e3e}
+.metric{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:.87em}
+.metric:last-child{border:none}
+.metric b{color:#2b6cb0}
+.bar-wrap{margin:14px 0 6px}
+.bar-label{display:flex;justify-content:space-between;font-size:.78em;color:#718096;margin-bottom:3px}
+.bar-outer{height:28px;background:#e2e8f0;border-radius:8px;overflow:hidden;position:relative}
+.bar-inner{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.75em;font-weight:700;color:#fff;transition:width .6s}
+.bar-a{background:linear-gradient(90deg,#e53e3e,#fc8181)}
+.bar-b{background:linear-gradient(90deg,#38a169,#68d391)}
+canvas{width:100%;height:200px;margin:8px 0}
+.act{background:#f7fafc;border-radius:8px;padding:12px;margin-top:10px;font-size:.85em}
+.act h3{font-size:.9em;color:#2b6cb0;margin-bottom:6px}
+.act ul{padding-left:18px;margin:0}
+.act li{margin:3px 0}
+.note{text-align:center;font-size:.72em;color:#a0aec0;margin-top:12px}
+@media(max-width:480px){.w{padding:10px}h1{font-size:1.1em}.card{padding:14px}}
+</style>
+<meta name="description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,顧問弁護士_vs_AI法務_コスト乗り換えシミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/vs-ai/">
+<meta property="og:title" content="顧問弁護士_vs_AI法務_コスト乗り換えシミュレーター - kusasyu tools">
+<meta property="og:description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/vs-ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="顧問弁護士_vs_AI法務_コスト乗り換えシミュレーター - kusasyu tools">
+<meta name="twitter:description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "顧問弁護士_vs_AI法務_コスト乗り換えシミュレーター",
+  "description": "中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/vs-ai/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">顧問弁護士_vs_AI法務_コスト乗り換えシミュレーター</span></div>
+<div class="w">
+<h1>顧問弁護士 vs AI法務<br>コスト乗り換えシミュレーター</h1>
+<p class="sub">現在の法務コストを入力するだけで、最適な乗り換えプランと年間削減額を算出</p>
+
+<div class="card">
+<h2>現在の法務コスト</h2>
+<label>月額顧問料</label>
+<div class="unit"><input type="number" id="iR" value="55000" min="0" step="5000"><span>円/月</span></div>
+<label>年間スポット相談費用（訴訟対応・臨時相談等）</label>
+<div class="unit"><input type="number" id="iS" value="300000" min="0" step="10000"><span>円/年</span></div>
+<label>月間の契約書処理件数</label>
+<div class="unit"><input type="number" id="iC" value="8" min="0" max="200"><span>件/月</span></div>
+<label>業種</label>
+<select id="iB"><option value="1">IT・Web・SaaS</option><option value="1.1">不動産・建設</option><option value="1.2">製造・卸売</option><option value="0.9">小売・サービス</option><option value="1.15">医療・介護</option><option value="1">その他</option></select>
+</div>
+
+<div class="ref">
+<b>📊 市場参考価格（2024年調査）</b><br>
+顧問弁護士の相場：月額 <b>3〜10万円</b>（中小企業向け）<br>
+AI法務サービス：月額 <b>1〜5万円</b>（LegalForce / MNTSQ / GVA等）<br>
+AI＋弁護士ハイブリッド：月額 <b>3〜8万円</b>（AI審査＋弁護士最終確認）
+</div>
+
+<div class="card">
+<h2>AI法務プランの想定コスト</h2>
+<label>AI法務ツール月額（契約書レビュー等）</label>
+<div class="unit"><input type="number" id="iA" value="30000" min="0" step="5000"><span>円/月</span></div>
+<label>弁護士スポット相談（AI併用で削減後）</label>
+<div class="unit"><input type="number" id="iL" value="100000" min="0" step="10000"><span>円/年</span></div>
+<label>初期導入・セットアップ費用</label>
+<div class="unit"><input type="number" id="iI" value="100000" min="0" step="10000"><span>円（一括）</span></div>
+</div>
+
+<button class="btn" onclick="calc()">シミュレーション実行</button>
+
+<div id="R">
+<div class="card">
+<h2>コスト比較結果</h2>
+<div id="badge"></div>
+<div id="metrics"></div>
+<div class="bar-wrap">
+<div class="bar-label"><span>現在のコスト（年間）</span><span id="lA"></span></div>
+<div class="bar-outer"><div class="bar-inner bar-a" id="bA"></div></div>
+</div>
+<div class="bar-wrap">
+<div class="bar-label"><span>AI法務ハイブリッド（年間）</span><span id="lB"></span></div>
+<div class="bar-outer"><div class="bar-inner bar-b" id="bB"></div></div>
+</div>
+<canvas id="cv" height="200"></canvas>
+</div>
+<div class="card">
+<h2>推奨アクション</h2>
+<div id="action"></div>
+</div>
+</div>
+<p class="note">※ 本ツールは概算シミュレーションです。実際の費用はサービス提供者にご確認ください。<br>「法務トリアージ判定ツール」と併用すると、より精度の高い判断が可能です。</p>
+</div>
+<script>
+function fmt(n){return n.toLocaleString('ja-JP')}
+function calc(){
+var r=+document.getElementById('iR').value,s=+document.getElementById('iS').value,c=+document.getElementById('iC').value,bf=+document.getElementById('iB').value,a=+document.getElementById('iA').value,l=+document.getElementById('iL').value,ini=+document.getElementById('iI').value;
+var curY=r*12+s;
+var newY=a*12+l;
+var save=curY-newY;
+var saveR=curY>0?save/curY*100:0;
+var roi=save>0?Math.ceil(ini/(save/12)):Infinity;
+var riskF=bf*((c>15?1.2:c>5?1:0.85));
+var type,badge,cls;
+if(saveR>=30&&roi<=8){type=1;badge='即時切り替え推奨';cls='bg'}
+else if(saveR>=10){type=2;badge='段階的移行が最適';cls='by'}
+else{type=3;badge='現状維持でよい';cls='br'}
+document.getElementById('R').style.display='block';
+document.getElementById('badge').innerHTML='<span class="badge '+cls+'">'+badge+'</span>';
+var m='<div class="metric"><span>現在の年間法務コスト</span><b>¥'+fmt(curY)+'</b></div>';
+m+='<div class="metric"><span>AI法務ハイブリッド年間コスト</span><b>¥'+fmt(newY)+'</b></div>';
+m+='<div class="metric"><span>年間削減額</span><b style="color:'+(save>0?'#38a169':'#e53e3e')+'">¥'+fmt(save)+'</b></div>';
+m+='<div class="metric"><span>コスト削減率</span><b>'+saveR.toFixed(1)+'%</b></div>';
+m+='<div class="metric"><span>投資回収期間</span><b>'+(roi<999?roi+'ヶ月':'—')+'</b></div>';
+document.getElementById('metrics').innerHTML=m;
+var mx=Math.max(curY,newY,1);
+document.getElementById('bA').style.width=Math.round(curY/mx*100)+'%';
+document.getElementById('bB').style.width=Math.round(newY/mx*100)+'%';
+document.getElementById('lA').textContent='¥'+fmt(curY);
+document.getElementById('lB').textContent='¥'+fmt(newY);
+drawChart(curY,newY,ini);
+var h='';
+if(type===1){
+h='<div class="act"><h3>🟢 即時切り替え推奨</h3><p>年間<b>¥'+fmt(save)+'</b>の削減が見込め、<b>'+roi+'ヶ月</b>で初期投資を回収できます。</p><ul>';
+h+='<li>AI法務ツールを導入し、定型契約書（NDA・業務委託等）の一次レビューを自動化</li>';
+h+='<li>顧問弁護士契約を解約またはスポット契約に切り替え</li>';
+h+='<li>月'+c+'件の契約書処理をAIに移行（複雑案件のみ弁護士へ）</li>';
+h+='<li>導入後3ヶ月で効果測定し、プラン見直し</li></ul></div>';
+}else if(type===2){
+h='<div class="act"><h3>🟡 段階的移行が最適</h3><p>年間<b>¥'+fmt(save)+'</b>の削減が見込めますが、業種特性を考慮し段階的な移行を推奨します。</p><ul>';
+h+='<li><b>Phase 1（1〜2ヶ月目）</b>：AI法務ツールを試験導入し、定型契約のみAIレビュー</li>';
+h+='<li><b>Phase 2（3〜4ヶ月目）</b>：顧問弁護士の月額プランを縮小（稼働時間削減交渉）</li>';
+h+='<li><b>Phase 3（5ヶ月目〜）</b>：AI＋スポット弁護士体制に完全移行</li>';
+h+='<li>各フェーズで品質チェックを実施し、問題があれば前段階に戻す</li></ul></div>';
+}else{
+h='<div class="act"><h3>🔴 現状維持でよい</h3><p>現在のコスト構造はすでに効率的か、AI導入による削減効果が限定的です。</p><ul>';
+h+='<li>現在の顧問弁護士契約は適正価格帯です</li>';
+h+='<li>契約書処理件数（月'+c+'件）に対し、AI導入の費用対効果が低い</li>';
+h+='<li>次回契約更新時に再度シミュレーションを実施することを推奨</li>';
+h+='<li>まずは「法務トリアージ判定ツール」で案件ごとの対応方法を最適化</li></ul></div>';
+}
+document.getElementById('action').innerHTML=h;
+document.getElementById('R').scrollIntoView({behavior:'smooth'});
+}
+function drawChart(cur,nw,ini){
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+cv.width=cv.offsetWidth*2;cv.height=400;ctx.scale(2,2);
+var W=cv.offsetWidth,H=200;
+ctx.clearRect(0,0,W,H);
+var yrs=[1,2,3,4,5];
+var mx=cur*5+100000;
+var gL=50,gR=30,gT=20,gB=30;
+var gW=W-gL-gR,gH=H-gT-gB;
+ctx.strokeStyle='#e2e8f0';ctx.lineWidth=1;
+for(var i=0;i<=4;i++){
+var y=gT+gH*(1-i/4);
+ctx.beginPath();ctx.moveTo(gL,y);ctx.lineTo(gL+gW,y);ctx.stroke();
+ctx.fillStyle='#a0aec0';ctx.font='9px sans-serif';ctx.textAlign='right';
+ctx.fillText(fmt(Math.round(mx*i/4/10000))+'万',gL-4,y+3);
+}
+ctx.beginPath();ctx.strokeStyle='#e53e3e';ctx.lineWidth=2;
+yrs.forEach(function(yr,idx){
+var x=gL+gW*(idx/(yrs.length-1));
+var v=cur*yr;var y=gT+gH*(1-v/mx);
+idx===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+});ctx.stroke();
+ctx.beginPath();ctx.strokeStyle='#38a169';ctx.lineWidth=2;
+yrs.forEach(function(yr,idx){
+var x=gL+gW*(idx/(yrs.length-1));
+var v=nw*yr+ini;var y=gT+gH*(1-v/mx);
+idx===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+});ctx.stroke();
+yrs.forEach(function(yr,idx){
+var x=gL+gW*(idx/(yrs.length-1));
+ctx.fillStyle='#718096';ctx.font='9px sans-serif';ctx.textAlign='center';
+ctx.fillText(yr+'年目',x,H-10);
+});
+ctx.fillStyle='#e53e3e';ctx.fillRect(gL,H-8,12,3);
+ctx.fillStyle='#718096';ctx.font='9px sans-serif';ctx.textAlign='left';
+ctx.fillText('現在',gL+16,H-5);
+ctx.fillStyle='#38a169';ctx.fillRect(gL+50,H-8,12,3);
+ctx.fillText('AI法務',gL+66,H-5);
+}
+window.addEventListener('load',function(){setTimeout(calc,300)});
+</script>
+</body>
+</html>

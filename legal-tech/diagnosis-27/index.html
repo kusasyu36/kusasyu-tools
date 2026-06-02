@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中小企業_法務リスク＆コスト診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;color:#2d3748;margin:16px 0 4px}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.05em;color:#2b6cb0;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #ebf4ff}
+label{display:block;font-weight:600;font-size:.9em;margin:10px 0 4px}
+select,input[type=number]{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:1em;background:#fff}
+.radio-group{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0}
+.radio-group label{font-weight:400;background:#edf2f7;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:.88em;transition:.2s}
+.radio-group input{display:none}
+.radio-group input:checked+span{background:#2b6cb0;color:#fff;border-radius:20px;padding:8px 16px;margin:-8px -16px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:16px;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(66,153,225,.4)}
+#result{display:none}
+.risk-badge{display:inline-block;font-size:2em;font-weight:900;width:64px;height:64px;line-height:64px;text-align:center;border-radius:50%;color:#fff;margin:8px 0}
+.risk-A{background:#38a169}.risk-B{background:#d69e2e}.risk-C{background:#dd6b20}.risk-D{background:#e53e3e}
+.metric{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:.92em}
+.metric b{color:#2d3748}
+.bar-chart{margin:12px 0}
+.bar-row{display:flex;align-items:center;margin:6px 0;font-size:.85em}
+.bar-label{width:120px;flex-shrink:0;font-weight:600}
+.bar-bg{flex:1;background:#edf2f7;border-radius:6px;height:28px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-weight:700;font-size:.8em;transition:width .6s}
+.bar-0{background:linear-gradient(90deg,#38a169,#48bb78)}.bar-1{background:linear-gradient(90deg,#2b6cb0,#4299e1)}.bar-2{background:linear-gradient(90deg,#d69e2e,#ecc94b)}
+.actions{list-style:none;counter-reset:a}
+.actions li{counter-increment:a;padding:10px 10px 10px 40px;margin:6px 0;background:#ebf8ff;border-radius:8px;position:relative;font-size:.9em}
+.actions li::before{content:counter(a);position:absolute;left:10px;top:10px;background:#2b6cb0;color:#fff;width:22px;height:22px;border-radius:50%;text-align:center;line-height:22px;font-size:.8em;font-weight:700}
+.link-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.link-card{background:#f7fafc;border:2px solid #e2e8f0;border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:.2s;text-decoration:none;color:#2d3748}
+.link-card:hover{border-color:#4299e1;background:#ebf8ff}
+.link-card .arrow{color:#4299e1;font-size:1.2em}
+.link-card p{font-size:.78em;color:#718096;margin-top:4px}
+.tag{display:inline-block;background:#ebf8ff;color:#2b6cb0;padding:2px 10px;border-radius:12px;font-size:.8em;font-weight:600}
+.rec-box{background:#f0fff4;border-left:4px solid #38a169;padding:12px 16px;border-radius:0 8px 8px 0;margin:10px 0}
+footer{text-align:center;color:#a0aec0;font-size:.75em;padding:20px 0}
+</style>
+<meta name="description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,中小企業_法務リスク＆コスト診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-27/">
+<meta property="og:title" content="中小企業_法務リスク＆コスト診断ツール - kusasyu tools">
+<meta property="og:description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-27/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中小企業_法務リスク＆コスト診断ツール - kusasyu tools">
+<meta name="twitter:description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "中小企業_法務リスク＆コスト診断ツール",
+  "description": "中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-27/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">中小企業_法務リスク＆コスト診断ツール</span></div>
+<div class="wrap">
+<h1>法務リスク＆コスト診断</h1>
+<p class="sub">5つの質問で最適な法務支援モデルがわかる</p>
+
+<form id="form" class="card">
+<h2>企業情報を入力</h2>
+
+<label>業種</label>
+<select id="ind" required>
+<option value="">選択してください</option>
+<option value="it">IT・ソフトウェア</option>
+<option value="mfg">製造業</option>
+<option value="retail">小売・EC</option>
+<option value="const">建設・不動産</option>
+<option value="med">医療・ヘルスケア</option>
+<option value="fin">金融・保険</option>
+<option value="food">飲食・サービス</option>
+<option value="ad">広告・メディア</option>
+<option value="other">その他</option>
+</select>
+
+<label>従業員数</label>
+<input type="number" id="emp" min="1" max="9999" placeholder="例: 50" required>
+
+<label>月間の契約・発注件数（目安）</label>
+<select id="freq">
+<option value="1">5件未満</option>
+<option value="2">5〜15件</option>
+<option value="3">16〜30件</option>
+<option value="4">31件以上</option>
+</select>
+
+<label>過去3年間の法的トラブル経験</label>
+<div class="radio-group">
+<label><input type="radio" name="trouble" value="0" checked><span>なし</span></label>
+<label><input type="radio" name="trouble" value="1"><span>1回</span></label>
+<label><input type="radio" name="trouble" value="2"><span>2回以上</span></label>
+</div>
+
+<label>海外取引・越境業務</label>
+<div class="radio-group">
+<label><input type="radio" name="intl" value="0" checked><span>なし</span></label>
+<label><input type="radio" name="intl" value="1"><span>あり</span></label>
+</div>
+
+<button type="submit" class="btn">診断する</button>
+</form>
+
+<div id="result"></div>
+<footer>© Kusasyu Legal Tech｜本診断は目安であり法的助言ではありません</footer>
+</div>
+
+<script>
+document.getElementById('form').addEventListener('submit',function(e){
+e.preventDefault();
+const ind=document.getElementById('ind').value;
+if(!ind){alert('業種を選択してください');return}
+const emp=+document.getElementById('emp').value;
+if(!emp||emp<1){alert('従業員数を入力してください');return}
+const freq=+document.getElementById('freq').value;
+const trouble=+document.querySelector('[name=trouble]:checked').value;
+const intl=+document.querySelector('[name=intl]:checked').value;
+
+const riskInd={it:2,mfg:2,retail:1,const:3,med:3,fin:3,food:1,ad:1,other:1};
+let score=(riskInd[ind]||1);
+score+=emp<=30?0:emp<=100?1:emp<=200?2:3;
+score+=freq;
+score+=trouble*2;
+score+=intl*2;
+
+let level,lName,lDesc,lColor;
+if(score<=4){level='A';lName='低リスク';lDesc='法務リスクは比較的低い状態です。定型契約の確認が中心で、専門家の常時関与は必須ではありません。';lColor='#38a169'}
+else if(score<=7){level='B';lName='中リスク';lDesc='一定の法務対応が必要です。AIツールでルーティンをカバーし、重要案件のみ弁護士に相談するモデルが効率的です。';lColor='#d69e2e'}
+else if(score<=10){level='C';lName='高リスク';lDesc='法務リスクが高く、継続的な専門家サポートが推奨されます。AI+弁護士のハイブリッド体制が費用対効果に優れます。';lColor='#dd6b20'}
+else{level='D';lName='最高リスク';lDesc='複雑な法務課題を常時抱える可能性が高く、顧問弁護士との密な連携が不可欠です。';lColor='#e53e3e'}
+
+const base=emp*1.2+freq*15+trouble*40+intl*30;
+const costRetainer=Math.round((base*1.8+30)*1000/10000)*10000;
+const costHybrid=Math.round((base*1.0+12)*1000/10000)*10000;
+const costSpot=Math.round((base*0.6+5)*1000/10000)*10000;
+const costs=[costRetainer,costHybrid,costSpot];
+const maxC=Math.max(...costs);
+
+const models=['顧問弁護士','AI＋弁護士\nハイブリッド','スポット相談'];
+const recIdx=score<=4?2:score<=10?1:0;
+const recModel=models[recIdx].replace('\n','');
+
+let currentEst=costRetainer;
+const saving=currentEst-costs[recIdx];
+
+const actionSets={
+0:['現在の顧問弁護士契約の内容と費用を棚卸しする','月次の法務相談件数を1ヶ月間記録する','顧問弁護士に「AI法務ツール併用」の相談をする'],
+1:['AI法務ツール（契約書レビュー等）の無料トライアルを試す','定型業務（NDA・業務委託）をAI対応に切り替える','重要案件のみ弁護士に依頼するフローを設計する'],
+2:['法務相談が発生した際の連絡先リストを整備する','年1回の契約書総点検を社内カレンダーに登録する','業界特有の法改正情報のメルマガに登録する']
+};
+const actions=actionSets[recIdx];
+
+let barsHTML='';
+const labels=['顧問弁護士','AIハイブリッド','スポット相談'];
+costs.forEach((c,i)=>{
+const w=Math.max(c/maxC*100,15);
+const sel=i===recIdx?' ★推奨':'';
+barsHTML+=`<div class="bar-row"><div class="bar-label">${labels[i]}${sel}</div><div class="bar-bg"><div class="bar-fill bar-${i}" style="width:${w}%">${(c/10000).toFixed(0)}万円</div></div></div>`;
+});
+
+let actHTML='';
+actions.forEach(a=>{actHTML+=`<li>${a}</li>`});
+
+const r=document.getElementById('result');
+r.style.display='block';
+r.innerHTML=`
+<div class="card" style="text-align:center">
+<h2>診断結果</h2>
+<div class="risk-badge risk-${level}">${level}</div>
+<p style="font-size:1.1em;font-weight:700;color:${lColor}">法務リスクレベル：${lName}</p>
+<p style="font-size:.88em;color:#4a5568;margin-top:6px">${lDesc}</p>
+<div style="margin-top:14px;text-align:left">
+<div class="metric"><span>リスクスコア</span><b>${score}点 / 15点</b></div>
+<div class="metric"><span>業種リスク</span><b>${ind.toUpperCase()}</b></div>
+<div class="metric"><span>従業員規模</span><b>${emp}名</b></div>
+</div>
+</div>
+
+<div class="card">
+<h2>年間コスト比較（税別概算）</h2>
+<div class="bar-chart">${barsHTML}</div>
+<div class="rec-box">
+<span class="tag">推奨</span> <b>${recModel}</b>で年間約<b>${(costs[recIdx]/10000).toFixed(0)}万円</b><br>
+<span style="font-size:.85em;color:#4a5568">顧問弁護士と比較して年間約${(saving/10000).toFixed(0)}万円の削減可能性</span>
+</div>
+</div>
+
+<div class="card">
+<h2>今すぐやるべき3つのアクション</h2>
+<ol class="actions">${actHTML}</ol>
+</div>
+
+<div class="card">
+<h2>さらに詳しく調べる</h2>
+<div class="link-cards">
+<a class="link-card" href="#triage" onclick="alert('トリアージツールは準備中です')">
+<div class="arrow">→</div>
+<b>AI対応で足りる？</b>
+<p>案件トリアージツールで確認</p>
+</a>
+<a class="link-card" href="#sim" onclick="alert('シミュレーターは準備中です')">
+<div class="arrow">→</div>
+<b>切替コストを試算</b>
+<p>乗換シミュレーターへ</p>
+</a>
+</div>
+</div>`;
+r.scrollIntoView({behavior:'smooth'});
+});
+</script>
+</body>
+</html>

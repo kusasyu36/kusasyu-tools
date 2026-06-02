@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>候補物件スコアリング比較シート - kusasyu tools</title>
+<meta name="description" content="空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,候補物件スコアリング比較シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-14/">
+<meta property="og:title" content="候補物件スコアリング比較シート - kusasyu tools">
+<meta property="og:description" content="空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="候補物件スコアリング比較シート - kusasyu tools">
+<meta name="twitter:description" content="空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "候補物件スコアリング比較シート",
+  "description": "空き家920万戸問題×別荘需要のミスマッチを解消する、日本初の「分数所有（フラクショナルオーナーシップ）」投資判断ツールセット。物件価格・持分割合・維持費を入力するだけで、単独所有との年間コスト比較・10年間の総費用シミュレーション・投資利回りを即算出。海外で市場検証済み（Pacaso評価額10億ドル超、Fu",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-14/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-02"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>候補物件スコアリング比較シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>候補物件スコアリング比較シート</h1>
+  <p class="project-name">別荘欲しいけど高い？シェア所有コスト即試算</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>評価カテゴリ</th><th>評価項目</th><th>配点上限</th><th>判定基準_3点_良好</th><th>判定基準_2点_普通</th><th>判定基準_1点_要注意</th><th>物件A</th><th>物件B</th><th>物件C</th><th>物件D</th><th>物件E</th></tr></thead><tbody><tr><td>基本情報</td><td>物件名</td><td>-</td><td>-</td><td>-</td><td>-</td><td>旧中村邸（軽井沢）</td><td>仙石原ヴィラ（箱根）</td><td>伊豆山パノラマハウス（熱海）</td><td></td><td></td></tr><tr><td>基本情報</td><td>所在地</td><td>-</td><td>-</td><td>-</td><td>-</td><td>長野県軽井沢町大字長倉</td><td>神奈川県箱根町仙石原</td><td>静岡県熱海市伊豆山</td><td></td><td></td></tr><tr><td>基本情報</td><td>物件価格（万円）</td><td>-</td><td>-</td><td>-</td><td>-</td><td>2500</td><td>1800</td><td>1200</td><td></td><td></td></tr><tr><td>基本情報</td><td>築年数（年）</td><td>-</td><td>-</td><td>-</td><td>-</td><td>35</td><td>28</td><td>42</td><td></td><td></td></tr><tr><td>基本情報</td><td>延床面積（㎡）</td><td>-</td><td>-</td><td>-</td><td>-</td><td>120</td><td>85</td><td>95</td><td></td><td></td></tr><tr><td>基本情報</td><td>土地面積（㎡）</td><td>-</td><td>-</td><td>-</td><td>-</td><td>350</td><td>200</td><td>180</td><td></td><td></td></tr><tr><td>基本情報</td><td>構造</td><td>-</td><td>-</td><td>-</td><td>-</td><td>木造2階建</td><td>木造2階建</td><td>RC造2階建</td><td></td><td></td></tr><tr><td>基本情報</td><td>想定共同所有者数（名）</td><td>-</td><td>-</td><td>-</td><td>-</td><td>4</td><td>4</td><td>4</td><td></td><td></td></tr><tr><td>基本情報</td><td>1口あたり取得費用（万円）</td><td>-</td><td>-</td><td>-</td><td>-</td><td>625</td><td>450</td><td>300</td><td></td><td></td></tr><tr><td>基本情報</td><td>年間維持費_全体（万円）</td><td>-</td><td>-</td><td>-</td><td>-</td><td>120</td><td>95</td><td>80</td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `評価カテゴリ,評価項目,配点上限,判定基準_3点_良好,判定基準_2点_普通,判定基準_1点_要注意,物件A,物件B,物件C,物件D,物件E
+基本情報,物件名,-,-,-,-,旧中村邸（軽井沢）,仙石原ヴィラ（箱根）,伊豆山パノラマハウス（熱海）,,
+基本情報,所在地,-,-,-,-,長野県軽井沢町大字長倉,神奈川県箱根町仙石原,静岡県熱海市伊豆山,,
+基本情報,物件価格（万円）,-,-,-,-,2500,1800,1200,,
+基本情報,築年数（年）,-,-,-,-,35,28,42,,
+基本情報,延床面積（㎡）,-,-,-,-,120,85,95,,
+基本情報,土地面積（㎡）,-,-,-,-,350,200,180,,
+基本情報,構造,-,-,-,-,木造2階建,木造2階建,RC造2階建,,
+基本情報,想定共同所有者数（名）,-,-,-,-,4,4,4,,
+基本情報,1口あたり取得費用（万円）,-,-,-,-,625,450,300,,
+基本情報,年間維持費_全体（万円）,-,-,-,-,120,95,80,,
+基本情報,1口あたり年間維持費（万円）,-,-,-,-,30,23.75,20,,
+1_立地アクセス,最寄り駅・ICからの距離,3,徒歩15分以内またはIC5km以内,車15分以内またはIC10km以内,車30分以上またはIC15km超,3,2,3,,
+1_立地アクセス,都心からの所要時間,3,2時間以内,3時間以内,3時間超,3,3,2,,
+1_立地アクセス,周辺環境・利便施設,3,スーパー・病院が車10分以内,車20分以内,車30分以上,2,2,3,,
+1_立地アクセス,通信環境（携帯・Wi-Fi）,3,光回線・4G/5G圏内,モバイルWi-Fi利用可,圏外エリアあり,3,3,3,,
+1_立地アクセス,小計（満点12）,-,-,-,-,11,10,11,,
+2_建物状態,構造・躯体の健全性,3,傾き・クラック・シロアリなし,軽微な補修で対応可,大規模補修が必要,2,3,1,,
+2_建物状態,屋根・外壁の状態,3,目視で異常なし,部分補修が必要,全面張替・葺替が必要,2,2,1,,
+2_建物状態,水回り設備の状態,3,現状利用可,一部交換が必要,全面交換が必要,1,2,2,,
+2_建物状態,電気・給排水インフラ,3,問題なし,部分改修が必要,全面改修が必要,2,3,2,,
+2_建物状態,小計（満点12）,-,-,-,-,7,10,6,,
+3_改修見積,改修概算費用,3,300万円未満,300〜800万円,800万円超,1,2,1,,
+3_改修見積,工期の見通し,3,3ヶ月以内,6ヶ月以内,6ヶ月超,2,3,2,,
+3_改修見積,地元施工業者の確保,3,実績ある業者を確保済,候補あり・未確定,業者選定が困難,3,2,2,,
+3_改修見積,小計（満点9）,-,-,-,-,6,7,5,,
+4_法的リスク,接道義務の充足（建築基準法43条）,3,幅員4m以上の道路に2m以上接道,セットバック要だが対応可,接道義務未充足,3,3,2,,
+4_法的リスク,用途地域の適合性,3,住居系用途地域で制限少,条件付きで利用可,建築・用途制限が厳しい,3,2,3,,
+4_法的リスク,再建築可否,3,再建築可,条件付き再建築可（既存不適格等）,再建築不可,3,3,1,,
+4_法的リスク,登記・権利関係の明確さ,3,単独所有・抵当権なし,共有だが権利整理可能,未登記・相続未了・境界未確定,3,2,2,,
+4_法的リスク,小計（満点12）,-,-,-,-,12,10,8,,
+5_収益ポテンシャル,賃貸需要・稼働見込み,3,年間稼働率60%以上見込み,40〜60%見込み,40%未満,3,2,3,,
+5_収益ポテンシャル,想定表面利回り,3,5%以上,3〜5%,3%未満,2,2,3,,
+5_収益ポテンシャル,資産価値の安定性,3,地価横ばい〜上昇傾向,地価安定だが横ばい,地価下落傾向,3,2,2,,
+5_収益ポテンシャル,転売時の流動性,3,エリア取引実績多数,一定の取引実績あり,取引事例が極めて少ない,3,2,2,,
+5_収益ポテンシャル,小計（満点12）,-,-,-,-,11,8,10,,
+総合評価,合計スコア（満点57）,-,-,-,-,47,45,40,,
+総合評価,ランク,-,A（48〜57点）：強く推奨,B（38〜47点）：条件付き推奨,C（37点以下）：慎重検討,B,B,B,,
+総合評価,総合所見,-,-,-,-,立地・法務は最高評価。築35年で水回り改修要（約600万円見込み）。1口625万円＋改修按分で実質約775万円,バランス型。改修費が低く即入居に近い。1口450万円で参入しやすい,駅近・観光需要高いが築42年の改修コストと再建築不可リスクに注意,,
+備考,シミュレーター連携,-,本シートの評価結果と「空き家シェア所有コストシミュレーター」の10年間総費用シミュレーション結果を突合し投資判断を行ってください,-,-,-,-,-,,
+備考,記入方法,-,各項目を現地調査・書類確認で判定し1〜3点を記入。小計・合計はExcelのSUM関数で自動算出を推奨,-,-,-,-,-,,
+備考,関連資料,-,投資判断後は「分数所有スタートガイド＆契約チェックリスト」に沿い所有方式選定・契約条項の確定に進んでください,-,-,-,-,-,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_候補物件スコアリング比較シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

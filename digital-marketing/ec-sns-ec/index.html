@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版） - kusasyu tools</title>
+<meta name="description" content="EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-sns-ec/">
+<meta property="og:title" content="EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版） - kusasyu tools">
+<meta property="og:description" content="EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-sns-ec/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版） - kusasyu tools">
+<meta name="twitter:description" content="EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版）",
+  "description": "EC店舗オーナーが商品名・特徴・価格を入力するだけで、Instagram・X・TikTok向けの投稿文（キャプション・ハッシュタグ・投稿タイプ別バリエーション）を一括生成するHTMLツール。加えて、曜日×プラットフォーム別の最適投稿時間と季節イベントを組み込んだ月間コンテンツカレンダーをCSVで提供し、「何を",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-sns-ec/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-06-02"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版）</h1>
+  <p class="project-name">EC商品→SNS投稿を秒で作るAIツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>日付</th><th>曜日</th><th>プラットフォーム</th><th>推奨投稿時間</th><th>投稿タイプ</th><th>商戦・イベント</th><th>投稿文テンプレート</th><th>ハッシュタグ</th><th>画像/動画メモ</th><th>ステータス</th></tr></thead><tbody><tr><td>2026/06/01</td><td>月</td><td>X</td><td>12:00</td><td>商品紹介</td><td>楽天スーパーSALE直前</td><td>🔔明日からSALE開始！{商品名}（通常{価格}）がお買い得に。今のうちにお気に入り登録で買い逃しゼロ👇</td><td>#楽天スーパーSALE #事前お気に入り #EC</td><td>商品メイン画像</td><td>未着手</td></tr><tr><td>2026/06/02</td><td>火</td><td>Instagram</td><td>19:00</td><td>ライフスタイル</td><td>楽天スーパーSALE前夜</td><td>SALE前夜の準備できてますか？✨ {商品名}のある暮らしを覗き見👀 明日0時スタート！プロフのリンクからチェック</td><td>#楽天SALE #暮らしを整える #おすすめ</td><td>使用シーン写真</td><td>未着手</td></tr><tr><td>2026/06/03</td><td>水</td><td>X</td><td>20:00</td><td>レビュー紹介</td><td>通常営業</td><td>「{商品名}リピ確定です」——お客様のリアルな声をご紹介📩 {特徴}が刺さったとのこと。詳細はプロフへ</td><td>#お客様の声 #レビュー #リピ買い</td><td>レビューキャプチャ</td><td>未着手</td></tr><tr><td>2026/06/04</td><td>木</td><td>Instagram</td><td>19:00</td><td>舞台裏</td><td>楽天スーパーSALE開始</td><td>🎉SALE始まりました！朝から梱包フル稼働中📦 {商品名}の発送準備の裏側をお見せします</td><td>#楽天スーパーSALE #発送作業 #舞台裏</td><td>梱包作業写真</td><td>未着手</td></tr><tr><td>2026/06/05</td><td>金</td><td>X</td><td>12:00</td><td>商品紹介</td><td>楽天スーパーSALE</td><td>【SALE開催中】{商品名}｜{価格}▶SALE特価🔥 {特徴}で選ばれてます。残り在庫わずか⏳</td><td>#楽天スーパーSALE #タイムセール #限定</td><td>商品+価格画像</td><td>未着手</td></tr><tr><td>2026/06/06</td><td>土</td><td>TikTok</td><td>20:00</td><td>ライフスタイル</td><td>楽天スーパーSALE</td><td>【SALE中に買うべきモノ】{商品名}を使った1日ルーティン🎬 {特徴}だから毎日使える！</td><td>#楽天SALE #購入品紹介 #ルーティン</td><td>30秒ルーティン動画</td><td>未着手</td></tr><tr><td>2026/06/07</td><td>日</td><td>TikTok</td><td>19:00</td><td>レビュー紹介</td><td>楽天スーパーSALE</td><td>「正直レビュー」{商品名}を1ヶ月使った結果…🤔 良い点も気になる点も全部話します！</td><td>#正直レビュー #購入品 #本音レビュー</td><td>レビュー動画</td><td>未着手</td></tr><tr><td>2026/06/08</td><td>月</td><td>X</td><td>12:00</td><td>舞台裏</td><td>楽天スーパーSALE</td><td>SALE4日目。注文殺到中🙏 1つ1つ丁寧に検品→梱包→発送。{商品名}をお待ちの皆さまもう少しだけお待ちを📦</td><td>#EC運営 #ショップ裏側 #感謝</td><td>作業風景写真</td><td>未着手</td></tr><tr><td>2026/06/09</td><td>火</td><td>Instagram</td><td>20:00</td><td>商品紹介</td><td>楽天スーパーSALE後半</td><td>⏰SALEもあと少し！{商品名}（{価格}）は{特徴}が他にない強み。試すなら今✨</td><td>#楽天SALE残り僅か #駆け込み #お買い物</td><td>商品アップ写真</td><td>未着手</td></tr><tr><td>2026/06/10</td><td>水</td><td>X</td><td>20:00</td><td>ライフスタイル</td><td>楽天スーパーSALE最終日</td><td>【本日最終日】{商品名}のある生活始めませんか？ SALE価格は今日23:59まで⏳</td><td>#楽天SALE最終日 #ラストチャンス #お得</td><td>ライフスタイル写真</td><td>未着手</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `日付,曜日,プラットフォーム,推奨投稿時間,投稿タイプ,商戦・イベント,投稿文テンプレート,ハッシュタグ,画像/動画メモ,ステータス
+2026/06/01,月,X,12:00,商品紹介,楽天スーパーSALE直前,"🔔明日からSALE開始！{商品名}（通常{価格}）がお買い得に。今のうちにお気に入り登録で買い逃しゼロ👇",#楽天スーパーSALE #事前お気に入り #EC,商品メイン画像,未着手
+2026/06/02,火,Instagram,19:00,ライフスタイル,楽天スーパーSALE前夜,"SALE前夜の準備できてますか？✨ {商品名}のある暮らしを覗き見👀 明日0時スタート！プロフのリンクからチェック",#楽天SALE #暮らしを整える #おすすめ,使用シーン写真,未着手
+2026/06/03,水,X,20:00,レビュー紹介,通常営業,"「{商品名}リピ確定です」——お客様のリアルな声をご紹介📩 {特徴}が刺さったとのこと。詳細はプロフへ",#お客様の声 #レビュー #リピ買い,レビューキャプチャ,未着手
+2026/06/04,木,Instagram,19:00,舞台裏,楽天スーパーSALE開始,"🎉SALE始まりました！朝から梱包フル稼働中📦 {商品名}の発送準備の裏側をお見せします",#楽天スーパーSALE #発送作業 #舞台裏,梱包作業写真,未着手
+2026/06/05,金,X,12:00,商品紹介,楽天スーパーSALE,"【SALE開催中】{商品名}｜{価格}▶SALE特価🔥 {特徴}で選ばれてます。残り在庫わずか⏳",#楽天スーパーSALE #タイムセール #限定,商品+価格画像,未着手
+2026/06/06,土,TikTok,20:00,ライフスタイル,楽天スーパーSALE,"【SALE中に買うべきモノ】{商品名}を使った1日ルーティン🎬 {特徴}だから毎日使える！",#楽天SALE #購入品紹介 #ルーティン,30秒ルーティン動画,未着手
+2026/06/07,日,TikTok,19:00,レビュー紹介,楽天スーパーSALE,"「正直レビュー」{商品名}を1ヶ月使った結果…🤔 良い点も気になる点も全部話します！",#正直レビュー #購入品 #本音レビュー,レビュー動画,未着手
+2026/06/08,月,X,12:00,舞台裏,楽天スーパーSALE,"SALE4日目。注文殺到中🙏 1つ1つ丁寧に検品→梱包→発送。{商品名}をお待ちの皆さまもう少しだけお待ちを📦",#EC運営 #ショップ裏側 #感謝,作業風景写真,未着手
+2026/06/09,火,Instagram,20:00,商品紹介,楽天スーパーSALE後半,"⏰SALEもあと少し！{商品名}（{価格}）は{特徴}が他にない強み。試すなら今✨",#楽天SALE残り僅か #駆け込み #お買い物,商品アップ写真,未着手
+2026/06/10,水,X,20:00,ライフスタイル,楽天スーパーSALE最終日,"【本日最終日】{商品名}のある生活始めませんか？ SALE価格は今日23:59まで⏳",#楽天SALE最終日 #ラストチャンス #お得,ライフスタイル写真,未着手
+2026/06/11,木,Instagram,19:00,レビュー紹介,梅雨対策,"☔梅雨に負けない！{商品名}ユーザーさんの活用術を紹介。「{特徴}だから雨の日も安心」との声🌈",#梅雨対策 #雨の日も快適 #お客様の声,レビュー+雨背景,未着手
+2026/06/12,金,X,12:00,舞台裏,梅雨対策,"梅雨の湿気対策、倉庫でも徹底中💪 {商品名}を最高の状態で届けるため除湿・検品に全力",#EC運営の裏側 #品質管理 #梅雨,倉庫管理写真,未着手
+2026/06/13,土,TikTok,20:00,商品紹介,梅雨対策,"☔梅雨のおうち時間を格上げ！{商品名}（{価格}）の魅力を30秒で⚡ {特徴}が梅雨にぴったり",#梅雨のおうち時間 #おすすめ #紹介,商品紹介ショート動画,未着手
+2026/06/14,日,TikTok,19:00,ライフスタイル,父の日1週間前,"🎁父の日まであと1週間！まだ間に合うギフトに{商品名}はいかが？ お父さんの笑顔が見られるかも😊",#父の日 #ギフト選び #プレゼント,ギフト提案動画,未着手
+2026/06/15,月,X,12:00,レビュー紹介,父の日カウントダウン,"「父に{商品名}を贈ったら大喜び」去年の父の日レビューをご紹介🎁 今年もまだ間に合います！",#父の日ギフト #プレゼント #レビュー,レビュー画像,未着手
+2026/06/16,火,Instagram,19:00,舞台裏,父の日ギフト訴求,"🎁父の日ギフトの特別ラッピングにこだわってます✨ {商品名}を心を込めて包む作業風景をお届け",#父の日ラッピング #ギフト包装 #丁寧,ラッピング作業,未着手
+2026/06/17,水,X,20:00,商品紹介,父の日ギフト訴求,"【父の日あと4日】まだ悩んでる？→{商品名}（{価格}）なら{特徴}で実用的🎁",#父の日 #実用ギフト #あと4日,商品+ギフトBOX,未着手
+2026/06/18,木,Instagram,20:00,ライフスタイル,父の日直前,"お父さんの休日に{商品名}をプラスしたら…こんな笑顔に😊 {特徴}で暮らしが少し豊かに",#父の日まであと3日 #贈り物 #ギフト,家族イメージ写真,未着手
+2026/06/19,金,X,12:00,レビュー紹介,父の日ラストスパート,"⚡父の日ギリギリでも間に合う！即日発送対応中📦 {商品名}はお父さん世代に★4.8の高評価",#父の日駆け込み #即日発送 #高評価,レビュー+星評価,未着手
+2026/06/20,土,TikTok,20:00,舞台裏,父の日前日,"【明日は父の日】ギフト注文の発送ラッシュ中🏃 {商品名}を届けるため今日も全力梱包💪",#父の日前日 #発送準備 #EC運営,発送ラッシュ動画,未着手
+2026/06/21,日,Instagram,11:00,商品紹介,父の日当日,"🎉Happy Father's Day! {商品名}（{価格}）で感謝を届けませんか？ デジタルギフトカードならまだ間に合います🎁",#父の日 #HappyFathersDay #感謝,父の日特別画像,未着手
+2026/06/22,月,X,12:00,ライフスタイル,夏ボーナス商戦,"💰ボーナスの使い道もう決めた？ 自分へのご褒美に{商品名}という選択。{特徴}で毎日が特別に",#夏ボーナス #自分へのご褒美 #QOL,ライフスタイル画像,未着手
+2026/06/23,火,Instagram,19:00,レビュー紹介,夏ボーナス商戦,"✨「ボーナスでまとめ買いします」とリピーターさん🙏 {商品名}のどこがそんなに良いのかレビュー深掘り👇",#リピ買い #まとめ買い #愛用者の声,レビューまとめ画像,未着手
+2026/06/24,水,X,20:00,舞台裏,夏ギフト早割,"来月のお中元に向けてギフトセット準備中🎁 {商品名}×限定パッケージの開発裏話。近日公開！",#お中元準備 #夏ギフト #新商品開発,開発風景写真,未着手
+2026/06/25,木,Instagram,19:00,商品紹介,夏ギフト早割,"🌻夏ギフト早割スタート！{商品名}ギフトセット（{価格}〜）が今なら10%OFF✨ {特徴}で贈り物にぴったり",#夏ギフト #お中元 #早割,ギフトセット写真,未着手
+2026/06/26,金,X,12:00,ライフスタイル,夏ギフト早割,"夏の贈り物何にする？🤔 {商品名}を贈った相手の反応が嬉しすぎた話。{特徴}がギフト映え◎",#お中元選び #贈り物 #夏ギフト,ギフト開封シーン,未着手
+2026/06/27,土,TikTok,20:00,レビュー紹介,お中元準備,"【ギフトで届いた人の反応】{商品名}を開封した瞬間の「わぁ✨」が見たい方はこちら👇",#開封動画 #ギフト反応 #お中元,開封リアクション動画,未着手
+2026/06/28,日,TikTok,19:00,舞台裏,お中元準備,"📦お中元シーズンに向けて特別梱包テスト中！{商品名}の感動を最大化する工夫を全部見せます👀",#梱包のこだわり #EC裏側 #お中元,梱包テスト動画,未着手
+2026/06/29,月,X,20:00,商品紹介,7月商戦予告,"🔥7月のイベント準備OK？ {商品名}（{価格}）が夏にぴったりな理由→{特徴}。限定企画もお楽しみに！",#7月予告 #夏本番 #新企画,夏イメージ商品写真,未着手
+2026/06/30,火,Instagram,19:00,ライフスタイル,上半期まとめ,"📊2026上半期ありがとうございました！ 一番人気は{商品名}🏆 7月はパワーアップ予定。フォローで新着チェック✨",#上半期まとめ #ベストセラー #感謝,振り返りまとめ画像,未着手`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_EC店舗向けSNS月間投稿カレンダー（日本EC商戦特化版）.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

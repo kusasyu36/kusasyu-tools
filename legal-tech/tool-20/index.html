@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>法務トリアージ判定ツール_—_AIで足りる？弁護士が必要？ - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;color:#2d3748;margin:16px 0 4px}
+.sub{text-align:center;color:#718096;font-size:.82em;margin-bottom:18px}
+.tabs{display:flex;gap:6px;margin-bottom:0}
+.tab{flex:1;padding:11px 4px;background:#e2e8f0;border:none;border-radius:10px 10px 0 0;font-size:.82em;font-weight:700;cursor:pointer;color:#4a5568;transition:.2s}
+.tab.on{background:#2b6cb0;color:#fff}
+.card{background:#fff;border-radius:0 0 12px 12px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.q{font-weight:700;font-size:.92em;margin:14px 0 6px;color:#2d3748}.q:first-child{margin-top:0}
+.opts label{display:block;padding:9px 14px;margin:4px 0;background:#f7fafc;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;font-size:.87em;transition:.15s}
+.opts input{display:none}
+.opts label.sel{border-color:#2b6cb0;background:#ebf8ff}
+.opts label.sel span{color:#2b6cb0;font-weight:700}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin-top:14px;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(66,153,225,.4)}
+#R{display:none}
+.badge{display:inline-block;font-size:.95em;font-weight:800;padding:8px 22px;border-radius:24px;color:#fff;margin:8px 0}
+.b1{background:#38a169}.b2{background:#d69e2e}.b3{background:#e53e3e}
+.row{padding:5px 0;border-bottom:1px solid #f0f0f0;font-size:.88em}.row:last-child{border:none}
+.box{background:#f7fafc;border-radius:8px;padding:13px;margin-top:10px;font-size:.88em}
+.box h3{font-size:.93em;color:#2b6cb0;margin-bottom:5px}
+.reset{background:#e2e8f0;color:#4a5568;margin-top:8px}.reset:hover{background:#cbd5e0;box-shadow:none;transform:none}
+.ft{text-align:center;color:#a0aec0;font-size:.72em;margin-top:18px}
+.hint{background:#fffff0;border-left:3px solid #d69e2e}
+</style>
+<meta name="description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,法務トリアージ判定ツール_—_AIで足りる？弁護士が必要？">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-20/">
+<meta property="og:title" content="法務トリアージ判定ツール_—_AIで足りる？弁護士が必要？ - kusasyu tools">
+<meta property="og:description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-20/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="法務トリアージ判定ツール_—_AIで足りる？弁護士が必要？ - kusasyu tools">
+<meta name="twitter:description" content="中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "法務トリアージ判定ツール_—_AIで足りる？弁護士が必要？",
+  "description": "中小企業が自社の法務リスクレベルと最適な法務支援モデル（顧問弁護士・AI+弁護士ハイブリッド・スポット相談）を自己診断できるツールセット。LegalBaeやクラウドリーガルなどの有料サービスに申し込む前に、無料で自社に本当に必要な法務支援の形と適正コストを把握できる。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-20/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">法務トリアージ判定ツール_—_AIで足りる？弁護士が必要？</span></div>
+<div class="w">
+<h1>法務トリアージ判定ツール</h1>
+<p class="sub">AIで足りる？弁護士が必要？ — 案件ごとに最適な対応方法を即判定</p>
+<div class="tabs" id="tabs"></div>
+<div class="card" id="P"></div>
+<div id="R"><div class="card" id="res"></div>
+<button class="btn reset" onclick="reset()">別の案件を判定する</button></div>
+<p class="ft">© Kusasyu Legal Tech｜本ツールは一般的な目安であり法的助言ではありません。<br>全体の法務支援モデル選択には「中小企業 法務リスク＆コスト診断ツール」をご利用ください。</p>
+</div>
+<script>
+var D=[
+{name:"契約書レビュー",icon:"\ud83d\udcc4",qs:[
+{q:"契約書の種類は？",o:[["NDA・業務委託等の定型契約",1],["OEM・代理店・ライセンス等の非定型契約",2],["M&A・合弁・出資等の高度な契約",3]]},
+{q:"契約金額の規模は？",o:[["500万円未満",1],["500万〜5,000万円",2],["5,000万円以上",3]]},
+{q:"相手方の特徴は？",o:[["国内中小企業（対等な関係）",1],["大企業・上場企業（力関係に差あり）",2],["海外企業（準拠法・言語の問題あり）",3]]}
+]},
+{name:"労務トラブル",icon:"\ud83d\udc65",qs:[
+{q:"トラブルの内容は？",o:[["就業規則・社内規程の整備",1],["ハラスメント相談・メンタルヘルス対応",2],["解雇・退職勧奨・労基署対応",3]]},
+{q:"現在の状況は？",o:[["予防・整備段階（まだ問題なし）",1],["問題発生初期（当事者間で対応中）",2],["深刻化（外部機関介入・訴訟リスクあり）",3]]},
+{q:"対象となる従業員数は？",o:[["1名",1],["2〜5名",2],["6名以上（組織的問題）",3]]}
+]},
+{name:"紛争・債権回収",icon:"\u2696\ufe0f",qs:[
+{q:"案件の種類は？",o:[["売掛金・未払い金の回収",1],["取引先との契約トラブル",2],["訴訟・調停・仮処分",3]]},
+{q:"金額規模は？",o:[["300万円未満",1],["300万〜3,000万円",2],["3,000万円以上",3]]},
+{q:"現在の段階は？",o:[["交渉前（内容証明の検討等）",1],["交渉中（相手方と協議中）",2],["法的手続き段階（訴訟・調停）",3]]}
+]}
+];
+var J=[
+{lv:"AI対応で十分",cls:"b1",desc:"定型的・低リスクな案件です。AI法務サービスで効率的に対応できます。",cost:"月額1〜3万円（AI法務サービス）",svcs:["AI契約書レビューサービス（LegalForce等）","クラウド型書類作成サービス","自社テンプレート＋AIチェック"],tip:"「中小企業 法務リスク＆コスト診断ツール」でリスクレベルA〜Bの企業に最適。AI＋必要時のスポット相談で法務コストを大幅削減できます。"},
+{lv:"弁護士への相談を推奨",cls:"b2",desc:"専門的な判断が必要な案件です。AI＋弁護士のハイブリッドモデルが最適です。",cost:"スポット相談 1〜5万円/回 または ハイブリッド型 月額3〜10万円",svcs:["AI法務サービス＋弁護士スポット相談","ハイブリッド型法務支援（AI＋弁護士チャット）","法務プラットフォーム（弁護士ドットコム等）"],tip:"「中小企業 法務リスク＆コスト診断ツール」でリスクレベルB〜Cの企業に推奨。フル顧問契約より低コストで専門家の知見を活用できます。"},
+{lv:"弁護士対応が必須",cls:"b3",desc:"高度な法的リスクを伴う案件です。経験豊富な弁護士への依頼を強く推奨します。",cost:"着手金10〜50万円＋成功報酬 または 顧問契約 月額5〜30万円",svcs:["顧問弁護士（専門分野に強い事務所）","企業法務専門の法律事務所","弁護士紹介サービス経由で専門家を選定"],tip:"「中小企業 法務リスク＆コスト診断ツール」でリスクレベルC〜Dの企業は、顧問弁護士契約を検討すべきです。"}
+];
+var cat=0;
+function init(){var t=document.getElementById("tabs");D.forEach(function(c,i){var b=document.createElement("button");b.className="tab"+(i===0?" on":"");b.textContent=c.icon+" "+c.name;b.onclick=function(){cat=i;var ts=document.querySelectorAll(".tab");for(var j=0;j<ts.length;j++)ts[j].className="tab"+(j===i?" on":"");render()};t.appendChild(b)});render()}
+function render(){var p=document.getElementById("P"),h="";D[cat].qs.forEach(function(q,i){h+='<div class="q">'+(i+1)+". "+q.q+'</div><div class="opts">';q.o.forEach(function(o,j){h+='<label onclick="sel(this)"><input type="radio" name="q'+i+'" value="'+o[1]+'"><span>'+o[0]+"</span></label>"});h+="</div>"});h+='<button class="btn" onclick="judge()">判定する</button>';p.innerHTML=h;document.getElementById("R").style.display="none";p.style.display="block"}
+function sel(el){var labels=el.parentNode.querySelectorAll("label");for(var i=0;i<labels.length;i++)labels[i].className="";el.className="sel"}
+function judge(){var s=0,n=D[cat].qs.length;for(var i=0;i<n;i++){var c=document.querySelector('input[name=q'+i+']:checked');if(!c){alert("すべての質問に回答してください");return}s+=parseInt(c.value)}var lv=s<=n+1?0:s<=n*2?1:2;var j=J[lv],r=document.getElementById("res");var h='<div style="text-align:center"><p style="font-size:.85em;color:#718096">'+D[cat].icon+" "+D[cat].name+'の判定結果</p><span class="badge '+j.cls+'">'+j.lv+"</span></div>";h+='<div class="box"><h3>判定理由</h3><p>'+j.desc+"</p></div>";h+='<div class="box"><h3>対応コスト目安</h3><p style="font-weight:700;color:#2d3748">'+j.cost+"</p></div>";h+='<div class="box"><h3>推奨サービス例</h3>';j.svcs.forEach(function(s){h+='<div class="row">\u2022 '+s+"</div>"});h+="</div>";h+='<div class="box hint"><h3>💡 ヒント</h3><p>'+j.tip+"</p></div>";r.innerHTML=h;document.getElementById("P").style.display="none";document.getElementById("R").style.display="block"}
+function reset(){render()}
+init();
+</script>
+</body>
+</html>
