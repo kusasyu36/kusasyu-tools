@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本の賃貸費用_完全ガイド（日英対応） - kusasyu tools</title>
+<meta name="description" content="賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,日本の賃貸費用_完全ガイド（日英対応）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-15/">
+<meta property="og:title" content="日本の賃貸費用_完全ガイド（日英対応） - kusasyu tools">
+<meta property="og:description" content="賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-15/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日本の賃貸費用_完全ガイド（日英対応） - kusasyu tools">
+<meta name="twitter:description" content="賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "日本の賃貸費用_完全ガイド（日英対応）",
+  "description": "賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-15/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-04"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>日本の賃貸費用_完全ガイド（日英対応）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>日本の賃貸費用_完全ガイド（日英対応）</h1>
+  <p class="project-name">賃貸の総コスト、契約前に即比較</p>
+  <div class="content">
+<h1>日本の賃貸費用 完全ガイド / Complete Guide to Renting in Japan</h1>
+<blockquote>
+<p><strong>対象読者 / Target Readers:</strong> 初めての賃貸契約を結ぶ方、日本在住の外国人の方
+<strong>関連ツール:</strong> <a href="/">賃貸トータルコスト比較シミュレーター</a>を使えば、本ガイドで学んだ費用項目を入力し、最大3物件の総コストを即座に比較できます。</p>
+</blockquote>
+<hr />
+<h2>1. 初期費用の全体像 / Upfront Costs Overview</h2>
+<p>日本の賃貸では、入居時に <strong>家賃4〜6ヶ月分</strong> の初期費用がかかるのが一般的です。</p>
+<p>In Japan, expect to pay <strong>4–6 months' rent</strong> upfront before moving in.</p>
+<table>
+<thead>
+<tr>
+<th>費用項目 / Cost Item</th>
+<th>相場 / Typical Range</th>
+<th>交渉 / Negotiable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>敷金 (Security Deposit)</td>
+<td>家賃 0〜2ヶ月分</td>
+<td>△ 条件次第</td>
+</tr>
+<tr>
+<td>礼金 (Key Money)</td>
+<td>家賃 0〜2ヶ月分</td>
+<td>○ 交渉余地あり</td>
+</tr>
+<tr>
+<td>仲介手数料 (Brokerage Fee)</td>
+<td>家賃 0.5〜1ヶ月分+税</td>
+<td>○ 交渉余地あり</td>
+</tr>
+<tr>
+<td>前家賃 (Advance Rent)</td>
+<td>家賃 1〜2ヶ月分</td>
+<td>×</td>
+</tr>
+<tr>
+<td>保証会社費用 (Guarantor Fee)</td>
+<td>家賃 0.5〜1ヶ月分</td>
+<td>×</td>
+</tr>
+<tr>
+<td>火災保険 (Fire Insurance)</td>
+<td>1.5〜2万円/年</td>
+<td>△ プラン変更可</td>
+</tr>
+<tr>
+<td>鍵交換費用 (Lock Change)</td>
+<td>1〜2万円</td>
+<td>×</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 各費用の詳細解説 / Cost Breakdown</h2>
+<h3>2-1. 敷金（しききん） / Security Deposit</h3>
+<p><strong>何のため？</strong> 退去時の原状回復費用や未払い家賃に充てるための預け金。</p>
+<p><strong>What is it?</strong> A refundable deposit held by the landlord to cover damages or unpaid rent.</p>
+<ul>
+<li>相場：家賃 <strong>1ヶ月分</strong>（東京23区の平均）</li>
+<li>退去時に原状回復費用を差し引いて返還される</li>
+<li>敷金ゼロ物件は退去時に別途クリーニング費を請求されることが多い</li>
+</ul>
+<p><strong>注意点:</strong> 敷金ゼロ＝お得とは限らない。退去時の費用負担を必ず契約書で確認すること。</p>
+<p><strong>Tip:</strong> Zero-deposit properties often charge a cleaning fee at move-out. Always check the lease terms.</p>
+<hr />
+<h3>2-2. 礼金（れいきん） / Key Money</h3>
+<p><strong>何のため？</strong> 大家への「お礼」として支払う慣習的な費用。<strong>返金されない。</strong></p>
+<p><strong>What is it?</strong> A non-refundable "thank you" payment to the landlord. Unique to Japan.</p>
+<ul>
+<li>相場：家賃 <strong>0〜1ヶ月分</strong></li>
+<li>近年は礼金ゼロ物件が増加傾向（特に築年数の古い物件や郊外エリア）</li>
+<li><strong>交渉のコツ：</strong> 空室期間が長い物件、閑散期（4〜8月）は交渉しやすい</li>
+</ul>
+<p><strong>Negotiation tip:</strong> Properties vacant for over 1 month, or during off-season (Apr–Aug), are more likely to waive key money.</p>
+<hr />
+<h3>2-3. 仲介手数料 / Brokerage Fee</h3>
+<p><strong>何のため？</strong> 物件を紹介した不動産会社への報酬。</p>
+<p><strong>What is it?</strong> Commission paid to the real estate agency that arranged the contract.</p>
+<ul>
+<li>法律上の上限：家賃 <strong>1ヶ月分＋消費税</strong></li>
+<li>近年は <strong>0.5ヶ月分</strong> の会社も増加中</li>
+<li><strong>交渉のコツ：</strong> 大家から広告料（AD）を受け取っている物件では、減額に応じてもらえる場合がある</li>
+</ul>
+<hr />
+<h3>2-4. 保証会社費用 / Guarantor Company Fee</h3>
+<p><strong>何のため？</strong> 連帯保証人の代わりとなるサービス。外国人・単身者はほぼ必須。</p>
+<p><strong>What is it?</strong> A service that acts as your guarantor. Nearly mandatory for foreigners and single tenants.</p>
+<ul>
+<li>初回費用：家賃の <strong>50〜100%</strong></li>
+<li>更新料：毎年 <strong>1〜2万円</strong> または家賃の10〜30%</li>
+<li>保証人がいても保証会社必須の物件が増えている</li>
+</ul>
+<p><strong>For foreigners:</strong> Even if you have a Japanese guarantor, many landlords now require a guarantor company as well.</p>
+<hr />
+<h3>2-5. 火災保険 / Fire Insurance</h3>
+<ul>
+<li>加入は事実上 <strong>必須</strong>（契約条件に含まれる）</li>
+<li>相場：<strong>1.5〜2万円/年</strong>（単身向け）</li>
+<li>不動産会社指定の保険は割高なことがある → <strong>自分で選べるか確認</strong></li>
+</ul>
+<p><strong>Tip:</strong> You can often choose your own insurance provider at a lower cost. Ask the agency if substitution is allowed.</p>
+<hr />
+<h2>3. 毎月の費用 / Monthly Costs</h2>
+<table>
+<thead>
+<tr>
+<th>費用項目 / Cost Item</th>
+<th>相場 / Range</th>
+<th>備考 / Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>家賃 (Rent)</td>
+<td>—</td>
+<td>手取り収入の30%以内が目安</td>
+</tr>
+<tr>
+<td>管理費・共益費 (Management Fee)</td>
+<td>3,000〜15,000円</td>
+<td>家賃とは別に毎月発生</td>
+</tr>
+<tr>
+<td>駐車場代 (Parking)</td>
+<td>5,000〜30,000円</td>
+<td>都心部は高額</td>
+</tr>
+<tr>
+<td>インターネット (Internet)</td>
+<td>4,000〜6,000円</td>
+<td>無料物件もあり</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ポイント:</strong> 管理費は家賃に含まれていない。物件比較時は <strong>家賃＋管理費の合計</strong> で比べること。</p>
+<p><strong>Key point:</strong> Always compare properties by <strong>rent + management fee combined</strong>. The simulator "賃貸トータルコスト比較シミュレーター" automatically includes this in total cost calculations.</p>
+<hr />
+<h2>4. 更新料 / Renewal Fee</h2>
+<ul>
+<li>通常 <strong>2年ごと</strong> に家賃 <strong>1ヶ月分</strong> を支払う</li>
+<li>更新事務手数料（0.5ヶ月分程度）が別途かかる場合あり</li>
+<li>火災保険・保証会社も同時に更新（追加費用が発生）</li>
+<li><strong>関西エリア</strong> では更新料なしの「敷引き」方式が主流</li>
+</ul>
+<p><strong>Example:</strong> 家賃8万円の物件に3年住む場合、更新料だけで <strong>約8〜12万円</strong> が追加でかかる。</p>
+<p><strong>Important:</strong> Renewal fees significantly impact long-term cost. Use the 賃貸トータルコスト比較シミュレーター to see how residency length changes your total cost.</p>
+<hr />
+<h2>5. 退去時の費用 / Move-out Costs</h2>
+<h3>原状回復費用 / Restoration Costs</h3>
+<p><strong>原則（国土交通省ガイドライン）：</strong>
+- <strong>通常使用による劣化</strong> → 大家負担（壁の日焼け、画鋲の穴など）
+- <strong>借主の故意・過失による損傷</strong> → 借主負担（タバコのヤニ、ペットの傷など）</p>
+<table>
+<thead>
+<tr>
+<th>項目 / Item</th>
+<th>借主負担の目安 / Tenant Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ハウスクリーニング</td>
+<td>2〜5万円（単身）/ 5〜10万円（ファミリー）</td>
+</tr>
+<tr>
+<td>壁紙張替え（汚損時）</td>
+<td>1部屋あたり 3〜6万円</td>
+</tr>
+<tr>
+<td>フローリング補修</td>
+<td>1箇所 1〜3万円</td>
+</tr>
+</tbody>
+</table>
+<h3>よくあるトラブル / Common Disputes</h3>
+<ol>
+<li><strong>クリーニング費用の二重請求</strong> — 敷金から差し引かれているのに別途請求される</li>
+<li><strong>通常損耗の借主負担</strong> — 経年劣化を借主に請求される（ガイドライン違反の可能性）</li>
+<li><strong>高額な原状回復見積もり</strong> — 相場より大幅に高い見積もりを出される</li>
+</ol>
+<p><strong>対策 / How to protect yourself:</strong>
+- 入居時に <strong>室内の写真を撮影</strong>（日付入り）し記録を残す
+- 退去時の立ち会いで <strong>見積もり内訳を書面で受け取る</strong>
+- 納得できない場合は <strong>消費者生活センター（188）</strong> に相談</p>
+<p><strong>For foreigners:</strong> Take timestamped photos of every room at move-in. This is your strongest evidence in any dispute.</p>
+<hr />
+<h2>6. 費用を抑えるための5つのポイント / 5 Tips to Save Money</h2>
+<ol>
+<li><strong>閑散期（6〜8月）に物件を探す</strong> — 礼金・仲介手数料の値引き交渉がしやすい</li>
+<li><strong>フリーレント物件を探す</strong> — 入居後1〜2ヶ月の家賃が無料になる物件がある</li>
+<li><strong>礼金ゼロ・仲介手数料0.5ヶ月の物件を選ぶ</strong> — 初期費用を大幅に削減できる</li>
+<li><strong>火災保険は自分で選ぶ</strong> — 不動産会社指定より年間5,000〜10,000円安くなることも</li>
+<li><strong>長期居住の総コストで比較する</strong> — 初期費用が安くても更新料・管理費が高ければ割高になる</li>
+</ol>
+<blockquote>
+<p>総コスト比較には <strong>賃貸トータルコスト比較シミュレーター</strong> が便利です。希望居住期間を入力するだけで、3物件を並べて比較できます。</p>
+</blockquote>
+<hr />
+<h2>7. 外国人テナント向け FAQ / FAQ for Foreign Tenants</h2>
+<p><strong>Q: 日本語が話せなくても賃貸契約できますか？</strong>
+A: 可能ですが、契約書は日本語のみの場合が大半です。通訳を同行するか、外国語対応の不動産会社を利用してください。</p>
+<p><strong>Q: Can I rent without a Japanese guarantor?</strong>
+A: Yes. Most properties now accept a guarantor company (保証会社) instead. The fee is typically 50–100% of one month's rent.</p>
+<p><strong>Q: 在留カードの期限が短いと審査に落ちますか？</strong>
+A: 残存期間6ヶ月未満だと不利になることがあります。更新予定であることを証明できる書類を準備しましょう。</p>
+<p><strong>Q: What happens to my deposit when I leave Japan?</strong>
+A: Provide a Japanese bank account or a forwarding address. The deposit refund (minus deductions) is typically processed within 1–2 months after move-out.</p>
+<hr />
+<h2>8. 不動産会社向け：外国人テナントへの費用説明テンプレート / Template for Agents</h2>
+<p>外国人顧客への説明に以下の表現をご活用ください。</p>
+<table>
+<thead>
+<tr>
+<th>日本語</th>
+<th>English Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>敷金は退去時にお返しします（原状回復費用を差し引きます）</td>
+<td>Your security deposit will be returned after deducting restoration costs.</td>
+</tr>
+<tr>
+<td>礼金は返金されません</td>
+<td>Key money is non-refundable. It is a customary payment to the landlord.</td>
+</tr>
+<tr>
+<td>保証会社への加入が必須です</td>
+<td>You are required to use a guarantor company. The fee is ○○ yen.</td>
+</tr>
+<tr>
+<td>2年ごとに更新料（家賃1ヶ月分）がかかります</td>
+<td>A renewal fee equal to one month's rent is due every 2 years.</td>
+</tr>
+<tr>
+<td>退去時にクリーニング費用が発生します</td>
+<td>A cleaning fee will be charged at move-out.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>まとめ / Summary</h2>
+<p>日本の賃貸費用は初期費用・月額費用・更新料・退去費用の <strong>4段階</strong> で構成されます。物件選びでは家賃だけでなく、<strong>居住期間全体の総コスト</strong> で比較することが重要です。</p>
+<p><strong>賃貸トータルコスト比較シミュレーター</strong> を使えば、各費用項目を入力するだけで最大3物件の総コストを自動計算し、最適な物件を選べます。</p>
+<p>Renting in Japan involves costs at <strong>four stages</strong>: upfront, monthly, renewal, and move-out. Always compare the <strong>total cost over your intended stay</strong>, not just monthly rent. Use the 賃貸トータルコスト比較シミュレーター to calculate and compare up to 3 properties instantly.</p>
+<hr />
+<p><em>本ガイドは2026年6月時点の情報に基づいています。法制度や相場は変動する場合があります。</em>
+<em>This guide is based on information as of June 2026. Regulations and market rates are subject to change.</em></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

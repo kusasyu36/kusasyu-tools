@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>縦型動画広告スクリプト自動生成＆CTR診断ツール（TikTok_Reels_LINE対応） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#0f1117;color:#e2e8f0;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:18px 0;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:12px;margin-bottom:20px}
+h2{font-size:1.05em;color:#a5b4fc;margin:18px 0 10px;border-left:3px solid #6366f1;padding-left:10px}
+.card{background:#1e2130;border-radius:10px;padding:16px;margin-bottom:16px}
+label{display:block;font-size:.85em;color:#94a3b8;margin:8px 0 4px}
+input[type=text],textarea,select{width:100%;padding:10px;border:1px solid #334155;border-radius:8px;background:#0f1117;color:#e2e8f0;font-size:.95em}
+textarea{height:70px;resize:vertical}
+.row{display:flex;gap:10px}
+.row>*{flex:1}
+button{width:100%;padding:14px;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:12px;transition:.2s}
+#genBtn{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff}
+#genBtn:hover{opacity:.85}
+.hide{display:none}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tab{padding:8px 14px;border-radius:8px;background:#334155;cursor:pointer;font-size:.85em;border:none;color:#e2e8f0}
+.tab.on{background:#6366f1;color:#fff}
+.script-box{background:#0f1117;border-radius:8px;padding:14px;font-size:.9em;white-space:pre-wrap;border:1px solid #334155;max-height:400px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:.85em}
+th,td{border:1px solid #334155;padding:8px;text-align:left}
+th{background:#6366f1;color:#fff}
+.score-row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:.85em}
+.score-bar-bg{flex:1;height:10px;background:#334155;border-radius:5px;overflow:hidden}
+.score-bar{height:100%;border-radius:5px;transition:width .5s}
+.score-label{min-width:130px}
+.score-num{min-width:32px;text-align:right;font-weight:700}
+.total-score{text-align:center;font-size:2em;font-weight:900;padding:16px}
+.tip{background:#1a1a2e;border-left:3px solid #f59e0b;padding:10px 12px;margin:6px 0;border-radius:0 8px 8px 0;font-size:.85em}
+.copy-btn{padding:6px 14px;border:1px solid #6366f1;background:transparent;color:#a5b4fc;border-radius:6px;cursor:pointer;font-size:.8em;margin:8px 4px 0 0}
+.copy-btn:hover{background:#6366f1;color:#fff}
+@media(max-width:600px){.row{flex-direction:column;gap:6px}h1{font-size:1.1em}}
+</style>
+<meta name="description" content="中小企業・EC事業者がTikTok・Instagram Reels・LINE向けの縦型動画広告スクリプトをAIで自動生成し、無料〜低コストのAI動画ツール（CapCut・Kling・Canva等）で量産するためのツールキット。商品情報を入力するだけでプラットフォーム別のスクリプト・カット割り・AIプロンプトを">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,縦型動画広告スクリプト自動生成＆CTR診断ツール（TikTok_Reels_LINE対応）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ctr-tiktok-reels-line/">
+<meta property="og:title" content="縦型動画広告スクリプト自動生成＆CTR診断ツール（TikTok_Reels_LINE対応） - kusasyu tools">
+<meta property="og:description" content="中小企業・EC事業者がTikTok・Instagram Reels・LINE向けの縦型動画広告スクリプトをAIで自動生成し、無料〜低コストのAI動画ツール（CapCut・Kling・Canva等）で量産するためのツールキット。商品情報を入力するだけでプラットフォーム別のスクリプト・カット割り・AIプロンプトを">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ctr-tiktok-reels-line/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="縦型動画広告スクリプト自動生成＆CTR診断ツール（TikTok_Reels_LINE対応） - kusasyu tools">
+<meta name="twitter:description" content="中小企業・EC事業者がTikTok・Instagram Reels・LINE向けの縦型動画広告スクリプトをAIで自動生成し、無料〜低コストのAI動画ツール（CapCut・Kling・Canva等）で量産するためのツールキット。商品情報を入力するだけでプラットフォーム別のスクリプト・カット割り・AIプロンプトを">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "縦型動画広告スクリプト自動生成＆CTR診断ツール（TikTok_Reels_LINE対応）",
+  "description": "中小企業・EC事業者がTikTok・Instagram Reels・LINE向けの縦型動画広告スクリプトをAIで自動生成し、無料〜低コストのAI動画ツール（CapCut・Kling・Canva等）で量産するためのツールキット。商品情報を入力するだけでプラットフォーム別のスクリプト・カット割り・AIプロンプトを",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ctr-tiktok-reels-line/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">縦型動画広告スクリプト自動生成＆CTR診断ツール（TikTo</span></div>
+<div class="wrap">
+<h1>縦型動画広告スクリプト生成＆CTR診断</h1>
+<div class="card">
+<label>商品名 *</label>
+<input type="text" id="pName" placeholder="例：美肌グロウセラム">
+<label>商品の特徴・USP *</label>
+<textarea id="pFeat" placeholder="例：ビタミンC誘導体30%配合、14日で実感、敏感肌OK"></textarea>
+<label>ターゲット層 *</label>
+<input type="text" id="pTarget" placeholder="例：30代女性、肌のくすみに悩む会社員">
+<div class="row">
+<div><label>プラットフォーム</label>
+<select id="pPlat"><option value="tiktok">TikTok</option><option value="reels">Instagram Reels</option><option value="line">LINE VOOM</option></select></div>
+<div><label>尺</label>
+<select id="pDur"><option value="15">15秒</option><option value="30">30秒</option></select></div>
+</div>
+<div class="row">
+<div><label>商品カテゴリ</label>
+<select id="pCat"><option>美容・コスメ</option><option>健康食品</option><option>ファッション</option><option>家電・ガジェット</option><option>食品・飲料</option><option>サービス・アプリ</option></select></div>
+<div><label>訴求軸</label>
+<select id="pAngle"><option>悩み解決型</option><option>ビフォーアフター型</option><option>ランキング・権威型</option></select></div>
+</div>
+<button id="genBtn">スクリプト生成＆診断</button>
+</div>
+<div id="result" class="hide">
+<h2>生成スクリプト</h2>
+<div class="card"><div class="tabs" id="sTabs"></div><div class="script-box" id="sBody"></div><button class="copy-btn" onclick="copyEl('sBody')">スクリプトをコピー</button></div>
+<h2>6カット構成表</h2>
+<div class="card"><table id="cutTbl"></table><button class="copy-btn" onclick="copyTbl()">構成表をコピー</button></div>
+<h2>AI動画ツール用プロンプト</h2>
+<div class="card"><div class="tabs" id="pTabs"></div><div class="script-box" id="pBody"></div><button class="copy-btn" onclick="copyEl('pBody')">プロンプトをコピー</button></div>
+<h2>CTR診断スコア（10項目）</h2>
+<div class="card"><div class="total-score" id="totalS"></div><div id="scoreList"></div></div>
+<h2>改善提案</h2>
+<div class="card" id="tips"></div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const hooks={tiktok:["え、まだ知らないの？","これ、バズる理由あります","正直に言います…"],reels:["保存推奨！","プロが本気で選んだ","知らなきゃ損する"],line:["友だち限定で公開","今だけの情報です","ちょっと聞いてほしい"]};
+const ctas={tiktok:"プロフィールのリンクから今すぐチェック",reels:"ハイライトのリンクから詳細を見る",line:"下のリンクをタップして詳しく見る"};
+const platName={tiktok:"TikTok",reels:"Instagram Reels",line:"LINE VOOM"};
+function gen(){
+ const nm=$("pName").value.trim(),ft=$("pFeat").value.trim(),tg=$("pTarget").value.trim();
+ if(!nm||!ft||!tg){alert("商品名・特徴・ターゲットを入力してください");return}
+ const pl=$("pPlat").value,dr=+$("pDur").value,cat=$("pCat").value,ang=$("pAngle").value;
+ const feats=ft.split(/[、,，\n]+/).filter(s=>s.trim()).slice(0,3);
+ const f1=feats[0]||ft,f2=feats[1]||"",f3=feats[2]||"";
+ const hk=hooks[pl][Math.floor(Math.random()*3)];
+ const cta=ctas[pl];
+ const is30=dr===30;
+ let cuts=[];
+ if(ang==="悩み解決型"){
+  cuts=[
+   {t:is30?"0-3秒":"0-2秒",n:"フック",c:hk+"「"+tg+"」必見！",v:"人物正面・テキストオーバーレイ",te:hk},
+   {t:is30?"3-8秒":"2-5秒",n:"悩み提示",c:"「"+f1+"」で悩んでいませんか？毎日鏡を見るたびにため息…",v:"悩み表現のカット・暗めトーン",te:"こんな悩みありませんか？"},
+   {t:is30?"8-15秒":"5-8秒",n:"解決策",c:"そこで"+nm+"。"+f1+(f2?"、さらに"+f2:""),v:"商品登場・明るいトーンに切替",te:nm+"なら解決"},
+   {t:is30?"15-22秒":"8-11秒",n:"証拠・実績",c:(f3||f1)+"で実感者続出。SNSでも話題に",v:"使用シーン・レビュー風",te:"実感者の声"},
+   {t:is30?"22-27秒":"11-13秒",n:"ベネフィット",c:"もう"+f1+"に悩まない毎日を手に入れよう",v:"理想の状態を表現",te:"理想の未来"},
+   {t:is30?"27-30秒":"13-15秒",n:"CTA",c:cta+"🔗",v:"ロゴ＋リンク誘導アニメ",te:cta}
+  ];
+ }else if(ang==="ビフォーアフター型"){
+  cuts=[
+   {t:is30?"0-3秒":"0-2秒",n:"フック",c:hk+"この変化見て！",v:"衝撃のアフター画面",te:"この変化、本物です"},
+   {t:is30?"3-8秒":"2-5秒",n:"ビフォー",c:"使う前は"+f1+"が気になって…",v:"Before状態を映す",te:"Before"},
+   {t:is30?"8-15秒":"5-8秒",n:"使用過程",c:nm+"を使い始めて…"+f1+(f2?"×"+f2:"")+"のWケア",v:"使用シーン・手元アップ",te:nm+"でケア開始"},
+   {t:is30?"15-22秒":"8-11秒",n:"アフター",c:"結果がこちら！"+(f3||"見違えるような変化"),v:"After状態・明るいライティング",te:"After：驚きの結果"},
+   {t:is30?"22-27秒":"11-13秒",n:"解説",c:"秘密は"+(f2||f1)+"。だから実感が早い",v:"成分・機能のテロップ",te:"選ばれる理由"},
+   {t:is30?"27-30秒":"13-15秒",n:"CTA",c:"あなたも試してみて。"+cta,v:"ロゴ＋URL誘導",te:cta}
+  ];
+ }else{
+  cuts=[
+   {t:is30?"0-3秒":"0-2秒",n:"フック",c:hk+"「"+cat+"部門1位」の実力",v:"ランキング画面風",te:"堂々の1位獲得"},
+   {t:is30?"3-8秒":"2-5秒",n:"権威づけ",c:"専門家も注目。SNSで話題沸騰中の"+nm,v:"メディア風レイアウト",te:"専門家も注目"},
+   {t:is30?"8-15秒":"5-8秒",n:"機能紹介",c:f1+(f2?"＋"+f2:"")+"を1本で実現",v:"商品アップ＋機能テロップ",te:"これ1本で解決"},
+   {t:is30?"15-22秒":"8-11秒",n:"口コミ",c:"「もっと早く出会いたかった」の声が続々",v:"レビュー風テキスト表示",te:"★★★★★"},
+   {t:is30?"22-27秒":"11-13秒",n:"限定感",c:"今なら特別価格でお試し可能",v:"価格訴求・カウントダウン風",te:"期間限定"},
+   {t:is30?"27-30秒":"13-15秒",n:"CTA",c:cta+"🔗 今すぐタップ",v:"ロゴ＋CTA大文字",te:cta}
+  ];
+ }
+ // Script
+ let script=`【${platName[pl]}｜${dr}秒｜${ang}】\n商品：${nm}\n──────────────\n`;
+ cuts.forEach((c,i)=>script+=`\n[カット${i+1}]（${c.t}）${c.n}\nナレーション：${c.c}\n`);
+ script+=`\n──────────────\n※BGM：${pl==="tiktok"?"トレンド楽曲推奨":pl==="reels"?"リール人気音源推奨":"落ち着いた信頼感のあるBGM"}`;
+ // Tabs for script
+ $("sTabs").innerHTML="";$("sBody").textContent=script;
+ // Cut table
+ let th="<tr><th>カット</th><th>秒数</th><th>内容</th><th>映像指示</th><th>テロップ</th></tr>";
+ cuts.forEach((c,i)=>th+=`<tr><td>${i+1}</td><td>${c.t}</td><td>${c.n}</td><td>${c.v}</td><td>${c.te}</td></tr>`);
+ $("cutTbl").innerHTML=th;
+ // Prompts
+ const capPrompt=`【CapCut テンプレート指示】\n動画形式：縦型9:16 / ${dr}秒\nカット数：6\nスタイル：${pl==="tiktok"?"ポップ＆テンポ重視":pl==="reels"?"洗練＆ブランド感":"信頼感＆シンプル"}\n\n${cuts.map((c,i)=>`カット${i+1}（${c.t}）\nテキスト：「${c.te}」\nトランジション：${i===0?"なし（即開始）":i<3?"スワイプ":"フェード"}\nエフェクト：${i===0?"ズームイン":"標準"}`).join("\n\n")}\n\nBGM：${pl==="tiktok"?"アップテンポ":"ミディアム"}テンポ\nフォント：太ゴシック / 白文字＋影`;
+ const klingPrompt=`【Kling AI 映像生成プロンプト】\n\n${cuts.map((c,i)=>`Scene ${i+1} (${c.t}):\nPrompt: "${c.v.replace(/・/g,", ")}, product shot of ${nm}, ${pl==="tiktok"?"vibrant colorful":"clean minimal"} style, vertical 9:16, studio lighting"\nMotion: ${i===0?"zoom in slowly":"subtle pan right"}\nDuration: ${is30?"5s":"2.5s"}`).join("\n\n")}`;
+ let curP="capcut";
+ function showP(k){curP=k;$("pBody").textContent=k==="capcut"?capPrompt:klingPrompt;
+  document.querySelectorAll("#pTabs .tab").forEach(t=>t.classList.toggle("on",t.dataset.k===k))}
+ $("pTabs").innerHTML=`<button class="tab on" data-k="capcut">CapCut</button><button class="tab" data-k="kling">Kling AI</button>`;
+ $("pTabs").querySelectorAll(".tab").forEach(t=>t.onclick=()=>showP(t.dataset.k));
+ showP("capcut");
+ // Diagnosis
+ const items=["フック（冒頭訴求）","悩み/ペイン提示","ソリューション明示","ベネフィット訴求","CTA配置・誘導","テロップ設計","テンポ・尺配分","PF最適化","視覚インパクト指示","A/Bテスト適性"];
+ const scores=items.map((_,i)=>{
+  let s=7;
+  if(i===0)s=feats.length>=2?9:7;
+  if(i===1)s=ang==="悩み解決型"?9:ang==="ビフォーアフター型"?8:6;
+  if(i===2)s=ft.length>20?9:7;
+  if(i===3)s=feats.length>=3?9:feats.length>=2?8:6;
+  if(i===4)s=8;
+  if(i===5)s=8;
+  if(i===6)s=is30?9:7;
+  if(i===7)s=8;
+  if(i===8)s=7;
+  if(i===9)s=feats.length>=2?8:6;
+  return Math.min(s+Math.floor(Math.random()*2),10);
+ });
+ const avg=Math.round(scores.reduce((a,b)=>a+b,0)/scores.length*10)/10;
+ const clr=s=>s>=8?"#22c55e":s>=6?"#f59e0b":"#ef4444";
+ $("totalS").innerHTML=`<span style="color:${clr(avg)}">${avg}</span><span style="font-size:.4em;color:#94a3b8"> / 10</span>`;
+ $("scoreList").innerHTML=scores.map((s,i)=>`<div class="score-row"><span class="score-label">${items[i]}</span><div class="score-bar-bg"><div class="score-bar" style="width:${s*10}%;background:${clr(s)}"></div></div><span class="score-num" style="color:${clr(s)}">${s}</span></div>`).join("");
+ // Tips
+ const tipData=[];
+ scores.forEach((s,i)=>{if(s<8){
+  const tips=[
+   "冒頭1秒で画面を止める要素を追加。数字・疑問文・意外性のあるワードを入れましょう",
+   "ターゲットの悩みをもっと具体的に。「朝起きると○○」のような日常シーンで共感を誘って",
+   "商品がどう解決するか、メカニズムを1文で。「○○成分が△△に直接アプローチ」",
+   "使用後の理想像を描写。「もう○○を気にしない朝」のような未来を見せて",
+   "CTAに緊急性を追加。「今日だけ」「残りわずか」等の限定ワードが効果的",
+   "テロップは1カット1メッセージに。文字数は15文字以内、画面下1/3に配置推奨",
+   "冒頭3秒・中盤・CTAの緩急をつける。BGMのビートチェンジに合わせるとテンポUP",
+   `${platName[pl]}のトレンド要素を追加。${pl==="tiktok"?"流行音源＋テキスト演出":pl==="reels"?"リール専用エフェクト":"信頼感のある落ち着いた演出"}を検討`,
+   "ズーム・パン・色変化など視覚的動きを各カットに1つ入れて離脱を防止",
+   "USPを変えたB案を作成。フック違い・CTA違いで2パターン配信しCTR比較を"
+  ];tipData.push(tips[i])}});
+ $("tips").innerHTML=tipData.length?tipData.map(t=>`<div class="tip">${t}</div>`).join(""):'<div class="tip" style="border-color:#22c55e">全項目8点以上！高品質なスクリプトです。A/Bテスト用にフック違いのB案も作成しましょう。</div>';
+ $("result").classList.remove("hide");
+ $("result").scrollIntoView({behavior:"smooth"});
+}
+function copyEl(id){navigator.clipboard.writeText($(id).textContent);showToast()}
+function copyTbl(){const r=[...document.querySelectorAll("#cutTbl tr")].map(r=>[...r.cells].map(c=>c.textContent).join("\t")).join("\n");navigator.clipboard.writeText(r);showToast()}
+function showToast(){const d=document.createElement("div");d.textContent="コピーしました";d.style.cssText="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#6366f1;color:#fff;padding:10px 24px;border-radius:8px;font-size:.9em;z-index:99";document.body.appendChild(d);setTimeout(()=>d.remove(),1500)}
+$("genBtn").onclick=gen;
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>特許収益化ポテンシャル診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;padding:20px 0 4px;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1em;color:#2b6cb0;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #ebf4ff}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.field{flex:1;min-width:140px}
+.field label{display:block;font-size:.78em;color:#4a5568;margin-bottom:3px;font-weight:600}
+.field select,.field input{width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:.9em}
+.field select:focus,.field input:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 2px rgba(66,153,225,.3)}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin:10px 0}
+.btn:hover{opacity:.9}
+.btn-add{background:#edf2f7;color:#4a5568;font-size:.85em;padding:10px;border:1px dashed #a0aec0}
+.btn-add:hover{background:#e2e8f0}
+.del{background:none;border:none;color:#e53e3e;cursor:pointer;font-size:1.1em;float:right}
+#result{display:none}
+.summary{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.stat{flex:1;min-width:120px;text-align:center;padding:14px;border-radius:10px;background:#ebf8ff}
+.stat .num{font-size:2em;font-weight:800;color:#2b6cb0}
+.stat .lbl{font-size:.75em;color:#718096}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin-bottom:14px}
+th,td{padding:8px 6px;text-align:left;border-bottom:1px solid #e2e8f0}
+th{background:#f7fafc;color:#4a5568;font-weight:700}
+.grade{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;color:#fff;font-weight:800;font-size:.9em}
+.gA{background:#38a169}.gB{background:#4299e1}.gC{background:#d69e2e}.gD{background:#e53e3e}
+.bar-bg{background:#e2e8f0;border-radius:4px;height:8px;width:100%}
+.bar-fg{height:8px;border-radius:4px;transition:width .5s}
+.action{padding:10px 14px;border-radius:8px;margin-bottom:8px;font-size:.85em}
+.action.license{background:#ebf8ff;border-left:4px solid #4299e1}
+.action.sell{background:#fefcbf;border-left:4px solid #d69e2e}
+.action.abandon{background:#fff5f5;border-left:4px solid #e53e3e}
+.pri{font-weight:700;margin-right:6px}
+@media(max-width:600px){.row{flex-direction:column}.field{min-width:100%}h1{font-size:1.2em}}
+</style>
+<meta name="description" content="中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,特許収益化ポテンシャル診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-28/">
+<meta property="og:title" content="特許収益化ポテンシャル診断ツール - kusasyu tools">
+<meta property="og:description" content="中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-28/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="特許収益化ポテンシャル診断ツール - kusasyu tools">
+<meta name="twitter:description" content="中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "特許収益化ポテンシャル診断ツール",
+  "description": "中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-28/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">特許収益化ポテンシャル診断ツール</span></div>
+<div class="wrap">
+<h1>特許収益化ポテンシャル診断ツール</h1>
+<p class="sub">保有特許（最大5件）の収益化可能性をスコアリングし、最適なアクションを提案します</p>
+<div id="forms"></div>
+<button class="btn btn-add" id="addBtn" onclick="addPatent()">＋ 特許を追加（最大5件）</button>
+<button class="btn" onclick="diagnose()">診断を実行する</button>
+<div id="result">
+<div class="card"><h2>診断サマリー</h2><div class="summary" id="summary"></div></div>
+<div class="card"><h2>個別スコア一覧</h2><table><thead><tr><th>#</th><th>技術分野</th><th>スコア</th><th>評価</th><th>スコアバー</th></tr></thead><tbody id="tbl"></tbody></table></div>
+<div class="card"><h2>優先アクションプラン</h2><div id="actions"></div></div>
+</div>
+</div>
+<script>
+const CATS=[
+{n:"機械・精密機器",c:1.0},{n:"電気・電子",c:1.2},{n:"化学・材料",c:1.1},{n:"IT・ソフトウェア",c:1.4},
+{n:"バイオ・医薬",c:1.5},{n:"素材・ナノテク",c:1.1},{n:"エネルギー・環境",c:1.3},{n:"半導体・光学",c:1.35},
+{n:"通信・ネットワーク",c:1.3},{n:"ロボティクス・AI",c:1.45}
+];
+let cnt=0;
+function addPatent(){
+if(cnt>=5)return;
+cnt++;
+const d=document.createElement("div");
+d.className="card";
+d.id="p"+cnt;
+let opts=CATS.map((c,i)=>`<option value="${i}">${c.n}</option>`).join("");
+d.innerHTML=`<button class="del" onclick="delPatent(${cnt})">✕</button><h2>特許 #${cnt}</h2>
+<div class="row"><div class="field"><label>技術分野カテゴリ</label><select id="cat${cnt}">${opts}</select></div>
+<div class="field"><label>IPCサブクラス（任意）</label><input id="ipc${cnt}" placeholder="例: H04L"></div></div>
+<div class="row"><div class="field"><label>残存年数</label><input type="number" id="yr${cnt}" min="0" max="20" value="10"></div>
+<div class="field"><label>独立請求項数</label><input type="number" id="cl${cnt}" min="1" max="50" value="3"></div>
+<div class="field"><label>ライセンス実績</label><select id="lic${cnt}"><option value="no">なし</option><option value="yes">あり</option><option value="unknown">不明</option></select></div></div>`;
+document.getElementById("forms").appendChild(d);
+if(cnt>=5)document.getElementById("addBtn").style.display="none";
+}
+function delPatent(id){
+const el=document.getElementById("p"+id);
+if(el){el.remove();cnt--;rebuildIds();}
+if(cnt<5)document.getElementById("addBtn").style.display="block";
+}
+function rebuildIds(){
+const cards=document.getElementById("forms").querySelectorAll(".card");
+cnt=0;
+cards.forEach((c,i)=>{
+cnt=i+1;
+c.id="p"+cnt;
+c.querySelector("h2").textContent="特許 #"+cnt;
+c.querySelector(".del").setAttribute("onclick","delPatent("+cnt+")");
+["cat","ipc","yr","cl","lic"].forEach(k=>{
+const el=c.querySelector(`[id^="${k}"]`);if(el)el.id=k+cnt;
+});
+});
+}
+function calc(i){
+const cat=parseInt(document.getElementById("cat"+i).value);
+const yr=Math.max(0,Math.min(20,parseFloat(document.getElementById("yr"+i).value)||0));
+const cl=Math.max(1,Math.min(50,parseFloat(document.getElementById("cl"+i).value)||1));
+const lic=document.getElementById("lic"+i).value;
+const coef=CATS[cat].c;
+const sYr=(yr/20)*30;
+const sCl=(Math.min(cl,10)/10)*25;
+const sLic=lic==="yes"?20:lic==="unknown"?10:5;
+const sField=((coef-1)/0.5)*25;
+const raw=sYr+sCl+sLic+sField;
+const score=Math.round(Math.min(100,raw));
+let grade,gc;
+if(score>=75){grade="A";gc="gA";}
+else if(score>=50){grade="B";gc="gB";}
+else if(score>=30){grade="C";gc="gC";}
+else{grade="D";gc="gD";}
+return{score,grade,gc,cat:CATS[cat].n,yr,cl,lic,coef};
+}
+function diagnose(){
+if(cnt===0){alert("特許を1件以上追加してください");return;}
+const results=[];
+for(let i=1;i<=cnt;i++)results.push(calc(i));
+results.forEach((r,i)=>r.idx=i+1);
+const avg=Math.round(results.reduce((s,r)=>s+r.score,0)/results.length);
+const best=results.reduce((a,b)=>a.score>=b.score?a:b);
+const gradeCount={A:0,B:0,C:0,D:0};
+results.forEach(r=>gradeCount[r.grade]++);
+document.getElementById("summary").innerHTML=`
+<div class="stat"><div class="num">${cnt}</div><div class="lbl">診断件数</div></div>
+<div class="stat"><div class="num">${avg}</div><div class="lbl">平均スコア</div></div>
+<div class="stat"><div class="num">${best.grade}</div><div class="lbl">最高評価</div></div>
+<div class="stat"><div class="num">${gradeCount.A+gradeCount.B}</div><div class="lbl">収益化有望</div></div>`;
+let thtml="";
+results.forEach(r=>{
+const col=r.gc==="gA"?"#38a169":r.gc==="gB"?"#4299e1":r.gc==="gC"?"#d69e2e":"#e53e3e";
+thtml+=`<tr><td>${r.idx}</td><td>${r.cat}</td><td><b>${r.score}</b>/100</td>
+<td><span class="grade ${r.gc}">${r.grade}</span></td>
+<td><div class="bar-bg"><div class="bar-fg" style="width:${r.score}%;background:${col}"></div></div></td></tr>`;
+});
+document.getElementById("tbl").innerHTML=thtml;
+const sorted=[...results].sort((a,b)=>b.score-a.score);
+let ahtml="";
+sorted.forEach((r,i)=>{
+let act,cls,detail;
+if(r.grade==="A"){
+act="ライセンス供与を積極推進";cls="license";
+detail=`技術分野「${r.cat}」は市場需要が高く、残存${r.yr}年のライセンス収入が見込めます。独占ライセンスで高額交渉、または非独占で複数先へ展開を推奨。`;
+}else if(r.grade==="B"){
+act="ライセンス供与を検討／条件次第で売却";cls="license";
+detail=`収益化余地あり。まずライセンス候補先を3社以上リストアップし、反応を見て売却判断へ。請求項${r.cl}件の権利範囲を再確認してください。`;
+}else if(r.grade==="C"){
+act="売却を優先検討";cls="sell";
+detail=`維持費対効果が低下するリスクあり。特許売買プラットフォームへの掲載や、同業他社への直接提案を検討してください。`;
+}else{
+act="放棄を含む戦略的判断";cls="abandon";
+detail=`残存${r.yr}年・現在の市場環境では維持コストが収益を上回る可能性大。年間維持費を算出し、放棄も含めた判断を推奨します。`;
+}
+ahtml+=`<div class="action ${cls}"><span class="pri">優先${i+1}｜特許#${r.idx}（${r.grade}評価・${r.score}点）</span>${act}<br><span style="color:#4a5568">${detail}</span></div>`;
+});
+document.getElementById("actions").innerHTML=ahtml;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+addPatent();
+</script>
+</body>
+</html>

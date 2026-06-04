@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知財ポートフォリオ収支管理シート - kusasyu tools</title>
+<meta name="description" content="中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,知財ポートフォリオ収支管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-6/">
+<meta property="og:title" content="知財ポートフォリオ収支管理シート - kusasyu tools">
+<meta property="og:description" content="中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="知財ポートフォリオ収支管理シート - kusasyu tools">
+<meta name="twitter:description" content="中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "知財ポートフォリオ収支管理シート",
+  "description": "中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/management-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-06-04"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>知財ポートフォリオ収支管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>知財ポートフォリオ収支管理シート</h1>
+  <p class="project-name">特許の持ち腐れ、終わりにしませんか？</p>
+  <div class="content">
+<h1>知財ポートフォリオ収支管理シート — 構築ガイド</h1>
+<h2>1. このシートが解決する課題</h2>
+<p>多くの企業で特許の維持費は「固定費」として放置されがちである。しかし、年間維持費は出願から年数が経つほど段階的に上昇し、活用されていない特許が収支を圧迫するケースは珍しくない。本シートは<strong>マクロ不使用の .xlsx 形式</strong>で以下を実現する。</p>
+<ul>
+<li>保有特許の一覧と維持費の自動集計</li>
+<li>残存期間のリアルタイム表示</li>
+<li>収益化ステータスの可視化</li>
+<li>維持費 vs 期待収益の損益分岐判定</li>
+<li>ポートフォリオ全体のROIサマリー</li>
+</ul>
+<hr />
+<h2>2. シート構成（2シート構成）</h2>
+<table>
+<thead>
+<tr>
+<th>シート名</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>特許一覧</strong></td>
+<td>個別特許の情報・維持費・収益・ステータスを管理</td>
+</tr>
+<tr>
+<td><strong>ROIサマリー</strong></td>
+<td>ポートフォリオ全体の集計・損益分析</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 特許一覧シートの列設計</h2>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>項目名</th>
+<th>入力形式</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>管理番号</td>
+<td>テキスト</td>
+<td>社内採番（例：PAT-2024-001）</td>
+</tr>
+<tr>
+<td>B</td>
+<td>発明の名称</td>
+<td>テキスト</td>
+<td>出願書類の名称を転記</td>
+</tr>
+<tr>
+<td>C</td>
+<td>出願番号</td>
+<td>テキスト</td>
+<td>特願20XX-XXXXXX</td>
+</tr>
+<tr>
+<td>D</td>
+<td>登録番号</td>
+<td>テキスト</td>
+<td>特許第XXXXXXX号（未登録は空欄）</td>
+</tr>
+<tr>
+<td>E</td>
+<td>出願日</td>
+<td>日付</td>
+<td>yyyy/mm/dd</td>
+</tr>
+<tr>
+<td>F</td>
+<td>登録日</td>
+<td>日付</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>G</td>
+<td>存続期限日</td>
+<td>数式</td>
+<td>出願日から20年後を自動算出</td>
+</tr>
+<tr>
+<td>H</td>
+<td>残存期間（年）</td>
+<td>数式</td>
+<td>今日から存続期限までの年数</td>
+</tr>
+<tr>
+<td>I</td>
+<td>年間維持費（円）</td>
+<td>数値</td>
+<td>当年度の維持年金額</td>
+</tr>
+<tr>
+<td>J</td>
+<td>期待年間収益（円）</td>
+<td>数値</td>
+<td>ライセンス料・製品貢献額の見込み</td>
+</tr>
+<tr>
+<td>K</td>
+<td>収益化ステータス</td>
+<td>プルダウン</td>
+<td>4択から選択</td>
+</tr>
+<tr>
+<td>L</td>
+<td>損益判定</td>
+<td>数式</td>
+<td>自動でプラス／マイナス判定</td>
+</tr>
+<tr>
+<td>M</td>
+<td>累計投資額（円）</td>
+<td>数値</td>
+<td>出願費用＋過去維持費の合計</td>
+</tr>
+<tr>
+<td>N</td>
+<td>備考</td>
+<td>テキスト</td>
+<td>自由記入</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 主要数式の実装</h2>
+<h3>4-1. 存続期限日（G列）</h3>
+<p>特許権の存続期間は出願日から20年である。</p>
+<pre><code>G2 = DATE(YEAR(E2)+20, MONTH(E2), DAY(E2))
+</code></pre>
+<h3>4-2. 残存期間の自動カウントダウン（H列）</h3>
+<p><code>DATEDIF</code> 関数で今日から期限までの年数を算出する。期限切れの場合は0を返す。</p>
+<pre><code>H2 = IF(G2&gt;TODAY(), DATEDIF(TODAY(), G2, &quot;Y&quot;), 0)
+</code></pre>
+<blockquote>
+<p><strong>補足</strong>: <code>DATEDIF</code> はExcelの隠し関数だが、.xlsx形式で問題なく動作する。関数候補には表示されないため手入力すること。</p>
+</blockquote>
+<h3>4-3. 年間維持費の合計（SUM）</h3>
+<p>シート下部またはROIサマリーシートで使用する。</p>
+<pre><code>維持費合計 = SUM(特許一覧!I2:I500)
+</code></pre>
+<h3>4-4. 収益化ステータスのプルダウン設定</h3>
+<p>「データの入力規則」で以下4つの選択肢を設定する。</p>
+<table>
+<thead>
+<tr>
+<th>選択肢</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>維持</td>
+<td>自社実施または戦略的に保有継続</td>
+</tr>
+<tr>
+<td>ライセンス交渉中</td>
+<td>第三者への実施許諾を協議中</td>
+</tr>
+<tr>
+<td>売却検討</td>
+<td>特許権そのものの譲渡を検討</td>
+</tr>
+<tr>
+<td>放棄候補</td>
+<td>維持費削減のため権利放棄を検討</td>
+</tr>
+</tbody>
+</table>
+<p><strong>設定手順</strong>: K列を選択 → データタブ →「データの入力規則」→ 入力値の種類「リスト」→ 元の値に <code>維持,ライセンス交渉中,売却検討,放棄候補</code> を入力。</p>
+<h3>4-5. 損益分岐判定（L列）</h3>
+<p>期待収益が維持費を上回るかを自動判定する。</p>
+<pre><code>L2 = IF(J2=&quot;&quot;, &quot;未入力&quot;, IF(J2&gt;=I2, &quot;●黒字&quot;, &quot;▲赤字&quot;))
+</code></pre>
+<hr />
+<h2>5. ROIサマリーシートの設計</h2>
+<p>ポートフォリオ全体を俯瞰するためのダッシュボードシートを別シートに作成する。</p>
+<h3>5-1. 集計テーブル</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>数式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>保有件数</td>
+<td><code>=COUNTA(特許一覧!A2:A500)</code></td>
+</tr>
+<tr>
+<td>年間維持費合計</td>
+<td><code>=SUM(特許一覧!I2:I500)</code></td>
+</tr>
+<tr>
+<td>期待収益合計</td>
+<td><code>=SUM(特許一覧!J2:J500)</code></td>
+</tr>
+<tr>
+<td>年間純利益</td>
+<td><code>=期待収益合計 - 維持費合計</code></td>
+</tr>
+<tr>
+<td>ポートフォリオROI</td>
+<td><code>=年間純利益 / 維持費合計 * 100</code></td>
+</tr>
+<tr>
+<td>累計投資総額</td>
+<td><code>=SUM(特許一覧!M2:M500)</code></td>
+</tr>
+</tbody>
+</table>
+<h3>5-2. ステータス別集計</h3>
+<p><code>COUNTIF</code> で各ステータスの件数と維持費を集計する。</p>
+<table>
+<thead>
+<tr>
+<th>ステータス</th>
+<th>件数の数式</th>
+<th>維持費小計の数式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>維持</td>
+<td><code>=COUNTIF(特許一覧!K:K,"維持")</code></td>
+<td><code>=SUMIF(特許一覧!K:K,"維持",特許一覧!I:I)</code></td>
+</tr>
+<tr>
+<td>ライセンス交渉中</td>
+<td><code>=COUNTIF(特許一覧!K:K,"ライセンス交渉中")</code></td>
+<td><code>=SUMIF(特許一覧!K:K,"ライセンス交渉中",特許一覧!I:I)</code></td>
+</tr>
+<tr>
+<td>売却検討</td>
+<td><code>=COUNTIF(特許一覧!K:K,"売却検討")</code></td>
+<td><code>=SUMIF(特許一覧!K:K,"売却検討",特許一覧!I:I)</code></td>
+</tr>
+<tr>
+<td>放棄候補</td>
+<td><code>=COUNTIF(特許一覧!K:K,"放棄候補")</code></td>
+<td><code>=SUMIF(特許一覧!K:K,"放棄候補",特許一覧!I:I)</code></td>
+</tr>
+</tbody>
+</table>
+<h3>5-3. 損益分岐の件数</h3>
+<pre><code>黒字件数 = COUNTIF(特許一覧!L:L, &quot;●黒字&quot;)
+赤字件数 = COUNTIF(特許一覧!L:L, &quot;▲赤字&quot;)
+</code></pre>
+<hr />
+<h2>6. 条件付き書式の推奨設定</h2>
+<p>視認性を高めるため、以下の書式を設定する。</p>
+<table>
+<thead>
+<tr>
+<th>対象列</th>
+<th>条件</th>
+<th>書式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H列（残存期間）</td>
+<td>値が3以下</td>
+<td>赤背景・白文字</td>
+</tr>
+<tr>
+<td>H列（残存期間）</td>
+<td>値が5以下</td>
+<td>黄背景</td>
+</tr>
+<tr>
+<td>K列（ステータス）</td>
+<td>「放棄候補」</td>
+<td>グレー背景・取消線</td>
+</tr>
+<tr>
+<td>L列（損益判定）</td>
+<td>「▲赤字」</td>
+<td>赤文字・太字</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. 運用のポイント</h2>
+<h3>四半期レビューの実施</h3>
+<ul>
+<li><strong>毎四半期</strong>: ステータスの見直しと期待収益額の更新を行う</li>
+<li><strong>年1回</strong>: 維持費の年金額を最新の納付額に更新する（年金額は経年で上昇する）</li>
+</ul>
+<h3>放棄候補の判断基準</h3>
+<p>以下の3条件すべてに該当する特許は放棄を積極的に検討すべきである。</p>
+<ol>
+<li>損益判定が「▲赤字」</li>
+<li>残存期間が10年以上（＝今後の維持費負担が大きい）</li>
+<li>自社事業との関連性が低下している</li>
+</ol>
+<h3>データ保護</h3>
+<ul>
+<li><code>.xlsx</code> 形式のためマクロは含まれず、セキュリティリスクを抑制できる</li>
+<li>「シートの保護」で数式セルをロックし、入力セルのみ編集可能にする</li>
+<li>共有時は「ブックの保護」でシート構成の変更を防止する</li>
+</ul>
+<hr />
+<h2>8. 日本の特許維持年金の参考額</h2>
+<p>数式の <code>I列</code> に入力する際の参考値を示す。</p>
+<table>
+<thead>
+<tr>
+<th>年次</th>
+<th>年金額（1〜3請求項）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1〜3年</td>
+<td>各年 6,800円 + 請求項数×500円</td>
+</tr>
+<tr>
+<td>第4〜6年</td>
+<td>各年 16,400円 + 請求項数×1,300円</td>
+</tr>
+<tr>
+<td>第7〜9年</td>
+<td>各年 32,200円 + 請求項数×2,500円</td>
+</tr>
+<tr>
+<td>第10〜25年</td>
+<td>各年 64,400円 + 請求項数×5,000円</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>※ 上記は特許庁の料金表に基づく概算。減免制度の適用状況により異なる。</p>
+</blockquote>
+<hr />
+<h2>9. まとめ</h2>
+<p>本シートを導入することで、以下の効果が期待できる。</p>
+<ul>
+<li><strong>コスト可視化</strong>: 年間維持費の総額と内訳を即座に把握できる</li>
+<li><strong>意思決定の迅速化</strong>: 損益判定とステータスにより、維持・放棄の判断材料が整う</li>
+<li><strong>残存期間の管理漏れ防止</strong>: カウントダウン表示で期限切れリスクを事前に検知できる</li>
+<li><strong>ROIの定量評価</strong>: ポートフォリオ全体の投資対効果を数値で経営層に報告できる</li>
+</ul>
+<p>すべて標準的なExcel関数のみで構成されているため、特別なスキルがなくても運用を開始できる。まずは保有特許を一覧に入力するところから始めてほしい。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

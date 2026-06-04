@@ -1898,6 +1898,32 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ctr-tiktok-reels-line",
+    "url": "digital-marketing/ctr-tiktok-reels-line/",
+    "title": "動画広告を月3万で量産するAIツール",
+    "tool_name": "縦型動画広告スクリプト自動生成＆CTR診断ツール（TikTok_Reels_LINE対応）",
+    "description": "中小企業・EC事業者がTikTok・Instagram Reels・LINE向けの縦型動画広告スクリプトをAIで自動生成し、無料〜低コストのAI動画ツール（CapCut・Kling・Canva等）で量産するためのツールキット。商品情報を入力するだけでプラットフォーム別のスクリプト・カット割り・AIプロンプトを生成し、A/Bテスト管理・CTR改善診断まで一貫して行える。",
+    "quality_score": 9,
+    "completed_at": "2026-06-03T18:39:52.524666+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-67",
+    "url": "digital-marketing/tool-67/",
+    "title": "動画広告を月3万で量産するAIツール",
+    "tool_name": "動画広告A_Bテスト効果測定シート",
+    "description": "中小企業・EC事業者がTikTok・Instagram Reels・LINE向けの縦型動画広告スクリプトをAIで自動生成し、無料〜低コストのAI動画ツール（CapCut・Kling・Canva等）で量産するためのツールキット。商品情報を入力するだけでプラットフォーム別のスクリプト・カット割り・AIプロンプトを生成し、A/Bテスト管理・CTR改善診断まで一貫して行える。",
+    "quality_score": 9,
+    "completed_at": "2026-06-03T18:39:52.524666+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -2247,6 +2273,45 @@
     "quality_score": 9,
     "completed_at": "2026-06-02T01:23:38.424772+00:00",
     "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-28",
+    "url": "legal-tech/diagnosis-28/",
+    "title": "特許の持ち腐れ、終わりにしませんか？",
+    "tool_name": "特許収益化ポテンシャル診断ツール",
+    "description": "中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自動計算するExcel管理シートの3点セット。",
+    "quality_score": 9,
+    "completed_at": "2026-06-04T03:14:37.453190+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-36",
+    "url": "legal-tech/contract-36/",
+    "title": "特許の持ち腐れ、終わりにしませんか？",
+    "tool_name": "特許ライセンス契約書テンプレート集",
+    "description": "中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自動計算するExcel管理シートの3点セット。",
+    "quality_score": 9,
+    "completed_at": "2026-06-04T03:14:37.453190+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "management-6",
+    "url": "legal-tech/management-6/",
+    "title": "特許の持ち腐れ、終わりにしませんか？",
+    "tool_name": "知財ポートフォリオ収支管理シート",
+    "description": "中小企業・スタートアップが保有する特許の収益化ポテンシャルを自己診断し、ライセンス契約まで一気通貫で進められるツールキット。特許分類・残存期間・技術分野から収益化可能性をスコアリングするHTML診断ツール、すぐに使えるライセンス契約書テンプレート（独占/非独占/クロスライセンスの3パターン）、維持費対効果を自動計算するExcel管理シートの3点セット。",
+    "quality_score": 9,
+    "completed_at": "2026-06-04T03:14:37.453190+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "proptech",
@@ -5486,6 +5551,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-14",
+    "url": "proptech/contract-14/",
+    "title": "賃貸の総コスト、契約前に即比較",
+    "tool_name": "賃貸トータルコスト比較シミュレーター",
+    "description": "賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-06-04T07:54:27.476996+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-15",
+    "url": "proptech/contract-15/",
+    "title": "賃貸の総コスト、契約前に即比較",
+    "tool_name": "日本の賃貸費用_完全ガイド（日英対応）",
+    "description": "賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-06-04T07:54:27.476996+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-16",
+    "url": "proptech/contract-16/",
+    "title": "賃貸の総コスト、契約前に即比較",
+    "tool_name": "外国人テナント向け_賃貸費用説明シート",
+    "description": "賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。",
+    "quality_score": 7,
+    "completed_at": "2026-06-04T07:54:27.476996+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",
@@ -6784,5 +6888,44 @@
     "quality_score": 6,
     "completed_at": "2026-03-07T16:13:49.529797+00:00",
     "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-11",
+    "url": "proptech/contract-11/",
+    "title": "不動産契約のリスク条項、署名前に即スコア化",
+    "tool_name": "不動産契約リスクスコアリングチェッカー",
+    "description": "賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の全項目チェックリストと、リスク条項の交渉実務ガイドをセットで納品。",
+    "quality_score": 6,
+    "completed_at": "2026-06-03T18:48:53.262250+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-12",
+    "url": "proptech/contract-12/",
+    "title": "不動産契約のリスク条項、署名前に即スコア化",
+    "tool_name": "重要事項説明書_全項目確認チェックリスト",
+    "description": "賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の全項目チェックリストと、リスク条項の交渉実務ガイドをセットで納品。",
+    "quality_score": 6,
+    "completed_at": "2026-06-03T18:48:53.262250+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-13",
+    "url": "proptech/contract-13/",
+    "title": "不動産契約のリスク条項、署名前に即スコア化",
+    "tool_name": "不動産リスク条項の発見と交渉_実務ガイド",
+    "description": "賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の全項目チェックリストと、リスク条項の交渉実務ガイドをセットで納品。",
+    "quality_score": 6,
+    "completed_at": "2026-06-03T18:48:53.262250+00:00",
+    "content_type": "article"
   }
 ]

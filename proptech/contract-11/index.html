@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産契約リスクスコアリングチェッカー - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Hiragino Sans",sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{text-align:center;color:#1a365d;font-size:1.25em;margin:8px 0}
+.sub{text-align:center;color:#666;font-size:.82em;margin-bottom:16px}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tab{flex:1;padding:10px;text-align:center;border:2px solid #2b6cb0;border-radius:8px;cursor:pointer;font-weight:bold;background:#fff;color:#2b6cb0;transition:.2s;font-size:.95em}
+.tab.active{background:#2b6cb0;color:#fff}
+.sbox{background:#fff;border-radius:12px;padding:20px;text-align:center;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.snum{font-size:3em;font-weight:bold;line-height:1.2}
+.slab{font-size:.85em;color:#666;margin-bottom:4px}
+.bar{height:14px;background:#e2e8f0;border-radius:7px;margin:10px 0;overflow:hidden}
+.bf{height:100%;border-radius:7px;transition:width .5s,background .5s}
+.legend{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-size:.78em;color:#555}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.summary{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.scard{flex:1;min-width:100px;background:#fff;border-radius:8px;padding:10px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.scard b{font-size:1.4em;display:block}
+.item{background:#fff;border-radius:8px;padding:12px 14px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid #cbd5e0;transition:.3s}
+.item.rh{border-left-color:#e53e3e}
+.item.rm{border-left-color:#ed8936}
+.item.rl{border-left-color:#38a169}
+.ih{display:flex;align-items:center;font-weight:bold;font-size:.92em;margin-bottom:6px;flex-wrap:wrap;gap:4px}
+.item select{width:100%;padding:8px 10px;border:1px solid #cbd5e0;border-radius:6px;font-size:.88em;background:#fff}
+.std{font-size:.78em;color:#555;background:#f7fafc;padding:6px 10px;border-radius:4px;margin-top:6px;line-height:1.5}
+.tag{display:inline-block;padding:1px 8px;border-radius:4px;font-size:.72em;font-weight:bold;color:#fff}
+.th{background:#e53e3e}.tm{background:#ed8936}.tl{background:#38a169}
+.btn{display:block;width:100%;padding:12px;background:#2b6cb0;color:#fff;border:none;border-radius:8px;font-size:.95em;cursor:pointer;margin-top:12px;font-weight:bold}
+.btn:hover{background:#2c5282}
+.ft{text-align:center;font-size:.72em;color:#999;margin:16px 0 8px;line-height:1.6}
+@media print{.tabs,.btn{display:none!important}select{border:none;-webkit-appearance:none;appearance:none;background:none}}
+@media(max-width:600px){.wrap{padding:10px}.snum{font-size:2.2em}h1{font-size:1.1em}.scard{min-width:80px}}
+</style>
+<meta name="description" content="賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産契約リスクスコアリングチェッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-11/">
+<meta property="og:title" content="不動産契約リスクスコアリングチェッカー - kusasyu tools">
+<meta property="og:description" content="賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産契約リスクスコアリングチェッカー - kusasyu tools">
+<meta name="twitter:description" content="賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産契約リスクスコアリングチェッカー",
+  "description": "賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-11/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産契約リスクスコアリングチェッカー</span></div>
+<div class="wrap">
+<h1>不動産契約リスクスコアリングチェッカー</h1>
+<p class="sub">国交省標準約款との乖離度を0〜100点で即時スコアリング</p>
+<div class="tabs"><div class="tab active" onclick="sw(0)">賃貸契約チェック</div><div class="tab" onclick="sw(1)">売買契約チェック</div></div>
+<div class="sbox">
+<div class="slab">契約安全スコア（100点＝標準約款準拠）</div>
+<div class="snum" id="sc">― 点</div>
+<div class="bar"><div class="bf" id="bf" style="width:0"></div></div>
+<div class="legend"><span><i style="background:#38a169"></i>70〜100 安全</span><span><i style="background:#ed8936"></i>40〜69 注意</span><span><i style="background:#e53e3e"></i>0〜39 高リスク</span></div>
+</div>
+<div class="summary" id="sm"></div>
+<div id="ls"></div>
+<button class="btn" onclick="window.print()">結果を印刷 / PDF保存</button>
+<div class="ft">© Kusasyu PropTech｜本ツールは参考情報です。契約締結前に必ず宅建士・弁護士にご確認ください。<br>国土交通省「賃貸住宅標準契約書」「宅地建物取引業法」に基づくチェック基準</div>
+</div>
+<script>
+var D=[[
+{n:"違約金上限",s:"国交省標準: 賃料1〜2ヶ月分が上限。消費者契約法により不当に高額な違約金は無効",o:["賃料1ヶ月分以内","賃料2ヶ月分","賃料3ヶ月分以上","記載なし/不明確"],r:[0,1,3,2]},
+{n:"原状回復の範囲",s:"国交省ガイドライン: 通常損耗・経年劣化は貸主負担。借主は故意過失部分のみ",o:["ガイドライン準拠","一部が借主負担","全面的に借主負担","記載なし"],r:[0,1,3,2]},
+{n:"解約通知期間",s:"標準: 借主からは1ヶ月前まで。3ヶ月以上は借主に不利",o:["1ヶ月前","2ヶ月前","3ヶ月以上前","記載なし"],r:[0,1,3,2]},
+{n:"更新料の条件",s:"標準契約書: 更新料の定めなし。地域慣行により賃料1ヶ月分が上限目安",o:["更新料なし","賃料0.5〜1ヶ月","賃料1.5ヶ月以上","記載なし"],r:[0,1,3,2]},
+{n:"敷金返還条件",s:"民法改正: 原状回復費を除き退去時に全額返還義務あり",o:["全額返還を明記","一部償却条項あり","大幅償却条項あり","記載なし"],r:[0,1,3,2]},
+{n:"修繕費の負担区分",s:"標準: 小修繕（電球等）は借主、設備故障・構造は貸主負担",o:["標準通り区分明記","借主範囲がやや広い","借主負担が過大","記載なし"],r:[0,1,3,2]},
+{n:"禁止事項の範囲",s:"標準: 合理的な使用制限のみ。過度な制限は借地借家法上問題あり",o:["合理的範囲のみ","やや広範な制限","過度に制限的","記載なし"],r:[0,1,3,2]},
+{n:"家賃改定条項",s:"借地借家法32条: 経済事情変動時に当事者協議で改定",o:["協議条項あり","貸主判断で改定可","一方的値上げ可","記載なし"],r:[0,1,3,2]},
+{n:"連帯保証人の極度額",s:"民法改正（2020年）: 個人保証は極度額の明記が必須。未記載は無効",o:["極度額を明記","金額が不明確","極度額の記載なし","保証会社利用"],r:[0,2,3,0]},
+{n:"契約期間と更新方式",s:"普通借家: 正当事由なき更新拒絶不可（法定更新）。定期借家は書面説明必須",o:["法定更新/期間明確","更新条件が不明確","不利な更新制限あり","記載なし"],r:[0,1,3,2]}
+],[
+{n:"違約金上限",s:"宅建業法38条: 損害賠償額の予定は代金の20%が上限",o:["代金の20%以内","20%を超える","損害賠償予定なし","記載なし"],r:[0,3,1,2]},
+{n:"契約不適合責任期間",s:"宅建業法40条: 宅建業者売主は引渡しから2年以上。個人売主は協議",o:["2年以上","1〜2年未満","免責/1年未満","記載なし"],r:[0,1,3,2]},
+{n:"手付金の額と保全",s:"宅建業法39条: 代金の20%以内。未完成物件5%超等は保全措置必須",o:["5〜10%＋保全あり","10〜20%","20%超/保全なし","記載なし"],r:[0,1,3,2]},
+{n:"ローン特約",s:"標準: 融資未承認時は白紙解除・手付金全額返還",o:["白紙解除を明記","条件付き解除","ローン特約なし","記載なし"],r:[0,1,3,2]},
+{n:"引渡し条件",s:"標準: 残代金支払と同時に引渡し・所有権移転登記（同時履行）",o:["同時履行を明記","条件付き引渡し","売主有利な条件","記載なし"],r:[0,1,3,2]},
+{n:"付帯設備の状態明示",s:"標準: 付帯設備表で各設備の有無・状態・故障を明記",o:["設備表あり確認済","一部のみ記載","設備表なし","記載なし"],r:[0,1,3,2]},
+{n:"土地の境界確認",s:"標準: 確定測量または公簿売買を明記。境界紛争リスクを回避",o:["確定測量済み","公簿売買を明記","境界未確定","記載なし"],r:[0,1,3,2]},
+{n:"危険負担の取決め",s:"民法改正: 引渡前の目的物滅失は売主の危険負担（債務者主義）",o:["売主負担を明記","双方協議","買主負担","記載なし"],r:[0,1,3,2]},
+{n:"特約条項の内容確認",s:"標準: 特約は双方合意で明記。一方的に不利な特約は消費者契約法で無効の可能性",o:["合意済み特約のみ","一方的特約あり","不利な特約が複数","特約を未確認"],r:[0,1,3,2]},
+{n:"重要事項説明の実施",s:"宅建業法35条: 宅建士が記名した書面で契約前に説明義務",o:["対面で説明済み","IT重説で実施済","説明が不十分","未実施/不明"],r:[0,0,2,3]}
+]];
+var mode=0;
+function sw(m){mode=m;document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',i===m)});render();}
+function render(){var c=document.getElementById('ls');c.innerHTML='';D[mode].forEach(function(it,i){var d=document.createElement('div');d.className='item';d.id='it'+i;d.innerHTML='<div class="ih"><span>'+(i+1)+'. '+it.n+'</span></div><select onchange="calc()"><option value="-1">— 選択してください —</option>'+it.o.map(function(o,j){return'<option value="'+j+'">'+o+'</option>'}).join('')+'</select><div class="std">'+it.s+'</div>';c.appendChild(d);});document.getElementById('sc').textContent='― 点';document.getElementById('bf').style.width='0';document.getElementById('sm').innerHTML='';calc();}
+function calc(){var items=D[mode],tot=0,mx=0,ans=0,hi=0,mid=0,lo=0;var sels=document.querySelectorAll('#ls select');sels.forEach(function(sel,i){var v=+sel.value,el=document.getElementById('it'+i);el.className='item';var old=el.querySelector('.tag');if(old)old.remove();if(v>=0){ans++;var r=items[i].r[v];tot+=r;mx+=3;if(r>=3){hi++;el.classList.add('rh');el.querySelector('.ih').insertAdjacentHTML('beforeend','<span class="tag th">高リスク</span>')}else if(r>=2){mid++;el.classList.add('rm');el.querySelector('.ih').insertAdjacentHTML('beforeend','<span class="tag tm">要注意</span>')}else{lo++;el.classList.add('rl');el.querySelector('.ih').insertAdjacentHTML('beforeend','<span class="tag tl">安全</span>')}}});var sm=document.getElementById('sm');if(ans===0){document.getElementById('sc').textContent='― 点';document.getElementById('bf').style.width='0';sm.innerHTML='';return;}var score=Math.round(100-tot/mx*100);document.getElementById('sc').textContent=score+'点';var bf=document.getElementById('bf');bf.style.width=score+'%';bf.style.background=score>=70?'#38a169':score>=40?'#ed8936':'#e53e3e';sm.innerHTML='<div class="scard"><b style="color:#e53e3e">'+hi+'</b><span style="font-size:.78em">高リスク</span></div><div class="scard"><b style="color:#ed8936">'+mid+'</b><span style="font-size:.78em">要注意</span></div><div class="scard"><b style="color:#38a169">'+lo+'</b><span style="font-size:.78em">安全</span></div><div class="scard"><b>'+ans+'/10</b><span style="font-size:.78em">回答済</span></div>';}
+render();
+</script>
+</body>
+</html>

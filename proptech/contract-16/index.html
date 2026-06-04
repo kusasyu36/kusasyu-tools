@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外国人テナント向け_賃貸費用説明シート - kusasyu tools</title>
+<meta name="description" content="賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,外国人テナント向け_賃貸費用説明シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-16/">
+<meta property="og:title" content="外国人テナント向け_賃貸費用説明シート - kusasyu tools">
+<meta property="og:description" content="賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/contract-16/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="外国人テナント向け_賃貸費用説明シート - kusasyu tools">
+<meta name="twitter:description" content="賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "外国人テナント向け_賃貸費用説明シート",
+  "description": "賃貸契約書に記載された初期費用・月額費用・更新料・退去費用を入力すると、希望居住期間における総コストを自動計算し、最大3物件を並べて比較できるWebツール。日本特有の礼金・敷金・保証会社費用・原状回復費用などを網羅し、日英バイリンガル対応。不動産会社向けには外国人テナントへの費用説明テンプレートも提供する。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/contract-16/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-04"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>外国人テナント向け_賃貸費用説明シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>外国人テナント向け_賃貸費用説明シート</h1>
+  <p class="project-name">賃貸の総コスト、契約前に即比較</p>
+  <div class="content">
+<p>┌──────────────────────────────────────────────────┐
+│  入居時の支払いイメージ / Payment Image           │
+│                                                    │
+│  家賃80,000円の場合 / Example: ¥80,000 rent       │
+│                                                    │
+│  敷金 ██████░░ 1ヶ月    =  80,000円              │
+│  礼金 ██████░░ 1ヶ月    =  80,000円              │
+│  仲介 ████░░░░ 0.5ヶ月  =  44,000円(税込)        │
+│  前家賃 ██████ 1ヶ月    =  80,000円              │
+│  保証  ████░░░░ 0.5ヶ月  =  40,000円              │
+│  保険  ██░░░░░░          =  20,000円              │
+│  鍵交換 █░░░░░░          =  16,500円              │
+│  ─────────────────────────────────                │
+│  合計 / Total           ≈ 360,500円              │
+└──────────────────────────────────────────────────┘</p>
+<pre><code>
+| 費用項目 / Cost Item | 相場 / Range | 金額 / Amount | 備考 / Notes |
+|---|---|---|---|
+| 敷金 Security Deposit | 家賃0〜2ヶ月分 | 【　　】円 [記入例: 80,000] | 退去時に精算して返還 / Refundable after deductions |
+| 礼金 Key Money | 家賃0〜2ヶ月分 | 【　　】円 [記入例: 80,000] | **返金なし / Non-refundable** |
+| 仲介手数料 Brokerage Fee | 家賃0.5〜1ヶ月分+税 | 【　　】円 [記入例: 44,000] | 不動産会社への手数料 / Agency commission |
+| 前家賃 Advance Rent | 家賃1〜2ヶ月分 | 【　　】円 [記入例: 80,000] | 入居月の家賃前払い / Prepaid rent |
+| 保証会社費用 Guarantor Fee | 家賃0.5〜1ヶ月分 | 【　　】円 [記入例: 40,000] | 連帯保証人の代替 / Instead of a personal guarantor |
+| 火災保険 Fire Insurance | 1.5〜2万円/年 | 【　　】円 [記入例: 20,000] | 加入必須 / Mandatory |
+| 鍵交換 Lock Change | 1〜2万円 | 【　　】円 [記入例: 16,500] | 防犯のため / For security |
+| **合計 Total** | | **【　　】円** [記入例: 360,500] | |
+
+&gt; 💡 **敷金ゼロ＝お得ではありません。** 退去時に別途クリーニング費を請求されることがあります。
+&gt; 💡 **Zero deposit ≠ cheaper.** A cleaning fee may be charged at move-out instead.
+
+---
+
+## ② 毎月の費用 / Monthly Costs
+
+毎月発生する固定費用です。家賃以外にも支払いが必要な項目があります。
+These are recurring costs you pay every month in addition to rent.
+
+</code></pre>
+<p>┌──────────────────────────────────────────────┐
+│  毎月の支払い内訳 / Monthly Breakdown         │
+│                                                │
+│  ┌─────────┐ ┌────┐ ┌────┐                  │
+│  │  家賃    │ │管理│ │その│                  │
+│  │  Rent    │ │費  │ │他  │                  │
+│  │ 80,000  │ │5,000│ │    │                  │
+│  └─────────┘ └────┘ └────┘                  │
+│  ← 毎月の合計: 約85,000円〜 →               │
+└──────────────────────────────────────────────┘</p>
+<pre><code>
+| 費用項目 / Cost Item | 金額 / Amount | 備考 / Notes |
+|---|---|---|
+| 家賃 Rent | 【　　】円 [記入例: 80,000] | 毎月の基本費用 / Base monthly cost |
+| 管理費・共益費 Management Fee | 【　　】円 [記入例: 5,000] | 共用部の維持管理 / Common area maintenance |
+| インターネット Internet | 【　　】円 [記入例: 0 ※含む] | 物件による / Depends on property |
+| 駐輪場 Bicycle Parking | 【　　】円 [記入例: 300] | 該当する場合 / If applicable |
+| 町内会費 Neighborhood Fee | 【　　】円 [記入例: 500] | 該当する場合 / If applicable |
+| 保証会社年間更新料 Guarantor Annual Renewal | 【　　】円 [記入例: 10,000÷12≒834] | 年1回を月割計算 / Annual fee prorated |
+| **月額合計 Monthly Total** | **【　　】円** [記入例: 86,634] | |
+
+&gt; ⚠️ **光熱費（電気・ガス・水道）は別途かかります。** 目安：月10,000〜15,000円（単身）
+&gt; ⚠️ **Utilities (electricity, gas, water) are separate.** Estimate: ¥10,000–15,000/month (single)
+
+---
+
+## ③ 更新時の費用 / Renewal Costs
+
+日本の賃貸契約は通常 **2年ごと** に更新です。更新しないと退去となります。
+In Japan, leases are typically renewed every **2 years**. You must renew or move out.
+
+</code></pre>
+<p>┌────────────────────────────────────────────┐
+│  契約タイムライン / Lease Timeline          │
+│                                              │
+│  入居 ──── 1年目 ──── 2年目 ──── 更新     │
+│  Move-in                         Renewal    │
+│                                   ↓          │
+│                              更新料+保険     │
+│                              Renewal fee     │
+│                              + Insurance     │
+└────────────────────────────────────────────┘</p>
+<pre><code>
+| 費用項目 / Cost Item | 相場 / Range | 金額 / Amount | 備考 / Notes |
+|---|---|---|---|
+| 更新料 Renewal Fee | 家賃0.5〜1ヶ月分 | 【　　】円 [記入例: 80,000] | 大家に支払う / Paid to landlord |
+| 更新事務手数料 Admin Fee | 0〜0.5ヶ月分 | 【　　】円 [記入例: 16,500] | 管理会社へ / Paid to management |
+| 火災保険更新 Insurance Renewal | 1.5〜2万円 | 【　　】円 [記入例: 20,000] | 2年ごと / Every 2 years |
+| 保証会社更新 Guarantor Renewal | 1万円前後 | 【　　】円 [記入例: 10,000] | 年1回の場合あり / May be annual |
+| **更新時合計 Renewal Total** | | **【　　】円** [記入例: 126,500] | |
+
+&gt; 💡 **定期借家契約（Fixed-term lease）の場合、更新はできません。** 契約種別を必ず確認してください。
+&gt; 💡 **Fixed-term leases cannot be renewed.** Always confirm your lease type.
+
+---
+
+## ④ 退去時の費用 / Move-Out Costs
+
+退去時には「原状回復」として部屋を元の状態に戻す義務があります。
+When moving out, you are responsible for &quot;restoration&quot; — returning the room to its original condition.
+
+</code></pre>
+<p>┌──────────────────────────────────────────────────┐
+│  退去時の費用精算イメージ                          │
+│  Move-Out Cost Settlement                         │
+│                                                    │
+│  敷金（預けたお金）                                │
+│  Security Deposit (your money held)               │
+│  ┌──────────────────────────────┐                 │
+│  │████████████  80,000円       │                 │
+│  └──────────────────────────────┘                 │
+│       ↓ ここから差し引かれる / Deducted:          │
+│  ┌────────────┐┌──────┐┌────┐                   │
+│  │クリーニング ││修繕  ││返還│                   │
+│  │ 40,000     ││10,000││    │                   │
+│  │ Cleaning   ││Repair││Ref.│                   │
+│  └────────────┘└──────┘└────┘                   │
+│  → 返還額 Refund: 約30,000円                     │
+└──────────────────────────────────────────────────┘</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>
