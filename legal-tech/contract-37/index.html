@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>フリーランス業務委託契約書ジェネレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3em;padding:20px 0 4px;color:#1a1a2e}
+.sub{text-align:center;color:#666;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.08);margin-bottom:16px}
+.step{display:none}.step.active{display:block}
+.prog{display:flex;gap:4px;margin-bottom:20px}
+.prog span{flex:1;height:4px;border-radius:2px;background:#e0e0e0;transition:.3s}
+.prog span.done{background:#2563eb}
+label{display:block;font-weight:700;margin-bottom:8px;font-size:.95em}
+.hint{font-size:.8em;color:#666;margin-bottom:12px}
+input[type=text],input[type=number],input[type=date],textarea,select{width:100%;padding:10px 12px;border:1.5px solid #d0d5dd;border-radius:8px;font-size:1em;font-family:inherit;margin-bottom:8px}
+textarea{height:80px;resize:vertical}
+select{background:#fff}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.presets{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.presets button{padding:8px 16px;border:1.5px solid #d0d5dd;border-radius:8px;background:#fff;cursor:pointer;font-size:.9em;transition:.2s}
+.presets button:hover,.presets button.sel{border-color:#2563eb;background:#eff6ff;color:#2563eb}
+.nav{display:flex;gap:12px;margin-top:16px}
+.nav button{flex:1;padding:12px;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.btn-back{background:#e5e7eb;color:#374151}
+.btn-next{background:#2563eb;color:#fff}
+.btn-next:hover{background:#1d4ed8}
+.btn-gen{background:#059669;color:#fff}
+.btn-gen:hover{background:#047857}
+#result{display:none}
+.contract{background:#fff;border:1px solid #d0d5dd;border-radius:8px;padding:20px;font-size:.9em;white-space:pre-wrap;line-height:1.8;max-height:70vh;overflow-y:auto}
+.warn{background:#fef2f2;color:#dc2626;padding:2px 6px;border-radius:4px;font-size:.8em;font-weight:700}
+.caution{background:#fffbeb;color:#d97706;padding:2px 6px;border-radius:4px;font-size:.8em;font-weight:700}
+.safe{background:#f0fdf4;color:#16a34a;padding:2px 6px;border-radius:4px;font-size:.8em;font-weight:700}
+.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.actions button{padding:10px 20px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.95em}
+.btn-copy{background:#2563eb;color:#fff}
+.btn-reset{background:#e5e7eb;color:#374151}
+.copied{background:#059669!important}
+.qnum{display:inline-block;background:#2563eb;color:#fff;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;font-size:.85em;margin-right:8px;vertical-align:middle}
+@media(max-width:600px){.wrap{padding:10px}.card{padding:16px}.presets{flex-direction:column}}
+</style>
+<meta name="description" content="フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,フリーランス業務委託契約書ジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-37/">
+<meta property="og:title" content="フリーランス業務委託契約書ジェネレーター - kusasyu tools">
+<meta property="og:description" content="フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-37/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="フリーランス業務委託契約書ジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "フリーランス業務委託契約書ジェネレーター",
+  "description": "フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-37/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">フリーランス業務委託契約書ジェネレーター</span></div>
+<div class="wrap">
+<h1>フリーランス業務委託契約書ジェネレーター</h1>
+<p class="sub">10の質問に答えるだけで、法的要件を押さえた契約書を即時生成</p>
+<div class="card">
+<div class="prog" id="prog"></div>
+<div id="steps"></div>
+<div class="nav" id="nav"></div>
+</div>
+<div id="result">
+<div class="card">
+<h2 style="margin-bottom:12px">生成された契約書</h2>
+<div class="contract" id="output"></div>
+<div class="actions">
+<button class="btn-copy" id="copyBtn" onclick="copyContract()">契約書をコピー（プレーンテキスト）</button>
+<button class="btn-reset" onclick="reset()">最初からやり直す</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+const PRESETS={
+'IT開発':{work:'Webアプリケーション開発業務（要件定義・設計・プログラミング・テスト・納品）',deliver:'ソースコード一式、設計書、テスト報告書',ip_note:'ソースコードの著作権譲渡には十分注意してください'},
+'Webデザイン':{work:'Webサイトデザイン制作業務（ワイヤーフレーム・デザインカンプ・コーディング）',deliver:'デザインデータ（Figma/PSD）、HTML/CSSファイル一式',ip_note:'デザインの二次利用範囲を明確にしてください'},
+'ライティング':{work:'記事コンテンツ執筆業務（企画・取材・執筆・校正）',deliver:'原稿データ（Word/Googleドキュメント）',ip_note:'記事の署名権（クレジット表記）について確認してください'}
+};
+const Q=[
+{id:'type',label:'業種プリセット',hint:'業種を選ぶと業務内容が自動入力されます',type:'preset'},
+{id:'client',label:'委託者（クライアント）の名称',hint:'法人名または個人名を入力',type:'text',ph:'株式会社○○ / ○○太郎'},
+{id:'contractor',label:'受託者（あなた）の名称',hint:'あなたの屋号または氏名',type:'text',ph:'フリーランス○○ / ○○花子'},
+{id:'work',label:'業務内容',hint:'具体的に記載するほどトラブル防止に有効です',type:'textarea',ph:'例：Webアプリケーション開発業務'},
+{id:'fee',label:'報酬額（税抜・円）',hint:'',type:'number',ph:'500000'},
+{id:'feeType',label:'報酬形態',hint:'',type:'select',opts:['固定報酬（税別）','時間単価（税別）','月額固定（税別）']},
+{id:'payDay',label:'支払条件',hint:'フリーランス新法により60日以内の支払が原則です',type:'select',opts:['月末締め翌月末払い','月末締め翌々月末払い','納品検収後30日以内','納品検収後60日以内']},
+{id:'copyright',label:'著作権の帰属',hint:'',type:'select',opts:['委託者に全部譲渡','受託者に帰属（委託者に利用許諾）','共有']},
+{id:'period',label:'契約期間',hint:'開始日と終了日を設定',type:'dates'},
+{id:'cancel',label:'中途解約の予告期間',hint:'',type:'select',opts:['30日前までに書面通知','14日前までに書面通知','7日前までに書面通知']}
+];
+let step=0,ans={type:'IT開発'};
+function init(){
+let p=document.getElementById('prog');
+p.innerHTML=Q.map((_,i)=>'<span></span>').join('');
+render();
+}
+function render(){
+let s='',q=Q[step];
+s+='<div class="step active">';
+s+='<label><span class="qnum">'+(step+1)+'</span>'+q.label+'</label>';
+if(q.hint)s+='<div class="hint">'+q.hint+'</div>';
+if(q.type==='preset'){
+s+='<div class="presets">';
+Object.keys(PRESETS).forEach(k=>{
+s+='<button onclick="selPreset(\''+k+'\')" class="'+(ans.type===k?'sel':'')+'">'+k+'</button>';
+});
+s+='</div>';
+}else if(q.type==='text'){
+s+='<input type="text" id="inp" value="'+(ans[q.id]||'')+'" placeholder="'+(q.ph||'')+'">';
+}else if(q.type==='number'){
+s+='<input type="number" id="inp" value="'+(ans[q.id]||'')+'" placeholder="'+(q.ph||'')+'">';
+}else if(q.type==='textarea'){
+s+='<textarea id="inp" placeholder="'+(q.ph||'')+'">'+(ans[q.id]||'')+'</textarea>';
+}else if(q.type==='select'){
+s+='<select id="inp">';
+q.opts.forEach((o,i)=>{s+='<option'+(ans[q.id]===o?' selected':(!ans[q.id]&&i===0?' selected':''))+'>'+o+'</option>';});
+s+='</select>';
+}else if(q.type==='dates'){
+s+='<input type="date" id="inp_s" value="'+(ans.startDate||'')+'" style="width:48%;display:inline-block"> 〜 ';
+s+='<input type="date" id="inp_e" value="'+(ans.endDate||'')+'" style="width:48%;display:inline-block">';
+}
+s+='</div>';
+document.getElementById('steps').innerHTML=s;
+let nav='';
+if(step>0)nav+='<button class="btn-back" onclick="go(-1)">← 戻る</button>';
+if(step<Q.length-1)nav+='<button class="btn-next" onclick="go(1)">次へ →</button>';
+else nav+='<button class="btn-gen" onclick="generate()">契約書を生成 ✓</button>';
+document.getElementById('nav').innerHTML=nav;
+document.querySelectorAll('#prog span').forEach((el,i)=>{if(i<=step)el.classList.add('done');else el.classList.remove('done');});
+}
+function save(){
+let q=Q[step];
+if(q.type==='dates'){ans.startDate=document.getElementById('inp_s').value;ans.endDate=document.getElementById('inp_e').value;}
+else if(q.type!=='preset'){let el=document.getElementById('inp');if(el)ans[q.id]=el.value;}
+}
+function selPreset(k){ans.type=k;ans.work=PRESETS[k].work;render();}
+function go(d){save();step+=d;if(step<0)step=0;render();}
+function risk(text,level){return '<span class="'+level+'">⚠ '+text+'</span>';}
+function generate(){
+save();
+let a=ans,p=PRESETS[a.type]||PRESETS['IT開発'];
+let today=new Date().toISOString().slice(0,10).replace(/-/g,'/');
+let rFee='',rCopy='',rPay='',rCancel='';
+if(a.copyright==='委託者に全部譲渡')rCopy='\n'+risk('著作権を全て譲渡すると、自身のポートフォリオ利用も制限される可能性があります','warn');
+else if(a.copyright==='受託者に帰属（委託者に利用許諾）')rCopy='\n'+risk('受託者に帰属：あなたに有利な条件です','safe');
+else rCopy='\n'+risk('共有の場合、利用範囲の取り決めが曖昧になりやすいです','caution');
+if(a.payDay==='月末締め翌々月末払い')rPay='\n'+risk('翌々月末払いは資金繰りが厳しくなります。翌月末が推奨です','warn');
+else if(a.payDay==='納品検収後60日以内')rPay='\n'+risk('60日は法定上限ギリギリです。30日以内が望ましいです','caution');
+else rPay='\n'+risk('この支払条件は受託者に適切です','safe');
+if(a.cancel==='7日前までに書面通知')rCancel='\n'+risk('7日前は短すぎます。次の案件確保が困難になる恐れがあります','warn');
+else if(a.cancel==='14日前までに書面通知')rCancel='\n'+risk('14日前は最低限の期間です。30日前が安全です','caution');
+else rCancel='\n'+risk('30日前通知は受託者にとって安全な条件です','safe');
+let feeLabel=Number(a.fee).toLocaleString();
+let copy1='',copy2='';
+if(a.copyright==='委託者に全部譲渡'){copy1='本業務により生じた著作物の著作権（著作権法第27条および第28条の権利を含む）は、報酬の支払完了時に受託者から委託者に譲渡される。';copy2='受託者は委託者に対し、著作者人格権を行使しない。';}
+else if(a.copyright==='受託者に帰属（委託者に利用許諾）'){copy1='本業務により生じた著作物の著作権は受託者に帰属する。受託者は委託者に対し、本業務の目的の範囲内で著作物を利用する非独占的な権利を許諾する。';copy2='受託者は、ポートフォリオ等への掲載を自由に行うことができる。';}
+else{copy1='本業務により生じた著作物の著作権は、委託者と受託者の共有とする。共有持分は各2分の1とする。';copy2='各共有者は、相手方の同意なく自己の持分を第三者に譲渡してはならない。';}
+let html=`<div style="text-align:center;font-size:1.2em;font-weight:700;margin-bottom:16px">業 務 委 託 契 約 書</div>
+
+${a.client||'（委託者名）'}（以下「甲」という）と${a.contractor||'（受託者名）'}（以下「乙」という）は、以下のとおり業務委託契約を締結する。
+
+<b>第1条（目的）</b>
+甲は乙に対し、以下の業務（以下「本業務」という）を委託し、乙はこれを受託する。
+
+<b>第2条（業務内容および納品物）</b>
+1. 業務内容：${a.work||'（業務内容を記載）'}
+2. 納品物：${p.deliver}
+3. 乙は善良なる管理者の注意をもって本業務を遂行する。
+
+<b>第3条（報酬）</b>
+本業務の報酬は、${a.feeType||'固定報酬（税別）'} ${feeLabel}円（税別）とする。消費税は別途甲が負担する。${rFee}
+
+<b>第4条（支払条件）</b>
+甲は乙に対し、${a.payDay||'月末締め翌月末払い'}にて、乙指定の銀行口座に振込送金する方法により支払う。振込手数料は甲の負担とする。${rPay}
+
+<b>第5条（著作権）</b>
+1. ${copy1}
+2. ${copy2}${rCopy}
+
+<b>第6条（秘密保持）</b>
+1. 甲および乙は、本契約に関連して知り得た相手方の技術上・営業上の秘密情報を第三者に開示・漏洩してはならない。
+2. 本条の義務は、本契約終了後3年間存続する。
+3. ただし、以下の情報は秘密情報に含まない。
+　(1) 開示時に既に公知であった情報
+　(2) 開示後、受領者の責めによらず公知となった情報
+　(3) 開示前に受領者が正当に保有していた情報
+
+<b>第7条（契約期間）</b>
+本契約の有効期間は${a.startDate||'○○年○月○日'}から${a.endDate||'○○年○月○日'}までとする。
+
+<b>第8条（中途解約）</b>
+甲または乙は、${a.cancel||'30日前までに書面通知'}することにより本契約を解約できる。甲の都合による解約の場合、甲は乙に対し、既に遂行した業務に相当する報酬を支払う。${rCancel}
+
+<b>第9条（損害賠償）</b>
+甲または乙が本契約に違反し相手方に損害を与えた場合、その損害を賠償する。ただし、賠償額は本契約の報酬額を上限とする。
+
+<b>第10条（反社会的勢力の排除）</b>
+甲および乙は、自らが反社会的勢力に該当しないことを表明保証する。該当することが判明した場合、相手方は催告なく本契約を解除できる。
+
+<b>第11条（合意管轄）</b>
+本契約に関する紛争は、乙の住所地を管轄する裁判所を第一審の専属的合意管轄裁判所とする。
+
+<b>第12条（協議事項）</b>
+本契約に定めなき事項または疑義が生じた場合、甲乙誠意をもって協議し解決する。
+
+本契約の成立を証するため、本書2通を作成し、甲乙記名押印の上、各1通を保有する。
+
+${today.replace(/\//g,'年').replace(/年/,'年').replace(/(\d{2})$/,'$1日').replace(/年(\d{2})日/,'年$1月')}
+
+甲（委託者）：${a.client||'　　　　　　　　'} 　印
+
+乙（受託者）：${a.contractor||'　　　　　　　　'} 　印`;
+document.getElementById('output').innerHTML=html;
+document.getElementById('result').style.display='block';
+document.querySelector('.card').style.display='none';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+function copyContract(){
+let el=document.getElementById('output');
+let t=el.innerText||el.textContent;
+navigator.clipboard.writeText(t).then(()=>{
+let b=document.getElementById('copyBtn');
+b.textContent='コピーしました ✓';b.classList.add('copied');
+setTimeout(()=>{b.textContent='契約書をコピー（プレーンテキスト）';b.classList.remove('copied');},2000);
+});
+}
+function reset(){
+ans={type:'IT開発'};step=0;
+document.getElementById('result').style.display='none';
+document.querySelector('.card').style.display='block';
+render();
+}
+init();
+</script>
+</body>
+</html>

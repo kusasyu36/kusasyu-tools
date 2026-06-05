@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フリーランス契約・報酬トラッカー - kusasyu tools</title>
+<meta name="description" content="フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,フリーランス契約・報酬トラッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-38/">
+<meta property="og:title" content="フリーランス契約・報酬トラッカー - kusasyu tools">
+<meta property="og:description" content="フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-38/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="フリーランス契約・報酬トラッカー - kusasyu tools">
+<meta name="twitter:description" content="フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "フリーランス契約・報酬トラッカー",
+  "description": "フリーランス・個人事業主が最も頻繁に必要とする業務委託契約書を、対話形式の質問に答えるだけで自動生成するHTMLツールを中心に、契約・報酬の管理シートとトラブル予防チェックリストを提供する。弁護士に相談する前の『初手』として、法的に押さえるべきポイントを網羅した実用的な文書を即座に手に入れられるようにする。日",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-38/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-06-05"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>フリーランス契約・報酬トラッカー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>フリーランス契約・報酬トラッカー</h1>
+  <p class="project-name">フリーランスの契約書、自力で作れますか？</p>
+  <div class="content">
+<h1>フリーランス契約・報酬トラッカー 構築ガイド</h1>
+<p>フリーランスの収入管理は「請求漏れ」と「回収遅延」との戦いです。本ガイドでは、Excel／Google スプレッドシートで動作する報酬トラッカーの全構成と数式を解説します。コピー＆ペーストですぐに使えます。</p>
+<hr />
+<h2>シート構成</h2>
+<table>
+<thead>
+<tr>
+<th>シート名</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>案件台帳</strong></td>
+<td>全案件の契約・納品・入金情報を一元管理</td>
+</tr>
+<tr>
+<td><strong>月別集計</strong></td>
+<td>月ごとの売上・未回収額を自動集計</td>
+</tr>
+<tr>
+<td><strong>設定</strong></td>
+<td>ドロップダウン用の選択肢リスト</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>シート1：案件台帳</h2>
+<h3>列構成（A〜N列）</h3>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>見出し</th>
+<th>入力方法</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>No.</td>
+<td>手入力</td>
+<td>連番</td>
+</tr>
+<tr>
+<td>B</td>
+<td>案件名</td>
+<td>手入力</td>
+<td>プロジェクト名称</td>
+</tr>
+<tr>
+<td>C</td>
+<td>クライアント名</td>
+<td>手入力</td>
+<td>請求先</td>
+</tr>
+<tr>
+<td>D</td>
+<td>契約日</td>
+<td>日付入力</td>
+<td>yyyy/mm/dd</td>
+</tr>
+<tr>
+<td>E</td>
+<td>納品日</td>
+<td>日付入力</td>
+<td>予定日でも可</td>
+</tr>
+<tr>
+<td>F</td>
+<td>報酬額（税抜）</td>
+<td>数値入力</td>
+<td>円単位</td>
+</tr>
+<tr>
+<td>G</td>
+<td>消費税</td>
+<td><strong>数式</strong></td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>H</td>
+<td>報酬額（税込）</td>
+<td><strong>数式</strong></td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>I</td>
+<td>経費</td>
+<td>数値入力</td>
+<td>外注費・交通費等</td>
+</tr>
+<tr>
+<td>J</td>
+<td>利益額</td>
+<td><strong>数式</strong></td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>K</td>
+<td>利益率</td>
+<td><strong>数式</strong></td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>L</td>
+<td>支払期日</td>
+<td>日付入力</td>
+<td>yyyy/mm/dd</td>
+</tr>
+<tr>
+<td>M</td>
+<td>入金ステータス</td>
+<td>選択式</td>
+<td>未請求／請求済／入金済</td>
+</tr>
+<tr>
+<td>N</td>
+<td>超過フラグ</td>
+<td><strong>数式</strong></td>
+<td>自動判定</td>
+</tr>
+</tbody>
+</table>
+<h3>数式一覧</h3>
+<p><strong>G2（消費税）</strong></p>
+<pre><code>=F2*0.1
+</code></pre>
+<p>消費税率10%を乗算。軽減税率案件がある場合は設定シートに税率列を追加して参照。</p>
+<p><strong>H2（税込報酬額）</strong></p>
+<pre><code>=F2+G2
+</code></pre>
+<p><strong>J2（利益額）</strong></p>
+<pre><code>=F2-I2
+</code></pre>
+<p>税抜報酬から経費を差し引いた粗利。</p>
+<p><strong>K2（利益率）</strong></p>
+<pre><code>=IF(F2=0,&quot;&quot;,J2/F2)
+</code></pre>
+<p>報酬額が0の場合はエラー回避で空白表示。セル書式を「パーセンテージ」に設定。</p>
+<p><strong>N2（支払期日超過フラグ）</strong></p>
+<pre><code>=IF(M2=&quot;入金済&quot;,&quot;✓ 回収済&quot;,IF(AND(L2&lt;&gt;&quot;&quot;,L2&lt;TODAY()),&quot;⚠ 超過&quot;,&quot;—&quot;))
+</code></pre>
+<p>この数式のロジック：</p>
+<ol>
+<li>入金済 → <code>✓ 回収済</code> を表示</li>
+<li>支払期日が過ぎている＋未入金 → <code>⚠ 超過</code> を表示</li>
+<li>それ以外 → <code>—</code>（期日前または未設定）</li>
+</ol>
+<hr />
+<h2>シート2：月別集計</h2>
+<h3>列構成</h3>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>見出し</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>年月</td>
+<td>2024/01〜2024/12 等を手入力</td>
+</tr>
+<tr>
+<td>B</td>
+<td>売上合計（税抜）</td>
+<td>SUMIFS で自動集計</td>
+</tr>
+<tr>
+<td>C</td>
+<td>入金済合計</td>
+<td>SUMIFS で自動集計</td>
+</tr>
+<tr>
+<td>D</td>
+<td>未回収額</td>
+<td>自動計算</td>
+</tr>
+<tr>
+<td>E</td>
+<td>案件数</td>
+<td>COUNTIFS で自動集計</td>
+</tr>
+<tr>
+<td>F</td>
+<td>平均利益率</td>
+<td>AVERAGEIFS で自動集計</td>
+</tr>
+</tbody>
+</table>
+<h3>数式一覧</h3>
+<p>A列に <code>2024/4/1</code> のように各月1日の日付を入力し、セル書式を <code>yyyy年mm月</code> に設定します。</p>
+<p><strong>B2（月別売上合計）</strong></p>
+<pre><code>=SUMIFS(案件台帳!F:F,案件台帳!D:D,&quot;&gt;=&quot;&amp;A2,案件台帳!D:D,&quot;&lt;&quot;&amp;EDATE(A2,1))
+</code></pre>
+<p>契約日が当月内の案件の税抜報酬を合計。<code>EDATE</code> で翌月1日を算出し、範囲指定。</p>
+<p><strong>C2（入金済合計）</strong></p>
+<pre><code>=SUMIFS(案件台帳!F:F,案件台帳!D:D,&quot;&gt;=&quot;&amp;A2,案件台帳!D:D,&quot;&lt;&quot;&amp;EDATE(A2,1),案件台帳!M:M,&quot;入金済&quot;)
+</code></pre>
+<p>ステータスが「入金済」の案件のみ合計。</p>
+<p><strong>D2（未回収額）</strong></p>
+<pre><code>=B2-C2
+</code></pre>
+<p><strong>E2（案件数）</strong></p>
+<pre><code>=COUNTIFS(案件台帳!D:D,&quot;&gt;=&quot;&amp;A2,案件台帳!D:D,&quot;&lt;&quot;&amp;EDATE(A2,1))
+</code></pre>
+<p><strong>F2（平均利益率）</strong></p>
+<pre><code>=IFERROR(AVERAGEIFS(案件台帳!K:K,案件台帳!D:D,&quot;&gt;=&quot;&amp;A2,案件台帳!D:D,&quot;&lt;&quot;&amp;EDATE(A2,1)),0)
+</code></pre>
+<hr />
+<h2>シート3：設定</h2>
+<p>ドロップダウンリスト用の選択肢を定義します。</p>
+<table>
+<thead>
+<tr>
+<th>A列（入金ステータス）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>未請求</td>
+</tr>
+<tr>
+<td>請求済</td>
+</tr>
+<tr>
+<td>入金済</td>
+</tr>
+</tbody>
+</table>
+<p>案件台帳のM列に対して「データの入力規則」→「リスト」で <code>設定!A:A</code> を参照設定。</p>
+<hr />
+<h2>条件付き書式の設定</h2>
+<p>視認性を上げるため、以下の条件付き書式を案件台帳に適用します。</p>
+<table>
+<thead>
+<tr>
+<th>対象範囲</th>
+<th>条件</th>
+<th>書式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N列全体</td>
+<td>セル値に <code>⚠ 超過</code> を含む</td>
+<td>背景：赤、文字：白太字</td>
+</tr>
+<tr>
+<td>N列全体</td>
+<td>セル値に <code>✓ 回収済</code> を含む</td>
+<td>文字：緑</td>
+</tr>
+<tr>
+<td>M列全体</td>
+<td>セル値が <code>未請求</code></td>
+<td>背景：薄黄</td>
+</tr>
+<tr>
+<td>K列全体</td>
+<td>セル値が 0.3 未満</td>
+<td>文字：赤（低利益率の警告）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>ダッシュボード指標（月別集計シート下部に配置）</h2>
+<p>案件台帳の全データから算出するサマリー指標を配置します。</p>
+<p><strong>未回収合計額</strong></p>
+<pre><code>=SUMIFS(案件台帳!H:H,案件台帳!M:M,&quot;&lt;&gt;入金済&quot;)-SUMIFS(案件台帳!H:H,案件台帳!M:M,&quot;未請求&quot;)
+</code></pre>
+<p>請求済かつ未入金の税込合計。</p>
+<p><strong>超過案件数</strong></p>
+<pre><code>=COUNTIF(案件台帳!N:N,&quot;⚠ 超過&quot;)
+</code></pre>
+<p><strong>年間売上合計</strong></p>
+<pre><code>=SUM(B2:B13)
+</code></pre>
+<p><strong>年間平均利益率</strong></p>
+<pre><code>=IFERROR(AVERAGE(F2:F13),0)
+</code></pre>
+<hr />
+<h2>運用のポイント</h2>
+<ol>
+<li><strong>入力ルール</strong> — 日付は必ず日付型で入力する。文字列 <code>2024/4/1</code> ではなく、セル書式を日付に設定した上で入力しないと <code>TODAY()</code> 比較が正しく動作しない</li>
+<li><strong>月次チェック</strong> — 毎月末にN列でフラグが立っている案件を確認し、請求書の再送や催促を実施する</li>
+<li><strong>経費の粒度</strong> — I列に入力する経費はざっくりで構わない。詳細な経費管理が必要なら別シートに経費明細を作り、<code>SUMIFS</code> で案件番号ごとに合計する</li>
+<li><strong>Google スプレッドシート互換</strong> — 本テンプレートの全数式（<code>IF</code>, <code>TODAY</code>, <code>SUMIFS</code>, <code>COUNTIFS</code>, <code>AVERAGEIFS</code>, <code>EDATE</code>, <code>IFERROR</code>）はGoogle スプレッドシートで動作する。<code>EDATE</code> 使用時にExcelではアドイン不要だが、古いバージョンでは分析ツールの有効化が必要な場合がある</li>
+<li><strong>カスタマイズ例</strong> — 源泉徴収税を管理したい場合、G列の後に <code>=F2*0.1021</code>（100万円以下の場合）の列を追加する</li>
+</ol>
+<hr />
+<h2>テンプレート作成手順</h2>
+<ol>
+<li>Excelで新規ブックを作成し、シート名を「案件台帳」「月別集計」「設定」に変更</li>
+<li>上記の列構成に従いヘッダ行（1行目）を入力</li>
+<li>2行目に数式を入力し、動作確認後に下方向へコピー</li>
+<li>設定シートのリストを作成し、案件台帳M列にデータの入力規則を設定</li>
+<li>条件付き書式を適用</li>
+<li>月別集計シートにA列の年月を入力し、数式をコピー</li>
+<li>ファイルを <code>.xlsx</code> 形式で保存</li>
+</ol>
+<p>このテンプレートひとつで、契約管理・請求管理・収益分析がシート間を行き来するだけで完結します。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>
