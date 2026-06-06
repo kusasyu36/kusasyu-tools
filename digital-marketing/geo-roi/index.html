@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEO投資ROIシミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,sans-serif;background:#f0f2f8;color:#333;line-height:1.7}.w{max-width:860px;margin:0 auto;padding:16px}h1{font-size:1.25em;text-align:center;padding:18px 0 4px;color:#1a237e}.sub{text-align:center;color:#666;font-size:.82em;margin-bottom:16px}.cd{background:#fff;border-radius:10px;padding:14px;margin:10px 0;box-shadow:0 2px 8px rgba(0,0,0,.07)}.cd h2{font-size:1em;color:#1a237e;margin-bottom:8px;border-bottom:2px solid #e8eaf6;padding-bottom:5px}.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;font-size:.85em;font-weight:bold;margin-bottom:3px}input[type=number]{width:100%;padding:8px;border:2px solid #ccd;border-radius:6px;font-size:14px}.u{font-size:.72em;color:#888;font-weight:normal}.btn{width:100%;padding:12px;background:#1a237e;color:#fff;border:none;border-radius:6px;font-size:15px;font-weight:bold;cursor:pointer;margin-top:10px}.btn:hover{background:#303f9f}canvas{width:100%;height:380px;display:block}.lg{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0;font-size:.78em}.lg label{display:flex;align-items:center;gap:4px;cursor:pointer;font-weight:normal}.lg i{width:22px;height:3px;display:inline-block}table{width:100%;border-collapse:collapse;font-size:.72em;margin-top:8px}th,td{padding:4px 5px;border:1px solid #ddd;text-align:right}th{background:#e8eaf6;color:#1a237e;text-align:center}.sm{background:#e8f5e9;border:1px solid #a5d6a7;padding:10px;border-radius:6px;margin:7px 0;font-size:.78em;white-space:pre-wrap;font-family:monospace}.cpb{display:inline-block;padding:6px 14px;background:#1a237e;color:#fff;border:none;border-radius:4px;font-size:.8em;cursor:pointer;width:auto;margin-top:6px}.cpb:hover{background:#303f9f}.tg{display:flex;gap:4px;margin:8px 0;justify-content:center}.tg a{padding:5px 14px;border-radius:4px;cursor:pointer;font-size:.82em;border:1px solid #ccd;background:#fff;color:#333}.tg a.on{background:#1a237e;color:#fff;border-color:#1a237e}.ft{text-align:center;font-size:.65em;color:#999;margin-top:16px;padding:10px;border-top:1px solid #ddd;line-height:1.9}#R{display:none}@media(max-width:600px){.fg{grid-template-columns:1fr}canvas{height:280px}}
+</style><meta name="description" content="ChatGPT・Perplexity等のAI検索で自社コンテンツが引用されない企業向けに、GEO（生成AI検索最適化）対応度を診断し、引用されるコンテンツ構造テンプレートを提供し、GEO投資のROIを試算するツールキット。既存の日本GEOサービスが『モニタリング止まり』である空白を埋め、診断→改善→投資判断を">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,GEO投資ROIシミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/geo-roi/">
+<meta property="og:title" content="GEO投資ROIシミュレーター - kusasyu tools">
+<meta property="og:description" content="ChatGPT・Perplexity等のAI検索で自社コンテンツが引用されない企業向けに、GEO（生成AI検索最適化）対応度を診断し、引用されるコンテンツ構造テンプレートを提供し、GEO投資のROIを試算するツールキット。既存の日本GEOサービスが『モニタリング止まり』である空白を埋め、診断→改善→投資判断を">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/geo-roi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GEO投資ROIシミュレーター - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT・Perplexity等のAI検索で自社コンテンツが引用されない企業向けに、GEO（生成AI検索最適化）対応度を診断し、引用されるコンテンツ構造テンプレートを提供し、GEO投資のROIを試算するツールキット。既存の日本GEOサービスが『モニタリング止まり』である空白を埋め、診断→改善→投資判断を">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GEO投資ROIシミュレーター",
+  "description": "ChatGPT・Perplexity等のAI検索で自社コンテンツが引用されない企業向けに、GEO（生成AI検索最適化）対応度を診断し、引用されるコンテンツ構造テンプレートを提供し、GEO投資のROIを試算するツールキット。既存の日本GEOサービスが『モニタリング止まり』である空白を埋め、診断→改善→投資判断を",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/geo-roi/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">GEO投資ROIシミュレーター</span></div><div class="w">
+<h1>GEO投資ROIシミュレーター</h1>
+<p class="sub">AI検索最適化（GEO）対策の投資対効果を12ヶ月予測 ― 経営層向け予算申請資料を自動生成</p>
+<div class="cd"><h2>基本情報を入力</h2>
+<div class="fg">
+<div><label>月間オーガニックトラフィック <span class="u">(PV/月)</span></label><input type="number" id="i1" value="10000" min="100"></div>
+<div><label>コンテンツ本数 <span class="u">(記事数)</span></label><input type="number" id="i2" value="80" min="1"></div>
+<div><label>平均CVR <span class="u">(%)</span></label><input type="number" id="i3" value="1.5" min="0.01" step="0.1"></div>
+<div><label>顧客単価 <span class="u">(円)</span></label><input type="number" id="i4" value="300000" min="1000" step="10000"></div>
+<div><label>GEO対策 月額投資額 <span class="u">(円)</span></label><input type="number" id="i5" value="100000" min="0" step="10000"></div>
+</div>
+<button class="btn" onclick="calc()">シミュレーション実行</button>
+</div>
+<div id="R">
+<div class="cd"><h2>12ヶ月予測グラフ</h2>
+<div class="tg"><a class="on" id="t1" onclick="sw(0)">トラフィック(PV)</a><a id="t2" onclick="sw(1)">売上(円)</a></div>
+<div class="lg">
+<label><input type="checkbox" checked onchange="draw()" class="sc" data-s="0"><i style="background:#9e9e9e"></i>現状維持</label>
+<label><input type="checkbox" checked onchange="draw()" class="sc" data-s="1"><i style="background:#42a5f5"></i>保守的(+15%/月)</label>
+<label><input type="checkbox" checked onchange="draw()" class="sc" data-s="2"><i style="background:#66bb6a"></i>標準(+30%/月)</label>
+<label><input type="checkbox" checked onchange="draw()" class="sc" data-s="3"><i style="background:#ef5350"></i>積極的(+527%/5ヶ月)</label>
+</div>
+<canvas id="cv"></canvas></div>
+<div class="cd"><h2>月次比較表</h2><div style="overflow-x:auto"><table id="tb"></table></div></div>
+<div class="cd"><h2>経営層向けサマリー（予算申請用）</h2><div class="sm" id="sm"></div>
+<button class="cpb" onclick="cp()">サマリーをコピー</button><span id="cp2" style="font-size:.8em;color:#2e7d32;margin-left:8px"></span></div>
+</div>
+<div class="ft">
+<strong>データソース・根拠</strong><br>
+保守的シナリオ(+15%/月)：BrightEdge「AI Overview採用率調査 2024」業界平均伸長率に基づく推計<br>
+標準シナリオ(+30%/月)：Princeton大学GEO論文(2024)最適化実施サイト平均引用増加率に準拠<br>
+積極的シナリオ(+527%/5ヶ月)：Siege Media社GEO先行導入事例（AI検索経由トラフィック実績値）に基づく<br>
+※各シナリオはAI検索経由の追加流入のみを試算。既存オーガニック流入は横ばい前提。実績は業種・コンテンツ品質により変動します。
+</div></div>
+<script>
+var D,V=0,C=['#9e9e9e','#42a5f5','#66bb6a','#ef5350'],L=['現状維持','保守的','標準','積極的'];
+function gv(id){return+document.getElementById(id).value}
+function fmt(n){if(n>=1e7)return(n/1e6).toFixed(1)+'M';if(n>=1e4)return(n/1e3).toFixed(0)+'K';return n.toLocaleString()}
+function yen(n){if(n>=1e8)return'\\'+String.fromCharCode(165)+(n/1e8).toFixed(2)+'億';if(n>=1e4)return String.fromCharCode(165)+(n/1e4).toFixed(0)+'万';return String.fromCharCode(165)+n.toLocaleString()}
+
+function calc(){
+var t=gv('i1'),n=gv('i2'),c=gv('i3')/100,v=gv('i4'),cost=gv('i5');
+var ai0=Math.max(t*0.02,t*Math.min(n/200,0.05));
+var R=[0,0.15,0.30,0.4433];
+D=[];
+for(var s=0;s<4;s++){D[s]=[];for(var m=0;m<=12;m++){
+var ai=s===0?0:ai0*Math.pow(1+R[s],m);
+D[s][m]={t:Math.round(t+ai),r:Math.round((t+ai)*c*v)};}}
+document.getElementById('R').style.display='block';
+requestAnimationFrame(function(){draw();});
+buildTbl(cost);genSum(t,c,v,cost,ai0);}
+
+function sw(v2){V=v2;document.getElementById('t1').className=v2?'':'on';document.getElementById('t2').className=v2?'on':'';draw();}
+
+function vis(){var r=[];document.querySelectorAll('.sc').forEach(function(cb){r.push(cb.checked);});return r;}
+
+function draw(){
+if(!D)return;
+var cv=document.getElementById('cv'),dpr=window.devicePixelRatio||1;
+var W=cv.clientWidth,H=cv.clientHeight;
+cv.width=W*dpr;cv.height=H*dpr;
+var x=cv.getContext('2d');x.scale(dpr,dpr);
+var p={t:25,r:15,b:38,l:68},cw=W-p.l-p.r,ch=H-p.t-p.b;
+x.clearRect(0,0,W,H);
+var show=vis(),mx=0;
+for(var s=0;s<4;s++)if(show[s])for(var m=0;m<=12;m++){var val=V?D[s][m].r:D[s][m].t;if(val>mx)mx=val;}
+mx=Math.ceil(mx*1.15)||1;
+if(show[0]&&show[2]){x.fillStyle='rgba(102,187,106,0.08)';x.beginPath();
+for(var m=0;m<=12;m++){var xp=p.l+cw*m/12,y=p.t+ch-ch*(V?D[2][m].r:D[2][m].t)/mx;m?x.lineTo(xp,y):x.moveTo(xp,y);}
+for(var m=12;m>=0;m--){var xp=p.l+cw*m/12,y=p.t+ch-ch*(V?D[0][m].r:D[0][m].t)/mx;x.lineTo(xp,y);}
+x.closePath();x.fill();
+var my=(p.t+ch-ch*(V?D[2][6].r:D[2][6].t)/mx+p.t+ch-ch*(V?D[0][6].r:D[0][6].t)/mx)/2;
+x.fillStyle='rgba(46,125,50,0.5)';x.font='bold 11px sans-serif';x.textAlign='center';x.fillText('\u2190 \u653E\u7F6E\u30B3\u30B9\u30C8 \u2192',p.l+cw*6/12,my);}
+x.strokeStyle='#e0e0e0';x.lineWidth=.5;x.font='11px sans-serif';
+for(var i=0;i<=5;i++){var y=p.t+ch-ch*i/5;x.beginPath();x.moveTo(p.l,y);x.lineTo(p.l+cw,y);x.stroke();
+x.fillStyle='#888';x.textAlign='right';var val=Math.round(mx*i/5);x.fillText(V?yen(val):fmt(val),p.l-5,y+4);}
+x.textAlign='center';x.fillStyle='#888';
+for(var m=0;m<=12;m++){var xp=p.l+cw*m/12;x.beginPath();x.moveTo(xp,p.t+ch);x.lineTo(xp,p.t+ch+4);x.strokeStyle='#999';x.stroke();x.fillText(m+'\u6708',xp,H-p.b+16);}
+for(var s=0;s<4;s++){if(!show[s])continue;x.strokeStyle=C[s];x.lineWidth=s?2.5:2;
+if(!s)x.setLineDash([6,4]);else x.setLineDash([]);
+x.beginPath();
+for(var m=0;m<=12;m++){var xp=p.l+cw*m/12,y=p.t+ch-ch*(V?D[s][m].r:D[s][m].t)/mx;m?x.lineTo(xp,y):x.moveTo(xp,y);}
+x.stroke();x.setLineDash([]);
+var ey=p.t+ch-ch*(V?D[s][12].r:D[s][12].t)/mx;
+x.beginPath();x.arc(p.l+cw,ey,3.5,0,Math.PI*2);x.fillStyle=C[s];x.fill();
+x.fillStyle=C[s];x.font='bold 10px sans-serif';x.textAlign='left';
+var lv=V?D[s][12].r:D[s][12].t;x.fillText(V?yen(lv):fmt(lv),p.l+cw+5,ey+4);}}
+
+function buildTbl(cost){
+var h='<tr><th>月</th><th>\u73FE\u72B6PV</th>';
+for(var s=1;s<4;s++)h+='<th>'+L[s]+'PV</th><th>\u589E\u5206\u58F2\u4E0A</th>';
+h+='</tr>';
+for(var m=0;m<=12;m++){h+='<tr><td style="text-align:center">'+m+'</td><td>'+D[0][m].t.toLocaleString()+'</td>';
+for(var s=1;s<4;s++){h+='<td>'+D[s][m].t.toLocaleString()+'</td><td>\xA5'+(D[s][m].r-D[0][m].r).toLocaleString()+'</td>';}
+h+='</tr>';}
+document.getElementById('tb').innerHTML=h;}
+
+function genSum(t,c,v,cost,ai0){
+var tc=cost*12,o=[];
+o.push('\u2501\u2501\u2501 GEO\u6295\u8CC7ROI\u30B7\u30DF\u30E5\u30EC\u30FC\u30B7\u30E7\u30F3\u7D50\u679C \u2501\u2501\u2501\n');
+o.push('\u3010\u524D\u63D0\u6761\u4EF6\u3011');
+o.push('\u6708\u9593\u30AA\u30FC\u30AC\u30CB\u30C3\u30AF\u30C8\u30E9\u30D5\u30A3\u30C3\u30AF: '+t.toLocaleString()+' PV');
+o.push('\u5E73\u5747CVR: '+(c*100).toFixed(1)+'% / \u9867\u5BA2\u5358\u4FA1: \xA5'+v.toLocaleString());
+o.push('GEO\u5BFE\u7B56\u8CBB\u7528: \xA5'+cost.toLocaleString()+'/\u6708\uFF08\u5E74\u9593 \xA5'+tc.toLocaleString()+'\uFF09');
+o.push('AI\u691C\u7D22\u521D\u671F\u6D41\u5165\u63A8\u5B9A: '+Math.round(ai0).toLocaleString()+' PV/\u6708\n');
+for(var s=1;s<4;s++){var add=0;
+for(var m=1;m<=12;m++)add+=D[s][m].r-D[0][m].r;
+var roi=tc>0?((add-tc)/tc*100).toFixed(0):'-';
+var cum=0,pb='12\u30F6\u6708\u4EE5\u5185\u306B\u56DE\u53CE\u4E0D\u53EF';
+for(var m=1;m<=12;m++){cum+=D[s][m].r-D[0][m].r;if(cum>=cost*m&&pb.length>6){pb=m+'\u30F6\u6708\u76EE';break;}}
+o.push('\u3010'+L[s]+'\u30B7\u30CA\u30EA\u30AA\u3011');
+o.push('12\u30F6\u6708\u7D2F\u8A08 \u8FFD\u52A0\u58F2\u4E0A: \xA5'+add.toLocaleString());
+o.push('\u60F3\u5B9AROI: '+roi+'% / \u6295\u8CC7\u56DE\u53CE: '+pb);
+o.push('12\u30F6\u6708\u5F8C\u6708\u9593PV: '+D[s][12].t.toLocaleString()+'\n');}
+var lost=0;for(var m=1;m<=12;m++)lost+=D[2][m].r-D[0][m].r;
+o.push('\u3010\u653E\u7F6E\u30B3\u30B9\u30C8\uFF08\u6A19\u6E96\u30B7\u30CA\u30EA\u30AA\u6BD4\uFF09\u3011');
+o.push('GEO\u672A\u5BFE\u7B56\u306B\u3088\u308B12\u30F6\u6708\u9593\u306E\u6A5F\u4F1A\u640D\u5931: \xA5'+lost.toLocaleString()+'\n');
+o.push('\u203B\u672C\u8A66\u7B97\u306FAI\u691C\u7D22\u7D4C\u7531\u306E\u8FFD\u52A0\u30C8\u30E9\u30D5\u30A3\u30C3\u30AF\u306B\u3088\u308B\u5897\u5206\u58F2\u4E0A\u3067\u3059\u3002');
+o.push('\u203B\u5B9F\u7E3E\u306F\u696D\u7A2E\u30FB\u30B3\u30F3\u30C6\u30F3\u30C4\u54C1\u8CEA\u30FB\u7AF6\u5408\u72B6\u6CC1\u306B\u3088\u308A\u5909\u52D5\u3057\u307E\u3059\u3002');
+o.push('\u203B\u30C7\u30FC\u30BF\u30BD\u30FC\u30B9: BrightEdge 2024 / Princeton GEO\u8AD6\u6587 2024 / Siege Media\u4E8B\u4F8B');
+document.getElementById('sm').textContent=o.join('\n');}
+
+function cp(){var t=document.getElementById('sm').textContent;
+navigator.clipboard.writeText(t).then(function(){var e=document.getElementById('cp2');e.textContent='\u2713 \u30B3\u30D4\u30FC\u3057\u307E\u3057\u305F';setTimeout(function(){e.textContent='';},2e3);});}
+</script></body></html>

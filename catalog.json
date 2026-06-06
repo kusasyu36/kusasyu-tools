@@ -1924,6 +1924,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-23",
+    "url": "digital-marketing/diagnosis-23/",
+    "title": "AI検索に引用されない？GEO診断・改善ツールキット",
+    "tool_name": "GEO診断＆改善テンプレート出力ツール",
+    "description": "ChatGPT・Perplexity等のAI検索で自社コンテンツが引用されない企業向けに、GEO（生成AI検索最適化）対応度を診断し、引用されるコンテンツ構造テンプレートを提供し、GEO投資のROIを試算するツールキット。既存の日本GEOサービスが『モニタリング止まり』である空白を埋め、診断→改善→投資判断をワンストップで支援する。",
+    "quality_score": 9,
+    "completed_at": "2026-06-05T23:08:47.606500+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "geo-roi",
+    "url": "digital-marketing/geo-roi/",
+    "title": "AI検索に引用されない？GEO診断・改善ツールキット",
+    "tool_name": "GEO投資ROIシミュレーター",
+    "description": "ChatGPT・Perplexity等のAI検索で自社コンテンツが引用されない企業向けに、GEO（生成AI検索最適化）対応度を診断し、引用されるコンテンツ構造テンプレートを提供し、GEO投資のROIを試算するツールキット。既存の日本GEOサービスが『モニタリング止まり』である空白を埋め、診断→改善→投資判断をワンストップで支援する。",
+    "quality_score": 9,
+    "completed_at": "2026-06-05T23:08:47.606500+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
