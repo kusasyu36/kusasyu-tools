@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEOスキーママークアップ自動生成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.w{max-width:820px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.25rem;padding:18px 0 2px;color:#1a365d}
+.sub{text-align:center;color:#718096;font-size:.82rem;margin-bottom:18px}
+.info{background:#ebf8ff;border-left:4px solid #3182ce;padding:10px 14px;border-radius:0 8px 8px 0;font-size:.8rem;color:#2c5282;margin-bottom:16px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tab{padding:7px 13px;border:2px solid #cbd5e0;border-radius:8px;background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;transition:.2s}
+.tab.on{background:#2b6cb0;color:#fff;border-color:#2b6cb0}
+.fm{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.08);margin-bottom:14px}
+label{display:block;font-size:.78rem;font-weight:600;margin:9px 0 3px;color:#4a5568}
+label:first-child{margin-top:0}
+input,textarea,select{width:100%;padding:7px 10px;border:1px solid #e2e8f0;border-radius:6px;font-size:.88rem}
+textarea{height:64px;resize:vertical}
+.btn{display:inline-block;padding:9px 22px;background:#2b6cb0;color:#fff;border:none;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;margin:3px}
+.btn:hover{opacity:.9}
+.btn.cp{background:#2f855a}
+.out{background:#1a202c;color:#68d391;border-radius:10px;padding:14px;font-family:monospace;font-size:.78rem;white-space:pre-wrap;word-break:break-all;max-height:380px;overflow:auto;margin:10px 0;display:none}
+.msg{text-align:center;color:#2f855a;font-size:.82rem;margin:6px 0;display:none}
+.vl{text-align:center;margin:8px 0}
+.vl a{color:#2b6cb0;font-size:.82rem}
+.pr{display:flex;gap:6px;margin:3px 0}
+.pr input{flex:1}
+.add{background:#edf2f7;border:1px dashed #a0aec0;padding:5px;text-align:center;border-radius:6px;cursor:pointer;font-size:.78rem;color:#718096;margin-top:4px}
+.ctr{text-align:center}
+.ft{text-align:center;color:#a0aec0;font-size:.72rem;margin-top:20px;padding-top:12px;border-top:1px solid #e2e8f0}
+@media(max-width:600px){.tabs{gap:4px}.pr{flex-direction:column}}
+</style>
+<meta name="description" content="ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,GEOスキーママークアップ自動生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-68/">
+<meta property="og:title" content="GEOスキーママークアップ自動生成ツール - kusasyu tools">
+<meta property="og:description" content="ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-68/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GEOスキーママークアップ自動生成ツール - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GEOスキーママークアップ自動生成ツール",
+  "description": "ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-68/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">GEOスキーママークアップ自動生成ツール</span></div>
+<div class="w">
+<h1>GEO スキーママークアップ自動生成ツール</h1>
+<p class="sub">AI検索エンジン（ChatGPT Search・Perplexity・Gemini）に引用される構造化データを自動生成</p>
+<div class="info">フォームに情報を入力し「生成」を押すと、JSON-LDマークアップを自動出力します。生成コードをサイトの &lt;head&gt; 内に貼り付けるだけで実装完了です。</div>
+<div class="tabs" id="tabs"></div>
+<div class="fm" id="fm"></div>
+<div class="ctr"><button class="btn" onclick="gen()">マークアップを生成</button></div>
+<div class="out" id="out"></div>
+<div class="msg" id="msg">クリップボードにコピーしました</div>
+<div class="ctr" id="btns" style="display:none"><button class="btn cp" onclick="cp()">コードをコピー</button></div>
+<div class="vl" id="vl" style="display:none"><a id="va" href="#" target="_blank">Google リッチリザルトテストで検証 →</a></div>
+<div class="ft">Kusasyu Digital Marketing — GEO Schema Generator</div>
+</div>
+<script>
+var S={
+organization:{n:'Organization',f:[
+{i:'name',l:'企業名',t:'t',r:1},{i:'url',l:'WebサイトURL',t:'u',r:1},
+{i:'logo',l:'ロゴ画像URL',t:'u'},{i:'desc',l:'企業説明（AI引用の重要項目）',t:'a'},
+{i:'tel',l:'電話番号',t:'t'},{i:'email',l:'問い合わせメール',t:'t'},
+{i:'addr',l:'所在地',t:'t'},{i:'social',l:'SNS URL（1行に1つ）',t:'a'}]},
+product:{n:'Product',f:[
+{i:'pn',l:'製品・サービス名',t:'t',r:1},{i:'pd',l:'製品説明',t:'a',r:1},
+{i:'br',l:'ブランド名',t:'t'},{i:'pu',l:'製品ページURL',t:'u'},
+{i:'pi',l:'製品画像URL',t:'u'},{i:'pp',l:'価格（例: 50000）',t:'t'},
+{i:'pc',l:'通貨',t:'s',o:['JPY','USD']},{i:'rv',l:'レビュー評価(1-5)',t:'t'},
+{i:'rc',l:'レビュー件数',t:'t'}]},
+faq:{n:'FAQPage',f:[{i:'faq',l:'FAQ（質問と回答）',t:'faq'}]},
+howto:{n:'HowTo',f:[
+{i:'hn',l:'手順タイトル',t:'t',r:1},{i:'hd',l:'概要説明',t:'a'},
+{i:'steps',l:'ステップ',t:'steps'}]},
+article:{n:'Article',f:[
+{i:'at',l:'記事タイプ',t:'s',o:['Article','BlogPosting','TechArticle'],r:1},
+{i:'hl',l:'記事タイトル',t:'t',r:1},{i:'au',l:'著者名',t:'t',r:1},
+{i:'aurl',l:'記事URL',t:'u'},{i:'ad',l:'記事の要約',t:'a'},
+{i:'ai',l:'アイキャッチ画像URL',t:'u'},{i:'dp',l:'公開日',t:'d'},
+{i:'dm',l:'更新日',t:'d'},{i:'pbn',l:'メディア名',t:'t'}]}
+};
+var cur='organization',fC=2,sC=2;
+function init(){
+var tb=document.getElementById('tabs');tb.innerHTML='';
+for(var k in S){(function(k){
+var d=document.createElement('div');
+d.className='tab'+(k===cur?' on':'');
+d.textContent=S[k].n;
+d.onclick=function(){cur=k;fC=2;sC=2;init()};
+tb.appendChild(d);
+})(k)}
+rf();
+}
+function rf(){
+var fm=document.getElementById('fm'),h='';
+S[cur].f.forEach(function(f){
+if(f.t==='faq'){
+h+='<label>'+f.l+'</label>';
+for(var i=0;i<fC;i++)h+='<div class="pr"><input id="q'+i+'" placeholder="質問'+(i+1)+'"><input id="a'+i+'" placeholder="回答'+(i+1)+'"></div>';
+h+='<div class="add" onclick="fC++;rf()">+ 質問を追加</div>';
+}else if(f.t==='steps'){
+h+='<label>'+f.l+'</label>';
+for(var i=0;i<sC;i++)h+='<input id="s'+i+'" placeholder="ステップ'+(i+1)+'" style="margin:2px 0">';
+h+='<div class="add" onclick="sC++;rf()">+ ステップを追加</div>';
+}else if(f.t==='a'){
+h+='<label>'+f.l+(f.r?' *':'')+'</label><textarea id="'+f.i+'"></textarea>';
+}else if(f.t==='s'){
+h+='<label>'+f.l+(f.r?' *':'')+'</label><select id="'+f.i+'">'+f.o.map(function(o){return'<option>'+o+'</option>'}).join('')+'</select>';
+}else if(f.t==='d'){
+h+='<label>'+f.l+'</label><input type="date" id="'+f.i+'">';
+}else{
+h+='<label>'+f.l+(f.r?' *':'')+'</label><input type="'+(f.t==='u'?'url':'text')+'" id="'+f.i+'">';
+}
+});
+fm.innerHTML=h;
+}
+function g(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+function gen(){
+var j,u='';
+if(cur==='organization'){
+j={"@context":"https://schema.org","@type":"Organization","name":g('name'),"url":g('url')};
+if(g('logo'))j.logo=g('logo');
+if(g('desc'))j.description=g('desc');
+if(g('addr'))j.address={"@type":"PostalAddress","streetAddress":g('addr')};
+if(g('tel')||g('email'))j.contactPoint={"@type":"ContactPoint","telephone":g('tel'),"email":g('email'),"contactType":"customer service"};
+if(g('social'))j.sameAs=g('social').split('\n').filter(function(s){return s.trim()});
+u=g('url');
+}else if(cur==='product'){
+j={"@context":"https://schema.org","@type":"Product","name":g('pn'),"description":g('pd')};
+if(g('br'))j.brand={"@type":"Brand","name":g('br')};
+if(g('pu'))j.url=g('pu');
+if(g('pi'))j.image=g('pi');
+if(g('pp'))j.offers={"@type":"Offer","price":g('pp'),"priceCurrency":g('pc')||'JPY',"availability":"https://schema.org/InStock"};
+if(g('rv'))j.aggregateRating={"@type":"AggregateRating","ratingValue":g('rv'),"reviewCount":g('rc')||'1'};
+u=g('pu');
+}else if(cur==='faq'){
+var items=[];
+for(var i=0;i<fC;i++){if(g('q'+i)&&g('a'+i))items.push({"@type":"Question","name":g('q'+i),"acceptedAnswer":{"@type":"Answer","text":g('a'+i)}});}
+if(!items.length){alert('質問と回答を1組以上入力してください');return;}
+j={"@context":"https://schema.org","@type":"FAQPage","mainEntity":items};
+}else if(cur==='howto'){
+var st=[];
+for(var i=0;i<sC;i++){if(g('s'+i))st.push({"@type":"HowToStep","text":g('s'+i),"position":i+1});}
+if(!st.length){alert('ステップを1つ以上入力してください');return;}
+j={"@context":"https://schema.org","@type":"HowTo","name":g('hn')};
+if(g('hd'))j.description=g('hd');
+j.step=st;
+}else if(cur==='article'){
+j={"@context":"https://schema.org","@type":g('at')||'Article',"headline":g('hl'),"author":{"@type":"Person","name":g('au')}};
+if(g('aurl'))j.url=g('aurl');
+if(g('ad'))j.description=g('ad');
+if(g('ai'))j.image=g('ai');
+if(g('dp'))j.datePublished=g('dp');
+if(g('dm'))j.dateModified=g('dm');
+if(g('pbn'))j.publisher={"@type":"Organization","name":g('pbn')};
+u=g('aurl');
+}
+var code='<script type="application/ld+json">\n'+JSON.stringify(j,null,2)+'\n<\/script>';
+var o=document.getElementById('out');
+o.textContent=code;o.style.display='block';
+document.getElementById('btns').style.display='block';
+var vl=document.getElementById('vl');vl.style.display='block';
+document.getElementById('va').href='https://search.google.com/test/rich-results'+(u?'?url='+encodeURIComponent(u):'');
+}
+function cp(){
+var t=document.getElementById('out').textContent;
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(sh)}
+else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);sh();}
+function sh(){var m=document.getElementById('msg');m.style.display='block';setTimeout(function(){m.style.display='none'},2000);}
+}
+init();
+</script>
+</body>
+</html>

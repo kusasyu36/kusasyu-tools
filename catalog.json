@@ -494,6 +494,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-68",
+    "url": "digital-marketing/tool-68/",
+    "title": "AI検索に選ばれるサイト構造を自動生成",
+    "tool_name": "GEOスキーママークアップ自動生成ツール",
+    "description": "ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツのスコア分析）の次のステップとして、『診断結果を受けて実際に何を実装するか』を支援する実装",
+    "quality_score": 10,
+    "completed_at": "2026-06-08T06:04:38.465111+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "template-11",
+    "url": "digital-marketing/template-11/",
+    "title": "AI検索に選ばれるサイト構造を自動生成",
+    "tool_name": "業種別AI引用獲得コンテンツ構造テンプレート",
+    "description": "ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツのスコア分析）の次のステップとして、『診断結果を受けて実際に何を実装するか』を支援する実装",
+    "quality_score": 10,
+    "completed_at": "2026-06-08T06:04:38.465111+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",

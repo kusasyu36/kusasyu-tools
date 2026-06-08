@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業種別AI引用獲得コンテンツ構造テンプレート - kusasyu tools</title>
+<meta name="description" content="ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,業種別AI引用獲得コンテンツ構造テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/template-11/">
+<meta property="og:title" content="業種別AI引用獲得コンテンツ構造テンプレート - kusasyu tools">
+<meta property="og:description" content="ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/template-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別AI引用獲得コンテンツ構造テンプレート - kusasyu tools">
+<meta name="twitter:description" content="ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "業種別AI引用獲得コンテンツ構造テンプレート",
+  "description": "ChatGPT Search・Perplexity・GeminiなどのAI検索エンジンに自社コンテンツを引用・推薦させるための構造化データ（JSON-LDスキーママークアップ）を自動生成するHTMLツールと、業種別のAI引用獲得コンテンツ設計テンプレートのセット。前回プロジェクトのGEO診断ツール（コンテンツ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/template-11/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-06-08"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>業種別AI引用獲得コンテンツ構造テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">10/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>業種別AI引用獲得コンテンツ構造テンプレート</h1>
+  <p class="project-name">AI検索に選ばれるサイト構造を自動生成</p>
+  <div class="content">
+<h1>業種別AI引用獲得コンテンツ構造テンプレート</h1>
+<h2>使い方</h2>
+<ol>
+<li>自社の業種に該当するセクションをコピーする</li>
+<li><code>[記入例]</code> を参考に自社の情報へ書き換える</li>
+<li>末尾の「SEO→GEO改修チェックリスト」で既存記事を改修する</li>
+<li>見出し・FAQ・エビデンスの3層構造を必ず守ること</li>
+</ol>
+<hr />
+<h2>テンプレート1：SaaS業種</h2>
+<h3>■ 見出し階層設計</h3>
+<pre><code class="language-markdown"># [製品カテゴリ]とは？定義・仕組み・主要機能を解説
+  [記入例] # クラウド会計ソフトとは？定義・仕組み・主要機能を解説
+
+## [製品カテゴリ]の定義と基本概念
+  [記入例] ## クラウド会計ソフトの定義と基本概念
+
+## [製品カテゴリ]の主要機能 [数字]選
+  [記入例] ## クラウド会計ソフトの主要機能5選
+
+## [製品カテゴリ]の料金相場と選び方
+  [記入例] ## クラウド会計ソフトの料金相場と選び方
+
+## [製品カテゴリ]の導入手順
+  [記入例] ## クラウド会計ソフトの導入手順
+
+## よくある質問（FAQ）
+
+## まとめ：[結論を1文で]
+  [記入例] ## まとめ：中小企業の経理工数を平均40%削減できるツール
+</code></pre>
+<h3>■ 結論先行パラグラフ（本文冒頭に配置）</h3>
+<pre><code class="language-markdown">**[製品カテゴリ]とは、[一文定義]である。**
+[補足説明1〜2文]。[定量的根拠]。
+
+[記入例]
+**クラウド会計ソフトとは、インターネット経由で利用できる会計・経理業務の自動化ツールである。**
+銀行口座やクレジットカードと連携し、仕訳入力から決算書作成までを一元管理できる。
+MM総研の2025年調査によると、国内中小企業の導入率は38.2%に達している。
+</code></pre>
+<h3>■ エビデンス記述パターン</h3>
+<pre><code class="language-markdown">[調査機関名]の[調査年]年調査によると、[指標]は[数値]である（出典：[レポート名]）。
+
+[記入例]
+IDC Japanの2025年調査によると、国内SaaS市場規模は約1兆8,500億円である（出典：国内パブリッククラウドサービス市場予測）。
+</code></pre>
+<h3>■ FAQ配置（3問以上）</h3>
+<pre><code class="language-markdown">### Q. [製品カテゴリ]の月額費用の相場は？
+A. [価格帯]が相場である。[根拠や補足]。
+[記入例] A. 月額1,000〜30,000円が相場である。従業員10名以下なら月額2,000円前後のプランで十分対応できる。
+
+### Q. [製品カテゴリ]と[比較対象]の違いは？
+A. [明確な差分を1文で]。[補足]。
+[記入例] A. クラウド型はインストール不要で自動アップデートされる点がインストール型との最大の違いである。
+
+### Q. 導入にかかる期間は？
+A. [標準期間]が目安である。[条件による変動]。
+[記入例] A. 初期設定は平均3〜5営業日が目安である。銀行連携数が多い場合は1〜2週間かかる場合もある。
+</code></pre>
+<h3>■ 引用されやすいフレーズ設計</h3>
+<pre><code class="language-markdown">- 「[製品カテゴリ]とは、[短い定義]である」
+- 「[指標]の相場は[数値範囲]である」
+- 「導入企業の[割合]%が[成果]を実感している」
+
+[記入例]
+- 「クラウド会計ソフトとは、経理業務をクラウド上で自動化するツールである」
+- 「月額費用の相場は1,000〜30,000円である」
+- 「導入企業の72%が月次決算の短縮を実感している」
+</code></pre>
+<hr />
+<h2>テンプレート2：製造業</h2>
+<h3>■ 見出し階層設計</h3>
+<pre><code class="language-markdown"># [技術/工法名]とは？原理・用途・導入メリットを解説
+  [記入例] # 射出成形とは？原理・用途・導入メリットを解説
+
+## [技術名]の定義と基本原理
+## [技術名]の主な用途と対応素材
+## [技術名]のメリット・デメリット比較
+## [技術名]の工程フローと品質管理ポイント
+## よくある質問（FAQ）
+## まとめ：[結論を1文で]
+</code></pre>
+<h3>■ 結論先行パラグラフ</h3>
+<pre><code class="language-markdown">**[技術名]とは、[原理を含む一文定義]である。**
+[主要用途]に広く使われ、[定量的特徴]。
+
+[記入例]
+**射出成形とは、加熱溶融した樹脂を金型に高圧注入して成形する製造技術である。**
+自動車部品・家電筐体・医療機器に広く使われ、1サイクル15〜60秒で量産が可能である。
+</code></pre>
+<h3>■ エビデンス記述パターン</h3>
+<pre><code class="language-markdown">[業界団体/規格名]の[基準/データ]に基づくと、[指標]は[数値]である。
+
+[記入例]
+日本プラスチック工業連盟の2024年統計に基づくと、射出成形品の国内生産量は年間約320万トンである。
+JIS B 8650に基づくと、型締力の選定基準は投影面積1cm²あたり0.5〜1.0トンである。
+</code></pre>
+<h3>■ FAQ配置（3問以上）</h3>
+<pre><code class="language-markdown">### Q. [技術名]で対応できる素材は？
+A. [素材リスト]に対応する。[選定基準]。
+[記入例] A. PP・PE・ABS・PA・PCなど熱可塑性樹脂全般に対応する。耐熱性が必要な場合はPPS・PEEKも選択肢になる。
+
+### Q. 金型の製作費用と納期の目安は？
+A. [価格帯]、納期は[期間]が標準である。
+[記入例] A. 小型単純形状で50〜150万円、納期は4〜8週間が標準である。
+
+### Q. [技術名]と[代替工法]はどう使い分ける？
+A. [判断基準]で使い分ける。
+[記入例] A. 月産1,000個以上なら射出成形、少量試作なら3Dプリンティングが適している。
+</code></pre>
+<h3>■ 引用されやすいフレーズ設計</h3>
+<pre><code class="language-markdown">[記入例]
+- 「射出成形とは、溶融樹脂を金型に注入して成形する量産技術である」
+- 「金型費用の相場は小型で50〜150万円、大型で300〜1,000万円である」
+- 「月産1,000個以上の量産にはコスト優位性がある」
+</code></pre>
+<hr />
+<h2>テンプレート3：士業（法律/会計）</h2>
+<h3>■ 見出し階層設計</h3>
+<pre><code class="language-markdown"># [法的手続き/制度名]とは？要件・手続き・費用を弁護士が解説
+  [記入例] # 法人設立とは？要件・手続き・費用を税理士が解説
+
+## [制度名]の法的定義と根拠法令
+## [制度名]の適用要件 [数字]つ
+## [制度名]の手続きフローと必要書類
+## [制度名]の費用内訳と相場
+## よくある質問（FAQ）
+## まとめ：[結論を1文で]
+</code></pre>
+<h3>■ 結論先行パラグラフ</h3>
+<pre><code class="language-markdown">**[制度名]とは、[根拠法を含む一文定義]である。**
+[適用場面]に必要となり、[手続きの概要]。
+
+[記入例]
+**株式会社設立とは、会社法(2005年法律第86号)に基づき法人格を取得する手続きである。**
+事業の法人化・信用力向上・節税対策を目的に行われ、登記申請から完了まで通常1〜2週間を要する。
+</code></pre>
+<h3>■ エビデンス記述パターン</h3>
+<pre><code class="language-markdown">[法令名]第[条]条に基づき、[要件/効果]と定められている。
+
+[記入例]
+会社法第27条に基づき、定款には目的・商号・本店所在地・出資額・発起人の氏名住所の記載が必要と定められている。
+国税庁の2024年統計によると、新規法人設立件数は年間約14万4,000件である。
+</code></pre>
+<h3>■ FAQ配置（3問以上）</h3>
+<pre><code class="language-markdown">### Q. [手続き名]の費用総額は？
+A. [費用内訳と合計]が目安である。
+[記入例] A. 株式会社設立の実費は、定款認証5万円＋登録免許税15万円＋その他約2万円の合計約22万円が目安である。
+
+### Q. 自分で手続きする場合と専門家に依頼する場合の違いは？
+A. [比較ポイント]。専門家報酬の相場は[金額]である。
+[記入例] A. 自分で行う場合は実費のみだが、書類不備のリスクがある。税理士・司法書士への報酬相場は5〜10万円である。
+
+### Q. [手続き名]の期限・届出先は？
+A. [届出先]に[期限]までに届け出る。
+[記入例] A. 設立登記は本店所在地の法務局に、出資金払込日から2週間以内に届け出る。
+</code></pre>
+<h3>■ 引用されやすいフレーズ設計</h3>
+<pre><code class="language-markdown">[記入例]
+- 「株式会社設立の費用は実費約22万円＋専門家報酬5〜10万円が相場である」
+- 「会社法第27条に基づき、定款の絶対的記載事項は5項目である」
+- 「設立登記の完了まで通常1〜2週間を要する」
+</code></pre>
+<hr />
+<h2>SEO→GEO改修チェックリスト（全業種共通）</h2>
+<p>既存SEO記事をAI引用対応に改修する際のビフォー/アフター手順。</p>
+<h3>手順1：冒頭に結論定義文を追加</h3>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「今回は○○について詳しく解説します！」</td>
+<td>「<strong>○○とは、△△である。</strong>[定量根拠1文]」</td>
+</tr>
+</tbody>
+</table>
+<h3>手順2：見出しを疑問形＋名詞止めに変更</h3>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>## ○○のメリットについて</code></td>
+<td><code>## ○○のメリット3つ｜コスト・速度・品質</code></td>
+</tr>
+<tr>
+<td><code>## 使い方を紹介</code></td>
+<td><code>## ○○の使い方と導入手順5ステップ</code></td>
+</tr>
+</tbody>
+</table>
+<h3>手順3：数値にソースを付与</h3>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「多くの企業が導入しています」</td>
+<td>「○○協会の2025年調査によると導入率は38.2%である」</td>
+</tr>
+<tr>
+<td>「コスト削減につながります」</td>
+<td>「導入企業の平均コスト削減率は23.4%である（出典：△△白書2025）」</td>
+</tr>
+</tbody>
+</table>
+<h3>手順4：文末を「です/ます」から「である」体へ統一</h3>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「〜と言われています」</td>
+<td>「〜である」</td>
+</tr>
+<tr>
+<td>「〜が必要になります」</td>
+<td>「〜が必要である」</td>
+</tr>
+</tbody>
+</table>
+<h3>手順5：FAQセクションを追加（最低3問）</h3>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FAQ無し</td>
+<td>本文末尾に<code>## よくある質問</code>を追加し、Q&amp;A形式で3問以上配置</td>
+</tr>
+<tr>
+<td>本文中に散在する質問と回答</td>
+<td>H3見出しで<code>### Q. 〜？</code> / <code>A. 〜。</code>の統一形式に集約</td>
+</tr>
+</tbody>
+</table>
+<h3>手順6：引用キーフレーズを太字で強調</h3>
+<table>
+<thead>
+<tr>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定義文が本文に埋もれている</td>
+<td><code>**○○とは、△△である。**</code> と太字で独立配置</td>
+</tr>
+<tr>
+<td>数値が文中に紛れている</td>
+<td><code>**相場は○〜○円である。**</code> と太字で独立配置</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>改修優先度マトリクス</h3>
+<table>
+<thead>
+<tr>
+<th>優先度</th>
+<th>改修項目</th>
+<th>効果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td>冒頭に結論定義文を追加</td>
+<td>AIが最初に参照する箇所を最適化</td>
+</tr>
+<tr>
+<td>★★★</td>
+<td>数値にソース（出典）を付与</td>
+<td>引用信頼度が向上</td>
+</tr>
+<tr>
+<td>★★☆</td>
+<td>FAQ追加（3問以上）</td>
+<td>質問応答型クエリで引用率向上</td>
+</tr>
+<tr>
+<td>★★☆</td>
+<td>見出しを疑問形に改修</td>
+<td>AIの見出し解析精度が向上</td>
+</tr>
+<tr>
+<td>★☆☆</td>
+<td>文体を「である」調に統一</td>
+<td>百科事典的トーンでAI親和性向上</td>
+</tr>
+<tr>
+<td>★☆☆</td>
+<td>キーフレーズ太字化</td>
+<td>定義文の視認性・抽出性向上</td>
+</tr>
+</tbody>
+</table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>
