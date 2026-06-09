@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI法務活用ログ＆信頼度評価シート - kusasyu tools</title>
+<meta name="description" content="法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,AI法務活用ログ＆信頼度評価シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-23/">
+<meta property="og:title" content="AI法務活用ログ＆信頼度評価シート - kusasyu tools">
+<meta property="og:description" content="法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-23/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI法務活用ログ＆信頼度評価シート - kusasyu tools">
+<meta name="twitter:description" content="法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI法務活用ログ＆信頼度評価シート",
+  "description": "法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-23/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-06-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>AI法務活用ログ＆信頼度評価シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>AI法務活用ログ＆信頼度評価シート</h1>
+  <p class="project-name">AIで法務相談、ちゃんとできてる？</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>AI法務活用ログ＆信頼度評価シート — Kusasyu Legal Tech</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>【信頼度スコア判定基準】1=AI回答が曖昧・根拠不明（必ず弁護士確認）／2=一般論のみで個別事情未反映（弁護士確認推奨）／3=法的根拠あり概ね妥当だが例外リスクあり（重要案件は確認）／4=条文・判例引用あり実務的に参考可（軽微なら採用可）／5=複数情報源と整合し高精度（そのまま活用可）</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【使い方】本シートはAI（ChatGPT等）への法務相談を記録し、対応品質を管理するツールです。「中小企業 法務タスク年間カレンダー」と併用し、年間法務タスクの実施記録としてもご活用ください。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>【注意】信頼度スコア3以下、または契約金額100万円超・労務紛争・知財関連は弁護士確認を必須としてください。</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>相談日</td><td>カテゴリ</td><td>相談概要</td><td>使用AIツール</td><td>AI回答要約</td><td>信頼度スコア(1-5)</td><td>弁護士確認要否</td><td>確認ステータス</td><td>対応期限</td><td>完了日</td><td>備考</td></tr><tr><td>2026-04-10</td><td>契約書レビュー</td><td>新規取引先との業務委託契約書の条項確認。損害賠償上限と契約解除条件の妥当性を相談</td><td>ChatGPT GPT-4o</td><td>損害賠償上限は委託料の12ヶ月分が一般的。契約解除は30日前書面通知が標準。本契約書の「即時解除」条項は受託側に不利のため修正を推奨</td><td>3</td><td>要</td><td>確認済</td><td>2026-04-17</td><td>2026-04-15</td><td>弁護士より即時解除条項を双方対等に修正する助言あり。修正版で締結完了</td></tr><tr><td>2026-04-22</td><td>利用規約</td><td>自社SaaSサービスの利用規約を新規作成。免責事項と禁止行為の記載範囲を相談</td><td>ChatGPT GPT-4o</td><td>消費者契約法により一方的免責は無効リスクあり。禁止行為は具体列挙＋包括条項の併用を推奨。個人情報取扱いは別途プライバシーポリシーで規定すべき</td><td>4</td><td>否</td><td>—</td><td>2026-05-10</td><td>2026-05-02</td><td>AI回答をベースに自社向けカスタマイズ。プライバシーポリシーは別途作成済</td></tr><tr><td>2026-05-08</td><td>労務管理</td><td>従業員の副業許可制度導入にあたり就業規則の変更ポイントを相談</td><td>ChatGPT GPT-4o</td><td>副業・兼業ガイドライン（厚労省2022改定）に基づき届出制が推奨。競業避止・情報漏洩・長時間労働の3点を規定すべき。届出様式のひな形も提示あり</td><td>3</td><td>要</td><td>未確認</td><td>2026-05-20</td><td></td><td>就業規則変更は労基署届出が必要。社労士にも相談予定</td></tr><tr><td>2026-05-15</td><td>知的財産</td><td>競合他社の特許を侵害していないか自社製品の機能について相談</td><td>ChatGPT GPT-4o</td><td>特許調査の一般的手順を回答。J-PlatPatでの検索方法を案内。ただし侵害判断はクレーム解釈が必要であり専門家判断が不可欠と注記</td><td>2</td><td>要</td><td>確認中</td><td>2026-05-30</td><td></td><td>特許事務所に正式調査を依頼済。AI回答は初期スクリーニング参考のみ</td></tr><tr><td>2026-06-01</td><td>NDA</td><td>新規協業先とのNDA（秘密保持契約）のひな形作成を相談。有効期間と開示範囲の設定</td><td>ChatGPT GPT-4o</td><td>NDA有効期間は契約終了後3〜5年が一般的。秘密情報の定義は「書面で秘密と明示したもの」に限定が実務的。残存条項として秘密保持義務・損害賠償を規定</td><td>4</td><td>否</td><td>—</td><td>2026-06-10</td><td>2026-06-05</td><td>AI生成ひな形を自社用に調整して使用。定型取引先向けNDAとして保存</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"AI法務活用ログ＆信頼度評価シート — Kusasyu Legal Tech",,,,,,,,,,
+"【信頼度スコア判定基準】1=AI回答が曖昧・根拠不明（必ず弁護士確認）／2=一般論のみで個別事情未反映（弁護士確認推奨）／3=法的根拠あり概ね妥当だが例外リスクあり（重要案件は確認）／4=条文・判例引用あり実務的に参考可（軽微なら採用可）／5=複数情報源と整合し高精度（そのまま活用可）",,,,,,,,,,
+"【使い方】本シートはAI（ChatGPT等）への法務相談を記録し、対応品質を管理するツールです。「中小企業 法務タスク年間カレンダー」と併用し、年間法務タスクの実施記録としてもご活用ください。",,,,,,,,,,
+"【注意】信頼度スコア3以下、または契約金額100万円超・労務紛争・知財関連は弁護士確認を必須としてください。",,,,,,,,,,
+,,,,,,,,,,
+相談日,カテゴリ,相談概要,使用AIツール,AI回答要約,信頼度スコア(1-5),弁護士確認要否,確認ステータス,対応期限,完了日,備考
+2026-04-10,契約書レビュー,新規取引先との業務委託契約書の条項確認。損害賠償上限と契約解除条件の妥当性を相談,ChatGPT GPT-4o,損害賠償上限は委託料の12ヶ月分が一般的。契約解除は30日前書面通知が標準。本契約書の「即時解除」条項は受託側に不利のため修正を推奨,3,要,確認済,2026-04-17,2026-04-15,弁護士より即時解除条項を双方対等に修正する助言あり。修正版で締結完了
+2026-04-22,利用規約,自社SaaSサービスの利用規約を新規作成。免責事項と禁止行為の記載範囲を相談,ChatGPT GPT-4o,消費者契約法により一方的免責は無効リスクあり。禁止行為は具体列挙＋包括条項の併用を推奨。個人情報取扱いは別途プライバシーポリシーで規定すべき,4,否,—,2026-05-10,2026-05-02,AI回答をベースに自社向けカスタマイズ。プライバシーポリシーは別途作成済
+2026-05-08,労務管理,従業員の副業許可制度導入にあたり就業規則の変更ポイントを相談,ChatGPT GPT-4o,副業・兼業ガイドライン（厚労省2022改定）に基づき届出制が推奨。競業避止・情報漏洩・長時間労働の3点を規定すべき。届出様式のひな形も提示あり,3,要,未確認,2026-05-20,,就業規則変更は労基署届出が必要。社労士にも相談予定
+2026-05-15,知的財産,競合他社の特許を侵害していないか自社製品の機能について相談,ChatGPT GPT-4o,特許調査の一般的手順を回答。J-PlatPatでの検索方法を案内。ただし侵害判断はクレーム解釈が必要であり専門家判断が不可欠と注記,2,要,確認中,2026-05-30,,特許事務所に正式調査を依頼済。AI回答は初期スクリーニング参考のみ
+2026-06-01,NDA,新規協業先とのNDA（秘密保持契約）のひな形作成を相談。有効期間と開示範囲の設定,ChatGPT GPT-4o,NDA有効期間は契約終了後3〜5年が一般的。秘密情報の定義は「書面で秘密と明示したもの」に限定が実務的。残存条項として秘密保持義務・損害賠償を規定,4,否,—,2026-06-10,2026-06-05,AI生成ひな形を自社用に調整して使用。定型取引先向けNDAとして保存`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_AI法務活用ログ＆信頼度評価シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

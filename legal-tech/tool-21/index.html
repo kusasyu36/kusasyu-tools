@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>中小企業_法務AIプロンプトビルダー - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#1e3a5f,#2d5a87);color:#fff;padding:24px 20px;border-radius:12px;margin-bottom:20px;text-align:center}
+header h1{font-size:1.3em;margin-bottom:4px}
+header p{font-size:.85em;opacity:.85}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#1e3a5f;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+label{display:block;font-size:.85em;font-weight:600;margin-bottom:4px;color:#4a5568}
+select,input,textarea{width:100%;padding:10px 12px;border:1.5px solid #cbd5e0;border-radius:8px;font-size:.95em;margin-bottom:12px;background:#fff;font-family:inherit}
+textarea{height:80px;resize:vertical}
+select:focus,input:focus,textarea:focus{outline:none;border-color:#2d5a87;box-shadow:0 0 0 3px rgba(45,90,135,.15)}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:12px}
+.cat{padding:10px 8px;border:2px solid #e2e8f0;border-radius:8px;text-align:center;cursor:pointer;font-size:.8em;font-weight:600;transition:.2s}
+.cat:hover{border-color:#2d5a87;background:#ebf4ff}
+.cat.on{border-color:#2d5a87;background:#2d5a87;color:#fff}
+.cat span{display:block;font-size:1.4em;margin-bottom:2px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.row{grid-template-columns:1fr}.cats{grid-template-columns:repeat(3,1fr)}}
+.btn{width:100%;padding:14px;background:linear-gradient(135deg,#1e3a5f,#2d5a87);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+#result{display:none}
+.prompt-box{background:#f7fafc;border:1.5px solid #cbd5e0;border-radius:8px;padding:14px;font-size:.88em;white-space:pre-wrap;word-wrap:break-word;max-height:400px;overflow-y:auto;line-height:1.7}
+.copy-btn{margin-top:10px;padding:10px;background:#38a169;color:#fff;border:none;border-radius:8px;font-size:.9em;font-weight:700;cursor:pointer;width:100%}
+.copy-btn:hover{background:#2f855a}
+.tip{background:#fffbeb;border-left:4px solid #d69e2e;padding:10px 14px;border-radius:0 8px 8px 0;font-size:.82em;margin-top:12px;color:#744210}
+.score{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.score-bar{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.score-fill{height:100%;background:linear-gradient(90deg,#38a169,#2d5a87);border-radius:4px;transition:.5s}
+.score-label{font-size:.8em;font-weight:700;color:#2d5a87;min-width:60px;text-align:right}
+footer{text-align:center;padding:16px;font-size:.75em;color:#a0aec0}
+</style>
+<meta name="description" content="法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,中小企業_法務AIプロンプトビルダー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-21/">
+<meta property="og:title" content="中小企業_法務AIプロンプトビルダー - kusasyu tools">
+<meta property="og:description" content="法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-21/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中小企業_法務AIプロンプトビルダー - kusasyu tools">
+<meta name="twitter:description" content="法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "中小企業_法務AIプロンプトビルダー",
+  "description": "法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/tool-21/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">中小企業_法務AIプロンプトビルダー</span></div>
+<div class="wrap">
+<header>
+<h1>⚖️ 法務AIプロンプトビルダー</h1>
+<p>法務知識ゼロでも質の高いAI法務相談を実現</p>
+</header>
+<div class="card">
+<h2>❶ 相談カテゴリを選択</h2>
+<div class="cats" id="cats"></div>
+</div>
+<div class="card">
+<h2>❷ 会社情報を入力</h2>
+<div class="row">
+<div><label>業種</label><select id="ind"><option value="">選択してください</option><option>IT・ソフトウェア</option><option>製造業</option><option>小売・サービス業</option><option>建設・不動産</option><option>飲食・宿泊</option><option>医療・福祉</option><option>コンサルティング</option><option>その他</option></select></div>
+<div><label>従業員数</label><select id="sz"><option value="">選択してください</option><option>5名以下</option><option>6〜10名</option><option>11〜30名</option><option>31〜50名</option></select></div>
+</div>
+<label>会社の主な事業内容（任意）</label>
+<input id="biz" placeholder="例：法人向けWebシステムの受託開発">
+</div>
+<div class="card">
+<h2>❸ 相談内容を入力</h2>
+<label>具体的な状況・質問 <span style="color:#e53e3e">*必須</span></label>
+<textarea id="sit" placeholder="例：取引先から届いた業務委託契約書の損害賠償条項が曖昧で、自社に不利な内容になっていないか確認したい"></textarea>
+<label>特に気になるポイント（任意）</label>
+<input id="pt" placeholder="例：損害賠償の上限、契約解除条件">
+</div>
+<button class="btn" onclick="generate()">プロンプトを生成する</button>
+<div id="result" class="card" style="margin-top:16px">
+<h2>生成されたプロンプト</h2>
+<div class="score"><span style="font-size:.82em">プロンプト精度</span><div class="score-bar"><div class="score-fill" id="sf"></div></div><span class="score-label" id="sl"></span></div>
+<div class="prompt-box" id="out"></div>
+<button class="copy-btn" id="cpb" onclick="copyP()">📋 プロンプトをコピー</button>
+<div class="tip" id="tip"></div>
+</div>
+<footer>© 2026 Kusasyu Legal Tech｜生成プロンプトはAI相談の補助です。重要案件は必ず弁護士にご相談ください。</footer>
+</div>
+<script>
+var cats=[
+{id:"contract",icon:"📝",name:"契約レビュー",role:"企業法務に精通した契約審査の専門家"},
+{id:"labor",icon:"👥",name:"労務相談",role:"日本の労働法に精通した労務管理アドバイザー"},
+{id:"compliance",icon:"🛡️",name:"コンプライアンス",role:"中小企業のコンプライアンス体制構築の専門家"},
+{id:"ip",icon:"💡",name:"知財保護",role:"知的財産権に精通した知財戦略アドバイザー"},
+{id:"claim",icon:"🔔",name:"クレーム対応",role:"企業のクレーム・紛争対応に精通した法務アドバイザー"}
+];
+var sel=null,ce=document.getElementById("cats");
+cats.forEach(function(c){
+var d=document.createElement("div");
+d.className="cat";d.innerHTML="<span>"+c.icon+"</span>"+c.name;
+d.onclick=function(){document.querySelectorAll(".cat").forEach(function(e){e.classList.remove("on")});d.classList.add("on");sel=c};
+ce.appendChild(d);
+});
+function generate(){
+if(!sel){alert("相談カテゴリを選択してください");return}
+var ind=document.getElementById("ind").value,sz=document.getElementById("sz").value,sit=document.getElementById("sit").value.trim();
+if(!ind||!sz){alert("業種と従業員数を選択してください");return}
+if(!sit){alert("具体的な状況を入力してください");return}
+var biz=document.getElementById("biz").value.trim(),pt=document.getElementById("pt").value.trim();
+var score=60;if(biz)score+=15;if(pt)score+=15;if(sit.length>30)score+=10;if(score>100)score=100;
+var p="# 役割設定\nあなたは"+sel.role+"です。\n日本法に準拠し、"+ind+"の従業員"+sz+"の中小企業の立場でアドバイスしてください。\n\n";
+p+="# 前提情報\n- 業種："+ind+"\n- 従業員規模："+sz+"\n";
+if(biz)p+="- 事業内容："+biz+"\n";
+p+="- 相談カテゴリ："+sel.name+"\n\n# 相談内容\n"+sit+"\n";
+if(pt)p+="\n【特に確認したい点】\n"+pt+"\n";
+p+="\n# 回答フォーマット（以下の構成で回答してください）\n\n";
+var fmt={contract:["契約書の全体評価（A〜Dランク）","リスクが高い条項の指摘（条項ごとに「リスク度：高/中/低」を明記）","具体的な修正案（修正前→修正後の形式で）","交渉時のポイント","【注意】弁護士に相談すべき事項"],
+labor:["関連する法令・条文の特定","法的リスクの評価（高/中/低）","推奨される対応手順（ステップ形式）","社内規程・書面で整備すべき事項","【注意】弁護士・社労士に相談すべき事項"],
+compliance:["関連法令の一覧と概要","現状のリスク評価（チェックリスト形式）","優先度付き改善アクションプラン","社内で整備すべき体制・文書","【注意】専門家に相談すべき事項"],
+ip:["保護すべき知的財産の特定と分類","現状のリスク評価","推奨される保護手段（優先度順）","費用の目安と手続きの流れ","【注意】弁理士・弁護士に相談すべき事項"],
+claim:["法的リスクの初期評価","推奨される対応方針と手順","相手方への回答案（文例）","再発防止策","【注意】弁護士に相談すべき事項"]};
+(fmt[sel.id]||fmt.claim).forEach(function(f,i){p+="## "+(i+1)+". "+f+"\n"});
+p+="\n# 重要な制約\n- 日本法に準拠した回答に限定すること\n- 法的判断が必要な場面では必ず「弁護士への相談を推奨」と明記すること\n- 具体的な条文番号を可能な限り引用すること\n- 中小企業が実務で実行可能な現実的アドバイスに絞ること";
+document.getElementById("out").textContent=p;
+document.getElementById("sf").style.width=score+"%";
+document.getElementById("sl").textContent=score+"%";
+var tips=["💡 生成されたプロンプトはChatGPT・Claude等にそのまま貼り付けて使えます。","💡 AIの回答は参考情報です。契約締結や紛争対応の最終判断は弁護士にご確認ください。","💡 事業内容や気になるポイントを追記すると、より具体的な回答が得られます。"];
+document.getElementById("tip").textContent=tips[Math.floor(Math.random()*tips.length)];
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+function copyP(){
+var t=document.getElementById("out").textContent;
+if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){var b=document.getElementById("cpb");b.textContent="✅ コピーしました！";setTimeout(function(){b.textContent="📋 プロンプトをコピー"},2000)})}
+else{var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");document.body.removeChild(a);var b=document.getElementById("cpb");b.textContent="✅ コピーしました！";setTimeout(function(){b.textContent="📋 プロンプトをコピー"},2000)}
+}
+</script>
+</body>
+</html>

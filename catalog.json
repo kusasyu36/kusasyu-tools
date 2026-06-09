@@ -4992,6 +4992,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-21",
+    "url": "legal-tech/tool-21/",
+    "title": "AIで法務相談、ちゃんとできてる？",
+    "tool_name": "中小企業_法務AIプロンプトビルダー",
+    "description": "法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチを、法務相談全般に拡張する。",
+    "quality_score": 7,
+    "completed_at": "2026-06-09T06:17:58.759795+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-22",
+    "url": "legal-tech/tool-22/",
+    "title": "AIで法務相談、ちゃんとできてる？",
+    "tool_name": "中小企業_法務タスク年間カレンダー",
+    "description": "法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチを、法務相談全般に拡張する。",
+    "quality_score": 7,
+    "completed_at": "2026-06-09T06:17:58.759795+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "tool-23",
+    "url": "legal-tech/tool-23/",
+    "title": "AIで法務相談、ちゃんとできてる？",
+    "tool_name": "AI法務活用ログ＆信頼度評価シート",
+    "description": "法務部を持たない中小企業向けに、AIを正しく法務に活用するための実践ツールキット。法務相談プロンプトを自動生成するHTMLツール、年間法務タスクを可視化するカレンダーツール、AI法務活用の記録・評価を管理するCSVシートの3点セット。人気の「AI特許調査プロンプトテンプレート集」と同じプロンプト生成アプローチを、法務相談全般に拡張する。",
+    "quality_score": 7,
+    "completed_at": "2026-06-09T06:17:58.759795+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
