@@ -5720,6 +5720,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "propcalc-japan",
+    "url": "proptech/propcalc-japan/",
+    "title": "この物件は買い？投資収益を即シミュレーション",
+    "tool_name": "投資物件収益シミュレーター（PropCalc_Japan）",
+    "description": "物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5年後・10年後・15年後の累積収益と売却損益を可視化する。個人投資家が物件情報を見た瞬間に",
+    "quality_score": 7,
+    "completed_at": "2026-06-09T13:50:44.017468+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-15",
+    "url": "proptech/tool-15/",
+    "title": "この物件は買い？投資収益を即シミュレーション",
+    "tool_name": "不動産投資の税金_早見リファレンス",
+    "description": "物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5年後・10年後・15年後の累積収益と売却損益を可視化する。個人投資家が物件情報を見た瞬間に",
+    "quality_score": 7,
+    "completed_at": "2026-06-09T13:50:44.017468+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",

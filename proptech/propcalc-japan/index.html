@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>投資物件収益シミュレーター（PropCalc_Japan） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;background:#f0f4f8;color:#2d3748;line-height:1.6;min-height:100vh}
+header{background:linear-gradient(135deg,#1e3a5f,#2b6cb0);color:#fff;padding:20px;text-align:center}
+header h1{font-size:1.6rem;letter-spacing:.05em}
+header p{font-size:.85rem;opacity:.85;margin-top:4px}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:20px;margin-bottom:16px}
+.tab-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.tab-btn{padding:8px 18px;border:2px solid #cbd5e0;background:#fff;border-radius:8px 8px 0 0;cursor:pointer;font-size:.9rem;font-weight:600;color:#4a5568;transition:.2s}
+.tab-btn.active{background:#1e3a5f;color:#fff;border-color:#1e3a5f}
+.tab-btn:hover:not(.active){background:#edf2f7}
+#addBtn{padding:8px 14px;border:2px dashed #3182ce;background:transparent;border-radius:8px;cursor:pointer;font-size:.85rem;color:#3182ce;font-weight:600}
+#addBtn:hover{background:#ebf8ff}
+#addBtn:disabled{opacity:.4;cursor:default}
+.panel{display:none}
+.panel.active{display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:.8rem;font-weight:600;color:#4a5568;display:flex;align-items:center;gap:4px}
+.tip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:#a0aec0;color:#fff;border-radius:50%;font-size:.65rem;cursor:help;flex-shrink:0}
+.tip:hover::after,.tip:focus::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#2d3748;color:#fff;padding:8px 10px;border-radius:6px;font-size:.72rem;font-weight:400;white-space:pre-line;width:240px;z-index:10;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.tip:hover::before,.tip:focus::before{content:"";position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#2d3748;z-index:10}
+input[type=number],input[type=text],select{padding:8px 10px;border:1.5px solid #cbd5e0;border-radius:6px;font-size:.95rem;width:100%;transition:.2s}
+input[type=number]:focus,input[type=text]:focus,select:focus{outline:none;border-color:#3182ce;box-shadow:0 0 0 3px rgba(49,130,206,.15)}
+input[type=range]{width:100%;accent-color:#3182ce}
+.range-row{display:flex;align-items:center;gap:8px}
+.range-row input[type=number]{width:70px;flex-shrink:0}
+.calc-btn{width:100%;padding:12px;background:linear-gradient(135deg,#2b6cb0,#3182ce);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s;letter-spacing:.05em}
+.calc-btn:hover{opacity:.9;transform:translateY(-1px)}
+.del-btn{margin-top:8px;padding:6px 12px;background:#e53e3e;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.8rem}
+.del-btn:hover{opacity:.85}
+.result-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.r-card{background:#f7fafc;border-radius:8px;padding:14px;text-align:center;border:1px solid #e2e8f0}
+.r-card .label{font-size:.75rem;color:#718096;font-weight:600}
+.r-card .value{font-size:1.4rem;font-weight:800;margin-top:4px}
+.r-card .sub{font-size:.7rem;color:#a0aec0;margin-top:2px}
+.positive{color:#38a169}
+.negative{color:#e53e3e}
+.neutral{color:#2b6cb0}
+table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:10px}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid #e2e8f0}
+th{background:#f7fafc;font-weight:700;color:#4a5568;text-align:center}
+td:first-child,th:first-child{text-align:left}
+.section-title{font-size:1rem;font-weight:700;color:#1e3a5f;margin:20px 0 10px;padding-bottom:6px;border-bottom:2px solid #e2e8f0}
+.chart-wrap{position:relative;width:100%;height:280px;margin:10px 0 16px}
+.chart-wrap canvas{width:100%!important;height:100%!important}
+.score-badge{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;font-size:1.4rem;font-weight:900;color:#fff;margin:4px auto}
+.score-S{background:linear-gradient(135deg,#f6e05e,#d69e2e)}
+.score-A{background:linear-gradient(135deg,#68d391,#38a169)}
+.score-B{background:linear-gradient(135deg,#63b3ed,#3182ce)}
+.score-C{background:linear-gradient(135deg,#fc8181,#e53e3e)}
+.score-D{background:linear-gradient(135deg,#a0aec0,#718096)}
+.comp-table{overflow-x:auto}
+.comp-table table{min-width:500px}
+.comp-table th{background:#1e3a5f;color:#fff}
+.comp-table tr:nth-child(even){background:#f7fafc}
+.hidden{display:none!important}
+@media(max-width:640px){
+ .form-grid{grid-template-columns:1fr}
+ .result-cards{grid-template-columns:1fr 1fr}
+ header h1{font-size:1.2rem}
+ .r-card .value{font-size:1.1rem}
+ .chart-wrap{height:220px}
+}
+</style>
+<meta name="description" content="物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,投資物件収益シミュレーター（PropCalc_Japan）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/propcalc-japan/">
+<meta property="og:title" content="投資物件収益シミュレーター（PropCalc_Japan） - kusasyu tools">
+<meta property="og:description" content="物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/propcalc-japan/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資物件収益シミュレーター（PropCalc_Japan） - kusasyu tools">
+<meta name="twitter:description" content="物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "投資物件収益シミュレーター（PropCalc_Japan）",
+  "description": "物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/propcalc-japan/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">投資物件収益シミュレーター（PropCalc_Japan）</span></div>
+<header>
+<h1>PropCalc Japan</h1>
+<p>投資物件収益シミュレーター</p>
+</header>
+<main>
+<div class="tab-bar" id="tabBar"></div>
+<div id="panels"></div>
+<div id="chartsSection" class="card hidden">
+<div class="section-title">累積キャッシュフロー推移</div>
+<div class="chart-wrap"><canvas id="cfCanvas"></canvas></div>
+<div class="section-title">建物簿価推移（減価償却）</div>
+<div class="chart-wrap"><canvas id="deprCanvas"></canvas></div>
+</div>
+<div id="compSection" class="card hidden">
+<div class="section-title">物件横断比較</div>
+<div class="comp-table" id="compBody"></div>
+<div style="text-align:center;margin-top:16px" id="totalScore"></div>
+</div>
+</main>
+<script>
+(function(){
+"use strict";
+var STRUCT={
+ "木造":{life:22,bldRatio:.4,decline:.02},
+ "RC造":{life:47,bldRatio:.6,decline:.008},
+ "鉄骨造":{life:34,bldRatio:.5,decline:.013}
+};
+var COLORS=["#3182ce","#38a169","#d69e2e"];
+var props=[],activeTab=0;
+
+function defaultProp(i){
+ return{name:"物件"+(i+1),price:3000,rent:15,structure:"RC造",age:10,
+  equityPct:20,rate:1.8,loanYears:30,bldRatio:60,mgmtPct:5,repairMonth:1.5,results:null};
+}
+function init(){props=[defaultProp(0)];renderAll()}
+function renderAll(){renderTabs();renderPanels();renderCharts();renderComparison()}
+
+function renderTabs(){
+ var bar=document.getElementById("tabBar");bar.innerHTML="";
+ props.forEach(function(p,i){
+  var b=document.createElement("button");
+  b.className="tab-btn"+(i===activeTab?" active":"");
+  b.textContent=p.name;
+  b.onclick=function(){activeTab=i;renderAll()};
+  bar.appendChild(b);
+ });
+ var ab=document.createElement("button");ab.id="addBtn";
+ ab.textContent="+ 物件を追加して比較";
+ ab.disabled=props.length>=3;
+ ab.onclick=function(){if(props.length<3){props.push(defaultProp(props.length));activeTab=props.length-1;renderAll()}};
+ bar.appendChild(ab);
+}
+
+function renderPanels(){
+ var c=document.getElementById("panels");c.innerHTML="";
+ props.forEach(function(p,i){
+  var d=document.createElement("div");
+  d.className="panel"+(i===activeTab?" active":"");
+  d.innerHTML=buildPanelHTML(p,i);
+  c.appendChild(d);
+ });
+ props.forEach(function(p,i){bindFormEvents(i)});
+}
+
+function buildPanelHTML(p,i){
+ var structOpts=Object.keys(STRUCT).map(function(k){
+  return '<option'+(k===p.structure?' selected':'')+'>'+k+'</option>';
+ }).join("");
+ var html='<div class="card"><div class="form-grid">';
+ html+='<div class="form-group"><label>物件名</label>';
+ html+='<input type="text" value="'+p.name+'" data-i="'+i+'" data-f="name" class="fi"></div>';
+ html+='<div class="form-group"><label>購入価格（万円）';
+ html+='<span class="tip" data-tip="土地＋建物の総額。\n諸費用（登記費用・仲介手数料等\n約7%）は別途ご考慮ください。">?</span></label>';
+ html+='<input type="number" value="'+p.price+'" data-i="'+i+'" data-f="price" class="fi" min="100" step="100"></div>';
+ html+='<div class="form-group"><label>想定月額賃料（万円）';
+ html+='<span class="tip" data-tip="空室率は含んでいません。\n実勢に合わせ控えめな設定を\n推奨します。">?</span></label>';
+ html+='<input type="number" value="'+p.rent+'" data-i="'+i+'" data-f="rent" class="fi" min="0.1" step="0.5"></div>';
+ html+='<div class="form-group"><label>構造';
+ html+='<span class="tip" data-tip="法定耐用年数:\n木造=22年 / 鉄骨造=34年 / RC造=47年\n減価償却期間・建物比率に影響します。">?</span></label>';
+ html+='<select data-i="'+i+'" data-f="structure" class="fi">'+structOpts+'</select></div>';
+ html+='<div class="form-group"><label>築年数（年）';
+ html+='<span class="tip" data-tip="中古の償却年数:\n残存年数+(経過年数×20%)\n耐用年数超過時: 法定年数×20%\n（最低2年）">?</span></label>';
+ html+='<input type="number" value="'+p.age+'" data-i="'+i+'" data-f="age" class="fi" min="0" max="80"></div>';
+ html+='<div class="form-group"><label>借入金利（年利%）';
+ html+='<span class="tip" data-tip="元利均等返済・固定金利を想定。\n変動金利の場合は金利上昇\nリスクにご注意ください。">?</span></label>';
+ html+='<input type="number" value="'+p.rate+'" data-i="'+i+'" data-f="rate" class="fi" min="0" max="15" step="0.1"></div>';
+ html+='<div class="form-group full"><label>自己資金比率: <strong id="eqLabel'+i+'">'+p.equityPct+'%</strong>';
+ html+='<span class="tip" data-tip="購入価格に対する自己資金の割合。\n残りが借入金額になります。\nフルローン=0%">?</span></label>';
+ html+='<div class="range-row"><input type="range" min="0" max="100" value="'+p.equityPct+'" data-i="'+i+'" data-f="equityPct" class="fi">';
+ html+='<input type="number" value="'+p.equityPct+'" data-i="'+i+'" data-f="equityPct" class="fi" min="0" max="100"></div></div>';
+ html+='<div class="form-group"><label>借入期間（年）</label>';
+ html+='<input type="number" value="'+p.loanYears+'" data-i="'+i+'" data-f="loanYears" class="fi" min="1" max="45"></div>';
+ html+='<div class="form-group"><label>建物比率（%）';
+ html+='<span class="tip" data-tip="購入価格中の建物割合。\n減価償却対象額に影響。\n目安: 木造40% / 鉄骨50% / RC60%">?</span></label>';
+ html+='<input type="number" value="'+p.bldRatio+'" data-i="'+i+'" data-f="bldRatio" class="fi" min="10" max="90"></div>';
+ html+='<div class="form-group"><label>管理委託費率（%）';
+ html+='<span class="tip" data-tip="賃料に対する管理会社への\n委託費用。一般的に3〜8%。">?</span></label>';
+ html+='<input type="number" value="'+p.mgmtPct+'" data-i="'+i+'" data-f="mgmtPct" class="fi" min="0" max="20" step="0.5"></div>';
+ html+='<div class="form-group"><label>修繕積立金（月額万円）';
+ html+='<span class="tip" data-tip="建物維持管理のための積立金。\n築年数が古いほど高額になる\n傾向があります。">?</span></label>';
+ html+='<input type="number" value="'+p.repairMonth+'" data-i="'+i+'" data-f="repairMonth" class="fi" min="0" step="0.1"></div>';
+ html+='</div>';
+ html+='<button class="calc-btn" id="calcBtn'+i+'">シミュレーション実行</button>';
+ if(props.length>1){
+  html+='<button class="del-btn" id="delBtn'+i+'">この物件を削除</button>';
+ }
+ html+='</div>';
+ if(p.results){html+=buildResultsHTML(p,i)}
+ return html;
+}
+
+function bindFormEvents(i){
+ var fields=document.querySelectorAll('.fi[data-i="'+i+'"]');
+ fields.forEach(function(el){
+  el.addEventListener("input",function(){
+   var f=this.dataset.f;
+   var v=(this.type==="number"||this.type==="range")?parseFloat(this.value):this.value;
+   if(isNaN(v)&&this.type!=="text")return;
+   props[i][f]=v;
+   if(f==="equityPct"){
+    document.querySelectorAll('.fi[data-i="'+i+'"][data-f="equityPct"]').forEach(function(e){if(e!==el)e.value=v});
+    var lb=document.getElementById("eqLabel"+i);if(lb)lb.textContent=v+"%";
+   }
+   if(f==="structure"){
+    var s=STRUCT[v];if(s){props[i].bldRatio=Math.round(s.bldRatio*100);
+    var br=document.querySelector('.fi[data-i="'+i+'"][data-f="bldRatio"]');if(br)br.value=props[i].bldRatio;}
+   }
+   if(f==="name"){props[i].name=v||("物件"+(i+1));renderTabs()}
+  });
+ });
+ var btn=document.getElementById("calcBtn"+i);
+ if(btn)btn.onclick=function(){props[i].results=calculate(props[i]);renderAll()};
+ var del=document.getElementById("delBtn"+i);
+ if(del)del.onclick=function(){props.splice(i,1);if(activeTab>=props.length)activeTab=props.length-1;renderAll()};
+}
+
+function calculate(p){
+ var s=STRUCT[p.structure];
+ var price=p.price,rentAnnual=p.rent*12;
+ var bldVal=price*(p.bldRatio/100),landVal=price-bldVal;
+ var grossYield=rentAnnual/price*100;
+ var mgmt=rentAnnual*(p.mgmtPct/100);
+ var repair=p.repairMonth*12;
+ var assessedBld=bldVal*0.7,assessedLand=landVal*0.7;
+ var propTaxBld=assessedBld*0.014;
+ var propTaxLand=assessedLand*(1/6)*0.014;
+ var cityTaxBld=assessedBld*0.003;
+ var cityTaxLand=assessedLand*(1/3)*0.003;
+ var propTax=propTaxBld+propTaxLand+cityTaxBld+cityTaxLand;
+ var acqTax=assessedBld*0.03+assessedLand*0.5*0.03;
+ var annualExp=mgmt+repair+propTax;
+ var netIncome=rentAnnual-annualExp;
+ var netYield=netIncome/price*100;
+ var equity=price*(p.equityPct/100);
+ var loanAmt=price-equity;
+ var annualDS=0,monthlyPmt=0;
+ if(loanAmt>0&&p.loanYears>0){
+  if(p.rate===0){monthlyPmt=loanAmt/(p.loanYears*12)}
+  else{var r=p.rate/100/12,n=p.loanYears*12;monthlyPmt=loanAmt*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1)}
+  annualDS=monthlyPmt*12;
+ }
+ var annualCF=netIncome-annualDS;
+ var remain=s.life-p.age;
+ var deprYears;
+ if(remain>0){deprYears=Math.max(2,Math.floor(remain+p.age*0.2))}
+ else{deprYears=Math.max(2,Math.floor(s.life*0.2))}
+ var annualDepr=bldVal/deprYears;
+ var deprSchedule=[];
+ var cumDepr=0;
+ for(var y=1;y<=Math.min(deprYears,30);y++){
+  var d=Math.min(annualDepr,bldVal-cumDepr);cumDepr+=d;
+  deprSchedule.push({year:y,annual:d,cumulative:cumDepr,bookVal:Math.max(0,bldVal-cumDepr)});
+ }
+ var cfSchedule=[];
+ var cumCF=0,loanBal=loanAmt;
+ for(var y2=1;y2<=20;y2++){
+  var intPaid=0,prinPaid=0;
+  if(loanBal>0&&y2<=p.loanYears){
+   for(var m=0;m<12;m++){
+    if(loanBal<=0)break;
+    var mi=loanBal*(p.rate/100/12);intPaid+=mi;
+    var pp=monthlyPmt-mi;prinPaid+=pp;loanBal=Math.max(0,loanBal-pp);
+   }
+  }
+  var cf=netIncome-(intPaid+prinPaid);
+  cumCF+=cf;
+  cfSchedule.push({year:y2,income:rentAnnual,expense:annualExp,ds:intPaid+prinPaid,cf:cf,cumCF:cumCF});
+ }
+ function exitCalc(yr){
+  var salePrice=price*Math.pow(1-s.decline,yr);
+  var cumD=Math.min(annualDepr*yr,bldVal);
+  var bookVal=price-cumD;
+  var brokerFee=salePrice*0.03+6;
+  var gain=salePrice-bookVal-brokerFee;
+  var isLong=yr>5;
+  var taxRate=isLong?0.20315:0.39630;
+  var tax=gain>0?gain*taxRate:0;
+  var netProceeds=salePrice-brokerFee-tax;
+  var cumCFatYr=(cfSchedule.length>=yr)?cfSchedule[yr-1].cumCF:0;
+  var totalReturn=netProceeds+cumCFatYr-equity-acqTax;
+  var roi=equity>0?totalReturn/equity*100:0;
+  return{yr:yr,salePrice:salePrice,bookVal:bookVal,gain:gain,isLong:isLong,taxRate:taxRate,tax:tax,brokerFee:brokerFee,netProceeds:netProceeds,cumCF:cumCFatYr,totalReturn:totalReturn,roi:roi};
+ }
+ var exits=[exitCalc(5),exitCalc(10),exitCalc(15)];
+ var cocReturn=equity>0?annualCF/equity*100:0;
+ var score=0;
+ if(netYield>=10)score+=30;else if(netYield>=7)score+=20+(netYield-7)/3*10;else if(netYield>=4)score+=10+(netYield-4)/3*10;else score+=Math.max(0,netYield/4*10);
+ if(cocReturn>=15)score+=25;else if(cocReturn>=8)score+=15+(cocReturn-8)/7*10;else if(cocReturn>=0)score+=cocReturn/8*15;else score+=0;
+ var deprBenefit=annualDepr/price*100;score+=Math.min(20,deprBenefit*5);
+ var exit10roi=exits[1].roi;
+ if(exit10roi>=100)score+=25;else if(exit10roi>=50)score+=15+(exit10roi-50)/50*10;else if(exit10roi>=0)score+=exit10roi/50*15;else score+=0;
+ score=Math.round(Math.min(100,Math.max(0,score)));
+ var grade="D";if(score>=90)grade="S";else if(score>=75)grade="A";else if(score>=60)grade="B";else if(score>=45)grade="C";
+ return{grossYield:grossYield,netYield:netYield,annualCF:annualCF,annualDS:annualDS,annualExp:annualExp,
+  mgmt:mgmt,repair:repair,propTax:propTax,acqTax:acqTax,equity:equity,loanAmt:loanAmt,monthlyPmt:monthlyPmt,
+  annualDepr:annualDepr,deprYears:deprYears,deprSchedule:deprSchedule,cfSchedule:cfSchedule,exits:exits,
+  cocReturn:cocReturn,score:score,grade:grade,rentAnnual:rentAnnual,netIncome:netIncome,bldVal:bldVal,price:price};
+}
+
+function fmt(v,d){d=d||0;return v.toLocaleString("ja-JP",{minimumFractionDigits:d,maximumFractionDigits:d})}
+function vc(v){return v>=0?"positive":"negative"}
+
+function buildResultsHTML(p,i){
+ var r=p.results;if(!r)return"";
+ var html='<div class="card" style="margin-top:12px">';
+ html+='<div class="section-title">収益指標</div>';
+ html+='<div class="result-cards">';
+ html+='<div class="r-card"><div class="label">表面利回り</div><div class="value neutral">'+fmt(r.grossYield,2)+'%</div></div>';
+ html+='<div class="r-card"><div class="label">実質利回り</div><div class="value '+vc(r.netYield)+'">'+fmt(r.netYield,2)+'%</div><div class="sub">経費控除後</div></div>';
+ html+='<div class="r-card"><div class="label">年間CF</div><div class="value '+vc(r.annualCF)+'">'+fmt(r.annualCF,1)+'万</div><div class="sub">月 '+fmt(r.annualCF/12,1)+'万</div></div>';
+ html+='<div class="r-card"><div class="label">自己資金利回り</div><div class="value '+vc(r.cocReturn)+'">'+fmt(r.cocReturn,2)+'%</div><div class="sub">CCR</div></div>';
+ html+='<div class="r-card"><div class="label">投資スコア</div><div class="score-badge score-'+r.grade+'">'+r.grade+'</div><div class="sub">'+r.score+'点/100</div></div>';
+ html+='</div>';
+ html+='<div class="section-title">収支内訳（年間）</div>';
+ html+='<table><tr><th style="text-align:left">項目</th><th>金額（万円）</th></tr>';
+ html+='<tr><td>賃料収入</td><td>'+fmt(r.rentAnnual,1)+'</td></tr>';
+ html+='<tr><td style="padding-left:20px">管理委託費</td><td>-'+fmt(r.mgmt,1)+'</td></tr>';
+ html+='<tr><td style="padding-left:20px">修繕積立金</td><td>-'+fmt(r.repair,1)+'</td></tr>';
+ html+='<tr><td style="padding-left:20px">固定資産税・都市計画税</td><td>-'+fmt(r.propTax,1)+'</td></tr>';
+ html+='<tr style="font-weight:700"><td>営業純収益（NOI）</td><td>'+fmt(r.netIncome,1)+'</td></tr>';
+ html+='<tr><td style="padding-left:20px">ローン返済額</td><td>-'+fmt(r.annualDS,1)+'</td></tr>';
+ html+='<tr style="font-weight:700;border-top:2px solid #1e3a5f"><td>年間キャッシュフロー</td><td class="'+vc(r.annualCF)+'">'+fmt(r.annualCF,1)+'</td></tr>';
+ html+='</table>';
+ html+='<div style="font-size:.75rem;color:#718096;margin-top:6px">※不動産取得税（初年度のみ）: '+fmt(r.acqTax,1)+'万円</div>';
+ html+='<div class="section-title">減価償却スケジュール</div>';
+ html+='<div style="font-size:.82rem;color:#4a5568;margin-bottom:6px">建物価額 '+fmt(r.bldVal,0)+'万円 ÷ '+r.deprYears+'年 = 年間 '+fmt(r.annualDepr,1)+'万円（定額法）</div>';
+ html+='<div style="overflow-x:auto"><table><tr><th>年</th><th>償却額（万）</th><th>累計（万）</th><th>建物簿価（万）</th></tr>';
+ var dsLen=r.deprSchedule.length;
+ r.deprSchedule.forEach(function(d,j){
+  if(j<8||j===dsLen-1){
+   html+='<tr><td style="text-align:center">'+d.year+'年目</td><td>'+fmt(d.annual,1)+'</td><td>'+fmt(d.cumulative,1)+'</td><td>'+fmt(d.bookVal,1)+'</td></tr>';
+  }else if(j===8&&dsLen>9){
+   html+='<tr><td colspan="4" style="text-align:center;color:#a0aec0">…</td></tr>';
+  }
+ });
+ html+='</table></div>';
+ html+='<div class="section-title">出口売却シミュレーション</div>';
+ html+='<div style="overflow-x:auto"><table>';
+ html+='<tr><th style="text-align:left">項目</th>';
+ r.exits.forEach(function(e){html+='<th>'+e.yr+'年後</th>'});
+ html+='</tr>';
+ var rows=[
+  {label:"想定売却価格",fn:function(e){return fmt(e.salePrice,0)+"万"}},
+  {label:"帳簿価額",fn:function(e){return fmt(e.bookVal,0)+"万"}},
+  {label:"譲渡所得",fn:function(e){return fmt(e.gain,0)+"万"}},
+  {label:"区分・税率",fn:function(e){return (e.isLong?"長期":"短期")+" "+(e.taxRate*100).toFixed(2)+"%"}},
+  {label:"譲渡所得税",fn:function(e){return "-"+fmt(e.tax,0)+"万"}},
+  {label:"売却手取り",fn:function(e){return fmt(e.netProceeds,0)+"万"}},
+  {label:"累積CF",fn:function(e){return fmt(e.cumCF,0)+"万"}},
+ ];
+ rows.forEach(function(row){
+  html+='<tr><td>'+row.label+'</td>';
+  r.exits.forEach(function(e){html+='<td>'+row.fn(e)+'</td>'});
+  html+='</tr>';
+ });
+ html+='<tr style="font-weight:700;border-top:2px solid #1e3a5f"><td>総合損益</td>';
+ r.exits.forEach(function(e){html+='<td class="'+vc(e.totalReturn)+'">'+fmt(e.totalReturn,0)+'万</td>'});
+ html+='</tr>';
+ html+='<tr><td>自己資金ROI</td>';
+ r.exits.forEach(function(e){html+='<td class="'+vc(e.roi)+'">'+fmt(e.roi,1)+'%</td>'});
+ html+='</tr></table></div>';
+ var decl=STRUCT[p.structure].decline;
+ html+='<div style="font-size:.72rem;color:#a0aec0;margin-top:6px">※売却価格は年'+(decl*100).toFixed(1)+'%下落を想定。仲介手数料（3%+6万円）控除済。譲渡所得税は所有期間5年超で長期（20.315%）、以下で短期（39.63%）を自動適用。</div>';
+ html+='</div>';
+ return html;
+}
+
+function renderCharts(){
+ var calculated=props.filter(function(p){return p.results});
+ var sec=document.getElementById("chartsSection");
+ if(calculated.length===0){sec.classList.add("hidden");return}
+ sec.classList.remove("hidden");
+ setTimeout(function(){drawCFChart(calculated);drawDeprChart(calculated)},50);
+}
+
+function setupCanvas(id){
+ var c=document.getElementById(id);
+ var dpr=window.devicePixelRatio||1;
+ var rect=c.parentElement.getBoundingClientRect();
+ c.width=rect.width*dpr;c.height=rect.height*dpr;
+ c.style.width=rect.width+"px";c.style.height=rect.height+"px";
+ var ctx=c.getContext("2d");ctx.scale(dpr,dpr);
+ return{ctx:ctx,w:rect.width,h:rect.height};
+}
+
+function drawCFChart(list){
+ var cv=setupCanvas("cfCanvas");
+ var ctx=cv.ctx,w=cv.w,h=cv.h;
+ var pad={t:32,r:24,b:38,l:64},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+ ctx.clearRect(0,0,w,h);
+ var maxYr=20,mn=0,mx=0;
+ list.forEach(function(p){p.results.cfSchedule.forEach(function(d){if(d.cumCF<mn)mn=d.cumCF;if(d.cumCF>mx)mx=d.cumCF})});
+ if(mn===mx){mn-=100;mx+=100}
+ var range=mx-mn;mn-=range*0.08;mx+=range*0.08;
+ ctx.strokeStyle="#e2e8f0";ctx.lineWidth=0.8;
+ for(var i=0;i<=5;i++){
+  var y=pad.t+ch*(1-i/5);
+  ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+cw,y);ctx.stroke();
+  ctx.fillStyle="#718096";ctx.font="11px sans-serif";ctx.textAlign="right";
+  ctx.fillText(fmt(mn+(mx-mn)*i/5,0),pad.l-8,y+4);
+ }
+ ctx.strokeStyle="#2d3748";ctx.lineWidth=1.2;
+ ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,pad.t+ch);ctx.lineTo(pad.l+cw,pad.t+ch);ctx.stroke();
+ for(var yr=0;yr<=maxYr;yr+=5){
+  var x=pad.l+(yr/maxYr)*cw;
+  ctx.fillStyle="#718096";ctx.font="11px sans-serif";ctx.textAlign="center";
+  ctx.fillText(yr+"年",x,pad.t+ch+22);
+ }
+ if(mn<0&&mx>0){
+  var zy=pad.t+ch*(1-(0-mn)/(mx-mn));
+  ctx.save();ctx.strokeStyle="#e53e3e";ctx.lineWidth=0.8;ctx.setLineDash([4,4]);
+  ctx.beginPath();ctx.moveTo(pad.l,zy);ctx.lineTo(pad.l+cw,zy);ctx.stroke();ctx.restore();
+ }
+ list.forEach(function(p,pi){
+  var data=p.results.cfSchedule;
+  ctx.strokeStyle=COLORS[pi];ctx.lineWidth=2.5;ctx.beginPath();
+  ctx.moveTo(pad.l,pad.t+ch*(1-(0-mn)/(mx-mn)));
+  data.forEach(function(d){
+   var x2=pad.l+(d.year/maxYr)*cw;
+   var y2=pad.t+ch*(1-(d.cumCF-mn)/(mx-mn));
+   ctx.lineTo(x2,y2);
+  });
+  ctx.stroke();
+  data.forEach(function(d){
+   var x2=pad.l+(d.year/maxYr)*cw;
+   var y2=pad.t+ch*(1-(d.cumCF-mn)/(mx-mn));
+   ctx.fillStyle=COLORS[pi];ctx.beginPath();ctx.arc(x2,y2,2.5,0,Math.PI*2);ctx.fill();
+  });
+  var last=data[data.length-1];
+  ctx.fillStyle=COLORS[pi];ctx.font="bold 11px sans-serif";ctx.textAlign="left";
+  var ly=pad.t+ch*(1-(last.cumCF-mn)/(mx-mn));
+  ctx.fillText(p.name+" "+fmt(last.cumCF,0)+"万",pad.l+(last.year/maxYr)*cw+6,ly-6);
+ });
+ ctx.fillStyle="#2d3748";ctx.font="bold 13px sans-serif";ctx.textAlign="center";
+ ctx.fillText("累積キャッシュフロー（万円）",w/2,18);
+}
+
+function drawDeprChart(list){
+ var cv=setupCanvas("deprCanvas");
+ var ctx=cv.ctx,w=cv.w,h=cv.h;
+ var pad={t:32,r:24,b:38,l:64},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+ ctx.clearRect(0,0,w,h);
+ var maxYr=0,mx=0;
+ list.forEach(function(p){
+  var ds=p.results.deprSchedule;if(ds.length>maxYr)maxYr=ds.length;
+  if(p.results.bldVal>mx)mx=p.results.bldVal;
+ });
+ if(maxYr===0)maxYr=10;if(mx===0)mx=1000;mx*=1.05;
+ ctx.strokeStyle="#e2e8f0";ctx.lineWidth=0.8;
+ for(var i=0;i<=5;i++){
+  var y=pad.t+ch*(1-i/5);
+  ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+cw,y);ctx.stroke();
+  ctx.fillStyle="#718096";ctx.font="11px sans-serif";ctx.textAlign="right";
+  ctx.fillText(fmt(mx*i/5,0),pad.l-8,y+4);
+ }
+ ctx.strokeStyle="#2d3748";ctx.lineWidth=1.2;
+ ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,pad.t+ch);ctx.lineTo(pad.l+cw,pad.t+ch);ctx.stroke();
+ var step=maxYr<=10?1:maxYr<=20?2:5;
+ for(var yr=0;yr<=maxYr;yr+=step){
+  var x=pad.l+(yr/maxYr)*cw;
+  ctx.fillStyle="#718096";ctx.font="11px sans-serif";ctx.textAlign="center";
+  ctx.fillText(yr+"年",x,pad.t+ch+22);
+ }
+ list.forEach(function(p,pi){
+  var ds=p.results.deprSchedule;var bv=p.results.bldVal;
+  ctx.strokeStyle=COLORS[pi];ctx.lineWidth=2.5;ctx.beginPath();
+  ctx.moveTo(pad.l,pad.t+ch*(1-bv/mx));
+  ds.forEach(function(d){
+   var x2=pad.l+(d.year/maxYr)*cw;var y2=pad.t+ch*(1-d.bookVal/mx);ctx.lineTo(x2,y2);
+  });
+  ctx.stroke();
+  ctx.fillStyle=COLORS[pi];ctx.globalAlpha=0.1;ctx.beginPath();
+  ctx.moveTo(pad.l,pad.t+ch*(1-bv/mx));
+  ds.forEach(function(d){ctx.lineTo(pad.l+(d.year/maxYr)*cw,pad.t+ch*(1-d.bookVal/mx))});
+  var lastD=ds[ds.length-1];
+  ctx.lineTo(pad.l+(lastD.year/maxYr)*cw,pad.t+ch);ctx.lineTo(pad.l,pad.t+ch);ctx.fill();
+  ctx.globalAlpha=1;
+  ctx.fillStyle=COLORS[pi];ctx.font="bold 11px sans-serif";ctx.textAlign="left";
+  ctx.fillText(p.name,pad.l+(lastD.year/maxYr)*cw+6,pad.t+ch*(1-lastD.bookVal/mx)-6);
+ });
+ ctx.fillStyle="#2d3748";ctx.font="bold 13px sans-serif";ctx.textAlign="center";
+ ctx.fillText("建物簿価推移（万円）",w/2,18);
+}
+
+function renderComparison(){
+ var calculated=props.filter(function(p){return p.results});
+ var sec=document.getElementById("compSection");
+ if(calculated.length<2){sec.classList.add("hidden");return}
+ sec.classList.remove("hidden");
+ var metrics=[
+  {label:"購入価格",fn:function(p){return fmt(p.results.price,0)+"万円"}},
+  {label:"表面利回り",fn:function(p){return fmt(p.results.grossYield,2)+"%"}},
+  {label:"実質利回り",fn:function(p){return fmt(p.results.netYield,2)+"%"}},
+  {label:"年間CF",fn:function(p){return fmt(p.results.annualCF,1)+"万円"}},
+  {label:"自己資金利回り(CCR)",fn:function(p){return fmt(p.results.cocReturn,2)+"%"}},
+  {label:"年間償却額",fn:function(p){return fmt(p.results.annualDepr,1)+"万円"}},
+  {label:"償却期間",fn:function(p){return p.results.deprYears+"年"}},
+  {label:"10年後総合損益",fn:function(p){return fmt(p.results.exits[1].totalReturn,0)+"万円"}},
+  {label:"10年後ROI",fn:function(p){return fmt(p.results.exits[1].roi,1)+"%"}},
+  {label:"投資スコア",fn:function(p){return p.results.score+"点 ("+p.results.grade+")"}},
+ ];
+ var html='<table><tr><th style="text-align:left">指標</th>';
+ calculated.forEach(function(p){html+='<th>'+p.name+'</th>'});
+ html+='</tr>';
+ metrics.forEach(function(m){
+  html+='<tr><td>'+m.label+'</td>';
+  calculated.forEach(function(p){html+='<td>'+m.fn(p)+'</td>'});
+  html+='</tr>';
+ });
+ html+='</table>';
+ document.getElementById("compBody").innerHTML=html;
+ var totalPrice=calculated.reduce(function(s,p){return s+p.results.price},0);
+ var weightedScore=calculated.reduce(function(s,p){return s+p.results.score*(p.results.price/totalPrice)},0);
+ var ws=Math.round(weightedScore);
+ var wg="D";if(ws>=90)wg="S";else if(ws>=75)wg="A";else if(ws>=60)wg="B";else if(ws>=45)wg="C";
+ document.getElementById("totalScore").innerHTML=
+  '<div style="font-size:.95rem;font-weight:700;color:#1e3a5f;margin-bottom:6px">加重平均 総合投資スコア</div>'+
+  '<div class="score-badge score-'+wg+'">'+wg+'</div>'+
+  '<div style="font-size:.85rem;color:#4a5568;margin-top:4px">'+ws+'点 / 100点（購入価格加重平均）</div>';
+}
+
+init();
+window.addEventListener("resize",function(){renderCharts()});
+})();
+</script>
+</body>
+</html>

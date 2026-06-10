@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産投資の税金_早見リファレンス - kusasyu tools</title>
+<meta name="description" content="物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産投資の税金_早見リファレンス">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-15/">
+<meta property="og:title" content="不動産投資の税金_早見リファレンス - kusasyu tools">
+<meta property="og:description" content="物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-15/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産投資の税金_早見リファレンス - kusasyu tools">
+<meta name="twitter:description" content="物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "不動産投資の税金_早見リファレンス",
+  "description": "物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-15/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-09"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>不動産投資の税金_早見リファレンス</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>不動産投資の税金_早見リファレンス</h1>
+  <p class="project-name">この物件は買い？投資収益を即シミュレーション</p>
+  <div class="content">
+<h1>不動産投資の税金 早見リファレンス</h1>
+<p><strong>― 物件購入前に必ず確認すべき税金・費用の実務ガイド ―</strong></p>
+<p>不動産投資で利益を最大化するには、税金の正確な理解が不可欠です。本リファレンスでは、個人投資家が押さえるべき日本固有の税金・費用を<strong>4つの表</strong>に集約しました。PropCalc Japanのシミュレーターと併用すれば、購入判断の精度が格段に上がります。</p>
+<hr />
+<h2>1. 減価償却 ― 構造別耐用年数一覧</h2>
+<p>建物の減価償却は不動産投資の節税効果を左右する最重要項目です。構造ごとに法定耐用年数が異なり、年間の償却額に大きな差が出ます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">構造</th>
+<th style="text-align: center;">法定耐用年数</th>
+<th style="text-align: center;">定額法償却率</th>
+<th style="text-align: right;">1,000万円あたり年間償却額</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>木造（W造）</strong></td>
+<td style="text-align: center;">22年</td>
+<td style="text-align: center;">0.046</td>
+<td style="text-align: right;">約46万円</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>軽量鉄骨（厚さ3mm以下）</strong></td>
+<td style="text-align: center;">19年</td>
+<td style="text-align: center;">0.053</td>
+<td style="text-align: right;">約53万円</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>重量鉄骨（S造）</strong></td>
+<td style="text-align: center;">34年</td>
+<td style="text-align: center;">0.030</td>
+<td style="text-align: right;">約30万円</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>鉄筋コンクリート（RC造）</strong></td>
+<td style="text-align: center;">47年</td>
+<td style="text-align: center;">0.022</td>
+<td style="text-align: right;">約22万円</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>鉄骨鉄筋コンクリート（SRC造）</strong></td>
+<td style="text-align: center;">47年</td>
+<td style="text-align: center;">0.022</td>
+<td style="text-align: right;">約22万円</td>
+</tr>
+</tbody>
+</table>
+<h3>中古物件の耐用年数（簡便法）</h3>
+<p>中古物件は以下の計算式で耐用年数を短縮できます。</p>
+<ul>
+<li><strong>法定耐用年数を全て経過した場合</strong>：法定耐用年数 × 20%</li>
+<li><strong>一部経過した場合</strong>：（法定耐用年数 − 経過年数）＋ 経過年数 × 20%</li>
+</ul>
+<p><strong>計算例：築25年の木造物件</strong>
+→ 法定耐用年数22年を超過 → 22年 × 20% = <strong>4年</strong>（償却率0.250）</p>
+<blockquote>
+<p><strong>PropCalc Japan対応</strong>：シミュレーターの「建物構造」と「築年数」を入力すると、上記ロジックで耐用年数と年間償却額を自動算出します。</p>
+</blockquote>
+<hr />
+<h2>2. 取得時・保有時の税金計算式</h2>
+<h3>取得時にかかる税金</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">税目</th>
+<th style="text-align: left;">計算式</th>
+<th style="text-align: left;">税率・備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>不動産取得税</strong></td>
+<td style="text-align: left;">固定資産税評価額 × 税率</td>
+<td style="text-align: left;">土地・住宅：3%／非住宅：4%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>登録免許税（所有権移転）</strong></td>
+<td style="text-align: left;">固定資産税評価額 × 税率</td>
+<td style="text-align: left;">土地：1.5%（〜2026年3月）／建物：2%</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>登録免許税（抵当権設定）</strong></td>
+<td style="text-align: left;">債権金額（借入額）× 0.4%</td>
+<td style="text-align: left;">―</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>印紙税</strong></td>
+<td style="text-align: left;">売買契約書の記載金額による</td>
+<td style="text-align: left;">1,000万円超〜5,000万円以下：1万円</td>
+</tr>
+</tbody>
+</table>
+<p><strong>不動産取得税の軽減例（新築住宅）</strong>
+→ （固定資産税評価額 − 1,200万円）× 3%</p>
+<h3>保有時にかかる税金（毎年）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">税目</th>
+<th style="text-align: left;">計算式</th>
+<th style="text-align: center;">標準税率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>固定資産税</strong></td>
+<td style="text-align: left;">固定資産税評価額 × 税率</td>
+<td style="text-align: center;"><strong>1.4%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>都市計画税</strong></td>
+<td style="text-align: left;">固定資産税評価額 × 税率</td>
+<td style="text-align: center;"><strong>上限0.3%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>住宅用地の特例（毎年の軽減）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">区分</th>
+<th style="text-align: center;">固定資産税</th>
+<th style="text-align: center;">都市計画税</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">小規模住宅用地（200㎡以下）</td>
+<td style="text-align: center;">評価額 × <strong>1/6</strong></td>
+<td style="text-align: center;">評価額 × <strong>1/3</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">一般住宅用地（200㎡超部分）</td>
+<td style="text-align: center;">評価額 × <strong>1/3</strong></td>
+<td style="text-align: center;">評価額 × <strong>2/3</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>計算例：評価額2,000万円・小規模住宅用地の場合</strong>
+- 固定資産税：2,000万円 × 1/6 × 1.4% = 約4.7万円/年
+- 都市計画税：2,000万円 × 1/3 × 0.3% = 約2.0万円/年
+- <strong>合計：約6.7万円/年</strong></p>
+<blockquote>
+<p><strong>PropCalc Japan対応</strong>：「固定資産税評価額」入力で年間保有コストを自動算出。住宅用地特例の適用有無も選択可能です。</p>
+</blockquote>
+<hr />
+<h2>3. 譲渡所得税 ― 短期 vs 長期の税率比較</h2>
+<p>売却益にかかる税率は<strong>所有期間で約2倍の差</strong>が生じます。売却タイミングの判断に直結する重要ポイントです。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">区分</th>
+<th style="text-align: left;">所有期間</th>
+<th style="text-align: center;">所得税</th>
+<th style="text-align: center;">住民税</th>
+<th style="text-align: center;">復興特別所得税</th>
+<th style="text-align: center;"><strong>合計税率</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>短期譲渡所得</strong></td>
+<td style="text-align: left;">5年以下</td>
+<td style="text-align: center;">30%</td>
+<td style="text-align: center;">9%</td>
+<td style="text-align: center;">0.63%</td>
+<td style="text-align: center;"><strong>39.63%</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>長期譲渡所得</strong></td>
+<td style="text-align: left;">5年超</td>
+<td style="text-align: center;">15%</td>
+<td style="text-align: center;">5%</td>
+<td style="text-align: center;">0.315%</td>
+<td style="text-align: center;"><strong>20.315%</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>判定の注意点</h3>
+<ul>
+<li>所有期間は<strong>売却した年の1月1日時点</strong>で判定（実際の保有日数ではない）</li>
+<li>2020年7月購入 → 2026年1月に売却 → 1月1日時点で5年超 → <strong>長期</strong></li>
+<li>2021年3月購入 → 2026年2月に売却 → 1月1日時点で4年 → <strong>短期</strong></li>
+</ul>
+<h3>譲渡所得の計算式</h3>
+<pre><code>譲渡所得 = 売却価格 −（取得費 + 譲渡費用）
+</code></pre>
+<ul>
+<li><strong>取得費</strong>：購入価格 + 購入時諸費用 − 減価償却累計額</li>
+<li><strong>譲渡費用</strong>：仲介手数料、測量費、解体費用など</li>
+</ul>
+<p><strong>計算例：3,000万円で購入し4,500万円で売却（長期・取得費2,400万円・譲渡費用200万円）</strong>
+→ 譲渡所得：4,500万 −（2,400万 + 200万）= 1,900万円
+→ 税額：1,900万円 × 20.315% = <strong>約386万円</strong></p>
+<blockquote>
+<p><strong>PropCalc Japan対応</strong>：購入価格・想定売却価格・保有期間を入力すると、短期/長期それぞれの手取り額を比較表示します。</p>
+</blockquote>
+<hr />
+<h2>4. 経費計上できる項目チェックリスト</h2>
+<p>確定申告で不動産所得から差し引ける経費を漏れなく計上することが、実質利回り向上の鍵です。</p>
+<h3>経費計上OK</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">カテゴリ</th>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>借入関連</strong></td>
+<td style="text-align: left;">ローン金利（利息部分のみ）</td>
+<td style="text-align: left;">元本返済は経費不可</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ローン保証料</td>
+<td style="text-align: left;">一括払い時は期間按分</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>建物関連</strong></td>
+<td style="text-align: left;">減価償却費</td>
+<td style="text-align: left;">土地は償却不可</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">修繕費</td>
+<td style="text-align: left;">原状回復目的に限る</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>管理関連</strong></td>
+<td style="text-align: left;">管理委託費</td>
+<td style="text-align: left;">管理会社への支払い</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">賃貸管理手数料</td>
+<td style="text-align: left;">集金代行・入居者対応等</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>税金・保険</strong></td>
+<td style="text-align: left;">固定資産税・都市計画税</td>
+<td style="text-align: left;">全額経費</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">火災保険・地震保険料</td>
+<td style="text-align: left;">全額経費</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">不動産取得税</td>
+<td style="text-align: left;">取得年に一括計上</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>その他</strong></td>
+<td style="text-align: left;">仲介手数料（賃貸募集時）</td>
+<td style="text-align: left;">入居者募集費用</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">司法書士報酬</td>
+<td style="text-align: left;">登記費用</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">交通費</td>
+<td style="text-align: left;">物件視察・管理目的</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">通信費</td>
+<td style="text-align: left;">不動産投資に係る部分</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">税理士報酬</td>
+<td style="text-align: left;">確定申告の依頼費用</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">広告宣伝費</td>
+<td style="text-align: left;">入居者募集の広告</td>
+</tr>
+</tbody>
+</table>
+<h3>経費計上NG（よくある間違い）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">ローン元本返済</td>
+<td style="text-align: left;">借入金の返済であり費用ではない</td>
+</tr>
+<tr>
+<td style="text-align: left;">所得税・住民税</td>
+<td style="text-align: left;">個人の税金は経費不可</td>
+</tr>
+<tr>
+<td style="text-align: left;">資本的支出（大規模リノベ）</td>
+<td style="text-align: left;">資産計上し減価償却で処理</td>
+</tr>
+<tr>
+<td style="text-align: left;">自宅部分の費用</td>
+<td style="text-align: left;">投資用部分のみ按分計上</td>
+</tr>
+<tr>
+<td style="text-align: left;">反則金・延滞税</td>
+<td style="text-align: left;">罰則的性質のため不可</td>
+</tr>
+</tbody>
+</table>
+<h3>修繕費 vs 資本的支出の判定基準</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">判定基準</th>
+<th style="text-align: center;">修繕費（一括経費）</th>
+<th style="text-align: center;">資本的支出（資産計上）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">金額</td>
+<td style="text-align: center;">20万円未満 → 修繕費</td>
+<td style="text-align: center;">―</td>
+</tr>
+<tr>
+<td style="text-align: left;">周期</td>
+<td style="text-align: center;">おおむね3年以内の周期 → 修繕費</td>
+<td style="text-align: center;">―</td>
+</tr>
+<tr>
+<td style="text-align: left;">60万円未満 or 前期末取得価額の10%以下</td>
+<td style="text-align: center;">修繕費として処理可</td>
+<td style="text-align: center;">―</td>
+</tr>
+<tr>
+<td style="text-align: left;">目的</td>
+<td style="text-align: center;">原状回復・維持管理</td>
+<td style="text-align: center;">価値向上・耐久性増加</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>PropCalc Japan対応</strong>：収支シミュレーションの「年間経費」欄に上記項目を入力すると、税引後キャッシュフローを正確に算出できます。</p>
+</blockquote>
+<hr />
+<h2>まとめ：投資判断に必要な税金チェックポイント</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">フェーズ</th>
+<th style="text-align: left;">確認すべき税金</th>
+<th style="text-align: left;">判断への影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>購入前</strong></td>
+<td style="text-align: left;">不動産取得税・登録免許税・印紙税</td>
+<td style="text-align: left;">初期費用の正確な把握</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>保有中</strong></td>
+<td style="text-align: left;">固定資産税・都市計画税・減価償却</td>
+<td style="text-align: left;">年間キャッシュフロー計算</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>確定申告</strong></td>
+<td style="text-align: left;">経費計上項目の漏れチェック</td>
+<td style="text-align: left;">税引後利回りの最大化</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>売却時</strong></td>
+<td style="text-align: left;">短期/長期譲渡所得税の税率判定</td>
+<td style="text-align: left;">売却タイミングの最適化</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本リファレンスの税率・計算式は2026年6月時点の税制に基づいています。</strong> 税制改正により変更される場合があるため、実際の申告前には税理士へのご相談をお勧めします。</p>
+<p>物件ごとの具体的な税額は <strong>[PropCalc Japan シミュレーター]</strong> で即座に試算できます。本リファレンスと併用して、数字に基づいた投資判断にお役立てください。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>
