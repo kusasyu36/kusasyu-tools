@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SNSマルチプラットフォーム投稿変換ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#333;line-height:1.7}
+.hd{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:28px 16px;text-align:center}
+.hd h1{font-size:1.3em;margin-bottom:4px}
+.hd p{font-size:.82em;opacity:.85}
+.wrap{max-width:880px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1em;margin-bottom:10px;color:#4a5568;display:flex;align-items:center;gap:8px}
+.card h2 .num{background:#667eea;color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.75em}
+textarea{width:100%;height:180px;border:2px solid #e2e8f0;border-radius:8px;padding:12px;font-size:14px;resize:vertical;font-family:inherit;line-height:1.7}
+textarea:focus{border-color:#667eea;outline:none}
+.ind{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0}
+.ind button{padding:10px 2px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;text-align:center;font-size:12px;transition:.2s}
+.ind button:hover{border-color:#667eea;background:#f7f8ff}
+.ind button.on{border-color:#667eea;background:#667eea;color:#fff}
+.ind button .ic{font-size:1.4em;display:block;margin-bottom:2px}
+.gbtn{width:100%;padding:14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s}
+.gbtn:hover{opacity:.9;transform:translateY(-1px)}
+.tabs{display:flex;gap:4px;margin-bottom:12px}
+.tabs button{flex:1;padding:10px;border:none;border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:bold;background:#e2e8f0;transition:.2s}
+.tabs button.on{color:#fff}
+.tabs .tx.on{background:#1da1f2}
+.tabs .tig.on{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.tabs .tln.on{background:#06c755}
+.tc{display:none}.tc.on{display:block}
+.pc{background:#f8f9fa;border-radius:8px;padding:16px;margin-bottom:12px;border-left:4px solid #667eea;position:relative}
+.pc h4{font-size:.82em;color:#667eea;margin-bottom:6px}
+.pc .bd{font-size:13.5px;white-space:pre-wrap;margin-bottom:6px;line-height:1.7}
+.pc .ip{background:#fff3cd;padding:8px 10px;border-radius:4px;font-size:11.5px;margin-top:8px;color:#856404;line-height:1.5}
+.cb{position:absolute;top:10px;right:10px;padding:5px 10px;background:#667eea;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:11px}
+.cb:hover{opacity:.85}
+.cb.ok{background:#48bb78}
+.st{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.st>div{text-align:center;padding:12px;background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.st .n{font-size:1.7em;font-weight:bold;color:#667eea}
+.st .l{font-size:.75em;color:#718096}
+#R{display:none}
+.line-bdr{border-left-color:#06c755}
+.line-bg{background:#06c755!important}
+@media(max-width:600px){.ind{grid-template-columns:repeat(3,1fr)}.st{grid-template-columns:1fr}.tabs{flex-wrap:wrap}}
+</style>
+<meta name="description" content="ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,SNSマルチプラットフォーム投稿変換ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-5/">
+<meta property="og:title" content="SNSマルチプラットフォーム投稿変換ツール - kusasyu tools">
+<meta property="og:description" content="ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-5/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SNSマルチプラットフォーム投稿変換ツール - kusasyu tools">
+<meta name="twitter:description" content="ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SNSマルチプラットフォーム投稿変換ツール",
+  "description": "ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-5/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">SNSマルチプラットフォーム投稿変換ツール</span></div>
+<div class="hd"><h1>SNSマルチプラットフォーム投稿変換ツール</h1><p>ブログ1本 → X・Instagram・LINE 各5パターン＝計15投稿を一括生成</p></div>
+<div class="wrap">
+<div class="card"><h2><span class="num">1</span>ブログ記事・お知らせを貼り付け</h2>
+<textarea id="src" placeholder="ブログ記事やお知らせのテキストをここに貼り付けてください。&#10;タイトル＋本文をすべて入力すると、より質の高い投稿が生成されます。"></textarea>
+<div style="text-align:right;margin-top:4px;font-size:12px;color:#999"><span id="cnt">0</span>文字</div></div>
+<div class="card"><h2><span class="num">2</span>業種を選択</h2>
+<div class="ind">
+<button class="on" data-v="ec" onclick="si(this)"><span class="ic">🛒</span>EC</button>
+<button data-v="food" onclick="si(this)"><span class="ic">🍽️</span>飲食</button>
+<button data-v="beauty" onclick="si(this)"><span class="ic">💇</span>美容</button>
+<button data-v="law" onclick="si(this)"><span class="ic">⚖️</span>士業</button>
+<button data-v="it" onclick="si(this)"><span class="ic">💻</span>IT</button>
+</div></div>
+<div class="card"><button class="gbtn" onclick="gen()">投稿を一括生成する（計15件）</button></div>
+<div id="R">
+<div class="st"><div><div class="n">15</div><div class="l">生成投稿数</div></div><div><div class="n">3</div><div class="l">プラットフォーム</div></div><div><div class="n">約1ヶ月</div><div class="l" style="font-size:.65em">カバー期間（週3〜4投稿想定）</div></div></div>
+<div class="tabs">
+<button class="tx on" onclick="st('x',this)">X（旧Twitter）</button>
+<button class="tig" onclick="st('ig',this)">Instagram</button>
+<button class="tln" onclick="st('line',this)">LINE</button>
+</div>
+<div id="tx" class="tc on"></div>
+<div id="tig" class="tc"></div>
+<div id="tline" class="tc"></div>
+</div></div>
+<script>
+var ci='ec';
+document.getElementById('src').addEventListener('input',function(){document.getElementById('cnt').textContent=this.value.length});
+function si(e){document.querySelectorAll('.ind button').forEach(function(b){b.classList.remove('on')});e.classList.add('on');ci=e.dataset.v}
+function st(id,e){document.querySelectorAll('.tc').forEach(function(t){t.classList.remove('on')});document.querySelectorAll('.tabs button').forEach(function(t){t.classList.remove('on')});document.getElementById('t'+id).classList.add('on');e.classList.add('on')}
+function cp(b,id){var t=document.getElementById(id).innerText;navigator.clipboard?navigator.clipboard.writeText(t).then(function(){b.textContent='OK!';b.classList.add('ok');setTimeout(function(){b.textContent='コピー';b.classList.remove('ok')},1500)}):alert('コピーできませんでした')}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function tr(s,m){if(!s)return'';return s.length>m?s.slice(0,m-1)+'…':s}
+var CF={
+ec:{tn:['お得','限定','人気','新着','話題'],em:['🛒','✨','🎁','💝','📦'],ht:['EC','通販','ネットショップ','オンラインショップ','お買い物','ショッピング','おすすめ商品','新商品','限定品','セール','お得情報','ネット通販','暮らし','ギフト','プレゼント','人気商品','売れ筋','トレンド','買い物','日用品'],ct:'ショップはプロフリンクから',lt:'【お得情報】'},
+food:{tn:['旬','手作り','こだわり','季節','絶品'],em:['🍽️','😋','🍳','🌿','✨'],ht:['グルメ','飲食店','レストラン','カフェ','ランチ','ディナー','テイクアウト','手作り','旬の味','おいしい','美味しい','料理','食事','デリスタグラム','フードスタグラム','今日のランチ','グルメ好き','食べ歩き','ごはん','ご馳走'],ct:'ご予約はプロフリンクから',lt:'【本日のおすすめ】'},
+beauty:{tn:['美','キレイ','ケア','艶','自分磨き'],em:['💇','✨','💆','🌸','💫'],ht:['美容','サロン','ヘアサロン','ネイル','エステ','スキンケア','ヘアケア','美肌','トリートメント','ビューティー','美容院','ヘアスタイル','ヘアカラー','美意識','キレイ','自分磨き','おしゃれ','美容好き','ナチュラル','癒し'],ct:'ご予約はDMまたはプロフリンクから',lt:'【サロンからのお知らせ】'},
+law:{tn:['安心','信頼','解決','専門','実績'],em:['⚖️','📋','✅','🏛️','📝'],ht:['士業','弁護士','税理士','司法書士','行政書士','社労士','法律相談','税務','相続','経営','ビジネス','起業','法務','専門家','アドバイス','セミナー','無料相談','サポート','解決事例','コンプライアンス'],ct:'初回無料相談はプロフリンクから',lt:'【専門家コラム】'},
+it:{tn:['効率化','DX','最新','テック','自動化'],em:['💻','🚀','⚡','🔧','📊'],ht:['IT','テック','DX','デジタル','スタートアップ','プログラミング','エンジニア','テクノロジー','イノベーション','効率化','自動化','SaaS','クラウド','AI','業務改善','生産性向上','リモートワーク','ツール','最新技術','開発'],ct:'詳しくはプロフリンクから',lt:'【テック情報】'}
+};
+function az(t){
+t=t.trim();var ss=t.split(/[。！？\!\?\n]+/).map(function(s){return s.trim()}).filter(function(s){return s.length>3});
+var ti=ss[0]||t.slice(0,50);
+var sw='のにはをがでともなたしいるよますですことするないあるれるられるなるからまでためなどこのそのこれそれというとしてについてによってだけしかものわけところさせもの'.split('');
+var ws=(t.match(/[\u4E00-\u9FFF\u30A0-\u30FF]{2,8}/g)||[]).filter(function(w){for(var i=0;i<sw.length;i++)if(w===sw[i])return false;return w.length>=2});
+var fr={};ws.forEach(function(w){fr[w]=(fr[w]||0)+1});
+var kw=Object.keys(fr).sort(function(a,b){return fr[b]-fr[a]}).slice(0,12);
+var nm=t.match(/\d+[%％万円個件名社回倍年月日]/g)||[];
+return{ti:ti,ss:ss,kw:kw,nm:nm}}
+function gX(a,c){
+var p=[
+function(){return c.em[0]+' '+tr(a.ti,80)+'\n\n'+(a.nm.length?'📊 '+a.nm[0]+'\n':'')+'詳しくはブログで↓'},
+function(){return c.em[1]+' '+tr(a.kw[0]||a.ti,30)+'って知ってますか？\n\n'+tr(a.ti,50)+'\n\n'+c.ct},
+function(){var b=c.em[2]+'【まとめ】'+tr(a.kw[0]||'',20)+'\n';a.ss.slice(0,3).forEach(function(s){b+='✅'+tr(s,35)+'\n'});return b},
+function(){return c.em[3]+' '+tr(a.kw[0]||a.ti,20)+'で悩んでいませんか？\n\n'+tr(a.ti,50)+'で解決のヒントを紹介します。\n\n'+c.ct},
+function(){return'＼'+c.tn[0]+'情報／\n\n'+c.em[4]+tr(a.ti,55)+'\n\n'+(a.nm[0]?'▶ '+a.nm[0]+'\n':'')+'今すぐチェック↓'}
+];
+var lb=['📢 情報発信型','❓ 問いかけ型','📋 まとめ型','💬 共感型','🎯 CTA型'];
+return p.map(function(fn,i){var bd=fn();if(bd.length>120)bd=bd.slice(0,119)+'…';
+var tg=[];a.kw.slice(0,3).forEach(function(k){tg.push('#'+k)});c.ht.slice(0,2).forEach(function(h){tg.push('#'+h)});
+return{tp:lb[i],bd:bd,tg:tg.join(' ')}})}
+function gIG(a,c){
+var p=[
+function(){var b=c.em[0]+' '+a.ti+'\n\n';a.ss.slice(1,5).forEach(function(s){b+=tr(s,55)+'。\n'});b+='\n'+c.ct+' '+c.em[1];return{b:b,im:a.ti+'を表現する'+c.tn[0]+'なイメージ写真。明るくクリーンな背景。'}},
+function(){var b=c.em[1]+'【保存推奨】'+tr(a.kw[0]||'',15)+'のポイント\n\n';a.ss.slice(0,5).forEach(function(s,i){b+=(i+1)+'️⃣ '+tr(s,45)+'\n'});b+='\n参考になったら保存してね '+c.em[2];return{b:b,im:'「'+(a.kw[0]||a.ti)+'」のTipsカルーセル1枚目。テキスト用余白あり。'}},
+function(){var b=c.em[2]+' '+(a.kw[0]||'')+'について大切なことをお伝えします。\n\n'+a.ss.slice(0,3).map(function(s){return tr(s,55)}).join('。\n')+'。\n\nコメントで教えてください '+c.em[3];return{b:b,im:(a.kw[0]||a.ti)+'のビフォーアフター写真。自然光。'}},
+function(){var b=c.em[3]+'【Q&A】\n\nQ. '+(a.kw[0]||'')+'について教えてください\n\nA. '+a.ss.slice(0,3).map(function(s){return tr(s,45)}).join('。')+'。\n\nもっと知りたい方はプロフリンクへ '+c.em[4];return{b:b,im:'「よくある質問」テーマの'+c.tn[0]+'なデザイン。Q&A形式。'}},
+function(){var b=c.em[4]+'【知って'+c.tn[1]+'】\n\n';if(a.nm.length)b+='📊 '+a.nm.join('・')+'\n\n';b+=a.ss.slice(0,3).map(function(s){return tr(s,45)}).join('\n')+'\n\n'+c.ct+' '+c.em[0];return{b:b,im:a.kw.slice(0,3).join('と')+'のインフォグラフィック。数値を視覚的に表現。'}}
+];
+var lb=['📖 解説型','💡 Tips型','📝 ストーリー型','❓ Q&A型','📊 データ型'];
+return p.map(function(fn,i){var r=fn();var tg=c.ht.map(function(h){return'#'+h}).join(' ');
+return{tp:lb[i],bd:r.b,tg:tg,im:'🎨 画像生成プロンプト: '+r.im}})}
+function gLN(a,c){
+var p=[
+function(){return{t:c.lt+(a.kw[0]||'')+'のお知らせ',b:a.ss.slice(0,3).map(function(s){return tr(s,50)}).join('。\n')+'。',a:'▶ 詳しくはこちら'}},
+function(){return{t:'🔔 '+(a.kw[0]||'')+'の'+c.tn[0]+'情報',b:'LINE友だち限定でお届け！\n\n'+tr(a.ti,55)+'\n\n'+a.ss.slice(1,3).map(function(s){return tr(s,40)}).join('\n'),a:'▶ 今すぐチェック'}},
+function(){return{t:c.em[0]+' '+c.tn[3]+'コラム',b:a.ti+'\n\n'+a.ss.slice(1,4).map(function(s){return'・'+tr(s,40)}).join('\n'),a:'▶ 続きを読む'}},
+function(){return{t:'✅ '+(a.kw[0]||'')+'の活用事例',b:a.ss.slice(0,3).map(function(s){return tr(s,50)}).join('\n\n'),a:'▶ もっと事例を見る'}},
+function(){return{t:'📌 '+(a.kw[0]||'')+'まとめ',b:'見逃していませんか？\n\n'+a.ss.slice(0,3).map(function(s,i){return(i+1)+'. '+tr(s,40)}).join('\n'),a:'▶ 詳細を確認'}}
+];
+var lb=['📢 お知らせ型','🔔 限定配信型','📖 コラム型','✅ 事例紹介型','📌 リマインド型'];
+return p.map(function(fn,i){var r=fn();
+return{tp:lb[i],bd:'━━━━━━━━━━━━━━\n'+r.t+'\n━━━━━━━━━━━━━━\n\n'+r.b+'\n\n'+r.a}})}
+function gen(){
+var t=document.getElementById('src').value.trim();
+if(!t){alert('テキストを入力してください');return}
+if(t.length<20){alert('20文字以上のテキストを入力してください');return}
+var a=az(t),c=CF[ci],xp=gX(a,c),igp=gIG(a,c),lnp=gLN(a,c),h='';
+xp.forEach(function(p,i){var id='x'+i;h+='<div class="pc"><h4>'+p.tp+'</h4><button class="cb" onclick="cp(this,\''+id+'\')">コピー</button><div class="bd" id="'+id+'">'+esc(p.bd)+'\n\n'+esc(p.tg)+'</div></div>'});
+document.getElementById('tx').innerHTML=h;h='';
+igp.forEach(function(p,i){var id='ig'+i;h+='<div class="pc"><h4>'+p.tp+'</h4><button class="cb" onclick="cp(this,\''+id+'\')">コピー</button><div class="bd" id="'+id+'">'+esc(p.bd)+'\n\n'+esc(p.tg)+'</div><div class="ip">'+esc(p.im)+'</div></div>'});
+document.getElementById('tig').innerHTML=h;h='';
+lnp.forEach(function(p,i){var id='ln'+i;h+='<div class="pc line-bdr"><h4>'+p.tp+'</h4><button class="cb line-bg" onclick="cp(this,\''+id+'\')">コピー</button><div class="bd" id="'+id+'">'+esc(p.bd)+'</div></div>'});
+document.getElementById('tline').innerHTML=h;
+document.getElementById('R').style.display='block';
+document.getElementById('R').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

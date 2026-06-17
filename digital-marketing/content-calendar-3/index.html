@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>業種別30日間SNSコンテンツカレンダー生成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Hiragino Sans',sans-serif;background:#f0f2f5;color:#333;line-height:1.7}
+.hd{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:28px 16px;text-align:center}
+.hd h1{font-size:1.25em;margin-bottom:4px}
+.hd p{font-size:.82em;opacity:.85}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1em;margin-bottom:10px;color:#4a5568;display:flex;align-items:center;gap:8px}
+.card h2 .num{background:#667eea;color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.75em}
+.ind{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0}
+.ind button{padding:10px 2px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;text-align:center;font-size:12px;transition:.2s}
+.ind button:hover{border-color:#667eea;background:#f7f8ff}
+.ind button.on{border-color:#667eea;background:#667eea;color:#fff}
+.ind button .ic{font-size:1.4em;display:block;margin-bottom:2px}
+input[type=text],select{width:100%;padding:10px 12px;border:2px solid #e2e8f0;border-radius:8px;font-size:14px;font-family:inherit}
+input:focus,select:focus{border-color:#667eea;outline:none}
+.pillars{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.prow{display:flex;align-items:center;gap:8px}
+.prow label{min-width:50px;font-size:13px;font-weight:bold;color:#667eea}
+.msel{display:flex;gap:8px;margin:8px 0}
+.msel select{flex:1}
+.gbtn{width:100%;padding:14px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s;margin-top:8px}
+.gbtn:hover{opacity:.9;transform:translateY(-1px)}
+.gbtn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+#result{display:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.st{background:#f7f8ff;border-radius:8px;padding:12px;text-align:center}
+.st .n{font-size:1.5em;font-weight:bold;color:#667eea}
+.st .l{font-size:.75em;color:#718096}
+.toolbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.toolbar button{padding:8px 16px;border:2px solid #667eea;border-radius:8px;background:#fff;color:#667eea;cursor:pointer;font-size:13px;font-weight:bold;transition:.2s}
+.toolbar button:hover{background:#667eea;color:#fff}
+.toolbar button.active{background:#667eea;color:#fff}
+.cal{width:100%;border-collapse:collapse;font-size:13px}
+.cal th{background:#667eea;color:#fff;padding:10px 6px;text-align:left;position:sticky;top:0;white-space:nowrap}
+.cal td{padding:8px 6px;border-bottom:1px solid #e2e8f0;vertical-align:top}
+.cal tr:hover{background:#f7f8ff}
+.cal tr.holiday{background:#fff5f5}
+.cal tr.holiday td:first-child{color:#e53e3e;font-weight:bold}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:bold;color:#fff}
+.b-x{background:#1da1f2}.b-ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}.b-line{background:#06c755}
+.tscroll{max-height:600px;overflow-y:auto;border-radius:8px;border:1px solid #e2e8f0}
+.ev{font-size:11px;color:#e53e3e;font-weight:bold}
+.draft{font-size:12px;color:#4a5568;line-height:1.5;max-width:320px}
+.time{font-size:12px;color:#667eea;font-weight:bold;white-space:nowrap}
+@media(max-width:600px){.ind{grid-template-columns:repeat(3,1fr)}.stats{grid-template-columns:1fr}.cal{font-size:11px}.draft{max-width:180px}.msel{flex-direction:column}}
+</style>
+<meta name="description" content="ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,業種別30日間SNSコンテンツカレンダー生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/content-calendar-3/">
+<meta property="og:title" content="業種別30日間SNSコンテンツカレンダー生成ツール - kusasyu tools">
+<meta property="og:description" content="ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/content-calendar-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="業種別30日間SNSコンテンツカレンダー生成ツール - kusasyu tools">
+<meta name="twitter:description" content="ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "業種別30日間SNSコンテンツカレンダー生成ツール",
+  "description": "ブログ記事やお知らせ1本を入力すると、X・Instagram・LINEの3プラットフォーム向けに最適化されたSNS投稿を1ヶ月分自動生成するHTMLツールキット。業種別（EC・飲食・美容・士業・IT）のトーン調整、投稿カレンダー生成、コンテンツ資産のリパーパシング管理までをカバーし、SNS担当者を置けない中小",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/content-calendar-3/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">業種別30日間SNSコンテンツカレンダー生成ツール</span></div>
+<div class="hd">
+<h1>📅 業種別30日間SNSコンテンツカレンダー生成ツール</h1>
+<p>コンテンツの柱を3つ入力するだけで、30日分の投稿計画を自動生成</p>
+</div>
+<div class="wrap">
+<div class="card">
+<h2><span class="num">1</span>業種を選択</h2>
+<div class="ind" id="indBtns">
+<button onclick="selInd(0,this)"><span class="ic">🛒</span>EC</button>
+<button onclick="selInd(1,this)"><span class="ic">🍽️</span>飲食</button>
+<button onclick="selInd(2,this)"><span class="ic">💇</span>美容</button>
+<button onclick="selInd(3,this)"><span class="ic">⚖️</span>士業</button>
+<button onclick="selInd(4,this)"><span class="ic">💻</span>IT</button>
+</div>
+</div>
+<div class="card">
+<h2><span class="num">2</span>コンテンツの柱を3つ入力</h2>
+<div class="pillars">
+<div class="prow"><label>柱①</label><input type="text" id="p1" placeholder="例：商品紹介・新メニュー・施術事例"></div>
+<div class="prow"><label>柱②</label><input type="text" id="p2" placeholder="例：お役立ち情報・豆知識・ノウハウ"></div>
+<div class="prow"><label>柱③</label><input type="text" id="p3" placeholder="例：舞台裏・スタッフ紹介・日常"></div>
+</div>
+</div>
+<div class="card">
+<h2><span class="num">3</span>開始月を選択</h2>
+<div class="msel">
+<select id="selY"></select>
+<select id="selM"></select>
+</div>
+</div>
+<button class="gbtn" id="genBtn" onclick="generate()">📅 30日間カレンダーを生成</button>
+<div id="result">
+<div class="card">
+<h2>📊 生成サマリー</h2>
+<div class="stats">
+<div class="st"><div class="n" id="sX">0</div><div class="l">X（Twitter）</div></div>
+<div class="st"><div class="n" id="sIG">0</div><div class="l">Instagram</div></div>
+<div class="st"><div class="n" id="sLN">0</div><div class="l">LINE</div></div>
+</div>
+</div>
+<div class="card">
+<h2>📅 30日間投稿カレンダー</h2>
+<div class="toolbar">
+<button class="active" onclick="filterPf('all',this)">すべて</button>
+<button onclick="filterPf('X',this)">X</button>
+<button onclick="filterPf('Instagram',this)">Instagram</button>
+<button onclick="filterPf('LINE',this)">LINE</button>
+<button onclick="exportCSV()" style="margin-left:auto;border-color:#06c755;color:#06c755">📥 CSVエクスポート</button>
+</div>
+<div class="tscroll">
+<table class="cal" id="calTable">
+<thead><tr><th>日付</th><th>曜日</th><th>プラットフォーム</th><th>テーマ</th><th>投稿文案</th><th>時間帯</th></tr></thead>
+<tbody id="calBody"></tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<script>
+var selIndIdx=-1,calData=[];
+var now=new Date();
+var yS=document.getElementById('selY'),mS=document.getElementById('selM');
+for(var y=2025;y<=2027;y++){var o=document.createElement('option');o.value=y;o.textContent=y+'年';if(y===now.getFullYear())o.selected=true;yS.appendChild(o)}
+for(var m=1;m<=12;m++){var o=document.createElement('option');o.value=m;o.textContent=m+'月';if(m===now.getMonth()+1)o.selected=true;mS.appendChild(o)}
+
+function selInd(i,el){selIndIdx=i;document.querySelectorAll('.ind button').forEach(function(b){b.classList.remove('on')});el.classList.add('on')}
+
+var indNames=['EC','飲食','美容','士業','IT'];
+var dayThemes=['週始めモチベーション','お役立ちTips','裏側・舞台裏','お客様の声','週末おすすめ','ライフスタイル','振り返り・まとめ'];
+var dayLabels=['日','月','火','水','木','金','土'];
+var pfList=['X','Instagram','LINE'];
+var pfTimes={X:['7:00','12:00','20:00'],Instagram:['12:00','18:00','21:00'],LINE:['12:00','18:00','11:00']};
+var holidays={
+'1/1':'元日','1/13':'成人の日','2/11':'建国記念の日','2/14':'バレンタインデー','2/23':'天皇誕生日',
+'3/3':'ひな祭り','3/14':'ホワイトデー','3/20':'春分の日','4/29':'昭和の日','5/3':'憲法記念日',
+'5/4':'みどりの日','5/5':'こどもの日','5/12':'母の日','6/16':'父の日','7/7':'七夕',
+'7/21':'海の日','8/11':'山の日','8/13':'お盆','9/15':'敬老の日','9/23':'秋分の日',
+'10/13':'スポーツの日','10/31':'ハロウィン','11/3':'文化の日','11/15':'七五三','11/23':'勤労感謝の日',
+'12/24':'クリスマスイブ','12/25':'クリスマス','12/31':'大晦日'
+};
+var seasonal={
+1:['新年のご挨拶','福袋・初売り','冬の体調管理'],2:['バレンタイン特集','春の準備'],3:['春の新生活','卒業・入学シーズン','年度末セール'],
+4:['新年度スタート','お花見','GW準備'],5:['GW特集','母の日','初夏の準備'],6:['梅雨対策','父の日','夏の先取り'],
+7:['夏本番','七夕','サマーセール'],8:['お盆','夏休み','残暑見舞い'],9:['秋の始まり','敬老の日','紅葉準備'],
+10:['ハロウィン','秋の味覚','冬支度'],11:['紅葉シーズン','年末準備','ブラックフライデー'],12:['クリスマス','年末セール','年末のご挨拶']
+};
+
+var toneData={
+0:{pre:['✨今だけ','🔥人気No.1','💡知ってた？','🎁お得情報','📦新着'],suf:['▶詳しくはプロフィールのリンクから','#EC #通販 #お買い物','気になったらいいね❤️','フォローで最新情報をチェック！']},
+1:{pre:['🍳本日の','😋おすすめ','🔥シェフの','📍当店自慢の','🎉期間限定'],suf:['ご予約はDMまたはお電話で📞','#グルメ #ランチ #おいしい','食べたい！と思ったらいいね❤️','テイクアウトもOK🥡']},
+2:{pre:['💆今月の','✨話題の','🌿ナチュラルな','💅トレンド','🪞プロが教える'],suf:['ご予約はDMで承ります💌','#美容 #サロン #きれい','気になる方はお気軽にご相談を','初回限定クーポンあり✨']},
+3:{pre:['⚖️知っておきたい','📋よくある質問','💡実は','🔍プロが解説','📌重要'],suf:['初回相談無料です。お気軽にどうぞ','#法律 #相談 #専門家','詳しくはHPをご覧ください','お問い合わせはDMまたはお電話で']},
+4:{pre:['🚀最新','💡エンジニア必見','⚡効率化','🔧開発Tips','📊データで見る'],suf:['詳しくはブログで解説中→プロフ','#IT #テック #開発','参考になったらRT🔄','フォローで技術情報をキャッチ']}
+};
+
+function generate(){
+if(selIndIdx<0){alert('業種を選択してください');return}
+var p=[document.getElementById('p1').value.trim(),document.getElementById('p2').value.trim(),document.getElementById('p3').value.trim()];
+if(!p[0]||!p[1]||!p[2]){alert('コンテンツの柱を3つすべて入力してください');return}
+var yr=parseInt(yS.value),mo=parseInt(mS.value)-1;
+calData=[];
+var cnts={X:0,Instagram:0,LINE:0};
+var tone=toneData[selIndIdx];
+for(var d=0;d<30;d++){
+var dt=new Date(yr,mo,d+1);
+var dow=dt.getDay();
+var pf=pfList[d%3];
+var pillar=p[d%3];
+var theme=dayThemes[dow];
+var mk=(mo+1)+'/'+dt.getDate();
+var hol=holidays[mk]||'';
+var timeArr=pfTimes[pf];
+var time=timeArr[d%timeArr.length];
+var pre=tone.pre[d%tone.pre.length];
+var suf=tone.suf[d%tone.suf.length];
+var body='';
+if(hol){body=pre+'【'+hol+'特別企画】'+pillar+'に関する'+theme+'をお届け！'+suf;}
+else if(d%7===0&&seasonal[mo+1]){var si=seasonal[mo+1];body=pre+' '+si[d%si.length]+'にぴったりの'+pillar+'🎯 '+suf;}
+else{
+var patterns=['についてプロ目線でご紹介します！','の最新情報をお届け✨','で'+theme+'をシェア！','、今日のおすすめはこちら👇','のポイントを解説💡'];
+body=pre+' '+pillar+patterns[d%patterns.length]+' '+suf;
+}
+if(pf==='X'&&body.length>140)body=body.substring(0,137)+'...';
+cnts[pf]++;
+calData.push({date:dt,pf:pf,theme:theme,pillar:pillar,draft:body,time:time,hol:hol});
+}
+document.getElementById('sX').textContent=cnts.X;
+document.getElementById('sIG').textContent=cnts.Instagram;
+document.getElementById('sLN').textContent=cnts.LINE;
+renderCal('all');
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+
+function renderCal(filter){
+var tb=document.getElementById('calBody');
+tb.innerHTML='';
+calData.forEach(function(r){
+if(filter!=='all'&&r.pf!==filter)return;
+var tr=document.createElement('tr');
+if(r.hol)tr.className='holiday';
+var dd=r.date;
+var ds=(dd.getMonth()+1)+'/'+dd.getDate();
+var bc=r.pf==='X'?'b-x':r.pf==='Instagram'?'b-ig':'b-line';
+tr.innerHTML='<td>'+ds+(r.hol?'<br><span class="ev">'+r.hol+'</span>':'')+'</td><td>'+dayLabels[dd.getDay()]+'</td><td><span class="badge '+bc+'">'+r.pf+'</span></td><td>'+r.theme+'</td><td><div class="draft">'+r.draft+'</div></td><td class="time">'+r.time+'</td>';
+tb.appendChild(tr);
+});
+}
+
+function filterPf(f,el){
+document.querySelectorAll('.toolbar button').forEach(function(b){b.classList.remove('active')});
+if(el)el.classList.add('active');
+renderCal(f);
+}
+
+function exportCSV(){
+var bom='\uFEFF';
+var csv=bom+'日付,曜日,プラットフォーム,テーマ,投稿文案,最適投稿時間,イベント\n';
+calData.forEach(function(r){
+var d=r.date;
+var ds=d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate();
+csv+='"'+ds+'","'+dayLabels[d.getDay()]+'","'+r.pf+'","'+r.theme+'","'+r.draft.replace(/"/g,'""')+'","'+r.time+'","'+(r.hol||'')+'"\n';
+});
+var blob=new Blob([csv],{type:'text/csv'});
+var a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+a.download='sns_calendar_30days.csv';
+a.click();
+}
+</script>
+</body>
+</html>
