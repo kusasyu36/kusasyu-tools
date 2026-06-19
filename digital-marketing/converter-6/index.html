@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO最適化_記事優先度スコアリングシート - kusasyu tools</title>
+<meta name="description" content="既存のブログ記事・コラムをAI検索エンジン（Google AI Overviews・ChatGPT Search・Perplexity）に引用されやすい構造に自動診断し、具体的なリライト指示書を生成するHTMLツールと、全記事の最適化優先順位を自動計算するスコアリングシートを提供する。29製品あるAEOツール">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AEO最適化_記事優先度スコアリングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-6/">
+<meta property="og:title" content="AEO最適化_記事優先度スコアリングシート - kusasyu tools">
+<meta property="og:description" content="既存のブログ記事・コラムをAI検索エンジン（Google AI Overviews・ChatGPT Search・Perplexity）に引用されやすい構造に自動診断し、具体的なリライト指示書を生成するHTMLツールと、全記事の最適化優先順位を自動計算するスコアリングシートを提供する。29製品あるAEOツール">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-6/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AEO最適化_記事優先度スコアリングシート - kusasyu tools">
+<meta name="twitter:description" content="既存のブログ記事・コラムをAI検索エンジン（Google AI Overviews・ChatGPT Search・Perplexity）に引用されやすい構造に自動診断し、具体的なリライト指示書を生成するHTMLツールと、全記事の最適化優先順位を自動計算するスコアリングシートを提供する。29製品あるAEOツール">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AEO最適化_記事優先度スコアリングシート",
+  "description": "既存のブログ記事・コラムをAI検索エンジン（Google AI Overviews・ChatGPT Search・Perplexity）に引用されやすい構造に自動診断し、具体的なリライト指示書を生成するHTMLツールと、全記事の最適化優先順位を自動計算するスコアリングシートを提供する。29製品あるAEOツール",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-6/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-06-19"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AEO最適化_記事優先度スコアリングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AEO最適化_記事優先度スコアリングシート</h1>
+  <p class="project-name">AI検索に引用されない？AEO変換ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>AEO最適化 記事優先度スコアリングシート</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>【AEO記事診断＆リライト指示書ジェネレーター 連携用】</th><th></th><th></th></tr></thead><tbody><tr><td>入力方法: A〜G列にデータを入力→H〜M列が自動計算されます。Q〜S列の係数テーブルは社内説明にご活用ください</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>No.</td><td>記事タイトル</td><td>URL</td><td>公開日</td><td>カテゴリ</td><td>記事タイプ</td><td>月間PV</td><td>難易度係数（自動）</td><td>PVスコア（自動）</td><td>鮮度スコア（自動）</td><td>期待効果（自動）</td><td>優先度スコア（自動）</td><td>着手順位（自動）</td><td>ステータス</td><td>メモ</td><td></td><td>記事タイプ（参照表）</td><td>難易度係数</td><td>根拠コメント（社内説明用）</td></tr><tr><td>1</td><td>【完全ガイド】BtoBマーケティングの始め方</td><td>https://example.com/btob-marketing-guide</td><td>2024-03-15</td><td>マーケティング</td><td>ハウツー・手順解説</td><td>8500</td><td>=IFERROR(VLOOKUP(F5,$Q$5:$R$12,2,FALSE),"—")</td><td>=IF(G5="","",MIN(ROUND(G5/1000,1),10))</td><td>=IF(D5="","",MAX(ROUND(10-(TODAY()-D5)/365*1.5,1),1))</td><td>=IF(H5="—","",ROUND((10-H5)*1.1,1))</td><td>=IF(OR(I5="",K5=""),"",ROUND((I5*0.4+J5*0.2+K5*0.4)*10,0))</td><td>=IF(L5="","",RANK(L5,$L$5:$L$200,0))</td><td>未着手</td><td>主力記事・リライト優先</td><td></td><td>FAQ・Q&amp;A</td><td>1</td><td>質問-回答形式はAI検索の回答生成構造と一致。最も引用されやすい形式</td></tr><tr><td>2</td><td>SEOでよくある質問50選</td><td>https://example.com/seo-faq</td><td>2024-06-01</td><td>SEO</td><td>FAQ・Q&amp;A</td><td>12000</td><td>=IFERROR(VLOOKUP(F6,$Q$5:$R$12,2,FALSE),"—")</td><td>=IF(G6="","",MIN(ROUND(G6/1000,1),10))</td><td>=IF(D6="","",MAX(ROUND(10-(TODAY()-D6)/365*1.5,1),1))</td><td>=IF(H6="—","",ROUND((10-H6)*1.1,1))</td><td>=IF(OR(I6="",K6=""),"",ROUND((I6*0.4+J6*0.2+K6*0.4)*10,0))</td><td>=IF(L6="","",RANK(L6,$L$5:$L$200,0))</td><td>未着手</td><td>検索流入トップ記事</td><td></td><td>ハウツー・手順解説</td><td>2</td><td>手順の明確さがAI要約に適合。ChatGPT Searchで高引用率のステップ形式</td></tr><tr><td>3</td><td>CRM主要5ツール徹底比較</td><td>https://example.com/crm-comparison</td><td>2023-11-20</td><td>ツール比較</td><td>比較・ランキング</td><td>6200</td><td>=IFERROR(VLOOKUP(F7,$Q$5:$R$12,2,FALSE),"—")</td><td>=IF(G7="","",MIN(ROUND(G7/1000,1),10))</td><td>=IF(D7="","",MAX(ROUND(10-(TODAY()-D7)/365*1.5,1),1))</td><td>=IF(H7="—","",ROUND((10-H7)*1.1,1))</td><td>=IF(OR(I7="",K7=""),"",ROUND((I7*0.4+J7*0.2+K7*0.4)*10,0))</td><td>=IF(L7="","",RANK(L7,$L$5:$L$200,0))</td><td>未着手</td><td>競合記事多数あり</td><td></td><td>用語解説・定義</td><td>2</td><td>定義文はAI Overviewsの引用元として最頻出。短文で明確な説明が鍵</td></tr><tr><td>4</td><td>製造業DX成功事例3社の取り組み</td><td>https://example.com/dx-case-study</td><td>2024-09-10</td><td>DX</td><td>事例・ケーススタディ</td><td>3800</td><td>=IFERROR(VLOOKUP(F8,$Q$5:$R$12,2,FALSE),"—")</td><td>=IF(G8="","",MIN(ROUND(G8/1000,1),10))</td><td>=IF(D8="","",MAX(ROUND(10-(TODAY()-D8)/365*1.5,1),1))</td><td>=IF(H8="—","",ROUND((10-H8)*1.1,1))</td><td>=IF(OR(I8="",K8=""),"",ROUND((I8*0.4+J8*0.2+K8*0.4)*10,0))</td><td>=IF(L8="","",RANK(L8,$L$5:$L$200,0))</td><td>未着手</td><td>一次取材データあり</td><td></td><td>比較・ランキング</td><td>4</td><td>構造化表組みへの変換は容易だが独自データでの差別化が必要</td></tr><tr><td>5</td><td>マーケティングオートメーション用語集</td><td>https://example.com/ma-glossary</td><td>2025-01-08</td><td>MA</td><td>用語解説・定義</td><td>4500</td><td>=IFERROR(VLOOKUP(F9,$Q$5:$R$12,2,FALSE),"—")</td><td>=IF(G9="","",MIN(ROUND(G9/1000,1),10))</td><td>=IF(D9="","",MAX(ROUND(10-(TODAY()-D9)/365*1.5,1),1))</td><td>=IF(H9="—","",ROUND((10-H9)*1.1,1))</td><td>=IF(OR(I9="",K9=""),"",ROUND((I9*0.4+J9*0.2+K9*0.4)*10,0))</td><td>=IF(L9="","",RANK(L9,$L$5:$L$200,0))</td><td>未着手</td><td>用語数80件収録</td><td></td><td>事例・ケーススタディ</td><td>5</td><td>一次情報の構造化が必要。具体的数値・固有名詞の整理が引用獲得の鍵</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>製品紹介・LP</td><td>6</td><td>商用意図が強い記事はAI引用を回避される傾向。E-E-A-T強化で対応</td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>ニュース・トレンド</td><td>7</td><td>鮮度依存が高く月次以上の更新が前提。速報性で大手メディアに劣る場合は非推奨</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `AEO最適化 記事優先度スコアリングシート,,,,,,,,,,,,,,,,【AEO記事診断＆リライト指示書ジェネレーター 連携用】,,
+入力方法: A〜G列にデータを入力→H〜M列が自動計算されます。Q〜S列の係数テーブルは社内説明にご活用ください,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+No.,記事タイトル,URL,公開日,カテゴリ,記事タイプ,月間PV,難易度係数（自動）,PVスコア（自動）,鮮度スコア（自動）,期待効果（自動）,優先度スコア（自動）,着手順位（自動）,ステータス,メモ,,記事タイプ（参照表）,難易度係数,根拠コメント（社内説明用）
+1,【完全ガイド】BtoBマーケティングの始め方,https://example.com/btob-marketing-guide,2024-03-15,マーケティング,ハウツー・手順解説,8500,"=IFERROR(VLOOKUP(F5,$Q$5:$R$12,2,FALSE),""—"")","=IF(G5="""","""",MIN(ROUND(G5/1000,1),10))","=IF(D5="""","""",MAX(ROUND(10-(TODAY()-D5)/365*1.5,1),1))","=IF(H5=""—"","""",ROUND((10-H5)*1.1,1))","=IF(OR(I5="""",K5=""""),"""",ROUND((I5*0.4+J5*0.2+K5*0.4)*10,0))","=IF(L5="""","""",RANK(L5,$L$5:$L$200,0))",未着手,主力記事・リライト優先,,FAQ・Q&A,1,質問-回答形式はAI検索の回答生成構造と一致。最も引用されやすい形式
+2,SEOでよくある質問50選,https://example.com/seo-faq,2024-06-01,SEO,FAQ・Q&A,12000,"=IFERROR(VLOOKUP(F6,$Q$5:$R$12,2,FALSE),""—"")","=IF(G6="""","""",MIN(ROUND(G6/1000,1),10))","=IF(D6="""","""",MAX(ROUND(10-(TODAY()-D6)/365*1.5,1),1))","=IF(H6=""—"","""",ROUND((10-H6)*1.1,1))","=IF(OR(I6="""",K6=""""),"""",ROUND((I6*0.4+J6*0.2+K6*0.4)*10,0))","=IF(L6="""","""",RANK(L6,$L$5:$L$200,0))",未着手,検索流入トップ記事,,ハウツー・手順解説,2,手順の明確さがAI要約に適合。ChatGPT Searchで高引用率のステップ形式
+3,CRM主要5ツール徹底比較,https://example.com/crm-comparison,2023-11-20,ツール比較,比較・ランキング,6200,"=IFERROR(VLOOKUP(F7,$Q$5:$R$12,2,FALSE),""—"")","=IF(G7="""","""",MIN(ROUND(G7/1000,1),10))","=IF(D7="""","""",MAX(ROUND(10-(TODAY()-D7)/365*1.5,1),1))","=IF(H7=""—"","""",ROUND((10-H7)*1.1,1))","=IF(OR(I7="""",K7=""""),"""",ROUND((I7*0.4+J7*0.2+K7*0.4)*10,0))","=IF(L7="""","""",RANK(L7,$L$5:$L$200,0))",未着手,競合記事多数あり,,用語解説・定義,2,定義文はAI Overviewsの引用元として最頻出。短文で明確な説明が鍵
+4,製造業DX成功事例3社の取り組み,https://example.com/dx-case-study,2024-09-10,DX,事例・ケーススタディ,3800,"=IFERROR(VLOOKUP(F8,$Q$5:$R$12,2,FALSE),""—"")","=IF(G8="""","""",MIN(ROUND(G8/1000,1),10))","=IF(D8="""","""",MAX(ROUND(10-(TODAY()-D8)/365*1.5,1),1))","=IF(H8=""—"","""",ROUND((10-H8)*1.1,1))","=IF(OR(I8="""",K8=""""),"""",ROUND((I8*0.4+J8*0.2+K8*0.4)*10,0))","=IF(L8="""","""",RANK(L8,$L$5:$L$200,0))",未着手,一次取材データあり,,比較・ランキング,4,構造化表組みへの変換は容易だが独自データでの差別化が必要
+5,マーケティングオートメーション用語集,https://example.com/ma-glossary,2025-01-08,MA,用語解説・定義,4500,"=IFERROR(VLOOKUP(F9,$Q$5:$R$12,2,FALSE),""—"")","=IF(G9="""","""",MIN(ROUND(G9/1000,1),10))","=IF(D9="""","""",MAX(ROUND(10-(TODAY()-D9)/365*1.5,1),1))","=IF(H9=""—"","""",ROUND((10-H9)*1.1,1))","=IF(OR(I9="""",K9=""""),"""",ROUND((I9*0.4+J9*0.2+K9*0.4)*10,0))","=IF(L9="""","""",RANK(L9,$L$5:$L$200,0))",未着手,用語数80件収録,,事例・ケーススタディ,5,一次情報の構造化が必要。具体的数値・固有名詞の整理が引用獲得の鍵
+,,,,,,,,,,,,,,,,製品紹介・LP,6,商用意図が強い記事はAI引用を回避される傾向。E-E-A-T強化で対応
+,,,,,,,,,,,,,,,,ニュース・トレンド,7,鮮度依存が高く月次以上の更新が前提。速報性で大手メディアに劣る場合は非推奨
+,,,,,,,,,,,,,,,,オピニオン・コラム,8,主観的内容はAI引用されにくい。独自調査データの補強が必須
+,,,,,,,,,,,,,,,,,
+【スコア計算ロジック（社内説明用）】,,,,,,,,,,,,,,,,,
+"総合優先度スコア = ( PVスコア×40% + 鮮度スコア×20% + 期待効果×40% ) × 10　※100点満点",,,,,,,,,,,,,,,,,
+"PVスコア = 月間PV ÷ 1000（上限10点）　例: 月間8,500PV → 8.5点",,,,,,,,,,,,,,,,,
+鮮度スコア = 10 −（公開からの経過年数 × 1.5）（下限1点）　例: 1.5年前の記事 → 7.8点,,,,,,,,,,,,,,,,,
+"期待効果 = (10 − 難易度係数) × 1.1　例: FAQ(係数1)→9.9点, コラム(係数8)→2.2点",,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+【運用ガイド】,,,,,,,,,,,,,,,,,
+1. A〜G列に既存記事データを入力（GA4やSearch Consoleからエクスポート推奨）,,,,,,,,,,,,,,,,,
+"2. H〜M列が自動計算され、着手推奨順位が表示される",,,,,,,,,,,,,,,,,
+3. 順位1位の記事から「AEO記事診断＆リライト指示書ジェネレーター」で診断→リライト指示書を生成,,,,,,,,,,,,,,,,,
+4. N列ステータスで進捗管理（未着手→診断済→リライト中→公開済→効果測定中）,,,,,,,,,,,,,,,,,
+"5. 月次でG列の月間PVを更新し、優先度を再計算して次の着手記事を決定",,,,,,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_AEO最適化_記事優先度スコアリングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

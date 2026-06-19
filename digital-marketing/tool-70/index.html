@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>デモ制作コストROI計算機 - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+header{background:linear-gradient(135deg,#1a73e8,#0d47a1);color:#fff;padding:20px 24px;text-align:center}
+header h1{font-size:1.25rem}header p{font-size:.8rem;opacity:.85;margin-top:4px}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h2{font-size:1rem;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e3f2fd;color:#0d47a1}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.col{flex:1;min-width:200px}
+label{display:block;font-size:.78rem;font-weight:700;margin:8px 0 3px;color:#555}
+input[type=number],select{width:100%;padding:9px;border:1px solid #ccc;border-radius:6px;font-size:.9rem}
+input[type=range]{width:100%;margin:4px 0}
+.rv{font-size:.82rem;color:#1a73e8;font-weight:700;text-align:right}
+.btn{display:block;width:100%;padding:13px;background:#1a73e8;color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:14px}
+.btn:hover{background:#1557b0}
+#result{display:none}
+.bars{margin:10px 0}
+.bar-row{display:flex;align-items:center;margin-bottom:10px;gap:8px}
+.bar-label{width:120px;font-size:.78rem;font-weight:700;flex-shrink:0;text-align:right}
+.bar-wrap{flex:1;background:#e8eaf6;border-radius:6px;height:32px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.72rem;color:#fff;font-weight:700;min-width:40px;transition:width .6s}
+.c1{background:linear-gradient(90deg,#e53935,#b71c1c)}.c2{background:linear-gradient(90deg,#f57c00,#e65100)}
+.c3{background:linear-gradient(90deg,#7b1fa2,#4a148c)}.c4{background:linear-gradient(90deg,#2e7d32,#1b5e20)}
+.summary{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.s-box{flex:1;min-width:140px;padding:14px;border-radius:10px;text-align:center}
+.s-box .num{font-size:1.4rem;font-weight:800}
+.s-box .lbl{font-size:.72rem;margin-top:2px}
+.s1{background:#e8f5e9;color:#1b5e20}.s2{background:#e3f2fd;color:#0d47a1}.s3{background:#fff3e0;color:#e65100}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:10px}
+th,td{padding:8px 6px;border-bottom:1px solid #e0e0e0;text-align:right}
+th{background:#f5f5f5;font-weight:700;color:#555}
+td:first-child,th:first-child{text-align:left}
+tr.hl{background:#e8f5e9;font-weight:700}
+.note{font-size:.72rem;color:#888;margin-top:10px;padding:10px;background:#fafafa;border-radius:6px}
+.badge{display:inline-block;background:#e53935;color:#fff;font-size:.65rem;padding:2px 8px;border-radius:10px;margin-left:6px}
+@media(max-width:600px){.bar-label{width:80px;font-size:.7rem}.s-box .num{font-size:1.1rem}}
+</style>
+<meta name="description" content="BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,デモ制作コストROI計算機">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-70/">
+<meta property="og:title" content="デモ制作コストROI計算機 - kusasyu tools">
+<meta property="og:description" content="BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-70/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="デモ制作コストROI計算機 - kusasyu tools">
+<meta name="twitter:description" content="BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "デモ制作コストROI計算機",
+  "description": "BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-70/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">デモ制作コストROI計算機</span></div>
+<header>
+<h1>デモ制作コスト ROI計算機</h1>
+<p>4つの制作方法を比較し、年間削減額を自動算出 ― 社内稟議のエビデンスに</p>
+</header>
+<div class="wrap">
+<div class="card">
+<h2>① 貴社の状況を入力</h2>
+<div class="row">
+<div class="col">
+<label>年間デモ制作本数</label>
+<input type="number" id="demoCount" value="12" min="1" max="200">
+</div>
+<div class="col">
+<label>1本あたりの更新回数（年間）</label>
+<input type="number" id="updateFreq" value="3" min="0" max="24">
+</div>
+</div>
+<div class="row">
+<div class="col">
+<label>現在の商談転換率（%）</label>
+<input type="range" id="convRate" min="1" max="50" value="10">
+<div class="rv" id="convDisp">10%</div>
+</div>
+<div class="col">
+<label>インタラクティブデモ導入後の改善見込み</label>
+<select id="improvement">
+<option value="1.15">+15%（控えめ）</option>
+<option value="1.25" selected>+25%（標準）</option>
+<option value="1.40">+40%（積極的）</option>
+</select>
+</div>
+</div>
+<div class="row">
+<div class="col">
+<label>平均受注単価（万円）</label>
+<input type="number" id="dealSize" value="120" min="1" max="10000">
+</div>
+<div class="col">
+<label>年間商談数</label>
+<input type="number" id="dealCount" value="100" min="1" max="5000">
+</div>
+</div>
+<button class="btn" onclick="calc()">コスト比較を計算する</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>② 年間コスト比較</h2>
+<div class="bars" id="bars"></div>
+</div>
+<div class="card">
+<h2>③ 削減効果サマリー<span class="badge">稟議用</span></h2>
+<div class="summary" id="summary"></div>
+</div>
+<div class="card">
+<h2>④ 詳細コスト内訳</h2>
+<table id="detailTable"></table>
+</div>
+<div class="card">
+<h2>⑤ 売上インパクト試算</h2>
+<div id="impact"></div>
+</div>
+<div class="note">
+<strong>前提条件：</strong>制作会社外注＝初回30万円/本・更新8万円/回、フリーランス＝初回15万円/本・更新5万円/回、海外SaaS（Floik等）＝月額$99（約14,850円）＋録画ツール月額$49（約7,350円）、ノーコード製品デモビルダー＝0円。為替1ドル＝150円換算。本試算は概算であり、実際の費用は条件により異なります。
+</div>
+</div>
+</div>
+
+<script>
+var sl=document.getElementById('convRate'),ds=document.getElementById('convDisp');
+sl.oninput=function(){ds.textContent=this.value+'%'};
+
+function fmt(n){if(n>=10000)return(n/10000).toFixed(1).replace(/\.0$/,'')+'億';if(n>=1)return n.toFixed(1).replace(/\.0$/,'')+'万';return '0円'}
+function fmtY(n){return n.toLocaleString()+'円'}
+
+function calc(){
+var dc=+document.getElementById('demoCount').value||1;
+var uf=+document.getElementById('updateFreq').value||0;
+var cr=+document.getElementById('convRate').value/100;
+var imp=+document.getElementById('improvement').value;
+var ds2=+document.getElementById('dealSize').value||100;
+var dn=+document.getElementById('dealCount').value||100;
+
+var cAgency=dc*300000+dc*uf*80000;
+var cFree=dc*150000+dc*uf*50000;
+var cSaas=(14850+7350)*12;
+var cTool=0;
+
+var costs=[
+{name:'制作会社外注',cost:cAgency,cls:'c1'},
+{name:'フリーランス',cost:cFree,cls:'c2'},
+{name:'海外SaaS（Floik等）',cost:cSaas,cls:'c3'},
+{name:'ノーコード製品デモビルダー',cost:cTool,cls:'c4'}
+];
+var mx=Math.max(cAgency,cFree,cSaas,1);
+
+var bh='';
+costs.forEach(function(c){
+var w=Math.max(c.cost/mx*100,c.cost===0?8:5);
+var t=c.cost===0?'0円（無料）':fmtY(c.cost);
+bh+='<div class="bar-row"><div class="bar-label">'+c.name+'</div><div class="bar-wrap"><div class="bar-fill '+c.cls+'" style="width:'+w+'%">'+t+'</div></div></div>';
+});
+document.getElementById('bars').innerHTML=bh;
+
+var saving=cAgency-cTool;
+var savePct=cAgency>0?Math.round(saving/cAgency*100):0;
+var roi=cAgency>0?'∞（投資0円）':'—';
+
+var sh='<div class="s-box s1"><div class="num">'+fmtY(saving)+'</div><div class="lbl">年間削減額（vs 外注）</div></div>';
+sh+='<div class="s-box s2"><div class="num">'+savePct+'%</div><div class="lbl">コスト削減率</div></div>';
+sh+='<div class="s-box s3"><div class="num">'+roi+'</div><div class="lbl">ROI</div></div>';
+document.getElementById('summary').innerHTML=sh;
+
+var th='<tr><th>項目</th><th>制作会社外注</th><th>フリーランス</th><th>海外SaaS</th><th>本ツール</th></tr>';
+th+='<tr><td>新規制作（'+dc+'本）</td><td>'+fmtY(dc*300000)+'</td><td>'+fmtY(dc*150000)+'</td><td>—</td><td>0円</td></tr>';
+th+='<tr><td>更新費用（年'+uf+'回×'+dc+'本）</td><td>'+fmtY(dc*uf*80000)+'</td><td>'+fmtY(dc*uf*50000)+'</td><td>—</td><td>0円</td></tr>';
+th+='<tr><td>月額利用料</td><td>—</td><td>—</td><td>'+fmtY(22200)+'/月</td><td>0円</td></tr>';
+th+='<tr style="font-weight:700;border-top:2px solid #333"><td>年間合計</td><td>'+fmtY(cAgency)+'</td><td>'+fmtY(cFree)+'</td><td>'+fmtY(cSaas)+'</td><td style="color:#2e7d32">0円</td></tr>';
+th+='<tr class="hl"><td>外注比 削減額</td><td>—</td><td>'+fmtY(cAgency-cFree)+'</td><td>'+fmtY(cAgency-cSaas)+'</td><td>'+fmtY(saving)+'</td></tr>';
+document.getElementById('detailTable').innerHTML=th;
+
+var revNow=dn*cr*ds2;
+var revNew=dn*cr*imp*ds2;
+var revDiff=revNew-revNow;
+var ih='<div class="summary">';
+ih+='<div class="s-box" style="background:#fce4ec;color:#b71c1c"><div class="num">'+fmt(revNow)+'</div><div class="lbl">現在の年間受注額</div></div>';
+ih+='<div class="s-box" style="background:#e8f5e9;color:#1b5e20"><div class="num">'+fmt(revNew)+'</div><div class="lbl">デモ導入後の予測</div></div>';
+ih+='<div class="s-box" style="background:#e3f2fd;color:#0d47a1"><div class="num">+'+fmt(revDiff)+'</div><div class="lbl">売上増加見込み</div></div>';
+ih+='</div>';
+ih+='<p style="font-size:.8rem;margin-top:10px;color:#555">商談転換率が'+Math.round(cr*100)+'% → '+Math.round(cr*imp*100)+'%に改善した場合、コスト削減<strong>'+fmtY(saving)+'</strong>に加え、売上増<strong>+'+fmt(revDiff)+'</strong>のインパクトが見込めます。</p>';
+document.getElementById('impact').innerHTML=ih;
+
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

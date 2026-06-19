@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ノーコード製品デモビルダー - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#333}
+header{background:linear-gradient(135deg,#1a73e8,#0d47a1);color:#fff;padding:18px 24px;text-align:center}
+header h1{font-size:1.3rem}header p{font-size:.82rem;opacity:.85;margin-top:4px}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.cols{display:flex;gap:16px;flex-wrap:wrap}
+.edit{flex:1;min-width:300px}.prev{flex:1;min-width:300px}
+.card{background:#fff;border-radius:10px;padding:16px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h3{font-size:1rem;margin-bottom:8px}
+label{display:block;font-size:.78rem;font-weight:700;margin:7px 0 3px;color:#555}
+input,textarea{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;font-size:.88rem}
+textarea{resize:vertical;height:52px}
+.b{display:inline-block;padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:.83rem;font-weight:700;color:#fff;margin:3px}
+.bp{background:#1a73e8}.bp:hover{background:#1557b0}
+.bd{background:#e53935}.bd:hover{background:#b71c1c}
+.bg{background:#2e7d32}.bg:hover{background:#1b5e20}
+.bo{background:#f57c00}.bo:hover{background:#e65100}
+.si{display:flex;align-items:center;gap:6px;padding:7px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:5px;background:#fafafa;font-size:.83rem}
+.si .n{background:#1a73e8;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
+.si .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.si button{padding:2px 7px;font-size:.75rem}
+.df{background:#1a1a2e;border-radius:10px;overflow:hidden;min-height:340px}
+.dt{background:#2d2d44;padding:8px 14px;display:flex;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%}
+.db{padding:16px;text-align:center;color:#fff}
+.db img{max-width:100%;max-height:260px;border-radius:6px;margin-bottom:10px;cursor:pointer}
+.db h3{margin-bottom:5px;font-size:1.05rem}.db p{font-size:.83rem;opacity:.8;margin-bottom:10px}
+.pr{display:flex;justify-content:center;gap:5px;padding:6px 0}
+.pr span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3)}
+.pr span.ac{background:#4fc3f7}
+.dn{display:flex;justify-content:center;gap:8px;padding:8px}
+.dn button{background:rgba(255,255,255,.15);border:none;color:#fff;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:.8rem}
+.dn button:hover{background:rgba(255,255,255,.3)}
+.mo{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55);z-index:99;align-items:center;justify-content:center}
+.mo.sh{display:flex}
+.mc{background:#fff;border-radius:12px;padding:20px;max-width:580px;width:92%;max-height:80vh;overflow:auto}
+.mc h3{margin-bottom:10px}.mc textarea{height:110px;font-family:monospace;font-size:.72rem}
+@media(max-width:700px){.cols{flex-direction:column}}
+</style>
+<meta name="description" content="BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,ノーコード製品デモビルダー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-69/">
+<meta property="og:title" content="ノーコード製品デモビルダー - kusasyu tools">
+<meta property="og:description" content="BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-69/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ノーコード製品デモビルダー - kusasyu tools">
+<meta name="twitter:description" content="BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ノーコード製品デモビルダー",
+  "description": "BtoB SaaS・製品の営業用インタラクティブデモを外注せずにブラウザ上で自作できるツールキット。Product HuntでFloikが実証した「画面キャプチャ→クリッカブルデモ」モデルを日本語で無料提供する。スクリーンショットとステップ説明を入力するだけで、営業資料やLPに埋め込めるクリック操作型の製品デ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-69/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">ノーコード製品デモビルダー</span></div>
+<header>
+<h1>ノーコード製品デモビルダー</h1>
+<p>スクリーンショットURL＋説明文を入力 → クリック操作型インタラクティブデモを無料生成</p>
+</header>
+<div class="wrap"><div class="cols">
+<div class="edit">
+<div class="card">
+<h3>📝 ステップを追加</h3>
+<label>画像URL（必須）</label><input id="iU" placeholder="https://example.com/screen1.png">
+<label>ステップタイトル</label><input id="iT" placeholder="例: ダッシュボードを開く">
+<label>説明文</label><textarea id="iD" placeholder="この画面で行う操作内容を入力"></textarea>
+<label>ボタンテキスト</label><input id="iB" value="次へ →">
+<div style="margin-top:10px"><button class="b bp" onclick="add()">＋ ステップ追加</button></div>
+</div>
+<div class="card">
+<h3>📋 ステップ一覧（<span id="cnt">0</span>件）</h3>
+<div id="sL"></div>
+<p id="tip" style="font-size:.78rem;color:#999;margin-top:6px">ステップを追加すると一覧に表示されます</p>
+</div>
+<div class="card" style="text-align:center">
+<button class="b bg" onclick="exp()">💾 HTMLエクスポート</button>
+<button class="b bo" onclick="emb()">📎 iframe埋め込みコード</button>
+</div>
+</div>
+<div class="prev">
+<div class="card">
+<h3>👁 ライブプレビュー</h3>
+<div class="df">
+<div class="dt"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#ffbd2e"></span><span class="dot" style="background:#28c940"></span></div>
+<div class="db" id="dB"><p style="padding:50px;opacity:.5">ステップを追加するとプレビューが表示されます</p></div>
+<div class="pr" id="dP"></div>
+<div class="dn" id="dN"></div>
+</div>
+</div>
+</div>
+</div></div>
+<div class="mo" id="mo"><div class="mc"><h3 id="mT"></h3><textarea id="mC" readonly></textarea><br><button class="b bp" onclick="cc()">📋 コピー</button> <button class="b bd" onclick="cm()">閉じる</button></div></div>
+<script>
+var S=[],cur=0;
+function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function add(){
+ var u=document.getElementById('iU').value.trim(),t=document.getElementById('iT').value.trim(),d=document.getElementById('iD').value.trim(),b=document.getElementById('iB').value.trim();
+ if(!u){alert('画像URLを入力してください');return}
+ S.push({url:u,title:t||'ステップ'+(S.length+1),desc:d,btn:b||'次へ →'});
+ document.getElementById('iU').value='';document.getElementById('iT').value='';document.getElementById('iD').value='';
+ render()
+}
+function rm(i){S.splice(i,1);if(cur>=S.length)cur=Math.max(0,S.length-1);render()}
+function mv(i,d){var j=i+d;if(j<0||j>=S.length)return;var t=S[i];S[i]=S[j];S[j]=t;render()}
+function render(){
+ var sl=document.getElementById('sL');document.getElementById('cnt').textContent=S.length;
+ document.getElementById('tip').style.display=S.length?'none':'block';
+ sl.innerHTML=S.map(function(s,i){return'<div class="si"><span class="n">'+(i+1)+'</span><span class="t">'+e(s.title)+'</span><button class="b bp" onclick="mv('+i+',-1)">↑</button><button class="b bp" onclick="mv('+i+',1)">↓</button><button class="b bd" onclick="rm('+i+')">✕</button></div>'}).join('');
+ pv()
+}
+function pv(){
+ var b=document.getElementById('dB'),p=document.getElementById('dP'),n=document.getElementById('dN');
+ if(!S.length){b.innerHTML='<p style="padding:50px;opacity:.5">ステップを追加するとプレビューが表示されます</p>';p.innerHTML='';n.innerHTML='';return}
+ if(cur>=S.length)cur=0;var s=S[cur];
+ b.innerHTML='<img src="'+e(s.url)+'" alt="'+e(s.title)+'" onclick="nx()" onerror="this.style.background=\'#444\';this.style.padding=\'60px\';this.alt=\'画像読込エラー\'"><h3>'+e(s.title)+'</h3><p>'+e(s.desc)+'</p>';
+ p.innerHTML=S.map(function(_,i){return'<span class="'+(i===cur?'ac':'')+'"></span>'}).join('');
+ var h='';if(cur>0)h+='<button onclick="go('+(cur-1)+')">← 戻る</button>';
+ if(cur<S.length-1)h+='<button onclick="go('+(cur+1)+')">'+e(s.btn)+'</button>';
+ else h+='<button onclick="go(0)">🔄 最初から</button>';
+ n.innerHTML=h
+}
+function go(i){cur=i;pv()}
+function nx(){cur<S.length-1?go(cur+1):go(0)}
+function bld(){
+ var d=JSON.stringify(S);
+ return'<!DOCTYPE html>\n<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>製品デモ</title><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:sans-serif;background:#1a1a2e;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh}.w{max-width:800px;width:100%;padding:16px;text-align:center}img{max-width:100%;max-height:420px;border-radius:8px;cursor:pointer;margin-bottom:12px}h3{margin-bottom:6px}p{opacity:.8;margin-bottom:14px;font-size:.9rem}.pr{display:flex;justify-content:center;gap:5px;margin:10px 0}.pr span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3)}.pr span.a{background:#4fc3f7}button{background:rgba(255,255,255,.15);border:none;color:#fff;padding:8px 20px;border-radius:20px;cursor:pointer;margin:4px;font-size:.85rem}button:hover{background:rgba(255,255,255,.3)}</style></head><body><div class="w"><div id="b"></div><div class="pr" id="p"></div><div id="n"></div></div><script>var S='+d+',c=0;function r(){var s=S[c],b=document.getElementById("b"),p=document.getElementById("p"),n=document.getElementById("n");b.innerHTML=\'<img src="\'+s.url+\'" onclick="nx()"><h3>\'+s.title+\'</h3><p>\'+s.desc+\'</p>\';p.innerHTML=S.map(function(_,i){return\'<span class="\'+( i===c?"a":"")+\'"></span>\'}).join("");var h="";if(c>0)h+=\'<button onclick="g(\'+(c-1)+\')">← 戻る</button>\';if(c<S.length-1)h+=\'<button onclick="g(\'+(c+1)+\')">\'+s.btn+\'</button>\';else h+=\'<button onclick="g(0)">最初から</button>\';n.innerHTML=h}function g(i){c=i;r()}function nx(){c<S.length-1?g(c+1):g(0)}r()<\/script></body></html>'
+}
+function exp(){
+ if(!S.length){alert('ステップを1つ以上追加してください');return}
+ var h=bld(),bl=new Blob([h],{type:'text/html'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(bl);a.download='product-demo.html';a.click()
+}
+function emb(){
+ if(!S.length){alert('ステップを1つ以上追加してください');return}
+ document.getElementById('mT').textContent='iframe埋め込みコード';
+ document.getElementById('mC').value='<!-- エクスポートしたHTMLをサーバーにアップロード後、以下のコードをLPに貼り付け -->\n<iframe src="https://your-domain.com/product-demo.html" width="100%" height="500" frameborder="0" style="border-radius:8px;border:1px solid #ddd"></iframe>';
+ document.getElementById('mo').classList.add('sh')
+}
+function cc(){navigator.clipboard.writeText(document.getElementById('mC').value).then(function(){alert('コピーしました')})}
+function cm(){document.getElementById('mo').classList.remove('sh')}
+</script>
+</body>
+</html>
