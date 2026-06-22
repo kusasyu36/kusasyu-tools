@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>EC動画広告コスト削減シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.3rem;padding:20px 0 8px;color:#2d3748}
+.sub{text-align:center;color:#718096;font-size:.85rem;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1rem;color:#2b6cb0;margin-bottom:12px;border-bottom:2px solid #bee3f8;padding-bottom:6px}
+label{display:block;font-size:.85rem;color:#4a5568;margin-bottom:4px;font-weight:600}
+select,input[type=number]{width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;font-size:1rem;margin-bottom:12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+button{width:100%;padding:14px;background:linear-gradient(135deg,#2b6cb0,#4299e1);color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:8px}
+button:hover{opacity:.9}
+.result{display:none}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:600px){.cols{grid-template-columns:1fr}}
+.col{background:#f7fafc;border-radius:10px;padding:14px;text-align:center;border:2px solid #e2e8f0}
+.col.best{border-color:#48bb78;background:#f0fff4}
+.col h3{font-size:.8rem;color:#718096;margin-bottom:6px}
+.col .price{font-size:1.4rem;font-weight:800;color:#2d3748}
+.col .detail{font-size:.75rem;color:#a0aec0;margin-top:4px}
+.save{text-align:center;background:#ebf8ff;border-radius:10px;padding:16px;margin-top:12px}
+.save .num{font-size:1.8rem;font-weight:800;color:#e53e3e}
+.bar-wrap{margin-top:12px}
+.bar-label{display:flex;justify-content:space-between;font-size:.75rem;color:#718096;margin-bottom:2px}
+.bar{height:24px;border-radius:6px;background:#e2e8f0;overflow:hidden;margin-bottom:8px}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-size:.7rem;color:#fff;font-weight:700}
+.note{font-size:.7rem;color:#a0aec0;text-align:center;margin-top:16px}
+</style>
+<meta name="description" content="中小EC・D2C事業者が動画広告の内製・AI活用に踏み出すための実践ツール3点セット。コスト削減シミュレーターで外注/AI生成/内製のROIを可視化し、商材カテゴリ別の動画構成テンプレートで企画を即決定、さらに広告テキストの薬機法・景表法NGワードチェッカーで審査落ちリスクを事前に排除する。動画を『作る』Sa">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,EC動画広告コスト削減シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-8/">
+<meta property="og:title" content="EC動画広告コスト削減シミュレーター - kusasyu tools">
+<meta property="og:description" content="中小EC・D2C事業者が動画広告の内製・AI活用に踏み出すための実践ツール3点セット。コスト削減シミュレーターで外注/AI生成/内製のROIを可視化し、商材カテゴリ別の動画構成テンプレートで企画を即決定、さらに広告テキストの薬機法・景表法NGワードチェッカーで審査落ちリスクを事前に排除する。動画を『作る』Sa">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EC動画広告コスト削減シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="中小EC・D2C事業者が動画広告の内製・AI活用に踏み出すための実践ツール3点セット。コスト削減シミュレーターで外注/AI生成/内製のROIを可視化し、商材カテゴリ別の動画構成テンプレートで企画を即決定、さらに広告テキストの薬機法・景表法NGワードチェッカーで審査落ちリスクを事前に排除する。動画を『作る』Sa">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EC動画広告コスト削減シミュレーター",
+  "description": "中小EC・D2C事業者が動画広告の内製・AI活用に踏み出すための実践ツール3点セット。コスト削減シミュレーターで外注/AI生成/内製のROIを可視化し、商材カテゴリ別の動画構成テンプレートで企画を即決定、さらに広告テキストの薬機法・景表法NGワードチェッカーで審査落ちリスクを事前に排除する。動画を『作る』Sa",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-8/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">EC動画広告コスト削減シミュレーター</span></div>
+<div class="wrap">
+<h1>EC動画広告 コスト削減シミュレーター</h1>
+<p class="sub">外注・AI活用・内製の3パターンを即比較</p>
+<div class="card">
+<h2>① 業種を選択</h2>
+<select id="industry" onchange="applyDefaults()">
+<option value="food">食品</option>
+<option value="cosmetics">化粧品</option>
+<option value="apparel">アパレル</option>
+<option value="goods">雑貨</option>
+</select>
+<h2>② 制作条件を入力</h2>
+<div class="row">
+<div><label>月間制作本数</label><input type="number" id="volume" min="1" max="200" value="5"></div>
+<div><label>商材数</label><input type="number" id="products" min="1" max="100" value="3"></div>
+</div>
+<div class="row">
+<div><label>現在の外注単価（万円/本）</label><input type="number" id="unitcost" min="1" max="200" step="0.5"></div>
+<div><label>内製担当者の時給（円）</label><input type="number" id="wage" min="500" max="10000" step="100"></div>
+</div>
+<button onclick="calc()">シミュレーション実行</button>
+</div>
+<div class="result" id="result">
+<div class="card">
+<h2>年間コスト比較</h2>
+<div class="cols">
+<div class="col" id="c1"><h3>外注</h3><div class="price" id="p1"></div><div class="detail" id="d1"></div></div>
+<div class="col" id="c2"><h3>AI動画ツール活用</h3><div class="price" id="p2"></div><div class="detail" id="d2"></div></div>
+<div class="col" id="c3"><h3>完全内製</h3><div class="price" id="p3"></div><div class="detail" id="d3"></div></div>
+</div>
+<div class="bar-wrap" id="bars"></div>
+<div class="save"><p>最大年間削減額</p><div class="num" id="saving"></div><p id="savepct"></p></div>
+<div class="note">※AI動画ツール月額は市場参考値（3,000〜30,000円帯）を使用。内製工数は業界平均を基に算出。</div>
+</div>
+</div>
+</div>
+<script>
+const DATA={food:{unit:8,ai_monthly:9800,hours:3,ai_hours:1},cosmetics:{unit:12,ai_monthly:15000,hours:4,ai_hours:1.5},apparel:{unit:10,ai_monthly:12000,hours:3.5,ai_hours:1.2},goods:{unit:6,ai_monthly:8000,hours:2.5,ai_hours:0.8}};
+function applyDefaults(){const d=DATA[document.getElementById('industry').value];document.getElementById('unitcost').value=d.unit;document.getElementById('wage').value=2000}
+applyDefaults();
+function fmt(n){if(n>=10000)return(n/10000).toFixed(1)+'万円';return n.toLocaleString()+'円'}
+function calc(){
+const ind=document.getElementById('industry').value,vol=+document.getElementById('volume').value||5,prod=+document.getElementById('products').value||3,unit=(+document.getElementById('unitcost').value||DATA[ind].unit)*10000,wage=+document.getElementById('wage').value||2000;
+const d=DATA[ind],yearly=vol*12;
+const costOut=yearly*unit;
+const costAI=d.ai_monthly*12+yearly*wage*d.ai_hours;
+const costIn=yearly*wage*d.hours;
+const arr=[costOut,costAI,costIn],min=Math.min(...arr),max=Math.max(...arr);
+const labels=['外注','AI活用','内製'],colors=['#e53e3e','#4299e1','#48bb78'];
+document.getElementById('p1').textContent=fmt(costOut);
+document.getElementById('p2').textContent=fmt(costAI);
+document.getElementById('p3').textContent=fmt(costIn);
+document.getElementById('d1').textContent=vol+'本×'+fmt(unit)+'×12ヶ月';
+document.getElementById('d2').textContent='ツール月額'+fmt(d.ai_monthly)+' + 工数';
+document.getElementById('d3').textContent='1本あたり約'+d.hours+'h×時給'+fmt(wage);
+['c1','c2','c3'].forEach(id=>document.getElementById(id).classList.remove('best'));
+const bestIdx=arr.indexOf(min);
+document.getElementById('c'+(bestIdx+1)).classList.add('best');
+let bars='';
+arr.forEach((v,i)=>{const pct=Math.round(v/max*100);bars+=`<div class="bar-label"><span>${labels[i]}</span><span>${fmt(v)}</span></div><div class="bar"><div class="bar-fill" style="width:${pct}%;background:${colors[i]}">${pct}%</div></div>`});
+document.getElementById('bars').innerHTML=bars;
+const saved=max-min;
+document.getElementById('saving').textContent=fmt(saved);
+document.getElementById('savepct').textContent=`外注比 ${Math.round((1-min/costOut)*100)}% 削減（${labels[bestIdx]}が最安）`;
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'});}
+</script>
+</body>
+</html>

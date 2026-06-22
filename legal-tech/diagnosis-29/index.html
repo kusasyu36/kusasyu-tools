@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IP資産診断＆収益化戦略ワンフローツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#e0e4ef;line-height:1.6;padding:16px;max-width:720px;margin:0 auto}
+h1{text-align:center;font-size:1.35em;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2px}
+.sub{text-align:center;font-size:.78em;color:#64748b;margin-bottom:20px}
+.step{background:#111827;border-radius:12px;padding:18px;margin-bottom:14px;border:1px solid #1e293b}
+.step h2{font-size:1.05em;color:#818cf8;margin-bottom:12px}
+label{display:block;font-size:.84em;color:#94a3b8;margin:10px 0 4px}
+select,input[type=range]{width:100%;padding:8px;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-radius:8px;font-size:.88em}
+input[type=range]{padding:0;height:6px;-webkit-appearance:none;appearance:none;background:#334155;border:none;border-radius:3px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:#6366f1;border-radius:50%;cursor:pointer}
+.rv{float:right;color:#818cf8;font-weight:700}
+button{width:100%;padding:12px;background:linear-gradient(135deg,#6366f1,#06b6d4);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:14px;transition:opacity .2s}
+button:hover{opacity:.88}
+#result{display:none}
+.bw{margin:8px 0}
+.bl{display:flex;justify-content:space-between;font-size:.82em;margin-bottom:2px}
+.bb{height:10px;background:#1e293b;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;transition:width .5s}
+.card{background:#1e293b;border-radius:10px;padding:14px;margin:6px 0}
+.card h3{font-size:.92em;color:#a5b4fc;margin-bottom:4px}
+.card p{font-size:.8em;color:#94a3b8}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{font-size:1.3em;font-weight:700;color:#6366f1;margin:2px 0}
+.rec{background:#064e3b;border-left:3px solid #10b981;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.84em;color:#d1fae5}
+table{width:100%;border-collapse:collapse;font-size:.82em;margin-top:6px}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid #1e293b}
+th{color:#818cf8;font-weight:600}
+.warn{color:#fbbf24}
+.ok{color:#34d399}
+.foot{text-align:center;font-size:.7em;color:#475569;margin-top:18px;padding-top:10px;border-top:1px solid #1e293b}
+@media(max-width:480px){.grid{grid-template-columns:1fr}h1{font-size:1.15em}}
+</style>
+<meta name="description" content="スタートアップが保有する技術・ノウハウ・データを対話形式で入力すると、特許・営業秘密・著作権のどれで保護可能かを判定し、収益化戦略の提案から投資家向けIPレポート生成までを一気通貫で行うツールセット。IPリッチが「診断」止まり、リーガルテック社が「マーケットプレイス」中心である隙間を突き、保護可能性判定→マネ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,IP資産診断＆収益化戦略ワンフローツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-29/">
+<meta property="og:title" content="IP資産診断＆収益化戦略ワンフローツール - kusasyu tools">
+<meta property="og:description" content="スタートアップが保有する技術・ノウハウ・データを対話形式で入力すると、特許・営業秘密・著作権のどれで保護可能かを判定し、収益化戦略の提案から投資家向けIPレポート生成までを一気通貫で行うツールセット。IPリッチが「診断」止まり、リーガルテック社が「マーケットプレイス」中心である隙間を突き、保護可能性判定→マネ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-29/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IP資産診断＆収益化戦略ワンフローツール - kusasyu tools">
+<meta name="twitter:description" content="スタートアップが保有する技術・ノウハウ・データを対話形式で入力すると、特許・営業秘密・著作権のどれで保護可能かを判定し、収益化戦略の提案から投資家向けIPレポート生成までを一気通貫で行うツールセット。IPリッチが「診断」止まり、リーガルテック社が「マーケットプレイス」中心である隙間を突き、保護可能性判定→マネ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IP資産診断＆収益化戦略ワンフローツール",
+  "description": "スタートアップが保有する技術・ノウハウ・データを対話形式で入力すると、特許・営業秘密・著作権のどれで保護可能かを判定し、収益化戦略の提案から投資家向けIPレポート生成までを一気通貫で行うツールセット。IPリッチが「診断」止まり、リーガルテック社が「マーケットプレイス」中心である隙間を突き、保護可能性判定→マネ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/diagnosis-29/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">IP資産診断＆収益化戦略ワンフローツール</span></div>
+<h1>IP資産診断＆収益化戦略</h1>
+<p class="sub">Kusasyu Legal Tech — 保護判定→戦略提案→レポート ワンフロー</p>
+<div class="step">
+<h2>① 技術情報を入力</h2>
+<label>業種</label>
+<select id="ind"><option value="saas">SaaS / ソフトウェア</option><option value="hw">ハードウェア / デバイス</option><option value="data">データビジネス</option></select>
+<label>技術カテゴリ</label>
+<select id="cat"><option value="algo">アルゴリズム / AIモデル</option><option value="circuit">回路 / ハードウェア設計</option><option value="dataset">データセット / DB構造</option><option value="ui">UI / UXデザイン</option><option value="mfg">製造プロセス / 工法</option></select>
+<label>新規性（市場に類似技術がないか）<span class="rv" id="v1">3</span></label>
+<input type="range" id="nov" min="1" max="5" value="3" oninput="v1.textContent=this.value">
+<label>技術的複雑性（模倣の困難さ）<span class="rv" id="v2">3</span></label>
+<input type="range" id="cpx" min="1" max="5" value="3" oninput="v2.textContent=this.value">
+<label>秘匿性（リバースエンジニアリング困難度）<span class="rv" id="v3">3</span></label>
+<input type="range" id="sec" min="1" max="5" value="3" oninput="v3.textContent=this.value">
+<label>データ依存度（学習データ・独自DB等への依存）<span class="rv" id="v4">3</span></label>
+<input type="range" id="dat" min="1" max="5" value="3" oninput="v4.textContent=this.value">
+<label>実装ステージ</label>
+<select id="stg"><option value="idea">アイデア段階</option><option value="proto">プロトタイプ完成</option><option value="prod">製品化済み</option><option value="rev">収益化済み</option></select>
+<button onclick="run()">▶ 診断を実行する</button>
+</div>
+<div id="result">
+<div class="step"><h2>② 保護可能性スコア</h2><div id="scores"></div><div id="bestP" class="rec"></div></div>
+<div class="step"><h2>③ 特許化難易度（公知統計ベース）</h2><div id="pstat"></div></div>
+<div class="step"><h2>④ 収益化戦略マッチング</h2><div id="monet"></div><div id="topR" class="rec"></div></div>
+<div class="step"><h2>⑤ 投資家向けIPサマリー</h2><div id="summary"></div></div>
+</div>
+<p class="foot">本ツールは参考情報であり法的助言ではありません。実際の出願・契約は専門家にご相談ください。</p>
+<script>
+var BW={algo:[72,52,28],circuit:[84,28,18],dataset:[22,58,72],ui:[38,22,74],mfg:[52,78,22]};
+var IM={saas:[-0.06,0.12,0.06],hw:[0.10,-0.06,-0.03],data:[-0.10,0.08,0.10]};
+var PS={algo:[58,2.8,18],circuit:[42,3.2,25],dataset:[67,3.5,16],ui:[62,2.5,14],mfg:[45,3.0,22]};
+var SM={idea:0.72,proto:0.88,prod:1.0,rev:1.12};
+var MN=["ライセンス供与","防衛出願","クロスライセンス","売却・譲渡"];
+var MD=["技術ライセンスによる継続的ロイヤリティ収入を確保","出願による競合排除と企業価値(バリュエーション)向上","相互ライセンスで外部技術アクセスを拡大しR&Dコスト削減","IP資産の一括売却でキャッシュを確保し次の投資へ"];
+var IR={saas:["500万〜3,000万","200万〜800万","300万〜2,000万","1,000万〜5,000万"],hw:["800万〜5,000万","300万〜1,200万","500万〜3,000万","2,000万〜1億"],data:["300万〜2,000万","150万〜600万","200万〜1,500万","800万〜4,000万"]};
+var IN={saas:"SaaS",hw:"ハードウェア",data:"データビジネス"};
+var CN={algo:"アルゴリズム/AI",circuit:"回路設計",dataset:"データセット",ui:"UI/UX",mfg:"製造プロセス"};
+function cl(v){return Math.max(0,Math.min(100,Math.round(v)))}
+function run(){
+var ind=document.getElementById("ind").value,cat=document.getElementById("cat").value;
+var nov=+document.getElementById("nov").value,cpx=+document.getElementById("cpx").value;
+var sec=+document.getElementById("sec").value,dat=+document.getElementById("dat").value;
+var stg=document.getElementById("stg").value,sm=SM[stg],b=BW[cat],im=IM[ind];
+var pt=cl((b[0]*(1+im[0])+nov*6+cpx*4.5-dat*1.5)*sm);
+var ts=cl((b[1]*(1+im[1])+sec*7+dat*3.5)*sm);
+var cr=cl((b[2]*(1+im[2])+dat*4+(5-nov)*2.5)*sm);
+var nm=["特許","営業秘密","著作権"],vs=[pt,ts,cr],co=["#6366f1","#f59e0b","#10b981"],h="";
+vs.forEach(function(v,i){h+='<div class="bw"><div class="bl"><span>'+nm[i]+'</span><span>'+v+'点</span></div><div class="bb"><div class="bf" style="width:'+v+'%;background:'+co[i]+'"></div></div></div>';});
+document.getElementById("scores").innerHTML=h;
+var bi=vs.indexOf(Math.max.apply(null,vs));
+document.getElementById("bestP").innerHTML='<strong>推奨保護手段：'+nm[bi]+'</strong>（適合度'+vs[bi]+'点）— '+["出願による独占権確保が最適です。早期の仮出願を検討してください。","秘密管理体制を構築し営業秘密として保護するのが最適です。","著作権登録と利用規約による保護が最も効果的です。"][bi];
+var ps=PS[cat];
+document.getElementById("pstat").innerHTML='<table><tr><th>指標</th><th>値</th><th>評価</th></tr><tr><td>審査拒絶率（同カテゴリ平均）</td><td>'+ps[0]+'%</td><td class="'+(ps[0]>55?"warn":"ok")+'">'+(ps[0]>55?"⚠ やや高い":"✓ 標準的")+'</td></tr><tr><td>平均権利化期間</td><td>'+ps[1]+'年</td><td class="'+(ps[1]>3?"warn":"ok")+'">'+(ps[1]>3?"⚠ 長期化傾向":"✓ 標準")+'</td></tr><tr><td>年間維持コスト概算</td><td>約'+ps[2]+'万円</td><td class="'+(ps[2]>20?"warn":"ok")+'">'+(ps[2]>20?"⚠ 高コスト帯":"✓ 標準帯")+'</td></tr></table><p style="font-size:.75em;color:#64748b;margin-top:8px">※特許庁公開統計・WIPO年次報告等の公知データに基づく概算値</p>';
+var ms=[cl(pt*0.42+ts*0.12+cpx*5+sm*12),cl(pt*0.48+nov*5.5+(ind==="hw"?10:0)),cl((pt*0.28+ts*0.28)*sm+cpx*4),cl((pt*0.25+cr*0.2+ts*0.2)*sm+(stg==="rev"?15:0))];
+var ir=IR[ind],mh='<div class="grid">';
+MN.forEach(function(n,i){mh+='<div class="card"><h3>'+n+'</h3><div class="stat">'+ms[i]+'点</div><p>概算レンジ：'+ir[i]+'円/年</p></div>';});
+mh+="</div>";document.getElementById("monet").innerHTML=mh;
+var mi=ms.indexOf(Math.max.apply(null,ms));
+document.getElementById("topR").innerHTML='<strong>最適戦略：'+MN[mi]+'</strong>（適合度'+ms[mi]+'点）<br>'+MD[mi]+'。';
+var sl=stg==="idea"?"アイデア段階（×0.72）":stg==="proto"?"プロトタイプ（×0.88）":stg==="prod"?"製品化済（×1.0）":"収益化済（×1.12）";
+document.getElementById("summary").innerHTML='<div class="card"><h3>IPポートフォリオ概要</h3><p><strong>業種：</strong>'+IN[ind]+'　<strong>技術：</strong>'+CN[cat]+'　<strong>ステージ：</strong>'+sl+'</p><p style="margin-top:8px"><strong>保護戦略：</strong>'+nm[bi]+'中心（'+vs[bi]+'点）</p><p><strong>収益化推奨：</strong>'+MN[mi]+'（年間 '+ir[mi]+'円）</p><p style="margin-top:8px"><strong>特許化リスク：</strong>拒絶率'+ps[0]+'% / 権利化'+ps[1]+'年 / 維持費'+ps[2]+'万円/年</p></div><div class="rec">投資家への訴求ポイント：本技術は'+nm[bi]+'による保護適性が高く、'+MN[mi]+'を軸とした収益化により年間'+ir[mi]+'円規模のIPインパクトが見込まれます。</div>';
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+</script>
+</body>
+</html>

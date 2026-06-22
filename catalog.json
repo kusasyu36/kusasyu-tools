@@ -2457,6 +2457,32 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-29",
+    "url": "legal-tech/diagnosis-29/",
+    "title": "スタートアップの技術、特許にできる？IP資産化診断",
+    "tool_name": "IP資産診断＆収益化戦略ワンフローツール",
+    "description": "スタートアップが保有する技術・ノウハウ・データを対話形式で入力すると、特許・営業秘密・著作権のどれで保護可能かを判定し、収益化戦略の提案から投資家向けIPレポート生成までを一気通貫で行うツールセット。IPリッチが「診断」止まり、リーガルテック社が「マーケットプレイス」中心である隙間を突き、保護可能性判定→マネタイズ戦略→投資家提出レポートを1つのフローで完結させる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-21T12:11:17.726977+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-30",
+    "url": "legal-tech/diagnosis-30/",
+    "title": "スタートアップの技術、特許にできる？IP資産化診断",
+    "tool_name": "投資家提出用IPレポート自動生成ツール",
+    "description": "スタートアップが保有する技術・ノウハウ・データを対話形式で入力すると、特許・営業秘密・著作権のどれで保護可能かを判定し、収益化戦略の提案から投資家向けIPレポート生成までを一気通貫で行うツールセット。IPリッチが「診断」止まり、リーガルテック社が「マーケットプレイス」中心である隙間を突き、保護可能性判定→マネタイズ戦略→投資家提出レポートを1つのフローで完結させる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-21T12:11:17.726977+00:00",
+    "content_type": "html_tool"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -4743,6 +4769,45 @@
     "quality_score": 7,
     "completed_at": "2026-06-17T04:22:46.114193+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "simulator-8",
+    "url": "digital-marketing/simulator-8/",
+    "title": "動画広告が作れない？EC向け無料設計キット",
+    "tool_name": "EC動画広告コスト削減シミュレーター",
+    "description": "中小EC・D2C事業者が動画広告の内製・AI活用に踏み出すための実践ツール3点セット。コスト削減シミュレーターで外注/AI生成/内製のROIを可視化し、商材カテゴリ別の動画構成テンプレートで企画を即決定、さらに広告テキストの薬機法・景表法NGワードチェッカーで審査落ちリスクを事前に排除する。動画を『作る』SaaSではなく、作る前の意思決定を無料で支援するツールキット。",
+    "quality_score": 7,
+    "completed_at": "2026-06-21T12:11:16.094797+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "template-12",
+    "url": "digital-marketing/template-12/",
+    "title": "動画広告が作れない？EC向け無料設計キット",
+    "tool_name": "商品カテゴリ別・動画広告構成テンプレート",
+    "description": "中小EC・D2C事業者が動画広告の内製・AI活用に踏み出すための実践ツール3点セット。コスト削減シミュレーターで外注/AI生成/内製のROIを可視化し、商材カテゴリ別の動画構成テンプレートで企画を即決定、さらに広告テキストの薬機法・景表法NGワードチェッカーで審査落ちリスクを事前に排除する。動画を『作る』SaaSではなく、作る前の意思決定を無料で支援するツールキット。",
+    "quality_score": 7,
+    "completed_at": "2026-06-21T12:11:16.094797+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "risk",
+    "url": "digital-marketing/risk/",
+    "title": "動画広告が作れない？EC向け無料設計キット",
+    "tool_name": "広告テキスト_薬機法・景表法リスクセルフチェックリスト",
+    "description": "中小EC・D2C事業者が動画広告の内製・AI活用に踏み出すための実践ツール3点セット。コスト削減シミュレーターで外注/AI生成/内製のROIを可視化し、商材カテゴリ別の動画構成テンプレートで企画を即決定、さらに広告テキストの薬機法・景表法NGワードチェッカーで審査落ちリスクを事前に排除する。動画を『作る』SaaSではなく、作る前の意思決定を無料で支援するツールキット。",
+    "quality_score": 7,
+    "completed_at": "2026-06-21T12:11:16.094797+00:00",
+    "content_type": "html_tool"
   },
   {
     "company_id": "legal-tech",
