@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>動画広告化_ROI事前シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.25em;text-align:center;padding:18px 0 4px}
+.sub{text-align:center;color:#666;font-size:.83em;margin-bottom:20px}
+.c{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.c h2{font-size:1em;margin-bottom:10px;border-left:4px solid #6c5ce7;padding-left:10px}
+label{display:block;font-size:.85em;font-weight:600;margin:8px 0 3px}
+input[type=number]{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:.93em}
+.row{display:flex;gap:10px}.row>div{flex:1}
+.btn{display:block;width:100%;padding:13px;border:none;border-radius:10px;font-size:.98em;font-weight:700;cursor:pointer;margin-top:10px;background:#6c5ce7;color:#fff}
+.btn:hover{background:#5a4bd1}
+.h{display:none}
+.verdict{text-align:center;padding:14px;border-radius:10px;margin:10px 0;font-weight:700;font-size:1.1em}
+.go{background:#e8f5e9;color:#00b894;border:2px solid #00b894}
+.nogo{background:#fde8e8;color:#d63031;border:2px solid #d63031}
+.hold{background:#fff3e0;color:#e17055;border:2px solid #e17055}
+.sc{margin:10px 0;padding:12px;border-radius:8px;background:#f8f9fa}
+.sc h3{font-size:.9em;margin-bottom:6px}
+.bar-wrap{display:flex;align-items:center;gap:8px;margin:4px 0}
+.bar-label{font-size:.78em;width:72px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;background:#eee;border-radius:6px;height:22px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;font-size:.7em;color:#fff;font-weight:700;min-width:2px;transition:width .5s}
+.bar-p{background:linear-gradient(90deg,#b2bec3,#636e72)}
+.bar-c{background:linear-gradient(90deg,#55efc4,#00b894)}
+.bar-s{background:linear-gradient(90deg,#74b9ff,#0984e3)}
+.bar-o{background:linear-gradient(90deg,#a29bfe,#6c5ce7)}
+.kpi{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.kpi>div{flex:1;min-width:100px;text-align:center;padding:10px 6px;border-radius:8px;background:#f0f0f7}
+.kpi .v{font-size:1.2em;font-weight:700;color:#6c5ce7}
+.kpi .l{font-size:.72em;color:#666;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:.82em;margin:8px 0}
+th,td{padding:7px 6px;border-bottom:1px solid #eee;text-align:right}
+th{background:#f8f9fa;font-weight:600;text-align:right}
+th:first-child,td:first-child{text-align:left}
+.note{font-size:.75em;color:#999;margin-top:8px}
+.ft{text-align:center;color:#999;font-size:.73em;padding:16px 0}
+.tip{background:#f0edff;padding:10px 12px;border-radius:8px;font-size:.82em;margin:8px 0;border-left:3px solid #6c5ce7}
+</style>
+<meta name="description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,動画広告化_ROI事前シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-9/">
+<meta property="og:title" content="動画広告化_ROI事前シミュレーター - kusasyu tools">
+<meta property="og:description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="動画広告化_ROI事前シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "動画広告化_ROI事前シミュレーター",
+  "description": "EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/simulator-9/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">動画広告化_ROI事前シミュレーター</span></div>
+<div class="w">
+<h1>動画広告化 ROI事前シミュレーター</h1>
+<p class="sub">写真広告→AI動画広告の切替判断を数値で支援｜<br>AI動画広告ツール診断＆プロンプトジェネレーター 連携ツール</p>
+
+<div class="c">
+<h2>📊 現在の写真広告 実績値</h2>
+<div class="row"><div><label>月間表示回数</label><input type="number" id="imp" value="50000" min="0"></div>
+<div><label>CTR（%）</label><input type="number" id="ctr" value="1.2" min="0" step="0.1"></div></div>
+<div class="row"><div><label>CVR（%）</label><input type="number" id="cvr" value="2.0" min="0" step="0.1"></div>
+<div><label>平均客単価（円）</label><input type="number" id="aov" value="4500" min="0"></div></div>
+</div>
+
+<div class="c">
+<h2>🎬 AI動画制作コスト</h2>
+<div class="row"><div><label>ツール月額（円）</label><input type="number" id="tool" value="3000" min="0"></div>
+<div><label>制作工数（時間/月）</label><input type="number" id="hrs" value="8" min="0" step="0.5"></div></div>
+<label>時給換算（円）</label><input type="number" id="wage" value="2000" min="0">
+<p class="note">※自分の作業時間も人件費として計上することで正確なROIが出ます</p>
+</div>
+
+<button class="btn" onclick="calc()">シミュレーション実行</button>
+
+<div id="out" class="h">
+<div class="c">
+<h2>⚡ 判定結果</h2>
+<div id="vd"></div>
+<div id="tip"></div>
+</div>
+
+<div class="c">
+<h2>📈 月間売上シミュレーション</h2>
+<div id="bars"></div>
+<table><thead><tr><th>シナリオ</th><th>CTR</th><th>CVR</th><th>月間売上</th><th>増加額</th></tr></thead><tbody id="tb"></tbody></table>
+</div>
+
+<div class="c">
+<h2>💰 ROI分析</h2>
+<div class="kpi" id="kpi"></div>
+<div id="bars2"></div>
+</div>
+
+<div class="c">
+<h2>📋 次のステップ</h2>
+<div id="next"></div>
+</div>
+</div>
+
+<p class="ft">動画広告化 ROI事前シミュレーター v1.0 ─ Kusasyu Digital Marketing</p>
+</div>
+<script>
+function fmt(n){return n>=10000?(n/10000).toFixed(1)+'万':n.toLocaleString()}
+function pct(n){return n.toFixed(2)+'%'}
+function bar(label,val,max,cls){var w=max>0?Math.min(Math.max(val/max*100,2),100):2;return'<div class="bar-wrap"><span class="bar-label">'+label+'</span><div class="bar-track"><div class="bar-fill '+cls+'" style="width:'+w+'%">'+fmt(Math.round(val))+'円</div></div></div>'}
+function calc(){
+var imp=+document.getElementById('imp').value||0,
+ctr=+document.getElementById('ctr').value||0,
+cvr=+document.getElementById('cvr').value||0,
+aov=+document.getElementById('aov').value||0,
+tool=+document.getElementById('tool').value||0,
+hrs=+document.getElementById('hrs').value||0,
+wage=+document.getElementById('wage').value||0;
+var clicks=imp*(ctr/100),orders=clicks*(cvr/100),rev=orders*aov,cost=tool+hrs*wage;
+var sc=[
+{name:'保守的',ctrUp:1.2,cvrUp:1.05,desc:'CTR+20% / CVR+5%'},
+{name:'標準',ctrUp:1.4,cvrUp:1.15,desc:'CTR+40% / CVR+15%'},
+{name:'楽観的',ctrUp:1.6,cvrUp:1.25,desc:'CTR+60% / CVR+25%'}
+];
+var rows=[],maxRev=0;
+sc.forEach(function(s){
+var nCtr=ctr*s.ctrUp,nCvr=cvr*s.cvrUp;
+var nClicks=imp*(nCtr/100),nOrders=nClicks*(nCvr/100),nRev=nOrders*aov;
+var diff=nRev-rev,roi=cost>0?(diff/cost*100):0,payback=diff>0?(cost/diff):Infinity;
+s.nCtr=nCtr;s.nCvr=nCvr;s.rev=nRev;s.diff=diff;s.roi=roi;s.payback=payback;
+if(nRev>maxRev)maxRev=nRev;
+});
+if(rev>maxRev)maxRev=rev;
+maxRev=maxRev*1.1;
+var bh=bar('現状（写真）',rev,maxRev,'bar-p');
+sc.forEach(function(s,i){bh+=bar(s.name,s.rev,maxRev,['bar-c','bar-s','bar-o'][i])});
+document.getElementById('bars').innerHTML=bh;
+var tbh='';
+tbh+='<tr><td>現状（写真）</td><td>'+pct(ctr)+'</td><td>'+pct(cvr)+'</td><td>'+fmt(Math.round(rev))+'円</td><td>—</td></tr>';
+sc.forEach(function(s){tbh+='<tr><td>'+s.name+'<br><span style="font-size:.75em;color:#999">'+s.desc+'</span></td><td>'+pct(s.nCtr)+'</td><td>'+pct(s.nCvr)+'</td><td>'+fmt(Math.round(s.rev))+'円</td><td style="color:#00b894">+'+fmt(Math.round(s.diff))+'円</td></tr>'});
+document.getElementById('tb').innerHTML=tbh;
+var std=sc[1];
+var kh='<div><div class="v">'+fmt(Math.round(cost))+'円</div><div class="l">月間制作コスト</div></div>';
+kh+='<div><div class="v">+'+fmt(Math.round(std.diff))+'円</div><div class="l">標準ケース増収/月</div></div>';
+kh+='<div><div class="v">'+(std.roi>=0?'+':'')+Math.round(std.roi)+'%</div><div class="l">月間ROI</div></div>';
+kh+='<div><div class="v">'+(std.payback===Infinity?'—':std.payback<1?'即月':'約'+Math.ceil(std.payback)+'ヶ月')+'</div><div class="l">回収期間（標準）</div></div>';
+document.getElementById('kpi').innerHTML=kh;
+var b2='';
+b2+=bar('制作コスト',cost,Math.max(cost,std.diff)*1.2,'bar-p');
+sc.forEach(function(s,i){b2+=bar(s.name+' 増収',s.diff,Math.max(cost,sc[2].diff)*1.2,['bar-c','bar-s','bar-o'][i])});
+document.getElementById('bars2').innerHTML=b2;
+var vd,cls,tp;
+if(std.diff<=0||std.roi<0){vd='❌ NO-GO：現時点では投資回収が困難';cls='nogo';tp='現在の広告規模では動画化のコストを回収しにくい状況です。まずは月間表示回数を増やすか、客単価の高い商品から小規模テストを検討してください。'}
+else if(std.payback>6||std.roi<100){vd='⚠️ 要検討：条件付きGO';cls='hold';tp='回収に時間がかかる見込みです。まず1商品だけ動画化してテストし、保守的ケース以上の改善が確認できたら本格展開をおすすめします。'}
+else{vd='✅ GO：動画広告化の投資効果が期待できます';cls='go';tp='標準ケースで'+Math.ceil(std.payback)+'ヶ月以内に回収見込みです。「AI動画広告ツール診断＆プロンプトジェネレーター」でツール選定とプロンプト生成に進みましょう。'}
+document.getElementById('vd').innerHTML='<div class="verdict '+cls+'">'+vd+'</div>';
+document.getElementById('tip').innerHTML='<div class="tip">'+tp+'</div>';
+var nh='';
+if(cls==='go')nh='<p style="font-size:.88em">① <strong>AI動画広告ツール診断＆プロンプトジェネレーター</strong>で最適ツールを選定<br>② 売れ筋商品3〜5点から動画化を開始<br>③ 2週間後に実績をCSV管理シートに記録し効果検証</p>';
+else if(cls==='hold')nh='<p style="font-size:.88em">① 客単価の高い商品1点で小規模テスト（予算: ツール月額のみ）<br>② 2週間のA/Bテストで写真vs動画を比較<br>③ 保守的ケース以上の改善を確認後、本格展開へ</p>';
+else nh='<p style="font-size:.88em">① 広告配信規模（表示回数）の拡大を優先<br>② 写真広告のCTR/CVR改善施策を先に実施<br>③ 月間売上が'+fmt(Math.round(cost*5))+'円以上になったら再シミュレーション</p>';
+document.getElementById('next').innerHTML=nh;
+document.getElementById('out').classList.remove('h');
+document.getElementById('out').scrollIntoView({behavior:'smooth'})
+}
+</script>
+</body>
+</html>

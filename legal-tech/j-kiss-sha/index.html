@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J-KISS_SHA_条項別交渉プレイブック - kusasyu tools</title>
+<meta name="description" content="スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,J-KISS_SHA_条項別交渉プレイブック">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/j-kiss-sha/">
+<meta property="og:title" content="J-KISS_SHA_条項別交渉プレイブック - kusasyu tools">
+<meta property="og:description" content="スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/j-kiss-sha/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="J-KISS_SHA_条項別交渉プレイブック - kusasyu tools">
+<meta name="twitter:description" content="スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "J-KISS_SHA_条項別交渉プレイブック",
+  "description": "スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/j-kiss-sha/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-06-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>J-KISS_SHA_条項別交渉プレイブック</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>J-KISS_SHA_条項別交渉プレイブック</h1>
+  <p class="project-name">投資契約、不利な条項を見逃してない？</p>
+  <div class="content">
+<h1>J-KISS/SHA 条項別交渉プレイブック</h1>
+<p><strong>Kusasyu Legal Tech</strong> ｜ 投資契約リスクスコアカード 補完資料</p>
+<hr />
+<h2>本書の使い方</h2>
+<p>「投資契約リスクスコアカード」でC/Dランクと判定された条項を本プレイブックで参照し、交渉戦略を立案する。各条項は<strong>創業者有利／標準／投資家有利</strong>の3段階で分類し、交渉時の切り返し文例・修正提案・弁護士に確認すべき質問を収録した。</p>
+<hr />
+<h2>条項1：希薄化防止（Anti-dilution）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>加重平均方式（Broad-based Weighted Average）</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>加重平均方式（Narrow-based）</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>フルラチェット方式</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「フルラチェットは経産省留意事項でも"慎重な検討を要する"とされています。加重平均方式への変更を提案します」</li>
+<li><strong>修正提案</strong>：「第○条の希薄化防止条項を、Broad-based Weighted Average方式に変更する」</li>
+<li><strong>弁護士への質問</strong>：Pay-to-Play条項との組合せで創業者への影響はどう変わるか？</li>
+</ul>
+<hr />
+<h2>条項2：残余財産分配権（Liquidation Preference）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>1倍・非参加型（Non-participating）</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>1倍・参加型（キャップ付き3倍まで）</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>2倍以上・参加型（キャップなし）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「参加型かつキャップなしでは、EXITの大部分が投資家に配分されます。1倍非参加型、もしくはキャップ付き参加型を希望します」</li>
+<li><strong>修正提案</strong>：「優先分配倍率を1倍とし、参加型の場合は投資額の3倍をキャップとする」</li>
+<li><strong>弁護士への質問</strong>：複数ラウンドでの分配ウォーターフォールのシミュレーションを依頼すべき</li>
+</ul>
+<hr />
+<h2>条項3：取締役指名権（Board Seat）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>オブザーバー権のみ（議決権なし）</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>取締役1名指名権（過半数は創業者側）</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>取締役複数名＋過半数掌握</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「シード段階で取締役過半数を渡すと、経営の機動性が損なわれます。オブザーバー参加でガバナンスを確保しませんか」</li>
+<li><strong>修正提案</strong>：「投資家指名取締役を1名、創業者側取締役を2名とし、取締役会は3名構成とする」</li>
+<li><strong>弁護士への質問</strong>：デッドロック時の決裁方法（キャスティングボート）の規定は必要か？</li>
+</ul>
+<hr />
+<h2>条項4：拒否権（Veto Rights）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>M&amp;A・解散のみ（2〜3項目）</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>上記＋増資・借入（5〜7項目）</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>日常経営を含む広範な事項（10項目以上）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「拒否権が10項目超では日常業務に支障が出ます。経産省留意事項でも"必要最小限"が推奨されています」</li>
+<li><strong>修正提案</strong>：「拒否権対象を定款変更・新株発行・M&amp;A・解散の4項目に限定する」</li>
+<li><strong>弁護士への質問</strong>：拒否権行使時のデッドロック解消条項（一定期間経過後の自動解除等）は入れるべきか？</li>
+</ul>
+<hr />
+<h2>条項5：ドラッグ・アロング（Drag-Along）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>条項なし、または創業者同意が必須</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>一定倍率（投資額の3倍以上）のEXIT時のみ発動</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>投資家単独判断で発動可、最低価格条件なし</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「最低売却価格の下限なしでは、創業者が不当に安い価格での売却を強制されるリスクがあります」</li>
+<li><strong>修正提案</strong>：「投資家の出資額の3倍以上のバリュエーションでの売却に限りドラッグ・アロングを認める」</li>
+<li><strong>弁護士への質問</strong>：タグ・アロング（共同売却権）とセットで規定すべきか？</li>
+</ul>
+<hr />
+<h2>条項6：先買権・優先引受権（ROFR / Pre-emptive）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>新株発行時の優先引受権のみ</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>上記＋創業者株式の譲渡時ROFR</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>全株式異動に対するROFR＋第三者割当の事前承認</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「第三者割当の事前承認は資金調達のスピードを阻害します。通知義務＋30日間の優先引受期間で代替しませんか」</li>
+<li><strong>修正提案</strong>：「優先引受権の行使期間を通知から30日間に限定し、不行使の場合は自動的に権利消滅とする」</li>
+<li><strong>弁護士への質問</strong>：ROFR行使価格の算定方法（第三者と同条件か、別途評価か）を明確化すべきか？</li>
+</ul>
+<hr />
+<h2>条項7：創業者株式の譲渡制限（Lock-up）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>1年間のロックアップ、以降は事前通知で譲渡可</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>IPOまたは次回ラウンドまで譲渡禁止</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>投資家の事前書面承諾がない限り一切譲渡不可</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「全面的な譲渡禁止は相続・離婚等の不可抗力に対応できません。例外事由を設けるべきです」</li>
+<li><strong>修正提案</strong>：「相続、資産管理会社への移転、持株比率5%以下の譲渡は、事前通知のみで可能とする」</li>
+<li><strong>弁護士への質問</strong>：リバースベスティング（Reverse Vesting）との組合せ設計は適切か？</li>
+</ul>
+<hr />
+<h2>条項8：表明保証（Representations &amp; Warranties）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>「知る限り（to the best of knowledge）」の限定付き</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>主要事項に限定＋開示スケジュール（DS）による除外あり</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>包括的R&amp;W＋補償条項（Indemnity）無制限</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「補償上限なしでは創業者個人が全責任を負います。投資額を上限とする補償キャップを設定させてください」</li>
+<li><strong>修正提案</strong>：「表明保証違反の補償上限を投資額の100%とし、請求期限をクロージングから18ヶ月とする」</li>
+<li><strong>弁護士への質問</strong>：開示スケジュール（Disclosure Schedule）にどこまで記載すれば免責されるか？</li>
+</ul>
+<hr />
+<h2>条項9：競業避止義務（Non-compete）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>在任中のみ、対象事業を限定</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>退任後1年間、同一業種に限定</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>退任後2年以上、関連業種まで拡大</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「2年以上の広範な競業避止は職業選択の自由を制約し、裁判で無効と判断されるリスクがあります」</li>
+<li><strong>修正提案</strong>：「競業避止期間を退任後1年間、対象を"同一の事業領域"に限定する」</li>
+<li><strong>弁護士への質問</strong>：競業避止義務の対価（コンペンセーション）を設定しないと無効になるリスクはあるか？</li>
+</ul>
+<hr />
+<h2>条項10：情報開示義務（Information Rights）</h2>
+<table>
+<thead>
+<tr>
+<th>レベル</th>
+<th>条件の実例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🟢 創業者有利</td>
+<td>年次財務諸表のみ、提出期限60日</td>
+</tr>
+<tr>
+<td>🟡 標準</td>
+<td>月次試算表＋年次財務諸表＋年度予算</td>
+</tr>
+<tr>
+<td>🔴 投資家有利</td>
+<td>週次KPI＋月次財務＋随時の臨時報告義務</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>切り返し文例</strong>：「週次KPIの報告義務は管理コストが過大です。月次のダッシュボード共有で代替を提案します」</li>
+<li><strong>修正提案</strong>：「月次の管理会計資料および年次の監査済財務諸表を、各期末から30日以内に提出する」</li>
+<li><strong>弁護士への質問</strong>：情報開示の「重要性の閾値（materiality threshold）」を設定し、軽微事項を除外できるか？</li>
+</ul>
+<hr />
+<h2>J-KISS型 vs SHA型 対比表</h2>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>J-KISS（転換型新株予約権）</th>
+<th>SHA（株主間契約）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>法的性質</strong></td>
+<td>新株予約権（将来転換）</td>
+<td>株式取得＋契約</td>
+</tr>
+<tr>
+<td><strong>バリュエーション</strong></td>
+<td>未確定（次回ラウンドで決定）</td>
+<td>契約時に確定</td>
+</tr>
+<tr>
+<td><strong>希薄化防止</strong></td>
+<td>転換時のキャップ・ディスカウントで調整</td>
+<td>明示的な条項で規定</td>
+</tr>
+<tr>
+<td><strong>拒否権</strong></td>
+<td>通常なし（軽量設計）</td>
+<td>詳細に規定</td>
+</tr>
+<tr>
+<td><strong>取締役指名権</strong></td>
+<td>通常なし</td>
+<td>契約で規定</td>
+</tr>
+<tr>
+<td><strong>残余財産分配</strong></td>
+<td>転換後の種類株式の設計による</td>
+<td>契約で明示的に規定</td>
+</tr>
+<tr>
+<td><strong>ドラッグ・アロング</strong></td>
+<td>通常なし</td>
+<td>契約で規定されることが多い</td>
+</tr>
+<tr>
+<td><strong>適するステージ</strong></td>
+<td>プレシード〜シード</td>
+<td>シリーズA以降</td>
+</tr>
+<tr>
+<td><strong>交渉の複雑さ</strong></td>
+<td>低い（標準化されたひな形）</td>
+<td>高い（条項ごとに交渉）</td>
+</tr>
+<tr>
+<td><strong>経産省留意事項の適用</strong></td>
+<td>キャップ・ディスカウント率が焦点</td>
+<td>全10条項が交渉対象</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>交渉の基本原則</h2>
+<ol>
+<li><strong>相場を知る</strong>：本プレイブックの「標準」ラインが経産省留意事項に準拠した相場観である</li>
+<li><strong>トレードオフで交渉する</strong>：1つの条項を譲る代わりに別の条項で有利な条件を引き出す</li>
+<li><strong>書面で残す</strong>：口頭合意は無効。タームシートの段階で条件を確定させる</li>
+<li><strong>投資契約リスクスコアカードを活用する</strong>：C/Dランク条項を優先的に交渉し、全体スコアB以上を目指す</li>
+</ol>
+<hr />
+<p><em>本資料は一般的な情報提供を目的としたものであり、法的助言を構成しません。個別案件については弁護士にご相談ください。</em></p>
+<p><strong>© Kusasyu Legal Tech</strong></p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

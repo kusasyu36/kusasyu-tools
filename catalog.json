@@ -2483,6 +2483,32 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-42",
+    "url": "legal-tech/contract-42/",
+    "title": "投資契約、不利な条項を見逃してない？",
+    "tool_name": "投資契約リスクスコアカード",
+    "description": "スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセットを制作する。",
+    "quality_score": 9,
+    "completed_at": "2026-06-23T06:54:49.307994+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "j-kiss-sha",
+    "url": "legal-tech/j-kiss-sha/",
+    "title": "投資契約、不利な条項を見逃してない？",
+    "tool_name": "J-KISS_SHA_条項別交渉プレイブック",
+    "description": "スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセットを制作する。",
+    "quality_score": 9,
+    "completed_at": "2026-06-23T06:54:49.307994+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -3352,6 +3378,45 @@
     "quality_score": 8,
     "completed_at": "2026-05-08T11:04:07.652140+00:00",
     "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-25",
+    "url": "digital-marketing/diagnosis-25/",
+    "title": "写真しかない？AI動画広告の作り方＆効果計測",
+    "tool_name": "AI動画広告ツール診断＆プロンプトジェネレーター",
+    "description": "EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計キット（企画段階の支援）とは異なり、AIツールの実行支援と効果測定に特化する。",
+    "quality_score": 8,
+    "completed_at": "2026-06-23T01:29:54.629314+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "simulator-9",
+    "url": "digital-marketing/simulator-9/",
+    "title": "写真しかない？AI動画広告の作り方＆効果計測",
+    "tool_name": "動画広告化_ROI事前シミュレーター",
+    "description": "EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計キット（企画段階の支援）とは異なり、AIツールの実行支援と効果測定に特化する。",
+    "quality_score": 8,
+    "completed_at": "2026-06-23T01:29:54.629314+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-71",
+    "url": "digital-marketing/tool-71/",
+    "title": "写真しかない？AI動画広告の作り方＆効果計測",
+    "tool_name": "商品別AI動画_制作進捗＆配信効果トラッキングシート",
+    "description": "EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計キット（企画段階の支援）とは異なり、AIツールの実行支援と効果測定に特化する。",
+    "quality_score": 8,
+    "completed_at": "2026-06-23T01:29:54.629314+00:00",
+    "content_type": "csv_template"
   },
   {
     "company_id": "legal-tech",
@@ -7277,6 +7342,45 @@
     "description": "賃貸・売買契約書の主要条項をチェック入力するだけで、国交省標準約款との乖離度を0〜100点でスコアリングし、不利条項・見落としリスクを可視化するHTMLチェッカーツール。LeCHECKやクラウドサインが月額数万円で提供する契約書リスク検出の核心機能を、不動産仲介に完全特化した形で無料提供する。重要事項説明書の全項目チェックリストと、リスク条項の交渉実務ガイドをセットで納品。",
     "quality_score": 6,
     "completed_at": "2026-06-03T18:48:53.262250+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "tool-16",
+    "url": "proptech/tool-16/",
+    "title": "重説ドラフト、まだ手書き？AI下書き無料キット",
+    "tool_name": "居住用建物売買_重説ドラフト自動生成ツール（中古マンション・一戸建て対応）",
+    "description": "物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。",
+    "quality_score": 6,
+    "completed_at": "2026-06-23T04:28:09.131824+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "checker-8",
+    "url": "proptech/checker-8/",
+    "title": "重説ドラフト、まだ手書き？AI下書き無料キット",
+    "tool_name": "重説35条_全項目コンプライアンスチェックリスト",
+    "description": "物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。",
+    "quality_score": 6,
+    "completed_at": "2026-06-23T04:28:09.131824+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "guide-8",
+    "url": "proptech/guide-8/",
+    "title": "重説ドラフト、まだ手書き？AI下書き無料キット",
+    "tool_name": "重説AI活用ワークフロー_実装シナリオガイド",
+    "description": "物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。",
+    "quality_score": 6,
+    "completed_at": "2026-06-23T04:28:09.131824+00:00",
     "content_type": "article"
   }
 ]

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品別AI動画_制作進捗＆配信効果トラッキングシート - kusasyu tools</title>
+<meta name="description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,商品別AI動画_制作進捗＆配信効果トラッキングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-71/">
+<meta property="og:title" content="商品別AI動画_制作進捗＆配信効果トラッキングシート - kusasyu tools">
+<meta property="og:description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-71/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="商品別AI動画_制作進捗＆配信効果トラッキングシート - kusasyu tools">
+<meta name="twitter:description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "商品別AI動画_制作進捗＆配信効果トラッキングシート",
+  "description": "EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-71/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-06-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>商品別AI動画_制作進捗＆配信効果トラッキングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">8/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>商品別AI動画_制作進捗＆配信効果トラッキングシート</h1>
+  <p class="project-name">写真しかない？AI動画広告の作り方＆効果計測</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管理No</th><th>SKU</th><th>商品名</th><th>カテゴリ</th><th>商品単価（円）</th><th>制作ステータス【実績管理※②シミュレーターは予測用】</th><th>使用AIツール</th><th>動画尺（秒）</th><th>生成コスト（円）【実績※②は予測値】</th><th>制作開始日</th><th>完了日</th><th>配信先</th><th>配信開始日</th><th>写真_表示回数【実績値】</th><th>写真_クリック数【実績値】</th><th>写真_CTR%【自動計算】</th><th>写真_CV数【実績値】</th><th>写真_CVR%【自動計算】</th><th>写真_広告費（円）【実績値】</th><th>写真_売上（円）【実績値】</th><th>写真_ROAS%【自動計算】</th><th>動画_表示回数【実績※②は予測値】</th><th>動画_クリック数【実績値】</th><th>動画_CTR%【自動計算】</th><th>動画_CV数【実績値】</th><th>動画_CVR%【自動計算】</th><th>動画_広告費（円）【実績値】</th><th>動画_売上（円）【実績※②は予測値】</th><th>動画_ROAS%【自動計算】</th><th>差分ROI%【自動計算=(動画売上-写真売上-制作コスト)/制作コスト】</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>SKU-A001</td><td>オーガニックコットンTシャツ</td><td>アパレル</td><td>3980</td><td>配信中</td><td>Runway Gen-3</td><td>15</td><td>800</td><td>2026-06-01</td><td>2026-06-03</td><td>Instagram広告</td><td>2026-06-05</td><td>45000</td><td>900</td><td>=O2/N2*100</td><td>18</td><td>=Q2/O2*100</td><td>30000</td><td>71640</td><td>=T2/S2*100</td><td>52000</td><td>1560</td><td>=W2/V2*100</td><td>35</td><td>=Y2/W2*100</td><td>30000</td><td>139300</td><td>=AB2/AA2*100</td><td>=(AB2-T2-I2)/I2*100</td><td>CTR1.5倍改善</td></tr><tr><td>2</td><td>SKU-C001</td><td>薬用美白セラム30ml</td><td>コスメ</td><td>5500</td><td>効果測定中</td><td>Pika 2.0</td><td>10</td><td>600</td><td>2026-06-03</td><td>2026-06-05</td><td>Meta広告</td><td>2026-06-08</td><td>38000</td><td>950</td><td>=O3/N3*100</td><td>14</td><td>=Q3/O3*100</td><td>25000</td><td>77000</td><td>=T3/S3*100</td><td>41000</td><td>1230</td><td>=W3/V3*100</td><td>22</td><td>=Y3/W3*100</td><td>25000</td><td>121000</td><td>=AB3/AA3*100</td><td>=(AB3-T3-I3)/I3*100</td><td>CVR改善顕著</td></tr><tr><td>3</td><td>SKU-F001</td><td>有機抹茶パウダー100g</td><td>食品</td><td>2480</td><td>レビュー中</td><td>Kling 1.6</td><td>10</td><td>500</td><td>2026-06-10</td><td>2026-06-12</td><td></td><td></td><td>28000</td><td>560</td><td>=O4/N4*100</td><td>12</td><td>=Q4/O4*100</td><td>20000</td><td>29760</td><td>=T4/S4*100</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>配信前レビュー中</td></tr><tr><td>4</td><td>SKU-A002</td><td>リネンワイドパンツ</td><td>アパレル</td><td>6800</td><td>生成中</td><td>Luma Dream Machine</td><td>15</td><td>700</td><td>2026-06-15</td><td></td><td></td><td></td><td>35000</td><td>630</td><td>=O5/N5*100</td><td>10</td><td>=Q5/O5*100</td><td>22000</td><td>68000</td><td>=T5/S5*100</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>動画生成待ち</td></tr><tr><td>5</td><td>SKU-C002</td><td>モイスチャークリーム50g</td><td>コスメ</td><td>4200</td><td>プロンプト作成済み</td><td>Runway Gen-3</td><td></td><td>0</td><td>2026-06-18</td><td></td><td></td><td></td><td>32000</td><td>480</td><td>=O6/N6*100</td><td>8</td><td>=Q6/O6*100</td><td>18000</td><td>33600</td><td>=T6/S6*100</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>プロンプト調整中</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管理No,SKU,商品名,カテゴリ,商品単価（円）,制作ステータス【実績管理※②シミュレーターは予測用】,使用AIツール,動画尺（秒）,生成コスト（円）【実績※②は予測値】,制作開始日,完了日,配信先,配信開始日,写真_表示回数【実績値】,写真_クリック数【実績値】,写真_CTR%【自動計算】,写真_CV数【実績値】,写真_CVR%【自動計算】,写真_広告費（円）【実績値】,写真_売上（円）【実績値】,写真_ROAS%【自動計算】,動画_表示回数【実績※②は予測値】,動画_クリック数【実績値】,動画_CTR%【自動計算】,動画_CV数【実績値】,動画_CVR%【自動計算】,動画_広告費（円）【実績値】,動画_売上（円）【実績※②は予測値】,動画_ROAS%【自動計算】,差分ROI%【自動計算=(動画売上-写真売上-制作コスト)/制作コスト】,備考
+1,SKU-A001,オーガニックコットンTシャツ,アパレル,3980,配信中,Runway Gen-3,15,800,2026-06-01,2026-06-03,Instagram広告,2026-06-05,45000,900,=O2/N2*100,18,=Q2/O2*100,30000,71640,=T2/S2*100,52000,1560,=W2/V2*100,35,=Y2/W2*100,30000,139300,=AB2/AA2*100,=(AB2-T2-I2)/I2*100,CTR1.5倍改善
+2,SKU-C001,薬用美白セラム30ml,コスメ,5500,効果測定中,Pika 2.0,10,600,2026-06-03,2026-06-05,Meta広告,2026-06-08,38000,950,=O3/N3*100,14,=Q3/O3*100,25000,77000,=T3/S3*100,41000,1230,=W3/V3*100,22,=Y3/W3*100,25000,121000,=AB3/AA3*100,=(AB3-T3-I3)/I3*100,CVR改善顕著
+3,SKU-F001,有機抹茶パウダー100g,食品,2480,レビュー中,Kling 1.6,10,500,2026-06-10,2026-06-12,,,28000,560,=O4/N4*100,12,=Q4/O4*100,20000,29760,=T4/S4*100,,,,,,,,,,配信前レビュー中
+4,SKU-A002,リネンワイドパンツ,アパレル,6800,生成中,Luma Dream Machine,15,700,2026-06-15,,,,35000,630,=O5/N5*100,10,=Q5/O5*100,22000,68000,=T5/S5*100,,,,,,,,,,動画生成待ち
+5,SKU-C002,モイスチャークリーム50g,コスメ,4200,プロンプト作成済み,Runway Gen-3,,0,2026-06-18,,,,32000,480,=O6/N6*100,8,=Q6/O6*100,18000,33600,=T6/S6*100,,,,,,,,,,プロンプト調整中`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_商品別AI動画_制作進捗＆配信効果トラッキングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>居住用建物売買_重説ドラフト自動生成ツール（中古マンション・一戸建て対応） - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Hiragino Sans",sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.2em;text-align:center;padding:18px 12px;background:linear-gradient(135deg,#1a1a5e,#2d5aa0);color:#fff;border-radius:10px;margin-bottom:6px}
+.sub{text-align:center;font-size:.78em;color:#666;margin-bottom:16px}
+.scope{background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:10px 14px;font-size:.8em;margin-bottom:16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:18px;margin-bottom:14px}
+.card h2{font-size:.95em;color:#1a1a5e;border-left:4px solid #2d5aa0;padding-left:10px;margin-bottom:12px}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.field{flex:1;min-width:180px}
+.field label{display:block;font-size:.8em;font-weight:600;color:#444;margin-bottom:3px}
+.field input,.field select,.field textarea{width:100%;padding:8px 10px;border:1px solid #ccc;border-radius:6px;font-size:.9em}
+.field textarea{height:60px;resize:vertical}
+.chk-group{display:flex;flex-wrap:wrap;gap:12px}
+.chk-group label{font-size:.85em;font-weight:400;display:flex;align-items:center;gap:4px;cursor:pointer}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#1a1a5e,#2d5aa0);color:#fff;border:none;border-radius:8px;font-size:1.05em;font-weight:700;cursor:pointer;margin:10px 0}
+.btn:hover{opacity:.9}
+.btn-copy{padding:10px 20px;background:#27ae60;color:#fff;border:none;border-radius:6px;font-size:.9em;cursor:pointer;margin-top:8px}
+.btn-copy:hover{opacity:.85}
+#output{display:none}
+#output h2{border-left-color:#27ae60;color:#27ae60}
+#draft{width:100%;min-height:400px;padding:12px;border:1px solid #ccc;border-radius:6px;font-size:.85em;font-family:monospace;line-height:1.7;white-space:pre-wrap}
+.disclaimer{background:#ffeaea;border:1px solid #e74c3c;border-radius:6px;padding:10px 14px;font-size:.75em;color:#c0392b;margin-bottom:10px}
+.copy-msg{color:#27ae60;font-size:.8em;margin-left:8px;display:none}
+@media(max-width:600px){.field{min-width:100%}.row{gap:6px}}
+</style>
+<meta name="description" content="物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,居住用建物売買_重説ドラフト自動生成ツール（中古マンション・一戸建て対応）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-16/">
+<meta property="og:title" content="居住用建物売買_重説ドラフト自動生成ツール（中古マンション・一戸建て対応） - kusasyu tools">
+<meta property="og:description" content="物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/tool-16/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="居住用建物売買_重説ドラフト自動生成ツール（中古マンション・一戸建て対応） - kusasyu tools">
+<meta name="twitter:description" content="物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "居住用建物売買_重説ドラフト自動生成ツール（中古マンション・一戸建て対応）",
+  "description": "物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/tool-16/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">居住用建物売買_重説ドラフト自動生成ツール（中古マンション・</span></div>
+<div class="wrap">
+<h1>居住用建物売買 重説ドラフト自動生成ツール</h1>
+<p class="sub">中古マンション・一戸建て対応｜宅建業法35条1項準拠｜Kusasyu PropTech</p>
+<div class="scope">対象：居住用建物（中古マンション・中古一戸建て）の売買取引のみ。賃貸取引・土地のみの取引はv2にて対応予定です。</div>
+
+<div class="card"><h2>1. 物件基本情報</h2>
+<div class="row">
+<div class="field"><label>物件種別</label><select id="pType"><option value="中古マンション">中古マンション</option><option value="中古一戸建て">中古一戸建て</option></select></div>
+<div class="field"><label>物件名称</label><input id="pName" placeholder="例：グランドメゾン渋谷 301号室"></div>
+</div>
+<div class="row">
+<div class="field"><label>所在地</label><input id="pAddr" placeholder="例：東京都渋谷区神南一丁目1-1"></div>
+</div>
+<div class="row">
+<div class="field"><label>家屋番号</label><input id="pHouseNo" placeholder="例：1番1号"></div>
+<div class="field"><label>構造</label><select id="pStruct"><option>鉄筋コンクリート造</option><option>鉄骨鉄筋コンクリート造</option><option>鉄骨造</option><option>木造</option><option>軽量鉄骨造</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>専有面積/延床面積（㎡）</label><input type="number" id="pArea" step="0.01" placeholder="例：72.35"></div>
+<div class="field"><label>土地面積（㎡）</label><input type="number" id="pLandArea" step="0.01" placeholder="一戸建ての場合"></div>
+<div class="field"><label>築年月</label><input id="pBuilt" placeholder="例：1998年3月"></div>
+</div>
+<div class="row">
+<div class="field"><label>階数/所在階</label><input id="pFloor" placeholder="例：地上10階建 3階部分"></div>
+</div>
+</div>
+
+<div class="card"><h2>2. 権利関係</h2>
+<div class="row">
+<div class="field"><label>権利形態</label><select id="rType"><option>所有権</option><option>借地権（地上権）</option><option>借地権（賃借権）</option></select></div>
+<div class="field"><label>登記名義人</label><input id="rOwner" placeholder="例：山田太郎"></div>
+</div>
+<div class="row">
+<div class="field"><label>抵当権等の設定</label><select id="rMortgage"><option value="なし">なし</option><option value="あり（抹消予定）">あり（引渡時抹消予定）</option><option value="あり（残存）">あり（残存）</option></select></div>
+<div class="field"><label>その他の権利制限</label><input id="rOther" placeholder="例：地役権の設定あり"></div>
+</div>
+</div>
+
+<div class="card"><h2>3. 法令上の制限</h2>
+<div class="row">
+<div class="field"><label>用途地域</label><select id="lZone"><option>第一種低層住居専用地域</option><option>第二種低層住居専用地域</option><option>第一種中高層住居専用地域</option><option>第二種中高層住居専用地域</option><option>第一種住居地域</option><option>第二種住居地域</option><option>準住居地域</option><option>近隣商業地域</option><option>商業地域</option><option>準工業地域</option><option>工業地域</option><option>工業専用地域</option><option>指定なし</option></select></div>
+<div class="field"><label>建ぺい率（%）</label><input type="number" id="lBcr" placeholder="例：60"></div>
+<div class="field"><label>容積率（%）</label><input type="number" id="lFar" placeholder="例：200"></div>
+</div>
+<div class="row">
+<div class="field"><label>高度地区</label><input id="lHeight" placeholder="例：第2種高度地区"></div>
+<div class="field"><label>防火指定</label><select id="lFire"><option value="指定なし">指定なし</option><option>防火地域</option><option>準防火地域</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>その他の法令制限（任意）</label><input id="lOther" placeholder="例：景観地区、地区計画あり"></div>
+</div>
+</div>
+
+<div class="card"><h2>4. インフラ整備状況</h2>
+<div class="row">
+<div class="field"><label>飲用水</label><select id="iWater"><option>公営水道</option><option>私設水道</option><option>井戸水</option><option>未整備</option></select></div>
+<div class="field"><label>排水（汚水）</label><select id="iSewage"><option>公共下水道</option><option>浄化槽</option><option>汲み取り</option><option>未整備</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>排水（雑排水・雨水）</label><select id="iDrain"><option>公共下水道</option><option>側溝</option><option>浸透</option><option>未整備</option></select></div>
+<div class="field"><label>電気</label><select id="iElec"><option>供給中</option><option>供給可能（未接続）</option><option>供給不可</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>ガス</label><select id="iGas"><option>都市ガス</option><option>プロパンガス（個別）</option><option>プロパンガス（集中）</option><option>オール電化</option><option>未整備</option></select></div>
+</div>
+</div>
+
+<div class="card"><h2>5. ハザードマップ該当区分</h2>
+<div class="chk-group">
+<label><input type="checkbox" id="hFlood">洪水浸水想定区域</label>
+<label><input type="checkbox" id="hSediment">土砂災害警戒区域</label>
+<label><input type="checkbox" id="hTsunami">津波災害警戒区域</label>
+<label><input type="checkbox" id="hStorm">高潮浸水想定区域</label>
+</div>
+<div class="row" style="margin-top:10px">
+<div class="field"><label>浸水想定深さ</label><input id="hDepth" placeholder="例：0.5m〜3.0m"></div>
+<div class="field"><label>造成宅地防災区域</label><select id="hDev"><option value="非該当">非該当</option><option value="該当">該当</option></select></div>
+</div>
+</div>
+
+<div class="card"><h2>6. 契約条件</h2>
+<div class="row">
+<div class="field"><label>売買代金（万円）</label><input type="number" id="cPrice" placeholder="例：3500"></div>
+<div class="field"><label>手付金（万円）</label><input type="number" id="cDeposit" placeholder="例：350"></div>
+<div class="field"><label>手付金の種類</label><select id="cDepType"><option>解約手付</option><option>証約手付</option><option>違約手付</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>違約金（万円）</label><input type="number" id="cPenalty" placeholder="例：700"></div>
+<div class="field"><label>引渡予定日</label><input type="date" id="cDeliver"></div>
+</div>
+<div class="row">
+<div class="field"><label>住宅ローンあっせん</label><select id="cLoan"><option value="あり">あり</option><option value="なし">なし</option></select></div>
+<div class="field"><label>ローン金額（万円）</label><input type="number" id="cLoanAmt" placeholder="例：3000"></div>
+<div class="field"><label>ローン特約</label><select id="cLoanSpec"><option value="あり">あり</option><option value="なし">なし</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>契約不適合責任の期間</label><select id="cDefect"><option value="引渡から2年">引渡から2年</option><option value="引渡から3ヶ月">引渡から3ヶ月</option><option value="免責（売主個人）">免責（売主が個人の場合）</option></select></div>
+</div>
+</div>
+
+<div class="card"><h2>7. その他の重要事項</h2>
+<div class="row">
+<div class="field"><label>石綿使用調査</label><select id="oAsb"><option value="調査記録なし">調査記録なし</option><option value="使用なし確認済">使用なし確認済</option><option value="使用あり">使用あり</option></select></div>
+<div class="field"><label>耐震診断</label><select id="oSeismic"><option value="実施なし">実施なし</option><option value="基準適合">基準適合</option><option value="基準不適合">基準不適合</option></select></div>
+<div class="field"><label>住宅性能評価</label><select id="oPerf"><option value="取得なし">取得なし</option><option value="取得あり">取得あり</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>私道負担</label><select id="oRoad"><option value="なし">なし</option><option value="あり">あり</option></select></div>
+<div class="field"><label>私道負担面積（㎡）</label><input type="number" id="oRoadArea" step="0.01" placeholder="該当する場合"></div>
+</div>
+<div class="row">
+<div class="field"><label>管理費（月額・円）※マンション</label><input type="number" id="oMgmt" placeholder="例：15000"></div>
+<div class="field"><label>修繕積立金（月額・円）※マンション</label><input type="number" id="oRepair" placeholder="例：12000"></div>
+</div>
+<div class="row">
+<div class="field"><label>補足事項（自由記述）</label><textarea id="oNote" placeholder="告知事項・特記事項など"></textarea></div>
+</div>
+</div>
+
+<button class="btn" onclick="generate()">重説ドラフトを生成する</button>
+
+<div id="output" class="card">
+<h2>生成結果</h2>
+<div class="disclaimer">【免責事項】本ツールが生成するテキストは下書き（ドラフト）であり、法的効力を有する重要事項説明書ではありません。実際の説明書作成にあたっては、必ず宅地建物取引士が最新の法令・物件調査結果に基づき内容を確認・補正してください。本ツールの利用により生じた損害について、当社は一切の責任を負いません。（2026年6月時点の法令に基づく参照表記）</div>
+<button class="btn-copy" onclick="copyDraft()">テキストをコピー</button><span class="copy-msg" id="copyMsg">コピーしました</span>
+<br><br>
+<textarea id="draft" readonly></textarea>
+</div>
+</div>
+
+<script>
+function v(id){return document.getElementById(id).value.trim()}
+function c(id){return document.getElementById(id).checked}
+function num(id){var n=parseFloat(v(id));return isNaN(n)?'':n}
+function fmt(n){return n?Number(n).toLocaleString():''}
+function d(id){var val=v(id);if(!val)return'';var p=val.split('-');return p[0]+'年'+parseInt(p[1])+'月'+parseInt(p[2])+'日'}
+
+function generate(){
+var t=v('pType'),nm=v('pName'),addr=v('pAddr'),hno=v('pHouseNo'),st=v('pStruct'),
+area=num('pArea'),la=num('pLandArea'),built=v('pBuilt'),fl=v('pFloor'),
+rt=v('rType'),ro=v('rOwner'),rm=v('rMortgage'),rOth=v('rOther'),
+zone=v('lZone'),bcr=num('lBcr'),far_=num('lFar'),lh=v('lHeight'),lf=v('lFire'),lOth=v('lOther'),
+iw=v('iWater'),is_=v('iSewage'),id_=v('iDrain'),ie=v('iElec'),ig=v('iGas'),
+hf=c('hFlood'),hs=c('hSediment'),ht=c('hTsunami'),hst=c('hStorm'),hd=v('hDepth'),hdev=v('hDev'),
+price=num('cPrice'),dep=num('cDeposit'),dpt=v('cDepType'),pen=num('cPenalty'),
+dlv=d('cDeliver'),loan=v('cLoan'),la2=num('cLoanAmt'),ls=v('cLoanSpec'),df=v('cDefect'),
+oA=v('oAsb'),oS=v('oSeismic'),oP=v('oPerf'),oR=v('oRoad'),oRA=num('oRoadArea'),
+oM=num('oMgmt'),oRp=num('oRepair'),oN=v('oNote');
+
+if(!addr){alert('物件所在地は必須です。');return;}
+
+var isM=t==='中古マンション';
+var L=[];
+var S=function(s){L.push(s)};
+var B=function(){L.push('')};
+
+S('【免責事項】');
+S('本テキストはAIツールにより自動生成された重要事項説明書の下書き（ドラフト）です。');
+S('法的効力を有する書面ではありません。宅地建物取引士が最新の法令・登記情報・');
+S('物件調査結果に基づき、必ず内容を確認・補正したうえでご使用ください。');
+S('生成日: '+new Date().toLocaleDateString('ja-JP')+'（参照法令: 2026年6月時点）');
+B();
+S('============================================================');
+S('  重要事項説明書（下書き）── '+t+'売買取引');
+S('============================================================');
+B();
+
+S('■ 第1条 対象物件の表示');
+S('  【参照】宅地建物取引業法第35条第1項第1号');
+S('  物件種別：'+t);
+S('  物件名称：'+(nm||'（未入力）'));
+S('  所 在 地：'+addr);
+S('  家屋番号：'+(hno||'（未入力）'));
+S('  構　　造：'+st);
+if(isM){S('  専有面積：'+(area?area+'㎡':'（未入力）'));S('  所在階等：'+(fl||'（未入力）'));}
+else{S('  延床面積：'+(area?area+'㎡':'（未入力）'));S('  土地面積：'+(la?la+'㎡':'（未入力）'));}
+S('  築 年 月：'+(built||'（未入力）'));
+B();
+
+S('■ 第2条 登記記録に記録された事項');
+S('  【参照】宅建業法第35条第1項第1号、不動産登記法');
+S('  権利形態：'+rt);
+S('  登記名義人：'+(ro||'（未入力）'));
+S('  抵当権等：'+rm);
+if(rOth)S('  その他権利制限：'+rOth);
+if(rm.indexOf('あり')>=0)S('  ※ 買主への所有権移転登記までに抵当権等の抹消完了を確認してください。');
+B();
+
+S('■ 第3条 法令に基づく制限の概要');
+S('  【参照】宅建業法第35条第1項第2号、都市計画法、建築基準法');
+S('  用途地域：'+zone);
+S('  建ぺい率：'+(bcr?bcr+'%':'（未入力）'));
+S('  容 積 率：'+(far_?far_+'%':'（未入力）'));
+if(lh)S('  高度地区：'+lh);
+S('  防火指定：'+lf);
+if(lOth)S('  その他制限：'+lOth);
+B();
+
+S('■ 第4条 私道に関する負担等');
+S('  【参照】宅建業法第35条第1項第3号');
+S('  私道負担：'+(oR==='あり'?'あり（面積：'+(oRA?oRA+'㎡':'要確認')+')':'なし'));
+B();
+
+S('■ 第5条 飲用水・電気・ガスの供給施設及び排水施設の整備状況');
+S('  【参照】宅建業法第35条第1項第4号');
+S('  飲用水：'+iw+'　／　排水（汚水）：'+is_);
+S('  排水（雑排水・雨水）：'+id_);
+S('  電気：'+ie+'　／　ガス：'+ig);
+B();
+
+S('■ 第6条 災害区域に関する事項');
+S('  【参照】宅地造成及び特定盛土等規制法、土砂災害防止法第7条、');
+S('  　　　　津波防災地域づくり法第53条、宅建業法第35条第1項第14号');
+S('  造成宅地防災区域：'+hdev);
+S('  土砂災害警戒区域：'+(hs?'該当':'非該当'));
+S('  津波災害警戒区域：'+(ht?'該当':'非該当'));
+B();
+
+S('■ 第7条 水害ハザードマップにおける所在地');
+S('  【参照】宅建業法施行規則第16条の4の3第3号の2');
+S('  洪水浸水想定区域：'+(hf?'該当':'非該当'));
+S('  高潮浸水想定区域：'+(hst?'該当':'非該当'));
+if(hd)S('  浸水想定深さ：'+hd);
+S('  ※ 市区町村公表の最新ハザードマップを添付し、物件の概ねの位置を示すこと。');
+B();
+
+S('■ 第8条 石綿使用調査・耐震診断・住宅性能評価');
+S('  【参照】宅建業法施行規則第16条の4の3');
+S('  石綿使用調査：'+oA);
+S('  耐震診断：'+oS);
+if(oS==='基準不適合')S('  ※ 旧耐震基準の建物です。耐震改修について買主へ説明してください。');
+S('  住宅性能評価：'+oP);
+B();
+
+if(isM){
+S('■ 第9条 区分所有建物に関する事項');
+S('  【参照】宅建業法第35条第1項第6号、区分所有法');
+S('  管理費（月額）：'+(oM?fmt(oM)+'円':'（未入力）'));
+S('  修繕積立金（月額）：'+(oRp?fmt(oRp)+'円':'（未入力）'));
+S('  ※ 管理規約・使用細則・長期修繕計画・管理組合財務状況等を別途確認・記載のこと。');
+B();
+}
+
+var n=isM?10:9;
+S('■ 第'+n+'条 代金及び交換差金以外に授受される金銭');
+S('  【参照】宅建業法第35条第1項第7号');
+S('  売買代金：'+(price?fmt(price)+'万円':'（未入力）'));
+S('  手付金：'+(dep?fmt(dep)+'万円（'+dpt+'）':'（未入力）'));
+if(dep&&price)S('  手付金の売買代金比：約'+(dep/price*100).toFixed(1)+'%');
+B();
+
+n++;
+S('■ 第'+n+'条 契約の解除に関する事項');
+S('  【参照】宅建業法第35条第1項第8号、同法第39条');
+S('  手付解除：買主は手付金を放棄し、売主は倍額返還により契約解除可能。');
+S('  ただし相手方が履行に着手した後はこの限りでない。');
+B();
+
+n++;
+S('■ 第'+n+'条 損害賠償額の予定又は違約金');
+S('  【参照】宅建業法第35条第1項第9号、同法第38条');
+S('  違約金：'+(pen?fmt(pen)+'万円':'（未入力）'));
+if(pen&&price){S('  売買代金比：約'+(pen/price*100).toFixed(1)+'%');
+if(pen/price>0.2)S('  ※ 注意：宅建業法第38条により合計は代金の20%を超えてはなりません。');}
+B();
+
+n++;
+S('■ 第'+n+'条 手付金等の保全措置');
+S('  【参照】宅建業法第35条第1項第11号、同法第41条・第41条の2');
+if(dep&&price){
+if(dep/price>0.1||dep>1000)S('  保全措置：必要（売主が宅建業者の場合。完成物件：代金の10%超又は1,000万円超）');
+else S('  保全措置：代金の10%以下かつ1,000万円以下のため不要の可能性あり（売主属性を確認）');
+}else S('  保全措置：（金額未入力のため判定不可）');
+B();
+
+n++;
+S('■ 第'+n+'条 契約不適合責任');
+S('  【参照】宅建業法第40条、民法第562条〜第572条');
+S('  責任期間：'+df);
+if(df.indexOf('免責')>=0)S('  ※ 売主が宅建業者の場合、引渡から2年以上の特約でなければ無効（宅建業法第40条）。');
+B();
+
+n++;
+S('■ 第'+n+'条 金銭の貸借のあっせん');
+S('  【参照】宅建業法第35条第1項第12号');
+if(loan==='あり'){S('  住宅ローンあっせん：あり');S('  融資予定額：'+(la2?fmt(la2)+'万円':'（未入力）'));
+S('  ローン特約：'+ls);if(ls==='あり')S('  ※ 融資不承認時、買主は白紙解除可。受領済金銭は全額返還。');}
+else S('  住宅ローンあっせん：なし');
+B();
+
+n++;
+S('■ 第'+n+'条 引渡し');
+S('  引渡予定日：'+(dlv||'（未入力）'));
+B();
+
+if(oN){S('■ 特記事項・告知事項');S('  '+oN);B();}
+
+S('============================================================');
+S('  以上は下書きです。宅地建物取引士の確認・補正を経て正式書面としてください。');
+S('  Kusasyu PropTech 重説ドラフト自動生成ツール v1.0');
+S('  生成日時：'+new Date().toLocaleString('ja-JP'));
+S('============================================================');
+
+document.getElementById('draft').value=L.join('\n');
+document.getElementById('output').style.display='block';
+document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+
+function copyDraft(){
+var el=document.getElementById('draft');el.select();document.execCommand('copy');
+var m=document.getElementById('copyMsg');m.style.display='inline';setTimeout(function(){m.style.display='none'},2000);
+}
+</script>
+</body>
+</html>

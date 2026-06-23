@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資契約リスクスコアカード - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6}
+.header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:24px 20px;text-align:center}
+.header h1{font-size:1.3rem;letter-spacing:.05em}
+.header p{font-size:.78rem;opacity:.75;margin-top:4px}
+.container{max-width:720px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.card h2{font-size:1rem;color:#0f3460;border-left:4px solid #0f3460;padding-left:10px;margin-bottom:14px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px;color:#333}
+.field .hint{font-size:.72rem;color:#888;margin-bottom:4px}
+select,input[type=number]{width:100%;padding:10px 12px;border:1.5px solid #d0d5dd;border-radius:8px;font-size:.9rem;background:#fafbfc;transition:border .2s}
+select:focus,input[type=number]:focus{outline:none;border-color:#0f3460;background:#fff}
+.slider-wrap{display:flex;align-items:center;gap:10px}
+.slider-wrap input[type=range]{flex:1;accent-color:#0f3460}
+.slider-val{min-width:48px;text-align:center;font-weight:700;font-size:.95rem;color:#0f3460}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#0f3460,#1a1a2e);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.06em;transition:opacity .2s}
+.btn:hover{opacity:.88}
+.btn:active{transform:scale(.98)}
+#result{display:none}
+.overall{text-align:center;padding:20px 0}
+.overall .rank{font-size:3.2rem;font-weight:900;display:inline-block;width:80px;height:80px;line-height:80px;border-radius:50%;color:#fff;margin-bottom:8px}
+.rank-A{background:#16a34a}.rank-B{background:#2563eb}.rank-C{background:#ea580c}.rank-D{background:#dc2626}
+.overall .label{font-size:.85rem;color:#555}
+.overall .score-num{font-size:1.1rem;font-weight:700;margin-top:4px}
+.item-scores{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.item-score{background:#f8f9fb;border-radius:8px;padding:12px;position:relative;border-left:4px solid #ccc}
+.item-score.rank-A{border-left-color:#16a34a}.item-score.rank-B{border-left-color:#2563eb}.item-score.rank-C{border-left-color:#ea580c}.item-score.rank-D{border-left-color:#dc2626}
+.item-score .iname{font-size:.78rem;font-weight:600;color:#333}
+.item-score .irank{font-size:1.4rem;font-weight:900;float:right;margin-top:-4px}
+.item-score .irank.rank-A{color:#16a34a}.item-score .irank.rank-B{color:#2563eb}.item-score .irank.rank-C{color:#ea580c}.item-score .irank.rank-D{color:#dc2626}
+.item-score .idesc{font-size:.7rem;color:#777;margin-top:2px}
+.bar-chart{margin-top:18px}
+.bar-row{display:flex;align-items:center;margin-bottom:6px}
+.bar-label{width:110px;font-size:.72rem;font-weight:600;text-align:right;padding-right:8px;flex-shrink:0}
+.bar-track{flex:1;height:18px;background:#e9ecef;border-radius:9px;overflow:hidden}
+.bar-fill{height:100%;border-radius:9px;transition:width .6s ease}
+.bar-fill.rank-A{background:#16a34a}.bar-fill.rank-B{background:#2563eb}.bar-fill.rank-C{background:#ea580c}.bar-fill.rank-D{background:#dc2626}
+.warn-list{list-style:none;margin-top:10px}
+.warn-list li{padding:8px 12px;margin-bottom:6px;border-radius:6px;font-size:.8rem;background:#fef3c7;border-left:3px solid #f59e0b}
+.warn-list li.high{background:#fee2e2;border-left-color:#dc2626}
+.q-list{counter-reset:q;margin-top:10px}
+.q-list li{counter-increment:q;padding:8px 12px 8px 36px;margin-bottom:6px;font-size:.8rem;background:#eff6ff;border-radius:6px;position:relative}
+.q-list li::before{content:counter(q);position:absolute;left:10px;top:8px;width:20px;height:20px;background:#2563eb;color:#fff;border-radius:50%;text-align:center;line-height:20px;font-size:.7rem;font-weight:700}
+.footer{text-align:center;padding:20px;font-size:.7rem;color:#999}
+@media(max-width:600px){.item-scores{grid-template-columns:1fr}.header h1{font-size:1.1rem}.bar-label{width:80px;font-size:.65rem}}
+</style>
+<meta name="description" content="スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,投資契約リスクスコアカード">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-42/">
+<meta property="og:title" content="投資契約リスクスコアカード - kusasyu tools">
+<meta property="og:description" content="スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-42/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資契約リスクスコアカード - kusasyu tools">
+<meta name="twitter:description" content="スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "投資契約リスクスコアカード",
+  "description": "スタートアップの資金調達時に受け取るタームシート・株主間契約書（SHA）・投資契約書（SPA）の主要条項を入力すると、経産省『健全なベンチャー投資に係る契約の主たる留意事項』（2025年9月公表）に照らしてリスクスコアを自動算出するHTMLツールと、条項別の交渉プレイブック、ラウンド別DDチェックリストのセッ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/contract-42/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">投資契約リスクスコアカード</span></div>
+<div class="header">
+<h1>投資契約リスクスコアカード</h1>
+<p>経産省ガイドライン（2025年9月）・市場慣行準拠 ― タームシート重要6条項診断</p>
+</div>
+<div class="container">
+<div class="card">
+<h2>1. 反希釈条項（Anti-Dilution）</h2>
+<div class="field">
+<label>条項タイプを選択</label>
+<div class="hint">※ フルラチェットは創業者持分への影響が最も大きい</div>
+<select id="antiDilution">
+<option value="none">なし（条項なし）</option>
+<option value="broad">加重平均（ブロードベース）</option>
+<option value="narrow">加重平均（ナローベース）</option>
+<option value="full">フルラチェット</option>
+</select>
+</div>
+</div>
+<div class="card">
+<h2>2. 清算優先権（Liquidation Preference）</h2>
+<div class="field">
+<label>優先権倍率</label>
+<div class="hint">※ 1x が標準。2x以上は創業者に不利</div>
+<div class="slider-wrap">
+<input type="range" id="liqPref" min="0" max="4" step="0.5" value="1">
+<span class="slider-val" id="liqPrefVal">1.0x</span>
+</div>
+</div>
+<div class="field">
+<label>参加型／非参加型</label>
+<select id="liqType">
+<option value="non-part">非参加型（Non-Participating）</option>
+<option value="part-cap">参加型・キャップあり</option>
+<option value="part-nocap">参加型・キャップなし</option>
+</select>
+</div>
+</div>
+<div class="card">
+<h2>3. ドラッグアロング条項</h2>
+<div class="field">
+<label>発動に必要な株主同意割合（%）</label>
+<div class="hint">※ 低いほど少数株主の同意なく売却強制されうる</div>
+<div class="slider-wrap">
+<input type="range" id="dragAlong" min="30" max="100" step="5" value="75">
+<span class="slider-val" id="dragAlongVal">75%</span>
+</div>
+</div>
+</div>
+<div class="card">
+<h2>4. 取締役指名権</h2>
+<div class="field">
+<label>投資家側の指名可能人数</label>
+<select id="boardSeats">
+<option value="0">0名（オブザーバーのみ）</option>
+<option value="1">1名</option>
+<option value="2">2名</option>
+<option value="3">3名以上</option>
+</select>
+</div>
+<div class="field">
+<label>取締役会の総人数</label>
+<select id="boardTotal">
+<option value="3">3名</option>
+<option value="5">5名</option>
+<option value="7">7名以上</option>
+</select>
+</div>
+</div>
+<div class="card">
+<h2>5. みなし清算条項（Deemed Liquidation）</h2>
+<div class="field">
+<label>みなし清算のトリガー範囲</label>
+<div class="hint">※ 広範なほど経営の自由度が制限される</div>
+<select id="deemedLiq">
+<option value="none">条項なし</option>
+<option value="narrow">M&Aのみ</option>
+<option value="mid">M&A＋重要資産譲渡</option>
+<option value="broad">M&A＋資産譲渡＋IPO未達成時</option>
+</select>
+</div>
+</div>
+<div class="card">
+<h2>6. ロックアップ期間</h2>
+<div class="field">
+<label>創業者のロックアップ期間（月数）</label>
+<div class="slider-wrap">
+<input type="range" id="lockup" min="0" max="48" step="3" value="12">
+<span class="slider-val" id="lockupVal">12ヶ月</span>
+</div>
+</div>
+</div>
+<button class="btn" onclick="evaluate()">リスクスコアを算出</button>
+<div id="result">
+<div class="card">
+<h2>総合評価</h2>
+<div class="overall">
+<div class="rank" id="overallRank">B</div>
+<div class="label">総合リスクランク</div>
+<div class="score-num" id="overallScore"></div>
+</div>
+<div class="bar-chart" id="barChart"></div>
+</div>
+<div class="card">
+<h2>条項別スコア</h2>
+<div class="item-scores" id="itemScores"></div>
+</div>
+<div class="card" id="warnCard">
+<h2>重点確認条項</h2>
+<ul class="warn-list" id="warnList"></ul>
+</div>
+<div class="card">
+<h2>弁護士に確認すべき優先質問</h2>
+<ol class="q-list" id="qList"></ol>
+</div>
+</div>
+</div>
+<div class="footer">© Kusasyu Legal Tech ― 本ツールは参考情報であり法的助言ではありません</div>
+<script>
+document.getElementById('liqPref').addEventListener('input',function(){document.getElementById('liqPrefVal').textContent=parseFloat(this.value).toFixed(1)+'x'});
+document.getElementById('dragAlong').addEventListener('input',function(){document.getElementById('dragAlongVal').textContent=this.value+'%'});
+document.getElementById('lockup').addEventListener('input',function(){document.getElementById('lockupVal').textContent=this.value+'ヶ月'});
+
+function scoreToRank(s){if(s>=80)return'A';if(s>=55)return'B';if(s>=30)return'C';return'D'}
+function rankLabel(r){return{A:'低リスク（市場慣行内）',B:'許容範囲（条件付き）',C:'要注意（交渉推奨）',D:'高リスク（再交渉必須）'}[r]}
+
+function evaluate(){
+var results=[];var warnings=[];var questions=[];
+
+// 1. 反希釈条項
+var ad=document.getElementById('antiDilution').value;
+var s1=ad==='none'?95:ad==='broad'?80:ad==='narrow'?55:20;
+results.push({name:'反希釈条項',score:s1,rank:scoreToRank(s1)});
+if(s1<55){warnings.push({text:'フルラチェット条項はダウンラウンド時に創業者持分を大幅に希釈します。加重平均方式への変更を強く推奨。',high:s1<30});questions.push('反希釈条項をブロードベース加重平均に変更する余地はあるか？')}
+if(ad==='narrow'){questions.push('ナローベースの算定式に含まれる発行済株式の範囲を確認してください')}
+
+// 2. 清算優先権
+var lp=parseFloat(document.getElementById('liqPref').value);
+var lt=document.getElementById('liqType').value;
+var s2=100;
+if(lp<=1)s2=lt==='non-part'?95:lt==='part-cap'?70:55;
+else if(lp<=1.5)s2=lt==='non-part'?70:lt==='part-cap'?50:35;
+else if(lp<=2)s2=lt==='non-part'?50:lt==='part-cap'?35:20;
+else s2=lt==='non-part'?30:lt==='part-cap'?18:10;
+if(lp===0)s2=98;
+results.push({name:'清算優先権',score:s2,rank:scoreToRank(s2)});
+if(s2<55){warnings.push({text:'清算優先権 '+lp.toFixed(1)+'x（'+{'non-part':'非参加型','part-cap':'参加型キャップあり','part-nocap':'参加型キャップなし'}[lt]+'）は市場慣行（1x非参加型）を超過。EXIT時のリターン配分に大きく影響。',high:s2<30});questions.push('清算優先権の倍率を1x非参加型に引き下げる交渉は可能か？')}
+if(lt==='part-nocap'){questions.push('参加型キャップなしの場合、投資家は優先分配後に普通株としても分配を受ける。キャップの設定は可能か？')}
+
+// 3. ドラッグアロング
+var da=parseInt(document.getElementById('dragAlong').value);
+var s3=da>=90?90:da>=75?75:da>=60?45:20;
+results.push({name:'ドラッグアロング',score:s3,rank:scoreToRank(s3)});
+if(s3<55){warnings.push({text:'ドラッグアロング閾値 '+da+'%は低く、少数投資家主導で売却が強制される可能性あり。75%以上が望ましい。',high:s3<30});questions.push('ドラッグアロングの発動条件に最低売却価格条件（フロア価格）を追加できるか？')}
+if(da<75){questions.push('ドラッグアロング発動時の価格算定方法（公正市場価値の定義）を確認してください')}
+
+// 4. 取締役指名権
+var bs=parseInt(document.getElementById('boardSeats').value);
+var bt=parseInt(document.getElementById('boardTotal').value);
+var ratio=bt>0?bs/bt:0;
+var s4=bs===0?95:ratio<=0.2?80:ratio<=0.34?60:ratio<=0.5?35:15;
+results.push({name:'取締役指名権',score:s4,rank:scoreToRank(s4)});
+if(s4<55){warnings.push({text:'投資家指名 '+bs+'名／全'+bt+'名は取締役会の過半数に近く、経営支配権に影響。経産省GL上も慎重検討事項。',high:s4<30});questions.push('投資家指名取締役に拒否権（veto right）が付与されている条項はあるか？')}
+
+// 5. みなし清算
+var dl=document.getElementById('deemedLiq').value;
+var s5=dl==='none'?95:dl==='narrow'?75:dl==='mid'?45:15;
+results.push({name:'みなし清算条項',score:s5,rank:scoreToRank(s5)});
+if(s5<55){warnings.push({text:'みなし清算の適用範囲が広く、事業再編や資産売却時にも清算優先権が適用される。経営判断の自由度が著しく制限。',high:s5<30});questions.push('みなし清算条項のトリガーイベントから「重要資産譲渡」を除外できるか？')}
+if(dl==='broad'){questions.push('IPO未達成時のみなし清算条項の発動時期・条件を具体的に確認してください')}
+
+// 6. ロックアップ
+var lu=parseInt(document.getElementById('lockup').value);
+var s6=lu<=6?90:lu<=12?80:lu<=18?60:lu<=24?40:15;
+results.push({name:'ロックアップ期間',score:s6,rank:scoreToRank(s6)});
+if(s6<55){warnings.push({text:'ロックアップ '+lu+'ヶ月は長期。創業者の資産流動性・モチベーションに影響。12ヶ月以内が市場慣行。',high:s6<30});questions.push('ロックアップ期間中の一部売却許可条項（例：持分10%まで）を追加できるか？')}
+
+// 総合スコア（加重平均）
+var total=0;var weights=[18,22,14,16,16,14];
+for(var i=0;i<6;i++)total+=results[i].score*weights[i]/100;
+var totalRank=scoreToRank(total);
+
+// 表示
+document.getElementById('result').style.display='block';
+var re=document.getElementById('overallRank');
+re.textContent=totalRank;re.className='rank rank-'+totalRank;
+document.getElementById('overallScore').textContent='総合スコア: '+Math.round(total)+'/100（'+rankLabel(totalRank)+'）';
+
+// 棒グラフ
+var bc=document.getElementById('barChart');bc.innerHTML='';
+var names=['反希釈','清算優先','ドラッグ','取締役','みなし清算','ロックアップ'];
+for(var i=0;i<6;i++){
+var row=document.createElement('div');row.className='bar-row';
+row.innerHTML='<div class="bar-label">'+names[i]+'</div><div class="bar-track"><div class="bar-fill rank-'+results[i].rank+'" style="width:0%"></div></div>';
+bc.appendChild(row)}
+setTimeout(function(){var fills=bc.querySelectorAll('.bar-fill');for(var j=0;j<fills.length;j++)fills[j].style.width=results[j].score+'%'},50);
+
+// 条項別スコア
+var is=document.getElementById('itemScores');is.innerHTML='';
+var descs={A:'市場慣行内・問題なし',B:'許容範囲だが条件確認を',C:'交渉による改善を推奨',D:'再交渉を強く推奨'};
+for(var i=0;i<6;i++){
+var d=document.createElement('div');d.className='item-score rank-'+results[i].rank;
+d.innerHTML='<div class="irank rank-'+results[i].rank+'">'+results[i].rank+'</div><div class="iname">'+results[i].name+'</div><div class="idesc">'+descs[results[i].rank]+'</div>';
+is.appendChild(d)}
+
+// 重点確認条項
+var wl=document.getElementById('warnList');wl.innerHTML='';
+if(warnings.length===0){document.getElementById('warnCard').style.display='none'}
+else{document.getElementById('warnCard').style.display='block';
+for(var i=0;i<warnings.length;i++){var li=document.createElement('li');li.textContent=warnings[i].text;if(warnings[i].high)li.className='high';wl.appendChild(li)}}
+
+// 弁護士質問リスト
+var ql=document.getElementById('qList');ql.innerHTML='';
+if(questions.length===0){questions.push('全条項が市場慣行内です。投資家との情報権・報告義務の範囲を念のため確認してください。')}
+for(var i=0;i<questions.length;i++){var li=document.createElement('li');li.textContent=questions[i];ql.appendChild(li)}
+
+document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'})
+}
+</script>
+</body>
+</html>

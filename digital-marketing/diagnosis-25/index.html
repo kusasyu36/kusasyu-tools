@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI動画広告ツール診断＆プロンプトジェネレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f5f7fa;color:#1a1a2e;line-height:1.6}
+.w{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:1.25em;text-align:center;padding:18px 0 4px}
+.sub{text-align:center;color:#666;font-size:.83em;margin-bottom:20px}
+.c{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.c h2{font-size:1em;margin-bottom:10px;border-left:4px solid #6c5ce7;padding-left:10px}
+label{display:block;font-size:.88em;font-weight:600;margin:8px 0 3px}
+select,input{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:.93em}
+textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:.88em;resize:vertical;min-height:56px}
+.btn{display:block;width:100%;padding:13px;border:none;border-radius:10px;font-size:.98em;font-weight:700;cursor:pointer;margin-top:10px}
+.bp{background:#6c5ce7;color:#fff}.bp:hover{background:#5a4bd1}
+.bs{background:#00b894;color:#fff;margin-top:8px}.bs:hover{background:#00a381}
+.badge{background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;display:inline-block;padding:5px 14px;border-radius:18px;font-weight:700;font-size:1.05em;margin:6px 0}
+.reason{color:#555;font-size:.86em;margin:4px 0}
+.sp{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.sp span{background:#e8f5e9;padding:3px 9px;border-radius:6px;font-size:.78em}
+.pb{background:#2d3436;color:#a8e6cf;border-radius:8px;padding:12px;margin:8px 0;font-family:monospace;font-size:.83em;white-space:pre-wrap;position:relative;line-height:1.5}
+.cb{position:absolute;top:5px;right:5px;background:#6c5ce7;color:#fff;border:none;border-radius:6px;padding:3px 9px;font-size:.73em;cursor:pointer}
+.h{display:none}
+.ft{text-align:center;color:#999;font-size:.73em;padding:16px 0}
+.tip{font-size:.82em;color:#e17055;margin:4px 0}
+.meta{font-size:.83em;color:#555;margin:3px 0}
+</style>
+<meta name="description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI動画広告ツール診断＆プロンプトジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-25/">
+<meta property="og:title" content="AI動画広告ツール診断＆プロンプトジェネレーター - kusasyu tools">
+<meta property="og:description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-25/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI動画広告ツール診断＆プロンプトジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI動画広告ツール診断＆プロンプトジェネレーター",
+  "description": "EC事業者が商品写真だけからAI動画広告を制作するための実践ツールキット。最適なAI動画生成ツールを診断しコピペ可能なプロンプトを自動生成するHTMLツール、動画化による広告パフォーマンス改善を可視化するROI計測ダッシュボード、商品SKU単位で制作進捗と配信効果を管理するCSVシートの3点セット。前回の設計",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/diagnosis-25/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI動画広告ツール診断＆プロンプトジェネレーター</span></div>
+<div class="w">
+<h1>AI動画広告ツール診断＆プロンプトジェネレーター</h1>
+<p class="sub">商品写真だけからAI動画広告を作る — 最適ツール診断＆コピペ用プロンプト自動生成</p>
+<div class="c"><h2>Step 1：条件を選択</h2>
+<label>商品カテゴリ</label>
+<select id="cat"><option value="">選択してください</option><option value="apparel">アパレル</option><option value="cosmetics">コスメ・美容</option><option value="food">食品・飲料</option><option value="goods">雑貨・インテリア</option></select>
+<label>月額予算</label>
+<select id="bgt"><option value="">選択してください</option><option value="free">無料（0円）</option><option value="mid">〜3万円/月</option><option value="high">3万円以上/月</option></select>
+<label>配信先SNS</label>
+<select id="sns"><option value="">選択してください</option><option value="tiktok">TikTok</option><option value="reels">Instagram Reels</option><option value="shorts">YouTube Shorts</option></select>
+<button class="btn bp" onclick="diagnose()">診断する</button></div>
+<div id="rA" class="h"><div class="c"><h2>診断結果：おすすめツール</h2><div id="tR"></div></div>
+<div class="c"><h2>Step 2：商品情報を入力</h2>
+<label>商品名</label><input id="pN" placeholder="例：オーガニック美容オイル">
+<label>訴求ポイント（1〜2文）</label><textarea id="pP" placeholder="例：天然由来100%で敏感肌にも安心。3滴で翌朝のハリを実感。"></textarea>
+<label>ターゲット像</label><input id="pT" placeholder="例：30代女性・乾燥肌に悩む会社員">
+<button class="btn bs" onclick="gen()">プロンプトを3パターン生成</button></div></div>
+<div id="pA" class="h"><div class="c"><h2>生成プロンプト（3パターン）</h2><div class="sp" id="sI"></div><div id="pO"></div></div></div>
+<div class="ft">ツールデータ最終更新日：2026年6月22日 ｜ Kusasyu Digital Marketing</div>
+</div>
+<script>
+const T={veo3:{n:"Veo 3",by:"Google DeepMind",pr:"$20〜/月（Google AI Pro）",nt:"最高品質の映像生成。音声同時生成・カメラワーク指定対応。"},
+runway:{n:"Runway Gen-4",by:"Runway",pr:"$15〜/月（Standard）",nt:"画像→動画の精度が業界最高水準。モーションブラシで細部制御可能。"},
+kling:{n:"Kling 1.6",by:"Kuaishou",pr:"$8〜/月",nt:"コスパ最良。最長2分の長尺生成。日本語プロンプト対応。"},
+pika:{n:"Pika 2.0",by:"Pika Labs",pr:"無料枠あり（月10本）",nt:"初心者向けUI。無料で始められ操作が直感的。"},
+pixv:{n:"PixVerse v4",by:"PixVerse",pr:"無料枠あり（月15本）",nt:"テクスチャ表現に強い。無料枠が大きく試しやすい。"}};
+const MX={apparel:{free:"pika",mid:"kling",high:"veo3"},cosmetics:{free:"pixv",mid:"runway",high:"veo3"},food:{free:"pika",mid:"kling",high:"runway"},goods:{free:"pixv",mid:"kling",high:"veo3"}};
+const RS={apparel:{free:"無料枠で衣服の揺れ・ドレープを自然に表現できる",mid:"布の動きやモデルウォークを高品質に再現。コスパ◎",high:"最高画質でブランドの世界観を損なわない映像制作が可能"},
+cosmetics:{free:"テクスチャ描写力が高く、無料で化粧品の質感を表現",mid:"微細な色変化・テクスチャの制御精度が最高クラス",high:"フォトリアルな肌表現で高級感のある広告映像を実現"},
+food:{free:"無料枠で湯気・とろみなど食欲訴求モーションに対応",mid:"料理の「シズル感」を自然なモーションで再現可能",high:"プロ品質の食品映像。微細な質感・ライティング制御が可能"},
+goods:{free:"静物の回転・ズーム演出を無料枠で実現できる",mid:"商品の質感や使用シーンを自然に動画化。バランス◎",high:"空間演出を含む高品質なライフスタイル映像を制作可能"}};
+const SN={tiktok:{nm:"TikTok",rt:"9:16",sc:"15〜30秒",rs:"1080×1920",hk:"冒頭0.5秒で手を止めるフック必須"},reels:{nm:"Instagram Reels",rt:"9:16",sc:"15〜30秒",rs:"1080×1920",hk:"ビジュアルインパクトと美しさ重視"},shorts:{nm:"YouTube Shorts",rt:"9:16",sc:"15〜60秒",rs:"1080×1920",hk:"情報密度を高め検索意図に応える"}};
+const CJ={apparel:"アパレル",cosmetics:"コスメ",food:"食品",goods:"雑貨"};
+let cur={};
+function diagnose(){const c=document.getElementById("cat").value,b=document.getElementById("bgt").value,s=document.getElementById("sns").value;
+if(!c||!b||!s){alert("すべての項目を選択してください");return}
+const k=MX[c][b],t=T[k],sp=SN[s];cur={c,b,s,k,t};
+document.getElementById("tR").innerHTML=`<div class="badge">${t.n}</div><p class="reason">▶ ${RS[c][b]}</p><p class="meta"><b>提供元：</b>${t.by}｜<b>料金：</b>${t.pr}</p><p class="meta">${t.nt}</p><div style="margin-top:8px"><b style="font-size:.83em">配信先仕様（${sp.nm}）：</b><div class="sp"><span>📐 ${sp.rt}</span><span>⏱ ${sp.sc}</span><span>🖥 ${sp.rs}</span></div><p class="tip">💡 ${sp.hk}</p></div>`;
+document.getElementById("rA").classList.remove("h");document.getElementById("pA").classList.add("h");document.getElementById("rA").scrollIntoView({behavior:"smooth"})}
+function cp(id){const e=document.getElementById(id);navigator.clipboard.writeText(e.textContent).then(()=>{const b=e.parentElement.querySelector(".cb");b.textContent="✓済";setTimeout(()=>b.textContent="コピー",1200)})}
+function gen(){const nm=document.getElementById("pN").value.trim(),pt=document.getElementById("pP").value.trim(),tg=document.getElementById("pT").value.trim();
+if(!nm||!pt||!tg){alert("商品情報をすべて入力してください");return}
+const sp=SN[cur.s],cj=CJ[cur.c],tn=cur.t.n;
+const ps=[
+{t:"パターン1：商品クローズアップ",
+x:`【${sp.nm}広告用｜${sp.rt}縦型｜${sp.sc}｜${sp.rs}】\n${cj}商品「${nm}」のクローズアップ映像。\n白背景の上で商品がゆっくり360度回転し、カメラが徐々にズームイン。商品の質感・ディテールが伝わるソフトなライティング。\n訴求：${pt}\n対象：${tg}\nスタイル：高級感のあるプロダクト広告。冒頭0.5秒で商品全体を見せ視聴者の手を止める。テキストオーバーレイなし。`},
+{t:"パターン2：使用シーン演出",
+x:`【${sp.nm}広告用｜${sp.rt}縦型｜${sp.sc}｜${sp.rs}】\n${cj}商品「${nm}」の使用シーン映像。\n${tg}が明るい自然光の室内で商品を手に取り使用する様子。生活感のあるリアルな空間。表情はリラックスした満足感。\n訴求：${pt}\n構成：${sp.hk}。感情に訴える暖かみのある色調。最後に商品パッケージのカットで締める。`},
+{t:"パターン3：ビフォーアフター変化",
+x:`【${sp.nm}広告用｜${sp.rt}縦型｜${sp.sc}｜${sp.rs}】\n${cj}商品「${nm}」による変化を表現する映像。\n前半：使用前の状態（課題・悩みを視覚的に表現、やや暗いトーン）。\n中間：商品クローズアップのトランジション（光が差し込む演出）。\n後半：使用後の改善された状態（明るく鮮やかなトーン）。\n対象：${tg}\n訴求：${pt}\nスムーズな場面転換で変化を強調。${sp.hk}。`}];
+let h=`<p style="font-size:.83em;color:#555;margin-bottom:6px">📌 <b>${tn}</b> に以下を貼り付けて実行してください</p>`;
+ps.forEach((p,i)=>{const id="p"+i;h+=`<p style="font-weight:600;font-size:.88em;margin-top:10px">${p.t}</p><div class="pb"><span id="${id}">${p.x}</span><button class="cb" onclick="cp('${id}')">コピー</button></div>`});
+document.getElementById("sI").innerHTML=`<span>🎯 ${tn}</span><span>📐 ${sp.rt}</span><span>⏱ ${sp.sc}</span><span>📺 ${sp.nm}</span>`;
+document.getElementById("pO").innerHTML=h;document.getElementById("pA").classList.remove("h");document.getElementById("pA").scrollIntoView({behavior:"smooth"})}
+</script>
+</body>
+</html>

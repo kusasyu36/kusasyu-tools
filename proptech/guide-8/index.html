@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重説AI活用ワークフロー_実装シナリオガイド - kusasyu tools</title>
+<meta name="description" content="物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,重説AI活用ワークフロー_実装シナリオガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-8/">
+<meta property="og:title" content="重説AI活用ワークフロー_実装シナリオガイド - kusasyu tools">
+<meta property="og:description" content="物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/guide-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="重説AI活用ワークフロー_実装シナリオガイド - kusasyu tools">
+<meta name="twitter:description" content="物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "重説AI活用ワークフロー_実装シナリオガイド",
+  "description": "物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/guide-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-23"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>重説AI活用ワークフロー_実装シナリオガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>重説AI活用ワークフロー_実装シナリオガイド</h1>
+  <p class="project-name">重説ドラフト、まだ手書き？AI下書き無料キット</p>
+  <div class="content">
+<p>以下は重要事項説明書の法令制限セクションの下書きです。
+買主が一般消費者である前提で、専門用語に括弧書きの補足説明を追加してください。
+内容の追加・削除はせず、表現の平易化のみ行ってください。</p>
+<hr />
+<p>（ここにHTMLツールの出力テキストを貼り付け）</p>
+<pre><code>
+&gt; 用途：建蔽率・容積率・用途地域など専門用語が並ぶ箇所を、買主に口頭説明しやすい文言に調整する。
+
+---
+
+**プロンプト②：特記事項・容認事項の文案を生成する**
+
+</code></pre>
+<p>以下の物件条件に基づき、重要事項説明書の「特記事項（容認事項）」の文案を
+3項目作成してください。各項目は2〜3文で簡潔に記載してください。</p>
+<p>物件条件：
+- （例）築35年・木造2階建
+- （例）東側隣地との境界標が一部不明
+- （例）南側に3階建の建築計画あり（売主告知済）</p>
+<pre><code>
+&gt; 用途：売主からのヒアリング内容や現地調査で判明した事項を、特記事項の定型文に変換する。
+
+---
+
+**プロンプト③：チェックリスト照合の抜け漏れ確認**
+
+</code></pre>
+<p>以下は重要事項説明書の下書きです。
+宅建業法35条の説明義務事項として、記載が漏れている可能性がある項目を
+指摘してください。指摘は箇条書きで、条項番号と理由を付けてください。</p>
+<hr />
+<p>（ここにHTMLツールの出力テキスト全文を貼り付け）</p>
+<pre><code>
+&gt; 用途：Step 4の手動チェック前に、AIによる機械的なスクリーニングを1回挟むことで見落としを減らす。
+
+---
+
+### AIへの指示のコツ
+
+- **「追加・削除はしない」と明示する** — AIが勝手に条項を追加・省略することを防ぐ
+- **出力フォーマットを指定する** — 「箇条書きで」「表形式で」と書くと整理された回答が返る
+- **1回のプロンプトで1タスク** — 「平易化して、かつ抜け漏れも確認して」より分けた方が精度が高い
+
+---
+
+## Step 4：チェックリストで最終確認
+
+### やること
+
+「重説35条 全項目コンプライアンスチェックリスト」（Excel）を使い、全条項の記載有無を目視確認します。
+
+### チェックリストの使い方
+
+1. **Excelでチェックリストを開く**
+2. **物件種別列でフィルタ** — 「売買:建物」等、該当する列が「必須」または「該当時」の行だけ表示
+3. **チェック列に「○」を入力** — 下書きに記載済みの項目を1行ずつ確認
+4. **条件付き書式で済行をグレーアウト（推奨）** — 未チェック行が視覚的に目立つ
+5. **「○」が入っていない行 ＝ 記載漏れ候補** — 下書きに戻って補記
+
+### 特に漏れやすい項目（チェックリストの「記載漏れ例」列を参照）
+
+- **1項1号** — 抵当権の記載はあるが残債有無が未確認
+- **1項2号** — 用途地域の記載はあるが建蔽率・容積率が抜け
+- **1項4号** — 前面道路の本管口径が未記載
+- **1項7号** — 固定資産税精算金の記載漏れ、「目的」欄が空欄
+- **1項6号ホ（区分所有時）** — 管理組合への滞納額照会漏れ
+
+### 最終確認後のアクション
+
+- チェックリストの全行に「○」が入ったら、宅建士が内容を通読し、最終署名・押印に進む
+- **チェックリストのExcelファイルは案件ごとに保存し、重説の控えと一緒に保管する**（業務記録として推奨）
+
+---
+
+## AI活用時の注意事項
+
+### 個人情報・未公開情報の入力禁止
+
+汎用AI（ChatGPT・Claude等）に入力したテキストは、サービス提供者のサーバーで処理されます。以下の情報は**絶対にAIに入力しないでください**。
+
+| 入力禁止の情報 | 理由 |
+|--------------|------|
+| 売主・買主の氏名・住所・連絡先 | 個人情報保護法違反リスク |
+| 登記名義人の実名 | 取引当事者の特定につながる |
+| 未公開の売出価格・取引条件 | 守秘義務違反リスク |
+| 管理組合の内部資料の原文 | 第三者への開示制限がある場合がある |
+
+### 安全な入力方法
+
+- 氏名は「売主A」「買主B」に置換してからAIに貼り付ける
+- 所在地は町名まで（番地以降を削除）に留める
+- 価格は「○○万円」とマスクする
+- AIの出力を重説にコピーした後、マスクした箇所を手動で正しい値に戻す
+
+### AIの出力は「下書きの下書き」
+
+- AIが生成した文言は**必ず宅建士が内容を確認**してから使用すること
+- AIは法改正情報のリアルタイム反映を保証しません。次回法改正確認推奨：**2026年12月**（住宅セーフティネット法改正・デジタル重説恒久化対応を確認）
+- 最終的な説明義務と責任は**宅建士個人**に帰属します。AI出力の無検証転記は絶対に避けてください
+
+---
+
+## ワークフロー全体図
+
+</code></pre>
+<p>┌─────────────────────────────────────────────────┐
+│  Step 1  物件情報の整理                           │
+│  公的資料10種を収集・手元に準備                     │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  Step 2  HTMLツールで下書き生成                     │
+│  「居住用建物売買 重説ドラフト自動生成ツール」に入力  │
+│  → ワンクリックで35条全項目の下書きを出力           │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  Step 3  汎用AIで文言ブラッシュアップ               │
+│  プロンプト3種で平易化・特記事項生成・抜け漏れ確認   │
+│  ※ 個人情報・未公開情報はマスクして入力             │
+└──────────────────┬──────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────┐
+│  Step 4  チェックリストで最終確認                   │
+│  「重説35条 全項目コンプライアンスチェックリスト」    │
+│  Excelでフィルタ → 全行に○ → 宅建士が最終確認     │
+└─────────────────────────────────────────────────┘</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>
