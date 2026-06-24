@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sora終了後のAIロケ動画制作_実践ワークフロー - kusasyu tools</title>
+<meta name="description" content="EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,Sora終了後のAIロケ動画制作_実践ワークフロー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sora-ai/">
+<meta property="og:title" content="Sora終了後のAIロケ動画制作_実践ワークフロー - kusasyu tools">
+<meta property="og:description" content="EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sora-ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sora終了後のAIロケ動画制作_実践ワークフロー - kusasyu tools">
+<meta name="twitter:description" content="EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sora終了後のAIロケ動画制作_実践ワークフロー",
+  "description": "EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/sora-ai/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-06-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>Sora終了後のAIロケ動画制作_実践ワークフロー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>Sora終了後のAIロケ動画制作_実践ワークフロー</h1>
+  <p class="project-name">撮影費ゼロで商品動画？AIロケ合成ツール</p>
+  <div class="content">
+<h1>Sora終了後のAIロケ動画制作 実践ワークフロー</h1>
+<p><strong>商品写真1枚 → バーチャルロケーション合成動画を完成させる全手順</strong></p>
+<hr />
+<h2>この記事の使い方</h2>
+<p>本記事は「<strong>AI商品ロケーション動画プロンプトジェネレーター</strong>」（HTMLツール）と併用する実践マニュアルです。ツール選定・プロンプト生成はジェネレーターに任せ、本記事では<strong>操作手順そのもの</strong>に集中して解説します。</p>
+<p><strong>前提条件</strong></p>
+<ul>
+<li>商品写真が最低1枚ある（スマホ撮影でOK）</li>
+<li>PC または タブレットで作業できる</li>
+<li>動画編集の経験は不要</li>
+</ul>
+<hr />
+<h2>全体フロー（6ステップ）</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>工程</th>
+<th>所要時間目安</th>
+<th>使うもの</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>素材準備</td>
+<td>10分</td>
+<td>スマホ / カメラ</td>
+</tr>
+<tr>
+<td>2</td>
+<td>背景除去</td>
+<td>3分</td>
+<td>背景除去ツール</td>
+</tr>
+<tr>
+<td>3</td>
+<td>プロンプト作成</td>
+<td>2分</td>
+<td>HTMLジェネレーター</td>
+</tr>
+<tr>
+<td>4</td>
+<td>AI動画生成</td>
+<td>5〜15分</td>
+<td>AI動画生成ツール</td>
+</tr>
+<tr>
+<td>5</td>
+<td>軽微編集</td>
+<td>10分</td>
+<td>CapCut等</td>
+</tr>
+<tr>
+<td>6</td>
+<td>プラットフォーム別書き出し</td>
+<td>5分</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<p><strong>合計：約35〜45分で1本完成。撮影費は0円。</strong></p>
+<hr />
+<h2>Step 1｜素材準備 — 「使える写真」の条件</h2>
+<h3>撮影のポイント</h3>
+<ol>
+<li><strong>白背景 or 単色背景</strong>で撮る（背景除去の精度が上がる）</li>
+<li><strong>商品全体</strong>がフレーム内に収まっていること（切れNG）</li>
+<li><strong>影を最小限</strong>にする（自然光＋レフ板代わりの白い紙でOK）</li>
+<li>解像度は<strong>1024×1024px以上</strong>を推奨</li>
+</ol>
+<h3>既存素材を使う場合</h3>
+<p>ECサイトに掲載済みの商品画像でも問題ない。ただし以下を確認する。</p>
+<ul>
+<li>背景が複雑すぎないか（モデル着用写真より物撮りが適す）</li>
+<li>JPEG圧縮でノイズが目立たないか</li>
+<li>商品の色味が実物と近いか</li>
+</ul>
+<blockquote>
+<p><strong>Tips</strong>: 楽天・Amazon出品用に撮影済みの白背景画像があれば、それがベスト素材になる。</p>
+</blockquote>
+<hr />
+<h2>Step 2｜背景除去 — 商品を切り抜く</h2>
+<h3>手順</h3>
+<ol>
+<li>背景除去ツール（remove.bg、Canva背景リムーバー等）にアクセス</li>
+<li>商品画像をアップロード</li>
+<li>自動で背景が透過される</li>
+<li><strong>PNG形式</strong>でダウンロード（透過情報を保持するため必ずPNG）</li>
+</ol>
+<h3>チェックポイント</h3>
+<ul>
+<li>商品の輪郭がギザギザしていないか</li>
+<li>細い部分（持ち手・紐など）が消えていないか</li>
+<li>影やハイライトが不自然に残っていないか</li>
+</ul>
+<p>問題があれば、手動でエッジを微調整する。多くのツールには「修正ブラシ」機能がある。</p>
+<hr />
+<h2>Step 3｜プロンプト作成 — ジェネレーターを活用</h2>
+<h3>手順</h3>
+<ol>
+<li><strong>AI商品ロケーション動画プロンプトジェネレーター</strong>を開く</li>
+<li>「商品カテゴリ」を選択（化粧品・食品・アパレル等）</li>
+<li>「ターゲット市場」を選択</li>
+<li>「生成」ボタンを押す</li>
+<li>表示されたロケーション候補とプロンプトをコピー</li>
+</ol>
+<p>ジェネレーターが出力するプロンプトは、各AI動画ツールに最適化されている。<strong>自分でプロンプトを一から書く必要はない。</strong></p>
+<h3>プロンプト調整のコツ</h3>
+<p>ジェネレーターの出力をそのまま使えるが、以下を微調整すると精度が上がる。</p>
+<ul>
+<li><strong>カメラアングル</strong>: 正面 → ローアングル（高級感UP）</li>
+<li><strong>時間帯</strong>: 昼間 → ゴールデンアワー（温かみUP）</li>
+<li><strong>動き</strong>: 静止 → スローパン（映像のリッチさUP）</li>
+</ul>
+<hr />
+<h2>Step 4｜AI動画生成 — 実行と品質チェック</h2>
+<h3>基本手順（共通フロー）</h3>
+<ol>
+<li>AI動画生成ツールにログイン</li>
+<li>「Image to Video」モードを選択</li>
+<li>Step 2で作った透過PNG画像をアップロード</li>
+<li>Step 3でコピーしたプロンプトを貼り付け</li>
+<li>生成を実行（数分待つ）</li>
+<li>結果をプレビューし、OKならダウンロード</li>
+</ol>
+<blockquote>
+<p><strong>ツール選定について</strong>: AI動画ツールは更新が激しいため、最新の推奨ツールは<strong>AI商品ロケーション動画プロンプトジェネレーター内の案内</strong>を参照してください。</p>
+</blockquote>
+<h3>品質チェック項目</h3>
+<table>
+<thead>
+<tr>
+<th>チェック項目</th>
+<th>合格基準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品の形状</td>
+<td>歪みや溶けがない</td>
+</tr>
+<tr>
+<td>ロゴ・テキスト</td>
+<td>読める状態で維持されている</td>
+</tr>
+<tr>
+<td>背景の自然さ</td>
+<td>合成感が目立たない</td>
+</tr>
+<tr>
+<td>動きの滑らかさ</td>
+<td>カクつきがない</td>
+</tr>
+<tr>
+<td>色味の一貫性</td>
+<td>商品色が実物と大きく乖離しない</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NGだった場合</strong>: プロンプトの微調整 → 再生成。通常2〜3回で満足いく結果が得られる。</p>
+<hr />
+<h2>Step 5｜軽微編集 — 仕上げ作業</h2>
+<h3>無料ツールでの編集手順（CapCut推奨）</h3>
+<ol>
+<li>AI生成動画をインポート</li>
+<li>以下の要素を追加</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>追加要素</th>
+<th>目的</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ブランドロゴ</td>
+<td>認知・信頼性</td>
+<td>右上に配置、透過度80%</td>
+</tr>
+<tr>
+<td>商品名テキスト</td>
+<td>情報伝達</td>
+<td>下部に白文字＋影</td>
+</tr>
+<tr>
+<td>CTA文言</td>
+<td>購買誘導</td>
+<td>末尾2秒に表示</td>
+</tr>
+<tr>
+<td>BGM</td>
+<td>雰囲気演出</td>
+<td>著作権フリー素材を使用</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>全体を通しでプレビュー</li>
+<li>書き出し前に<strong>音量バランス</strong>を確認（BGMが大きすぎないか）</li>
+</ol>
+<h3>編集で「やりすぎない」3原則</h3>
+<ol>
+<li>テキストは<strong>最大3要素</strong>まで（商品名・価格・CTA）</li>
+<li>エフェクトは<strong>1種類</strong>まで（フェードイン程度）</li>
+<li>動画の尺は<strong>15秒以内</strong>に収める（SNS広告の最適尺）</li>
+</ol>
+<hr />
+<h2>Step 6｜プラットフォーム別書き出し</h2>
+<h3>主要プラットフォーム書き出し設定</h3>
+<table>
+<thead>
+<tr>
+<th>プラットフォーム</th>
+<th>アスペクト比</th>
+<th>推奨解像度</th>
+<th>最大尺</th>
+<th>ファイル形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instagram Reels</td>
+<td>9:16</td>
+<td>1080×1920</td>
+<td>90秒</td>
+<td>MP4</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>9:16</td>
+<td>1080×1920</td>
+<td>60秒</td>
+<td>MP4</td>
+</tr>
+<tr>
+<td>YouTube Shorts</td>
+<td>9:16</td>
+<td>1080×1920</td>
+<td>60秒</td>
+<td>MP4</td>
+</tr>
+<tr>
+<td>楽天商品ページ</td>
+<td>16:9</td>
+<td>1280×720</td>
+<td>60秒</td>
+<td>MP4</td>
+</tr>
+<tr>
+<td>Amazon商品動画</td>
+<td>16:9</td>
+<td>1920×1080</td>
+<td>45秒</td>
+<td>MP4</td>
+</tr>
+<tr>
+<td>Shopifyストア</td>
+<td>16:9</td>
+<td>1920×1080</td>
+<td>制限なし</td>
+<td>MP4</td>
+</tr>
+</tbody>
+</table>
+<h3>書き出し手順</h3>
+<ol>
+<li>CapCutの「エクスポート」を選択</li>
+<li>上記の解像度・アスペクト比を設定</li>
+<li><strong>1本の動画から複数比率で書き出す</strong>（9:16版と16:9版の2パターンが基本）</li>
+<li>ファイル名に <code>[商品名]_[プラットフォーム]_[日付]</code> を付ける</li>
+</ol>
+<hr />
+<h2>カテゴリ別 実践例</h2>
+<h3>実践例①｜化粧品（リップスティック）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品</td>
+<td>リップスティック（単品）</td>
+</tr>
+<tr>
+<td>ロケーション</td>
+<td>銀座の夜景ストリート</td>
+</tr>
+<tr>
+<td>カメラ動き</td>
+<td>スローズームイン</td>
+</tr>
+<tr>
+<td>演出意図</td>
+<td>都会的な洗練・高級感</td>
+</tr>
+<tr>
+<td>プロンプト要点</td>
+<td>「ガラステーブル上のリップ、銀座のネオン反射、シネマティック、浅い被写界深度」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結果イメージ</strong>: 銀座のイルミネーションがテーブルに反射し、その中心にリップスティックが佇む。カメラがゆっくり寄っていき、質感のディテールが見える。</p>
+<p><strong>活用先</strong>: Instagram Reels広告 → LP誘導</p>
+<hr />
+<h3>実践例②｜食品（抹茶スイーツ）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品</td>
+<td>抹茶フィナンシェ（ギフトボックス）</td>
+</tr>
+<tr>
+<td>ロケーション</td>
+<td>京都の竹林小道</td>
+</tr>
+<tr>
+<td>カメラ動き</td>
+<td>スライド（左→右）</td>
+</tr>
+<tr>
+<td>演出意図</td>
+<td>和の世界観・贈答品の特別感</td>
+</tr>
+<tr>
+<td>プロンプト要点</td>
+<td>「竹林を背景にした木製トレイ上の抹茶菓子、木漏れ日、自然光、スローパン」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結果イメージ</strong>: 竹林の奥から木漏れ日が差し込み、手前の木製トレイに並んだ抹茶フィナンシェを照らす。カメラが横にスライドし、パッケージ全体が見える。</p>
+<p><strong>活用先</strong>: 楽天商品ページ動画 → 回遊率向上</p>
+<hr />
+<h3>実践例③｜アパレル（レザーバッグ）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品</td>
+<td>レザートートバッグ</td>
+</tr>
+<tr>
+<td>ロケーション</td>
+<td>パリのカフェテラス</td>
+</tr>
+<tr>
+<td>カメラ動き</td>
+<td>軌道（商品を中心に半円回転）</td>
+</tr>
+<tr>
+<td>演出意図</td>
+<td>ヨーロピアンなライフスタイル提案</td>
+</tr>
+<tr>
+<td>プロンプト要点</td>
+<td>「パリのカフェ、大理石テーブル上のレザーバッグ、午後の陽光、オービットショット」</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結果イメージ</strong>: パリの石畳のカフェテラス。大理石テーブルの上に置かれたレザーバッグをカメラが半周回り、革の質感と縫製ディテールが映る。</p>
+<p><strong>活用先</strong>: Shopifyストアのヒーロー動画 → ブランド世界観の訴求</p>
+<hr />
+<h2>よくあるトラブルと対処法</h2>
+<table>
+<thead>
+<tr>
+<th>トラブル</th>
+<th>原因</th>
+<th>対処法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>商品が歪む</td>
+<td>元画像の解像度不足</td>
+<td>1024px以上の画像を使用</td>
+</tr>
+<tr>
+<td>ロゴが潰れる</td>
+<td>AI動画生成の特性</td>
+<td>編集時にロゴを後付け</td>
+</tr>
+<tr>
+<td>背景が不自然</td>
+<td>プロンプトが曖昧</td>
+<td>ジェネレーターの推奨文をそのまま使用</td>
+</tr>
+<tr>
+<td>動きが単調</td>
+<td>カメラ指定なし</td>
+<td>プロンプトにカメラワークを明記</td>
+</tr>
+<tr>
+<td>書き出し後に画質低下</td>
+<td>圧縮設定の問題</td>
+<td>ビットレートを高め（15Mbps以上）に設定</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>運用チェックリスト</h2>
+<p>動画を公開する前に、以下を最終確認する。</p>
+<ul>
+<li>[ ] 商品の色味が実物と大きく異なっていないか</li>
+<li>[ ] 薬機法・景品表示法に抵触する表現がないか（特に化粧品・食品）</li>
+<li>[ ] 「AI生成」であることを理由に消費者を誤認させる演出がないか</li>
+<li>[ ] ブランドロゴとCTA文言が入っているか</li>
+<li>[ ] 各プラットフォームの推奨仕様に合致しているか</li>
+<li>[ ] ファイル名が管理ルールに沿っているか</li>
+</ul>
+<hr />
+<h2>まとめ — 撮影費ゼロの動画制作を日常業務にする</h2>
+<p>このワークフローを回せば、<strong>1本あたり35〜45分・撮影費0円</strong>で商品動画を量産できる。</p>
+<p><strong>週次ルーティンの例</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>曜日</th>
+<th>作業内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月曜</td>
+<td>新商品・注力商品の素材準備（Step 1-2）</td>
+</tr>
+<tr>
+<td>火曜</td>
+<td>AI動画生成＋品質チェック（Step 3-4）</td>
+</tr>
+<tr>
+<td>水曜</td>
+<td>編集＋書き出し（Step 5-6）</td>
+</tr>
+<tr>
+<td>木〜日</td>
+<td>各プラットフォームへ投稿・効果測定</td>
+</tr>
+</tbody>
+</table>
+<p>まずは手元にある商品写真1枚で、今日このワークフローを試してほしい。<strong>AI商品ロケーション動画プロンプトジェネレーター</strong>を開き、Step 1から順番に進めるだけで、最初の1本が完成する。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>

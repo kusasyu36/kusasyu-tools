@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI商品ロケーション動画プロンプトジェネレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#0a0a0f;color:#e0e0e0;line-height:1.6}
+.wrap{max-width:840px;margin:0 auto;padding:12px}
+h1{font-size:1.3em;text-align:center;padding:16px 0 4px;background:linear-gradient(135deg,#6366f1,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;font-size:.8em;color:#888;margin-bottom:14px}
+.cost-bar{display:flex;gap:6px;overflow-x:auto;padding:10px 0;margin-bottom:12px}
+.cost-card{flex:0 0 auto;background:#16162a;border:1px solid #2a2a4a;border-radius:8px;padding:8px 12px;min-width:140px}
+.cost-card h4{font-size:.75em;color:#a78bfa;margin-bottom:2px}
+.cost-card .price{font-size:1em;font-weight:700;color:#f0f0f0}
+.cost-card .note{font-size:.65em;color:#777}
+.form-section{background:#12121f;border-radius:10px;padding:16px;margin-bottom:14px;border:1px solid #1e1e3a}
+.form-section label{display:block;font-size:.8em;font-weight:600;color:#a78bfa;margin-bottom:6px}
+.sel-group{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.sel-btn{padding:7px 14px;border-radius:20px;border:1px solid #333;background:#1a1a2e;color:#ccc;cursor:pointer;font-size:.8em;transition:.2s}
+.sel-btn:hover{border-color:#6366f1}
+.sel-btn.on{background:#6366f1;color:#fff;border-color:#6366f1}
+.gen-btn{width:100%;padding:13px;border:0;border-radius:10px;background:linear-gradient(135deg,#6366f1,#ec4899);color:#fff;font-size:1em;font-weight:700;cursor:pointer;margin-bottom:14px;transition:.3s}
+.gen-btn:hover{opacity:.85;transform:scale(1.01)}
+#result{display:none}
+.result-card{background:#12121f;border:1px solid #1e1e3a;border-radius:10px;padding:14px;margin-bottom:10px}
+.result-card h3{font-size:.9em;color:#ec4899;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.prompt-box{background:#0a0a18;border:1px solid #2a2a4a;border-radius:8px;padding:10px;font-size:.78em;white-space:pre-wrap;word-break:break-all;position:relative;margin-bottom:8px}
+.copy-btn{position:absolute;top:6px;right:6px;background:#6366f1;color:#fff;border:0;border-radius:4px;padding:3px 8px;font-size:.7em;cursor:pointer}
+.tag{display:inline-block;background:#1e1e3a;color:#a78bfa;padding:3px 10px;border-radius:12px;font-size:.72em;margin:2px}
+.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ab-card{background:#0f0f1e;border:1px solid #2a2a4a;border-radius:8px;padding:10px}
+.ab-card h5{font-size:.75em;color:#fbbf24;margin-bottom:4px}
+.ab-card p{font-size:.72em;color:#bbb}
+.tool-badge{display:inline-block;background:#ec489930;color:#ec4899;padding:2px 8px;border-radius:10px;font-size:.68em;margin:1px}
+@media(max-width:600px){.ab-grid{grid-template-columns:1fr}.cost-bar{flex-wrap:wrap}}
+</style>
+<meta name="description" content="EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI商品ロケーション動画プロンプトジェネレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-72/">
+<meta property="og:title" content="AI商品ロケーション動画プロンプトジェネレーター - kusasyu tools">
+<meta property="og:description" content="EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-72/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI商品ロケーション動画プロンプトジェネレーター - kusasyu tools">
+<meta name="twitter:description" content="EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI商品ロケーション動画プロンプトジェネレーター",
+  "description": "EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/tool-72/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI商品ロケーション動画プロンプトジェネレーター</span></div>
+<div class="wrap">
+<h1>AI商品ロケーション動画 プロンプトジェネレーター</h1>
+<p class="sub">撮影費ゼロ — 商品×ロケーション×プラットフォーム最適プロンプトを即生成</p>
+
+<div class="cost-bar" id="costBar"></div>
+
+<div class="form-section">
+<label>商品カテゴリ</label>
+<div class="sel-group" id="catGroup"></div>
+<label>配信プラットフォーム</label>
+<div class="sel-group" id="platGroup"></div>
+<label>希望ロケーション</label>
+<div class="sel-group" id="locGroup"></div>
+<label>AIツール</label>
+<div class="sel-group" id="toolGroup"></div>
+</div>
+
+<button class="gen-btn" onclick="generate()">プロンプトを生成する</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+const D={
+cats:{food:{ja:"食品",en:"food product",look:"warm natural lighting, appetizing",cam:"slow dolly-in to close-up",color:"warm tone, saturation +15%"},cosmetic:{ja:"化粧品",en:"cosmetic product",look:"soft glow, elegant",cam:"smooth arc shot, 45-degree angle",color:"soft pastel, highlights +10%"},apparel:{ja:"アパレル",en:"fashion apparel",look:"stylish editorial, dynamic",cam:"tracking shot following model movement",color:"high contrast, cinematic grade"},goods:{ja:"雑貨",en:"lifestyle goods",look:"cozy lifestyle setting",cam:"slow zoom out revealing scene",color:"muted earth tones, gentle fade"}},
+plats:{tiktok:{ja:"TikTok",ratio:"9:16",dur:"15-30s",tip:"冒頭2秒でフック、テンポ速め"},reels:{ja:"Reels",ratio:"9:16",dur:"15-30s",tip:"音楽同期、ループ再生意識"},shorts:{ja:"YouTube Shorts",ratio:"9:16",dur:"30-60s",tip:"情報量多め、テロップ推奨"},rakuten:{ja:"楽天",ratio:"16:9",dur:"30-60s",tip:"商品スペック明示、信頼感重視"},amazon:{ja:"Amazon",ratio:"16:9",dur:"15-45s",tip:"白背景+ロケ切替で差別化"}},
+locs:{shibuya:{ja:"渋谷",en:"Shibuya crossing Tokyo",scene:"neon lights, busy intersection, urban energy",time:"night"},asakusa:{ja:"浅草",en:"Asakusa Senso-ji Temple Tokyo",scene:"traditional temple gate, lanterns, cultural heritage",time:"golden hour"},ginza:{ja:"銀座",en:"Ginza district Tokyo",scene:"luxury storefronts, clean streets, premium atmosphere",time:"evening blue hour"},paris:{ja:"パリ",en:"Paris Eiffel Tower area",scene:"Parisian cafe, cobblestone streets, romantic atmosphere",time:"morning soft light"},ny:{ja:"ニューヨーク",en:"New York Times Square",scene:"iconic billboards, yellow cabs, metropolitan energy",time:"sunset"}},
+tools:{kling:{name:"Kling AI",price:"無料〜$66/月",good:"実写風リアル動画",fmt:"テキスト→動画"},runway:{name:"RunwayML Gen-3",price:"$12〜$76/月",good:"カメラ制御・高品質",fmt:"画像+テキスト→動画"},pika:{name:"Pika 2.0",price:"無料〜$58/月",good:"手軽・テキスト指示",fmt:"テキスト→動画"},hailuo:{name:"Hailuo MiniMax",price:"無料〜$30/月",good:"長尺・自然な動き",fmt:"テキスト→動画"}}
+};
+
+function initUI(){
+const mk=(id,obj,multi)=>{const g=document.getElementById(id);Object.keys(obj).forEach(k=>{const b=document.createElement("span");b.className="sel-btn";b.textContent=obj[k].ja||obj[k].name;b.dataset.k=k;b.onclick=()=>{if(!multi){g.querySelectorAll(".sel-btn").forEach(x=>x.classList.remove("on"))}b.classList.toggle("on")};g.appendChild(b)})};
+mk("catGroup",D.cats);mk("platGroup",D.plats);mk("locGroup",D.locs);mk("toolGroup",D.tools);
+const cb=document.getElementById("costBar");
+Object.values(D.tools).forEach(t=>{cb.innerHTML+=`<div class="cost-card"><h4>${t.name}</h4><div class="price">${t.price}</div><div class="note">${t.good}｜${t.fmt}</div></div>`});
+}
+
+function getSelected(id){const r=[];document.querySelectorAll(`#${id} .on`).forEach(b=>r.push(b.dataset.k));return r}
+
+function generate(){
+const cats=getSelected("catGroup"),plats=getSelected("platGroup"),locs=getSelected("locGroup"),tools=getSelected("toolGroup");
+if(!cats.length||!plats.length||!locs.length||!tools.length){alert("各項目を1つ以上選択してください");return}
+const c=D.cats[cats[0]],p=D.plats[plats[0]],l=D.locs[locs[0]],t=D.tools[tools[0]];
+const ja=buildJA(c,p,l,t),en=buildEN(c,p,l,t);
+const cam=getCam(c,p,l),color=getColor(c,l),ab=getAB(c,p,l);
+let h=`<div class="result-card"><h3>📝 日本語プロンプト — ${t.name}用</h3><div class="prompt-box" id="pJA"><button class="copy-btn" onclick="cp('pJA')">コピー</button>${esc(ja)}</div></div>`;
+h+=`<div class="result-card"><h3>🌐 英語プロンプト — ${t.name}用</h3><div class="prompt-box" id="pEN"><button class="copy-btn" onclick="cp('pEN')">コピー</button>${esc(en)}</div></div>`;
+h+=`<div class="result-card"><h3>🎬 推奨カメラワーク</h3>${cam.map(x=>`<span class="tag">${x}</span>`).join("")}</div>`;
+h+=`<div class="result-card"><h3>🎨 色調・グレーディング設定</h3>${color.map(x=>`<span class="tag">${x}</span>`).join("")}</div>`;
+h+=`<div class="result-card"><h3>🔀 A/Bテスト バリエーション</h3><div class="ab-grid">${ab.map((x,i)=>`<div class="ab-card"><h5>パターン${String.fromCharCode(65+i)}</h5><p>${x}</p></div>`).join("")}</div></div>`;
+h+=`<div class="result-card"><h3>📋 配信設定メモ</h3><span class="tag">アスペクト比: ${p.ratio}</span><span class="tag">推奨尺: ${p.dur}</span><span class="tag">ポイント: ${p.tip}</span></div>`;
+const rd=document.getElementById("result");rd.innerHTML=h;rd.style.display="block";rd.scrollIntoView({behavior:"smooth"});
+}
+
+function buildJA(c,p,l,t){
+return `${l.ja}の${l.scene.split(",")[0]}を背景に、${c.ja}を${c.look.split(",")[0]}で映した${p.dur}の動画。
+カメラは${c.cam}。${l.time === "night" ? "ネオンの光が商品を照らし" : l.time === "golden hour" ? "黄金色の自然光が包み" : l.time === "evening blue hour" ? "ブルーアワーの上品な光の中" : l.time === "morning soft light" ? "朝の柔らかい光の中" : "夕焼けの温かい光の中"}、
+商品がフレーム中央に配置される構図。${c.color}のカラーグレーディング。
+アスペクト比${p.ratio}、${p.tip}。プロの商品広告品質。`}
+
+function buildEN(c,p,l,t){
+return `A ${p.dur} cinematic product video of a ${c.en} set against ${l.en}, ${l.scene}.
+Camera: ${c.cam}. Lighting: ${l.time} atmosphere. The product is centered in frame with ${c.look}.
+Color grading: ${c.color}. Aspect ratio ${p.ratio}. Professional commercial quality, photorealistic.`}
+
+function getCam(c,p,l){
+const base=[c.cam];
+if(p.ratio==="9:16") base.push("縦構図・被写体中央配置");
+else base.push("横構図・三分割法");
+base.push(l.time==="night"?"低速シャッター風ライトトレイル":"自然光活用・レフ板効果");
+base.push("商品への寄り→引きの2段構成推奨");return base}
+
+function getColor(c,l){
+const base=[c.color];
+if(l.time==="night") base.push("ティール&オレンジ","コントラスト+20%");
+else if(l.time==="golden hour") base.push("ゴールデン暖色系","シャドウ柔らかめ");
+else if(l.time==="evening blue hour") base.push("クールブルー基調","ハイライト抑えめ");
+else base.push("ナチュラルトーン","明瞭度+10%");
+return base}
+
+function getAB(c,p,l){return[
+`ロケ: ${l.ja}×昼景 — 明るくポジティブな印象、CTR重視`,
+`ロケ: ${l.ja}×夜景 — ドラマチックで高級感、ブランディング重視`,
+`構図: 商品単体クローズアップ → ロケ引き — 世界観訴求`,
+`構図: ロケ全景 → 商品寄り — ストーリー型で完視聴率重視`]}
+
+function cp(id){const t=document.getElementById(id).innerText.replace("コピー","").trim();navigator.clipboard.writeText(t).then(()=>{const b=document.querySelector(`#${id} .copy-btn`);b.textContent="✓";setTimeout(()=>b.textContent="コピー",1500)})}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+initUI();
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産投資キャッシュフローシミュレーター | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Hiragino Sans',sans-serif;background:#f0f4f8;color:#1e293b;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.35em;color:#1e3a5f;margin:10px 0 2px}
+.sub{text-align:center;color:#64748b;font-size:.82em;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:500px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.78em;color:#475569;margin-bottom:2px;font-weight:600}
+input{width:100%;padding:8px 10px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:1em;transition:border .2s}
+input:focus{outline:none;border-color:#1a56db}
+.u{font-size:.72em;color:#94a3b8}
+.btn{width:100%;padding:12px;background:linear-gradient(135deg,#1a56db,#1e40af);color:#fff;border:none;border-radius:10px;font-size:1.05em;font-weight:700;cursor:pointer;margin:10px 0 0}
+.btn:hover{opacity:.9}
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+@media(max-width:500px){.results{grid-template-columns:1fr 1fr}}
+.rc{background:#f8fafc;border-radius:10px;padding:12px 8px;text-align:center;border:1px solid #e2e8f0}
+.rc .v{font-size:1.4em;font-weight:800;color:#1a56db}
+.rc .l{font-size:.7em;color:#64748b;margin-top:2px}
+canvas{width:100%;height:280px;display:block}
+.leg{display:flex;justify-content:center;gap:16px;margin-top:8px;font-size:.78em;flex-wrap:wrap}
+.leg span::before{content:'';display:inline-block;width:14px;height:3px;margin-right:4px;vertical-align:middle;border-radius:2px}
+.lo::before{background:#059669}.lm::before{background:#1a56db}.lp::before{background:#dc2626}
+.note{text-align:center;font-size:.68em;color:#94a3b8;margin-top:4px}
+.share{background:linear-gradient(135deg,#059669,#047857);margin-top:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:.72em;margin-top:10px}
+.tbl th,.tbl td{padding:4px 6px;border:1px solid #e2e8f0;text-align:right}
+.tbl th{background:#f1f5f9;font-weight:600;text-align:center}
+.tbl td.neg{color:#dc2626}
+.foot{text-align:center;color:#94a3b8;font-size:.68em;margin:14px 0}
+#out{display:none}
+h3{font-size:.92em;margin-bottom:8px;color:#334155}
+</style>
+<meta name="description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産投資キャッシュフローシミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-11/">
+<meta property="og:title" content="不動産投資キャッシュフローシミュレーター | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools">
+<meta property="og:description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-11/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産投資キャッシュフローシミュレーター | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools">
+<meta name="twitter:description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産投資キャッシュフローシミュレーター",
+  "description": "不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-11/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産投資キャッシュフローシミュレーター</span></div>
+<div class="wrap">
+<h1>不動産投資キャッシュフローシミュレーター</h1>
+<p class="sub">利回り・CCR・20年推移を即計算 ― 金利3シナリオ同時比較</p>
+<div class="card">
+<div class="grid">
+<div><label>物件価格 <span class="u">万円</span></label><input id="p" type="number" value="3000"></div>
+<div><label>想定月額家賃 <span class="u">万円</span></label><input id="r" type="number" value="15" step="0.1"></div>
+<div><label>自己資金 <span class="u">万円</span></label><input id="d" type="number" value="300"></div>
+<div><label>借入金利（当初） <span class="u">％</span></label><input id="i" type="number" value="1.5" step="0.1"></div>
+<div><label>借入期間 <span class="u">年</span></label><input id="t" type="number" value="35"></div>
+<div><label>管理費 <span class="u">円／月</span></label><input id="mf" type="number" value="10000"></div>
+<div><label>修繕積立金 <span class="u">円／月</span></label><input id="rf" type="number" value="8000"></div>
+<div><label>固定資産税 <span class="u">万円／年</span></label><input id="tx" type="number" value="12" step="0.1"></div>
+</div>
+<button class="btn" onclick="calc()">シミュレーション実行</button>
+</div>
+<div id="out">
+<div class="card">
+<div class="results">
+<div class="rc"><div class="v" id="gy">-</div><div class="l">表面利回り</div></div>
+<div class="rc"><div class="v" id="ny">-</div><div class="l">実質利回り</div></div>
+<div class="rc"><div class="v" id="ccr">-</div><div class="l">CCR</div></div>
+<div class="rc"><div class="v" id="cf1">-</div><div class="l">初年度CF</div></div>
+</div>
+</div>
+<div class="card">
+<h3>20年間キャッシュフロー推移（万円／年）</h3>
+<canvas id="cv"></canvas>
+<div class="leg"><span class="lo">楽観</span><span class="lm">中立</span><span class="lp">悲観</span></div>
+<p class="note">楽観＝金利固定 ／ 中立＝6年目+0.5%, 11年目+1.0% ／ 悲観＝4年目+1.0%, 9年目+2.0%</p>
+</div>
+<div class="card">
+<h3>年次キャッシュフロー詳細（万円）</h3>
+<div style="overflow-x:auto"><table class="tbl" id="tb"></table></div>
+</div>
+<button class="btn share" onclick="share()">&#128203; 計算結果をURLで共有</button>
+</div>
+<p class="foot">© Kusasyu PropTech ― 本ツールは参考値の提供を目的としています。投資判断はご自身の責任でお願いします。</p>
+</div>
+<script>
+function g(id){return document.getElementById(id)}
+function v(id){return parseFloat(g(id).value)||0}
+function fmt(n){return n>=0?n.toFixed(1):'\u25B2'+Math.abs(n).toFixed(1)}
+
+function mkRates(base,type){
+  var r=[];
+  for(var y=0;y<20;y++){
+    if(type===0)r.push(base);
+    else if(type===1)r.push(y<5?base:y<10?base+.5:base+1);
+    else r.push(y<3?base:y<8?base+1:base+2);
+  }
+  return r;
+}
+
+function sim(loan,rates,term,aRent,aExp){
+  var cf=[],bal=loan*10000;
+  for(var y=0;y<20;y++){
+    var mr=rates[y]/100/12,n=(term-y)*12;
+    if(n<=0||bal<=0){cf.push(aRent-aExp);continue}
+    var mp;
+    if(mr===0)mp=bal/n;
+    else mp=bal*mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1);
+    var b=bal;
+    for(var m=0;m<12;m++){b-=(mp-b*mr)}
+    cf.push(aRent-aExp-mp*12/10000);
+    bal=Math.max(b,0);
+  }
+  return cf;
+}
+
+function calc(){
+  var P=v('p'),R=v('r'),D=v('d'),I=v('i'),T=v('t'),MF=v('mf'),RF=v('rf'),TX=v('tx');
+  var loan=P-D,aRent=R*12,aExp=(MF+RF)*12/10000+TX;
+  var gy=P>0?aRent/P*100:0,ny=P>0?(aRent-aExp)/P*100:0;
+  var sc=[sim(loan,mkRates(I,0),T,aRent,aExp),sim(loan,mkRates(I,1),T,aRent,aExp),sim(loan,mkRates(I,2),T,aRent,aExp)];
+  var ccr=D>0?sc[1][0]/D*100:0;
+  g('gy').textContent=gy.toFixed(2)+'%';
+  g('ny').textContent=ny.toFixed(2)+'%';
+  g('ccr').textContent=ccr.toFixed(2)+'%';
+  g('cf1').textContent=fmt(sc[1][0])+'万';
+  g('cf1').style.color=sc[1][0]>=0?'#059669':'#dc2626';
+  g('out').style.display='block';
+  draw(sc);tbl(sc);
+}
+
+function draw(sc){
+  var cv=g('cv'),c=cv.getContext('2d');
+  cv.width=cv.offsetWidth*2;cv.height=560;
+  var W=cv.width,H=cv.height,pl=76,pr=16,pt=16,pb=36;
+  var gw=W-pl-pr,gh=H-pt-pb;
+  c.clearRect(0,0,W,H);
+  var all=sc[0].concat(sc[1],sc[2]),mn=Math.min.apply(null,all),mx=Math.max.apply(null,all);
+  var rng=mx-mn||1;mn-=rng*.12;mx+=rng*.12;rng=mx-mn;
+  c.strokeStyle='#e2e8f0';c.lineWidth=1;
+  c.font='20px sans-serif';c.fillStyle='#64748b';c.textAlign='right';
+  for(var i=0;i<=5;i++){
+    var yv=mn+rng*i/5,yp=pt+gh-(yv-mn)/rng*gh;
+    c.beginPath();c.moveTo(pl,yp);c.lineTo(W-pr,yp);c.stroke();
+    c.fillText(yv.toFixed(0),pl-6,yp+6);
+  }
+  c.textAlign='center';
+  for(var x=0;x<20;x++){
+    var xp=pl+gw*x/19;
+    if(x%2===0)c.fillText((x+1)+'',xp,H-pb+24);
+  }
+  if(mn<0&&mx>0){
+    var zy=pt+gh-(0-mn)/rng*gh;
+    c.strokeStyle='#94a3b8';c.setLineDash([5,4]);
+    c.beginPath();c.moveTo(pl,zy);c.lineTo(W-pr,zy);c.stroke();
+    c.setLineDash([]);
+  }
+  var cols=['#059669','#1a56db','#dc2626'];
+  for(var s=0;s<3;s++){
+    c.strokeStyle=cols[s];c.lineWidth=3;c.beginPath();
+    for(var x=0;x<20;x++){
+      var xp=pl+gw*x/19,yp=pt+gh-(sc[s][x]-mn)/rng*gh;
+      x===0?c.moveTo(xp,yp):c.lineTo(xp,yp);
+    }
+    c.stroke();
+    for(var x=0;x<20;x++){
+      var xp=pl+gw*x/19,yp=pt+gh-(sc[s][x]-mn)/rng*gh;
+      c.fillStyle=cols[s];c.beginPath();c.arc(xp,yp,4,0,Math.PI*2);c.fill();
+    }
+  }
+}
+
+function tbl(sc){
+  var h='<tr><th>年</th><th>楽観</th><th>中立</th><th>悲観</th></tr>';
+  for(var y=0;y<20;y++){
+    h+='<tr><td style="text-align:center">'+(y+1)+'</td>';
+    for(var s=0;s<3;s++){
+      var val=sc[s][y];
+      h+='<td'+(val<0?' class="neg"':'')+'>'+fmt(val)+'</td>';
+    }
+    h+='</tr>';
+  }
+  g('tb').innerHTML=h;
+}
+
+function share(){
+  var ids=['p','r','d','i','t','mf','rf','tx'];
+  var ps=ids.map(function(id){return id+'='+v(id)}).join('&');
+  var url=location.origin+location.pathname+'?'+ps;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(function(){alert('URLをクリップボードにコピーしました！\n共有先に貼り付けてください。')});
+  }else{prompt('以下のURLをコピーしてください：',url)}
+}
+
+window.onload=function(){
+  var ps=new URLSearchParams(location.search);
+  var ids=['p','r','d','i','t','mf','rf','tx'],loaded=false;
+  ids.forEach(function(id){if(ps.has(id)){g(id).value=ps.get(id);loaded=true}});
+  if(loaded)calc();
+};
+var resizeTimer;
+window.onresize=function(){clearTimeout(resizeTimer);resizeTimer=setTimeout(function(){if(g('out').style.display==='block')calc()},200)};
+</script>
+</body>
+</html>

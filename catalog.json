@@ -6890,6 +6890,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "tool-72",
+    "url": "digital-marketing/tool-72/",
+    "title": "撮影費ゼロで商品動画？AIロケ合成ツール",
+    "tool_name": "AI商品ロケーション動画プロンプトジェネレーター",
+    "description": "EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、Sora 2終了後の最新AI動画ツール実践ガイドを提供する。",
+    "quality_score": 6,
+    "completed_at": "2026-06-24T04:58:47.169934+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "management-15",
+    "url": "digital-marketing/management-15/",
+    "title": "撮影費ゼロで商品動画？AIロケ合成ツール",
+    "tool_name": "EC動画制作＆配信プラットフォーム仕様管理シート",
+    "description": "EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、Sora 2終了後の最新AI動画ツール実践ガイドを提供する。",
+    "quality_score": 6,
+    "completed_at": "2026-06-24T04:58:47.169934+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "sora-ai",
+    "url": "digital-marketing/sora-ai/",
+    "title": "撮影費ゼロで商品動画？AIロケ合成ツール",
+    "tool_name": "Sora終了後のAIロケ動画制作_実践ワークフロー",
+    "description": "EC事業者がAIを使って「商品を渋谷・浅草・銀座・パリなどの実写風ロケーションに合成した動画」を自分で作れるようにするツールキット。商品カテゴリとターゲット市場を選ぶだけで、最適なロケーション候補とAI動画生成ツール用のプロンプトを自動生成するHTMLツールを中心に、プラットフォーム別の動画仕様管理シートと、Sora 2終了後の最新AI動画ツール実践ガイドを提供する。",
+    "quality_score": 6,
+    "completed_at": "2026-06-24T04:58:47.169934+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -7381,6 +7420,45 @@
     "description": "物件情報を入力するだけで重要事項説明書（宅建業法35条）の下書きを自動生成するHTMLツールと、全項目の法令準拠チェックリスト、AI活用ワークフローガイドの3点セット。月額数万円のSaaSを契約できない小規模事業者でも、ブラウザとExcelだけで重説ドラフトを即日作成できる無料キット。",
     "quality_score": 6,
     "completed_at": "2026-06-23T04:28:09.131824+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-11",
+    "url": "proptech/simulator-11/",
+    "title": "利回り計算ミスが怖い？無料シミュレーター",
+    "tool_name": "不動産投資キャッシュフローシミュレーター",
+    "description": "不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法人向け高額サービスだが、本ツールは無料・ブラウザ完結で個人投資家が即使える設計。",
+    "quality_score": 6,
+    "completed_at": "2026-06-24T11:14:17.357763+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-12",
+    "url": "proptech/simulator-12/",
+    "title": "利回り計算ミスが怖い？無料シミュレーター",
+    "tool_name": "投資判断チェックリスト＋修繕費概算シート",
+    "description": "不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法人向け高額サービスだが、本ツールは無料・ブラウザ完結で個人投資家が即使える設計。",
+    "quality_score": 6,
+    "completed_at": "2026-06-24T11:14:17.357763+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-13",
+    "url": "proptech/simulator-13/",
+    "title": "利回り計算ミスが怖い？無料シミュレーター",
+    "tool_name": "収益シミュレーション実践ガイド",
+    "description": "不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法人向け高額サービスだが、本ツールは無料・ブラウザ完結で個人投資家が即使える設計。",
+    "quality_score": 6,
+    "completed_at": "2026-06-24T11:14:17.357763+00:00",
     "content_type": "article"
   }
 ]

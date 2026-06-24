@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>収益シミュレーション実践ガイド | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools</title>
+<meta name="description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,収益シミュレーション実践ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-13/">
+<meta property="og:title" content="収益シミュレーション実践ガイド | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools">
+<meta property="og:description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-13/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="収益シミュレーション実践ガイド | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools">
+<meta name="twitter:description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "収益シミュレーション実践ガイド",
+  "description": "不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-13/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>収益シミュレーション実践ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>収益シミュレーション実践ガイド</h1>
+  <p class="project-name">利回り計算ミスが怖い？無料シミュレーター</p>
+  <div class="content">
+<h1>収益シミュレーション実践ガイド — 利回り計算の落とし穴を避け、投資判断の精度を上げる</h1>
+<h2>はじめに：なぜ「表面利回り」だけでは危険なのか</h2>
+<p>不動産投資の広告で目にする「利回り8.0%」という数字。この数字だけを頼りに物件を購入し、想定通りの収益が得られなかったという失敗談は後を絶たない。</p>
+<p><strong>Kusasyu PropTech 収益シミュレーター</strong>は、表面利回りだけでなく実質利回り・CCR（自己資金収益率）・20年間キャッシュフロー推移を無料で即座に算出できるブラウザツールだ。本ガイドでは、このツールを最大限に活用し、投資判断の精度を上げるための実践的なノウハウを解説する。</p>
+<hr />
+<h2>1. シミュレーターの基本的な使い方</h2>
+<h3>入力項目と設定のポイント</h3>
+<table>
+<thead>
+<tr>
+<th>入力項目</th>
+<th>入力例（物件Aの場合）</th>
+<th>設定時の注意点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>物件価格</td>
+<td>18,000万円</td>
+<td>諸費用（物件価格の7〜8%）を加算して考える</td>
+</tr>
+<tr>
+<td>想定年間家賃収入</td>
+<td>1,080万円</td>
+<td>満室想定ではなく、空室率を差し引いた数値を使う</td>
+</tr>
+<tr>
+<td>管理費・修繕積立金</td>
+<td>180万円/年</td>
+<td>築年数に応じた将来の増額も想定する</td>
+</tr>
+<tr>
+<td>固定資産税・都市計画税</td>
+<td>126万円/年</td>
+<td>評価替え（3年周期）による変動を考慮</td>
+</tr>
+<tr>
+<td>自己資金</td>
+<td>物件価格の20%以上を推奨</td>
+<td>フルローンは金利上昇リスクが大きい</td>
+</tr>
+<tr>
+<td>借入金利</td>
+<td>現行1.5〜2.5%程度</td>
+<td>3シナリオ比較で変動リスクを可視化</td>
+</tr>
+<tr>
+<td>借入期間</td>
+<td>20〜35年</td>
+<td>築年数＋借入期間が法定耐用年数を超えないか確認</td>
+</tr>
+</tbody>
+</table>
+<h3>操作の流れ</h3>
+<ol>
+<li><strong>物件情報を入力</strong> — 価格・家賃・経費の各項目を埋める</li>
+<li><strong>借入条件を設定</strong> — 自己資金額、金利、期間を入力</li>
+<li><strong>シナリオ比較を確認</strong> — 楽観・中立・悲観の3パターンが自動生成される</li>
+<li><strong>20年キャッシュフローを確認</strong> — 年次ごとの手残りを時系列で把握</li>
+<li><strong>URLで共有</strong> — 計算結果がURLパラメータに反映され、FPや家族と同じ画面を見ながら相談可能</li>
+</ol>
+<hr />
+<h2>2. 利回り計算でよくある3つの落とし穴</h2>
+<h3>落とし穴①：表面利回りだけで判断する</h3>
+<p><strong>【投資判断チェックリスト＋修繕費概算シート】Kusasyu PropTech</strong> のデータで比較してみよう。</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>グランドヒル新宿（物件A）</th>
+<th>メゾン横浜港北（物件B）</th>
+<th>ウッドコート世田谷（物件C）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>売出価格</td>
+<td>18,000万円</td>
+<td>9,500万円</td>
+<td>5,800万円</td>
+</tr>
+<tr>
+<td>想定年間家賃収入</td>
+<td>1,080万円</td>
+<td>665万円</td>
+<td>464万円</td>
+</tr>
+<tr>
+<td><strong>表面利回り</strong></td>
+<td><strong>6.0%</strong></td>
+<td><strong>7.0%</strong></td>
+<td><strong>8.0%</strong></td>
+</tr>
+<tr>
+<td>管理費・修繕積立金</td>
+<td>180万円/年</td>
+<td>95万円/年</td>
+<td>48万円/年</td>
+</tr>
+<tr>
+<td>固定資産税等</td>
+<td>126万円/年</td>
+<td>57万円/年</td>
+<td>35万円/年</td>
+</tr>
+<tr>
+<td>実質年間収入</td>
+<td>774万円</td>
+<td>513万円</td>
+<td>381万円</td>
+</tr>
+<tr>
+<td><strong>実質利回り</strong></td>
+<td><strong>4.3%</strong></td>
+<td><strong>5.4%</strong></td>
+<td><strong>6.6%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>表面利回りだけを見るとウッドコート世田谷（8.0%）が最も魅力的に映る。実質利回りで見ても6.6%と依然トップだが、<strong>表面と実質の差が1.4ポイント</strong>ある点を見落とすと、手残りの見積もりが大きくズレる。</p>
+<blockquote>
+<p><strong>鉄則：表面利回りと実質利回りの差が2ポイント以上ある物件は、経費構造を再精査せよ。</strong></p>
+</blockquote>
+<h3>落とし穴②：修繕費の見落とし</h3>
+<p>チェックリストでメゾン横浜港北（物件B）を確認すると、以下の問題が記録されている。</p>
+<ul>
+<li>北面外壁に亀裂あり</li>
+<li>屋上防水層が劣化</li>
+<li>修繕積立金残高が不足</li>
+<li>長期修繕計画が未策定</li>
+<li>大規模修繕履歴の確認が取れていない</li>
+</ul>
+<p>築25年の鉄骨造で、これらの修繕が未実施ということは、購入後に<strong>数百万〜1,000万円規模の修繕費</strong>が発生するリスクがある。表面利回り7.0%・実質利回り5.4%という数字は、この修繕コストを一切含んでいない。</p>
+<p>修繕費を加味した「真の実質利回り」はさらに低下する。シミュレーターでは管理費・修繕積立金の項目に、<strong>将来発生する修繕費を年割りで上乗せ</strong>して入力することで、より現実に近い収益予測ができる。</p>
+<p><strong>構造別・修繕費の目安（年額換算）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>構造</th>
+<th>築10年以内</th>
+<th>築11〜20年</th>
+<th>築21〜30年</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RC造</td>
+<td>5〜8万円/戸</td>
+<td>8〜15万円/戸</td>
+<td>15〜25万円/戸</td>
+</tr>
+<tr>
+<td>鉄骨造</td>
+<td>5〜10万円/戸</td>
+<td>10〜18万円/戸</td>
+<td>18〜30万円/戸</td>
+</tr>
+<tr>
+<td>木造</td>
+<td>3〜6万円/戸</td>
+<td>8〜15万円/戸</td>
+<td>15〜25万円/戸</td>
+</tr>
+</tbody>
+</table>
+<h3>落とし穴③：空室率の甘い想定</h3>
+<p>再びチェックリストを確認する。</p>
+<table>
+<thead>
+<tr>
+<th>物件</th>
+<th>現況入居率</th>
+<th>空室の影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>グランドヒル新宿（物件A）</td>
+<td>92%（12戸中11戸）</td>
+<td>年間収入▲90万円/空室1戸</td>
+</tr>
+<tr>
+<td>メゾン横浜港北（物件B）</td>
+<td><strong>63%（8戸中5戸）</strong></td>
+<td>年間収入▲83万円/空室1戸</td>
+</tr>
+<tr>
+<td>ウッドコート世田谷（物件C）</td>
+<td>100%（6戸中6戸）</td>
+<td>年間収入▲77万円/空室1戸</td>
+</tr>
+</tbody>
+</table>
+<p>メゾン横浜港北は入居率63%。想定年間家賃収入665万円は満室ベースの数値であり、現況ベースでは<strong>約419万円</strong>（665万円×63%）まで下がる。この場合の実質利回りは<strong>2.8%</strong>まで低下する。</p>
+<p>シミュレーターに入力する際は、「想定年間家賃収入」に<strong>空室率を織り込んだ現実的な数値</strong>を入れること。目安として、都心部は空室率5〜10%、郊外は10〜20%を見込むのが妥当だ。</p>
+<hr />
+<h2>3. プロ投資家が重視する指標の読み方</h2>
+<h3>CCR（Cash on Cash Return／自己資金収益率）</h3>
+<p>利回りだけでなく、「自分が出したお金に対してどれだけ戻ってくるか」を測る指標。</p>
+<p><strong>CCR = 年間キャッシュフロー ÷ 自己資金 × 100</strong></p>
+<table>
+<thead>
+<tr>
+<th>判定</th>
+<th>CCR</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>優良</td>
+<td>10%以上</td>
+<td>自己資金の回収が10年以内</td>
+</tr>
+<tr>
+<td>合格</td>
+<td>6〜10%</td>
+<td>堅実な投資</td>
+</tr>
+<tr>
+<td>要検討</td>
+<td>3〜6%</td>
+<td>レバレッジ効果が薄い</td>
+</tr>
+<tr>
+<td>見送り</td>
+<td>3%未満</td>
+<td>預金とリスクが見合わない</td>
+</tr>
+</tbody>
+</table>
+<p>シミュレーターではCCRが自動算出される。借入条件を変えるとCCRがどう動くかを確認し、<strong>自己資金比率とレバレッジの最適バランス</strong>を探ろう。</p>
+<h3>金利変動3シナリオの活用法</h3>
+<p>シミュレーターは以下の3シナリオを同時比較できる。</p>
+<table>
+<thead>
+<tr>
+<th>シナリオ</th>
+<th>想定金利</th>
+<th>使い方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>楽観</td>
+<td>現行金利を維持</td>
+<td>最良ケースの確認</td>
+</tr>
+<tr>
+<td>中立</td>
+<td>現行＋0.5〜1.0%</td>
+<td>意思決定の基準値</td>
+</tr>
+<tr>
+<td>悲観</td>
+<td>現行＋1.5〜2.0%</td>
+<td>耐えられるかのストレステスト</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判断基準：悲観シナリオでもキャッシュフローがマイナスにならないなら、その物件は金利上昇に耐えうる。</strong> 悲観シナリオで赤字になる場合は、自己資金の増額か物件の見直しを検討すべきだ。</p>
+<h3>20年キャッシュフロー推移の確認ポイント</h3>
+<p>年次推移のグラフでは、以下の3点をチェックする。</p>
+<ol>
+<li><strong>デッドクロス発生時期</strong> — ローン元金返済額が減価償却費を上回る時期。この時点から税負担が増え、手残りが急減する</li>
+<li><strong>累積キャッシュフローの黒字化時期</strong> — 初期投資を回収できる年数。15年以内が目安</li>
+<li><strong>大規模修繕の影響</strong> — 築15年・30年前後で発生する大規模修繕のタイミングでキャッシュフローが一時的にマイナスになることを想定しておく</li>
+</ol>
+<hr />
+<h2>4. 実践ワークフロー：ツール×チェックリストの併用</h2>
+<p>投資判断の精度を最大化するために、以下の手順で進めることを推奨する。</p>
+<h3>Step 1：チェックリストで定性評価</h3>
+<p><strong>【投資判断チェックリスト＋修繕費概算シート】Kusasyu PropTech</strong> を使い、立地・建物・収益・法務・管理・資金の各カテゴリを○×−で評価する。×が3つ以上ある物件は、シミュレーション以前に慎重な検討が必要だ（メゾン横浜港北のケースを参照）。</p>
+<h3>Step 2：シミュレーターで定量評価</h3>
+<p>チェックリストを通過した物件について、シミュレーターに数値を入力する。このとき、以下の調整を忘れないこと。</p>
+<ul>
+<li>家賃収入 → 空室率を差し引いた金額を入力</li>
+<li>管理費 → 将来の修繕費増額を上乗せ</li>
+<li>金利 → 3シナリオすべてを確認</li>
+</ul>
+<h3>Step 3：比較検討と共有</h3>
+<p>シミュレーション結果のURLを保存し、複数物件を横並びで比較する。FPやコンサルタントにURLを送れば、同じ計算結果を見ながら具体的な相談ができる。</p>
+<hr />
+<h2>5. まとめ：投資判断を誤らないための3原則</h2>
+<table>
+<thead>
+<tr>
+<th>原則</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>表面利回りを信じるな</strong></td>
+<td>必ず実質利回り・CCRまで確認する。表面と実質の差が大きい物件は経費構造に問題がある</td>
+</tr>
+<tr>
+<td><strong>見えないコストを可視化せよ</strong></td>
+<td>修繕費・空室損・金利上昇を数値化してシミュレーションに反映する</td>
+</tr>
+<tr>
+<td><strong>悲観シナリオで判断せよ</strong></td>
+<td>楽観ケースで利益が出るのは当然。悲観シナリオで耐えられるかが本当の投資判断</td>
+</tr>
+</tbody>
+</table>
+<p>不動産投資は「買ったら終わり」ではない。購入前のシミュレーション精度が、その後20年の収益を左右する。<strong>Kusasyu PropTech 収益シミュレーター</strong>と<strong>投資判断チェックリスト</strong>を併用し、数字に裏付けられた投資判断を行ってほしい。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+</body>
+</html>

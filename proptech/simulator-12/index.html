@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資判断チェックリスト＋修繕費概算シート | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools</title>
+<meta name="description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,投資判断チェックリスト＋修繕費概算シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-12/">
+<meta property="og:title" content="投資判断チェックリスト＋修繕費概算シート | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools">
+<meta property="og:description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-12/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="投資判断チェックリスト＋修繕費概算シート | 不動産投資物件の収益性を自動計算するHTMLツール - kusasyu tools">
+<meta name="twitter:description" content="不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "投資判断チェックリスト＋修繕費概算シート",
+  "description": "不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-12/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>投資判断チェックリスト＋修繕費概算シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">6/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>投資判断チェックリスト＋修繕費概算シート</h1>
+  <p class="project-name">利回り計算ミスが怖い？無料シミュレーター</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>【投資判断チェックリスト＋修繕費概算シート】Kusasyu PropTech</th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>記入日：</td><td>2026/06/24</td><td></td><td>作成者：</td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>■ 物件基本情報</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>項目</td><td>物件A</td><td>物件B</td><td>物件C</td><td>物件D</td><td>物件E</td></tr><tr><td>物件名称</td><td>グランドヒル新宿</td><td>メゾン横浜港北</td><td>ウッドコート世田谷</td><td></td><td> </td></tr><tr><td>所在地</td><td>東京都新宿区西新宿3丁目</td><td>神奈川県横浜市港北区日吉2丁目</td><td>東京都世田谷区経堂1丁目</td><td></td><td></td></tr><tr><td>構造</td><td>RC（鉄筋コンクリート）</td><td>鉄骨</td><td>木造</td><td></td><td></td></tr><tr><td>築年数（年）</td><td>18</td><td>25</td><td>12</td><td></td><td></td></tr><tr><td>延床面積（㎡）</td><td>450</td><td>320</td><td>180</td><td></td><td></td></tr><tr><td>総戸数</td><td>12</td><td>8</td><td>6</td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `"【投資判断チェックリスト＋修繕費概算シート】Kusasyu PropTech","","","","",""
+"記入日：","2026/06/24","","作成者：","",""
+"","","","","",""
+"■ 物件基本情報","","","","",""
+"項目","物件A","物件B","物件C","物件D","物件E"
+"物件名称","グランドヒル新宿","メゾン横浜港北","ウッドコート世田谷","","" 
+"所在地","東京都新宿区西新宿3丁目","神奈川県横浜市港北区日吉2丁目","東京都世田谷区経堂1丁目","",""
+"構造","RC（鉄筋コンクリート）","鉄骨","木造","",""
+"築年数（年）",18,25,12,"",""
+"延床面積（㎡）",450,320,180,"",""
+"総戸数",12,8,6,"",""
+"売出価格（万円）",18000,9500,5800,"",""
+"想定年間家賃収入（万円）",1080,665,464,"",""
+"表面利回り（%）","=H11/H10*100","=I11/I10*100","=J11/J10*100","",""
+"管理費・修繕積立金（万円/年）",180,95,48,"",""
+"固定資産税・都市計画税（万円/年）",126,57,35,"",""
+"実質年間収入（万円）","=H11-H13-H14","=I11-I13-I14","=J11-J13-J14","",""
+"実質利回り（%）","=H15/H10*100","=I15/I10*100","=J15/J10*100","",""
+"最寄駅","新宿駅 徒歩8分","日吉駅 徒歩12分","経堂駅 徒歩5分","",""
+"用途地域","商業地域","第一種住居地域","第一種低層住居専用地域","",""
+"","","","","",""
+"■ 投資判断チェックリスト（○＝確認済／×＝問題あり／−＝未確認）","","","","",""
+"カテゴリ","チェック項目","物件A","物件B","物件C","備考"
+"立地","最寄駅から徒歩15分以内か","○","○","○",""
+"立地","周辺にスーパー・コンビニがあるか","○","○","○",""
+"立地","嫌悪施設（墓地・工場等）が近隣にないか","○","×","○","物件B：隣接地に工場"
+"立地","ハザードマップで浸水・土砂災害リスクを確認したか","○","−","○",""
+"立地","人口動態（増減傾向）を確認したか","○","○","○",""
+"建物","建築確認済証・検査済証があるか","○","○","○",""
+"建物","耐震基準（新耐震1981年以降）を満たしているか","○","○","○",""
+"建物","外壁のひび割れ・タイル剥離がないか","○","×","○","物件B：北面に亀裂あり"
+"建物","屋上防水の劣化がないか","−","×","○","物件B：防水層劣化"
+"建物","給排水管の状態を確認したか","○","−","○",""
+"建物","エレベーターの有無と点検状況","○（有）","−（無）","−（無）",""
+"建物","アスベスト使用の有無を確認したか","○","−","○",""
+"収益","現況の入居率は80%以上か","○（92%）","×（63%）","○（100%）",""
+"収益","周辺相場と比較して家賃設定は適正か","○","○","○",""
+"収益","レントロール（賃貸借契約一覧）を入手したか","○","○","○",""
+"収益","空室リスクを加味したシミュレーションを行ったか","○","−","○",""
+"法務","登記簿謄本で権利関係を確認したか","○","○","○",""
+"法務","抵当権・差押等の設定がないか","○","○","○",""
+"法務","境界確定測量図があるか","○","−","○",""
+"法務","建ぺい率・容積率の違反がないか","○","○","○",""
+"法務","再建築可能か（接道義務等）","○","○","○",""
+"管理","管理組合の修繕積立金残高は十分か","○","×","−","物件B：残高不足"
+"管理","長期修繕計画が策定されているか","○","×","−",""
+"管理","管理費の滞納がないか","○","○","−",""
+"管理","過去の大規模修繕履歴を確認したか","○","×","○",""
+"資金","自己資金比率は20%以上確保できるか","○","○","○",""
+"資金","ローン返済比率（DSCR）は1.3倍以上か","○","○","○",""
+"資金","金利上昇シナリオでの返済余力を確認したか","○","−","○",""
+"出口","5年後・10年後の売却想定価格を試算したか","○","−","○",""
+"出口","建物解体費用を概算したか","−","−","○",""
+"","","","","",""
+"チェック結果サマリー","","物件A","物件B","物件C",""
+"○（確認済）の数","","=COUNTIF(E22:E51,""○*"")+COUNTIF(E22:E51,""○"")","=COUNTIF(F22:F51,""○*"")+COUNTIF(F22:F51,""○"")","=COUNTIF(G22:G51,""○*"")+COUNTIF(G22:G51,""○"")",""
+"×（問題あり）の数","","=COUNTIF(E22:E51,""×*"")+COUNTIF(E22:E51,""×"")","=COUNTIF(F22:F51,""×*"")+COUNTIF(F22:F51,""×"")","=COUNTIF(G22:G51,""×*"")+COUNTIF(G22:G51,""×"")",""
+"−（未確認）の数","","=COUNTIF(E22:E51,""−*"")+COUNTIF(E22:E51,""−"")","=COUNTIF(F22:F51,""−*"")+COUNTIF(F22:F51,""−"")","=COUNTIF(G22:G51,""−*"")+COUNTIF(G22:G51,""−"")",""
+"総合判定","","A：投資適格","C：要精査","B：条件付き適格","A=問題なし B=条件付き C=要精査 D=見送り"
+"","","","","",""
+"■ 修繕費概算テーブル（構造別・築年数帯別）","","","","",""
+"構造","築年数帯","大規模修繕費目安（円/㎡）","年間修繕積立目安（円/㎡・月）","主な修繕項目","修繕周期目安"
+"RC（鉄筋コンクリート）","築0〜10年",5000,200,"防水点検・設備点検","−"
+"RC（鉄筋コンクリート）","築11〜15年",10000,250,"外壁塗装・屋上防水・給水ポンプ","12〜15年"
+"RC（鉄筋コンクリート）","築16〜20年",15000,300,"第1回大規模修繕・配管更新検討","15〜18年"
+"RC（鉄筋コンクリート）","築21〜30年",20000,350,"第2回大規模修繕・EV更新・配管更新","24〜30年"
+"RC（鉄筋コンクリート）","築31年〜",25000,400,"躯体補修・設備全面更新・耐震補強","随時"
+"鉄骨","築0〜10年",4500,180,"防錆塗装点検・屋根点検","−"
+"鉄骨","築11〜15年",9000,220,"外壁・屋根塗装・防錆処理","10〜15年"
+"鉄骨","築16〜20年",14000,280,"大規模修繕・鉄骨補強・配管","15〜20年"
+"鉄骨","築21〜30年",18000,320,"鉄骨再塗装・設備更新・外装全面","20〜25年"
+"鉄骨","築31年〜",22000,380,"躯体補強・建替検討・設備全面更新","随時"
+"木造","築0〜10年",3500,150,"防蟻処理・外壁点検","5年（防蟻）"
+"木造","築11〜15年",8000,200,"外壁塗装・屋根葺替・防蟻再処理","10〜15年"
+"木造","築16〜20年",12000,250,"大規模修繕・水回り更新・構造補強","15〜20年"
+"木造","築21〜30年",16000,300,"屋根外壁全面・給排水全面・耐震補強","20〜25年"
+"木造","築31年〜",20000,350,"建替検討・全面リノベーション","随時"
+"","","","","",""
+"■ 対象物件の修繕費概算（自動参照用）","","","","",""
+"項目","物件A","物件B","物件C","",""
+"構造","RC（鉄筋コンクリート）","鉄骨","木造","",""
+"築年数",18,25,12,"",""
+"延床面積（㎡）",450,320,180,"",""
+"該当する大規模修繕費単価（円/㎡）",15000,18000,8000,"",""
+"修繕費概算合計（円）","=H82*H84","=I82*I84","=J82*J84","",""
+"修繕費概算合計（万円）","=H85/10000","=I85/10000","=J85/10000","",""
+"売出価格に対する修繕費率（%）","=H86/H10*100","=I86/I10*100","=J86/J10*100","",""
+"","","","","",""
+"■ シミュレーター入力値整理","","","","",""
+"入力項目","物件A","物件B","物件C","入力先シート名",""
+"物件価格（万円）","=H10","=I10","=J10","収支シミュレーター",""
+"年間家賃収入（万円）","=H11","=I11","=J11","収支シミュレーター",""
+"表面利回り（%）","=H12","=I12","=J12","収支シミュレーター",""
+"年間経費合計（万円）","=H13+H14","=I13+I14","=J13+J14","収支シミュレーター",""
+"修繕費概算（万円）","=H86","=I86","=J86","修繕計画シート",""
+"実質利回り（%）","=H16","=I16","=J16","収支シミュレーター",""
+"築年数",18,25,12,"減価償却計算",""
+"構造","RC","鉄骨","木造","減価償却計算",""
+"チェック判定","=H57","=I57","=J57","総合判定シート",""`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_投資判断チェックリスト＋修繕費概算シート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
