@@ -2509,6 +2509,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "risk-7",
+    "url": "legal-tech/risk-7/",
+    "title": "海外M&A、現地リスクを見落としてない？",
+    "tool_name": "クロスボーダーDD_リスクスコアリングツール",
+    "description": "日本企業が海外M&Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スクリーニングできるレベルに引き下げる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-24T19:52:42.301547+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "risk-8",
+    "url": "legal-tech/risk-8/",
+    "title": "海外M&A、現地リスクを見落としてない？",
+    "tool_name": "DD発見事項エグゼクティブサマリー生成ツール",
+    "description": "日本企業が海外M&Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スクリーニングできるレベルに引き下げる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-24T19:52:42.301547+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "risk-9",
+    "url": "legal-tech/risk-9/",
+    "title": "海外M&A、現地リスクを見落としてない？",
+    "tool_name": "海外M&A候補国_初期スクリーニングシート",
+    "description": "日本企業が海外M&Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スクリーニングできるレベルに引き下げる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-24T19:52:42.301547+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",

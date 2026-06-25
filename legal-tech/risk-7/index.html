@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>クロスボーダーDD_リスクスコアリングツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--h:#dc2626;--m:#f59e0b;--l:#22c55e;--bg:#f8fafc;--card:#fff;--border:#e2e8f0;--text:#1e293b;--sub:#64748b;--accent:#2563eb}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+h1{font-size:1.3rem;text-align:center;padding:20px 0 4px;color:var(--text)}
+.sub{text-align:center;color:var(--sub);font-size:.82rem;margin-bottom:18px}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px;padding:14px;background:var(--card);border-radius:10px;border:1px solid var(--border)}
+.ctrl label{font-size:.82rem;font-weight:600;margin-right:4px}
+.ctrl select,.ctrl button{padding:6px 12px;border:1px solid var(--border);border-radius:6px;font-size:.85rem;background:#fff;cursor:pointer}
+.ctrl select:focus{outline:2px solid var(--accent)}
+.btn-p{background:var(--accent);color:#fff;border:none;font-weight:600}
+.btn-p:hover{opacity:.85}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:16px}
+.stat{background:var(--card);border-radius:8px;padding:12px;text-align:center;border:1px solid var(--border)}
+.stat .n{font-size:1.5rem;font-weight:700}
+.stat .lb{font-size:.75rem;color:var(--sub)}
+.s-h .n{color:var(--h)}.s-m .n{color:var(--m)}.s-l .n{color:var(--l)}.s-t .n{color:var(--accent)}
+.prog{height:6px;background:#e2e8f0;border-radius:3px;margin-top:6px;overflow:hidden}
+.prog div{height:100%;background:var(--accent);border-radius:3px;transition:width .3s}
+.cat{margin-bottom:12px}
+.cat-h{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px 8px 0 0;cursor:pointer;user-select:none}
+.cat-h h3{font-size:.92rem;display:flex;align-items:center;gap:6px}
+.cat-h .arr{transition:transform .2s;font-size:.7rem}
+.cat-h .arr.open{transform:rotate(90deg)}
+.cat-b{border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden}
+.item{display:grid;grid-template-columns:28px 60px 1fr auto;align-items:center;gap:8px;padding:8px 12px;background:var(--card);border-bottom:1px solid #f1f5f9;font-size:.83rem;transition:background .15s}
+.item:last-child{border-bottom:none}
+.item.checked{background:#f0fdf4;opacity:.7}
+.item input[type=checkbox]{width:16px;height:16px;cursor:pointer;accent-color:var(--accent)}
+.risk{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:700;color:#fff;text-align:center;min-width:28px}
+.r-h{background:var(--h)}.r-m{background:var(--m);color:#1e293b}.r-l{background:var(--l)}
+.iname{font-weight:500}
+.law{color:var(--sub);font-size:.73rem;display:block;margin-top:1px}
+.tags{display:flex;gap:3px;flex-wrap:wrap;justify-content:flex-end}
+.tag{font-size:.65rem;padding:1px 6px;border-radius:3px;background:#e0e7ff;color:#3730a3;white-space:nowrap}
+.tag-製造{background:#dcfce7;color:#166534}
+.tag-IT{background:#e0e7ff;color:#3730a3}
+.tag-金融{background:#fef3c7;color:#92400e}
+.tag-HC{background:#fce7f3;color:#9d174d}
+.score-panel{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+.score-panel h2{font-size:1rem;margin-bottom:10px}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.8rem}
+.bar-row .bl{width:80px;text-align:right;flex-shrink:0}
+.bar-bg{flex:1;height:18px;background:#e2e8f0;border-radius:4px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px;transition:width .4s}
+.bar-num{position:absolute;right:6px;top:0;line-height:18px;font-size:.7rem;font-weight:600;color:#fff}
+.foot{text-align:center;color:var(--sub);font-size:.72rem;padding:16px 0}
+@media(max-width:640px){
+ .item{grid-template-columns:24px 44px 1fr;gap:4px;padding:6px 8px}
+ .tags{display:none}
+ .ctrl{flex-direction:column;align-items:stretch}
+ h1{font-size:1.1rem}
+}
+</style>
+<meta name="description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,クロスボーダーDD_リスクスコアリングツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-7/">
+<meta property="og:title" content="クロスボーダーDD_リスクスコアリングツール - kusasyu tools">
+<meta property="og:description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="クロスボーダーDD_リスクスコアリングツール - kusasyu tools">
+<meta name="twitter:description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "クロスボーダーDD_リスクスコアリングツール",
+  "description": "日本企業が海外M&Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-7/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">クロスボーダーDD_リスクスコアリングツール</span></div>
+<div class="wrap">
+<h1>クロスボーダーDD リスクスコアリングツール</h1>
+<p class="sub">Kusasyu Legal Tech — 対象国別デューデリジェンス チェックリスト</p>
+
+<div class="ctrl">
+ <label for="cs">対象国:</label>
+ <select id="cs">
+  <option value="US">米国 (US)</option>
+  <option value="SG">シンガポール (SG)</option>
+  <option value="VN">ベトナム (VN)</option>
+  <option value="IN">インド (IN)</option>
+  <option value="DE">ドイツ (DE)</option>
+ </select>
+ <label for="rf">リスク:</label>
+ <select id="rf"><option value="">全て</option><option value="高">高</option><option value="中">中</option><option value="低">低</option></select>
+ <button class="btn-p" onclick="render()">表示</button>
+ <button onclick="resetAll()">リセット</button>
+ <button onclick="exportCSV()">CSV出力</button>
+</div>
+
+<div class="stats" id="stats"></div>
+<div class="score-panel" id="scorePanel"></div>
+<div id="out"></div>
+<div class="foot">© 2026 Kusasyu Legal Tech — 本ツールは参考情報であり法的助言を構成しません</div>
+</div>
+
+<script>
+const D={
+US:{外資規制:[
+{n:"CFIUS審査対象該当性",r:"高",l:"FIRRMA (50 USC §4565)",t:["製造","IT","HC"]},
+{n:"輸出管理規制(EAR)適用",r:"高",l:"EAR 15 CFR §730-774",t:["製造","IT"]},
+{n:"OFAC制裁リスト照合",r:"中",l:"IEEPA / OFAC SDN List",t:["製造","IT","金融","HC"]}
+],競業避止:[
+{n:"FTC非競争条項規制",r:"高",l:"FTC Non-Compete Rule 2024",t:["IT","金融"]},
+{n:"州法の競業避止制限(CA等)",r:"中",l:"CA Bus. & Prof. Code §16600",t:["IT"]},
+{n:"営業秘密保護(DTSA)",r:"中",l:"DTSA 18 USC §1836",t:["製造","IT"]}
+],労働法:[
+{n:"FLSA賃金・残業規制",r:"中",l:"FLSA 29 USC §201",t:["製造","HC"]},
+{n:"従業員分類(IC vs EE)",r:"高",l:"IRS 20-Factor Test / ABC Test",t:["IT","金融"]},
+{n:"WARN法(大量解雇通知)",r:"中",l:"WARN Act 29 USC §2101",t:["製造","IT","金融","HC"]}
+],データ保護:[
+{n:"CCPA/CPRA消費者プライバシー",r:"高",l:"CCPA Cal.Civ.Code §1798.100",t:["IT","金融","HC"]},
+{n:"HIPAA医療データ保護",r:"高",l:"HIPAA 42 USC §1320d",t:["HC"]},
+{n:"州別データ越境移転制限",r:"中",l:"State Privacy Laws各州",t:["IT","金融"]}
+],知財:[
+{n:"特許トロール訴訟リスク",r:"中",l:"35 USC §271 / AIA",t:["製造","IT"]},
+{n:"営業秘密の域外適用",r:"中",l:"DTSA 18 USC §1837",t:["製造","IT"]},
+{n:"著作権DMCA対応",r:"低",l:"DMCA 17 USC §512",t:["IT"]}
+],税務:[
+{n:"PE認定リスク(恒久的施設)",r:"高",l:"IRC §864(c) / 日米租税条約",t:["製造","IT","金融","HC"]},
+{n:"移転価格税制",r:"高",l:"IRC §482 / Treas.Reg.",t:["製造","IT","金融"]},
+{n:"GILTI/BEAT課税",r:"中",l:"IRC §951A / §59A",t:["金融","IT"]}
+]},
+SG:{外資規制:[
+{n:"重要事業体外資審査",r:"中",l:"Significant Investments Review Act 2024",t:["金融","IT"]},
+{n:"不動産取得外国人規制",r:"中",l:"Residential Property Act Cap.274",t:["製造"]},
+{n:"金融機関持株制限",r:"高",l:"Banking Act Cap.19 §15A",t:["金融"]}
+],競業避止:[
+{n:"競業避止条項の合理性基準",r:"低",l:"Common Law / Restraint of Trade",t:["IT","金融"]},
+{n:"ガーデンリーブ条項",r:"低",l:"Employment Act §10",t:["IT","金融","HC"]},
+{n:"顧客勧誘禁止条項",r:"低",l:"Common Law判例",t:["金融"]}
+],労働法:[
+{n:"Employment Act適用範囲",r:"中",l:"Employment Act Cap.91",t:["製造","IT","金融","HC"]},
+{n:"外国人雇用規制(EP/SP)",r:"高",l:"EFMA Cap.91A",t:["IT","製造"]},
+{n:"公正雇用ガイドライン",r:"中",l:"TAFEP Guidelines / ADA 2024",t:["IT","金融","HC"]}
+],データ保護:[
+{n:"PDPA個人情報保護",r:"高",l:"PDPA 2012 (改正2021)",t:["IT","金融","HC"]},
+{n:"越境データ移転制限",r:"中",l:"PDPA §26 Transfer Limitation",t:["IT","金融"]},
+{n:"データ侵害通知義務",r:"中",l:"PDPA §26A-26E",t:["IT","金融","HC"]}
+],知財:[
+{n:"特許出願義務(国内発明)",r:"中",l:"Patents Act §34",t:["製造","IT"]},
+{n:"著作権の職務著作帰属",r:"低",l:"Copyright Act §30",t:["IT"]},
+{n:"商標先使用権リスク",r:"低",l:"Trade Marks Act Cap.332",t:["製造","IT"]}
+],税務:[
+{n:"法人税優遇制度活用",r:"低",l:"ITA §43 / Pioneer Status",t:["製造","IT"]},
+{n:"移転価格文書化義務",r:"中",l:"IRAS TP Guidelines (s.34D ITA)",t:["製造","IT","金融"]},
+{n:"GST登録義務",r:"中",l:"GST Act Cap.117A",t:["製造","IT","金融","HC"]}
+]},
+VN:{外資規制:[
+{n:"外資出資比率上限(条件付業種)",r:"高",l:"投資法 2020 No.61 §9",t:["製造","IT","金融","HC"]},
+{n:"条件付投資業種該当性",r:"高",l:"投資法 2020 附録IV",t:["製造","金融","HC"]},
+{n:"M&A事前承認要件",r:"中",l:"競争法 2018 §29-33",t:["製造","IT","金融"]}
+],競業避止:[
+{n:"競業避止条項の有効性",r:"中",l:"労働法 2019 §21(2)",t:["IT","製造"]},
+{n:"秘密保持義務の範囲",r:"中",l:"労働法 2019 §21(1)",t:["IT","製造"]},
+{n:"引抜禁止条項の執行可能性",r:"低",l:"民法 2015 §420",t:["IT"]}
+],労働法:[
+{n:"労働許可証(外国人就労)",r:"高",l:"労働法 2019 §151-155",t:["製造","IT","金融","HC"]},
+{n:"労働組合・団体交渉義務",r:"中",l:"労働組合法 2012 §5",t:["製造"]},
+{n:"退職金・解雇規制",r:"高",l:"労働法 2019 §46-48",t:["製造","IT","HC"]}
+],データ保護:[
+{n:"個人データ保護法(PDPD)",r:"高",l:"個人データ保護政令 13/2023/ND-CP",t:["IT","金融","HC"]},
+{n:"データローカライゼーション義務",r:"高",l:"サイバーセキュリティ法 2018 §26",t:["IT","金融"]},
+{n:"越境移転の影響評価義務",r:"中",l:"政令 13/2023 §25",t:["IT","金融"]}
+],知財:[
+{n:"知財権のライセンス登録義務",r:"中",l:"知的財産法 2005(改正2022) §148",t:["製造","IT"]},
+{n:"技術移転契約の届出",r:"高",l:"技術移転法 2017 §31",t:["製造"]},
+{n:"模倣品・侵害リスク",r:"高",l:"知的財産法 §211-213",t:["製造","IT"]}
+],税務:[
+{n:"外国契約者税(FCT)",r:"高",l:"通達 103/2014/TT-BTC",t:["製造","IT","金融","HC"]},
+{n:"移転価格税制(TP)",r:"高",l:"政令 132/2020/ND-CP",t:["製造","IT","金融"]},
+{n:"投資優遇税制の適用条件",r:"中",l:"法人税法 2008(改正2013) §13-19",t:["製造","IT"]}
+]},
+IN:{外資規制:[
+{n:"FDI業種別上限確認",r:"高",l:"FEMA / FDI Policy 2020 §5",t:["製造","IT","金融","HC"]},
+{n:"プレスノート3(中国等隣接国規制)",r:"高",l:"Press Note 3 (2020)",t:["製造","IT"]},
+{n:"RBI事前承認セクター該当性",r:"中",l:"FEMA Notification / RBI Master Direction",t:["金融","HC"]}
+],競業避止:[
+{n:"競業避止条項の無効性(§27)",r:"高",l:"Indian Contract Act §27",t:["IT","金融"]},
+{n:"在職中の秘密保持義務",r:"中",l:"Indian Contract Act §27 例外",t:["IT","製造"]},
+{n:"退職後の合理的制限",r:"低",l:"判例法(Niranjan Shankar Golikari)",t:["IT"]}
+],労働法:[
+{n:"工場法・労働安全規制",r:"中",l:"Factories Act 1948 / OSHWC 2020",t:["製造","HC"]},
+{n:"労働法典(統合4法)",r:"高",l:"Labour Codes 2019-2020",t:["製造","IT","金融","HC"]},
+{n:"Shops & Establishments Act",r:"中",l:"各州S&E Act",t:["IT","金融"]}
+],データ保護:[
+{n:"DPDP Act個人データ保護",r:"高",l:"Digital Personal Data Protection Act 2023",t:["IT","金融","HC"]},
+{n:"データローカライゼーション(RBI指令)",r:"高",l:"RBI Circular 2018(決済データ)",t:["金融"]},
+{n:"越境データ移転の制限国リスト",r:"中",l:"DPDP Act §16-17",t:["IT","金融","HC"]}
+],知財:[
+{n:"強制実施権リスク(医薬)",r:"高",l:"Patents Act 1970 §84-92",t:["HC","製造"]},
+{n:"ソフトウェア特許の制限",r:"中",l:"Patents Act §3(k)",t:["IT"]},
+{n:"商標先使用権(Common Law)",r:"中",l:"Trade Marks Act 1999 / 判例法",t:["製造","IT"]}
+],税務:[
+{n:"源泉徴収(Withholding Tax)",r:"高",l:"Income Tax Act §195",t:["製造","IT","金融","HC"]},
+{n:"Equalisation Levy(デジタル課税)",r:"中",l:"Finance Act 2016/2020 Ch.VIII",t:["IT"]},
+{n:"移転価格(APA制度含む)",r:"高",l:"Income Tax Act §92-92F",t:["製造","IT","金融"]}
+]},
+DE:{外資規制:[
+{n:"AWV投資審査(重要インフラ)",r:"高",l:"AWV §55-62 / AWG §4",t:["製造","IT","HC"]},
+{n:"EU外国補助金規制",r:"中",l:"EU FSR Regulation 2022/2560",t:["製造","IT"]},
+{n:"合併届出(カルテル庁)",r:"中",l:"GWB §35-43",t:["製造","IT","金融","HC"]}
+],競業避止:[
+{n:"退職後競業避止の補償義務",r:"高",l:"HGB §74-75d",t:["IT","製造","金融"]},
+{n:"取締役の競業避止義務",r:"中",l:"GmbHG §43 / AktG §88",t:["金融","製造"]},
+{n:"営業秘密保護法",r:"中",l:"GeschGehG (EU指令2016/943)",t:["製造","IT"]}
+],労働法:[
+{n:"解雇保護法(KSchG)",r:"高",l:"KSchG §1-14",t:["製造","IT","金融","HC"]},
+{n:"事業所委員会(Betriebsrat)の関与",r:"高",l:"BetrVG §111-113",t:["製造","IT"]},
+{n:"労働者派遣規制",r:"中",l:"AÜG §1-19",t:["製造","IT"]}
+],データ保護:[
+{n:"GDPR準拠(データ処理)",r:"高",l:"GDPR Art.5-11 / BDSG",t:["IT","金融","HC","製造"]},
+{n:"従業員データ保護",r:"高",l:"BDSG §26",t:["製造","IT","金融","HC"]},
+{n:"越境データ移転(SCC/BCR)",r:"中",l:"GDPR Art.44-49",t:["IT","金融"]}
+],知財:[
+{n:"従業員発明の届出・補償",r:"中",l:"ArbNErfG §3-16",t:["製造","IT"]},
+{n:"OSS著作権コンプライアンス",r:"低",l:"UrhG / EU指令2019/790",t:["IT"]},
+{n:"特許権の共同所有リスク",r:"低",l:"PatG §6-7",t:["製造"]}
+],税務:[
+{n:"PE認定リスク(常設代理人)",r:"高",l:"AO §12-13 / 日独租税条約",t:["製造","IT","金融","HC"]},
+{n:"移転価格文書化(MasterFile/LocalFile)",r:"高",l:"AStG §1 / GAufzV",t:["製造","IT","金融"]},
+{n:"VAT(Umsatzsteuer)登録義務",r:"中",l:"UStG §1-3",t:["製造","IT","金融"]}
+]}
+};
+const CI={外資規制:"⚖",競業避止:"🛡",労働法:"👥",データ保護:"🔒",知財:"💡",税務:"💰"};
+let chk=JSON.parse(localStorage.getItem("ddchk")||"{}");
+function sv(){localStorage.setItem("ddchk",JSON.stringify(chk))}
+function key(c,cat,i){return c+"_"+cat+"_"+i}
+function render(){
+ const c=document.getElementById("cs").value;
+ const rf=document.getElementById("rf").value;
+ const d=D[c];if(!d)return;
+ let h=0,m=0,lo=0,tot=0,done=0;
+ let html="";
+ const cats=Object.keys(d);
+ cats.forEach(cat=>{
+  const items=d[cat];
+  let rows="";let catCnt=0;
+  items.forEach((it,i)=>{
+   if(rf&&it.r!==rf)return;
+   const k=key(c,cat,i);
+   const ck=chk[k]?"checked":"";
+   if(chk[k])done++;
+   tot++;
+   if(it.r==="高")h++;else if(it.r==="中")m++;else lo++;
+   const rc=it.r==="高"?"r-h":it.r==="中"?"r-m":"r-l";
+   const tags=it.t.map(t=>`<span class="tag tag-${t==="ヘルスケア"?"HC":t}">${t==="HC"?"ヘルスケア":t}</span>`).join("");
+   rows+=`<div class="item ${ck?"checked":""}" id="row_${k}">
+    <input type="checkbox" ${ck} onchange="toggle('${k}',this)">
+    <span class="risk ${rc}">${it.r}</span>
+    <span><span class="iname">${it.n}</span><span class="law">${it.l}</span></span>
+    <span class="tags">${tags}</span></div>`;
+   catCnt++;
+  });
+  if(catCnt===0)return;
+  html+=`<div class="cat"><div class="cat-h" onclick="togCat(this)">
+   <h3>${CI[cat]||""} ${cat}<span style="color:var(--sub);font-size:.75rem;margin-left:6px">(${catCnt}項目)</span></h3>
+   <span class="arr open">▶</span></div>
+   <div class="cat-b">${rows}</div></div>`;
+ });
+ document.getElementById("out").innerHTML=html;
+ const pct=tot?Math.round(done/tot*100):0;
+ document.getElementById("stats").innerHTML=`
+  <div class="stat s-h"><div class="n">${h}</div><div class="lb">高リスク</div></div>
+  <div class="stat s-m"><div class="n">${m}</div><div class="lb">中リスク</div></div>
+  <div class="stat s-l"><div class="n">${lo}</div><div class="lb">低リスク</div></div>
+  <div class="stat s-t"><div class="n">${done}/${tot}</div><div class="lb">確認済</div><div class="prog"><div style="width:${pct}%"></div></div></div>`;
+ renderScore(c,d,rf);
+}
+function renderScore(c,d,rf){
+ const cats=Object.keys(d);
+ let bars="";
+ cats.forEach(cat=>{
+  const items=d[cat];
+  let fItems=[];
+  items.forEach((it,i)=>{if(!rf||it.r===rf)fItems.push({it,i})});
+  if(!fItems.length)return;
+  let sc=0,mx=0;
+  fItems.forEach(({it,i})=>{
+   const w=it.r==="高"?10:it.r==="中"?5:2;
+   mx+=w;
+   const k=key(c,cat,i);
+   if(!chk[k])sc+=w;
+  });
+  const pct=mx?Math.round(sc/mx*100):0;
+  const cl=pct>66?"var(--h)":pct>33?"var(--m)":"var(--l)";
+  bars+=`<div class="bar-row"><span class="bl">${CI[cat]} ${cat}</span>
+   <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${cl}"></div>
+   <span class="bar-num">${pct}%</span></div></div>`;
+ });
+ document.getElementById("scorePanel").innerHTML=`<h2>残存リスクスコア（未確認項目ベース）</h2>${bars}<p style="font-size:.73rem;color:var(--sub);margin-top:8px">※ 高=10pt, 中=5pt, 低=2pt。確認済み項目は0ptとして計算</p>`;
+}
+function toggle(k,el){
+ if(el.checked)chk[k]=1;else delete chk[k];
+ sv();
+ const row=document.getElementById("row_"+k);
+ if(row)row.classList.toggle("checked",el.checked);
+ render();
+}
+function togCat(el){
+ const b=el.nextElementSibling;
+ const a=el.querySelector(".arr");
+ if(b.style.display==="none"){b.style.display="";a.classList.add("open")}
+ else{b.style.display="none";a.classList.remove("open")}
+}
+function resetAll(){
+ if(!confirm("全チェックをリセットしますか？"))return;
+ chk={};sv();render();
+}
+function exportCSV(){
+ const c=document.getElementById("cs").value;
+ const d=D[c];if(!d)return;
+ let csv="カテゴリ,項目名,リスク,根拠法令,業種タグ,確認済\n";
+ Object.keys(d).forEach(cat=>{
+  d[cat].forEach((it,i)=>{
+   const k=key(c,cat,i);
+   csv+=`"${cat}","${it.n}","${it.r}","${it.l}","${it.t.join("/")}","${chk[k]?"済":"未"}"\n`;
+  });
+ });
+ const blob=new Blob(["\uFEFF"+csv],{type:"text/csv"});
+ const a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);
+ a.download=`DD_${c}_${new Date().toISOString().slice(0,10)}.csv`;
+ a.click();
+}
+render();
+</script>
+</body>
+</html>

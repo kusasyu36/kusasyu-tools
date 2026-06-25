@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DD発見事項エグゼクティブサマリー生成ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--h:#dc2626;--m:#f59e0b;--l:#22c55e;--bg:#f8fafc;--card:#fff;--bd:#e2e8f0;--tx:#1e293b;--sub:#64748b;--ac:#2563eb}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;font-size:14px}
+.w{max-width:920px;margin:0 auto;padding:16px}
+h1{font-size:1.25rem;text-align:center;padding:18px 0 2px}
+.st{text-align:center;color:var(--sub);font-size:.8rem;margin-bottom:14px}
+.cd{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px;margin-bottom:14px}
+.cd h2{font-size:.95rem;margin-bottom:10px;color:var(--ac)}
+.g{display:grid;gap:8px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+label{font-size:.78rem;font-weight:600;display:block;margin-bottom:2px}
+input,select,textarea{width:100%;padding:7px 10px;border:1px solid var(--bd);border-radius:6px;font-size:.85rem;font-family:inherit}
+textarea{resize:vertical;min-height:48px}
+.bn{padding:8px 20px;border:none;border-radius:6px;cursor:pointer;font-size:.85rem;font-weight:600}
+.bp{background:var(--ac);color:#fff}.bp:hover{opacity:.85}
+.bs{background:#e2e8f0;color:var(--tx)}.bs:hover{background:#cbd5e1}
+.ri{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#f1f5f9;border-radius:6px;margin-bottom:4px;font-size:.82rem}
+.sv{display:inline-block;padding:1px 8px;border-radius:10px;color:#fff;font-size:.72rem;font-weight:700}
+.sv-h{background:var(--h)}.sv-m{background:var(--m)}.sv-l{background:var(--l)}
+.del{background:none;border:none;color:var(--h);cursor:pointer;font-size:1rem}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hm{border-collapse:collapse;width:100%;margin:8px 0}
+.hm td,.hm th{border:1px solid var(--bd);padding:6px;text-align:center;font-size:.78rem}
+.hm th{background:#f1f5f9;font-weight:600}
+.c-hh{background:#fee2e2;color:#991b1b;font-weight:700}
+.c-hm,.c-mh{background:#fef3c7;color:#92400e;font-weight:600}
+.c-mm,.c-hl,.c-lh{background:#fef9c3;color:#854d0e}
+.c-ml,.c-lm{background:#dcfce7;color:#166534}
+.c-ll{background:#f0fdf4;color:#15803d}
+.rt{width:100%;border-collapse:collapse;margin:8px 0;font-size:.8rem}
+.rt th,.rt td{border:1px solid var(--bd);padding:5px 8px;text-align:left}
+.rt th{background:#f1f5f9}
+.fi{border:1px dashed var(--m);background:#fffbeb;padding:4px 10px;border-radius:4px;font-size:.82rem;color:#92400e;display:inline-block}
+.rh{text-align:center;border-bottom:2px solid var(--tx);padding-bottom:10px;margin-bottom:14px}
+.rh h2{font-size:1.1rem}.rh p{font-size:.78rem;color:var(--sub)}
+.sh{font-size:.9rem;margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--bd)}
+@media(max-width:600px){.g2,.g3{grid-template-columns:1fr}}
+@media print{
+body{background:#fff;font-size:11px}
+.cd{border:none;box-shadow:none;padding:8px 0}
+#F,.bn,.del,.fl,h1,.st{display:none!important}
+#R{display:block!important}
+.hm td,.hm th,.rt td,.rt th{padding:3px 5px;font-size:9px}
+.w{max-width:100%;padding:0}
+}
+</style>
+<meta name="description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,DD発見事項エグゼクティブサマリー生成ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-8/">
+<meta property="og:title" content="DD発見事項エグゼクティブサマリー生成ツール - kusasyu tools">
+<meta property="og:description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DD発見事項エグゼクティブサマリー生成ツール - kusasyu tools">
+<meta name="twitter:description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "DD発見事項エグゼクティブサマリー生成ツール",
+  "description": "日本企業が海外M&Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-8/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">DD発見事項エグゼクティブサマリー生成ツール</span></div>
+<div class="w">
+<h1>DD発見事項 エグゼクティブサマリー生成ツール</h1>
+<p class="st">クロスボーダーDD リスクスコアリングツール 連携</p>
+<div id="F">
+<div class="cd">
+<h2>案件情報</h2>
+<div class="g g2">
+<div><label>対象会社名</label><input id="tgt" placeholder="例：ABC Corp."></div>
+<div><label>対象国</label><select id="cty"><option>米国</option><option>豪州</option><option>EU（ドイツ）</option><option>EU（フランス）</option><option>シンガポール</option><option>タイ</option><option>ベトナム</option><option>インドネシア</option><option>フィリピン</option></select></div>
+<div><label>DD実施日</label><input type="date" id="ddt"></div>
+<div><label>作成者（部署・氏名）</label><input id="aut" placeholder="経営企画部 山田太郎"></div>
+</div></div>
+<div class="cd">
+<h2>リスク項目の追加</h2>
+<div class="g g2">
+<div><label>カテゴリ *</label><select id="cat"><option>法規制・コンプライアンス</option><option>労務・人事</option><option>税務</option><option>環境</option><option>知的財産</option><option>訴訟・紛争</option><option>許認可</option><option>データプライバシー</option><option>その他</option></select></div>
+<div><label>リスク項目名 *</label><input id="rnm" placeholder="具体的なリスク名称を入力"></div>
+</div>
+<div class="g g3">
+<div><label>影響度 *</label><select id="imp"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select></div>
+<div><label>発生可能性 *</label><select id="prb"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select></div>
+<div><label>対応期限</label><select id="dl"><option>クロージング前</option><option>短期（3ヶ月）</option><option>中期（1年）</option></select></div>
+</div>
+<div class="g"><div><label>概要</label><textarea id="dsc" placeholder="リスクの具体的内容"></textarea></div></div>
+<div class="g"><div><label>推奨アクション</label><textarea id="acn" placeholder="対応方針・推奨措置"></textarea></div></div>
+<div class="g g2">
+<div><label>想定財務インパクト（手入力）</label><input id="fin" placeholder="例：5,000万円〜1億円"></div>
+<div><label>対応責任者</label><input id="own" placeholder="担当者名"></div>
+</div>
+<div class="fl"><button class="bn bp" onclick="add()">＋ 項目を追加</button><button class="bn bs" onclick="clr()">クリア</button></div>
+</div>
+<div class="cd">
+<h2>登録済み項目（<span id="cnt">0</span>件）</h2>
+<div id="lst"><p style="color:var(--sub);font-size:.82rem">リスク項目を追加してください</p></div>
+<div class="fl" style="margin-top:14px"><button class="bn bp" onclick="gen()" style="padding:10px 36px;font-size:.95rem">レポートを生成</button></div>
+</div></div>
+<div id="R" style="display:none"></div>
+</div>
+<script>
+var D=[];
+function add(){var n=document.getElementById('rnm').value.trim();if(!n){alert('リスク項目名は必須です');return}
+D.push({cat:document.getElementById('cat').value,nm:n,imp:document.getElementById('imp').value,prb:document.getElementById('prb').value,dl:document.getElementById('dl').value,dsc:document.getElementById('dsc').value,acn:document.getElementById('acn').value,fin:document.getElementById('fin').value||'（未記入）',own:document.getElementById('own').value||'（未定）'});
+upd();clr()}
+function clr(){['rnm','dsc','acn','fin','own'].forEach(function(i){document.getElementById(i).value=''})}
+function rm(i){D.splice(i,1);upd()}
+function sv(v){return v==='高'?'h':v==='中'?'m':'l'}
+function upd(){var e=document.getElementById('lst');document.getElementById('cnt').textContent=D.length;
+if(!D.length){e.innerHTML='<p style="color:var(--sub);font-size:.82rem">リスク項目を追加してください</p>';return}
+e.innerHTML=D.map(function(r,i){return'<div class="ri"><span><span class="sv sv-'+sv(r.imp)+'">'+r.imp+'</span> 【'+r.cat+'】'+r.nm+'</span><button class="del" onclick="rm('+i+')">✕</button></div>'}).join('')}
+function hc(a,b){var c=0;D.forEach(function(r){if(r.imp===a&&r.prb===b)c++});var k='c-'+sv(a)+sv(b);return'<td class="'+k+'">'+(c||'-')+'</td>'}
+function gen(){if(!D.length){alert('リスク項目を1件以上追加してください');return}
+var t=document.getElementById('tgt').value||'（未入力）',c=document.getElementById('cty').value,d=document.getElementById('ddt').value||'（未入力）',a=document.getElementById('aut').value||'（未入力）';
+var hi=0,mi=0,li=0;D.forEach(function(r){if(r.imp==='高')hi++;else if(r.imp==='中')mi++;else li++});
+var rows=D.map(function(r,i){return'<tr><td>'+(i+1)+'</td><td>'+r.cat+'</td><td>'+r.nm+'</td><td><span class="sv sv-'+sv(r.imp)+'">'+r.imp+'</span></td><td>'+r.prb+'</td><td>'+(r.dsc||'—')+'</td><td>'+r.dl+'</td></tr>'}).join('');
+var acts=D.filter(function(r){return r.acn}).map(function(r,i){return'<tr><td>'+(i+1)+'</td><td>'+r.nm+'</td><td>'+r.acn+'</td><td>'+r.own+'</td><td>'+r.dl+'</td></tr>'}).join('');
+var fins=D.map(function(r){return'<tr><td>'+r.nm+'</td><td><span class="fi">'+r.fin+'</span></td><td><span class="sv sv-'+sv(r.imp)+'">'+r.imp+'</span></td></tr>'}).join('');
+var warn=hi>0?'<b style="color:var(--h)">高リスク項目が'+hi+'件</b>検出されました。クロージング前の対応を強く推奨します。':'重大な阻害要因は検出されませんでした。';
+var el=document.getElementById('R');el.style.display='block';
+el.innerHTML='<div class="cd"><div class="rh"><h2>デューデリジェンス発見事項<br>エグゼクティブサマリー</h2><p>対象会社：'+t+'｜対象国：'+c+'｜DD実施日：'+d+'<br>作成者：'+a+'｜作成日：'+new Date().toLocaleDateString('ja-JP')+'｜機密区分：Confidential</p></div>'+
+'<h2 class="sh">1. リスク概況</h2><p style="font-size:.83rem;margin-bottom:8px">本DDにおいて計<b>'+D.length+'件</b>のリスク項目を検出。影響度別内訳 — 高：<span style="color:var(--h);font-weight:700">'+hi+'件</span>／中：<span style="color:var(--m);font-weight:700">'+mi+'件</span>／低：<span style="color:var(--l);font-weight:700">'+li+'件</span>。'+warn+'</p>'+
+'<h2 class="sh">2. リスクヒートマップ</h2><table class="hm"><tr><th rowspan="2">影響度 ↓</th><th colspan="3">発生可能性 →</th></tr><tr><th>高</th><th>中</th><th>低</th></tr><tr><th>高</th>'+hc('高','高')+hc('高','中')+hc('高','低')+'</tr><tr><th>中</th>'+hc('中','高')+hc('中','中')+hc('中','低')+'</tr><tr><th>低</th>'+hc('低','高')+hc('低','中')+hc('低','低')+'</tr></table>'+
+'<h2 class="sh">3. 発見事項一覧</h2><table class="rt"><tr><th>#</th><th>カテゴリ</th><th>リスク項目</th><th>影響度</th><th>可能性</th><th>概要</th><th>期限</th></tr>'+rows+'</table>'+
+'<h2 class="sh">4. 推奨アクション</h2><table class="rt"><tr><th>#</th><th>対象リスク</th><th>推奨アクション</th><th>担当</th><th>期限</th></tr>'+(acts||'<tr><td colspan="5" style="color:var(--sub)">推奨アクション未記入</td></tr>')+'</table>'+
+'<h2 class="sh">5. 財務インパクトサマリー</h2><p style="font-size:.73rem;color:var(--sub);margin-bottom:4px">※ 金額は担当者による手入力値であり、自動算出ではありません。</p><table class="rt"><tr><th>リスク項目</th><th>想定財務インパクト</th><th>影響度</th></tr>'+fins+'<tr style="font-weight:700;background:#f8fafc"><td>合計想定インパクト</td><td><span class="fi">（総額を手入力してください）</span></td><td>—</td></tr></table>'+
+'<div class="fl" style="margin-top:16px;justify-content:center"><button class="bn bp" onclick="window.print()" style="padding:10px 36px">PDF印刷 / 保存</button><button class="bn bs" onclick="document.getElementById(\'R\').style.display=\'none\'">閉じる</button></div></div>';
+el.scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

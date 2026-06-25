@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海外M&amp;A候補国_初期スクリーニングシート - kusasyu tools</title>
+<meta name="description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,海外M&amp;A候補国_初期スクリーニングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-9/">
+<meta property="og:title" content="海外M&amp;A候補国_初期スクリーニングシート - kusasyu tools">
+<meta property="og:description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="海外M&amp;A候補国_初期スクリーニングシート - kusasyu tools">
+<meta name="twitter:description" content="日本企業が海外M&amp;Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "海外M&A候補国_初期スクリーニングシート",
+  "description": "日本企業が海外M&Aを実施する際のクロスボーダー法務DDを支援するツールキット。対象国（米・豪・EU・ASEAN主要国）の規制要件を横断比較し、DD項目の優先度スコアリング・発見事項のエグゼクティブサマリー自動生成を行う。従来は弁護士事務所に数百万円・数週間かかるプロセスを、社内法務・経営企画が自力で初期スク",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-9/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-06-24"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>海外M&amp;A候補国_初期スクリーニングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>海外M&amp;A候補国_初期スクリーニングシート</h1>
+  <p class="project-name">海外M&amp;A、現地リスクを見落としてない？</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>領域</th><th>No.</th><th>評価項目</th><th>国1:米国</th><th>国2:豪州</th><th>国3:ベトナム</th><th>国4:（国名入力）</th><th>国5:（国名入力）</th></tr></thead><tbody><tr><td>外資規制</td><td>1</td><td>外資の出資比率に上限規制があるか</td><td>0</td><td>0</td><td>1</td><td></td><td></td></tr><tr><td>外資規制</td><td>2</td><td>事前届出・政府承認制度（CFIUS・FIRB等）が必要か</td><td>1</td><td>1</td><td>1</td><td></td><td></td></tr><tr><td>外資規制</td><td>3</td><td>特定業種（インフラ・メディア・防衛等）に外資参入制限があるか</td><td>1</td><td>1</td><td>1</td><td></td><td></td></tr><tr><td>外資規制</td><td>4</td><td>外資による土地・不動産の所有に制限があるか</td><td>0</td><td>1</td><td>1</td><td></td><td></td></tr><tr><td></td><td></td><td>【外資規制 小計（0〜4点）】</td><td>=SUM(D2:D5)</td><td>=SUM(E2:E5)</td><td>=SUM(F2:F5)</td><td>=SUM(G2:G5)</td><td>=SUM(H2:H5)</td></tr><tr><td>労働法</td><td>5</td><td>解雇規制が厳格で金銭解決が困難か</td><td>0</td><td>1</td><td>1</td><td></td><td></td></tr><tr><td>労働法</td><td>6</td><td>労働組合の法的影響力が大きいか</td><td>0</td><td>1</td><td>1</td><td></td><td></td></tr><tr><td>労働法</td><td>7</td><td>従業員の転籍・配置転換に法的制約があるか</td><td>0</td><td>0</td><td>1</td><td></td><td></td></tr><tr><td>労働法</td><td>8</td><td>退職給付・年金の承継義務が重いか</td><td>0</td><td>1</td><td>1</td><td></td><td></td></tr><tr><td></td><td></td><td>【労働法 小計（0〜4点）】</td><td>=SUM(D7:D10)</td><td>=SUM(E7:E10)</td><td>=SUM(F7:F10)</td><td>=SUM(G7:G10)</td><td>=SUM(H7:H10)</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `領域,No.,評価項目,国1:米国,国2:豪州,国3:ベトナム,国4:（国名入力）,国5:（国名入力）
+外資規制,1,外資の出資比率に上限規制があるか,0,0,1,,
+外資規制,2,事前届出・政府承認制度（CFIUS・FIRB等）が必要か,1,1,1,,
+外資規制,3,特定業種（インフラ・メディア・防衛等）に外資参入制限があるか,1,1,1,,
+外資規制,4,外資による土地・不動産の所有に制限があるか,0,1,1,,
+,,【外資規制 小計（0〜4点）】,=SUM(D2:D5),=SUM(E2:E5),=SUM(F2:F5),=SUM(G2:G5),=SUM(H2:H5)
+労働法,5,解雇規制が厳格で金銭解決が困難か,0,1,1,,
+労働法,6,労働組合の法的影響力が大きいか,0,1,1,,
+労働法,7,従業員の転籍・配置転換に法的制約があるか,0,0,1,,
+労働法,8,退職給付・年金の承継義務が重いか,0,1,1,,
+,,【労働法 小計（0〜4点）】,=SUM(D7:D10),=SUM(E7:E10),=SUM(F7:F10),=SUM(G7:G10),=SUM(H7:H10)
+データ保護,9,個人データの越境移転に制限があるか,0,0,1,,
+データ保護,10,GDPR同等以上の厳格なデータ保護法制があるか,0,1,0,,
+データ保護,11,データローカライゼーション（国内保存）義務があるか,0,0,1,,
+データ保護,12,違反時の制裁金が高額（売上比例等）か,0,0,0,,
+,,【データ保護 小計（0〜4点）】,=SUM(D12:D15),=SUM(E12:E15),=SUM(F12:F15),=SUM(G12:G15),=SUM(H12:H15)
+政治的安定性,13,直近5年で政権交代・政変等の不安定事象があったか,0,0,0,,
+政治的安定性,14,外資政策の急変リスク（国有化・規制強化等）があるか,0,0,1,,
+政治的安定性,15,為替管理・海外送金規制が厳しいか,0,0,1,,
+政治的安定性,16,汚職・贈賄リスクが高い（CPI下位50%）か,0,0,1,,
+,,【政治的安定性 小計（0〜4点）】,=SUM(D17:D20),=SUM(E17:E20),=SUM(F17:F20),=SUM(G17:G20),=SUM(H17:H20)
+法執行コスト,17,訴訟・仲裁の平均解決期間が12カ月超か,1,0,1,,
+法執行コスト,18,判決・仲裁判断の国際的執行が困難か,0,0,1,,
+法執行コスト,19,現地弁護士費用が高額（時間単価300USD超）か,1,1,0,,
+法執行コスト,20,知的財産権の保護水準が不十分か,0,0,1,,
+,,【法執行コスト 小計（0〜4点）】,=SUM(D22:D25),=SUM(E22:E25),=SUM(F22:F25),=SUM(G22:G25),=SUM(H22:H25)
+,,,,,,
+,,★ カントリーリスクスコア合計（0〜20点）,=D6+D11+D16+D21+D26,=E6+E11+E16+E21+E26,=F6+F11+F16+F21+F26,=G6+G11+G16+G21+G26,=H6+H11+H16+H21+H26
+,,"★ 判定","=IF(D28>=15,""高リスク（専門家相談推奨）"",IF(D28>=8,""中リスク（要注意）"",""低リスク（推進可）""))","=IF(E28>=15,""高リスク（専門家相談推奨）"",IF(E28>=8,""中リスク（要注意）"",""低リスク（推進可）""))","=IF(F28>=15,""高リスク（専門家相談推奨）"",IF(F28>=8,""中リスク（要注意）"",""低リスク（推進可）""))","=IF(G28>=15,""高リスク（専門家相談推奨）"",IF(G28>=8,""中リスク（要注意）"",""低リスク（推進可）""))","=IF(H28>=15,""高リスク（専門家相談推奨）"",IF(H28>=8,""中リスク（要注意）"",""低リスク（推進可）""))"
+,,,,,,
+【記入方法】リスク該当＝1 / 非該当＝0 を各セルに入力,,,,,,
+"【判定基準】0〜7点＝低リスク（推進可）/ 8〜14点＝中リスク（要注意）/ 15〜20点＝高リスク（専門家相談推奨）",,,,,,
+"【次のステップ】スコア15点以上の国は外部専門家への相談を推奨。詳細DDに進む際はDD発見事項エグゼクティブサマリー生成ツールを活用してください。",,,,,,
+作成: Kusasyu Legal Tech,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "03_海外M&amp;A候補国_初期スクリーニングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
