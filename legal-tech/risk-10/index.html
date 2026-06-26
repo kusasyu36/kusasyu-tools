@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サプライヤー取引_コンプライアンス管理シート - kusasyu tools</title>
+<meta name="description" content="2024年改正で罰則強化された下請法に対し、製造業の調達・法務担当者が取引条件を入力するだけで違反リスクを自動判定するHTMLツール、適法な製造委託契約テンプレート、サプライヤー別コンプライアンス管理シートの3点セットを提供する。LegalOnやMNTSQ等の汎用契約レビューAIでは対応できない下請法固有の禁">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,サプライヤー取引_コンプライアンス管理シート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-10/">
+<meta property="og:title" content="サプライヤー取引_コンプライアンス管理シート - kusasyu tools">
+<meta property="og:description" content="2024年改正で罰則強化された下請法に対し、製造業の調達・法務担当者が取引条件を入力するだけで違反リスクを自動判定するHTMLツール、適法な製造委託契約テンプレート、サプライヤー別コンプライアンス管理シートの3点セットを提供する。LegalOnやMNTSQ等の汎用契約レビューAIでは対応できない下請法固有の禁">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-10/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="サプライヤー取引_コンプライアンス管理シート - kusasyu tools">
+<meta name="twitter:description" content="2024年改正で罰則強化された下請法に対し、製造業の調達・法務担当者が取引条件を入力するだけで違反リスクを自動判定するHTMLツール、適法な製造委託契約テンプレート、サプライヤー別コンプライアンス管理シートの3点セットを提供する。LegalOnやMNTSQ等の汎用契約レビューAIでは対応できない下請法固有の禁">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "サプライヤー取引_コンプライアンス管理シート",
+  "description": "2024年改正で罰則強化された下請法に対し、製造業の調達・法務担当者が取引条件を入力するだけで違反リスクを自動判定するHTMLツール、適法な製造委託契約テンプレート、サプライヤー別コンプライアンス管理シートの3点セットを提供する。LegalOnやMNTSQ等の汎用契約レビューAIでは対応できない下請法固有の禁",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/risk-10/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-06-25"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>サプライヤー取引_コンプライアンス管理シート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>サプライヤー取引_コンプライアンス管理シート</h1>
+  <p class="project-name">下請法違反リスク、1人法務でも見逃さない</p>
+  <div class="content">
+<h1>サプライヤー取引 コンプライアンス管理シート 運用ガイド</h1>
+<h2>1. 本シートの目的</h2>
+<p>下請法（下請代金支払遅延等防止法）違反は、公正取引委員会による勧告・企業名公表のリスクを伴う。本管理シートは、取引先ごとの義務履行状況を一覧化し、違反の芽を早期に発見するための実務ツールである。</p>
+<p><strong>対応環境</strong>: Excel 2016以降 / Google Sheets（一部条件付き書式の再設定が必要）</p>
+<hr />
+<h2>2. シート構成</h2>
+<p>本シートは<strong>3つのシート</strong>で構成される。</p>
+<table>
+<thead>
+<tr>
+<th>シート名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>取引先マスタ</code></td>
+<td>取引先情報・資本金区分・下請法適用判定</td>
+</tr>
+<tr>
+<td><code>取引管理台帳</code></td>
+<td>個別取引の義務履行状況を記録</td>
+</tr>
+<tr>
+<td><code>監査チェック</code></td>
+<td>四半期・年次セルフ監査用チェック欄</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 取引先マスタ — 列定義と数式</h2>
+<h3>列構成</h3>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>項目名</th>
+<th>入力/自動</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>取引先コード</td>
+<td>入力</td>
+<td>社内管理番号</td>
+</tr>
+<tr>
+<td>B</td>
+<td>取引先名</td>
+<td>入力</td>
+<td>正式名称</td>
+</tr>
+<tr>
+<td>C</td>
+<td>自社資本金（万円）</td>
+<td>入力</td>
+<td>自社の資本金額</td>
+</tr>
+<tr>
+<td>D</td>
+<td>取引先資本金（万円）</td>
+<td>入力</td>
+<td>相手方の資本金額</td>
+</tr>
+<tr>
+<td>E</td>
+<td>取引類型</td>
+<td>入力</td>
+<td><code>製造委託</code> <code>修理委託</code> <code>情報成果物作成委託</code> <code>役務提供委託</code> から選択（ドロップダウン）</td>
+</tr>
+<tr>
+<td>F</td>
+<td>下請法適用</td>
+<td><strong>自動</strong></td>
+<td>IFS数式で判定</td>
+</tr>
+</tbody>
+</table>
+<h3>F列：下請法適用判定のIFS数式</h3>
+<pre><code>=IFS(
+  AND(OR(E2=&quot;製造委託&quot;,E2=&quot;修理委託&quot;),C2&gt;=30000,D2&lt;30000), &quot;適用&quot;,
+  AND(OR(E2=&quot;製造委託&quot;,E2=&quot;修理委託&quot;),C2&gt;=10000,C2&lt;30000,D2&lt;10000), &quot;適用&quot;,
+  AND(OR(E2=&quot;情報成果物作成委託&quot;,E2=&quot;役務提供委託&quot;),C2&gt;=50000,D2&lt;50000), &quot;適用&quot;,
+  AND(OR(E2=&quot;情報成果物作成委託&quot;,E2=&quot;役務提供委託&quot;),C2&gt;=10000,C2&lt;50000,D2&lt;10000), &quot;適用&quot;,
+  C2=&quot;&quot;,&quot;&quot;,
+  TRUE, &quot;非適用&quot;
+)
+</code></pre>
+<blockquote>
+<p><strong>判定ロジック</strong>: 製造委託・修理委託は資本金3億円以上→相手3億円未満、または1千万円以上3億円未満→相手1千万円未満で適用。情報成果物・役務提供は5千万円/1千万円が閾値となる。</p>
+</blockquote>
+<hr />
+<h2>4. 取引管理台帳 — 列定義と数式</h2>
+<h3>列構成</h3>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>項目名</th>
+<th>入力/自動</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>取引先名</td>
+<td>入力</td>
+<td>マスタから選択（ドロップダウン）</td>
+</tr>
+<tr>
+<td>B</td>
+<td>発注日</td>
+<td>入力</td>
+<td>発注書発行日</td>
+</tr>
+<tr>
+<td>C</td>
+<td>3条書面交付済</td>
+<td>入力</td>
+<td><code>済</code> <code>未</code> から選択</td>
+</tr>
+<tr>
+<td>D</td>
+<td>5条書類保存期限</td>
+<td><strong>自動</strong></td>
+<td>発注日+2年を自動算出</td>
+</tr>
+<tr>
+<td>E</td>
+<td>5条書類保存状態</td>
+<td>入力</td>
+<td><code>保存中</code> <code>廃棄済</code> から選択</td>
+</tr>
+<tr>
+<td>F</td>
+<td>支払期日</td>
+<td>入力</td>
+<td>契約上の支払期日</td>
+</tr>
+<tr>
+<td>G</td>
+<td>実支払日</td>
+<td>入力</td>
+<td>実際に支払った日付</td>
+</tr>
+<tr>
+<td>H</td>
+<td>支払遅延日数</td>
+<td><strong>自動</strong></td>
+<td>期日と実支払日の差分</td>
+</tr>
+<tr>
+<td>I</td>
+<td>60日超過フラグ</td>
+<td><strong>自動</strong></td>
+<td>条件付き書式で赤色表示</td>
+</tr>
+<tr>
+<td>J</td>
+<td>返品有無</td>
+<td>入力</td>
+<td><code>なし</code> <code>あり（正当理由）</code> <code>あり（要確認）</code></td>
+</tr>
+<tr>
+<td>K</td>
+<td>単価改定日</td>
+<td>入力</td>
+<td>直近の単価改定実施日</td>
+</tr>
+<tr>
+<td>L</td>
+<td>単価改定理由</td>
+<td>入力</td>
+<td>改定の根拠を記載</td>
+</tr>
+<tr>
+<td>M</td>
+<td>備考</td>
+<td>入力</td>
+<td>特記事項</td>
+</tr>
+</tbody>
+</table>
+<h3>D列：5条書類保存期限</h3>
+<pre><code>=IF(B2=&quot;&quot;,&quot;&quot;,DATE(YEAR(B2)+2,MONTH(B2),DAY(B2)))
+</code></pre>
+<h3>H列：支払遅延日数</h3>
+<pre><code>=IF(OR(F2=&quot;&quot;,G2=&quot;&quot;),&quot;&quot;,G2-F2)
+</code></pre>
+<blockquote>
+<p><strong>補足</strong>: <code>DATEDIF(F2,G2,"D")</code> でも算出可能だが、GがFより前の場合にエラーとなるため、単純な日付減算を採用。負の値は早期支払を意味する。</p>
+</blockquote>
+<h3>I列＋条件付き書式：60日超過フラグ</h3>
+<p>I列の数式：</p>
+<pre><code>=IF(H2=&quot;&quot;,&quot;&quot;,IF(H2&gt;60,&quot;超過&quot;,&quot;正常&quot;))
+</code></pre>
+<p><strong>条件付き書式の設定</strong>:
+- 範囲: <code>H2:I1000</code>
+- 条件: <code>=H2&gt;60</code>
+- 書式: 背景色 赤（<code>#FF0000</code>）、文字色 白（<code>#FFFFFF</code>）</p>
+<hr />
+<h2>5. 監査チェックシート</h2>
+<p>四半期および年次のセルフ監査に使用する。</p>
+<table>
+<thead>
+<tr>
+<th>チェック項目</th>
+<th>Q1</th>
+<th>Q2</th>
+<th>Q3</th>
+<th>Q4</th>
+<th>年次</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3条書面の交付漏れがないか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>5条書類が保存期限内に管理されているか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>支払遅延（60日超過）が発生していないか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>不当な返品・受領拒否がないか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>買いたたき（不当な単価引下げ）がないか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>単価改定に合理的根拠があるか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>有償支給原材料の早期決済がないか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>割引困難な手形の交付がないか</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<p>各セルにはドロップダウンで <code>適合</code> <code>不適合</code> <code>該当なし</code> を選択する。</p>
+<hr />
+<h2>6. シート保護の設定手順</h2>
+<p>誤操作による数式破壊を防ぐため、以下の手順で保護を設定する。</p>
+<ol>
+<li><strong>入力セルを選択</strong> → 右クリック →「セルの書式設定」→「保護」タブ →「ロック」のチェックを<strong>外す</strong></li>
+<li>対象セル: 各シートの「入力」列（上記表で<code>入力</code>と記載した列すべて）</li>
+<li>「校閲」タブ →「シートの保護」→ パスワード設定 → OK</li>
+<li>数式セル（<code>自動</code>列）はロック状態が維持され、編集不可となる</li>
+</ol>
+<p><strong>Google Sheetsの場合</strong>: 「データ」→「シートと範囲を保護」→ 数式列を指定して保護を設定。</p>
+<hr />
+<h2>7. 運用上の注意点</h2>
+<ul>
+<li><strong>60日ルール</strong>: 下請法上、受領日から60日以内の支払が義務。本シートでは支払期日基準で管理するため、発注時に期日を受領日+60日以内に設定すること</li>
+<li><strong>3条書面</strong>: 発注時に書面（メール添付PDF可）を交付し、交付日を必ず記録する</li>
+<li><strong>5条書類</strong>: 取引記録は2年間の保存義務がある。保存期限の3ヶ月前にリマインドする運用を推奨</li>
+<li><strong>単価改定</strong>: 原材料費高騰等による改定は記録を残す。理由欄が空白の改定は監査時に指摘対象となる</li>
+</ul>
+<hr />
+<h2>8. ダウンロードと初期設定</h2>
+<ol>
+<li><code>.xlsx</code>ファイルをダウンロードし、Excel 2016以降で開く</li>
+<li><code>取引先マスタ</code>シートのC列に自社資本金を入力</li>
+<li>取引先情報をA〜E列に入力し、F列の自動判定を確認</li>
+<li><code>取引管理台帳</code>に取引データを入力開始</li>
+<li>四半期末に<code>監査チェック</code>シートで自己点検を実施</li>
+</ol>
+<p>本シートを継続運用することで、下請法違反リスクの可視化と、公正取引委員会の書面調査への即時対応が可能となる。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

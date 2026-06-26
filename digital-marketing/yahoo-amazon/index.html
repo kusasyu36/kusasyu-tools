@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>楽天・Yahoo!・Amazon_商品画像規格_準拠確認チェックリスト - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.25em;text-align:center;padding:18px 0 4px;color:#1e40af}
+.sub{text-align:center;font-size:.83em;color:#64748b;margin-bottom:6px}
+.notice{background:#fffbeb;border:1px solid #f59e0b;border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:.84em;color:#92400e;text-align:center;font-weight:600}
+.notice span{display:block;font-weight:400;font-size:.92em;margin-top:2px}
+.card{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1em;color:#1e40af;border-bottom:2px solid #dbeafe;padding-bottom:6px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.badge{font-size:.7em;padding:2px 8px;border-radius:20px;color:#fff;font-weight:700}
+.b-r{background:#bf0000}.b-y{background:#7c3aed}.b-a{background:#ea580c}
+.chk-item{padding:10px 0;border-bottom:1px solid #f1f5f9}
+.chk-item:last-child{border-bottom:none}
+.chk-top{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
+.chk-top input[type=checkbox]{width:20px;height:20px;margin-top:2px;accent-color:#2563eb;flex-shrink:0}
+.chk-top .txt{font-size:.88em;font-weight:600;color:#334155}
+.hint{display:none;margin:6px 0 0 30px;padding:8px 12px;background:#f0fdf4;border-left:3px solid #22c55e;border-radius:0 8px 8px 0;font-size:.8em;color:#166534}
+.hint.show-fail{background:#fef2f2;border-left-color:#ef4444;color:#991b1b}
+.score-area{margin-top:16px}
+.score-bar-wrap{margin-bottom:12px}
+.score-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.score-label{font-size:.85em;font-weight:700;color:#334155}
+.score-pct{font-size:.95em;font-weight:800}
+.score-track{height:22px;background:#e2e8f0;border-radius:11px;overflow:hidden}
+.score-fill{height:100%;border-radius:11px;transition:width .5s ease}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:16px 0}
+.s-box{text-align:center;border-radius:10px;padding:14px 8px;border:1px solid #e2e8f0}
+.s-box .sv{font-size:1.6em;font-weight:800}.s-box .sl{font-size:.73em;color:#64748b;margin-top:2px}
+.g{color:#16a34a}.y{color:#d97706}.r{color:#dc2626}
+.next-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 16px;margin-top:14px;font-size:.84em;color:#1e40af}
+.next-box strong{display:block;margin-bottom:4px;font-size:.95em}
+.pri-list{margin-top:10px;padding-left:18px;font-size:.83em;color:#334155}
+.pri-list li{margin-bottom:4px}
+.pri-list li span{font-weight:700}
+.tab-row{display:flex;gap:0;margin-bottom:0}
+.tab{flex:1;padding:10px 6px;text-align:center;font-size:.85em;font-weight:700;cursor:pointer;border:1px solid #e2e8f0;background:#f8fafc;color:#64748b;transition:all .2s}
+.tab:first-child{border-radius:10px 0 0 0}.tab:last-child{border-radius:0 10px 0 0}
+.tab.active{background:#fff;color:#1e40af;border-bottom-color:#fff}
+.tab-body{border:1px solid #e2e8f0;border-top:none;border-radius:0 0 10px 10px;background:#fff;padding:16px}
+.pane{display:none}.pane.active{display:block}
+.btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:10px}
+.btn:hover{background:linear-gradient(135deg,#1d4ed8,#1e3a8a)}
+.btn-sec{background:linear-gradient(135deg,#64748b,#475569);margin-top:8px}
+.btn-sec:hover{background:linear-gradient(135deg,#475569,#334155)}
+footer{text-align:center;font-size:.72em;color:#94a3b8;padding:18px 0 10px}
+@media(max-width:600px){.wrap{padding:10px}h1{font-size:1.1em}.summary{grid-template-columns:1fr 1fr}}
+</style>
+<meta name="description" content="楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,楽天・Yahoo!・Amazon_商品画像規格_準拠確認チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/yahoo-amazon/">
+<meta property="og:title" content="楽天・Yahoo!・Amazon_商品画像規格_準拠確認チェックリスト - kusasyu tools">
+<meta property="og:description" content="楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/yahoo-amazon/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="楽天・Yahoo!・Amazon_商品画像規格_準拠確認チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "楽天・Yahoo!・Amazon_商品画像規格_準拠確認チェックリスト",
+  "description": "楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/yahoo-amazon/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">楽天・Yahoo!・Amazon_商品画像規格_準拠確認チェ</span></div>
+<div class="wrap">
+<h1>楽天・Yahoo!・Amazon<br>商品画像規格 準拠確認チェックリスト</h1>
+<p class="sub">3大ECモール画像規格への適合状況をセルフチェック</p>
+<div class="notice">⚠ 画像の自動解析は行いません。各項目を目視でご確認ください。<span>チェックボックスをON/OFFして自社商品画像の適合状況を確認してください。</span></div>
+
+<div class="tab-row">
+<div class="tab active" onclick="switchTab(0)">楽天市場</div>
+<div class="tab" onclick="switchTab(1)">Yahoo!</div>
+<div class="tab" onclick="switchTab(2)">Amazon</div>
+</div>
+<div class="tab-body">
+
+<div class="pane active" id="pane0">
+<div id="list0"></div>
+</div>
+<div class="pane" id="pane1">
+<div id="list1"></div>
+</div>
+<div class="pane" id="pane2">
+<div id="list2"></div>
+</div>
+</div>
+
+<button class="btn" onclick="calcScore()">適合率を診断する</button>
+<button class="btn btn-sec" onclick="resetAll()">すべてリセット</button>
+
+<div id="result" style="display:none">
+<div class="card" style="margin-top:16px">
+<h2>診断結果：モール別 適合率スコア</h2>
+<div class="summary" id="summaryBoxes"></div>
+<div class="score-area" id="scoreBars"></div>
+</div>
+<div class="card">
+<h2>改善優先度リスト</h2>
+<p style="font-size:.83em;color:#64748b;margin-bottom:8px">未対応の項目を影響度順に表示しています。</p>
+<ul class="pri-list" id="priList"></ul>
+<div id="noPri" style="display:none;text-align:center;padding:16px;color:#16a34a;font-weight:700;font-size:.95em">すべての項目をクリアしています！</div>
+</div>
+<div class="next-box">
+<strong>次のステップ</strong>
+この確認結果を「EC商品写真コスト削減ROI診断＆AIツール移行シミュレーター」の診断結果と合わせて活用すると、AI移行時にどの規格対応が自動化できるかを把握できます。未対応項目の対処にAI商品写真ツールの導入を検討される場合は、ROI診断結果も合わせてご確認ください。
+</div>
+</div>
+</div>
+<footer>EC商品写真コスト削減ROI診断ツールキット ― 画像規格チェックリスト</footer>
+
+<script>
+var DATA=[
+{name:"楽天市場",cls:"b-r",items:[
+{t:"画像サイズが1000×1000px（正方形）である",h:"楽天では商品画像第1画像に1000×1000pxの正方形を推奨。縦横比1:1にリサイズしてください。",w:3},
+{t:"背景が白または単色の明るい背景である",h:"メイン画像は白背景が推奨。撮影時に白背景紙を使うか、画像編集で背景を白に差し替えてください。",w:3},
+{t:"テキスト・ロゴの占有率が画像面積の20%以下である",h:"楽天のガイドラインではテキスト占有率20%以下を推奨。文字を小さくするか枚数を分けて情報を整理しましょう。",w:3},
+{t:"ファイルサイズが2MB以下である",h:"JPEG品質を80〜85%程度に圧縮すれば多くの場合2MB以内に収まります。",w:2},
+{t:"ファイル形式がJPEG/PNG/GIFのいずれかである",h:"WebPなど非対応形式の場合はJPEGに変換してください。",w:1},
+{t:"枠線・装飾フレームが画像に含まれていない",h:"画像全周の枠線は禁止対象。枠なしのシンプルな構図にしましょう。",w:2},
+{t:"商品画像が7枚以上登録されている",h:"楽天では最大20枚登録可。最低7枚で多角的に見せると転換率が向上します。",w:2},
+{t:"R-Cabinetの命名規則に準拠している",h:"ファイル名は半角英数・ハイフン・アンダースコアのみ使用可。日本語ファイル名はエラーの原因になります。",w:1}
+]},
+{name:"Yahoo!ショッピング",cls:"b-y",items:[
+{t:"画像サイズが600×600px以上である",h:"Yahoo!では最低600×600pxが必要。1200×1200px推奨でズーム機能が有効になります。",w:3},
+{t:"ファイルサイズが3MB以下である",h:"3MBを超える場合はJPEG品質を調整するかリサイズしてください。",w:2},
+{t:"メイン画像の背景が白〜薄いグレーで清潔感がある",h:"濃い背景や派手な模様は避け、商品が際立つ白系背景を使用してください。",w:3},
+{t:"テキスト占有率がガイドライン範囲内（過度なテキスト装飾なし）",h:"Yahoo!も過度なテキスト挿入を非推奨。キャッチコピーは別途商品説明欄に記載しましょう。",w:2},
+{t:"ファイル形式がJPEG/PNG/GIFのいずれかである",h:"対応形式を確認。HEICなどスマホ撮影形式はJPEGに変換が必要です。",w:1},
+{t:"商品画像が最低3枚以上登録されている",h:"メイン1枚＋サブ2枚以上で商品の特徴を多角的に伝えましょう。7枚以上が理想です。",w:2},
+{t:"画像内に他社ロゴ・無関係な要素がない",h:"比較広告やブランドロゴの無断使用はガイドライン違反です。",w:2}
+]},
+{name:"Amazon.co.jp",cls:"b-a",items:[
+{t:"メイン画像の背景が純白（RGB: 255,255,255）である",h:"Amazonはメイン画像の背景を純白（#FFFFFF）に厳格に要求。グレーやオフホワイトはNG。画像編集ソフトで背景を純白に置換してください。",w:3},
+{t:"画像の最長辺が1000px以上（推奨1600px以上）である",h:"1600px以上でズーム機能が有効になり、転換率が平均15〜25%向上するデータがあります。",w:3},
+{t:"商品が画像面積の85%以上を占めている",h:"余白を減らし、商品を大きく配置。トリミングツールで調整してください。",w:3},
+{t:"メイン画像にテキスト・ロゴ・透かしがない",h:"Amazonメイン画像はテキスト完全禁止。ブランド名も不可。情報はサブ画像に記載。",w:3},
+{t:"ファイル形式がJPEG/PNG/TIFF/GIFのいずれかである",h:"AmazonではTIFFも使用可。ただしJPEGが最も軽量で推奨されます。",w:1},
+{t:"ファイル名がASIN/JAN+拡張子の形式である",h:"例: B08XXXXX.jpg のようにASINをファイル名にすると管理が容易です。",w:1},
+{t:"メイン画像に複数バリエーションの同時表示がない",h:"1SKU1メイン画像が原則。カラーバリエーションは親子ASINで分けましょう。",w:2},
+{t:"サブ画像を含め合計7枚以上登録している",h:"メイン1枚＋サブ6枚の合計7枚以上が推奨。使用シーン・サイズ感・パッケージなど多角的に。",w:2},
+{t:"画像に不鮮明・ピクセル化がなく高解像度である",h:"スマホ撮影の場合は最高画質設定で。三脚や照明ボックスの使用で品質が大幅に向上します。",w:2}
+]}
+];
+
+function buildLists(){
+DATA.forEach(function(mall,mi){
+var c=document.getElementById("list"+mi);
+var html="";
+mall.items.forEach(function(it,ii){
+var id="c"+mi+"_"+ii;
+html+='<div class="chk-item"><label class="chk-top"><input type="checkbox" id="'+id+'" onchange="toggleHint('+mi+","+ii+')"><span class="txt">'+it.t+'</span></label><div class="hint" id="h'+mi+"_"+ii+'">💡 '+it.h+'</div></div>';
+});
+c.innerHTML=html;
+});
+}
+
+function switchTab(n){
+var tabs=document.querySelectorAll(".tab");
+var panes=document.querySelectorAll(".pane");
+for(var i=0;i<tabs.length;i++){tabs[i].classList.remove("active");panes[i].classList.remove("active")}
+tabs[n].classList.add("active");panes[n].classList.add("active");
+}
+
+function toggleHint(mi,ii){
+var cb=document.getElementById("c"+mi+"_"+ii);
+var ht=document.getElementById("h"+mi+"_"+ii);
+if(cb.checked){ht.style.display="none";ht.classList.remove("show-fail")}
+else{ht.style.display="block";ht.classList.add("show-fail")}
+}
+
+function calcScore(){
+var res=document.getElementById("result");
+var sbHtml="",boxHtml="",priHtml="",totalOk=0,totalAll=0;
+var fails=[];
+var colors=["#bf0000","#7c3aed","#ea580c"];
+var names=["楽天市場","Yahoo!","Amazon"];
+
+DATA.forEach(function(mall,mi){
+var ok=0,all=mall.items.length;
+mall.items.forEach(function(it,ii){
+var cb=document.getElementById("c"+mi+"_"+ii);
+if(cb.checked){ok++}else{fails.push({mall:names[mi],txt:it.t,hint:it.h,w:it.w,mi:mi})}
+});
+totalOk+=ok;totalAll+=all;
+var pct=Math.round(ok/all*100);
+var cls=pct>=80?"g":pct>=50?"y":"r";
+boxHtml+='<div class="s-box"><div class="sv '+cls+'">'+pct+'%</div><div class="sl">'+mall.name+"（"+ok+"/"+all+"）</div></div>";
+sbHtml+='<div class="score-bar-wrap"><div class="score-header"><span class="score-label">'+mall.name+'</span><span class="score-pct '+cls+'">'+pct+'%</span></div><div class="score-track"><div class="score-fill" style="width:'+pct+"%;background:"+colors[mi]+'"></div></div></div>';
+});
+
+var totalPct=Math.round(totalOk/totalAll*100);
+var tc=totalPct>=80?"g":totalPct>=50?"y":"r";
+boxHtml='<div class="s-box"><div class="sv '+tc+'">'+totalPct+'%</div><div class="sl">総合適合率（'+totalOk+"/"+totalAll+"）</div></div>"+boxHtml;
+
+document.getElementById("summaryBoxes").innerHTML=boxHtml;
+document.getElementById("scoreBars").innerHTML=sbHtml;
+
+fails.sort(function(a,b){return b.w-a.w});
+if(fails.length===0){
+document.getElementById("priList").style.display="none";
+document.getElementById("noPri").style.display="block";
+}else{
+document.getElementById("noPri").style.display="none";
+var pl=document.getElementById("priList");
+pl.style.display="block";
+priHtml="";
+fails.forEach(function(f){
+var star=f.w>=3?"🔴 最優先":f.w>=2?"🟡 推奨":"🟢 任意";
+priHtml+="<li><span>["+f.mall+"] </span>"+f.txt+"<br><small style='color:#64748b'>"+star+" ― "+f.hint+"</small></li>";
+});
+pl.innerHTML=priHtml;
+}
+res.style.display="block";
+res.scrollIntoView({behavior:"smooth"});
+}
+
+function resetAll(){
+DATA.forEach(function(mall,mi){
+mall.items.forEach(function(it,ii){
+document.getElementById("c"+mi+"_"+ii).checked=false;
+var ht=document.getElementById("h"+mi+"_"+ii);
+ht.style.display="none";ht.classList.remove("show-fail");
+});
+});
+document.getElementById("result").style.display="none";
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+buildLists();
+</script>
+</body>
+</html>

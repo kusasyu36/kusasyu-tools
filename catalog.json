@@ -2041,6 +2041,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ec-roi-ai",
+    "url": "digital-marketing/ec-roi-ai/",
+    "title": "EC商品写真が高い？AI切替コスト診断ツール",
+    "tool_name": "EC商品写真コスト削減ROI診断＆AIツール移行判断シミュレーター",
+    "description": "楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの画像規格（楽天1000×1000px正方形、Yahoo!・Amazon.co.jp固有要件",
+    "quality_score": 9,
+    "completed_at": "2026-06-25T12:44:51.391223+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "yahoo-amazon",
+    "url": "digital-marketing/yahoo-amazon/",
+    "title": "EC商品写真が高い？AI切替コスト診断ツール",
+    "tool_name": "楽天・Yahoo!・Amazon_商品画像規格_準拠確認チェックリスト",
+    "description": "楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの画像規格（楽天1000×1000px正方形、Yahoo!・Amazon.co.jp固有要件",
+    "quality_score": 9,
+    "completed_at": "2026-06-25T12:44:51.391223+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "diagnosis-26",
+    "url": "digital-marketing/diagnosis-26/",
+    "title": "EC商品写真が高い？AI切替コスト診断ツール",
+    "tool_name": "商品写真AI化_移行管理テンプレート",
+    "description": "楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの画像規格（楽天1000×1000px正方形、Yahoo!・Amazon.co.jp固有要件",
+    "quality_score": 9,
+    "completed_at": "2026-06-25T12:44:51.391223+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -5330,6 +5369,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-31",
+    "url": "legal-tech/diagnosis-31/",
+    "title": "下請法違反リスク、1人法務でも見逃さない",
+    "tool_name": "下請法違反リスク_セルフ診断ツール",
+    "description": "2024年改正で罰則強化された下請法に対し、製造業の調達・法務担当者が取引条件を入力するだけで違反リスクを自動判定するHTMLツール、適法な製造委託契約テンプレート、サプライヤー別コンプライアンス管理シートの3点セットを提供する。LegalOnやMNTSQ等の汎用契約レビューAIでは対応できない下請法固有の禁止行為11類型（買いたたき・支払遅延・不当な経済上の利益提供要請等）に完全特化した業界初の",
+    "quality_score": 7,
+    "completed_at": "2026-06-25T15:32:11.355032+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "contract-43",
+    "url": "legal-tech/contract-43/",
+    "title": "下請法違反リスク、1人法務でも見逃さない",
+    "tool_name": "製造委託契約_下請法適合テンプレート",
+    "description": "2024年改正で罰則強化された下請法に対し、製造業の調達・法務担当者が取引条件を入力するだけで違反リスクを自動判定するHTMLツール、適法な製造委託契約テンプレート、サプライヤー別コンプライアンス管理シートの3点セットを提供する。LegalOnやMNTSQ等の汎用契約レビューAIでは対応できない下請法固有の禁止行為11類型（買いたたき・支払遅延・不当な経済上の利益提供要請等）に完全特化した業界初の",
+    "quality_score": 7,
+    "completed_at": "2026-06-25T15:32:11.355032+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "risk-10",
+    "url": "legal-tech/risk-10/",
+    "title": "下請法違反リスク、1人法務でも見逃さない",
+    "tool_name": "サプライヤー取引_コンプライアンス管理シート",
+    "description": "2024年改正で罰則強化された下請法に対し、製造業の調達・法務担当者が取引条件を入力するだけで違反リスクを自動判定するHTMLツール、適法な製造委託契約テンプレート、サプライヤー別コンプライアンス管理シートの3点セットを提供する。LegalOnやMNTSQ等の汎用契約レビューAIでは対応できない下請法固有の禁止行為11類型（買いたたき・支払遅延・不当な経済上の利益提供要請等）に完全特化した業界初の",
+    "quality_score": 7,
+    "completed_at": "2026-06-25T15:32:11.355032+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -7498,6 +7576,32 @@
     "description": "不動産投資物件の収益性を自動計算するHTMLツール。物件価格・想定家賃・自己資金・借入条件・管理費等を入力すると、表面利回り・実質利回り・CCR・20年間キャッシュフロー推移を即座に算出。金利変動3シナリオ（楽観・中立・悲観）を同時比較でき、計算結果をURLパラメータで第三者と共有可能。既存のリッチAI等は法人向け高額サービスだが、本ツールは無料・ブラウザ完結で個人投資家が即使える設計。",
     "quality_score": 6,
     "completed_at": "2026-06-24T11:14:17.357763+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "ai-api",
+    "url": "proptech/ai-api/",
+    "title": "ロープレ相手がいない？不動産AI営業研修キット",
+    "tool_name": "不動産営業AIロープレ_シミュレーター（APIキー接続型）",
+    "description": "不動産営業マン向けのAIロールプレイ研修ツール。宅建業法・重説義務に準拠した3つの顧客ペルソナ（物件探し来店客・売却相談の地主・設備クレームの入居者）との会話シミュレーションをブラウザ上で体験でき、NG表現や法令リスクを自動チェックする。汎用AIロープレサービスが13社以上存在するが不動産業界特化は空白。宅建業法チェック・重説義務アラート・業界特有のクロージング評価を組み込んだ専門ツールを無料提供",
+    "quality_score": 6,
+    "completed_at": "2026-06-26T06:12:59.700312+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "ai-ng",
+    "url": "proptech/ai-ng/",
+    "title": "ロープレ相手がいない？不動産AI営業研修キット",
+    "tool_name": "不動産営業AI研修_プロンプト＆NGワード完全データパック",
+    "description": "不動産営業マン向けのAIロールプレイ研修ツール。宅建業法・重説義務に準拠した3つの顧客ペルソナ（物件探し来店客・売却相談の地主・設備クレームの入居者）との会話シミュレーションをブラウザ上で体験でき、NG表現や法令リスクを自動チェックする。汎用AIロープレサービスが13社以上存在するが不動産業界特化は空白。宅建業法チェック・重説義務アラート・業界特有のクロージング評価を組み込んだ専門ツールを無料提供",
+    "quality_score": 6,
+    "completed_at": "2026-06-26T06:12:59.700312+00:00",
     "content_type": "article"
   }
 ]

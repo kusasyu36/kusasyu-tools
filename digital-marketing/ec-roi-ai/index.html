@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EC商品写真コスト削減ROI診断＆AIツール移行判断シミュレーター - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:840px;margin:0 auto;padding:16px}
+h1{font-size:1.3em;text-align:center;padding:20px 0 4px;color:#1e40af}
+.sub{text-align:center;font-size:.85em;color:#64748b;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:1.05em;color:#1e40af;border-bottom:2px solid #dbeafe;padding-bottom:6px;margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.field{flex:1;min-width:180px}
+.field label{display:block;font-size:.82em;font-weight:600;margin-bottom:4px;color:#475569}
+.field input,.field select{width:100%;padding:9px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:.95em}
+.field input:focus,.field select:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,.2)}
+.toggle-row{display:flex;align-items:center;gap:10px;margin:8px 0 4px}
+.toggle-row input[type=checkbox]{width:18px;height:18px;accent-color:#3b82f6}
+.toggle-row label{font-size:.85em;color:#475569}
+.btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{background:linear-gradient(135deg,#1d4ed8,#1e3a8a)}
+#result{display:none}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.metric{background:#f8fafc;border-radius:10px;padding:14px;text-align:center;border:1px solid #e2e8f0}
+.metric .val{font-size:1.5em;font-weight:800;color:#1e40af}
+.metric .lbl{font-size:.75em;color:#64748b;margin-top:2px}
+.bar-wrap{margin:10px 0}
+.bar-label{display:flex;justify-content:space-between;font-size:.8em;margin-bottom:3px}
+.bar-bg{height:22px;background:#e2e8f0;border-radius:11px;overflow:hidden}
+.bar-fill{height:100%;border-radius:11px;transition:width .6s}
+table{width:100%;border-collapse:collapse;font-size:.78em;margin-top:8px}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid #e2e8f0}
+th{background:#f1f5f9;font-weight:700;color:#334155;position:sticky;top:0}
+td:first-child,th:first-child{text-align:left;font-weight:600}
+.yes{color:#16a34a;font-weight:700}.no{color:#dc2626}.part{color:#d97706;font-weight:600}
+.rec{background:#dbeafe !important;font-weight:700}
+.note{font-size:.72em;color:#94a3b8;margin-top:10px;text-align:right}
+.chart-area{display:flex;gap:8px;align-items:flex-end;height:140px;margin:10px 0;padding:0 4px}
+.chart-bar{flex:1;border-radius:6px 6px 0 0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;transition:height .5s;min-width:0}
+.chart-bar span{font-size:.65em;color:#475569;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.chart-bar .cv{font-size:.8em;font-weight:700;color:#fff;padding:2px}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.82em;font-weight:700;margin:6px 0}
+.badge-g{background:#dcfce7;color:#15803d}.badge-y{background:#fef9c3;color:#a16207}.badge-r{background:#fee2e2;color:#b91c1c}
+@media(max-width:500px){.metrics{grid-template-columns:1fr 1fr}.field{min-width:140px}h1{font-size:1.1em}}
+</style>
+<meta name="description" content="楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,EC商品写真コスト削減ROI診断＆AIツール移行判断シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-roi-ai/">
+<meta property="og:title" content="EC商品写真コスト削減ROI診断＆AIツール移行判断シミュレーター - kusasyu tools">
+<meta property="og:description" content="楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-roi-ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EC商品写真コスト削減ROI診断＆AIツール移行判断シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EC商品写真コスト削減ROI診断＆AIツール移行判断シミュレーター",
+  "description": "楽天・Yahoo!ショッピング・Amazon.co.jpに出店する中小EC事業者向けに、商品写真のAI化によるコスト削減効果を診断し、各モール規格への準拠状況をチェックするツールキット。現在の撮影・編集コスト（外注費・内製工数）を入力するだけで、AI商品写真ツールへの移行ROIを自動算出。さらに各ECモールの",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ec-roi-ai/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">EC商品写真コスト削減ROI診断＆AIツール移行判断シミュレ</span></div>
+<div class="wrap">
+<h1>EC商品写真コスト削減ROI診断<br>AIツール移行シミュレーター</h1>
+<p class="sub">楽天・Yahoo!ショッピング・Amazon.co.jp 出店事業者向け</p>
+
+<div class="card">
+<h2>📋 現在のコスト情報を入力</h2>
+<div class="row">
+<div class="field"><label>月間 新規商品数</label><input type="number" id="prods" value="20" min="1" max="9999"></div>
+<div class="field"><label>1商品あたり写真枚数</label><input type="number" id="pics" value="5" min="1" max="50"></div>
+</div>
+<div class="row">
+<div class="field"><label>1枚あたり撮影・編集コスト（円）</label><input type="number" id="cost" value="3000" min="100" step="100"></div>
+<div class="field"><label>出店モール数</label><select id="malls"><option value="1">1モール</option><option value="2">2モール</option><option value="3" selected>3モール（楽天+Yahoo!+Amazon）</option></select></div>
+</div>
+<div class="row">
+<div class="field"><label>モール別リサイズ追加費用（円/枚）</label><input type="number" id="resize" value="300" min="0" step="50"></div>
+<div class="field"><label>AI写真ツール想定月額（円）</label><input type="number" id="aicost" value="5000" min="0" step="500"></div>
+</div>
+<div class="toggle-row">
+<input type="checkbox" id="yahoo"><label for="yahoo">Yahoo!ショッピング出店料有料化の追加コスト圧力を加味する（月額+19,500円想定）</label>
+</div>
+<button class="btn" onclick="calc()">▶ 診断する</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>📊 コスト診断結果</h2>
+<div class="metrics">
+<div class="metric"><div class="val" id="r1">-</div><div class="lbl">年間写真コスト（現状）</div></div>
+<div class="metric"><div class="val" id="r2">-</div><div class="lbl">AI移行後 年間コスト</div></div>
+<div class="metric"><div class="val" id="r3">-</div><div class="lbl">年間削減額</div></div>
+<div class="metric"><div class="val" id="r4">-</div><div class="lbl">コスト削減率</div></div>
+</div>
+<div class="metrics">
+<div class="metric"><div class="val" id="r5">-</div><div class="lbl">ROI（投資収益率）</div></div>
+<div class="metric"><div class="val" id="r6">-</div><div class="lbl">損益分岐月</div></div>
+</div>
+<div id="judge"></div>
+<div class="bar-wrap">
+<div class="bar-label"><span>現状コスト</span><span id="bl1"></span></div>
+<div class="bar-bg"><div class="bar-fill" id="bf1" style="background:#ef4444;width:0"></div></div>
+</div>
+<div class="bar-wrap">
+<div class="bar-label"><span>AI移行後</span><span id="bl2"></span></div>
+<div class="bar-bg"><div class="bar-fill" id="bf2" style="background:#22c55e;width:0"></div></div>
+</div>
+<h2 style="margin-top:18px">📈 月別累計コスト比較</h2>
+<div class="chart-area" id="chart"></div>
+</div>
+
+<div class="card">
+<h2>🔍 主要AI商品写真ツール 5社比較</h2>
+<div style="overflow-x:auto">
+<table id="tbl">
+<tr><th>ツール名</th><th>月額目安</th><th>楽天<br>1000×1000</th><th>Yahoo!</th><th>Amazon</th><th>日本語</th><th>特徴</th></tr>
+<tr data-p="1500"><td>Photoroom</td><td>¥1,500〜</td><td class="yes">◎</td><td class="yes">◎</td><td class="yes">◎</td><td class="yes">◎</td><td>背景除去・合成が秀逸</td></tr>
+<tr data-p="3980"><td>ZenFotomatic</td><td>¥3,980〜</td><td class="yes">◎</td><td class="yes">◎</td><td class="yes">◎</td><td class="yes">◎</td><td>国産・EC特化・白抜き自動</td></tr>
+<tr data-p="2900"><td>Pebblely</td><td>¥2,900〜</td><td class="yes">◎</td><td class="part">△</td><td class="yes">◎</td><td class="part">△</td><td>背景生成AI・テンプレ豊富</td></tr>
+<tr data-p="4500"><td>Booth.ai</td><td>$29〜</td><td class="part">△</td><td class="part">△</td><td class="yes">◎</td><td class="no">✕</td><td>商品合成・ライフスタイル画像</td></tr>
+<tr data-p="0"><td>Canva (AI機能)</td><td>¥0〜1,500</td><td class="yes">◎</td><td class="yes">◎</td><td class="yes">◎</td><td class="yes">◎</td><td>汎用デザイン・AI背景除去</td></tr>
+</table>
+</div>
+<div id="recommend" style="margin-top:12px"></div>
+<p class="note">※ 価格は2025年5月時点の公開情報に基づく参考値です。最新情報は各社公式サイトをご確認ください。<br>
+最終更新：2025年5月 ｜ 
+<a href="https://www.photoroom.com/" target="_blank">Photoroom</a> ・
+<a href="https://www.zenfotomatic.com/" target="_blank">ZenFotomatic</a> ・
+<a href="https://pebblely.com/" target="_blank">Pebblely</a> ・
+<a href="https://booth.ai/" target="_blank">Booth.ai</a> ・
+<a href="https://www.canva.com/" target="_blank">Canva</a></p>
+</div>
+
+<div class="card">
+<h2>✅ ECモール画像規格チェックリスト</h2>
+<table>
+<tr><th>項目</th><th>楽天市場</th><th>Yahoo!</th><th>Amazon</th></tr>
+<tr><td>推奨サイズ</td><td>1000×1000px</td><td>600×600px以上</td><td>1000×1000px以上</td></tr>
+<tr><td>形式</td><td>JPEG/PNG/GIF</td><td>JPEG/PNG/GIF</td><td>JPEG/PNG/TIFF</td></tr>
+<tr><td>背景色</td><td>指定なし</td><td>白推奨</td><td>白背景 必須(メイン)</td></tr>
+<tr><td>テキスト</td><td>画像内OK</td><td>控えめ推奨</td><td>メイン画像は不可</td></tr>
+<tr><td>ファイル上限</td><td>2MB</td><td>3MB</td><td>10MB</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<script>
+function fmt(n){return n>=10000?(n/10000).toFixed(1)+'万円':n.toLocaleString()+'円'}
+function fmtS(n){return n.toLocaleString()+'円'}
+function calc(){
+var p=+document.getElementById('prods').value||0,
+ c=+document.getElementById('pics').value||0,
+ u=+document.getElementById('cost').value||0,
+ m=+document.getElementById('malls').value,
+ r=+document.getElementById('resize').value||0,
+ ai=+document.getElementById('aicost').value||0,
+ yh=document.getElementById('yahoo').checked,
+ monthPics=p*c,
+ monthCur=monthPics*u+(m>1?monthPics*(m-1)*r:0),
+ yearCur=monthCur*12,
+ monthAI=ai+(monthPics*50),
+ yearAI=monthAI*12,
+ saving=yearCur-yearAI,
+ pct=yearCur>0?Math.round(saving/yearCur*100):0,
+ roi=yearAI>0?Math.round(saving/yearAI*100):0,
+ bep=saving>0?Math.ceil(yearAI*12/saving/12):'-';
+if(yh){yearCur+=19500*12;saving=yearCur-yearAI;pct=yearCur>0?Math.round(saving/yearCur*100):0;roi=yearAI>0?Math.round(saving/yearAI*100):0}
+document.getElementById('r1').textContent=fmt(yearCur);
+document.getElementById('r2').textContent=fmt(yearAI);
+document.getElementById('r3').textContent=fmt(saving);
+document.getElementById('r4').textContent=pct+'%';
+document.getElementById('r5').textContent=roi+'%';
+document.getElementById('r6').textContent=(typeof bep==='number'?bep+'ヶ月':bep);
+var mx=Math.max(yearCur,yearAI);
+document.getElementById('bf1').style.width=mx>0?(yearCur/mx*100)+'%':'0';
+document.getElementById('bf2').style.width=mx>0?(yearAI/mx*100)+'%':'0';
+document.getElementById('bl1').textContent=fmtS(yearCur);
+document.getElementById('bl2').textContent=fmtS(yearAI);
+var j=document.getElementById('judge');
+if(pct>=50)j.innerHTML='<span class="badge badge-g">◎ AI移行の効果大 — 早期導入を強く推奨</span>';
+else if(pct>=20)j.innerHTML='<span class="badge badge-y">○ 一定の削減効果あり — 段階的導入を推奨</span>';
+else j.innerHTML='<span class="badge badge-r">△ 削減効果は限定的 — 部分導入で検証を</span>';
+// chart
+var ch=document.getElementById('chart');ch.innerHTML='';
+for(var i=1;i<=12;i++){var cc=monthCur*i,ca=monthAI*i,mx2=monthCur*12;
+var d=document.createElement('div');d.style.width='100%';d.style.display='flex';d.style.flexDirection='column';d.style.alignItems='center';d.style.gap='2px';
+var b1=document.createElement('div');b1.style.width='45%';b1.style.background='#ef4444';b1.style.height=Math.max(2,cc/mx2*120)+'px';b1.style.borderRadius='3px 3px 0 0';b1.style.display='inline-block';
+var b2=document.createElement('div');b2.style.width='45%';b2.style.background='#22c55e';b2.style.height=Math.max(2,ca/mx2*120)+'px';b2.style.borderRadius='3px 3px 0 0';b2.style.display='inline-block';
+var row=document.createElement('div');row.style.display='flex';row.style.alignItems='flex-end';row.style.height='120px';row.style.gap='1px';row.style.width='100%';
+row.appendChild(b1);row.appendChild(b2);
+var lb=document.createElement('span');lb.style.fontSize='.65em';lb.textContent=i+'月';
+d.appendChild(row);d.appendChild(lb);ch.appendChild(d)}
+// recommend
+var rec=document.getElementById('recommend');
+var best='ZenFotomatic';
+if(monthPics<=50)best='Canva (AI機能)';
+else if(pct>=50&&monthPics>100)best='Photoroom';
+else if(m>=3)best='ZenFotomatic';
+rec.innerHTML='<strong>💡 推奨ツール：'+best+'</strong><br><span style="font-size:.82em;color:#475569">月間'+monthPics+'枚・'+m+'モール運用のあなたには、'+best+'が最適です。</span>';
+var rows=document.getElementById('tbl').rows;
+for(var i=1;i<rows.length;i++){rows[i].classList.remove('rec');if(rows[i].cells[0].textContent===best)rows[i].classList.add('rec')}
+document.getElementById('result').style.display='block';
+document.getElementById('result').scrollIntoView({behavior:'smooth'})
+}
+</script>
+</body>
+</html>

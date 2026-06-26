@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>不動産営業AIロープレ_シミュレーター（APIキー接続型） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e}
+.hide{display:none!important}
+header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px;text-align:center}
+header h1{font-size:1.2em}
+header p{font-size:.75em;opacity:.7;margin-top:4px}
+.card{background:#fff;border-radius:12px;padding:20px;margin:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+label{font-weight:700;font-size:.9em;display:block;margin-bottom:6px}
+input[type=password],textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:.95em}
+textarea{resize:none;height:60px}
+.btn{display:inline-block;padding:10px 20px;border:none;border-radius:8px;font-size:.95em;font-weight:700;cursor:pointer;transition:.2s}
+.btn-p{background:#e94560;color:#fff}
+.btn-p:hover{background:#c73652}
+.btn-s{background:#eee;color:#333}
+.btn-s:hover{background:#ddd}
+.personas{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+.persona{border:2px solid #ddd;border-radius:10px;padding:14px;cursor:pointer;transition:.2s}
+.persona:hover,.persona.sel{border-color:#e94560;background:#fff5f7}
+.persona h3{font-size:.95em;color:#e94560}
+.persona p{font-size:.8em;color:#666;margin-top:4px}
+#chat{max-height:55vh;overflow-y:auto;padding:8px}
+.msg{margin:8px 0;padding:10px 14px;border-radius:12px;max-width:85%;font-size:.9em;line-height:1.5}
+.msg-u{background:#e94560;color:#fff;margin-left:auto;border-bottom-right-radius:2px}
+.msg-a{background:#e8e8e8;border-bottom-left-radius:2px}
+.alert-box{background:#fff3cd;border-left:4px solid #f59e0b;padding:10px;margin:8px 0;border-radius:0 8px 8px 0;font-size:.82em}
+.alert-box strong{color:#d97706}
+#report .score{font-size:2em;font-weight:900;color:#e94560;text-align:center;margin:12px 0}
+#report .bar{background:#eee;border-radius:8px;height:18px;margin:6px 0}
+#report .bar-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#e94560,#f59e0b);transition:.5s}
+#report h3{font-size:.95em;margin:10px 0 4px;color:#16213e}
+#report ul{font-size:.85em;padding-left:18px;color:#444}
+#report li{margin:3px 0}
+.foot{text-align:center;padding:10px;font-size:.7em;color:#999}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid #ccc;border-top-color:#e94560;border-radius:50%;animation:sp .6s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(min-width:600px){.personas{grid-template-columns:1fr 1fr 1fr}}
+</style>
+<meta name="description" content="不動産営業マン向けのAIロールプレイ研修ツール。宅建業法・重説義務に準拠した3つの顧客ペルソナ（物件探し来店客・売却相談の地主・設備クレームの入居者）との会話シミュレーションをブラウザ上で体験でき、NG表現や法令リスクを自動チェックする。汎用AIロープレサービスが13社以上存在するが不動産業界特化は空白。宅建">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,不動産営業AIロープレ_シミュレーター（APIキー接続型）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/ai-api/">
+<meta property="og:title" content="不動産営業AIロープレ_シミュレーター（APIキー接続型） - kusasyu tools">
+<meta property="og:description" content="不動産営業マン向けのAIロールプレイ研修ツール。宅建業法・重説義務に準拠した3つの顧客ペルソナ（物件探し来店客・売却相談の地主・設備クレームの入居者）との会話シミュレーションをブラウザ上で体験でき、NG表現や法令リスクを自動チェックする。汎用AIロープレサービスが13社以上存在するが不動産業界特化は空白。宅建">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/ai-api/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不動産営業AIロープレ_シミュレーター（APIキー接続型） - kusasyu tools">
+<meta name="twitter:description" content="不動産営業マン向けのAIロールプレイ研修ツール。宅建業法・重説義務に準拠した3つの顧客ペルソナ（物件探し来店客・売却相談の地主・設備クレームの入居者）との会話シミュレーションをブラウザ上で体験でき、NG表現や法令リスクを自動チェックする。汎用AIロープレサービスが13社以上存在するが不動産業界特化は空白。宅建">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "不動産営業AIロープレ_シミュレーター（APIキー接続型）",
+  "description": "不動産営業マン向けのAIロールプレイ研修ツール。宅建業法・重説義務に準拠した3つの顧客ペルソナ（物件探し来店客・売却相談の地主・設備クレームの入居者）との会話シミュレーションをブラウザ上で体験でき、NG表現や法令リスクを自動チェックする。汎用AIロープレサービスが13社以上存在するが不動産業界特化は空白。宅建",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/ai-api/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">不動産営業AIロープレ_シミュレーター（APIキー接続型）</span></div>
+<header>
+<h1>不動産営業AIロープレ シミュレーター</h1>
+<p>宅建業法準拠 | APIキーはブラウザ内のみ保存 | サーバー非送信</p>
+</header>
+<div id="s1" class="card">
+<label>OpenAI APIキー</label>
+<input type="password" id="apikey" placeholder="sk-...">
+<p style="font-size:.75em;color:#888;margin:6px 0">キーはlocalStorageのみに保存。外部送信しません。</p>
+<br><button class="btn btn-p" onclick="saveKey()">接続して開始</button>
+</div>
+<div id="s2" class="card hide">
+<label>ペルソナを選択</label>
+<div class="personas">
+<div class="persona" onclick="selP(0)"><h3>来店客</h3><p>都内で2LDK賃貸を探す30代夫婦。予算や条件にこだわりが強く、他社も検討中。</p></div>
+<div class="persona" onclick="selP(1)"><h3>売却相談の地主</h3><p>相続した土地の売却を検討する60代男性。税務・法律面で不安を抱えている。</p></div>
+<div class="persona" onclick="selP(2)"><h3>クレーム対応</h3><p>給湯器故障で怒っている入居者。迅速な対応と誠意ある説明を求めている。</p></div>
+</div>
+</div>
+<div id="s3" class="card hide">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+<strong id="pname" style="color:#e94560"></strong>
+<button class="btn btn-s" onclick="endChat()" id="endbtn">研修終了・レポート生成</button>
+</div>
+<div id="chat"></div>
+<div style="display:flex;gap:8px;margin-top:8px">
+<textarea id="inp" placeholder="営業担当として返答を入力…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"></textarea>
+<button class="btn btn-p" onclick="send()" id="sbtn">送信</button>
+</div>
+</div>
+<div id="report" class="card hide"></div>
+<div class="foot">Kusasyu PropTech | 不動産営業AIロープレ研修キット</div>
+<script>
+const PERSONAS=[
+{name:"来店客（物件探し）",sys:"あなたは都内で2LDK賃貸を探す30代夫婦の妻「田中美咲」です。予算は月15万円以内、駅徒歩10分以内希望。他社2社も回っている設定。物件のデメリットも正直に聞きたい性格。曖昧な説明には突っ込む。重要事項説明についても質問する。"},
+{name:"売却相談の地主",sys:"あなたは相続で取得した150坪の土地を売却検討中の60代男性「鈴木一郎」です。相続税の支払い期限が迫り焦っている。媒介契約の種類や仲介手数料について詳しく聞く。安く買い叩かれないか警戒している。税金や瑕疵担保責任について質問する。"},
+{name:"クレーム対応",sys:"あなたは築15年マンション入居者「佐藤健太」28歳です。3日前から給湯器が故障しお湯が出ない。管理会社に電話したが折返しがなく激怒。感情的に話す。修理費負担や代替手段について質問する。対応が不誠実なら退去をちらつかせる。"}
+];
+const BASE_SYS=`あなたは不動産営業研修用のAIロールプレイ相手です。以下のルールに従ってください：
+【ロール】指定されたペルソナの顧客として自然に会話する。1回の返答は3〜5文程度。
+【宅建業法第47条チェック項目】営業担当が言ってはいけない表現：
+- 断定的判断の提供（「絶対値上がりします」「必ず儲かります」）
+- 重要事項の不告知（瑕疵・事故歴・建築制限の隠蔽）
+- 不実告知（虚偽の利回り・築年数・面積）
+- 威迫行為（「今日決めないとなくなります」等の過度な煽り）
+【重説義務の主要項目】登記事項、法令制限、私道負担、飲用水・電気・ガス供給、宅地造成規制、石綿使用調査、耐震診断、住宅性能評価、瑕疵担保責任の履行措置、手付金等の保全措置、支払金等の保全措置、金銭貸借のあっせん、割賦販売条件、契約解除条件、損害賠償額の予定、供託所等
+【NGワード】絶対、確実、必ず儲かる、値下がりしない、事故物件ではない（未確認時）、瑕疵はない（未調査時）、他社より安い（根拠なし）、今日中に決めてください、手付金は返しません（条件未説明）、説明義務はありません
+各ターン末尾に以下JSON形式で評価を付与（会話文の後に---で区切る）：
+---
+{"ng":["検出したNG表現"],"law":"該当する法令根拠","tip":"改善アドバイス","scores":{"legal":0-100,"manner":0-100,"closing":0-100}}
+NG表現がなければ"ng":[]とし良い点をtipに書く。`;
+let key="",hist=[],pid=-1,turns=0;
+function saveKey(){
+ const k=document.getElementById("apikey").value.trim();
+ if(!k){alert("APIキーを入力してください");return}
+ key=k;localStorage.setItem("rp_key",k);
+ document.getElementById("s1").classList.add("hide");
+ document.getElementById("s2").classList.remove("hide");
+}
+function selP(i){
+ document.querySelectorAll(".persona").forEach(e=>e.classList.remove("sel"));
+ document.querySelectorAll(".persona")[i].classList.add("sel");
+ pid=i;turns=0;hist=[];
+ document.getElementById("s2").classList.add("hide");
+ document.getElementById("s3").classList.remove("hide");
+ document.getElementById("report").classList.add("hide");
+ document.getElementById("pname").textContent="ペルソナ: "+PERSONAS[i].name;
+ document.getElementById("chat").innerHTML="";
+ hist=[{role:"system",content:BASE_SYS+"\n\n【今回のペルソナ】\n"+PERSONAS[i].sys},
+  {role:"assistant",content:"（顧客が来店しました。営業担当として最初の一言をどうぞ）"}];
+ addMsg("顧客が来店しました。営業担当として声をかけてください。","a");
+}
+function addMsg(t,type){
+ const d=document.createElement("div");
+ d.className="msg msg-"+(type==="u"?"u":"a");
+ d.textContent=t;
+ document.getElementById("chat").appendChild(d);
+ document.getElementById("chat").scrollTop=9999;
+}
+function addAlert(data){
+ if(!data)return;
+ const d=document.createElement("div");d.className="alert-box";let h="";
+ if(data.ng&&data.ng.length>0)h+="<strong>NG表現検出:</strong> "+data.ng.join(", ")+"<br>";
+ if(data.law)h+="<strong>法令根拠:</strong> "+data.law+"<br>";
+ if(data.tip)h+="<strong>アドバイス:</strong> "+data.tip;
+ if(data.ng&&data.ng.length===0)h="<strong>問題なし:</strong> "+data.tip;
+ d.innerHTML=h;document.getElementById("chat").appendChild(d);
+ document.getElementById("chat").scrollTop=9999;
+}
+async function callAPI(msgs){
+ const r=await fetch("https://api.openai.com/v1/chat/completions",{
+  method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+key},
+  body:JSON.stringify({model:"gpt-4o",messages:msgs,temperature:0.8,max_tokens:800})
+ });
+ if(!r.ok)throw new Error("API Error: "+r.status);
+ const j=await r.json();return j.choices[0].message.content;
+}
+async function send(){
+ const inp=document.getElementById("inp"),t=inp.value.trim();
+ if(!t)return;inp.value="";addMsg(t,"u");
+ hist.push({role:"user",content:t});turns++;
+ document.getElementById("sbtn").disabled=true;
+ document.getElementById("sbtn").innerHTML='<span class="spin"></span>';
+ try{
+  const res=await callAPI(hist);
+  let chat=res,ev=null;
+  if(res.includes("---")){const p=res.split("---");chat=p[0].trim();
+   try{ev=JSON.parse(p.slice(1).join("---").trim())}catch(e){}}
+  hist.push({role:"assistant",content:res});addMsg(chat,"a");if(ev)addAlert(ev);
+ }catch(e){addMsg("エラー: "+e.message,"a")}
+ document.getElementById("sbtn").disabled=false;
+ document.getElementById("sbtn").textContent="送信";
+}
+async function endChat(){
+ if(turns<1){alert("最低1ターン会話してください");return}
+ document.getElementById("endbtn").disabled=true;
+ document.getElementById("endbtn").innerHTML='レポート生成中… <span class="spin"></span>';
+ const rp=[{role:"system",content:'不動産営業研修の評価者として会話ログを分析しJSON形式で返答：{"legal":0-100,"manner":0-100,"closing":0-100,"summary":"総評200字","good":["良かった点3つ"],"improve":["改善点3つ"],"ngList":["全NG表現"]}'},
+  ...hist.filter(m=>m.role!=="system"),
+  {role:"user",content:"上記の営業ロープレを評価。JSON形式のみで回答。"}];
+ try{
+  const res=await callAPI(rp);
+  let d;try{d=JSON.parse(res.replace(/```json?|```/g,"").trim())}catch(e){
+   d={legal:50,manner:50,closing:50,summary:"評価解析失敗",good:["--"],improve:["--"],ngList:[]}}
+  const avg=Math.round((d.legal+d.manner+d.closing)/3);
+  const rpt=document.getElementById("report");rpt.classList.remove("hide");
+  rpt.innerHTML='<h2 style="text-align:center">研修レポート</h2>'+
+  '<div class="score">'+avg+'点</div>'+
+  '<h3>法令遵守: '+d.legal+'/100</h3><div class="bar"><div class="bar-fill" style="width:'+d.legal+'%"></div></div>'+
+  '<h3>接客マナー: '+d.manner+'/100</h3><div class="bar"><div class="bar-fill" style="width:'+d.manner+'%"></div></div>'+
+  '<h3>クロージング力: '+d.closing+'/100</h3><div class="bar"><div class="bar-fill" style="width:'+d.closing+'%"></div></div>'+
+  '<h3>総評</h3><p style="font-size:.88em;color:#444">'+d.summary+'</p>'+
+  '<h3>良かった点</h3><ul>'+d.good.map(x=>"<li>"+x+"</li>").join("")+'</ul>'+
+  '<h3>改善ポイント</h3><ul>'+d.improve.map(x=>"<li>"+x+"</li>").join("")+'</ul>'+
+  (d.ngList&&d.ngList.length?'<h3>検出NG表現</h3><ul>'+d.ngList.map(x=>"<li>"+x+"</li>").join("")+'</ul>':'<h3>NG表現なし</h3>')+
+  '<br><button class="btn btn-p" onclick="location.reload()">もう一度挑戦</button>';
+  rpt.scrollIntoView({behavior:"smooth"});
+ }catch(e){alert("レポート生成エラー: "+e.message)}
+ document.getElementById("endbtn").disabled=false;
+ document.getElementById("endbtn").textContent="研修終了・レポート生成";
+}
+window.onload=()=>{const k=localStorage.getItem("rp_key");if(k)document.getElementById("apikey").value=k};
+</script>
+</body>
+</html>
