@@ -2080,6 +2080,45 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ai-cm",
+    "url": "digital-marketing/ai-cm/",
+    "title": "動画CMが高い？AI制作ツール選定＆導入キット",
+    "tool_name": "AI動画CM制作ツール比較＆コスト診断シミュレーター",
+    "description": "中小企業が動画CMを内製化するための3点セット。AI動画制作ツール（NoLang・Sora・Pika等）の比較診断ツール、業種別の15〜30秒CM台本テンプレート、SNS各プラットフォームの動画広告仕様チェックリストを提供。制作会社に30〜100万円払っていた動画CMを、月3万円以下のAIツールで自社制作できるようになる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T05:59:42.822683+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "ai-cm-2",
+    "url": "digital-marketing/ai-cm-2/",
+    "title": "動画CMが高い？AI制作ツール選定＆導入キット",
+    "tool_name": "業種別AI動画CM台本テンプレート（5業種×2尺）",
+    "description": "中小企業が動画CMを内製化するための3点セット。AI動画制作ツール（NoLang・Sora・Pika等）の比較診断ツール、業種別の15〜30秒CM台本テンプレート、SNS各プラットフォームの動画広告仕様チェックリストを提供。制作会社に30〜100万円払っていた動画CMを、月3万円以下のAIツールで自社制作できるようになる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T05:59:42.822683+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "checker-6",
+    "url": "digital-marketing/checker-6/",
+    "title": "動画CMが高い？AI制作ツール選定＆導入キット",
+    "tool_name": "SNS動画広告_仕様＆入稿チェックリスト",
+    "description": "中小企業が動画CMを内製化するための3点セット。AI動画制作ツール（NoLang・Sora・Pika等）の比較診断ツール、業種別の15〜30秒CM台本テンプレート、SNS各プラットフォームの動画広告仕様チェックリストを提供。制作会社に30〜100万円払っていた動画CMを、月3万円以下のAIツールで自社制作できるようになる。",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T05:59:42.822683+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -2585,6 +2624,45 @@
     "quality_score": 9,
     "completed_at": "2026-06-24T19:52:42.301547+00:00",
     "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "ipo-m-a",
+    "url": "legal-tech/ipo-m-a/",
+    "title": "監査で落ちる前に、AIで内部統制を自己診断",
+    "tool_name": "IPO・M&A対応_コンプライアンスリスク自己診断ツール",
+    "description": "コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガルテック社のVDR（年額9.8万円・データルーム機能中心）とは異なり、ドキュメントをアップロ",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T05:59:44.763563+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "ipo-m-a-2",
+    "url": "legal-tech/ipo-m-a-2/",
+    "title": "監査で落ちる前に、AIで内部統制を自己診断",
+    "tool_name": "内部統制セルフ監査チェックリスト（IPO・M&A準備用）",
+    "description": "コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガルテック社のVDR（年額9.8万円・データルーム機能中心）とは異なり、ドキュメントをアップロ",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T05:59:44.763563+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "diagnosis-32",
+    "url": "legal-tech/diagnosis-32/",
+    "title": "監査で落ちる前に、AIで内部統制を自己診断",
+    "tool_name": "中堅企業のためのコンプライアンス体制構築ガイド〜コンサル不要のセルフ診断から実行管理まで〜",
+    "description": "コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガルテック社のVDR（年額9.8万円・データルーム機能中心）とは異なり、ドキュメントをアップロ",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T05:59:44.763563+00:00",
+    "content_type": "article"
   },
   {
     "company_id": "proptech",

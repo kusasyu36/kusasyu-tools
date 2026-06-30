@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI動画CM制作ツール比較＆コスト診断シミュレーター | 中小企業が動画CMを内製化するための3点セット - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;color:#2d3748;margin:12px 0 4px;line-height:1.4}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.card h2{font-size:1.1em;color:#2b6cb0;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #bee3f8}
+label{display:block;font-weight:600;margin:10px 0 4px;font-size:.9em}
+select,input[type=number]{width:100%;padding:10px;border:1.5px solid #cbd5e0;border-radius:8px;font-size:1em;background:#fff}
+select:focus,input:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 3px rgba(66,153,225,.2)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.row{grid-template-columns:1fr}}
+.slider-wrap{margin:10px 0}
+.slider-wrap input[type=range]{width:100%;accent-color:#4299e1}
+.slider-val{text-align:center;font-size:1.3em;font-weight:700;color:#2b6cb0}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#4299e1,#3182ce);color:#fff;border:none;border-radius:10px;font-size:1.1em;font-weight:700;cursor:pointer;margin-top:16px;transition:.2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(66,153,225,.4)}
+#result{display:none}
+.rec-box{background:linear-gradient(135deg,#ebf8ff,#e6fffa);border:2px solid #4299e1;border-radius:12px;padding:16px;margin:12px 0;text-align:center}
+.rec-box .name{font-size:1.5em;font-weight:800;color:#2b6cb0}
+.rec-box .reason{color:#4a5568;font-size:.9em;margin-top:4px}
+.save{background:linear-gradient(135deg,#48bb78,#38a169);border-radius:10px;padding:16px;text-align:center;color:#fff;margin:12px 0}
+.save .amount{font-size:2em;font-weight:800}
+.save .label{font-size:.85em;opacity:.9}
+table{width:100%;border-collapse:collapse;font-size:.82em;margin-top:10px}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid #e2e8f0}
+th{background:#edf2f7;font-weight:700;color:#2d3748;position:sticky;top:0}
+tr:hover{background:#f7fafc}
+.best{background:#ebf8ff !important;font-weight:700}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75em;font-weight:600}
+.tag-y{background:#c6f6d5;color:#276749}
+.tag-n{background:#fed7d7;color:#9b2c2c}
+.tag-p{background:#fefcbf;color:#975a16}
+.bar-wrap{margin:8px 0}
+.bar-label{display:flex;justify-content:space-between;font-size:.85em;margin-bottom:2px}
+.bar-bg{height:24px;background:#e2e8f0;border-radius:12px;overflow:hidden}
+.bar-fill{height:100%;border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.75em;color:#fff;font-weight:700;transition:width .6s}
+.note{background:#fffbeb;border-left:4px solid #ecc94b;padding:10px 12px;font-size:.82em;color:#744210;border-radius:0 8px 8px 0;margin-top:12px}
+</style>
+<meta name="description" content="中小企業が動画CMを内製化するための3点セット。AI動画制作ツール（NoLang・Sora・Pika等）の比較診断ツール、業種別の15〜30秒CM台本テンプレート、SNS各プラットフォームの動画広告仕様チェックリストを提供。制作会社に30〜100万円払っていた動画CMを、月3万円以下のAIツールで自社制作でき">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI動画CM制作ツール比較＆コスト診断シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ai-cm/">
+<meta property="og:title" content="AI動画CM制作ツール比較＆コスト診断シミュレーター | 中小企業が動画CMを内製化するための3点セット - kusasyu tools">
+<meta property="og:description" content="中小企業が動画CMを内製化するための3点セット。AI動画制作ツール（NoLang・Sora・Pika等）の比較診断ツール、業種別の15〜30秒CM台本テンプレート、SNS各プラットフォームの動画広告仕様チェックリストを提供。制作会社に30〜100万円払っていた動画CMを、月3万円以下のAIツールで自社制作でき">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ai-cm/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI動画CM制作ツール比較＆コスト診断シミュレーター | 中小企業が動画CMを内製化するための3点セット - kusasyu tools">
+<meta name="twitter:description" content="中小企業が動画CMを内製化するための3点セット。AI動画制作ツール（NoLang・Sora・Pika等）の比較診断ツール、業種別の15〜30秒CM台本テンプレート、SNS各プラットフォームの動画広告仕様チェックリストを提供。制作会社に30〜100万円払っていた動画CMを、月3万円以下のAIツールで自社制作でき">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI動画CM制作ツール比較＆コスト診断シミュレーター",
+  "description": "中小企業が動画CMを内製化するための3点セット。AI動画制作ツール（NoLang・Sora・Pika等）の比較診断ツール、業種別の15〜30秒CM台本テンプレート、SNS各プラットフォームの動画広告仕様チェックリストを提供。制作会社に30〜100万円払っていた動画CMを、月3万円以下のAIツールで自社制作でき",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/ai-cm/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">AI動画CM制作ツール比較＆コスト診断シミュレーター</span></div>
+<div class="wrap">
+<h1>AI動画CM制作ツール<br>比較＆コスト診断シミュレーター</h1>
+<p class="sub">最適なAIツールを診断し、外注との年間コスト差を算出</p>
+
+<div class="card">
+<h2>① あなたの情報を入力</h2>
+<div class="row">
+<div><label>業種</label>
+<select id="biz"><option value="food">飲食</option><option value="beauty">美容</option><option value="retail">小売</option><option value="pro">士業</option><option value="estate">不動産</option></select></div>
+<div><label>主な配信先</label>
+<select id="plat"><option value="ig">Instagram</option><option value="yt">YouTube</option><option value="tt">TikTok</option><option value="multi">複数</option></select></div>
+</div>
+<label>月間の動画制作本数（目標）</label>
+<div class="slider-wrap">
+<input type="range" id="vids" min="1" max="20" value="4">
+<div class="slider-val"><span id="vidsV">4</span> 本/月</div>
+</div>
+<div class="row">
+<div><label>月間予算（万円）</label>
+<input type="number" id="budget" value="3" min="0" max="100"></div>
+<div><label>動画の長さ</label>
+<select id="dur"><option value="15">15秒</option><option value="30">30秒</option></select></div>
+</div>
+<label>動画制作の経験</label>
+<select id="exp"><option value="none">まったくない</option><option value="some">少しある（Canva等）</option><option value="mid">ある程度できる</option></select>
+<button class="btn" onclick="diagnose()">診断する</button>
+</div>
+
+<div id="result">
+<div class="card">
+<h2>② あなたへのおすすめツール</h2>
+<div class="rec-box"><div class="name" id="recName"></div><div class="reason" id="recReason"></div></div>
+<div id="recDetail"></div>
+</div>
+<div class="card">
+<h2>③ 年間コスト比較</h2>
+<div class="save"><div class="label">外注と比べた年間削減額</div><div class="amount" id="saveAmt"></div></div>
+<div id="costBars"></div>
+<p class="note" id="costNote"></p>
+</div>
+<div class="card" style="overflow-x:auto">
+<h2>④ AIツール比較一覧</h2>
+<table id="tbl"></table>
+</div>
+</div>
+</div>
+
+<script>
+var S=document.getElementById("vids"),V=document.getElementById("vidsV");
+S.oninput=function(){V.textContent=S.value};
+
+var tools=[
+{id:"nolang",name:"NoLang",price:2980,jpn:true,res:"1080p",commercial:true,
+genre:["food","retail","beauty"],ease:5,strong:"テキスト→動画の自動生成。日本語完全対応で操作が最も簡単",
+weak:"映像のカスタマイズ性はやや低い",platBest:["ig","tt"],durBest:[15,30]},
+{id:"pika",name:"Pika",price:1200,jpn:false,res:"1080p",commercial:true,
+genre:["beauty","retail","estate"],ease:3,strong:"高品質な映像表現。スタイリッシュな広告向き",
+weak:"日本語UI未対応・英語プロンプト必要",platBest:["ig","yt"],durBest:[15]},
+{id:"sora",name:"Sora",price:2000,jpn:true,res:"1080p",commercial:true,
+genre:["food","beauty","estate","pro"],ease:4,strong:"超高品質なリアル映像生成。ブランディング向き",
+weak:"生成に時間がかかる場合がある",platBest:["yt","ig"],durBest:[15,30]},
+{id:"runway",name:"Runway Gen-3",price:1800,jpn:false,res:"4K",commercial:true,
+genre:["beauty","estate","retail"],ease:3,strong:"4K対応・映像編集機能が充実。プロ向け",
+weak:"操作がやや複雑・英語UI",platBest:["yt"],durBest:[30]},
+{id:"vrew",name:"Vrew",price:0,jpn:true,res:"1080p",commercial:true,
+genre:["pro","food","retail"],ease:5,strong:"無料プラン有。字幕自動生成とナレーション付き",
+weak:"AIの映像生成機能は限定的",platBest:["yt","ig","tt"],durBest:[15,30]}
+];
+
+function tag(v,l){return v===true?'<span class="tag tag-y">'+l+'</span>':v===false?'<span class="tag tag-n">非対応</span>':'<span class="tag tag-p">'+l+'</span>'}
+
+function diagnose(){
+var biz=document.getElementById("biz").value,
+plat=document.getElementById("plat").value,
+vids=+S.value,budget=+document.getElementById("budget").value,
+dur=+document.getElementById("dur").value,
+exp=document.getElementById("exp").value;
+
+var scored=tools.map(function(t){
+var s=0;
+if(t.genre.indexOf(biz)>=0) s+=25;
+if(plat==="multi"){s+=15}else if(t.platBest.indexOf(plat)>=0) s+=20;
+if(t.durBest.indexOf(dur)>=0) s+=10;
+if(t.price/100<=budget) s+=20; else if(t.price/100<=budget*1.5) s+=10;
+if(exp==="none"&&t.ease>=4) s+=15; else if(exp==="some"&&t.ease>=3) s+=10; else if(exp==="mid") s+=10;
+if(t.jpn) s+=10;
+return {tool:t,score:s};
+}).sort(function(a,b){return b.score-a.score});
+
+var best=scored[0].tool;
+document.getElementById("recName").textContent=best.name;
+var reasons=[];
+if(best.genre.indexOf(biz)>=0) reasons.push("あなたの業種と相性抜群");
+if(best.jpn) reasons.push("日本語対応で安心");
+if(best.ease>=4) reasons.push("操作がカンタン");
+document.getElementById("recReason").textContent=reasons.join(" / ");
+document.getElementById("recDetail").innerHTML='<p style="margin:8px 0;font-size:.9em"><strong>強み：</strong>'+best.strong+'</p><p style="font-size:.9em"><strong>注意点：</strong>'+best.weak+'</p><p style="margin-top:8px;font-size:.9em"><strong>月額：</strong>約'+best.price.toLocaleString()+'円（税込）</p>';
+
+var unitOut=dur===15?250000:500000;
+var annualOut=vids*12*unitOut;
+var annualAI=best.price*12;
+var saved=annualOut-annualAI;
+document.getElementById("saveAmt").textContent="約"+Math.round(saved/10000).toLocaleString()+"万円/年 削減";
+var mx=Math.max(annualOut,annualAI);
+document.getElementById("costBars").innerHTML=
+bar("制作会社 外注",annualOut,mx,"#e53e3e")+bar("AI自社制作（"+best.name+"）",annualAI,mx,"#4299e1");
+document.getElementById("costNote").textContent="※外注単価は"+dur+"秒CM1本あたり"+(unitOut/10000)+"万円で試算（一般的な中小向け制作会社の相場）";
+
+var h='<tr><th>ツール</th><th>月額</th><th>日本語</th><th>解像度</th><th>商用利用</th><th>操作性</th><th>スコア</th></tr>';
+scored.forEach(function(s){
+var t=s.tool,cls=t.id===best.id?' class="best"':'';
+h+='<tr'+cls+'><td><strong>'+t.name+'</strong></td><td>'+(!t.price?'無料':t.price.toLocaleString()+'円')+'</td><td>'+tag(t.jpn,"対応")+'</td><td>'+t.res+'</td><td>'+tag(t.commercial,"OK")+'</td><td>'+"★".repeat(t.ease)+'</td><td>'+s.score+'点</td></tr>';
+});
+document.getElementById("tbl").innerHTML=h;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function bar(l,v,mx,c){
+var p=Math.round(v/mx*100);
+return '<div class="bar-wrap"><div class="bar-label"><span>'+l+'</span><span>'+Math.round(v/10000).toLocaleString()+'万円/年</span></div><div class="bar-bg"><div class="bar-fill" style="width:'+p+'%;background:'+c+'">'+p+'%</div></div></div>';
+}
+</script>
+</body>
+</html>

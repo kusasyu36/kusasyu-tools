@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPO・M&amp;A対応_コンプライアンスリスク自己診断ツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Segoe UI",sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.7}
+.container{max-width:900px;margin:0 auto;padding:16px}
+header{background:linear-gradient(135deg,#0f1a3c 0%,#1a2d5e 50%,#2a4080 100%);color:#fff;padding:32px 24px;border-radius:12px;margin-bottom:24px;text-align:center}
+header h1{font-size:clamp(1.2rem,3.5vw,1.7rem);margin-bottom:8px;letter-spacing:.02em}
+header p{font-size:.85rem;opacity:.85}
+.badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:3px 12px;border-radius:20px;font-size:.75rem;margin-top:8px}
+.progress-bar{background:#e2e8f0;border-radius:8px;height:10px;margin:20px 0 8px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#2a4080,#4a7cf7);border-radius:8px;transition:width .4s ease}
+.progress-text{font-size:.8rem;color:#666;text-align:right}
+.category-label{background:#1a2d5e;color:#fff;padding:10px 18px;border-radius:8px 8px 0 0;font-size:.95rem;font-weight:700;margin-top:24px;display:flex;align-items:center;gap:8px}
+.category-label .cat-icon{font-size:1.1rem}
+.q-card{background:#fff;border:1px solid #e2e8f0;border-radius:0 0 8px 8px;margin-bottom:16px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.q-card:not(:first-of-type){border-radius:8px;margin-top:8px}
+.q-num{font-size:.75rem;color:#4a7cf7;font-weight:700;margin-bottom:4px}
+.q-text{font-size:.93rem;font-weight:600;margin-bottom:12px}
+.q-ref{font-size:.72rem;color:#888;margin-bottom:10px}
+.options{display:flex;flex-direction:column;gap:6px}
+.options label{display:flex;align-items:center;gap:10px;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all .2s;font-size:.88rem}
+.options label:hover{border-color:#4a7cf7;background:#f0f4ff}
+.options input[type="radio"]{accent-color:#1a2d5e;width:16px;height:16px;flex-shrink:0}
+.options input[type="radio"]:checked+span{color:#1a2d5e;font-weight:600}
+.options label:has(input:checked){border-color:#1a2d5e;background:#eef2ff}
+.btn{display:inline-block;padding:14px 36px;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-primary{background:#1a2d5e;color:#fff}
+.btn-primary:hover{background:#2a4080}
+.btn-primary:disabled{background:#aab;cursor:not-allowed}
+.btn-outline{background:#fff;color:#1a2d5e;border:2px solid #1a2d5e}
+.btn-outline:hover{background:#eef2ff}
+.btn-area{text-align:center;margin:28px 0}
+#result{display:none}
+.result-header{background:linear-gradient(135deg,#0f1a3c,#2a4080);color:#fff;padding:28px 24px;border-radius:12px;text-align:center;margin-bottom:24px}
+.result-header h2{font-size:1.4rem;margin-bottom:6px}
+.total-score{font-size:3rem;font-weight:800}
+.total-label{font-size:.85rem;opacity:.8}
+.rank-badge{display:inline-block;padding:6px 20px;border-radius:20px;font-weight:700;font-size:.95rem;margin-top:10px}
+.heatmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}
+.heat-cell{padding:18px 14px;border-radius:10px;text-align:center;color:#fff;position:relative}
+.heat-cell .hc-name{font-size:.82rem;font-weight:700;margin-bottom:4px}
+.heat-cell .hc-score{font-size:1.8rem;font-weight:800}
+.heat-cell .hc-max{font-size:.7rem;opacity:.8}
+.section-title{font-size:1.1rem;font-weight:700;margin:28px 0 12px;padding-left:12px;border-left:4px solid #1a2d5e}
+.risk-item{background:#fff;border-radius:8px;padding:16px;margin-bottom:10px;border-left:4px solid #e74c3c;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.risk-item.mid{border-left-color:#f39c12}
+.risk-item.low{border-left-color:#27ae60}
+.ri-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:4px}
+.ri-q{font-size:.88rem;font-weight:700}
+.ri-badge{font-size:.7rem;padding:2px 10px;border-radius:12px;font-weight:700;color:#fff}
+.ri-badge.high{background:#e74c3c}
+.ri-badge.medium{background:#f39c12}
+.ri-badge.ok{background:#27ae60}
+.ri-law{font-size:.75rem;color:#555;margin:4px 0}
+.ri-action{font-size:.82rem;color:#1a2d5e;background:#f0f4ff;padding:8px 12px;border-radius:6px;margin-top:6px}
+.dd-priority{background:#fff8e1;border:1px solid #f5d060;border-radius:8px;padding:16px;margin-bottom:10px}
+.dd-priority .dd-label{font-size:.75rem;color:#b8860b;font-weight:700;margin-bottom:4px}
+.disclaimer{background:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:16px;margin-top:32px;font-size:.78rem;color:#666;line-height:1.8}
+.disclaimer strong{color:#444}
+footer{text-align:center;padding:20px;font-size:.75rem;color:#999}
+@media(max-width:600px){
+.container{padding:10px}
+header{padding:20px 16px}
+.q-card{padding:14px}
+.heatmap{grid-template-columns:repeat(2,1fr);gap:8px}
+.heat-cell{padding:14px 10px}
+.heat-cell .hc-score{font-size:1.4rem}
+}
+</style>
+<meta name="description" content="コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&amp;A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,IPO・M&amp;A対応_コンプライアンスリスク自己診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/ipo-m-a/">
+<meta property="og:title" content="IPO・M&amp;A対応_コンプライアンスリスク自己診断ツール - kusasyu tools">
+<meta property="og:description" content="コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&amp;A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/ipo-m-a/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IPO・M&amp;A対応_コンプライアンスリスク自己診断ツール - kusasyu tools">
+<meta name="twitter:description" content="コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&amp;A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "IPO・M&A対応_コンプライアンスリスク自己診断ツール",
+  "description": "コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/ipo-m-a/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">IPO・M&amp;A対応_コンプライアンスリスク自己診断ツール</span></div>
+<div class="container">
+<header>
+<h1>IPO・M&amp;A対応<br>コンプライアンスリスク自己診断ツール</h1>
+<p>金融庁基準・DD重点項目に対応した30問診断</p>
+<span class="badge">Kusasyu Legal Tech</span>
+</header>
+
+<div id="quiz">
+<div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+<div class="progress-text" id="progText">回答済: 0 / 30</div>
+<div id="questions"></div>
+<div class="btn-area">
+<button class="btn btn-primary" id="btnSubmit" disabled onclick="showResult()">診断結果を表示</button>
+</div>
+</div>
+
+<div id="result">
+<div class="result-header">
+<h2>診断結果</h2>
+<div class="total-score" id="totalScore"></div>
+<div class="total-label">/ 150点（高いほどリスクが低い）</div>
+<div id="rankBadge" class="rank-badge"></div>
+</div>
+<div class="section-title">カテゴリ別ヒートマップ</div>
+<div class="heatmap" id="heatmap"></div>
+<div class="section-title" id="ddTitle">DD重点確認項目（優先度順）</div>
+<div id="ddItems"></div>
+<div class="section-title">全項目 詳細レポート</div>
+<div id="detailItems"></div>
+<div class="btn-area">
+<button class="btn btn-outline" onclick="resetAll()">最初からやり直す</button>
+</div>
+<div class="disclaimer">
+<strong>【免責事項】</strong><br>
+本ツールは、企業のコンプライアンス体制に関する自己点検を目的として提供されるものであり、専門的な法的助言を構成するものではありません。本ツールの診断結果は、あくまで一般的な指標に基づく参考情報であり、個別具体的な法的判断や意思決定の根拠として利用されるべきものではありません。実際のIPO準備、M&amp;Aデューデリジェンス、コンプライアンス体制の構築・改善にあたっては、弁護士、公認会計士、その他の専門家にご相談ください。当社は本ツールの利用により生じたいかなる損害についても一切の責任を負いかねます。<br>
+<strong>【準拠法令・ガイドライン】</strong> 会社法、金融商品取引法、個人情報保護法、労働基準法、労働契約法、不正競争防止法、東京証券取引所 上場審査基準、金融庁 内部統制報告制度（J-SOX）ガイドライン 等
+</div>
+</div>
+<footer>&copy; Kusasyu Legal Tech — 自己点検専用ツール</footer>
+</div>
+
+<script>
+var CATS=[
+{id:"board",name:"取締役会運営",icon:"\u2696"},
+{id:"approval",name:"承認フロー",icon:"\u2611"},
+{id:"conflict",name:"利益相反管理",icon:"\u26A0"},
+{id:"security",name:"情報セキュリティ",icon:"\uD83D\uDD12"},
+{id:"labor",name:"労務コンプライアンス",icon:"\uD83D\uDC65"}
+];
+var QS=[
+{cat:0,text:"取締役会は法令・定款に定められた頻度で定期的に開催されているか",law:"会社法362条",action:"最低四半期に1回、可能であれば毎月の定例開催スケジュールを策定し、年間開催計画を期初に決議する",dd:true},
+{cat:0,text:"取締役会議事録は会議後遅滞なく作成され、出席取締役全員が署名・記名押印しているか",law:"会社法369条3項・4項",action:"議事録作成規程を整備し、会議後5営業日以内の作成・署名フローを確立する",dd:true},
+{cat:0,text:"社外取締役を選任し、経営の監督機能を確保しているか",law:"会社法327条の2、CGコード原則4-8",action:"独立性基準を満たす社外取締役を少なくとも2名以上選任し、指名・報酬委員会への参画を検討する",dd:true},
+{cat:0,text:"取締役会で重要な業務執行の決定が適切に行われ、代表取締役への過度な委任がないか",law:"会社法362条4項",action:"取締役会付議基準を明文化し、一定金額以上の投資・借入・保証等を付議事項として定める",dd:false},
+{cat:0,text:"監査役（監査等委員）が取締役会に毎回出席し、意見陳述を行っているか",law:"会社法383条1項",action:"監査役の出席状況を記録し、欠席時には書面による意見提出の仕組みを整備する",dd:false},
+{cat:0,text:"取締役の報酬決定プロセスが透明かつ適正に運用されているか",law:"会社法361条、CGコード原則3-1(iii)",action:"報酬委員会の設置または独立社外取締役の関与のもと、報酬方針・決定プロセスを開示する",dd:true},
+{cat:1,text:"稟議規程・決裁権限規程が整備され、金額・案件種別に応じた決裁者が明確に定められているか",law:"会社法362条4項、J-SOX実施基準",action:"決裁権限一覧表を作成し、全役職員に周知する。年1回以上見直しを実施する",dd:true},
+{cat:1,text:"関連当事者取引（親会社・役員等）について事前承認プロセスが機能しているか",law:"会社法356条・365条、有価証券報告書記載要件",action:"関連当事者取引管理規程を制定し、取引開始前に取締役会決議を必須とするフローを構築する",dd:true},
+{cat:1,text:"一定金額以上の契約締結に対して法務審査（リーガルチェック）が実施されているか",law:"内部統制報告制度（J-SOX）",action:"法務審査対象の金額基準を設定し、契約管理システムまたは台帳で審査履歴を管理する",dd:false},
+{cat:1,text:"反社会的勢力との関係遮断に関するチェック体制が整備されているか",law:"犯罪収益移転防止法、政府指針",action:"取引先の反社チェックフローを構築し、データベース照会や表明保証条項の導入を行う",dd:true},
+{cat:1,text:"内部通報制度（公益通報窓口）が設置され、従業員に周知されているか",law:"公益通報者保護法",action:"社内外に通報窓口を設置し、匿名通報を受付可能にする。通報者保護方針を全従業員に周知する",dd:true},
+{cat:1,text:"予算管理体制が整備され、予実差異分析が定期的に実施されているか",law:"上場審査基準（予算統制能力）",action:"月次での予実管理体制を構築し、重要な差異について経営会議で原因分析・対策を報告する",dd:true},
+{cat:2,text:"取締役・執行役員の兼任・兼業状況を把握し、利益相反リスクを管理しているか",law:"会社法356条1項、355条",action:"役員の兼任状況一覧を作成し、年1回以上の更新と取締役会への報告を行う",dd:true},
+{cat:2,text:"競業取引について取締役会の事前承認と事後報告の仕組みがあるか",law:"会社法356条1項1号・365条2項",action:"競業取引の定義を明確にし、該当取引発生時の事前承認手続と取引後の報告フローを整備する",dd:true},
+{cat:2,text:"関連会社・子会社との取引について独立当事者間取引条件（アームズ・レングス）が確保されているか",law:"会社法、法人税法・移転価格税制",action:"関連会社取引の価格決定プロセスを文書化し、市場価格との比較検証を定期的に実施する",dd:true},
+{cat:2,text:"インサイダー取引防止のための社内規程と管理体制が整備されているか",law:"金融商品取引法166条・167条",action:"インサイダー取引防止規程を制定し、重要事実の管理、売買届出制度、ブラックアウト期間を設定する",dd:true},
+{cat:2,text:"贈収賄防止・接待交際費の管理に関する方針が策定されているか",law:"不正競争防止法18条、外国公務員贈賄罪",action:"贈収賄防止ポリシーを策定し、接待・贈答の金額上限と事前承認ルールを定める",dd:false},
+{cat:2,text:"株主・投資家への情報開示において、公平かつ適時に実施する体制があるか",law:"金融商品取引法27条の36、適時開示規則",action:"適時開示体制を整備し、情報管理責任者の選任とフェア・ディスクロージャー方針を策定する",dd:true},
+{cat:3,text:"情報セキュリティ基本方針・管理規程が策定され、定期的に見直されているか",law:"個人情報保護法20条・23条、不正アクセス禁止法",action:"情報セキュリティポリシーを策定し、年1回以上の見直しと全従業員への教育を実施する",dd:true},
+{cat:3,text:"個人情報の取得・利用・第三者提供について、法令に準拠した同意取得と管理が行われているか",law:"個人情報保護法17条〜28条",action:"個人情報台帳を整備し、利用目的の特定・公表、オプトイン同意の取得フローを確立する",dd:true},
+{cat:3,text:"情報漏洩・セキュリティインシデント発生時の対応手順（インシデントレスポンス計画）が整備されているか",law:"個人情報保護法26条（漏洩報告義務）",action:"インシデント対応マニュアルを策定し、報告ルート・初動対応・監督官庁への報告手順を明確化する",dd:true},
+{cat:3,text:"営業秘密の管理（アクセス制限・秘密指定等）が適切に行われているか",law:"不正競争防止法2条6項",action:"秘密情報管理規程を整備し、情報の秘密区分、アクセス権限設定、退職時の秘密保持誓約を徹底する",dd:false},
+{cat:3,text:"IT資産管理とアクセス権限の定期的な棚卸しが実施されているか",law:"J-SOX IT統制基準",action:"IT資産台帳を作成し、四半期ごとにアクセス権限の棚卸しと不要アカウントの削除を実施する",dd:false},
+{cat:3,text:"業務委託先・クラウドサービスに対する情報セキュリティ評価を実施しているか",law:"個人情報保護法25条（委託先の監督）",action:"委託先選定時のセキュリティチェックリストを作成し、契約にセキュリティ要件と監査権を明記する",dd:true},
+{cat:4,text:"就業規則が最新の法令に適合しており、労働基準監督署への届出が完了しているか",law:"労働基準法89条・90条",action:"年1回以上の法改正チェックと就業規則の見直しを行い、変更時は遅滞なく届出を完了する",dd:true},
+{cat:4,text:"時間外労働・休日労働に関する36協定の締結・届出が適正に行われ、上限規制を遵守しているか",law:"労働基準法36条、働き方改革関連法",action:"36協定の有効期間を管理し、特別条項の発動状況をモニタリングする仕組みを導入する",dd:true},
+{cat:4,text:"未払残業代が発生していないか、労働時間の適正な把握と記録が行われているか",law:"労働基準法37条、労働安全衛生法66条の8の3",action:"客観的な方法（ICカード・PC使用履歴等）による労働時間管理を導入し、自己申告との乖離を検証する",dd:true},
+{cat:4,text:"ハラスメント防止に関する方針の策定、相談窓口の設置、対応手順の整備がなされているか",law:"労働施策総合推進法30条の2、男女雇用機会均等法11条",action:"ハラスメント防止方針を全従業員に周知し、社内外相談窓口の設置と事案対応フローを確立する",dd:true},
+{cat:4,text:"業務委託契約の実態が偽装請負・労働者派遣に該当していないか定期的に確認しているか",law:"労働者派遣法、職業安定法",action:"業務委託の実態調査チェックリストを作成し、指揮命令関係の有無を定期的に点検する",dd:true},
+{cat:4,text:"外国人労働者の在留資格・就労許可の確認体制が整備されているか",law:"出入国管理及び難民認定法、不法就労助長罪",action:"採用時・在留期間更新時の在留カード確認フローを整備し、管理台帳で有効期限を管理する",dd:false}
+];
+var OPTIONS=[
+{label:"十分に整備・運用されている",score:5},
+{label:"概ね整備されているが一部課題あり",score:3},
+{label:"不十分／未整備",score:1},
+{label:"該当なし・不明",score:0}
+];
+var answers={};
+function buildQuiz(){
+var wrap=document.getElementById("questions");
+var html="";
+var prevCat=-1;
+for(var i=0;i<QS.length;i++){
+var q=QS[i];
+if(q.cat!==prevCat){
+var c=CATS[q.cat];
+html+='<div class="category-label"><span class="cat-icon">'+c.icon+'</span>'+c.name+'（'+(q.cat===0?'Q1〜Q6':q.cat===1?'Q7〜Q12':q.cat===2?'Q13〜Q18':q.cat===3?'Q19〜Q24':'Q25〜Q30')+'）</div>';
+prevCat=q.cat;
+}
+html+='<div class="q-card"><div class="q-num">Q'+(i+1)+(q.dd?' \u2605DD重点項目':'')+'</div>';
+html+='<div class="q-text">'+q.text+'</div>';
+html+='<div class="q-ref">参照: '+q.law+'</div>';
+html+='<div class="options">';
+for(var j=0;j<OPTIONS.length;j++){
+html+='<label><input type="radio" name="q'+i+'" value="'+j+'" onchange="onAnswer('+i+','+j+')"><span>'+OPTIONS[j].label+'</span></label>';
+}
+html+='</div></div>';
+}
+wrap.innerHTML=html;
+}
+function onAnswer(qi,oi){
+answers[qi]=oi;
+var cnt=Object.keys(answers).length;
+document.getElementById("progFill").style.width=(cnt/30*100)+"%";
+document.getElementById("progText").textContent="回答済: "+cnt+" / 30";
+document.getElementById("btnSubmit").disabled=(cnt<30);
+}
+function calcScores(){
+var catScores=[0,0,0,0,0];
+var catMax=[0,0,0,0,0];
+var items=[];
+for(var i=0;i<QS.length;i++){
+var q=QS[i];
+var oi=answers[i]!==undefined?answers[i]:3;
+var sc=OPTIONS[oi].score;
+catScores[q.cat]+=sc;
+catMax[q.cat]+=5;
+items.push({idx:i,q:q,score:sc,optIdx:oi});
+}
+return{catScores:catScores,catMax:catMax,items:items};
+}
+function heatColor(pct){
+if(pct>=80)return"#27ae60";
+if(pct>=60)return"#6ab04c";
+if(pct>=40)return"#f39c12";
+if(pct>=20)return"#e67e22";
+return"#e74c3c";
+}
+function showResult(){
+var r=calcScores();
+var total=0;
+for(var i=0;i<5;i++)total+=r.catScores[i];
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+document.getElementById("totalScore").textContent=total+"点";
+var rb=document.getElementById("rankBadge");
+if(total>=120){rb.textContent="低リスク — 体制概ね良好";rb.style.background="#27ae60";}
+else if(total>=80){rb.textContent="中リスク — 改善余地あり";rb.style.background="#f39c12";}
+else{rb.textContent="高リスク — 早急な対応が必要";rb.style.background="#e74c3c";}
+var hm=document.getElementById("heatmap");
+hm.innerHTML="";
+for(var i=0;i<5;i++){
+var pct=r.catMax[i]>0?Math.round(r.catScores[i]/r.catMax[i]*100):0;
+var d=document.createElement("div");
+d.className="heat-cell";
+d.style.background=heatColor(pct);
+d.innerHTML='<div class="hc-name">'+CATS[i].icon+" "+CATS[i].name+'</div><div class="hc-score">'+pct+'<span style="font-size:.6em">%</span></div><div class="hc-max">'+r.catScores[i]+' / '+r.catMax[i]+'点</div>';
+hm.appendChild(d);
+}
+var sorted=r.items.slice().sort(function(a,b){return a.score-b.score;});
+var ddWrap=document.getElementById("ddItems");
+ddWrap.innerHTML="";
+var ddCount=0;
+for(var k=0;k<sorted.length;k++){
+var it=sorted[k];
+if(!it.q.dd)continue;
+if(it.score>=5)continue;
+ddCount++;
+var div=document.createElement("div");
+div.className="dd-priority";
+div.innerHTML='<div class="dd-label">DD優先 #'+ddCount+'（Q'+(it.idx+1)+'）</div><div style="font-size:.9rem;font-weight:700;margin-bottom:4px">'+it.q.text+'</div><div style="font-size:.78rem;color:#555">現状: '+OPTIONS[it.optIdx].label+'　|　参照法令: '+it.q.law+'</div><div class="ri-action" style="margin-top:8px">'+it.q.action+'</div>';
+ddWrap.appendChild(div);
+}
+if(ddCount===0){
+ddWrap.innerHTML='<p style="color:#27ae60;font-weight:700;padding:12px">DD重点項目に該当する高リスク項目はありません。</p>';
+}
+var dtWrap=document.getElementById("detailItems");
+dtWrap.innerHTML="";
+for(var k=0;k<sorted.length;k++){
+var it=sorted[k];
+var lvl=it.score<=1?"high":it.score<=3?"medium":"ok";
+var lvlT=it.score<=1?"高リスク":it.score<=3?"要改善":"良好";
+var cls=it.score<=1?"":it.score<=3?"mid":"low";
+var div=document.createElement("div");
+div.className="risk-item "+cls;
+div.innerHTML='<div class="ri-header"><span class="ri-q">Q'+(it.idx+1)+' '+CATS[it.q.cat].name+'</span><span class="ri-badge '+lvl+'">'+lvlT+'</span></div><div style="font-size:.88rem;margin-bottom:4px">'+it.q.text+'</div><div class="ri-law">参照法令: '+it.q.law+'</div>'+(it.score<5?'<div class="ri-action">改善アクション: '+it.q.action+'</div>':'');
+dtWrap.appendChild(div);
+}
+window.scrollTo({top:0,behavior:"smooth"});
+}
+function resetAll(){
+answers={};
+document.getElementById("result").style.display="none";
+document.getElementById("quiz").style.display="block";
+var radios=document.querySelectorAll('input[type="radio"]');
+for(var i=0;i<radios.length;i++)radios[i].checked=false;
+document.getElementById("progFill").style.width="0%";
+document.getElementById("progText").textContent="回答済: 0 / 30";
+document.getElementById("btnSubmit").disabled=true;
+window.scrollTo({top:0,behavior:"smooth"});
+}
+buildQuiz();
+</script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内部統制セルフ監査チェックリスト（IPO・M&amp;A準備用） - kusasyu tools</title>
+<meta name="description" content="コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&amp;A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,内部統制セルフ監査チェックリスト（IPO・M&amp;A準備用）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/ipo-m-a-2/">
+<meta property="og:title" content="内部統制セルフ監査チェックリスト（IPO・M&amp;A準備用） - kusasyu tools">
+<meta property="og:description" content="コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&amp;A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/ipo-m-a-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内部統制セルフ監査チェックリスト（IPO・M&amp;A準備用） - kusasyu tools">
+<meta name="twitter:description" content="コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&amp;A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "内部統制セルフ監査チェックリスト（IPO・M&A準備用）",
+  "description": "コンプライアンス違反倒産が過去最多317件を記録する中、IPO準備企業やM&A対象企業が自力で内部統制の穴を発見できるセルフサービス型コンプラ監査ツールを開発する。PwC・デロイトに数百万円払わずとも、社内規程・承認フロー・契約管理・情報セキュリティの弱点をブラウザ上で診断しリスクスコアとして可視化。リーガル",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/ipo-m-a-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-06-30"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>内部統制セルフ監査チェックリスト（IPO・M&amp;A準備用）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>内部統制セルフ監査チェックリスト（IPO・M&amp;A準備用）</h1>
+  <p class="project-name">監査で落ちる前に、AIで内部統制を自己診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No</th><th>大カテゴリ</th><th>小カテゴリ</th><th>チェック項目</th><th>関連法令・基準</th><th>診断ツール対応設問</th><th>重要度（A/B/C）</th><th>対応状況</th><th>担当部門</th><th>担当者名</th><th>対応期限</th><th>エビデンス有無</th><th>エビデンス保管場所</th><th>DD確認優先度</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>社内規程・ガバナンス</td><td>取締役会運営</td><td>取締役会規程が制定され、最新の会社法（2026年施行分含む）に準拠しているか</td><td>会社法362条</td><td>Q1-1</td><td>A</td><td>対応済</td><td>法務部</td><td>田中太郎</td><td>2026-03-31</td><td>有</td><td>社内規程フォルダ/取締役会規程_v3.pdf</td><td>高</td><td>2026年1月改定済</td></tr><tr><td>2</td><td>社内規程・ガバナンス</td><td>取締役会運営</td><td>取締役会議事録が全回分作成・保管され署名捺印が完了しているか</td><td>会社法369条3項</td><td>Q1-2</td><td>A</td><td>対応済</td><td>法務部</td><td>田中太郎</td><td>2026-04-30</td><td>有</td><td>取締役会議事録/2024-2026</td><td>高</td><td>過去3年分確認済</td></tr><tr><td>3</td><td>社内規程・ガバナンス</td><td>株主総会</td><td>株主総会議事録・招集通知の保管体制が整備されているか</td><td>会社法318条</td><td>Q1-3</td><td>A</td><td>対応中</td><td>法務部</td><td>田中太郎</td><td>2026-06-30</td><td>一部</td><td>総会資料フォルダ</td><td>高</td><td>2024年分の招集通知原本を捜索中</td></tr><tr><td>4</td><td>社内規程・ガバナンス</td><td>組織規程</td><td>組織図・職務分掌規程が策定され最新の組織体制を反映しているか</td><td>J-SOX実施基準</td><td>Q1-4</td><td>A</td><td>未着手</td><td></td><td>管理部</td><td></td><td></td><td></td><td>高</td><td></td></tr><tr><td>5</td><td>社内規程・ガバナンス</td><td>関連当事者</td><td>関連当事者取引の管理規程があり取引一覧を網羅的に把握しているか</td><td>会社法356条・開示府令</td><td>Q1-5</td><td>A</td><td>未着手</td><td></td><td>法務部</td><td></td><td></td><td></td><td>高</td><td>IPO審査で重点確認事項</td></tr><tr><td>6</td><td>社内規程・ガバナンス</td><td>内部通報</td><td>公益通報者保護法に準拠した内部通報制度を導入しているか</td><td>公益通報者保護法</td><td>Q1-6</td><td>B</td><td>未着手</td><td></td><td>人事部</td><td></td><td></td><td></td><td>中</td><td>従業員300名超は体制整備義務</td></tr><tr><td>7</td><td>承認フロー・職務分掌</td><td>稟議制度</td><td>稟議規程において金額別の決裁権限が明確に定められているか</td><td>J-SOX実施基準</td><td>Q2-1</td><td>A</td><td>対応済</td><td>経営企画部</td><td>佐藤花子</td><td>2026-02-28</td><td>有</td><td>規程集/稟議規程_v2.pdf</td><td>高</td><td>100万円未満:部長 / 500万円未満:本部長 / 500万円以上:取締役会</td></tr><tr><td>8</td><td>承認フロー・職務分掌</td><td>稟議制度</td><td>稟議の電子承認ログが改ざん不能な形で保全されているか</td><td>電子帳簿保存法</td><td>Q2-2</td><td>B</td><td>対応中</td><td>情報システム部</td><td>山田次郎</td><td>2026-07-31</td><td>一部</td><td>ワークフローシステム</td><td>中</td><td>紙稟議が一部残存。電子化移行中</td></tr><tr><td>9</td><td>承認フロー・職務分掌</td><td>職務分掌</td><td>経理担当者と承認者が分離され相互牽制が機能しているか</td><td>J-SOX実施基準</td><td>Q2-3</td><td>A</td><td>未着手</td><td></td><td>管理部</td><td></td><td></td><td></td><td>高</td><td></td></tr><tr><td>10</td><td>承認フロー・職務分掌</td><td>職務分掌</td><td>発注・検収・支払の各プロセスで担当者が分離されているか</td><td>J-SOX実施基準</td><td>Q2-4</td><td>A</td><td>未着手</td><td></td><td>管理部</td><td></td><td></td><td></td><td>高</td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No,大カテゴリ,小カテゴリ,チェック項目,関連法令・基準,診断ツール対応設問,重要度（A/B/C）,対応状況,担当部門,担当者名,対応期限,エビデンス有無,エビデンス保管場所,DD確認優先度,備考
+1,社内規程・ガバナンス,取締役会運営,"取締役会規程が制定され、最新の会社法（2026年施行分含む）に準拠しているか",会社法362条,Q1-1,A,対応済,法務部,田中太郎,2026-03-31,有,社内規程フォルダ/取締役会規程_v3.pdf,高,2026年1月改定済
+2,社内規程・ガバナンス,取締役会運営,取締役会議事録が全回分作成・保管され署名捺印が完了しているか,会社法369条3項,Q1-2,A,対応済,法務部,田中太郎,2026-04-30,有,取締役会議事録/2024-2026,高,過去3年分確認済
+3,社内規程・ガバナンス,株主総会,株主総会議事録・招集通知の保管体制が整備されているか,会社法318条,Q1-3,A,対応中,法務部,田中太郎,2026-06-30,一部,総会資料フォルダ,高,2024年分の招集通知原本を捜索中
+4,社内規程・ガバナンス,組織規程,組織図・職務分掌規程が策定され最新の組織体制を反映しているか,J-SOX実施基準,Q1-4,A,未着手,,管理部,,,,高,
+5,社内規程・ガバナンス,関連当事者,関連当事者取引の管理規程があり取引一覧を網羅的に把握しているか,会社法356条・開示府令,Q1-5,A,未着手,,法務部,,,,高,IPO審査で重点確認事項
+6,社内規程・ガバナンス,内部通報,公益通報者保護法に準拠した内部通報制度を導入しているか,公益通報者保護法,Q1-6,B,未着手,,人事部,,,,中,従業員300名超は体制整備義務
+7,承認フロー・職務分掌,稟議制度,稟議規程において金額別の決裁権限が明確に定められているか,J-SOX実施基準,Q2-1,A,対応済,経営企画部,佐藤花子,2026-02-28,有,規程集/稟議規程_v2.pdf,高,100万円未満:部長 / 500万円未満:本部長 / 500万円以上:取締役会
+8,承認フロー・職務分掌,稟議制度,稟議の電子承認ログが改ざん不能な形で保全されているか,電子帳簿保存法,Q2-2,B,対応中,情報システム部,山田次郎,2026-07-31,一部,ワークフローシステム,中,紙稟議が一部残存。電子化移行中
+9,承認フロー・職務分掌,職務分掌,経理担当者と承認者が分離され相互牽制が機能しているか,J-SOX実施基準,Q2-3,A,未着手,,管理部,,,,高,
+10,承認フロー・職務分掌,職務分掌,発注・検収・支払の各プロセスで担当者が分離されているか,J-SOX実施基準,Q2-4,A,未着手,,管理部,,,,高,
+11,承認フロー・職務分掌,印章管理,実印・銀行印・角印の管理規程と使用記録簿が整備されているか,—,Q2-5,B,未着手,,総務部,,,,中,
+12,契約管理,契約書管理,締結済み契約書の台帳管理（当事者・期間・自動更新有無）を実施しているか,民法・商法,Q3-1,A,対応中,法務部,田中太郎,2026-08-31,一部,契約管理台帳.xlsx,高,過去分の台帳登録が未完了（進捗60%）
+13,契約管理,契約書管理,重要契約（売上上位10社・業務委託）の契約書原本を安全に保管しているか,—,Q3-2,A,未着手,,法務部,,,,高,
+14,契約管理,反社チェック,新規取引先に対する反社会的勢力チェックを全件実施しているか,暴排条例・各業法,Q3-3,A,未着手,,法務部,,,,高,
+15,契約管理,下請法,資本金区分に応じた下請法の適用有無を確認し遵守しているか,下請法,Q3-4,B,未着手,,購買部,,,,中,資本金1000万円超で適用可能性あり
+16,契約管理,知的財産,"従業員の職務発明規程・著作権の帰属規定が雇用契約に含まれているか",特許法35条・著作権法,Q3-5,B,未着手,,法務部,,,,中,
+17,情報セキュリティ,アクセス管理,退職者のシステムアカウント削除が退職日当日に実施される運用があるか,個人情報保護法・ISMS,Q4-1,A,対応済,情報システム部,山田次郎,2026-01-31,有,アカウント管理手順書.pdf,高,退職日当日に自動無効化する設定済
+18,情報セキュリティ,アクセス管理,管理者権限の付与対象者一覧が定期的にレビューされているか,ISMS・SOC2,Q4-2,A,未着手,,情報システム部,,,,高,
+19,情報セキュリティ,個人情報,個人情報保護方針・プライバシーポリシーを公表し管理台帳を作成しているか,個人情報保護法,Q4-3,A,未着手,,法務部,,,,高,
+20,情報セキュリティ,インシデント,情報セキュリティインシデント発生時の対応手順書が策定されているか,個人情報保護法26条,Q4-4,B,未着手,,情報システム部,,,,中,2024年改正で報告義務が強化
+21,情報セキュリティ,バックアップ,重要データのバックアップ取得・復旧テストを定期的に実施しているか,—,Q4-5,B,未着手,,情報システム部,,,,中,
+22,財務・経理統制,月次決算,月次決算が翌月15営業日以内に完了する体制があるか,J-SOX・上場規程,Q5-1,A,対応中,経理部,鈴木一郎,2026-09-30,一部,月次決算スケジュール表,高,現状は翌月25日。短縮に向け業務改善中
+23,財務・経理統制,売上計上基準,収益認識基準に準拠した売上計上基準が文書化されているか,収益認識会計基準,Q5-2,A,未着手,,経理部,,,,高,
+24,財務・経理統制,経費精算,経費精算規程で上限金額・証憑要件・承認フローが明文化されているか,法人税法・消費税法,Q5-3,B,未着手,,経理部,,,,中,
+25,財務・経理統制,税務,法人税・消費税・源泉所得税の申告期限遵守と過去の指摘事項対応が完了しているか,各税法,Q5-4,A,未着手,,経理部,,,,高,過去3期分の税務申告書控えを準備
+26,財務・経理統制,予算管理,予算実績管理が月次で実施され重要な差異の原因分析がなされているか,J-SOX・上場規程,Q5-5,B,未着手,,経営企画部,,,,中,
+27,人事・労務,就業規則,就業規則が最新の労働基準法に準拠し労基署への届出が完了しているか,労働基準法89条,Q6-1,A,未着手,,人事部,,,,高,従業員10名以上は届出義務
+28,人事・労務,36協定,36協定の締結・届出が毎年実施され残業上限の管理体制があるか,労働基準法36条,Q6-2,A,未着手,,人事部,,,,高,
+29,人事・労務,勤怠管理,全従業員の労働時間を客観的方法（ICカード・PC記録等）で記録しているか,労働安全衛生法66条の8の3,Q6-3,A,未着手,,人事部,,,,高,
+30,人事・労務,ハラスメント,ハラスメント防止規程の制定・相談窓口設置・研修実施の3要件を満たしているか,労働施策総合推進法,Q6-4,B,未着手,,人事部,,,,中,
+31,人事・労務,社会保険,社会保険・労働保険の加入手続きが全対象者に対し適正に行われているか,健康保険法・厚生年金保険法,Q6-5,A,未着手,,人事部,,,,高,
+=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====
+,,,【集計エリア】,,,,,,,,,,,,
+,,,総項目数,31,,,,,,,,,,
+,,,対応済,5,,対応完了率（%）,16.1,,,,,,,
+,,,対応中,3,,対応中含む進捗率（%）,25.8,,,,,,,
+,,,未着手,23,,,,,,,,,,
+,,,重要度A項目数,21,,重要度A対応完了率（%）,14.3,,,,,,,
+,,,重要度B項目数,10,,重要度B対応完了率（%）,20.0,,,,,,,
+,,,エビデンス「有」,5,,エビデンス充足率（%）,16.1,,,,,,,
+,,,エビデンス「一部」,3,,,,,,,,,,
+,,,エビデンス未整備,23,,,,,,,,,,
+=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====,=====
+,,,【使い方ガイド】,,,,,,,,,,,,
+,,,1. 「IPO・M&A対応 コンプライアンスリスク自己診断ツール」で診断を実施,,,,,,,,,,,,
+,,,2. 診断結果のリスク項目を本シートの「診断ツール対応設問」列で特定,,,,,,,,,,,,
+,,,3. 重要度A項目から優先的に「対応状況」「担当者」「期限」を記入,,,,,,,,,,,,
+,,,4. エビデンス（規程PDF・議事録・ログ等）を収集し保管場所を記録,,,,,,,,,,,,
+,,,5. 月次で進捗を更新し集計エリアで対応完了率をモニタリング,,,,,,,,,,,,
+,,,※本シートは社内整理用です。監査法人・DD担当者への提出フォーマットは各社の指定様式に従ってください,,,,,,,,,,,,
+,,,※診断ツールは無料でご利用いただけます（ドキュメントアップロード不要・質問回答のみで完結）,,,,,,,,,,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_内部統制セルフ監査チェックリスト（IPO・M&amp;A準備用）.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
