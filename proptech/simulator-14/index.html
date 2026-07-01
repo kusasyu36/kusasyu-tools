@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>用途地域×建築可能性シミュレーター - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Hiragino Sans",sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.25em;text-align:center;padding:20px 0 4px;color:#1a365d}
+.sub{text-align:center;color:#718096;font-size:.82em;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card h2{font-size:.95em;color:#2b6cb0;margin-bottom:12px;border-bottom:2px solid #ebf4ff;padding-bottom:6px}
+label{display:block;font-size:.82em;font-weight:600;color:#4a5568;margin:8px 0 3px}
+select,input[type=number]{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:1em;background:#fff;-webkit-appearance:none}
+select:focus,input:focus{outline:none;border-color:#4299e1;box-shadow:0 0 0 3px rgba(66,153,225,.15)}
+.hint{font-size:.73em;color:#718096;margin-top:4px;line-height:1.5}
+.hint b{color:#2b6cb0}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+.btn{width:100%;padding:13px;background:linear-gradient(135deg,#2b6cb0,#2c5282);color:#fff;border:none;border-radius:8px;font-size:1em;font-weight:700;cursor:pointer;margin-top:14px;transition:opacity .2s}
+.btn:hover{opacity:.9}
+#result{display:none}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ri{background:#ebf8ff;border-radius:10px;padding:14px 10px;text-align:center}
+.ri .v{font-size:1.45em;font-weight:800;color:#2b6cb0}
+.ri .l{font-size:.72em;color:#4a5568;margin-bottom:2px}
+.ri.warn{background:#fefcbf}
+.ri.full{grid-column:1/-1}
+.ri.green{background:#f0fff4}
+.uses{margin-top:14px}
+.uses span{display:inline-block;background:#e6fffa;color:#234e52;padding:3px 10px;border-radius:14px;font-size:.78em;margin:3px 2px}
+.note{background:#fffbeb;border-left:3px solid #ecc94b;padding:10px 14px;font-size:.78em;color:#744210;margin-top:14px;border-radius:0 8px 8px 0;line-height:1.5}
+details{margin-top:16px}
+summary{cursor:pointer;font-weight:700;color:#2b6cb0;padding:12px;background:#ebf4ff;border-radius:8px;font-size:.88em;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▶ ";font-size:.8em}
+details[open] summary::before{content:"▼ "}
+.rw{overflow-x:auto;margin-top:10px}
+.rt{width:100%;border-collapse:collapse;font-size:.68em}
+.rt th,.rt td{border:1px solid #e2e8f0;padding:5px 6px;text-align:center}
+.rt th{background:#2b6cb0;color:#fff;position:sticky;top:0;white-space:nowrap}
+.rt td:first-child{text-align:left;white-space:nowrap;font-weight:600}
+.rt tr:nth-child(even){background:#f7fafc}
+.rt td.ul{text-align:left;white-space:normal;min-width:140px;font-size:.95em}
+footer{text-align:center;color:#a0aec0;font-size:.72em;padding:20px 0}
+@media(max-width:600px){.rg{grid-template-columns:1fr}.row{flex-direction:column;gap:0}}
+</style>
+<meta name="description" content="用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,用途地域×建築可能性シミュレーター">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-14/">
+<meta property="og:title" content="用途地域×建築可能性シミュレーター - kusasyu tools">
+<meta property="og:description" content="用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-14/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用途地域×建築可能性シミュレーター - kusasyu tools">
+<meta name="twitter:description" content="用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "用途地域×建築可能性シミュレーター",
+  "description": "用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/simulator-14/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">用途地域×建築可能性シミュレーター</span></div>
+<div class="wrap">
+<h1>用途地域×建築可能性シミュレーター</h1>
+<p class="sub">敷地面積と用途地域から建築ポテンシャルを即座に判定</p>
+<div class="card"><h2>1. 用途地域を選択</h2>
+<select id="zone" onchange="onZ()"><option value="">-- 用途地域を選択 --</option></select>
+<div class="hint" id="zh"></div></div>
+<div class="card"><h2>2. 敷地条件を入力</h2>
+<div class="row"><div><label>敷地面積（㎡）</label><input type="number" id="area" placeholder="例: 200" min="1"></div>
+<div><label>前面道路幅員（m）</label><input type="number" id="road" placeholder="例: 6" min="0.1" step="0.1"></div></div>
+<div class="row"><div><label>指定建蔽率（%）</label><input type="number" id="bcr" placeholder="例: 60" min="1" max="100"></div>
+<div><label>指定容積率（%）</label><input type="number" id="far" placeholder="例: 200" min="1" max="1300"></div></div>
+<button class="btn" onclick="calc()">建築可能性を判定する</button></div>
+<div id="result" class="card"><h2>判定結果</h2><div class="rg" id="rg"></div><div id="ub"></div>
+<div class="note">※ 防火地域・準防火地域の指定、高度地区、日影規制、北側斜線制限等は<b>別途都市計画図で確認</b>してください。本ツールは建築基準法に基づく概算値であり、実際の建築確認には個別の法規チェックが必要です。</div></div>
+<details><summary>用途地域13種 建築制限 クイックリファレンス</summary>
+<div class="rw"><table class="rt" id="rt"></table></div></details>
+<footer>© Kusasyu PropTech — 建築基準法に基づく概算シミュレーター</footer>
+</div>
+<script>
+var D=[
+{n:"第一種低層住居専用地域",bc:"30/40/50/60",fa:"50/60/80/100/150/200",k:1.25,m:.4,h:"10mまたは12m",
+u:["住宅","共同住宅","兼用住宅(50㎡以下)","幼稚園・保育所","小中高校","図書館","神社・寺院","診療所","交番・公民館","老人ホーム"]},
+{n:"第二種低層住居専用地域",bc:"30/40/50/60",fa:"50/60/80/100/150/200",k:1.25,m:.4,h:"10mまたは12m",
+u:["住宅","共同住宅","小規模店舗(150㎡以下2階以下)","幼稚園・保育所","小中高校","図書館","診療所","老人ホーム"]},
+{n:"第一種中高層住居専用地域",bc:"30/40/50/60",fa:"100/150/200/300",k:1.25,m:.4,h:"なし",
+u:["住宅","共同住宅","店舗(500㎡以下2階以下)","大学・専門学校","病院","図書館","老人ホーム","自動車車庫(300㎡以下)"]},
+{n:"第二種中高層住居専用地域",bc:"30/40/50/60",fa:"100/150/200/300",k:1.25,m:.4,h:"なし",
+u:["住宅","共同住宅","店舗(1500㎡以下)","事務所(1500㎡以下)","大学","病院","老人ホーム","自動車車庫"]},
+{n:"第一種住居地域",bc:"50/60/80",fa:"100/150/200/300/400",k:1.25,m:.4,h:"なし",
+u:["住宅","共同住宅","店舗(3000㎡以下)","事務所","ホテル・旅館","大学","病院","ボーリング場","スケート場"]},
+{n:"第二種住居地域",bc:"50/60/80",fa:"100/150/200/300/400",k:1.25,m:.4,h:"なし",
+u:["住宅","共同住宅","店舗","事務所","ホテル・旅館","カラオケボックス","パチンコ店","大学","病院","小規模工場"]},
+{n:"準住居地域",bc:"50/60/80",fa:"100/150/200/300/400",k:1.25,m:.4,h:"なし",
+u:["住宅","共同住宅","店舗","事務所","ホテル・旅館","カラオケ","映画館(200㎡未満)","自動車修理工場","営業用倉庫","劇場"]},
+{n:"田園住居地域",bc:"30/40/50/60",fa:"50/60/80/100/150/200",k:1.25,m:.4,h:"10mまたは12m",
+u:["住宅","共同住宅","農産物直売所(500㎡以下)","農家レストラン(500㎡以下)","幼稚園・保育所","小中高校","診療所"]},
+{n:"近隣商業地域",bc:"60/80",fa:"100/150/200/300/400",k:1.5,m:.6,h:"なし",
+u:["住宅","共同住宅","店舗","事務所","ホテル・旅館","映画館・劇場","大学","病院","工場(作業場150㎡以下)","自動車修理工場"]},
+{n:"商業地域",bc:"80",fa:"200~1300",k:1.5,m:.6,h:"なし",
+u:["住宅","共同住宅","店舗","百貨店","事務所","ホテル・旅館","映画館・劇場","遊技場","大学","病院","風俗施設","工場(150㎡以下)"]},
+{n:"準工業地域",bc:"50/60/80",fa:"100/150/200/300/400",k:1.5,m:.6,h:"なし",
+u:["住宅","共同住宅","店舗","事務所","ホテル・旅館","映画館","大学","病院","工場(危険物除く)","倉庫","自動車修理工場"]},
+{n:"工業地域",bc:"50/60",fa:"100/150/200/300/400",k:1.5,m:.6,h:"なし",
+u:["住宅","共同住宅","店舗(10000㎡以下)","事務所","工場","倉庫","自動車修理工場","ボーリング場"]},
+{n:"工業専用地域",bc:"30/40/50/60",fa:"100/150/200/300/400",k:1.5,m:.6,h:"なし",
+u:["事務所","工場","倉庫","自動車修理工場","トラックターミナル"]}
+];
+var sel=document.getElementById("zone");
+D.forEach(function(z,i){var o=document.createElement("option");o.value=i;o.textContent=z.n;sel.appendChild(o)});
+function onZ(){var i=sel.value,el=document.getElementById("zh");if(i===""){el.textContent="";return}var z=D[i];
+el.innerHTML="法定建蔽率: <b>"+z.bc+"%</b> ／ 法定容積率: <b>"+z.fa+"%</b><br>道路斜線係数: <b>"+z.k+"</b> ／ 前面道路容積率乗数: <b>"+(z.m*10)+"/10</b>"+(z.h!=="なし"?" ／ 絶対高さ制限: <b>"+z.h+"</b>":"");}
+function F(v){return v.toLocaleString("ja-JP",{maximumFractionDigits:2})}
+function calc(){var zi=sel.value,area=parseFloat(document.getElementById("area").value),road=parseFloat(document.getElementById("road").value),bcr=parseFloat(document.getElementById("bcr").value),far=parseFloat(document.getElementById("far").value);
+if(zi===""||!area||!road||!bcr||!far){alert("すべての項目を入力してください");return}
+if(area<=0||road<=0||bcr<=0||far<=0){alert("正の数を入力してください");return}
+var z=D[zi],maxBA=area*bcr/100,eFAR=far,rFAR=null;
+if(road<12){rFAR=road*z.m*100;eFAR=Math.min(far,rFAR)}
+var maxFA=area*eFAR/100,sH=road*z.k,mxF=Math.floor(sH/3),faF=maxFA/maxBA;
+var o='<div class="ri"><div class="l">最大建築面積</div><div class="v">'+F(maxBA)+' ㎡</div></div>';
+o+='<div class="ri"><div class="l">適用容積率</div><div class="v">'+F(eFAR)+' %</div></div>';
+o+='<div class="ri"><div class="l">最大延床面積</div><div class="v">'+F(maxFA)+' ㎡</div></div>';
+o+='<div class="ri"><div class="l">道路斜線 概算制限高さ</div><div class="v">'+F(sH)+' m</div></div>';
+if(road<12&&rFAR!==null){o+='<div class="ri warn full"><div class="l">前面道路幅員による容積率制限</div><div style="font-size:.85em;margin-top:4px">道路幅員 '+road+'m × 乗数 '+(z.m*10)+'/10 ＝ 道路容積率 <b>'+F(rFAR)+'%</b>'+(rFAR<far?' → 指定容積率'+far+'%より厳しいため <b>'+F(rFAR)+'%</b> を適用':' → 指定容積率以下のため指定値'+far+'%を適用')+'</div></div>';}
+if(z.h!=="なし"){o+='<div class="ri warn full"><div class="l">絶対高さ制限</div><div style="font-size:.9em">この用途地域は <b>'+z.h+'</b> の高さ制限あり（都市計画で確認）</div></div>';}
+o+='<div class="ri green full"><div class="l">概算可能階数</div><div class="v">'+mxF+' 階</div><div style="font-size:.72em;color:#718096">延床÷建築面積＝'+F(faF)+'階相当（階高3m・斜線制限'+F(sH)+'m以内）</div></div>';
+document.getElementById("rg").innerHTML=o;
+var uh='<div class="uses"><label>この用途地域で建築可能な主な用途:</label>';
+z.u.forEach(function(u){uh+='<span>'+u+'</span>'});uh+='</div>';
+document.getElementById("ub").innerHTML=uh;
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"});}
+(function(){var t=document.getElementById("rt"),h="<tr><th>用途地域</th><th>建蔽率(%)</th><th>容積率(%)</th><th>斜線係数</th><th>乗数</th><th>高さ制限</th><th>主な建築可能用途</th></tr>";
+D.forEach(function(z){h+='<tr><td>'+z.n+'</td><td>'+z.bc+'</td><td>'+z.fa+'</td><td>'+z.k+'</td><td>'+(z.m*10)+'/10</td><td>'+z.h+'</td><td class="ul">'+z.u.join(", ")+'</td></tr>'});t.innerHTML=h})();
+</script>
+</body>
+</html>

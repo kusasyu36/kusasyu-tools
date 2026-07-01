@@ -3237,6 +3237,32 @@
     "content_type": "csv_template"
   },
   {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "simulator-14",
+    "url": "proptech/simulator-14/",
+    "title": "その土地、何が建つ？建築可能性即判定ツール",
+    "tool_name": "用途地域×建築可能性シミュレーター",
+    "description": "用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファレンス（記事）を提供する。",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T14:55:22.774713+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "checker-9",
+    "url": "proptech/checker-9/",
+    "title": "その土地、何が建つ？建築可能性即判定ツール",
+    "tool_name": "土地仕入れ法規チェックリスト",
+    "description": "用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファレンス（記事）を提供する。",
+    "quality_score": 9,
+    "completed_at": "2026-06-30T14:55:22.774713+00:00",
+    "content_type": "csv_template"
+  },
+  {
     "company_id": "digital-marketing",
     "company_name": "kusasyu Digital Marketing",
     "company_icon": "📊",

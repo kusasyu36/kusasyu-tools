@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>土地仕入れ法規チェックリスト - kusasyu tools</title>
+<meta name="description" content="用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,土地仕入れ法規チェックリスト">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-9/">
+<meta property="og:title" content="土地仕入れ法規チェックリスト - kusasyu tools">
+<meta property="og:description" content="用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/checker-9/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="土地仕入れ法規チェックリスト - kusasyu tools">
+<meta name="twitter:description" content="用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "土地仕入れ法規チェックリスト",
+  "description": "用途地域（13種）を選択し、敷地面積・前面道路幅員を入力するだけで、建蔽率・容積率に基づく最大建築面積・延床面積、斜線制限の概算高さ、建築可能な用途一覧を即座に表示するHTMLツール。加えて、土地仕入れ時の法規確認漏れを防ぐチェックリスト（CSV）と、用途地域13種の建築制限を表形式で俯瞰できるクイックリファ",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/checker-9/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-06-30"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>土地仕入れ法規チェックリスト</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>土地仕入れ法規チェックリスト</h1>
+  <p class="project-name">その土地、何が建つ？建築可能性即判定ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>No.</th><th>カテゴリ</th><th>確認項目</th><th>確認内容・ポイント</th><th>確認先窓口</th><th>参照先URL・資料</th><th>判定基準</th><th>確認状況</th><th>確認日</th><th>確認者</th><th>備考</th></tr></thead><tbody><tr><td>1</td><td>用途地域</td><td>用途地域の種別確認</td><td>対象地が13種の用途地域のいずれに該当するか確認。「用途地域×建築可能性シミュレーター」で選択する値と一致させること</td><td>市区町村 都市計画課</td><td>各自治体の都市計画情報システム／用途地域マップ</td><td>都市計画図・証明書で地域種別を特定。複数地域にまたがる場合は按分計算が必要</td><td>未確認</td><td></td><td></td><td>「用途地域×建築可能性シミュレーター」入力値①</td></tr><tr><td>2</td><td>用途地域</td><td>用途地域境界の確認</td><td>敷地が複数の用途地域にまたがる場合、各地域の面積按分を算出</td><td>市区町村 都市計画課</td><td>都市計画図（1/2500）</td><td>境界線が敷地内を通過する場合、過半の属する地域の規制が適用される（建蔽率・容積率は加重平均）</td><td>未確認</td><td></td><td></td><td>按分計算はシミュレーター非対応。手動で加重平均を算出</td></tr><tr><td>3</td><td>建蔽率</td><td>指定建蔽率の確認</td><td>用途地域ごとに定められた建蔽率上限を確認。角地緩和・防火耐火緩和の適用可否も検討</td><td>市区町村 都市計画課／建築指導課</td><td>都市計画図・建築基準法第53条</td><td>角地緩和＋10%、防火地域内の耐火建築物＋10%（両方で最大＋20%）。商業地域の耐火建築物は制限なし</td><td>未確認</td><td></td><td></td><td>「用途地域×建築可能性シミュレーター」自動算出値と照合</td></tr><tr><td>4</td><td>容積率</td><td>指定容積率の確認</td><td>用途地域ごとの指定容積率を確認。前面道路幅員による制限との比較で小さい方が適用</td><td>市区町村 都市計画課</td><td>都市計画図・建築基準法第52条</td><td>前面道路幅員×法定乗数（住居系0.4、その他0.6）と指定容積率の小さい方を適用</td><td>未確認</td><td></td><td></td><td>「用途地域×建築可能性シミュレーター」入力値②③で自動判定</td></tr><tr><td>5</td><td>容積率</td><td>前面道路幅員の実測確認</td><td>公図・現況測量で前面道路幅員を正確に把握。セットバック有無も確認</td><td>市区町村 道路管理課／建築指導課</td><td>道路台帳・道路位置指定図</td><td>建築基準法上の道路（法42条）に該当するか確認。4m未満の場合はセットバック必要</td><td>未確認</td><td></td><td></td><td>42条2項道路の場合、中心後退により有効敷地面積が減少</td></tr><tr><td>6</td><td>高さ制限</td><td>絶対高さ制限の確認</td><td>第一種・第二種低層住居専用地域および田園住居地域では10mまたは12mの絶対高さ制限あり</td><td>市区町村 建築指導課</td><td>建築基準法第55条・都市計画決定図書</td><td>低層住居専用地域＝10mまたは12m。その他の地域は原則なし（地区計画等で別途定めがある場合を除く）</td><td>未確認</td><td></td><td></td><td>「用途地域×建築可能性シミュレーター」結果の高さ制限欄と照合</td></tr><tr><td>7</td><td>高さ制限</td><td>道路斜線制限の確認</td><td>前面道路の反対側境界線からの斜線勾配による高さ制限</td><td>市区町村 建築指導課</td><td>建築基準法第56条第1項第1号</td><td>住居系1.25倍、その他1.5倍。適用距離は用途地域・容積率により異なる</td><td>未確認</td><td></td><td></td><td>シミュレーター概算値は単純計算。天空率による緩和は別途検討</td></tr><tr><td>8</td><td>高さ制限</td><td>隣地斜線制限の確認</td><td>隣地境界線からの斜線勾配による高さ制限。低層住居専用地域は絶対高さ制限があるため適用なし</td><td>市区町村 建築指導課</td><td>建築基準法第56条第1項第2号</td><td>住居系＝20m＋1.25倍、その他＝31m＋2.5倍</td><td>未確認</td><td></td><td></td><td></td></tr><tr><td>9</td><td>高さ制限</td><td>北側斜線制限の確認</td><td>第一種・第二種低層住居専用地域、第一種・第二種中高層住居専用地域、田園住居地域に適用</td><td>市区町村 建築指導課</td><td>建築基準法第56条第1項第3号</td><td>低層住居専用・田園住居＝5m＋1.25倍、中高層住居専用＝10m＋1.25倍</td><td>未確認</td><td></td><td></td><td>日影規制の対象区域では北側斜線が適用されない場合あり（法56条の2）</td></tr><tr><td>10</td><td>日影規制</td><td>日影規制の対象・基準確認</td><td>対象建築物の高さ・階数に応じた日影時間の制限。測定面の高さも確認</td><td>市区町村 建築指導課</td><td>建築基準法第56条の2・別表第4</td><td>低層住居＝軒高7m超or3階以上（測定面1.5m）、中高層以上＝高さ10m超（測定面4mまたは6.5m）</td><td>未確認</td><td></td><td></td><td>規制値は自治体条例で強化されている場合あり。必ず条例も確認</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `No.,カテゴリ,確認項目,確認内容・ポイント,確認先窓口,参照先URL・資料,判定基準,確認状況,確認日,確認者,備考
+1,用途地域,用途地域の種別確認,"対象地が13種の用途地域のいずれに該当するか確認。「用途地域×建築可能性シミュレーター」で選択する値と一致させること",市区町村 都市計画課,各自治体の都市計画情報システム／用途地域マップ,"都市計画図・証明書で地域種別を特定。複数地域にまたがる場合は按分計算が必要",未確認,,,「用途地域×建築可能性シミュレーター」入力値①
+2,用途地域,用途地域境界の確認,"敷地が複数の用途地域にまたがる場合、各地域の面積按分を算出",市区町村 都市計画課,都市計画図（1/2500）,"境界線が敷地内を通過する場合、過半の属する地域の規制が適用される（建蔽率・容積率は加重平均）",未確認,,,"按分計算はシミュレーター非対応。手動で加重平均を算出"
+3,建蔽率,指定建蔽率の確認,"用途地域ごとに定められた建蔽率上限を確認。角地緩和・防火耐火緩和の適用可否も検討",市区町村 都市計画課／建築指導課,都市計画図・建築基準法第53条,"角地緩和＋10%、防火地域内の耐火建築物＋10%（両方で最大＋20%）。商業地域の耐火建築物は制限なし",未確認,,,「用途地域×建築可能性シミュレーター」自動算出値と照合
+4,容積率,指定容積率の確認,"用途地域ごとの指定容積率を確認。前面道路幅員による制限との比較で小さい方が適用",市区町村 都市計画課,都市計画図・建築基準法第52条,"前面道路幅員×法定乗数（住居系0.4、その他0.6）と指定容積率の小さい方を適用",未確認,,,「用途地域×建築可能性シミュレーター」入力値②③で自動判定
+5,容積率,前面道路幅員の実測確認,"公図・現況測量で前面道路幅員を正確に把握。セットバック有無も確認",市区町村 道路管理課／建築指導課,道路台帳・道路位置指定図,"建築基準法上の道路（法42条）に該当するか確認。4m未満の場合はセットバック必要",未確認,,,"42条2項道路の場合、中心後退により有効敷地面積が減少"
+6,高さ制限,絶対高さ制限の確認,"第一種・第二種低層住居専用地域および田園住居地域では10mまたは12mの絶対高さ制限あり",市区町村 建築指導課,建築基準法第55条・都市計画決定図書,"低層住居専用地域＝10mまたは12m。その他の地域は原則なし（地区計画等で別途定めがある場合を除く）",未確認,,,「用途地域×建築可能性シミュレーター」結果の高さ制限欄と照合
+7,高さ制限,道路斜線制限の確認,"前面道路の反対側境界線からの斜線勾配による高さ制限",市区町村 建築指導課,建築基準法第56条第1項第1号,"住居系1.25倍、その他1.5倍。適用距離は用途地域・容積率により異なる",未確認,,,"シミュレーター概算値は単純計算。天空率による緩和は別途検討"
+8,高さ制限,隣地斜線制限の確認,"隣地境界線からの斜線勾配による高さ制限。低層住居専用地域は絶対高さ制限があるため適用なし",市区町村 建築指導課,建築基準法第56条第1項第2号,"住居系＝20m＋1.25倍、その他＝31m＋2.5倍",未確認,,,
+9,高さ制限,北側斜線制限の確認,"第一種・第二種低層住居専用地域、第一種・第二種中高層住居専用地域、田園住居地域に適用",市区町村 建築指導課,建築基準法第56条第1項第3号,"低層住居専用・田園住居＝5m＋1.25倍、中高層住居専用＝10m＋1.25倍",未確認,,,"日影規制の対象区域では北側斜線が適用されない場合あり（法56条の2）"
+10,日影規制,日影規制の対象・基準確認,"対象建築物の高さ・階数に応じた日影時間の制限。測定面の高さも確認",市区町村 建築指導課,建築基準法第56条の2・別表第4,"低層住居＝軒高7m超or3階以上（測定面1.5m）、中高層以上＝高さ10m超（測定面4mまたは6.5m）",未確認,,,"規制値は自治体条例で強化されている場合あり。必ず条例も確認"
+11,日影規制,日影規制の時間数確認,"敷地境界線から5m〜10mの範囲と10m超の範囲で許容日影時間が異なる",市区町村 建築指導課,自治体の日影規制条例,"例：第一種低層住居専用地域（一）＝5-10m範囲3時間・10m超2時間。自治体により異なる",未確認,,,"日影図の作成は専門ソフトが必要。初期段階では規制有無の確認が重要"
+12,防火地域,防火地域・準防火地域の確認,"対象地が防火地域・準防火地域・法22条区域のいずれに該当するか確認",市区町村 都市計画課,都市計画図・建築基準法第61-67条,"防火地域＝耐火建築物義務（3階以上or100㎡超）、準防火地域＝準耐火以上（4階以上or1500㎡超で耐火義務）",未確認,,,"「用途地域×建築可能性シミュレーター」注記欄の防火指定に関する注意事項と連動。シミュレーター算出後に本項目で構造制限を補完確認すること"
+13,防火地域,防火・耐火建築物の構造制限確認,"防火地域指定に基づく構造制限（RC造・S造等）がコスト・工期に与える影響を検討",市区町村 建築指導課,建築基準法施行令第108条の3,"防火地域の耐火要件充足にはRC造・SRC造が一般的。木造は大臣認定仕様が必要",未確認,,,"構造制限は建築コストに直結。防火地域指定の確認はシミュレーター結果を踏まえた上で本チェックリストで必ず補完"
+14,接道義務,接道義務の充足確認,"建築基準法上の道路に2m以上接しているか確認。旗竿地の場合は通路幅にも注意",市区町村 建築指導課／道路管理課,建築基準法第43条・道路台帳,"法42条道路に2m以上接道が原則。自治体条例で共同住宅等は4m以上を求める場合あり",未確認,,,"接道不足は建築不可。法43条ただし書許可の可能性も調査"
+15,接道義務,道路種別の確認,"前面道路が建築基準法上のどの種別（42条1-5項、2項道路等）に該当するか",市区町村 建築指導課／道路管理課,建築基準法第42条・道路台帳,"法42条1項1-5号・2項・3項のいずれかに該当しない場合は接道義務を満たさない",未確認,,,"私道の場合は通行権・掘削同意の取得状況も確認"
+16,地区計画,地区計画の有無確認,"対象地に地区計画が定められている場合、用途・建蔽率・容積率・高さ等の追加制限がある",市区町村 都市計画課,地区計画の区域図・計画書,"地区計画による壁面後退・高さ制限・用途制限は都市計画法の上乗せ規制。緩和規定がある場合も",未確認,,,"地区計画は用途地域の一般規制より厳しい場合が多い"
+17,地区計画,建築協定・緑化協定の確認,"民間協定による追加制限（外壁色・フェンス高さ・緑化率等）の有無",市区町村 都市計画課／まちづくり課,建築協定書・緑化計画認定制度,"協定区域内では法規制以上の制限が課される場合あり。違反すると住民トラブルの原因になる",未確認,,,
+18,開発許可,開発許可の要否判定,"市街化区域で500㎡以上（自治体により300㎡以上）の開発行為には開発許可が必要",市区町村 開発指導課,都市計画法第29条・自治体開発指導要綱,"市街化区域＝500㎡以上（政令市・中核市は条例で300㎡以上に引下げの場合あり）、市街化調整区域＝原則全て許可必要",未確認,,,"開発許可が必要な場合、許可取得まで数ヶ月かかる点に注意"
+19,開発許可,宅地造成規制区域の確認,"宅地造成等規制法（盛土規制法）の規制区域に該当するか確認",都道府県 宅地課／市区町村 開発指導課,宅地造成等規制法・盛土規制法,"規制区域内の盛土1m超・切土2m超・面積500㎡超は許可必要",未確認,,,"2023年施行の盛土規制法により規制区域が大幅拡大"
+20,その他法規,都市計画道路の有無,"対象地に計画決定済み・事業決定済みの都市計画道路がかかっていないか確認",市区町村 都市計画課,都市計画図・事業認可図,"計画決定段階＝RC造2階以下の制限あり（法53条）、事業決定段階＝収用の可能性",未確認,,,"長期未着手路線の見直し動向も確認"
+21,その他法規,埋蔵文化財包蔵地の確認,"対象地が周知の埋蔵文化財包蔵地に該当する場合、着工前に届出・試掘調査が必要",市区町村 教育委員会（文化財課）,文化財保護法第93条・遺跡地図,"包蔵地内＝着工60日前までに届出。試掘結果により本調査（数ヶ月）が必要な場合あり",未確認,,,"調査費用は原則事業者負担。工期遅延リスクを事業計画に織り込むこと"
+22,その他法規,土壌汚染の可能性確認,"対象地の土地利用履歴（工場跡地等）から土壌汚染のリスクを評価",都道府県 環境部局／市区町村 環境課,土壌汚染対策法・自治体条例,"法3条＝有害物質使用特定施設廃止時に調査義務、法4条＝3000㎡以上の形質変更時に届出",未確認,,,"Phase1調査（履歴調査）は仕入れ判断前に実施推奨"
+23,その他法規,ハザードマップの確認,"洪水・土砂災害・津波・高潮のハザードマップで対象地のリスクを確認",市区町村 防災課,ハザードマップポータルサイト（国土交通省）,"浸水想定区域・土砂災害警戒区域・津波浸水想定区域の該当有無を確認。重説記載義務あり",未確認,,,"宅建業法改正によりハザードマップの重要事項説明が義務化"
+24,総合判定,シミュレーター結果との照合,"「用途地域×建築可能性シミュレーター」の算出結果（最大建築面積・延床面積・概算高さ）と本チェックリストの確認結果を突合",—,「用途地域×建築可能性シミュレーター」（Kusasyu PropTech）,"シミュレーター値は法定上限の概算。地区計画・条例等による上乗せ規制を本リストで補完し、最終的な建築可能ボリュームを確定",未確認,,,"シミュレーター→本チェックリストの順で確認することで法規確認漏れを防止"`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_土地仕入れ法規チェックリスト.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>
