@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ノマド対応物件_管理・リスティングシート - kusasyu tools</title>
+<meta name="description" content="中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,ノマド対応物件_管理・リスティングシート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-17/">
+<meta property="og:title" content="ノマド対応物件_管理・リスティングシート - kusasyu tools">
+<meta property="og:description" content="中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-17/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ノマド対応物件_管理・リスティングシート - kusasyu tools">
+<meta name="twitter:description" content="中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ノマド対応物件_管理・リスティングシート",
+  "description": "中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-17/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  },
+  "datePublished": "2026-07-02"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">kusasyu PropTech</a> &gt;
+  <span>ノマド対応物件_管理・リスティングシート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">🏠 kusasyu PropTech</span>
+  </div>
+  <h1>ノマド対応物件_管理・リスティングシート</h1>
+  <p class="project-name">空室をノマド向けに変える物件診断ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>物件ID</th><th>物件名</th><th>所在地</th><th>最寄駅</th><th>駅徒歩(分)</th><th>間取り</th><th>専有面積(㎡)</th><th>築年数</th><th>通常賃料(円/月)</th><th>管理費(円/月)</th><th>現況</th><th>Wi-Fi実測速度(Mbps)</th><th>Wi-Fi回線種別</th><th>ワークデスク</th><th>ワークチェア</th><th>モニター</th><th>最短契約期間(月)</th><th>家具家電リスト</th><th>スコアリングツール実施日</th><th>適性スコア(100点満点)</th><th>スコアランク</th><th>プレミアム賃料(円/月)</th><th>プレミアム率(%)</th><th>掲載ステータス</th><th>備考</th></tr></thead><tbody><tr><td>NMD-001</td><td>ライオンズマンション中野坂上 305号室</td><td>東京都中野区本町2-XX-X</td><td>中野坂上駅</td><td>5</td><td>1LDK</td><td>42.5</td><td>12</td><td>125000</td><td>8000</td><td>空室</td><td>280</td><td>光回線(NURO)</td><td>有</td><td>有</td><td>無</td><td>1</td><td>ベッド/冷蔵庫/洗濯機/電子レンジ/エアコン/デスクライト</td><td>2026-06-28</td><td>82</td><td>A</td><td>148000</td><td>=(V2-I2)/I2*100</td><td>掲載中</td><td>南向き・採光良好</td></tr><tr><td>NMD-002</td><td>グランドメゾン渋谷神南 1205号室</td><td>東京都渋谷区神南1-XX-X</td><td>渋谷駅</td><td>8</td><td>1K</td><td>28.3</td><td>8</td><td>98000</td><td>6000</td><td>空室</td><td>150</td><td>光回線(フレッツ)</td><td>有</td><td>無</td><td>無</td><td>1</td><td>ベッド/冷蔵庫/電子レンジ/エアコン</td><td>2026-06-25</td><td>71</td><td>B</td><td>112000</td><td>=(V3-I3)/I3*100</td><td>掲載準備中</td><td>コンビニ徒歩1分・カフェ多数</td></tr><tr><td>NMD-003</td><td>パークハイツ三軒茶屋 408号室</td><td>東京都世田谷区太子堂3-XX-X</td><td>三軒茶屋駅</td><td>7</td><td>2LDK</td><td>55.2</td><td>22</td><td>145000</td><td>10000</td><td>入居中</td><td>65</td><td>CATV(J:COM)</td><td>無</td><td>無</td><td>無</td><td>2</td><td>ベッド/冷蔵庫/洗濯機/エアコン</td><td>2026-06-15</td><td>55</td><td>C</td><td>155000</td><td>=(V4-I4)/I4*100</td><td>未掲載</td><td>要リフォーム・デスク設置推奨</td></tr><tr></tr><tr><td>【自動集計】</td></tr><tr><td>空室率(%)</td><td>=COUNTIF(K2:K4,"空室")/COUNTA(K2:K4)*100</td></tr><tr><td>平均適性スコア</td><td>=AVERAGE(T2:T4)</td></tr><tr><td>平均プレミアム率(%)</td><td>=AVERAGE(W2:W4)</td></tr><tr></tr><tr><td>【運用ガイド】</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/">&larr; kusasyu PropTechの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `物件ID,物件名,所在地,最寄駅,駅徒歩(分),間取り,専有面積(㎡),築年数,通常賃料(円/月),管理費(円/月),現況,Wi-Fi実測速度(Mbps),Wi-Fi回線種別,ワークデスク,ワークチェア,モニター,最短契約期間(月),家具家電リスト,スコアリングツール実施日,適性スコア(100点満点),スコアランク,プレミアム賃料(円/月),プレミアム率(%),掲載ステータス,備考
+NMD-001,ライオンズマンション中野坂上 305号室,東京都中野区本町2-XX-X,中野坂上駅,5,1LDK,42.5,12,125000,8000,空室,280,光回線(NURO),有,有,無,1,ベッド/冷蔵庫/洗濯機/電子レンジ/エアコン/デスクライト,2026-06-28,82,A,148000,=(V2-I2)/I2*100,掲載中,南向き・採光良好
+NMD-002,グランドメゾン渋谷神南 1205号室,東京都渋谷区神南1-XX-X,渋谷駅,8,1K,28.3,8,98000,6000,空室,150,光回線(フレッツ),有,無,無,1,ベッド/冷蔵庫/電子レンジ/エアコン,2026-06-25,71,B,112000,=(V3-I3)/I3*100,掲載準備中,コンビニ徒歩1分・カフェ多数
+NMD-003,パークハイツ三軒茶屋 408号室,東京都世田谷区太子堂3-XX-X,三軒茶屋駅,7,2LDK,55.2,22,145000,10000,入居中,65,CATV(J:COM),無,無,無,2,ベッド/冷蔵庫/洗濯機/エアコン,2026-06-15,55,C,155000,=(V4-I4)/I4*100,未掲載,要リフォーム・デスク設置推奨
+
+【自動集計】
+空室率(%),"=COUNTIF(K2:K4,""空室"")/COUNTA(K2:K4)*100"
+平均適性スコア,=AVERAGE(T2:T4)
+平均プレミアム率(%),=AVERAGE(W2:W4)
+
+【運用ガイド】
+※適性スコア(T列)・スコアランク(U列)は「リモートワーク適性 物件スコアリングツール」(HTMLツール)の診断結果を手動転記してください
+※プレミアム率(W列)はプレミアム賃料(V列)と通常賃料(I列)から自動計算されます
+※新規物件追加時は行4の下にデータ行を挿入し集計数式のセル範囲(例:K2:K4→K2:K10)を拡張してください
+※家具家電リストは「/」区切りで記入(例:ベッド/冷蔵庫/洗濯機)
+※現況は「空室」「入居中」「退去予定」のいずれかを記入してください`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_ノマド対応物件_管理・リスティングシート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

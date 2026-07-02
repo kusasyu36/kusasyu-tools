@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLMO最適化スコアカード＆改善トラッカー - kusasyu tools</title>
+<meta name="description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,LLMO最適化スコアカード＆改善トラッカー">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-3/">
+<meta property="og:title" content="LLMO最適化スコアカード＆改善トラッカー - kusasyu tools">
+<meta property="og:description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-3/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LLMO最適化スコアカード＆改善トラッカー - kusasyu tools">
+<meta name="twitter:description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LLMO最適化スコアカード＆改善トラッカー",
+  "description": "既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-3/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-07-02"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>LLMO最適化スコアカード＆改善トラッカー</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>LLMO最適化スコアカード＆改善トラッカー</h1>
+  <p class="project-name">SEOが効かない？AI検索に選ばれる記事変換ツール</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>LLMO最適化スコアカード＆改善トラッカー</th><th></th><th></th><th></th><th></th><th>連携ツール：LLMO対応コンテンツ変換アシスタント</th><th></th><th></th><th></th><th></th><th>各項目0〜10点（合計100点満点）</th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>No</td><td>記事タイトル</td><td>URL</td><td>カテゴリ</td><td>公開日</td><td>月間PV</td><td>①定義文の明確性</td><td>②構造化見出し</td><td>③引用可能な独自データ</td><td>④簡潔な要約段落</td><td>⑤FAQ網羅性</td><td>⑥比較表・リスト構造</td><td>⑦数値・統計の明記</td><td>⑧E-E-A-T要素</td><td>⑨情報の最新性</td><td>⑩権威性シグナル</td><td>合計(/100)</td><td>ランク</td><td>改善優先度</td><td>ステータス</td><td>担当者</td><td>着手日</td><td>完了日</td><td>改善後スコア</td><td>スコア変動</td><td>備考</td></tr><tr><td>1</td><td>BtoB SaaSのリード獲得完全ガイド</td><td>https://example.com/btob-lead-gen</td><td>リード獲得</td><td>2024-08-15</td><td>3200</td><td>4</td><td>6</td><td>2</td><td>3</td><td>1</td><td>5</td><td>3</td><td>4</td><td>5</td><td>2</td><td>=SUM(G3:P3)</td><td>=IF(Q3&gt;=80,"A",IF(Q3&gt;=60,"B",IF(Q3&gt;=40,"C","D")))</td><td>=ROUND((100-Q3)*F3/1000,1)</td><td>未着手</td><td></td><td></td><td></td><td></td><td>=IF(X3="","",X3-Q3)</td><td>定義文とFAQ追加が急務</td></tr><tr><td>2</td><td>MAツール比較2025年版</td><td>https://example.com/ma-tool-comparison</td><td>ツール比較</td><td>2025-01-20</td><td>4800</td><td>6</td><td>7</td><td>3</td><td>5</td><td>2</td><td>8</td><td>6</td><td>5</td><td>4</td><td>3</td><td>=SUM(G4:P4)</td><td>=IF(Q4&gt;=80,"A",IF(Q4&gt;=60,"B",IF(Q4&gt;=40,"C","D")))</td><td>=ROUND((100-Q4)*F4/1000,1)</td><td>未着手</td><td></td><td></td><td></td><td></td><td>=IF(X4="","",X4-Q4)</td><td>比較表はあるがFAQと要約が不足</td></tr><tr><td>3</td><td>カスタマーサクセスKPI設定方法</td><td>https://example.com/cs-kpi</td><td>CS</td><td>2024-05-10</td><td>1500</td><td>3</td><td>4</td><td>1</td><td>2</td><td>0</td><td>3</td><td>4</td><td>3</td><td>6</td><td>1</td><td>=SUM(G5:P5)</td><td>=IF(Q5&gt;=80,"A",IF(Q5&gt;=60,"B",IF(Q5&gt;=40,"C","D")))</td><td>=ROUND((100-Q5)*F5/1000,1)</td><td>未着手</td><td></td><td></td><td></td><td></td><td>=IF(X5="","",X5-Q5)</td><td>全面リライト推奨</td></tr><tr><td>4</td><td>SaaS解約率改善の5つの施策</td><td>https://example.com/churn-rate</td><td>解約防止</td><td>2025-03-08</td><td>2100</td><td>5</td><td>5</td><td>4</td><td>4</td><td>3</td><td>6</td><td>7</td><td>5</td><td>3</td><td>4</td><td>=SUM(G6:P6)</td><td>=IF(Q6&gt;=80,"A",IF(Q6&gt;=60,"B",IF(Q6&gt;=40,"C","D")))</td><td>=ROUND((100-Q6)*F6/1000,1)</td><td>改善中</td><td>田中</td><td>2026-06-15</td><td></td><td></td><td>=IF(X6="","",X6-Q6)</td><td>独自調査データを追記予定</td></tr><tr><td>5</td><td>コンテンツマーケティングROI計算法</td><td>https://example.com/content-roi</td><td>コンテンツ戦略</td><td>2023-11-22</td><td>890</td><td>2</td><td>3</td><td>1</td><td>1</td><td>0</td><td>2</td><td>5</td><td>2</td><td>2</td><td>1</td><td>=SUM(G7:P7)</td><td>=IF(Q7&gt;=80,"A",IF(Q7&gt;=60,"B",IF(Q7&gt;=40,"C","D")))</td><td>=ROUND((100-Q7)*F7/1000,1)</td><td>未着手</td><td></td><td></td><td></td><td></td><td>=IF(X7="","",X7-Q7)</td><td>PV低いため優先度は低め</td></tr><tr></tr><tr><td>集計</td><td></td><td></td><td></td><td></td><td></td><td>=AVERAGE(G3:G7)</td><td>=AVERAGE(H3:H7)</td><td>=AVERAGE(I3:I7)</td><td>=AVERAGE(J3:J7)</td><td>=AVERAGE(K3:K7)</td><td>=AVERAGE(L3:L7)</td><td>=AVERAGE(M3:M7)</td><td>=AVERAGE(N3:N7)</td><td>=AVERAGE(O3:O7)</td><td>=AVERAGE(P3:P7)</td><td>=AVERAGE(Q3:Q7)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr></tr><tr><td>【月次改善トラッカー】</td><td></td><td></td><td></td><td></td><td>施策の効果を月単位で記録し効果測定に活用</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `LLMO最適化スコアカード＆改善トラッカー,,,,,連携ツール：LLMO対応コンテンツ変換アシスタント,,,,,"各項目0〜10点（合計100点満点）",,,,,,,,,,,,,,
+No,記事タイトル,URL,カテゴリ,公開日,月間PV,①定義文の明確性,②構造化見出し,③引用可能な独自データ,④簡潔な要約段落,⑤FAQ網羅性,⑥比較表・リスト構造,⑦数値・統計の明記,⑧E-E-A-T要素,⑨情報の最新性,⑩権威性シグナル,合計(/100),ランク,改善優先度,ステータス,担当者,着手日,完了日,改善後スコア,スコア変動,備考
+1,BtoB SaaSのリード獲得完全ガイド,https://example.com/btob-lead-gen,リード獲得,2024-08-15,3200,4,6,2,3,1,5,3,4,5,2,=SUM(G3:P3),"=IF(Q3>=80,""A"",IF(Q3>=60,""B"",IF(Q3>=40,""C"",""D"")))","=ROUND((100-Q3)*F3/1000,1)",未着手,,,,,"=IF(X3="""","""",X3-Q3)",定義文とFAQ追加が急務
+2,MAツール比較2025年版,https://example.com/ma-tool-comparison,ツール比較,2025-01-20,4800,6,7,3,5,2,8,6,5,4,3,=SUM(G4:P4),"=IF(Q4>=80,""A"",IF(Q4>=60,""B"",IF(Q4>=40,""C"",""D"")))","=ROUND((100-Q4)*F4/1000,1)",未着手,,,,,"=IF(X4="""","""",X4-Q4)",比較表はあるがFAQと要約が不足
+3,カスタマーサクセスKPI設定方法,https://example.com/cs-kpi,CS,2024-05-10,1500,3,4,1,2,0,3,4,3,6,1,=SUM(G5:P5),"=IF(Q5>=80,""A"",IF(Q5>=60,""B"",IF(Q5>=40,""C"",""D"")))","=ROUND((100-Q5)*F5/1000,1)",未着手,,,,,"=IF(X5="""","""",X5-Q5)",全面リライト推奨
+4,SaaS解約率改善の5つの施策,https://example.com/churn-rate,解約防止,2025-03-08,2100,5,5,4,4,3,6,7,5,3,4,=SUM(G6:P6),"=IF(Q6>=80,""A"",IF(Q6>=60,""B"",IF(Q6>=40,""C"",""D"")))","=ROUND((100-Q6)*F6/1000,1)",改善中,田中,2026-06-15,,,"=IF(X6="""","""",X6-Q6)",独自調査データを追記予定
+5,コンテンツマーケティングROI計算法,https://example.com/content-roi,コンテンツ戦略,2023-11-22,890,2,3,1,1,0,2,5,2,2,1,=SUM(G7:P7),"=IF(Q7>=80,""A"",IF(Q7>=60,""B"",IF(Q7>=40,""C"",""D"")))","=ROUND((100-Q7)*F7/1000,1)",未着手,,,,,"=IF(X7="""","""",X7-Q7)",PV低いため優先度は低め
+
+集計,,,,,,=AVERAGE(G3:G7),=AVERAGE(H3:H7),=AVERAGE(I3:I7),=AVERAGE(J3:J7),=AVERAGE(K3:K7),=AVERAGE(L3:L7),=AVERAGE(M3:M7),=AVERAGE(N3:N7),=AVERAGE(O3:O7),=AVERAGE(P3:P7),=AVERAGE(Q3:Q7),,,,,,,,,
+
+【月次改善トラッカー】,,,,,施策の効果を月単位で記録し効果測定に活用,,,,,,
+記録月,対象No,記事タイトル,実施した改善施策,施策前スコア,施策後スコア,スコア変動,AI検索引用数（施策前）,AI検索引用数（施策後）,引用変動,効果判定,次のアクション
+2026-07,2,MAツール比較2025年版,FAQ5問追加・冒頭に要約段落挿入,49,62,=F13-E13,5,12,=I13-H13,効果あり,E-E-A-T強化に着手
+2026-07,1,BtoB SaaSのリード獲得完全ガイド,定義文追加・H2/H3見出し再構成,35,48,=F14-E14,2,6,=I14-H14,効果あり,独自データ追加を計画
+2026-08,4,SaaS解約率改善の5つの施策,独自調査データ（N=120社）追加,46,58,=F15-E15,3,8,=I15-H15,効果あり,FAQ追加予定
+2026-08,2,MAツール比較2025年版,著者プロフィール・監修者情報追加,62,71,=F16-E16,12,18,=I16-H16,効果あり,スコア70超達成
+2026-09,3,カスタマーサクセスKPI設定方法,全面リライト（定義文・FAQ・比較表・数値追加）,27,55,=F17-E17,0,7,=I17-H17,大幅改善,継続モニタリング
+
+【採点基準ガイド（各項目0〜10点）】,,,,
+項目No,項目名,0〜3点（低）,4〜6点（中）,7〜10点（高）
+①,定義文の明確性,冒頭に定義文なし・何の記事か不明,定義文はあるが曖昧または冗長,冒頭50文字以内で主題を明確に定義
+②,構造化見出し,見出しなしまたはH1のみ,H2まで使用しているが論理構造が弱い,H2/H3で階層的に整理され目次として機能
+③,引用可能な独自データ,独自データなし・一般論のみ,データはあるが出典や調査方法が不明確,独自調査・社内データを出典付きで明示
+④,簡潔な要約段落,要約なし・結論が記事末尾のみ,要約はあるが200文字を超えている,各セクション冒頭に50〜100文字の要約あり
+⑤,FAQ網羅性,FAQ形式の記述なし,FAQ1〜2問のみ,関連FAQ5問以上をQ&A形式で網羅
+⑥,比較表・リスト構造,本文が文章のみで視覚要素なし,箇条書きはあるが比較表なし,比較表・番号付きリスト・チェックリストを活用
+⑦,数値・統計の明記,具体的な数値の記載なし,数値はあるが出典が不明確,出典付きの統計・数値を3つ以上掲載
+⑧,E-E-A-T要素,著者情報なし・経験の記述なし,著者名はあるが経歴や実績の記載なし,著者経歴・実務経験・実績を具体的に明記
+⑨,情報の最新性,1年以上更新なし・古いデータを引用,6か月以内に更新あり,3か月以内に更新・最新データを反映済み
+⑩,権威性シグナル,出典・外部リンク・専門家言及なし,一部出典あり・外部リンクが少数,権威ある出典を複数引用・専門家コメントあり
+
+【ランク基準】,,,,
+ランク,スコア範囲,判定,推奨アクション
+A,80〜100点,LLMO対応済み,微調整と定期更新で維持
+B,60〜79点,基本対応あり,弱い項目を重点的に改善
+C,40〜59点,部分的に対応,構造改善と要素追加が必要
+D,0〜39点,未対応,全面リライトを推奨
+
+【改善優先度の計算式】,,,,
+改善優先度 ＝（100 − 合計スコア）× 月間PV ÷ 1000,,,スコアが低くPVが高い記事ほど優先度が上がります
+
+【使い方】,,,,
+1. 記事URLを入力し10項目を0〜10点で採点する（合計スコアとランクは数式で自動計算）,,,
+2. 改善優先度が高い記事から着手しLLMO対応コンテンツ変換アシスタントで変換案を取得する,,,
+3. 月次改善トラッカーに施策内容と結果を記録しAI検索引用数の変化で効果を測定する,,,`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_LLMO最適化スコアカード＆改善トラッカー.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

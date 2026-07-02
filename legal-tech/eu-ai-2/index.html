@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU_AI法_2026年8月施行_法務担当者の初動対応ガイド - kusasyu tools</title>
+<meta name="description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,EU_AI法_2026年8月施行_法務担当者の初動対応ガイド">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai-2/">
+<meta property="og:title" content="EU_AI法_2026年8月施行_法務担当者の初動対応ガイド - kusasyu tools">
+<meta property="og:description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai-2/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EU_AI法_2026年8月施行_法務担当者の初動対応ガイド - kusasyu tools">
+<meta name="twitter:description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "EU_AI法_2026年8月施行_法務担当者の初動対応ガイド",
+  "description": "企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai-2/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-07-02"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>EU_AI法_2026年8月施行_法務担当者の初動対応ガイド</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>EU_AI法_2026年8月施行_法務担当者の初動対応ガイド</h1>
+  <p class="project-name">社内AIの法規制リスク、1分で自動診断</p>
+  <div class="content">
+<h1>EU AI法 2026年8月施行 法務担当者の初動対応ガイド</h1>
+<p><strong>対象読者</strong>: EU市場に製品・サービスを展開する日本企業の法務部門担当者<br />
+<strong>最終更新</strong>: 2026年7月1日<br />
+<strong>想定所要時間</strong>: 初動対応の全体像を1回の通読で把握（約10分）</p>
+<hr />
+<h2>はじめに ― なぜ「今すぐ」動く必要があるのか</h2>
+<p>EU AI Act（人工知能規則）は <strong>2026年8月2日に全面施行</strong> される。High-risk AIシステムに関する義務（Chapter III Section 2〜5）がこの日から適用開始となり、違反には <strong>最大3,500万ユーロまたは全世界年間売上高の7%</strong> の制裁金が科される。</p>
+<p>日本企業であっても、EU域内で利用されるAIシステムのProvider（開発・提供者）またはOperator（業務利用者）に該当すれば規制対象となる。残された期間で法務担当者がやるべきことは、以下の <strong>3ステップ</strong> に集約される。</p>
+<hr />
+<h2>前提整理 ― ProviderとOperatorで義務が異なる</h2>
+<p>対応の出発点として、自社がProviderとOperatorのどちらに該当するかを確認する。</p>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>定義</th>
+<th>根拠条項</th>
+<th>主な義務</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Provider（提供者）</strong></td>
+<td>AIシステムを開発し、自己名義で上市・供用する者</td>
+<td>Article 16</td>
+<td>リスク管理システム構築、技術文書作成、適合性評価（Conformity Assessment）、CE マーキング、市販後モニタリング</td>
+</tr>
+<tr>
+<td><strong>Operator（利用者）</strong></td>
+<td>業務上AIシステムを利用する者（Deployer）</td>
+<td>Article 26</td>
+<td>Providerの使用説明書に従った利用、人間による監視（Human Oversight）の確保、入力データの適切性確認、ログ保存、影響を受ける者への通知</td>
+</tr>
+</tbody>
+</table>
+<h3>外部SaaSを業務利用する日本企業の立場</h3>
+<p>自社でAIを開発せず、外部SaaSとして業務利用しているケースでは、原則として <strong>Operator（Deployer）</strong> に該当する。ただし、以下に注意が必要である。</p>
+<ul>
+<li>SaaSベンダーが提供するAIを <strong>自社ブランドで再提供</strong> する場合 → Providerとみなされる</li>
+<li>AIシステムに <strong>実質的な改変（substantial modification）</strong> を加えた場合 → 新たなProviderとなる</li>
+<li>EU域内の顧客・従業員に対してAIの <strong>出力結果を適用</strong> する場合 → Operatorの義務を負う</li>
+</ul>
+<p>自社AI台帳の例では、AI-001（採用スクリーニングAI／HRTech Solutions株式会社）やAI-002（社内チャットボット／Chatwork AI株式会社）はいずれも「外部SaaS利用」であり、自社はOperatorとしての義務を負う。一方、AI-004（需要予測・在庫最適化AI／自社開発・データサイエンス課）は自社開発のため、EU域内で利用する場合はProviderの義務が発生しうる。</p>
+<hr />
+<h2>ステップ1 ― AI利用実態の棚卸し</h2>
+<h3>やるべきこと</h3>
+<p>社内で利用している全AIツール・AIシステムを洗い出し、台帳に記録する。台帳には最低限、以下の項目を含める。</p>
+<ul>
+<li><strong>管理番号・AIツール名・バージョン・ベンダー名</strong></li>
+<li><strong>利用部門・利用目的・利用形態</strong>（外部SaaS／自社開発）</li>
+<li><strong>処理データ種別・個人データの有無</strong></li>
+<li><strong>利用開始日</strong></li>
+</ul>
+<h3>実務上のポイント</h3>
+<ol>
+<li><strong>IT資産管理台帳やSaaS契約一覧</strong> を起点に、AI機能を持つツールを抽出する</li>
+<li>現場部門へのヒアリングでは「AIを使っていますか」ではなく、<strong>「自動で判定・推薦・生成する機能を使っていますか」</strong> と聞く（現場はAIと認識していないケースが多い）</li>
+<li>シャドーIT（部門独自導入）を見落とさないよう、<strong>経費精算データからSaaS利用料を逆引き</strong> する方法も有効</li>
+</ol>
+<h3>棚卸し結果の例</h3>
+<p>自社台帳では以下5件が登録されている。</p>
+<table>
+<thead>
+<tr>
+<th>管理番号</th>
+<th>ツール名</th>
+<th>ベンダー</th>
+<th>利用形態</th>
+<th>個人データ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-001</td>
+<td>採用スクリーニングAI v2.1.0</td>
+<td>HRTech Solutions株式会社</td>
+<td>外部SaaS</td>
+<td>あり</td>
+</tr>
+<tr>
+<td>AI-002</td>
+<td>社内チャットボット v3.4.2</td>
+<td>Chatwork AI株式会社</td>
+<td>外部SaaS</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>AI-003</td>
+<td>契約書レビューAI v1.8.0</td>
+<td>LegalForce株式会社</td>
+<td>外部SaaS</td>
+<td>あり</td>
+</tr>
+<tr>
+<td>AI-004</td>
+<td>需要予測・在庫最適化AI v4.0.1</td>
+<td>自社開発</td>
+<td>自社開発</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>AI-005</td>
+<td>従業員感情分析AI v1.2.0</td>
+<td>EmotionTech Inc.</td>
+<td>外部SaaS</td>
+<td>あり</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>ステップ2 ― リスク分類の実施</h2>
+<h3>EU AI Actの4段階リスク分類</h3>
+<table>
+<thead>
+<tr>
+<th>リスク分類</th>
+<th>規制内容</th>
+<th>該当例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prohibited（禁止）</strong></td>
+<td>上市・利用ともに禁止（Article 5）</td>
+<td>ソーシャルスコアリング、職場での感情推論（一部）、サブリミナル操作</td>
+</tr>
+<tr>
+<td><strong>High-risk（高リスク）</strong></td>
+<td>厳格な義務（Annex III列挙）</td>
+<td>採用選考AI、信用スコアリング、法執行</td>
+</tr>
+<tr>
+<td><strong>Limited（限定リスク）</strong></td>
+<td>透明性義務（Article 50）</td>
+<td>チャットボット、ディープフェイク生成</td>
+</tr>
+<tr>
+<td><strong>Minimal（最小リスク）</strong></td>
+<td>義務なし（任意の行動規範）</td>
+<td>スパムフィルター、需要予測</td>
+</tr>
+</tbody>
+</table>
+<h3>自社台帳への分類適用結果</h3>
+<table>
+<thead>
+<tr>
+<th>管理番号</th>
+<th>リスク分類</th>
+<th>根拠</th>
+<th>要注意事項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-001</td>
+<td><strong>High-risk</strong></td>
+<td>Annex III 6(a) 雇用・労働者管理</td>
+<td>Conformity Assessment対応をベンダーに確認必須</td>
+</tr>
+<tr>
+<td>AI-002</td>
+<td><strong>Limited</strong></td>
+<td>Article 50 透明性義務</td>
+<td>AI応答である旨の明示で対応完了</td>
+</tr>
+<tr>
+<td>AI-003</td>
+<td><strong>Minimal</strong></td>
+<td>リスク分類該当なし</td>
+<td>情報セキュリティ上のアクセス制御で十分</td>
+</tr>
+<tr>
+<td>AI-004</td>
+<td><strong>Minimal</strong></td>
+<td>リスク分類該当なし</td>
+<td>自社開発のためモデルカード整備を推奨</td>
+</tr>
+<tr>
+<td>AI-005</td>
+<td><strong>High-risk／Prohibited該当の可能性</strong></td>
+<td>Annex III 6(b)＋Article 5(1)(f)</td>
+<td><strong>最優先対応</strong>。職場での感情推論はArticle 5(1)(f)により禁止行為に該当する可能性あり</td>
+</tr>
+</tbody>
+</table>
+<h3>AI-005に関する緊急警告</h3>
+<p>AI-005（従業員感情分析AI v1.2.0／EmotionTech Inc.）は、Article 5(1)(f)が禁止する <strong>「職場における感情推論（emotion recognition in the workplace）」</strong> に該当する可能性がある。2026年8月2日以降、禁止行為に該当するAIの利用は即座に違法となるため、<strong>利用範囲の縮小またはツール停止を含め、対応期限の2026年7月15日までに判断を完了</strong> する必要がある。</p>
+<hr />
+<h2>ステップ3 ― 対応優先度の決定</h2>
+<h3>優先度マトリクス</h3>
+<table>
+<thead>
+<tr>
+<th>優先度</th>
+<th>基準</th>
+<th>該当ツール</th>
+<th>対応期限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S（最優先）</strong></td>
+<td>Prohibited該当の可能性</td>
+<td>AI-005</td>
+<td>2026年7月15日</td>
+</tr>
+<tr>
+<td><strong>A（高）</strong></td>
+<td>High-risk確定</td>
+<td>AI-001</td>
+<td>2026年7月31日</td>
+</tr>
+<tr>
+<td><strong>B（中）</strong></td>
+<td>Limited（透明性義務）</td>
+<td>AI-002</td>
+<td>対応完了済</td>
+</tr>
+<tr>
+<td><strong>C（低）</strong></td>
+<td>Minimal</td>
+<td>AI-003, AI-004</td>
+<td>義務なし（推奨対応のみ）</td>
+</tr>
+</tbody>
+</table>
+<h3>各優先度の具体的アクション</h3>
+<p><strong>優先度S（AI-005）</strong>: 法務部門が主導し、利用継続の可否を経営判断として決定する。EmotionTech Inc.に対しArticle 5(1)(f)への見解を書面で求め、外部弁護士の意見も取得する。</p>
+<p><strong>優先度A（AI-001）</strong>: HRTech Solutions株式会社に対し、Conformity Assessment（適合性評価）の対応状況・CE マーキング取得予定を確認する。Operator側では、人間によるレビュー工程の追加およびデータ主体への通知文書の整備を完了させる（法務確認者：田中 太郎、確認日：2026年6月15日時点で対応中）。</p>
+<p><strong>優先度B（AI-002）</strong>: AI応答であることの明示表示を実装済、利用ガイドラインを全社展開済（法務確認者：佐藤 花子、確認日：2026年5月20日）。維持管理フェーズに移行。</p>
+<p><strong>優先度C（AI-003, AI-004）</strong>: 法的義務は生じないが、情報セキュリティポリシーに基づくアクセス制御やモデルカードの社内管理を継続する。</p>
+<hr />
+<h2>日本AI事業者ガイドラインとの比較</h2>
+<table>
+<thead>
+<tr>
+<th>観点</th>
+<th>EU AI Act</th>
+<th>日本AI事業者ガイドライン</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>法的拘束力</td>
+<td><strong>法的義務</strong>（違反に制裁金）</td>
+<td>任意のガイドライン（法的拘束力なし）</td>
+</tr>
+<tr>
+<td>リスク分類</td>
+<td>4段階の明確な分類</td>
+<td>事業者による自主的リスク評価</td>
+</tr>
+<tr>
+<td>透明性</td>
+<td>Article 50で具体的義務を規定</td>
+<td>「透明性の確保」を原則として提示</td>
+</tr>
+<tr>
+<td>人間の関与</td>
+<td>High-riskにHuman Oversight義務</td>
+<td>「人間中心」を基本理念として明示</td>
+</tr>
+<tr>
+<td>適合性評価</td>
+<td>第三者認証が必要な領域あり</td>
+<td>自主的な評価を推奨</td>
+</tr>
+</tbody>
+</table>
+<h3>両規制に対応するための実務チェックリスト</h3>
+<ul>
+<li>[ ] AI利用台帳を作成し、全ツールの棚卸しを完了した</li>
+<li>[ ] 各ツールのEU AI Actリスク分類を判定した</li>
+<li>[ ] Prohibited該当の可能性があるツールを特定し、利用可否を判断した</li>
+<li>[ ] High-riskツールについてベンダーにConformity Assessment対応状況を確認した</li>
+<li>[ ] High-riskツールのOperator義務（Human Oversight・ログ保存・通知）を整備した</li>
+<li>[ ] LimitedツールについてAI利用の明示表示を実装した</li>
+<li>[ ] 日本AI事業者ガイドラインの基本原則（透明性・公平性・安全性）への適合を確認した</li>
+<li>[ ] AI利用に関する社内ポリシーを策定または更新した</li>
+<li>[ ] データ主体への通知文書（GDPR第13条との整合含む）を整備した</li>
+<li>[ ] 対応状況を経営会議に報告し、必要な予算・体制を確保した</li>
+</ul>
+<hr />
+<h2>社内完結 vs. 外部コンサル ― 判断基準</h2>
+<table>
+<thead>
+<tr>
+<th>対応内容</th>
+<th style="text-align: center;">社内完結可能</th>
+<th style="text-align: center;">外部コンサル推奨</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI利用実態の棚卸し</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>初期リスク分類（Annex III照合）</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>AI台帳の整備・運用</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>社内ポリシー策定</td>
+<td style="text-align: center;">○</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Prohibited該当の最終判断</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">○</td>
+</tr>
+<tr>
+<td>High-risk AIの適合性評価手続き</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">○</td>
+</tr>
+<tr>
+<td>EU域内の法的代理人（Authorised Representative）選任</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">○</td>
+</tr>
+<tr>
+<td>GDPR・AI Act横断のデータ保護影響評価（DPIA）</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">○</td>
+</tr>
+</tbody>
+</table>
+<h3>外部コンサルへの依頼判断フロー</h3>
+<ol>
+<li><strong>High-risk以上のAIが1件でもある</strong> → 外部法律事務所（EU法に知見のある事務所）に相談</li>
+<li><strong>Prohibited該当の疑いがある</strong> → 即座に外部弁護士の意見を取得（AI-005が該当）</li>
+<li><strong>EU域内に拠点がない</strong> → Authorised Representative（法的代理人）の選任が必要であり、専門業者への依頼が必須</li>
+<li><strong>上記いずれにも該当しない</strong> → 社内完結で対応可能。台帳整備と定期見直しを継続する</li>
+</ol>
+<hr />
+<h2>まとめ ― 施行日までのタイムライン</h2>
+<table>
+<thead>
+<tr>
+<th>時期</th>
+<th>アクション</th>
+<th>担当</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>即時</strong></td>
+<td>AI-005（従業員感情分析AI）の利用可否を経営判断</td>
+<td>法務部＋経営企画部</td>
+</tr>
+<tr>
+<td><strong>〜2026年7月15日</strong></td>
+<td>AI-005の対応完了（停止or利用範囲縮小）</td>
+<td>法務部</td>
+</tr>
+<tr>
+<td><strong>〜2026年7月31日</strong></td>
+<td>AI-001のOperator義務整備完了</td>
+<td>法務部＋人事部</td>
+</tr>
+<tr>
+<td><strong>2026年8月2日</strong></td>
+<td><strong>EU AI Act全面施行</strong></td>
+<td>―</td>
+</tr>
+<tr>
+<td><strong>施行後・継続</strong></td>
+<td>台帳の定期更新（四半期ごと）、新規AI導入時の事前リスク分類</td>
+<td>法務部＋情報システム部</td>
+</tr>
+</tbody>
+</table>
+<p>本ガイドの3ステップ（棚卸し→リスク分類→優先度決定）は、専任のAIガバナンス担当がいない企業でも、法務・IT担当の兼務体制で実行可能な範囲に設計している。まずは台帳の整備から着手し、High-risk以上の項目が確定した段階で外部専門家の支援を仰ぐことで、限られたリソースを最も効果的に配分できる。</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+</body>
+</html>

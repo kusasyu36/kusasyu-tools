@@ -2665,6 +2665,45 @@
     "content_type": "article"
   },
   {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "eu-ai-act",
+    "url": "legal-tech/eu-ai-act/",
+    "title": "社内AIの法規制リスク、1分で自動診断",
+    "tool_name": "EU_AI_Act×日本ガイドライン_リスク分類自己診断ツール",
+    "description": "企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能な監査対応レポート形式で、法務部門がそのまま経営会議や外部監査に提出できる。併せて、社内の",
+    "quality_score": 9,
+    "completed_at": "2026-07-02T00:09:39.264638+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "regulation-8",
+    "url": "legal-tech/regulation-8/",
+    "title": "社内AIの法規制リスク、1分で自動診断",
+    "tool_name": "社内AI利用台帳テンプレート",
+    "description": "企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能な監査対応レポート形式で、法務部門がそのまま経営会議や外部監査に提出できる。併せて、社内の",
+    "quality_score": 9,
+    "completed_at": "2026-07-02T00:09:39.264638+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "legal-tech",
+    "company_name": "kusasyu Legal Tech",
+    "company_icon": "⚖️",
+    "slug": "eu-ai-2",
+    "url": "legal-tech/eu-ai-2/",
+    "title": "社内AIの法規制リスク、1分で自動診断",
+    "tool_name": "EU_AI法_2026年8月施行_法務担当者の初動対応ガイド",
+    "description": "企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能な監査対応レポート形式で、法務部門がそのまま経営会議や外部監査に提出できる。併せて、社内の",
+    "quality_score": 9,
+    "completed_at": "2026-07-02T00:09:39.264638+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "proptech",
     "company_name": "kusasyu PropTech",
     "company_icon": "🏠",
@@ -5057,6 +5096,45 @@
     "content_type": "html_tool"
   },
   {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "llmo-api",
+    "url": "digital-marketing/llmo-api/",
+    "title": "SEOが効かない？AI検索に選ばれる記事変換ツール",
+    "tool_name": "LLMO対応コンテンツ変換アシスタント（API統合型）",
+    "description": "既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文体・要素を分析し、具体的な変換案を出力する。過去のGEO診断ツール（品質2点）の反省を踏ま",
+    "quality_score": 7,
+    "completed_at": "2026-07-02T00:09:37.527779+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "llmo-3",
+    "url": "digital-marketing/llmo-3/",
+    "title": "SEOが効かない？AI検索に選ばれる記事変換ツール",
+    "tool_name": "LLMO最適化スコアカード＆改善トラッカー",
+    "description": "既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文体・要素を分析し、具体的な変換案を出力する。過去のGEO診断ツール（品質2点）の反省を踏ま",
+    "quality_score": 7,
+    "completed_at": "2026-07-02T00:09:37.527779+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "digital-marketing",
+    "company_name": "kusasyu Digital Marketing",
+    "company_icon": "📊",
+    "slug": "converter-7",
+    "url": "digital-marketing/converter-7/",
+    "title": "SEOが効かない？AI検索に選ばれる記事変換ツール",
+    "tool_name": "AI検索に引用される記事ブリーフテンプレート（ライター渡し用）",
+    "description": "既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文体・要素を分析し、具体的な変換案を出力する。過去のGEO診断ツール（品質2点）の反省を踏ま",
+    "quality_score": 7,
+    "completed_at": "2026-07-02T00:09:37.527779+00:00",
+    "content_type": "article"
+  },
+  {
     "company_id": "legal-tech",
     "company_name": "kusasyu Legal Tech",
     "company_icon": "⚖️",
@@ -6224,6 +6302,45 @@
     "description": "物件の購入価格・想定賃料・構造・築年数を入力すると、表面利回り・実質利回り・IRR・減価償却スケジュール・税引後キャッシュフロー・出口売却シミュレーションを一括計算するWebツール。日本固有の減価償却ルール（木造22年・RC47年・鉄骨34年）、固定資産税・都市計画税・不動産取得税・譲渡所得税を自動反映し、5年後・10年後・15年後の累積収益と売却損益を可視化する。個人投資家が物件情報を見た瞬間に",
     "quality_score": 7,
     "completed_at": "2026-06-09T13:50:44.017468+00:00",
+    "content_type": "article"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-16",
+    "url": "proptech/diagnosis-16/",
+    "title": "空室をノマド向けに変える物件診断ツール",
+    "tool_name": "リモートワーク適性_物件スコアリングツール",
+    "description": "中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。",
+    "quality_score": 7,
+    "completed_at": "2026-07-02T02:34:58.241993+00:00",
+    "content_type": "html_tool"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "diagnosis-17",
+    "url": "proptech/diagnosis-17/",
+    "title": "空室をノマド向けに変える物件診断ツール",
+    "tool_name": "ノマド対応物件_管理・リスティングシート",
+    "description": "中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。",
+    "quality_score": 7,
+    "completed_at": "2026-07-02T02:34:58.241993+00:00",
+    "content_type": "csv_template"
+  },
+  {
+    "company_id": "proptech",
+    "company_name": "kusasyu PropTech",
+    "company_icon": "🏠",
+    "slug": "contract-17",
+    "url": "proptech/contract-17/",
+    "title": "空室をノマド向けに変える物件診断ツール",
+    "tool_name": "中期滞在_定期借家契約チェックリスト",
+    "description": "中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。",
+    "quality_score": 7,
+    "completed_at": "2026-07-02T02:34:58.241993+00:00",
     "content_type": "article"
   },
   {

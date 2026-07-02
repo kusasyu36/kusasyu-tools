@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内AI利用台帳テンプレート - kusasyu tools</title>
+<meta name="description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,社内AI利用台帳テンプレート">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-8/">
+<meta property="og:title" content="社内AI利用台帳テンプレート - kusasyu tools">
+<meta property="og:description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-8/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="社内AI利用台帳テンプレート - kusasyu tools">
+<meta name="twitter:description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "社内AI利用台帳テンプレート",
+  "description": "企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/regulation-8/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  },
+  "datePublished": "2026-07-02"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #f59e0b;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #10b981;
+}
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--card-hover); }
+.preview h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+th { background: var(--card-bg); font-weight: 600; }
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+  .actions { flex-direction: column; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">kusasyu Legal Tech</a> &gt;
+  <span>社内AI利用台帳テンプレート</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">テンプレート</span>
+    <span class="score-badge">9/10</span>
+    <span class="company">⚖️ kusasyu Legal Tech</span>
+  </div>
+  <h1>社内AI利用台帳テンプレート</h1>
+  <p class="project-name">社内AIの法規制リスク、1分で自動診断</p>
+  <div class="actions">
+    <button class="btn btn-primary" onclick="downloadCSV()">CSVダウンロード</button>
+    <button class="btn btn-secondary" onclick="copyCSV()">クリップボードにコピー</button>
+  </div>
+  <div class="preview">
+    <h2>プレビュー</h2>
+    <table><thead><tr><th>管理番号</th><th>AIツール・システム名</th><th>バージョン</th><th>ベンダー名</th><th>利用部門</th><th>利用目的</th><th>利用形態</th><th>利用開始日</th><th>処理データ種別</th><th>個人データ含有</th><th>EU AI Actリスク分類</th><th>EU AI Act根拠条項</th><th>日本AIガイドライン適合状況</th><th>主要リスク項目</th><th>対応ステータス</th><th>対応期限</th><th>対応内容・備考</th><th>法務確認者</th><th>法務確認日</th><th>最終更新日</th></tr></thead><tbody><tr><td>AI-001</td><td>採用スクリーニングAI</td><td>2.1.0</td><td>HRTech Solutions株式会社</td><td>人事部</td><td>中途採用の書類選考一次スクリーニング</td><td>外部SaaS利用</td><td>2025-04-01</td><td>履歴書・職務経歴書・顔写真・学歴・職歴</td><td>あり</td><td>High-risk</td><td>Annex III 6(a) 雇用・労働者管理</td><td>一部不適合</td><td>透明性確保・人間による監視が不十分</td><td>対応中</td><td>2026-07-31</td><td>人間によるレビュー工程の追加およびデータ主体への通知文書を整備中。ベンダーにConformity Assessment対応状況を確認済</td><td>田中 太郎</td><td>2026-06-15</td><td>2026-06-28</td></tr><tr><td>AI-002</td><td>社内チャットボット（FAQ応答）</td><td>3.4.2</td><td>Chatwork AI株式会社</td><td>情報システム部</td><td>社内問い合わせ対応の自動化</td><td>外部SaaS利用</td><td>2024-11-15</td><td>社内FAQ・就業規則・社内手続き情報</td><td>なし</td><td>Limited</td><td>Article 50 透明性義務</td><td>適合</td><td>AI生成コンテンツの明示が必要</td><td>完了</td><td>-</td><td>AI応答であることの明示表示を実装済。利用ガイドラインを全社展開済</td><td>佐藤 花子</td><td>2026-05-20</td><td>2026-06-10</td></tr><tr><td>AI-003</td><td>契約書レビューAI</td><td>1.8.0</td><td>LegalForce株式会社</td><td>法務部</td><td>契約書ドラフトのリスク条項チェック</td><td>外部SaaS利用</td><td>2025-01-10</td><td>契約書・秘密保持契約・取引先情報</td><td>あり</td><td>Minimal</td><td>リスク分類該当なし</td><td>適合</td><td>-</td><td>完了</td><td>-</td><td>最低リスク分類。ただし処理データに取引先機密を含むため情報セキュリティポリシーに基づくアクセス制御を実施</td><td>田中 太郎</td><td>2026-06-01</td><td>2026-06-20</td></tr><tr><td>AI-004</td><td>需要予測・在庫最適化AI</td><td>4.0.1</td><td>自社開発（データサイエンス課）</td><td>SCM部</td><td>販売需要予測および在庫水準の最適化</td><td>自社開発</td><td>2024-06-01</td><td>販売実績・在庫データ・市場動向データ</td><td>なし</td><td>Minimal</td><td>リスク分類該当なし</td><td>適合</td><td>-</td><td>完了</td><td>-</td><td>個人データ非含有の業務最適化用途。自社開発のためモデルカード・技術文書を社内で管理</td><td>佐藤 花子</td><td>2026-04-10</td><td>2026-06-15</td></tr><tr><td>AI-005</td><td>従業員感情分析AI</td><td>1.2.0</td><td>EmotionTech Inc.</td><td>経営企画部</td><td>従業員エンゲージメント調査の感情分析</td><td>外部SaaS利用</td><td>2025-08-01</td><td>従業員アンケート自由記述・メールメタデータ</td><td>あり</td><td>High-risk</td><td>Annex III 6(b) 雇用関係における感情推論</td><td>一部不適合</td><td>感情推論の職場利用に関する制限・同意取得が不十分</td><td>未着手</td><td>2026-07-15</td><td>EU AI Act Article 5(1)(f)の禁止行為（職場での感情推論）に該当する可能性あり。利用範囲の縮小またはツール停止を含め早急に検討が必要</td><td>田中 太郎</td><td>2026-06-25</td><td>2026-06-28</td></tr></tbody></table>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/">&larr; kusasyu Legal Techの一覧に戻る</a>
+</footer>
+<script>
+const csvData = `管理番号,AIツール・システム名,バージョン,ベンダー名,利用部門,利用目的,利用形態,利用開始日,処理データ種別,個人データ含有,EU AI Actリスク分類,EU AI Act根拠条項,日本AIガイドライン適合状況,主要リスク項目,対応ステータス,対応期限,対応内容・備考,法務確認者,法務確認日,最終更新日
+AI-001,採用スクリーニングAI,2.1.0,HRTech Solutions株式会社,人事部,中途採用の書類選考一次スクリーニング,外部SaaS利用,2025-04-01,履歴書・職務経歴書・顔写真・学歴・職歴,あり,High-risk,Annex III 6(a) 雇用・労働者管理,一部不適合,透明性確保・人間による監視が不十分,対応中,2026-07-31,人間によるレビュー工程の追加およびデータ主体への通知文書を整備中。ベンダーにConformity Assessment対応状況を確認済,田中 太郎,2026-06-15,2026-06-28
+AI-002,社内チャットボット（FAQ応答）,3.4.2,Chatwork AI株式会社,情報システム部,社内問い合わせ対応の自動化,外部SaaS利用,2024-11-15,社内FAQ・就業規則・社内手続き情報,なし,Limited,Article 50 透明性義務,適合,AI生成コンテンツの明示が必要,完了,-,AI応答であることの明示表示を実装済。利用ガイドラインを全社展開済,佐藤 花子,2026-05-20,2026-06-10
+AI-003,契約書レビューAI,1.8.0,LegalForce株式会社,法務部,契約書ドラフトのリスク条項チェック,外部SaaS利用,2025-01-10,契約書・秘密保持契約・取引先情報,あり,Minimal,リスク分類該当なし,適合,-,完了,-,最低リスク分類。ただし処理データに取引先機密を含むため情報セキュリティポリシーに基づくアクセス制御を実施,田中 太郎,2026-06-01,2026-06-20
+AI-004,需要予測・在庫最適化AI,4.0.1,自社開発（データサイエンス課）,SCM部,販売需要予測および在庫水準の最適化,自社開発,2024-06-01,販売実績・在庫データ・市場動向データ,なし,Minimal,リスク分類該当なし,適合,-,完了,-,個人データ非含有の業務最適化用途。自社開発のためモデルカード・技術文書を社内で管理,佐藤 花子,2026-04-10,2026-06-15
+AI-005,従業員感情分析AI,1.2.0,EmotionTech Inc.,経営企画部,従業員エンゲージメント調査の感情分析,外部SaaS利用,2025-08-01,従業員アンケート自由記述・メールメタデータ,あり,High-risk,Annex III 6(b) 雇用関係における感情推論,一部不適合,感情推論の職場利用に関する制限・同意取得が不十分,未着手,2026-07-15,EU AI Act Article 5(1)(f)の禁止行為（職場での感情推論）に該当する可能性あり。利用範囲の縮小またはツール停止を含め早急に検討が必要,田中 太郎,2026-06-25,2026-06-28`;
+function downloadCSV() {
+  const blob = new Blob([csvData], {type: "text/csv;charset=utf-8;"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "02_社内AI利用台帳テンプレート.csv";
+  a.click();
+}
+function copyCSV() {
+  navigator.clipboard.writeText(csvData).then(() => {
+    const btn = event.target;
+    btn.textContent = "コピーしました!";
+    setTimeout(() => btn.textContent = "クリップボードにコピー", 2000);
+  });
+}
+</script>
+</body>
+</html>

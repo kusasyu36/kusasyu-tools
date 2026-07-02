@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>リモートワーク適性_物件スコアリングツール - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
+h1{text-align:center;font-size:1.4em;color:#2d3748;padding:18px 0 4px}
+.sub{text-align:center;color:#718096;font-size:.85em;margin-bottom:18px}
+.card{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.card h2{font-size:1.05em;color:#2b6cb0;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #ebf4ff}
+.row{margin-bottom:14px}
+.row label{display:block;font-weight:600;font-size:.9em;margin-bottom:4px}
+.row .hint{font-size:.75em;color:#a0aec0;margin-bottom:4px}
+input[type=number],select{width:100%;padding:10px;border:1px solid #cbd5e0;border-radius:8px;font-size:1em}
+input[type=range]{width:100%;accent-color:#3182ce}
+.range-val{text-align:right;font-size:.85em;color:#4a5568;font-weight:600}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#3182ce,#2b6cb0);color:#fff;border:none;border-radius:10px;font-size:1.1em;font-weight:700;cursor:pointer;margin-top:8px}
+.btn:hover{opacity:.9}
+#result{display:none}
+.score-big{text-align:center;padding:16px 0}
+.score-num{font-size:3.2em;font-weight:800}
+.score-label{font-size:.9em;color:#718096}
+.rank{display:inline-block;padding:4px 16px;border-radius:20px;font-weight:700;font-size:.95em;margin-top:4px}
+.radar-wrap{position:relative;width:300px;height:300px;margin:0 auto}
+.radar-poly{fill:rgba(49,130,206,.2);stroke:#3182ce;stroke-width:2}
+.pri-list{list-style:none;counter-reset:pri}
+.pri-list li{counter-increment:pri;padding:10px 12px;margin-bottom:6px;background:#f7fafc;border-radius:8px;border-left:4px solid #e53e3e;font-size:.9em}
+.pri-list li::before{content:"#" counter(pri);font-weight:800;color:#e53e3e;margin-right:8px}
+.pri-list li.ok{border-left-color:#38a169}
+.pri-list li.ok::before{color:#38a169}
+.rent-box{background:linear-gradient(135deg,#ebf8ff,#f0fff4);border-radius:10px;padding:16px;text-align:center;margin-top:10px}
+.rent-range{font-size:1.6em;font-weight:800;color:#2b6cb0}
+.rent-note{font-size:.8em;color:#718096;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:.85em;margin-top:10px}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid #e2e8f0}
+th{background:#f7fafc;font-weight:700;color:#4a5568}
+.meter{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.meter-fill{height:100%;border-radius:4px;transition:width .5s}
+@media(max-width:600px){.radar-wrap{width:260px;height:260px}h1{font-size:1.2em}.score-num{font-size:2.6em}}
+</style>
+<meta name="description" content="中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。">
+<meta name="keywords" content="不動産テック,PropTech,不動産AI,不動産ツール,無料,リモートワーク適性_物件スコアリングツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-16/">
+<meta property="og:title" content="リモートワーク適性_物件スコアリングツール - kusasyu tools">
+<meta property="og:description" content="中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-16/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="リモートワーク適性_物件スコアリングツール - kusasyu tools">
+<meta name="twitter:description" content="中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "リモートワーク適性_物件スコアリングツール",
+  "description": "中小不動産会社が空室物件をリモートワーカー向け中期滞在（1〜3ヶ月）物件として活用するための実務ツールキット。物件のリモートワーク適性を自動スコアリングするHTMLツール、ノマド対応物件の管理用CSVテンプレート、定期借家契約の法的チェックリストの3点セット。",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/proptech/diagnosis-16/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu PropTech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/proptech/" style="color:#4299e1;text-decoration:none;">kusasyu PropTech</a> &gt; <span style="color:#718096;">リモートワーク適性_物件スコアリングツール</span></div>
+<div class="wrap">
+<h1>リモートワーク適性<br>物件スコアリングツール</h1>
+<p class="sub">6項目を入力 → 100点満点で即時診断</p>
+
+<div class="card">
+<h2>1. 通信環境</h2>
+<div class="row"><label>Wi-Fi実測ダウンロード速度</label><div class="hint">不明な場合はマンション共用回線の平均 50Mbps を目安に</div>
+<select id="wifi"><option value="0">回線なし（0Mbps）</option><option value="1">〜30Mbps（メール程度）</option><option value="2" selected>30〜100Mbps（ビデオ会議OK）</option><option value="3">100〜300Mbps（快適）</option><option value="4">300Mbps超（超高速）</option></select></div>
+</div>
+
+<div class="card">
+<h2>2. 作業スペース</h2>
+<div class="row"><label>デスク設置可能な居室面積（㎡）</label><div class="hint">ワンルームの場合は居室面積を入力</div>
+<input type="number" id="area" value="20" min="0" max="200" step="1"></div>
+</div>
+
+<div class="card">
+<h2>3. 最寄りコワーキング施設</h2>
+<div class="row"><label>最寄りコワーキングまでの距離</label>
+<select id="cowork"><option value="4">徒歩5分以内</option><option value="3" selected>徒歩10分以内</option><option value="2">徒歩20分以内</option><option value="1">バス・電車で15分以内</option><option value="0">30分以上 or なし</option></select></div>
+</div>
+
+<div class="card">
+<h2>4. 家具・設備</h2>
+<div class="row"><label>家具付き度合い</label>
+<input type="range" id="furniture" min="0" max="4" step="1" value="2">
+<div class="range-val" id="furLabel">一部あり（机 or 椅子）</div>
+</div>
+</div>
+
+<div class="card">
+<h2>5. 契約柔軟性</h2>
+<div class="row"><label>最短契約期間・契約形態</label>
+<select id="contract"><option value="4">1ヶ月〜（マンスリー対応）</option><option value="3">3ヶ月〜（短期定借）</option><option value="2" selected>6ヶ月〜</option><option value="1">1年〜（通常賃貸）</option><option value="0">2年固定のみ</option></select></div>
+</div>
+
+<div class="card">
+<h2>6. 周辺環境</h2>
+<div class="row"><label>生活利便性スコア</label><div class="hint">コンビニ・カフェ・スーパー等の充実度</div>
+<input type="range" id="env" min="0" max="4" step="1" value="2">
+<div class="range-val" id="envLabel">普通</div>
+</div>
+</div>
+
+<div class="card">
+<h2>賃料シミュレーション（任意）</h2>
+<div class="row"><label>現在の希望賃料（円/月）</label><div class="hint">空欄可。入力するとプレミアム賃料の推奨レンジを算出します</div>
+<input type="number" id="rent" placeholder="例: 80000" min="0" step="1000"></div>
+</div>
+
+<button class="btn" onclick="calc()">診断する</button>
+
+<div id="result">
+<div class="card">
+<h2>総合スコア</h2>
+<div class="score-big">
+<div class="score-num" id="totalScore">--</div>
+<div class="score-label">/ 100点</div>
+<div id="rankBadge" class="rank">--</div>
+</div>
+</div>
+
+<div class="card">
+<h2>レーダーチャート</h2>
+<div class="radar-wrap"><svg id="radar" viewBox="0 0 300 300"></svg></div>
+</div>
+
+<div class="card">
+<h2>各項目スコア</h2>
+<table><thead><tr><th>項目</th><th>得点</th><th>充足度</th></tr></thead><tbody id="detailBody"></tbody></table>
+</div>
+
+<div class="card">
+<h2>改善優先度ランキング</h2>
+<p style="font-size:.8em;color:#718096;margin-bottom:8px">スコアが低い項目から優先的に改善しましょう</p>
+<ol class="pri-list" id="priList"></ol>
+</div>
+
+<div class="card" id="rentCard" style="display:none">
+<h2>プレミアム賃料シミュレーション</h2>
+<div class="rent-box">
+<div style="font-size:.85em;color:#4a5568;margin-bottom:4px">推奨賃料レンジ</div>
+<div class="rent-range" id="rentRange">--</div>
+<div class="rent-note" id="rentNote"></div>
+</div>
+<table style="margin-top:14px"><thead><tr><th>スコア帯</th><th>プレミアム</th><th>根拠</th></tr></thead>
+<tbody>
+<tr><td>90〜100</td><td>+20〜25%</td><td>即入居・即稼働の完全対応物件</td></tr>
+<tr><td>80〜89</td><td>+15〜20%</td><td>高い適性。微調整で最上位に</td></tr>
+<tr><td>70〜79</td><td>+10〜15%</td><td>十分実用的。差別化ポイントあり</td></tr>
+<tr><td>60〜69</td><td>+5〜10%</td><td>最低限対応可。改善余地大</td></tr>
+<tr><td>〜59</td><td>+0〜5%</td><td>対応不十分。改善を優先</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+
+<script>
+var labels=["Wi-Fi速度","作業スペース","コワーキング","家具・設備","契約柔軟性","周辺環境"];
+var furTexts=["なし（空室）","最低限（照明のみ）","一部あり（机 or 椅子）","デスク＋椅子あり","フル装備（家電含む）"];
+var envTexts=["不便（徒歩圏に店舗なし）","やや不便","普通","便利（複数店舗徒歩圏）","非常に便利（駅前商業地）"];
+var advices=["光回線の導入またはモバイルWi-Fiの貸出を検討","デスク設置スペースの確保。間仕切りやレイアウト変更を検討","周辺コワーキング施設との提携やパス配布を検討","デスク・チェア・モニター等のレンタル家具導入を検討","定期借家契約（1〜3ヶ月）対応の契約書整備を検討","周辺施設マップの作成。近隣カフェ等の情報提供を検討"];
+
+document.getElementById("furniture").oninput=function(){document.getElementById("furLabel").textContent=furTexts[this.value]};
+document.getElementById("env").oninput=function(){document.getElementById("envLabel").textContent=envTexts[this.value]};
+
+function calc(){
+var raw=[+document.getElementById("wifi").value,areaScore(+document.getElementById("area").value),+document.getElementById("cowork").value,+document.getElementById("furniture").value,+document.getElementById("contract").value,+document.getElementById("env").value];
+var weights=[22,18,12,18,18,12];
+var scores=[];var total=0;
+for(var i=0;i<6;i++){var s=Math.round(raw[i]/4*weights[i]);scores.push(s);total+=s}
+document.getElementById("totalScore").textContent=total;
+var rc=total>=90?"#38a169":total>=70?"#3182ce":total>=50?"#d69e2e":"#e53e3e";
+document.getElementById("totalScore").style.color=rc;
+var rl=total>=90?"S ランク — 即戦力物件":total>=80?"A ランク — 高適性":total>=70?"B ランク — 実用レベル":total>=60?"C ランク — 改善推奨":"D ランク — 要大幅改善";
+var rb=document.getElementById("rankBadge");rb.textContent=rl;rb.style.background=rc;rb.style.color="#fff";
+drawRadar(raw);
+var tb=document.getElementById("detailBody");tb.innerHTML="";
+for(var i=0;i<6;i++){var pct=Math.round(raw[i]/4*100);var c=pct>=75?"#38a169":pct>=50?"#d69e2e":"#e53e3e";
+tb.innerHTML+="<tr><td>"+labels[i]+"</td><td>"+scores[i]+"/"+weights[i]+"</td><td><div class='meter'><div class='meter-fill' style='width:"+pct+"%;background:"+c+"'></div></div></td></tr>"}
+var sorted=[];for(var i=0;i<6;i++)sorted.push({i:i,r:raw[i],s:scores[i],w:weights[i]});
+sorted.sort(function(a,b){return a.r-b.r});
+var pl=document.getElementById("priList");pl.innerHTML="";
+for(var j=0;j<6;j++){var it=sorted[j];var ok=it.r>=3;
+pl.innerHTML+="<li class='"+(ok?"ok":"")+"'><strong>"+labels[it.i]+"</strong>（"+it.s+"/"+it.w+"点）<br>"+advices[it.i]+"</li>"}
+var rent=+document.getElementById("rent").value;
+var rentCard=document.getElementById("rentCard");
+if(rent>0){rentCard.style.display="block";
+var pm=total>=90?[20,25]:total>=80?[15,20]:total>=70?[10,15]:total>=60?[5,10]:[0,5];
+var lo=Math.round(rent*(1+pm[0]/100));var hi=Math.round(rent*(1+pm[1]/100));
+document.getElementById("rentRange").textContent=lo.toLocaleString()+"〜"+hi.toLocaleString()+"円/月";
+document.getElementById("rentNote").textContent="現在の希望賃料 "+rent.toLocaleString()+"円 に対し +"+pm[0]+"〜"+pm[1]+"%（スコア"+total+"点）"}
+else{rentCard.style.display="none"}
+document.getElementById("result").style.display="block";
+document.getElementById("result").scrollIntoView({behavior:"smooth"})
+}
+
+function areaScore(a){return a>=25?4:a>=18?3:a>=12?2:a>=7?1:0}
+
+function drawRadar(raw){
+var svg=document.getElementById("radar");var cx=150,cy=150,R=120,h="";
+for(var r=1;r<=4;r++)h+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(R*r/4)+'" fill="none" stroke="#e2e8f0" stroke-width="1"/>';
+for(var i=0;i<6;i++){var a=Math.PI*2*i/6-Math.PI/2;h+='<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+R*Math.cos(a))+'" y2="'+(cy+R*Math.sin(a))+'" stroke="#e2e8f0" stroke-width=".5"/>';}
+var pts="";
+for(var i=0;i<6;i++){var a=Math.PI*2*i/6-Math.PI/2;var v=raw[i]/4*R;pts+=(cx+v*Math.cos(a))+","+(cy+v*Math.sin(a))+" ";}
+h+='<polygon points="'+pts+'" fill="rgba(49,130,206,.2)" stroke="#3182ce" stroke-width="2"/>';
+for(var i=0;i<6;i++){var a=Math.PI*2*i/6-Math.PI/2;var v=raw[i]/4*R;h+='<circle cx="'+(cx+v*Math.cos(a))+'" cy="'+(cy+v*Math.sin(a))+'" r="4" fill="#3182ce"/>';}
+for(var i=0;i<6;i++){var a=Math.PI*2*i/6-Math.PI/2;var lx=cx+(R+22)*Math.cos(a);var ly=cy+(R+22)*Math.sin(a);
+h+='<text x="'+lx+'" y="'+(ly+4)+'" font-size="11" fill="#4a5568" font-weight="600" text-anchor="middle">'+labels[i]+'</text>';}
+svg.innerHTML=h;
+}
+</script>
+</body>
+</html>

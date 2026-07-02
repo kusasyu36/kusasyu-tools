@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LLMO対応コンテンツ変換アシスタント（API統合型） - kusasyu tools</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.6}
+.w{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:1.25rem;text-align:center;padding:18px 0 4px;color:#1a365d}
+.sub{text-align:center;color:#718096;font-size:.82rem;margin-bottom:18px}
+.c{background:#fff;border-radius:12px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.c h2{font-size:.95rem;margin-bottom:10px;color:#2d3748;border-left:3px solid #3182ce;padding-left:8px}
+label{display:block;font-size:.82rem;font-weight:600;margin-bottom:3px;color:#4a5568}
+select,input,textarea{width:100%;padding:9px 10px;border:1px solid #e2e8f0;border-radius:8px;font-size:.88rem;margin-bottom:10px;font-family:inherit}
+textarea{height:180px;resize:vertical}
+.row{display:flex;gap:8px;align-items:end}
+.row>div{flex:1}
+.btn{width:100%;padding:12px;background:#3182ce;color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .2s}
+.btn:hover{background:#2b6cb0}
+.btn:disabled{background:#a0aec0;cursor:wait}
+#out{white-space:pre-wrap;font-size:.82rem;line-height:1.8;background:#f7fafc;padding:14px;border-radius:8px;border:1px solid #e2e8f0}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px}
+.si{padding:8px 10px;background:#f7fafc;border-radius:8px}
+.sl{font-size:.72rem;color:#718096}
+.sv{font-size:1.05rem;font-weight:700}
+.bar{height:6px;background:#e2e8f0;border-radius:3px;margin-top:4px;overflow:hidden}
+.bar>div{height:100%;border-radius:3px;transition:width .6s}
+.ta{display:flex;gap:4px;margin-bottom:10px}
+.ta>div{flex:1;text-align:center;font-size:.72rem;color:#718096;padding:4px;background:#edf2f7;border-radius:4px}
+.ta>.av{background:#3182ce;color:#fff;font-weight:700;font-size:.82rem}
+.cp{width:auto;padding:6px 14px;font-size:.8rem;background:#38a169;color:#fff;border:none;border-radius:6px;cursor:pointer;margin-top:8px}
+.cp:hover{background:#2f855a}
+#ld{display:none;text-align:center;padding:16px;color:#718096}
+.sp{display:inline-block;width:22px;height:22px;border:3px solid #e2e8f0;border-top-color:#3182ce;border-radius:50%;animation:r 1s linear infinite}
+@keyframes r{to{transform:rotate(360deg)}}
+details{margin-top:6px}
+summary{cursor:pointer;color:#3182ce;font-size:.8rem}
+details p{font-size:.78rem;color:#718096;margin:6px 0 2px;line-height:1.5}
+.rc{display:none}
+@media(max-width:600px){.row{flex-direction:column;gap:0}.sg{grid-template-columns:1fr}}
+</style>
+<meta name="description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,LLMO対応コンテンツ変換アシスタント（API統合型）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-api/">
+<meta property="og:title" content="LLMO対応コンテンツ変換アシスタント（API統合型） - kusasyu tools">
+<meta property="og:description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-api/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LLMO対応コンテンツ変換アシスタント（API統合型） - kusasyu tools">
+<meta name="twitter:description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "LLMO対応コンテンツ変換アシスタント（API統合型）",
+  "description": "既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/llmo-api/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/" style="color:#4299e1;text-decoration:none;">kusasyu Digital Marketing</a> &gt; <span style="color:#718096;">LLMO対応コンテンツ変換アシスタント（API統合型）</span></div>
+<div class="w">
+<h1>LLMO対応コンテンツ変換アシスタント</h1>
+<p class="sub">既存SEO記事をAI検索（ChatGPT・Perplexity・Gemini）に選ばれるコンテンツへ変換</p>
+<div class="c">
+<h2>API設定</h2>
+<div class="row"><div><label>プロバイダー</label><select id="pv"><option value="openai">OpenAI (GPT-4o)</option><option value="claude">Claude (Sonnet)</option></select></div><div><label>APIキー</label><input type="password" id="ak" placeholder="sk-... または sk-ant-..."></div></div>
+<details><summary>APIキーの取得方法</summary>
+<p><b>OpenAI:</b> platform.openai.com にログイン → 左メニュー「API keys」→「Create new secret key」→ キーをコピー。従量課金のため事前にクレジット追加が必要。</p>
+<p><b>Claude:</b> console.anthropic.com にログイン →「API Keys」→「Create Key」→ キーをコピー。初回は$5の無料クレジットあり。</p>
+<p>※ キーはお使いのブラウザのlocalStorageにのみ保存されます。当ツールのサーバーには一切送信されません。</p></details>
+</div>
+<div class="c">
+<h2>記事入力</h2>
+<label>変換したい記事のテキストを貼り付け（100文字以上）</label>
+<textarea id="ar" placeholder="既存のSEO記事をここに貼り付けてください。見出し・本文をそのままコピーしてください。"></textarea>
+<button class="btn" id="btn" onclick="run()">分析・変換を実行</button>
+</div>
+<div id="ld"><div class="sp"></div><p style="margin-top:8px">AIが記事を分析し変換案を生成中…（20〜40秒）</p></div>
+<div class="c rc" id="rc">
+<h2>LLMO診断スコア</h2>
+<div class="ta" id="ta"></div>
+<div class="sg" id="sg"></div>
+<h2>変換後の記事構成案・書き換え提案</h2>
+<div id="out"></div>
+<button class="cp" onclick="cp()">結果をコピー</button>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const LS=localStorage;
+(function(){
+const p=LS.getItem('llmo_pv')||'openai';
+$('pv').value=p;
+const k=LS.getItem('llmo_k_'+p);
+if(k)$('ak').value=k;
+})();
+$('pv').onchange=function(){
+const k=LS.getItem('llmo_k_'+this.value);
+$('ak').value=k||'';
+};
+const PROMPT=`あなたはLLMO（Large Language Model Optimization）の専門家です。以下の記事を分析し、ChatGPT・Perplexity・GeminiなどのAI検索で引用されやすいコンテンツへの具体的な変換案を出力してください。
+
+【診断基準（各10点満点）】
+1.直接回答性:ユーザーの質問に対する明確な回答が冒頭にあるか
+2.構造化:見出し階層・箇条書き・表・ステップ形式で情報が整理されているか
+3.引用可能性:数値・定義文・手順など、LLMがそのまま引用できる記述があるか
+4.権威性:情報源の明記・専門家の知見・具体的データの裏付けがあるか
+5.独自性:他記事にない独自視点・独自データ・独自フレームワークがあるか
+
+【出力形式】必ずこの順序で出力:
+
+1行目に必ず以下の形式でスコア出力（数値のみ変更）:
+SCORES:直接回答性=X,構造化=X,引用可能性=X,権威性=X,独自性=X
+
+次に以下をMarkdownで出力:
+## 総合診断
+（50点満点中の総合評価と最優先改善ポイント）
+
+## 要素別の問題点と改善策
+（5要素それぞれについて現状の問題と具体的改善策）
+
+## 変換後の推奨記事構成
+（LLMO最適化済みの見出し構成案をH2/H3で提示）
+
+## 具体的な書き換え例
+（Before→After形式で3箇所以上。元記事の該当部分を引用し、LLMO最適化後の文を提示）
+
+## AI検索向けサマリー文案
+（記事冒頭に配置すべき100〜150字の要約文。LLMが回答生成時に引用しやすい形式）
+
+---
+分析対象の記事:
+`;
+async function run(){
+const pv=$('pv').value,ak=$('ak').value.trim(),ar=$('ar').value.trim();
+if(!ak){alert('APIキーを入力してください');return}
+if(!ar||ar.length<100){alert('100文字以上の記事を貼り付けてください');return}
+LS.setItem('llmo_pv',pv);LS.setItem('llmo_k_'+pv,ak);
+$('btn').disabled=true;$('ld').style.display='block';$('rc').style.display='none';
+const msg=PROMPT+ar.substring(0,6000);
+try{
+let txt;
+if(pv==='openai'){
+const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+ak},body:JSON.stringify({model:'gpt-4o',messages:[{role:'user',content:msg}],max_tokens:3000,temperature:0.3})});
+if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error((e.error?.message)||'HTTP '+r.status)}
+txt=(await r.json()).choices[0].message.content;
+}else{
+const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':ak,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:3000,messages:[{role:'user',content:msg}]})});
+if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error((e.error?.message)||'HTTP '+r.status)}
+txt=(await r.json()).content[0].text;
+}
+show(txt);
+}catch(e){alert('エラー: '+e.message)}
+finally{$('btn').disabled=false;$('ld').style.display='none'}
+}
+function show(txt){
+const m=txt.match(/SCORES[:：](.+)/);
+const sg=$('sg'),ta=$('ta');sg.innerHTML='';ta.innerHTML='';
+const cl=['#3182ce','#38a169','#d69e2e','#805ad5','#d53f8c'];
+let total=0;
+if(m){
+m[1].split(',').forEach((p,i)=>{
+const ps=p.split('='),nm=ps[0].trim(),v=parseInt(ps[1])||0;
+total+=v;
+sg.innerHTML+=`<div class="si"><div class="sl">${nm}</div><div class="sv" style="color:${cl[i]}">${v}<span style="font-size:.7rem;color:#a0aec0">/10</span></div><div class="bar"><div style="width:${v*10}%;background:${cl[i]}"></div></div></div>`;
+});
+const avg=(total/5).toFixed(1);
+const grade=total>=40?'S':total>=35?'A':total>=25?'B':total>=15?'C':'D';
+ta.innerHTML=`<div class="av">総合 ${total}/50（${grade}）</div><div>平均 ${avg}/10</div>`;
+}
+const content=txt.replace(/SCORES[:：].+\n?/,'').trim();
+$('out').textContent=content;
+$('rc').style.display='block';
+$('rc').scrollIntoView({behavior:'smooth'});
+}
+function cp(){
+navigator.clipboard.writeText($('out').textContent).then(()=>{
+const b=document.querySelector('.cp');b.textContent='コピーしました';
+setTimeout(()=>b.textContent='結果をコピー',2000);
+});
+}
+</script>
+</body>
+</html>

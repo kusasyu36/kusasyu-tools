@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EU_AI_Act×日本ガイドライン_リスク分類自己診断ツール - kusasyu tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans',system-ui,sans-serif;background:#f0f4f8;color:#1a202c;line-height:1.7}
+.w{max-width:780px;margin:0 auto;padding:16px}
+.hd{text-align:center;padding:24px 0 8px}
+.hd h1{font-size:1.25em;color:#1e3a5f;line-height:1.4}
+.hd p{font-size:.82em;color:#718096;margin-top:4px}
+.c{background:#fff;border-radius:12px;padding:24px;margin:12px 0;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.pg{height:6px;background:#e2e8f0;border-radius:3px;margin:8px 0 16px}
+.pg-b{height:100%;background:linear-gradient(90deg,#2b6cb0,#3182ce);border-radius:3px;transition:width .3s}
+.qt{font-size:1.05em;font-weight:700;margin-bottom:6px;color:#2d3748}
+.qn{font-size:.82em;color:#718096;margin-bottom:12px;padding:8px 12px;background:#f7fafc;border-radius:6px}
+.cat{display:inline-block;font-size:.75em;padding:2px 10px;border-radius:10px;margin-bottom:10px;font-weight:600}
+.cat-r{background:#ebf8ff;color:#2b6cb0}.cat-p{background:#fff5f5;color:#c53030}.cat-h{background:#fffaf0;color:#c05621}.cat-t{background:#f0fff4;color:#276749}
+label.op{display:block;padding:12px 16px;margin:5px 0;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:.15s}
+label.op:hover{border-color:#3182ce;background:#ebf8ff}
+label.op:has(input:checked){border-color:#3182ce;background:#ebf8ff}
+input[type=radio]{margin-right:8px;accent-color:#3182ce}
+input[type=text]{width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:.95em;margin:4px 0 12px}
+input[type=text]:focus{outline:none;border-color:#3182ce}
+.bn{display:flex;justify-content:space-between;margin-top:20px;gap:8px}
+.bt{padding:11px 28px;border:none;border-radius:8px;font-size:.95em;cursor:pointer;font-weight:600;transition:.15s}
+.bt-p{background:#3182ce;color:#fff}.bt-p:hover{background:#2c5282}
+.bt-s{background:#e2e8f0;color:#2d3748}.bt-s:hover{background:#cbd5e0}
+.bt-g{background:#276749;color:#fff}.bt-g:hover{background:#22543d}
+.step-i{font-size:.8em;color:#a0aec0;text-align:center;margin-top:8px}
+.rb{display:inline-block;padding:8px 24px;border-radius:24px;font-weight:700;font-size:1.15em;color:#fff;margin:8px 0}
+.rb-P{background:#e53e3e}.rb-H{background:#dd6b20}.rb-L{background:#d69e2e}.rb-M{background:#38a169}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88em}
+th,td{border:1px solid #e2e8f0;padding:8px 10px;text-align:left}
+th{background:#f7fafc;font-weight:600;white-space:nowrap}
+.disc{background:#fff5f5;border-left:4px solid #e53e3e;padding:14px;margin:16px 0;font-size:.82em;color:#742a2a;border-radius:0 8px 8px 0}
+.ph{color:#e53e3e;font-weight:700}.pm{color:#dd6b20;font-weight:700}.pl{color:#38a169}
+.sec{margin:20px 0}.sec h3{font-size:1em;color:#2d3748;border-bottom:2px solid #e2e8f0;padding-bottom:6px;margin-bottom:10px}
+.rpt-hd{text-align:center;border-bottom:3px solid #1e3a5f;padding-bottom:16px;margin-bottom:20px}
+.rpt-hd h2{color:#1e3a5f;font-size:1.2em}
+.rpt-hd p{font-size:.82em;color:#718096}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.9em;margin:12px 0}
+.meta span{color:#718096}.meta strong{color:#2d3748}
+@media print{body{background:#fff;font-size:11pt}.w{max-width:100%;padding:0}.c{box-shadow:none;border:none;padding:12px}.np{display:none!important}.pg{display:none}}
+@media(max-width:600px){.w{padding:8px}.c{padding:16px}.meta{grid-template-columns:1fr}}
+</style><meta name="description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<meta name="keywords" content="リーガルテック,法務AI,契約書,訴訟,無料,EU_AI_Act×日本ガイドライン_リスク分類自己診断ツール">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai-act/">
+<meta property="og:title" content="EU_AI_Act×日本ガイドライン_リスク分類自己診断ツール - kusasyu tools">
+<meta property="og:description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai-act/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EU_AI_Act×日本ガイドライン_リスク分類自己診断ツール - kusasyu tools">
+<meta name="twitter:description" content="企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "EU_AI_Act×日本ガイドライン_リスク分類自己診断ツール",
+  "description": "企業が社内で利用しているAIツール・AIシステムの情報を入力すると、EU AI Act（2026年8月完全施行）のリスク分類（Prohibited/High-risk/Limited/Minimal）を自動判定し、日本AI事業者ガイドラインへの適合状況もチェックするブラウザ診断ツール。診断結果はPDF出力可能",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/legal-tech/eu-ai-act/",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "JPY"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Legal Tech"
+  }
+}
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head><body>
+<div style="padding:10px 16px;font-size:13px;background:#f7fafc;border-bottom:1px solid #e2e8f0;"><a href="https://kusasyu36.github.io/kusasyu-tools/" style="color:#4299e1;text-decoration:none;">kusasyu tools</a> &gt; <a href="https://kusasyu36.github.io/kusasyu-tools/legal-tech/" style="color:#4299e1;text-decoration:none;">kusasyu Legal Tech</a> &gt; <span style="color:#718096;">EU_AI_Act×日本ガイドライン_リスク分類自己診断ツー</span></div>
+<div class="w">
+<div class="hd"><h1>EU AI Act × 日本AI事業者ガイドライン<br>リスク分類 自己診断ツール</h1>
+<p>Kusasyu Legal Tech — 初期自己診断（専門家確認前の内部評価用）</p></div>
+<div class="np"><div class="pg"><div class="pg-b" id="pb"></div></div></div>
+<div id="main"></div>
+</div>
+<script>
+const Q=[
+{cat:'info',lbl:'基本情報',cls:'cat-r',q:'診断対象AIシステムの情報',fields:true},
+{cat:'role',lbl:'義務区分',cls:'cat-r',q:'このAIシステムに対する貴社の立場は？',note:'EU AI Actでは立場により義務が異なります。自社でAIを開発・販売・提供する場合はProvider、外部のAIサービスを業務利用する場合はOperatorです。',opts:['Provider（AI開発・提供者）','Operator（外部AI利用者）','両方（開発かつ利用）']},
+{cat:'prohib',lbl:'禁止AI',cls:'cat-p',q:'個人の社会的行動や人格特性に基づく信頼性スコアリングを行い、不利益な取扱いにつなげていますか？',note:'Article 5(1)(c) — 社会的スコアリングの禁止'},
+{cat:'prohib',lbl:'禁止AI',cls:'cat-p',q:'法執行目的で公共空間においてリアルタイム遠隔生体認証を行っていますか？',note:'Article 5(1)(h) — リアルタイム遠隔生体認証の原則禁止'},
+{cat:'prohib',lbl:'禁止AI',cls:'cat-p',q:'職場または教育機関で感情認識AIを使用していますか？',note:'Article 5(1)(f) — 職場・教育機関での感情認識の禁止'},
+{cat:'prohib',lbl:'禁止AI',cls:'cat-p',q:'人の意識が及ばない潜在的手法（サブリミナル技術等）で行動を歪めていますか？',note:'Article 5(1)(a) — サブリミナル操作の禁止'},
+{cat:'prohib',lbl:'禁止AI',cls:'cat-p',q:'年齢・障害・社会経済的状況による脆弱性を悪用して行動を歪めていますか？',note:'Article 5(1)(b) — 脆弱性の悪用禁止'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'自然人の生体認証による本人識別・分類を行いますか？',note:'Annex III (1) — 遠隔生体認証（リアルタイム以外）、生体分類'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'エネルギー・交通・水道・ガス等の重要インフラの管理・運用に使用しますか？',note:'Annex III (2) — 重要インフラの安全コンポーネント'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'教育・職業訓練における入学審査・成績評価・試験監督に使用しますか？',note:'Annex III (3) — 教育・職業訓練'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'採用選考・人事評価・昇進・解雇等の雇用判断に使用しますか？',note:'Annex III (4) — 雇用・労働者管理'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'与信審査・保険引受・社会保障給付等の必須サービスへのアクセス判断に使用しますか？',note:'Annex III (5) — 必須公共・民間サービス'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'法執行におけるリスク評価・犯罪予測・証拠分析に使用しますか？',note:'Annex III (6) — 法執行'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'出入国管理・亡命申請・ビザ審査に使用しますか？',note:'Annex III (7) — 移民・国境管理'},
+{cat:'high',lbl:'高リスク',cls:'cat-h',q:'裁判所の判決支援や選挙結果への影響を目的として使用しますか？',note:'Annex III (8) — 司法・民主的プロセス'},
+{cat:'trans',lbl:'透明性',cls:'cat-t',q:'テキスト・画像・音声・動画を生成し、本物と区別しにくいコンテンツを作成しますか？',note:'Article 50 — ディープフェイク・生成AI'},
+{cat:'trans',lbl:'透明性',cls:'cat-t',q:'チャットボット・バーチャルアシスタント等、自然人と直接対話する機能がありますか？',note:'Article 50 — AI対話の透明性義務'}
+];
+let cur=0,ans={},sysInfo={name:'',dept:'',desc:''};
+const $=id=>document.getElementById(id),main=$('main'),pb=$('pb');
+function render(){
+  const q=Q[cur],total=Q.length;
+  pb.style.width=((cur/total)*100)+'%';
+  let h='<div class="c">';
+  if(q.fields){
+    h+=`<span class="cat ${q.cls}">${q.lbl}</span><div class="qt">${q.q}</div>
+    <label style="font-size:.9em;font-weight:600;color:#4a5568">AIシステム名称 <span style="color:#e53e3e">*</span></label>
+    <input type="text" id="sn" placeholder="例：社内文書要約AI" value="${sysInfo.name}">
+    <label style="font-size:.9em;font-weight:600;color:#4a5568">管轄部門</label>
+    <input type="text" id="sd" placeholder="例：情報システム部" value="${sysInfo.dept}">
+    <label style="font-size:.9em;font-weight:600;color:#4a5568">用途・概要</label>
+    <input type="text" id="ss" placeholder="例：契約書レビューの自動化" value="${sysInfo.desc}">
+    <div class="bn"><div></div><button class="bt bt-p" onclick="goNext()">診断開始 →</button></div>`;
+  } else {
+    h+=`<span class="cat ${q.cls}">${q.lbl}</span><div class="qt">${q.q}</div>`;
+    if(q.note) h+=`<div class="qn">${q.note}</div>`;
+    if(q.opts){
+      q.opts.forEach((o,i)=>{h+=`<label class="op"><input type="radio" name="q${cur}" value="${i}" ${ans[cur]===i?'checked':''}><span>${o}</span></label>`;});
+    } else {
+      h+=`<label class="op"><input type="radio" name="q${cur}" value="1" ${ans[cur]===1?'checked':''}><span>はい</span></label>`;
+      h+=`<label class="op"><input type="radio" name="q${cur}" value="0" ${ans[cur]===0?'checked':''}><span>いいえ</span></label>`;
+    }
+    h+=`<div class="bn">`;
+    h+=cur>0?`<button class="bt bt-s" onclick="goPrev()">← 戻る</button>`:'<div></div>';
+    h+=cur<total-1?`<button class="bt bt-p" onclick="goNext()">次へ →</button>`:`<button class="bt bt-g" onclick="goNext()">診断結果を表示</button>`;
+    h+=`</div><div class="step-i">質問 ${cur} / ${total-1}</div>`;
+  }
+  h+='</div>';main.innerHTML=h;
+}
+function goNext(){
+  const q=Q[cur];
+  if(q.fields){
+    sysInfo.name=$('sn').value.trim();sysInfo.dept=$('sd').value.trim();sysInfo.desc=$('ss').value.trim();
+    if(!sysInfo.name){alert('AIシステム名称を入力してください');return;}
+    cur++;render();return;
+  }
+  const sel=document.querySelector(`input[name="q${cur}"]:checked`);
+  if(!sel){alert('選択してください');return;}
+  ans[cur]=parseInt(sel.value);
+  if(q.cat==='prohib'&&ans[cur]===1){
+    let next=cur+1;
+    while(next<Q.length&&(Q[next].cat==='prohib'||Q[next].cat==='high'))next++;
+    if(next>=Q.length){showReport();return;}
+    cur=next;render();return;
+  }
+  if(cur>=Q.length-1){showReport();return;}
+  cur++;render();
+}
+function goPrev(){if(cur>0){cur--;render();}}
+function classify(){
+  let prohib=false,high=false,limited=false;
+  for(let i=0;i<Q.length;i++){
+    if(Q[i].cat==='prohib'&&ans[i]===1)prohib=true;
+    if(Q[i].cat==='high'&&ans[i]===1)high=true;
+    if(Q[i].cat==='trans'&&ans[i]===1)limited=true;
+  }
+  if(prohib)return{level:'Prohibited',code:'P',desc:'禁止対象AI — 原則としてEU域内での運用が禁止されます。直ちに法務専門家に相談し、運用停止を含む対応を検討してください。'};
+  if(high)return{level:'High-risk',code:'H',desc:'高リスクAI — Annex IIIに該当するため、適合性評価、技術文書整備、品質管理体制、EU登録等の厳格な義務が課されます。'};
+  if(limited)return{level:'Limited risk',code:'L',desc:'限定リスクAI — 透明性義務（AI利用の告知、生成コンテンツの表示等）が課されます。'};
+  return{level:'Minimal risk',code:'M',desc:'最小リスクAI — 特段の法的義務はありませんが、任意の行動規範の遵守が推奨されます。'};
+}
+function getRole(){const v=ans[1];return v===0?'Provider':v===1?'Operator':'Provider & Operator';}
+function jpCheck(r){
+  const lv=r.code,items=[];
+  const isH=lv==='P'||lv==='H',hasBio=ans[8]===1,hasEmp=ans[11]===1,hasT=ans[16]===1||ans[17]===1;
+  items.push({item:'透明性確保',st:hasT||isH?'要対応':'適合',pri:hasT||isH?'高':'—',act:hasT?'AI利用の事実を利用者に明示する仕組みを構築':'特段の対応不要'});
+  items.push({item:'公平性確保',st:isH||hasEmp?'要対応':'要確認',pri:isH?'高':'中',act:'学習データのバイアス検証と公平性テストを実施'});
+  items.push({item:'安全性確保',st:isH?'要対応':'要確認',pri:isH?'高':'中',act:'リスクアセスメントと安全性テストの実施'});
+  items.push({item:'プライバシー保護',st:hasBio||isH?'要対応':'要確認',pri:hasBio?'高':'中',act:'個人情報保護影響評価（PIA）の実施'});
+  items.push({item:'セキュリティ確保',st:isH?'要対応':'要確認',pri:isH?'高':'中',act:'サイバーセキュリティ対策の文書化'});
+  items.push({item:'アカウンタビリティ',st:isH?'要対応':'要確認',pri:isH?'高':'低',act:'AI管理責任者の任命と説明体制の整備'});
+  items.push({item:'人間の判断介在',st:isH?'要対応':'適合',pri:isH?'高':'—',act:isH?'人間による監視・介入メカニズムの整備':'既存運用で対応可能'});
+  return items;
+}
+function showReport(){
+  const r=classify(),role=getRole(),jp=jpCheck(r),now=new Date().toLocaleDateString('ja-JP');
+  const pI=[],hI=[],tI=[];
+  for(let i=2;i<=6;i++)if(ans[i]===1)pI.push(Q[i].q);
+  for(let i=7;i<=14;i++)if(ans[i]===1)hI.push(Q[i].q);
+  for(let i=15;i<=16;i++)if(ans[i]===1)tI.push(Q[i].q);
+  let h=`<div class="c"><div class="rpt-hd"><h2>初期自己診断レポート</h2><p>EU AI Act × 日本AI事業者ガイドライン リスク分類診断</p><p style="font-size:.78em;color:#a0aec0">専門家確認前の内部評価用 — Kusasyu Legal Tech</p></div>
+  <div class="meta"><div><span>診断日：</span><strong>${now}</strong></div><div><span>システム名：</span><strong>${sysInfo.name}</strong></div><div><span>管轄部門：</span><strong>${sysInfo.dept||'—'}</strong></div><div><span>用途：</span><strong>${sysInfo.desc||'—'}</strong></div></div>
+  <div class="sec"><h3>1. 義務区分</h3><p>貴社の立場：<strong>${role}</strong></p>
+  <p style="font-size:.88em;color:#718096;margin-top:4px">${role.includes('Provider')?'Providerとして、適合性評価・技術文書・品質管理・EU登録等の義務を負います。':'Operatorとして、使用監視・データガバナンス・人間の監督等の義務を負います。'}</p></div>
+  <div class="sec"><h3>2. EU AI Act リスク分類結果</h3><div style="text-align:center;padding:12px 0"><span class="rb rb-${r.code}">${r.level}</span></div><p style="font-size:.9em">${r.desc}</p>`;
+  if(pI.length)h+=`<div style="margin-top:10px;padding:10px;background:#fff5f5;border-radius:8px"><strong style="color:#c53030">禁止該当項目：</strong><ul style="margin:6px 0 0 18px;font-size:.88em">${pI.map(x=>'<li>'+x+'</li>').join('')}</ul></div>`;
+  if(hI.length)h+=`<div style="margin-top:10px;padding:10px;background:#fffaf0;border-radius:8px"><strong style="color:#c05621">高リスク該当：</strong><ul style="margin:6px 0 0 18px;font-size:.88em">${hI.map(x=>'<li>'+x+'</li>').join('')}</ul></div>`;
+  if(tI.length)h+=`<div style="margin-top:10px;padding:10px;background:#f0fff4;border-radius:8px"><strong style="color:#276749">透明性義務対象：</strong><ul style="margin:6px 0 0 18px;font-size:.88em">${tI.map(x=>'<li>'+x+'</li>').join('')}</ul></div>`;
+  h+=`</div><div class="sec"><h3>3. 日本AI事業者ガイドライン 適合状況</h3><table><tr><th>項目</th><th>状況</th><th>優先度</th><th>推奨アクション</th></tr>`;
+  jp.forEach(j=>{const sc=j.st==='要対応'?'ph':j.st==='要確認'?'pm':'pl';h+=`<tr><td>${j.item}</td><td class="${sc}">${j.st}</td><td>${j.pri}</td><td style="font-size:.85em">${j.act}</td></tr>`;});
+  h+=`</table></div>`;
+  const urg=jp.filter(j=>j.st==='要対応');
+  if(urg.length){h+=`<div class="sec"><h3>4. 優先対応事項</h3><ol style="margin-left:18px;font-size:.9em">`;urg.forEach(u=>{h+=`<li><strong>${u.item}</strong>：${u.act}</li>`;});h+=`</ol></div>`;}
+  h+=`<div class="disc"><strong>【免責事項】</strong><br>本ツールの診断結果は、EU AI Act及び日本AI事業者ガイドラインに関する一般的な情報提供を目的とした初期自己評価であり、法的見解・法的助言には該当しません。確定的なコンプライアンス判断には、AI規制に精通した法律専門家への相談を強く推奨します。本診断結果をもって規制適合を保証するものではありません。<br><span style="margin-top:4px;display:block;font-size:.92em">診断基準：EU AI Act (Regulation 2024/1689) / 総務省・経済産業省「AI事業者ガイドライン」(2024年4月)</span></div>
+  <div class="bn np" style="justify-content:center;gap:12px;margin-top:20px"><button class="bt bt-p" onclick="window.print()">印刷 / PDF保存</button><button class="bt bt-s" onclick="location.reload()">再診断</button></div></div>`;
+  main.innerHTML=h;pb.style.width='100%';
+}
+render();
+</script></body></html>

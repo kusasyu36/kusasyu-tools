@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI検索に引用される記事ブリーフテンプレート（ライター渡し用） - kusasyu tools</title>
+<meta name="description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<meta name="keywords" content="マーケティングツール,コンテンツマーケティング,AI,SEO,無料,AI検索に引用される記事ブリーフテンプレート（ライター渡し用）">
+<link rel="canonical" href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-7/">
+<meta property="og:title" content="AI検索に引用される記事ブリーフテンプレート（ライター渡し用） - kusasyu tools">
+<meta property="og:description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<meta property="og:url" content="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-7/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="kusasyu tools">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI検索に引用される記事ブリーフテンプレート（ライター渡し用） - kusasyu tools">
+<meta name="twitter:description" content="既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI検索に引用される記事ブリーフテンプレート（ライター渡し用）",
+  "description": "既存のSEO記事をLLMO（Large Language Model Optimization）対応コンテンツに変換するためのブラウザツール＋スコアカード＋ライター向けブリーフテンプレートのキット。ChatGPT・Perplexity・GeminiなどのAI検索で自社コンテンツが引用されるために必要な構造・文",
+  "url": "https://kusasyu36.github.io/kusasyu-tools/digital-marketing/converter-7/",
+  "author": {
+    "@type": "Organization",
+    "name": "kusasyu Digital Marketing"
+  },
+  "datePublished": "2026-07-02"
+}
+</script>
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --accent: #38bdf8;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --border: #334155;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.breadcrumb {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text2);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.breadcrumb a { color: var(--accent); }
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+}
+.meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #6366f1;
+}
+.score-badge {
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  background: #3b82f6;
+}
+.company { font-size: 13px; color: var(--text2); }
+article h1 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.project-name {
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.content h1, .content h2, .content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.content h2 { font-size: 22px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.content h3 { font-size: 18px; }
+.content p { margin-bottom: 16px; }
+.content ul, .content ol { margin-bottom: 16px; padding-left: 24px; }
+.content li { margin-bottom: 4px; }
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  text-align: left;
+}
+.content th { background: var(--card-bg); font-weight: 600; }
+.content code {
+  background: var(--card-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.content pre {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.content pre code { background: none; padding: 0; }
+.content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text2);
+}
+footer a { color: var(--accent); }
+@media (max-width: 640px) {
+  article h1 { font-size: 20px; }
+}
+</style>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MDQEPV7SFL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MDQEPV7SFL');
+</script>
+<!-- GoatCounter -->
+<script data-goatcounter="https://kusasyu-tools.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+<meta name="google-site-verification" content="M4f5luvPZKX1D7Buz2qwSDBAfrv4xthn6dyZBPXcg-c">
+</head>
+<body>
+<nav class="breadcrumb">
+  <a href="https://kusasyu36.github.io/kusasyu-tools/">kusasyu tools</a> &gt;
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">kusasyu Digital Marketing</a> &gt;
+  <span>AI検索に引用される記事ブリーフテンプレート（ライター渡し用）</span>
+</nav>
+<article>
+  <div class="meta">
+    <span class="badge">記事・ガイド</span>
+    <span class="score-badge">7/10</span>
+    <span class="company">📊 kusasyu Digital Marketing</span>
+  </div>
+  <h1>AI検索に引用される記事ブリーフテンプレート（ライター渡し用）</h1>
+  <p class="project-name">SEOが効かない？AI検索に選ばれる記事変換ツール</p>
+  <div class="content">
+<p>（ここに変換アシスタントの出力を貼り付け）</p>
+<pre><code>
+---
+
+## B. スコアカード診断結果サマリー
+
+スコアカードの10項目（各0〜10点）から、現状スコアと目標スコアを転記する。
+
+| No | 評価項目 | 現状スコア | 目標スコア | 対応メモ |
+|----|----------|-----------|-----------|---------|
+| ① | 定義文の明確性 | [記入例：6] | [記入例：9] | [記入例：冒頭に1文定義を追加] |
+| ② | 構造化見出し | [記入例：7] | [記入例：9] | [記入例：H3を質問形式に変更] |
+| ③ | 引用可能な独自データ | [記入例：3] | [記入例：7] | [記入例：自社調査N=120を挿入] |
+| ④ | 簡潔な要約段落 | [記入例：5] | [記入例：9] | [記入例：冒頭に3行サマリー追加] |
+| ⑤ | FAQ網羅性 | [記入例：2] | [記入例：8] | [記入例：FAQ5問を末尾に追加] |
+| ⑥ | 比較表・リスト構造 | [記入例：8] | [記入例：9] | [記入例：料金列を追加] |
+| ⑦ | 数値・統計の明記 | [記入例：6] | [記入例：8] | [記入例：出典付き統計を3か所追加] |
+| ⑧ | E-E-A-T要素 | [記入例：5] | [記入例：8] | [記入例：著者プロフ＋導入事例追加] |
+| ⑨ | 情報の最新性 | [記入例：4] | [記入例：9] | [記入例：2026年版データに更新] |
+| ⑩ | 権威性シグナル | [記入例：3] | [記入例：7] | [記入例：業界レポートの引用追加] |
+| | **合計（/100）** | [記入例：49] | [記入例：83] | |
+| | **ランク** | [記入例：C] | [記入例：A] | |
+
+---
+
+## C. AI引用 必須要素チェックリスト
+
+ライターは執筆完了後、以下の全項目にチェックを入れてから納品すること。
+
+### C-1. 構造要素
+
+- [ ] **1文定義**：記事冒頭200字以内に、主題を「〜とは、〜である。」の形式で1文定義している
+- [ ] **要約段落**：冒頭に3行以内のサマリーがあり、記事全体の結論を先出ししている
+- [ ] **H2/H3の階層**：見出しが論理的な階層構造になっており、見出しだけで記事の骨子がわかる
+- [ ] **FAQ構造化**：末尾にQ&amp;A形式のFAQが3問以上あり、AI検索の質問形式と一致している
+- [ ] **比較表またはリスト**：選択肢がある主題では、比較表・番号付きリスト・箇条書きを使用している
+
+### C-2. データ・根拠要素
+
+- [ ] **独自データ**：自社調査・顧客データなど、他サイトにない数値が1つ以上含まれている
+- [ ] **出典付き統計**：第三者の統計データに出典（調査名・年・機関名）を明記している
+- [ ] **具体的数値**：「多い」「増加」等のあいまい表現を排除し、具体的な数値（%・件数・金額）に置き換えている
+
+### C-3. 信頼性要素
+
+- [ ] **著者情報**：記事末尾または冒頭に、著者の肩書・専門領域・実績を記載している
+- [ ] **更新日の明記**：公開日に加えて最終更新日を記載し、情報の鮮度を示している
+- [ ] **権威ある引用**：業界レポート・学術論文・公的機関のデータを1か所以上引用している
+- [ ] **事例・体験**：自社または顧客の実体験に基づく具体的なエピソードが含まれている
+
+---
+
+## D. 推奨文体パターン（3種）
+
+記事の目的とターゲットに合わせて、以下から1つを選択しライターに指示する。
+
+### パターン1：解説型（定義・ガイド系記事向け）
+
+**適用場面**：「〜とは」「〜の方法」「完全ガイド」系の記事
+**文体ルール**：
+- 一人称は使わず、客観的な第三者視点で書く
+- 結論を先に述べ、根拠を後に続ける「結論→理由→具体例」の順序を徹底
+- 専門用語は初出時に必ず1文で定義する
+- 1段落は3〜4文（150字以内）に収める
+
+**文例**：
+&gt; リード獲得とは、見込み顧客の連絡先情報を取得し、営業活動につなげるマーケティングプロセスである。BtoB SaaS企業においてリード獲得コスト（CPL）の中央値は約8,500円であり、チャネル別ではコンテンツマーケティング経由が最もCPLが低い傾向にある（出典：〇〇調査2025年版）。
+
+### パターン2：比較・評価型（ツール比較・ランキング系記事向け）
+
+**適用場面**：「〜比較」「おすすめ〇選」「〜ランキング」系の記事
+**文体ルール**：
+- 比較軸（価格・機能・サポート等）を冒頭で明示する
+- 各項目を同じフォーマット（名称→特徴→料金→メリット→デメリット）で統一
+- 比較表を必ず含め、一覧できる構造にする
+- 「おすすめは〜です」ではなく「〜の場合は〜が適している」と条件付き推奨にする
+
+**文例**：
+&gt; | ツール名 | 月額料金 | 主な強み | 推奨企業規模 |
+&gt; |---------|---------|---------|------------|
+&gt; | ツールA | 50,000円〜 | UIの使いやすさ | 10〜30名 |
+&gt; | ツールB | 120,000円〜 | API連携の豊富さ | 50〜100名 |
+
+### パターン3：実践・ハウツー型（施策解説・KPI設定系記事向け）
+
+**適用場面**：「〜の改善方法」「〜のやり方」「KPI設定」系の記事
+**文体ルール**：
+- ステップ番号（Step 1, Step 2…）で手順を明示する
+- 各ステップに「目的→手順→期待成果」の3要素を含める
+- 実際の数値や計算式を例示し、読者が自社に当てはめて使えるようにする
+- 失敗例やアンチパターンを1つ以上含め、注意喚起する
+
+**文例**：
+&gt; **Step 1：解約率の現状把握（目標：ベースラインの確定）**
+&gt; 月次解約率（%）＝ 当月解約顧客数 ÷ 月初顧客数 × 100 で算出する。SaaS業界の月次解約率の中央値は3〜5%とされており（出典：〇〇レポート2025）、自社の数値がこの範囲を超える場合は早急な改善が必要である。
+
+**今回の指定パターン**：[ ] パターン1　[ ] パターン2　[ ] パターン3
+
+---
+
+## E. 記事構成テンプレート（推奨アウトライン）
+
+以下をベースに、記事ごとにカスタマイズしてライターに渡す。
+
+```markdown
+# [記事タイトル]
+&lt;!-- 記入例：MAツール比較2025年版 --&gt;
+
+&lt;!-- 更新日表記 --&gt;
+最終更新日：[YYYY-MM-DD]　著者：[著者名・肩書]
+
+## 要約（この記事でわかること）
+&lt;!-- 3行以内で記事全体の結論を先出しする --&gt;
+[記入例：本記事では主要MAツール8製品を料金・機能・サポートの3軸で比較する。
+従業員10〜50名のSaaS企業にはツールAが、50名以上にはツールBが最適である。
+選定時に最も重視すべき評価軸は「CRM連携の柔軟性」である。]
+
+## [主題]とは（1文定義）
+&lt;!-- 初出の専門用語を定義する --&gt;
+[記入例：マーケティングオートメーション（MA）とは、見込み顧客の獲得から
+育成・選別までのマーケティング活動を自動化するツール・手法の総称である。]
+
+## H2：[中見出し1]
+### H3：[小見出し1-1]
+### H3：[小見出し1-2]
+
+## H2：[中見出し2]
+### H3：[小見出し2-1]
+### H3：[小見出し2-2]
+
+## H2：[中見出し3（比較表・リスト構造を含む）]
+&lt;!-- 比較表やリストをここに配置 --&gt;
+
+## まとめ
+&lt;!-- 結論を再掲し、読者の次のアクションを1文で示す --&gt;
+
+## よくある質問（FAQ）
+### Q1. [質問文]？
+A. [回答文]
+### Q2. [質問文]？
+A. [回答文]
+### Q3. [質問文]？
+A. [回答文]
+
+## 出典・参考文献
+- [資料名]（[機関名]、[発行年]）
+</code></pre>
+<hr />
+<h2>F. ライター向け注意事項</h2>
+<h3>やること</h3>
+<ol>
+<li>冒頭200字以内に「〜とは、〜である。」の1文定義を必ず入れる</li>
+<li>見出し（H2/H3）は質問形式または具体的なキーワードを含める</li>
+<li>数値には必ず出典（調査名・年・機関名）を併記する</li>
+<li>FAQは最低3問、AI検索で実際に聞かれそうな自然な質問文にする</li>
+<li>比較・選択肢がある内容では必ず表形式を使用する</li>
+</ol>
+<h3>やらないこと</h3>
+<ol>
+<li>「多くの企業が」「近年注目されている」等、数値のないあいまい表現を使わない</li>
+<li>1段落を5文以上にしない（AI検索は短い段落を引用しやすい）</li>
+<li>著者名・更新日を省略しない</li>
+<li>競合他社を根拠なく否定する表現を使わない</li>
+<li>画像やグラフの代替テキスト（alt属性）を空にしない</li>
+</ol>
+<hr />
+<h2>G. 納品チェックフロー</h2>
+<p>```
+ライター執筆
+    ↓
+セクションC「必須要素チェックリスト」を全項目確認
+    ↓
+ディレクターレビュー
+    ↓
+「LLMO最適化スコアカード＆改善トラッカー」で再採点（各項目0〜10点・合計100点満点）
+    ↓
+目標スコア達成 → 公開
+目標スコア未達 → 差し戻し（不足項目を明記して再依頼）
+    ↓
+公開後、月次改善トラッカーに記録し効果測定</p>
+  </div>
+</article>
+<footer>
+  <a href="https://kusasyu36.github.io/kusasyu-tools/digital-marketing/">&larr; kusasyu Digital Marketingの一覧に戻る</a>
+</footer>
+</body>
+</html>
